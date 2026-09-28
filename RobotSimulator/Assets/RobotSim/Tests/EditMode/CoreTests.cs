@@ -60,8 +60,9 @@ namespace RobotSim.Tests
                     Assert.IsFalse(float.IsNaN(q[j]));
                 }
             }
-            // その場足踏み: FL と RR は同じ位相 → すね角が同じ
+            // その場足踏み: FL と RR は同じ位相 → すね角が同じ (前後の高さの差をなくして比較)
             gait.Reset();
+            gait.BodyPitch = 0f;
             gait.Step(0.02f, 0f, 0f, 0f, level, q);
             Assert.AreEqual(q[0 * 3 + 2], q[3 * 3 + 2], 1e-4f);
             Assert.AreEqual(q[1 * 3 + 2], q[2 * 3 + 2], 1e-4f);

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>四足ロボット 物理シミュレータ (Web 版)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="view"></canvas>
+
+    <div id="hud">
+      <div class="title">四足ロボット 物理シミュレータ</div>
+      <div id="status">物理エンジンを読み込み中...</div>
+    </div>
+
+    <aside id="panel">
+      <section>
+        <div class="tabs">
+          <button class="tab active" data-mode="demo">デモ / 操作</button>
+          <button class="tab" data-mode="evolve">進化で学習</button>
+        </div>
+        <p class="hint" id="modeHint"></p>
+      </section>
+
+      <section>
+        <h3>シミュレーション</h3>
+        <label>ロボットの数 <span id="countLabel">16</span>
+          <input type="range" id="count" min="1" max="64" value="16" />
+        </label>
+        <label>地形
+          <select id="terrain"></select>
+        </label>
+        <label>難易度 <span id="levelLabel">0</span>
+          <input type="range" id="level" min="0" max="3" value="0" />
+        </label>
+        <label>速度
+          <select id="speed">
+            <option value="0.5">× 0.5</option>
+            <option value="1" selected>× 1</option>
+            <option value="2">× 2</option>
+            <option value="4">× 4 (最大)</option>
+          </select>
+        </label>
+        <div class="row">
+          <button id="restart">再スタート</button>
+          <button id="pause">一時停止</button>
+          <button id="kick">蹴る (Space)</button>
+        </div>
+        <label class="check"><input type="checkbox" id="pushes" checked /> ときどきランダムに押す</label>
+      </section>
+
+      <section id="evolvePanel" hidden>
+        <h3>進化の記録</h3>
+        <div id="genInfo">第 0 世代</div>
+        <canvas id="chart" width="300" height="140"></canvas>
+        <div id="bestParams" class="mono"></div>
+        <div class="row">
+          <button id="applyBest">最良の歩き方をデモに使う</button>
+        </div>
+      </section>
+
+      <section class="keys">
+        <h3>キー操作 (デモ)</h3>
+        <div><kbd>W</kbd><kbd>S</kbd> 前進・後退 <kbd>A</kbd><kbd>D</kbd> 横歩き <kbd>Q</kbd><kbd>E</kbd> 旋回</div>
+        <div><kbd>Tab</kbd> 次のロボット <kbd>R</kbd> リセット <kbd>F</kbd> 全体表示</div>
+        <div>マウス: ドラッグで回転 / ホイールでズーム</div>
+      </section>
+    </aside>
+  </div>
+  <script src="dist/app.js"></script>
+</body>
+</html>

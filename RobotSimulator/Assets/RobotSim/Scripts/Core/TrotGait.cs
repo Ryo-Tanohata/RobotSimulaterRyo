@@ -11,12 +11,17 @@ namespace RobotSim.Core
     {
         readonly RobotConfig _c;
 
-        public float Frequency = 2.2f;     // 1 周期 / 秒
-        public float StepHeight = 0.07f;   // 遊脚の持ち上げ高さ [m]
-        public float StandHeight = 0.28f;  // 股関節から足先までの高さ [m]
+        // 既定値は Web 版 (web/test/evolve.mjs) で遺伝的アルゴリズムにより平地歩行に最適化した値
+        public float Frequency = 2.4f;     // 1 周期 / 秒
+        public float StepHeight = 0.085f;  // 遊脚の持ち上げ高さ [m]
+        public float StandHeight = 0.27f;  // 股関節から足先までの高さ [m]
+        public float StrideGain = 1.13f;   // 歩幅の倍率
         public float MaxStride = 0.16f;    // 1 歩の最大長さ [m]
-        public float BalanceGain = 0.25f;  // 胴体の傾きに応じて脚を伸縮させる強さ
-        public float FootSpread = 0.0f;    // 足先を外側に広げる量 [m]
+        public float BalanceGain = 0.28f;  // 胴体の傾きに応じて脚を伸縮させる強さ
+        public float FootSpread = 0.028f;  // 足先を外側に広げる量 [m]
+        public float BodyPitch = -0.03f;   // 前脚と後脚の高さの差 [m]
+        public float FootOffset = -0.055f; // 足の前後の基準位置 [m] (脚の重さで重心が胴体中心より後ろにあるため)
+        public float PhaseLead = 0.07f;    // 関節の追従遅れを見越して目標を先の位相で出す
 
         float _phase;
         public float Phase => _phase;
@@ -51,10 +56,10 @@ namespace RobotSim.Core
                 // 股関節の速度 = v + ω × r   (ω = (0, yawRate, 0))
                 float hipVelX = vSide + yawRate * hip.z;
                 float hipVelZ = vForward - yawRate * hip.x;
-                float strideZ = MathUtil.Clamp(hipVelZ * stanceTime, -MaxStride, MaxStride);
-                float strideX = MathUtil.Clamp(hipVelX * stanceTime, -MaxStride * 0.6f, MaxStride * 0.6f);
+                float strideZ = MathUtil.Clamp(hipVelZ * stanceTime * StrideGain, -MaxStride, MaxStride);
+                float strideX = MathUtil.Clamp(hipVelX * stanceTime * StrideGain, -MaxStride * 0.6f, MaxStride * 0.6f);
 
-                float p = MathUtil.Wrap01(_phase + PhaseOffset[leg]);
+                float p = MathUtil.Wrap01(_phase + PhaseOffset[leg] + PhaseLead);
                 float s;      // -0.5 .. 0.5 : 足先の前後位置 (+ が前)
                 float lift;
                 if (p < 0.5f)
@@ -65,20 +70,20 @@ namespace RobotSim.Core
                 }
                 else
                 {
-                    // 遊脚: 後ろ → 前へ滑らかに戻す
+                    // 遊脚: 先に足を持ち上げてから前へ振り、前で止めてから下ろす (引きずり防止)
                     float t = (p - 0.5f) / 0.5f;
-                    s = -0.5f + (1f - (float)Math.Cos(Math.PI * t)) * 0.5f;
+                    s = -0.5f + SmoothStep((t - 0.2f) / 0.6f);
                     lift = (moving ? StepHeight : StepHeight * 0.6f) * (float)Math.Sin(Math.PI * t);
                 }
 
                 // 傾き補正: 前が下がったら前脚を伸ばす / 右が下がったら右脚を伸ばす
                 float balance = BalanceGain * (gravityBody.z * front + gravityBody.x * side);
-                float height = MathUtil.Clamp(StandHeight + balance - lift, 0.12f, 0.36f);
+                float height = MathUtil.Clamp(StandHeight + balance - lift + BodyPitch * front, 0.12f, 0.36f);
 
                 var foot = new Vec3(
                     side * (_c.HipLinkLength + FootSpread) + strideX * s,
                     -height,
-                    strideZ * s);
+                    strideZ * s + FootOffset);
 
                 LegKinematics.Inverse(_c, side, foot, out float qh, out float qt, out float qc);
                 ClampJoint(leg * 3 + 0, ref qh);
@@ -88,6 +93,12 @@ namespace RobotSim.Core
                 targets[leg * 3 + 1] = qt;
                 targets[leg * 3 + 2] = qc;
             }
+        }
+
+        static float SmoothStep(float x)
+        {
+            x = MathUtil.Clamp01(x);
+            return x * x * (3f - 2f * x);
         }
 
         void ClampJoint(int j, ref float q)

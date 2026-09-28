@@ -1,4 +1,4 @@
-# 四足ロボット 強化学習シミュレータ (Unity + ML-Agents)
+# 四足ロボット 強化学習シミュレータ (Unity + ML-Agents / Web 版)
 
 千葉工業大学 fuRo の古田先生がデモした「絶望ロボット」
 ([動画](https://www.youtube.com/watch?v=g8abhEHcFA4)) のように、
@@ -12,6 +12,13 @@
 - 外乱: ときどきランダムに押される (蹴られても倒れないように学習)
 - 並列台数は設定で変更可能 (既定 16 体。fuRo のデモは 4096 体)
 - 学習前でも **プログラムされたトロット歩容** で歩くので、開いてすぐ動作を確認できる
+- **Web 版 (HTML / CSS / JavaScript)** もあり、ブラウザだけで動く (下記)
+
+| Web 版: デモ | Web 版: 階段 | Web 版: 進化で学習 |
+|---|---|---|
+| ![demo](docs/media/web_demo.png) | ![stairs](docs/media/web_stairs.png) | ![evolution](docs/media/web_evolution.png) |
+
+動画: [docs/media/web_demo.mp4](docs/media/web_demo.mp4) (キーボードで前進 → 旋回 → 蹴る)
 
 ## 動かし方
 
@@ -63,6 +70,26 @@ mlagents-learn config/quadruped_ppo.yaml --run-id=quadruped01
 - 学習が終わると `results/quadruped01/Quadruped.onnx` ができます。これを Unity の `Assets` に入れ、
   SimulationManager の **Policy Model** に設定して Play すると、学習した方策で歩きます
 
+## Web 版 (HTML / CSS / JavaScript)
+
+`web/index.html` を **ブラウザで開くだけ** で動きます (インストール不要。ビルド済みの `web/dist/app.js` を同梱)。
+
+- 物理エンジン: [Rapier](https://rapier.rs/) (Rust 製の物理エンジンの WebAssembly 版)、描画: [Three.js](https://threejs.org/)
+- ロボット・地形・歩容は Unity 版と同じ設計 (歩容の計算結果が C# 版と一致することをテストで確認済み)
+- **デモ / 操作** タブ: ロボットがランダムな指令で歩き回る。キーボード (W/A/S/D/Q/E) で操作、Space で蹴る
+- **進化で学習** タブ: 全員が同じ地形で 8 秒間歩き、遠くまで進めた歩き方を親として次の世代を作る
+  (遺伝的アルゴリズム)。世代ごとの記録がグラフで見られ、最良の歩き方をデモに使える。
+  ※ ニューラルネットの強化学習 (PPO) は Unity 版 + ML-Agents で行います
+- URL で初期設定を変えられます: `index.html?mode=evolve&count=32&terrain=stairsUp&level=1&speed=2`
+
+```bash
+cd web
+npm install          # 開発する場合のみ
+npm run build        # src/ → dist/app.js
+npm test             # 物理チェック (立つ・歩く・後退・横歩き・旋回・蹴られても倒れない)
+npm run evolve       # 歩容パラメータを遺伝的アルゴリズムで最適化 (ブラウザなし)
+```
+
 ## 構成
 
 ```
@@ -73,6 +100,8 @@ RobotSimulator/                     Unity プロジェクト
   Assets/RobotSim/Tests/EditMode/   Core のテスト (Unity の Test Runner で実行可)
 config/quadruped_ppo.yaml           PPO の学習設定
 tools/verify/                       Unity なしでの検証用 .NET プロジェクト
+web/                                Web 版 (index.html, style.css, src/*.js, test/*.mjs)
+docs/media/                         スクリーンショットと動画
 ```
 
 ### 報酬 (legged_gym を参考)
@@ -80,13 +109,23 @@ tools/verify/                       Unity なしでの検証用 .NET プロジ�
 速度指令への追従 (前後・左右・旋回) を報酬とし、上下動・胴体の揺れ・傾き・トルク・関節加速度・
 行動の急変・太ももやすねの接地にペナルティ、足の滞空時間 (大きな歩幅) にボーナス、転倒で終了。
 
-## 検証 (Unity なし)
+## 検証
 
 ```bash
 cd tools/verify
-dotnet test CoreTests                 # Core のテスト (IK・歩容・地形・報酬・観測・カリキュラム)
+dotnet test CoreTests                 # Core のテスト (IK・歩容・地形・報酬・観測・カリキュラム・JS 版との一致)
 dotnet build UnityCompileCheck        # Runtime スクリプトが UnityEngine API でコンパイルできるか
 ```
 
-`UnityCompileCheck` は UnityEngine 2021.3 の参照アセンブリと ML-Agents のスタブを使った確認なので、
-Unity 6 固有の分岐 (`#if UNITY_2023_3_OR_NEWER`) と Editor スクリプトは Unity 上で確認が必要です。
+- `UnityCompileCheck` は UnityEngine 2021.3 の参照アセンブリと ML-Agents のスタブを使った確認なので、
+  Unity 6 固有の分岐 (`#if UNITY_2023_3_OR_NEWER`) と Editor スクリプトは Unity 上での確認が必要です
+- Unity 版の物理挙動 (PhysX) はまだ Unity 上で実際に動かしていません。歩容と PD ゲインは Web 版 (Rapier)
+  で調整した値なので、Unity では Inspector の `Robot` (Kp / Kd など) を見ながら調整する可能性があります
+
+### 歩容の調整で分かったこと (Web 版の物理で確認)
+
+- 関節の PD 制御には追従の遅れ (数十 ms) があり、単純な軌道だと遊脚の最初に足が地面を引きずって後ろへ進んでしまう
+  → 「先に足を上げてから前へ振る」軌道と、遅れを見越した位相リードで解決
+- 膝が後ろ向きの脚は重さで重心が胴体中心より約 2.6 cm 後ろになる → 足の基準位置を後ろへずらす
+- 既定のパラメータは遺伝的アルゴリズム (`npm run evolve`) で最適化した値
+- 手作りの歩容は後退 (-0.3 m/s 超) や階段が苦手。これを強化学習で克服させるのがこのシミュレータの目的

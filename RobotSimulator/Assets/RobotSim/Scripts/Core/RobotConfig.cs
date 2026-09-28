@@ -36,8 +36,8 @@ namespace RobotSim.Core
         public float FootRadius = 0.022f;
 
         // PD 制御 (単位: N·m/rad, N·m·s/rad)
-        public float Kp = 40f;
-        public float Kd = 1.0f;
+        public float Kp = 150f;
+        public float Kd = 2.0f;
         public float TorqueLimit = 33.5f;
 
         /// <summary>方策の出力 [-1,1] を関節角オフセット [rad] に変換する倍率。</summary>

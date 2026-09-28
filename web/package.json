@@ -1,0 +1,23 @@
+{
+  "name": "quadruped-sim-web",
+  "version": "1.0.0",
+  "description": "四足ロボット 物理シミュレータ (Rapier + Three.js)",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node test/physics-check.mjs",
+    "screenshot": "node test/screenshot.mjs",
+    "evolve": "node test/evolve.mjs",
+    "fixture": "node test/gait-fixture.mjs"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.21.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.63.0"
+  },
+  "private": true
+}

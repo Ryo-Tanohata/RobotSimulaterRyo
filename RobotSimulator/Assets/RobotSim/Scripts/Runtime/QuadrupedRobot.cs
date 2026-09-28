@@ -136,9 +136,14 @@ namespace RobotSim
             body.anchorPosition = Vector3.zero;
             body.anchorRotation = anchorRotation;
             body.matchAnchors = true;
-            // 符号が確定するまでは可動範囲を制限しない
-            body.twistLock = ArticulationDofLock.FreeMotion;
+            // 符号が確定するまでは、どちらの符号でも収まる対称な可動範囲にしておく
+            // (実行中に twistLock を切り替えると関節が作り直されるので、ここで LimitedMotion にしておく)
+            body.twistLock = ArticulationDofLock.LimitedMotion;
+            Config.JointLimits(j, out float lo, out float hi);
+            float wide = Mathf.Max(Mathf.Abs(lo), Mathf.Abs(hi)) * Mathf.Rad2Deg;
             var d = body.xDrive;
+            d.lowerLimit = -wide;
+            d.upperLimit = wide;
             d.stiffness = Config.Kp;
             d.damping = Config.Kd;
             d.forceLimit = Config.TorqueLimit;
@@ -181,7 +186,6 @@ namespace RobotSim
                 if (_sign[j] > 0f) { d.lowerLimit = lo * Mathf.Rad2Deg; d.upperLimit = hi * Mathf.Rad2Deg; }
                 else { d.lowerLimit = -hi * Mathf.Rad2Deg; d.upperLimit = -lo * Mathf.Rad2Deg; }
                 _joints[j].xDrive = d;
-                _joints[j].twistLock = ArticulationDofLock.LimitedMotion;
             }
             _calibrated = true;
             if (_sign[1] < 0f)
