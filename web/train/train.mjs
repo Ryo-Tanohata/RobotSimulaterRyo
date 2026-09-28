@@ -14,7 +14,9 @@ const SIGMA = +(process.env.SIGMA || 0.04);        // 突然変異の大きさ
 const LR = +(process.env.LR || 0.03);              // 学習率 (Adam)
 const SEEDS = +(process.env.SEEDS || (stage === 'walk' ? 1 : 3)); // 何種類の地形で評価するか
 const SAVE_EVERY = +(process.env.SAVE_EVERY || 5);
+// 学習中は .partial.json に書き (git の対象外)、最後に本来のファイル名に置き換える
 const outPath = new URL(`../checkpoints/${stage}.json`, import.meta.url);
+const partialPath = new URL(`../checkpoints/${stage}.partial.json`, import.meta.url);
 
 const toB64 = (f32) => Buffer.from(f32.buffer, f32.byteOffset, f32.byteLength).toString('base64');
 const fromB64 = (s) => { const b = Buffer.from(s, 'base64'); return new Float32Array(b.buffer, b.byteOffset, b.byteLength / 4).slice(); };
@@ -99,7 +101,8 @@ for (let gen = 0; gen <= GENERATIONS; gen++) {
   }
   const sec = (Date.now() - t0) / 1000;
   console.log(`${stage} gen ${String(gen).padStart(3)}  center ${rec.center.toFixed(2)}  progress ${rec.progress.toFixed(2)}m  mean ${rec.mean.toFixed(2)}  best ${rec.best.toFixed(2)}  fall ${(fallRate * 100).toFixed(0)}%  ${sec.toFixed(0)}s`);
-  if (gen % 10 === 0 || gen === GENERATIONS) fs.writeFileSync(outPath, JSON.stringify(log));
+  if (gen % 10 === 0) fs.writeFileSync(partialPath, JSON.stringify(log));
 }
 fs.writeFileSync(outPath, JSON.stringify(log));
+fs.rmSync(partialPath, { force: true });
 workers.forEach((w) => w.terminate());

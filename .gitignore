@@ -16,3 +16,4 @@ tools/**/bin/
 tools/**/obj/
 __pycache__/
 web/node_modules/
+web/checkpoints/*.partial.json
