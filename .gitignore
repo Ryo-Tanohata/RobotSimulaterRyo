@@ -1,0 +1,17 @@
+# Unity
+RobotSimulator/[Ll]ibrary/
+RobotSimulator/[Tt]emp/
+RobotSimulator/[Oo]bj/
+RobotSimulator/[Bb]uild/
+RobotSimulator/[Bb]uilds/
+RobotSimulator/[Ll]ogs/
+RobotSimulator/[Uu]ser[Ss]ettings/
+RobotSimulator/*.csproj
+RobotSimulator/*.sln
+RobotSimulator/.vs/
+# ML-Agents
+results/
+# dotnet verification
+tools/**/bin/
+tools/**/obj/
+__pycache__/

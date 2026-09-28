@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Unity 本体なしで Runtime スクリプトが UnityEngine の API に対してコンパイルできるかを確認する。
+    UnityEngine の参照アセンブリは NuGet の UnityEngine.Modules (2021.3) を使用。
+    ML-Agents / Inference Engine は使っている API だけのスタブ (Stubs/) で代用。
+  -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants);ENABLE_LEGACY_INPUT_MANAGER</DefineConstants>
+    <NoWarn>CS0618</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../../RobotSimulator/Assets/RobotSim/Scripts/Core/**/*.cs" />
+    <Compile Include="../../../RobotSimulator/Assets/RobotSim/Scripts/Runtime/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
+  </ItemGroup>
+</Project>
