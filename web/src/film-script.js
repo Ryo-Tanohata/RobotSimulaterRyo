@@ -66,12 +66,12 @@ export const SCENES = [
     captions: [[0, '姿勢を気にしはじめた']],
   },
   {
-    ...close, stage: 'posture', gen: 'last', seconds: 7,
+    ...close, stage: 'posture', gen: 225, seconds: 7,
     captions: [[0, '胴体を持ち上げて歩けるようになった']],
   },
   {
     kind: 'race', stage: 'walk', seconds: 10, spacing: 1.1, camera: [7.5, 6.0, 0.5], lookAhead: 0, followLead: true,
-    gens: ['random', 'walk:5', 'walk:20', 'walk:last', 'posture:last'], labels: true,
+    gens: ['random', 'walk:5', 'walk:20', 'walk:last', 'posture:225'], labels: true,
     badge: '世代対抗レース', graph: false,
     captions: [[0, '世代対抗レース：同じコースで同時にスタート'], [5, '世代を重ねるごとに、遠くまで進めるようになった']],
   },
