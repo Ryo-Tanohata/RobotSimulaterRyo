@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI が歩き方を覚えるまで (上映用)</title>
+  <link rel="stylesheet" href="film.css" />
+</head>
+<body>
+  <div id="stage">
+    <canvas id="view"></canvas>
+    <div id="labels"></div>
+
+    <div id="badge" hidden>
+      <div id="badgeStage"></div>
+      <div id="badgeGen"></div>
+    </div>
+
+    <div id="graphBox" hidden>
+      <div id="graphTitle"></div>
+      <canvas id="graph" width="360" height="170"></canvas>
+    </div>
+
+    <div id="caption" hidden><span id="captionText"></span></div>
+
+    <div id="card" hidden>
+      <div id="cardTitle"></div>
+      <div id="cardBody"></div>
+    </div>
+
+    <div id="controls">
+      <button id="play">▶ 再生</button>
+      <span id="sceneInfo"></span>
+    </div>
+  </div>
+  <script src="dist/film-data.js"></script>
+  <script src="dist/film.js"></script>
+</body>
+</html>

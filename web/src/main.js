@@ -6,6 +6,7 @@ import { createConfig, TrotGait, defaultGaitParams, GAIT_PARAMS, JOINT_COUNT } f
 import { QuadrupedRobot } from './robot.js';
 import { TerrainGenerator, TERRAIN_TYPES, buildTerrainColliders, greedyRects, smoothMesh } from './terrain.js';
 import { Evolution } from './evolution.js';
+import { createRobotMeshFactory, syncRobotMeshes } from './robot-mesh.js';
 
 const DT = 1 / 200;          // 物理 200 Hz
 const DECIMATION = 4;        // 制御 50 Hz
@@ -115,44 +116,9 @@ function buildTerrainMeshes() {
 }
 
 // ------------------------------------------------------------------ ロボットの見た目
-const legMat = new THREE.MeshStandardMaterial({ color: 0x2b2f36, roughness: 0.6 });
-const footMat = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.8 });
-const hipGeo = new THREE.SphereGeometry(0.04, 16, 12);
-const thighGeo = new THREE.CapsuleGeometry(config.thighRadius, config.thighLength, 6, 12);
-const calfGeo = new THREE.CapsuleGeometry(config.calfRadius, config.calfLength - config.calfRadius * 2, 6, 10);
-const footGeo = new THREE.SphereGeometry(config.footRadius, 12, 10);
-const trunkGeo = new THREE.BoxGeometry(config.trunkWidth, config.trunkHeight, config.trunkLength);
-const faceGeo = new THREE.BoxGeometry(config.trunkWidth * 0.6, config.trunkHeight * 0.4, 0.012);
-
-function createRobotMeshes(robot, color) {
-  const bodyMat = new THREE.MeshStandardMaterial({ color, roughness: 0.45, metalness: 0.1 });
-  const meshes = robot.links.map((l) => {
-    const g = new THREE.Group();
-    if (l.kind === 'trunk') {
-      g.add(new THREE.Mesh(trunkGeo, bodyMat));
-      const face = new THREE.Mesh(faceGeo, footMat);
-      face.position.set(0, 0.01, config.trunkLength / 2 + 0.006);
-      g.add(face);
-    } else if (l.kind === 'hip') g.add(new THREE.Mesh(hipGeo, legMat));
-    else if (l.kind === 'thigh') { const m = new THREE.Mesh(thighGeo, bodyMat); m.position.y = -config.thighLength / 2; g.add(m); }
-    else {
-      const m = new THREE.Mesh(calfGeo, legMat); m.position.y = -config.calfLength / 2; g.add(m);
-      const f = new THREE.Mesh(footGeo, footMat); f.position.y = -config.calfLength; g.add(f);
-    }
-    g.traverse((o) => { if (o.isMesh) o.castShadow = true; });
-    scene.add(g);
-    return g;
-  });
-  return meshes;
-}
-
-function syncMeshes(r) {
-  r.robot.links.forEach((l, i) => {
-    const p = l.body.translation(), q = l.body.rotation();
-    r.meshes[i].position.set(p.x, p.y, p.z);
-    r.meshes[i].quaternion.set(q.x, q.y, q.z, q.w);
-  });
-}
+const robotMeshes = createRobotMeshFactory(config);
+const createRobotMeshes = (robot, color) => robotMeshes.create(scene, robot, color);
+const syncMeshes = (r) => syncRobotMeshes(r.robot, r.meshes);
 
 // ------------------------------------------------------------------ ロボットの配置と制御
 function tileFor(i) {
