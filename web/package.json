@@ -10,7 +10,7 @@
     "evolve": "node test/evolve.mjs",
     "fixture": "node test/gait-fixture.mjs"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.21.0",
     "three": "^0.186.1"

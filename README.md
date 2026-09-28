@@ -175,5 +175,10 @@ dotnet build UnityCompileCheck        # Runtime スクリプトが UnityEngine A
 
 ### このリポジトリ自体のライセンス
 
-現時点では未設定です (著作権は作成者に帰属します)。公開・共有する場合は、MIT License などのライセンスを
-`LICENSE` ファイルとして追加することをおすすめします。第三者のソフトウェアは上記のそれぞれのライセンスに従います。
+このリポジトリのプログラム・ドキュメント・画像・動画 (第三者のソフトウェアを除く) は
+**MIT License** で公開しています。全文は [`LICENSE`](LICENSE) を参照してください。
+
+- 著作権表示とライセンス文を残せば、誰でも自由に使用・改変・再配布・商用利用できます
+- 無保証です (作者は、このソフトウェアの利用によって生じたいかなる損害にも責任を負いません)
+- `web/dist/*.js` に同梱している three.js (MIT) と Rapier (Apache License 2.0) は、それぞれのライセンスに従います
+  ([`web/THIRD_PARTY_LICENSES.txt`](web/THIRD_PARTY_LICENSES.txt))
