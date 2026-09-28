@@ -5,7 +5,7 @@
 import * as THREE from 'three';
 import RAPIER from '@dimforge/rapier3d-compat';
 import { createConfig } from './core.js';
-import { Runner, STAGES, makeObstacles, buildArenaWorld, DECIMATION } from './arena.js';
+import { Runner, STAGES, makeObstacles, buildArenaWorld, stageGoal, DECIMATION } from './arena.js';
 import { randomParams, gaussianFrom, mulberry32, PARAM_COUNT } from './policy.js';
 import { createRobotMeshFactory, syncRobotMeshes } from './robot-mesh.js';
 import { SCENES, STAGE_LABELS } from './film-script.js';
@@ -160,7 +160,7 @@ function makeLane(def, i, n, brain, seed) {
   const stageName = def.stage;
   const boxes = makeObstacles(stageName, seed);
   const world = buildArenaWorld(RAPIER, boxes);
-  const runner = new Runner(RAPIER, world, stageName, brain.params, { x: 0, z: 0 }, config);
+  const runner = new Runner(RAPIER, world, stageName, brain.params, { x: 0, z: 0 }, config, stageGoal(stageName, seed));
   runner.stage = { ...runner.stage, seconds: 1e9 }; // 場面の最後まで動かし続ける
   const spacing = def.spacing ?? 1.0;
   const offset = new THREE.Vector3((i - (n - 1) / 2) * spacing, 0, 0);

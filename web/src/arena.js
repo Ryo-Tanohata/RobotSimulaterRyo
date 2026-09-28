@@ -19,7 +19,27 @@ export const STAGES = {
   rough: { seconds: 10, goal: null, terrain: 'blocks', posture: true },
   // 高い壁をよけて、ゴールまで行く
   obstacles: { seconds: 16, goal: { x: 0, z: 10 }, terrain: 'walls', posture: true },
+  // ↓ 課題 4 をやり直すための小分けの課題 (カリキュラム)
+  // 4a: 平地で、毎回ちがう方向にある目標へ曲がって向かう
+  steer: { seconds: 8, goal: 'random-direction', terrain: 'flat', posture: true },
+  // 4b: 壁 1 枚 (すき間の位置は毎回ちがう) の向こうの目標へ
+  wall1: { seconds: 12, goal: 'behind-wall', terrain: 'wall1', posture: true },
+  // 4c: 壁 3 枚 (課題 4 と同じコース)
+  walls3: { seconds: 16, goal: { x: 0, z: 10 }, terrain: 'walls', posture: true, gap: 1.1 },
 };
+
+/** 段階と seed から目標地点 (スタート地点からの相対位置) を決める */
+export function stageGoal(stageName, seed) {
+  const g = STAGES[stageName].goal;
+  if (!g || typeof g === 'object') return g;
+  const rand = mulberry32(seed * 104729 + 3);
+  if (g === 'random-direction') {
+    const a = (rand() * 2 - 1) * (75 * Math.PI / 180); // 正面から左右 75° まで
+    return { x: 4 * Math.sin(a), z: 4 * Math.cos(a) };
+  }
+  if (g === 'behind-wall') return { x: (rand() * 2 - 1) * 1.0, z: 5 };
+  return null;
+}
 
 /** 地形の箱のリスト {x, z, sx, sz, h, kind} を作る (seed が同じなら同じ地形) */
 export function makeObstacles(stageName, seed) {
@@ -31,12 +51,18 @@ export function makeObstacles(stageName, seed) {
       const x = (rand() * 2 - 1) * 3, z = 0.8 + rand() * 9;
       boxes.push({ x, z, sx: 0.2 + rand() * 0.5, sz: 0.2 + rand() * 0.5, h: 0.02 + rand() * 0.06, kind: 'step' });
     }
+  } else if (stage.terrain === 'wall1') {
+    const gapCenter = (rand() * 2 - 1) * 1.2, gap = 1.2, width = 5;
+    const leftEnd = gapCenter - gap / 2, rightStart = gapCenter + gap / 2;
+    const lw = leftEnd + width / 2, rw = width / 2 - rightStart;
+    boxes.push({ x: -width / 2 + lw / 2, z: 2.5, sx: lw, sz: 0.25, h: 0.5, kind: 'wall' });
+    boxes.push({ x: rightStart + rw / 2, z: 2.5, sx: rw, sz: 0.25, h: 0.5, kind: 'wall' });
   } else if (stage.terrain === 'walls') {
     // ゴールとの間に高い壁を置く (毎回位置が変わるので、覚えるのではなく「見て」よける必要がある)
     const rows = [2.8, 5.2, 7.6];
     rows.forEach((z, i) => {
       const gapCenter = (rand() * 2 - 1) * 1.4;
-      const gap = 0.9;
+      const gap = stage.gap ?? 0.9;
       const width = 4.5;
       const leftEnd = gapCenter - gap / 2, rightStart = gapCenter + gap / 2;
       const lw = leftEnd + width / 2;
@@ -67,7 +93,7 @@ export function buildArenaWorld(RAPIER, boxes) {
  * 同じ world に複数の Runner を置けば同時に何体も走らせられる (ロボット同士はぶつからない)。
  */
 export class Runner {
-  constructor(RAPIER, world, stageName, params, start = { x: 0, z: 0 }, config = createConfig()) {
+  constructor(RAPIER, world, stageName, params, start = { x: 0, z: 0 }, config = createConfig(), goal = undefined) {
     this.R = RAPIER;
     this.world = world;
     this.stage = STAGES[stageName];
@@ -75,7 +101,8 @@ export class Runner {
     this.policy = new Policy(params);
     this.robot = new QuadrupedRobot(RAPIER, world, config, { x: start.x, y: config.spawnHeight, z: start.z }, 0);
     this.start = { ...start };
-    this.goal = this.stage.goal ? { x: start.x + this.stage.goal.x, z: start.z + this.stage.goal.z } : null;
+    const g = goal !== undefined ? goal : (typeof this.stage.goal === 'object' ? this.stage.goal : null);
+    this.goal = g ? { x: start.x + g.x, z: start.z + g.z } : null;
     this.rays = new Float32Array(RAY_ANGLES.length).fill(1);
     this.targets = new Float64Array(JOINT_COUNT);
     this.time = 0;
@@ -159,7 +186,7 @@ export class Runner {
 export function evaluate(RAPIER, stageName, params, seed) {
   const boxes = makeObstacles(stageName, seed);
   const world = buildArenaWorld(RAPIER, boxes);
-  const runner = new Runner(RAPIER, world, stageName, params);
+  const runner = new Runner(RAPIER, world, stageName, params, { x: 0, z: 0 }, createConfig(), stageGoal(stageName, seed));
   while (!runner.done) {
     runner.control();
     if (runner.done) break;

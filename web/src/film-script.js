@@ -70,29 +70,37 @@ export const SCENES = [
     captions: [[0, '胴体を持ち上げて歩けるようになった']],
   },
   {
-    kind: 'race', stage: 'walk', seconds: 10, spacing: 1.1, camera: [7.5, 6.0, 0.5], lookAhead: 0, followLead: true,
+    kind: 'race', stage: 'walk', seconds: 10, spacing: 1.1, camera: [0.6, 4.2, -4.6], lookAhead: 2.2, followLead: true,
     gens: ['random', 'walk:5', 'walk:20', 'walk:last', 'posture:225'], labels: true,
     badge: '世代対抗レース', graph: false,
     captions: [[0, '世代対抗レース：同じコースで同時にスタート'], [5, '世代を重ねるごとに、遠くまで進めるようになった']],
   },
   {
-    ...group, stage: 'rough', gen: 'last', count: 4, seconds: 8, camera: [3.2, 2.2, -2.6],
-    captions: [[0, '次はでこぼこ道'], [4, '段差につまずいても、立て直して進む']],
+    ...group, stage: 'rough', gen: 0, count: 4, seconds: 7, camera: [3.2, 2.2, -2.6],
+    captions: [[0, '課題 3：でこぼこ道'], [3, '平らな道の歩き方のままでは、段差につまずいて転んでしまう']],
   },
   {
-    ...close, stage: 'obstacles', gen: 0, seconds: 8, camera: [2.8, 3.2, -2.8], lookAhead: 1.5, markers: false,
-    captions: [[0, '最後の課題：壁をよけてゴールの旗へ'], [4, '前を見る「距離センサー」はあるが、使い方をまだ知らない']],
+    ...group, stage: 'rough', gen: 90, count: 4, seconds: 8, camera: [3.2, 2.2, -2.6],
+    captions: [[0, '90 世代後：ほとんど転ばなくなった'], [4, 'ただし慎重になって、歩みはゆっくり']],
   },
   {
-    ...close, stage: 'obstacles', gen: 100, seconds: 14, camera: [2.8, 3.2, -2.8], lookAhead: 1.5, markers: false,
-    captions: [[0, '学習後：壁のすき間を見つけて進む'], [7, 'ゴール！']],
+    ...close, stage: 'obstacles', gen: 100, seconds: 10, camera: [2.8, 3.2, -2.8], lookAhead: 1.5, markers: false,
+    captions: [[0, '課題 4：壁をよけて、ゴールの旗へ'], [4, '200 世代学習しても、壁の手前で止まってしまった…']],
   },
   {
-    kind: 'card', seconds: 8,
+    kind: 'card', seconds: 10,
+    title: 'できなかったこと',
+    body: `これまで「まっすぐ前へ」しか練習していないので、<br>
+           <em>曲がり方</em>も、前を見る<em>距離センサーの使い方</em>も知らなかった<br><br>
+           次の挑戦：課題を小分けにする<br>
+           <span class="step">曲がって目標へ</span><span class="arrow">→</span><span class="step">壁 1 枚</span><span class="arrow">→</span><span class="step">壁 3 枚</span>`,
+  },
+  {
+    kind: 'card', seconds: 9,
     title: 'まとめ',
     body: `ランダムな脳から、世代をくり返すだけで<br>
-           <em>転ぶ → 踏ん張る → はいずる → 歩く → 障害物をよける</em><br><br>
-           学習はノート PC 程度の CPU 4 コアで約 1 時間<br>
-           (fuRo の研究では 4096 体を GPU で同時に学習)`,
+           <em>転ぶ → 踏ん張る → はいずる → 速く走る → 姿勢よく歩く → でこぼこ道</em><br><br>
+           全 845 世代・1 世代 48 体<br>
+           学習は CPU 4 コアだけで約 70 分 (GPU なし)`,
   },
 ];
