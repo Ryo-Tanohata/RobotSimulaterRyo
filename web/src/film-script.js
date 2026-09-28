@@ -84,7 +84,7 @@ export const SCENES = [
     captions: [[0, '最後の課題：壁をよけてゴールの旗へ'], [4, '前を見る「距離センサー」はあるが、使い方をまだ知らない']],
   },
   {
-    ...close, stage: 'obstacles', gen: 'last', seconds: 14, camera: [2.8, 3.2, -2.8], lookAhead: 1.5, markers: false,
+    ...close, stage: 'obstacles', gen: 100, seconds: 14, camera: [2.8, 3.2, -2.8], lookAhead: 1.5, markers: false,
     captions: [[0, '学習後：壁のすき間を見つけて進む'], [7, 'ゴール！']],
   },
   {
