@@ -99,6 +99,21 @@ function decode(b64) {
   return new Float32Array(bytes.buffer);
 }
 
+/** 段階をまたいだ通しの世代番号にするためのずれ (前の段階の最終世代までの合計) */
+export function genOffset(stage) {
+  const d = data[stage];
+  if (!d || !d.from) return 0;
+  const prev = data[d.from];
+  if (!prev) return 0;
+  return genOffset(d.from) + prev.history[prev.history.length - 1].generation;
+}
+function lastGen(stage) { const h = data[stage].history; return h[h.length - 1].generation; }
+/** 画面に出す世代 (第 1 世代 = 学習前) */
+export function displayGen(stage, gen) {
+  const g = gen === 'last' ? lastGen(stage) : gen;
+  return genOffset(stage) + g + 1;
+}
+
 /** stage の generation 以下で一番近い保存済みの重み */
 function checkpoint(stage, gen) {
   const d = data[stage];
@@ -181,7 +196,7 @@ function makeLane(def, i, n, brain, seed) {
   if (def.labels) {
     label = document.createElement('div');
     label.className = 'lane-label';
-    label.textContent = def.labels[i];
+    label.textContent = def.labels === true ? `第${brain.label}世代` : def.labels[i];
     label.style.setProperty('--c', '#' + color.getHexString());
     labelsEl.appendChild(label);
   }
@@ -198,7 +213,11 @@ export async function loadScene(index) {
     brains.forEach((b, i) => lanes.push(makeLane(def, i, brains.length, b, def.terrainSeed ?? 7)));
   } else if (def.kind === 'race') {
     def.gens.forEach((g, i) => {
-      const b = g === 'random' ? { params: randomParams(3), generation: 0 } : checkpoint(def.stage, g);
+      // g は数値 (その段階の世代) か 'random' か 'last' か 'stage:gen' (別の段階の世代)
+      let stageName = def.stage, gg = g;
+      if (typeof g === 'string' && g.includes(':')) [stageName, gg] = [g.split(':')[0], g.split(':')[1] === 'last' ? 'last' : +g.split(':')[1]];
+      const b = gg === 'random' ? { params: randomParams(3), generation: 0 } : checkpoint(stageName, gg);
+      b.label = gg === 'random' ? 1 : displayGen(stageName, b.generation);
       lanes.push(makeLane(def, i, def.gens.length, b, def.terrainSeed ?? 7));
     });
   }
@@ -289,7 +308,9 @@ function setupOverlay(def) {
   $('badge').hidden = isCard || !def.badge;
   if (def.badge) {
     $('badgeStage').textContent = STAGE_LABELS[def.stage] || '';
-    $('badgeGen').innerHTML = def.badge;
+    $('badgeGen').innerHTML = def.badge === true
+      ? `第 ${displayGen(def.stage, def.randomBrains ? 0 : def.gen)} <small>世代</small>`
+      : def.badge;
   }
   $('graphBox').hidden = isCard || !def.graph;
   $('caption').hidden = true;

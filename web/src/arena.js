@@ -13,10 +13,12 @@ const RAY_GROUPS = (GROUP_ROBOT << 16) | GROUP_GROUND;
 export const STAGES = {
   // 平らな地面でまっすぐ前へ。倒れずに遠くへ進むほど良い
   walk: { seconds: 8, goal: null, terrain: 'flat' },
+  // 同じ平地で「きれいに」歩く: 胴体を低くしすぎない・傾かない・ガクガク動かさない
+  posture: { seconds: 8, goal: null, terrain: 'flat', posture: true },
   // 低い段差がちらばった地面
-  rough: { seconds: 10, goal: null, terrain: 'blocks' },
+  rough: { seconds: 10, goal: null, terrain: 'blocks', posture: true },
   // 高い壁をよけて、ゴールまで行く
-  obstacles: { seconds: 16, goal: { x: 0, z: 10 }, terrain: 'walls' },
+  obstacles: { seconds: 16, goal: { x: 0, z: 10 }, terrain: 'walls', posture: true },
 };
 
 /** 地形の箱のリスト {x, z, sx, sz, h, kind} を作る (seed が同じなら同じ地形) */
@@ -83,6 +85,11 @@ export class Runner {
     this.aliveTime = 0;
     this.reached = false;
     this.bestProgress = 0;
+    this.lowSum = 0;   // 胴体が低すぎた量の合計
+    this.tiltSum = 0;  // 傾きの合計
+    this.jerkSum = 0;  // 出力の急な変化の合計
+    this.ctrlN = 0;
+    this.prevOut = new Float32Array(JOINT_COUNT);
   }
 
   /** 物理を 1 ステップ進める前に呼ぶ (DECIMATION ステップごとに脳が判断する) */
@@ -94,8 +101,17 @@ export class Runner {
     readRays(this.R, this.world, r, RAY_GROUPS, this.rays);
     const input = buildInput(r, this.time, this.goal, this.rays);
     const out = this.policy.forward(input);
-    for (let j = 0; j < JOINT_COUNT; j++) this.targets[j] = r.defaultAngles[j] + out[j] * ACTION_SCALE;
+    let jerk = 0;
+    for (let j = 0; j < JOINT_COUNT; j++) {
+      this.targets[j] = r.defaultAngles[j] + out[j] * ACTION_SCALE;
+      jerk += Math.abs(out[j] - this.prevOut[j]);
+      this.prevOut[j] = out[j];
+    }
     r.setTargets(this.targets);
+    this.lowSum += Math.max(0, 0.27 - r.position.y);
+    this.tiltSum += 1 - r.upY();
+    if (this.ctrlN > 0) this.jerkSum += jerk / JOINT_COUNT;
+    this.ctrlN++;
 
     if (r.isFallen()) { this.fell = true; this.done = true; }
     if (this.goal) {
@@ -129,8 +145,13 @@ export class Runner {
     const p = this.robot.position;
     const lateral = this.goal ? 0 : Math.abs(p.x - this.start.x);
     const early = this.fell ? 1.0 : 0; // 転んだら減点
-    return this.progress() - 0.3 * lateral + 0.15 * this.aliveTime - early
+    let f = this.progress() - 0.3 * lateral + 0.15 * this.aliveTime - early
       + (this.reached ? 3 + (this.stage.seconds - this.time) * 0.2 : 0);
+    if (this.stage.posture && this.ctrlN > 0) {
+      const n = this.ctrlN;
+      f -= 15 * (this.lowSum / n) + 3 * (this.tiltSum / n) + 1.5 * (this.jerkSum / n);
+    }
+    return f;
   }
 }
 
