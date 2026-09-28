@@ -24,9 +24,13 @@ const fromB64 = (s) => { const b = Buffer.from(s, 'base64'); return new Float32A
 // ---- 初期の重み
 let theta;
 if (fromStage) {
-  const prev = JSON.parse(fs.readFileSync(new URL(`../checkpoints/${fromStage}.json`, import.meta.url)));
-  theta = fromB64(prev.checkpoints[prev.checkpoints.length - 1].params);
-  console.log(`start from ${fromStage} generation ${prev.checkpoints[prev.checkpoints.length - 1].generation}`);
+  // "posture" なら最終世代、"posture@225" なら第 225 世代から続ける
+  const [fromName, fromGen] = fromStage.split('@');
+  const prev = JSON.parse(fs.readFileSync(new URL(`../checkpoints/${fromName}.json`, import.meta.url)));
+  const cp = fromGen === undefined ? prev.checkpoints[prev.checkpoints.length - 1]
+    : prev.checkpoints.filter((c) => c.generation <= +fromGen).pop();
+  theta = fromB64(cp.params);
+  console.log(`start from ${fromName} generation ${cp.generation}`);
 } else {
   theta = randomParams(1);
 }
@@ -54,7 +58,7 @@ const m = new Float32Array(PARAM_COUNT), v = new Float32Array(PARAM_COUNT);
 const b1 = 0.9, b2 = 0.999;
 let t = 0;
 
-const log = { stage, from: fromStage || null, paramCount: PARAM_COUNT, pairs: PAIRS, sigma: SIGMA, history: [], checkpoints: [] };
+const log = { stage, from: fromStage ? fromStage.split('@')[0] : null, fromGeneration: fromStage && fromStage.includes('@') ? +fromStage.split('@')[1] : null, paramCount: PARAM_COUNT, pairs: PAIRS, sigma: SIGMA, history: [], checkpoints: [] };
 const rand = mulberry32(12345);
 const t0 = Date.now();
 

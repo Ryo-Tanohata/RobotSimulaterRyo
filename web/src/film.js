@@ -105,7 +105,8 @@ export function genOffset(stage) {
   if (!d || !d.from) return 0;
   const prev = data[d.from];
   if (!prev) return 0;
-  return genOffset(d.from) + prev.history[prev.history.length - 1].generation;
+  const startGen = d.fromGeneration ?? prev.history[prev.history.length - 1].generation;
+  return genOffset(d.from) + startGen;
 }
 function lastGen(stage) { const h = data[stage].history; return h[h.length - 1].generation; }
 /** 画面に出す世代 (第 1 世代 = 学習前) */
