@@ -58,11 +58,28 @@ const m = new Float32Array(PARAM_COUNT), v = new Float32Array(PARAM_COUNT);
 const b1 = 0.9, b2 = 0.999;
 let t = 0;
 
+// RESUME=1: 途中で止まった学習 (.partial.json) の続きから再開する
+let resume = null;
+if (process.env.RESUME && fs.existsSync(partialPath)) {
+  resume = JSON.parse(fs.readFileSync(partialPath, 'utf8'));
+  const cp = resume.checkpoints[resume.checkpoints.length - 1];
+  theta = fromB64(cp.params);
+  console.log(`resume ${stage} from generation ${cp.generation}`);
+}
+
 const log = { stage, from: fromStage ? fromStage.split('@')[0] : null, fromGeneration: fromStage && fromStage.includes('@') ? +fromStage.split('@')[1] : null, paramCount: PARAM_COUNT, pairs: PAIRS, sigma: SIGMA, history: [], checkpoints: [] };
 const rand = mulberry32(12345);
 const t0 = Date.now();
 
-for (let gen = 0; gen <= GENERATIONS; gen++) {
+let startGen = 0;
+if (resume) {
+  // 保存済みの最後の世代から続ける (それより後の記録は捨てる)
+  startGen = resume.checkpoints[resume.checkpoints.length - 1].generation;
+  Object.assign(log, { from: resume.from, fromGeneration: resume.fromGeneration });
+  log.history = resume.history.filter((h) => h.generation < startGen);
+  log.checkpoints = resume.checkpoints.filter((c) => c.generation < startGen);
+}
+for (let gen = startGen; gen <= GENERATIONS; gen++) {
   const seeds = Array.from({ length: SEEDS }, (_, i) => gen * 100 + i + 1);
   const thetaGen = Float32Array.from(theta); // この世代の「代表」の重み (更新前)
   // 突然変異のペア (±ε) を作って評価
