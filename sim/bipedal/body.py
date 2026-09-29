@@ -67,8 +67,8 @@ def body_xml(s, prefix="", pos=(0, 0, 1.0)):
     hw = 0.12  # 骨盤・肩の半分の幅
     # 見た目は棒人間: 当たり判定と重さの形 (group 3) は表示せず、細い線を重さ 0 で重ねる。つなぎ目は GAP だけ空ける
     vis = f'contype="0" conaffinity="0" mass="0" rgba="{col}"'
-    stick = lambda a, b: f'<geom type="capsule" fromto="0 0 {a + GAP * (1 if b > a else -1):.4f} 0 0 {b - GAP * (1 if b > a else -1):.4f}" size="0.028" {vis}/>'
-    stick_x = lambda a, b, z: f'<geom type="capsule" fromto="{a:.4f} 0 {z} {b:.4f} 0 {z}" size="0.022" {vis}/>'
+    stick = lambda a, b, r=0.045: f'<geom type="capsule" fromto="0 0 {a + GAP * (1 if b > a else -1):.4f} 0 0 {b - GAP * (1 if b > a else -1):.4f}" size="{r}" {vis}/>'
+    stick_x = lambda a, b, z: f'<geom type="capsule" fromto="{a:.4f} 0 {z} {b:.4f} 0 {z}" size="0.035" {vis}/>'
 
     def leg(side, y):
         # 脚の重さは 大腿 : 下腿 : 足 = 0.6 : 0.3 : 0.1 (仮定)
@@ -115,7 +115,7 @@ def body_xml(s, prefix="", pos=(0, 0, 1.0)):
     {leg("r", -hw * 0.8)}
     <body name="{p}chest" pos="0 0 0.05">
       <joint name="{p}waist" axis="0 1 0" range="-30 45"/>
-      <geom type="capsule" fromto="0 0 0.05 0 0 {TRUNK - 0.08:.4f}" size="0.11" mass="{m_trunk * 0.45:.3f}" group="3"/>{stick(-0.05, TRUNK)}
+      <geom type="capsule" fromto="0 0 0.05 0 0 {TRUNK - 0.08:.4f}" size="0.11" mass="{m_trunk * 0.45:.3f}" group="3"/>{stick(-0.05, TRUNK, 0.07)}
       <geom type="capsule" fromto="0 {-hw - 0.04} {TRUNK - 0.05:.4f} 0 {hw + 0.04} {TRUNK - 0.05:.4f}" size="0.06" mass="{m_trunk * 0.15:.3f}" group="3"/>
       <body name="{p}head" pos="0 0 {TRUNK + 0.14:.4f}">
         <geom type="sphere" size="0.1" mass="{m_head:.3f}" group="3"/>
