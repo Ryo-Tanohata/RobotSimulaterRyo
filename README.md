@@ -217,10 +217,22 @@ dotnet build UnityCompileCheck        # Runtime スクリプトが UnityEngine A
   画面を録画して作ったオリジナルです。他者の映像・画像・音楽は使っていません。
 - フォントは同梱しておらず、閲覧する PC に入っているフォントで表示します。
 
+### 音声 (VOICEVOX ずんだもん)
+
+- 動画のナレーションは [VOICEVOX](https://voicevox.hiroshiba.jp/) の「ずんだもん」で作っています。**VOICEVOX:ずんだもん**
+- VOICEVOX 本体・音声モデル・ONNX Runtime はリポジトリに含めていません (無断の再配布が禁止されているため)。
+  `tools/voicevox/setup.sh` が公式の配布元から取得し、`tools/voicevox/synth.py` で音声を作ります
+- 規約: [VOICEVOX ソフトウェア利用規約](https://voicevox.hiroshiba.jp/term/)、
+  [ずんだもん 音源利用ガイドライン](https://zunko.jp/con_ongen_kiyaku.html)、音声モデル・ONNX Runtime の利用規約
+  (`setup.sh` で取得した `VVM_TERMS.txt` など)
+- **生成した音声ファイルと、音声入りの動画は MIT License の対象外**です。VOICEVOX の規約で、音声の利用を他者に
+  許諾するときは各音声ライブラリの規約とクレジット表記を守らせる必要があるためです。
+  これらを使う場合は「VOICEVOX:ずんだもん」のクレジットを表記し、上記の規約に従ってください
+
 ### このリポジトリ自体のライセンス
 
-このリポジトリのプログラム・ドキュメント・画像・動画 (第三者のソフトウェアを除く) は
-**MIT License** で公開しています。全文は [`LICENSE`](LICENSE) を参照してください。
+このリポジトリのプログラム・ドキュメント・画像・動画 (第三者のソフトウェア、および VOICEVOX で生成した音声と
+音声入りの動画を除く) は **MIT License** で公開しています。全文は [`LICENSE`](LICENSE) を参照してください。
 
 - 著作権表示とライセンス文を残せば、誰でも自由に使用・改変・再配布・商用利用できます
 - 無保証です (作者は、このソフトウェアの利用によって生じたいかなる損害にも責任を負いません)
