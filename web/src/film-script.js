@@ -9,12 +9,17 @@ export const STAGE_LABELS = {
   posture: '課題 2　きれいな姿勢で歩く',
   rough: '課題 3　でこぼこ道',
   obstacles: '課題 4　壁をよけてゴールへ',
+  steer: '課題 4a　曲がって目標へ',
+  wall1: '課題 4b　壁 1 枚の向こうへ',
+  walls3: '課題 4c　壁 3 枚をぬけてゴールへ',
 };
 
 // 1 体を横から大きく映す
 const close = { kind: 'population', count: 1, camera: [1.5, 0.6, -0.3], lookAhead: 0.1, badge: true, graph: true };
 // 何体かを斜め後ろから映す
 const group = { kind: 'population', count: 6, spacing: 0.9, camera: [4.2, 2.8, -2.8], lookAhead: 1.0, badge: true, graph: true };
+
+export const EXTRA_SCRIPTS = {};
 
 export const SCENES = [
   {
@@ -102,5 +107,36 @@ export const SCENES = [
            <em>転ぶ → 踏ん張る → はいずる → 速く走る → 姿勢よく歩く → でこぼこ道</em><br><br>
            全 845 世代・1 世代 48 体<br>
            学習は CPU 4 コアだけで約 70 分 (GPU なし)`,
+  },
+];
+
+// 途中経過の動画 (?script=progress)
+const course = { kind: 'population', badge: true, graph: true, markers: false };
+EXTRA_SCRIPTS.progress = [
+  {
+    kind: 'card', seconds: 6,
+    title: '課題 4 をやり直し',
+    body: `いきなり「壁 3 枚」は難しすぎたので、小分けにして練習<br><br>
+           <span class="step">曲がって目標へ</span><span class="arrow">→</span><span class="step">壁 1 枚</span><span class="arrow">→</span><span class="step">壁 3 枚</span>`,
+  },
+  {
+    ...course, stage: 'steer', gen: 0, count: 3, varySeed: true, spacing: 6, seconds: 8, camera: [0, 8.5, -5.5], lookAhead: 2.2,
+    graphTitle: '目標に近づいた距離 (世代ごと)',
+    captions: [[0, '3 体それぞれ、違う方向に目標の旗'], [3.5, 'これまで「まっすぐ前へ」しか練習していないので、旗を無視して直進']],
+  },
+  {
+    ...course, stage: 'steer', gen: 70, count: 3, varySeed: true, spacing: 6, seconds: 8, camera: [0, 8.5, -5.5], lookAhead: 2.2,
+    graphTitle: '目標に近づいた距離 (世代ごと)',
+    captions: [[0, '70 世代後：旗の方向へ曲がって向かえるようになった']],
+  },
+  {
+    ...course, stage: 'wall1', gen: 0, count: 1, terrainSeed: 3, seconds: 10, camera: [2.2, 4.2, -3.6], lookAhead: 2.2,
+    graphTitle: 'ゴールに近づいた距離 (世代ごと)',
+    captions: [[0, '次は壁 1 枚。すき間の位置は毎回変わる'], [4, '最初は壁にぶつかって止まってしまう']],
+  },
+  {
+    ...course, stage: 'wall1', gen: 100, count: 1, terrainSeed: 3, seconds: 12, camera: [2.2, 4.2, -3.6], lookAhead: 2.2,
+    graphTitle: 'ゴールに近づいた距離 (世代ごと)',
+    captions: [[0, '100 世代後：前の距離センサーで壁を見て…'], [5, 'すき間を通ってゴールへ']],
   },
 ];

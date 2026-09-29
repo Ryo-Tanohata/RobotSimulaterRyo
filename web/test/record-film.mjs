@@ -8,13 +8,14 @@ import path from 'node:path';
 import fs from 'node:fs';
 
 const [out = 'film.mp4', fromArg, toArg] = process.argv.slice(2);
+const script = process.env.SCRIPT ? `&script=${process.env.SCRIPT}` : ''; // 別の台本 (例: SCRIPT=progress)
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
 page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
-await page.goto('file://' + path.join(root, 'film.html') + '?record=1');
+await page.goto('file://' + path.join(root, 'film.html') + '?record=1' + script);
 await page.waitForFunction(() => window.film && window.film.ready, null, { timeout: 60000 });
 const count = await page.evaluate(() => window.film.sceneCount);
 const from = fromArg ? +fromArg : 0, to = toArg ? +toArg : count - 1;

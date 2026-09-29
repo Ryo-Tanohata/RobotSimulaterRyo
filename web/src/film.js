@@ -8,7 +8,7 @@ import { createConfig } from './core.js';
 import { Runner, STAGES, makeObstacles, buildArenaWorld, stageGoal, DECIMATION } from './arena.js';
 import { randomParams, gaussianFrom, mulberry32, PARAM_COUNT } from './policy.js';
 import { createRobotMeshFactory, syncRobotMeshes } from './robot-mesh.js';
-import { SCENES, STAGE_LABELS } from './film-script.js';
+import { SCENES, STAGE_LABELS, EXTRA_SCRIPTS } from './film-script.js';
 
 export const FPS = 25;
 const STEPS_PER_FRAME = 8; // 200 Hz ÷ 25 fps
@@ -206,12 +206,13 @@ function makeLane(def, i, n, brain, seed) {
 
 export async function loadScene(index) {
   clearScene();
-  const def = SCENES[index];
+  const def = activeScenes()[index];
   const frames = Math.round(def.seconds * FPS);
   const lanes = [];
   if (def.kind === 'population') {
     const brains = populationParams(def.stage, def.gen, def.count ?? 6, def.randomBrains, 1000 + index);
-    brains.forEach((b, i) => lanes.push(makeLane(def, i, brains.length, b, def.terrainSeed ?? 7)));
+    // varySeed: ロボットごとに違うコース (目標の方向・壁のすき間) にする
+    brains.forEach((b, i) => lanes.push(makeLane(def, i, brains.length, b, (def.terrainSeed ?? 7) + (def.varySeed ? i * 13 : 0))));
   } else if (def.kind === 'race') {
     def.gens.forEach((g, i) => {
       // g は数値 (その段階の世代) か 'random' か 'last' か 'stage:gen' (別の段階の世代)
@@ -230,6 +231,12 @@ export async function loadScene(index) {
   placeCamera(true);
   render();
   return frames;
+}
+
+// 別の台本 (film-script.js の EXTRA_SCRIPTS) を ?script=名前 で選べる
+function activeScenes() {
+  const name = new URLSearchParams(location.search).get('script');
+  return name && EXTRA_SCRIPTS[name] ? EXTRA_SCRIPTS[name] : SCENES;
 }
 
 // ------------------------------------------------------------------ 1 コマ進める
@@ -372,9 +379,9 @@ function drawGraph(def) {
 let playing = false;
 async function playAll() {
   playing = true;
-  for (let i = 0; i < SCENES.length && playing; i++) {
+  for (let i = 0; i < activeScenes().length && playing; i++) {
     await loadScene(i);
-    $('sceneInfo').textContent = `場面 ${i + 1} / ${SCENES.length}`;
+    $('sceneInfo').textContent = `場面 ${i + 1} / ${activeScenes().length}`;
     await new Promise((res) => {
       let last = performance.now(), acc = 0;
       const tick = (now) => {
@@ -400,7 +407,7 @@ async function main() {
   await RAPIER.init();
   const params = new URLSearchParams(location.search);
   if (params.has('record')) document.body.classList.add('recording');
-  window.film = { loadScene, step, sceneCount: SCENES.length, FPS, ready: true };
+  window.film = { loadScene, step, sceneCount: activeScenes().length, FPS, ready: true };
   $('play').addEventListener('click', () => { if (!playing) playAll(); });
   if (params.has('scene')) { await loadScene(+params.get('scene')); }
   else if (!params.has('record')) { await loadScene(0); }
