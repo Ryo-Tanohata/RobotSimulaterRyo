@@ -125,6 +125,11 @@ SCRIPT=v1 node test/record-film.mjs v1.mp4         # 別の台本 (film-script.j
 - 学習結果 (世代ごとの重み) は `web/checkpoints/*.json`、台本 (場面と字幕) は `web/src/film-script.js`
 - `web/film.html` をブラウザで開いて「再生」を押すと、動画と同じ内容をその場で計算しながら再生します
 
+## 計画・要件
+
+- [docs/requirements.md](docs/requirements.md) … 要件定義 (これまでの要求と今後の要求)
+- [docs/plan.md](docs/plan.md) … 次の作業計画 (自然な歩き方・音声入り動画)、WBS、規約の確認チェックリスト
+
 ## 構成
 
 ```
