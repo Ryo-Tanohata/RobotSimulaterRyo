@@ -12,6 +12,8 @@ export const STAGE_LABELS = {
   steer: '課題 4a　曲がって目標へ',
   wall1: '課題 4b　壁 1 枚の向こうへ',
   walls3: '課題 4c　壁 3 枚をぬけてゴールへ',
+  imitate: '課題 5　お手本を真似る (1 回目)',
+  natural: '課題 5　お手本を土台に自然な歩き方へ',
 };
 
 // 1 体を横から大きく映す
@@ -288,5 +290,27 @@ EXTRA_SCRIPTS.reference = [
             { gait: 'trot', speed: 0.5, physics: true, label: 'トロット (0.5 m/s)' }],
     labels: ['ウォーク', 'トロット'],
     captions: [[0, '同じ動きを、物理エンジンの中でそのまま再生すると…'], [4.5, '滑ったり遅れたりして、思うように進まない → ここを学習で補う']],
+  },
+];
+
+// 自然な歩き方の確認用 (?script=natural)
+EXTRA_SCRIPTS.natural = [
+  {
+    kind: 'population', stage: 'walk', brainStage: 'wall1', gen: 100, count: 1, seconds: 7, badge: true, graph: false,
+    footfall: true, footfallLanes: [0], camera: [1.5, 0.6, -0.3], lookAhead: 0.1,
+    captions: [[0, 'これまでの脳 (壁 1 枚 第 746 世代)：胴体を低くした はいずり歩き']],
+  },
+  {
+    kind: 'population', stage: 'walk', brainStage: 'natural', gen: 150, count: 2, speeds: [0.2, 0.5], spacing: 1.3, seconds: 10,
+    badge: true, graph: false, footfall: true, footfallLanes: [0, 1], labels: ['ゆっくり (0.2 m/s)', '速め (0.5 m/s)'],
+    lanes: [{ label: 'ゆっくり 0.2 m/s' }, { label: '速め 0.5 m/s' }],
+    camera: [3.4, 1.3, -1.0], lookAhead: 0.4, markerLength: 8,
+    captions: [[0, 'お手本を土台に学習した脳：ゆっくりはウォーク、速いとトロット'], [5, '右上の図：色の帯 = 足が地面に着いている時間']],
+  },
+  {
+    kind: 'population', stage: 'wall1', brainStage: 'natural', gen: 150, count: 1, terrainSeed: 9, seconds: 11, badge: true, graph: false,
+    markers: false, camera: [2.2, 4.2, -3.6], lookAhead: 2.2,
+    captions: [[0, '自然な歩き方のまま、壁 1 枚をぬけてゴールへ'],
+               [5, '初めてのコース 48 個でのゴール：はいずり歩きの脳 17 個 → 36 個']],
   },
 ];

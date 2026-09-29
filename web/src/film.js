@@ -195,7 +195,10 @@ function makeLane(def, i, n, brain, seed, reference = null) {
       steps++;
     };
   } else {
-    runner = new Runner(RAPIER, world, stageName, brain.params, { x: 0, z: 0 }, config, stageGoal(stageName, seed));
+    // お手本を土台にする方式で学習した脳は、学習のときと同じようにお手本と一緒に動かす
+    const residual = !!(brain.stageName && data[brain.stageName] && data[brain.stageName].residual);
+    const imitation = residual ? { speed: def.speeds ? def.speeds[i] : (def.speed ?? 0.45), weight: 1, residual: true } : null;
+    runner = new Runner(RAPIER, world, stageName, brain.params, { x: 0, z: 0 }, config, stageGoal(stageName, seed), imitation);
     runner.stage = { ...runner.stage, seconds: 1e9 }; // 場面の最後まで動かし続ける
     robot = runner.robot;
     advance = () => { runner.control(); world.step(); runner.afterStep(); };
@@ -248,7 +251,9 @@ export async function loadScene(index) {
   const frames = Math.round(def.seconds * FPS);
   const lanes = [];
   if (def.kind === 'population') {
-    const brains = populationParams(def.stage, def.gen, def.count ?? 6, def.randomBrains, 1000 + index);
+    // brainStage: 脳をどの段階の学習結果から取るか (地形は def.stage)
+    const brains = populationParams(def.brainStage ?? def.stage, def.gen, def.count ?? 6, def.randomBrains, 1000 + index);
+    brains.forEach((b) => { b.stageName = def.brainStage ?? def.stage; });
     // varySeed: ロボットごとに違うコース (目標の方向・壁のすき間) にする
     brains.forEach((b, i) => lanes.push(makeLane(def, i, brains.length, b, (def.terrainSeed ?? 7) + (def.varySeed ? i * 13 : 0))));
   } else if (def.kind === 'race') {
@@ -257,6 +262,7 @@ export async function loadScene(index) {
       let stageName = def.stage, gg = g;
       if (typeof g === 'string' && g.includes(':')) [stageName, gg] = [g.split(':')[0], g.split(':')[1] === 'last' ? 'last' : +g.split(':')[1]];
       const b = gg === 'random' ? { params: randomParams(3), generation: 0 } : checkpoint(stageName, gg);
+      b.stageName = stageName;
       b.label = gg === 'random' ? 1 : displayGen(stageName, b.generation);
       lanes.push(makeLane(def, i, def.gens.length, b, def.terrainSeed ?? 7));
     });
@@ -355,9 +361,9 @@ function setupOverlay(def) {
   }
   $('badge').hidden = isCard || !def.badge;
   if (def.badge) {
-    $('badgeStage').textContent = STAGE_LABELS[def.stage] || '';
+    $('badgeStage').textContent = STAGE_LABELS[def.badgeStage ?? def.brainStage ?? def.stage] || '';
     $('badgeGen').innerHTML = def.badge === true
-      ? `第 ${displayGen(def.stage, def.randomBrains ? 0 : def.gen)} <small>世代</small>`
+      ? `第 ${displayGen(def.brainStage ?? def.stage, def.randomBrains ? 0 : def.gen)} <small>世代</small>`
       : def.badge;
   }
   $('graphBox').hidden = isCard || !(def.graph || def.footfall);
@@ -411,7 +417,7 @@ function drawFootfall(def) {
 }
 
 function drawGraph(def) {
-  const d = data[def.stage];
+  const d = data[def.graphStage ?? def.brainStage ?? def.stage];
   const cv = $('graph'), g = cv.getContext('2d');
   const W = cv.width, H = cv.height;
   g.clearRect(0, 0, W, H);
