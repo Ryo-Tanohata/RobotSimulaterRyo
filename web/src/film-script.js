@@ -132,7 +132,7 @@ export const SCENES = [
     title: 'ここまでの結果',
     body: `<span class="step">曲がって目標へ ○</span><span class="step">壁 1 枚 ○</span><span class="step">壁 3 枚 △ (1 枚目まで)</span><br><br>
            次の挑戦：もっと多くのロボットで・もっと長く学習する<br>
-           (fuRo の研究では 4096 体を GPU で同時に学習している)`,
+           (大規模な研究では、数千体のロボットを GPU で同時に学習させている)`,
   },
   {
     kind: 'card', seconds: 9,
