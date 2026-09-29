@@ -100,7 +100,11 @@ npm run evolve       # 歩容パラメータを遺伝的アルゴリズムで最
 
 ![見どころ (第 1 世代 → はいずり → 世代対抗レース → 壁 1 枚をぬけてゴール)](docs/media/film_v2_highlights.gif)
 
-**動画 (約 3 分・字幕付き)**: [docs/media/film_v2.mp4](docs/media/film_v2.mp4)
+**動画 v3 (約 6 分・字幕とナレーション・効果音・BGM 付き)**: [docs/media/film_v3.mp4](docs/media/film_v3.mp4)
+— v2 の内容に続けて「課題 5　お手本で歩き方を自然に」の章を加えたもの。ナレーション: **VOICEVOX:ずんだもん**
+(音声入りの動画は MIT License の対象外です。[音声について](#音声-voicevox-ずんだもん) を参照)
+
+**動画 v2 (約 3 分・字幕のみ)**: [docs/media/film_v2.mp4](docs/media/film_v2.mp4)
 (上の GIF は見どころだけを切り出したもの。全編はリンク先の mp4 で再生できます)
 
 | 課題 | 世代 | 結果 |
@@ -113,7 +117,25 @@ npm run evolve       # 歩容パラメータを遺伝的アルゴリズムで最
 | 4b. 壁 1 枚の向こうへ | 120 | 初めてのコース 12 個中 3 → 9 個でゴール |
 | 4c. 壁 3 枚 (再挑戦) | 150 | 1 枚目は抜けるが、ゴールできたコースはなし |
 
-学習はすべて CPU 4 コアのみ (GPU なし)、合計約 2 時間。
+| 5. お手本で歩き方を自然に (v3) | 150 | 人が決めた歩き方の「型」(ウォーク・トロット) を土台に、脳は速さの調整・向き・細かな補正を学ぶ。遅いときはウォーク (3 本以上の脚が接地 84%)、速いときはトロット (対角の脚がそろう 87%) |
+
+表の 4a・4b は動画 v2 の時点の数字 (初めてのコース 12 個で評価)。v3 では 48 コースで評価し直した数字を使っています
+(壁 1 枚: 以前の脳 17/48 → 課題 5 の脳 36/48、曲がる: 33/48 → 47/48。詳しくは [plan.md 4.5](docs/plan.md))。
+
+学習はすべて CPU 4 コアのみ (GPU なし)、合計 1,635 世代・約 3 時間 20 分。
+
+音声付き動画 (v3) の作り方 (VOICEVOX は各自で用意。リポジトリには含めません):
+
+```bash
+bash tools/voicevox/setup.sh /tmp/vv                                   # VOICEVOX CORE・辞書・音声モデルを取得 (利用規約に同意のうえで)
+cd web && node test/export-narration.mjs v3 json > audio/v3/lines.json  # 台本からナレーション文を取り出す
+/tmp/vv/venv/bin/python ../tools/voicevox/synth.py audio/v3/lines.json audio/v3/voice /tmp/vv
+SCRIPT=v3 NARRATION=audio/v3/voice/durations.json node test/record-film.mjs /tmp/v3.mp4   # 映像 + 時刻表 (v3.timeline.json)
+python3 ../tools/audio/mix.py /tmp/v3.timeline.json audio/v3/voice /tmp/v3.wav           # ナレーション + 効果音 + BGM
+ffmpeg -i /tmp/v3.mp4 -i /tmp/v3.wav -c:v copy -c:a aac -b:a 160k -af loudnorm=I=-16 -shortest film_v3.mp4
+```
+
+- 効果音 (足音・ゴール・転倒) と BGM は `tools/audio/mix.py` の中で数式から作った自作の音です。足音はシミュレーションの接地に合わせて鳴らしています
 
 ```bash
 cd web
