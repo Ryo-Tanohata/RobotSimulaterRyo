@@ -263,3 +263,30 @@ EXTRA_SCRIPTS.progress = [
     captions: [[0, '100 世代後：前の距離センサーで壁を見て…'], [5, 'すき間を通ってゴールへ']],
   },
 ];
+
+// お手本 (参照モーション) の確認用 (?script=reference)
+const refView = { kind: 'reference', stage: 'walk', footfall: true, footfallLanes: [0, 1], markers: true, markerLength: 8, spacing: 1.3,
+  camera: [3.4, 1.3, -1.0], lookAhead: 0.4 };
+EXTRA_SCRIPTS.reference = [
+  {
+    kind: 'card', seconds: 7,
+    title: 'お手本の歩き方',
+    body: `動物の歩き方の研究で知られている「脚を出す順番とタイミング」から計算で作る<br><br>
+           <span class="step">ウォーク：1 本ずつ (いつも 3 本が地面に)</span><br>
+           <span class="step">トロット：対角の脚を同時に</span>`,
+  },
+  {
+    ...refView, seconds: 9,
+    lanes: [{ gait: 'walk', speed: 0.2, physics: false, label: 'ウォーク (0.2 m/s)' },
+            { gait: 'trot', speed: 0.5, physics: false, label: 'トロット (0.5 m/s)' }],
+    labels: ['ウォーク', 'トロット'],
+    captions: [[0, 'お手本 (物理なしで姿勢だけを再生)'], [4, '右上の図：色の帯 = 足が地面に着いている時間']],
+  },
+  {
+    ...refView, seconds: 9,
+    lanes: [{ gait: 'walk', speed: 0.2, physics: true, label: 'ウォーク (0.2 m/s)' },
+            { gait: 'trot', speed: 0.5, physics: true, label: 'トロット (0.5 m/s)' }],
+    labels: ['ウォーク', 'トロット'],
+    captions: [[0, '同じ動きを、物理エンジンの中でそのまま再生すると…'], [4.5, '滑ったり遅れたりして、思うように進まない → ここを学習で補う']],
+  },
+];

@@ -8,7 +8,8 @@
     "test": "node test/physics-check.mjs",
     "screenshot": "node test/screenshot.mjs",
     "evolve": "node test/evolve.mjs",
-    "fixture": "node test/gait-fixture.mjs"
+    "fixture": "node test/gait-fixture.mjs",
+    "test:reference": "node test/reference-check.mjs"
   },
   "license": "MIT",
   "dependencies": {

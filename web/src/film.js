@@ -8,10 +8,13 @@ import { createConfig } from './core.js';
 import { Runner, STAGES, makeObstacles, buildArenaWorld, stageGoal, DECIMATION } from './arena.js';
 import { randomParams, gaussianFrom, mulberry32, PARAM_COUNT } from './policy.js';
 import { createRobotMeshFactory, syncRobotMeshes } from './robot-mesh.js';
+import { ReferencePlayer, GAITS } from './reference.js';
+import { QuadrupedRobot } from './robot.js';
 import { SCENES, STAGE_LABELS, EXTRA_SCRIPTS } from './film-script.js';
 
 export const FPS = 25;
 const STEPS_PER_FRAME = 8; // 200 Hz ÷ 25 fps
+const DT_CONTROL = (1 / 200) * 4;
 const $ = (id) => document.getElementById(id);
 const data = window.FILM_DATA || {};
 
@@ -156,17 +159,52 @@ function clearScene() {
 
 function laneColor(i, n) { return new THREE.Color().setHSL((0.02 + i * 0.618) % 1, 0.62, 0.55); }
 
-function makeLane(def, i, n, brain, seed) {
-  const stageName = def.stage;
-  const boxes = makeObstacles(stageName, seed);
+/**
+ * 1 本のレーン (1 体のロボット) を作る。
+ *   brain     … 学習した脳で動かす
+ *   reference … お手本で動かす {gait, speed, physics}
+ *               physics: false = 物理なしで姿勢だけ再生 (お手本そのもの) / true = 物理エンジンでそのまま再生
+ */
+function makeLane(def, i, n, brain, seed, reference = null) {
+  const stageName = def.stage || 'walk';
+  const boxes = reference ? [] : makeObstacles(stageName, seed);
   const world = buildArenaWorld(RAPIER, boxes);
-  const runner = new Runner(RAPIER, world, stageName, brain.params, { x: 0, z: 0 }, config, stageGoal(stageName, seed));
-  runner.stage = { ...runner.stage, seconds: 1e9 }; // 場面の最後まで動かし続ける
+  let runner = null, robot, advance;
+  if (reference) {
+    robot = new QuadrupedRobot(RAPIER, world, config, { x: 0, y: config.spawnHeight, z: 0 }, 0);
+    const player = new ReferencePlayer(config, { gait: reference.gait });
+    const cmd = { forward: reference.speed, side: 0, yaw: 0 };
+    let steps = 0, z = 0, pose = null;
+    if (!reference.physics) {
+      // 物理を使わず、胴体を一定の速さで動かしながらお手本の姿勢をそのまま置く
+      for (const l of robot.links) l.body.setBodyType(RAPIER.RigidBodyType.KinematicPositionBased, true);
+    }
+    advance = () => {
+      if (steps % DECIMATION === 0) {
+        pose = player.step(DT_CONTROL, cmd);
+        if (reference.physics) { robot.readState(); robot.setTargets(pose.q); }
+        robot.footContact = pose.contact.slice();
+        if (reference.physics) robot.readState();
+      }
+      if (reference.physics) world.step();
+      else {
+        z += cmd.forward / 200;
+        const poses = robot.linkPoses({ x: 0, y: (reference.height ?? 0.28) + config.footRadius, z }, { w: 1, x: 0, y: 0, z: 0 }, pose.q);
+        robot.links.forEach((l, k) => { l.body.setTranslation(poses[k].p, false); l.body.setRotation(poses[k].r, false); });
+      }
+      steps++;
+    };
+  } else {
+    runner = new Runner(RAPIER, world, stageName, brain.params, { x: 0, z: 0 }, config, stageGoal(stageName, seed));
+    runner.stage = { ...runner.stage, seconds: 1e9 }; // 場面の最後まで動かし続ける
+    robot = runner.robot;
+    advance = () => { runner.control(); world.step(); runner.afterStep(); };
+  }
   const spacing = def.spacing ?? 1.0;
   const offset = new THREE.Vector3((i - (n - 1) / 2) * spacing, 0, 0);
   const color = def.colors ? new THREE.Color(def.colors[i]) : laneColor(i, n);
   const objects = [];
-  const meshes = meshFactory.create(scene, runner.robot, color);
+  const meshes = meshFactory.create(scene, robot, color);
   objects.push(...meshes);
   for (const b of boxes) {
     const m = new THREE.Mesh(boxGeo, b.kind === 'wall' ? wallMat : stepMat);
@@ -175,7 +213,7 @@ function makeLane(def, i, n, brain, seed) {
     m.castShadow = true; m.receiveShadow = true;
     scene.add(m); objects.push(m);
   }
-  if (runner.goal) {
+  if (runner && runner.goal) {
     const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 1.2, 12), goalMat);
     pole.position.set(runner.goal.x + offset.x, 0.6, runner.goal.z);
     const flag = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.25, 0.02), goalMat);
@@ -201,7 +239,7 @@ function makeLane(def, i, n, brain, seed) {
     label.style.setProperty('--c', '#' + color.getHexString());
     labelsEl.appendChild(label);
   }
-  return { world, runner, meshes, objects, offset, trail, trailPos, trailN: 0, label, brain };
+  return { world, runner, robot, advance, meshes, objects, offset, trail, trailPos, trailN: 0, label, brain, contacts: [] };
 }
 
 export async function loadScene(index) {
@@ -222,6 +260,10 @@ export async function loadScene(index) {
       b.label = gg === 'random' ? 1 : displayGen(stageName, b.generation);
       lanes.push(makeLane(def, i, def.gens.length, b, def.terrainSeed ?? 7));
     });
+  }
+  if (def.kind === 'reference') {
+    // lanes: [{gait, speed, physics, label}]
+    def.lanes.forEach((r, i) => lanes.push(makeLane(def, i, def.lanes.length, null, 0, r)));
   }
   const spacing = def.spacing ?? 1.0;
   if (def.kind !== 'card' && def.markers !== false) buildMarkers(Math.max(2, lanes.length * spacing + 0.6), def.markerLength ?? 12);
@@ -245,13 +287,11 @@ export function step() {
   const { def } = current;
   if (def.kind !== 'card') {
     for (let s = 0; s < STEPS_PER_FRAME; s++) {
-      for (const lane of current.lanes) {
-        lane.runner.control();
-        lane.world.step();
-        lane.runner.afterStep();
-      }
+      for (const lane of current.lanes) lane.advance();
     }
   }
+  // 足運びの図のために接地を記録
+  for (const lane of current.lanes) lane.contacts.push(lane.robot.footContact.slice());
   current.frame++;
   updateOverlay();
   placeCamera(false);
@@ -261,10 +301,10 @@ export function step() {
 
 function render() {
   if (current) for (const lane of current.lanes) {
-    syncRobotMeshes(lane.runner.robot, lane.meshes);
+    syncRobotMeshes(lane.robot, lane.meshes);
     lane.meshes.forEach((m) => m.position.add(lane.offset));
     // 跡
-    const p = lane.runner.robot.position;
+    const p = lane.robot.position;
     if (lane.trailN < 2000 && current.frame % 2 === 0) {
       lane.trailPos.set([p.x + lane.offset.x, 0.03, p.z], lane.trailN * 3);
       lane.trailN++;
@@ -289,7 +329,7 @@ function placeCamera(snap) {
   const c = new THREE.Vector3();
   let maxZ = -1e9;
   for (const lane of current.lanes) {
-    const p = lane.runner.robot.position;
+    const p = lane.robot.position;
     c.add(new THREE.Vector3(p.x + lane.offset.x, 0.2, p.z));
     maxZ = Math.max(maxZ, p.z);
   }
@@ -320,7 +360,7 @@ function setupOverlay(def) {
       ? `第 ${displayGen(def.stage, def.randomBrains ? 0 : def.gen)} <small>世代</small>`
       : def.badge;
   }
-  $('graphBox').hidden = isCard || !def.graph;
+  $('graphBox').hidden = isCard || !(def.graph || def.footfall);
   $('caption').hidden = true;
   updateOverlay();
 }
@@ -333,6 +373,41 @@ function updateOverlay() {
   $('caption').hidden = !text;
   if (text) $('captionText').innerHTML = text;
   if (def.graph) drawGraph(def);
+  if (def.footfall) drawFootfall(def);
+}
+
+/** 足運びの図: 4 本の脚それぞれが地面に着いている時間を横棒で描く (最近の 2 秒) */
+function drawFootfall(def) {
+  const cv = $('graph'), g = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  g.clearRect(0, 0, W, H);
+  const lanes = current.lanes.filter((l, i) => (def.footfallLanes ?? [0]).includes(i));
+  $('graphTitle').textContent = def.graphTitle || '足運び (色の帯 = 足が地面に着いている, 最近 2 秒)';
+  const names = ['左前', '右前', '左後', '右後'];
+  const window = 2 * FPS;
+  const labelH = lanes.length > 1 ? 14 : 0, laneGap = 6;
+  const rowH = Math.min(16, (H - 4 - (labelH + laneGap) * lanes.length) / (4 * lanes.length));
+  const x0 = 44, x1 = W - 8;
+  lanes.forEach((lane, li) => {
+    const top = 2 + li * (labelH + 4 * rowH + laneGap);
+    if (labelH && def.lanes) {
+      g.fillStyle = '#fff'; g.font = 'bold 12px sans-serif';
+      g.fillText(def.lanes[current.lanes.indexOf(lane)].label || '', 4, top + 11);
+    }
+    const hist = lane.contacts.slice(-window);
+    for (let leg = 0; leg < 4; leg++) {
+      const y = top + labelH + leg * rowH;
+      g.fillStyle = '#9aa7bd'; g.font = '11px sans-serif';
+      g.fillText(names[leg], 4, y + rowH * 0.75);
+      g.fillStyle = 'rgba(255,255,255,0.12)'; g.fillRect(x0, y + 1, x1 - x0, rowH - 3);
+      g.fillStyle = leg % 2 === 0 ? '#ffb84f' : '#4fd1ff';
+      hist.forEach((c, k) => {
+        if (!c[leg]) return;
+        const x = x0 + (k / window) * (x1 - x0);
+        g.fillRect(x, y + 1, (x1 - x0) / window + 0.5, rowH - 3);
+      });
+    }
+  });
 }
 
 function drawGraph(def) {
