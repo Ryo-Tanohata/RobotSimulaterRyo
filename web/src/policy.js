@@ -6,16 +6,37 @@ import { JOINT_COUNT } from './core.js';
 
 export const RAY_ANGLES = [-50, -25, 0, 25, 50].map((d) => (d * Math.PI) / 180); // 前方の距離センサー
 export const RAY_LENGTH = 2.0;
-export const INPUT_SIZE = 3 + 3 + JOINT_COUNT + JOINT_COUNT + 2 + 2 + RAY_ANGLES.length; // 39
+// 入力: 傾き 3 + 角速度 3 + 関節角 12 + 関節速度 12 + リズム 2 + 目標の方向 2 + 距離センサー 5 (= 39, 第 1 版)
+//       + 目標の速さ 1 (第 2 版で追加: お手本を真似る学習でウォーク/トロットを選ぶため)
+export const INPUT_SIZE_V1 = 3 + 3 + JOINT_COUNT + JOINT_COUNT + 2 + 2 + RAY_ANGLES.length; // 39
+export const INPUT_SIZE = INPUT_SIZE_V1 + 1; // 40
 export const HIDDEN = 32;
 export const OUTPUT_SIZE = JOINT_COUNT;
-export const PARAM_COUNT = INPUT_SIZE * HIDDEN + HIDDEN + HIDDEN * OUTPUT_SIZE + OUTPUT_SIZE;
+export const PARAM_COUNT_V1 = INPUT_SIZE_V1 * HIDDEN + HIDDEN + HIDDEN * OUTPUT_SIZE + OUTPUT_SIZE; // 1676
+export const PARAM_COUNT = INPUT_SIZE * HIDDEN + HIDDEN + HIDDEN * OUTPUT_SIZE + OUTPUT_SIZE;       // 1708
+
+/**
+ * 第 1 版 (入力 39) の重みを第 2 版 (入力 40) に広げる。追加した入力の重みは 0 なので、動きはまったく同じ。
+ * これで今までの学習結果から続けて学習できる。
+ */
+export function upgradeParams(p) {
+  if (p.length === PARAM_COUNT) return p;
+  if (p.length !== PARAM_COUNT_V1) throw new Error(`重みの数が合いません: ${p.length}`);
+  const q = new Float32Array(PARAM_COUNT);
+  let src = 0, dst = 0;
+  for (let h = 0; h < HIDDEN; h++) {
+    for (let i = 0; i < INPUT_SIZE_V1; i++) q[dst++] = p[src++];
+    q[dst++] = 0; // 目標の速さ
+  }
+  q.set(p.subarray(src), dst); // 残り (バイアス・出力層) はそのまま
+  return q;
+}
 export const ACTION_SCALE = 0.6;   // 出力 [-1,1] → ±0.6 rad
 export const RHYTHM_HZ = 2.0;      // 入力として与える「リズム」の周波数
 
 export class Policy {
   constructor(params) {
-    this.params = params instanceof Float32Array ? params : Float32Array.from(params);
+    this.params = upgradeParams(params instanceof Float32Array ? params : Float32Array.from(params));
     this.hidden = new Float32Array(HIDDEN);
     this.out = new Float32Array(OUTPUT_SIZE);
   }
@@ -58,16 +79,16 @@ export function mulberry32(seed) {
 /** ランダムな初期の重み (第 1 世代: まだ何も知らない脳) */
 export function randomParams(seed, scale = 1.5) {
   const rand = mulberry32(seed);
-  const p = new Float32Array(PARAM_COUNT);
+  const p = new Float32Array(PARAM_COUNT_V1);
   let k = 0;
   const layer = (nIn, nOut) => {
     const s = scale / Math.sqrt(nIn);
     for (let i = 0; i < nIn * nOut; i++) p[k++] = gaussianFrom(rand) * s;
     for (let i = 0; i < nOut; i++) p[k++] = 0;
   };
-  layer(INPUT_SIZE, HIDDEN);
+  layer(INPUT_SIZE_V1, HIDDEN);
   layer(HIDDEN, OUTPUT_SIZE);
-  return p;
+  return upgradeParams(p);
 }
 
 /**
@@ -77,7 +98,7 @@ export function randomParams(seed, scale = 1.5) {
  * @param goal    目標地点 {x, z} (ワールド座標) または null (まっすぐ前へ)
  * @param rays    距離センサーの値 (0 = 目の前に壁, 1 = 何もない)
  */
-export function buildInput(robot, time, goal, rays, input = new Float32Array(INPUT_SIZE)) {
+export function buildInput(robot, time, goal, rays, input = new Float32Array(INPUT_SIZE), opts = {}) {
   const g = robot.gravityCore();
   const w = robot.angularVelocityCore();
   let i = 0;
@@ -85,11 +106,13 @@ export function buildInput(robot, time, goal, rays, input = new Float32Array(INP
   input[i++] = w.x * 0.25; input[i++] = w.y * 0.25; input[i++] = w.z * 0.25;
   for (let j = 0; j < JOINT_COUNT; j++) input[i++] = robot.jointPos[j] - robot.defaultAngles[j];
   for (let j = 0; j < JOINT_COUNT; j++) input[i++] = Math.max(-3, Math.min(3, robot.jointVel[j] * 0.05));
-  const ph = 2 * Math.PI * RHYTHM_HZ * time;
+  // リズム: お手本を使うときはお手本の歩き方の位相、そうでなければ 2 Hz の一定のリズム
+  const ph = opts.phase !== undefined ? 2 * Math.PI * opts.phase : 2 * Math.PI * RHYTHM_HZ * time;
   input[i++] = Math.sin(ph); input[i++] = Math.cos(ph);
   const [gs, gc] = goalDirection(robot, goal);
   input[i++] = gs; input[i++] = gc;
   for (let r = 0; r < rays.length; r++) input[i++] = rays[r];
+  input[i++] = (opts.speed ?? 0) * 2; // 目標の速さ (m/s × 2)
   return input;
 }
 

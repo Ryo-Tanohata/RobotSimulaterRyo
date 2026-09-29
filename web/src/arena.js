@@ -3,6 +3,7 @@
 import { createConfig, JOINT_COUNT } from './core.js';
 import { QuadrupedRobot, GROUND_GROUPS, GROUP_GROUND, GROUP_ROBOT } from './robot.js';
 import { Policy, buildInput, readRays, mulberry32, RAY_ANGLES, ACTION_SCALE } from './policy.js';
+import { ReferencePlayer } from './reference.js';
 
 export const DT = 1 / 200;
 export const DECIMATION = 4;
@@ -26,7 +27,16 @@ export const STAGES = {
   wall1: { seconds: 12, goal: 'behind-wall', terrain: 'wall1', posture: true },
   // 4c: 壁 3 枚 (課題 4 と同じコース)
   walls3: { seconds: 16, goal: { x: 0, z: 10 }, terrain: 'walls', posture: true, gap: 1.1 },
+  // 5: お手本を真似る (平地で、毎回ちがう速さ。ゆっくり = ウォーク、速い = トロット)
+  imitate: { seconds: 8, goal: null, terrain: 'flat', imitate: true, speeds: [0.12, 0.2, 0.26, 0.4, 0.5, 0.6] },
 };
+
+/** お手本の段階で、seed から目標の速さを決める */
+export function stageSpeed(stageName, seed) {
+  const sp = STAGES[stageName].speeds;
+  if (!sp) return null;
+  return sp[Math.floor(mulberry32(seed * 7907 + 11)() * sp.length)];
+}
 
 /** 段階と seed から目標地点 (スタート地点からの相対位置) を決める */
 export function stageGoal(stageName, seed) {
@@ -93,7 +103,10 @@ export function buildArenaWorld(RAPIER, boxes) {
  * 同じ world に複数の Runner を置けば同時に何体も走らせられる (ロボット同士はぶつからない)。
  */
 export class Runner {
-  constructor(RAPIER, world, stageName, params, start = { x: 0, z: 0 }, config = createConfig(), goal = undefined) {
+  /**
+   * @param imitation null か {speed, weight}: お手本を使う (リズムをお手本の位相にし、お手本との近さを評価に入れる)
+   */
+  constructor(RAPIER, world, stageName, params, start = { x: 0, z: 0 }, config = createConfig(), goal = undefined, imitation = null) {
     this.R = RAPIER;
     this.world = world;
     this.stage = STAGES[stageName];
@@ -117,6 +130,14 @@ export class Runner {
     this.jerkSum = 0;  // 出力の急な変化の合計
     this.ctrlN = 0;
     this.prevOut = new Float32Array(JOINT_COUNT);
+    // お手本
+    this.imitation = imitation;
+    if (imitation) {
+      this.player = new ReferencePlayer(config);
+      this.refCmd = { forward: imitation.speed, side: 0, yaw: 0 };
+      this.imit = { q: 0, contact: 0, height: 0, speed: 0 }; // 各項目の合計
+      this.pose = null;
+    }
   }
 
   /** 物理を 1 ステップ進める前に呼ぶ (DECIMATION ステップごとに脳が判断する) */
@@ -126,7 +147,12 @@ export class Runner {
     const r = this.robot;
     r.readState();
     readRays(this.R, this.world, r, RAY_GROUPS, this.rays);
-    const input = buildInput(r, this.time, this.goal, this.rays);
+    let inputOpts = {};
+    if (this.imitation) {
+      this.pose = this.player.step(DT * DECIMATION, this.refCmd);
+      inputOpts = { phase: this.player.phase, speed: this.imitation.speed };
+    }
+    const input = buildInput(r, this.time, this.goal, this.rays, undefined, inputOpts);
     const out = this.policy.forward(input);
     let jerk = 0;
     for (let j = 0; j < JOINT_COUNT; j++) {
@@ -137,6 +163,17 @@ export class Runner {
     r.setTargets(this.targets);
     this.lowSum += Math.max(0, 0.27 - r.position.y);
     this.tiltSum += 1 - r.upY();
+    if (this.imitation && this.pose) {
+      // お手本との近さ (1 に近いほどそっくり)
+      let qErr = 0;
+      for (let j = 0; j < JOINT_COUNT; j++) qErr += (r.jointPos[j] - this.pose.q[j]) ** 2;
+      let match = 0;
+      for (let leg = 0; leg < 4; leg++) if (r.footContact[leg] === this.pose.contact[leg]) match++;
+      this.imit.q += Math.exp(-0.5 * qErr);
+      this.imit.contact += match / 4;
+      this.imit.height += Math.exp(-(((r.position.y - 0.30) / 0.04) ** 2));
+      if (!this.goal) this.imit.speed += Math.exp(-((r.velocityCore().z - this.imitation.speed) ** 2) / 0.04);
+    }
     if (this.ctrlN > 0) this.jerkSum += jerk / JOINT_COUNT;
     this.ctrlN++;
 
@@ -174,6 +211,16 @@ export class Runner {
     const early = this.fell ? 1.0 : 0; // 転んだら減点
     let f = this.progress() - 0.3 * lateral + 0.15 * this.aliveTime - early
       + (this.reached ? 3 + (this.stage.seconds - this.time) * 0.2 : 0);
+    if (this.imitation && this.ctrlN > 0) {
+      const n = this.ctrlN, alive = this.aliveTime / this.stage.seconds;
+      const imitScore = 0.5 * this.imit.q / n + 0.3 * this.imit.contact / n + 0.2 * this.imit.height / n;
+      if (!this.goal) {
+        // お手本の課題: 指定の速さで進む + お手本に近い。長く転ばずに続けるほど高い
+        return alive * 10 * (this.imit.speed / n + this.imitation.weight * imitScore) - (this.fell ? 2 : 0);
+      }
+      // 曲がる・壁の課題: 今までの評価 + お手本らしさ (ゴールへ向かうあいだも自然な歩き方で)
+      f += alive * 5 * this.imitation.weight * imitScore;
+    }
     if (this.stage.posture && this.ctrlN > 0) {
       const n = this.ctrlN;
       f -= 15 * (this.lowSum / n) + 3 * (this.tiltSum / n) + 1.5 * (this.jerkSum / n);
@@ -183,17 +230,28 @@ export class Runner {
 }
 
 /** 画面なしで 1 回評価する (学習用) */
-export function evaluate(RAPIER, stageName, params, seed) {
+/** imitWeight: お手本の重み (0 ならお手本なし)。お手本の課題以外でも weight > 0 ならお手本らしさを評価に加える */
+export function imitationFor(stageName, seed, imitWeight) {
+  if (imitWeight === null || imitWeight === undefined) return null; // お手本を使わない学習
+  if (STAGES[stageName].imitate) return { speed: stageSpeed(stageName, seed), weight: imitWeight };
+  return { speed: 0.45, weight: imitWeight }; // 曲がる・壁の課題はトロットの速さで (リズムは最初からお手本に合わせる)
+}
+
+export function evaluate(RAPIER, stageName, params, seed, imitWeight = null) {
   const boxes = makeObstacles(stageName, seed);
   const world = buildArenaWorld(RAPIER, boxes);
-  const runner = new Runner(RAPIER, world, stageName, params, { x: 0, z: 0 }, createConfig(), stageGoal(stageName, seed));
+  const runner = new Runner(RAPIER, world, stageName, params, { x: 0, z: 0 }, createConfig(), stageGoal(stageName, seed),
+    imitationFor(stageName, seed, imitWeight));
   while (!runner.done) {
     runner.control();
     if (runner.done) break;
     world.step();
     runner.afterStep();
   }
-  const result = { fitness: runner.fitness(), progress: runner.progress(), fell: runner.fell, reached: runner.reached, time: runner.time };
+  const n = Math.max(1, runner.ctrlN);
+  const result = { fitness: runner.fitness(), progress: runner.progress(), fell: runner.fell, reached: runner.reached, time: runner.time,
+    imitQ: runner.imit ? runner.imit.q / n : null, imitContact: runner.imit ? runner.imit.contact / n : null,
+    speedMatch: runner.imit && !runner.goal ? runner.imit.speed / n : null };
   world.free();
   return result;
 }

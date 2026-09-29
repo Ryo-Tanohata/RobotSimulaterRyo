@@ -36,7 +36,7 @@ export const SCENES = [
            <span class="step">遠くまで進めた脳の特徴を残す</span><br>
            <span class="arrow">→</span><span class="step">少しずつ変えて次の世代へ</span><span class="arrow">→</span>
            <span class="step">何百世代もくり返す</span><br><br>
-           脳 = 小さなニューラルネット (重み 1,708 個)<br>歩き方は<em>一切教えていない</em>`,
+           脳 = 小さなニューラルネット (重み 約 1,700 個)<br>歩き方は<em>一切教えていない</em>`,
   },
   {
     ...group, stage: 'walk', gen: 0, randomBrains: true, seconds: 7,
@@ -157,7 +157,7 @@ const SCENES_V1 = [
            <span class="step">遠くまで進めた脳の特徴を残す</span><br>
            <span class="arrow">→</span><span class="step">少しずつ変えて次の世代へ</span><span class="arrow">→</span>
            <span class="step">何百世代もくり返す</span><br><br>
-           脳 = 小さなニューラルネット (重み 1,708 個)<br>歩き方は<em>一切教えていない</em>`,
+           脳 = 小さなニューラルネット (重み 約 1,700 個)<br>歩き方は<em>一切教えていない</em>`,
   },
   {
     ...group, stage: 'walk', gen: 0, randomBrains: true, seconds: 7,

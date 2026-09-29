@@ -5,7 +5,7 @@
 import { Worker } from 'node:worker_threads';
 import os from 'node:os';
 import fs from 'node:fs';
-import { PARAM_COUNT, randomParams, mulberry32, gaussianFrom } from '../src/policy.js';
+import { PARAM_COUNT, randomParams, mulberry32, gaussianFrom, upgradeParams } from '../src/policy.js';
 
 const [stage = 'walk', gensArg = '200', fromStage] = process.argv.slice(2);
 const GENERATIONS = +gensArg;
@@ -15,6 +15,12 @@ const LR = +(process.env.LR || 0.03);              // 学習率 (Adam)
 const SEEDS = +(process.env.SEEDS || (stage === 'walk' ? 1 : 3)); // 何種類の地形で評価するか
 const SAVE_EVERY = +(process.env.SAVE_EVERY || 5);
 // 学習中は .partial.json に書き (git の対象外)、最後に本来のファイル名に置き換える
+// MIX="imitate:3,steer:1,wall1:1" … 複数の課題を混ぜて評価する (数字は 1 世代あたりのコースの数)
+const MIX = process.env.MIX ? process.env.MIX.split(',').map((x) => { const [st, n] = x.split(':'); return { stage: st, n: +n }; }) : null;
+// お手本の重み: IMIT_RAMP 世代かけて 0 → IMIT_MAX に上げる (急に変えると今できることが崩れるため)
+const IMIT_MAX = +(process.env.IMIT_MAX || 0);
+const IMIT_RAMP = +(process.env.IMIT_RAMP || 1);
+const imitWeightAt = (gen) => IMIT_MAX * Math.min(1, gen / IMIT_RAMP);
 const outPath = new URL(`../checkpoints/${stage}.json`, import.meta.url);
 const partialPath = new URL(`../checkpoints/${stage}.partial.json`, import.meta.url);
 
@@ -29,7 +35,7 @@ if (fromStage) {
   const prev = JSON.parse(fs.readFileSync(new URL(`../checkpoints/${fromName}.json`, import.meta.url)));
   const cp = fromGen === undefined ? prev.checkpoints[prev.checkpoints.length - 1]
     : prev.checkpoints.filter((c) => c.generation <= +fromGen).pop();
-  theta = fromB64(cp.params);
+  theta = upgradeParams(fromB64(cp.params));
   console.log(`start from ${fromName} generation ${cp.generation}`);
 } else {
   theta = randomParams(1);
@@ -45,11 +51,11 @@ let nextId = 0;
 const pending = new Map();
 workers.forEach((w) => w.on('message', (m) => { pending.get(m.id)(m); pending.delete(m.id); }));
 let rr = 0;
-function evalParams(params, seeds) {
+function evalParams(params, seeds, mix = null, imitWeight = null) {
   return new Promise((res) => {
     const id = nextId++;
     pending.set(id, res);
-    workers[rr++ % workers.length].postMessage({ id, stage, params, seeds });
+    workers[rr++ % workers.length].postMessage({ id, stage, params, seeds, mix, imitWeight });
   });
 }
 
@@ -63,11 +69,11 @@ let resume = null;
 if (process.env.RESUME && fs.existsSync(partialPath)) {
   resume = JSON.parse(fs.readFileSync(partialPath, 'utf8'));
   const cp = resume.checkpoints[resume.checkpoints.length - 1];
-  theta = fromB64(cp.params);
+  theta = upgradeParams(fromB64(cp.params));
   console.log(`resume ${stage} from generation ${cp.generation}`);
 }
 
-const log = { stage, from: fromStage ? fromStage.split('@')[0] : null, fromGeneration: fromStage && fromStage.includes('@') ? +fromStage.split('@')[1] : null, paramCount: PARAM_COUNT, pairs: PAIRS, sigma: SIGMA, history: [], checkpoints: [] };
+const log = { stage, mix: MIX, imitMax: IMIT_MAX, imitRamp: IMIT_RAMP, from: fromStage ? fromStage.split('@')[0] : null, fromGeneration: fromStage && fromStage.includes('@') ? +fromStage.split('@')[1] : null, paramCount: PARAM_COUNT, pairs: PAIRS, sigma: SIGMA, history: [], checkpoints: [] };
 const rand = mulberry32(12345);
 const t0 = Date.now();
 
@@ -90,7 +96,9 @@ for (let gen = startGen; gen <= GENERATIONS; gen++) {
     for (let i = 0; i < PARAM_COUNT; i++) p[i] = theta[i] + sgn * SIGMA * e[i];
     cands.push(p);
   }
-  const [center, ...results] = await Promise.all([evalParams(theta, seeds), ...cands.map((p) => evalParams(p, seeds))]);
+  const mix = MIX ? MIX.map((m, k) => ({ stage: m.stage, seeds: Array.from({ length: m.n }, (_, i) => gen * 100 + k * 10 + i + 1) })) : null;
+  const iw = MIX ? imitWeightAt(gen) : null;
+  const [center, ...results] = await Promise.all([evalParams(theta, seeds, mix, iw), ...cands.map((p) => evalParams(p, seeds, mix, iw))]);
 
   // 順位で重み付け (外れ値に強い)
   const fit = results.map((r) => r.fitness);
@@ -116,12 +124,17 @@ for (let gen = startGen; gen <= GENERATIONS; gen++) {
   const best = Math.max(...fit);
   const fallRate = results.reduce((a, r) => a + r.fell, 0) / results.length;
   const rec = { generation: gen, center: +center.fitness.toFixed(3), progress: +center.progress.toFixed(3), mean: +mean.toFixed(3), best: +best.toFixed(3), fallRate: +fallRate.toFixed(3), reached: center.reached };
+  if (MIX) {
+    rec.imitWeight = +(iw ?? 0).toFixed(3);
+    rec.per = Object.fromEntries(Object.entries(center.per).map(([k, v]) => [k, Object.fromEntries(Object.entries(v).map(([a, b]) => [a, +(+b).toFixed(3)]))]));
+  }
   log.history.push(rec);
   if (gen % SAVE_EVERY === 0 || gen === GENERATIONS || gen < 5) {
     log.checkpoints.push({ generation: gen, fitness: rec.center, params: toB64(thetaGen) });
   }
   const sec = (Date.now() - t0) / 1000;
-  console.log(`${stage} gen ${String(gen).padStart(3)}  center ${rec.center.toFixed(2)}  progress ${rec.progress.toFixed(2)}m  mean ${rec.mean.toFixed(2)}  best ${rec.best.toFixed(2)}  fall ${(fallRate * 100).toFixed(0)}%  ${sec.toFixed(0)}s`);
+  const extra = MIX ? '  ' + Object.entries(center.per).map(([k, v]) => `${k}[${v.imitQ ? `q${v.imitQ.toFixed(2)} c${v.imitContact.toFixed(2)} ` : ''}${v.speedMatch ? `v${v.speedMatch.toFixed(2)} ` : ''}r${v.reached.toFixed(1)} f${v.fell.toFixed(1)}]`).join(' ') + ` w${(iw ?? 0).toFixed(2)}` : '';
+  console.log(`${stage} gen ${String(gen).padStart(3)}  center ${rec.center.toFixed(2)}  progress ${rec.progress.toFixed(2)}m  mean ${rec.mean.toFixed(2)}  best ${rec.best.toFixed(2)}  fall ${(fallRate * 100).toFixed(0)}%  ${sec.toFixed(0)}s${extra}`);
   if (gen % 10 === 0) fs.writeFileSync(partialPath, JSON.stringify(log));
 }
 fs.writeFileSync(outPath, JSON.stringify(log));
