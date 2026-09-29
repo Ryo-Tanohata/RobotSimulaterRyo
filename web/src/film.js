@@ -196,8 +196,10 @@ function makeLane(def, i, n, brain, seed, reference = null) {
     };
   } else {
     // お手本を土台にする方式で学習した脳は、学習のときと同じようにお手本と一緒に動かす
-    const residual = !!(brain.stageName && data[brain.stageName] && data[brain.stageName].residual);
-    const imitation = residual ? { speed: def.speeds ? def.speeds[i] : (def.speed ?? 0.45), weight: 1, residual: true } : null;
+    const bd = brain.stageName && data[brain.stageName];
+    const residual = !!(bd && bd.residual);
+    const withReference = !!(bd && bd.mix); // お手本を使った学習 (リズムはお手本の位相、目標の速さを入力)
+    const imitation = withReference ? { speed: def.speeds ? def.speeds[i] : (def.speed ?? 0.45), weight: 1, residual } : null;
     runner = new Runner(RAPIER, world, stageName, brain.params, { x: 0, z: 0 }, config, stageGoal(stageName, seed), imitation);
     runner.stage = { ...runner.stage, seconds: 1e9 }; // 場面の最後まで動かし続ける
     robot = runner.robot;
@@ -245,14 +247,45 @@ function makeLane(def, i, n, brain, seed, reference = null) {
   return { world, runner, robot, advance, meshes, objects, offset, trail, trailPos, trailN: 0, label, brain, contacts: [] };
 }
 
+// ナレーション: window.NARRATION = {セリフの id: 秒数}。各場面の def.narration の文を順に読み上げる。
+// 字幕はセリフと同じ文を、読み上げの開始と同時に表示する。場面の長さは読み上げが収まるように延ばす。
+const NARR_START = 0.4, NARR_GAP = 0.35, NARR_TAIL = 0.9;
+export function narrationTimeline(index) {
+  const def = activeScenes()[index];
+  const lines = def.narration || [];
+  const durs = window.NARRATION || {};
+  let t = NARR_START;
+  const items = lines.map((text, k) => {
+    const id = narrationId(index, k);
+    const d = durs[id] ?? text.length * 0.13; // 音声がまだ無いときの目安
+    const item = { id, text, start: t, duration: d };
+    t += d + NARR_GAP;
+    return item;
+  });
+  const seconds = Math.max(def.seconds, lines.length ? t - NARR_GAP + NARR_TAIL : 0);
+  return { items, seconds };
+}
+export function narrationId(index, k) {
+  const name = new URLSearchParams(location.search).get('script') || 'main';
+  return `${name}_${String(index).padStart(2, '0')}_${k}`;
+}
+export function allNarration() {
+  return activeScenes().flatMap((def, i) => (def.narration || []).map((text, k) => ({ id: narrationId(i, k), text })));
+}
+
 export async function loadScene(index) {
   clearScene();
   const def = activeScenes()[index];
-  const frames = Math.round(def.seconds * FPS);
+  const timeline = narrationTimeline(index);
+  const frames = Math.round(timeline.seconds * FPS);
+  if (def.narration) def.captions = timeline.items.map((it) => [it.start, it.text]);
   const lanes = [];
   if (def.kind === 'population') {
     // brainStage: 脳をどの段階の学習結果から取るか (地形は def.stage)
-    const brains = populationParams(def.brainStage ?? def.stage, def.gen, def.count ?? 6, def.randomBrains, 1000 + index);
+    // speeds を指定した場面 (同じ脳を違う速さで比べる) では、全員に学習した脳そのものを使う
+    const brains = def.speeds && !def.randomBrains
+      ? Array.from({ length: def.count ?? def.speeds.length }, () => ({ ...checkpoint(def.brainStage ?? def.stage, def.gen) }))
+      : populationParams(def.brainStage ?? def.stage, def.gen, def.count ?? 6, def.randomBrains, 1000 + index);
     brains.forEach((b) => { b.stageName = def.brainStage ?? def.stage; });
     // varySeed: ロボットごとに違うコース (目標の方向・壁のすき間) にする
     brains.forEach((b, i) => lanes.push(makeLane(def, i, brains.length, b, (def.terrainSeed ?? 7) + (def.varySeed ? i * 13 : 0))));
@@ -274,7 +307,7 @@ export async function loadScene(index) {
   const spacing = def.spacing ?? 1.0;
   if (def.kind !== 'card' && def.markers !== false) buildMarkers(Math.max(2, lanes.length * spacing + 0.6), def.markerLength ?? 12);
   else markers.clear();
-  current = { def, lanes, frame: 0, frames, index };
+  current = { def, lanes, frame: 0, frames, index, events: [], timeline };
   setupOverlay(def);
   placeCamera(true);
   render();
@@ -296,8 +329,15 @@ export function step() {
       for (const lane of current.lanes) lane.advance();
     }
   }
-  // 足運びの図のために接地を記録
-  for (const lane of current.lanes) lane.contacts.push(lane.robot.footContact.slice());
+  // 足運びの図のために接地を記録 + 足音用に「着地した瞬間」を記録
+  for (const [li, lane] of current.lanes.entries()) {
+    const now = lane.robot.footContact.slice();
+    const prev = lane.contacts[lane.contacts.length - 1];
+    if (prev && li < 2) for (let leg = 0; leg < 4; leg++) if (now[leg] && !prev[leg]) current.events.push({ t: (current.frame + 1) / FPS, type: 'step', lane: li });
+    if (lane.runner && lane.runner.reached && !lane.goalSounded) { lane.goalSounded = true; current.events.push({ t: (current.frame + 1) / FPS, type: 'goal', lane: li }); }
+    if (lane.runner && lane.runner.fell && !lane.fallSounded && li < 3) { lane.fallSounded = true; current.events.push({ t: (current.frame + 1) / FPS, type: 'fall', lane: li }); }
+    lane.contacts.push(now);
+  }
   current.frame++;
   updateOverlay();
   placeCamera(false);
@@ -488,7 +528,9 @@ async function main() {
   await RAPIER.init();
   const params = new URLSearchParams(location.search);
   if (params.has('record')) document.body.classList.add('recording');
-  window.film = { loadScene, step, sceneCount: activeScenes().length, FPS, ready: true };
+  window.film = { loadScene, step, sceneCount: activeScenes().length, FPS, ready: true,
+    allNarration, narrationTimeline, events: () => (current ? current.events : []),
+    setNarration: (d) => { window.NARRATION = d; } };
   $('play').addEventListener('click', () => { if (!playing) playAll(); });
   if (params.has('scene')) { await loadScene(+params.get('scene')); }
   else if (!params.has('record')) { await loadScene(0); }

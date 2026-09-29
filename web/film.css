@@ -30,7 +30,7 @@ html, body {
 #graphTitle { font-size: 14px; color: #c9d4e6; margin-bottom: 4px; }
 #graph { width: 360px; height: 170px; display: block; }
 
-#caption {
+#caption { z-index: 5;
   position: absolute; left: 0; right: 0; bottom: 42px; text-align: center;
 }
 #captionText {
@@ -66,3 +66,8 @@ html, body {
 }
 body.recording #controls { display: none; }
 #controls button { padding: 4px 10px; }
+table.roles { margin: 0 auto; border-collapse: collapse; font-size: 24px; }
+table.roles th, table.roles td { border-bottom: 1px solid rgba(255,255,255,0.25); padding: 8px 18px; }
+table.roles th { color: #9fc3ff; font-weight: 700; }
+table.roles td:first-child { text-align: left; }
+table.roles td:not(:first-child) { color: #ffb84f; font-size: 26px; text-align: center; }
