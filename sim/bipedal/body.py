@@ -9,6 +9,7 @@ from dataclasses import dataclass
 
 TRUNK = 0.5        # 胴体の長さ (骨盤から肩まで)
 TOTAL_MASS = 45.0  # 体重 (すべての s で同じにして比べる)
+GAP = 0.035        # 棒人間の見た目で、関節のつなぎ目を空ける長さ
 
 
 def lerp(a, b, s):
@@ -64,6 +65,10 @@ def body_xml(s, prefix="", pos=(0, 0, 1.0)):
     m_head = TOTAL_MASS * 0.075
     m_trunk = TOTAL_MASS - 2 * m_arm - 2 * m_leg - m_head
     hw = 0.12  # 骨盤・肩の半分の幅
+    # 見た目は棒人間: 当たり判定と重さの形 (group 3) は表示せず、細い線を重さ 0 で重ねる。つなぎ目は GAP だけ空ける
+    vis = f'contype="0" conaffinity="0" mass="0" rgba="{col}"'
+    stick = lambda a, b: f'<geom type="capsule" fromto="0 0 {a + GAP * (1 if b > a else -1):.4f} 0 0 {b - GAP * (1 if b > a else -1):.4f}" size="0.028" {vis}/>'
+    stick_x = lambda a, b, z: f'<geom type="capsule" fromto="{a:.4f} 0 {z} {b:.4f} 0 {z}" size="0.022" {vis}/>'
 
     def leg(side, y):
         # 脚の重さは 大腿 : 下腿 : 足 = 0.6 : 0.3 : 0.1 (仮定)
@@ -72,15 +77,15 @@ def body_xml(s, prefix="", pos=(0, 0, 1.0)):
         <joint name="{p}{side}_hip_y" axis="0 1 0" range="{-120} {sh.hip_ext:.1f}"/>
         <joint name="{p}{side}_hip_x" axis="1 0 0" range="-30 30"/>
         <joint name="{p}{side}_hip_z" axis="0 0 1" range="-30 30"/>
-        <geom type="capsule" fromto="0 0 0 0 0 {-sh.thigh:.4f}" size="0.05" mass="{m_leg * 0.6:.3f}" rgba="{col}"/>
+        <geom type="capsule" fromto="0 0 0 0 0 {-sh.thigh:.4f}" size="0.05" mass="{m_leg * 0.6:.3f}" group="3"/>{stick(0, -sh.thigh)}
         <body name="{p}{side}_shank" pos="0 0 {-sh.thigh:.4f}">
           <joint name="{p}{side}_knee" axis="0 1 0" range="{sh.knee_min:.1f} 150"/>
-          <geom type="capsule" fromto="0 0 0 0 0 {-sh.shank:.4f}" size="0.04" mass="{m_leg * 0.3:.3f}" rgba="{col}"/>
+          <geom type="capsule" fromto="0 0 0 0 0 {-sh.shank:.4f}" size="0.04" mass="{m_leg * 0.3:.3f}" group="3"/>{stick(0, -sh.shank)}
           <body name="{p}{side}_foot" pos="0 0 {-sh.shank:.4f}">
             <joint name="{p}{side}_ankle_y" axis="0 1 0" range="-45 45"/>
             <joint name="{p}{side}_ankle_x" axis="1 0 0" range="-25 25"/>
             <geom name="{p}{side}_foot" type="box" pos="{(sh.foot / 2 - sh.heel):.4f} 0 -0.025" size="{sh.foot / 2:.4f} 0.045 0.025"
-                  mass="{m_leg * 0.1:.3f}" rgba="{skin}"/>
+                  mass="{m_leg * 0.1:.3f}" group="3"/>{stick_x(-sh.heel + GAP, sh.foot - sh.heel, -0.04)}
           </body>
         </body>
       </body>"""
@@ -91,11 +96,11 @@ def body_xml(s, prefix="", pos=(0, 0, 1.0)):
         <body name="{p}{side}_upper_arm" pos="0 {y} {TRUNK:.4f}">
           <joint name="{p}{side}_shoulder_y" axis="0 1 0" range="-180 60"/>
           <joint name="{p}{side}_shoulder_x" axis="1 0 0" range="-20 120" ref="0"/>
-          <geom type="capsule" fromto="0 0 0 0 0 {-sh.upper_arm:.4f}" size="0.04" mass="{m_arm * 0.5:.3f}" rgba="{col}"/>
+          <geom type="capsule" fromto="0 0 0 0 0 {-sh.upper_arm:.4f}" size="0.04" mass="{m_arm * 0.5:.3f}" group="3"/>{stick(0, -sh.upper_arm)}
           <body name="{p}{side}_forearm" pos="0 0 {-sh.upper_arm:.4f}">
             <joint name="{p}{side}_elbow" axis="0 1 0" range="-150 0"/>
-            <geom type="capsule" fromto="0 0 0 0 0 {-sh.forearm:.4f}" size="0.035" mass="{m_arm * 0.35:.3f}" rgba="{col}"/>
-            <geom name="{p}{side}_hand" type="sphere" pos="0 0 {-sh.forearm - 0.03:.4f}" size="0.045" mass="{m_arm * 0.15:.3f}" rgba="{skin}"/>
+            <geom type="capsule" fromto="0 0 0 0 0 {-sh.forearm:.4f}" size="0.035" mass="{m_arm * 0.35:.3f}" group="3"/>{stick(0, -sh.forearm)}
+            <geom name="{p}{side}_hand" type="sphere" pos="0 0 {-sh.forearm - 0.03:.4f}" size="0.045" mass="{m_arm * 0.15:.3f}" group="3"/>
           </body>
         </body>"""
 
@@ -105,17 +110,16 @@ def body_xml(s, prefix="", pos=(0, 0, 1.0)):
     return f"""
   <body name="{p}pelvis" pos="{_f(*pos)}">
     <freejoint name="{p}root"/>
-    <geom type="capsule" fromto="0 {-hw} 0 0 {hw} 0" size="0.07" mass="{m_trunk * 0.4:.3f}" rgba="{col}"/>
+    <geom type="capsule" fromto="0 {-hw} 0 0 {hw} 0" size="0.07" mass="{m_trunk * 0.4:.3f}" group="3"/>
     {leg("l", hw * 0.8)}
     {leg("r", -hw * 0.8)}
     <body name="{p}chest" pos="0 0 0.05">
       <joint name="{p}waist" axis="0 1 0" range="-30 45"/>
-      <geom type="capsule" fromto="0 0 0.05 0 0 {TRUNK - 0.08:.4f}" size="0.11" mass="{m_trunk * 0.45:.3f}" rgba="{col}"/>
-      <geom type="capsule" fromto="0 {-hw - 0.04} {TRUNK - 0.05:.4f} 0 {hw + 0.04} {TRUNK - 0.05:.4f}" size="0.06" mass="{m_trunk * 0.15:.3f}" rgba="{col}"/>
+      <geom type="capsule" fromto="0 0 0.05 0 0 {TRUNK - 0.08:.4f}" size="0.11" mass="{m_trunk * 0.45:.3f}" group="3"/>{stick(-0.05, TRUNK)}
+      <geom type="capsule" fromto="0 {-hw - 0.04} {TRUNK - 0.05:.4f} 0 {hw + 0.04} {TRUNK - 0.05:.4f}" size="0.06" mass="{m_trunk * 0.15:.3f}" group="3"/>
       <body name="{p}head" pos="0 0 {TRUNK + 0.14:.4f}">
-        <geom type="sphere" size="0.1" mass="{m_head:.3f}" rgba="{col}"/>
-        <geom type="sphere" pos="0.075 0 -0.01" size="0.045" contype="0" conaffinity="0" mass="0" rgba="{skin}"/>
-        <geom type="capsule" fromto="0.06 0 -0.04 {0.08 + sh.muzzle:.4f} 0 -0.05" size="{0.04 + sh.muzzle * 0.2:.4f}" contype="0" conaffinity="0" mass="0" rgba="{skin}"/>
+        <geom type="sphere" size="0.1" mass="{m_head:.3f}" group="3"/>
+        <geom type="sphere" size="0.085" {vis}/>
       </body>
       {left_arm}
       {right_arm}
