@@ -5,14 +5,14 @@ import RAPIER from '@dimforge/rapier3d-compat';
 import { evaluate } from '../src/arena.js';
 
 await RAPIER.init();
-parentPort.on('message', ({ id, stage, params, seeds, mix, imitWeight = null }) => {
+parentPort.on('message', ({ id, stage, params, seeds, mix, imitWeight = null, residual = false }) => {
   const jobs = mix || [{ stage, seeds }];
   let fitness = 0, count = 0;
   const per = {};
   for (const job of jobs) {
     const m = per[job.stage] = { fitness: 0, progress: 0, fell: 0, reached: 0, imitQ: 0, imitContact: 0, speedMatch: 0, n: 0 };
     for (const seed of job.seeds) {
-      const r = evaluate(RAPIER, job.stage, params, seed, imitWeight);
+      const r = evaluate(RAPIER, job.stage, params, seed, imitWeight, residual);
       fitness += r.fitness; count++;
       m.fitness += r.fitness; m.progress += r.progress; m.fell += r.fell ? 1 : 0; m.reached += r.reached ? 1 : 0;
       m.imitQ += r.imitQ ?? 0; m.imitContact += r.imitContact ?? 0; m.speedMatch += r.speedMatch ?? 0; m.n++;

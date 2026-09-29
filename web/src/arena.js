@@ -2,7 +2,7 @@
 // 段階 (stage) ごとに地形と「何が良いか (評価関数)」を変える。
 import { createConfig, JOINT_COUNT } from './core.js';
 import { QuadrupedRobot, GROUND_GROUPS, GROUP_GROUND, GROUP_ROBOT } from './robot.js';
-import { Policy, buildInput, readRays, mulberry32, RAY_ANGLES, ACTION_SCALE } from './policy.js';
+import { Policy, buildInput, readRays, mulberry32, RAY_ANGLES, ACTION_SCALE, RESIDUAL_SCALE } from './policy.js';
 import { ReferencePlayer } from './reference.js';
 
 export const DT = 1 / 200;
@@ -148,15 +148,22 @@ export class Runner {
     r.readState();
     readRays(this.R, this.world, r, RAY_GROUPS, this.rays);
     let inputOpts = {};
-    if (this.imitation) {
+    const residual = this.imitation && this.imitation.residual;
+    if (this.imitation && !residual) {
       this.pose = this.player.step(DT * DECIMATION, this.refCmd);
-      inputOpts = { phase: this.player.phase, speed: this.imitation.speed };
     }
+    if (this.imitation) inputOpts = { phase: this.player.phase, speed: this.imitation.speed };
     const input = buildInput(r, this.time, this.goal, this.rays, undefined, inputOpts);
     const out = this.policy.forward(input);
+    if (residual) {
+      // お手本を土台にする方式: 脳はお手本の速さ・曲がる量を調整し、関節角に小さな補正を足す
+      this.refCmd.forward = this.imitation.speed * (1 + 0.5 * out[JOINT_COUNT]);
+      this.refCmd.yaw = 1.0 * out[JOINT_COUNT + 1];
+      this.pose = this.player.step(DT * DECIMATION, this.refCmd);
+    }
     let jerk = 0;
     for (let j = 0; j < JOINT_COUNT; j++) {
-      this.targets[j] = r.defaultAngles[j] + out[j] * ACTION_SCALE;
+      this.targets[j] = residual ? this.pose.q[j] + out[j] * RESIDUAL_SCALE : r.defaultAngles[j] + out[j] * ACTION_SCALE;
       jerk += Math.abs(out[j] - this.prevOut[j]);
       this.prevOut[j] = out[j];
     }
@@ -231,17 +238,17 @@ export class Runner {
 
 /** 画面なしで 1 回評価する (学習用) */
 /** imitWeight: お手本の重み (0 ならお手本なし)。お手本の課題以外でも weight > 0 ならお手本らしさを評価に加える */
-export function imitationFor(stageName, seed, imitWeight) {
+export function imitationFor(stageName, seed, imitWeight, residual = false) {
   if (imitWeight === null || imitWeight === undefined) return null; // お手本を使わない学習
-  if (STAGES[stageName].imitate) return { speed: stageSpeed(stageName, seed), weight: imitWeight };
-  return { speed: 0.45, weight: imitWeight }; // 曲がる・壁の課題はトロットの速さで (リズムは最初からお手本に合わせる)
+  if (STAGES[stageName].imitate) return { speed: stageSpeed(stageName, seed), weight: imitWeight, residual };
+  return { speed: 0.45, weight: imitWeight, residual }; // 曲がる・壁の課題はトロットの速さで (リズムは最初からお手本に合わせる)
 }
 
-export function evaluate(RAPIER, stageName, params, seed, imitWeight = null) {
+export function evaluate(RAPIER, stageName, params, seed, imitWeight = null, residual = false) {
   const boxes = makeObstacles(stageName, seed);
   const world = buildArenaWorld(RAPIER, boxes);
   const runner = new Runner(RAPIER, world, stageName, params, { x: 0, z: 0 }, createConfig(), stageGoal(stageName, seed),
-    imitationFor(stageName, seed, imitWeight));
+    imitationFor(stageName, seed, imitWeight, residual));
   while (!runner.done) {
     runner.control();
     if (runner.done) break;

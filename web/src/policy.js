@@ -11,27 +11,52 @@ export const RAY_LENGTH = 2.0;
 export const INPUT_SIZE_V1 = 3 + 3 + JOINT_COUNT + JOINT_COUNT + 2 + 2 + RAY_ANGLES.length; // 39
 export const INPUT_SIZE = INPUT_SIZE_V1 + 1; // 40
 export const HIDDEN = 32;
-export const OUTPUT_SIZE = JOINT_COUNT;
-export const PARAM_COUNT_V1 = INPUT_SIZE_V1 * HIDDEN + HIDDEN + HIDDEN * OUTPUT_SIZE + OUTPUT_SIZE; // 1676
-export const PARAM_COUNT = INPUT_SIZE * HIDDEN + HIDDEN + HIDDEN * OUTPUT_SIZE + OUTPUT_SIZE;       // 1708
+// 出力: 12 関節 + お手本の調整 2 (速さの倍率・曲がる量。第 3 版で追加: お手本を土台にして補正する方式のため)
+export const OUTPUT_SIZE_V1 = JOINT_COUNT;
+export const OUTPUT_SIZE = JOINT_COUNT + 2;
+export const PARAM_COUNT_V1 = INPUT_SIZE_V1 * HIDDEN + HIDDEN + HIDDEN * OUTPUT_SIZE_V1 + OUTPUT_SIZE_V1; // 1676
+export const PARAM_COUNT_V2 = INPUT_SIZE * HIDDEN + HIDDEN + HIDDEN * OUTPUT_SIZE_V1 + OUTPUT_SIZE_V1;    // 1708
+export const PARAM_COUNT = INPUT_SIZE * HIDDEN + HIDDEN + HIDDEN * OUTPUT_SIZE + OUTPUT_SIZE;             // 1774
 
 /**
- * 第 1 版 (入力 39) の重みを第 2 版 (入力 40) に広げる。追加した入力の重みは 0 なので、動きはまったく同じ。
+ * 古い版の重みを最新版に広げる。追加した入力・出力の重みは 0 なので、関節への出力はまったく同じ。
  * これで今までの学習結果から続けて学習できる。
+ *   第 1 版 (入力 39, 出力 12) → 第 2 版 (入力 40: 目標の速さ) → 第 3 版 (出力 14: お手本の調整)
  */
 export function upgradeParams(p) {
   if (p.length === PARAM_COUNT) return p;
-  if (p.length !== PARAM_COUNT_V1) throw new Error(`重みの数が合いません: ${p.length}`);
-  const q = new Float32Array(PARAM_COUNT);
-  let src = 0, dst = 0;
-  for (let h = 0; h < HIDDEN; h++) {
-    for (let i = 0; i < INPUT_SIZE_V1; i++) q[dst++] = p[src++];
-    q[dst++] = 0; // 目標の速さ
+  if (p.length === PARAM_COUNT_V1) {
+    const q = new Float32Array(PARAM_COUNT_V2);
+    let src = 0, dst = 0;
+    for (let h = 0; h < HIDDEN; h++) {
+      for (let i = 0; i < INPUT_SIZE_V1; i++) q[dst++] = p[src++];
+      q[dst++] = 0; // 目標の速さ
+    }
+    q.set(p.subarray(src), dst); // 残り (バイアス・出力層) はそのまま
+    p = q;
   }
-  q.set(p.subarray(src), dst); // 残り (バイアス・出力層) はそのまま
+  if (p.length === PARAM_COUNT_V2) {
+    const q = new Float32Array(PARAM_COUNT);
+    const first = INPUT_SIZE * HIDDEN + HIDDEN;           // 入力層の重み + バイアス
+    q.set(p.subarray(0, first), 0);
+    q.set(p.subarray(first, first + HIDDEN * OUTPUT_SIZE_V1), first); // 関節の出力の重み (追加分は 0)
+    q.set(p.subarray(first + HIDDEN * OUTPUT_SIZE_V1), first + HIDDEN * OUTPUT_SIZE); // 関節の出力のバイアス
+    return q;
+  }
+  throw new Error(`重みの数が合いません: ${p.length}`);
+}
+
+/** 関節への出力を factor 倍に弱める (お手本を土台にする方式へ切り替えるとき、最初の補正を小さくするため) */
+export function scaleJointOutputs(p, factor) {
+  const q = Float32Array.from(upgradeParams(p));
+  const first = INPUT_SIZE * HIDDEN + HIDDEN;
+  for (let k = 0; k < HIDDEN * JOINT_COUNT; k++) q[first + k] *= factor;
+  const bias = first + HIDDEN * OUTPUT_SIZE;
+  for (let o = 0; o < JOINT_COUNT; o++) q[bias + o] *= factor;
   return q;
 }
 export const ACTION_SCALE = 0.6;   // 出力 [-1,1] → ±0.6 rad
+export const RESIDUAL_SCALE = 0.25; // お手本を土台にする方式での補正の大きさ (±0.25 rad)
 export const RHYTHM_HZ = 2.0;      // 入力として与える「リズム」の周波数
 
 export class Policy {
@@ -87,7 +112,7 @@ export function randomParams(seed, scale = 1.5) {
     for (let i = 0; i < nOut; i++) p[k++] = 0;
   };
   layer(INPUT_SIZE_V1, HIDDEN);
-  layer(HIDDEN, OUTPUT_SIZE);
+  layer(HIDDEN, OUTPUT_SIZE_V1);
   return upgradeParams(p);
 }
 

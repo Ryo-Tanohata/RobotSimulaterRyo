@@ -27,7 +27,7 @@ for (const [name, pkg, url] of libs) {
 fs.writeFileSync('THIRD_PARTY_LICENSES.txt', notices);
 
 const data = {};
-for (const stage of ['walk', 'posture', 'rough', 'obstacles', 'steer', 'wall1', 'walls3']) {
+for (const stage of ['walk', 'posture', 'rough', 'obstacles', 'steer', 'wall1', 'walls3', 'imitate', 'natural']) {
   const f = `checkpoints/${stage}.json`;
   if (fs.existsSync(f)) data[stage] = JSON.parse(fs.readFileSync(f, 'utf8'));
 }

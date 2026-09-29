@@ -5,7 +5,7 @@
 import { Worker } from 'node:worker_threads';
 import os from 'node:os';
 import fs from 'node:fs';
-import { PARAM_COUNT, randomParams, mulberry32, gaussianFrom, upgradeParams } from '../src/policy.js';
+import { PARAM_COUNT, randomParams, mulberry32, gaussianFrom, upgradeParams, scaleJointOutputs } from '../src/policy.js';
 
 const [stage = 'walk', gensArg = '200', fromStage] = process.argv.slice(2);
 const GENERATIONS = +gensArg;
@@ -21,6 +21,10 @@ const MIX = process.env.MIX ? process.env.MIX.split(',').map((x) => { const [st,
 const IMIT_MAX = +(process.env.IMIT_MAX || 0);
 const IMIT_RAMP = +(process.env.IMIT_RAMP || 1);
 const imitWeightAt = (gen) => IMIT_MAX * Math.min(1, gen / IMIT_RAMP);
+// RESIDUAL=1: お手本を土台にして、脳は補正とお手本の調整 (速さ・曲がる量) を出す方式
+const RESIDUAL = !!process.env.RESIDUAL;
+// INIT_JOINT_SCALE: 始めるときに関節への出力を何倍にするか (0 = 補正なしのお手本そのものから始め、脳の判断部分は引き継ぐ)
+const INIT_JOINT_SCALE = process.env.INIT_JOINT_SCALE !== undefined ? +process.env.INIT_JOINT_SCALE : null;
 const outPath = new URL(`../checkpoints/${stage}.json`, import.meta.url);
 const partialPath = new URL(`../checkpoints/${stage}.partial.json`, import.meta.url);
 
@@ -36,7 +40,8 @@ if (fromStage) {
   const cp = fromGen === undefined ? prev.checkpoints[prev.checkpoints.length - 1]
     : prev.checkpoints.filter((c) => c.generation <= +fromGen).pop();
   theta = upgradeParams(fromB64(cp.params));
-  console.log(`start from ${fromName} generation ${cp.generation}`);
+  if (INIT_JOINT_SCALE !== null) theta = scaleJointOutputs(theta, INIT_JOINT_SCALE);
+  console.log(`start from ${fromName} generation ${cp.generation}${INIT_JOINT_SCALE !== null ? ` (関節への出力 ×${INIT_JOINT_SCALE})` : ''}`);
 } else {
   theta = randomParams(1);
 }
@@ -55,7 +60,7 @@ function evalParams(params, seeds, mix = null, imitWeight = null) {
   return new Promise((res) => {
     const id = nextId++;
     pending.set(id, res);
-    workers[rr++ % workers.length].postMessage({ id, stage, params, seeds, mix, imitWeight });
+    workers[rr++ % workers.length].postMessage({ id, stage, params, seeds, mix, imitWeight, residual: RESIDUAL });
   });
 }
 
@@ -73,7 +78,7 @@ if (process.env.RESUME && fs.existsSync(partialPath)) {
   console.log(`resume ${stage} from generation ${cp.generation}`);
 }
 
-const log = { stage, mix: MIX, imitMax: IMIT_MAX, imitRamp: IMIT_RAMP, from: fromStage ? fromStage.split('@')[0] : null, fromGeneration: fromStage && fromStage.includes('@') ? +fromStage.split('@')[1] : null, paramCount: PARAM_COUNT, pairs: PAIRS, sigma: SIGMA, history: [], checkpoints: [] };
+const log = { stage, mix: MIX, imitMax: IMIT_MAX, imitRamp: IMIT_RAMP, residual: RESIDUAL, initJointScale: INIT_JOINT_SCALE, from: fromStage ? fromStage.split('@')[0] : null, fromGeneration: fromStage && fromStage.includes('@') ? +fromStage.split('@')[1] : null, paramCount: PARAM_COUNT, pairs: PAIRS, sigma: SIGMA, history: [], checkpoints: [] };
 const rand = mulberry32(12345);
 const t0 = Date.now();
 
