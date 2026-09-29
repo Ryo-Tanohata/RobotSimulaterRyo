@@ -17,7 +17,13 @@ page.on('pageerror', (e) => errors.push(e.message));
 page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
 await page.goto('file://' + path.join(root, 'film.html') + '?record=1' + script);
 await page.waitForFunction(() => window.film && window.film.ready, null, { timeout: 60000 });
+// NARRATION=音声の秒数の JSON (tools/voicevox/synth.py の durations.json) を渡すと、場面の長さを読み上げに合わせる
+if (process.env.NARRATION) {
+  const durs = JSON.parse(fs.readFileSync(process.env.NARRATION, 'utf8'));
+  await page.evaluate((d) => window.film.setNarration(d), durs);
+}
 const count = await page.evaluate(() => window.film.sceneCount);
+const timeline = { fps: 0, scenes: [], narration: [], events: [] }; // 音声の合成に使う (秒は動画の先頭から)
 const from = fromArg ? +fromArg : 0, to = toArg ? +toArg : count - 1;
 const fps = await page.evaluate(() => window.film.FPS);
 const preview = !!process.env.PREVIEW;
@@ -30,8 +36,13 @@ if (!preview) {
 }
 const t0 = Date.now();
 let total = 0;
+timeline.fps = fps;
 for (let s = from; s <= to; s++) {
   const frames = await page.evaluate((i) => window.film.loadScene(i), s);
+  const sceneStart = total / fps;
+  const tl = await page.evaluate((i) => window.film.narrationTimeline(i), s);
+  timeline.scenes.push({ index: s, start: sceneStart, seconds: frames / fps });
+  for (const it of tl.items) timeline.narration.push({ id: it.id, start: sceneStart + it.start, duration: it.duration });
   const pick = new Set([0, Math.floor(frames / 3), Math.floor((2 * frames) / 3), frames - 1]);
   for (let f = 0; f < frames; f++) {
     if (f > 0) await page.evaluate(() => window.film.step());
@@ -43,9 +54,14 @@ for (let s = from; s <= to; s++) {
     }
     total++;
   }
+  for (const e of await page.evaluate(() => window.film.events())) timeline.events.push({ ...e, t: sceneStart + e.t });
   console.log(`scene ${s}: ${frames} frames  (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
 }
 if (ff) { ff.stdin.end(); await new Promise((r) => ff.on('close', r)); }
+if (!preview) {
+  timeline.duration = total / fps;
+  fs.writeFileSync(out.replace(/\.mp4$/, '') + '.timeline.json', JSON.stringify(timeline, null, 1));
+}
 if (preview) {
   const files = fs.readdirSync(tmp).sort();
   // 1 場面 = 1 行 (4 コマ) の一覧画像
