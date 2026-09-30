@@ -232,8 +232,8 @@ function renderPeople() {
         <span class="meta">${esc(p.sex)} ${p.age} 歳 ・ ${p.mass} kg${p.alive ? "" : " ・ 死亡"}${p.injured ? " ・ けが" : ""}</span></div>
       <div class="bars">
         <span>空腹</span><span class="bar hunger"><i style="width:${Math.round(p.hunger * 100)}%"></i></span><span class="num">${p.hunger.toFixed(2)}</span>
-        <span>食べ物</span><span class="bar"><i style="width:${Math.min(100, p.food / 60)}%"></i></span><span class="num">${p.food} kcal</span>
       </div>
+      <div class="meta">持っている食べ物: ${esc(p.food_words || (p.food ? p.food + " kcal 分" : "なし"))}</div>
       <div class="meta">今日: ${esc(t.activity || "―")} ${t.place ? "@ " + esc(t.place.replace(/ \(.*/, "")) : ""} → 明日: ${esc(plan.activity || "―")}${plan.with && plan.with.length ? " (" + plan.with.map(esc).join("・") + " と)" : ""}</div>
       ${p.feeling ? `<div class="feel">${esc(p.feeling)}</div>` : ""}
       <div class="meta">知識 ${p.knowledge.length} 件 ・ 技能 ${Object.entries(p.skills).map(([k, v]) => `${k} ${v.toFixed(2)}`).join(" ")}</div>

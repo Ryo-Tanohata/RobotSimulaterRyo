@@ -8,11 +8,12 @@
 import json
 
 import knowledge
-from world import ACTIVITIES, season
+from world import ACTIVITIES, food_words, holdings, season
 
 RULES = """あなたは、ある小さな世界に暮らす一人の人間を演じます。
 - この世界の外の知識 (現実の地名・国・歴史・宗教・王・お金 など) は持っていない前提で考えてください
 - 自分が経験したこと、聞いたこと、覚えていることだけをもとに考えてください
+- この世界の人は「カロリー」「kcal」という考えを知りません。食べ物の量は「木の実 5 つかみ」「芋 2 本」「ルクの肉 3 切れ」のように、食べ物の名前と数で考えて話してください
 - 答えは JSON だけを出力してください (前後に説明を書かない)。JSON の中の文章はすべて日本語で書いてください"""
 
 
@@ -24,14 +25,15 @@ def _me(state, p):
     days = f"{state['day']} 日目 ({season(state['day'])})"
     pers = "、".join(f"{k} {v:.1f}" for k, v in p["personality"].items())
     sk = "、".join(f"{k} {v:.2f}" for k, v in p["skills"].items())
-    food = sum(f["kcal"] for f in p["food"])
-    meat = [f for f in p["food"] if f["kind"] == "肉"]
+    hold = holdings(p)
+    hunger = "満腹" if p["hunger"] < 0.1 else "少し空腹" if p["hunger"] < 0.3 else "かなり空腹" if p["hunger"] < 0.6 else "ひどく空腹 (危ない)"
     trust = "、".join(f"{n} {v:+.1f}" for n, v in p["trust"].items() if any(q["name"] == n and q["alive"] for q in state["people"]))
     return (f"あなたは {p['name']} ({p['sex']}、{p['age']} 歳)。今は {days}。\n"
             f"性格 (0〜1): {pers}\n技能 (0〜1): {sk}\n"
-            f"空腹 {p['hunger']:.1f} (0 = 満腹、1 = 限界) / 疲れ {p['fatigue']:.1f} / けが {'あり' if p['injured'] else 'なし'}\n"
-            f"持ち物: 食べ物 {food} kcal" + (f" (うち肉 {sum(f['kcal'] for f in meat)} kcal。肉は 2 日で腐る)" if meat else "")
-            + (f"、{'・'.join(p['items'])}" if p["items"] else "") + "\n"
+            f"おなか: {hunger} / 疲れ {p['fatigue']:.1f} / けが {'あり' if p['injured'] else 'なし'}\n"
+            f"持っている食べ物: {food_words(hold)}" + (" (ルクの肉は 2 日で腐る)" if hold.get("肉") else "") + "\n"
+            + (f"持ち物: {'・'.join(p['items'])}\n" if p["items"] else "")
+            + "1 日に食べる量の目安: 木の実なら 20 つかみ、芋なら 8 本、ルクの肉なら 3 切れ\n"
             f"仲間への信頼 (-1〜+1): {trust}\n")
 
 
@@ -86,16 +88,16 @@ def evening_prompt(state, p):
 ## いま
 夕方。キャンプの火のまわりに {'、'.join(names)} がいる。
 話したいことがあれば話してください (0〜2 つ。相手は仲間の名前か「みんな」)。
-持っている食べ物を誰かに分けるなら、相手と量 (kcal) を書いてください (分けなくてもよい)。
+持っている食べ物を誰かに分けるなら、相手・食べ物の種類 (木の実 / 芋 / ルクの肉)・数を書いてください (分けなくてもよい)。
 
 ## 答えの形 (JSON)
-{{"say": [{{"to": "みんな", "text": "..."}}], "give": [{{"to": "名前", "kcal": 1000}}]}}"""
+{{"say": [{{"to": "みんな", "text": "..."}}], "give": [{{"to": "名前", "food": "芋", "count": 2}}]}}"""
 
 
 def night_prompt(state, p, tonight_heard, gifts):
     places = "\n".join(f"- {pl['id']}: {pl['label']}" for pl in state["places"])
     heard = "\n".join(f"- [出来事 {h['event']}] {h['from']}: 「{h['text']}」" for h in tonight_heard) or "(なし)"
-    got = "\n".join(f"- [出来事 {g['event']}] {g['from']} から {g['kcal']} kcal もらった" for g in gifts) or "(なし)"
+    got = "\n".join(f"- [出来事 {g['event']}] {g['from']} から {g['food']} をもらった" for g in gifts) or "(なし)"
     meeting = knowledge.is_meeting(state["day"])
     names = [q["name"] for q in _alive(state) if q is not p]
     law_part = (f"""
@@ -174,14 +176,14 @@ def apply_evening(state, answers):
                     tonight[n].append(h)
         for g in (a.get("give") or [])[:len(alive)]:
             if g.get("to") in alive:
-                gives.append({"from": name, "to": g["to"], "kcal": g.get("kcal", 0)})
+                gives.append({"from": name, "to": g["to"], "food": g.get("food"), "count": g.get("count", 0), "kcal": g.get("kcal", 0)})
     for p in alive.values():
         p["heard"] = p["heard"][-30:]
     return gives, tonight
 
 
 def gifts_for(state, name):
-    return [{"from": e["who"], "kcal": e["data"]["kcal"], "event": e["id"]} for e in state["events"]
+    return [{"from": e["who"], "food": e["data"].get("food") or f"食べ物 ({e['data']['kcal']} kcal 分)", "event": e["id"]} for e in state["events"]
             if e["day"] == state["day"] and e["type"] == "分ける" and e.get("data", {}).get("to") == name]
 
 

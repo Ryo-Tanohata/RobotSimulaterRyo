@@ -104,7 +104,7 @@ def export(state):
         "herds": state["herds"], "predators": state["predators"], "planted": state["planted"],
         "people": [{k: p.get(k) for k in ("name", "alive", "age", "sex", "mass", "personality", "skills", "hunger", "fatigue",
                                           "injured", "items", "trust", "plan", "feeling")}
-                   | {"food": sum(f["kcal"] for f in p["food"]), "today": p.get("today"),
+                   | {"food": sum(f["kcal"] for f in p["food"]), "food_words": world.food_words(world.holdings(p)), "today": p.get("today"),
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
         "events": ev_recent, "laws": state.get("laws", []),
         "knowledge_log": state.get("knowledge_log", [])[-300:], "stats": state["stats"],
