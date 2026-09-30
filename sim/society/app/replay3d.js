@@ -234,7 +234,7 @@
       P.eve.slice(0, k + 1).forEach((e) => { if (e.type === "分ける") shown.push(e); });
       const e = P.eve[Math.min(k, P.eve.length - 1)];
       if (e && e.type === "話す") bubbles[e.who] = e.text.replace(/^.*?「/, "「");
-      if (e && e.type === "分ける") bubbles[e.who] = `（${e.data.to} に ${e.data.kcal} kcal 分ける）`;
+      if (e && e.type === "分ける") bubbles[e.who] = `（${e.data.to} に ${e.data.food || "食べ物"} を分ける）`;
     }
     if (seg.key === "night") shown = P.night.length ? P.night : [{ text: "静かな夜" }];
     S.toast.innerHTML = shown.slice(-4).map((e) => `<div>${esc(e.text)}</div>`).join("");
