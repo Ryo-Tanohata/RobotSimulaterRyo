@@ -22,13 +22,20 @@ ap.add_argument("--seconds", type=float, default=8)
 a = ap.parse_args()
 
 ckdir = Path(__file__).parent / "runs" / a.name / "checkpoints"
-last = sorted((p for p in ckdir.iterdir() if p.name.isdigit()), key=lambda p: int(p.name))[-1]
+# 新しい順に読み込めるものを探す (時間切れで止めたとき、最後の保存が途中の場合があるため)
+params = last = None
+for p in sorted((p for p in ckdir.iterdir() if p.name.isdigit()), key=lambda p: int(p.name), reverse=True):
+    try:
+        params = checkpoint.load(str(p.resolve()))
+        last = p
+        break
+    except Exception as e:  # noqa: BLE001
+        print("読み込めない:", p.name, type(e).__name__)
 print("脳:", last)
 cfg = default_config()
 cfg.s = a.s
 env = ApeWalk(cfg)
 # brax の load_policy は今の版では設定の読み込みで失敗するので、train.py と同じ形の脳を作って重みだけ読み込む
-params = checkpoint.load(str(last.resolve()))
 net = ppo_networks.make_ppo_networks(env.observation_size, env.action_size,
                                      preprocess_observations_fn=running_statistics.normalize,
                                      policy_hidden_layer_sizes=(256, 256, 128), value_hidden_layer_sizes=(256, 256, 256))
