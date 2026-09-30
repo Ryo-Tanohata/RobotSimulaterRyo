@@ -40,13 +40,21 @@ ap.add_argument("--envs", type=int, default=2048)
 ap.add_argument("--evals", type=int, default=10)
 ap.add_argument("--hands-off", action="store_true")
 ap.add_argument("--resume", action="store_true")
+ap.add_argument("--imitate", action="store_true", help="お手本 (reference.py) を土台にする")
+ap.add_argument("--alive", type=float, default=None)
+ap.add_argument("--fall-penalty", type=float, default=None)
 a = ap.parse_args()
 
 out = Path(__file__).parent / "runs" / a.name
 ckpt = (out / "checkpoints").resolve()
 ckpt.mkdir(parents=True, exist_ok=True)
 cfg = default_config()
-cfg.s, cfg.target_speed, cfg.hands_off = a.s, a.speed, a.hands_off
+cfg.s, cfg.target_speed, cfg.hands_off, cfg.imitate = a.s, a.speed, a.hands_off, a.imitate
+if a.alive is not None:
+    cfg.alive = a.alive
+if a.fall_penalty is not None:
+    cfg.fall_penalty = a.fall_penalty
+(out / "config.json").write_text(cfg.to_json_best_effort(indent=1))  # render.py が同じ設定で動かすため
 env = ApeWalk(cfg)
 log = open(out / "log.csv", "a")
 if log.tell() == 0:

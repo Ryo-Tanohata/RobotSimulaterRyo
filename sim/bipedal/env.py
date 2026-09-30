@@ -17,6 +17,7 @@ from mujoco import mjx
 from mujoco_playground._src import mjx_env
 
 from body import actuated_joints, model_xml
+from reference import FREQ, reference
 
 
 def default_config():
@@ -24,7 +25,9 @@ def default_config():
         ctrl_dt=0.02, sim_dt=0.004, episode_length=1000, action_repeat=1, vision=False,
         impl="warp", naconmax=100_000, njmax=160,
         s=1.0, target_speed=1.0, hands_off=False,
-        action_scale=0.6, energy_weight=0.0015, alive=0.2,
+        action_scale=0.6, energy_weight=0.0015, alive=0.2, fall_penalty=1.0,
+        # お手本 (reference.py) を土台にする: 目標角 = お手本 + 脳の出力 × residual_scale。お手本との近さも評価に入れる
+        imitate=False, residual_scale=0.3, imit_weight=1.0,
     )
 
 
@@ -76,20 +79,27 @@ class ApeWalk(mjx_env.MjxEnv):
         return self._mjx_model
 
     def reset(self, rng):
-        rng, k1, k2 = jax.random.split(rng, 3)
-        qpos = self._qpos0.at[self._qadr].add(jax.random.uniform(k1, (self.action_size,), minval=-0.05, maxval=0.05))
+        rng, k1, k2, k3 = jax.random.split(rng, 4)
+        phase = jax.random.uniform(k3)
+        qpos0 = self._qpos0.at[self._qadr].set(jp.clip(reference(phase), self._lo, self._hi)) if self._config.imitate else self._qpos0
+        qpos = qpos0.at[self._qadr].add(jax.random.uniform(k1, (self.action_size,), minval=-0.05, maxval=0.05))
         qvel = jp.zeros(self._mj_model.nv).at[:6].set(jax.random.uniform(k2, (6,), minval=-0.1, maxval=0.1))
         data = mjx_env.make_data(self._mj_model, qpos=qpos, qvel=qvel, ctrl=self._default,
                                  impl=self._mjx_model.impl.value, naconmax=self._config.naconmax, njmax=self._config.njmax)
         data = mjx.forward(self._mjx_model, data)
-        info = {"rng": rng, "last_act": jp.zeros(self.action_size)}
-        metrics = {k: jp.zeros(()) for k in ("speed", "energy", "biped", "reward/forward", "reward/energy")}
+        info = {"rng": rng, "last_act": jp.zeros(self.action_size), "phase": phase}
+        metrics = {k: jp.zeros(()) for k in ("speed", "energy", "biped", "reward/forward", "reward/energy", "reward/imitate")}
         obs = self._obs(data, info)
         return mjx_env.State(data, obs, jp.zeros(()), jp.zeros(()), metrics, info)
 
     def step(self, state, action):
         c = self._config
-        target = jp.clip(self._default + action * c.action_scale, self._lo, self._hi)
+        phase = (state.info["phase"] + FREQ * self.dt) % 1.0
+        ref = reference(phase)
+        if c.imitate:
+            target = jp.clip(ref + action * c.residual_scale, self._lo, self._hi)
+        else:
+            target = jp.clip(self._default + action * c.action_scale, self._lo, self._hi)
         data = mjx_env.step(self._mjx_model, state.data, target, self.n_substeps)
 
         vx = data.qvel[0]
@@ -98,18 +108,21 @@ class ApeWalk(mjx_env.MjxEnv):
         hands_up = jp.all(hands_z > self._hand_r + 0.02)
         forward = jp.exp(-jp.square(vx - c.target_speed) / 0.25)
         energy = -c.energy_weight * power
-        reward = forward + energy + c.alive
+        q_err = jp.mean(jp.square(data.qpos[self._qadr] - ref))
+        imit = jp.exp(-8.0 * q_err) * c.imit_weight if c.imitate else jp.zeros(())
+        reward = forward + energy + c.alive + imit
 
         fell = (data.xpos[self._pelvis, 2] < 0.2) | (data.xpos[self._head, 2] < 0.25)
         bad = jp.isnan(data.qpos).any() | jp.isnan(data.qvel).any()
         done = fell | bad
         if c.hands_off:
             done = done | ~hands_up
-        reward = jp.where(done, -1.0, reward)
+        reward = jp.where(done, -c.fall_penalty, reward)
+        state.info["phase"] = phase
 
         state.info["last_act"] = action
         m = state.metrics
-        m.update(speed=vx, energy=power, biped=hands_up.astype(float), **{"reward/forward": forward, "reward/energy": energy})
+        m.update(speed=vx, energy=power, biped=hands_up.astype(float), **{"reward/forward": forward, "reward/energy": energy, "reward/imitate": imit})
         obs = self._obs(data, state.info)
         return state.replace(data=data, obs=obs, reward=reward, done=done.astype(float), metrics=m)
 
@@ -121,4 +134,4 @@ class ApeWalk(mjx_env.MjxEnv):
         return jp.concatenate([
             gravity, linvel, angvel, data.xpos[self._pelvis, 2:3],
             data.qpos[self._qadr] - self._default, data.qvel[self._vadr] * 0.1, info["last_act"],
-        ])
+        ] + ([jp.stack([jp.sin(2 * jp.pi * info["phase"]), jp.cos(2 * jp.pi * info["phase"])])] if self._config.imitate else []))

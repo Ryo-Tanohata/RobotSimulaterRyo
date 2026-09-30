@@ -2,6 +2,7 @@
   MUJOCO_GL=egl ~/mjx/venv/bin/python sim/bipedal/render.py 名前 out.mp4 [--s 1.0] [--seconds 8]
 """
 import argparse
+import json
 from pathlib import Path
 
 import jax
@@ -34,6 +35,11 @@ for p in sorted((p for p in ckdir.iterdir() if p.name.isdigit()), key=lambda p: 
 print("脳:", last)
 cfg = default_config()
 cfg.s = a.s
+cj = ckdir.parent / "config.json"
+if cj.exists():  # 学習したときの設定 (お手本の有無など) に合わせる
+    for k, v in json.loads(cj.read_text()).items():
+        if k in cfg:
+            cfg[k] = v
 env = ApeWalk(cfg)
 # brax の load_policy は今の版では設定の読み込みで失敗するので、train.py と同じ形の脳を作って重みだけ読み込む
 net = ppo_networks.make_ppo_networks(env.observation_size, env.action_size,
