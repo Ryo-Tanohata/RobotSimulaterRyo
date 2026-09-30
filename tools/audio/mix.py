@@ -117,7 +117,7 @@ def place(track, clip, t, gain=1.0):
 
 def main():
     tl_path, voice_dir, out_path = sys.argv[1:4]
-    tl = json.load(open(tl_path))
+    tl = json.load(open(tl_path, encoding='utf-8'))
     dur = tl['duration']
     n = int(dur * SR) + 1
     voice = np.zeros(n, np.float32)
@@ -150,7 +150,9 @@ def main():
 
     # BGM は話している間は小さく (ダッキング)。切り替えは 0.3 秒かけてなめらかに
     k = int(0.3 * SR)
-    duck = np.convolve(speaking, np.ones(k) / k, mode='same')
+    c = np.concatenate([[0.0], np.cumsum(speaking, dtype=np.float64)])  # 移動平均 (累積和で計算。畳み込みより桁違いに速い)
+    lo = np.clip(np.arange(n) - k // 2, 0, n); hi = np.clip(np.arange(n) + k // 2, 0, n)
+    duck = ((c[hi] - c[lo]) / k).astype(np.float32)
     music = bgm(dur, n) * (0.16 - 0.10 * np.clip(duck, 0, 1))
 
     L = voice * 0.9 + left + music

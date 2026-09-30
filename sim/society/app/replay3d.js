@@ -240,10 +240,12 @@
       if (e && e.type === "分ける") bubbles[e.who] = `（${e.data.to} に ${e.data.food || "食べ物"} を分ける）`;
     }
     if (seg.key === "night") shown = P.night.length ? P.night : [{ text: "静かな夜" }];
-    S.toast.innerHTML = shown.slice(-4).map((e) => `<div>${esc(e.text)}</div>`).join("");
+    S.toast.innerHTML = shown.slice(-4).map((e) => `<div>${esc(plain(e.text))}</div>`).join("");
     for (const n in S.labels) S.labels[n].bubble = bubbles[n] || "";
   }
 
+  // 初期の記録 (1〜2 日目) にはカロリーの表記があるので、見せるときは言い換える
+  const plain = (t) => String(t).replace(/で採集し ?[\d.]+ kcal 分を得た/, "で採集した").replace(/に食べ物を ?[\d.]+ kcal 分けた/, "に食べ物を分けた").replace(/ \([\d.]+ kcal の肉\)/, "");
   const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   function placeLabels() {
@@ -272,6 +274,18 @@
     }
     frame(S.v); S.controls.update(); S.renderer.render(S.W.scene, S.camera); placeLabels();
     S.raf = requestAnimationFrame(loop);
+  }
+
+  // 動画用: 見えている全員が入るように、カメラの注視点と距離を少しずつ合わせる
+  function autoCamera() {
+    const ps = Object.values(S.figs).filter((f) => f.visible).map((f) => f.position);
+    if (!ps.length) return;
+    const c = ps.reduce((a, p) => a.add(p), new THREE.Vector3()).multiplyScalar(1 / ps.length);
+    const r = Math.max(...ps.map((p) => p.distanceTo(c)));
+    const dist = Math.min(90, Math.max(13, r * 2.3 + 9));
+    const dir = new THREE.Vector3(0.5, 0.62, 0.78).normalize();
+    S.controls.target.lerp(c, 0.07);
+    S.camera.position.lerp(S.controls.target.clone().add(dir.multiplyScalar(dist)), 0.07);
   }
 
   function setDay(d) {
@@ -331,6 +345,7 @@
       S.raf = requestAnimationFrame(loop);
     },
     // 動画を作るとき用: 日と再生位置 (秒) を指定して 1 コマ描く
+    setAutoCamera(on) { if (S) S.autoCam = !!on; },
     setSegments(day, secByKey) { if (S) { S.segOverride = S.segOverride || {}; S.segOverride[day] = secByKey; } },
     timeline(day) { if (!S) return null; const P = planDay(S.D, day); return { total: P.total, segs: P.segs.map((s) => ({ key: s.key, v0: s.v0, v1: s.v1 })), eve: P.eve.length }; },
     seek(day, v) {
@@ -339,7 +354,7 @@
         setDay(day); S.day.segOverrideKey = JSON.stringify((S.segOverride || {})[day] || {});
       }
       S.playing = false; S.v = v; S.last = 0;
-      frame(v); S.controls.update(); S.renderer.render(S.W.scene, S.camera); placeLabels();
+      frame(v); if (S.autoCam) autoCamera(); S.controls.update(); S.renderer.render(S.W.scene, S.camera); placeLabels();
     },
     stop() {
       if (!S) return;
