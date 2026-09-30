@@ -1,0 +1,22 @@
+{
+ "ctrl_dt": 0.02,
+ "sim_dt": 0.004,
+ "episode_length": 1000,
+ "action_repeat": 1,
+ "vision": false,
+ "impl": "warp",
+ "naconmax": 100000,
+ "njmax": 160,
+ "s": 1.0,
+ "target_speed": 0.8,
+ "hands_off": false,
+ "action_scale": 0.6,
+ "energy_weight": 0.0015,
+ "alive": 0.5,
+ "fall_penalty": 5.0,
+ "torque_weight": 1e-05,
+ "imitate": true,
+ "residual_scale": 0.3,
+ "imit_weight": 1.0,
+ "gait": "biped"
+}
