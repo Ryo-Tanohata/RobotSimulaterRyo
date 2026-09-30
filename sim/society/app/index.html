@@ -2,6 +2,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="replay3d.js"></script>
 <style>
 /* Layout: 観察ノート型ダッシュボード。左に上から見た地図、右に 5 人の記録、下にタブ (出来事と会話 / 知識と掟 / グラフ / 歩く姿) */
 :root {
@@ -90,6 +93,17 @@ select { font: inherit; font-size: 13px; padding: 4px 8px; border-radius: 6px; b
 .chart svg { width: 100%; height: auto; display: block; }
 video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
 .empty { color: var(--muted); font-size: 14px; }
+.r3-bar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-block: 12px 10px; font-size: 13px; }
+.r3-bar button { font: inherit; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent-soft); color: var(--fg); cursor: pointer; }
+.r3-bar button:focus-visible, .r3-bar input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.r3-bar input[type=range] { flex: 1 1 180px; min-width: 0; accent-color: var(--accent); }
+.r3-stage { position: relative; width: 100%; aspect-ratio: 16 / 10; min-height: 300px; border-radius: 8px; overflow: hidden; background: var(--bg); }
+.r3-stage canvas { width: 100%; height: 100%; display: block; aspect-ratio: auto; border-radius: 0; }
+.r3-clock { position: absolute; left: 12px; top: 10px; font-family: var(--mono); font-size: 13px; font-weight: 500; background: var(--surface); color: var(--fg); padding: 3px 10px; border-radius: 6px; opacity: 0.92; }
+.r3-toast { position: absolute; left: 12px; bottom: 10px; right: 12px; display: grid; gap: 4px; font-size: 12px; pointer-events: none; }
+.r3-toast div { background: var(--surface); color: var(--fg); padding: 3px 10px; border-radius: 6px; opacity: 0.9; width: fit-content; max-width: 100%; }
+.r3-label { position: absolute; left: 0; top: 0; pointer-events: none; display: grid; justify-items: center; gap: 4px; font-size: 12px; font-weight: 700; text-shadow: 0 0 3px var(--bg), 0 0 3px var(--bg); }
+.r3-label .b { background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 10px; padding: 4px 10px; font-weight: 400; font-size: 12px; max-width: 16em; text-shadow: none; line-height: 1.45; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
@@ -100,6 +114,12 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
   </header>
   <p class="lead">2 km 四方の川辺で暮らす 5 人の、狩猟採集の暮らしを 1 日ずつ進めています。毎朝 7 時に 1 日分進みます。
     5 人はそれぞれ別の Claude が演じ、自分の経験と聞いた話だけから考えます。Claude は人類の知識を持っているので、生まれた知識や掟には「創発」か「模倣の疑い」かの印を付けています。</p>
+
+  <section class="panel" id="p-r3" aria-labelledby="h-r3">
+      <h2 id="h-r3">3D で見る</h2>
+      <p class="explain">選んだ日の 5 人の 1 日を、記録から再現して見せます (朝の出発 → 活動 → 帰り → 夕方の焚き火 → 夜)。棒人間の歩き方は、2 足歩行の物理シミュレーションで学習した動きです。見やすいように人を大きく描いています。ドラッグで回転、ホイール・2 本指で拡大できます。</p>
+      <div id="r3"></div>
+  </section>
 
   <div class="top">
     <section class="panel" aria-labelledby="h-map">
@@ -157,7 +177,11 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
 const $ = (id) => document.getElementById(id);
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-let D = null, focus = "";
+let D = null, focus = "", WALK = null;
+function start3d() {
+  if (!D || !WALK || !window.Replay3D || !window.THREE) return;
+  try { Replay3D.start($("r3"), D, WALK, css); } catch (e) { $("r3").innerHTML = `<p class="empty">3D の表示を始められませんでした (${esc(e.message)})。</p>`; }
+}
 const pcol = (i) => css(`--p${i % 5}`);
 
 function tabs() {
@@ -172,7 +196,7 @@ function tabs() {
   select(t);
   return select;
 }
-const selectTab = tabs();
+let selectTab = null;
 
 function drawMap() {
   const c = $("map"), g = c.getContext("2d"), m = D.map, s = c.width / m.w;
@@ -283,10 +307,14 @@ function render() {
 }
 $("f-who").addEventListener("change", (e) => { focus = e.target.value; renderPeople(); renderKnow(); });
 $("f-label").addEventListener("change", renderKnow);
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => D && render());
-new MutationObserver(() => D && render()).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+const rerender = () => { if (D) { render(); start3d(); } };
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", rerender);
+new MutationObserver(rerender).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
-fetch("app_data.json", { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then((d) => { D = d; render(); })
+selectTab = tabs();
+Promise.all([
+  fetch("app_data.json", { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch("walk_cycle.json").then((r) => (r.ok ? r.json() : null)).catch(() => null),
+]).then(([d, w]) => { D = d; WALK = w; render(); start3d(); })
   .catch(() => { $("people").innerHTML = `<p class="empty">データ (app_data.json) を読み込めませんでした。ページを開き直してください。</p>`; });
 </script>

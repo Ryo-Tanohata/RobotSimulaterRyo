@@ -69,6 +69,29 @@ def read_answers(state, phase):
     return out
 
 
+ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき"}
+
+
+def day_summaries(state):
+    """3D 再生用: 日ごとに、誰がどの活動でどの場所へ行ったか (出来事の記録から組み立てる)"""
+    labels = sorted(state["places"], key=lambda p: -len(p["label"]))
+    out = {}
+    for d in range(1, state["day"] + 1):
+        rows = {}
+        for e in state["events"]:
+            if e["day"] != d:
+                continue
+            names = e.get("data", {}).get("hunters") if e["type"] == "狩り" else [e["who"]]
+            act = "狩り" if e["type"] == "狩り" else ACT_BY_EVENT.get(e["type"])
+            if not act or not names:
+                continue
+            pid = next((p["id"] for p in labels if p["label"] in e["text"]), "camp")
+            for n in names:
+                rows.setdefault(n, {"name": n, "activity": act, "place": pid})
+        out[d] = list(rows.values())
+    return out
+
+
 def export(state):
     """アプリ (Web ページ) 用のデータ"""
     ev_recent = [e for e in state["events"] if e["day"] >= state["day"] - 30]
@@ -85,6 +108,7 @@ def export(state):
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
         "events": ev_recent, "laws": state.get("laws", []),
         "knowledge_log": state.get("knowledge_log", [])[-300:], "stats": state["stats"],
+        "days": day_summaries(state),
     }
     (DATA / "app_data.json").write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print("アプリ用のデータ:", (DATA / "app_data.json").relative_to(DATA.parent))
