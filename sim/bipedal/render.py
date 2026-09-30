@@ -20,6 +20,8 @@ ap.add_argument("name")
 ap.add_argument("out")
 ap.add_argument("--s", type=float, default=1.0)
 ap.add_argument("--seconds", type=float, default=8)
+ap.add_argument("--cmd", type=float, default=None, help="gait=human2 の目標の速さ (m/s)。省略すると学習と同じく毎回ランダム")
+ap.add_argument("--near", action="store_true", help="カメラを近づける")
 a = ap.parse_args()
 
 ckdir = Path(__file__).parent / "runs" / a.name / "checkpoints"
@@ -40,6 +42,8 @@ if cj.exists():  # 学習したときの設定 (お手本の有無など) に合
     for k, v in json.loads(cj.read_text()).items():
         if k in cfg:
             cfg[k] = v
+if a.cmd is not None:
+    cfg.speed_lo = cfg.speed_hi = a.cmd
 env = ApeWalk(cfg)
 # brax の load_policy は今の版では設定の読み込みで失敗するので、train.py と同じ形の脳を作って重みだけ読み込む
 net = ppo_networks.make_ppo_networks(env.observation_size, env.action_size,
@@ -65,7 +69,7 @@ m = env.mj_model
 d = mujoco.MjData(m)
 r = mujoco.Renderer(m, 480, 854)
 cam = mujoco.MjvCamera()
-cam.distance, cam.azimuth, cam.elevation = 3.5, 110, -12
+cam.distance, cam.azimuth, cam.elevation = (2.4, 100, -6) if a.near else (3.5, 110, -12)
 frames = []
 for q in qs:
     d.qpos[:] = q

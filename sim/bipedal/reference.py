@@ -145,3 +145,38 @@ def make(gait, s, scaled=False):
     if scaled:
         return make_biped_scaled(s), FREQ * f, 0.0
     return reference, FREQ, 0.0
+
+# ---- 人型の歩き方 2 (人間らしさを優先) ----
+# 実験 1 の 2 足のお手本は 1 秒に 1.6 周期 (3.2 歩) で、0.8 m/s だと 1 歩 25 cm の小股になっていた。
+# 人の歩行 (1.0〜1.3 m/s で 1 秒に約 0.9〜1 周期、1 周期の歩幅 1.0〜1.4 m) に近づける:
+# - 速さ v に合わせて、周期と歩幅をどちらも √(v / 1.0) 倍にする (v = 周期 × 歩幅)
+# - 腕を大きく振り (±25°)、前へ振るときに肘を曲げる
+# - かかとから着地し (つま先を上げる)、足裏全体 → つま先で蹴り出す
+HUMAN2_V0 = 1.0     # 基準の速さ (m/s)
+HUMAN2_FREQ0 = 0.95  # 基準の速さでの 1 秒あたりの周期
+
+
+def human2_freq(v):
+    return HUMAN2_FREQ0 * jp.sqrt(v / HUMAN2_V0)
+
+
+def human2(phase, v):
+    """phase (0〜1、左足のかかとが着いた瞬間が 0) と速さ v (m/s) → 目標角 (rad)"""
+    rad = jp.pi / 180
+    a = jp.clip(jp.sqrt(v / HUMAN2_V0), 0.6, 1.4)
+    q = {}
+    for side, off, sign in (("l", 0.0, 1.0), ("r", 0.5, -1.0)):
+        ph = (phase + off) % 1.0
+        c = jp.cos(2 * jp.pi * ph)
+        q[f"{side}_hip_y"] = (-7.5 - 17.5 * a * c) * rad
+        q[f"{side}_knee"] = (4 + 14 * a * _bump(ph, 0.12, 0.06) + (52 + 8 * a) * _bump(ph, 0.72, 0.1)) * rad
+        q[f"{side}_ankle_y"] = (-6 * _bump(ph, 0.0, 0.035)             # かかとから着地 (つま先を上げる)
+                                - 8 * _bump(ph, 0.42, 0.1)              # 体が足の上を越える (すねが前へ傾く)
+                                + 20 * a * _bump(ph, 0.6, 0.05)         # つま先で蹴り出す
+                                - 7 * _bump(ph, 0.82, 0.07)) * rad      # 振り出しでつま先を上げる (つまずかないように)
+        q[f"{side}_hip_x"] = q[f"{side}_hip_z"] = q[f"{side}_ankle_x"] = 0.0 * c
+        q[f"{side}_shoulder_y"] = 25 * a * c * rad                     # 脚と逆に振る (左脚が前 → 左腕は後ろ)
+        q[f"{side}_shoulder_x"] = sign * 6 * rad + 0.0 * c
+        q[f"{side}_elbow"] = -(15 + 20 * a * (1 - c) / 2) * rad         # 腕が前のときほど肘を曲げる
+    q["waist"] = (3 + 2 * a) * rad
+    return jp.stack([jp.asarray(q[n]) for n in actuated_joints()])
