@@ -103,7 +103,8 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
 .r3-toast { position: absolute; left: 12px; bottom: 10px; right: 12px; display: grid; gap: 4px; font-size: 12px; pointer-events: none; }
 .r3-toast div { background: var(--surface); color: var(--fg); padding: 3px 10px; border-radius: 6px; opacity: 0.9; width: fit-content; max-width: 100%; }
 .r3-label { position: absolute; left: 0; top: 0; pointer-events: none; display: grid; justify-items: center; gap: 4px; font-size: 12px; font-weight: 700; text-shadow: 0 0 3px var(--bg), 0 0 3px var(--bg); }
-.r3-label .b { background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 10px; padding: 4px 10px; font-weight: 400; font-size: 12px; max-width: 16em; text-shadow: none; line-height: 1.45; }
+.r3-label .b { position: relative; background: var(--surface); color: var(--fg); border: 2px solid var(--line); border-radius: 10px; padding: 4px 10px; font-weight: 400; font-size: 12px; max-width: 16em; text-shadow: none; line-height: 1.45; margin-bottom: 6px; }
+.r3-label .b::after { content: ""; position: absolute; left: 50%; bottom: -9px; width: 12px; height: 12px; background: var(--surface); border-right: 2px solid; border-bottom: 2px solid; border-color: inherit; transform: translateX(-50%) rotate(45deg); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 

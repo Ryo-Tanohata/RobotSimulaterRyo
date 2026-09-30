@@ -20,7 +20,12 @@ if [ ! -f vvms/0.vvm ]; then  # 0.vvm = ずんだもん など
   (cd vvm-repo && git checkout -q HEAD -- vvms/0.vvm TERMS.txt README.md)
   mkdir -p vvms && mv vvm-repo/vvms/0.vvm vvms/ && mv vvm-repo/TERMS.txt ./VVM_TERMS.txt && rm -rf vvm-repo
 fi
-[ -d venv ] || python3 -m venv venv
 cp "voicevox_core-$CORE.whl" "voicevox_core-$CORE-cp310-abi3-manylinux_2_34_x86_64.whl" 2>/dev/null || true
-./venv/bin/pip install -q "./voicevox_core-$CORE-cp310-abi3-manylinux_2_34_x86_64.whl"
+if [ ! -x venv/bin/python ]; then
+  rm -rf venv
+  # python3-venv が入っていない環境 (新しい Ubuntu など) では uv で作る
+  python3 -m venv venv 2>/dev/null || { rm -rf venv; "${UV:-$HOME/.local/bin/uv}" venv -q --python 3.12 venv; }
+fi
+if [ -x venv/bin/pip ]; then ./venv/bin/pip install -q "./voicevox_core-$CORE-cp310-abi3-manylinux_2_34_x86_64.whl"
+else "${UV:-$HOME/.local/bin/uv}" pip install -q --python venv/bin/python "./voicevox_core-$CORE-cp310-abi3-manylinux_2_34_x86_64.whl"; fi
 echo "準備完了: $DIR"

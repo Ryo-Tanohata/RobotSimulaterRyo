@@ -62,7 +62,7 @@
       el.add(cyl(BODY.fore * K * 0.9, 0.045 * K, mat));
       J[side + "_shoulder_y"] = sh; J[side + "_elbow"] = el;
     }
-    root.userData = { J, pelvis };
+    root.userData = { J, pelvis, head };
     return root;
   }
 
@@ -175,6 +175,8 @@
     const eve = ev.filter((e) => EVE_EVENTS.includes(e.type));
     const segs = SEG.map((s) => ({ ...s }));
     segs[4].sec = Math.max(10, eve.length * 2.6 + 2);
+    const over = (S && S.segOverride && S.segOverride[day]) || {};  // 動画用: 場面ごとの秒数を指定できる
+    for (const s of segs) if (over[s.key]) s.sec = over[s.key];
     let acc = 0; for (const s of segs) { s.v0 = acc; acc += s.sec; s.v1 = acc; }
     return { plan, maxDist, segs, total: acc, work: ev.filter((e) => WORK_EVENTS.includes(e.type)), eve,
       night: ev.filter((e) => NIGHT_EVENTS.includes(e.type)), fire: ev.some((e) => e.type === "火" && !/できなかった/.test(e.text)) || D.camp.fire > 0 };
@@ -222,7 +224,8 @@
       fig.position.copy(pos); fig.rotation.y = heading;
       if (moving) walkPose(fig, (v / 0.75 + p.i * 0.37) % 1);
       else { const Q = POSES[pose] || POSES.stand; applyPose(fig, Q.q, Q.h + (pose === "work" ? Math.sin(v * 5 + p.i) * 0.03 : 0), Q.pitch); }
-      S.labels[n].pos = pos.clone().add(new THREE.Vector3(0, 2.3 * K, 0));
+      fig.updateMatrixWorld(true);  // 吹き出しと名前は、その時の頭の真上に付ける (座ると下がる)
+      S.labels[n].pos = fig.userData.head.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 0.2 * K, 0));
     }
 
     // 出来事と会話
@@ -300,7 +303,7 @@
       D.people.forEach((p, i) => {
         const f = makeFigure(T.people[i % 5]); W.scene.add(f); figs[p.name] = f;
         const el = document.createElement("div"); el.className = "r3-label";
-        el.innerHTML = `<div class="b" hidden></div><span style="color:${css(`--p${i % 5}`)}">${esc(p.name)}</span>`;
+        el.innerHTML = `<div class="b" hidden style="border-color:${css(`--p${i % 5}`)}"></div><span style="color:${css(`--p${i % 5}`)}">${esc(p.name)}</span>`;
         stage.appendChild(el); labels[p.name] = { el, pos: null, bubble: "" };
       });
       S = { D, walk, T, W, renderer, camera, controls, figs, labels, v: 0, speed: 1, playing: true,
@@ -326,6 +329,17 @@
       setDay(days[days.length - 1]);
       if (matchMedia("(prefers-reduced-motion: reduce)").matches) { S.playing = false; S.playBtn.textContent = "再生"; S.v = S.day.segs[2].v0 + 4; }
       S.raf = requestAnimationFrame(loop);
+    },
+    // 動画を作るとき用: 日と再生位置 (秒) を指定して 1 コマ描く
+    setSegments(day, secByKey) { if (S) { S.segOverride = S.segOverride || {}; S.segOverride[day] = secByKey; } },
+    timeline(day) { if (!S) return null; const P = planDay(S.D, day); return { total: P.total, segs: P.segs.map((s) => ({ key: s.key, v0: s.v0, v1: s.v1 })), eve: P.eve.length }; },
+    seek(day, v) {
+      if (!S) return;
+      if (S.dayNum !== day || !S.day || S.day.segOverrideKey !== JSON.stringify((S.segOverride || {})[day] || {})) {
+        setDay(day); S.day.segOverrideKey = JSON.stringify((S.segOverride || {})[day] || {});
+      }
+      S.playing = false; S.v = v; S.last = 0;
+      frame(v); S.controls.update(); S.renderer.render(S.W.scene, S.camera); placeLabels();
     },
     stop() {
       if (!S) return;
