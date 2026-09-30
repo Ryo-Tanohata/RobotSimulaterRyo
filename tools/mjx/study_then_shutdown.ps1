@@ -1,8 +1,8 @@
 ﻿# Run the 2-leg / 4-leg comparison study (train all conditions x seeds, evaluate, chart, videos),
 # then commit + push the results and shut Windows down.
 #   powershell -ExecutionPolicy Bypass -File tools\mjx\study_then_shutdown.ps1 [-Steps 60000000] [-Seeds 3] [-NoShutdown]
-# Cancel the shutdown within 2 minutes with:  shutdown /a
-param([long]$Steps = 60000000, [int]$Seeds = 3, [switch]$NoShutdown)
+# Shuts down ONLY with -Shutdown (only when the user explicitly asks). Cancel within 2 minutes with:  shutdown /a
+param([long]$Steps = 60000000, [int]$Seeds = 3, [switch]$Shutdown)
 
 $ErrorActionPreference = "Continue"
 $repo = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
@@ -38,7 +38,7 @@ for ($i = 0; $i -lt 3; $i++) {
   if ($LASTEXITCODE -eq 0) { Log "push ok"; break }
   Log "push failed, retry"; Start-Sleep 30
 }
-if ($NoShutdown) { Log "done (no shutdown)"; exit }
+if (-not $Shutdown) { Log "done (no shutdown; pass -Shutdown only when the user asks)"; exit }
 Log "shutdown in 120 s"
 wsl --shutdown
 shutdown.exe /s /t 120 /c "Study finished and pushed. Shutting down in 2 minutes (cancel: shutdown /a)."

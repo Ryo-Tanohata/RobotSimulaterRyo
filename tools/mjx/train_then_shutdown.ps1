@@ -1,8 +1,8 @@
 ﻿# Train on the GPU (WSL2) for a fixed time, render a video, commit + push the results, then shut down Windows.
 #   powershell -ExecutionPolicy Bypass -File tools\mjx\train_then_shutdown.ps1 -Name s1_long -Minutes 60
 # Checkpoints are saved during training, so stopping at the time limit keeps everything up to the last save.
-# Cancel the shutdown within 2 minutes with:  shutdown /a
-param([string]$Name = "s1_long", [int]$Minutes = 60, [double]$S = 1.0, [switch]$NoShutdown, [switch]$NoGit)
+# Shuts down ONLY with -Shutdown (only when the user explicitly asks). Cancel within 2 minutes with:  shutdown /a
+param([string]$Name = "s1_long", [int]$Minutes = 60, [double]$S = 1.0, [switch]$Shutdown, [switch]$NoGit)
 
 $ErrorActionPreference = "Continue"
 $repo = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
@@ -41,7 +41,7 @@ for ($i = 0; $i -lt 3; $i++) {
   Log "push failed, retry"; Start-Sleep 30
 }
 
-if ($NoShutdown) { Log "done (no shutdown)"; exit }
+if (-not $Shutdown) { Log "done (no shutdown; pass -Shutdown only when the user asks)"; exit }
 Log "shutdown in 120 s"
 wsl --shutdown
 shutdown.exe /s /t 120 /c "Training finished and pushed. Shutting down in 2 minutes (cancel: shutdown /a)."
