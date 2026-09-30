@@ -17,7 +17,7 @@ from mujoco import mjx
 from mujoco_playground._src import mjx_env
 
 from body import actuated_joints, model_xml
-from reference import FREQ, reference
+from reference import make
 
 
 def default_config():
@@ -27,8 +27,15 @@ def default_config():
         s=1.0, target_speed=1.0, hands_off=False,
         action_scale=0.6, energy_weight=0.0015, alive=0.2, fall_penalty=1.0,
         # お手本 (reference.py) を土台にする: 目標角 = お手本 + 脳の出力 × residual_scale。お手本との近さも評価に入れる
-        imitate=False, residual_scale=0.3, imit_weight=1.0,
+        imitate=False, residual_scale=0.3, imit_weight=1.0, gait="biped",  # gait: "biped" (2 足) / "quad" (4 足、ナックルウォーク)
     )
+
+
+def _lowest(m, d, g):
+    """形 g の一番低い点の高さ (箱は回転を考える)"""
+    if m.geom_type[g] == mujoco.mjtGeom.mjGEOM_BOX:
+        return d.geom_xpos[g][2] - np.abs(d.geom_xmat[g].reshape(3, 3)[2]) @ m.geom_size[g]
+    return d.geom_xpos[g][2] - m.geom_size[g][0]
 
 
 class ApeWalk(mjx_env.MjxEnv):
@@ -48,6 +55,20 @@ class ApeWalk(mjx_env.MjxEnv):
         mujoco.mj_forward(m, d)
         feet = [m.geom(f"{s}_foot").id for s in "lr"]
         d.qpos[2] -= min(d.geom_xpos[k][2] - m.geom_size[k][2] for k in feet) - 0.005
+        self._ref, self._freq, pitch = make(c.gait, c.s)
+        if c.imitate and pitch:
+            # 4 足: 胴体を前へ倒し、お手本のどの瞬間でも手足が床に埋まらない高さから始める
+            th = np.radians(pitch) / 2
+            d.qpos[3:7] = (np.cos(th), 0, np.sin(th), 0)
+            jids = [m.joint(n).id for n in actuated_joints()]
+            contacts = [m.geom(f"{x}_{y}").id for x in "lr" for y in ("foot", "hand")]
+            need = []
+            for ph in np.linspace(0, 1, 24, endpoint=False):
+                d.qpos[m.jnt_qposadr[jids]] = np.clip(np.array(self._ref(ph)), m.jnt_range[jids, 0], m.jnt_range[jids, 1])
+                d.qpos[2] = 1.0
+                mujoco.mj_forward(m, d)
+                need.append(min(_lowest(m, d, g) for g in contacts))
+            d.qpos[2] = 1.0 - min(need) + 0.01
         self._qpos0 = jp.array(d.qpos)
         self._joint_ids = np.array([m.joint(n).id for n in actuated_joints()])
         self._qadr = jp.array(m.jnt_qposadr[self._joint_ids])
@@ -81,7 +102,7 @@ class ApeWalk(mjx_env.MjxEnv):
     def reset(self, rng):
         rng, k1, k2, k3 = jax.random.split(rng, 4)
         phase = jax.random.uniform(k3)
-        qpos0 = self._qpos0.at[self._qadr].set(jp.clip(reference(phase), self._lo, self._hi)) if self._config.imitate else self._qpos0
+        qpos0 = self._qpos0.at[self._qadr].set(jp.clip(self._ref(phase), self._lo, self._hi)) if self._config.imitate else self._qpos0
         qpos = qpos0.at[self._qadr].add(jax.random.uniform(k1, (self.action_size,), minval=-0.05, maxval=0.05))
         qvel = jp.zeros(self._mj_model.nv).at[:6].set(jax.random.uniform(k2, (6,), minval=-0.1, maxval=0.1))
         data = mjx_env.make_data(self._mj_model, qpos=qpos, qvel=qvel, ctrl=self._default,
@@ -94,8 +115,8 @@ class ApeWalk(mjx_env.MjxEnv):
 
     def step(self, state, action):
         c = self._config
-        phase = (state.info["phase"] + FREQ * self.dt) % 1.0
-        ref = reference(phase)
+        phase = (state.info["phase"] + self._freq * self.dt) % 1.0
+        ref = self._ref(phase)
         if c.imitate:
             target = jp.clip(ref + action * c.residual_scale, self._lo, self._hi)
         else:

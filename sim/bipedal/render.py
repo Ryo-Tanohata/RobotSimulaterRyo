@@ -49,12 +49,14 @@ policy = jax.jit(ppo_networks.make_inference_fn(net)(params, deterministic=True)
 reset, step = jax.jit(env.reset), jax.jit(env.step)
 state = reset(jax.random.PRNGKey(0))
 rng = jax.random.PRNGKey(1)
-qs, fell_at = [], None
+qs, fell_at, powers, handsup = [], None, [], []
 for i in range(int(a.seconds / env.dt)):
     rng, k = jax.random.split(rng)
     act, _ = policy(state.obs, k)
     state = step(state, act)
     qs.append(np.array(state.data.qpos))
+    powers.append(float(state.metrics["energy"]))
+    handsup.append(float(state.metrics["biped"]))
     if state.done and fell_at is None:
         fell_at = i * env.dt
         break
@@ -73,4 +75,8 @@ for q in qs:
     frames.append(r.render())
 mediapy.write_video(a.out, frames, fps=round(1 / env.dt))
 dist = qs[-1][0] - qs[0][0]
+# 移動のコスト (cost of transport) = 関節の仕事 ÷ (体重 × 進んだ距離) [J/kg/m]。筋肉の消費エネルギーではない
+mass = float(m.body_subtreemass[1])
+cot = sum(powers) * env.dt / (mass * max(dist, 1e-6))
+print(f"平均の仕事率 {np.mean(powers):.0f} W, 移動のコスト {cot:.2f} J/kg/m, 手が浮いている時間 {100 * np.mean(handsup):.0f}%")
 print(f"{len(qs) * env.dt:.1f} 秒, 前へ {dist:.2f} m, {'転倒 ' + format(fell_at, '.1f') + ' 秒' if fell_at is not None else '転ばず'} → {a.out}")

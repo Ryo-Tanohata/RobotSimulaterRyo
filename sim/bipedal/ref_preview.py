@@ -8,18 +8,22 @@ import mujoco
 import numpy as np
 
 from body import actuated_joints, model_xml
-from reference import FREQ, reference
+from env import _lowest
+from reference import make
 
 ap = argparse.ArgumentParser()
 ap.add_argument("out")
 ap.add_argument("--s", type=float, default=1.0)
 ap.add_argument("--speed", type=float, default=0.8)
+ap.add_argument("--gait", default="biped", choices=["biped", "quad"])
 a = ap.parse_args()
 
 m = mujoco.MjModel.from_xml_string(model_xml([(a.s, "", (0, 0, 0))], with_actuators=False))
 d = mujoco.MjData(m)
 qadr = [m.jnt_qposadr[m.joint(n).id] for n in actuated_joints()]
-feet = [m.geom(f"{s}_foot").id for s in "lr"]
+ref, freq, pitch = make(a.gait, a.s)
+contacts = [m.geom(f"{x}_{y}").id for x in "lr" for y in ("foot", "hand")]
+jids = [m.joint(n).id for n in actuated_joints()]
 r = mujoco.Renderer(m, 480, 854)
 cam = mujoco.MjvCamera()
 cam.distance, cam.azimuth, cam.elevation = 3.2, 90, -8  # 真横から
@@ -27,11 +31,11 @@ fps, frames = 30, []
 for i in range(int(3 * fps)):
     t = i / fps
     d.qpos[:] = 0
-    d.qpos[3] = 1  # 向き (四元数) はそのまま
-    d.qpos[qadr] = np.array(reference((FREQ * t) % 1.0))
+    d.qpos[3:7] = (np.cos(np.radians(pitch) / 2), 0, np.sin(np.radians(pitch) / 2), 0)  # 胴体を前へ倒す (4 足)
+    d.qpos[qadr] = np.clip(np.array(ref((freq * t) % 1.0)), m.jnt_range[jids, 0], m.jnt_range[jids, 1])
     d.qpos[2] = 2.0
     mujoco.mj_forward(m, d)
-    d.qpos[2] -= min(d.geom_xpos[k][2] - m.geom_size[k][2] for k in feet)  # 低いほうの足を床に
+    d.qpos[2] -= min(_lowest(m, d, g) for g in contacts)  # 一番低い手足を床に
     d.qpos[0] = a.speed * t
     mujoco.mj_forward(m, d)
     cam.lookat[:] = (d.qpos[0], 0, 0.6)

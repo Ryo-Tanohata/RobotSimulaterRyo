@@ -74,7 +74,7 @@ def body_xml(s, prefix="", pos=(0, 0, 1.0)):
         # 脚の重さは 大腿 : 下腿 : 足 = 0.6 : 0.3 : 0.1 (仮定)
         return f"""
       <body name="{p}{side}_thigh" pos="0 {y} 0">
-        <joint name="{p}{side}_hip_y" axis="0 1 0" range="{-120} {sh.hip_ext:.1f}"/>
+        <joint name="{p}{side}_hip_y" axis="0 1 0" range="{-135} {sh.hip_ext:.1f}"/>
         <joint name="{p}{side}_hip_x" axis="1 0 0" range="-30 30"/>
         <joint name="{p}{side}_hip_z" axis="0 0 1" range="-30 30"/>
         <geom type="capsule" fromto="0 0 0 0 0 {-sh.thigh:.4f}" size="0.05" mass="{m_leg * 0.6:.3f}" group="3"/>{stick(0, -sh.thigh)}

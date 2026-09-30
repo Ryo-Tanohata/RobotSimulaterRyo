@@ -41,6 +41,7 @@ ap.add_argument("--evals", type=int, default=10)
 ap.add_argument("--hands-off", action="store_true")
 ap.add_argument("--resume", action="store_true")
 ap.add_argument("--imitate", action="store_true", help="お手本 (reference.py) を土台にする")
+ap.add_argument("--gait", default="biped", choices=["biped", "quad"], help="お手本の歩き方")
 ap.add_argument("--alive", type=float, default=None)
 ap.add_argument("--fall-penalty", type=float, default=None)
 a = ap.parse_args()
@@ -50,6 +51,7 @@ ckpt = (out / "checkpoints").resolve()
 ckpt.mkdir(parents=True, exist_ok=True)
 cfg = default_config()
 cfg.s, cfg.target_speed, cfg.hands_off, cfg.imitate = a.s, a.speed, a.hands_off, a.imitate
+cfg.gait = a.gait
 if a.alive is not None:
     cfg.alive = a.alive
 if a.fall_penalty is not None:
