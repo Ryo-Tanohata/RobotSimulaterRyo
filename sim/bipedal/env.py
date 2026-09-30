@@ -26,6 +26,7 @@ def default_config():
         impl="warp", naconmax=100_000, njmax=160,
         s=1.0, target_speed=1.0, hands_off=False,
         action_scale=0.6, energy_weight=0.0015, alive=0.2, fall_penalty=1.0,
+        torque_weight=0.0,  # 支える力の分の減点 (Σ 力^2 × torque_weight)。筋肉は止まっていても力を出すと疲れるため
         # お手本 (reference.py) を土台にする: 目標角 = お手本 + 脳の出力 × residual_scale。お手本との近さも評価に入れる
         imitate=False, residual_scale=0.3, imit_weight=1.0, gait="biped",  # gait: "biped" (2 足) / "quad" (4 足、ナックルウォーク)
     )
@@ -109,7 +110,7 @@ class ApeWalk(mjx_env.MjxEnv):
                                  impl=self._mjx_model.impl.value, naconmax=self._config.naconmax, njmax=self._config.njmax)
         data = mjx.forward(self._mjx_model, data)
         info = {"rng": rng, "last_act": jp.zeros(self.action_size), "phase": phase}
-        metrics = {k: jp.zeros(()) for k in ("speed", "energy", "biped", "reward/forward", "reward/energy", "reward/imitate")}
+        metrics = {k: jp.zeros(()) for k in ("speed", "energy", "torque", "biped", "reward/forward", "reward/energy", "reward/imitate")}
         obs = self._obs(data, info)
         return mjx_env.State(data, obs, jp.zeros(()), jp.zeros(()), metrics, info)
 
@@ -128,7 +129,8 @@ class ApeWalk(mjx_env.MjxEnv):
         hands_z = data.geom_xpos[self._hands, 2]
         hands_up = jp.all(hands_z > self._hand_r + 0.02)
         forward = jp.exp(-jp.square(vx - c.target_speed) / 0.25)
-        energy = -c.energy_weight * power
+        torque = jp.sum(jp.abs(data.actuator_force))
+        energy = -c.energy_weight * power - c.torque_weight * jp.sum(jp.square(data.actuator_force))
         q_err = jp.mean(jp.square(data.qpos[self._qadr] - ref))
         imit = jp.exp(-8.0 * q_err) * c.imit_weight if c.imitate else jp.zeros(())
         reward = forward + energy + c.alive + imit
@@ -143,7 +145,7 @@ class ApeWalk(mjx_env.MjxEnv):
 
         state.info["last_act"] = action
         m = state.metrics
-        m.update(speed=vx, energy=power, biped=hands_up.astype(float), **{"reward/forward": forward, "reward/energy": energy, "reward/imitate": imit})
+        m.update(speed=vx, energy=power, torque=torque, biped=hands_up.astype(float), **{"reward/forward": forward, "reward/energy": energy, "reward/imitate": imit})
         obs = self._obs(data, state.info)
         return state.replace(data=data, obs=obs, reward=reward, done=done.astype(float), metrics=m)
 

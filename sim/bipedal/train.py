@@ -43,6 +43,8 @@ ap.add_argument("--resume", action="store_true")
 ap.add_argument("--imitate", action="store_true", help="お手本 (reference.py) を土台にする")
 ap.add_argument("--gait", default="biped", choices=["biped", "quad"], help="お手本の歩き方")
 ap.add_argument("--alive", type=float, default=None)
+ap.add_argument("--seed", type=int, default=1)
+ap.add_argument("--torque-weight", type=float, default=None)
 ap.add_argument("--fall-penalty", type=float, default=None)
 a = ap.parse_args()
 
@@ -52,6 +54,8 @@ ckpt.mkdir(parents=True, exist_ok=True)
 cfg = default_config()
 cfg.s, cfg.target_speed, cfg.hands_off, cfg.imitate = a.s, a.speed, a.hands_off, a.imitate
 cfg.gait = a.gait
+if a.torque_weight is not None:
+    cfg.torque_weight = a.torque_weight
 if a.alive is not None:
     cfg.alive = a.alive
 if a.fall_penalty is not None:
@@ -88,6 +92,6 @@ ppo.train(
     network_factory=functools.partial(ppo_networks.make_ppo_networks,
                                       policy_hidden_layer_sizes=(256, 256, 128), value_hidden_layer_sizes=(256, 256, 256)),
     progress_fn=progress, save_checkpoint_path=str(ckpt),
-    restore_checkpoint_path=str(restore) if restore else None, seed=1,
+    restore_checkpoint_path=str(restore) if restore else None, seed=a.seed,
 )
 print("完了", out)
