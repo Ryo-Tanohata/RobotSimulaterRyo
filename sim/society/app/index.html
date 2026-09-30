@@ -1,0 +1,292 @@
+<title>川辺の五人</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 観察ノート型ダッシュボード。左に上から見た地図、右に 5 人の記録、下にタブ (出来事と会話 / 知識と掟 / グラフ / 歩く姿) */
+:root {
+  --bg: #edf1ec; --surface: #fbfcfa; --fg: #1d2520; --muted: #5a675e; --line: #cdd7ce;
+  --accent: #b36a1e; --accent-soft: #f3e3cf;
+  --grass: #b3c994; --forest: #6f9660; --river: #5e9ecb; --hill: #c4b089; --fruit: #b8323a; --tuber: #7a5230;
+  --emerge: #2f7d4f; --emerge-bg: #dcefe2; --lore: #2e6aa6; --lore-bg: #dde9f6;
+  --suspect: #9a6a00; --suspect-bg: #f5eaca; --base: #5a675e; --base-bg: #e3e8e3; --danger: #b3261e;
+  --p0: #c2410c; --p1: #7c3aed; --p2: #0f766e; --p3: #be185d; --p4: #4d7c0f;
+  --display: "Dela Gothic One", "Zen Kaku Gothic New", system-ui, sans-serif;
+  --body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111612; --surface: #19201b; --fg: #e2e9e3; --muted: #9aa89e; --line: #2d3a31;
+  --accent: #e39a4c; --accent-soft: #3a2b1b;
+  --grass: #3f5536; --forest: #2c4a2a; --river: #2d5f84; --hill: #5b5038; --fruit: #e2575f; --tuber: #b8875c;
+  --emerge: #74c794; --emerge-bg: #1e3527; --lore: #86b4e6; --lore-bg: #1d2d40;
+  --suspect: #e2b94d; --suspect-bg: #3a3117; --base: #9aa89e; --base-bg: #262e28; --danger: #f07a70;
+  --p0: #fb923c; --p1: #a78bfa; --p2: #2dd4bf; --p3: #f472b6; --p4: #a3e635; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #111612; --surface: #19201b; --fg: #e2e9e3; --muted: #9aa89e; --line: #2d3a31;
+  --accent: #e39a4c; --accent-soft: #3a2b1b;
+  --grass: #3f5536; --forest: #2c4a2a; --river: #2d5f84; --hill: #5b5038; --fruit: #e2575f; --tuber: #b8875c;
+  --emerge: #74c794; --emerge-bg: #1e3527; --lore: #86b4e6; --lore-bg: #1d2d40;
+  --suspect: #e2b94d; --suspect-bg: #3a3117; --base: #9aa89e; --base-bg: #262e28; --danger: #f07a70;
+  --p0: #fb923c; --p1: #a78bfa; --p2: #2dd4bf; --p3: #f472b6; --p4: #a3e635; color-scheme: dark }
+
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.6; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 48px; display: grid; gap: 20px; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+h1 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 5vw, 40px); margin: 0; letter-spacing: 0.02em; text-wrap: balance; }
+.daybox { display: flex; align-items: baseline; gap: 12px; font-family: var(--mono); color: var(--muted); }
+.daybox b { font-family: var(--display); font-weight: 400; font-size: 34px; color: var(--accent); }
+.lead { margin: 0; color: var(--muted); max-width: 70ch; font-size: 14px; }
+.top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .top { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; min-width: 0; }
+.panel h2 { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 10px; }
+canvas { width: 100%; max-width: 100%; aspect-ratio: 1; display: block; border-radius: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); margin-top: 10px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.people { display: grid; gap: 10px; }
+.person { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; display: grid; gap: 6px; background: var(--bg); cursor: pointer; text-align: left; font: inherit; color: inherit; }
+.person:focus-visible, .tabs button:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.person[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.person .row1 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.person .nm { font-weight: 700; font-size: 17px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+.meta { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.bars { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 8px; align-items: center; font-size: 12px; }
+.bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); }
+.bar.hunger i { background: var(--danger); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); }
+.feel { font-size: 13px; color: var(--muted); }
+.feel::before { content: "「"; } .feel::after { content: "」"; }
+.dead { opacity: 0.55; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid var(--line); }
+.tabs button { font: inherit; font-size: 14px; background: none; border: 0; border-bottom: 3px solid transparent; padding: 8px 12px; color: var(--muted); cursor: pointer; }
+.tabs button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); font-weight: 700; }
+.day { display: grid; gap: 6px; padding-block: 10px; border-bottom: 1px dashed var(--line); }
+.day h3 { margin: 0; font-size: 13px; font-family: var(--mono); color: var(--muted); font-weight: 500; }
+.ev { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: 10px; font-size: 14px; align-items: baseline; }
+.ev .t { font-size: 11px; color: var(--muted); font-family: var(--mono); text-align: right; }
+.ev.say .x { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+.ev.bad .x { color: var(--danger); font-weight: 700; }
+.ev.good .x { color: var(--emerge); font-weight: 700; }
+.chip { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.c-創発 { color: var(--emerge); background: var(--emerge-bg); }
+.c-伝承 { color: var(--lore); background: var(--lore-bg); }
+.c-知識の再現の疑い { color: var(--suspect); background: var(--suspect-bg); }
+.c-最初の知識 { color: var(--base); background: var(--base-bg); }
+.c-提案 { color: var(--suspect); background: var(--suspect-bg); }
+.c-採用 { color: var(--emerge); background: var(--emerge-bg); }
+.c-廃止 { color: var(--base); background: var(--base-bg); }
+.klist { display: grid; gap: 6px; }
+.k { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+.k .who { font-size: 12px; color: var(--muted); }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-block: 10px; font-size: 13px; }
+select { font: inherit; font-size: 13px; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); }
+.explain { font-size: 13px; color: var(--muted); max-width: 72ch; margin: 0 0 10px; }
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.chart h4 { margin: 0 0 4px; font-size: 13px; }
+.chart svg { width: 100%; height: auto; display: block; }
+video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
+.empty { color: var(--muted); font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>川辺の五人</h1>
+    <div class="daybox"><span id="season">―</span><span><b id="day">0</b> 日目</span></div>
+  </header>
+  <p class="lead">2 km 四方の川辺で暮らす 5 人の、狩猟採集の暮らしを 1 日ずつ進めています。毎朝 7 時に 1 日分進みます。
+    5 人はそれぞれ別の Claude が演じ、自分の経験と聞いた話だけから考えます。Claude は人類の知識を持っているので、生まれた知識や掟には「創発」か「模倣の疑い」かの印を付けています。</p>
+
+  <div class="top">
+    <section class="panel" aria-labelledby="h-map">
+      <h2 id="h-map">地図 (上から見た世界。線は今日それぞれが歩いた先)</h2>
+      <canvas id="map" width="640" height="640" role="img" aria-label="世界の地図"></canvas>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--grass)"></i>草原</span>
+        <span><i class="sw" style="background:var(--forest)"></i>林</span>
+        <span><i class="sw" style="background:var(--river)"></i>川</span>
+        <span><i class="sw" style="background:var(--hill)"></i>丘</span>
+        <span><i class="dot" style="background:var(--fruit)"></i>木の実</span>
+        <span><i class="dot" style="background:var(--tuber)"></i>芋</span>
+        <span>◆ ルク (獲物)</span><span style="color:var(--danger)">✕ ザガ (捕食者)</span><span style="color:var(--accent)">▲ キャンプ</span>
+      </div>
+    </section>
+    <section class="panel" aria-labelledby="h-people">
+      <h2 id="h-people">5 人 (押すと、その人の知識だけを表示)</h2>
+      <div class="people" id="people"><p class="empty">データを読み込んでいます…</p></div>
+    </section>
+  </div>
+
+  <section class="panel">
+    <div class="tabs" role="tablist">
+      <button role="tab" id="t-events" aria-selected="true">出来事と会話</button>
+      <button role="tab" id="t-know" aria-selected="false">知識と掟</button>
+      <button role="tab" id="t-graph" aria-selected="false">グラフ</button>
+      <button role="tab" id="t-walk" aria-selected="false">歩く姿</button>
+    </div>
+    <div id="p-events" role="tabpanel"></div>
+    <div id="p-know" role="tabpanel" hidden>
+      <p class="explain">
+        <span class="chip c-創発">創発</span> この世界の出来事から学んだもの
+        <span class="chip c-伝承">伝承</span> 人から聞いたもの
+        <span class="chip c-知識の再現の疑い">知識の再現の疑い</span> きっかけの出来事がないもの (Claude の元々の知識から来た可能性)
+        <span class="chip c-最初の知識">最初の知識</span> 最初に与えた 3 つ
+      </p>
+      <h2>掟</h2>
+      <div class="klist" id="laws"></div>
+      <div class="filters">
+        <h2 style="margin:0">知識</h2>
+        <label>人 <select id="f-who"><option value="">全員</option></select></label>
+        <label>印 <select id="f-label"><option value="">すべて</option><option>創発</option><option>伝承</option><option>知識の再現の疑い</option><option>最初の知識</option></select></label>
+      </div>
+      <div class="klist" id="know"></div>
+    </div>
+    <div id="p-graph" role="tabpanel" hidden><div class="charts" id="charts"></div></div>
+    <div id="p-walk" role="tabpanel" hidden>
+      <p class="explain">5 人の歩く速さと、歩くのに使うエネルギーは、別に作った 2 足歩行の物理シミュレーションで測った値です (上から 0.6 / 1.0 / 1.4 m/s)。人型の体に歩き方のお手本を与え、強化学習で歩けるようにしたものです。</p>
+      <video src="walk.mp4" controls muted playsinline preload="metadata"></video>
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+let D = null, focus = "";
+const pcol = (i) => css(`--p${i % 5}`);
+
+function tabs() {
+  const ids = ["events", "know", "graph", "walk"];
+  ids.forEach((id) => $(`t-${id}`).addEventListener("click", () => select(id)));
+  function select(id) {
+    ids.forEach((x) => { $(`t-${x}`).setAttribute("aria-selected", String(x === id)); $(`p-${x}`).hidden = x !== id; });
+    try { localStorage.setItem("tab", id); } catch (e) {}
+  }
+  let t = "events"; try { t = localStorage.getItem("tab") || t; } catch (e) {}
+  if (ids.includes(location.hash.slice(1))) t = location.hash.slice(1);
+  select(t);
+  return select;
+}
+const selectTab = tabs();
+
+function drawMap() {
+  const c = $("map"), g = c.getContext("2d"), m = D.map, s = c.width / m.w;
+  const col = { g: css("--grass"), f: css("--forest"), r: css("--river"), h: css("--hill") };
+  for (let y = 0; y < m.h; y++) for (let x = 0; x < m.w; x++) { g.fillStyle = col[m.terrain[y][x]]; g.fillRect(x * s, y * s, s + 0.5, s + 0.5); }
+  for (const p of D.plants) {
+    if (p.amount < 0.5) continue;
+    g.fillStyle = p.kind === "木の実" ? css("--fruit") : css("--tuber");
+    g.beginPath(); g.arc((p.x + 0.5) * s, (p.y + 0.5) * s, 1 + Math.min(3, p.amount / 8), 0, 7); g.fill();
+  }
+  const cx = (D.camp.x + 0.5) * s, cy = (D.camp.y + 0.5) * s;
+  D.people.forEach((p, i) => {  // 今日歩いた先への線
+    const pid = p.today && p.today.place_id, pl = D.places.find((q) => q.id === pid);
+    if (!p.alive || !pl || pl.id === "camp") return;
+    g.strokeStyle = pcol(i); g.lineWidth = 2.5; g.setLineDash([6, 4]);
+    g.beginPath(); g.moveTo(cx, cy); g.lineTo((pl.x + 0.5) * s + i * 2, (pl.y + 0.5) * s); g.stroke();
+    g.setLineDash([]); g.fillStyle = pcol(i); g.font = "600 13px " + css("--body");
+    g.fillText(p.name, (pl.x + 0.5) * s + 6 + i * 2, (pl.y + 0.5) * s - 6 - i * 13);
+  });
+  g.font = "700 12px " + css("--mono");
+  for (const h of D.herds) { g.fillStyle = css("--fg"); g.fillText(`◆ルク${h.count}`, h.x * s, (h.y + 0.5) * s); }
+  for (const pr of D.predators) { g.fillStyle = css("--danger"); g.font = "700 16px " + css("--mono"); g.fillText("✕", pr.x * s, (pr.y + 0.8) * s); }
+  if (D.camp.fire > 0) { const gr = g.createRadialGradient(cx, cy, 2, cx, cy, 26); gr.addColorStop(0, css("--accent")); gr.addColorStop(1, "transparent"); g.fillStyle = gr; g.beginPath(); g.arc(cx, cy, 26, 0, 7); g.fill(); }
+  g.fillStyle = css("--accent"); g.beginPath(); g.moveTo(cx, cy - 9); g.lineTo(cx + 8, cy + 6); g.lineTo(cx - 8, cy + 6); g.closePath(); g.fill();
+  g.strokeStyle = css("--surface"); g.lineWidth = 1.5; g.stroke();
+}
+
+function renderPeople() {
+  $("people").innerHTML = D.people.map((p, i) => {
+    const t = p.today || {}, plan = p.plan || {};
+    return `<button class="person ${p.alive ? "" : "dead"}" data-name="${esc(p.name)}" aria-pressed="${focus === p.name}">
+      <div class="row1"><i class="dot" style="background:${pcol(i)}"></i><span class="nm">${esc(p.name)}</span>
+        <span class="meta">${esc(p.sex)} ${p.age} 歳 ・ ${p.mass} kg${p.alive ? "" : " ・ 死亡"}${p.injured ? " ・ けが" : ""}</span></div>
+      <div class="bars">
+        <span>空腹</span><span class="bar hunger"><i style="width:${Math.round(p.hunger * 100)}%"></i></span><span class="num">${p.hunger.toFixed(2)}</span>
+        <span>食べ物</span><span class="bar"><i style="width:${Math.min(100, p.food / 60)}%"></i></span><span class="num">${p.food} kcal</span>
+      </div>
+      <div class="meta">今日: ${esc(t.activity || "―")} ${t.place ? "@ " + esc(t.place.replace(/ \(.*/, "")) : ""} → 明日: ${esc(plan.activity || "―")}${plan.with && plan.with.length ? " (" + plan.with.map(esc).join("・") + " と)" : ""}</div>
+      ${p.feeling ? `<div class="feel">${esc(p.feeling)}</div>` : ""}
+      <div class="meta">知識 ${p.knowledge.length} 件 ・ 技能 ${Object.entries(p.skills).map(([k, v]) => `${k} ${v.toFixed(2)}`).join(" ")}</div>
+    </button>`;
+  }).join("");
+  document.querySelectorAll(".person").forEach((b) => b.addEventListener("click", () => {
+    focus = focus === b.dataset.name ? "" : b.dataset.name;
+    $("f-who").value = focus; renderPeople(); renderKnow(); selectTab("know");
+  }));
+}
+
+function renderEvents() {
+  const byDay = {};
+  for (const e of D.events) (byDay[e.day] = byDay[e.day] || []).push(e);
+  const days = Object.keys(byDay).map(Number).sort((a, b) => b - a);
+  if (!days.length) { $("p-events").innerHTML = `<p class="empty">まだ出来事はありません。最初の 1 日は明日の朝 7 時に進みます。</p>`; return; }
+  $("p-events").innerHTML = days.map((d) => `<div class="day"><h3>${d} 日目</h3>${byDay[d].map((e) => {
+    const say = e.type === "話す", bad = ["死", "けが", "腐る"].includes(e.type), good = ["掟", "育つ", "火"].includes(e.type);
+    return `<div class="ev ${say ? "say" : ""} ${bad ? "bad" : ""} ${good ? "good" : ""}"><span class="t">${esc(e.type)}</span><span class="x">${esc(e.text)}</span></div>`;
+  }).join("")}</div>`).join("");
+}
+
+function renderKnow() {
+  $("laws").innerHTML = D.laws.length ? D.laws.map((l) => `<div class="k"><div>${esc(l.text)}<div class="who">${esc(l.proposer)} が ${l.day} 日目に提案</div></div>
+    <div><span class="chip c-${esc(l.status)}">${esc(l.status)}</span> <span class="chip c-${esc(l.label)}">${esc(l.label)}</span></div></div>`).join("")
+    : `<p class="empty">まだ掟はありません。</p>`;
+  const who = $("f-who").value, lab = $("f-label").value, rows = [];
+  for (const p of D.people) for (const k of p.knowledge) if ((!who || p.name === who) && (!lab || k.label === lab)) rows.push({ p, k });
+  rows.sort((a, b) => b.k.day - a.k.day);
+  $("know").innerHTML = rows.length ? rows.map(({ p, k }) => `<div class="k"><div>${esc(k.text)}<div class="who">${esc(p.name)} ・ ${k.day} 日目${k.from ? " ・ " + esc(k.from) + " から聞いた" : ""}${k.because.length ? " ・ きっかけ: 出来事 " + k.because.join(", ") : ""} ・ 確かさ ${k.confidence.toFixed(1)}</div></div>
+    <div><span class="chip c-${esc(k.label)}">${esc(k.label)}</span></div></div>`).join("") : `<p class="empty">条件に合う知識はありません。</p>`;
+}
+
+function lineChart(title, series, unit) {
+  const W = 320, H = 150, L = 40, R = 10, T = 10, B = 26;
+  const xs = D.stats.map((s) => s.day);
+  const all = series.flatMap((s) => s.v); const max = Math.max(1, ...all);
+  const x = (d) => L + (xs.length > 1 ? (d - xs[0]) / (xs[xs.length - 1] - xs[0]) : 0.5) * (W - L - R);
+  const y = (v) => T + (1 - v / max) * (H - T - B);
+  const ticks = [0, max / 2, max];
+  let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(title)}">`;
+  for (const t of ticks) svg += `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="${css("--line")}"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end" font-size="10" fill="${css("--muted")}" font-family="${css("--mono")}">${Math.round(t)}</text>`;
+  if (xs.length) svg += `<text x="${L}" y="${H - 6}" font-size="10" fill="${css("--muted")}">${xs[0]} 日目</text><text x="${W - R}" y="${H - 6}" text-anchor="end" font-size="10" fill="${css("--muted")}">${xs[xs.length - 1]} 日目</text>`;
+  for (const s of series) {
+    const pts = s.v.map((v, i) => `${x(xs[i])},${y(v)}`).join(" ");
+    svg += `<polyline points="${pts}" fill="none" stroke="${s.c}" stroke-width="2"/>`;
+    if (s.v.length) svg += `<circle cx="${x(xs[xs.length - 1])}" cy="${y(s.v[s.v.length - 1])}" r="3.5" fill="${s.c}"/>`;
+  }
+  svg += "</svg>";
+  const leg = series.map((s) => `<span style="color:${s.c}">● ${esc(s.n)}</span>`).join(" ");
+  return `<div class="chart"><h4>${esc(title)} <span class="meta">${esc(unit)}</span></h4>${svg}<div class="meta">${leg}</div></div>`;
+}
+
+function renderGraph() {
+  if (!D.stats.length) { $("charts").innerHTML = `<p class="empty">1 日目が終わるとグラフが表示されます。</p>`; return; }
+  const cum = { 創発: 0, 伝承: 0, 知識の再現の疑い: 0 }, byDay = {};
+  for (const k of D.knowledge_log) if (k.op === "追加" && k.label in cum) (byDay[k.day] = byDay[k.day] || []).push(k.label);
+  const kser = { 創発: [], 伝承: [], 知識の再現の疑い: [] };
+  for (const s of D.stats) { for (const l of byDay[s.day] || []) cum[l]++; for (const l in kser) kser[l].push(cum[l]); }
+  $("charts").innerHTML =
+    lineChart("生きている人", [{ n: "人数", v: D.stats.map((s) => s.alive), c: css("--accent") }], "人") +
+    lineChart("食べた量 (全員の合計)", [{ n: "食べた量", v: D.stats.map((s) => s.eaten), c: css("--emerge") }], "kcal / 日") +
+    lineChart("分け合った回数", [{ n: "分けた", v: D.stats.map((s) => s.shares), c: css("--lore") }], "回 / 日") +
+    lineChart("生まれた知識 (累計)", [{ n: "創発", v: kser["創発"], c: css("--emerge") }, { n: "伝承", v: kser["伝承"], c: css("--lore") }, { n: "知識の再現の疑い", v: kser["知識の再現の疑い"], c: css("--suspect") }], "件");
+}
+
+function render() {
+  $("day").textContent = D.day; $("season").textContent = D.season;
+  const sel = $("f-who"); sel.innerHTML = `<option value="">全員</option>` + D.people.map((p) => `<option>${esc(p.name)}</option>`).join(""); sel.value = focus;
+  drawMap(); renderPeople(); renderEvents(); renderKnow(); renderGraph();
+}
+$("f-who").addEventListener("change", (e) => { focus = e.target.value; renderPeople(); renderKnow(); });
+$("f-label").addEventListener("change", renderKnow);
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => D && render());
+new MutationObserver(() => D && render()).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+fetch("app_data.json", { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then((d) => { D = d; render(); })
+  .catch(() => { $("people").innerHTML = `<p class="empty">データ (app_data.json) を読み込めませんでした。ページを開き直してください。</p>`; });
+</script>
