@@ -26,7 +26,8 @@ def default_config():
         impl="warp", naconmax=100_000, njmax=160,
         s=1.0, target_speed=1.0, hands_off=False,
         action_scale=0.6, energy_weight=0.0015, alive=0.2, fall_penalty=1.0,
-        torque_weight=0.0,  # 支える力の分の減点 (Σ 力^2 × torque_weight)。筋肉は止まっていても力を出すと疲れるため
+        torque_weight=0.0,
+        exp2=False,  # 実験 2: お手本の周期と姿勢を体に合わせる + 足首のばね (reference.make の scaled、body の tendon)  # 支える力の分の減点 (Σ 力^2 × torque_weight)。筋肉は止まっていても力を出すと疲れるため
         # お手本 (reference.py) を土台にする: 目標角 = お手本 + 脳の出力 × residual_scale。お手本との近さも評価に入れる
         imitate=False, residual_scale=0.3, imit_weight=1.0, gait="biped",  # gait: "biped" (2 足) / "quad" (4 足、ナックルウォーク)
     )
@@ -43,7 +44,7 @@ class ApeWalk(mjx_env.MjxEnv):
     def __init__(self, config=None, config_overrides=None):
         super().__init__(config or default_config(), config_overrides)
         c = self._config
-        xml = model_xml([(c.s, "", (0, 0, 1.5))])
+        xml = model_xml([(c.s, "", (0, 0, 1.5))], tendon=c.exp2)
         self._xml = xml
         self._mj_model = mujoco.MjModel.from_xml_string(xml)
         self._mj_model.opt.timestep = self.sim_dt
@@ -56,7 +57,7 @@ class ApeWalk(mjx_env.MjxEnv):
         mujoco.mj_forward(m, d)
         feet = [m.geom(f"{s}_foot").id for s in "lr"]
         d.qpos[2] -= min(d.geom_xpos[k][2] - m.geom_size[k][2] for k in feet) - 0.005
-        self._ref, self._freq, pitch = make(c.gait, c.s)
+        self._ref, self._freq, pitch = make(c.gait, c.s, scaled=c.exp2)
         if c.imitate and pitch:
             # 4 足: 胴体を前へ倒し、お手本のどの瞬間でも手足が床に埋まらない高さから始める
             th = np.radians(pitch) / 2

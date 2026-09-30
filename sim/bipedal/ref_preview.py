@@ -16,12 +16,13 @@ ap.add_argument("out")
 ap.add_argument("--s", type=float, default=1.0)
 ap.add_argument("--speed", type=float, default=0.8)
 ap.add_argument("--gait", default="biped", choices=["biped", "quad"])
+ap.add_argument("--exp2", action="store_true", help="実験 2 のお手本 (体に合わせる)")
 a = ap.parse_args()
 
 m = mujoco.MjModel.from_xml_string(model_xml([(a.s, "", (0, 0, 0))], with_actuators=False))
 d = mujoco.MjData(m)
 qadr = [m.jnt_qposadr[m.joint(n).id] for n in actuated_joints()]
-ref, freq, pitch = make(a.gait, a.s)
+ref, freq, pitch = make(a.gait, a.s, scaled=a.exp2)
 contacts = [m.geom(f"{x}_{y}").id for x in "lr" for y in ("foot", "hand")]
 jids = [m.joint(n).id for n in actuated_joints()]
 r = mujoco.Renderer(m, 480, 854)

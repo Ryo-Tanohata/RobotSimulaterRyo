@@ -54,7 +54,7 @@ def _f(*v):
     return " ".join(f"{x:.4g}" for x in v)
 
 
-def body_xml(s, prefix="", pos=(0, 0, 1.0)):
+def body_xml(s, prefix="", pos=(0, 0, 1.0), tendon=False):
     """1 体ぶんの <body> (根元は骨盤、自由に動ける)"""
     sh = shape(s)
     p = prefix
@@ -70,6 +70,10 @@ def body_xml(s, prefix="", pos=(0, 0, 1.0)):
     stick = lambda a, b, r=0.045: f'<geom type="capsule" fromto="0 0 {a + GAP * (1 if b > a else -1):.4f} 0 0 {b - GAP * (1 if b > a else -1):.4f}" size="{r}" {vis}/>'
     stick_x = lambda a, b, z: f'<geom type="capsule" fromto="{a:.4f} 0 {z} {b:.4f} 0 {z}" size="0.035" {vis}/>'
 
+    # tendon=True: 足首にばね (アキレス腱の代わり、実験 2)。人に近いほど強い (s = 1 で 60 N·m/rad、仮定の値)。
+    # ばねの力は関節を動かす力 (actuator) に数えないので、ばねが蓄えて返したエネルギーは「仕事のコスト」に入らない
+    ankle_spring = f' stiffness="{60 * s:.1f}" springref="0"' if tendon and s > 0 else ""
+
     def leg(side, y):
         # 脚の重さは 大腿 : 下腿 : 足 = 0.6 : 0.3 : 0.1 (仮定)
         return f"""
@@ -82,7 +86,7 @@ def body_xml(s, prefix="", pos=(0, 0, 1.0)):
           <joint name="{p}{side}_knee" axis="0 1 0" range="{sh.knee_min:.1f} 150"/>
           <geom type="capsule" fromto="0 0 0 0 0 {-sh.shank:.4f}" size="0.04" mass="{m_leg * 0.3:.3f}" group="3"/>{stick(0, -sh.shank)}
           <body name="{p}{side}_foot" pos="0 0 {-sh.shank:.4f}">
-            <joint name="{p}{side}_ankle_y" axis="0 1 0" range="-45 45"/>
+            <joint name="{p}{side}_ankle_y" axis="0 1 0" range="-45 45"{ankle_spring}/>
             <joint name="{p}{side}_ankle_x" axis="1 0 0" range="-25 25"/>
             <geom name="{p}{side}_foot" type="box" pos="{(sh.foot / 2 - sh.heel):.4f} 0 -0.025" size="{sh.foot / 2:.4f} 0.045 0.025"
                   mass="{m_leg * 0.1:.3f}" group="3"/>{stick_x(-sh.heel + GAP, sh.foot - sh.heel, -0.04)}
@@ -137,9 +141,9 @@ def actuated_joints(prefix=""):
     return names
 
 
-def model_xml(bodies, with_actuators=True):
+def model_xml(bodies, with_actuators=True, tendon=False):
     """bodies: [(s, prefix, pos), ...] を 1 つの世界に並べた MJCF"""
-    parts = "".join(body_xml(s, p, pos) for s, p, pos in bodies)
+    parts = "".join(body_xml(s, p, pos, tendon) for s, p, pos in bodies)
     acts = ""
     if with_actuators:
         # 位置制御 (PD)。力の大きさは体重に合わせた仮の値。消費エネルギーは |力 × 角速度| で測る

@@ -100,8 +100,48 @@ def make_quad(s):
     return ref
 
 
-def make(gait, s):
-    """(お手本の関数, 1 秒あたりの周期, 胴体を前へ倒す角度 (度))"""
+# ---- 実験 2: 体の形に合わせたお手本 ----
+# (1) 周期を脚の長さに合わせる: 振り子のように、脚が短いほど速く振る (周期 ∝ √(脚の長さ))。人型 (脚 0.83 m) を基準にする
+# (2) チンパンジー型の 2 足は「股関節と膝を曲げたまま歩く」(bent-hip bent-knee) 姿勢にする。人に近づくほど伸びる
+#     曲げる量 (s = 0 で膝 +25°、股関節 -20°、胴体の前傾 +15°) は、文献の定性的な記述に合わせた仮定の値
+HUMAN_LEG = 0.83
+
+
+def _leg_length(s):
+    from body import shape
+    sh = shape(s)
+    return sh.thigh + sh.shank
+
+
+def make_biped_scaled(s):
+    rad = jp.pi / 180
+    k = 1.0 - s  # 曲げる強さ
+    knee_off, hip_off = 25.0 * k, -20.0 * k
+    ankle_off = -(hip_off + knee_off)  # 足の裏を床と平らに
+
+    def ref(phase):
+        q = reference(phase)
+        names = actuated_joints()
+        add = jp.zeros(len(names))
+        for i, n in enumerate(names):
+            if n.endswith("_knee"):
+                add = add.at[i].set(knee_off * rad)
+            elif n.endswith("_hip_y"):
+                add = add.at[i].set(hip_off * rad)
+            elif n.endswith("_ankle_y"):
+                add = add.at[i].set(ankle_off * rad)
+            elif n == "waist":
+                add = add.at[i].set(12.0 * k * rad)
+        return q + add
+
+    return ref
+
+
+def make(gait, s, scaled=False):
+    """(お手本の関数, 1 秒あたりの周期, 胴体を前へ倒す角度 (度))。scaled=True は実験 2 (体の形に合わせる)"""
+    f = (HUMAN_LEG / _leg_length(s)) ** 0.5 if scaled else 1.0
     if gait == "quad":
-        return make_quad(s), QUAD_FREQ, QUAD_PITCH
+        return make_quad(s), QUAD_FREQ * f, QUAD_PITCH
+    if scaled:
+        return make_biped_scaled(s), FREQ * f, 0.0
     return reference, FREQ, 0.0

@@ -44,6 +44,8 @@ ap.add_argument("--imitate", action="store_true", help="お手本 (reference.py)
 ap.add_argument("--gait", default="biped", choices=["biped", "quad"], help="お手本の歩き方")
 ap.add_argument("--alive", type=float, default=None)
 ap.add_argument("--seed", type=int, default=1)
+ap.add_argument("--exp2", action="store_true", help="実験 2: お手本を体に合わせる + 足首のばね")
+ap.add_argument("--froude", type=float, default=None, help="目標の速さを脚の長さに合わせる (フルード数 v^2/(g×脚の長さ))。--speed より優先")
 ap.add_argument("--torque-weight", type=float, default=None)
 ap.add_argument("--fall-penalty", type=float, default=None)
 a = ap.parse_args()
@@ -54,6 +56,12 @@ ckpt.mkdir(parents=True, exist_ok=True)
 cfg = default_config()
 cfg.s, cfg.target_speed, cfg.hands_off, cfg.imitate = a.s, a.speed, a.hands_off, a.imitate
 cfg.gait = a.gait
+cfg.exp2 = a.exp2
+if a.froude is not None:
+    from body import shape
+    sh = shape(a.s)
+    cfg.target_speed = float((a.froude * 9.81 * (sh.thigh + sh.shank)) ** 0.5)
+    print("目標の速さ", round(cfg.target_speed, 3), "m/s")
 if a.torque_weight is not None:
     cfg.torque_weight = a.torque_weight
 if a.alive is not None:
