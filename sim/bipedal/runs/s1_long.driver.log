@@ -1,0 +1,8 @@
+﻿2026-09-30 09:37:28 start training s1_long for 60 min (s=1)
+2026-09-30 10:28:51 training finished
+2026-09-30 10:28:51 render video
+TypeError: 'NoneType' object is not callable
+Exception ignored in: <function GLContext.__del__ at 0x7acfad59eca0>
+Traceback (most recent call last):
+TypeError: 'NoneType' object is not callable
+2026-09-30 10:29:05 commit and push
