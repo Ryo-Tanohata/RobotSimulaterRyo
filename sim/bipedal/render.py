@@ -8,7 +8,9 @@ import jax
 import mediapy
 import mujoco
 import numpy as np
+from brax.training.acme import running_statistics
 from brax.training.agents.ppo import checkpoint
+from brax.training.agents.ppo import networks as ppo_networks
 
 from env import ApeWalk, default_config
 
@@ -22,11 +24,15 @@ a = ap.parse_args()
 ckdir = Path(__file__).parent / "runs" / a.name / "checkpoints"
 last = sorted((p for p in ckdir.iterdir() if p.name.isdigit()), key=lambda p: int(p.name))[-1]
 print("脳:", last)
-policy = jax.jit(checkpoint.load_policy(str(last.resolve()), deterministic=True))
-
 cfg = default_config()
 cfg.s = a.s
 env = ApeWalk(cfg)
+# brax の load_policy は今の版では設定の読み込みで失敗するので、train.py と同じ形の脳を作って重みだけ読み込む
+params = checkpoint.load(str(last.resolve()))
+net = ppo_networks.make_ppo_networks(env.observation_size, env.action_size,
+                                     preprocess_observations_fn=running_statistics.normalize,
+                                     policy_hidden_layer_sizes=(256, 256, 128), value_hidden_layer_sizes=(256, 256, 256))
+policy = jax.jit(ppo_networks.make_inference_fn(net)(params, deterministic=True))
 reset, step = jax.jit(env.reset), jax.jit(env.step)
 state = reset(jax.random.PRNGKey(0))
 rng = jax.random.PRNGKey(1)
