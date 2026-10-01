@@ -1,0 +1,8 @@
+{"knowledge": [
+  {"op": "add", "text": "西の林での采集は遠いけど、草の種と木の実が見つかる。タヒが今日成功した。", "because": [253], "confidence": 0.9},
+  {"op": "add", "text": "ウィロは今日キャンプで休んでたから采集に行かなかった。だからすごくお腹が減ってる。", "because": [254], "confidence": 1.0}
+],
+ "proposal": null,
+ "votes": [],
+ "plan": {"activity": "採集", "place": "北林12", "with": ["ルオ"]},
+ "feeling": "お腹が減ってるけど、みんなで助け合ってるから大丈夫。明日も頑張ろう。"}
