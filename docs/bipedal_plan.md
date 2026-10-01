@@ -133,7 +133,7 @@ MuJoCo の各時刻の姿勢を JSON に書き出し、film.html で再生する
 |---|---|---|---|---|---|
 | **0** | **準備** | | | | |
 | 0.1 | WSL2 に JAX (GPU) と MuJoCo Playground を入れ、RTX 5070 で動くか確認 | `tools/mjx/setup.sh`, `tools/mjx/check_gpu.py` | 1 時間 | | ✅ (人型 4096 体で 25 万ステップ/秒) |
-| 0.2 | 使うソフトのライセンスを確認 (MuJoCo・Playground・JAX・Brax など) | README 追記 | 15 分 | 0.1 | |
+| 0.2 | 使うソフトのライセンスを確認 (MuJoCo・Playground・JAX・Brax など) | README 追記 | 15 分 | 0.1 | ✅ (2026-10-01: すべて Apache License 2.0。同梱せず import するだけ。CUDA は NVIDIA のライセンスで各自入れる) |
 | 0.3 | 文献の数字・年代を原典で再確認 | この計画書の 2 章 | 30 分 | | |
 | **1** | **体のモデル** | | | | |
 | 1.1 | 形のつまみ s から体 (MJCF) を作るプログラム | `sim/bipedal/body.py`, `check_body.py` | 2 時間 | 0.1 | ✅ (体重 45 kg・関節 19 個。物理で 2 秒進めても発散しない) |

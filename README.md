@@ -233,6 +233,10 @@ dotnet build UnityCompileCheck        # Runtime スクリプトが UnityEngine A
     [利用規約](https://unity.com/legal) に従って利用してください。Unity Personal には収入などの利用条件があります
   - ML-Agents の Python パッケージ `mlagents` (Apache License 2.0)
   - 開発用ツール (esbuild: MIT、playwright-core: Apache License 2.0、.NET SDK、NuGet の UnityEngine 参照アセンブリ)
+  - 2 足歩行の学習 (`sim/bipedal/`、`tools/mjx/`) で使う Python パッケージ: MuJoCo・MJX、MuJoCo Playground、Brax、
+    JAX、Warp、Flax、Optax、Orbax、mediapy、ml_collections (いずれも Apache License 2.0)。`import` して使うだけで、
+    ソースコードはコピーしていません。GPU 用の NVIDIA CUDA ライブラリは NVIDIA のライセンスに従い各自の環境に入れます
+  - `sim/bipedal/` の体のモデル (MJCF) は `body.py` で自作したもので、他人の 3D モデルや化石の画像は使っていません
 - `tools/verify/UnityCompileCheck/Stubs/` は、ML-Agents の公開 API の名前と形だけを宣言した独自のスタブで、
   ML-Agents のソースコードはコピーしていません (Unity なしでコンパイル確認をするためだけのもの)。
 
