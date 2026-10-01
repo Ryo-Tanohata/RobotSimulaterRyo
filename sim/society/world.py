@@ -270,6 +270,9 @@ def simulate_day(state):
         dist = math.hypot(pl["x"] - camp["x"], pl["y"] - camp["y"]) * CELL * 2  # 往復
         travel_h = dist / WALK_SPEED / 3600
         work_h = max(0.0, (DAY_END - DAY_START) - travel_h - 1)
+        # 疲れていると働ける時間が減り、疲れや空腹で手際が落ちる (評価 F1 の指摘)
+        work_h *= 1 - 0.6 * max(0.0, p["fatigue"] - 0.5)
+        knack = (1 - 0.5 * max(0.0, p["fatigue"] - 0.4)) * (1 - 0.5 * max(0.0, p["hunger"] - 0.5))  # ある程度を超えてから効く
         spent = BASE_KCAL + _walk_kcal(p, dist)
         res = {"activity": act, "place": pl["label"], "place_id": pl["id"], "walked_m": round(dist),
                "work_h": round(work_h, 1), "got": [], "spent": round(spent), "events": []}
@@ -283,7 +286,7 @@ def simulate_day(state):
                 if not cands:
                     break
                 q = rng.choice(cands)
-                if rng.random() < 0.5 + 0.4 * p["skills"]["採集"]:
+                if rng.random() < (0.5 + 0.4 * p["skills"]["採集"]) * knack:
                     n = min(q["amount"], rng.randint(1, 4))
                     q["amount"] -= n
                     kcal = n * UNITS[q["kind"]][1]
@@ -310,6 +313,12 @@ def simulate_day(state):
             plants = [q for q in _near(state["plants"], pl["x"], pl["y"], 6) if sea in q["seasons"] and q["amount"] >= 3]
             if plants:
                 found.append(f"{pl['label']} には {plants[0]['kind']} が多い ({sea})")
+            near_river = any(state["terrain"][y][x] == "r" for y in range(max(0, pl["y"] - 2), min(H, pl["y"] + 3))
+                             for x in range(max(0, pl["x"] - 2), min(W, pl["x"] + 3)))
+            if near_river and rng.random() < 0.6:
+                found.append("川に魚が泳いでいるのを見た")
+            elif not near_river and rng.random() < 0.4:
+                found.append("ピクという小さな獣が草むらを走るのを見た")
             res["got"] += found
             res["events"].append(log(state, "探索", p["name"], f"{p['name']} が {pl['label']} を探索した: " + ("、".join(found) or "特に何もなかった")))
         elif act == "道具づくり":
@@ -360,7 +369,7 @@ def simulate_day(state):
                         for x in range(max(0, pl["x"] - 2), min(W, pl["x"] + 3)))
             kind = "魚" if river else "ピク"
             for p, h in group:
-                rate = (0.12 if river else 0.06) * (1 + p["skills"]["狩り"] + (0.5 if "槍" in p["items"] else 0))
+                rate = (0.12 if river else 0.06) * (1 + p["skills"]["狩り"] + (0.5 if "槍" in p["items"] else 0)) * (1 - 0.5 * max(0.0, p["fatigue"] - 0.4))
                 caught = sum(1 for _ in range(int(h)) if rng.random() < rate)
                 p["skills"]["狩り"] = round(min(1, p["skills"]["狩り"] + 0.01 * h), 3)
                 if caught:
@@ -424,7 +433,7 @@ def evening(state, gives, stores=(), takes=()):
     first = state["next_event"]
     shares = 0
     state.setdefault("store", [])
-    stored_acts = 0
+    stored_acts, took = 0, 0
     # キャンプの蓄えに入れる / 蓄えから取る (stores / takes = [{"who","food","count"}])
     for g in stores:
         p = people.get(g.get("who"))
@@ -440,6 +449,7 @@ def evening(state, gives, stores=(), takes=()):
         if p and kcal > 0:
             by = _move_food(state["store"], p["food"], kind, kcal)
             if by:
+                took += sum(by.values())
                 log(state, "蓄えから取る", p["name"], f"{p['name']} がキャンプの蓄えから {food_words(by)} を取った", food=food_words(by))
     for g in gives:
         a, b = people.get(g.get("from")), people.get(g.get("to"))
@@ -522,5 +532,6 @@ def evening(state, gives, stores=(), takes=()):
         log(state, "腐る", None, f"キャンプの蓄えの {food_words(rotten)} が腐った", kcal=sum(rotten.values()))
     state["stats"].append({"day": day, "alive": len(alive), "eaten": eaten_total, "shares": shares,
                            "fire": state["camp"]["fire"] > 0, "eaten_by_kind": eaten_by_kind, "stored_acts": stored_acts,
-                           "store": sum(f["kcal"] for f in state["store"])})
+                           "store": sum(f["kcal"] for f in state["store"]), "took": took,
+                           "store_lasting": sum(f["kcal"] for f in state["store"] if f["kind"] in ("草の種", "干し肉"))})
     return list(range(first, state["next_event"]))

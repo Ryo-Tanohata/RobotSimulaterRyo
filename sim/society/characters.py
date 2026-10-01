@@ -89,6 +89,7 @@ def evening_prompt(state, p):
 ## いま
 夕方。キャンプの火のまわりに {'、'.join(names)} がいる。
 話したいことがあれば話してください (0〜2 つ。相手は仲間の名前か「みんな」)。
+前と同じ言い回しをくり返さず、あなたの性格と今日の出来事に合った、あなたらしい言葉で話してください。
 持っている食べ物を誰かに分けるなら、相手・食べ物の名前・数を書いてください (分けなくてもよい)。
 キャンプの蓄えに入れる (store) ことも、蓄えから取る (take) こともできます (しなくてもよい)。
 
@@ -106,6 +107,9 @@ def night_prompt(state, p, tonight_heard, gifts):
     law_part = (f"""
 ## 今日は集まりの日
 提案されている掟と、今の掟に賛成か反対かを投票してください (反対が多い掟は廃止される)。
+投票の前に、1 つずつ「賛成する理由」と「反対する理由」を自分の経験から考えてください。
+全部に賛成する必要はありません。自分の経験と合わない掟、守れない掟、似た掟がすでにある提案には反対してよいです。
+投票には理由 (reason) を一言書いてください。
 {_laws(state, with_pending=True)}""" if meeting else "")
     return f"""{RULES}
 
@@ -128,7 +132,7 @@ def night_prompt(state, p, tonight_heard, gifts):
 ## いま
 夜。寝る前に今日を振り返ってください。
 1. 覚えていることを更新する: 新しく分かったことを追加 (きっかけの出来事の番号を because に書く)、確かさを変える、間違っていたら忘れる
-2. みんなで守りたい決まりがあれば、掟として提案できる (なければ null)
+2. みんなで守りたい決まりがあれば、掟として提案できる (なければ null)。今の掟や提案と同じ内容なら提案しない
 3. 明日の予定を決める。活動は {' / '.join(ACTIVITIES)} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names)}) がいれば書く
 4. 今日の気持ちを一言
 
@@ -139,7 +143,7 @@ def night_prompt(state, p, tonight_heard, gifts):
 {{"knowledge": [{{"op": "add", "text": "...", "because": [出来事の番号], "confidence": 0.6}},
                {{"op": "update", "id": "k12", "confidence": 0.3}}, {{"op": "remove", "id": "k15"}}],
  "proposal": {{"text": "...", "because": [出来事の番号]}},
- "votes": [{{"id": "L0", "agree": true}}],
+ "votes": [{{"id": "L0", "agree": false, "reason": "..."}}],
  "plan": {{"activity": "採集", "place": "camp", "with": []}},
  "feeling": "..."}}"""
 

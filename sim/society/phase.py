@@ -33,6 +33,9 @@ def indicators(state):
         "main_foods": main,                                   # 7 日間に 1,500 kcal 以上食べた食べ物
         "broad_foods": [k for k in main if k in BROAD_FOODS and days_by_kind.get(k, 0) >= 3],  # 小さな動物・魚・草の種を 3 日以上
         "stored_acts": sum(s.get("stored_acts", 0) for s in last),  # 蓄えに入れた・干した回数
+        "animal_broad": [k for k in ("魚", "ピク") if days_by_kind.get(k, 0) >= 3],  # 小さな動物・魚を 3 日以上
+        "from_store_share": round(sum(s.get("took", 0) for s in last) / total, 2),  # 食べた量のうち蓄えから取った割合
+        "lasting_store_days": round((last[-1].get("store_lasting", 0) if last else 0) / 9000, 1),  # 腐りにくい蓄えが 5 人の何日分か
         "store": food_words(_store_kinds(state)),
         "camp_moves": state.get("camp_moves", 0),
         "sown_trees": sum(1 for q in state["plants"] if q.get("sown")),
@@ -53,7 +56,9 @@ def criteria(era, ind):
         return ("7 日間に 3 種類以上の食べ物をよく食べ (各 1,500 kcal 以上)、そのうち 1 つは小さな動物・魚・草の種で、3 日以上食べている",
                 len(ind["main_foods"]) >= 3 and len(ind["broad_foods"]) >= 1)
     if era == "F2":
-        return ("7 日間に、食べ物をわざと取っておくこと (蓄えに入れる・干す) が 3 回以上", ind["stored_acts"] >= 3)
+        # F1 の評価 (2026-10-01) で、蓄える行動は F1 のうちに始まっていたため、回数ではなく中身で決める
+        return ("小さな動物か魚を 7 日間に 3 日以上食べ、腐りにくい食べ物 (草の種・干し肉) の蓄えが 5 人の 3 日分以上あり、食べた量の 3 割以上を蓄えから取っている",
+                len(ind["animal_broad"]) >= 1 and ind["lasting_store_days"] >= 3 and ind["from_store_share"] >= 0.3)
     if era == "F3":
         return ("キャンプを移せるのに 30 日以上動かず、住まいを建てる (この仕組みはまだない)", False)
     if era == "F4":
