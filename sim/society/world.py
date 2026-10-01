@@ -593,9 +593,8 @@ def evening(state, gives, stores=(), takes=()):
     # 夜: キャンプに捕食者が来ることがある。火と人数と住まいで守られる
     alive = [p for p in people.values() if p["alive"]]
     housed = state["camp"].get("dwelling_day") is not None
-    if housed:  # 屋根の下で眠ると、疲れが少し多くとれる
-        for p in alive:
-            p["fatigue"] = round(max(0.0, p["fatigue"] - 0.1), 2)
+    for p in alive:  # 夜に眠ると疲れが少しとれる (41〜60 日目に、休まない人の疲れが 1.0 に張り付いたため追加)。屋根の下ならもう少し
+        p["fatigue"] = round(max(0.0, p["fatigue"] - 0.15 - (0.1 if housed else 0)), 2)
     if _near(state["predators"], state["camp"]["x"], state["camp"]["y"], 20):
         risk = 0.12 * (0.2 if state["camp"]["fire"] > 0 else 1) * (0.6 if len(alive) >= 3 else 1) * (0.4 if housed else 1)
         if rng.random() < risk and alive:
