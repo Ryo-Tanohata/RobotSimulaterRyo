@@ -159,6 +159,7 @@ SCRIPT=v1 node test/record-film.mjs v1.mp4         # 別の台本 (film-script.j
 - [docs/bipedal_plan.md](docs/bipedal_plan.md) … 次の計画: 類人猿の 4 足歩行から人の 2 足歩行へ (学説の整理、実験、WBS)
 - [docs/bipedal_experiment2.md](docs/bipedal_experiment2.md) … 実験 1 の振り返りと実験 2 (計画・結果・考察・課題)
 - [docs/society_plan.md](docs/society_plan.md) … 次の計画: 2 足歩行の人たちの社会シミュレーション (狩猟採集から、模倣と創発を区別)
+- [docs/society_phase_plan.md](docs/society_phase_plan.md) … 次の計画: フェーズ (狩猟採集 → 農耕) ごとに進めて評価する
 
 ## 構成
 
