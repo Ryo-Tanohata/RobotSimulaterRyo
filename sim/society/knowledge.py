@@ -98,7 +98,8 @@ def vote(state, person, votes):
         if l and l["status"] in ("提案", "採用"):
             l["votes"][person["name"]] = bool(v.get("agree"))
             l.setdefault("vote_log", []).append({"day": state["day"], "who": person["name"], "agree": bool(v.get("agree")),
-                                                 "reason": str(v.get("reason", ""))[:120]})
+                                                 "reason": str(v.get("reason", ""))[:120],
+                                                 "against": str(v.get("against", ""))[:120]})
 
 
 def is_meeting(day):

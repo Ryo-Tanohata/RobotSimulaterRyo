@@ -303,7 +303,7 @@ function renderEvents() {
   const days = Object.keys(byDay).map(Number).sort((a, b) => b - a);
   if (!days.length) { $("p-events").innerHTML = `<p class="empty">まだ出来事はありません。最初の 1 日は明日の朝 7 時に進みます。</p>`; return; }
   $("p-events").innerHTML = days.map((d) => `<div class="day"><h3>${d} 日目</h3>${byDay[d].map((e) => {
-    const say = e.type === "話す", bad = ["死", "けが", "腐る"].includes(e.type), good = ["掟", "育つ", "火"].includes(e.type);
+    const say = e.type === "話す", bad = ["死", "けが", "腐る"].includes(e.type), good = ["掟", "育つ", "火", "住まい"].includes(e.type);
     return `<div class="ev ${say ? "say" : ""} ${bad ? "bad" : ""} ${good ? "good" : ""}"><span class="t">${esc(e.type)}</span><span class="x">${esc(e.text)}</span></div>`;
   }).join("")}</div>`).join("");
 }

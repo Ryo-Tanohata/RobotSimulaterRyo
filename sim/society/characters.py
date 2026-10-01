@@ -58,7 +58,7 @@ def _today(state, p):
         if i in ev:
             lines.append(f"- [出来事 {i}] {ev[i]['text']}")
     others = [e for e in state["events"] if e["day"] == state["day"] and e["id"] not in t.get("events", [])
-              and e["type"] in ("狩り", "分ける", "けが", "死", "火", "育つ", "夜", "腐る", "蓄える", "蓄えから取る", "干す") and e.get("who") != p["name"]]
+              and e["type"] in ("狩り", "分ける", "けが", "死", "火", "育つ", "夜", "腐る", "蓄える", "蓄えから取る", "干す", "住まい") and e.get("who") != p["name"]]
     if others:
         lines.append("キャンプに戻って見聞きしたこと:")
         lines += [f"- [出来事 {e['id']}] {e['text']}" for e in others[-8:]]
@@ -108,9 +108,9 @@ def night_prompt(state, p, tonight_heard, gifts):
     law_part = (f"""
 ## 今日は集まりの日
 提案されている掟と、今の掟に賛成か反対かを投票してください (反対が多い掟は廃止される)。
-投票の前に、1 つずつ「賛成する理由」と「反対する理由」を自分の経験から考えてください。
+掟 1 つずつについて、まず「反対する理由」を自分の経験から 1 つ書いてください (against)。賛成するつもりの掟でも書きます。
+そのうえで賛成か反対かを決め、決めた理由 (reason) を一言書いてください。
 全部に賛成する必要はありません。自分の経験と合わない掟、守れない掟、似た掟がすでにある提案には反対してよいです。
-投票には理由 (reason) を一言書いてください。
 {_laws(state, with_pending=True)}""" if meeting else "")
     return f"""{RULES}
 
@@ -136,6 +136,7 @@ def night_prompt(state, p, tonight_heard, gifts):
 2. みんなで守りたい決まりがあれば、掟として提案できる (なければ null)。今の掟や提案と同じ内容なら提案しない
 3. 明日の予定を決める。活動は {' / '.join(ACTIVITIES)} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names)}) がいれば書く
    (「キャンプを移す」: 半分を超える人が同じ場所を選ぶと、次の日にキャンプごと (蓄えも) そこへ移る。選んだ人が少なければ、その場所を見に行くだけになる)
+   (「住まいを建てる」: キャンプに、屋根と壁のある住まいを建てる。材料の木や枝は近くの林から運ぶ。一人では何日もかかる。キャンプを移すと、住まいは置いていくことになる)
 4. 今日の気持ちを一言
 
 場所の一覧:
@@ -145,7 +146,7 @@ def night_prompt(state, p, tonight_heard, gifts):
 {{"knowledge": [{{"op": "add", "text": "...", "because": [出来事の番号], "confidence": 0.6}},
                {{"op": "update", "id": "k12", "confidence": 0.3}}, {{"op": "remove", "id": "k15"}}],
  "proposal": {{"text": "...", "because": [出来事の番号]}},
- "votes": [{{"id": "L0", "agree": false, "reason": "..."}}],
+ "votes": [{{"id": "L0", "against": "反対する理由", "agree": false, "reason": "決めた理由"}}],
  "plan": {{"activity": "採集", "place": "camp", "with": []}},
  "feeling": "..."}}"""
 

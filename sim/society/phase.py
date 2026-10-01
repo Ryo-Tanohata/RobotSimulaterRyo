@@ -39,6 +39,8 @@ def indicators(state):
         "store": food_words(_store_kinds(state)),
         "camp_moves": state.get("camp_moves", 0),
         "camp_days": state["day"] - state.get("camp_since", 0),  # 今のキャンプに何日いるか
+        "dwelling": round(state["camp"].get("dwelling", 0), 2),  # 住まいのでき具合 (1 で完成)
+        "dwelling_days": (state["day"] - state["camp"]["dwelling_day"]) if state["camp"].get("dwelling_day") is not None else 0,  # 住まいができてから何日暮らしたか
         "sown_trees": sum(1 for q in state["plants"] if q.get("sown")),
         "sown_share": round(sown_food / total, 2),
     }
@@ -61,7 +63,9 @@ def criteria(era, ind):
         return ("小さな動物か魚を 7 日間に 3 日以上食べ、腐りにくい食べ物 (草の種・干し肉) の蓄えが 5 人の 3 日分以上あり、食べた量の 3 割以上を蓄えから取っている",
                 len(ind["animal_broad"]) >= 1 and ind["lasting_store_days"] >= 3 and ind["from_store_share"] >= 0.3)
     if era == "F3":
-        return ("キャンプを移せるのに 30 日以上動かず、住まいを建てる (この仕組みはまだない)", False)
+        # F2 の評価のあと (2026-10-01) に住まいの仕組みを加えた。キャンプを移すと住まいは置いていくので、同じ場所に住み続けた日数になる
+        return ("キャンプに住まいを建て、そのキャンプで 30 日以上暮らす (キャンプを移すと住まいは置いていく)",
+                ind["dwelling_days"] >= 30)
     if era == "F4":
         return ("キャンプの近くに種をまき、育った実を 2 回以上収穫する (記録はまだない)", False)
     if era == "F5":

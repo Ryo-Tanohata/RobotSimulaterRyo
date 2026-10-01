@@ -55,7 +55,8 @@ RESERVE_START, RESERVE_MAX, RESERVE_DEATH = 10000, 20000, -15000  # 【仮定】
 
 TERRAIN = {"g": "草原", "f": "林", "r": "川", "h": "丘"}
 INITIAL_NAMES = ["ルオ", "セナ", "タヒ", "ウィロ", "イサ"]  # 現実の言葉と重ならない架空の名前
-ACTIVITIES = ["採集", "狩り", "探索", "休む", "道具づくり", "火おこし", "種まき", "キャンプを移す"]
+ACTIVITIES = ["採集", "狩り", "探索", "休む", "道具づくり", "火おこし", "種まき", "住まいを建てる", "キャンプを移す"]
+DWELLING_HOURS = 40       # 住まいを建てるのに要る、のべの作業時間 (F2 の評価のあとで追加。Claude が決めた仮の数字)
 GATHER_RADIUS = 8  # 採集で探せる範囲 (マス)。F2 の 1 回目の全滅を受けて 5 → 8 (2026-10-01)
 
 
@@ -236,7 +237,9 @@ def _move_camp(state, day):
             x, y = x + dx, y + dy
             break
     old = pl["label"]
-    state["camp"].update({"x": x, "y": y, "fire": 0})
+    if state["camp"].get("dwelling", 0) > 0:
+        log(state, "住まい", None, "キャンプを移したので、建てた (建てかけの) 住まいは置いていった")
+    state["camp"].update({"x": x, "y": y, "fire": 0, "dwelling": 0, "dwelling_day": None})
     state["camp_moves"] = state.get("camp_moves", 0) + 1
     state["camp_since"] = day
     for p in alive:
@@ -327,6 +330,8 @@ def simulate_day(state):
         if act not in ACTIVITIES:
             act = "休む"
         pl = place_of(state, plan.get("place", "camp"))
+        if act == "住まいを建てる":  # 建てるのはキャンプ。材料は近くの林から運ぶ
+            pl = place_of(state, "camp")
         if p["injured"] > 0:
             act, pl = "休む", place_of(state, "camp")
             p["injured"] -= 1
@@ -408,6 +413,24 @@ def simulate_day(state):
             else:
                 res["events"].append(log(state, "火", p["name"], f"{p['name']} は火をおこそうとしたが、できなかった"))
             p["skills"]["火"] = round(min(1, p["skills"]["火"] + 0.05), 3)
+        elif act == "住まいを建てる":
+            if camp.get("dwelling_day") is not None:
+                res["events"].append(log(state, "住まい", p["name"], f"{p['name']} は住まいを手入れした"))
+            else:
+                forest = any(state["terrain"][y][x] == "f" for y in range(max(0, camp["y"] - 6), min(H, camp["y"] + 7))
+                             for x in range(max(0, camp["x"] - 6), min(W, camp["x"] + 7)))
+                before = camp.get("dwelling", 0)
+                gain = work_h * (0.6 + 0.4 * p["skills"]["道具"]) * knack * (1 if forest else 0.5) / DWELLING_HOURS
+                camp["dwelling"] = min(1.0, before + gain)
+                if camp["dwelling"] >= 1:
+                    camp["dwelling_day"] = day
+                    res["got"].append("住まい")
+                    res["events"].append(log(state, "住まい", p["name"], f"{p['name']} たちの手で、キャンプに屋根と壁のある住まいができた"))
+                else:
+                    how = "柱を立て始めた" if before == 0 else "骨組みが半分ほどできた" if before < 0.5 <= camp["dwelling"] else "枝や草で屋根と壁をふいた"
+                    res["events"].append(log(state, "住まい", p["name"], f"{p['name']} がキャンプで住まいを建てた: {how}"
+                                             + ("" if forest else " (林が遠く、材料を運ぶのに手間がかかる)")))
+            p["skills"]["道具"] = round(min(1, p["skills"]["道具"] + 0.02), 3)
         elif act == "種まき":
             if "種" in p["items"]:
                 p["items"].remove("種")
@@ -567,10 +590,14 @@ def evening(state, gives, stores=(), takes=()):
             p["alive"] = False
             log(state, "死", p["name"], f"{p['name']} は飢えで死んだ")
 
-    # 夜: キャンプに捕食者が来ることがある。火と人数で守られる
+    # 夜: キャンプに捕食者が来ることがある。火と人数と住まいで守られる
     alive = [p for p in people.values() if p["alive"]]
+    housed = state["camp"].get("dwelling_day") is not None
+    if housed:  # 屋根の下で眠ると、疲れが少し多くとれる
+        for p in alive:
+            p["fatigue"] = round(max(0.0, p["fatigue"] - 0.1), 2)
     if _near(state["predators"], state["camp"]["x"], state["camp"]["y"], 20):
-        risk = 0.12 * (0.2 if state["camp"]["fire"] > 0 else 1) * (0.6 if len(alive) >= 3 else 1)
+        risk = 0.12 * (0.2 if state["camp"]["fire"] > 0 else 1) * (0.6 if len(alive) >= 3 else 1) * (0.4 if housed else 1)
         if rng.random() < risk and alive:
             v = rng.choice(alive)
             if rng.random() < 0.15:
@@ -582,11 +609,12 @@ def evening(state, gives, stores=(), takes=()):
         elif state["camp"]["fire"] > 0:
             log(state, "夜", None, "夜、ザガが近くに来たが、火を嫌って近づかなかった")
 
-    rotten = _rot(state["store"], day, False)
+    rotten = _rot(state["store"], day, housed)  # 住まいがあれば、蓄えは屋根の下で入れ物に入れたのと同じだけもつ
     if rotten and food_words(rotten) != "なし":
         log(state, "腐る", None, f"キャンプの蓄えの {food_words(rotten)} が腐った", kcal=sum(rotten.values()))
     state["stats"].append({"day": day, "alive": len(alive), "eaten": eaten_total, "shares": shares,
                            "fire": state["camp"]["fire"] > 0, "eaten_by_kind": eaten_by_kind, "stored_acts": stored_acts,
                            "store": sum(f["kcal"] for f in state["store"]), "took": took,
-                           "store_lasting": sum(f["kcal"] for f in state["store"] if f["kind"] in ("草の種", "干し肉"))})
+                           "store_lasting": sum(f["kcal"] for f in state["store"] if f["kind"] in ("草の種", "干し肉")),
+                           "dwelling": round(state["camp"].get("dwelling", 0), 2), "housed": housed})
     return list(range(first, state["next_event"]))

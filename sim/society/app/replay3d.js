@@ -14,7 +14,7 @@
     { key: "eve", label: "夕方の焚き火", t0: 19, t1: 21.5, sec: 12 },
     { key: "night", label: "夜", t0: 21.5, t1: 22.5, sec: 5 },
   ];
-  const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "けが"];
+  const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが"];
   const EVE_EVENTS = ["話す", "分ける", "蓄える", "蓄えから取る"];
   const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ"];
 
@@ -144,9 +144,18 @@
     flame.position.set(camp.x, camp.y + 0.4, camp.z); scene.add(flame);
     const fireLight = new THREE.PointLight(T.accent, 0, 14); fireLight.position.set(camp.x, camp.y + 1, camp.z); scene.add(fireLight);
 
+    // 住まい (建てた日から見せる。円い壁と草ぶきの屋根)
+    const hut = new THREE.Group();
+    const wall = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.4, 1.1, 12, 1, true), new THREE.MeshLambertMaterial({ color: T.tuber, side: THREE.DoubleSide }));
+    wall.position.y = 0.55; hut.add(wall);
+    const roof = new THREE.Mesh(new THREE.ConeGeometry(1.8, 1.5, 12), new THREE.MeshLambertMaterial({ color: T.hill }));
+    roof.position.y = 1.85; hut.add(roof);
+    hut.position.set(camp.x - 3.2, camp.y, camp.z - 2.2); hut.visible = false; scene.add(hut);
+    const built = D.events.find((e) => e.type === "住まい" && /住まいができた/.test(e.text));
+
     const sun = new THREE.DirectionalLight(0xffffff, 0.9); sun.position.set(30, 50, 20); scene.add(sun);
     const amb = new THREE.AmbientLight(0xffffff, 0.55); scene.add(amb);
-    return { scene, camp, flame, fireLight, sun, amb };
+    return { scene, camp, flame, fireLight, sun, amb, hut, hutDay: built ? built.day : null };
   }
 
   function placeOf(D, id) { return D.places.find((p) => p.id === id) || D.places[0]; }
@@ -195,6 +204,7 @@
     const light = hour < 6 ? 0.35 + (hour - 5.5) * 1.2 : hour > 19 ? Math.max(0.12, 0.9 - (hour - 19) * 0.35) : 0.9;
     S.W.sun.intensity = light; S.W.amb.intensity = 0.25 + light * 0.35;
     const lit = P.fire && (hour >= 18.5 || hour < 6);
+    S.W.hut.visible = S.W.hutDay !== null && S.dayNum >= S.W.hutDay;
     S.W.flame.visible = lit; S.W.fireLight.intensity = lit ? 1.6 + Math.sin(v * 13) * 0.3 : 0;
     S.W.scene.background = S.T.bg.clone().lerp(new THREE.Color(0x0b1220), 1 - Math.min(1, light / 0.9));
 
