@@ -39,11 +39,11 @@ const VIDEO_CSS = `
   .r3-clock { font-size: 18px; padding: 4px 12px; }
   .r3-toast { top: 52px; bottom: auto; left: auto; right: 14px; justify-items: end; font-size: 16px; }
   .r3-label { font-size: 16px; } .r3-label .b { font-size: 16px; max-width: 18em; }
-  .v-cap { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); width: max-content; max-width: 84%;
+  .v-cap { z-index: 50; position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); width: max-content; max-width: 84%;
     background: rgba(12, 16, 13, 0.78); color: #fff; font-size: 26px; line-height: 1.5; padding: 8px 20px; border-radius: 10px; text-align: center; }
-  .v-title { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 80px; color: #fff;
+  .v-title { z-index: 50; position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 80px; color: #fff;
     text-shadow: 0 4px 18px rgba(0,0,0,.6); letter-spacing: 0.05em; }
-  .v-credit { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(12, 16, 13, 0.82); color: #fff; font-size: 28px; line-height: 2; text-align: center; }
+  .v-credit { z-index: 60; position: absolute; inset: 0; display: grid; place-items: center; background: rgba(12, 16, 13, 0.82); color: #fff; font-size: 28px; line-height: 2; text-align: center; }
 `;
 
 const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new", args: ["--no-sandbox", "--hide-scrollbars", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });

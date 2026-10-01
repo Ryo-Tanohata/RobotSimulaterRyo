@@ -99,8 +99,8 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
 .r3-bar input[type=range] { flex: 1 1 180px; min-width: 0; accent-color: var(--accent); }
 .r3-stage { position: relative; width: 100%; aspect-ratio: 16 / 10; min-height: 300px; border-radius: 8px; overflow: hidden; background: var(--bg); }
 .r3-stage canvas { width: 100%; height: 100%; display: block; aspect-ratio: auto; border-radius: 0; }
-.r3-clock { position: absolute; left: 12px; top: 10px; font-family: var(--mono); font-size: 13px; font-weight: 500; background: var(--surface); color: var(--fg); padding: 3px 10px; border-radius: 6px; opacity: 0.92; }
-.r3-toast { position: absolute; left: 12px; bottom: 10px; right: 12px; display: grid; gap: 4px; font-size: 12px; pointer-events: none; }
+.r3-clock { z-index: 40; position: absolute; left: 12px; top: 10px; font-family: var(--mono); font-size: 13px; font-weight: 500; background: var(--surface); color: var(--fg); padding: 3px 10px; border-radius: 6px; opacity: 0.92; }
+.r3-toast { z-index: 40; position: absolute; left: 12px; bottom: 10px; right: 12px; display: grid; gap: 4px; font-size: 12px; pointer-events: none; }
 .r3-toast div { background: var(--surface); color: var(--fg); padding: 3px 10px; border-radius: 6px; opacity: 0.9; width: fit-content; max-width: 100%; }
 .r3-label { position: absolute; left: 0; top: 0; pointer-events: none; display: grid; justify-items: center; gap: 4px; font-size: 12px; font-weight: 700; text-shadow: 0 0 3px var(--bg), 0 0 3px var(--bg); }
 .r3-label .b { position: relative; background: var(--surface); color: var(--fg); border: 2px solid var(--line); border-radius: 10px; padding: 4px 10px; font-weight: 400; font-size: 12px; max-width: 16em; text-shadow: none; line-height: 1.45; margin-bottom: 6px; }
