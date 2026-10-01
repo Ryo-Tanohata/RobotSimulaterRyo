@@ -261,7 +261,7 @@
       L.el.hidden = false;
       L.el.style.transform = `translate(${(p.x * 0.5 + 0.5) * r.width}px, ${(-p.y * 0.5 + 0.5) * r.height}px) translate(-50%, -100%)`;
       L.el.querySelector(".b").textContent = L.bubble; L.el.querySelector(".b").hidden = !L.bubble;
-      L.el.style.zIndex = L.bubble ? "30" : "10";  // 話している人の吹き出しを、ほかの人の名前より手前に出す
+      L.el.style.zIndex = L.bubble ? "55" : "10";  // 話している人の吹き出しを一番手前に (名前・出来事の一覧・時計・動画の字幕より上)
     }
   }
 

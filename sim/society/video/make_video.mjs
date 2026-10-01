@@ -22,7 +22,8 @@ const CREDIT = "ナレーション: VOICEVOX:ずんだもん<br>描画: three.js
 const server = http.createServer((req, res) => {
   const name = decodeURIComponent(req.url.split("?")[0]).replace(/^\//, "") || "index.html";
   const file = name === "app_data.json" ? path.join(DATA, name) : path.join(APP, name);
-  if (!fs.existsSync(file)) { res.writeHead(404); return res.end(); }
+  // アプリに入れた動画は撮影に使わない (読み込みが終わらず、ページの読み込み待ちが切れるため)
+  if (!fs.existsSync(file) || name.endsWith(".mp4")) { res.writeHead(404); return res.end(); }
   const type = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".json": "application/json", ".mp4": "video/mp4" }[path.extname(file)] || "application/octet-stream";
   res.writeHead(200, { "content-type": type });
   if (name === "index.html") return res.end("<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'>" + fs.readFileSync(file, "utf8"));
