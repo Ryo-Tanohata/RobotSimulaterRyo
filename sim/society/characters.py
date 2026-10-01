@@ -8,7 +8,7 @@
 import json
 
 import knowledge
-from world import ACTIVITIES, food_words, holdings, season
+from world import ACTIVITIES, SEASON_DAYS, food_words, holdings, season
 
 RULES = """あなたは、ある小さな世界に暮らす一人の人間を演じます。
 - この世界の外の知識 (現実の地名・国・歴史・宗教・王・お金 など) は持っていない前提で考えてください
@@ -34,8 +34,16 @@ def _me(state, p):
             f"持っている食べ物: {food_words(hold)}" + (" (ルクの肉は 2 日で腐る)" if hold.get("肉") else "") + "\n"
             + (f"持ち物: {'・'.join(p['items'])}\n" if p["items"] else "")
             + "1 日に食べる量の目安: 木の実なら 20 つかみ、芋なら 8 本、ルクの肉なら 3 切れ、魚なら 7 匹\n"
+            + _seasons(state["day"])
             + f"キャンプの蓄え (誰でも入れたり取ったりできる): {food_words(holdings({'food': state.get('store', [])}))}\n"
             f"仲間への信頼 (-1〜+1): {trust}\n")
+
+
+def _seasons(day):
+    """季節の移り変わり。大人なら誰でも知っていること (F3 の 1 回目に、冬を知らないまま全員が飢えたため追加)"""
+    left = SEASON_DAYS - day % SEASON_DAYS
+    return ("季節は 30 日ごとに 春 → 夏 → 秋 → 冬 と移る。冬は木の実も草の種も実らず、芋も少ししか育たない。魚やけものは冬もいる\n"
+            f"次の季節 ({season(day + left)}) まで、あと {left} 日\n")
 
 
 def _knowledge(p):

@@ -48,7 +48,9 @@ def apply_updates(state, person, updates):
     for u in updates or []:
         op = u.get("op")
         if op == "add" and u.get("text"):
-            because = [i for i in u.get("because", []) if isinstance(i, int) and i in valid_events]
+            raw = u.get("because") or []
+            raw = raw if isinstance(raw, list) else [raw]  # 番号 1 つだけ (リストでない) の答えも読む
+            because = [i for i in raw if isinstance(i, int) and i in valid_events]
             label = _label(state, because)
             src = None
             if label == "伝承":
