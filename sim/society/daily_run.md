@@ -42,16 +42,15 @@ python3 sim/society/step.py night
 
 「フェーズが … に進んだ → 一時停止」と出たら、くり返しをやめて 4 へ。
 
-### その日の保存
+### その日の保存 (コミットだけ。push はしない)
 
 ```bash
 git add sim/society/data
 git -c user.name=Ryo-Tanohata -c user.email=39688846+Ryo-Tanohata@users.noreply.github.com \
   commit -q -m "社会シミュレーション: N 日目" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
-git push -q
 ```
 
-1 日ごとに保存する (途中で止まっても、次の実行で続きから再開できる)。
+GitHub への push は、実行の最後 (6) に 1 回だけ行う (本人の希望)。
 
 ## 4. フェーズが進んだとき: 評価の下書き
 
@@ -78,11 +77,11 @@ Artifact ツールで、アプリを同じ URL のまま更新する:
 
 ## 6. 記録
 
-`sim/society/data/run_log.md` の末尾に 1 行追記してコミット・プッシュする:
+`sim/society/data/run_log.md` の末尾に 1 行追記してコミットし、ここで初めて `git push` する (この実行のすべての日のコミットがまとめて上がる):
 日時・何日目から何日目まで進んだか・止まった理由 (フェーズが進んだ / 20 日に達した / 失敗)・今のフェーズ・目立った出来事。
 
 ## 失敗したとき
 
-- 途中で止まっても、`state.json` の段階から続きをやり直せる。無理に続けず、そこまでをコミットして記録に残す
+- 途中で止まっても、`state.json` の段階から続きをやり直せる。無理に続けず、そこまでをコミットし、記録に残して **push してから** 終わる (push しないと、その分は失われる)
 - 答えの JSON が壊れていても `step.py` は読める部分だけ使う。同じ人のサブエージェントを 1 回だけやり直してよい
 - 世界の状態やシミュレーションのコードを手で書き換えない
