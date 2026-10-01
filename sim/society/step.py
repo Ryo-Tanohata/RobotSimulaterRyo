@@ -100,7 +100,7 @@ def day_summaries(state):
 
 def export(state):
     """アプリ (Web ページ) 用のデータ"""
-    ev_recent = [e for e in state["events"] if e["day"] >= state["day"] - 30]
+    ev_recent = state["events"]  # すべての日 (過去の日の 3D 再生と動画のため)
     data = {
         "day": state["day"], "season": world.season(max(1, state["day"])), "phase": state["phase"],
         "map": {"w": world.W, "h": world.H, "cell": world.CELL, "terrain": state["terrain"], "legend": world.TERRAIN},

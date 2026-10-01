@@ -556,7 +556,7 @@ def evening(state, gives, stores=(), takes=()):
                 stored_acts += 1
                 log(state, "干す", p["name"], f"{p['name']} の食べ残した {food_words(dried)} が、火のそばで干し肉になった", food=food_words(dried))
         rotten = _rot(p["food"], day, "入れ物" in p["items"])
-        if rotten:
+        if rotten and food_words(rotten) != "なし":  # ごく少量は記録しない (「なし」を果物の梨と取り違えたため)
             log(state, "腐る", p["name"], f"{p['name']} の {food_words(rotten)} が腐った", kcal=sum(rotten.values()))
         p["reserve"] = min(RESERVE_MAX, p["reserve"] + eat - need)
         p["hunger"] = round(min(1, max(0, (RESERVE_START - p["reserve"]) / (RESERVE_START - RESERVE_DEATH))), 2)
@@ -583,7 +583,7 @@ def evening(state, gives, stores=(), takes=()):
             log(state, "夜", None, "夜、ザガが近くに来たが、火を嫌って近づかなかった")
 
     rotten = _rot(state["store"], day, False)
-    if rotten:
+    if rotten and food_words(rotten) != "なし":
         log(state, "腐る", None, f"キャンプの蓄えの {food_words(rotten)} が腐った", kcal=sum(rotten.values()))
     state["stats"].append({"day": day, "alive": len(alive), "eaten": eaten_total, "shares": shares,
                            "fire": state["camp"]["fire"] > 0, "eaten_by_kind": eaten_by_kind, "stored_acts": stored_acts,

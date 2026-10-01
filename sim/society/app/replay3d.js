@@ -157,7 +157,8 @@
     const plan = {}, groups = {};
     names.forEach((n, i) => {
       const r = rows.find((x) => x.name === n);
-      const alive = D.people[i].alive || D.events.some((e) => e.day > day && e.who === n);
+      const died = D.events.find((e) => e.type === "死" && e.who === n);
+      const alive = !died || died.day >= day;  // 亡くなった日はまだ映す
       const pl = placeOf(D, r ? r.place : "camp");
       (groups[pl.id] = groups[pl.id] || []).push(n);
       plan[n] = { name: n, i, alive: !!r || alive, activity: r ? r.activity : "休む", place: pl };

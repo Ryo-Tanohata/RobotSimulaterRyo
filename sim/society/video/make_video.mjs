@@ -63,16 +63,19 @@ await page.evaluate(() => {
 await new Promise((r) => setTimeout(r, 800));
 
 const from = Number(fromArg || 1), to = Number(toArg || Math.max(...lines.map((l) => l.day)));
+// DAYS=21,28,29 のように、飛び飛びの日をつなぐこともできる
+const dayList = process.env.DAYS ? process.env.DAYS.split(",").map(Number) : Array.from({ length: to - from + 1 }, (_, i) => from + i);
+const lastDay = dayList[dayList.length - 1];
 
 // 日ごとに場面の長さを決め、ナレーションの時刻を並べる
 const plan = [], narration = [];
 let offset = 0;
-for (let d = from; d <= to; d++) {
+for (const d of dayList) {
   const base = await page.evaluate((d) => Replay3D.timeline(d), d);
   const secs = {};
   for (const s of base.segs) {
     const mine = lines.filter((l) => l.day === d && l.seg === s.key);
-    const need = mine.reduce((a, l) => a + durs[l.id] + 0.45, 0) + (mine.length ? 1.0 : 0) + (d === to && s.key === "night" ? 6 : 0);
+    const need = mine.reduce((a, l) => a + durs[l.id] + 0.45, 0) + (mine.length ? 1.0 : 0) + (d === lastDay && s.key === "night" ? 6 : 0);
     secs[s.key] = Math.max(s.v1 - s.v0, need);
   }
   await page.evaluate((d, secs) => Replay3D.setSegments(d, secs), d, secs);
@@ -101,7 +104,7 @@ for (let f = 0; f < N; f++) {
   const v = t - P.start;
   const cap = narration.find((n) => t >= n.start && t < n.start + n.duration + 0.3);
   const title = v < 2.2 ? `${P.day} 日目` : "";
-  const credit = P.day === to && P.total - v < 5.5;
+  const credit = P.day === lastDay && P.total - v < 5.5;
   await page.evaluate((d, v, cap, title, credit, CREDIT) => {
     Replay3D.seek(d, v);
     const st = document.querySelector(".r3-stage");
