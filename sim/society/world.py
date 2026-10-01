@@ -195,6 +195,26 @@ def _rot(foods, day, container):
     return out
 
 
+def _small_catch(state, p, pl, hours, rng, factor, quiet=False):
+    """魚 (川の近く) か小さな獲物 (ピク) をとる。1 人でもとれる"""
+    river = any(state["terrain"][y][x] == "r" for y in range(max(0, pl["y"] - 2), min(H, pl["y"] + 3))
+                for x in range(max(0, pl["x"] - 2), min(W, pl["x"] + 3)))
+    kind = "魚" if river else "ピク"
+    rate = factor * (0.12 if river else 0.06) * (1 + p["skills"]["狩り"] + (0.5 if "槍" in p["items"] else 0)) * (1 - 0.5 * max(0.0, p["fatigue"] - 0.4))
+    caught = sum(1 for _ in range(int(hours)) if rng.random() < rate)
+    if not quiet:
+        p["skills"]["狩り"] = round(min(1, p["skills"]["狩り"] + 0.01 * hours), 3)
+    if caught:
+        p["food"].append({"kind": kind, "kcal": caught * UNITS[kind][1], "day": state["day"]})
+        what = "魚をとった" if river else "小さな獲物 (ピク) をとった"
+        text = f"{p['name']} が {pl['label']} で{what} ({FOOD_NAME[kind]} {caught} 匹)"
+    elif quiet:
+        return
+    else:
+        text = f"{p['name']} は {pl['label']} で狩りをしたが、何もとれなかった"
+    p["today"]["events"].append(log(state, "狩り", p["name"], text, catch=kind if caught else None))
+
+
 def _move_camp(state, day):
     """半分を超える人が同じ場所に「キャンプを移す」を選んでいたら、キャンプ (と蓄え) をそこへ移す"""
     alive = [p for p in state["people"] if p["alive"]]
@@ -410,20 +430,8 @@ def simulate_day(state):
         names = [p["name"] for p, _ in group]
         hours = min(h for _, h in group)
         if not herd or herd[0]["count"] < 2:  # ルクがいなければ、川の近くでは魚、ほかでは小さな獲物 (ピク) をとる。1 人でもとれる
-            river = any(state["terrain"][y][x] == "r" for y in range(max(0, pl["y"] - 2), min(H, pl["y"] + 3))
-                        for x in range(max(0, pl["x"] - 2), min(W, pl["x"] + 3)))
-            kind = "魚" if river else "ピク"
             for p, h in group:
-                rate = (0.12 if river else 0.06) * (1 + p["skills"]["狩り"] + (0.5 if "槍" in p["items"] else 0)) * (1 - 0.5 * max(0.0, p["fatigue"] - 0.4))
-                caught = sum(1 for _ in range(int(h)) if rng.random() < rate)
-                p["skills"]["狩り"] = round(min(1, p["skills"]["狩り"] + 0.01 * h), 3)
-                if caught:
-                    p["food"].append({"kind": kind, "kcal": caught * UNITS[kind][1], "day": day})
-                    what = "魚をとった" if river else "小さな獲物 (ピク) をとった"
-                    text = f"{p['name']} が {pl['label']} で{what} ({FOOD_NAME[kind]} {caught} 匹)"
-                else:
-                    text = f"{p['name']} は {pl['label']} で狩りをしたが、何もとれなかった"
-                p["today"]["events"].append(log(state, "狩り", p["name"], text, catch=kind if caught else None))
+                _small_catch(state, p, pl, h, rng, 1.0)
             continue
         skill = sum(p["skills"]["狩り"] + (0.3 if "槍" in p["items"] else 0) for p, _ in group)
         per_h = 0.015 * (1 + 2 * skill) * (2.5 if len(group) >= 2 else 1)
@@ -437,10 +445,12 @@ def simulate_day(state):
             eid = log(state, "狩り", killer["name"], f"{'、'.join(names)} が {pl['label']} で狩りをし、{killer['name']} がルクをしとめた (肉 {count_of('肉', MEAT_KCAL)} 切れ)",
                       hunters=names, killer=killer["name"])
         else:
-            eid = log(state, "狩り", names[0], f"{'、'.join(names)} は {pl['label']} で狩りをしたが、しとめられなかった", hunters=names)
+            eid = log(state, "狩り", names[0], f"{'、'.join(names)} は {pl['label']} で狩りをしたが、ルクはしとめられなかった", hunters=names)
         for p, _ in group:
             p["today"]["events"].append(eid)
             p["today"]["got"].append("ルクの肉" if success and p is killer else "")
+            if not success:  # ルクに逃げられた日も、帰り道で魚や小さな獲物がとれることがある (F2 の 2 回目の評価で追加)
+                _small_catch(state, p, pl, hours, rng, 0.5, quiet=True)
 
     # 火は日ごとに弱まる
     if camp["fire"] > 0:
