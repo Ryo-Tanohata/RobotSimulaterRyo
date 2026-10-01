@@ -1,0 +1,5 @@
+{"knowledge": [{"op": "add", "text": "今日、南の林で何も見つからなかった。同じ場所でもセナのように採集に成功する人と、自分のように何も見つけられない人がいる。採集のスキルか、タイミングか、それとも運か。", "because": [126, 129], "confidence": 0.85}, {"op": "add", "text": "イサが採集で大量の食べ物を見つけた。北の林は豊かな場所かもしれない。", "because": [133], "confidence": 0.8}, {"op": "add", "text": "長く歩くと疲れる。今日は400m先の南の林に行くのに700m歩いて、何も見つからず、とても疲れた。", "because": [126], "confidence": 1.0}, {"op": "update", "id": "k70", "confidence": 0.95}],
+ "proposal": null,
+ "votes": [{"id": "L0", "agree": true}, {"id": "L1", "agree": true}, {"id": "L2", "agree": true}, {"id": "L3", "agree": true}, {"id": "L4", "agree": true}, {"id": "L5", "agree": true}, {"id": "L6", "agree": true}, {"id": "L7", "agree": true}, {"id": "L8", "agree": true}, {"id": "L9", "agree": true}, {"id": "L10", "agree": true}],
+ "plan": {"activity": "採集", "place": "東林12", "with": ["セナ"]},
+ "feeling": "何も見つけられなくて悔しいけど、みんなが頑張ってくれたから、明日はセナと一緒に東の林でもっと見つけたい。"}
