@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
 <script src="replay3d.js"></script>
 <style>
 /* Layout: 観察ノート型ダッシュボード。左に上から見た地図、右に 5 人の記録、下にタブ (出来事と会話 / 知識と掟 / グラフ / 歩く姿) */
@@ -79,6 +80,21 @@ canvas { width: 100%; max-width: 100%; aspect-ratio: 1; display: block; border-r
 .mv-speed button { font: inherit; font-size: 13px; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; font-variant-numeric: tabular-nums; }
 .mv-speed button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); font-weight: 700; }
 .mv-speed button:focus-visible, .mv-tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.md { max-width: 78ch; font-size: 15px; line-height: 1.75; }
+.md h1 { font-family: var(--display); font-weight: 400; font-size: 24px; line-height: 1.4; margin: 8px 0 12px; text-wrap: balance; }
+.md h2 { font-size: 18px; color: var(--fg); letter-spacing: 0; margin: 24px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
+.md h3 { font-size: 16px; margin: 18px 0 6px; }
+.md p, .md ul, .md ol { margin: 0 0 10px; }
+.md ul, .md ol { padding-left: 1.4em; }
+.md code { font-family: var(--mono); font-size: 0.88em; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; overflow-wrap: anywhere; }
+.md pre { overflow-x: auto; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 10px; }
+.md pre code { border: 0; padding: 0; }
+.md .tbl { overflow-x: auto; margin: 0 0 12px; }
+.md table { border-collapse: collapse; font-size: 13px; min-width: 100%; }
+.md th, .md td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; vertical-align: top; }
+.md th { background: var(--bg); }
+.md strong { color: var(--accent); }
+.md blockquote { margin: 0 0 10px; padding-left: 12px; border-left: 3px solid var(--line); color: var(--muted); }
 .chip { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
 .c-創発 { color: var(--emerge); background: var(--emerge-bg); }
 .c-伝承 { color: var(--lore); background: var(--lore-bg); }
@@ -177,6 +193,7 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
       <button role="tab" id="t-know" aria-selected="false">知識と掟</button>
       <button role="tab" id="t-graph" aria-selected="false">グラフ</button>
       <button role="tab" id="t-walk" aria-selected="false">歩く姿</button>
+      <button role="tab" id="t-docs" aria-selected="false">記録と評価</button>
     </div>
     <div id="p-events" role="tabpanel"></div>
     <div id="p-know" role="tabpanel" hidden>
@@ -200,6 +217,11 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
       <p class="explain">5 人の歩く速さと、歩くのに使うエネルギーは、別に作った 2 足歩行の物理シミュレーションで測った値です (上から 0.6 / 1.0 / 1.4 m/s)。人型の体に歩き方のお手本を与え、強化学習で歩けるようにしたものです。</p>
       <video src="walk.mp4" controls muted playsinline preload="metadata"></video>
     </div>
+    <div id="p-docs" role="tabpanel" hidden>
+      <p class="explain">フェーズごとの評価と、計画書です。評価の下書きは定期実行の Claude が書き、「本人の評価」の章はあなたの評価を書き写します。</p>
+      <div class="filters"><label>文書 <select id="doc-sel"></select></label></div>
+      <article class="md" id="doc"><p class="empty">文書を読み込んでいます…</p></article>
+    </div>
   </section>
 </div>
 
@@ -215,7 +237,7 @@ function start3d() {
 const pcol = (i) => css(`--p${i % 5}`);
 
 function tabs() {
-  const ids = ["events", "know", "graph", "walk"];
+  const ids = ["events", "know", "graph", "walk", "docs"];
   ids.forEach((id) => $(`t-${id}`).addEventListener("click", () => select(id)));
   function select(id) {
     ids.forEach((x) => { $(`t-${x}`).setAttribute("aria-selected", String(x === id)); $(`p-${x}`).hidden = x !== id; });
@@ -376,5 +398,37 @@ Promise.all([
     v.src = b.dataset.src; v.load();
   }));
   setRate(rate);
+})();
+</script>
+<script>
+// 記録と評価: docs の Markdown を読み込んで表示する (公開されている文書だけを一覧に出す)
+(() => {
+  const C = [
+    ["docs/society_phase/F1.md", "F1 移動する採集民: 評価"],
+    ["docs/society_phase/F2_try1.md", "F2 1 回目 (全員が飢えた試行)"],
+    ["docs/society_phase/F2_notes.md", "F2 途中経過と変更"],
+    ["docs/society_phase/F2.md", "F2 食べ物の幅を広げる: 評価"],
+    ...[3, 4, 5, 6].flatMap((n) => [[`docs/society_phase/F${n}_notes.md`, `F${n} 途中経過と変更`], [`docs/society_phase/F${n}.md`, `F${n}: 評価`]]),
+    ["docs/society_phase_plan.md", "計画: フェーズと評価のしかた"],
+    ["docs/society_plan.md", "計画: 川辺の五人の全体"],
+  ];
+  const sel = document.getElementById("doc-sel"), out = document.getElementById("doc");
+  const cache = {};
+  const show = (path) => {
+    const md = cache[path];
+    out.innerHTML = window.marked ? marked.parse(md) : `<pre>${md.replace(/[&<]/g, (c) => ({ "&": "&amp;", "<": "&lt;" }[c]))}</pre>`;
+    out.querySelectorAll("table").forEach((t) => { const w = document.createElement("div"); w.className = "tbl"; t.replaceWith(w); w.appendChild(t); });
+    try { localStorage.setItem("doc", path); } catch (e) {}
+  };
+  Promise.all(C.map(([p]) => fetch(p, { cache: "no-store" }).then((r) => (r.ok ? r.text() : null)).catch(() => null))).then((texts) => {
+    const have = C.filter((c, i) => texts[i] && !/^\s*</.test(texts[i]) && (cache[c[0]] = texts[i]));
+    if (!have.length) { out.innerHTML = `<p class="empty">文書を読み込めませんでした。</p>`; return; }
+    sel.innerHTML = have.map(([p, t]) => `<option value="${p}">${t}</option>`).join("");
+    let cur = null; try { cur = localStorage.getItem("doc"); } catch (e) {}
+    const latest = [...have].reverse().find(([p]) => /\/F\d\.md$/.test(p));
+    sel.value = cache[cur] ? cur : (latest || have[0])[0];
+    show(sel.value);
+    sel.addEventListener("change", () => show(sel.value));
+  });
 })();
 </script>

@@ -71,7 +71,7 @@ Artifact ツールで、アプリを同じ URL のまま更新する:
 
 - `url`: https://claude.ai/artifact/QuYyaTsj7d7JyNnnL64GfV
 - `file_path`: `sim/society/app/index.html`
-- `files`: `{"app_data.json": "sim/society/data/app_data.json", "replay3d.js": "sim/society/app/replay3d.js"}`
+- `files`: `{"app_data.json": "sim/society/data/app_data.json", "replay3d.js": "sim/society/app/replay3d.js"}` に加えて、この実行で書いたり直したりした評価の文書を、同じ道筋で入れる (例: `"docs/society_phase/F3.md": "docs/society_phase/F3.md"`)。アプリの「記録と評価」タブで読める
 
 公開が「新しい版がある」と断られたら、公開中のページと app_data.json を読んでから、もう一度公開する。
 
