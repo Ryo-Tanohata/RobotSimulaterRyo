@@ -4,10 +4,13 @@
   python sim/society/step.py status              今どの段階か (次に何をするか) を表示
   python sim/society/step.py day                 1 日を進める → 夕方のお題を作る
   python sim/society/step.py evening             夕方の答えを反映 (話す・分ける・食事・夜の危険) → 夜のお題を作る
-  python sim/society/step.py night               夜の答えを反映 (知識・掟・明日の予定) → アプリ用のデータを書き出す
+  python sim/society/step.py night               夜の答えを反映 (知識・掟・明日の予定) → フェーズの判定 → アプリ用のデータを書き出す
+  python sim/society/step.py resume              フェーズが進んで一時停止しているのを解く (本人が評価したあと)
 
 お題は data/prompts/日/段階/名前.md、答えは data/answers/日/段階/名前.json に置く。
 段階は state.json の phase に記録するので、途中で止まっても続きから再開できる。
+フェーズ (狩猟採集 → 農耕、docs/society_phase_plan.md) が進むと state.json の hold が立ち、day は進まなくなる。
+環境変数 SOC_DATA でデータの置き場所を変えられる (試験用)。
 """
 import argparse
 import json
@@ -17,9 +20,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 import characters  # noqa: E402
 import knowledge  # noqa: E402
+import phase  # noqa: E402
 import world  # noqa: E402
 
-DATA = Path(__file__).parent / "data"
+import os  # noqa: E402
+
+DATA = Path(os.environ["SOC_DATA"]) if os.environ.get("SOC_DATA") else Path(__file__).parent / "data"
 STATE = DATA / "state.json"
 
 
@@ -109,6 +115,8 @@ def export(state):
         "events": ev_recent, "laws": state.get("laws", []),
         "knowledge_log": state.get("knowledge_log", [])[-300:], "stats": state["stats"],
         "days": day_summaries(state),
+        "era": state.get("era_info") or {"era": "F1", "name": phase.ERAS["F1"]}, "era_log": state.get("era_log", []),
+        "hold": bool(state.get("hold")), "store": world.food_words(phase._store_kinds(state)),
     }
     (DATA / "app_data.json").write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print("アプリ用のデータ:", (DATA / "app_data.json").relative_to(DATA.parent))
@@ -116,7 +124,7 @@ def export(state):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export"])
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume"])
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
     a = ap.parse_args()
@@ -138,12 +146,25 @@ def main():
         nxt = {"day": "day (1 日を進める)", "evening": "夕方の答えを集めて evening", "night": "夜の答えを集めて night"}[state["phase"]]
         alive = [p["name"] for p in state["people"] if p["alive"]]
         print(f"{state['day']} 日目 / 段階 {state['phase']} / 次: {nxt} / 生きている人: {'、'.join(alive)}")
+        info = state.get("era_info") or {}
+        print(f"フェーズ: {state.get('era', 'F1')} {phase.ERAS[state.get('era', 'F1')]} / 次の条件: {info.get('next', '-')}")
+        if state.get("hold"):
+            print("一時停止中: フェーズが進んだので評価待ち (再開は resume)")
         if state["phase"] in ("evening", "night"):
             print(f"お題: {pdir(state, state['phase'], 'prompts').relative_to(DATA.parent)}")
         return
     if a.cmd == "export":
         export(state)
         return
+    if a.cmd == "resume":
+        state["hold"] = False
+        save(state)
+        export(state)
+        print("再開した")
+        return
+    if a.cmd == "day" and state.get("hold"):
+        print(f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
+        sys.exit(3)
     if a.cmd != state["phase"]:
         sys.exit(f"今の段階は {state['phase']} です ({a.cmd} はまだできない)")
 
@@ -154,8 +175,8 @@ def main():
         save(state)
         write_prompts(state, "evening")
     elif a.cmd == "evening":
-        gives, tonight = characters.apply_evening(state, read_answers(state, "evening"))
-        world.evening(state, gives)
+        gives, tonight, stores, takes = characters.apply_evening(state, read_answers(state, "evening"))
+        world.evening(state, gives, stores, takes)
         state["tonight"] = {n: h for n, h in tonight.items()}
         state["phase"] = "night"
         save(state)
@@ -164,6 +185,11 @@ def main():
         characters.apply_night(state, read_answers(state, "night"))
         state["phase"] = "day"
         state["tonight"] = {}
+        if phase.check(state):
+            state["hold"] = True
+            e = state["era_log"][-1]
+            world.log(state, "フェーズ", None, f"フェーズが {e['era']} ({phase.ERAS[e['era']]}) に進んだ")
+            print(f"* フェーズが {e['era']} ({phase.ERAS[e['era']]}) に進んだ → 一時停止 (評価待ち)")
         save(state)
         export(state)
         for e in state["events"]:

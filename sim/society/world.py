@@ -27,8 +27,13 @@ MEAT_KCAL = 18000         # 【仮定】大きな獲物 1 頭の肉
 MEAT_DAYS = 2             # 【仮定】肉が食べられる日数 (その後は腐る)
 FRUIT_KCAL, TUBER_KCAL = 100, 250  # 【仮定】1 つ (ひとつかみ) あたり
 # キャラクターには kcal を見せず、狩猟採集民の研究で主な食べ物とされるものの数え方で見せる (kcal は内部の計算だけ)
-UNITS = {"木の実": ("つかみ", FRUIT_KCAL), "芋": ("本", TUBER_KCAL), "肉": ("切れ", 600)}
-FOOD_NAME = {"木の実": "木の実", "芋": "芋", "肉": "ルクの肉"}
+UNITS = {"木の実": ("つかみ", FRUIT_KCAL), "芋": ("本", TUBER_KCAL), "肉": ("切れ", 600),
+         "魚": ("匹", 300), "ピク": ("匹", 800), "草の種": ("つかみ", 80), "干し肉": ("切れ", 500)}
+FOOD_NAME = {"木の実": "木の実", "芋": "芋", "肉": "ルクの肉", "魚": "魚", "ピク": "ピクの肉", "草の種": "草の種", "干し肉": "干し肉"}
+# 【仮定】食べられる日数 (これを過ぎると腐る)。入れ物を持っていると、木の実・芋は 2 倍もつ。草の種は腐らない
+SPOIL = {"木の実": 4, "芋": 8, "肉": 2, "魚": 1, "ピク": 2, "草の種": 9999, "干し肉": 30}
+PLANT_FOODS = ("木の実", "芋", "草の種")
+MEATS = ("肉", "魚", "ピク")
 
 
 def count_of(kind, kcal):
@@ -176,6 +181,19 @@ def place_of(state, pid):
     return state["places"][0]
 
 
+def _rot(foods, day, container):
+    """腐った食べ物を取り除く。戻り値 {kind: kcal}"""
+    out, keep = {}, []
+    for f in foods:
+        limit = SPOIL.get(f["kind"], 4) * (2 if container and f["kind"] in PLANT_FOODS else 1)
+        if day - f["day"] >= limit:
+            out[f["kind"]] = out.get(f["kind"], 0) + f["kcal"]
+        else:
+            keep.append(f)
+    foods[:] = keep
+    return out
+
+
 def log(state, kind, who, text, **data):
     e = {"id": state["next_event"], "day": state["day"], "type": kind, "who": who, "text": text}
     if data:
@@ -217,10 +235,20 @@ def simulate_day(state):
         pr["x"] = min(W - 1, max(0, pr["x"] + rng.randint(-8, 8)))
         pr["y"] = min(H - 1, max(0, pr["y"] + rng.randint(-8, 8)))
 
-    # 植物の実りと回復、種から育つ
+    # 草の種 (固い殻で腐りにくい) が実る草地。この仕組みを足す前の世界にも、同じ乱数で足す
+    if not any(q["kind"] == "草の種" for q in state["plants"]):
+        grng = random.Random(state["seed"] * 31 + 5)
+        for y in range(H):
+            for x in range(W):
+                if state["terrain"][y][x] == "g" and grng.random() < 0.04:
+                    state["plants"].append({"id": len(state["plants"]), "kind": "草の種", "x": x, "y": y, "amount": 10, "max": 15,
+                                            "seasons": ["夏", "秋"], "regrow": 1.0})
+    # 植物の実りと回復。冬は木の実がしぼみ、芋も育ちにくい
     for pl in state["plants"]:
-        if sea in pl["seasons"]:
-            pl["amount"] = min(pl["max"], pl["amount"] + pl["regrow"])
+        if sea == "冬" and pl["kind"] == "木の実":
+            pl["amount"] *= 0.9
+        elif sea in pl["seasons"]:
+            pl["amount"] = min(pl["max"], pl["amount"] + pl["regrow"] * (0.3 if sea == "冬" else 1))
     for sd in list(state["planted"]):
         if day - sd["day"] >= 20:
             state["plants"].append({"id": len(state["plants"]), "kind": "木の実", "x": sd["x"], "y": sd["y"],
@@ -258,7 +286,7 @@ def simulate_day(state):
                 if rng.random() < 0.5 + 0.4 * p["skills"]["採集"]:
                     n = min(q["amount"], rng.randint(1, 4))
                     q["amount"] -= n
-                    kcal = n * (FRUIT_KCAL if q["kind"] == "木の実" else TUBER_KCAL)
+                    kcal = n * UNITS[q["kind"]][1]
                     p["food"].append({"kind": q["kind"], "kcal": kcal, "day": day})
                     got += kcal
                     by_kind[q["kind"]] = by_kind.get(q["kind"], 0) + kcal
@@ -290,6 +318,10 @@ def simulate_day(state):
                 p["items"].append("槍")
                 res["got"].append("槍")
                 res["events"].append(log(state, "道具", p["name"], f"{p['name']} が槍を作った"))
+            elif "鋭い石" not in p["items"] and "入れ物" not in p["items"] and rng.random() < 0.2 + 0.4 * p["skills"]["道具"]:
+                p["items"].append("入れ物")  # 草や枝を編んだもの
+                res["got"].append("入れ物")
+                res["events"].append(log(state, "道具", p["name"], f"{p['name']} が草や枝を編んで入れ物を作った"))
             else:
                 res["events"].append(log(state, "道具", p["name"], f"{p['name']} は道具づくりを試したがうまくいかなかった"
                                          + ("" if "鋭い石" in p["items"] else " (材料の石がない)")))
@@ -323,9 +355,21 @@ def simulate_day(state):
         herd = _near(state["herds"], pl["x"], pl["y"], 14)
         names = [p["name"] for p, _ in group]
         hours = min(h for _, h in group)
-        if not herd or herd[0]["count"] < 2:
-            for p, _ in group:
-                p["today"]["events"].append(log(state, "狩り", p["name"], f"{'、'.join(names)} は {pl['label']} で狩りをしたが、獲物がいなかった"))
+        if not herd or herd[0]["count"] < 2:  # ルクがいなければ、川の近くでは魚、ほかでは小さな獲物 (ピク) をとる。1 人でもとれる
+            river = any(state["terrain"][y][x] == "r" for y in range(max(0, pl["y"] - 2), min(H, pl["y"] + 3))
+                        for x in range(max(0, pl["x"] - 2), min(W, pl["x"] + 3)))
+            kind = "魚" if river else "ピク"
+            for p, h in group:
+                rate = (0.12 if river else 0.06) * (1 + p["skills"]["狩り"] + (0.5 if "槍" in p["items"] else 0))
+                caught = sum(1 for _ in range(int(h)) if rng.random() < rate)
+                p["skills"]["狩り"] = round(min(1, p["skills"]["狩り"] + 0.01 * h), 3)
+                if caught:
+                    p["food"].append({"kind": kind, "kcal": caught * UNITS[kind][1], "day": day})
+                    what = "魚をとった" if river else "小さな獲物 (ピク) をとった"
+                    text = f"{p['name']} が {pl['label']} で{what} ({FOOD_NAME[kind]} {caught} 匹)"
+                else:
+                    text = f"{p['name']} は {pl['label']} で狩りをしたが、何もとれなかった"
+                p["today"]["events"].append(log(state, "狩り", p["name"], text, catch=kind if caught else None))
             continue
         skill = sum(p["skills"]["狩り"] + (0.3 if "槍" in p["items"] else 0) for p, _ in group)
         per_h = 0.015 * (1 + 2 * skill) * (2.5 if len(group) >= 2 else 1)
@@ -350,13 +394,53 @@ def simulate_day(state):
     return list(range(first, state["next_event"]))
 
 
-def evening(state, gives):
+def _move_food(src, dst, kind, kcal):
+    """src の食べ物から kind を kcal 分、dst へ移す (古いものから)。戻り値: 移した量 {kind: kcal}"""
+    moved, by = 0, {}
+    for f in sorted(src, key=lambda f: f["day"]):
+        if (kind and f["kind"] != kind) or moved >= kcal:
+            continue
+        take = min(f["kcal"], kcal - moved)
+        f["kcal"] -= take
+        dst.append({"kind": f["kind"], "kcal": take, "day": f["day"]})
+        moved += take
+        by[f["kind"]] = by.get(f["kind"], 0) + take
+    src[:] = [f for f in src if f["kcal"] > 0]
+    return by
+
+
+def _kcal_of(g):
+    kind = {"ルクの肉": "肉", "ピクの肉": "ピク"}.get(g.get("food"), g.get("food"))
+    if kind in UNITS:
+        return kind, int(g.get("count", 0) or 0) * UNITS[kind][1]
+    return None, int(g.get("kcal", 0) or 0)
+
+
+def evening(state, gives, stores=(), takes=()):
     """夕方: 分け合い (gives = [{"from","to","food","count"}]、古い形の {"kcal"} も読める) → 食事 → 夜の危険 → 1 日の終わり"""
     day = state["day"]
     rng = random.Random(state["seed"] * 7919 + day)
     people = {p["name"]: p for p in state["people"] if p["alive"]}
     first = state["next_event"]
     shares = 0
+    state.setdefault("store", [])
+    stored_acts = 0
+    # キャンプの蓄えに入れる / 蓄えから取る (stores / takes = [{"who","food","count"}])
+    for g in stores:
+        p = people.get(g.get("who"))
+        kind, kcal = _kcal_of(g)
+        if p and kcal > 0:
+            by = _move_food(p["food"], state["store"], kind, kcal)
+            if by:
+                stored_acts += 1
+                log(state, "蓄える", p["name"], f"{p['name']} がキャンプの蓄えに {food_words(by)} を入れた", food=food_words(by))
+    for g in takes:
+        p = people.get(g.get("who"))
+        kind, kcal = _kcal_of(g)
+        if p and kcal > 0:
+            by = _move_food(state["store"], p["food"], kind, kcal)
+            if by:
+                log(state, "蓄えから取る", p["name"], f"{p['name']} がキャンプの蓄えから {food_words(by)} を取った", food=food_words(by))
     for g in gives:
         a, b = people.get(g.get("from")), people.get(g.get("to"))
         kind = {"ルクの肉": "肉"}.get(g.get("food"), g.get("food"))
@@ -384,7 +468,7 @@ def evening(state, gives):
             words = food_words(moved_by)
             log(state, "分ける", a["name"], f"{a['name']} が {b['name']} に {words} を分けた", to=b["name"], kcal=moved, food=words)
 
-    eaten_total = 0
+    eaten_total, eaten_by_kind = 0, {}
     for p in people.values():
         need = p["today"]["spent"] if p["today"] else BASE_KCAL
         eat = 0
@@ -394,11 +478,21 @@ def evening(state, gives):
             take = min(f["kcal"], min(EAT_MAX, need + 800) - eat)
             f["kcal"] -= take
             eat += take
+            eaten_by_kind[f["kind"]] = eaten_by_kind.get(f["kind"], 0) + take
         p["food"] = [f for f in p["food"] if f["kcal"] > 0]
-        rotten = sum(f["kcal"] for f in p["food"] if f["kind"] == "肉" and day - f["day"] >= MEAT_DAYS)
+        # 火が残っているキャンプでは、食べ残した肉や魚が火のそばで干し肉になる (長くもつ)
+        if state["camp"]["fire"] > 0:
+            dried = {}
+            for f in p["food"]:
+                if f["kind"] in MEATS:
+                    dried[f["kind"]] = dried.get(f["kind"], 0) + f["kcal"]
+                    f["kind"], f["kcal"], f["day"] = "干し肉", round(f["kcal"] * 0.8), day
+            if dried:
+                stored_acts += 1
+                log(state, "干す", p["name"], f"{p['name']} の食べ残した {food_words(dried)} が、火のそばで干し肉になった", food=food_words(dried))
+        rotten = _rot(p["food"], day, "入れ物" in p["items"])
         if rotten:
-            log(state, "腐る", p["name"], f"{p['name']} のルクの肉 {count_of('肉', rotten)} 切れが腐った", kcal=rotten)
-        p["food"] = [f for f in p["food"] if not (f["kind"] == "肉" and day - f["day"] >= MEAT_DAYS)]
+            log(state, "腐る", p["name"], f"{p['name']} の {food_words(rotten)} が腐った", kcal=sum(rotten.values()))
         p["reserve"] = min(RESERVE_MAX, p["reserve"] + eat - need)
         p["hunger"] = round(min(1, max(0, (RESERVE_START - p["reserve"]) / (RESERVE_START - RESERVE_DEATH))), 2)
         eaten_total += eat
@@ -423,6 +517,10 @@ def evening(state, gives):
         elif state["camp"]["fire"] > 0:
             log(state, "夜", None, "夜、ザガが近くに来たが、火を嫌って近づかなかった")
 
+    rotten = _rot(state["store"], day, False)
+    if rotten:
+        log(state, "腐る", None, f"キャンプの蓄えの {food_words(rotten)} が腐った", kcal=sum(rotten.values()))
     state["stats"].append({"day": day, "alive": len(alive), "eaten": eaten_total, "shares": shares,
-                           "fire": state["camp"]["fire"] > 0})
+                           "fire": state["camp"]["fire"] > 0, "eaten_by_kind": eaten_by_kind, "stored_acts": stored_acts,
+                           "store": sum(f["kcal"] for f in state["store"])})
     return list(range(first, state["next_event"]))

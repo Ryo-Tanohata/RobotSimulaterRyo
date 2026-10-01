@@ -15,8 +15,8 @@
     { key: "night", label: "夜", t0: 21.5, t1: 22.5, sec: 5 },
   ];
   const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "けが"];
-  const EVE_EVENTS = ["話す", "分ける"];
-  const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ"];
+  const EVE_EVENTS = ["話す", "分ける", "蓄える", "蓄えから取る"];
+  const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ"];
 
   let S = null; // 状態
 
@@ -234,10 +234,12 @@
     if (seg.key === "back" || seg.key === "eve" || seg.key === "night") shown = P.work.slice(-3);
     if (seg.key === "eve") {
       const k = Math.floor(u * P.eve.length);
-      P.eve.slice(0, k + 1).forEach((e) => { if (e.type === "分ける") shown.push(e); });
+      P.eve.slice(0, k + 1).forEach((e) => { if (e.type !== "話す") shown.push(e); });
       const e = P.eve[Math.min(k, P.eve.length - 1)];
       if (e && e.type === "話す") bubbles[e.who] = e.text.replace(/^.*?「/, "「");
       if (e && e.type === "分ける") bubbles[e.who] = `（${e.data.to} に ${e.data.food || "食べ物"} を分ける）`;
+      if (e && e.type === "蓄える") bubbles[e.who] = `（蓄えに ${e.data.food || "食べ物"} を入れる）`;
+      if (e && e.type === "蓄えから取る") bubbles[e.who] = `（蓄えから ${e.data.food || "食べ物"} を取る）`;
     }
     if (seg.key === "night") shown = P.night.length ? P.night : [{ text: "静かな夜" }];
     S.toast.innerHTML = shown.slice(-4).map((e) => `<div>${esc(plain(e.text))}</div>`).join("");

@@ -13,7 +13,7 @@ from world import ACTIVITIES, food_words, holdings, season
 RULES = """あなたは、ある小さな世界に暮らす一人の人間を演じます。
 - この世界の外の知識 (現実の地名・国・歴史・宗教・王・お金 など) は持っていない前提で考えてください
 - 自分が経験したこと、聞いたこと、覚えていることだけをもとに考えてください
-- この世界の人は「カロリー」「kcal」という考えを知りません。食べ物の量は「木の実 5 つかみ」「芋 2 本」「ルクの肉 3 切れ」のように、食べ物の名前と数で考えて話してください
+- この世界の人は「カロリー」「kcal」という考えを知りません。食べ物の量は「木の実 5 つかみ」「芋 2 本」「魚 3 匹」のように、食べ物の名前と数で考えて話してください
 - 答えは JSON だけを出力してください (前後に説明を書かない)。JSON の中の文章はすべて日本語で書いてください"""
 
 
@@ -33,7 +33,8 @@ def _me(state, p):
             f"おなか: {hunger} / 疲れ {p['fatigue']:.1f} / けが {'あり' if p['injured'] else 'なし'}\n"
             f"持っている食べ物: {food_words(hold)}" + (" (ルクの肉は 2 日で腐る)" if hold.get("肉") else "") + "\n"
             + (f"持ち物: {'・'.join(p['items'])}\n" if p["items"] else "")
-            + "1 日に食べる量の目安: 木の実なら 20 つかみ、芋なら 8 本、ルクの肉なら 3 切れ\n"
+            + "1 日に食べる量の目安: 木の実なら 20 つかみ、芋なら 8 本、ルクの肉なら 3 切れ、魚なら 7 匹\n"
+            + f"キャンプの蓄え (誰でも入れたり取ったりできる): {food_words(holdings({'food': state.get('store', [])}))}\n"
             f"仲間への信頼 (-1〜+1): {trust}\n")
 
 
@@ -57,7 +58,7 @@ def _today(state, p):
         if i in ev:
             lines.append(f"- [出来事 {i}] {ev[i]['text']}")
     others = [e for e in state["events"] if e["day"] == state["day"] and e["id"] not in t.get("events", [])
-              and e["type"] in ("狩り", "分ける", "けが", "死", "火", "育つ", "夜", "腐る") and e.get("who") != p["name"]]
+              and e["type"] in ("狩り", "分ける", "けが", "死", "火", "育つ", "夜", "腐る", "蓄える", "蓄えから取る", "干す") and e.get("who") != p["name"]]
     if others:
         lines.append("キャンプに戻って見聞きしたこと:")
         lines += [f"- [出来事 {e['id']}] {e['text']}" for e in others[-8:]]
@@ -88,10 +89,12 @@ def evening_prompt(state, p):
 ## いま
 夕方。キャンプの火のまわりに {'、'.join(names)} がいる。
 話したいことがあれば話してください (0〜2 つ。相手は仲間の名前か「みんな」)。
-持っている食べ物を誰かに分けるなら、相手・食べ物の種類 (木の実 / 芋 / ルクの肉)・数を書いてください (分けなくてもよい)。
+持っている食べ物を誰かに分けるなら、相手・食べ物の名前・数を書いてください (分けなくてもよい)。
+キャンプの蓄えに入れる (store) ことも、蓄えから取る (take) こともできます (しなくてもよい)。
 
 ## 答えの形 (JSON)
-{{"say": [{{"to": "みんな", "text": "..."}}], "give": [{{"to": "名前", "food": "芋", "count": 2}}]}}"""
+{{"say": [{{"to": "みんな", "text": "..."}}], "give": [{{"to": "名前", "food": "芋", "count": 2}}],
+ "store": [{{"food": "木の実", "count": 3}}], "take": [{{"food": "芋", "count": 1}}]}}"""
 
 
 def night_prompt(state, p, tonight_heard, gifts):
@@ -158,7 +161,7 @@ def apply_evening(state, answers):
     """夕方の答え {名前: 答え} → 話す (出来事に記録し、聞き手に届ける) と分ける (の予定)"""
     from world import log
     alive = {p["name"]: p for p in _alive(state)}
-    gives, tonight = [], {n: [] for n in alive}
+    gives, tonight, stores, takes = [], {n: [] for n in alive}, [], []
     for name, raw in answers.items():
         a = parse(raw)
         if name not in alive:
@@ -177,9 +180,15 @@ def apply_evening(state, answers):
         for g in (a.get("give") or [])[:len(alive)]:
             if g.get("to") in alive:
                 gives.append({"from": name, "to": g["to"], "food": g.get("food"), "count": g.get("count", 0), "kcal": g.get("kcal", 0)})
+        for g in (a.get("store") or [])[:4]:
+            if isinstance(g, dict):
+                stores.append({"who": name, "food": g.get("food"), "count": g.get("count", 0)})
+        for g in (a.get("take") or [])[:4]:
+            if isinstance(g, dict):
+                takes.append({"who": name, "food": g.get("food"), "count": g.get("count", 0)})
     for p in alive.values():
         p["heard"] = p["heard"][-30:]
-    return gives, tonight
+    return gives, tonight, stores, takes
 
 
 def gifts_for(state, name):
