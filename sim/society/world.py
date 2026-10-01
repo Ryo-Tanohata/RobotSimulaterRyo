@@ -55,7 +55,8 @@ RESERVE_START, RESERVE_MAX, RESERVE_DEATH = 10000, 20000, -15000  # 【仮定】
 
 TERRAIN = {"g": "草原", "f": "林", "r": "川", "h": "丘"}
 INITIAL_NAMES = ["ルオ", "セナ", "タヒ", "ウィロ", "イサ"]  # 現実の言葉と重ならない架空の名前
-ACTIVITIES = ["採集", "狩り", "探索", "休む", "道具づくり", "火おこし", "種まき"]
+ACTIVITIES = ["採集", "狩り", "探索", "休む", "道具づくり", "火おこし", "種まき", "キャンプを移す"]
+GATHER_RADIUS = 8  # 採集で探せる範囲 (マス)。F2 の 1 回目の全滅を受けて 5 → 8 (2026-10-01)
 
 
 def season(day):
@@ -154,7 +155,7 @@ def make_places(state):
     cx, cy, t = state["camp"]["x"], state["camp"]["y"], state["terrain"]
     places = [{"id": "camp", "label": "キャンプ", "x": cx, "y": cy}]
     for kind, code in (("林", "f"), ("草原", "g"), ("丘", "h"), ("川", "r")):
-        for r in (12, 28):
+        for r in (12, 28, 45):
             for ang, dname in ((0, "東"), (90, "南"), (180, "西"), (270, "北")):
                 a = math.radians(ang)
                 best = None
@@ -192,6 +193,37 @@ def _rot(foods, day, container):
             keep.append(f)
     foods[:] = keep
     return out
+
+
+def _move_camp(state, day):
+    """半分を超える人が同じ場所に「キャンプを移す」を選んでいたら、キャンプ (と蓄え) をそこへ移す"""
+    alive = [p for p in state["people"] if p["alive"]]
+    votes = {}
+    for p in alive:
+        p["moved_today"] = False
+        plan = p.get("plan") or {}
+        if plan.get("activity") == "キャンプを移す" and plan.get("place") not in (None, "camp"):
+            votes.setdefault(plan["place"], []).append(p)
+    if not votes:
+        return
+    pid, group = max(votes.items(), key=lambda kv: len(kv[1]))
+    if len(group) * 2 <= len(alive):
+        return
+    pl = place_of(state, pid)
+    x, y = pl["x"], pl["y"]
+    for dx, dy in ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1), (2, 0), (-2, 0)):
+        if 0 <= x + dx < W and 0 <= y + dy < H and state["terrain"][y + dy][x + dx] != "r":
+            x, y = x + dx, y + dy
+            break
+    old = pl["label"]
+    state["camp"].update({"x": x, "y": y, "fire": 0})
+    state["camp_moves"] = state.get("camp_moves", 0) + 1
+    state["camp_since"] = day
+    for p in alive:
+        p["moved_today"] = True
+        p["plan"] = {"activity": "キャンプを移す", "place": "camp", "with": []}
+    state["places"] = make_places(state)
+    log(state, "移る", None, f"{'、'.join(p['name'] for p in group)} の考えで、キャンプを {old} へ移した (蓄えも運んだ)", by=[p["name"] for p in group])
 
 
 def log(state, kind, who, text, **data):
@@ -243,6 +275,17 @@ def simulate_day(state):
                 if state["terrain"][y][x] == "g" and grng.random() < 0.04:
                     state["plants"].append({"id": len(state["plants"]), "kind": "草の種", "x": x, "y": y, "amount": 10, "max": 15,
                                             "seasons": ["夏", "秋"], "regrow": 1.0})
+    # 食べ物のつり合いの見直し (F2 の 1 回目で、キャンプの近くを採り尽くして全滅したため。2026-10-01)
+    if not state.get("balance_v2"):
+        for q in state["plants"]:
+            if q["kind"] == "木の実":
+                q["regrow"] = max(q["regrow"], 2.5)
+            elif q["kind"] == "芋":
+                q["regrow"] = max(q["regrow"], 0.6)
+        state["balance_v2"] = True
+        state["places"] = make_places(state)
+    _move_camp(state, day)
+    camp = state["camp"]
     # 植物の実りと回復。冬は木の実がしぼみ、芋も育ちにくい
     for pl in state["plants"]:
         if sea == "冬" and pl["kind"] == "木の実":
@@ -272,7 +315,7 @@ def simulate_day(state):
         work_h = max(0.0, (DAY_END - DAY_START) - travel_h - 1)
         # 疲れていると働ける時間が減り、疲れや空腹で手際が落ちる (評価 F1 の指摘)
         work_h *= 1 - 0.6 * max(0.0, p["fatigue"] - 0.5)
-        knack = (1 - 0.5 * max(0.0, p["fatigue"] - 0.4)) * (1 - 0.5 * max(0.0, p["hunger"] - 0.5))  # ある程度を超えてから効く
+        knack = (1 - 0.5 * max(0.0, p["fatigue"] - 0.4)) * (1 - 0.5 * max(0.0, p["hunger"] - 0.7))  # ある程度を超えてから効く
         spent = BASE_KCAL + _walk_kcal(p, dist)
         res = {"activity": act, "place": pl["label"], "place_id": pl["id"], "walked_m": round(dist),
                "work_h": round(work_h, 1), "got": [], "spent": round(spent), "events": []}
@@ -282,12 +325,12 @@ def simulate_day(state):
         if act == "採集":
             got, by_kind = 0, {}
             for _ in range(int(work_h)):
-                cands = [q for q in _near(state["plants"], pl["x"], pl["y"], 5) if q["amount"] >= 1 and sea in q["seasons"]]
+                cands = [q for q in _near(state["plants"], pl["x"], pl["y"], GATHER_RADIUS) if q["amount"] >= 1 and sea in q["seasons"]]
                 if not cands:
                     break
                 q = rng.choice(cands)
                 if rng.random() < (0.5 + 0.4 * p["skills"]["採集"]) * knack:
-                    n = min(q["amount"], rng.randint(1, 4))
+                    n = min(q["amount"], rng.randint(2, 6))  # 1 時間に採れる量 (F2 の 1 回目の全滅を受けて 1〜4 → 2〜6)
                     q["amount"] -= n
                     kcal = n * UNITS[q["kind"]][1]
                     p["food"].append({"kind": q["kind"], "kcal": kcal, "day": day})
@@ -302,7 +345,9 @@ def simulate_day(state):
                                      f"{p['name']} は {pl['label']} で採集したが、何も見つからなかった", kcal=got))
         elif act == "狩り":
             hunters.setdefault(pl["id"], []).append((p, work_h))
-        elif act == "探索":
+        elif act == "キャンプを移す" and p.get("moved_today"):
+            res["events"].append(log(state, "移る", p["name"], f"{p['name']} もみんなと新しいキャンプへ移った"))
+        elif act in ("探索", "キャンプを移す"):  # キャンプを移す人が少なければ、その場所の下見になる
             found = []
             if rng.random() < 0.3:
                 p["items"].append("鋭い石")

@@ -38,6 +38,7 @@ def indicators(state):
         "lasting_store_days": round((last[-1].get("store_lasting", 0) if last else 0) / 9000, 1),  # 腐りにくい蓄えが 5 人の何日分か
         "store": food_words(_store_kinds(state)),
         "camp_moves": state.get("camp_moves", 0),
+        "camp_days": state["day"] - state.get("camp_since", 0),  # 今のキャンプに何日いるか
         "sown_trees": sum(1 for q in state["plants"] if q.get("sown")),
         "sown_share": round(sown_food / total, 2),
     }

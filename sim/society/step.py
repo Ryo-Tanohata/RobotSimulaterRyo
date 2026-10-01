@@ -162,6 +162,9 @@ def main():
         export(state)
         print("再開した")
         return
+    if a.cmd == "day" and not any(p["alive"] for p in state["people"]):
+        print("生きている人がいないので、進めない")
+        sys.exit(4)
     if a.cmd == "day" and state.get("hold"):
         print(f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
         sys.exit(3)
