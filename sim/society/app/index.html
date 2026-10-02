@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>川辺の五人</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -215,7 +216,7 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
     <div id="p-graph" role="tabpanel" hidden><div class="charts" id="charts"></div></div>
     <div id="p-walk" role="tabpanel" hidden>
       <p class="explain">5 人の歩く速さと、歩くのに使うエネルギーは、別に作った 2 足歩行の物理シミュレーションで測った値です (上から 0.6 / 1.0 / 1.4 m/s)。人型の体に歩き方のお手本を与え、強化学習で歩けるようにしたものです。</p>
-      <video src="walk.mp4" controls muted playsinline preload="metadata"></video>
+      <video controls muted playsinline preload="metadata"><source src="walk.mp4" type="video/mp4"><source src="../../../docs/media/bipedal_human_walk.mp4" type="video/mp4"></video>
     </div>
     <div id="p-docs" role="tabpanel" hidden>
       <p class="explain">フェーズごとの評価と、計画書です。評価の下書きは定期実行の Claude が書き、「本人の評価」の章はあなたの評価を書き写します。</p>
@@ -373,8 +374,11 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", rerender);
 new MutationObserver(rerender).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
 selectTab = tabs();
+// 公開ページ (アーティファクト) ではファイルが同じ場所に、GitHub Pages ではリポジトリと同じ並びで置かれる。
+// 最初の場所になければ、リポジトリでの場所を読む
+const fetchAny = (paths, opt) => paths.reduce((p, u) => p.catch(() => fetch(u, opt).then((r) => { if (!r.ok) throw new Error(r.status); return r; })), Promise.reject());
 Promise.all([
-  fetch("app_data.json", { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetchAny(["app_data.json", "../data/app_data.json"], { cache: "no-store" }).then((r) => r.json()),
   fetch("walk_cycle.json").then((r) => (r.ok ? r.json() : null)).catch(() => null),
 ]).then(([d, w]) => { D = d; WALK = w; render(); start3d(); })
   .catch(() => { $("people").innerHTML = `<p class="empty">データ (app_data.json) を読み込めませんでした。ページを開き直してください。</p>`; });
@@ -421,7 +425,7 @@ Promise.all([
     out.querySelectorAll("table").forEach((t) => { const w = document.createElement("div"); w.className = "tbl"; t.replaceWith(w); w.appendChild(t); });
     try { localStorage.setItem("doc", path); } catch (e) {}
   };
-  Promise.all(C.map(([p]) => fetch(p, { cache: "no-store" }).then((r) => (r.ok ? r.text() : null)).catch(() => null))).then((texts) => {
+  Promise.all(C.map(([p]) => fetchAny([p, "../../../" + p], { cache: "no-store" }).then((r) => r.text()).then((t) => (/^\s*</.test(t) ? Promise.reject() : t)).catch(() => null))).then((texts) => {
     const have = C.filter((c, i) => texts[i] && !/^\s*</.test(texts[i]) && (cache[c[0]] = texts[i]));
     if (!have.length) { out.innerHTML = `<p class="empty">文書を読み込めませんでした。</p>`; return; }
     sel.innerHTML = have.map(([p, t]) => `<option value="${p}">${t}</option>`).join("");

@@ -75,6 +75,9 @@ Artifact ツールで、アプリを同じ URL のまま更新する:
 
 公開が「新しい版がある」と断られたら、公開中のページと app_data.json を読んでから、もう一度公開する。
 
+Artifact ツールがないセッション (クラウドなど) では、この手順は飛ばしてよい。GitHub Pages を有効にしてあれば、
+6 の `git push` で https://ryo-tanohata.github.io/RobotSimulaterRyo/sim/society/app/ も新しくなる (2026-10-02 追加)。
+
 ## 6. 記録
 
 `sim/society/data/run_log.md` の末尾に 1 行追記してコミットし、ここで初めて `git push` する (この実行のすべての日のコミットがまとめて上がる):
