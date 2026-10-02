@@ -79,6 +79,7 @@
 ### 3.2 学習の方式
 
 - **物理と学習の両方を GPU で**: MuJoCo Playground (MJX, JAX) + PPO。
+  **4 足の Web 版の進化戦略 (GA の仲間) から PPO に変えた理由** (2026-10-03 追記): Web 版を進化戦略にしたのは「GPU なし・CPU 4 コア・ブラウザの物理エンジン」という制約のため (勾配が要らず CPU で並べやすい。脳は約 1,700 個の重みと小さい)。2 足は 4 足よりバランスが難しく、大きな脳 (256-256-128) と大量の試行が必要と見込んだ。本人の PC の GPU が使えるようになり、MuJoCo Playground には GPU で数千体を同時に動かす物理と PPO の学習が揃っているため、PPO を選んだ (fuRo のデモの Isaac Gym + PPO、legged_gym と同じ組み合わせ)。なお Unity 版は最初から ML-Agents の PPO を使う設計
   数千体を並べて同時に学習できる (fuRo のデモと同じ考え方)。
 - このパソコン: RTX 5070 Laptop (8 GB)、Ryzen AI 7 350 (16 スレッド)、メモリ 15 GB、WSL2 の Ubuntu あり。
   JAX の GPU 版は Windows では直接動かないため **WSL2 の Ubuntu で動かす** (JAX 公式の案内どおり)。
