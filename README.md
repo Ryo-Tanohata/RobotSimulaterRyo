@@ -152,13 +152,17 @@ SCRIPT=v1 node test/record-film.mjs v1.mp4         # 別の台本 (film-script.j
 - 学習結果 (世代ごとの重み) は `web/checkpoints/*.json`、台本 (場面と字幕) は `web/src/film-script.js`
 - `web/film.html` をブラウザで開いて「再生」を押すと、動画と同じ内容をその場で計算しながら再生します
 
-## 公開ページ (GitHub Pages)
+## 結果を見るページ (Cloudflare Pages、本人だけが見られる)
 
-https://ryo-tanohata.github.io/RobotSimulaterRyo/ … 入口のページ。川辺の五人のアプリ、Web 版のシミュレーション、進化の再生画面へのリンク
-(Settings → Pages でブランチ `claude/physics-engine-robot-simulator-xmyxdn` の `/ (root)` を公開すると表示される)
+一般には公開しない (2026-10-05 に本人が決定)。リポジトリは非公開にし、Cloudflare Pages で本人だけが見られるようにする。
+入口は `index.html` (川辺の五人のアプリ、Web 版のシミュレーション、進化の再生画面へのリンク)。
 
+- Cloudflare の設定: GitHub のこのリポジトリをつなぎ、本番のブランチ `claude/physics-engine-robot-simulator-xmyxdn`、
+  ビルドコマンド `bash tools/cloudflare/build.sh`、出力ディレクトリ `_site`。見られる人は Cloudflare Access で本人だけに限る
+- Cloudflare Pages は 1 ファイル 25 MiB までなので、`docs/media` の大きい動画 4 本 (川辺の五人 3 本・動画 v3) はページに入れない
+  (リポジトリには残る)。アプリが再生するのは `sim/society/app/` の小さい版なので、表示には影響しない
 - 川辺の五人のアプリ (`sim/society/app/index.html`) は、データ (`sim/society/data/app_data.json`) と記録の文書をリポジトリの場所から読む。
-  シミュレーションを進めてプッシュすると、公開ページも新しくなる
+  シミュレーションを進めてプッシュすると、ページも新しくなる
 - 動画 (川辺の五人 3 本・動画 v3) のナレーション: **VOICEVOX:ずんだもん**。規約の確認は [docs/compliance_check.md](docs/compliance_check.md)
 
 ## 計画・要件
