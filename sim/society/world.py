@@ -267,6 +267,18 @@ def _near(items, x, y, r):
     return [i for i in items if abs(i["x"] - x) <= r and abs(i["y"] - y) <= r]
 
 
+ACT_EVENT = {"採集": "採集", "狩り": "狩り", "探索": "探索", "休む": "休む", "道具づくり": "道具", "火おこし": "火",
+             "種まき": "種まき", "住まいを建てる": "住まい", "キャンプを移す": "移る"}
+
+
+def tried_activities(state):
+    """これまでに誰かが一度でも実際にした活動 (2026-10-05 追加。夜のお題で「まだ誰も試したことのない活動」を示すため)"""
+    if "tried_acts" not in state:  # 追加する前の世界は、出来事の記録から求める
+        types = {e["type"] for e in state["events"] if isinstance(e, dict) and e.get("who")} | {e["type"] for e in state["events"] if e.get("type") == "移る"}
+        state["tried_acts"] = [a for a, t in ACT_EVENT.items() if t in types]
+    return state["tried_acts"]
+
+
 def simulate_day(state):
     """前の晩に決めた予定で、1 日を進める。戻り値: 今日の出来事の id の一覧"""
     state["day"] += 1
@@ -345,6 +357,9 @@ def simulate_day(state):
         res = {"activity": act, "place": pl["label"], "place_id": pl["id"], "walked_m": round(dist),
                "work_h": round(work_h, 1), "got": [], "spent": round(spent), "events": []}
         p["today"] = res
+        tried = tried_activities(state)
+        if act not in tried and not (act == "キャンプを移す" and not p.get("moved_today")):
+            tried.append(act)
         p["fatigue"] = min(1.0, max(0.0, p["fatigue"] + (dist / 20000) + (0.1 if act != "休む" else -0.4)))
 
         if act == "採集":
@@ -358,7 +373,14 @@ def simulate_day(state):
                     n = min(q["amount"], rng.randint(2, 6))  # 1 時間に採れる量 (F2 の 1 回目の全滅を受けて 1〜4 → 2〜6)
                     q["amount"] -= n
                     kcal = n * UNITS[q["kind"]][1]
-                    p["food"].append({"kind": q["kind"], "kcal": kcal, "day": day})
+                    item = {"kind": q["kind"], "kcal": kcal, "day": day}
+                    if q.get("sown"):  # 種をまいて育てた木からの実 (F4・F5 の判定用に印をつける。2026-10-05)
+                        item["sown"] = True
+                        near_camp = math.hypot(q["x"] - camp["x"], q["y"] - camp["y"]) <= GATHER_RADIUS
+                        h = state.setdefault("harvests", [])
+                        if near_camp and not any(r["day"] == day and r["plant"] == q["id"] for r in h):
+                            h.append({"day": day, "plant": q["id"], "who": p["name"]})
+                    p["food"].append(item)
                     got += kcal
                     by_kind[q["kind"]] = by_kind.get(q["kind"], 0) + kcal
                     if q["kind"] == "木の実" and "種" not in p["items"]:
@@ -489,7 +511,7 @@ def _move_food(src, dst, kind, kcal):
             continue
         take = min(f["kcal"], kcal - moved)
         f["kcal"] -= take
-        dst.append({"kind": f["kind"], "kcal": take, "day": f["day"]})
+        dst.append({"kind": f["kind"], "kcal": take, "day": f["day"], **({"sown": True} if f.get("sown") else {})})
         moved += take
         by[f["kind"]] = by.get(f["kind"], 0) + take
     src[:] = [f for f in src if f["kcal"] > 0]
@@ -546,7 +568,7 @@ def evening(state, gives, stores=(), takes=()):
                 break
             take = min(f["kcal"], kcal - moved)
             f["kcal"] -= take
-            b["food"].append({"kind": f["kind"], "kcal": take, "day": f["day"]})
+            b["food"].append({"kind": f["kind"], "kcal": take, "day": f["day"], **({"sown": True} if f.get("sown") else {})})
             moved += take
             moved_by[f["kind"]] = moved_by.get(f["kind"], 0) + take
         a["food"] = [f for f in a["food"] if f["kcal"] > 0]
@@ -556,7 +578,7 @@ def evening(state, gives, stores=(), takes=()):
             words = food_words(moved_by)
             log(state, "分ける", a["name"], f"{a['name']} が {b['name']} に {words} を分けた", to=b["name"], kcal=moved, food=words)
 
-    eaten_total, eaten_by_kind = 0, {}
+    eaten_total, eaten_by_kind, eaten_sown = 0, {}, 0
     for p in people.values():
         need = p["today"]["spent"] if p["today"] else BASE_KCAL
         eat = 0
@@ -567,6 +589,8 @@ def evening(state, gives, stores=(), takes=()):
             f["kcal"] -= take
             eat += take
             eaten_by_kind[f["kind"]] = eaten_by_kind.get(f["kind"], 0) + take
+            if f.get("sown"):
+                eaten_sown += take
         p["food"] = [f for f in p["food"] if f["kcal"] > 0]
         # 火が残っているキャンプでは、食べ残した肉や魚が火のそばで干し肉になる (長くもつ)
         if state["camp"]["fire"] > 0:
@@ -593,8 +617,29 @@ def evening(state, gives, stores=(), takes=()):
     # 夜: キャンプに捕食者が来ることがある。火と人数と住まいで守られる
     alive = [p for p in people.values() if p["alive"]]
     housed = state["camp"].get("dwelling_day") is not None
-    for p in alive:  # 夜に眠ると疲れが少しとれる (41〜60 日目に、休まない人の疲れが 1.0 に張り付いたため追加)。屋根の下ならもう少し
-        p["fatigue"] = round(max(0.0, p["fatigue"] - 0.15 - (0.1 if housed else 0)), 2)
+    # 雨や冷え込みの夜 (F3 で住まいが建たないため 2026-10-05 に追加。困ることだけ起き、どうすればよいかは書かない)
+    # 乱数は別にして、ほかの出来事の乱数の並びを変えない
+    wrng = random.Random(state["seed"] * 15485863 + day)
+    rainy = wrng.random() < {"春": 0.2, "夏": 0.2, "秋": 0.3, "冬": 0.35}[season(day)]
+    if rainy and alive:
+        what = "冷たい雨" if season(day) == "冬" else "雨"
+        if housed:
+            log(state, "雨", None, f"夜、{what}が降ったが、住まいの中で濡れずに眠れた")
+        else:
+            wet = {}
+            for f in state["store"]:
+                if f["kind"] in PLANT_FOODS:
+                    loss = round(f["kcal"] * 0.15)
+                    f["kcal"] -= loss
+                    wet[f["kind"]] = wet.get(f["kind"], 0) + loss
+            state["store"][:] = [f for f in state["store"] if f["kcal"] > 0]
+            text = f"夜、{what}が降り、キャンプで皆ずぶ濡れになって、よく眠れなかった"
+            if wet and food_words(wet) != "なし":
+                text += f"。蓄えの {food_words(wet)} が濡れて傷んだ"
+            log(state, "雨", None, text, kcal=sum(wet.values()))
+    for p in alive:  # 夜に眠ると疲れが少しとれる (41〜60 日目に、休まない人の疲れが 1.0 に張り付いたため追加)。屋根の下ならもう少し。雨の夜は外では眠れない
+        rest = 0.0 if (rainy and not housed) else 0.15 + (0.1 if housed else 0)
+        p["fatigue"] = round(max(0.0, p["fatigue"] - rest), 2)
     if _near(state["predators"], state["camp"]["x"], state["camp"]["y"], 20):
         risk = 0.12 * (0.2 if state["camp"]["fire"] > 0 else 1) * (0.6 if len(alive) >= 3 else 1) * (0.4 if housed else 1)
         if rng.random() < risk and alive:
@@ -615,5 +660,6 @@ def evening(state, gives, stores=(), takes=()):
                            "fire": state["camp"]["fire"] > 0, "eaten_by_kind": eaten_by_kind, "stored_acts": stored_acts,
                            "store": sum(f["kcal"] for f in state["store"]), "took": took,
                            "store_lasting": sum(f["kcal"] for f in state["store"] if f["kind"] in ("草の種", "干し肉")),
-                           "dwelling": round(state["camp"].get("dwelling", 0), 2), "housed": housed})
+                           "dwelling": round(state["camp"].get("dwelling", 0), 2), "housed": housed,
+                           "eaten_sown": eaten_sown, "rain": bool(rainy and alive)})
     return list(range(first, state["next_event"]))

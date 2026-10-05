@@ -8,7 +8,7 @@
 import json
 
 import knowledge
-from world import ACTIVITIES, SEASON_DAYS, food_words, holdings, season
+from world import ACTIVITIES, SEASON_DAYS, food_words, holdings, season, tried_activities
 
 RULES = """あなたは、ある小さな世界に暮らす一人の人間を演じます。
 - この世界の外の知識 (現実の地名・国・歴史・宗教・王・お金 など) は持っていない前提で考えてください
@@ -66,7 +66,7 @@ def _today(state, p):
         if i in ev:
             lines.append(f"- [出来事 {i}] {ev[i]['text']}")
     others = [e for e in state["events"] if e["day"] == state["day"] and e["id"] not in t.get("events", [])
-              and e["type"] in ("狩り", "分ける", "けが", "死", "火", "育つ", "夜", "腐る", "蓄える", "蓄えから取る", "干す", "住まい") and e.get("who") != p["name"]]
+              and e["type"] in ("狩り", "分ける", "けが", "死", "火", "育つ", "夜", "腐る", "蓄える", "蓄えから取る", "干す", "住まい", "雨") and e.get("who") != p["name"]]
     if others:
         lines.append("キャンプに戻って見聞きしたこと:")
         lines += [f"- [出来事 {e['id']}] {e['text']}" for e in others[-8:]]
@@ -113,6 +113,8 @@ def night_prompt(state, p, tonight_heard, gifts):
     got = "\n".join(f"- [出来事 {g['event']}] {g['from']} から {g['food']} をもらった" for g in gifts) or "(なし)"
     meeting = knowledge.is_meeting(state["day"])
     names = [q["name"] for q in _alive(state) if q is not p]
+    untried = [a for a in ACTIVITIES if a not in tried_activities(state)]  # 2026-10-05 追加。並べるだけで、よいことは書かない
+    untried = f"   (この仲間のなかで、まだ誰も試したことのない活動: {'・'.join(untried)})\n" if untried else ""
     law_part = (f"""
 ## 今日は集まりの日
 提案されている掟と、今の掟に賛成か反対かを投票してください (反対が多い掟は廃止される)。
@@ -145,7 +147,7 @@ def night_prompt(state, p, tonight_heard, gifts):
 3. 明日の予定を決める。活動は {' / '.join(ACTIVITIES)} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names)}) がいれば書く
    (「キャンプを移す」: 半分を超える人が同じ場所を選ぶと、次の日にキャンプごと (蓄えも) そこへ移る。選んだ人が少なければ、その場所を見に行くだけになる)
    (「住まいを建てる」: キャンプに、屋根と壁のある住まいを建てる。材料の木や枝は近くの林から運ぶ。一人では何日もかかる。キャンプを移すと、住まいは置いていくことになる)
-4. 今日の気持ちを一言
+{untried}4. 今日の気持ちを一言
 
 場所の一覧:
 {places}

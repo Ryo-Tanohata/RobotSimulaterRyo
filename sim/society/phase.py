@@ -26,7 +26,8 @@ def indicators(state):
                 days_by_kind[k] = days_by_kind.get(k, 0) + 1
     main = sorted((k for k, v in eaten.items() if v >= 1500), key=lambda k: -eaten[k])
     total = sum(eaten.values()) or 1
-    sown_food = 0  # 育てた植物から食べた量 (F5・F6 用。まだ記録していない)
+    sown_food = sum(s.get("eaten_sown", 0) for s in last)  # 育てた植物から食べた量 (F5・F6 用。2026-10-05 から記録)
+    since = (state.get("era_log") or [{"day": 0}])[-1]["day"]  # 今のフェーズが始まった日
     return {
         "days": len(last),
         "eaten": food_words(eaten),
@@ -43,6 +44,7 @@ def indicators(state):
         "dwelling_days": (state["day"] - state["camp"]["dwelling_day"]) if state["camp"].get("dwelling_day") is not None else 0,  # 住まいができてから何日暮らしたか
         "sown_trees": sum(1 for q in state["plants"] if q.get("sown")),
         "sown_share": round(sown_food / total, 2),
+        "harvest_days": len({h["day"] for h in state.get("harvests", []) if h["day"] > since}),  # キャンプの近くの、種をまいて育てた木から採った日数 (このフェーズ)
     }
 
 
@@ -67,7 +69,7 @@ def criteria(era, ind):
         return ("キャンプに住まいを建て、そのキャンプで 30 日以上暮らす (キャンプを移すと住まいは置いていく)",
                 ind["dwelling_days"] >= 30)
     if era == "F4":
-        return ("キャンプの近くに種をまき、育った実を 2 回以上収穫する (記録はまだない)", False)
+        return ("キャンプの近くに種をまき、育った実を 2 日以上収穫する", ind["harvest_days"] >= 2)
     if era == "F5":
         return ("7 日間に食べた量の半分以上が、育てた植物から", ind["sown_share"] >= 0.5)
     return ("(最後のフェーズ)", False)
