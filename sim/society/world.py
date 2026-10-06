@@ -56,7 +56,9 @@ RESERVE_START, RESERVE_MAX, RESERVE_DEATH = 10000, 20000, -15000  # 【仮定】
 TERRAIN = {"g": "草原", "f": "林", "r": "川", "h": "丘"}
 INITIAL_NAMES = ["ルオ", "セナ", "タヒ", "ウィロ", "イサ"]  # 現実の言葉と重ならない架空の名前
 ACTIVITIES = ["採集", "狩り", "探索", "休む", "道具づくり", "火おこし", "種まき", "住まいを建てる", "キャンプを移す"]
-DWELLING_HOURS = 40       # 住まいを建てるのに要る、のべの作業時間 (F2 の評価のあとで追加。Claude が決めた仮の数字)
+DWELLING_HOURS = 20       # 住まいを建てるのに要る、のべの作業時間 (F2 の評価のあとで追加。Claude が決めた仮の数字)。
+                          # 2026-10-06: F3 の 3 回目のあとで 40 → 20 (枝と草の簡単な小屋。本人の了承)
+AUTUMN_GROW = 2           # 【仮定】秋の実りの回復の倍率 (2026-10-06: F3 の 3 回目のあとで 1 → 2。本人の了承)
 GATHER_RADIUS = 8  # 採集で探せる範囲 (マス)。F2 の 1 回目の全滅を受けて 5 → 8 (2026-10-01)
 
 
@@ -326,7 +328,8 @@ def simulate_day(state):
         if sea == "冬" and pl["kind"] == "木の実":
             pl["amount"] *= 0.9
         elif sea in pl["seasons"]:
-            pl["amount"] = min(pl["max"], pl["amount"] + pl["regrow"] * (0.3 if sea == "冬" else 1))
+            # 2026-10-06: F3 の 3 回目のあとで、秋の実りを 2 倍にした (秋の採集が食べる量とほぼ同じで、蓄えが増えなかったため。本人の了承)
+            pl["amount"] = min(pl["max"], pl["amount"] + pl["regrow"] * {"冬": 0.3, "秋": AUTUMN_GROW}.get(sea, 1))
     for sd in list(state["planted"]):
         if day - sd["day"] >= 20:
             state["plants"].append({"id": len(state["plants"]), "kind": "木の実", "x": sd["x"], "y": sd["y"],
