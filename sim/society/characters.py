@@ -8,7 +8,9 @@
 import json
 
 import knowledge
-from world import ACTIVITIES, SEASON_DAYS, food_words, holdings, season, tried_activities
+import math
+
+from world import ACT_EVENT, ACTIVITIES, GATHER_RADIUS, SEASON_DAYS, food_words, holdings, season, tried_activities
 
 # 2026-10-06 追加 (F3 の評価 5-2。本人の了承「２つを直して再開」): 決まりの 3・4 行目。実際に起きた出来事と、話・予定・約束・掟の区別と、人が何かをする時の決まり。
 #   世界に記録のない「肉の保存実験」(火・干す の出来事は 0 件) を 100 日以上話し、「実行した」「成功した」と覚えたため。どれも世界の事実で、よいことは書かない
@@ -42,7 +44,19 @@ def _me(state, p):
             + _sowing()
             + f"キャンプの蓄え (誰でも入れたり取ったりできる): {food_words(holdings({'food': state.get('store', [])}))}\n"
             + _dwelling(state)
+            + _sown_trees(state)
             + f"仲間への信頼 (-1〜+1): {trust}\n")
+
+
+def _sown_trees(state):
+    """キャンプのそばの、種から育った木 (見ればわかる事実。2026-10-06 追加)"""
+    camp = state["camp"]
+    trees = [q for q in state["plants"] if q.get("sown") and math.hypot(q["x"] - camp["x"], q["y"] - camp["y"]) <= GATHER_RADIUS]
+    if not trees:
+        return ""
+    who = [e["data"]["sower"] for e in state["events"] if e["type"] == "育つ" and (e.get("data") or {}).get("sower")]
+    return (f"キャンプのそばに、種から育った木の実の木が {len(trees)} 本ある" + (f" ({'・'.join(dict.fromkeys(who))} が種を埋めた)" if who else "")
+            + f"。今ついている実は 約 {round(sum(q['amount'] for q in trees))} つかみ\n")
 
 
 def _dwelling(state):
@@ -146,8 +160,11 @@ def night_prompt(state, p, tonight_heard, gifts):
     got = "\n".join(f"- [出来事 {g['event']}] {g['from']} から {g['food']} をもらった" for g in gifts) or "(なし)"
     meeting = knowledge.is_meeting(state["day"])
     names = [q["name"] for q in _alive(state) if q is not p]
-    untried = [a for a in ACTIVITIES if a not in tried_activities(state)]  # 2026-10-05 追加。並べるだけで、よいことは書かない
-    untried = f"   (この仲間のなかで、まだ誰も試したことのない活動: {'・'.join(untried)})\n" if untried else ""
+    # 2026-10-05 追加。並べるだけで、よいことは書かない。2026-10-06: 亡くなった人だけがしたことのある活動 (8 日目のルオの種まきなど) も、
+    # 今いる仲間がまだしたことがなければ並べる (F4 に入って 60 日、種まきが 0 回だったため)
+    done = {e["type"] for e in state["events"] if e.get("who") in {q["name"] for q in _alive(state)}}
+    untried = [a for a in ACTIVITIES if ACT_EVENT.get(a) not in done and (a != "キャンプを移す" or a not in tried_activities(state))]
+    untried = f"   (今いる仲間のなかで、まだ誰もしたことのない活動: {'・'.join(untried)})\n" if untried else ""
     law_part = (f"""
 ## 今日は集まりの日
 提案されている掟と、今の掟に賛成か反対かを投票してください (反対が多い掟は廃止される)。
