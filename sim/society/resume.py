@@ -48,7 +48,7 @@ def build(state):
         by_era = defaultdict(Counter)
         for e in mine:
             if e.get("who") == n or e["type"] == "狩り":
-                if e["type"] in ("採集", "狩り", "探索", "休む", "住まい", "種まき", "蓄える", "蓄えから取る", "分ける", "話す"):
+                if e["type"] in ("採集", "狩り", "探索", "休む", "住まい", "種まき", "蓄える", "蓄えから取る", "木から取る", "分ける", "話す"):
                     by_era[_era_of(e["day"], eras)][e["type"]] += 1
 
         # 経歴 (年表): 初めてのこと・大きな出来事
@@ -95,7 +95,7 @@ def build(state):
                 "gather": len(gather), "gather_ok": len(g_ok), "gather_kcal": round(sum(e["data"]["kcal"] for e in g_ok)),
                 "hunt": len(hunts), "kills": len(kills),
                 "explore": counts["探索"], "rest": counts["休む"], "build": counts["住まい"], "sow": counts["種まき"],
-                "store": counts["蓄える"], "take": counts["蓄えから取る"], "talk": counts["話す"],
+                "pick": counts["木から取る"], "store": counts["蓄える"], "take": counts["蓄えから取る"], "talk": counts["話す"],
                 "gave": len(gave), "gave_to": dict(given), "received": recv,
                 "places": places.most_common(6),
             },

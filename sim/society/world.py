@@ -552,6 +552,20 @@ def _kcal_of(g):
     return None, int(g.get("kcal", 0) or 0)
 
 
+CAMP_TREE_RADIUS = 3  # 夕方にキャンプから手を伸ばして実を取れる木の範囲 (マス)。ごみ捨て場の木が育つ範囲と同じ
+
+
+def _camp_trees(state):
+    camp, sea = state["camp"], season(state["day"])
+    return [q for q in state["plants"] if q.get("sown") and q["kind"] == "木の実" and sea in q["seasons"]
+            and math.hypot(q["x"] - camp["x"], q["y"] - camp["y"]) <= CAMP_TREE_RADIUS]
+
+
+def camp_tree_fruit(state):
+    """キャンプのそばの、種から育った木に今ついている実 (つかみ)。実がなる季節だけ"""
+    return int(sum(q["amount"] for q in _camp_trees(state)))
+
+
 def evening(state, gives, stores=(), takes=()):
     """夕方: 分け合い (gives = [{"from","to","food","count"}]、古い形の {"kcal"} も読める) → 食事 → 夜の危険 → 1 日の終わり"""
     day = state["day"]
@@ -570,6 +584,22 @@ def evening(state, gives, stores=(), takes=()):
             if by:
                 stored_acts += 1
                 log(state, "蓄える", p["name"], f"{p['name']} がキャンプの蓄えに {food_words(by)} を入れた", food=food_words(by))
+    for g in [g for g in takes if g.get("tree")]:  # キャンプのそばの木から取る (2026-10-06 追加)
+        p = people.get(g.get("who"))
+        want = max(0, min(int(g.get("count", 0) or 0), 40))
+        got = 0
+        for q in sorted(_camp_trees(state), key=lambda q: -q["amount"]):
+            n = min(want - got, int(q["amount"]))
+            if p and n > 0:
+                q["amount"] -= n
+                got += n
+                h = state.setdefault("harvests", [])
+                if not any(r["day"] == day and r["plant"] == q["id"] for r in h):
+                    h.append({"day": day, "plant": q["id"], "who": p["name"]})
+        if p and got:
+            p["food"].append({"kind": "木の実", "kcal": got * FRUIT_KCAL, "day": day, "sown": True})
+            log(state, "木から取る", p["name"], f"{p['name']} がキャンプのそばの木から 木の実 {got} つかみ を取った", food=f"木の実 {got} つかみ")
+    takes = [g for g in takes if not g.get("tree")]
     for g in takes:
         p = people.get(g.get("who"))
         kind, kcal = _kcal_of(g)

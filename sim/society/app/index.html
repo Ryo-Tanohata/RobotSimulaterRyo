@@ -342,7 +342,7 @@ function renderCV() {
   const r = R.find((x) => x.name === sel.value) || R[0], w = r.work;
   const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "―");
   const row = (k, v, n) => `<tr><th>${k}</th><td${n ? ' class="n"' : ""}>${v}</td></tr>`;
-  const ACT = ["採集", "狩り", "探索", "住まい", "種まき", "休む", "蓄える", "蓄えから取る", "分ける", "話す"];
+  const ACT = ["採集", "狩り", "探索", "住まい", "種まき", "休む", "蓄える", "蓄えから取る", "木から取る", "分ける", "話す"];
   const eras = Object.keys(r.by_era);
   $("cv").innerHTML = `
     <section><h3>履歴書</h3><table>
@@ -367,6 +367,7 @@ function renderCV() {
       ${row("住まいを建てる", `${w.build} 回`)}
       ${row("種まき", `${w.sow} 回`)}
       ${row("休む", `${w.rest} 回`)}
+      ${row("キャンプのそばの木から取る", `${w.pick || 0} 回`)}
       ${row("蓄え", `入れた ${w.store} 回 ・ 取った ${w.take} 回`)}
       ${row("分ける", `分けた ${w.gave} 回 (${Object.entries(w.gave_to).map(([k, v]) => `${esc(k)} ${v}`).join("・") || "―"}) ・ 分けてもらった ${w.received} 回`)}
       ${row("話す", `${w.talk} 回`)}
