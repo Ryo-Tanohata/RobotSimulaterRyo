@@ -52,6 +52,18 @@ const page = await browser.newPage();
 await page.setViewport({ width: W, height: H, deviceScaleFactor: 1 });
 await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "light" }]);
 page.on("pageerror", (e) => console.error("page error:", e.message));
+// LIBS=フォルダ (npm で入れた three・marked の node_modules がある所): CDN に出られない環境では、CDN の代わりにそこから読む。フォントは使わない
+if (process.env.LIBS) {
+  const LOCAL = { "three.min.js": "three/build/three.min.js", "OrbitControls.js": "three/examples/js/controls/OrbitControls.js", "marked.min.js": "marked/marked.min.js" };
+  await page.setRequestInterception(true);
+  page.on("request", (req) => {
+    const u = new URL(req.url());
+    if (u.hostname === "localhost") return req.continue();
+    const key = Object.keys(LOCAL).find((k) => u.pathname.endsWith("/" + k));
+    if (!key) return req.abort();
+    req.respond({ status: 200, contentType: "text/javascript", body: fs.readFileSync(path.join(process.env.LIBS, "node_modules", LOCAL[key])) });
+  });
+}
 await page.goto(`http://localhost:${port}/index.html`, { waitUntil: "networkidle0" });
 await page.addStyleTag({ content: VIDEO_CSS });
 await page.waitForFunction(() => document.querySelector(".r3-stage canvas"), { timeout: 60000 });
