@@ -590,7 +590,7 @@ def evening(state, gives, stores=(), takes=()):
         short = min(EAT_MAX, need + 800) - sum(f["kcal"] for f in p["food"])
         if short > 0:
             by = _move_food(state["store"], p["food"], None, short)
-            if by:
+            if by and food_words(by) != "なし":  # 蓄えが空・ごく少量なら書かない (「なし を取って食べた」にしない)
                 took += sum(by.values())
                 log(state, "蓄えから取る", p["name"], f"ひどく空腹の {p['name']} が、キャンプの蓄えから {food_words(by)} を取って食べた", food=food_words(by))
 
