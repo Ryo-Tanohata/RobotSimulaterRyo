@@ -36,7 +36,19 @@ def _me(state, p):
             + "1 日に食べる量の目安: 木の実なら 20 つかみ、芋なら 8 本、ルクの肉なら 3 切れ、魚なら 7 匹\n"
             + _seasons(state["day"])
             + f"キャンプの蓄え (誰でも入れたり取ったりできる): {food_words(holdings({'food': state.get('store', [])}))}\n"
-            f"仲間への信頼 (-1〜+1): {trust}\n")
+            + _dwelling(state)
+            + f"仲間への信頼 (-1〜+1): {trust}\n")
+
+
+def _dwelling(state):
+    """キャンプの住まいの今のようす (見ればわかる事実。2026-10-06、本人の了承のうえ追加: 建てかけを完成と思い込んだため)"""
+    camp = state["camp"]
+    if camp.get("dwelling_day") is not None:
+        return "キャンプの住まい: できあがっている (屋根と壁があり、雨をしのげる)\n"
+    d = camp.get("dwelling", 0)
+    if d <= 0:
+        return ""
+    return f"キャンプの住まい: 建てかけ (でき具合 約 {max(1, round(d * 10))} 割)。できあがるまでは、雨は中の人も蓄えもしのげない\n"
 
 
 def _seasons(day):

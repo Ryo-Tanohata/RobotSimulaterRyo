@@ -449,8 +449,11 @@ def simulate_day(state):
                     res["got"].append("住まい")
                     res["events"].append(log(state, "住まい", p["name"], f"{p['name']} たちの手で、キャンプに屋根と壁のある住まいができた"))
                 else:
-                    how = "柱を立て始めた" if before == 0 else "骨組みが半分ほどできた" if before < 0.5 <= camp["dwelling"] else "枝や草で屋根と壁をふいた"
+                    # 2026-10-06: 半分前でも「屋根と壁をふいた」と書いていたのを、でき具合どおりの言い方に直した
+                    how = ("柱を立て始めた" if before == 0 else "骨組みが半分ほどできた" if before < 0.5 <= camp["dwelling"]
+                           else "骨組みを組んだ" if camp["dwelling"] < 0.5 else "枝や草で屋根と壁をふき始めた")
                     res["events"].append(log(state, "住まい", p["name"], f"{p['name']} がキャンプで住まいを建てた: {how}"
+                                             f" (まだ建てかけ。でき具合 約 {max(1, round(camp['dwelling'] * 10))} 割)"
                                              + ("" if forest else " (林が遠く、材料を運ぶのに手間がかかる)")))
             p["skills"]["道具"] = round(min(1, p["skills"]["道具"] + 0.02), 3)
         elif act == "種まき":
