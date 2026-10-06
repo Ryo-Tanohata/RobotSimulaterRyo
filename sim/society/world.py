@@ -353,7 +353,10 @@ def simulate_day(state):
             state["plants"].append({"id": len(state["plants"]), "kind": "木の実", "x": sd["x"], "y": sd["y"],
                                     "amount": 10, "max": 30, "seasons": ["夏", "秋"], "regrow": 1.5, "sown": True})
             state["planted"].remove(sd)
-            log(state, "育つ", None, f"{sd['who']} が種をまいた場所に、木の実の木が育った", x=sd["x"], y=sd["y"], sower=sd["who"])
+            if sd.get("midden"):
+                log(state, "育つ", None, "キャンプのそばの、食べた木の実の殻を捨てた所から、木の実の木が育った", x=sd["x"], y=sd["y"], sower=None)
+            else:
+                log(state, "育つ", None, f"{sd['who']} が種をまいた場所に、木の実の木が育った", x=sd["x"], y=sd["y"], sower=sd["who"])
 
     # 各人の 1 日
     hunters = {}
@@ -697,6 +700,14 @@ def evening(state, gives, stores=(), takes=()):
     rotten = _rot(state["store"], day, housed)  # 住まいがあれば、芋は入れ物に入れたのと同じだけもち、木の実は乾いて DRIED_DAYS 日もつ
     if rotten and food_words(rotten) != "なし":
         log(state, "腐る", None, f"キャンプの蓄えの {food_words(rotten)} が腐った", kcal=sum(rotten.values()))
+    # 【文献】ごみ捨て場説 (Anderson 1952 など): 定住地のそばに捨てた種から、人がまかなくても植物が育ち、栽培の始まりになったという説
+    # 【仮定】住まいのあるキャンプで木の実を 200 つかみ食べるごとに、その夜 1 つの種がキャンプのそば (3 マス以内) で芽を出す見込み (1 夜に 0.5 まで)
+    # (2026-10-06 追加。F4 に入って 80 日、人が自分から種をまかなかったため。本人の希望「とにかく回して Society 1.0 を終わらせたい」)
+    nuts = eaten_by_kind.get("木の実", 0) / FRUIT_KCAL
+    if housed and nuts > 0 and wrng.random() < min(0.5, nuts / 200):
+        cx, cy = state["camp"]["x"], state["camp"]["y"]
+        state["planted"].append({"x": min(W - 1, max(0, cx + wrng.randint(-3, 3))), "y": min(H - 1, max(0, cy + wrng.randint(-3, 3))),
+                                 "day": day, "who": None, "midden": True})
     state["stats"].append({"day": day, "alive": len(alive), "eaten": eaten_total, "shares": shares,
                            "fire": state["camp"]["fire"] > 0, "eaten_by_kind": eaten_by_kind, "stored_acts": stored_acts,
                            "store": sum(f["kcal"] for f in state["store"]), "took": took,

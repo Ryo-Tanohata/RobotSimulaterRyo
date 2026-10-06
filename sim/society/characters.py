@@ -55,7 +55,9 @@ def _sown_trees(state):
     if not trees:
         return ""
     who = [e["data"]["sower"] for e in state["events"] if e["type"] == "育つ" and (e.get("data") or {}).get("sower")]
-    return (f"キャンプのそばに、種から育った木の実の木が {len(trees)} 本ある" + (f" ({'・'.join(dict.fromkeys(who))} が種を埋めた)" if who else "")
+    midden = sum(1 for e in state["events"] if e["type"] == "育つ" and "殻を捨てた所" in e["text"])
+    whence = "・".join(([f"{'・'.join(dict.fromkeys(who))} が種を埋めた木"] if who else []) + ([f"殻を捨てた所から育った木 {midden} 本"] if midden else []))
+    return (f"キャンプのそばに、種から育った木の実の木が {len(trees)} 本ある" + (f" ({whence})" if whence else "")
             + f"。今ついている実は 約 {round(sum(q['amount'] for q in trees))} つかみ\n")
 
 
