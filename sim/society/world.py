@@ -32,6 +32,12 @@ UNITS = {"木の実": ("つかみ", FRUIT_KCAL), "芋": ("本", TUBER_KCAL), "�
 FOOD_NAME = {"木の実": "木の実", "芋": "芋", "肉": "ルクの肉", "魚": "魚", "ピク": "ピクの肉", "草の種": "草の種", "干し肉": "干し肉"}
 # 【仮定】食べられる日数 (これを過ぎると腐る)。入れ物を持っていると、木の実・芋は 2 倍もつ。草の種は腐らない
 SPOIL = {"木の実": 4, "芋": 8, "肉": 2, "魚": 1, "ピク": 2, "草の種": 9999, "干し肉": 30}
+# 2026-10-06 追加 (F3 の評価 5-3。本人の了承「２つを直して再開」): 住まいの屋根の下の蓄えで夜をすごした木の実は乾き、採った日から DRIED_DAYS 日もつ。
+#   乾いた木の実は、蓄えから取っても、人に分けても、キャンプを移しても乾いたまま (食べ物に印 "dry" がつく)。前は蓄えでも 8 日で腐り、秋の終わりに 1 日 50 つかみを超えて腐った
+# 【文献】乾かして雨を避けて蓄えた木の実 (ドングリ・クルミ・ハシバミ・松の実) は、狩猟採集民の例で冬を越し、次の実りまで (ときに数年) もった
+#   (カリフォルニア先住民のドングリの蓄え、グレートベースンの松の実の蓄え穴、縄文の貯蔵穴)。採ったばかりの木の実は水分が多く、乾かさないと数日〜2 週間ほどでかびる
+# 【仮定】この世界の 1 季節は 30 日と短いので、文献の数か月〜1 年より短い 2 季節分 (60 日) にする。秋のどの日に採った分も冬の終わりまではもつ。芋は乾かす加工がないので入れない
+DRIED_DAYS = {"木の実": 2 * SEASON_DAYS}
 PLANT_FOODS = ("木の実", "芋", "草の種")
 MEATS = ("肉", "魚", "ピク")
 
@@ -189,7 +195,10 @@ def _rot(foods, day, container):
     """腐った食べ物を取り除く。戻り値 {kind: kcal}"""
     out, keep = {}, []
     for f in foods:
-        limit = SPOIL.get(f["kind"], 4) * (2 if container and f["kind"] in PLANT_FOODS else 1)
+        if f.get("dry") and f["kind"] in DRIED_DAYS:  # 乾いた木の実 (DRIED_DAYS の説明)
+            limit = DRIED_DAYS[f["kind"]]
+        else:
+            limit = SPOIL.get(f["kind"], 4) * (2 if container and f["kind"] in PLANT_FOODS else 1)
         if day - f["day"] >= limit:
             out[f["kind"]] = out.get(f["kind"], 0) + f["kcal"]
         else:
@@ -517,7 +526,7 @@ def _move_food(src, dst, kind, kcal):
             continue
         take = min(f["kcal"], kcal - moved)
         f["kcal"] -= take
-        dst.append({"kind": f["kind"], "kcal": take, "day": f["day"], **({"sown": True} if f.get("sown") else {})})
+        dst.append({"kind": f["kind"], "kcal": take, "day": f["day"], **{k: True for k in ("sown", "dry") if f.get(k)}})
         moved += take
         by[f["kind"]] = by.get(f["kind"], 0) + take
     src[:] = [f for f in src if f["kcal"] > 0]
@@ -574,7 +583,7 @@ def evening(state, gives, stores=(), takes=()):
                 break
             take = min(f["kcal"], kcal - moved)
             f["kcal"] -= take
-            b["food"].append({"kind": f["kind"], "kcal": take, "day": f["day"], **({"sown": True} if f.get("sown") else {})})
+            b["food"].append({"kind": f["kind"], "kcal": take, "day": f["day"], **{k: True for k in ("sown", "dry") if f.get(k)}})
             moved += take
             moved_by[f["kind"]] = moved_by.get(f["kind"], 0) + take
         a["food"] = [f for f in a["food"] if f["kcal"] > 0]
@@ -672,7 +681,11 @@ def evening(state, gives, stores=(), takes=()):
         elif state["camp"]["fire"] > 0:
             log(state, "夜", None, "夜、ザガが近くに来たが、火を嫌って近づかなかった")
 
-    rotten = _rot(state["store"], day, housed)  # 住まいがあれば、蓄えは屋根の下で入れ物に入れたのと同じだけもつ
+    if housed:  # 住まいの屋根の下の蓄えでは、木の実が乾く (DRIED_DAYS)
+        for f in state["store"]:
+            if f["kind"] in DRIED_DAYS:
+                f["dry"] = True
+    rotten = _rot(state["store"], day, housed)  # 住まいがあれば、芋は入れ物に入れたのと同じだけもち、木の実は乾いて DRIED_DAYS 日もつ
     if rotten and food_words(rotten) != "なし":
         log(state, "腐る", None, f"キャンプの蓄えの {food_words(rotten)} が腐った", kcal=sum(rotten.values()))
     state["stats"].append({"day": day, "alive": len(alive), "eaten": eaten_total, "shares": shares,
