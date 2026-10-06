@@ -21,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 import characters  # noqa: E402
 import knowledge  # noqa: E402
 import phase  # noqa: E402
+import resume  # noqa: E402
 import world  # noqa: E402
 
 import os  # noqa: E402
@@ -117,6 +118,7 @@ def export(state):
         "days": day_summaries(state),
         "era": state.get("era_info") or {"era": "F1", "name": phase.ERAS["F1"]}, "era_log": state.get("era_log", []),
         "hold": bool(state.get("hold")), "store": world.food_words(phase._store_kinds(state)),
+        "resumes": resume.build(state),
     }
     (DATA / "app_data.json").write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print("アプリ用のデータ:", (DATA / "app_data.json").relative_to(DATA.parent))
