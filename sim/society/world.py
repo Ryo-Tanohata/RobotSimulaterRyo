@@ -581,6 +581,19 @@ def evening(state, gives, stores=(), takes=()):
             words = food_words(moved_by)
             log(state, "分ける", a["name"], f"{a['name']} が {b['name']} に {words} を分けた", to=b["name"], kcal=moved, food=words)
 
+    # ひどく空腹 (危ない) の人は、手元が足りなければキャンプの蓄えから食べる
+    # (2026-10-06、本人の了承のうえ追加: 蓄えがあるのに何も取らずに飢え死にすることが 2 回あったため。作る側の仕組みの不足)
+    for p in people.values():
+        if p["hunger"] < 0.6:
+            continue
+        need = p["today"]["spent"] if p["today"] else BASE_KCAL
+        short = min(EAT_MAX, need + 800) - sum(f["kcal"] for f in p["food"])
+        if short > 0:
+            by = _move_food(state["store"], p["food"], None, short)
+            if by:
+                took += sum(by.values())
+                log(state, "蓄えから取る", p["name"], f"ひどく空腹の {p['name']} が、キャンプの蓄えから {food_words(by)} を取って食べた", food=food_words(by))
+
     eaten_total, eaten_by_kind, eaten_sown = 0, {}, 0
     for p in people.values():
         need = p["today"]["spent"] if p["today"] else BASE_KCAL
