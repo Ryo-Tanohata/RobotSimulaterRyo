@@ -16,7 +16,7 @@ RULES = """あなたは、ある小さな世界に暮らす一人の人間を演
 - この世界の外の知識 (現実の地名・国・歴史・宗教・王・お金 など) は持っていない前提で考えてください
 - 自分が経験したこと、聞いたこと、覚えていることだけをもとに考えてください
 - 「今日のこと」の [出来事] は、実際に起きたことです。人の話 (「」の中の言葉) は、その人がそう言ったということで、中身が実際に起きたとはかぎりません。予定・約束・掟も、決めただけではまだ起きていません
-- 昼にするのは、前の夜に決めた予定の活動 1 つだけです。夕方と夜にできるのは、話す・決める・食べ物を分ける・蓄えに入れる・蓄えから取る・食べる・眠る ことです
+- 昼にする活動は 1 日に 1 つ (ふつうは前の夜に決めた予定) です。夕方と夜にできるのは、話す・決める・食べ物を分ける・蓄えに入れる・蓄えから取る・食べる・眠る ことです
 - この世界の人は「カロリー」「kcal」という考えを知りません。食べ物の量は「木の実 5 つかみ」「芋 2 本」「魚 3 匹」のように、食べ物の名前と数で考えて話してください
 - 答えは JSON だけを出力してください (前後に説明を書かない)。JSON の中の文章はすべて日本語で書いてください"""
 
@@ -62,10 +62,17 @@ def _seasons(day):
             f"次の季節 ({season(day + left)}) まで、あと {left} 日\n")
 
 
-def _knowledge(p):
-    """覚えていること。話だけがきっかけのもの (ラベル 伝承) には、そう添える (本人にわかる事実。2026-10-06 追加、F3 の評価 5-2)"""
-    return "\n".join(f"- [{k['id']}] {k['text']} (確かさ {k['confidence']:.1f}" + ("、きっかけは話だけ" if k["label"] == "伝承" else "") + ")"
-                     for k in p["knowledge"])
+def _knowledge(state, p):
+    """覚えていること。きっかけが人の話だけのものには「きっかけは話だけ」、話とほかの出来事のものには「きっかけに話をふくむ」を添える
+    (本人にわかる事実。2026-10-06 追加、F3 の評価 5-2)"""
+    kinds = {e["id"]: e["type"] for e in state["events"]}
+
+    def src(k):
+        ts = [kinds[i] for i in k.get("because", []) if i in kinds]
+        if not ts or "話す" not in ts:
+            return ""
+        return "、きっかけは話だけ" if all(t == "話す" for t in ts) else "、きっかけに話をふくむ"
+    return "\n".join(f"- [{k['id']}] {k['text']} (確かさ {k['confidence']:.1f}{src(k)})" for k in p["knowledge"])
 
 
 def _laws(state, with_pending=False):
@@ -105,7 +112,7 @@ def evening_prompt(state, p):
 {_today(state, p)}
 
 ## 覚えていること
-{_knowledge(p)}
+{_knowledge(state, p)}
 
 ## 集団の掟
 {_laws(state)}
@@ -154,7 +161,7 @@ def night_prompt(state, p, tonight_heard, gifts):
 {got}
 
 ## 覚えていること
-{_knowledge(p)}
+{_knowledge(state, p)}
 
 ## 集団の掟
 {_laws(state)}

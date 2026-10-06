@@ -191,15 +191,24 @@ def place_of(state, pid):
     return state["places"][0]
 
 
+def _limit(f, container):
+    """その食べ物が食べられる日数 (採った日から)"""
+    if f.get("dry") and f["kind"] in DRIED_DAYS:  # 乾いた木の実 (DRIED_DAYS の説明)
+        return DRIED_DAYS[f["kind"]]
+    return SPOIL.get(f["kind"], 4) * (2 if container and f["kind"] in PLANT_FOODS else 1)
+
+
+def _expires(f):
+    """腐る日。食べる・渡す・蓄えから取るときは、腐る日の近いものから使う
+    (2026-10-06: 乾いた木の実が 60 日もつようにしたので、採った日の古い順では、先に腐る芋が残って腐るため。草の種は最後になる)"""
+    return f["day"] + _limit(f, False)
+
+
 def _rot(foods, day, container):
     """腐った食べ物を取り除く。戻り値 {kind: kcal}"""
     out, keep = {}, []
     for f in foods:
-        if f.get("dry") and f["kind"] in DRIED_DAYS:  # 乾いた木の実 (DRIED_DAYS の説明)
-            limit = DRIED_DAYS[f["kind"]]
-        else:
-            limit = SPOIL.get(f["kind"], 4) * (2 if container and f["kind"] in PLANT_FOODS else 1)
-        if day - f["day"] >= limit:
+        if day - f["day"] >= _limit(f, container):
             out[f["kind"]] = out.get(f["kind"], 0) + f["kcal"]
         else:
             keep.append(f)
@@ -521,7 +530,7 @@ def simulate_day(state):
 def _move_food(src, dst, kind, kcal):
     """src の食べ物から kind を kcal 分、dst へ移す (古いものから)。戻り値: 移した量 {kind: kcal}"""
     moved, by = 0, {}
-    for f in sorted(src, key=lambda f: f["day"]):
+    for f in sorted(src, key=_expires):  # 腐る日の近いものから
         if (kind and f["kind"] != kind) or moved >= kcal:
             continue
         take = min(f["kcal"], kcal - moved)
@@ -576,7 +585,7 @@ def evening(state, gives, stores=(), takes=()):
         if not a or not b or a is b or kcal <= 0:
             continue
         moved, moved_by = 0, {}
-        for f in sorted(a["food"], key=lambda f: f["day"]):  # 古いものから渡す
+        for f in sorted(a["food"], key=_expires):  # 腐る日の近いものから渡す
             if kind and f["kind"] != kind:
                 continue
             if moved >= kcal:
@@ -610,7 +619,7 @@ def evening(state, gives, stores=(), takes=()):
     for p in people.values():
         need = p["today"]["spent"] if p["today"] else BASE_KCAL
         eat = 0
-        for f in sorted(p["food"], key=lambda f: f["day"]):  # 腐りやすい古いものから
+        for f in sorted(p["food"], key=_expires):  # 腐る日の近いものから
             if eat >= min(EAT_MAX, need + 800):
                 break
             take = min(f["kcal"], min(EAT_MAX, need + 800) - eat)
@@ -681,9 +690,9 @@ def evening(state, gives, stores=(), takes=()):
         elif state["camp"]["fire"] > 0:
             log(state, "夜", None, "夜、ザガが近くに来たが、火を嫌って近づかなかった")
 
-    if housed:  # 住まいの屋根の下の蓄えでは、木の実が乾く (DRIED_DAYS)
+    if housed:  # 住まいの屋根の下の蓄えでは、木の実が乾く (DRIED_DAYS)。屋根の下でも今夜腐る古さのものは乾かない
         for f in state["store"]:
-            if f["kind"] in DRIED_DAYS:
+            if f["kind"] in DRIED_DAYS and (f.get("dry") or day - f["day"] < _limit(f, True)):
                 f["dry"] = True
     rotten = _rot(state["store"], day, housed)  # 住まいがあれば、芋は入れ物に入れたのと同じだけもち、木の実は乾いて DRIED_DAYS 日もつ
     if rotten and food_words(rotten) != "なし":
