@@ -159,11 +159,11 @@ SCRIPT=v1 node test/record-film.mjs v1.mp4         # 別の台本 (film-script.j
 
 - Cloudflare の設定: GitHub のこのリポジトリをつなぎ、本番のブランチ `claude/physics-engine-robot-simulator-xmyxdn`、
   ビルドコマンド `bash tools/cloudflare/build.sh`、出力ディレクトリ `_site`。見られる人は Cloudflare Access で本人だけに限る
-- Cloudflare Pages は 1 ファイル 25 MiB までなので、`docs/media` の大きい動画 4 本 (川辺の五人 3 本・動画 v3) はページに入れない
+- Cloudflare Pages は 1 ファイル 25 MiB までなので、`docs/media` の大きい動画 4 本 (川辺の五人 4 本・動画 v3) はページに入れない
   (リポジトリには残る)。アプリが再生するのは `sim/society/app/` の小さい版なので、表示には影響しない
 - 川辺の五人のアプリ (`sim/society/app/index.html`) は、データ (`sim/society/data/app_data.json`) と記録の文書をリポジトリの場所から読む。
   シミュレーションを進めてプッシュすると、ページも新しくなる
-- 動画 (川辺の五人 3 本・動画 v3) のナレーション: **VOICEVOX:ずんだもん**。規約の確認は [docs/compliance_check.md](docs/compliance_check.md)
+- 動画 (川辺の五人 4 本・動画 v3) のナレーション: **VOICEVOX:ずんだもん**。規約の確認は [docs/compliance_check.md](docs/compliance_check.md)
 
 ## 計画・要件
 

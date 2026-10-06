@@ -34,7 +34,7 @@ GitHub Pages で公開ページを作る前に、[plan.md 8 章](plan.md#8-規�
 
 | 項目 | 確認したこと | 結果 |
 |---|---|---|
-| クレジット (動画内) | `film_v3.mp4` の最後のクレジット画面、`society_v1.mp4`・`society_F1.mp4`・`society_F2.mp4` の最後の画面に「ナレーション: VOICEVOX:ずんだもん」がある (画像で確認) | OK |
+| クレジット (動画内) | `film_v3.mp4` の最後のクレジット画面、`society_v1.mp4`・`society_F1.mp4`・`society_F2.mp4`・`society_F3c.mp4` の最後の画面に「ナレーション: VOICEVOX:ずんだもん」がある (画像で確認) | OK |
 | クレジット (説明) | README の「音声 (VOICEVOX ずんだもん)」、川辺の五人のアプリの動画欄、公開ページの入口 (`index.html`) に「VOICEVOX:ずんだもん」を表記 | OK |
 | 再配布の禁止 | VOICEVOX 本体・音声モデル・ONNX Runtime はリポジトリに含めていない (`git ls-files` に `.vvm`・`.onnx`・`.so`・`.dll`・`.wav` がないことを確認)。入手は `tools/voicevox/setup.sh` で各自が公式配布元から | OK |
 | 声だけを使う | ずんだもんのイラスト・立ち絵は使っていない | OK |
