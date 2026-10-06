@@ -39,6 +39,7 @@ def _me(state, p):
             + (f"持ち物: {'・'.join(p['items'])}\n" if p["items"] else "")
             + "1 日に食べる量の目安: 木の実なら 20 つかみ、芋なら 8 本、ルクの肉なら 3 切れ、魚なら 7 匹\n"
             + _seasons(state["day"])
+            + _sowing()
             + f"キャンプの蓄え (誰でも入れたり取ったりできる): {food_words(holdings({'food': state.get('store', [])}))}\n"
             + _dwelling(state)
             + f"仲間への信頼 (-1〜+1): {trust}\n")
@@ -60,6 +61,12 @@ def _seasons(day):
     left = SEASON_DAYS - day % SEASON_DAYS
     return ("季節は 30 日ごとに 春 → 夏 → 秋 → 冬 と移る。冬は木の実も草の種も実らず、芋も少ししか育たない。魚やけものは冬もいる\n"
             f"次の季節 ({season(day + left)}) まで、あと {left} 日\n")
+
+
+def _sowing():
+    """種をまくと何が起きるか。大人なら誰でも知っていること (2026-10-06 追加。F4 に入って 40 日、種を持っていても誰もまかなかったため。
+    よいこと・すすめることは書かず、世界で起きることだけを書く。20 日は世界の仮定で、本当の木はもっと長くかかる)"""
+    return "種 (持ち物の「種」) を土に埋めると、その場所に 20 日ほどで木の実の木が育つ。木に実がなって増えるのは夏と秋\n"
 
 
 def _knowledge(state, p):
