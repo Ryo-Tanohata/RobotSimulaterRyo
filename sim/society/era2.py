@@ -135,7 +135,7 @@ def apply_answers(state, answers):
                             "harvest": max(0, min(60, _int(a.get("harvest"))))}
         p["feeling"] = str(a.get("feeling", ""))[:120]
         for v, ok in (a.get("accept").items() if isinstance(a.get("accept"), dict) else []):
-            accept.setdefault(v, []).append(ok is True or ok in ("true", "はい", "賛成"))
+            accept.setdefault(v, []).append((name, ok is True or ok in ("true", "はい", "賛成")))
     for t in talk:  # 話は聞き手に届く
         for n, q in alive.items():
             if n != t["from"] and (t["to"] == "みんな" or t["to"] == n):
@@ -145,6 +145,10 @@ def apply_answers(state, answers):
         log(state, "掟", None, msg)
     _settle_visitors(state, accept, len(alive))
     _eat_goats(state)
+
+
+def accept_answered(e2):
+    return set(e2["jobs"])
 
 
 def _int(v):
@@ -158,12 +162,27 @@ def _settle_visitors(state, accept, n_adults):
     e2 = state["era2"]
     rng = _rng(state, 11)
     for v in e2["visitors"]:
-        yes = sum(1 for x in accept.get(v["name"], []) if x)
+        member_names = [m["name"] for m in v["members"]]
+        votes = {}  # 大人ごとの答え (群れのだれの名前で書いても同じ群れの受け入れ)
+        for key, vals in accept.items():
+            if key in member_names or key == v["name"]:
+                for who, ok in vals:
+                    votes[who] = votes.get(who, False) or ok
+        yes = sum(1 for ok in votes.values() if ok)
         if yes * 2 > n_adults:
+            grown = [m for m in v["members"] if m["age"] >= ADULT]
+            guardian = next((m["name"] for m in grown if m["sex"] == "女"), grown[0]["name"] if grown else None)
+            # 加わった大人は、この季節は村でいちばん多い仕事をする (【仮定】次の季節から自分で決める)
+            plans = [q["plan"] for q in adults(state) if q["name"] in accept_answered(e2)]
+            common = max(plans, key=lambda pl: sum(1 for x in plans if x["activity"] == pl["activity"] and x["place"] == pl["place"])) if plans else {"activity": "採集", "place": "camp"}
             for m in v["members"]:
-                q = _new_person(state, rng, m["sex"], m["age"], child=m["age"] < ADULT, origin="よそから来た", name=m["name"])
+                q = _new_person(state, rng, m["sex"], m["age"], child=m["age"] < ADULT, origin="よそから来た", name=m["name"],
+                                mother=guardian if m["age"] < ADULT else None)
                 e2["joined"].append(q["name"])
-            names = "・".join(m["name"] for m in v["members"])
+                if not q.get("child"):
+                    q["plan"] = {"activity": common["activity"], "place": common["place"], "with": []}
+                    e2["jobs"][q["name"]] = {"sow": 0, "pick": 0, "plant": 0, "eat_goat": 0, "harvest": 0}
+            names = "・".join(member_names)
             log(state, "加わる", None, f"よそから来た {names} が、村に加わった (賛成 {yes} / {n_adults})")
         else:
             log(state, "去る", None, f"よそから来た {v['name']} たちは、受け入れられず去っていった (賛成 {yes} / {n_adults})")
@@ -222,15 +241,14 @@ def _day(state):
             _goat_work(state, p, t, sea)
         elif act == "ヤギを捕まえる":
             _catch_goat(state, p, t, rng)
-    # 夕方、キャンプのそばの木から取る・木の実を埋める (季節のはじめに決めた量。world.evening の「取る」「埋める」を使う)
+    # 夕方、キャンプのそばの木から取る (季節のはじめに決めた量。world.evening の「取る」を使う)
     takes = []
     for p in adults(state):
         job = e2["jobs"].get(p["name"], {})
-        if job.get("pick"):
+        if job.get("pick") and not _injured_today(p):
             takes.append({"who": p["name"], "food": "木の実", "count": job["pick"], "tree": True})
-        if job.get("plant") and day == e2.get("step_day"):  # この回の最初の日に、蓄えの木の実を持って埋める
-            _move_food(state["store"], p["food"], "木の実", job["plant"] * FRUIT_KCAL)
-            takes.append({"who": p["name"], "food": "木の実", "count": job["plant"], "plant": True})
+        if job.get("plant") and day == e2.get("step_day"):  # この回の最初の日に、木の実を埋める
+            _plant(state, p, job["plant"])
     # 秋の回の最初の日に、決めた量の草の種をキャンプのそばの畑にまく (季節の仕事とは別。2026-10-07 追加)
     if day == e2.get("step_day") and sea == "秋":
         for p in adults(state):
@@ -240,7 +258,7 @@ def _day(state):
     # 夕方、実った畑を、決めた量だけ刈る (季節の仕事とは別。2026-10-07 追加)
     for p in adults(state):
         n = e2["jobs"].get(p["name"], {}).get("harvest", 0)
-        if n and not p.get("injured"):
+        if n and not _injured_today(p):
             _harvest(state, p, n)
     kids_ate = _feed(state, rng)
     world.evening(state, [], [], takes)
@@ -251,6 +269,28 @@ def _day(state):
         for k, v in kids_ate["by"].items():
             s["eaten_by_kind"][k] = s["eaten_by_kind"].get(k, 0) + v
     _field_season(state, rng)
+
+
+def _injured_today(p):
+    """けがで休んだ日 (予定は休むではないのに、今日は休んだ)"""
+    return (p.get("today") or {}).get("activity") == "休む" and (p.get("plan") or {}).get("activity") != "休む"
+
+
+def _plant(state, p, want):
+    """手元の木の実、なければ村の蓄えの木の実を、キャンプのそばに埋める (1 つかみが 1 つの種。20 日で木になる)"""
+    got = []
+    by = _move_food(p["food"], got, "木の実", want * FRUIT_KCAL)
+    have = sum(by.values())
+    if have < want * FRUIT_KCAL:
+        _move_food(state["store"], got, "木の実", want * FRUIT_KCAL - have)
+    n = int(sum(f["kcal"] for f in got) // FRUIT_KCAL)
+    rng = _rng(state, 29)
+    cx, cy = state["camp"]["x"], state["camp"]["y"]
+    for _ in range(n):
+        state["planted"].append({"x": min(W - 1, max(0, cx + rng.randint(-3, 3))), "y": min(H - 1, max(0, cy + rng.randint(-3, 3))),
+                                 "day": state["day"], "who": p["name"]})
+    if n:
+        log(state, "種まき", p["name"], f"{p['name']} がキャンプのそばに 木の実 {n} つかみ を種として埋めた")
 
 
 def _keep(p):
@@ -324,10 +364,12 @@ def _harvest(state, p, want):
 
 
 def _field_season(state, rng):
-    """季節が変わる日に、畑の育ちを決める。秋にまいた畑は、冬と春をこえて、夏のはじめに実る"""
+    """季節の最後の日の終わりに、次の季節の畑のようすを決める。秋にまいた畑は、冬と春をこえて、夏のはじめに実る
+    (2026-10-07: 前は新しい季節の最初の日の終わりに決めていて、お題が古い季節のようすを見せていた。夏のお題に実った畑が出ず、
+    秋のお題に 1 日で落ちる畑が出た)"""
     e2 = state["era2"]
-    day = state["day"]
-    if day % SEASON_DAYS != 0:  # 季節が変わった日 (新しい季節の最初の日)
+    day = state["day"] + 1  # 次の季節の最初の日
+    if day % SEASON_DAYS != 0:
         return
     sea = season(day)
     for f in e2["fields"]:
@@ -386,6 +428,10 @@ def _famine_leave(state):
                 c["alive"], c["left"] = False, state["day"]
             with_kids = f" (子の {'・'.join(c['name'] for c in kids)} もいっしょに)" if kids else ""
             log(state, "去る", p["name"], f"ひどく空腹の {p['name']} が、食べ物を求めて村を出ていった{with_kids}")
+    for c in [c for c in children(state) if c.get("mother") and not any(q["name"] == c["mother"] and q["alive"] for q in state["people"])
+              and any(q["name"] == c["mother"] and q.get("left") for q in state["people"])]:
+        c["alive"], c["left"] = False, state["day"]
+        log(state, "去る", c["name"], f"{c['name']} も、村を出た {c['mother']} を追って出ていった")
 
 
 def _season_end(state, frac=1.0):
@@ -477,7 +523,7 @@ def indicators(state):
     return {
         "population": sum(1 for p in state["people"] if p["alive"]),
         "adults": len(adults(state)), "children": len(children(state)), "children_1y": kids_1y,
-        "joined": len(e2["joined"]), "births": e2["births"],
+        "joined": sum(1 for q in state["people"] if q["alive"] and q.get("origin") == "よそから来た"), "births": e2["births"],
         "harvest_years": yrs, "harvest_2y": consec, "goats": len(e2["goats"]),
         "farm_share": round(sown / total, 2), "fields": sum(1 for f in e2["fields"] if f["state"] == "育つ"),
         "store": food_words(world.holdings({"food": state["store"]})), "seasons": e2["seasons"],
@@ -526,13 +572,25 @@ def _season_digest(state, p, first):
         by.setdefault(e["type"], []).append(e)
     rows = []
     for t, es in by.items():
+        if t == "収穫":
+            continue
         if t in ("採集", "狩り"):
             ok = [e for e in es if (e.get("data") or {}).get("kcal", 0) > 0 or "とった" in e["text"] or "しとめた" in e["text"]]
             rows.append(f"- {t} {len(es)} 日 (食べ物が見つかった日 {len(ok)})。例: [出来事 {es[-1]['id']}] {es[-1]['text']}")
         else:
             for e in es[-3:]:
                 rows.append(f"- [出来事 {e['id']}] {e['text']}")
-    village = [e for e in ev if e["type"] in ("生まれる", "死", "加わる", "去る", "訪れる", "畑", "収穫", "ヤギ", "ヤギを食べる", "大人になる", "けが", "掟", "育つ", "住まい", "フェーズ")]
+    harv = {}
+    for e in ev:
+        if e["type"] == "収穫":
+            harv[e["who"]] = harv.get(e["who"], 0) + (e.get("data") or {}).get("amount", 0)
+    if harv:
+        rows.append("- 畑で刈った草の種: " + "、".join(f"{n} {v} つかみ" for n, v in harv.items()))
+    grew = [e for e in ev if e["type"] == "育つ"]
+    if grew:
+        midden = sum(1 for e in grew if "殻を捨てた所" in e["text"])
+        rows.append(f"- キャンプのそばで木の実の木が {len(grew)} 本育った (種を埋めた所から {len(grew) - midden} 本・殻を捨てた所から {midden} 本)")
+    village = [e for e in ev if e["type"] in ("生まれる", "死", "加わる", "去る", "訪れる", "畑", "ヤギ", "ヤギを食べる", "大人になる", "けが", "掟", "住まい", "フェーズ", "蓄えが尽きる")]
     rows += [f"- [出来事 {e['id']}] {e['text']}" for e in village[-25:] if e.get("who") != p["name"]]
     rains = sum(1 for e in ev if e["type"] == "雨")
     if rains:
@@ -579,15 +637,19 @@ def season_prompt(state, p, first):
     if e2["visitors"]:
         v = e2["visitors"][0]
         txt = "、".join(f"{m['name']} ({m['sex']}、{m['age']} 歳)" for m in v["members"])
-        vis = f"\n## よそから来た人\n{txt} が「ここで暮らしたい」と言っている。村に受け入れるか決めてください (accept)。大人の半分をこえる賛成で、村に加わる\n"
+        vis = (f"\n## よそから来た人\n{txt} が「ここで暮らしたい」と言っている (いっしょに来た一つの群れ)。村に受け入れるか決めてください "
+               f"(accept: 受け入れるなら true、受け入れないなら false)。大人の半分をこえる賛成で、群れの全員が村に加わる。"
+               f"加わった大人は、この季節は村でいちばん多い仕事をし、次の季節から自分で決める\n")
     sea = season(state["day"] + 1)
-    sow = '"sow": 100, ' if sea == "秋" else ""
+    st = dict(state, day=state["day"] + 1)  # この回の最初の日のようすで書く
+    sow = '"sow": 0, ' if sea == "秋" else ""
     goat = '"eat_goat": 0, ' if e2["goats"] else ""
     acc = f'"accept": {{"{e2["visitors"][0]["name"]}": true}}, ' if e2["visitors"] else ""
-    pick = characters._pick_line(state)
+    pick = characters._pick_line(st)
+    me = characters._me(st, p).replace("(誰でも入れたり取ったりできる)", "(日々の出し入れは自動)")
     return f"""{RULES2}
 
-{characters._me(state, p)}{FACTS2}
+{me}{FACTS2}
 ## 村のようす
 {_village(state)}
 ## 前の季節のこと
@@ -608,10 +670,11 @@ def season_prompt(state, p, first):
 2. この季節の主な仕事を決める (job)。仕事は {' / '.join(ACTS2)} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
    畑仕事 (草取り・刈り入れ) は camp で行う
    ヤギの世話は camp で行う。ヤギを捕まえるは、野生のヤギのいる場所で行う
-3. {pick.strip() or 'キャンプのそばの種から育った木に実がなっていれば、毎夕いくつ取るか (pick、つかみ) を書ける'} (この季節の毎夕)
-4. 持っている木の実を、季節のはじめにキャンプのそばに埋める (plant、つかみ、5 まで) こともできる
+3. {(pick.strip().rstrip('。') + '。取るのはこの季節の毎夕で、1 人 40 つかみまで') if pick.strip() else 'この季節 (' + sea + ') は、キャンプのそばの木から実は取れない (実がなるのは夏と秋)'}
+4. 持っている木の実 (なければ村の蓄えの木の実) を、この回の最初の日にキャンプのそばに埋める (plant、つかみ、5 まで) こともできる
    秋なら、季節のはじめに、蓄えの草の種をキャンプのそばの畑にまく量 (sow、つかみ、1000 まで) を書ける (主な仕事とは別にできる)
    実った畑があれば、毎夕いくつ刈るか (harvest、つかみ、60 まで) を書ける (主な仕事とは別にできる)
+{'   飼っているヤギを、この回の最初の日に何頭つぶして肉にするか (eat_goat、頭。肉は干して蓄えに入れる。2 頭は残す) を書ける' + chr(10) if e2['goats'] else ''}
 5. 覚えていることを更新する (新しく分かったことを追加、確かさを変える、間違っていたら忘れる)
 6. 掟: みんなで守りたい決まりがあれば提案できる (なければ null)。今の掟と提案に、賛成か反対かを投票する (against に反対する理由、reason に決めた理由)
 7. 今の気持ちを一言

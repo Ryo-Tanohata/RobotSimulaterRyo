@@ -73,19 +73,21 @@ def build(state):
             if t == "狩り" and (e.get("data") or {}).get("killer") == n and "kill" not in seen:
                 seen.add("kill")
                 hist.append({"day": e["day"], "text": "初めてルクをしとめる (" + e["text"] + ")"})
-            if t in ("けが", "死") and e.get("who") == n:
+            if t in ("けが", "死", "去る") and e.get("who") == n:
                 hist.append({"day": e["day"], "text": e["text"]})
         for e in ev:
             if e["type"] == "住まい" and "ができた" in e["text"] and n in e["text"] and not any(e["text"] in h["text"] for h in hist):
                 hist.append({"day": e["day"], "text": e["text"]})
-            if e["type"] == "フェーズ" and (not death or e["day"] <= death["day"]):
+            if e["type"] == "フェーズ" and e["day"] >= hist[0]["day"]:
                 hist.append({"day": e["day"], "text": e["text"]})
         laws = [l for l in state.get("laws", []) if l.get("proposer") == n]
         first_law = next((l for l in sorted(laws, key=lambda l: l["day"]) if l["status"] == "採用" or l.get("changed")), None)
         if first_law:
             hist.append({"day": first_law["day"], "text": "初めて掟を提案する (のちに採用): 「" + first_law["text"][:60] + ("…" if len(first_law["text"]) > 60 else "") + "」"})
-        if death:
-            hist.append({"day": death["day"], "text": "(記録ここまで)"})
+        end = death["day"] if death else p.get("left")
+        if end is not None:
+            hist = [h for h in hist if h["day"] <= end]
+            hist.append({"day": end, "text": "(記録ここまで)"})
         hist.sort(key=lambda h: h["day"])
 
         kn = p.get("knowledge", [])

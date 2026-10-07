@@ -115,7 +115,7 @@ def export(state):
                    for q in state["plants"]],
         "herds": state["herds"], "predators": state["predators"], "planted": state["planted"],
         "people": [{k: p.get(k) for k in ("name", "alive", "age", "sex", "mass", "personality", "skills", "hunger", "fatigue",
-                                          "injured", "items", "trust", "plan", "feeling", "child", "mother", "origin")}
+                                          "injured", "items", "trust", "plan", "feeling", "child", "mother", "origin", "left")}
                    | {"food": sum(f["kcal"] for f in p["food"]), "food_words": world.food_words(world.holdings(p)), "today": p.get("today"),
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
         "events": ev_recent, "laws": state.get("laws", []),
@@ -193,7 +193,8 @@ def main():
         if not any(p["alive"] for p in state["people"]):
             save(state)
             export(state)
-            print("生きている人がいない")
+            gone = [p for p in state["people"] if p.get("left")]
+            print("生きている人がいない (亡くなった人と、村を出た人" + (f" {len(gone)} 人" if gone else " 0 人") + ")")
             sys.exit(4)
         if era2.check(state):
             state["hold"] = True

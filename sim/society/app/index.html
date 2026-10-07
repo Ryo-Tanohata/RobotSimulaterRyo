@@ -298,7 +298,7 @@ function renderPeople() {
     const t = p.today || {}, plan = p.plan || {};
     return `<button class="person ${p.alive ? "" : "dead"}" data-name="${esc(p.name)}" aria-pressed="${focus === p.name}">
       <div class="row1"><i class="dot" style="background:${pcol(i)}"></i><span class="nm">${esc(p.name)}</span>
-        <span class="meta">${esc(p.sex)} ${p.age} 歳 ・ ${p.mass} kg${p.alive ? "" : " ・ 死亡"}${p.injured ? " ・ けが" : ""}</span></div>
+        <span class="meta">${esc(p.sex)} ${p.age} 歳 ・ ${p.mass} kg${p.alive ? "" : p.left ? " ・ 村を出た" : " ・ 死亡"}${p.injured ? " ・ けが" : ""}</span></div>
       <div class="bars">
         <span>空腹</span><span class="bar hunger"><i style="width:${Math.round(p.hunger * 100)}%"></i></span><span class="num">${p.hunger.toFixed(2)}</span>
       </div>
