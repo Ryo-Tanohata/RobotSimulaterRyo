@@ -347,7 +347,7 @@ def simulate_day(state):
             pl["amount"] *= 0.9
         elif sea in pl["seasons"]:
             # 2026-10-06: F3 の 3 回目のあとで、秋の実りを 2 倍にした (秋の採集が食べる量とほぼ同じで、蓄えが増えなかったため。本人の了承)
-            pl["amount"] = min(pl["max"], pl["amount"] + pl["regrow"] * {"冬": 0.3, "秋": AUTUMN_GROW}.get(sea, 1))
+            pl["amount"] = min(pl["max"], pl["amount"] + pl["regrow"] * {"冬": 0.3, "秋": AUTUMN_GROW}.get(sea, 1) * _depression(state, pl, day))
     for sd in list(state["planted"]):
         if day - sd["day"] >= 20:
             state["plants"].append({"id": len(state["plants"]), "kind": "木の実", "x": sd["x"], "y": sd["y"],
@@ -550,6 +550,21 @@ def _kcal_of(g):
     if kind in UNITS:
         return kind, int(g.get("count", 0) or 0) * UNITS[kind][1]
     return None, int(g.get("kcal", 0) or 0)
+
+
+# 【文献】定住した狩猟採集民のまわりでは、近くの野生の資源が使い減らされていく (資源の枯渇・resource depression。ナトゥーフ期のレヴァントの例など)。
+# 【仮定】DEPRESS_FROM 日目から、住まいのあるキャンプから 1 km (40 マス) 以内の野生の植物の回復が、1 日 1% ずつ遅くなる (最低 2 割)。種から育てた木は変わらない
+# (2026-10-07 追加。F5 で、育てた木に実がたくさんあっても、遠くの野生の採集がうまくいくので取られなかったため。本人の希望「とにかく回して Society 1.0 を終わらせたい」)
+DEPRESS_FROM, DEPRESS_RADIUS = 386, 40
+
+
+def _depression(state, pl, day):
+    camp = state["camp"]
+    if pl.get("sown") or camp.get("dwelling_day") is None or day < DEPRESS_FROM:
+        return 1.0
+    if math.hypot(pl["x"] - camp["x"], pl["y"] - camp["y"]) > DEPRESS_RADIUS:
+        return 1.0
+    return max(0.2, 1 - (day - DEPRESS_FROM) / 100)
 
 
 CAMP_TREE_RADIUS = 3  # 夕方にキャンプから手を伸ばして実を取れる木の範囲 (マス)。ごみ捨て場の木が育つ範囲と同じ
