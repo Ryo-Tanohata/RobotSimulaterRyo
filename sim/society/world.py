@@ -563,7 +563,10 @@ def _kcal_of(g):
 # 【文献】定住した狩猟採集民のまわりでは、近くの野生の資源が使い減らされていく (資源の枯渇・resource depression。ナトゥーフ期のレヴァントの例など)。
 # 【仮定】DEPRESS_FROM 日目から、住まいのあるキャンプから 1 km (40 マス) 以内の野生の植物の回復が、1 日 1% ずつ遅くなる (最低 2 割)。種から育てた木は変わらない
 # (2026-10-07 追加。F5 で、育てた木に実がたくさんあっても、遠くの野生の採集がうまくいくので取られなかったため。本人の希望「とにかく回して Society 1.0 を終わらせたい」)
+# 2026-10-07: Society 2.0 では最低を 5 割にする (2 割のままでは、冬の野生の採集が 1 人 1 日 約 200 kcal になり、G1 の 1 回目で
+#   最初の冬に全員が飢えて亡くなったため。2 割は F5 を進めるために入れた強い仮定。本人の選択「A でお願いします」)
 DEPRESS_FROM, DEPRESS_RADIUS = 386, 40
+DEPRESS_FLOOR, DEPRESS_FLOOR_ERA2 = 0.2, 0.5
 
 
 def _depression(state, pl, day):
@@ -572,7 +575,7 @@ def _depression(state, pl, day):
         return 1.0
     if math.hypot(pl["x"] - camp["x"], pl["y"] - camp["y"]) > DEPRESS_RADIUS:
         return 1.0
-    return max(0.2, 1 - (day - DEPRESS_FROM) / 100)
+    return max(DEPRESS_FLOOR_ERA2 if state.get("era2") else DEPRESS_FLOOR, 1 - (day - DEPRESS_FROM) / 100)
 
 
 CAMP_TREE_RADIUS = 3  # 夕方にキャンプから手を伸ばして実を取れる木の範囲 (マス)。ごみ捨て場の木が育つ範囲と同じ

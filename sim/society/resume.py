@@ -91,9 +91,9 @@ def build(state):
         kn = p.get("knowledge", [])
         klog = [k for k in state.get("knowledge_log", []) if k.get("who") == n and k.get("op") == "追加"]
         out.append({
-            "name": n, "sex": p["sex"], "age": p["age"], "mass": p["mass"], "alive": p["alive"],
+            "name": n, "sex": p["sex"], "age": p["age"], "mass": p["mass"], "alive": p["alive"], "left": p.get("left"),
             "death": {"day": death["day"], "text": death["text"]} if death else None,
-            "days": (death["day"] if death else state["day"]),
+            "days": (death["day"] if death else p.get("left") or state["day"]),
             "personality": p["personality"],
             "skills": {SKILL_NAME.get(k, k): v for k, v in p["skills"].items()},
             "items": p.get("items", []),

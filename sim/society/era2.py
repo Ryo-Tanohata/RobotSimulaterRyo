@@ -199,6 +199,7 @@ def simulate_season(state):
         if (sum(f["kcal"] for f in state["store"]) < 1000 and any(p["hunger"] >= 0.6 for p in adults(state))
                 and state["day"] - start >= 3):
             log(state, "蓄えが尽きる", None, "村の蓄えが尽き、ひどく空腹の人が出たので、みんなで集まって決め直すことにした")
+            _famine_leave(state)
             break
     _season_end(state, (state["day"] - start) / SEASON_DAYS)
     return first
@@ -372,6 +373,21 @@ def _catch_goat(state, p, t, rng):
         log(state, "ヤギ", p["name"], f"{p['name']} が北の丘で野生の子ヤギ ({sex}) を捕まえて、キャンプに連れ帰った")
 
 
+def _famine_leave(state):
+    """飢饉: よそから来た大人で、ひどく空腹の人は、見込み 4 割で村を出ていく (子は母といっしょに)。
+    【文献】飢饉のとき、農耕の村でも人は親族やほかの集団のもとへ移って生きのびた (村の分裂・移住)。【仮定】割合は試作の値
+    (2026-10-07 追加。G1 の 2 回目の前の試しで、よそから人が次々に加わったあと、冬に村の全員が動けないまま飢えたため)"""
+    rng = _rng(state, 23)
+    for p in [q for q in adults(state) if q.get("origin") == "よそから来た" and q["hunger"] >= 0.6]:
+        if rng.random() < 0.4:
+            p["alive"], p["left"] = False, state["day"]
+            kids = [c for c in children(state) if c.get("mother") == p["name"]]
+            for c in kids:
+                c["alive"], c["left"] = False, state["day"]
+            with_kids = f" (子の {'・'.join(c['name'] for c in kids)} もいっしょに)" if kids else ""
+            log(state, "去る", p["name"], f"ひどく空腹の {p['name']} が、食べ物を求めて村を出ていった{with_kids}")
+
+
 def _season_end(state, frac=1.0):
     """季節の終わり (または途中で区切った日)。見込みは、進んだ日数に合わせて frac 倍にする"""
     e2 = state["era2"]
@@ -433,9 +449,9 @@ def _season_end(state, frac=1.0):
         if p["age"] >= 55 and rng.random() < 0.02 * frac * (1 + (p["age"] - 55) / 10):
             p["alive"] = False
             log(state, "死", p["name"], f"{p['name']} ({p['age']} 歳) が年をとって亡くなった")
-    # よそから人が来る (【仮定】1 季節 0.12、蓄えが多いと 0.3 まで)
-    store = sum(f["kcal"] for f in state["store"])
-    if rng.random() < (0.12 + min(0.18, store / 1_000_000)) * frac:
+    # よそから人が来る (【仮定】1 季節 0.05、村の蓄えが今の人数の何日分あるかで増え、0.25 まで。
+    #   2026-10-07: 蓄えの総量で決めていたのを、1 人あたりにした。人が増えても蓄えの総量が大きいと来つづけ、冬に飢えたため)
+    if rng.random() < (0.05 + min(0.20, store_days(state) / 600)) * frac:
         n = rng.choice([1, 2, 2, 3])
         members = []
         for i in range(n):
@@ -524,6 +540,15 @@ def _season_digest(state, p, first):
     return "\n".join(rows) or "(Society 2.0 の最初の季節。まだ何もしていない)"
 
 
+def _need(state):
+    return sum(BASE_KCAL + 500 for _ in adults(state)) + sum(next(k for a, k in CHILD_EAT if c["age"] < a) for c in children(state))
+
+
+def store_days(state):
+    """村の蓄えが、今の人数で何日分か"""
+    return int(sum(f["kcal"] for f in state["store"]) / max(1, _need(state)))
+
+
 def _village(state):
     e2 = state["era2"]
     kids = "、".join(f"{c['name']} ({c['sex']}、{c['age']} 歳、母 {c.get('mother', '-')})" for c in children(state)) or "なし"
@@ -533,8 +558,7 @@ def _village(state):
     goats = e2["goats"]
     gl = f"{len(goats)} 頭 (メス {sum(1 for g in goats if g['sex'] == 'メス')}・オス {sum(1 for g in goats if g['sex'] == 'オス')})" if goats else "なし"
     wild = state["places"][[pl["id"] for pl in state["places"]].index(e2["wild_goats"]["place"])]["label"]
-    need = sum(BASE_KCAL + 500 for _ in adults(state)) + sum(next(k for a, k in CHILD_EAT if c["age"] < a) for c in children(state))
-    days = int(sum(f["kcal"] for f in state["store"]) / max(1, need))
+    days = store_days(state)
     return (f"村の大人: {ads}\n村の子: {kids}\n村の蓄え: {food_words(world.holdings({'food': state['store']}))} (今の人数で 約 {days} 日分)\n"
             f"畑: {fl}\n飼っているヤギ: {gl}\n"
             f"{wild} のあたりに、野生のヤギの群れ (約 {e2['wild_goats']['count']} 頭) がいる\n")

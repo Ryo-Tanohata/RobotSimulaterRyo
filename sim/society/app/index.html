@@ -351,7 +351,7 @@ function renderCV() {
       ${row("名前", esc(r.name))}
       ${row("性別・年齢", `${esc(r.sex)} ・ ${r.age} 歳 (0 日目の年齢)`)}
       ${row("体重", `${r.mass} kg`)}
-      ${row("今", r.alive ? `生きている (${r.days} 日目)` : `${r.death.day} 日目に亡くなった: ${esc(r.death.text)}`)}
+      ${row("今", r.alive ? `生きている (${r.days} 日目)` : r.left ? `${r.left} 日目に村を出ていった` : r.death ? `${r.death.day} 日目に亡くなった: ${esc(r.death.text)}` : "―")}
       ${row("性格", Object.entries(r.personality).map(([k, v]) => `${esc(k)} ${v.toFixed(2)}`).join(" ・ "))}
       ${row("技能", Object.entries(r.skills).map(([k, v]) => `${esc(k)} ${Number(v).toFixed(2)}`).join(" ・ "))}
       ${row("持ち物", r.items.length ? r.items.map(esc).join("・") : "なし")}
