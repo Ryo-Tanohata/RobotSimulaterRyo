@@ -238,7 +238,7 @@ def _small_catch(state, p, pl, hours, rng, factor, quiet=False):
 
 def _move_camp(state, day):
     """半分を超える人が同じ場所に「キャンプを移す」を選んでいたら、キャンプ (と蓄え) をそこへ移す"""
-    alive = [p for p in state["people"] if p["alive"]]
+    alive = [p for p in state["people"] if p["alive"] and not p.get("child")]
     votes = {}
     for p in alive:
         p["moved_today"] = False
@@ -287,6 +287,8 @@ def _near(items, x, y, r):
     return [i for i in items if abs(i["x"] - x) <= r and abs(i["y"] - y) <= r]
 
 
+# Society 2.0 で足した仕事 (era2.py が働きを計算する。2026-10-07)
+ACTS2_EXTRA = ("畑仕事", "ヤギの世話", "ヤギを捕まえる")
 ACT_EVENT = {"採集": "採集", "狩り": "狩り", "探索": "探索", "休む": "休む", "道具づくり": "道具", "火おこし": "火",
              "種まき": "種まき", "住まいを建てる": "住まい", "キャンプを移す": "移る"}
 
@@ -306,7 +308,7 @@ def simulate_day(state):
     rng = random.Random(state["seed"] * 100003 + day)
     first = state["next_event"]
     sea = season(day)
-    alive = [p for p in state["people"] if p["alive"]]
+    alive = [p for p in state["people"] if p["alive"] and not p.get("child")]  # 子 (Society 2.0) は era2.py が扱う
     camp = state["camp"]
 
     # 動物の移動 (獲物は草原へ、捕食者はうろつく)
@@ -363,7 +365,7 @@ def simulate_day(state):
     for p in alive:
         plan = p["plan"] or {"activity": "休む", "place": "camp", "with": []}
         act = plan.get("activity", "休む")
-        if act not in ACTIVITIES:
+        if act not in ACTIVITIES and act not in ACTS2_EXTRA:
             act = "休む"
         pl = place_of(state, plan.get("place", "camp"))
         if act == "住まいを建てる":  # 建てるのはキャンプ。材料は近くの林から運ぶ
@@ -487,6 +489,12 @@ def simulate_day(state):
                 res["events"].append(log(state, "種まき", p["name"], f"{p['name']} が {pl['label']} に種を埋めた"))
             else:
                 res["events"].append(log(state, "種まき", p["name"], f"{p['name']} は種を持っていなかった"))
+        elif act == "畑仕事":
+            res["events"].append(log(state, "畑仕事", p["name"], f"{p['name']} がキャンプのそばの畑で働いた"))
+        elif act == "ヤギの世話":
+            res["events"].append(log(state, "ヤギの世話", p["name"], f"{p['name']} がヤギの世話をした"))
+        elif act == "ヤギを捕まえる":
+            res["events"].append(log(state, "ヤギを捕まえる", p["name"], f"{p['name']} が {pl['label']} でヤギを捕まえようとした"))
         else:
             res["events"].append(log(state, "休む", p["name"], f"{p['name']} はキャンプで休んだ"))
         # 昼間、遠くで一人だと捕食者に出会うことがある
@@ -585,7 +593,7 @@ def evening(state, gives, stores=(), takes=()):
     """夕方: 分け合い (gives = [{"from","to","food","count"}]、古い形の {"kcal"} も読める) → 食事 → 夜の危険 → 1 日の終わり"""
     day = state["day"]
     rng = random.Random(state["seed"] * 7919 + day)
-    people = {p["name"]: p for p in state["people"] if p["alive"]}
+    people = {p["name"]: p for p in state["people"] if p["alive"] and not p.get("child")}  # 子 (Society 2.0) は era2.py が扱う
     first = state["next_event"]
     shares = 0
     state.setdefault("store", [])

@@ -88,3 +88,12 @@ Cloudflare Pages の本人だけが見られるページ (README「結果を見�
 - 途中で止まっても、`state.json` の段階から続きをやり直せる。無理に続けず、そこまでをコミットし、記録に残して **push してから** 終わる (push しないと、その分は失われる)
 - 答えの JSON が壊れていても `step.py` は読める部分だけ使う。同じ人のサブエージェントを 1 回だけやり直してよい
 - 世界の状態やシミュレーションのコードを手で書き換えない
+
+## Society 2.0 (2026-10-07 から): 1 回 = 1 季節
+
+計画は `docs/society2_phase_plan.md`。`python3 sim/society/step.py start2` で始めた (489 日目)。
+
+1. `sim/society/data/prompts/dayNNN/season/` のお題を、大人 1 人に 1 体のサブエージェント (haiku) に渡し、答えを `answers/dayNNN/season/名前.json` に書かせる (子は答えない)
+2. そろったら `python3 sim/society/step.py season` (30 日進む。蓄えが尽きると途中で区切る)
+3. その回をコミット (push はしない): `社会シミュレーション: N 日目 (季節)`
+4. 20 回ごとに記録 (run_log・G?_notes) を書いて push。フェーズが進んだら (一時停止)、報告・評価の下書き・動画のあと `resume` して続ける

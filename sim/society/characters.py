@@ -33,7 +33,7 @@ def _me(state, p):
     sk = "、".join(f"{k} {v:.2f}" for k, v in p["skills"].items())
     hold = holdings(p)
     hunger = "満腹" if p["hunger"] < 0.1 else "少し空腹" if p["hunger"] < 0.3 else "かなり空腹" if p["hunger"] < 0.6 else "ひどく空腹 (危ない)"
-    trust = "、".join(f"{n} {v:+.1f}" for n, v in p["trust"].items() if any(q["name"] == n and q["alive"] for q in state["people"]))
+    trust = "、".join(f"{n} {v:+.1f}" for n, v in p["trust"].items() if any(q["name"] == n and q["alive"] and not q.get("child") for q in state["people"]))
     return (f"あなたは {p['name']} ({p['sex']}、{p['age']} 歳)。今は {days}。\n"
             f"性格 (0〜1): {pers}\n技能 (0〜1): {sk}\n"
             f"おなか: {hunger} / 疲れ {p['fatigue']:.1f} / けが {'あり' if p['injured'] else 'なし'}\n"

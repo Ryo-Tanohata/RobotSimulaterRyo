@@ -110,7 +110,7 @@ def is_meeting(day):
 
 def settle_meeting(state):
     """集まりの日: 過半数の賛成で採用、採用済みの掟は過半数の反対で廃止"""
-    alive = [p["name"] for p in state["people"] if p["alive"]]
+    alive = [p["name"] for p in state["people"] if p["alive"] and not p.get("child")]  # 子 (Society 2.0) は投票しない
     out = []
     for l in state["laws"]:
         yes = sum(1 for n in alive if l["votes"].get(n) is True)

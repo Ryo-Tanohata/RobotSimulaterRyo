@@ -19,6 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 import characters  # noqa: E402
+import era2  # noqa: E402
 import knowledge  # noqa: E402
 import phase  # noqa: E402
 import resume  # noqa: E402
@@ -49,7 +50,11 @@ def write_prompts(state, phase):
     for p in state["people"]:
         if not p["alive"]:
             continue
-        if phase == "evening":
+        if p.get("child"):
+            continue
+        if phase == "season":
+            text = era2.season_prompt(state, p, state["era2"].get("last_first", 0))
+        elif phase == "evening":
             text = characters.evening_prompt(state, p)
         else:
             text = characters.night_prompt(state, p, state.get("tonight", {}).get(p["name"], []),
@@ -64,7 +69,7 @@ def read_answers(state, phase):
     d = pdir(state, phase, "answers")
     out, missing = {}, []
     for p in state["people"]:
-        if not p["alive"]:
+        if not p["alive"] or p.get("child"):
             continue
         f = d / f"{p['name']}.json"
         if f.exists():
@@ -110,7 +115,7 @@ def export(state):
                    for q in state["plants"]],
         "herds": state["herds"], "predators": state["predators"], "planted": state["planted"],
         "people": [{k: p.get(k) for k in ("name", "alive", "age", "sex", "mass", "personality", "skills", "hunger", "fatigue",
-                                          "injured", "items", "trust", "plan", "feeling")}
+                                          "injured", "items", "trust", "plan", "feeling", "child", "mother", "origin")}
                    | {"food": sum(f["kcal"] for f in p["food"]), "food_words": world.food_words(world.holdings(p)), "today": p.get("today"),
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
         "events": ev_recent, "laws": state.get("laws", []),
@@ -126,7 +131,7 @@ def export(state):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume"])
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season"])
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
     a = ap.parse_args()
@@ -145,14 +150,16 @@ def main():
 
     state = load()
     if a.cmd == "status":
-        nxt = {"day": "day (1 日を進める)", "evening": "夕方の答えを集めて evening", "night": "夜の答えを集めて night"}[state["phase"]]
+        nxt = {"day": "day (1 日を進める)", "evening": "夕方の答えを集めて evening", "night": "夜の答えを集めて night",
+               "season": "季節の答えを集めて season (30 日進む)"}[state["phase"]]
         alive = [p["name"] for p in state["people"] if p["alive"]]
         print(f"{state['day']} 日目 / 段階 {state['phase']} / 次: {nxt} / 生きている人: {'、'.join(alive)}")
         info = state.get("era_info") or {}
-        print(f"フェーズ: {state.get('era', 'F1')} {phase.ERAS[state.get('era', 'F1')]} / 次の条件: {info.get('next', '-')}")
+        era = state.get("era", "F1")
+        print(f"フェーズ: {era} {phase.ERAS.get(era) or era2.NAMES2.get(era)} / 次の条件: {info.get('next', '-')}")
         if state.get("hold"):
             print("一時停止中: フェーズが進んだので評価待ち (再開は resume)")
-        if state["phase"] in ("evening", "night"):
+        if state["phase"] in ("evening", "night", "season"):
             print(f"お題: {pdir(state, state['phase'], 'prompts').relative_to(DATA.parent)}")
         return
     if a.cmd == "export":
@@ -163,6 +170,44 @@ def main():
         save(state)
         export(state)
         print("再開した")
+        return
+    if a.cmd == "start2":  # Society 2.0 を始める (F6 の世界を引きつぐ)
+        if state.get("era2"):
+            sys.exit("Society 2.0 はもう始まっている")
+        era2.start(state)
+        state["era2"]["last_first"] = state["next_event"]
+        era2.check(state)
+        save(state)
+        write_prompts(state, "season")
+        export(state)
+        return
+    if a.cmd == "season":
+        if state["phase"] != "season":
+            sys.exit(f"今の段階は {state['phase']} です")
+        if state.get("hold"):
+            print(f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
+            sys.exit(3)
+        era2.apply_answers(state, read_answers(state, "season"))
+        first = era2.simulate_season(state)
+        state["era2"]["last_first"] = first
+        if not any(p["alive"] for p in state["people"]):
+            save(state)
+            export(state)
+            print("生きている人がいない")
+            sys.exit(4)
+        if era2.check(state):
+            state["hold"] = True
+            e = state["era_log"][-1]
+            world.log(state, "フェーズ", None, f"フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ")
+            print(f"* フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ → 一時停止 (評価待ち)")
+        save(state)
+        write_prompts(state, "season")
+        export(state)
+        for e in state["events"]:
+            if e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "収穫", "ヤギ", "大人になる", "フェーズ"):
+                print("*", e["text"][:120])
+        i = state["era_info"]["indicators"]
+        print(f"{state['day']} 日目まで進んだ / 人 {i['population']} (大人 {i['adults']}・子 {i['children']}) / ヤギ {i['goats']} / 育てた食べ物 {i['farm_share']}")
         return
     if a.cmd == "day" and not any(p["alive"] for p in state["people"]):
         print("生きている人がいないので、進めない")

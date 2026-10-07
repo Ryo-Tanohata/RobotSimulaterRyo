@@ -18,6 +18,10 @@ def _era_of(day, eras):
     return cur
 
 
+def _joined_day(state, name):
+    return next((e["day"] for e in state["events"] if e["type"] == "加わる" and name in e["text"]), state["day"])
+
+
 def build(state):
     ev = state["events"]
     eras = [(x["era"], x["day"]) for x in state.get("era_log", [])]
@@ -52,7 +56,12 @@ def build(state):
                     by_era[_era_of(e["day"], eras)][e["type"]] += 1
 
         # 経歴 (年表): 初めてのこと・大きな出来事
-        hist = [{"day": 0, "text": "川辺のキャンプで 5 人と暮らし始める"}]
+        if p.get("origin") == "よそから来た":
+            hist = [{"day": _joined_day(state, n), "text": "よその群れから来て、村に加わる"}]
+        elif p.get("origin") == "生まれた":
+            hist = [{"day": p.get("born_day", 0), "text": f"村で生まれる (母 {p.get('mother', '-')})"}]
+        else:
+            hist = [{"day": 0, "text": "川辺のキャンプで 5 人と暮らし始める"}]
         firsts = {"採集": "初めて採集に出る", "狩り": "初めて狩りに出る", "探索": "初めて探索に出る", "蓄える": "初めてキャンプの蓄えに食べ物を入れる",
                   "種まき": "種をまく", "住まい": "住まいを建てる"}
         seen = set()
