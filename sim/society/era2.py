@@ -131,7 +131,8 @@ def apply_answers(state, answers):
         with_ = job.get("with") if isinstance(job.get("with"), list) else []
         p["plan"] = {"activity": act, "place": place, "with": [w for w in with_ if isinstance(w, str) and w in alive]}
         e2["jobs"][name] = {"sow": max(0, min(1000, _int(a.get("sow")))), "pick": max(0, min(40, _int(a.get("pick")))),
-                            "plant": max(0, min(5, _int(a.get("plant")))), "eat_goat": max(0, min(5, _int(a.get("eat_goat"))))}
+                            "plant": max(0, min(5, _int(a.get("plant")))), "eat_goat": max(0, min(5, _int(a.get("eat_goat")))),
+                            "harvest": max(0, min(60, _int(a.get("harvest"))))}
         p["feeling"] = str(a.get("feeling", ""))[:120]
         for v, ok in (a.get("accept").items() if isinstance(a.get("accept"), dict) else []):
             accept.setdefault(v, []).append(ok is True or ok in ("true", "はい", "賛成"))
@@ -229,6 +230,17 @@ def _day(state):
         if job.get("plant") and day == e2.get("step_day"):  # この回の最初の日に、蓄えの木の実を持って埋める
             _move_food(state["store"], p["food"], "木の実", job["plant"] * FRUIT_KCAL)
             takes.append({"who": p["name"], "food": "木の実", "count": job["plant"], "plant": True})
+    # 秋の回の最初の日に、決めた量の草の種をキャンプのそばの畑にまく (季節の仕事とは別。2026-10-07 追加)
+    if day == e2.get("step_day") and sea == "秋":
+        for p in adults(state):
+            n = e2["jobs"].get(p["name"], {}).get("sow", 0)
+            if n:
+                _sow(state, p, n)
+    # 夕方、実った畑を、決めた量だけ刈る (季節の仕事とは別。2026-10-07 追加)
+    for p in adults(state):
+        n = e2["jobs"].get(p["name"], {}).get("harvest", 0)
+        if n and not p.get("injured"):
+            _harvest(state, p, n)
     kids_ate = _feed(state, rng)
     world.evening(state, [], [], takes)
     if state["stats"] and kids_ate:  # 子が食べた量も、その日の食べた量に数える
@@ -275,30 +287,39 @@ def _field_work(state, p, t, job, sea, rng):
     h = t.get("work_h", 6)
     mine = [f for f in e2["fields"] if f["state"] == "育つ"]
     ripe = [f for f in e2["fields"] if f["state"] == "実った"]
-    if sea == "秋" and job.get("sow") and not any(f["by"] == p["name"] and f["day"] > day - SEASON_DAYS for f in e2["fields"]):
-        by = _move_food(state["store"], [], "草の種", job["sow"] * UNITS["草の種"][1])
-        n = int(by.get("草の種", 0) // UNITS["草の種"][1])
-        if n:
-            e2["fields"].append({"id": len(e2["fields"]), "day": day, "seed": n, "work": 0.0, "state": "育つ", "by": p["name"], "harvested": 0})
-            e2.setdefault("sown_years", []).append(day // YEAR)
-            log(state, "畑", p["name"], f"{p['name']} がキャンプのそばの畑に、草の種 {n} つかみ をまいた", seed=n)
-            return
-    if ripe:  # 刈る: 1 日に 1 人 150 つかみまで【仮定】
-        f = ripe[0]
-        left = f["yield"] - f["harvested"]
-        n = min(left, int(150 * h / 6))
-        if n > 0:
-            f["harvested"] += n
-            state["store"].append({"kind": "草の種", "kcal": n * UNITS["草の種"][1], "day": day, "sown": True})
-            log(state, "収穫", p["name"], f"{p['name']} が畑で草の種 {n} つかみ を刈った", amount=n)
-            yr = day // YEAR
-            if yr not in e2["harvest_years"]:
-                e2["harvest_years"].append(yr)
-        if f["harvested"] >= f["yield"]:
-            f["state"] = "刈った"
+    if ripe:  # 刈る: 畑仕事の人は 1 日に 150 つかみまで【仮定】
+        _harvest(state, p, int(150 * h / 6))
         return
     for f in mine:  # 草取り・水やり
         f["work"] += h / max(1, len(mine))
+
+
+def _sow(state, p, want):
+    e2 = state["era2"]
+    by = _move_food(state["store"], [], "草の種", want * UNITS["草の種"][1])
+    n = int(by.get("草の種", 0) // UNITS["草の種"][1])
+    if n:
+        e2["fields"].append({"id": len(e2["fields"]), "day": state["day"], "seed": n, "work": 0.0, "state": "育つ", "by": p["name"], "harvested": 0})
+        e2.setdefault("sown_years", []).append(state["day"] // YEAR)
+        log(state, "畑", p["name"], f"{p['name']} がキャンプのそばの畑に、草の種 {n} つかみ をまいた", seed=n)
+
+
+def _harvest(state, p, want):
+    e2 = state["era2"]
+    day = state["day"]
+    for f in [f for f in e2["fields"] if f["state"] == "実った"]:
+        n = min(want, f["yield"] - f["harvested"])
+        if n > 0:
+            f["harvested"] += n
+            want -= n
+            state["store"].append({"kind": "草の種", "kcal": n * UNITS["草の種"][1], "day": day, "sown": True})
+            log(state, "収穫", p["name"], f"{p['name']} が畑で草の種 {n} つかみ を刈った", amount=n)
+            if day // YEAR not in e2["harvest_years"]:
+                e2["harvest_years"].append(day // YEAR)
+        if f["harvested"] >= f["yield"]:
+            f["state"] = "刈った"
+        if want <= 0:
+            break
 
 
 def _field_season(state, rng):
@@ -561,10 +582,12 @@ def season_prompt(state, p, first):
 {state["day"] + 1} 日目、{sea}。これから {SEASON_DAYS - (state["day"] + 1) % SEASON_DAYS} 日 (この季節の終わりまで) の仕事を決める集まり (途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。
 1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
 2. この季節の主な仕事を決める (job)。仕事は {' / '.join(ACTS2)} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
-   畑仕事は camp で行う。秋に畑仕事をする人は、蓄えの草の種をまく量 (sow、つかみ) を書ける
+   畑仕事 (草取り・刈り入れ) は camp で行う
    ヤギの世話は camp で行う。ヤギを捕まえるは、野生のヤギのいる場所で行う
 3. {pick.strip() or 'キャンプのそばの種から育った木に実がなっていれば、毎夕いくつ取るか (pick、つかみ) を書ける'} (この季節の毎夕)
 4. 持っている木の実を、季節のはじめにキャンプのそばに埋める (plant、つかみ、5 まで) こともできる
+   秋なら、季節のはじめに、蓄えの草の種をキャンプのそばの畑にまく量 (sow、つかみ、1000 まで) を書ける (主な仕事とは別にできる)
+   実った畑があれば、毎夕いくつ刈るか (harvest、つかみ、60 まで) を書ける (主な仕事とは別にできる)
 5. 覚えていることを更新する (新しく分かったことを追加、確かさを変える、間違っていたら忘れる)
 6. 掟: みんなで守りたい決まりがあれば提案できる (なければ null)。今の掟と提案に、賛成か反対かを投票する (against に反対する理由、reason に決めた理由)
 7. 今の気持ちを一言
@@ -574,7 +597,7 @@ def season_prompt(state, p, first):
 
 ## 答えの形 (JSON)
 {{"say": [{{"to": "みんな", "text": "..."}}],
- "job": {{"activity": "採集", "place": "camp", "with": []}}, {sow}"pick": 0, "plant": 0, {goat}{acc}
+ "job": {{"activity": "採集", "place": "camp", "with": []}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}
  "knowledge": [{{"op": "add", "text": "...", "because": [出来事の番号], "confidence": 0.6}}],
  "proposal": {{"text": "...", "because": [出来事の番号]}},
  "votes": [{{"id": "L0", "against": "反対する理由", "agree": true, "reason": "決めた理由"}}],
