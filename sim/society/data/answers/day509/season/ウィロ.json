@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "今日は北の林に採集に行くね。ひとりでは行かないから、一緒に来られる人は声をかけて。見つけた量は、そのまま正直に報告するから。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": []}, "sow": 0, "pick": 0, "plant": 0,
+ "knowledge": [{"op": "add", "text": "キャンプのそばの木には、まだたくさんの木の実がついている。秋のあいだに取れる", "because": [8336], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るのだから、キャンプから離れないのは当然だと思う"},
+  {"id": "L1", "against": "", "agree": true, "reason": "同じ場所を重ねて探さないために、行き先は伝えたほうがいい"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは複数人で行けば、けがをしても助け合える"},
+  {"id": "L5", "against": "", "agree": true, "reason": "食べ物が見つかったら分け合えば、みんなで生き残れる"},
+  {"id": "L38", "against": "", "agree": true, "reason": "夜のザガから身を守るため、火と見張りは必要だ"},
+  {"id": "L42", "against": "", "agree": true, "reason": "見つけた量を話し合えば、次にどこへ行くか決めやすい"},
+  {"id": "L67", "against": "", "agree": true, "reason": "食べ物を集めた人が空腹では、採集の力が落ちてしまう"},
+  {"id": "L70", "against": "", "agree": true, "reason": "蓄えに入れた人が、その日のうちに自分の分を食べるべきだ"},
+  {"id": "L71", "against": "", "agree": true, "reason": "見つけた量、入れた量、取った量を毎晩話せば、蓄えの減り方が分かる"},
+  {"id": "L79", "against": "", "agree": true, "reason": "毎晩火を焚いてザガを近づけないことは、けがを防ぐ"},
+  {"id": "L95", "against": "", "agree": true, "reason": "けがが治るまでは採集や狩りに行かず、休むのが正しい"},
+  {"id": "L97", "against": "", "agree": true, "reason": "守られていない掟は、もう一度みんなで確認し直すべきだ"}
+ ],
+ "feeling": "蓄えを支える仕事があると、少し安心する。今日は北の林でしっかり集めたい。"}
