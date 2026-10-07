@@ -205,8 +205,11 @@ def main():
         write_prompts(state, "season")
         export(state)
         for e in state["events"]:
-            if e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "収穫", "ヤギ", "大人になる", "フェーズ"):
+            if e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ"):
                 print("*", e["text"][:120])
+        harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")
+        if harv:
+            print(f"* 畑で刈った草の種: 合わせて {harv} つかみ")
         i = state["era_info"]["indicators"]
         print(f"{state['day']} 日目まで進んだ / 人 {i['population']} (大人 {i['adults']}・子 {i['children']}) / ヤギ {i['goats']} / 育てた食べ物 {i['farm_share']}")
         return
