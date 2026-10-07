@@ -599,7 +599,23 @@ def evening(state, gives, stores=(), takes=()):
         if p and got:
             p["food"].append({"kind": "木の実", "kcal": got * FRUIT_KCAL, "day": day, "sown": True})
             log(state, "木から取る", p["name"], f"{p['name']} がキャンプのそばの木から 木の実 {got} つかみ を取った", food=f"木の実 {got} つかみ")
-    takes = [g for g in takes if not g.get("tree")]
+    for g in [g for g in takes if g.get("plant")]:  # 持っている木の実をキャンプのそばに埋める (2026-10-07 追加。1 人 1 夕方 5 つかみまで)
+        p = people.get(g.get("who"))
+        if not p:
+            continue
+        want = max(0, min(int(g.get("count", 0) or 0), 5))
+        by = _move_food(p["food"], [], "木の実", want * FRUIT_KCAL) if want else {}
+        n = int(by.get("木の実", 0) // FRUIT_KCAL)
+        cx, cy = state["camp"]["x"], state["camp"]["y"]
+        for _ in range(n):
+            state["planted"].append({"x": min(W - 1, max(0, cx + rng.randint(-3, 3))), "y": min(H - 1, max(0, cy + rng.randint(-3, 3))),
+                                     "day": day, "who": p["name"]})
+        if n:
+            log(state, "種まき", p["name"], f"{p['name']} がキャンプのそばに 木の実 {n} つかみ を種として埋めた")
+            tried = tried_activities(state)
+            if "種まき" not in tried:
+                tried.append("種まき")
+    takes = [g for g in takes if not g.get("tree") and not g.get("plant")]
     for g in takes:
         p = people.get(g.get("who"))
         kind, kcal = _kcal_of(g)

@@ -68,6 +68,13 @@ def _pick_line(state):
     return f"キャンプのそばの木から、ついている木の実を取る (pick) こともできます (今ついている実 約 {n} つかみ。しなくてもよい)。\n" if n >= 1 else ""
 
 
+def _plant_line(p):
+    """持っている木の実を、キャンプのそばの土に埋められる (2026-10-07 追加。よいことは書かない)"""
+    n = sum(f["kcal"] for f in p["food"] if f["kind"] == "木の実") // 100
+    return (f"持っている木の実を、キャンプのそばの土に埋める (plant) こともできます (1 つかみが 1 つの種になる。今持っている木の実 {n} つかみ。しなくてもよい)。\n"
+            if n >= 1 else "")
+
+
 def _dwelling(state):
     """キャンプの住まいの今のようす (見ればわかる事実。2026-10-06、本人の了承のうえ追加: 建てかけを完成と思い込んだため)"""
     camp = state["camp"]
@@ -156,11 +163,11 @@ def evening_prompt(state, p):
 前と同じ言い回しをくり返さず、あなたの性格と今日の出来事に合った、あなたらしい言葉で話してください。
 持っている食べ物を誰かに分けるなら、相手・食べ物の名前・数を書いてください (分けなくてもよい)。
 キャンプの蓄えに入れる (store) ことも、蓄えから取る (take) こともできます (しなくてもよい)。
-{_pick_line(state)}この世界の決まり: 夕方は「分ける・蓄えに入れる・蓄えから取る」のあと、手元に残った食べ物を食べます (1 日に食べられるのは目安の量の 1.5 倍くらいまで)。蓄えに入れた分は、取り出さないと食べられません。
+{_pick_line(state)}{_plant_line(p)}この世界の決まり: 夕方は「分ける・蓄えに入れる・蓄えから取る」のあと、手元に残った食べ物を食べます (1 日に食べられるのは目安の量の 1.5 倍くらいまで)。蓄えに入れた分は、取り出さないと食べられません。
 
 ## 答えの形 (JSON)
 {{"say": [{{"to": "みんな", "text": "..."}}], "give": [{{"to": "名前", "food": "芋", "count": 2}}],
- "store": [{{"food": "木の実", "count": 3}}], "take": [{{"food": "芋", "count": 1}}]{', "pick": [{"count": 5}]' if _pick_line(state) else ''}}}"""
+ "store": [{{"food": "木の実", "count": 3}}], "take": [{{"food": "芋", "count": 1}}]{', "pick": [{"count": 5}]' if _pick_line(state) else ''}{', "plant": [{"count": 1}]' if _plant_line(p) else ''}}}"""
 
 
 def night_prompt(state, p, tonight_heard, gifts):
@@ -262,6 +269,9 @@ def apply_evening(state, answers):
         for g in (a.get("take") or [])[:4]:
             if isinstance(g, dict):
                 takes.append({"who": name, "food": g.get("food"), "count": g.get("count", 0)})
+        for g in (a.get("plant") or [])[:1]:  # 持っている木の実をキャンプのそばに埋める (2026-10-07 追加)
+            if isinstance(g, dict):
+                takes.append({"who": name, "food": "木の実", "count": g.get("count", 0), "plant": True})
         for g in (a.get("pick") or [])[:1]:  # キャンプのそばの木から実を取る (2026-10-06 追加)
             if isinstance(g, dict):
                 takes.append({"who": name, "food": "木の実", "count": g.get("count", 0), "tree": True})

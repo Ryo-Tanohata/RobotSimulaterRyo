@@ -107,11 +107,15 @@ const total = offset;
 fs.writeFileSync(`${outName}.timeline.json`, JSON.stringify({ fps: FPS, duration: total, narration, events: [], days: plan }, null, 1));
 console.log(`長さ ${total.toFixed(1)} 秒、${Math.round(total * FPS)} コマ`);
 
+// FROM_SEC・TO_SEC・PART=出力ファイル: その区間だけ撮る (途中で止まっても、撮り終えた区間を残してつなげるため。2026-10-07)
+const OUT = process.env.PART || `${outName}_silent.mp4`;
 const ff = spawn("ffmpeg", ["-loglevel", "error", "-y", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-",
-  "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "22", "-preset", "medium", "-movflags", "+faststart", `${outName}_silent.mp4`], { stdio: ["pipe", "inherit", "inherit"] });
+  "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "22", "-preset", "medium", "-movflags", "+faststart", OUT], { stdio: ["pipe", "inherit", "inherit"] });
 const t0 = Date.now();
 const N = Math.round((process.env.LIMIT ? Math.min(total, Number(process.env.LIMIT)) : total) * FPS);  // LIMIT=秒 で試し撮り
-for (let f = 0; f < N; f++) {
+const F0 = Math.round(Number(process.env.FROM_SEC || 0) * FPS), F1 = process.env.TO_SEC ? Math.min(N, Math.round(Number(process.env.TO_SEC) * FPS)) : N;
+if (process.env.PLAN_ONLY) { ff.stdin.end(); await browser.close(); server.close(); process.exit(0); }
+for (let f = F0; f < F1; f++) {
   const t = f / FPS;
   const P = plan.filter((p) => p.start <= t).pop();
   const v = t - P.start;
@@ -133,4 +137,4 @@ ff.stdin.end();
 await new Promise((r) => ff.on("close", r));
 await browser.close();
 server.close();
-console.log(`→ ${outName}_silent.mp4`);
+console.log(`→ ${OUT}`);
