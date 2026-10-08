@@ -3,7 +3,7 @@
   python3 sim/society/tools/progress_chart.py [state.json] [出力.png] [最初の日 (既定 489 = Society 2.0 の始まり)]
 
 4 つの小さなグラフ (目盛りは 1 つずつ。2 つの量を 1 つのグラフに重ねない):
-  1. 人数 (大人・子)  2. 村の蓄え (今の人数で何日分)  3. 1 季節に食べたものの内訳 (割合)  4. 家族の住まいの数
+  1. 人数 (大人・子)  2. 村の蓄え (今の人数で何日分。お題と同じ数え方)  3. 1 季節に食べたものの内訳 (割合)  4. 家族の住まいの数
 すべて state.json の記録 (人の生まれた日・加わった日・亡くなった日・村を出た日、毎日の stats、era2 の家族の住まい) から数える。
 色は dataviz の手引きの決まった順 (validate_palette.js で確かめた: 青・橙・水色・黄)。水色と黄は背景との濃さの差が小さいので、凡例と文字を必ずつける。
 """
@@ -19,6 +19,8 @@ import matplotlib.ticker  # noqa: E402,F401
 from matplotlib import font_manager  # noqa: E402
 
 SEASON, YEAR, ADULT = 30, 120, 15
+BASE_KCAL = 1900  # world.py と同じ (大人は 1 日 BASE_KCAL + 500)
+CHILD_EAT = [(3, 800), (10, 1300), (15, 1800)]  # era2.py と同じ (子が 1 日に食べる量)
 SURFACE, INK, INK2, MUTED, GRID, AXIS = "#fcfcfb", "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7"
 S1, S2, S3, S4 = "#2a78d6", "#eb6834", "#1baf7a", "#eda100"  # 決まった順 (並べかえない)
 
@@ -45,15 +47,19 @@ def series(state, start):
     homes = (state.get("era2") or {}).get("homes", {})
     for d in days:
         ad = ch = 0
+        need = 0  # その日の人数で 1 日に要る量 (era2.store_days と同じ数え方。お題の「今の人数で 約 N 日分」とそろえる)
         for p in people:
             born = p.get("born_day", -10 ** 6)
             came = born if p.get("origin") == "生まれた" else (_joined(state, p["name"]) or 0) if p.get("origin") == "よそから来た" else 0
             gone = min(x for x in (death.get(p["name"]), p.get("left"), 10 ** 9) if x is not None)
             if came <= d < gone or (came <= d and gone == d):
-                if (d - born) / YEAR >= ADULT:
+                age = (d - born) / YEAR
+                if age >= ADULT:
                     ad += 1
+                    need += BASE_KCAL + 500
                 else:
                     ch += 1
+                    need += next(k for a, k in CHILD_EAT if age < a)
         win = [stats[x] for x in range(d - SEASON + 1, d + 1) if x in stats]
         eaten = sum(s.get("eaten", 0) for s in win)
         by = {}
@@ -61,8 +67,7 @@ def series(state, start):
             for k, v in (s.get("eaten_by_kind") or {}).items():
                 by[k] = by.get(k, 0) + v
         store = stats[d]["store"] if d in stats else None
-        per_day = eaten / len(win) if win and eaten else None
-        rows.append({"day": d, "adults": ad, "children": ch, "store_days": (store / per_day) if store is not None and per_day else None,
+        rows.append({"day": d, "adults": ad, "children": ch, "store_days": (store / need) if store is not None and need else None,
                      "by": by, "eaten": eaten,
                      "houses": sum(1 for v in homes.values() if v.get("built") is not None and v["built"] <= d)})
     return rows
