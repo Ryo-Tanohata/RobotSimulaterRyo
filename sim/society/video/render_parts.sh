@@ -4,8 +4,8 @@
 set -u
 cd "$(dirname "$0")"
 NARR=$1; VOICE=$2; OUT=$3
-TOTAL=$(${PY:-python3} -c "import json;print(json.load(open('$OUT.timeline.json'))['duration'])" 2>/dev/null)
-if [ -z "$TOTAL" ]; then PLAN_ONLY=1 node make_video.mjs "$NARR" "$VOICE" "$OUT" >/dev/null; TOTAL=$(${PY:-python3} -c "import json;print(json.load(open('$OUT.timeline.json'))['duration'])"); fi
+TOTAL=$(${PY:-python3} -c "import json;print(json.load(open('$OUT.timeline.json', encoding='utf-8'))['duration'])" 2>/dev/null)
+if [ -z "$TOTAL" ]; then PLAN_ONLY=1 node make_video.mjs "$NARR" "$VOICE" "$OUT" >/dev/null; TOTAL=$(${PY:-python3} -c "import json;print(json.load(open('$OUT.timeline.json', encoding='utf-8'))['duration'])"); fi
 N=$(${PY:-python3} -c "import math;print(math.ceil($TOTAL/60))")
 for ((k=0; k<N; k++)); do
   P=$(printf "%s_p%02d.mp4" "$OUT" $k)
