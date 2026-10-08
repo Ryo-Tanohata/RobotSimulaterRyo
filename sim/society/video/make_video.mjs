@@ -16,8 +16,8 @@ const FPS = 25, W = 1280, H = 720;
 const CHROME = process.env.CHROME || "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const lines = JSON.parse(fs.readFileSync(narrPath, "utf8"));
 const durs = JSON.parse(fs.readFileSync(path.join(voiceDir, "durations.json"), "utf8"));
-// 日付の注釈 (2026-10-09 本人の希望): 日付は「11 年目 31 日目」と表すが、この世界の 1 年は現実より短い。最初の数秒と最後のクレジットに出す
-const YEAR_NOTE = "※ この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ) で、現実の 1 年とは違います";
+// 日付の注釈 (2026-10-09 本人の希望): 日付は「10年31日目」(年は過ぎた年の数。最初の年は 0年) と表すが、この世界の 1 年は現実より短い。最初の数秒と最後のクレジットに出す
+const YEAR_NOTE = "※ この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ) で、現実の 1 年とは違います。「10年31日目」は、10 年たった年の 31 日目 (最初の年は 0年)";
 const CREDIT = "ナレーション: VOICEVOX:ずんだもん<br>描画: three.js (MIT License)<br>効果音・BGM: プログラムで自作" + `<br><span style="font-size:20px">${YEAR_NOTE}</span>`;
 
 // アプリのファイルをこの PC の中だけで配る (file:// では JSON を読めないため)
@@ -86,7 +86,7 @@ const from = Number(fromArg || 1), to = Number(toArg || Math.max(...lines.map((l
 // DAYS=21,28,29 のように、飛び飛びの日をつなぐこともできる
 const dayList = process.env.DAYS ? process.env.DAYS.split(",").map(Number) : Array.from({ length: to - from + 1 }, (_, i) => from + i);
 const lastDay = dayList[dayList.length - 1];
-const LABEL = {};  // 日ごとの「11 年目 31 日目」(アプリと同じ書き方。replay3d.js の dayLabel)
+const LABEL = {};  // 日ごとの「10年31日目」(アプリと同じ書き方。replay3d.js の dayLabel)
 for (const d of dayList) LABEL[d] = await page.evaluate((d) => Replay3D.dayLabel(d), d);
 
 // 日ごとに場面の長さを決め、ナレーションの時刻を並べる

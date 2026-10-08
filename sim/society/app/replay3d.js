@@ -17,10 +17,10 @@
   const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが", "畑", "畑仕事", "ヤギの世話", "ヤギを捕まえる", "土器"];
   const EVE_EVENTS = ["話す", "分ける", "蓄える", "蓄えから取る", "収穫", "木から取る"];
   const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ", "生まれる", "訪れる", "加わる", "去る", "ヤギ", "大人になる", "家族", "虫", "雨", "受けつぎ", "区切り"];
-  // 日付は「11 年目 31 日目」と表す (2026-10-09 本人の希望)。この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ、era2.py の YEAR) で、現実の 1 年とは違う
+  // 日付は「10年31日目」と表す (2026-10-09 本人の希望。年は過ぎた年の数で、最初の年は 0年。era2.py の day // YEAR と同じ)。この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ、era2.py の YEAR) で、現実の 1 年とは違う
   const YEAR_DAYS = 120;
-  const yearDay = (d) => ({ year: Math.floor(d / YEAR_DAYS) + 1, day: (d % YEAR_DAYS) + 1 });
-  const dayLabel = (d) => { const y = yearDay(d); return `${y.year} 年目 ${y.day} 日目`; };
+  const yearDay = (d) => ({ year: Math.floor(d / YEAR_DAYS), day: (d % YEAR_DAYS) + 1 });
+  const dayLabel = (d) => { const y = yearDay(d); return `${y.year}年${y.day}日目`; };
 
   let S = null; // 状態
 

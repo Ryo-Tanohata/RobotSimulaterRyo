@@ -8,6 +8,14 @@ mkdir -p out
 LOG=out/ordered.log
 log() { echo "$(date '+%m-%d %H:%M:%S') $*" | tee -a "$LOG"; }
 export GPU=1 PY=${PY:-py}
+# 日付の書き方が変わったら、前に撮った区間と動画は使えない (時計の日付が全部のコマに入っている)。書き方の印を見て、古いものを消してから撮る
+# (2026-10-09: 「11 年目 31 日目」→「10年31日目」。本人の希望)
+DATE_FMT="10年31日目 (年は過ぎた年の数、2026-10-09)"
+if [ "$(cat out/date_format.txt 2>/dev/null)" != "$DATE_FMT" ]; then
+  log "date format changed -> remove parts and finals rendered with the old format"
+  rm -f out/society_*_p[0-9][0-9].mp4 out/society_*_silent.mp4 out/society_*.final
+  echo "$DATE_FMT" > out/date_format.txt
+fi
 ITEMS=(G1:510,600,629,659,990,1019,1229 G1F1:509,510,600 G1F2:629,630,631 G1F3:659,660,779
        G2:1230,1259,1320,1415,1469,1529 G2F1:1259,1260,1290 G2F2:1409,1415,1435 G2F3:1499,1529
        G3:1530,1559,1562,1573,1580,1589 G3F3:1559,1562,1589

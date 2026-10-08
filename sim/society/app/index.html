@@ -146,7 +146,7 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
 <div class="wrap">
   <header>
     <h1>川辺の五人</h1>
-    <div class="daybox"><span id="season">―</span><span><b id="year">0</b> 年目 <b id="day">0</b> 日目</span><small>※ この世界の 1 年は 120 日 (現実の 1 年とは違います)</small></div>
+    <div class="daybox"><span id="season">―</span><span><b id="year">0</b>年<b id="day">0</b>日目</span><small>※ 年は過ぎた年の数 (最初の年は 0年)。この世界の 1 年は 120 日 (現実の 1 年とは違います)</small></div>
   </header>
   <div class="panel era" id="era" aria-live="polite"></div>
   <p class="lead">2 km 四方の川辺で暮らす 5 人の、狩猟採集の暮らしを 1 日ずつ進めています。毎朝 7 時に 1 日分進みます。
@@ -248,7 +248,7 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
 const $ = (id) => document.getElementById(id);
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-// 日付は「11 年目 31 日目」と表す (replay3d.js の dayLabel。この世界の 1 年は 120 日で、現実の 1 年とは違う)
+// 日付は「10年31日目」と表す (replay3d.js の dayLabel。年は過ぎた年の数で、最初の年は 0年。この世界の 1 年は 120 日で、現実の 1 年とは違う)
 const dayLabel = (d) => (window.Replay3D ? Replay3D.dayLabel(d) : `${d} 日目`);
 let D = null, focus = "", WALK = null;
 function start3d() {
