@@ -1,4 +1,4 @@
-# Wait for an already running experiment 2 (sim/bipedal/run_exp2.sh in WSL) to finish,
+﻿# Wait for an already running experiment 2 (sim/bipedal/run_exp2.sh in WSL) to finish,
 # then commit + push the results and, only with -Shutdown, shut Windows down.
 #   powershell -ExecutionPolicy Bypass -File tools\mjx\wait_exp2_then_shutdown.ps1 [-Shutdown]
 # Shuts down ONLY with -Shutdown (only when the user explicitly asks). Cancel within 2 minutes with:  shutdown /a
@@ -26,7 +26,7 @@ git add docs/bipedal_study2.md docs/media/bipedal_study2.png 2>$null
 git add docs/media/bipedal_study2_*.mp4 2>$null
 foreach ($d in Get-ChildItem "sim\bipedal\runs" -Directory -Filter "e2_*_seed*") {
   $ck = Get-ChildItem (Join-Path $d.FullName "checkpoints") -Directory -ErrorAction SilentlyContinue | Sort-Object { [long]$_.Name } | Select-Object -Last 1
-  if ($ck) { git add -f $ck.FullName }
+  if ($ck) { git add -f $ck.FullName; git rm -q --cached --ignore-unmatch (Join-Path $ck.FullName "commit_success.txt") }  # it holds the PC path (user name): keep it out
   foreach ($f in "log.csv", "config.json", "eval.json") { $p = Join-Path $d.FullName $f; if (Test-Path $p) { git add -f $p } }
 }
 git add -f sim/bipedal/runs/study2.log sim/bipedal/runs/exp2.driver.log 2>$null
