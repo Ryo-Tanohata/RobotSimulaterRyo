@@ -280,6 +280,8 @@ def _day(state):
             _goat_work(state, p, t, sea)
         elif act == "ヤギを捕まえる":
             _catch_goat(state, p, t, rng)
+        elif act == "住まいを建てる" and era_at_least(state, "G3") and state["camp"].get("dwelling_day") is not None:
+            _build_house(state, p, t)
         if act in CRAFTS:
             e2.setdefault("craft_days", {})[p["name"]] = e2.get("craft_days", {}).get(p["name"], 0) + 1
             if era_at_least(state, "G3"):
@@ -445,6 +447,84 @@ def _storage_season(state, frac):
             log(state, "道具", None, f"村の{what}が {broke} {'個' if key == 'pots' else '本'} 割れた (残り {e2[key]})")
 
 
+# ---------------- 家族の住まい (2026-10-08 追加。G3 から働く。本人の希望「人数が増えて家族になっているので、シミュレーションに反映したい」) ----------------
+# 【文献】Flannery 2002: 先土器新石器 B (PPNB) に、丸い家と共同の倉から、四角い家と家ごとの倉へ変わった。Kohler ほか 2017: 家の大きさで豊かさの差 (ジニ係数) を測る
+# 【仮定】家族の住まい 1 軒に、のべ 400 時間の働き (大人 2 人で 3 週間ほど。広さ 約 20 m²)。そのあと 200 時間ごとに 10 m² 広くなる (80 m² まで)。
+#   (2026-10-08 写しの試しで、120 時間では 4〜6 日で建ち、1 季節で 80 m² になったので、400 時間にした)
+#   村の住まい (キャンプのまん中) で眠れるのは 12 人まで (world.DWELL_CAP)。家族の住まいのある家族は、そこで眠る
+HOUSE_HOURS, HOUSE_BASE, HOUSE_STEP, HOUSE_MAX = 400, 20, 10, 80
+
+
+def _homes_built(state):
+    return {h for h, v in state["era2"].get("homes", {}).items() if v.get("built") is not None}
+
+
+def _house_site(state):
+    """家族の住まいを建てる場所: キャンプから 5〜9 マスの輪の上で、川でなく、南西の畑と村の住まいから離れ、ほかの家と重ならない所"""
+    cx, cy = state["camp"]["x"], state["camp"]["y"]
+    used = [(v["x"], v["y"]) for v in state["era2"].get("homes", {}).values()]
+    for r in (5, 7, 9):
+        for k in range(12):
+            a = math.radians(k * 30 + (15 if r == 7 else 0))
+            x, y = round(cx + r * math.cos(a), 1), round(cy + r * math.sin(a), 1)
+            ix, iy = int(x), int(y)
+            if not (0 <= ix < W and 0 <= iy < H) or state["terrain"][iy][ix] == "r":
+                continue
+            if (x < cx - 1 and y > cy + 1) or math.hypot(x - (cx - 2.7), y - (cy - 1.7)) < 3:  # 南西は畑、北西は村の住まい
+                continue
+            if any(math.hypot(x - ux, y - uy) < 2.2 for ux, uy in used):
+                continue
+            return x, y
+    return cx + 3.0, cy - 4.0
+
+
+def _build_house(state, p, t):
+    """家族の大人が、家族の住まいを建てる・広げる (G3 から。村の住まいができたあと)"""
+    h = p.get("household")
+    if not h:
+        return
+    homes = state["era2"].setdefault("homes", {})
+    v = homes.get(h)
+    if not v:
+        x, y = _house_site(state)
+        v = homes[h] = {"x": x, "y": y, "start": state["day"], "built": None, "size": 0, "work": 0.0, "sizes": []}
+    before = v["work"]
+    v["work"] = round(before + t.get("work_h", 6) * (0.6 + 0.4 * p["skills"].get("道具", 0.1)), 2)
+    p["skills"]["道具"] = round(min(1, p["skills"].get("道具", 0.1) + 0.02), 3)
+    if v["built"] is None:
+        if v["work"] >= HOUSE_HOURS:
+            v["built"], v["size"] = state["day"], HOUSE_BASE
+            v["sizes"].append([state["day"], HOUSE_BASE])
+            t.setdefault("events", []).append(log(state, "住まい", p["name"], f"{p['name']} たちの手で、{h}の住まいができた (四角い家。広さ 約 {HOUSE_BASE} m²)",
+                                                  household=h, size=HOUSE_BASE))
+        else:
+            t.setdefault("events", []).append(log(state, "住まい", p["name"], f"{p['name']} が、{h}の住まいを建てた (まだ建てかけ。でき具合 約 "
+                                                  f"{max(1, round(v['work'] / HOUSE_HOURS * 10))} 割)", household=h))
+    else:
+        size = min(HOUSE_MAX, HOUSE_BASE + HOUSE_STEP * int((v["work"] - HOUSE_HOURS) // (HOUSE_HOURS / 2)))
+        if size > v["size"]:
+            v["size"] = size
+            v["sizes"].append([state["day"], size])
+            t.setdefault("events", []).append(log(state, "住まい", p["name"], f"{p['name']} たちが、{h}の住まいを広げた (広さ 約 {size} m²)", household=h, size=size))
+        else:
+            t.setdefault("events", []).append(log(state, "住まい", p["name"], f"{p['name']} が、{h}の住まいを"
+                                                  + ("手入れした" if v["size"] >= HOUSE_MAX else "広げている"), household=h))
+
+
+def _houses_text(state):
+    """お題の「村のようす」: 家族の住まい (G3 から)"""
+    homes = state["era2"].get("homes", {})
+    rows = []
+    for h in sorted({q.get("household") for q in state["people"] if q["alive"] and q.get("household")}):
+        v = homes.get(h)
+        rows.append(f"{h} (" + ("まだない" if not v else f"できている、広さ 約 {v['size']} m²" if v["built"] is not None
+                                else f"建てかけ、でき具合 約 {max(1, round(v['work'] / HOUSE_HOURS * 10))} 割") + ")")
+    built = _homes_built(state)
+    inside = sum(1 for q in state["people"] if q["alive"] and q.get("household") not in built)
+    return (f"家族の住まい: {'、'.join(rows)}\n"
+            f"村の住まい (キャンプのまん中) で眠るのは {inside} 人 ({world.DWELL_CAP} 人まで)\n")
+
+
 # ---------------- G4 持ち物と差: 家の倉・持ち主・受けつぎ (2026-10-08 追加。G4 に入ってから働く) ----------------
 # 【文献】畑・家畜・家は手間をかけた人の物になりやすく、親から子に受けつがれるので差が世代をこえて大きくなる (Borgerhoff Mulder ほか 2009)
 # 【文献】家の大きさのジニ係数: 狩猟採集 約 0.17、園耕 約 0.27、農耕 約 0.35 (Kohler ほか 2017)
@@ -462,7 +542,7 @@ def _store_of(state, owner):
     """刈った草の種の入れ先: G4 からは、畑の持ち主の家が倉を持つ (keep) なら、その家の倉"""
     if era_at_least(state, "G4") and owner:
         h = _house(state, owner)
-        if h["keep"]:
+        if h["keep"] and owner in _homes_built(state):  # 家の倉は家族の住まいの中に置く (2026-10-08。住まいのない家は村の蓄えへ)
             return h["store"]
     return state["store"]
 
@@ -1280,7 +1360,18 @@ def indicators(state):
         "pots": e2.get("pots", 0), "sickles": e2.get("sickles", 0),
         **_g4_indicators(state),
         **_g5_indicators(state),
+        **_house_indicators(state),
     }
+
+
+def _house_indicators(state):
+    """家族の住まい (G3 から): できた数と、家の大きさのジニ係数 (【文献】Kohler ほか 2017。家のない家は 0 m²)"""
+    if not era_at_least(state, "G3"):
+        return {"houses_built": 0, "house_gini": 0.0}
+    homes = state["era2"].get("homes", {})
+    hs = sorted({q.get("household") for q in adults(state) if q.get("household")})
+    sizes = [homes[h]["size"] if h in homes and homes[h]["built"] is not None else 0 for h in hs]
+    return {"houses_built": sum(1 for s in sizes if s > 0), "house_gini": gini(sizes)}
 
 
 def _g4_indicators(state):
@@ -1408,6 +1499,7 @@ def _village(state):
     return (f"村の大人: {ads}\n村の子: {kids}\n村の蓄え: {food_words(world.holdings({'food': state['store']}))} (今の人数で 約 {days} 日分)\n"
             f"畑: {fl}\n飼っているヤギ: {gl}\n"
             + (f"村の土器: {e2.get('pots', 0)} 個 (草の種 {e2.get('pots', 0) * POT_HOLD} つかみ分)、村の石の鎌: {e2.get('sickles', 0)} 本\n" if era_at_least(state, "G3") else "")
+            + (_houses_text(state) if era_at_least(state, "G3") else "")
             + (_houses_line(state) if era_at_least(state, "G4") else "")
             + f"{wild} のあたりに、野生のヤギの群れ (約 {e2['wild_goats']['count']} 頭) がいる\n")
 
@@ -1422,6 +1514,11 @@ def _houses_line(state):
     return "家ごとの持ち物: " + "、".join(rows) + "\n"
 
 
+FACTS_HOUSE = (f"家族の住まい: 村の住まい (キャンプのまん中) で眠れるのは {world.DWELL_CAP} 人まで。家族ごとに、キャンプのそばに四角い住まいを建てられる "
+               f"(住まいを建てる。家族の大人が働いて、のべ 約 {HOUSE_HOURS} 時間でできる。そのあとも働くと広くなる)。家族の住まいのある家族は、そこで眠る。"
+               "雨の夜に屋根の下で眠れなかった人は、疲れがとれない\n")
+
+
 FACTS_G3 = ("土器: 土器づくりでは、キャンプで川の粘土をこねて器の形を作り、乾かして火で焼く。慣れるほど、1 日に多く作れる。"
             f"村の蓄えの草の種を土器に入れておくと、虫やネズミに食べられない (1 個に {POT_HOLD} つかみ)。"
             "土器に入らない草の種は、季節ごとに 20 分の 1 ほどが虫やネズミに食べられる。土器はときどき割れる\n"
@@ -1429,7 +1526,8 @@ FACTS_G3 = ("土器: 土器づくりでは、キャンプで川の粘土をこ�
 
 
 FACTS_G4 = ("家の倉: 家族ごとに倉を持てる (keep)。keep を true にした家では、家の人がまいた畑で刈った草の種は、村の蓄えではなく家の倉に入る。"
-            "家の倉の食べ物は、村の蓄えが足りないときに、その家の人が食べる。keep が false の家の畑で刈った草の種は、村の蓄えに入る\n"
+            "家の倉の食べ物は、村の蓄えが足りないときに、その家の人が食べる。keep が false の家の畑で刈った草の種は、村の蓄えに入る。"
+            "家の倉は家族の住まいの中に置くので、家族の住まいのない家は、keep を true にしても、刈った草の種は村の蓄えに入る\n"
             "持ち主: 畑はまいた人の家のもの。ヤギは捕まえた人の家のもの (子ヤギは母ヤギの家のもの)。刈るときは自分の家の畑から刈る\n"
             "受けつぎ: 家の代表 (いちばん年上の大人) が亡くなると、家の倉・畑・ヤギは、家で次に年上の大人が受けつぐ\n")
 
@@ -1569,7 +1667,7 @@ def season_prompt(state, p, first):
 
     return f"""{RULES2}
 
-{me}{FACTS2}{FACTS_G3 if era_at_least(state, "G3") else ""}{FACTS_G4 if era_at_least(state, "G4") else ""}{_g5_facts(state)}
+{me}{FACTS2}{(FACTS_G3 + FACTS_HOUSE) if era_at_least(state, "G3") else ""}{FACTS_G4 if era_at_least(state, "G4") else ""}{_g5_facts(state)}
 ## 村のようす
 {_village(state)}
 ## 前の季節のこと

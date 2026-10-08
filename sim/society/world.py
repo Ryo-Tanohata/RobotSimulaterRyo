@@ -62,6 +62,7 @@ RESERVE_START, RESERVE_MAX, RESERVE_DEATH = 10000, 20000, -15000  # 【仮定】
 TERRAIN = {"g": "草原", "f": "林", "r": "川", "h": "丘"}
 INITIAL_NAMES = ["ルオ", "セナ", "タヒ", "ウィロ", "イサ"]  # 現実の言葉と重ならない架空の名前
 ACTIVITIES = ["採集", "狩り", "探索", "休む", "道具づくり", "火おこし", "種まき", "住まいを建てる", "キャンプを移す"]
+DWELL_CAP = 12            # 村の住まい (キャンプのまん中) で眠れる人数 (2026-10-08 追加。家族の住まいを足したとき。【仮定】G3 から使う)
 DWELLING_HOURS = 20       # 住まいを建てるのに要る、のべの作業時間 (F2 の評価のあとで追加。Claude が決めた仮の数字)。
                           # 2026-10-06: F3 の 3 回目のあとで 40 → 20 (枝と草の簡単な小屋。本人の了承)
 AUTUMN_GROW = 2           # 【仮定】秋の実りの回復の倍率 (2026-10-06: F3 の 3 回目のあとで 1 → 2。本人の了承)
@@ -464,7 +465,9 @@ def simulate_day(state):
                 res["events"].append(log(state, "火", p["name"], f"{p['name']} は火をおこそうとしたが、できなかった"))
             p["skills"]["火"] = round(min(1, p["skills"]["火"] + 0.05), 3)
         elif act == "住まいを建てる":
-            if camp.get("dwelling_day") is not None:
+            if camp.get("dwelling_day") is not None and state.get("era") in ("G3", "G4", "G5", "G6"):
+                pass  # G3 からは、家族の住まいを建てる (era2.py が記録する)
+            elif camp.get("dwelling_day") is not None:
                 res["events"].append(log(state, "住まい", p["name"], f"{p['name']} は住まいを手入れした"))
             else:
                 forest = any(state["terrain"][y][x] == "f" for y in range(max(0, camp["y"] - 6), min(H, camp["y"] + 7))
@@ -737,9 +740,19 @@ def evening(state, gives, stores=(), takes=()):
     # 乱数は別にして、ほかの出来事の乱数の並びを変えない
     wrng = random.Random(state["seed"] * 15485863 + day)
     rainy = wrng.random() < {"春": 0.2, "夏": 0.2, "秋": 0.3, "冬": 0.35}[season(day)]
+    outside = []  # G3 から: 村の住まいに入りきらず、雨の夜に外で眠る大人 (家族の住まいのない人が DWELL_CAP 人をこえた分。あとから来た人から)
+    if rainy and alive and housed and state.get("era") in ("G3", "G4", "G5", "G6") and state.get("era2"):
+        built = {h for h, v in state["era2"].get("homes", {}).items() if v.get("built") is not None}
+        need = [q for q in state["people"] if q["alive"] and q.get("household") not in built]
+        over = len(need) - DWELL_CAP
+        if over > 0:
+            outside = [q for q in need if not q.get("child")][-over:]
     if rainy and alive:
         what = "冷たい雨" if season(day) == "冬" else "雨"
-        if housed:
+        if housed and outside:
+            log(state, "雨", None, f"夜、{what}が降った。村の住まいに入りきらなかった {'・'.join(q['name'] for q in outside)} は、外で濡れて、よく眠れなかった",
+                outside=[q["name"] for q in outside])
+        elif housed:
             log(state, "雨", None, f"夜、{what}が降ったが、住まいの中で濡れずに眠れた")
         else:
             wet = {}
@@ -754,7 +767,7 @@ def evening(state, gives, stores=(), takes=()):
                 text += f"。蓄えの {food_words(wet)} が濡れて傷んだ"
             log(state, "雨", None, text, kcal=sum(wet.values()))
     for p in alive:  # 夜に眠ると疲れが少しとれる (41〜60 日目に、休まない人の疲れが 1.0 に張り付いたため追加)。屋根の下ならもう少し。雨の夜は外では眠れない
-        rest = 0.0 if (rainy and not housed) else 0.15 + (0.1 if housed else 0)
+        rest = 0.0 if (rainy and (not housed or p["name"] in {q["name"] for q in outside})) else 0.15 + (0.1 if housed else 0)
         p["fatigue"] = round(max(0.0, p["fatigue"] - rest), 2)
     if _near(state["predators"], state["camp"]["x"], state["camp"]["y"], 20):
         risk = 0.12 * (0.2 if state["camp"]["fire"] > 0 else 1) * (0.6 if len(alive) >= 3 else 1) * (0.4 if housed else 1)
