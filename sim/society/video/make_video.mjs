@@ -16,7 +16,9 @@ const FPS = 25, W = 1280, H = 720;
 const CHROME = process.env.CHROME || "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const lines = JSON.parse(fs.readFileSync(narrPath, "utf8"));
 const durs = JSON.parse(fs.readFileSync(path.join(voiceDir, "durations.json"), "utf8"));
-const CREDIT = "ナレーション: VOICEVOX:ずんだもん<br>描画: three.js (MIT License)<br>効果音・BGM: プログラムで自作";
+// 日付の注釈 (2026-10-09 本人の希望): 日付は「11 年目 31 日目」と表すが、この世界の 1 年は現実より短い。最初の数秒と最後のクレジットに出す
+const YEAR_NOTE = "※ この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ) で、現実の 1 年とは違います";
+const CREDIT = "ナレーション: VOICEVOX:ずんだもん<br>描画: three.js (MIT License)<br>効果音・BGM: プログラムで自作" + `<br><span style="font-size:20px">${YEAR_NOTE}</span>`;
 
 // アプリのファイルをこの PC の中だけで配る (file:// では JSON を読めないため)
 const server = http.createServer((req, res) => {
@@ -45,6 +47,7 @@ const VIDEO_CSS = `
   .v-title { z-index: 50; position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 80px; color: #fff;
     text-shadow: 0 4px 18px rgba(0,0,0,.6); letter-spacing: 0.05em; }
   .v-credit { z-index: 60; position: absolute; inset: 0; display: grid; place-items: center; background: rgba(12, 16, 13, 0.82); color: #fff; font-size: 28px; line-height: 2; text-align: center; }
+  .v-note { z-index: 50; position: absolute; left: 14px; top: 56px; max-width: 46%; background: rgba(12, 16, 13, 0.72); color: #fff; font-size: 17px; line-height: 1.5; padding: 4px 12px; border-radius: 8px; }
 `;
 
 // GPU=1: 自分の PC の GPU (内蔵 GPU でもよい) で 3D を描く。なければ CPU で描く swiftshader (クラウド用。とても遅い)
@@ -73,7 +76,7 @@ await page.addStyleTag({ content: VIDEO_CSS });
 await page.waitForFunction(() => document.querySelector(".r3-stage canvas"), { timeout: 60000 });
 await page.evaluate(() => {
   const st = document.querySelector(".r3-stage");
-  for (const c of ["v-cap", "v-title", "v-credit"]) { const d = document.createElement("div"); d.className = c; d.hidden = true; st.appendChild(d); }
+  for (const c of ["v-cap", "v-title", "v-credit", "v-note"]) { const d = document.createElement("div"); d.className = c; d.hidden = true; st.appendChild(d); }
   window.dispatchEvent(new Event("resize"));
   Replay3D.setAutoCamera(true);
 });
@@ -83,6 +86,8 @@ const from = Number(fromArg || 1), to = Number(toArg || Math.max(...lines.map((l
 // DAYS=21,28,29 のように、飛び飛びの日をつなぐこともできる
 const dayList = process.env.DAYS ? process.env.DAYS.split(",").map(Number) : Array.from({ length: to - from + 1 }, (_, i) => from + i);
 const lastDay = dayList[dayList.length - 1];
+const LABEL = {};  // 日ごとの「11 年目 31 日目」(アプリと同じ書き方。replay3d.js の dayLabel)
+for (const d of dayList) LABEL[d] = await page.evaluate((d) => Replay3D.dayLabel(d), d);
 
 // 日ごとに場面の長さを決め、ナレーションの時刻を並べる
 const plan = [], narration = [];
@@ -124,15 +129,17 @@ for (let f = F0; f < F1; f++) {
   const P = plan.filter((p) => p.start <= t).pop();
   const v = t - P.start;
   const cap = narration.find((n) => t >= n.start && t < n.start + n.duration + 0.3);
-  const title = v < 2.2 ? `${P.day} 日目` : "";
+  const title = v < 2.2 ? LABEL[P.day] : "";
   const credit = P.day === lastDay && P.total - v < 5.5;
-  await page.evaluate((d, v, cap, title, credit, CREDIT) => {
+  const note = t < 10 && !credit;  // 日付の注釈は最初の 10 秒
+  await page.evaluate((d, v, cap, title, credit, CREDIT, note, YEAR_NOTE) => {
     Replay3D.seek(d, v);
     const st = document.querySelector(".r3-stage");
     const c = st.querySelector(".v-cap"); c.hidden = !cap; if (cap) c.textContent = cap;
     const ti = st.querySelector(".v-title"); ti.hidden = !title; ti.textContent = title;
     const cr = st.querySelector(".v-credit"); cr.hidden = !credit; cr.innerHTML = CREDIT;
-  }, P.day, v, cap ? cap.text : "", title, credit, CREDIT);
+    const no = st.querySelector(".v-note"); no.hidden = !note; no.textContent = YEAR_NOTE;
+  }, P.day, v, cap ? cap.text : "", title, credit, CREDIT, note, YEAR_NOTE);
   const buf = await page.screenshot({ type: "jpeg", quality: 90 });
   if (!ff.stdin.write(buf)) await new Promise((r) => ff.stdin.once("drain", r));
   if (f % (FPS * 10) === 0) console.log(`${(t).toFixed(0)} / ${total.toFixed(0)} 秒 (${((Date.now() - t0) / 1000).toFixed(0)} 秒経過)`);

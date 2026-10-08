@@ -41,6 +41,7 @@ header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content:
 h1 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 5vw, 40px); margin: 0; letter-spacing: 0.02em; text-wrap: balance; }
 .daybox { display: flex; align-items: baseline; gap: 12px; font-family: var(--mono); color: var(--muted); }
 .daybox b { font-family: var(--display); font-weight: 400; font-size: 34px; color: var(--accent); }
+.daybox small { font-size: 12px; }
 .lead { margin: 0; color: var(--muted); max-width: 70ch; font-size: 14px; }
 .top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
 @media (max-width: 860px) { .top { grid-template-columns: minmax(0, 1fr); } }
@@ -145,7 +146,7 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
 <div class="wrap">
   <header>
     <h1>川辺の五人</h1>
-    <div class="daybox"><span id="season">―</span><span><b id="day">0</b> 日目</span></div>
+    <div class="daybox"><span id="season">―</span><span><b id="year">0</b> 年目 <b id="day">0</b> 日目</span><small>※ この世界の 1 年は 120 日 (現実の 1 年とは違います)</small></div>
   </header>
   <div class="panel era" id="era" aria-live="polite"></div>
   <p class="lead">2 km 四方の川辺で暮らす 5 人の、狩猟採集の暮らしを 1 日ずつ進めています。毎朝 7 時に 1 日分進みます。
@@ -247,6 +248,8 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
 const $ = (id) => document.getElementById(id);
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+// 日付は「11 年目 31 日目」と表す (replay3d.js の dayLabel。この世界の 1 年は 120 日で、現実の 1 年とは違う)
+const dayLabel = (d) => (window.Replay3D ? Replay3D.dayLabel(d) : `${d} 日目`);
 let D = null, focus = "", WALK = null;
 function start3d() {
   if (!D || !WALK || !window.Replay3D || !window.THREE) return;
@@ -320,20 +323,20 @@ function renderEvents() {
   for (const e of D.events) (byDay[e.day] = byDay[e.day] || []).push(e);
   const days = Object.keys(byDay).map(Number).sort((a, b) => b - a);
   if (!days.length) { $("p-events").innerHTML = `<p class="empty">まだ出来事はありません。最初の 1 日は明日の朝 7 時に進みます。</p>`; return; }
-  $("p-events").innerHTML = days.map((d) => `<div class="day"><h3>${d} 日目</h3>${byDay[d].map((e) => {
+  $("p-events").innerHTML = days.map((d) => `<div class="day"><h3>${dayLabel(d)}</h3>${byDay[d].map((e) => {
     const say = e.type === "話す", bad = ["死", "けが", "腐る"].includes(e.type), good = ["掟", "育つ", "火", "住まい"].includes(e.type);
     return `<div class="ev ${say ? "say" : ""} ${bad ? "bad" : ""} ${good ? "good" : ""}"><span class="t">${esc(e.type)}</span><span class="x">${esc(e.text)}</span></div>`;
   }).join("")}</div>`).join("");
 }
 
 function renderKnow() {
-  $("laws").innerHTML = D.laws.length ? D.laws.map((l) => `<div class="k"><div>${esc(l.text)}<div class="who">${esc(l.proposer)} が ${l.day} 日目に提案</div></div>
+  $("laws").innerHTML = D.laws.length ? D.laws.map((l) => `<div class="k"><div>${esc(l.text)}<div class="who">${esc(l.proposer)} が ${dayLabel(l.day)}に提案</div></div>
     <div><span class="chip c-${esc(l.status)}">${esc(l.status)}</span> <span class="chip c-${esc(l.label)}">${esc(l.label)}</span></div></div>`).join("")
     : `<p class="empty">まだ掟はありません。</p>`;
   const who = $("f-who").value, lab = $("f-label").value, rows = [];
   for (const p of D.people) for (const k of p.knowledge) if ((!who || p.name === who) && (!lab || k.label === lab)) rows.push({ p, k });
   rows.sort((a, b) => b.k.day - a.k.day);
-  $("know").innerHTML = rows.length ? rows.map(({ p, k }) => `<div class="k"><div>${esc(k.text)}<div class="who">${esc(p.name)} ・ ${k.day} 日目${k.from ? " ・ " + esc(k.from) + " から聞いた" : ""}${k.because.length ? " ・ きっかけ: 出来事 " + k.because.join(", ") : ""} ・ 確かさ ${k.confidence.toFixed(1)}</div></div>
+  $("know").innerHTML = rows.length ? rows.map(({ p, k }) => `<div class="k"><div>${esc(k.text)}<div class="who">${esc(p.name)} ・ ${dayLabel(k.day)}${k.from ? " ・ " + esc(k.from) + " から聞いた" : ""}${k.because.length ? " ・ きっかけ: 出来事 " + k.because.join(", ") : ""} ・ 確かさ ${k.confidence.toFixed(1)}</div></div>
     <div><span class="chip c-${esc(k.label)}">${esc(k.label)}</span></div></div>`).join("") : `<p class="empty">条件に合う知識はありません。</p>`;
 }
 
@@ -350,9 +353,9 @@ function renderCV() {
   $("cv").innerHTML = `
     <section><h3>履歴書</h3><table>
       ${row("名前", esc(r.name))}
-      ${row("性別・年齢", `${esc(r.sex)} ・ ${r.age} 歳 (0 日目の年齢)`)}
+      ${row("性別・年齢", `${esc(r.sex)} ・ ${r.age} 歳 (${dayLabel(0)}の年齢)`)}
       ${row("体重", `${r.mass} kg`)}
-      ${row("今", r.alive ? `生きている (${r.days} 日目)` : r.left ? `${r.left} 日目に村を出ていった` : r.death ? `${r.death.day} 日目に亡くなった: ${esc(r.death.text)}` : "―")}
+      ${row("今", r.alive ? `生きている (${dayLabel(r.days)})` : r.left ? `${dayLabel(r.left)}に村を出ていった` : r.death ? `${dayLabel(r.death.day)}に亡くなった:${esc(r.death.text)}` : "―")}
       ${row("性格", Object.entries(r.personality).map(([k, v]) => `${esc(k)} ${v.toFixed(2)}`).join(" ・ "))}
       ${row("技能", Object.entries(r.skills).map(([k, v]) => `${esc(k)} ${Number(v).toFixed(2)}`).join(" ・ "))}
       ${row("持ち物", r.items.length ? r.items.map(esc).join("・") : "なし")}
@@ -360,10 +363,10 @@ function renderCV() {
       ${r.feeling ? row("最後の気持ち", esc(r.feeling)) : ""}
     </table></section>
     <section><h3>経歴</h3><table>
-      ${r.history.map((h) => row(`${h.day} 日目`, esc(h.text))).join("")}
+      ${r.history.map((h) => row(dayLabel(h.day), esc(h.text))).join("")}
     </table></section>
     <section><h3>職務経歴書</h3><table>
-      ${row("期間", `0〜${r.days} 日目 (${r.days} 日)`)}
+      ${row("期間", `${dayLabel(0)}〜${dayLabel(r.days)} (${r.days} 日)`)}
       ${row("採集", `${w.gather} 回 (食べ物が見つかったのは ${w.gather_ok} 回、${pct(w.gather_ok, w.gather)}) ・ 合計 約 ${Math.round(w.gather_kcal / 1000)} 千 kcal`)}
       ${row("狩り", `${w.hunt} 回 ・ 自分でルクをしとめた ${w.kills} 回`)}
       ${row("探索", `${w.explore} 回`)}
@@ -376,7 +379,7 @@ function renderCV() {
       ${row("話す", `${w.talk} 回`)}
       ${row("よく行った場所", w.places.map(([k, v]) => `${esc(k)} ${v} 回`).join(" ・ ") || "―")}
       ${row("掟", `提案 ${r.laws.proposed} 本 (今も採用中 ${r.laws.adopted} 本)`)}
-      ${r.laws.examples.length ? row("最近の提案", r.laws.examples.map((l) => `${l.day} 日目 (${esc(l.status)}): ${esc(l.text)}`).join("<br>")) : ""}
+      ${r.laws.examples.length ? row("最近の提案", r.laws.examples.map((l) => `${dayLabel(l.day)} (${esc(l.status)}): ${esc(l.text)}`).join("<br>")) : ""}
       ${row("知識", `覚えたこと ${r.knowledge.added} 件 (${Object.entries(r.knowledge.labels).map(([k, v]) => `${esc(k)} ${v}`).join("・")}) ・ 今覚えている ${r.knowledge.now} 件`)}
     </table></section>
     <section><h3>フェーズごとの仕事 (回数)</h3><table>
@@ -395,7 +398,7 @@ function lineChart(title, series, unit) {
   const ticks = [0, max / 2, max];
   let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(title)}">`;
   for (const t of ticks) svg += `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="${css("--line")}"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end" font-size="10" fill="${css("--muted")}" font-family="${css("--mono")}">${Math.round(t)}</text>`;
-  if (xs.length) svg += `<text x="${L}" y="${H - 6}" font-size="10" fill="${css("--muted")}">${xs[0]} 日目</text><text x="${W - R}" y="${H - 6}" text-anchor="end" font-size="10" fill="${css("--muted")}">${xs[xs.length - 1]} 日目</text>`;
+  if (xs.length) svg += `<text x="${L}" y="${H - 6}" font-size="10" fill="${css("--muted")}">${dayLabel(xs[0])}</text><text x="${W - R}" y="${H - 6}" text-anchor="end" font-size="10" fill="${css("--muted")}">${dayLabel(xs[xs.length - 1])}</text>`;
   for (const s of series) {
     const pts = s.v.map((v, i) => `${x(xs[i])},${y(v)}`).join(" ");
     svg += `<polyline points="${pts}" fill="none" stroke="${s.c}" stroke-width="2"/>`;
@@ -407,7 +410,7 @@ function lineChart(title, series, unit) {
 }
 
 function renderGraph() {
-  if (!D.stats.length) { $("charts").innerHTML = `<p class="empty">1 日目が終わるとグラフが表示されます。</p>`; return; }
+  if (!D.stats.length) { $("charts").innerHTML = `<p class="empty">最初の日が終わるとグラフが表示されます。</p>`; return; }
   const cum = { 創発: 0, 伝承: 0, 知識の再現の疑い: 0 }, byDay = {};
   for (const k of D.knowledge_log) if (k.op === "追加" && k.label in cum) (byDay[k.day] = byDay[k.day] || []).push(k.label);
   const kser = { 創発: [], 伝承: [], 知識の再現の疑い: [] };
@@ -429,7 +432,8 @@ function renderEra() {
 }
 
 function render() {
-  $("day").textContent = D.day; $("season").textContent = D.season; renderEra();
+  const yd = window.Replay3D ? Replay3D.yearDay(D.day) : { year: "―", day: D.day };
+  $("year").textContent = yd.year; $("day").textContent = yd.day; $("season").textContent = D.season; renderEra();
   const sel = $("f-who"); sel.innerHTML = `<option value="">全員</option>` + D.people.map((p) => `<option>${esc(p.name)}</option>`).join(""); sel.value = focus;
   drawMap(); renderPeople(); renderEvents(); renderKnow(); renderCV(); renderGraph();
 }

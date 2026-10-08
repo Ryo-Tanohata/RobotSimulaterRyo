@@ -17,6 +17,10 @@
   const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが", "畑", "畑仕事", "ヤギの世話", "ヤギを捕まえる", "土器"];
   const EVE_EVENTS = ["話す", "分ける", "蓄える", "蓄えから取る", "収穫", "木から取る"];
   const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ", "生まれる", "訪れる", "加わる", "去る", "ヤギ", "大人になる", "家族", "虫", "雨", "受けつぎ", "区切り"];
+  // 日付は「11 年目 31 日目」と表す (2026-10-09 本人の希望)。この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ、era2.py の YEAR) で、現実の 1 年とは違う
+  const YEAR_DAYS = 120;
+  const yearDay = (d) => ({ year: Math.floor(d / YEAR_DAYS) + 1, day: (d % YEAR_DAYS) + 1 });
+  const dayLabel = (d) => { const y = yearDay(d); return `${y.year} 年目 ${y.day} 日目`; };
 
   let S = null; // 状態
 
@@ -214,7 +218,7 @@
       const here = day >= (P.since || 0) && !(P.left && P.left < day);  // 村に来る前・生まれる前・村を出たあとは映さない (Society 2.0)
       const pl = placeOf(D, r ? r.place : "camp");
       (groups[pl.id] = groups[pl.id] || []).push(n);
-      const age = P.born_day != null ? (day - P.born_day) / 120 : 99;  // 子は小さく描く (1 年 = 120 日)
+      const age = P.born_day != null ? (day - P.born_day) / YEAR_DAYS : 99;  // 子は小さく描く
       plan[n] = { name: n, i, alive: (!!r || alive) && here, activity: r ? r.activity : "休む", place: pl, size: age >= 15 ? 1 : 0.45 + 0.55 * Math.max(0, age) / 15,
         home: P.household || "-", child: age < 15 };
     });
@@ -279,7 +283,7 @@
     const seg = P.segs.find((s) => v < s.v1) || P.segs[P.segs.length - 1];
     const u = Math.min(1, Math.max(0, (v - seg.v0) / seg.sec));
     const hour = seg.t0 + (seg.t1 - seg.t0) * u;
-    S.clock.textContent = `${S.dayNum} 日目 ${Math.floor(hour)}:${String(Math.floor((hour % 1) * 60)).padStart(2, "0")}  ${seg.label}`;
+    S.clock.textContent = `${dayLabel(S.dayNum)} ${Math.floor(hour)}:${String(Math.floor((hour % 1) * 60)).padStart(2, "0")}  ${seg.label}`;
     // 明るさ (夜は暗く、焚き火が灯る)
     const light = hour < 6 ? 0.35 + (hour - 5.5) * 1.2 : hour > 19 ? Math.max(0.12, 0.9 - (hour - 19) * 0.35) : 0.9;
     S.W.sun.intensity = light; S.W.amb.intensity = 0.25 + light * 0.35;
@@ -390,6 +394,7 @@
   }
 
   window.Replay3D = {
+    dayLabel, yearDay,
     start(root, D, walk, css) {
       this.stop();
       const T = tokens(css);
@@ -427,7 +432,7 @@
         playBtn: root.querySelector("#r3-play"), slider: root.querySelector("#r3-slider"), follow: "" };
       const days = Object.keys(D.days || {}).map(Number).sort((a, b) => a - b);
       const daySel = root.querySelector("#r3-day");
-      daySel.innerHTML = days.map((d) => `<option value="${d}">${d} 日目</option>`).join("") || `<option>―</option>`;
+      daySel.innerHTML = days.map((d) => `<option value="${d}">${dayLabel(d)}</option>`).join("") || `<option>―</option>`;
       const fol = root.querySelector("#r3-follow");
       fol.innerHTML += D.people.map((p) => `<option>${esc(p.name)}</option>`).join("");
       const resize = () => { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
