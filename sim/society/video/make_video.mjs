@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer-core";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const APP = path.join(HERE, "..", "app"), DATA = path.join(HERE, "..", "data");
+const APP = path.join(HERE, "..", "app"), DATA = process.env.DATA_DIR || path.join(HERE, "..", "data");  // DATA_DIR: 写しのデータで試し撮りするとき
 const [narrPath, voiceDir, outName, fromArg, toArg] = process.argv.slice(2);
 const FPS = 25, W = 1280, H = 720;
 const CHROME = process.env.CHROME || "C:/Program Files/Google/Chrome/Application/chrome.exe";
@@ -64,7 +64,9 @@ if (process.env.LIBS) {
     req.respond({ status: 200, contentType: "text/javascript", body: fs.readFileSync(path.join(process.env.LIBS, "node_modules", LOCAL[key])) });
   });
 }
-await page.goto(`http://localhost:${port}/index.html`, { waitUntil: "networkidle0" });
+// 読み込みの終わりを待つ (2026-10-08: 「通信が止まるまで」は、Society 2.0 のデータで終わらないことがあったため、load と 3D の画面を待つ)
+await page.goto(`http://localhost:${port}/index.html`, { waitUntil: "load", timeout: 120000 });
+await page.waitForFunction(() => window.Replay3D && window.THREE, { timeout: 60000 });
 await page.addStyleTag({ content: VIDEO_CSS });
 await page.waitForFunction(() => document.querySelector(".r3-stage canvas"), { timeout: 60000 });
 await page.evaluate(() => {

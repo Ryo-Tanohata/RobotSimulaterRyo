@@ -14,9 +14,9 @@
     { key: "eve", label: "夕方の焚き火", t0: 19, t1: 21.5, sec: 12 },
     { key: "night", label: "夜", t0: 21.5, t1: 22.5, sec: 5 },
   ];
-  const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが"];
-  const EVE_EVENTS = ["話す", "分ける", "蓄える", "蓄えから取る"];
-  const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ"];
+  const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが", "畑", "畑仕事", "ヤギの世話", "ヤギを捕まえる"];
+  const EVE_EVENTS = ["話す", "分ける", "蓄える", "蓄えから取る", "収穫", "木から取る"];
+  const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ", "生まれる", "訪れる", "加わる", "去る", "ヤギ", "大人になる", "家族"];
 
   let S = null; // 状態
 
@@ -153,9 +153,18 @@
     hut.position.set(camp.x - 3.2, camp.y, camp.z - 2.2); hut.visible = false; scene.add(hut);
     const built = D.events.find((e) => e.type === "住まい" && /住まいができた/.test(e.text));
 
+    // 畑 (Society 2.0): 秋にまいた畑を、キャンプの南西に 1 枚ずつ並べる。色は季節で変える (fieldsOn で毎コマ決める)
+    const plots = [];
+    for (let k = 0; k < 16; k++) {
+      const m = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.08, 1.1), new THREE.MeshLambertMaterial({ color: T.tuber }));
+      const p = w2t(D, D.camp.x + 0.5 - 2.5 - (k % 4) * 1.8, D.camp.y + 0.5 + 2.5 + Math.floor(k / 4) * 1.4, 0.05);
+      m.position.copy(p); m.visible = false; scene.add(m); plots.push(m);
+    }
+    const sowings = D.events.filter((e) => e.type === "畑" && /をまいた/.test(e.text));
+
     const sun = new THREE.DirectionalLight(0xffffff, 0.9); sun.position.set(30, 50, 20); scene.add(sun);
     const amb = new THREE.AmbientLight(0xffffff, 0.55); scene.add(amb);
-    return { scene, camp, flame, fireLight, sun, amb, hut, hutDay: built ? built.day : null };
+    return { scene, camp, flame, fireLight, sun, amb, hut, hutDay: built ? built.day : null, plots, sowings };
   }
 
   function placeOf(D, id) { return D.places.find((p) => p.id === id) || D.places[0]; }
@@ -165,12 +174,14 @@
     const names = D.people.map((p) => p.name);
     const plan = {}, groups = {};
     names.forEach((n, i) => {
-      const r = rows.find((x) => x.name === n);
+      const r = rows.find((x) => x.name === n), P = D.people[i];
       const died = D.events.find((e) => e.type === "死" && e.who === n);
       const alive = !died || died.day >= day;  // 亡くなった日はまだ映す
+      const here = day >= (P.since || 0) && !(P.left && P.left < day);  // 村に来る前・生まれる前・村を出たあとは映さない (Society 2.0)
       const pl = placeOf(D, r ? r.place : "camp");
       (groups[pl.id] = groups[pl.id] || []).push(n);
-      plan[n] = { name: n, i, alive: !!r || alive, activity: r ? r.activity : "休む", place: pl };
+      const age = P.born_day != null ? (day - P.born_day) / 120 : 99;  // 子は小さく描く (1 年 = 120 日)
+      plan[n] = { name: n, i, alive: (!!r || alive) && here, activity: r ? r.activity : "休む", place: pl, size: age >= 15 ? 1 : 0.45 + 0.55 * Math.max(0, age) / 15 };
     });
     let maxDist = 1;
     for (const n of names) {
@@ -184,12 +195,24 @@
     const ev = D.events.filter((e) => e.day === day);
     const eve = ev.filter((e) => EVE_EVENTS.includes(e.type));
     const segs = SEG.map((s) => ({ ...s }));
-    segs[4].sec = Math.max(10, eve.length * 2.6 + 2);
+    segs[4].sec = Math.max(10, Math.min(eve.length, 12) * 2.6 + 2);  // 人が増えても夕方が長くなりすぎないように
     const over = (S && S.segOverride && S.segOverride[day]) || {};  // 動画用: 場面ごとの秒数を指定できる
     for (const s of segs) if (over[s.key]) s.sec = over[s.key];
     let acc = 0; for (const s of segs) { s.v0 = acc; acc += s.sec; s.v1 = acc; }
     return { plan, maxDist, segs, total: acc, work: ev.filter((e) => WORK_EVENTS.includes(e.type)), eve,
       night: ev.filter((e) => NIGHT_EVENTS.includes(e.type)), fire: ev.some((e) => e.type === "火" && !/できなかった/.test(e.text)) || D.camp.fire > 0 };
+  }
+
+  // その日の畑: 秋にまいてから 30 日は土、次の 60 日 (冬・春) は芽、次の 30 日 (夏) は実り。そのあとは消える (era2.py の畑の育ち方と同じ)
+  function fieldsOn(day) {
+    const on = S.W.sowings.filter((e) => e.day <= day && day < e.day + 120);
+    S.W.plots.forEach((m, k) => {
+      const e = on[k];
+      m.visible = !!e;
+      if (!e) return;
+      const age = day - e.day;
+      m.material.color.copy(age < 30 ? S.T.tuber.clone().multiplyScalar(0.7) : age < 90 ? S.T.grass.clone().multiplyScalar(0.75) : S.T.fruit.clone().lerp(S.T.hill, 0.4));
+    });
   }
 
   function lerp(a, b, u) { return { x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * u }; }
@@ -205,6 +228,7 @@
     S.W.sun.intensity = light; S.W.amb.intensity = 0.25 + light * 0.35;
     const lit = P.fire && (hour >= 18.5 || hour < 6);
     S.W.hut.visible = S.W.hutDay !== null && S.dayNum >= S.W.hutDay;
+    fieldsOn(S.dayNum);
     S.W.flame.visible = lit; S.W.fireLight.intensity = lit ? 1.6 + Math.sin(v * 13) * 0.3 : 0;
     S.W.scene.background = S.T.bg.clone().lerp(new THREE.Color(0x0b1220), 1 - Math.min(1, light / 0.9));
 
@@ -212,6 +236,7 @@
       const p = P.plan[n], fig = S.figs[n];
       fig.visible = p.alive;
       if (!p.alive) continue;
+      fig.scale.setScalar(p.size);
       let at = p.ring, heading = null, pose = "stand", moving = false;
       if (seg.key === "go" || seg.key === "back") {
         const need = p.dist / P.maxDist;

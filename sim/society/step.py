@@ -83,7 +83,8 @@ def read_answers(state, phase):
     return out
 
 
-ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき"}
+ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき",
+                "畑仕事": "畑仕事", "ヤギの世話": "ヤギの世話", "ヤギを捕まえる": "ヤギを捕まえる"}  # Society 2.0 の仕事
 
 
 def day_summaries(state):
@@ -117,7 +118,8 @@ def export(state):
                    for q in state["plants"]],
         "herds": state["herds"], "predators": state["predators"], "planted": state["planted"],
         "people": [{k: p.get(k) for k in ("name", "alive", "age", "sex", "mass", "personality", "skills", "hunger", "fatigue",
-                                          "injured", "items", "trust", "plan", "feeling", "child", "mother", "origin", "left", "household")}
+                                          "injured", "items", "trust", "plan", "feeling", "child", "mother", "origin", "left", "household", "born_day")}
+                   | {"since": p.get("born_day", 0) if p.get("origin") == "生まれた" else resume._joined_day(state, p["name"]) if p.get("origin") == "よそから来た" else 0}
                    | {"food": sum(f["kcal"] for f in p["food"]), "food_words": world.food_words(world.holdings(p)), "today": p.get("today"),
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
         "events": ev_recent, "laws": state.get("laws", []),
