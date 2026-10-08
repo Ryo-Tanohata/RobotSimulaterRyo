@@ -4,6 +4,7 @@
 
 4 つの小さなグラフ (目盛りは 1 つずつ。2 つの量を 1 つのグラフに重ねない):
   1. 人数 (大人・子)  2. 村の蓄え (今の人数で何日分。お題と同じ数え方)  3. 1 季節に食べたものの内訳 (割合)  4. 家族の住まいの数
+日付は「◯年目」で表す (2026-10-09 本人の希望。daily_run.md の冒頭。この世界の 1 年は 120 日 = 季節 30 日 × 4 で、0 日目が 1 年目の 1 日目)。
 すべて state.json の記録 (人の生まれた日・加わった日・亡くなった日・村を出た日、毎日の stats、era2 の家族の住まい) から数える。
 色は dataviz の手引きの決まった順 (validate_palette.js で確かめた: 青・橙・水色・黄)。水色と黄は背景との濃さの差が小さいので、凡例と文字を必ずつける。
 """
@@ -23,6 +24,11 @@ BASE_KCAL = 1900  # world.py と同じ (大人は 1 日 BASE_KCAL + 500)
 CHILD_EAT = [(3, 800), (10, 1300), (15, 1800)]  # era2.py と同じ (子が 1 日に食べる量)
 SURFACE, INK, INK2, MUTED, GRID, AXIS = "#fcfcfb", "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7"
 S1, S2, S3, S4 = "#2a78d6", "#eb6834", "#1baf7a", "#eda100"  # 決まった順 (並べかえない)
+
+
+def year_label(d):
+    """通しの日 → 「11 年目 31 日目」(app/replay3d.js の dayLabel と同じ)"""
+    return f"{d // YEAR + 1} 年目 {d % YEAR + 1} 日目"
 
 
 def _font():
@@ -97,7 +103,8 @@ def draw(state, out, start=489):
     rows = series(state, start)
     xs = [r["day"] for r in rows]
     fig, axes = plt.subplots(2, 2, figsize=(12, 7.2), dpi=130, facecolor=SURFACE)
-    fig.suptitle(f"川辺の村 (Society 2.0) の移り変わり: {start}〜{state['day']} 日目 (季節の終わりごと)", x=0.01, ha="left", fontsize=14, color=INK)
+    fig.suptitle(f"川辺の村 (Society 2.0) の移り変わり: {year_label(start)} 〜 {year_label(state['day'])} (季節の終わりごと)", x=0.01, ha="left", fontsize=14, color=INK)
+    fig.text(0.01, 0.945, "※ この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ。現実の 1 年とは違います)", ha="left", va="top", fontsize=9, color=MUTED)
     ph = phases(state, start)
 
     def marks(ax):  # フェーズが進んだ日 (細い縦線と、上の小さな文字)
@@ -156,10 +163,16 @@ def draw(state, out, start=489):
     ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True))
     ax.annotate(f"{rows[-1]['houses']} 軒", (xs[-1], rows[-1]["houses"]), xytext=(6, 0), textcoords="offset points", color=INK2, fontsize=9, va="center")
     marks(ax)
+    first, last = start // YEAR + 1, state["day"] // YEAR + 1
+    step = max(1, (last - first + 1) // 8)  # 目盛りは 8 つほど
+    ticks = [(y - 1) * YEAR for y in range(first + (-first) % step, last + 1, step)]
     for row in axes:
         for ax in row:
-            ax.set_xlabel("日", color=MUTED, fontsize=9, loc="right")
-    fig.tight_layout(rect=(0, 0, 1, 0.95))
+            ax.set_xticks(ticks)
+            ax.set_xticklabels([str(x // YEAR + 1) for x in ticks])
+            ax.set_xlim(start - SEASON, state["day"] + SEASON)
+            ax.set_xlabel("年目 (目盛りは年のはじめ)", color=MUTED, fontsize=9, loc="right")
+    fig.tight_layout(rect=(0, 0, 1, 0.92))
     fig.savefig(out, facecolor=SURFACE)
     return rows
 
@@ -171,5 +184,5 @@ if __name__ == "__main__":
     start = int(sys.argv[3]) if len(sys.argv) > 3 else 489
     rows = draw(st, out, start)
     last = rows[-1]
-    print(out, "/", last["day"], "日目: 大人", last["adults"], "子", last["children"],
+    print(out, "/", year_label(last["day"]), f"({last['day']} 日目): 大人", last["adults"], "子", last["children"],
           "蓄え", round(last["store_days"] or 0), "日分 / 家族の住まい", last["houses"])
