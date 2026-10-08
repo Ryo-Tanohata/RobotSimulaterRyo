@@ -288,7 +288,7 @@ def _near(items, x, y, r):
 
 
 # Society 2.0 で足した仕事 (era2.py が働きを計算する。2026-10-07)
-ACTS2_EXTRA = ("畑仕事", "ヤギの世話", "ヤギを捕まえる")
+ACTS2_EXTRA = ("畑仕事", "ヤギの世話", "ヤギを捕まえる", "土器づくり")
 ACT_EVENT = {"採集": "採集", "狩り": "狩り", "探索": "探索", "休む": "休む", "道具づくり": "道具", "火おこし": "火",
              "種まき": "種まき", "住まいを建てる": "住まい", "キャンプを移す": "移る"}
 
@@ -439,6 +439,8 @@ def simulate_day(state):
                 found.append("ピクという小さな獣が草むらを走るのを見た")
             res["got"] += found
             res["events"].append(log(state, "探索", p["name"], f"{p['name']} が {pl['label']} を探索した: " + ("、".join(found) or "特に何もなかった")))
+        elif act == "道具づくり" and state.get("era") in ("G3", "G4", "G5", "G6"):  # G3 からは era2.py が鎌を作る
+            pass
         elif act == "道具づくり":
             if "鋭い石" in p["items"] and rng.random() < 0.3 + 0.5 * p["skills"]["道具"]:
                 p["items"].remove("鋭い石")
@@ -495,6 +497,8 @@ def simulate_day(state):
             res["events"].append(log(state, "ヤギの世話", p["name"], f"{p['name']} がヤギの世話をした"))
         elif act == "ヤギを捕まえる":
             res["events"].append(log(state, "ヤギを捕まえる", p["name"], f"{p['name']} が {pl['label']} でヤギを捕まえようとした"))
+        elif act == "土器づくり":  # できた数は era2.py が記録する
+            pass
         else:
             res["events"].append(log(state, "休む", p["name"], f"{p['name']} はキャンプで休んだ"))
         # 昼間、遠くで一人だと捕食者に出会うことがある

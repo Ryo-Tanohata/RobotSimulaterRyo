@@ -21,6 +21,17 @@ ADULT = 15
 NAMES = ["ナギ", "ソル", "ミラ", "ケト", "ハユ", "リオ", "トワ", "サエ", "ユノ", "カイ", "ネム", "ラタ", "フウ", "モエ", "シノ",
          "テオ", "アル", "ヨナ", "クラ", "ニイ", "エマ", "オト", "セキ", "ホノ", "ルネ", "ヤエ", "マロ", "コハ", "スイ", "ノア"]
 ACTS2 = ["採集", "狩り", "探索", "休む", "道具づくり", "火おこし", "種まき", "住まいを建てる", "畑仕事", "ヤギの世話", "ヤギを捕まえる"]
+ACTS_G3 = ["土器づくり"]  # G3 (余りと分業) から
+CRAFTS = ("土器づくり", "道具づくり")
+
+
+def era_at_least(state, era):
+    e = state.get("era", "G1")
+    return e in ORDER2 and ORDER2.index(e) >= ORDER2.index(era)
+
+
+def acts2(state):
+    return ACTS2 + (ACTS_G3 if era_at_least(state, "G3") else [])
 CHILD_EAT = [(3, 800), (10, 1300), (15, 1800)]  # 【仮定】子が 1 日に食べる量 (年齢まで, kcal)
 UNITS.setdefault("乳", ("杯", 150))              # 【仮定】ヤギの乳 1 杯
 world.FOOD_NAME.setdefault("乳", "ヤギの乳")
@@ -105,6 +116,7 @@ def apply_answers(state, answers):
     alive = {p["name"]: p for p in adults(state)}
     places = {pl["id"] for pl in state["places"]}
     e2["jobs"], accept = {}, {}
+    e2["craft_days"] = {}  # この季節に、作ること (土器づくり・道具づくり) をした日数
     e2["step_day"] = state["day"] + 1
     talk = []
     for name, raw in answers.items():
@@ -133,7 +145,7 @@ def apply_answers(state, answers):
             job = (fjobs.get(q["name"]) if q is not p else None) or a.get("job") or a.get("plan") or {}
             if not isinstance(job, dict):
                 job = {"activity": job} if isinstance(job, str) else {}
-            act = job.get("activity") if job.get("activity") in ACTS2 else "休む"
+            act = job.get("activity") if job.get("activity") in acts2(state) else "休む"
             place = job.get("place") if job.get("place") in places else "camp"
             with_ = job.get("with") if isinstance(job.get("with"), list) else []
             q["plan"] = {"activity": act, "place": place, "with": [w for w in with_ if isinstance(w, str) and w in alive and w != q["name"]]}
@@ -251,6 +263,10 @@ def _day(state):
             _goat_work(state, p, t, sea)
         elif act == "ヤギを捕まえる":
             _catch_goat(state, p, t, rng)
+        if act in CRAFTS:
+            e2.setdefault("craft_days", {})[p["name"]] = e2.get("craft_days", {}).get(p["name"], 0) + 1
+            if era_at_least(state, "G3"):
+                _craft(state, p, t, act)
     # 夕方、キャンプのそばの木から取る (季節のはじめに決めた量。world.evening の「取る」を使う)
     takes = []
     for p in adults(state):
@@ -266,9 +282,13 @@ def _day(state):
             if n:
                 _sow(state, p, n)
     # 夕方、実った畑を、決めた量だけ刈る (季節の仕事とは別。2026-10-07 追加)
+    sickles = e2.get("sickles", 0)
     for p in adults(state):
         n = e2["jobs"].get(p["name"], {}).get("harvest", 0)
         if n and not _injured_today(p):
+            if sickles > 0 and any(f["state"] == "実った" for f in e2["fields"]):  # 鎌を使うと 2 倍刈れる (村の鎌の数の人まで)
+                sickles -= 1
+                n *= 2
             _harvest(state, p, n)
     kids_ate = _feed(state, rng)
     world.evening(state, [], [], takes)
@@ -343,6 +363,57 @@ def _field_work(state, p, t, job, sea, rng):
         return
     for f in mine:  # 草取り・水やり
         f["work"] += h / max(1, len(mine))
+
+
+# ---------------- G3 余りと分業: 土器と石の鎌 (2026-10-08 追加。G3 に入ってから働く) ----------------
+# 【文献】西アジアの土器は前 7000 年ごろから。民族誌の目安で、鉢 1 個の成形に数時間、乾かすのに数日〜1 週間、焼くのに 1 日 (society2_research.md)
+# 【文献】ナトゥーフ期・先土器新石器時代の、石の刃を骨や木の柄にはめた鎌
+# 【仮定】土器 1 個に草の種 500 つかみ (約 11 kg)。土器に入らない草の種は、1 季節に 5% が虫やネズミに食べられる。土器は 1 季節に 3%、鎌は 5% が割れる
+POT_HOLD, PEST_LOSS, POT_BREAK, SICKLE_BREAK = 500, 0.05, 0.03, 0.05
+
+
+def _craft(state, p, t, act):
+    e2 = state["era2"]
+    h = t.get("work_h", 6)
+    if act == "土器づくり":
+        sk = p["skills"].setdefault("土器", 0.1)
+        p["pot_work"] = p.get("pot_work", 0.0) + h / 6 * (0.4 + 0.8 * sk)  # 腕が上がると、1 日に作れる数が増える (専門化の得)
+        n = int(p["pot_work"])
+        p["pot_work"] -= n
+        p["skills"]["土器"] = round(min(1, sk + 0.02), 3)
+        if n:
+            e2["pots"] = e2.get("pots", 0) + n
+            log(state, "土器", p["name"], f"{p['name']} がキャンプで土器を {n} 個焼き上げた (村の土器 {e2['pots']} 個)", count=n)
+        else:
+            log(state, "土器", p["name"], f"{p['name']} がキャンプで土器の形を作り、乾かした", count=0)
+    elif act == "道具づくり":
+        sk = p["skills"].get("道具", 0.1)
+        p["sickle_work"] = p.get("sickle_work", 0.0) + h / 6 * (0.3 + 0.7 * sk) / 2  # 石の刃を打ち欠き、木の柄にはめる (1 本に 2 日ほど)
+        n = int(p["sickle_work"])
+        p["sickle_work"] -= n
+        p["skills"]["道具"] = round(min(1, sk + 0.02), 3)
+        if n:
+            e2["sickles"] = e2.get("sickles", 0) + n
+            log(state, "道具", p["name"], f"{p['name']} が石の刃を木の柄にはめた鎌を {n} 本作った (村の鎌 {e2['sickles']} 本)", count=n)
+        else:
+            log(state, "道具", p["name"], f"{p['name']} がキャンプで石の刃を打ち欠き、鎌の柄を削った", count=0)
+
+
+def _storage_season(state, frac):
+    """季節の終わり: 土器に入らない草の種の一部が、虫やネズミに食べられる。土器と鎌は少し割れる"""
+    e2 = state["era2"]
+    rng = _rng(state, 31)
+    grain = sum(f["kcal"] for f in state["store"] if f["kind"] == "草の種") / UNITS["草の種"][1]
+    safe = min(grain, e2.get("pots", 0) * POT_HOLD)
+    lost = int((grain - safe) * PEST_LOSS * frac)
+    if lost > 0:
+        _move_food(state["store"], [], "草の種", lost * UNITS["草の種"][1])
+        log(state, "虫", None, f"蓄えの草の種 約 {lost} つかみ が、虫やネズミに食べられた" + (f" (土器に入れていた 約 {int(safe)} つかみ は無事)" if safe else ""), amount=lost)
+    for key, rate, what in (("pots", POT_BREAK, "土器"), ("sickles", SICKLE_BREAK, "鎌")):
+        broke = sum(1 for _ in range(e2.get(key, 0)) if rng.random() < rate * frac)
+        if broke:
+            e2[key] -= broke
+            log(state, "道具", None, f"村の{what}が {broke} {'個' if key == 'pots' else '本'} 割れた (残り {e2[key]})")
 
 
 def _sow(state, p, want):
@@ -517,6 +588,18 @@ def _season_end(state, frac=1.0):
         e2["visitors"] = [{"name": members[0]["name"], "members": members, "day": day}]
         txt = "、".join(f"{m['name']} ({m['sex']}、{m['age']} 歳)" for m in members)
         log(state, "訪れる", None, f"よその群れから {txt} がやって来て、「ここで暮らしたい」と言った")
+    # 余り (1 年の終わり = 冬の終わり): 蓄えが、この 1 年に食べた量の 2 割以上あれば「余りの年」
+    if sea == "春":
+        eaten = sum(s["eaten"] for s in state["stats"][-YEAR:])
+        store = sum(f["kcal"] for f in state["store"])
+        if eaten and store >= 0.2 * eaten and (day // YEAR) not in e2.setdefault("surplus_years", []):
+            e2["surplus_years"].append(day // YEAR)
+    # 作ること (土器づくり・道具づくり) に、この季節の 20 日以上を使った人
+    e2["specialists"] = [n for n, d in e2.get("craft_days", {}).items() if d >= 20 * frac]
+    if era_at_least(state, "G3"):
+        _storage_season(state, frac)
+        if e2["specialists"]:
+            e2.setdefault("specialist_log", []).append({"day": day, "names": e2["specialists"]})
     _sync_households(state)
     _note_mode(state)
 
@@ -604,6 +687,10 @@ def indicators(state):
         "harvest_years": yrs, "harvest_2y": consec, "goats": len(e2["goats"]),
         "farm_share": round(sown / total, 2), "fields": sum(1 for f in e2["fields"] if f["state"] == "育つ"),
         "store": food_words(world.holdings({"food": state["store"]})), "seasons": e2["seasons"],
+        "surplus_years": sorted(e2.get("surplus_years", [])),
+        "surplus_2y": any(y + 1 in e2.get("surplus_years", []) for y in e2.get("surplus_years", [])),
+        "specialists": len(e2.get("specialists", [])) if era_at_least(state, "G3") else 0,
+        "pots": e2.get("pots", 0), "sickles": e2.get("sickles", 0),
     }
 
 
@@ -612,6 +699,8 @@ CRITERIA = {
            lambda i: i["population"] >= 10 and i["children_1y"] >= 2 and i["joined"] >= 1),
     "G2": ("畑の収穫が 2 年続く、飼うヤギが 5 頭以上、1 年に食べた量の半分以上が育てた植物と家畜から",
            lambda i: i["harvest_2y"] and i["goats"] >= 5 and i["farm_share"] >= 0.5),
+    "G3": ("1 年の終わりに、その 1 年に食べた量の 2 割以上の蓄えが残る年が 2 年続く、1 季節のうち 20 日以上を作ること (土器づくり・道具づくり) に使った人が 1 人以上",
+           lambda i: i["surplus_2y"] and i["specialists"] >= 1),
 }
 ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6"]
 NAMES2 = {"G1": "村ができる", "G2": "畑と家畜", "G3": "余りと分業", "G4": "持ち物と差", "G5": "リーダーと決まり", "G6": "交易・町・記録"}
@@ -667,7 +756,7 @@ def _season_digest(state, p, first):
     if grew:
         midden = sum(1 for e in grew if "殻を捨てた所" in e["text"])
         rows.append(f"- キャンプのそばで木の実の木が {len(grew)} 本育った (種を埋めた所から {len(grew) - midden} 本・殻を捨てた所から {midden} 本)")
-    village = [e for e in ev if e["type"] in ("生まれる", "死", "加わる", "去る", "訪れる", "畑", "ヤギ", "ヤギを食べる", "大人になる", "けが", "掟", "住まい", "フェーズ", "蓄えが尽きる", "家族")]
+    village = [e for e in ev if e["type"] in ("生まれる", "死", "加わる", "去る", "訪れる", "畑", "ヤギ", "ヤギを食べる", "大人になる", "けが", "掟", "住まい", "フェーズ", "蓄えが尽きる", "家族", "虫")]
     rows += [f"- [出来事 {e['id']}] {e['text']}" for e in village[-25:] if e.get("who") != p["name"]]
     rains = sum(1 for e in ev if e["type"] == "雨")
     if rains:
@@ -696,7 +785,14 @@ def _village(state):
     days = store_days(state)
     return (f"村の大人: {ads}\n村の子: {kids}\n村の蓄え: {food_words(world.holdings({'food': state['store']}))} (今の人数で 約 {days} 日分)\n"
             f"畑: {fl}\n飼っているヤギ: {gl}\n"
-            f"{wild} のあたりに、野生のヤギの群れ (約 {e2['wild_goats']['count']} 頭) がいる\n")
+            + (f"村の土器: {e2.get('pots', 0)} 個 (草の種 {e2.get('pots', 0) * POT_HOLD} つかみ分)、村の石の鎌: {e2.get('sickles', 0)} 本\n" if era_at_least(state, "G3") else "")
+            + f"{wild} のあたりに、野生のヤギの群れ (約 {e2['wild_goats']['count']} 頭) がいる\n")
+
+
+FACTS_G3 = ("土器: 土器づくりでは、キャンプで川の粘土をこねて器の形を作り、乾かして火で焼く。慣れるほど、1 日に多く作れる。"
+            f"村の蓄えの草の種を土器に入れておくと、虫やネズミに食べられない (1 個に {POT_HOLD} つかみ)。"
+            "土器に入らない草の種は、季節ごとに 20 分の 1 ほどが虫やネズミに食べられる。土器はときどき割れる\n"
+            "石の鎌: 道具づくりでは、石の刃を木の柄にはめた鎌を作れる (1 本に 2 日ほど)。鎌を使うと、畑を刈る量が 2 倍になる (村の鎌の数の人まで)。鎌もときどき割れる\n")
 
 
 FACTS2 = ("畑: 蓄えの草の種を、秋にキャンプのそばの畑にまくと、冬と春をこえて夏のはじめに実り、刈れる (まいた量の数倍。年によって違う)。"
@@ -741,7 +837,7 @@ def season_prompt(state, p, first):
 
     return f"""{RULES2}
 
-{me}{FACTS2}
+{me}{FACTS2}{FACTS_G3 if era_at_least(state, "G3") else ""}
 ## 村のようす
 {_village(state)}
 ## 前の季節のこと
@@ -759,7 +855,7 @@ def season_prompt(state, p, first):
 ## いま
 {state["day"] + 1} 日目、{sea}。これから {SEASON_DAYS - (state["day"] + 1) % SEASON_DAYS} 日 (この季節の終わりまで) の仕事を決める集まり (途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。
 1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
-2. この季節の主な仕事を決める (job)。仕事は {' / '.join(ACTS2)} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
+2. この季節の主な仕事を決める (job)。仕事は {' / '.join(acts2(state))} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
    畑仕事 (草取り・刈り入れ) は camp で行う
    ヤギの世話は camp で行う。ヤギを捕まえるは、野生のヤギのいる場所で行う
 3. {(pick.strip().rstrip('。') + '。取るのはこの季節の毎夕で、1 人 40 つかみまで') if pick.strip() else 'この季節 (' + sea + ') は、キャンプのそばの木から実は取れない (実がなるのは夏と秋)'}
