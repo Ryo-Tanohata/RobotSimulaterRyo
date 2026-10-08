@@ -209,7 +209,7 @@ def main():
         write_prompts(state, "season")
         export(state)
         for e in state["events"]:
-            if e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫"):
+            if e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ"):
                 print("*", e["text"][:120])
         harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")
         if harv:

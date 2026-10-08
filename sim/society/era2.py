@@ -154,6 +154,8 @@ def apply_answers(state, answers):
                                      "eat_goat": max(0, min(5, _int(a.get("eat_goat")))) if q is p else 0,
                                      "harvest": max(0, min(60, _int(a.get("harvest"))))}
         p["feeling"] = str(a.get("feeling", ""))[:120]
+        if era_at_least(state, "G4") and "keep" in a and p.get("household"):
+            _house(state, p["household"])["keep"] = a.get("keep") is True or a.get("keep") in ("true", "はい")
         for v, ok in (a.get("accept").items() if isinstance(a.get("accept"), dict) else []):
             for q in fam:
                 accept.setdefault(v, []).append((q["name"], ok is True or ok in ("true", "はい", "賛成")))
@@ -337,12 +339,17 @@ def _feed(state, rng):
         if have > keep:
             _move_food(p["food"], state["store"], None, have - keep)
         elif have < keep:
-            _move_food(state["store"], p["food"], None, keep - have)
+            got = sum(_move_food(state["store"], p["food"], None, keep - have).values())
+            if have + got < keep and era_at_least(state, "G4"):  # 村の蓄えが足りないときは、家の倉から
+                _move_food(_house(state, p.get("household"))["store"], p["food"], None, keep - have - got)
     ate = {"total": 0, "sown": 0, "by": {}}
     for c in children(state):
         need = next(k for a, k in CHILD_EAT if c["age"] < a)
         got_items = []
         by = _move_food(state["store"], got_items, None, need)
+        if sum(by.values()) < need and era_at_least(state, "G4"):
+            for k, v in _move_food(_house(state, c.get("household"))["store"], got_items, None, need - sum(by.values())).items():
+                by[k] = by.get(k, 0) + v
         got = sum(by.values())
         c["hunger"] = round(min(1.0, max(0.0, c["hunger"] + (0.15 if got < need * 0.5 else -0.2))), 2)
         ate["total"] += got
@@ -403,11 +410,15 @@ def _storage_season(state, frac):
     """季節の終わり: 土器に入らない草の種の一部が、虫やネズミに食べられる。土器と鎌は少し割れる"""
     e2 = state["era2"]
     rng = _rng(state, 31)
-    grain = sum(f["kcal"] for f in state["store"] if f["kind"] == "草の種") / UNITS["草の種"][1]
+    stores = [state["store"]] + [h["store"] for h in e2.get("house", {}).values()]
+    grain = sum(f["kcal"] for st in stores for f in st if f["kind"] == "草の種") / UNITS["草の種"][1]
     safe = min(grain, e2.get("pots", 0) * POT_HOLD)
     lost = int((grain - safe) * PEST_LOSS * frac)
     if lost > 0:
-        _move_food(state["store"], [], "草の種", lost * UNITS["草の種"][1])
+        for st in stores:  # どの倉も同じ割合で (土器は村の土器を、すべての草の種に同じ割合で使う)
+            g = sum(f["kcal"] for f in st if f["kind"] == "草の種") / UNITS["草の種"][1]
+            if g:
+                _move_food(st, [], "草の種", g / grain * lost * UNITS["草の種"][1])
         log(state, "虫", None, f"蓄えの草の種 約 {lost} つかみ が、虫やネズミに食べられた" + (f" (土器に入れていた 約 {int(safe)} つかみ は無事)" if safe else ""), amount=lost)
     for key, rate, what in (("pots", POT_BREAK, "土器"), ("sickles", SICKLE_BREAK, "鎌")):
         broke = sum(1 for _ in range(e2.get(key, 0)) if rng.random() < rate * frac)
@@ -416,12 +427,85 @@ def _storage_season(state, frac):
             log(state, "道具", None, f"村の{what}が {broke} {'個' if key == 'pots' else '本'} 割れた (残り {e2[key]})")
 
 
+# ---------------- G4 持ち物と差: 家の倉・持ち主・受けつぎ (2026-10-08 追加。G4 に入ってから働く) ----------------
+# 【文献】畑・家畜・家は手間をかけた人の物になりやすく、親から子に受けつがれるので差が世代をこえて大きくなる (Borgerhoff Mulder ほか 2009)
+# 【文献】家の大きさのジニ係数: 狩猟採集 約 0.17、園耕 約 0.27、農耕 約 0.35 (Kohler ほか 2017)
+# 【文献】Halstead の「ふつうの余り」: 不作に備えて多めに作り、ためておく
+# 【仮定】ヤギ 1 頭の値うちを 3 万 kcal (肉 20 kg ほど) として、家の倉と合わせて家の持ち物とする
+GOAT_WORTH = 30000
+
+
+def _house(state, h):
+    hs = state["era2"].setdefault("house", {})
+    return hs.setdefault(h or "-", {"store": [], "keep": False})
+
+
+def _store_of(state, owner):
+    """刈った草の種の入れ先: G4 からは、畑の持ち主の家が倉を持つ (keep) なら、その家の倉"""
+    if era_at_least(state, "G4") and owner:
+        h = _house(state, owner)
+        if h["keep"]:
+            return h["store"]
+    return state["store"]
+
+
+def wealth(state):
+    """家ごとの持ち物 (kcal): 家の倉 + ヤギ。生きている人のいる家だけ"""
+    homes = sorted({p.get("household") for p in state["people"] if p["alive"] and p.get("household")})
+    hs = state["era2"].get("house", {})
+    goats = {}
+    for g in state["era2"]["goats"]:
+        goats[g.get("owner")] = goats.get(g.get("owner"), 0) + 1
+    return {h: round(sum(f["kcal"] for f in hs.get(h, {}).get("store", [])) + goats.get(h, 0) * GOAT_WORTH) for h in homes}
+
+
+def gini(values):
+    v = sorted(values)
+    n, s = len(v), sum(v)
+    if n < 2 or s <= 0:
+        return 0.0
+    return round(sum((2 * (i + 1) - n - 1) * x for i, x in enumerate(v)) / (n * s), 3)
+
+
+def _inherit(state, dead):
+    """家の代表 (いちばん年上の大人) が亡くなったら、家の倉・畑・ヤギを、家で次に年上の大人が受けつぐ"""
+    e2 = state["era2"]
+    h = dead.get("household")
+    if not h or not era_at_least(state, "G4"):
+        return
+    was_head = all(q["age"] <= dead["age"] for q in adults(state) + [dead] if q.get("household") == h)
+    goats = sum(1 for g in e2["goats"] if g.get("owner") == h)
+    fields = sum(1 for f in e2["fields"] if f.get("owner") == h and f["state"] in ("育つ", "実った"))
+    store = _house(state, h)["store"]
+    if not was_head or not (goats or fields or store):
+        return
+    what = "・".join(x for x in (("倉 (" + food_words(world.holdings({"food": store})) + ")") if store else "",
+                                 f"ヤギ {goats} 頭" if goats else "", f"畑 {fields} 枚" if fields else "") if x)
+    heir = sorted([q for q in adults(state) if q.get("household") == h and q is not dead], key=lambda q: -q["age"])
+    kids = sorted([c for c in children(state) if c.get("household") == h], key=lambda c: -c["age"])
+    if heir or kids:
+        who = (heir or kids)[0]
+        e2["inherits"] = e2.get("inherits", 0) + 1
+        log(state, "受けつぎ", who["name"], f"{dead['name']} が亡くなり、{h}の{what}は、{who['name']}{' (子)' if not heir else ''} が受けついだ", dead=dead["name"])
+    else:  # 家にだれもいなくなった: 村のものになる
+        state["store"].extend(store)
+        _house(state, h)["store"] = []
+        for g in e2["goats"]:
+            if g.get("owner") == h:
+                g["owner"] = None
+        for f in e2["fields"]:
+            if f.get("owner") == h:
+                f["owner"] = None
+        log(state, "受けつぎ", None, f"{dead['name']} が亡くなり、{h}にはだれもいなくなったので、{what}は村のものになった")
+
+
 def _sow(state, p, want):
     e2 = state["era2"]
     by = _move_food(state["store"], [], "草の種", want * UNITS["草の種"][1])
     n = int(by.get("草の種", 0) // UNITS["草の種"][1])
     if n:
-        e2["fields"].append({"id": len(e2["fields"]), "day": state["day"], "seed": n, "work": 0.0, "state": "育つ", "by": p["name"], "harvested": 0})
+        e2["fields"].append({"id": len(e2["fields"]), "day": state["day"], "seed": n, "work": 0.0, "state": "育つ", "by": p["name"], "harvested": 0,
+                             "owner": p.get("household")})
         e2.setdefault("sown_years", []).append(state["day"] // YEAR)
         log(state, "畑", p["name"], f"{p['name']} がキャンプのそばの畑に、草の種 {n} つかみ をまいた", seed=n)
 
@@ -429,12 +513,18 @@ def _sow(state, p, want):
 def _harvest(state, p, want):
     e2 = state["era2"]
     day = state["day"]
-    for f in [f for f in e2["fields"] if f["state"] == "実った"]:
+    ripe = [f for f in e2["fields"] if f["state"] == "実った"]
+    for f in ripe:  # G4 の仕組みを入れる前にまいた畑: まいた人の家のもの
+        if "owner" not in f:
+            f["owner"] = next((q.get("household") for q in state["people"] if q["name"] == f.get("by")), None)
+    if era_at_least(state, "G4"):
+        ripe.sort(key=lambda f: f.get("owner") != p.get("household"))  # 自分の家の畑から
+    for f in ripe:
         n = min(want, f["yield"] - f["harvested"])
         if n > 0:
             f["harvested"] += n
             want -= n
-            state["store"].append({"kind": "草の種", "kcal": n * UNITS["草の種"][1], "day": day, "sown": True})
+            _store_of(state, f.get("owner")).append({"kind": "草の種", "kcal": n * UNITS["草の種"][1], "day": day, "sown": True})
             log(state, "収穫", p["name"], f"{p['name']} が畑で草の種 {n} つかみ を刈った", amount=n)
             if day // YEAR not in e2["harvest_years"]:
                 e2["harvest_years"].append(day // YEAR)
@@ -491,7 +581,7 @@ def _catch_goat(state, p, t, rng):
     if rng.random() < 0.03 + 0.04 * p["skills"].get("狩り", 0.2):  # 【仮定】子ヤギを連れ帰れる見込み (1 日。1 季節に 1〜2 頭ほど)
         wild["count"] -= 1
         sex = "メス" if rng.random() < 0.5 else "オス"
-        e2["goats"].append({"id": e2["next_goat"], "sex": sex, "born": state["day"] - rng.randint(30, 90)})  # 生まれて 1〜3 か月の子ヤギ
+        e2["goats"].append({"id": e2["next_goat"], "sex": sex, "born": state["day"] - rng.randint(30, 90), "owner": p.get("household")})  # 生まれて 1〜3 か月の子ヤギ
         e2["next_goat"] += 1
         log(state, "ヤギ", p["name"], f"{p['name']} が北の丘で野生の子ヤギ ({sex}) を捕まえて、キャンプに連れ帰った")
 
@@ -544,7 +634,7 @@ def _season_end(state, frac=1.0):
         kids = 0
         for g in [g for g in e2["goats"] if g["sex"] == "メス" and day - g["born"] >= YEAR]:
             for _ in range(2 if rng.random() < 0.4 else 1):  # 【仮定】双子の見込み 4 割
-                e2["goats"].append({"id": e2["next_goat"], "sex": "メス" if rng.random() < 0.5 else "オス", "born": day})
+                e2["goats"].append({"id": e2["next_goat"], "sex": "メス" if rng.random() < 0.5 else "オス", "born": day, "owner": g.get("owner")})
                 e2["next_goat"] += 1
                 kids += 1
         if kids:
@@ -572,10 +662,17 @@ def _season_end(state, frac=1.0):
             c["alive"] = False
             log(state, "死", c["name"], f"{c['name']} ({c['age']} 歳) が亡くなった")
     # 年をとった大人の死 (【仮定】55 歳から 1 季節 0.02)
+    # G4 から、病気やけがで若い大人も亡くなる (【文献の目安】新石器時代の 15 歳の平均余命は 20〜25 年ほど (骨の年齢推定。資料で差が大きい)。
+    #   【仮定】15〜39 歳 1 季節 0.0075 (1 年 3%)、40〜54 歳 0.0125 (1 年 5%))
     for p in adults(state):
         if p["age"] >= 55 and rng.random() < 0.02 * frac * (1 + (p["age"] - 55) / 10):
             p["alive"] = False
             log(state, "死", p["name"], f"{p['name']} ({p['age']} 歳) が年をとって亡くなった")
+            _inherit(state, p)
+        elif era_at_least(state, "G4") and p["age"] < 55 and rng.random() < (0.0075 if p["age"] < 40 else 0.0125) * frac:
+            p["alive"] = False
+            log(state, "死", p["name"], f"{p['name']} ({p['age']} 歳) が病で亡くなった")
+            _inherit(state, p)
     # よそから人が来る (【仮定】1 季節 0.05、村の蓄えが今の人数の何日分あるかで増え、0.25 まで。
     #   2026-10-07: 蓄えの総量で決めていたのを、1 人あたりにした。人が増えても蓄えの総量が大きいと来つづけ、冬に飢えたため)
     if rng.random() < (0.05 + min(0.20, store_days(state) / 600)) * frac:
@@ -691,7 +788,17 @@ def indicators(state):
         "surplus_2y": any(y + 1 in e2.get("surplus_years", []) for y in e2.get("surplus_years", [])),
         "specialists": len(e2.get("specialists", [])) if era_at_least(state, "G3") else 0,
         "pots": e2.get("pots", 0), "sickles": e2.get("sickles", 0),
+        **_g4_indicators(state),
     }
+
+
+def _g4_indicators(state):
+    if not era_at_least(state, "G4"):
+        return {"owned": False, "inherits": 0, "gini": 0.0}
+    w = wealth(state)
+    vals = sorted(w.values())
+    return {"owned": any(v > 0 for v in vals), "inherits": state["era2"].get("inherits", 0), "gini": gini(vals),
+            "wealth": w, "no_wealth": sum(1 for v in vals if v <= 0)}
 
 
 CRITERIA = {
@@ -701,6 +808,8 @@ CRITERIA = {
            lambda i: i["harvest_2y"] and i["goats"] >= 5 and i["farm_share"] >= 0.5),
     "G3": ("1 年の終わりに、その 1 年に食べた量の 2 割以上の蓄えが残る年が 2 年続く、1 季節のうち 20 日以上を作ること (土器づくり・道具づくり) に使った人が 1 人以上",
            lambda i: i["surplus_2y"] and i["specialists"] >= 1),
+    "G4": ("家族ごとの持ち物 (家の倉かヤギ) がある、受けつぎが 1 回以上、家族の持ち物のジニ係数が 0.3 以上",
+           lambda i: i["owned"] and i["inherits"] >= 1 and i["gini"] >= 0.3),
 }
 ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6"]
 NAMES2 = {"G1": "村ができる", "G2": "畑と家畜", "G3": "余りと分業", "G4": "持ち物と差", "G5": "リーダーと決まり", "G6": "交易・町・記録"}
@@ -786,13 +895,30 @@ def _village(state):
     return (f"村の大人: {ads}\n村の子: {kids}\n村の蓄え: {food_words(world.holdings({'food': state['store']}))} (今の人数で 約 {days} 日分)\n"
             f"畑: {fl}\n飼っているヤギ: {gl}\n"
             + (f"村の土器: {e2.get('pots', 0)} 個 (草の種 {e2.get('pots', 0) * POT_HOLD} つかみ分)、村の石の鎌: {e2.get('sickles', 0)} 本\n" if era_at_least(state, "G3") else "")
+            + (_houses_line(state) if era_at_least(state, "G4") else "")
             + f"{wild} のあたりに、野生のヤギの群れ (約 {e2['wild_goats']['count']} 頭) がいる\n")
+
+
+def _houses_line(state):
+    e2 = state["era2"]
+    rows = []
+    for h in sorted({p.get("household") for p in state["people"] if p["alive"] and p.get("household")}):
+        hs = _house(state, h)
+        goats = sum(1 for g in e2["goats"] if g.get("owner") == h)
+        rows.append(f"{h} (倉: {'持つ' if hs['keep'] else '持たない'}、{food_words(world.holdings({'food': hs['store']})) or 'からっぽ'}、ヤギ {goats} 頭)")
+    return "家ごとの持ち物: " + "、".join(rows) + "\n"
 
 
 FACTS_G3 = ("土器: 土器づくりでは、キャンプで川の粘土をこねて器の形を作り、乾かして火で焼く。慣れるほど、1 日に多く作れる。"
             f"村の蓄えの草の種を土器に入れておくと、虫やネズミに食べられない (1 個に {POT_HOLD} つかみ)。"
             "土器に入らない草の種は、季節ごとに 20 分の 1 ほどが虫やネズミに食べられる。土器はときどき割れる\n"
             "石の鎌: 道具づくりでは、石の刃を木の柄にはめた鎌を作れる (1 本に 2 日ほど)。鎌を使うと、畑を刈る量が 2 倍になる (村の鎌の数の人まで)。鎌もときどき割れる\n")
+
+
+FACTS_G4 = ("家の倉: 家族ごとに倉を持てる (keep)。keep を true にした家では、家の人がまいた畑で刈った草の種は、村の蓄えではなく家の倉に入る。"
+            "家の倉の食べ物は、村の蓄えが足りないときに、その家の人が食べる。keep が false の家の畑で刈った草の種は、村の蓄えに入る\n"
+            "持ち主: 畑はまいた人の家のもの。ヤギは捕まえた人の家のもの (子ヤギは母ヤギの家のもの)。刈るときは自分の家の畑から刈る\n"
+            "受けつぎ: 家の代表 (いちばん年上の大人) が亡くなると、家の倉・畑・ヤギは、家で次に年上の大人が受けつぐ\n")
 
 
 FACTS2 = ("畑: 蓄えの草の種を、秋にキャンプのそばの畑にまくと、冬と春をこえて夏のはじめに実り、刈れる (まいた量の数倍。年によって違う)。"
@@ -816,6 +942,7 @@ def season_prompt(state, p, first):
     sea = season(state["day"] + 1)
     st = dict(state, day=state["day"] + 1)  # この回の最初の日のようすで書く
     sow = '"sow": 0, ' if sea == "秋" else ""
+    keep = '"keep": false, ' if era_at_least(state, "G4") else ""
     goat = '"eat_goat": 0, ' if e2["goats"] else ""
     acc = f'"accept": {{"{e2["visitors"][0]["name"]}": true}}, ' if e2["visitors"] else ""
     pick = characters._pick_line(st)
@@ -837,7 +964,7 @@ def season_prompt(state, p, first):
 
     return f"""{RULES2}
 
-{me}{FACTS2}{FACTS_G3 if era_at_least(state, "G3") else ""}
+{me}{FACTS2}{FACTS_G3 if era_at_least(state, "G3") else ""}{FACTS_G4 if era_at_least(state, "G4") else ""}
 ## 村のようす
 {_village(state)}
 ## 前の季節のこと
@@ -863,7 +990,7 @@ def season_prompt(state, p, first):
    秋なら、季節のはじめに、蓄えの草の種をキャンプのそばの畑にまく量 (sow、つかみ、1000 まで) を書ける (主な仕事とは別にできる)
    実った畑があれば、毎夕いくつ刈るか (harvest、つかみ、60 まで) を書ける (主な仕事とは別にできる)
 {'   飼っているヤギを、この回の最初の日に何頭つぶして肉にするか (eat_goat、頭。肉は干して蓄えに入れる。2 頭は残す) を書ける' + chr(10) if e2['goats'] else ''}
-5. 覚えていることを更新する (新しく分かったことを追加、確かさを変える、間違っていたら忘れる)
+{'   家の倉を持つか (keep: 持つなら true、持たないなら false) を決める (家の代表が決める)' + chr(10) if era_at_least(state, "G4") else ''}5. 覚えていることを更新する (新しく分かったことを追加、確かさを変える、間違っていたら忘れる)
 6. 掟: みんなで守りたい決まりがあれば提案できる (なければ null)。今の掟と提案に、賛成か反対かを投票する (against に反対する理由、reason に決めた理由)
 7. 今の気持ちを一言
 
@@ -872,7 +999,7 @@ def season_prompt(state, p, first):
 
 ## 答えの形 (JSON)
 {{"say": [{{"to": "みんな", "text": "..."}}],
- "job": {{"activity": "採集", "place": "camp", "with": []}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}
+ "job": {{"activity": "採集", "place": "camp", "with": []}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}{keep}
  "knowledge": [{{"op": "add", "text": "...", "because": [出来事の番号], "confidence": 0.6}}],
  "proposal": {{"text": "...", "because": [出来事の番号]}},
  "votes": [{{"id": "L0", "against": "反対する理由", "agree": true, "reason": "決めた理由"}}],
