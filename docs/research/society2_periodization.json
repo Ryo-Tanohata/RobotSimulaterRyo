@@ -1,0 +1,1380 @@
+{
+ "research": [
+  {
+   "lens": "Near Eastern archaeological chronology (Levant, Anatolia, Upper and Lower Mesopotamia, Zagros), from the Late Epipaleolithic Natufian through PPNA, PPNB/PPNC, Pottery Neolithic (Hassuna/Samarra/Halaf), Ubaid, and Late Chalcolithic/Uruk up to proto-cuneiform writing. For each period: dates, the social and economic features that define it, and where it fits G1-G6. Dates: cal BP minus 1950 gives cal BC. Many Ubaid, Halaf and Uruk ranges in the literature are conventional ceramic-phase dates, not modelled radiocarbon dates. These are flagged where relevant.",
+   "periods_or_stages": [
+    {
+     "name": "Early Natufian (Late Epipaleolithic), southern Levant",
+     "dates": "c. 15,000/14,600-13,600 cal BP (about 12,650-11,650 cal BC). Shubayqa 1 occupied about 14,600-12,000 cal BP. Early Natufian at Ain Mallaha about 14,300 cal BP.",
+     "defining_features": "Foragers who stay in one place for long periods, before any farming. Hamlets of round, semi-subterranean houses with stone footings, 3-7 m across with a central hearth (Ain Mallaha/Eynan; Valla reconstructs about 12 round shelters). Heavy use of wild cereals and grinding tools, basalt vessels, burials under or near houses, a woman buried with a puppy (early dog). Art and personal ornaments. Bar-Yosef treats it as the 'threshold' to agriculture. Frequent rebuilding suggests people still moved often, so 'sedentary' is debated.",
+     "maps_to_phases": "Start of G1 (村ができる). Villages and growing population appear before cultivation, so in the real sequence G1 comes before G2. No domestic plants or animals yet.",
+     "sources": [
+      "Richter et al. 2017, Scientific Reports, Shubayqa 1 AMS dates (~14,600-11,500 cal BP for the Natufian) - https://xronos.ch/references/17778",
+      "Bar-Yosef, O. 1998. The Natufian culture in the Levant, threshold to the origins of agriculture. Evolutionary Anthropology 6:159-177 (citation confirmed; full text not read)",
+      "Natufian culture / Ain Mallaha summary (Wikipedia mirror; secondary) - https://wikipedia.classicistranieri.com/en/articles/n/a/t/Natufian_culture.html"
+     ]
+    },
+    {
+     "name": "Late/Final Natufian",
+     "dates": "c. 13,600-11,700/11,500 cal BP (about 11,650-9,550 cal BC). Overlaps the Younger Dryas cold phase (commonly about 12,900-11,700 cal BP; this figure not checked in this search).",
+     "defining_features": "Often described as a partial return to mobility under the Younger Dryas, but climate and cultural dates do not line up well, and gazelle isotopes suggest it was colder but not drier. Ritual feasting at burials: Hilazon Tachtit (about 12,000 cal BP) has a woman buried with more than 50 tortoises, plus wild cattle feasting remains. Munro & Grosman read this as feasting used to hold a growing community together.",
+     "maps_to_phases": "Late G1. Ritual feasting holds a growing group together before any leaders exist. This is an early version of the G5 problem (scalar stress handled through ritual, not chiefs).",
+     "sources": [
+      "Munro & Grosman 2010, PNAS, Early evidence (ca. 12,000 B.P.) for feasting at a burial cave in Israel - https://cris.huji.ac.il/en/publications/early-evidence-ca-12000-bp-for-feasting-at-a-burial-cave-in-israe/",
+      "Natufian culture summary (Wikipedia mirror; Late Natufian ~13.6-11.5 kyr cal BP) - https://wikipedia.classicistranieri.com/en/articles/n/a/t/Natufian_culture.html"
+     ]
+    },
+    {
+     "name": "Pre-Pottery Neolithic A (PPNA: Khiamian, Sultanian, Mureybetian)",
+     "dates": "ASPRO: 10,200-8,800 cal BC. WF16 (southern Jordan) Bayesian model: about 11,840-10,240 cal BP (about 9,890-8,290 cal BC), most intensive around 11,250 cal BP. Dhra' granaries 11,300-11,175 cal BP.",
+     "defining_features": "Round or oval houses in nucleated villages. Wild cereals (barley, wheat) cultivated before they were domesticated: rows of querns at Jerf el Ahmar show large-scale processing of wild cereals. Purpose-built raised-floor granaries at Dhra', placed between houses, about 1,000 years before domestic crops. Communal, partly sunken round buildings at Mureybet and Jerf el Ahmar, used for storage, meetings and ritual. Monumental communal building: Jericho tower, and Göbekli Tepe enclosures (about 9,600/9,500-8,200/8,000 BC) built by hunter-gatherers with feasting. Standardized bead-making in PPNA northeast Jordan (Shubayqa 6), possibly part-time and seasonal, in a non-hierarchical society.",
+     "maps_to_phases": "Core G1, plus the start of G2 (wild cereals cultivated, not yet domesticated). Storage is communal or shared, not household-owned, which is the baseline for G4. Large-scale cooperation (monuments, feasts) without visible leaders is relevant to G5. Some craft specialization already exists here (relevant to G3), so it does not depend on surplus.",
+     "sources": [
+      "ASPRO chronology table (Hours et al. 1994) - https://en.wikipedia.org/wiki/ASPRO_chronology",
+      "Dating WF16 (Bayesian chronology of a PPNA settlement) - https://centaur.reading.ac.uk/45376",
+      "Kuijt & Finlayson 2009, PNAS, Evidence for food storage and predomestication granaries 11,000 years ago in the Jordan Valley - https://doi.org/10.1073/pnas.0812764106",
+      "Willcox & Stordeur, Antiquity (c. 2012), Large-scale cereal processing before domestication during the tenth millennium cal BC in northern Syria - https://www.cambridge.org/core/product/917BA330C6762E017DB6AF38B6783B58",
+      "UNESCO nomination file, Göbekli Tepe (about 9600-8200 BC; public rituals and feasting) - https://whc.unesco.org/document/168743",
+      "DAI Tepe Telegrams, dating Göbekli Tepe - https://dainst.blog/the-tepe-telegrams/2016/06/22/how-old-ist-it-dating-gobekli-tepe/"
+     ]
+    },
+    {
+     "name": "Early PPNB (EPPNB)",
+     "dates": "ASPRO: 8,800-7,600 cal BC for PPNB ancien (often narrowed to about 8,700/8,500-8,200 BC; the PPNA/PPNB boundary is disputed and later in the south). Early PPNB at Tell Qarassa North about 8,500-8,300 cal BC.",
+     "defining_features": "Change from round to rectangular houses. First morphologically domestic cereals. Zeder (2011): crop and animal management began together, at least 11,500 cal BP. Pig management in southeast Anatolia by about 10,500-10,000 BP; cattle on the upper Euphrates about 11,000-10,000 BP. Bidirectional naviform blade technology on imported high-quality flint, possibly spread by travelling specialists.",
+     "maps_to_phases": "G2 (畑と家畜). In Flannery's model, the change from round huts with shared storage to rectangular nuclear-family houses with their own storerooms happens here. So the start of household property (G4) is already in the PPNB, well before pottery (G3).",
+     "sources": [
+      "Zeder 2011, Current Anthropology 52(S4), The Origins of Agriculture in the Near East - https://www.journals.uchicago.edu/doi/10.1086/659307",
+      "Zeder 2008, PNAS, Domestication and early agriculture in the Mediterranean Basin - https://pmc.ncbi.nlm.nih.gov/articles/PMC2575338",
+      "Flannery 2002, American Antiquity 67, The Origins of the Village Revisited: From Nuclear to Extended Households - https://resolve.cambridge.org/core/journals/american-antiquity/article/abs/origins-of-the-village-revisited-from-nuclear-to-extended-households/5176075CEEFAE75EB9E8FEB1706ECCCE",
+      "Pre-Pottery Neolithic B overview - https://en.wikipedia.org/wiki/Pre-Pottery_Neolithic_B"
+     ]
+    },
+    {
+     "name": "Middle PPNB (MPPNB), including Zagros goat herding (Ganj Dareh)",
+     "dates": "ASPRO: 7,600-6,900 cal BC for PPNB moyen. Other schemes put the MPPNB around 8,300/8,200-7,500 BC. Ganj Dareh goat management about 10,000 cal BP (about 8,000 cal BC).",
+     "defining_features": "Goat herding at Ganj Dareh, recognized by the selective culling of young males rather than by smaller bones. Managed goats reached the southern ends of the Fertile Crescent by about 9,500 BP, and sheep 500-1,000 years later. Domestic crops become dominant, but wild resources and hunting continue. Plastered or modelled skulls and the 'Ain Ghazal statues show household and lineage ancestor cults. Rectangular single-family houses with plastered floors. 'Ain Ghazal MPPNB population about 700-900 (Rollefson).",
+     "maps_to_phases": "Mature G2: farming and herding become the core economy. Early G4 signals are household ancestor cults and private storage rooms.",
+     "sources": [
+      "Zeder & Hesse 2000, Science 287:2254-2257, The Initial Domestication of Goats in the Zagros Mountains 10,000 Years Ago - https://doi.org/10.1126/science.287.5461.2254",
+      "Zeder 2008, PNAS - https://pmc.ncbi.nlm.nih.gov/articles/PMC2575338",
+      "ASPRO chronology - https://en.wikipedia.org/wiki/ASPRO_chronology",
+      "Britannica, 'Ain Ghazal - https://www.britannica.com/place/Ain-Ghazal"
+     ]
+    },
+    {
+     "name": "Late PPNB mega-sites and the PPNC decline",
+     "dates": "LPPNB about 7,500-7,000/6,700 cal BC. ASPRO groups middle-to-late PPNB plus PPNC as 7,600-6,000 cal BC. PPNC at 'Ain Ghazal 8.9-8.6 cal ka BP (about 6,950-6,650 cal BC). The end of the LPPNB comes 500-800 years before the 8.2 ka event (about 6,200 BC).",
+     "defining_features": "Many MPPNB villages abandoned while people gathered into 'mega-sites' of 10-15 ha in the Jordan highlands ('Ain Ghazal, Basta, Wadi Shu'eib, es-Sifiya, 'Ain Jammam). Population estimates of 1,500-4,000 (Rollefson) are disputed: Kuijt argues for hundreds. Single-storey nuclear houses replaced by two-to-three-storey multi-family houses, probably extended families pooling resources, with ground-floor storage. Kadowaki: shared communal labour declined as households grew more independent. Craft specialization: naviform workshops at 'Ain Ghazal, sandstone-ring production at Ba'ja on a household-to-industrial scale, bead and bone workshops at Beidha, mass lime-plaster production. Rollefson describes the pressure of fast population growth as scalar stress. Pigs and cattle added. Pressure on land plus drying led to shrinking or abandonment of the mega-sites in the PPNC. They did not develop into later cities.",
+     "maps_to_phases": "End of G2 into G3 and G4. Craft specialists and extended-family households with their own stores appear. G5 pressure (scalar stress) also appears, and the story is a boom and bust, not steady progress. This is a natural end point for a first 'Neolithic village' block.",
+     "sources": [
+      "Kuijt 2000, Journal of Anthropological Archaeology 19:75-102, People and Space in Early Agricultural Villages - https://arheo.ffzg.unizg.hr/ska/tekstovi/people_space.pdf",
+      "Kadowaki 2012, household perspective on the PPNB-LN transition - https://www.num.nagoya-u.ac.jp/outline/staff/kadowaki/laboratory/pdf/Kadowaki2012.pdf",
+      "Zielhofer et al. 2012, Quaternary Research, The decline of the early Neolithic population center of 'Ain Ghazal - https://resolve.cambridge.org/core/journals/quaternary-research/article/decline-of-the-early-neolithic-population-center-of-ain-ghazal-and-corresponding-earthsurface-processes-jordan-rift-valley/A85EB4EEFBB2E10F9C11DD6161813B9E",
+      "Levant 46(2) article on LPPNB megasites and abandonment - https://www.whitman.edu/Documents/Academics/Division-I/Levant%2046(2).pdf",
+      "Barzilai, Social Complexity in the Southern Levantine PPNB as Reflected through Lithic Studies (BAR) - https://www.barpublishing.com/social-complexity-in-the-southern-levantine-ppnb-as-reflected-through-lithic-studies.html",
+      "Ba'ja field report (sandstone ring production) - https://exoriente.org/baja/1997/6.php"
+     ]
+    },
+    {
+     "name": "Çatalhöyük East (central Anatolian Late Neolithic), a parallel case",
+     "dates": "Start close to 7,100 cal BC (Bayliss et al. 2015, Journal of World Prehistory). Occupation of the East Mound ended just after 6,000 cal BC (Marciniak et al. 2015, Antiquity).",
+     "defining_features": "Dense agglomeration of house-based units, with houses of similar size and similar diets for men and women. Hodder describes it as broadly egalitarian, though some 'history houses' with many burials stand out. Population was revised down to about 600-800 at its peak (Kuijt and Marciniak). Pottery appears within its sequence. The final levels show changes in how houses were built and how burials were made.",
+     "maps_to_phases": "A test case for late G2 into G3 and G4. A large farming settlement without clear wealth inequality or leaders shows that size alone does not produce G4 or G5.",
+     "sources": [
+      "Bayliss et al. 2015, Journal of World Prehistory, doi:10.1007/s10963-015-9083-7 (abstract only)",
+      "Marciniak et al. 2015, Antiquity, Fragmenting times, doi:10.15184/aqy.2014.33 - https://resolve.cambridge.org/core/journals/antiquity/article/abs/fragmenting-times-interpreting-a-bayesian-chronology-for-the-late-neolithic-occupation-of-catalhoyuk-east-turkey/DBCE6E92D58E9709CCEEC4707F6428E5",
+      "World History Encyclopedia, Çatalhöyük (popular secondary) - https://www.worldhistory.org/Catalhoyuk/"
+     ]
+    },
+    {
+     "name": "Early Pottery Neolithic (Upper Mesopotamia pre-Halaf / Proto-Hassuna; southern Levant Yarmukian)",
+     "dates": "Steady pottery production in Upper Mesopotamia began about 7,000-6,700 cal BC (Tell Sabi Abyad about 7,000-6,900 BC). Local plant-tempered coarse ware from about 6,700 BC. Southern Levant (Yarmukian) at least several centuries later. Sha'ar Hagolan is given as 6,500-6,000 BC or 5,500-5,000 BC depending on the source, and the calibration status of both ranges is unclear.",
+     "defining_features": "The first pottery was rare, carefully made, painted mineral-tempered ware, often brought in from elsewhere through exchange networks: a prestige or exchange item, not an everyday tool. Everyday local coarse ware spread only after about 6,700 BC. In the Levant, Yarmukian Sha'ar Hagolan (about 20 ha) has large courtyard houses of 250-700 m² with private silo rooms and silo jars, which points to strong household-level storage.",
+     "maps_to_phases": "Start of G3 (pottery begins). The real sequence has two steps: (a) rare, exchanged prestige pots, then (b) ordinary household-made pottery. Full-time potters are not needed at this stage. The courtyard houses with silos fit G4 (household stores).",
+     "sources": [
+      "Leiden University 'Relentlessly Plain' project, Sabi Abyad pottery - https://www.universiteitleiden.nl/en/research/research-projects/archaeology/relentlessly-plain",
+      "AJA field report on Tell Sabi Abyad (2006) - https://ajaonline.org/field-report/132/",
+      "Sha'ar Hagolan (Jewish Virtual Library; popular summary of Garfinkel's excavations) - https://www.jewishvirtuallibrary.org/sha-ar-hagolan"
+     ]
+    },
+    {
+     "name": "Hassuna and Samarra (northern and central Mesopotamia, Late Neolithic)",
+     "dates": "Conventional textbook dates: Hassuna about 6,000/5,500-5,000 BC; Samarra about 5,500-4,800 BC (some sources start at 6,000 BC); Tell es-Sawwan about 5,600-5,000 BC. A calibrated framework for the north Mesopotamian Late Neolithic and Chalcolithic runs about 6,500-4,500 cal BC. Hassuna, Samarra and Halaf partly overlap.",
+     "defining_features": "Samarran farmers moved onto the dry edges of the alluvial plain using simple irrigation: small canals at Choga Mami and irrigated flax and six-row barley at Tell es-Sawwan. T-shaped buildings of uniform size at Sawwan were used for grain storage, which implies pooled labour or kin-group-owned stores. Defensive walls or ditches with indirect entrances suggest raiding. Grave wealth varies (many alabaster figurines and vessels at Sawwan), read as rising economic and social differentiation, but villages remain largely egalitarian.",
+     "maps_to_phases": "G3 (irrigation-based surplus) into G4 (kin-group stores, uneven grave goods). Early signs of G5 appear (organized irrigation labour, defense). This is the bridge into the Ubaid.",
+     "sources": [
+      "Samarra culture (encyclopedia summary) - https://en.wikipedia.org/wiki/Samarra_culture",
+      "UNM course page, The Mature and Later Neolithic in Mesopotamia (6000-3500) - https://www.unm.edu/~gbawden/328-neo3/328-neo3.htm",
+      "Campbell, Rethinking Halaf Chronologies (calibrated north Mesopotamian framework about 6500-4500 cal BC) - https://www.academia.edu/2823262/Rethinking_Halaf_Chronologies"
+     ]
+    },
+    {
+     "name": "Sabi Abyad 'Burnt Village' (Pre-Halaf/Transitional) and the Halaf culture",
+     "dates": "Sabi Abyad seals, sealings and storehouses about 6,200-6,000 BC. Halaf about 6,100-5,100 BC (Wikipedia) or 6,500-5,500 BC (Metropolitan Museum). Domuztepe about 6,200-5,450 BC. Several recent calibrated syntheses place Halaf proper around 5,900-5,300 cal BC (from memory, not checked in this search).",
+     "defining_features": "Around 6,200 BC at Sabi Abyad: large storehouses, round 'tholoi', hundreds of clay sealings with stamp-seal impressions marking ownership and controlled storage, and clay tokens. Akkermans and Duistermaat read these as communal storage shared with mobile herders. Halaf: very fine painted pottery made at production centres and exchanged widely, possibly as prestige goods between local elites. Domuztepe has about 180 seals and seal-like objects and obsidian traded from up to 800 km away. There is little public architecture and no rigid stratification: 'egalitarian but potentially ranked'.",
+     "maps_to_phases": "G3 with skilled production centres for fine ware and exchange, and G4 with seals as marks of ownership and controlled stores. It also gives a first form of G6: exchange between villages and the token and seal tools that later become administration.",
+     "sources": [
+      "Metropolitan Museum Heilbrunn Timeline, The Halaf Period (6500-5500 B.C.) - https://www.metmuseum.org/toah/hd/half/hd_half.htm",
+      "Halaf culture overview - https://en.wikipedia.org/wiki/Halaf_culture",
+      "Leiden Sabi Abyad project page (storehouses, tholoi, seals and sealings about 6200 BC) - https://www.universiteitleiden.nl/en/research/research-projects/archaeology/relentlessly-plain",
+      "Domuztepe Excavations (Open Context; Campbell & Kansa) - https://opencontext.org/projects/e6fb0f7c-6f69-6ca8-683b-8c6d5e98a099",
+      "METU thesis on Domuztepe seals - https://open.metu.edu.tr/handle/11511/22908"
+     ]
+    },
+    {
+     "name": "Ubaid period (southern Mesopotamia Ubaid 0-4; Northern Ubaid)",
+     "dates": "Southern Ubaid as a whole: about 6,500-3,800 BC (radiometric summary attributed to Carter & Philip 2010; not checked directly). Ubaid 0 (Tell el-Oueili): 7th millennium BC (CNRS), elsewhere 5,500-5,400 BC. Ubaid 1 (Eridu): 5,400-4,700 BC or 5,200-4,800 BC. Ubaid 2 (Hajji Muhammad): about 4,800-4,500 BC. Ubaid 3-4: about 4,500-3,800 BC (sources disagree by several centuries). Northern Ubaid: about 5,300-4,300 BC. Eridu temple level XVII: about 5,300-5,000 BC.",
+     "defining_features": "Irrigation farming spreads across the southern alluvium. Standard tripartite houses with a long central hall. A long sequence of temples rebuilt in the same place at Eridu (small shrine, then a platform at level XI, then a tripartite plan from level VIII, then a large complex at level VII about 4,000-3,500 BC). 'Chieftain's houses': Tell Abada Building A, larger and central, held stored pottery, clay tokens kept in vessels, and 57 infant burials. Similar buildings at Tepe Gawra XII and Değirmentepe, with stamp-seal sealings near administrative and cultic buildings. Very uniform pottery across a wide 'interaction sphere' (Carter & Philip; Stein). Graves show little difference in wealth. Stein (1994): chiefly elites in small irrigation polities used inclusive, group-centred ideology and ritually mobilized staple finance. Overt ranking, warfare and exotic prestige goods appear only at the very end. A minority (Akkermans, Forest, Hole) sees the Ubaid as egalitarian.",
+     "maps_to_phases": "The central case for G5 (リーダーと決まり): temple and chief-house leaders, sealing-based control of stores, and dispute settlement inferred. G4 continues (household tripartite storage), but inequality stays deliberately muted. G3 is well developed (standardized pottery). This fits the user's 'Ubaid chiefdoms' anchor.",
+     "sources": [
+      "Carter & Philip (eds.) 2010, Beyond the Ubaid, SAOC 63, Oriental Institute (full PDF exists but could not be opened here) - https://isac.uchicago.edu/sites/default/files/uploads/shared/docs/saoc63.pdf",
+      "Stein 1994, Economy, ritual and power in 'Ubaid Mesopotamia (eHRAF abstract) - https://ehrafarchaeology.yale.edu/traditions/mh55/documents/004",
+      "Ubaid period overview (phase dates) - https://en.wikipedia.org/wiki/Ubaid_period",
+      "Britannica, Ubaid Period - https://www.britannica.com/topic/Ubaid-Period",
+      "Seshat databank, Ubaid polity coding (mainstream chiefdom vs minority egalitarian views) - https://seshat-db.com/core/polity/473",
+      "Kopanias & Barlagianni, Unequal in Life but Equal in Death? Mortuary evidence in Ubaid polities - https://www.archaeopresspublishing.com/ojs/index.php/ash-sharq/article/view/711",
+      "Belleten article on Ubaid chief houses (Tell Abada, Tepe Gawra, Değirmentepe) - https://belleten.gov.tr/tam-metin/61/eng",
+      "CNRS UMR Temps, Tell el-'Oueili (Ubaid 0, 7th millennium BC) - https://umrtemps.cnrs.fr/en/terrain/tell-el-oueili-2/"
+     ]
+    },
+    {
+     "name": "Terminal Ubaid / LC1-LC2 and Early Uruk: first towns, northern urbanism",
+     "dates": "Late Chalcolithic overall about 4,600-3,100 BCE (Renette et al. 2022). LC2 at Tell Brak about 4,200-3,800 BC (urban growth possibly from about 4,300 BC). Early Uruk about 4,000-3,800 BC (other schemes 3,900-3,600 or 4,000-3,500 BC).",
+     "defining_features": "Tell Brak grows to about 55 ha with a ring of satellite settlements. It already has monumental buildings, industrial-scale production and prestige goods in the late 5th millennium, so urbanism did not start only in the south (Oates et al. 2007). Bevel-rim bowls, made in moulds and widely read as ration measures, appear in Early Uruk in the south.",
+     "maps_to_phases": "Start of G6 (a town) on top of a mature G5. This is the start of a 'state and town' block.",
+     "sources": [
+      "Oates, McMahon, Karsgaard, Al Quntar & Ur 2007, Antiquity 81:585-600, Early Mesopotamian urbanism: a new view from the north - https://resolve.cambridge.org/core/journals/antiquity/article/early-mesopotamian-urbanism-a-new-view-from-the-north/54C97BC63333E3416D5A096FD70883A6",
+      "Jason Ur, Tell Brak survey page (LC2 4200-3800 BC, 55 ha; LC3 130 ha) - https://jasonur.scholars.harvard.edu/pages/tell-brak",
+      "Renette et al. 2022, Radiocarbon, Late Chalcolithic chronology - https://dx.doi.org/10.1017/rdc.2022.72",
+      "Rothman (ed.) 2001, Uruk Mesopotamia & Its Neighbors (Santa Fe LC1-LC5 scheme; not read)",
+      "Beveled rim bowl overview - https://en.wikipedia.org/wiki/Beveled_rim_bowl"
+     ]
+    },
+    {
+     "name": "Middle Uruk / LC3-LC4: regional hierarchy and expansion",
+     "dates": "About 3,800-3,400 BC (one older scheme instead runs Early Uruk to 3,500 BC). Tell Brak LC3 about 3,800-3,400 BC. Purely numerical tablets about 3,500-3,350 BC.",
+     "defining_features": "Tell Brak reaches about 130 ha. Mass graves at Brak (about 3,800-3,600 BC) suggest violence during urban growth. In the Susiana plain, settlement-size hierarchies and administrative tiers appear: Johnson and Wright explain state formation as driven by rising information-processing and administrative needs, after testing and rejecting simple population-pressure models. Accounting tools spread: tokens, hollow clay balls holding tokens, and bullae sealed with cylinder seals, then numerical tablets. The Uruk expansion begins.",
+     "maps_to_phases": "G6 (trade, town, records) building on G5. Corresponds to the 'tokens' step of G6, before true writing.",
+     "sources": [
+      "Wright & Johnson 1975, American Anthropologist 77(2):267-289, Population, Exchange, and Early State Formation in Southwestern Iran (AcaWiki summary) - https://acawiki.org/Population,_Exchange,_and_Early_State_Formation_in_Southwestern_Iran",
+      "Johnson 1973, Local Exchange and Early State Development in Southwestern Iran - https://press.umich.edu/Books/L/Local-Exchange-and-Early-State-Development-in-Southwestern-Iran",
+      "Uruk period overview (dating debates; Eanna levels XII-IX/VIII-VI/V-IV) - https://en.wikipedia.org/wiki/Uruk_period",
+      "Schmandt-Besserat, tokens, envelopes and bullae (UT Austin PDF) - https://sites.utexas.edu/dsb/wp-content/uploads/sites/3043/2021/10/New-Tokens-FactsandInterpretationVisibleLanguage.pdf"
+     ]
+    },
+    {
+     "name": "Late Uruk (Uruk V-IVa) / LC5, then Jemdet Nasr (Uruk III)",
+     "dates": "Late Uruk about 3,400-3,100 BC; recent radiocarbon work suggests it ended closer to about 3,300 BC. Uruk IV proto-cuneiform tablets about 3,350-3,200 BC. Uruk III / Jemdet Nasr about 3,200-3,000 BC. The full proto-cuneiform corpus (about 5,000 tablets) dates about 3,350-3,000 BC.",
+     "defining_features": "Uruk is the first real city: about 250 ha by about 3,200 BC (some sources say 300 ha), with tens of thousands of people (40,000-80,000 in popular sources; uncertain). Two monumental temple districts (Eanna and Anu). Mass-produced bevel-rim bowls make up about 75% of pottery and are read as ration bowls. Cylinder seals. Uruk 'colonies' and outposts on the Euphrates (Habuba Kabira, Jebel Aruda), 20-40 ha, inside a core-periphery exchange network (Algaze). Proto-cuneiform administrative tablets, including the Standard Professions List (Lu2 A), already show ranked occupations and titles.",
+     "maps_to_phases": "End of G6 (交易・町・記録): writing, a city, long-distance trade, and a specialized, ranked workforce. The natural end point of 'Society 2.0'.",
+     "sources": [
+      "Proto-cuneiform overview (about 3350-3000 BC; Uruk IV) - https://en.wikipedia.org/wiki/Proto-cuneiform",
+      "CDLI artifact record, Uruk IV tablet (ca. 3350-3200 BC) - https://cdli.earth/artifacts/4362",
+      "CDLI note on archaic Lu2 professions list - https://cdli.earth/articles/cdln/2014-15",
+      "Algaze 1993/2005, The Uruk World System (University of Chicago Press) - https://chicagoreference.com/ucp/books/book/chicago/U/bo3620198.html",
+      "Uruk period overview - https://en.wikipedia.org/wiki/Uruk_period",
+      "Childe 1950, The Urban Revolution, Town Planning Review 21:3-17 - https://faculty.washington.edu/plape/citiesaut11/readings/Childe-urban%20revolution%201950.pdf"
+     ]
+    },
+    {
+     "name": "Model stages (not a chronological period): Flannery's household sequence",
+     "dates": "n/a. Approximate archaeological fit: stage 1 in the Natufian and PPNA; stage 2 in the EPPNB and MPPNB; stage 3 in the LPPNB, and later in Ubaid-style tripartite houses.",
+     "defining_features": "Stage 1: small round huts with shared or communal storage. Stage 2: nuclear families in larger rectangular houses with private storerooms. Stage 3: extended-family households with larger workforces and more varied economies.",
+     "maps_to_phases": "A ready-made way to split G4 into steps: shared stores, then household stores, then extended-household estates with inheritance. In the Near East this starts much earlier than G3 pottery, so the simulation could seed G4 behaviour from G2 onward.",
+     "sources": [
+      "Flannery 2002, American Antiquity - https://resolve.cambridge.org/core/journals/american-antiquity/article/abs/origins-of-the-village-revisited-from-nuclear-to-extended-households/5176075CEEFAE75EB9E8FEB1706ECCCE",
+      "Flannery 1972, The origins of the village as a settlement type in Mesoamerica and the Near East (cited via later literature; not read)"
+     ]
+    },
+    {
+     "name": "Model stages (not a chronological period): labour-limited to land-limited farming and inequality (Bogaard, Fochesato & Bowles; Kohler et al.)",
+     "dates": "n/a. Wealth inequality stayed modest for at least four millennia after the start of farming, then rose with plough and animal traction ('secondary products', mainly 4th millennium BC in the Near East).",
+     "defining_features": "Gini coefficients from house size, storage size and grave goods across 90 site-phases in western Eurasia: land-limited (plough, traction) systems are much more unequal than labour-limited (hoe) ones. Kohler et al. 2017 (63 sites, house-size Gini): inequality generally rises with domestication and political scale, and keeps rising in Eurasia because of large domesticable animals. A 2025 PNAS special feature found only a slight rise with the start of farming.",
+     "maps_to_phases": "Suggests splitting G4 into G4a 'property exists' (PPNB to Halaf, low Gini) and G4b 'property becomes unequal' (late Ubaid to Uruk, plough, herds, land scarcity). Large Gini values should not appear right after G2.",
+     "sources": [
+      "Bogaard, Fochesato & Bowles 2019, Antiquity, The farming-inequality nexus: new insights from ancient Western Eurasia - https://www.cambridge.org/core/journals/antiquity/article/abs/farminginequality-nexus-new-insights-from-ancient-western-eurasia/8EFE3B8F5AFA07450F87E4E9B553A43E",
+      "VoxEU/CEPR summary (inequality modest for at least four millennia) - https://cepr.org/voxeu/columns/what-we-can-learn-inequality-revolution-prehistory",
+      "Kohler et al. 2017, Nature 551:619-622, Greater post-Neolithic wealth disparities in Eurasia than in North America and Mesoamerica - https://www.doi.org/10.1038/NATURE24646",
+      "Sherratt 1981, Plough and pastoralism (secondary products revolution; summary) - https://en.wikipedia.org/wiki/Secondary_products_revolution"
+     ]
+    }
+   ],
+   "major_breakpoints": [
+    "1. Sedentism before farming, about 15,000-14,500 cal BP (Early Natufian). Villages and population growth start while people still forage, so G1 really does come first. Sources: Bar-Yosef 1998, Evolutionary Anthropology; Richter et al. 2017, Scientific Reports.",
+    "2. The 'Neolithic Revolution' (Childe), PPNA to EPPNB, about 11,700-10,200 cal BP: wild cereals cultivated (Dhra' granaries 11,300 cal BP; Jerf el Ahmar), then domestication. Plant domestication was slow: non-shattering wheat appears about 9,500 BP but wild types still dominate fields at 7,500 BP (Tanno & Willcox 2006, Science, https://pubmed.ncbi.nlm.nih.gov/16574859/). Fuller et al. (2012) estimate about 4,000 years, which is disputed. Zeder 2011 places crop and animal management together at least 11,500 cal BP. Bocquet-Appel 2011 (Science 333:560) adds a Neolithic Demographic Transition of about +2 births per woman, a direct driver of G1-G2 population growth.",
+    "3. Household privatization, PPNA to PPNB (about 8,800-7,500 BC): round huts with shared storage give way to rectangular houses with private storerooms, and later to extended-family houses (Flannery 1972/2002; Byrd 1994, American Antiquity 59:639-666). This is when G4 property begins, before pottery.",
+    "4. LPPNB mega-sites and their breakdown, about 7,500-6,500 BC: aggregation, scalar stress, extended households and craft specialists, then shrinking or abandonment in the PPNC (8.9-8.6 cal ka BP). The breakdown comes before the 8.2 ka climate event. Many scholars treat it as a reset, not a step toward cities (Kuijt 2000; Kadowaki 2012; Zielhofer et al. 2012). Natural end of a first sub-era.",
+    "5. Pottery and the Late Neolithic, about 7,000-6,700 cal BC in Upper Mesopotamia: first prestige or exchanged pots, then household coarse ware after 6,700 BC (Leiden Sabi Abyad project). This is a technology change more than a social one.",
+    "6. Seals, sealings and controlled storage, about 6,200-6,000 BC (Sabi Abyad), then Halaf stamp seals and long-distance exchange. These are the first administrative marks of ownership, and the origin of the G6 accounting tools.",
+    "7. Irrigation colonization of the alluvium, Samarra and Ubaid 0 (7th to early 6th millennium BC), then Ubaid temples and chief houses (about 5,300-4,000 BC; Stein 1994; Carter & Philip 2010). This is the main point where formal leadership (G5) appears.",
+    "8. The 'Urban Revolution' (Childe 1950), about 4,200-3,100 BC: northern towns first (Tell Brak LC2, 55 ha, about 4,200 BC; Oates et al. 2007), then southern Uruk (about 250 ha) with state-level administrative hierarchy (Wright & Johnson 1975; Johnson 1973). Writing appears about 3,350-3,200 BC (Uruk IV). Childe's two 'revolutions' (Neolithic and Urban) are the two biggest consensus breaks. Breakpoints 4 and 7 are the most defensible intermediate breaks."
+   ],
+   "critiques_or_caveats": [
+    "The G1-G6 order does not match the Near Eastern record in places. Household storage and property (G4) start in the PPNB, about 1,500-2,000 years before pottery (G3). Craft specialization (beads, naviform blades, lime plaster, sandstone rings) is already present in the PPNA and PPNB, sometimes in non-hierarchical societies with no clear surplus link (Shubayqa 6 bead study; Barzilai). A strict order of 'surplus, then craft, then property' is a simplification.",
+    "Large-scale cooperation came before leaders. Göbekli Tepe (about 9,600-8,200 BC), the Jericho tower and the PPNA communal buildings were built by communities with no visible elites, coordinated through feasting and ritual. A G5 model where coordination needs a leader is not supported for early periods.",
+    "Inequality was slow and non-linear. Bogaard et al. 2019 find wealth inequality modest for at least four millennia after farming began. The 2025 PNAS GINI feature finds only a slight rise with farming. Çatalhöyük (about 7,100-6,000 cal BC) had similar house sizes. Ubaid elites may have deliberately hidden their status, so graves show little difference (Stein 1994; Kopanias & Barlagianni). Varna (AMS about 4,560-4,450 cal BC; Higham et al. 2007, Antiquity) is in the Balkans, not the Near East, and should only be a comparison.",
+    "The sequence was not steady progress. The LPPNB mega-sites shrank or were abandoned, and Neolithic mega-sites did not lead to Bronze Age cities (Kadowaki 2012; Düring; Gebel). Late Natufian groups may have become more mobile again. Uruk outposts collapsed at the end of the expansion. A simulation could allow setbacks.",
+    "Dating problems. Many ranges (Hassuna, Samarra, Halaf, Ubaid 0-5, Early/Middle/Late Uruk) are ceramic-phase dates, and sources disagree by 300-1,000 years. Example: Ubaid 0 is placed in the 7th millennium BC by CNRS but at 5,500-5,400 BC elsewhere, and the Ubaid 4 dates conflict. The PPNA/PPNB boundary is later in the south than in the north. Göbekli Tepe dates were revised because of old-wood effects. LC1 and the LC5-to-Early Bronze boundary have few radiocarbon dates.",
+    "Disputed population sizes. LPPNB mega-site estimates of 1,500-4,000 (Rollefson) against 'hundreds' (Kuijt). Çatalhöyük revised to about 600-800. Uruk at 40,000-80,000 comes mostly from popular sources.",
+    "The tokens-to-writing theory (Schmandt-Besserat 1992) is influential but contested. Tokens continued alongside writing, and the token evidence at Sabi Abyad does not show one universal accounting role. Bevel-rim bowls as ration bowls is also disputed: residue work at Shakhi Kora found meat stews.",
+    "The 'colonies' and 'world system' labels for the Uruk expansion (Algaze) are contested in favour of more local agency. Stein and others argue the Ubaid spread by copying, not colonization. Ubaid as chiefdom versus egalitarian is unresolved; the chiefdom view is the mainstream one.",
+    "Ganj Dareh (Zagros, about 10,000 cal BP, about 8,000 BC) is not the earliest animal management: Zeder 2011 places management at least 11,500 cal BP, and cattle and pigs in Anatolia and Syria around 11,000-10,000 BP. Ganj Dareh is the clearest demographic-culling evidence, not the start date."
+   ],
+   "notes": "How to split 'Society 2.0', based on the breaks above.\n\nOption A, three blocks following Childe's two revolutions plus the PPNB reset:\n- 2.0a 'Neolithic village': Natufian to LPPNB, about 12,700-6,500 BC. Covers G1, G2, plus early household storage and part-time crafts.\n- 2.0b 'Late Neolithic and Chalcolithic village and chiefdom': Pottery Neolithic, Hassuna/Samarra, Halaf, Ubaid, about 7,000-4,200 BC. Covers G3, G4, G5.\n- 2.0c 'Urban revolution': LC2 to Late Uruk, about 4,200-3,100 BC. Covers G6.\n\nOption B, four blocks (more balanced): split 2.0b at about 6,200-5,500 BC into:\n- 'Pottery, seals and exchange villages' (Pottery Neolithic to Halaf; G3 and G4a)\n- 'Irrigation, temples and chiefs' (Samarra to Ubaid; G4b and G5)\n\nSuggested sub-steps for the running G3, each with an archaeological anchor:\n- G3-1: rare, exchanged prestige pots (Sabi Abyad, about 7,000-6,700 cal BC).\n- G3-2: household-made coarse ware for storage and cooking (from about 6,700 BC).\n- G3-3: skilled production centres for fine ware traded between villages (Halaf, about 6,000-5,300 BC).\n- G3-4: standardized or mass-produced ware (Ubaid uniformity, then Uruk bevel-rim bowls about 3,900-3,100 BC).\n\nPossible splits of G4:\n- G4a: shared stores, then household stores (PPNB, Flannery stage 2).\n- G4b: extended-household and kin-group estates, seals as ownership marks (LPPNB, Sabi Abyad, Halaf).\n- G4c: land-limited, plough-based inequality with high Gini (late Ubaid to Uruk, Bogaard et al. 2019).\n\nJohnson 1982 ('Organizational structure and scalar stress', in Renfrew, Rowlands & Segraves eds., Theory and Explanation in Archaeology, pp. 389-421; https://mapaspects.org/biblio/ref_4260/index.html) proposes a threshold of about 6 basal units before a group splits or builds a hierarchy. This was confirmed only at abstract level, and it could be used directly as a G5 trigger.\n\nLimits of this research:\n- WebFetch was blocked for Wikipedia, PMC and isac.uchicago.edu, so several claims rest on search-result abstracts and summaries, not full texts.\n- The calibrated Halaf range of about 5,900-5,300 cal BC is from memory and was not checked.\n- The Yarmukian calibrated range was not established: the sources conflict and do not say whether their dates are calibrated.\n- The Younger Dryas dates (about 12,900-11,700 BP) were not checked.\n- The exact year of the Willcox & Stordeur Antiquity article (2012 vs 2014) was not confirmed.\n- The Shubayqa 6 part-time bead-craft study is real per the search results, but its author and year were not captured.\n- Some feature details come from popular or secondary pages; those sources are labelled as such: Jewish Virtual Library for Sha'ar Hagolan, World History Encyclopedia for Çatalhöyük, popular pages for Uruk population, TOEFL-type passages for bevel-rim bowl production (the last are not cited above)."
+  },
+  {
+   "lens": "Theories of social evolution and political organization: Service (band, tribe, chiefdom, state), Fried (egalitarian, rank, stratified, state), Johnson & Earle (family-level group, local group, regional polity), Flannery (1972 processes; 2002 village stages) and Flannery & Marcus (2012), Johnson 1982 scalar stress, Wright & Johnson on state formation, Earle and Carneiro on chiefdoms, and critiques (Feinman & Neitzel, Yoffee, Graeber & Wengrow, Hodder, M. L. Smith). Each stage is matched to its Near Eastern archaeological correlate and to the simulation phases G1-G6.",
+   "periods_or_stages": [
+    {
+     "name": "Service 'band' = Fried 'egalitarian (mobile)' = Johnson & Earle 'family-level group'. Near East correlate: Epipaleolithic (Kebaran/Geometric Kebaran) foragers",
+     "dates": "before c. 15,000 cal BP (the Early Natufian is dated c. 13,400-11,800 BC by PPND)",
+     "defining_features": "Small, kin-based, mobile foraging units with no formal government. Under Fried, prestige rests on age, sex and ability and is open to everyone. Johnson & Earle make the family the main economic unit. Archaeological correlates: small seasonal camps, flimsy huts, little or no storage, no differences between dwellings.",
+     "maps_to_phases": "Before G1. This is the simulation's starting condition, and G1 begins when people leave this stage by settling down.",
+     "sources": [
+      "Sociopolitical typology (Service's four types; Fried and Johnson-Earle alternatives), https://en.wikipedia.org/wiki/Sociopolitical_typology",
+      "Fried 1967 summarized in Anthropologica, https://cas-sca.journals.uvic.ca/index.php/anthropologica/article/download/624/732/1515",
+      "Johnson & Earle 1987/2000, The Evolution of Human Societies (table of contents: Part I Family-level group), https://buscador.unsam.edu.ar/Record/20505/TOC",
+      "PPND radiocarbon platform, Natufian dating, https://www.exoriente.org/associated_projects/ppnd_summary.php"
+     ]
+    },
+    {
+     "name": "Natufian hamlets: the start of the Johnson & Earle 'local group' (sedentary egalitarian) and the first scalar stress",
+     "dates": "c. 15,000-11,700 cal BP (c. 13,000-9,750 BCE). The start and end dates are disputed by about 200-500 years.",
+     "defining_features": "Semi-sedentary or sedentary hamlets with round, semi-subterranean houses and burials inside the settlement. Communities were small: Kuijt (2000), as cited in a later paper, estimates about 60 people per site. A Current Anthropology article on the Natufian (Univ. of Chicago Press) says scalar stress in Johnson's 1982 sense appears from the start of the Early Natufian. There are no formal leaders, and the society is egalitarian in Fried's sense.",
+     "maps_to_phases": "G1 (村ができる). Sedentism plus births and immigrants push the community toward the first scalar-stress thresholds.",
+     "sources": [
+      "Kuijt 2000, J. Anthropological Archaeology 19:75-102, 'People and Space in Early Agricultural Villages', https://arheo.ffzg.unizg.hr/ska/tekstovi/people_space.pdf",
+      "Natufian article invoking Johnson 1982 (Univ. Chicago Press), https://www.journals.uchicago.edu/doi/reader/10.1086/658861",
+      "PPND chronology, https://www.exoriente.org/associated_projects/ppnd_summary.php"
+     ]
+    },
+    {
+     "name": "PPNA villages: local group with communal storage and a 'sequential' (consensual) hierarchy (Flannery 2002 village stage 1)",
+     "dates": "c. 11,700-10,700 cal BP (c. 9,750-8,750 BCE). The PPNA/PPNB boundary varies by region from about 8,800 to 8,250 BCE.",
+     "defining_features": "Small round-to-oval buildings with shared or communal storage (Flannery 2002, stage 1). Communal and ritual buildings and monumental enclosures. Communities of about 330 people (Kuijt 2000, as reported by others). Wild cereals were cultivated before morphological domestication. Watkins (2023) argues that the scalar stress of permanent aggregation was spread out through communal construction of monumental buildings, shared symbolism and more intense communal ritual. In Johnson's terms this is integration by consensus, not by permanent chiefs. Johnson & Earle's 'family and village' and 'village and clan'. Service's 'tribe' (segmentary, no permanent offices).",
+     "maps_to_phases": "Late G1 into early G2. The village grows past 'face-to-face' size, and cultivation becomes important.",
+     "sources": [
+      "Flannery 2002, 'The Origins of the Village Revisited: From Nuclear to Extended Households', American Antiquity, https://www.cambridge.org/core/product/98E6C778190FEE73A0EC2EF55635659F",
+      "Watkins 2023, Frontiers in Human Dynamics (author attribution taken from a search summary), https://www.frontiersin.org/journals/human-dynamics/articles/10.3389/fhumd.2023.1250167/full",
+      "Pre-Pottery Neolithic A overview, https://en.wikipedia.org/wiki/Pre-Pottery_Neolithic_A"
+     ]
+    },
+    {
+     "name": "PPNB villages: household-based 'local group' with achievement-based prestige (Flannery 2002 stage 2; Flannery & Marcus 'achievement-based society'; Johnson & Earle 'corporate group and big-man collectivity')",
+     "dates": "c. 10,700-8,250 cal BP (c. 8,750-6,300 BCE). Çatalhöyük in Anatolia is later, c. 7100-6000 BCE.",
+     "defining_features": "Rectangular multi-room houses, each holding a nuclear family with its own storage (Flannery 2002, stage 2). Byrd (1994) frames this as a shift between public and private, and between domestic and corporate space. The household becomes the unit of production and storage. Cereals and caprines were domesticated (e.g. goats at Ganj Dareh), and the earliest simple clay tokens come from Ganj Dareh and Tepe Asiab (Schmandt-Besserat). Late PPNB villages grew large: Kuijt 2000, as reported by others, gives about 765 people in the early PPNB and 3,000-4,000 later, though Kuijt has since argued for hundreds rather than thousands. Many large villages broke up around 8,500-8,000 BP, which Kuijt links to 'social crowding'. At Çatalhöyük, households hold similar wealth in most levels, and inequality appears only after about 6500 BC. Hodder (2022) treats 'staying egalitarian' as an active process: a tension between communal ('molar') and household-autonomous ('molecular') tendencies, with the latter growing alongside agricultural intensification. Under Fried the society is still egalitarian. Under Flannery & Marcus, prestige can be achieved but not inherited.",
+     "maps_to_phases": "G2 (畑と家畜) at its core. It also lays the base for G4: private household storage is the material precondition for household property.",
+     "sources": [
+      "Byrd 1994, 'Public and private, domestic and corporate: the emergence of the southwest Asian village', American Antiquity 59(4):639-666 (bibliographic record only; full text not accessed)",
+      "Flannery 2002, https://www.cambridge.org/core/product/98E6C778190FEE73A0EC2EF55635659F",
+      "Kuijt 2000, https://arheo.ffzg.unizg.hr/ska/tekstovi/people_space.pdf",
+      "Hodder 2022, 'Staying Egalitarian and the Origins of Agriculture in the Middle East', Cambridge Archaeological Journal 32(4):619-642, https://doi.org/10.1017/S0959774322000063",
+      "Schmandt-Besserat 1977, An Archaic Recording System, https://undena.com/EL-UP/Schmandt_Besserat_1977_Archaic_Recording_System_-_SMS_1.2.pdf",
+      "Flannery & Marcus 2012, The Creation of Inequality (review by Mithen), https://www.lrb.co.uk/v35/n07/steven-mithen/foursomes-and-so-on"
+     ]
+    },
+    {
+     "name": "Pottery Neolithic: Hassuna, Samarra and Halaf. Fried's transition from egalitarian to rank; Frangipane's 'horizontal' vs 'vertical' egalitarian societies",
+     "dates": "c. 6,300-5,000 BCE (≈ 8,250-7,000 cal BP). An Oxford chronology gives the Pottery Neolithic as c. 6300-5200 BC. Sabi Abyad levels date to c. 5700-5000 BC. Samarra is c. 5500-4800 BCE according to an encyclopedia entry.",
+     "defining_features": "Pottery, then fine painted wares (Halaf) that imply specialist production. Stamp seals and clay sealings on baskets and jars at Tell Sabi Abyad: 27 design types, and sealings kept as records of stored goods. Akkermans & Duistermaat read this as communal storage shared with mobile groups, which means administration of stores existed before formal leaders. Samarra-culture irrigation at Tell es-Sawwan and rich alabaster grave goods. Frangipane (2007) contrasts Halaf 'horizontal egalitarian' systems (no hierarchy) with Samarra and Ubaid 'vertical egalitarian' systems, where privileged status coexists with substantial equality. In Fried's terms, the first permanent positions of prestige appear without economic power.",
+     "maps_to_phases": "G3 (余りと分業): pottery and part-time crafts. It also covers the first half of G4 (持ち物と差): seals mark ownership and control of stored goods, while wealth differences stay small.",
+     "sources": [
+      "Frangipane 2007, 'Different types of egalitarian societies and the development of inequality in early Mesopotamia', World Archaeology 39(2):151-176, https://iris.uniroma1.it/handle/11573/93529",
+      "Akkermans & Duistermaat 1996 on Sabi Abyad sealings (Leiden repository), https://scholarlypublications.universiteitleiden.nl/access/item%3A2715257/view",
+      "eHRAF Halaf tradition summary, https://ehrafarchaeology.yale.edu/traditions/m086",
+      "Samarra culture overview, https://en.wikipedia.org/wiki/Samarra_culture",
+      "Oxford chronology in 'Death and Dying in the Neolithic Near East', https://academic.oup.com/book/8113/chapter/153577019"
+     ]
+    },
+    {
+     "name": "Ubaid: Fried's 'rank society', Service's 'chiefdom', Johnson & Earle's 'simple chiefdom / regional polity'. The interpretation is disputed.",
+     "dates": "c. 5500-4000 BCE across Mesopotamia, beginning in the southern alluvium c. 6200 BCE (Met Museum). This is ≈ 8,150-5,950 cal BP.",
+     "defining_features": "The Met notes that some villages grew into towns centered on monumental buildings (e.g. Eridu and Uruk); the repeatedly rebuilt temples at Eridu are standard textbook knowledge but were not verified in the sources I reached. Irrigation farming. A two-tier settlement pattern, with relatively large settlements serving as centers for groups of smaller ones. Stein (1994) treats the chiefdom as a useful model. He describes small irrigation-based polities whose elites used an inclusive ideology and ritually organized staple finance. Warfare and exotic long-distance trade appear only at the very end of the roughly 1,500-year Ubaid. Flannery & Marcus date hereditary aristocracies in the Near East to about 7,500 years ago. Definitions in use: Carneiro (1981) defines a chiefdom as an autonomous multi-village unit under a permanent paramount chief. Wright (1977, as cited) gives it one or two control levels above the local community. Earle (1997) describes kin-based rank with staple or wealth finance and a few thousand to tens of thousands of people. Counter-evidence: Kopanias & Barlagianni find little variation in Ubaid grave goods and few prestige goods. Graeber & Wengrow suggest an 'overt ideology of equality'.",
+     "maps_to_phases": "G5 (リーダーと決まり). The leaders here are ritual and managerial, not wealthy, and they integrate several villages. This fits Blanton et al.'s 'corporate' strategy better than an exclusionary one.",
+     "sources": [
+      "Met Museum, 'The Ubaid Period (5500-4000 B.C.)', https://www.metmuseum.org/essays/the-ubaid-period-5500-4000-b-c",
+      "Stein 1994, 'Economy, ritual, and power in Ubaid Mesopotamia', in Stein & Rothman (eds), Chiefdoms and Early States in the Near East, pp. 35-46, https://ehrafarchaeology.yale.edu/traditions/mh55/documents/004",
+      "Kopanias & Barlagianni, 'Unequal in Life but Equal in Death? The Mortuary Evidence for Social Stratification in the Ubaid Polities', Ash-Sharq, https://www.archaeopresspublishing.com/ojs/index.php/ash-sharq/article/view/711",
+      "Flannery & Marcus 2012 (quoted passage on 7,500 years ago), https://themontrealreview.com/2009/The-Creation-of-Inequality.php",
+      "Carneiro 1981 definition, as quoted in https://en.wikipedia.org/wiki/Chiefdom",
+      "Earle 1997, How Chiefs Come to Power, https://www.sup.org/books/cite/?id=2092",
+      "Wright 1977 and Johnson 1987, as cited in 'The transition to statehood in Central Europe', https://www.sociostudies.org/books/files/early_state/12_the_transition_to_statehood_in_central_europe.doc"
+     ]
+    },
+    {
+     "name": "Fried's 'stratified society': unequal access to strategic resources (economic stratification)",
+     "dates": "n/a as a type. Near-East and Western Eurasian correlates mostly date from the late 5th to the 4th millennium BCE. Varna (Balkans) dates to the mid-5th millennium BC, and the steep rise in Eurasian inequality comes from about 4000 BC.",
+     "defining_features": "Fried's type: some people have unrestricted access to land, water and herds while others face restrictions, so economic differences appear even among people of similar rank. Fried holds that ranking usually comes before stratification. Correlates: house-size Gini coefficients (Kohler et al. 2017 find inequality rising with domestication and with political scale). The GINI project (PNAS special feature, 2025) finds that inequality often rose significantly only millennia after farming began, and only in some places. Bogaard, Fochesato & Bowles (2019) find land-limited farming systems far more unequal than labour-limited ones, and press coverage links the rise from about 4000 BC to ox-drawn ploughs. Price & Bar-Yosef (2010) argue that traces of inequality appear at the origins of agriculture.",
+     "maps_to_phases": "The 'difference' half of G4 (持ち物と差). In Fried's order and in the Near Eastern evidence, strong wealth stratification comes after institutional rank and leadership (Ubaid temples) and grows in the Late Ubaid and Uruk periods. G4 might therefore be split, with the wealth-inequality part placed after or alongside G5.",
+     "sources": [
+      "Fried 1967 summary, https://cas-sca.journals.uvic.ca/index.php/anthropologica/article/download/624/732/1515",
+      "Kohler et al. 2017, Nature 551:619-622, doi:10.1038/nature24646, https://ideas.repec.org/a/nat/nature/v551y2017i7682d10.1038_nature24646.html",
+      "Bogaard, Fochesato & Bowles 2019, 'The farming-inequality nexus', Antiquity, https://www.cambridge.org/core/journals/antiquity/article/abs/farminginequality-nexus-new-insights-from-ancient-western-eurasia/8EFE3B8F5AFA07450F87E4E9B553A43E",
+      "GINI project / PNAS special feature 2025 (news coverage), https://archaeologymag.com/2025/04/study-reveals-inequality-was-never-inevitable",
+      "Price & Bar-Yosef, 'Traces of Inequality at the Origins of Agriculture in the Ancient Near East', in Pathways to Power (Springer), https://mitpressbookstore.mit.edu/book/9781441962997"
+     ]
+    },
+    {
+     "name": "Uruk: 'archaic state' (Service, Fried, Johnson & Earle), with Wright & Johnson's administrative-hierarchy criterion",
+     "dates": "c. 4000-3100 BCE (≈ 5,950-5,050 cal BP). Early Uruk is c. 4000-3500 and Late Uruk c. 3500-3100. CDLI gives 4000-3000, and Algaze uses 3800-3100. Proto-cuneiform accounting texts date to the late 4th millennium BCE (c. 3300-3100).",
+     "defining_features": "Wright & Johnson (1975): a specialized local administrative system and a local exchange network appear at the start of Early Uruk on the Susiana plain. Johnson (1973) treats rising information-processing needs as a major cause. State criterion as usually cited: three or more administrative levels above the community, or a four-tier settlement hierarchy (Wright 1977; Johnson 1982 and 1987). Susiana had a four-tier settlement-size hierarchy. Uruk-Warka reached about 100 ha in the Uruk period (CDLI). Larger figures such as 250 ha were not verified. The recording sequence runs from complex tokens to sealed clay envelopes (bullae) to numerical tablets to proto-cuneiform. In Algaze's 'Uruk expansion', colonies and outposts secured trade. Graeber & Wengrow stress temple bureaucracy and assemblies, with no clear evidence of an autocratic king early on.",
+     "maps_to_phases": "G6 (交易・町・記録). The context's 'Uruk ~5300 BP' corresponds to Late Uruk.",
+     "sources": [
+      "Wright & Johnson 1975, American Anthropologist 77(2):267-289 (summary), https://acawiki.org/Population,_Exchange,_and_Early_State_Formation_in_Southwestern_Iran",
+      "Johnson 1973, Local Exchange and Early State Development in Southwestern Iran, https://press.umich.edu/Books/L/Local-Exchange-and-Early-State-Development-in-Southwestern-Iran",
+      "CDLI, Uruk (mod. Warka), https://cdli.ox.ac.uk/wiki/uruk_mod._warka",
+      "Algaze 2001 essay summary (eHRAF), https://ehrafarchaeology.yale.edu/traditions/mh60/documents/019",
+      "Schmandt-Besserat 1977, https://undena.com/EL-UP/Schmandt_Besserat_1977_Archaic_Recording_System_-_SMS_1.2.pdf",
+      "Yale SOM on proto-cuneiform accounting, https://som.yale.edu/story/2023/prof-goetzmann-discusses-finance-practices-mesopotamia",
+      "Paper on Zapotec state formation citing Wright's four-tier criterion (PNAS; PMC2867764)"
+     ]
+    },
+    {
+     "name": "Johnson 1982 scalar stress: sequential (consensual) vs simultaneous (permanent) hierarchy",
+     "dates": "n/a (a mechanism). Near-East applications run from the Early Natufian to the PPNB, and the state criterion applies in the Uruk period.",
+     "defining_features": "Communication and decision stress grows exponentially with the number of basal units. At about six units, groups tend to subdivide or add a hierarchical level. Dispute frequency rises with scalar-communications stress. There are two responses. (1) Sequential hierarchy: egalitarian consensus, with larger basal units (e.g. households grouped into extended families or lineages) and ritual or feasting integration. (2) Simultaneous hierarchy: institutionalized permanent decision-makers, with control and status differences growing with the number of levels. Village fission is the third option. Archaeological correlates include communal buildings and feasting, standardized ritual, house-cluster size, fission or abandonment of large villages, and the number of settlement tiers.",
+     "maps_to_phases": "The driver from G1 to G5. It implies that G5 has two sub-steps: consensus councils and ritual integration first, then permanent leaders and punishments. The '6 basal units' threshold is directly simulatable.",
+     "sources": [
+      "Johnson 1982, 'Organizational structure and scalar stress', in Renfrew, Rowlands & Segraves (eds), Theory and Explanation in Archaeology, pp. 389-421 (abstract), https://mapaspects.org/biblio/ref_4260/index.html",
+      "Alberti 2014, PLoS ONE, modelling group size and scalar stress, https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3953443/",
+      "Kuijt 2000, https://arheo.ffzg.unizg.hr/ska/tekstovi/people_space.pdf"
+     ]
+    },
+    {
+     "name": "Flannery 1972 processes (segregation and centralization) and Blanton et al. 1996 'corporate' vs 'network' strategies",
+     "dates": "n/a (processes and strategies, not stages)",
+     "defining_features": "Flannery 1972 treats state formation as two processes rather than fixed stages. Segregation is the growing differentiation of subsystems, and centralization is the concentration of control; both act through mechanisms such as promotion and linearization. Blanton, Feinman, Kowalewski & Peregrine (1996) describe two ends of a continuum of leadership strategy. Network (exclusionary) leaders rely on outside ties, esoteric knowledge and prestige goods. Corporate leaders build on kin and group membership and act as 'first among equals'. Ubaid, with its inclusive ideology and staple finance (Stein), looks corporate.",
+     "maps_to_phases": "G5 and G6. These are parameters for how leaders arise and finance themselves (staple vs wealth finance, corporate vs network), not extra phases.",
+     "sources": [
+      "Flannery 1972, 'The Cultural Evolution of Civilizations', Annual Review of Ecology and Systematics 3:399-426, https://www.mapaspects.org/biblio/ref_1711/index.html",
+      "Blanton et al. 1996, Current Anthropology 37(1):1-14, https://www2.lawrence.edu/fast/PEREGRIP/Publications/dual_processual.pdf"
+     ]
+    }
+   ],
+   "major_breakpoints": [
+    "Sedentism and village formation, c. 15,000-11,700 cal BP (Natufian into PPNA). Scalar stress appears as soon as people aggregate permanently. Sources: Johnson 1982; Natufian article in Current Anthropology (Univ. Chicago Press) https://www.journals.uchicago.edu/doi/reader/10.1086/658861; Kuijt 2000 https://arheo.ffzg.unizg.hr/ska/tekstovi/people_space.pdf",
+    "Communal storage gives way to household storage, c. 10,700 cal BP (PPNA to PPNB). Round huts with shared storage are replaced by rectangular nuclear-family houses with private stores, and the household becomes the economic and property unit. Sources: Flannery 2002 https://www.cambridge.org/core/product/98E6C778190FEE73A0EC2EF55635659F; Byrd 1994 American Antiquity 59(4)",
+    "Aggregation crisis, c. 8,500-8,000 cal BP (Late PPNB). Large villages break up under 'social crowding', which shows that growth can reverse instead of leading to hierarchy. Source: Kuijt 2000",
+    "Administration before chiefs, c. 6,300-5,000 BCE (Pottery Neolithic, Halaf, Samarra). Pottery and craft specialists appear, stamp seals and sealings control stored goods (Sabi Abyad, c. 5700-5000 BC), and Frangipane identifies 'horizontal' vs 'vertical' egalitarian paths. Sources: Frangipane 2007 https://iris.uniroma1.it/handle/11573/93529; Akkermans & Duistermaat 1996",
+    "Hereditary rank and chiefdom-like polities, about 7,500 years ago (c. 5500 BCE, Samarra and Ubaid). Temples at Eridu, a two-tier settlement pattern and ritual staple finance appear. Sources: Flannery & Marcus 2012 https://themontrealreview.com/2009/The-Creation-of-Inequality.php; Stein 1994 https://ehrafarchaeology.yale.edu/traditions/mh55/documents/004; Met Ubaid essay https://www.metmuseum.org/essays/the-ubaid-period-5500-4000-b-c",
+    "Wealth stratification takes off from about 4000 BC in Western Eurasia, linked to land-limited farming and ox ploughs. Inequality often rises only millennia after farming begins. Sources: Bogaard et al. 2019 https://www.cambridge.org/core/journals/antiquity/article/abs/farminginequality-nexus-new-insights-from-ancient-western-eurasia/8EFE3B8F5AFA07450F87E4E9B553A43E; Kohler et al. 2017 doi:10.1038/nature24646; GINI/PNAS 2025",
+    "State formation at the start of Early Uruk, c. 4000-3500 BCE: specialized administration, three or more administrative levels and a four-tier settlement hierarchy. Writing follows c. 3300-3100 BCE (proto-cuneiform, Late Uruk). Sources: Wright & Johnson 1975 https://acawiki.org/Population,_Exchange,_and_Early_State_Formation_in_Southwestern_Iran; Wright 1977; Johnson 1973; CDLI https://cdli.ox.ac.uk/wiki/uruk_mod._warka"
+   ],
+   "critiques_or_caveats": [
+    "Typological critique: Feinman & Neitzel (1984), 'Too many types', found that traits used to diagnose chiefdoms vary independently and continuously. Many archaeologists now group tribes and chiefdoms together as 'middle-range societies' and analyze variables (scale, hierarchy, inequality, integration) rather than boxes. Sources: https://pennds.org/archaeobib/items/show/25815; https://en.wikipedia.org/wiki/Sociopolitical_typology",
+    "Yoffee (2005), Myths of the Archaic State: neo-evolutionary ladders 'stifled rather than stimulated' research on early states. Early Mesopotamian cities combined heterarchy with hierarchy, and the state is not the end point of a fixed sequence. https://www.cambridge.org/core/product/identifier/9780511489662/type/book",
+    "Graeber & Wengrow (2021), The Dawn of Everything: societies switched seasonally between hierarchical and egalitarian arrangements, and they chose their political forms; farming does not dictate politics. On Mesopotamia they suggest an Ubaid 'ideology of equality' and assemblies in Uruk. Critics (e.g. Publishers Weekly, New Politics, the Cliodynamics special issue) say the book generalizes from thin evidence. https://www.historynewsnetwork.org/article/review-digging-for-utopia; https://journalpub.escholarship.org/cliodynamics/article/38332/galley/28827/download",
+    "Calling the Ubaid a chiefdom is contested. Stein (1994) keeps the chiefdom model with ritual staple finance, but Kopanias & Barlagianni find almost no mortuary or prestige-good evidence for stratification. Any 'leader' phase in the simulation should not require visible wealth differences. https://www.archaeopresspublishing.com/ojs/index.php/ash-sharq/article/view/711",
+    "Hodder (2022): equality in the Neolithic was actively maintained. Communal and household-autonomy tendencies were in tension, so inequality does not follow automatically from surplus. https://doi.org/10.1017/S0959774322000063",
+    "Inequality is not a simple function of farming, population or aggregation. Gini values rose only after millennia, and only in some places (GINI project, PNAS 2025). This argues against tying G4 directly to G2 or G3.",
+    "Settlement-size hierarchies, the main archaeological test for chiefdom vs state, are criticized as unreliable. Surface-survey data are problematic, and smaller sites acted autonomously (Monica L. Smith 2021, World Archaeology). https://anthro.ucla.edu/wp-content/uploads/2020/08/2021-Smith-Site-Size-Hierarchies.pdf",
+    "A linear path from 'small-scale egalitarian' to 'large-scale stratified' may not exist even in Mesopotamia (Başur Höyük study, Cambridge Archaeological Journal 2025). https://www.cambridge.org/core/journals/cambridge-archaeological-journal/article/inequality-at-the-dawn-of-the-bronze-age-the-case-of-basur-hoyuk-a-royal-cemetery-at-the-margins-of-the-mesopotamian-world/19A5E0FB47541DB5B43BF8C5E93B7533",
+    "Counterpoint, and the current mainstream position: stages are kept as heuristic shorthand, not as laws. Turchin et al. (2018, Seshat) found that one principal component explains about three-quarters of the variance across 51 complexity variables in 414 societies, so traits co-vary strongly even though societies form a continuum rather than discrete types. A 2026 article in Historická sociologie judges Johnson & Earle's scale-based scheme the most useful because it avoids contested terms like 'tribe'. https://discovery.ucl.ac.uk/id/eprint/10041342/; https://karolinum.cz/data/clanek/17473/HS_18_1_0089.pdf",
+    "The ordering problem for this simulation: Fried's scheme and the Near Eastern evidence put rank and leadership (Ubaid temples, c. 5500 BCE) before strong economic stratification (late 5th to 4th millennium BCE). The current G4 (property and inequality) then G5 (leaders) order reverses the 'inequality' half of that sequence."
+   ],
+   "notes": "PROPOSAL FOR SPLITTING 'Society 2.0' (to discuss with the user):\nOption A, three acts following Johnson & Earle's scale levels (my recommendation):\n(2-1) 村の社会 / Local village, Natufian to PPNB, c. 15,000-8,250 cal BP. Covers G1 and G2. The society is egalitarian, the household replaces communal storage, and scalar stress is handled by ritual or by village fission.\n(2-2) 家と余りの社会 / Households and surplus, Pottery Neolithic to Halaf/Samarra, c. 6300-5000 BCE. Covers G3 and G4a. Pottery and craft specialists appear, seals control stores, and household property and inheritance develop, while wealth differences stay small. Frangipane's horizontal vs vertical egalitarian paths could be a branch point here.\n(2-3) 首長と町の社会 / Regional polity, Ubaid to Uruk, c. 5500-3100 BCE. Covers G5, G4b and G6: ritual or consensual leaders, then permanent chiefs, then wealth stratification, then the state with three or more administrative levels, and finally writing.\nOption B, Fried's four checkpoints: egalitarian (G1-G3) / rank (G5a) / stratified (G4b) / state (G6).\n\nMeasurable milestones the simulation could use as sub-steps: village size of about 60, then about 300, then about 700 or more (Kuijt's figures, secondhand); more than about 6 basal units triggering a new decision level (Johnson 1982); share of private vs communal storage (Flannery 2002); seal or token use; number of settlement tiers going from 1 to 2 to 3 to 4; house-size Gini (Kohler 2017).\n\nSuggested internal splits:\n- G4 into G4a 'household property and inheritance' (PPNB to Halaf) and G4b 'wealth stratification' (Late Ubaid to Uruk, c. 4000 BC, ox-plough and land-limited farming).\n- G5 into G5a 'sequential/consensual hierarchy' (councils, ritual, dispute settlement by elders) and G5b 'simultaneous hierarchy' (permanent chiefs, punishment, staple finance).\n\nSOURCE CAVEATS:\n- WebFetch was blocked for Wikipedia, the Met, MIT OCW and PMC. Most claims therefore come from search-result abstracts, catalogue records and secondary summaries, not full texts.\n- Kuijt's population figures (60, 330, 765, 3,000-4,000) are as reported by a later paper, and Kuijt has since revised the large-village estimates downward.\n- Attributing the Frontiers 2023 paper to Watkins comes from a search summary.\n- The PNAS paper citing Wright's four-tier criterion (PMC2867764) is probably Spencer 2010 on Zapotec state formation; not verified.\n- Whether Wright 1977 or Johnson 1982/1987 is the origin of the 'three or more administrative levels' criterion is reported inconsistently in secondary sources.\n- The Uruk size of 250 ha is unverified (CDLI says about 100 ha).\n- The Met essay is from 2003. The Eridu temple sequence is standard knowledge but was not verified in the retrieved text.\n- Flannery & Marcus's detailed Near Eastern case studies, such as PPN 'men's houses', were not verified. Only the quoted 7,500-year date for hereditary aristocracy was seen.\n- Price & Bar-Yosef's 2010 date was not confirmed from the catalogue record.\n- Halaf dates vary between sources (roughly 6100-5100 BCE, with some sources later)."
+  },
+  {
+   "lens": "Childe's two 'revolutions' (Neolithic Revolution, 1936, and Urban Revolution, 1950, with its 10 criteria) and the later work that splits or reorders them: Bar-Yosef (Natufian sedentism), Zeder and Fuller/Asouti (domestication timeline, and whether it was protracted or rapid), Kuijt and Finlayson (storage before domestication), Bocquet-Appel (Neolithic Demographic Transition), Halstead (normal surplus), Flannery (household storage), Sherratt (Secondary Products Revolution), Kohler and Bogaard, Fochesato & Bowles (plough-linked wealth inequality), Johnson (scalar stress), Algaze (Uruk expansion) and Schmandt-Besserat (tokens to writing). Region: the Levant, Zagros and Mesopotamia. Main question: which of G1-G6 scholars treat as one transition, and where they draw the cuts.",
+   "periods_or_stages": [
+    {
+     "name": "Childe's 'Neolithic Revolution' (treated as one unit)",
+     "dates": "Childe did not give fixed dates. In today's Near Eastern chronology his package runs from about 12,500 cal BC (Natufian) to about 6,500 cal BC (end of PPNB). He coined the term in Man Makes Himself (1936).",
+     "defining_features": "Childe treated food production (crops and herds), settled villages, population growth and new crafts as one economic revolution, modelled on the Industrial Revolution. His package included pottery and weaving. In the Near East, pottery actually came about 2,500 years after cultivation began, in a phase archaeologists name 'Pre-Pottery Neolithic'.",
+     "maps_to_phases": "G1 and G2 together. Childe would also have put the start of G3 crafts here, but the Near Eastern sequence separates them.",
+     "sources": [
+      "Childe, V.G. 1936. Man Makes Himself. London: Watts. Summarised in Britannica: https://www.britannica.com/print/article/111108",
+      "Frieman, C. 2020. 'Revolutions so remote', Age of Revolutions: https://ageofrevolutions.com/2020/06/01/revolutions-so-remote-revolutionary-thinking-and-archaeological-inquiry/",
+      "Brami, M. 2019. Journal of World Prehistory, doi:10.1007/s10963-019-09135-y (on Childe's three revolutions)"
+     ]
+    },
+    {
+     "name": "Late Epipalaeolithic Natufian",
+     "dates": "c. 15,000/14,600 to 11,700/11,500 cal BP (about 12,500 to 9,600 cal BC)",
+     "defining_features": "Stone-built houses, large settlements that were at least partly year-round, cemeteries and ornaments. Foragers harvested wild cereals but there was no domestication. Bar-Yosef calls it the 'threshold' to agriculture: villages came before farming.",
+     "maps_to_phases": "G1 (村ができる). Sedentism separates out clearly as a stage before farming.",
+     "sources": [
+      "Bar-Yosef, O. 1998. 'The Natufian culture in the Levant, threshold to the origins of agriculture.' Evolutionary Anthropology 6:159-177",
+      "Richter, T. et al. 2017. High-resolution AMS dates from Shubayqa 1 (Natufian ~14,600-11,500 cal BP): https://cris.biu.ac.il/en/publications/high-resolution-ams-dates-from-shubayqa-1-northeast-jordan-reveal/"
+     ]
+    },
+    {
+     "name": "Pre-Pottery Neolithic A (PPNA)",
+     "dates": "c. 11,700 to 10,700 cal BP (about 9,700 to 8,800 cal BC). The Paléorient literature places the PPNA/PPNB boundary around 8,800 cal BC in the north and later in the south.",
+     "defining_features": "Wild cereals were cultivated before they were domesticated. The Dhra' granaries (about 11,300 to 11,175 cal BP) are raised-floor stores built about 1,000 years before domestic cereals. Göbekli Tepe's monumental enclosures date to about 9,600 to 8,200 BCE. Zeder says humans were managing still-wild plants and animals by at least 11,500 cal BP.",
+     "maps_to_phases": "Mainly late G1 / early G2. Stored surplus (a G3 idea) and communal ritual building already appear here.",
+     "sources": [
+      "Kuijt, I. & Finlayson, B. 2009. PNAS doi:10.1073/pnas.0812764106. Summary: https://www.sciencedaily.com/releases/2009/06/090623150619.htm",
+      "Zeder, M. 2011. 'The Origins of Agriculture in the Near East.' Current Anthropology 52(S4):S221-S235: https://www.journals.uchicago.edu/doi/10.1086/659307",
+      "Göbekli Tepe dating: Archaeology magazine 2021: https://archaeology.org/issues/may-june-2021/features/turkey-gobekli-tepe-hunter-gatherers/",
+      "PPNA/PPNB boundary debate, Paléorient: https://journals.openedition.org/paleorient/4076"
+     ]
+    },
+    {
+     "name": "Pre-Pottery Neolithic B (PPNB, Early to Late)",
+     "dates": "c. 10,700 to about 8,500 cal BP (about 8,800 to 6,500 cal BC)",
+     "defining_features": "Domesticated cereals: einkorn is abundant by about 10,400 cal BP. Goats were herded at Ganj Dareh about 10,000 cal BP; the evidence is culling of young males (Zeder & Hesse 2000). Round huts with shared storage give way to rectangular houses with private storage (Flannery 1972/2002). Late PPNB 'mega-sites' reach about 10-14 ha with 1,000 to 3,000+ people (Kadowaki; Rollefson). Kuijt links social crowding to the collapse of these big aggregated villages.",
+     "maps_to_phases": "Core of G2 (畑と家畜). It also contains the first seeds of G4 (household-level storage and property) and G5 (scalar stress in large villages).",
+     "sources": [
+      "Zeder, M. & Hesse, B. 2000. Science 287:2254-2257 (Ganj Dareh goats)",
+      "Flannery, K. 2002. 'The Origins of the Village Revisited: From Nuclear to Extended Households.' American Antiquity: https://resolve.cambridge.org/core/journals/american-antiquity/article/abs/origins-of-the-village-revisited-from-nuclear-to-extended-households/5176075CEEFAE75EB9E8FEB1706ECCCE",
+      "Kuijt, I. 2000. Journal of Anthropological Archaeology 19:75-102, doi:10.1006/jaar.1999.0352: https://arheo.ffzg.unizg.hr/ska/tekstovi/people_space.pdf",
+      "Kadowaki 2012 (LPPNB mega-sites 10-14 ha): https://www.num.nagoya-u.ac.jp/outline/staff/kadowaki/laboratory/pdf/Kadowaki2012.pdf"
+     ]
+    },
+    {
+     "name": "Neolithic Demographic Transition (NDT), a process rather than a period",
+     "dates": "Dated relative to the local start of farming, not in absolute years. In Europe and North Africa the share of juvenile skeletons rises 20-30% over about 500-700 years. The Levant is treated as the 'epicenter'. I could not verify Levant-specific absolute dates.",
+     "defining_features": "Cemetery data show an abrupt rise in the share of juvenile skeletons. Bocquet-Appel reads this as about +2 births per woman, caused by better maternal energy balance under farming. Fertility rises first and mortality rises later, the mirror image of the industrial demographic transition.",
+     "maps_to_phases": "The population engine of G1 and G2. It argues for treating 'more births' as a direct result of G2 farming rather than of G1 sedentism alone.",
+     "sources": [
+      "Bocquet-Appel, J.-P. 2011. Science 333:560-561, doi:10.1126/science.1208880: https://hal.archives-ouvertes.fr/hal-00834316",
+      "Bocquet-Appel, J.-P. 2011. Current Anthropology 52(S4):S497-S510: https://www.journals.uchicago.edu/doi/10.1086/659243",
+      "Guerrero, Naji & Bocquet-Appel 2008. 'The Signal of the NDT in the Levant': https://hal.archives-ouvertes.fr/hal-00834967"
+     ]
+    },
+    {
+     "name": "PPNC / end-PPNB crisis",
+     "dates": "c. 8,900 to 8,600 cal BP at Ain Ghazal (about 6,950 to 6,650 cal BC). Wider dislocation around the 8.2 ka event (about 6,200 BC) is debated.",
+     "defining_features": "Population at the mega-sites dropped sharply and southern Jordan was partly abandoned. Proposed causes are aridification, over-use of resources and social crowding. Big early villages did not lead straight to towns; they broke up into smaller ones.",
+     "maps_to_phases": "A failure mode at the G2/G3 boundary: G5-type problems (scale, disputes) appeared before there were leaders able to handle them.",
+     "sources": [
+      "Zielhofer, C. et al. 2012. Quaternary Research (decline of Ain Ghazal): https://resolve.cambridge.org/core/journals/quaternary-research/article/decline-of-the-early-neolithic-population-center-of-ain-ghazal-and-corresponding-earthsurface-processes-jordan-rift-valley/A85EB4EEFBB2E10F9C11DD6161813B9E",
+      "Kuijt 2000 (as above)"
+     ]
+    },
+    {
+     "name": "Early Pottery Neolithic / Late Neolithic (Pre-Proto-Hassuna, Yarmukian, Çatalhöyük)",
+     "dates": "Steady pottery production in Upper Mesopotamia from c. 7,000 to 6,700 cal BC. Coarse local ware c. 6,700 to 6,300 BC. Yarmukian in the Levant c. 6,400 to 6,000/5,900 BC. Çatalhöyük from about 7,400 to 7,100 BC to about 6,000 BC.",
+     "defining_features": "The first pots were rare and carefully made, and some were traded in rather than made locally. They later became a mass-produced craft at Tell Sabi Abyad. Milk fats in pots date to the 7th millennium BC (Evershed 2008). At Çatalhöyük each household kept 'private pantries' deep inside the house, while feasting displays (aurochs horns) eased the tension a full store created.",
+     "maps_to_phases": "Start of G3 (余りと分業: part-time crafts, pottery) and early G4 (household storage). The first exchange of pots is an early, small seed of G6.",
+     "sources": [
+      "Nieuwenhuyse, O. (ed.) 2018. Relentlessly Plain: Seventh Millennium Ceramics at Tell Sabi Abyad. Oxbow: https://www.universiteitleiden.nl/en/research/research-projects/archaeology/relentlessly-plain",
+      "Leiden paper on early ceramics: https://scholarlypublications.universiteitleiden.nl/access/item%3A2863626/view",
+      "Yarmukian pottery: https://www.levantineceramics.org/wares/873-yarmukian-pottery",
+      "Evershed, R. et al. 2008. Nature 455:528-531: https://pubmed.ncbi.nlm.nih.gov/18690215/",
+      "Bogaard, A. et al. 2009. 'Private pantries and celebrated surplus.' Antiquity 83:649-668: https://resolve.cambridge.org/core/journals/antiquity/article/private-pantries-and-celebrated-surplus-storing-and-sharing-food-at-neolithic-catalhoyuk-central-anatolia/3BAA8477B1B7E87B54D3D3EE79584327"
+     ]
+    },
+    {
+     "name": "Hassuna / Samarra / Halaf (northern and central Mesopotamia)",
+     "dates": "Hassuna: early 6th millennium BC. Samarra: c. 5,500 to 4,800 BC (some put its start in the late 7th millennium). Halaf: c. 6,100 to 5,100 BC (Wikipedia); Nieuwenhuyse dates the rise of Halaf to c. 5,900 to 5,400 cal BC.",
+     "defining_features": "Painted fine wares made by craft specialists, early irrigation (Samarra), and widely shared styles. Frangipane contrasts 'horizontal' egalitarian Halaf with 'vertical' egalitarian Samarra/Ubaid, where privileged status sat alongside broad equality.",
+     "maps_to_phases": "G3 together with the first stage of G4. It shows two different paths from 'surplus' to 'difference'.",
+     "sources": [
+      "Frangipane, M. 2007. World Archaeology 39(2):151-176, doi:10.1080/00438240701249504: https://iris.uniroma1.it/handle/11573/93529",
+      "Halaf culture: https://en.wikipedia.org/wiki/Halaf_culture",
+      "Samarra culture: https://en.wikipedia.org/wiki/Samarra_culture"
+     ]
+    },
+    {
+     "name": "Ubaid period",
+     "dates": "c. 6,500 to 3,800 BC (Wikipedia). The Met essay heading says 5,500 to 4,000 BC but gives an origin around 6,200 BC.",
+     "defining_features": "Irrigation farming on the southern alluvium, tripartite houses, the first mud-brick public temples (Eridu) and stamp seals. 'Chieftain's houses' appear at Tell Abada and Değirmentepe. Stein (1994) describes small chiefdoms run on ritually mobilised 'staple finance' under an inclusive ideology. Burials show little sign of an elite. The culture spread north.",
+     "maps_to_phases": "G5 (リーダーと決まり: leaders, dispute settlement) built on G4. The current G3 anchor 'Ubaid' fits G5 better, because pottery itself began about 500 to 1,000 years before Ubaid.",
+     "sources": [
+      "Ubaid period: https://en.wikipedia.org/wiki/Ubaid_period",
+      "Metropolitan Museum, 'The Ubaid Period' essay (2003): https://www.metmuseum.org/essays/the-ubaid-period-5500-4000-b-c",
+      "Belleten article on Ubaid elite households: https://www.belleten.gov.tr/tam-metin/61/eng",
+      "Stein, G. & Rothman, M. (eds.) 1994. Chiefdoms and Early States in the Near East. Prehistory Press"
+     ]
+    },
+    {
+     "name": "Sherratt's Secondary Products Revolution and the plough-and-land inequality step",
+     "dates": "Sherratt (1981): 4th millennium BC in the Near East, early 3rd millennium BC in Europe. Bogaard et al.: ox-drawn ploughs about 6,000 years ago (about 4,000 BC) go with a doubling of household-wealth Gini. Counter-evidence: milk by the 7th millennium BC, and plough marks at Sion, Switzerland, in the early 5th millennium BC. Varna: 4,596-4,516 to 4,427-4,341 cal BC.",
+     "defining_features": "Animals came to be used for milk, wool, traction and transport, not only meat. Plough plus oxen made farming land-limited rather than labour-limited, so land became valuable and heritable. Kohler et al. (2017) show Old World Gini values (house sizes) kept rising after the Neolithic and tie this to large draft animals. Varna's gold-rich graves show a sharp early peak of inequality.",
+     "maps_to_phases": "A second, stronger stage of G4 (持ち物と差). Scholars separate it from the first stage (household storage, PPNB to 6th millennium) and put it late, at the end of the Chalcolithic, just before towns.",
+     "sources": [
+      "Sherratt, A. 1981. 'Plough and pastoralism: aspects of the secondary products revolution.' In Hodder, Isaac & Hammond (eds.), Pattern of the Past. Overview: https://en.wikipedia.org/wiki/Secondary_products_revolution",
+      "Greenfield, H. 2010. World Archaeology 42(1):29-54, doi:10.1080/00438240903429722",
+      "Marciniak, A. 2011. Journal of World Prehistory: https://link.springer.com/article/10.1007/s10963-011-9045-7",
+      "Bogaard, A., Fochesato, M. & Bowles, S. 2019. Antiquity 93:1129-1143, doi:10.15184/aqy.2019.105: https://www.cambridge.org/core/journals/antiquity/article/abs/farminginequality-nexus-new-insights-from-ancient-western-eurasia/8EFE3B8F5AFA07450F87E4E9B553A43E",
+      "Kohler, T. et al. 2017. Nature (post-Neolithic wealth disparities). Press summary: https://hawaii.edu/news/2017/12/01/economic-inequality-across-the-ages",
+      "Higham, T. et al. 2018. Radiocarbon (Varna AMS dating): https://www.cambridge.org/core/journals/radiocarbon/article/ams-dating-of-the-late-copper-age-varna-cemetery-bulgaria/706A7F638D010BB6C943FBDFC1062749"
+     ]
+    },
+    {
+     "name": "Late Chalcolithic / Early-Middle Uruk ('proto-urban' stage)",
+     "dates": "Late Chalcolithic c. 4,500 to 3,100 BC overall. Tell Brak urban growth begins in the late 5th millennium BC (about 4,300 BC). Early Uruk c. 3,900 to 3,600 BC. Bullae and envelopes with complex tokens c. 3,700 to 3,500 BC.",
+     "defining_features": "Tell Brak, a site of almost 300 ha, shows monumental building, industrial-scale production and high-status goods before writing and independently of the south (Oates et al. 2007). Susiana surveys show multi-level settlement hierarchies in the Early to Late Uruk phases (Johnson 1973; Wright & Johnson 1975). Mould-made, standard-size beveled-rim bowls appear; whether they were ration bowls is disputed. Sealed envelopes with tokens appear.",
+     "maps_to_phases": "Transition from G5 to G6: towns and regional hierarchy come before writing, so 'town' and 'writing' should be separate milestones.",
+     "sources": [
+      "Oates, J., McMahon, A., Karsgaard, P., Al Quntar, S. & Ur, J. 2007. 'Early Mesopotamian urbanism: a new view from the north.' Antiquity 81:585-600: https://dash.harvard.edu/handle/1/4269009",
+      "Johnson, G. 1973. Local Exchange and Early State Development in Southwestern Iran: https://press.umich.edu/Books/L/Local-Exchange-and-Early-State-Development-in-Southwestern-Iran",
+      "Wright, H. & Johnson, G. 1975. American Anthropologist 77(2):267-289. Summary: https://acawiki.org/Population,_Exchange,_and_Early_State_Formation_in_Southwestern_Iran",
+      "Beveled rim bowl: https://en.wikipedia.org/wiki/Beveled_rim_bowl"
+     ]
+    },
+    {
+     "name": "Late Uruk: Childe's 'Urban Revolution'",
+     "dates": "c. 3,500 to 3,100 BC. Uruk IV / Eanna IVa tablets c. 3,350/3,300 to 3,200 BC. About 5,000 archaic tablets from Uruk date c. 3,300 to 2,900 BC. The network broke down around 3,000 BC.",
+     "defining_features": "Uruk was perhaps the largest city in the world by about 3,200 BC: about 250 ha in the Met's figure (other sources say 80-100 ha), with up to 40,000-50,000 people by about 3,100 BC. Temple estates kept accounts of rations and herds. Colonies and outposts such as Habuba Kabira and Jebel Aruda were set up along trade routes (Algaze's 'Uruk World System'). Wool sheep, large-scale sculpture and full-time specialists appear. Childe's 10 criteria fit best here.",
+     "maps_to_phases": "G6 (交易・町・記録). The state-like top level of G5 (fixed offices, 120 named officials) also arrives here.",
+     "sources": [
+      "Childe, V.G. 1950. 'The Urban Revolution.' Town Planning Review 21(1):3-17, doi:10.3828/tpr.21.1.k853061t614q42qh: https://faculty.washington.edu/plape/citiesaut11/readings/Childe-urban%20revolution%201950.pdf",
+      "Metropolitan Museum, 'Uruk: The First City': https://www.metmuseum.org/toah/hd/uruk/hd_uruk.htm",
+      "Metropolitan Museum, 'The Origins of Writing': https://www.metmuseum.org/toah/hd/wrtg/hd_wrtg.htm",
+      "Algaze, G. 1993/2005. The Uruk World System. University of Chicago Press: https://chicagoreference.com/ucp/books/book/chicago/U/bo3620198.html",
+      "Algaze, G. 2008. Ancient Mesopotamia at the Dawn of Civilization: https://www.press.uchicago.edu/ucp/books/book/chicago/A/bo5911057.html",
+      "Topoi wool/textile project: https://edition-topoi.org/article/1092-the-textile-revolution"
+     ]
+    },
+    {
+     "name": "Schmandt-Besserat's token-to-writing sequence",
+     "dates": "Plain tokens from c. 8,000 or 7,500 BC; she argues for the earliest at Mureybet IIIb, c. 9,000-8,700 BC, alongside the first agriculture. Complex tokens in her 'Urban Period', 3,500 to 3,100 BC. Bullae and envelopes from about 3,700 to 3,500 BC. Numerical tablets in Uruk V, c. 3,500 to 3,350 BC. Proto-cuneiform c. 3,350/3,300 to 3,000 BC.",
+     "defining_features": "Plain geometric tokens counted farm products. Incised complex tokens covered workshop goods. Tokens were sealed in envelopes, the envelopes were marked on the outside, those marks became numerical tablets, and finally pictographs were added. 88.5% of tokens in her sample came from sacred or public buildings.",
+     "maps_to_phases": "Spans G2 to G6. Simple tokens could start in G2/G3, complex tokens and bullae belong to late G5, and tablets and writing to G6.",
+     "sources": [
+      "Schmandt-Besserat, D. 1996. How Writing Came About. University of Texas Press: https://wiki.p2pfoundation.net/How_Writing_Came_About",
+      "Schmandt-Besserat, 'Tokens and Writing: the Cognitive Development': https://sites.utexas.edu/dsb/tokens/tokens-and-writing-the-cognitive-development/",
+      "Proto-cuneiform (Uruk V numerical tablets; Eanna IVa): https://en.wikipedia.org/wiki/Proto-cuneiform",
+      "Schøyen Collection bulla-envelope entry (c. 3,700 BC): https://www.schoyencollection.com/mathematics-collection/pre-literate-counting/bulla-envelope-ms-4638"
+     ]
+    },
+    {
+     "name": "Social-stage typology: Fried / Flannery & Marcus",
+     "dates": "n/a",
+     "defining_features": "Societies move from egalitarian, to achievement-based (prestige earned but not inherited), to hereditary rank (chiefdom; debts, genealogies, sacred lore manipulated), to kingdom or state. Flannery & Marcus argue that inequality comes from deliberate manipulation of social logic, not automatically from population growth or surplus.",
+     "maps_to_phases": "G1-G2 egalitarian; G3-early G4 achievement-based; late G4-G5 hereditary rank; G6 state. This argues for splitting G4/G5 at the point where rank becomes inherited, not where wealth first differs.",
+     "sources": [
+      "Flannery, K. & Marcus, J. 2012. The Creation of Inequality. Harvard University Press: https://prod.lsa.umich.edu/anthro/people/faculty/archaeological-faculty/kflanner/The-Creation-of-Inequality-How-Our-Prehistoric-Ancestors-Set-the-Stage-for-Monarchy-Slavery-and-Empir.html",
+      "Review by S. Mithen, London Review of Books: https://www.lrb.co.uk/v35/n07/steven-mithen/foursomes-and-so-on"
+     ]
+    },
+    {
+     "name": "Johnson's scalar-stress model",
+     "dates": "n/a. It applies whenever groups grow (PPNB mega-sites, Ubaid, Uruk).",
+     "defining_features": "When a decision-making group grows past about 6 units, consensus stress rises. Groups respond either by nesting into a 'sequential' (egalitarian, consensus-based) hierarchy of bigger units, or by creating a 'simultaneous' institutional hierarchy of offices. Dispute frequency rises with communication stress.",
+     "maps_to_phases": "The trigger mechanism for G5. It can be modelled as a threshold that fires as soon as village or household numbers pass a limit, even in G2.",
+     "sources": [
+      "Johnson, G. 1982. 'Organizational structure and scalar stress.' In Renfrew, Rowlands & Segraves (eds.), Theory and Explanation in Archaeology, 389-421. Bibliographic summary: https://mapaspects.org/biblio/ref_4260/index.html"
+     ]
+    },
+    {
+     "name": "Halstead's 'normal surplus'",
+     "dates": "n/a. Built on Neolithic Thessaly, about 7th to 5th millennium BC.",
+     "defining_features": "Overproduction is a normal hedge against bad years, not a sign of unusually good conditions. Most of the time the surplus is used up or shared, so it does not automatically feed specialists. How surplus turns into elites or non-producers is the problem to be explained.",
+     "maps_to_phases": "Supports making G3 'surplus' an ordinary buffer from G2 onward, with specialists paid only when the surplus is large and dependable.",
+     "sources": [
+      "Halstead, P. 1989. 'The economy has a normal surplus.' In Halstead & O'Shea (eds.), Bad Year Economics, 68-80: https://www.cambridge.org/core/books/bad-year-economics/economy-has-a-normal-surplus-economic-stability-and-social-change-among-early-farming-communities-of-thessaly-greece/D43A0CC496366ADDE55EB7CD507D8129"
+     ]
+    },
+    {
+     "name": "Childe's 10 urban criteria, mapped to phases",
+     "dates": "Childe applied them to about 3,500 to 3,000 BC (Mesopotamia, Egypt, Indus)",
+     "defining_features": "(1) Large, dense settlements. (2) Full-time specialists: craftsmen, transport workers, merchants, officials, priests. (3) Surplus paid as tithe or tax to a god or king. (4) Monumental public buildings. (5) A ruling class. (6) Writing and numbers, leading to exact sciences. (7) Elaborate art. (8) Long-distance trade. (9) Residence-based rather than kin-based community, held together by ideology. (10) The state.",
+     "maps_to_phases": "(1) G6; (2) G6 for full-time work, G3 for part-time; (3) G5-G6; (4) foreshadowed at Göbekli Tepe and Ubaid temples (G5), monumental in G6; (5) G5-G6; (6) G6, with tokens earlier; (7) throughout; (8) begins in G3 (obsidian, early pots), large-scale in G6; (9) G6; (10) G6. Childe's criteria therefore bundle G5 and G6, while part-time crafts and household property belong before them.",
+     "sources": [
+      "Childe 1950 (as above)",
+      "Britannica on the urban revolution: https://www.britannica.com/print/article/619501",
+      "Smith, M.E. 2009. 'V. Gordon Childe and the Urban Revolution.' Town Planning Review 80(1):3-29, doi:10.3828/tpr.80.1.2a: https://d-meeus.be/biblio/Smith2009.html"
+     ]
+    }
+   ],
+   "major_breakpoints": [
+    "Childe's original cut has two revolutions with a long, unnamed gap between them. The Neolithic Revolution covers food production, villages and population. The Urban Revolution covers cities, specialists, writing and the state, about 3,500 to 3,000 BC. Everything between about 6,500 and 4,000 BC (Late Neolithic and Chalcolithic: Hassuna, Halaf, Samarra, Ubaid) is that gap, and it is exactly where G3-G5 sit. (Childe 1936; Childe 1950, Town Planning Review 21:3-17)",
+    "Sedentism comes before farming. Natufian villages date from about 14,600 cal BP, and food storage before domestication appears at Dhra' about 11,300 cal BP. So 'village' (G1) and 'farming' (G2) are separate steps, and storage starts even before G2. (Bar-Yosef 1998; Kuijt & Finlayson 2009 PNAS)",
+    "Cultivation and herding begin about 11,500 cal BP, but domestic forms are only fixed about 10,500 to 10,000 cal BP (einkorn about 10,400 cal BP; Ganj Dareh goats about 10,000 cal BP). Scholars disagree over whether this took at least 1,000 years or 2,000-4,000 years (protracted model) or was faster (Abbo, Lev-Yadun & Gopher 2012). (Zeder 2011; Zeder & Hesse 2000; Fuller, Willcox & Allaby 2011; Asouti & Fuller 2013)",
+    "Neolithic Demographic Transition: fertility jumps when farming arrives locally, with a 500-700 year signal in Europe. It is dated relative to farming, so population growth belongs with G2, not only G1. (Bocquet-Appel 2011 Science; Bocquet-Appel 2011 Current Anthropology)",
+    "The PPNB mega-sites (10-14 ha) and their decline in the PPNC (about 8,900 to 8,600 cal BP, i.e. 6,950-6,650 cal BC) are the first 'scale crisis'. Large villages broke up rather than growing into towns. This is a natural break between an early-village block and a later block. (Kuijt 2000; Zielhofer et al. 2012; Rollefson)",
+    "Pottery begins about 7,000 to 6,700 cal BC in Upper Mesopotamia and about 6,400 BC in the southern Levant. That is roughly 2,500 years after cultivation began and before Ubaid, so pottery does not mark the Neolithic Revolution in the Near East. (Nieuwenhuyse ed. 2018; Yarmukian sources)",
+    "The Ubaid (about 6,500/6,200 to 3,800 BC) brings irrigation, temples, seals and chiefly households. This is where scholars place 'chiefdoms' (G5), even though burials show little elite display. (Stein 1994; Flannery 1999; Frangipane 2007)",
+    "Around 6,000 BP (about 4,000 BC) ox ploughs and land-limited farming go with a doubling of household-wealth Gini, part of Sherratt's 4th-millennium Secondary Products Revolution. This is a second, stronger inequality step, separate from early household storage. (Bogaard, Fochesato & Bowles 2019; Kohler et al. 2017; Sherratt 1981)",
+    "Towns come before writing. Tell Brak urban growth starts about 4,300 BC; Susiana settlement hierarchies form in Early to Late Uruk; complex tokens and bullae date about 3,700 to 3,500 BC. (Oates et al. 2007; Johnson 1973; Wright & Johnson 1975; Schmandt-Besserat 1996)",
+    "Late Uruk (about 3,500 to 3,100 BC) is the classic Urban Revolution: Uruk about 250 ha, numerical tablets about 3,500 to 3,350 BC, proto-cuneiform about 3,350 to 3,200 BC, Uruk expansion colonies. The network then collapsed around 3,000 BC. (Childe 1950; Algaze 1993/2005, 2008; Met Museum)"
+   ],
+   "critiques_or_caveats": [
+    "Childe's 10 criteria were taken from Mesopotamia itself, so applying them elsewhere amounts to comparing with Bronze Age Mesopotamia. They are not universal (Britannica; Roe 2014 https://joeroe.io/2014/01/27/not-so-civilised.html). Jason Ur argues Childe's 'city' is really a political form, and that the model does not even fit early Mesopotamian urbanism (https://jasonur.scholars.harvard.edu/publications/space-and-structure-early-mesopotamian-cities). Childe himself (1950) called the process gradual and cumulative, with intermediate stages.",
+    "The 'revolution' label hides how long these changes took. Protracted-domestication researchers say thousands of years; critics (Abbo, Lev-Yadun & Gopher 2012; Heun et al.) argue for a shorter window of about 1,200 years for einkorn. Fuller & Lucas (2025) find that sub-regional paths differ, so a single linear sequence is a simplification. https://discovery.ucl.ac.uk/id/eprint/10206457",
+    "G1-G6 are not strictly sequential in the evidence. Storage (G3-like) is found before domestication (PPNA), household-private storage (G4-like) in PPNB, scale problems (G5-like) at PPNB mega-sites, and plain tokens (G6-like) from about 8,000/7,500 BC. Many communities also kept an egalitarian ethos for a long time despite surplus (Çatalhöyük; Halaf). Reversals happened too: PPNC dispersal, and the Uruk collapse around 3,000 BC. Graeber & Wengrow (2021) push this further, though reviewers say they overgeneralise (https://www.historynewsnetwork.org/article/184781).",
+    "The dating of the Secondary Products Revolution is contested. Milk residues go back to the 7th millennium BC (Evershed 2008), plough marks at Sion to the early 5th millennium BC, and Greenfield (2010), Marciniak (2011) and Kristiansen & Sørensen (2020) say the model needs revising. Its importance may lie in large-scale adoption rather than first appearance.",
+    "House-size Gini (Kohler et al. 2017) is a proxy, and other variables can confound it. Bogaard et al. (2019) use 90 site-phases from 39 sites, and press figures differ. The 'ox-plough doubles Gini' claim is a statistical association across Western Eurasia, not a proven local mechanism.",
+    "Schmandt-Besserat's broad framework is widely accepted, but details are disputed: start dates for tokens (9,000-8,700, 8,000 or 7,500 BC), the meaning of individual token types, and the linear token-to-writing path. Some scholars also stress the influence of seal imagery (Kelley, Cartolano & Ferrara 2024, Antiquity).",
+    "Dates conflict between sources. Ubaid is given as 6,500-3,800 BC (Wikipedia) or 5,500-4,000 BC with origin about 6,200 BC (Met 2003). Uruk's size is given as 80, 100 or 250 ha, and population estimates (40,000-50,000) are modelled, not counted. Halaf is given as 6,100-5,100 BC or later. Cal BP and BC are often mixed up (cal BC ≈ cal BP minus 1,950); the conversions in this summary are mine.",
+    "The Levant-specific NDT dates are not verified. One southern Levant study using the NDT model found strong growth in Late Natufian, PPNA and PPNC but weaker growth in PPNB, which complicates a simple 'farming means a births boom' rule.",
+    "Johnson's 'about 6 units' threshold and the sequential/simultaneous distinction are taken from bibliographic summaries, not the full chapter. Kuijt (2000, and a 2025 lecture) warns that population estimates for Neolithic mega-sites are often inflated."
+   ],
+   "notes": "Proposed split for 'Society 2.0', based on where scholars draw the lines:\n\n(A) 'Neolithic Revolution' block = G1 + G2, about 12,500 to 6,500 cal BC. This is Childe's single revolution, but later work separates it into Natufian sedentism, PPNA cultivation with storage, and PPNB domestication with the births boom. The PPNC dispersal around 6,950-6,650 BC is a natural closing event.\n\n(B) Middle 'Late Neolithic / Chalcolithic' block = G3 + G4 + G5, about 7,000 to 4,000 BC. Childe gave this no name. Its internal cuts:\n- pottery and part-time crafts from about 7,000 cal BC (G3);\n- household storage, the first stage of property, about 7,000 to 5,000 BC (G4a; Çatalhöyük, Halaf/Samarra);\n- Ubaid temples and chiefly households, about 6,200/5,500 to 4,000 BC (G5).\n\n(C) 'Urban Revolution' block = G6, about 4,300 to 3,100 BC. Two optional sub-steps:\n- proto-urban towns and complex tokens/bullae (Tell Brak about 4,300 BC; about 3,700 to 3,500 BC);\n- Late Uruk city plus writing (about 3,500 to 3,100 BC).\n\nSherratt's Secondary Products Revolution and the ox-plough inequality jump (about 4,000 BC; the G4b stage) sit on the B/C boundary. Scholars treat that stronger inequality step as part of the run-up to urbanism, not part of early village property.\n\nSpecific adjustments for the phase anchors:\n- G3 currently cites 'Ubaid' for the start of pottery. Pottery in the Near East starts about 7,000-6,700 cal BC (Pre-Proto-Hassuna, Sabi Abyad), and Ubaid fits G5 better.\n- Childe's full-time specialists are an urban criterion (G6); part-time crafts belong in G3.\n- Kohler 2017 and Varna (4,596-4,341 cal BC) both belong to the late, plough-linked G4b, not early household property.\n- Simple tokens could be introduced as early as G2/G3. Complex tokens and bullae belong to late G5 / early G6.\n\nResearch limits: WebFetch to Wikipedia, metmuseum.org, PMC, utexas.edu, washington.edu and elsevierpure was blocked by the egress proxy. Most details therefore come from search-engine summaries of abstracts, publisher pages and secondary sources, not full texts. Kohler et al. 2017: I believe the title is 'Greater post-Neolithic wealth disparities in Eurasia than in North America and Mesoamerica' (Nature 551:619-622), but I could not confirm the exact title or pages. I could not confirm the claim that complex tokens appear about 4,400 BC; the sources I found put them in 3,500-3,100 BC, with envelopes from about 3,700 BC."
+  },
+  {
+   "lens": "Cross-regional comparison of the path from first farming villages to first cities and states with writing. Regions: China (Peiligang to Yangshao, Longshan, Erlitou and Shang), Egypt (Fayum/Merimde, Badarian, Naqada I-III, Dynasty 1), Mesoamerica (Archaic to Early, Middle and Late Formative, then Classic, with Oaxaca as the best-dated sequence) and Europe (LBK, Varna, Trypillia and the Aegean) as a contrast. The goal is to find breakpoints that recur across regions and to estimate how long each stage lasted, so the G1-G6 'Society 2.0' arc can be split into evidence-based sub-parts.",
+   "periods_or_stages": [
+    {
+     "name": "China 1: Early Neolithic villages (Peiligang / Cishan / Jiahu)",
+     "dates": "c. 7000-5000 BCE (Peiligang; Columbia gives 6500-5000 BCE). Jiahu c. 7000-5800/5500 BCE",
+     "defining_features": "Small sedentary villages with millet farming (rice at Jiahu), pigs and dogs. Pottery and kilns are present from the start. Jiahu: a moat enclosing about 5.5 ha, 45 houses, an estimated 250-800 people, and 300+ burials with uneven grave goods (bone flutes, turtle shells) that some read as early differentiation. More than 100 Peiligang sites are clustered in Henan.",
+     "maps_to_phases": "G1+G2 together. In China pottery arrives with the first villages, so pottery is not a G3 (surplus and specialization) marker here.",
+     "sources": [
+      "List of Neolithic cultures of China (Wikipedia, provisional dates): https://en.wikipedia.org/wiki/List_of_Neolithic_cultures_of_China",
+      "Columbia Univ. Asia for Educators, Early China to 600 BCE (Peiligang 6500-5000, Yangshao 5000-3000, Longshan 3000-1900 BCE): https://video.afe.easia.columbia.edu/wp-content/uploads/2025/08/Early-China-to-600-BCE-Major-Archeological-Discoveries-Presentation-PDF.pdf",
+      "Jiahu (Wikipedia; primary reports by Zhang et al. in Antiquity): https://en.wikipedia.org/wiki/Jiahu"
+     ]
+    },
+    {
+     "name": "China 2: Early Yangshao village communities",
+     "dates": "c. 5000-4000 BCE (Yangshao overall c. 5000-3000 BCE; local radiocarbon sequences e.g. Shangluo c. 4200-2900 BCE)",
+     "defining_features": "Larger nucleated millet-farming villages. Liu (2004) dates the first clear social hierarchy only to mid-Yangshao, so this stage counts as growth without durable ranking.",
+     "maps_to_phases": "G2-G3: intensified farming, population growth, household production. G4 not yet visible.",
+     "sources": [
+      "Liu Li 2004, The Chinese Neolithic: Trajectories to Early States (CUP), excerpt: https://assets.cambridge.org/97805218/11842/excerpt/9780521811842_excerpt.htm",
+      "Columbia Early China presentation (as above)"
+     ]
+    },
+    {
+     "name": "China 3: Middle Yangshao / Miaodigou (first settlement hierarchy)",
+     "dates": "c. 4000-3500 BCE",
+     "defining_features": "In western Henan (Lingbao survey) there is rapid population growth, more sites and larger occupied areas, and the first settlement hierarchies. Very large public buildings appear (Xiahe F1 304.5 m2; Beiyangping c. 250 m2). Liu calls this the first clear evidence of social hierarchy, and archaeobotany ties it to intensive foxtail-millet agriculture.",
+     "maps_to_phases": "Onset of G4+G5 together: ranking, a 2-tier settlement hierarchy and communal or elite buildings. Roughly equivalent to Ubaid-level chiefdoms.",
+     "sources": [
+      "Liu Li 2004, chapter 'Reconstructing social processes' (mid-Yangshao c. 4000-3500 BC first clear hierarchy): https://resolve-he.cambridge.org/core/books/chinese-neolithic/reconstructing-social-processes/701446127039BDEDA15EC13E01BAD6CB",
+      "Ma Xiaolin 2005, Emergent Social Complexity in the Yangshao Culture (BAR): https://www.barpublishing.com/emergent-social-complexity-in-the-yangshao-culture.html",
+      "Yangshao culture (Wikipedia): https://en.wikipedia.org/wiki/Yangshao_culture"
+     ]
+    },
+    {
+     "name": "China 4: Late Neolithic regional polities (Liangzhu; Longshan walled towns, Taosi, Shimao)",
+     "dates": "Liangzhu c. 3300-2300 BCE. Longshan c. 3000-1900 BCE (other sources 2800/2700-2000). Taosi c. 2300-1900 BCE. Shimao c. 2300-1800 BCE",
+     "defining_features": "Liangzhu: a city site, a large water-control (dam) system, socially graded cemeteries with altars and jade (UNESCO calls it an 'early regional state'). Longshan: many rammed-earth walled towns. Taosi has a 280 ha enclosure with an inner wall separating elite from commoners and is often called an 'advanced chiefdom'. Shimao has stone walls with 4.2 and 5.7 km perimeters and about 80 sacrificed skulls under a gate. Large walled centres may have controlled up to about 2000 km2. Warfare, prestige goods and regional competition, but no writing.",
+     "maps_to_phases": "Mature G5 plus the town part of G6 (regional centres, fortifications, prestige exchange) without the record part of G6. A good model for an intermediate 'competing chiefdoms' stage.",
+     "sources": [
+      "UNESCO World Heritage, Archaeological Ruins of Liangzhu City: https://whc.unesco.org/en/list/1592",
+      "Taosi (Wikipedia): https://en.wikipedia.org/wiki/Taosi",
+      "Shimao (Wikipedia): https://en.wikipedia.org/wiki/Shimao",
+      "Zhang Chi et al. 2019 Antiquity, 'China's major Late Neolithic centres and the rise of Erlitou': https://www.arch.ox.ac.uk/node/1081436"
+     ]
+    },
+    {
+     "name": "China 5: Erlitou (first urban state, no writing)",
+     "dates": "c. 1750-1530 BCE (radiocarbon-based narrow range); older ranges c. 1900-1500 BCE",
+     "defining_features": "Grew from a regional centre of about 100 ha (Phase I) to an urban site of about 300 ha (Phase II, c. 11,000 people) with a 12 ha palace zone bounded by roads, peaking near c. 24,000 people (Phase III). Large rammed-earth palace platforms and bronze ritual vessels. Widely treated as China's first state. The Xia identification is debated, and no writing has been found.",
+     "maps_to_phases": "G6 town/state WITHOUT writing. In China the state comes before writing.",
+     "sources": [
+      "Liu Li & Xu Hong 2007, 'Rethinking Erlitou: legend, history and Chinese archaeology', Antiquity 81: https://resolve.cambridge.org/core/journals/antiquity/article/rethinking-erlitou-legend-history-and-chinese-archaeology/FDBD0E8E7C661FC180CAD54AD9742E31",
+      "Erlitou culture (Wikipedia, phase sizes and populations): https://en.wikipedia.org/wiki/Erlitou_culture"
+     ]
+    },
+    {
+     "name": "China 6: Late Shang oracle-bone writing",
+     "dates": "Wu Ding reign radiocarbon-dated c. 1254-1197 BCE; Late Shang to c. 1046 BCE",
+     "defining_features": "The earliest attested full Chinese writing: divination records on bone and shell at Anyang (Yinxu), with 4,500+ distinct characters. This is about 500 years after Erlitou's urban state.",
+     "maps_to_phases": "The 'records' part of G6, arriving late. In China, writing and state formation are separate breakpoints.",
+     "sources": [
+      "Oracle bone script (Wikipedia, citing AMS dating of inscribed bones): https://en.wikipedia.org/wiki/Oracle_bone_script"
+     ]
+    },
+    {
+     "name": "Egypt 1: Neolithic (Fayum, Merimde Beni Salama)",
+     "dates": "First domesticates in the Fayum c. 5400 BCE. Fayum Neolithic recalibrated c. 5700-4200 cal BCE (Kom K/W assemblages 4850-4250 BCE). Merimde c. 4800-4300 BCE (a radiocarbon start of c. 5300 BCE has been proposed)",
+     "defining_features": "A Levantine package of wheat, barley, sheep and goat arrives ready-made, about 3,000 years after the Levantine PPNB. Fish remain a major food. Sites are only partly sedentary.",
+     "maps_to_phases": "G1+G2 compressed because the package was imported rather than domesticated locally.",
+     "sources": [
+      "Linseele et al. 2014 PLOS ONE (Fayum fauna, first domesticates): https://escholarship.org/content/qt76t2b2zs/qt76t2b2zs.pdf",
+      "Merimde culture (Wikipedia): https://en.wikipedia.org/wiki/Merimde_culture",
+      "Wengrow 2006, The Archaeology of Early Egypt, 10,000-2,650 BC (CUP), table of contents: https://assets.cambridge.org/97805218/35862/toc/9780521835862_toc.pdf"
+     ]
+    },
+    {
+     "name": "Egypt 2: Badarian",
+     "dates": "c. 4400-3800 BCE (table based on Dee et al. 2013); c. 4400-4000 BCE in older radiocarbon summaries",
+     "defining_features": "Farming and herding communities in Upper Egypt with cemeteries and modest differences in grave goods. It overlaps with the earliest Naqada.",
+     "maps_to_phases": "G2-G3: an established farming village society, early craft quality, little durable inequality.",
+     "sources": [
+      "Dee et al. 2013, Proc. R. Soc. A 469: 20130395, 'An absolute chronology for early Egypt using radiocarbon dating and Bayesian statistical modelling': https://abdn.elsevierpure.com/en/publications/an-absolute-chronology-for-early-egypt-using-radiocarbon-dating-a",
+      "Stevenson 2016, 'The Egyptian Predynastic and State Formation', J. Archaeol. Res.: https://link.springer.com/article/10.1007/s10814-016-9094-7"
+     ]
+    },
+    {
+     "name": "Egypt 3: Naqada IA-IIB (local centres, elite cemeteries)",
+     "dates": "c. 3800/3750-3450 BCE (Dee et al. 2013 model: Naqada starts c. 3800-3700 BCE, later than the old c. 4000 BCE)",
+     "defining_features": "Local centres at Hierakonpolis, Naqada and Abydos. Hierakonpolis HK6 is an elite cemetery (Tomb 23, Naqada IIA-B, 5.5 x 3.1 m, the largest of its date, with possible human and animal sacrifices), while HK43 is a 'working-class' cemetery with very few grave goods. Craft specialization in pottery, stone vessels and maceheads.",
+     "maps_to_phases": "G3, G4 and G5 in quick succession, within a few centuries.",
+     "sources": [
+      "Dee et al. 2013 (as above); Oxford news release: https://www.ox.ac.uk/node/11592",
+      "Hierakonpolis Expedition, predynastic cemeteries: https://hierakonpolis-online.org/index.php/explore-the-predynastic-cemeteries",
+      "Naqada culture (Wikipedia): https://en.wikipedia.org/wiki/Naqada_culture"
+     ]
+    },
+    {
+     "name": "Egypt 4: Naqada IIC-IIIA (expansion, proto-kingdoms, first writing)",
+     "dates": "c. 3450-3200 BCE (Dee et al. models make IIC-D much shorter than older chronologies; Hendrickx gives IIC-IID2 c. 3600-3350). Abydos tomb U-j (Naqada IIIA2) is dated c. 3320-3150 BCE",
+     "defining_features": "Naqada material culture spreads north, and painted elite tombs appear (Hierakonpolis Tomb 100, Naqada IIC). Competing proto-kingdoms emerge. Tomb U-j holds about 150 inscribed bone and ivory labels, ink-inscribed jars and sealings: the earliest Egyptian writing, already using rebus phonograms.",
+     "maps_to_phases": "Late G5 to early G6. Administrative records appear just before full territorial unification.",
+     "sources": [
+      "Görsdorf, Dreyer & Hartung 1998, radiocarbon dates from Abydos cemetery U, Radiocarbon: https://journals.uair.arizona.edu/index.php/radiocarbon/article/download/3738/3163",
+      "Dee et al. 2014, 'Radiocarbon dating and the Naqada relative chronology', JAS 46: https://www.sciencedirect.com/science/article/abs/pii/S0305440314000983"
+     ]
+    },
+    {
+     "name": "Egypt 5: Naqada IIIB-C / Dynasty 0-1 (territorial state)",
+     "dates": "c. 3200-3000 BCE. Aha's accession modelled at 3111-3045 BCE (68% probability)",
+     "defining_features": "Named kings, unification of Upper and Lower Egypt, a royal cemetery at Abydos, and a bureaucracy using writing. Dee et al. describe the move from farming society to territorial state as faster than previously assumed.",
+     "maps_to_phases": "Full G6: town or capital, records, territorial state. From first farming (c. 5400 BCE) to the state takes about 2,000-2,300 years, the shortest of the regions compared.",
+     "sources": [
+      "Dee et al. 2013 (as above); PMC full text: https://pmc.ncbi.nlm.nih.gov/articles/PMC3780825/"
+     ]
+    },
+    {
+     "name": "Mesoamerica 1: Archaic (incipient cultivation before villages)",
+     "dates": "c. 8000-2000 BCE (scheme-dependent). Maize domesticated in the Balsas about 9,000 years ago (c. 7000 BCE). Maize about 30% of diet c. 4700-4000 cal BP and a staple (over 70%) after c. 4000 cal BP (c. 2000 BCE)",
+     "defining_features": "Mobile or seasonal foragers-cultivators. Squash and maize were domesticated thousands of years before permanent villages. In Oaxaca, Gheo-Shih has an Archaic 'dance ground' dated 7720-7560 cal BC.",
+     "maps_to_phases": "G2 BEFORE G1: cultivation precedes sedentism by about 5,000 years. This contradicts the Levantine G1-then-G2 order.",
+     "sources": [
+      "Kennett et al. 2020 Science Advances, 'Early isotopic evidence for maize as a staple grain in the Americas' (UCSB release): https://news.ucsb.edu/2020/019919/roots-staple-crop",
+      "Marcus & Flannery 2004 FAMSI report (Gheo-Shih date, Tierras Largas men's houses): https://www.famsi.org/reports/03006/index.html",
+      "Mesoamerican chronology (Wikipedia): https://en.wikipedia.org/wiki/Mesoamerican_chronology"
+     ]
+    },
+    {
+     "name": "Mesoamerica 2: Initial / Early Formative villages (Mokaya; Oaxaca Tierras Largas)",
+     "dates": "Initial Formative c. 2000/1900-1200 BCE. Chiapas ceramic villages by c. 1550 BCE. Paso de la Amada occupied c. 1800-1000 BCE (ballcourt c. 1650-1400 BCE). Oaxaca Tierras Largas phase 1500/1400-1150 BCE",
+     "defining_features": "The first permanent villages arrive together with pottery. In Oaxaca, men's houses point to achievement-based (non-hereditary) leadership. Paso de la Amada has an 80 m ballcourt attached to high-status houses and a rich child burial, early signs of rank. Obsidian exchange is present from the beginning.",
+     "maps_to_phases": "G1+G3 compressed: village, pottery, and exchange networks (part of G6) arrive almost at once. Early achievement-based leadership is a precursor to G5.",
+     "sources": [
+      "Marcus & Flannery 2004 FAMSI (Tierras Largas 1500-1150 BC): https://www.famsi.org/reports/03006/index.html",
+      "Hill, Blake & Clark 1998 Nature 392, ballcourt at Paso de la Amada: https://ideas.repec.org/a/nat/nature/v392y1998i6679d10.1038_31837.html",
+      "Seshat, Oaxaca Tierras Largas (1400-1150 BCE): https://seshat-db.com/core/polity/523",
+      "UCSD Mesoamerican chronology outline: https://pages.ucsd.edu/~dkjordan/arch/mexchron.html"
+     ]
+    },
+    {
+     "name": "Mesoamerica 3: Early Formative chiefdoms (San Lorenzo Olmec; Oaxaca San José phase)",
+     "dates": "San Lorenzo c. 1400-1000 cal BCE (peak 1200-1000). Oaxaca San José phase 1150-850 BCE, Guadalupe 850-700 BCE",
+     "defining_features": "San Lorenzo is a centre of about 775 ha with colossal heads, thrones and a multi-tier settlement system. Whether it was a chiefdom or a state is debated. In Oaxaca, San José Mogote grows in population and public buildings, with hereditary rank, craft areas and interregional exchange.",
+     "maps_to_phases": "G4+G5 (hereditary rank and a regional centre) only about 300-400 years after the first villages.",
+     "sources": [
+      "San Lorenzo Tenochtitlan (Wikipedia; Hirth & Cyphers 2020 dating): https://en.wikipedia.org/wiki/San_Lorenzo_Tenochtitl%C3%A1n",
+      "Seshat, Oaxaca San José/Guadalupe phases: https://seshat-db.com/core/polity/523",
+      "Flannery & Marcus 2012, The Creation of Inequality (review): https://www.midwestarchaeology.org/sites/default/files/2013-BR16-Flannery-Marcus.pdf"
+     ]
+    },
+    {
+     "name": "Mesoamerica 4: Late Middle Formative competing chiefdoms (Oaxaca Rosario; La Venta)",
+     "dates": "Rosario phase c. 700-500 BCE. La Venta c. 900-400 BCE. San José Mogote Monument 3 deposited no later than c. 650-560 BCE per Flannery & Marcus 2003 (contested)",
+     "defining_features": "Three chiefly polities, one in each arm of the Oaxaca Valley, separated by a buffer zone, with raiding and temple burning. Monument 3 shows a sacrificed captive with a calendrical name, one of the earliest Mesoamerican hieroglyphic texts.",
+     "maps_to_phases": "Mature G5 (warfare, competing polities) plus the beginning of G6 records BEFORE the state. Glyphs come before the state here, the reverse of China.",
+     "sources": [
+      "Flannery & Marcus 2003, 'The origin of war: New 14C dates from ancient Mexico', PNAS 100: 11801-11805: https://doi.org/10.1073/pnas.1934526100",
+      "Univ. of Michigan Oaxaca archaeology, Origins of hieroglyphic writing: https://sites.lsa.umich.edu/oaxaca-archaeology/origins-of-hieroglyphic-writing-2/",
+      "Spencer & Redmond, Modeling expansionism and resistance: state formation in ancient Oaxaca: https://sociostudies.org/almanac/articles/modeling_expansionism_and_resistance_state_formation_in_ancient_oaxaca_mexico"
+     ]
+    },
+    {
+     "name": "Mesoamerica 5: Late Formative state formation (Monte Albán; early Maya writing)",
+     "dates": "Monte Albán founded c. 500 BCE (Early MA I 500-300 BCE). State institutions in Late MA I, 300-100 BCE. Late/Terminal Formative c. 300 BCE-250 CE. San Bartolo Maya writing 300-200 BCE",
+     "defining_features": "Population moves to a new hilltop capital (about 5,200 by 400 BCE and 17,200 by 200 BCE). A royal palace and multi-room temple appear together with conquest of regions more than a day's travel away (Spencer 2010: state institutions and territorial expansion coincide). Maya script and the 260-day calendar ('7 Deer') date to 300-200 BCE.",
+     "maps_to_phases": "Full G6: a town or capital, state administration, writing. About 1,200-1,300 years after the first Oaxaca villages, but about 6,700 years after maize domestication.",
+     "sources": [
+      "Spencer 2010, 'Territorial expansion and primary state formation', PNAS 107: 7119-7126: https://pmc.ncbi.nlm.nih.gov/articles/PMC2867764",
+      "Monte Albán (Wikipedia, citing Marcus & Flannery 1996): https://en.wikipedia.org/wiki/Monte_Alb%C3%A1n",
+      "Science News on Saturno et al. 2006 (San Bartolo): https://www.sciencenews.org/article/getting-read-early-maya-writing",
+      "Mesoweb summary: https://www.mesoweb.org/reports/SanBartoloWriting.html"
+     ]
+    },
+    {
+     "name": "Mesoamerica 6: Classic",
+     "dates": "c. 250-900 CE (Early Classic 250-600, Late Classic 600-900)",
+     "defining_features": "Mature city-states and large urban centres (Teotihuacan, Maya cities, Monte Albán), with full writing and dynastic monuments.",
+     "maps_to_phases": "Beyond G6. This is the reference end point for a later 'Society 3.0'.",
+     "sources": [
+      "Mesoamerican chronology (Wikipedia; Evans 2012 subdivisions): https://en.wikipedia.org/wiki/Mesoamerican_chronology"
+     ]
+    },
+    {
+     "name": "Europe 1: Early Neolithic of the Aegean and SE Europe",
+     "dates": "Knossos (Crete) settled c. 7000 BCE, refined by Bayesian 14C to include an earlier aceramic phase",
+     "defining_features": "A founding group of about 25-50 people with an imported Anatolian/Near Eastern farming package, wattle-and-daub huts, and burials under floors.",
+     "maps_to_phases": "G1+G2 together (imported package).",
+     "sources": [
+      "Douka et al. 2017 Antiquity, 'Dating Knossos and the arrival of the earliest Neolithic in the southern Aegean': https://www.cambridge.org/core/product/F4EEDD8990178B742BCD339CB8ABD02E",
+      "Knossos (Wikipedia): https://en.wikipedia.org/wiki/Knossos"
+     ]
+    },
+    {
+     "name": "Europe 2: LBK first farmers of central Europe, and the Neolithic boom-bust",
+     "dates": "LBK c. 5500 cal BCE to soon after 5000 cal BCE. Boom-bust cycles across c. 8000-4000 cal BP",
+     "defining_features": "Longhouse villages, rapid expansion, denser settlement and regional pottery styles, ending with signs of stress or local crisis. Shennan et al. 2013: in 10 of 12 regions, populations rose 3-4 times after farming arrived and then fell by up to 60%, with no clear climate link, possibly from internal causes.",
+     "maps_to_phases": "G1-G3 followed by collapse or reset rather than progress to G4-G6. Shows that 'stalled' or 'collapsed' should be valid simulation outcomes.",
+     "sources": [
+      "Bickle & Whittle (eds) 2013, The First Farmers of Central Europe: Diversity in LBK Lifeways: https://www.bokus.com/bok/9781842179123/the-first-farmers-of-central-europe",
+      "Shennan et al. 2013 Nature Communications 4: 2486, 'Regional population collapse followed initial agriculture booms in mid-Holocene Europe': https://discovery.ucl.ac.uk/id/eprint/1398968/",
+      "UCL news release: https://www.ucl.ac.uk/news/2013/oct/population-boom-and-bust-followed-start-farming-western-europe"
+     ]
+    },
+    {
+     "name": "Europe 3: Copper Age 'precocious' inequality (Varna)",
+     "dates": "Varna cemetery modelled start 4596-4516 cal BCE, end 4427-4341 cal BCE (use span about 120-260 years)",
+     "defining_features": "Over 3,000 objects and more than 6 kg of gold, mostly in a few graves. Read as paramount chiefs or a strongly hierarchical society, though some argue for an early state and others for a less hierarchical order. It did not lead on to a state or writing.",
+     "maps_to_phases": "G4+G5 reached without G6. An example of a dead end or reversal.",
+     "sources": [
+      "Higham et al. 2007 Antiquity, 'New perspectives on the Varna cemetery': https://resolve.cambridge.org/core/journals/antiquity/article/new-perspectives-on-the-varna-cemetery-bulgaria-ams-dates-and-social-implications/0D02E895D9732774C4ED192C4D199417",
+      "Higham et al. 2018 Radiocarbon, 'AMS dating of the Late Copper Age Varna cemetery': https://www.cambridge.org/core/journals/radiocarbon/article/ams-dating-of-the-late-copper-age-varna-cemetery-bulgaria/706A7F638D010BB6C943FBDFC1062749"
+     ]
+    },
+    {
+     "name": "Europe 4: Trypillia megasites (low-density urbanism without a state)",
+     "dates": "Megasites of 100 ha or more c. 4100-3400 BCE. Maidanetske occupied c. 3990-3640 cal BCE. Talianki c. 3700-3600 BCE",
+     "defining_features": "Settlements of up to 320 ha with about 2,300-3,000 houses and population estimates of 12,000-46,000 (depending on whether houses were occupied at the same time). Assembly houses but no palaces, royal tombs or writing. The sites later dispersed.",
+     "maps_to_phases": "G6-sized settlements without G5/G6 institutions. Settlement size alone does not produce a state.",
+     "sources": [
+      "Gaydarska et al., 'Trypillia megasites in context: independent urban development in Chalcolithic Eastern Europe', Cambridge Archaeological Journal: https://www.cambridge.org/core/product/identifier/S0959774319000301/type/journal_article",
+      "Müller et al., Maidanets'ke (Sidestone): https://www.sidestone.com/books/maidanets-ke",
+      "Settlements of the Cucuteni-Trypillia culture (Wikipedia): https://en.wikipedia.org/wiki/Settlements_of_the_Cucuteni%E2%80%93Trypillia_culture"
+     ]
+    },
+    {
+     "name": "Europe 5: Aegean palace states (Minoan Protopalatial)",
+     "dates": "First palaces c. 1900 BCE (some say 2000 BCE). Cretan hieroglyphic in syllabic form by c. 1900 BCE, then Linear A",
+     "defining_features": "Palaces at Knossos, Phaistos and Malia served as religious and administrative centres with storage. Clay accounting documents and seals. This was a secondary state formation in contact with Egypt and the Near East, about 5,000 years after first farming at Knossos.",
+     "maps_to_phases": "G6 reached through contact (secondary), not independently.",
+     "sources": [
+      "Knossos (Wikipedia): https://en.wikipedia.org/wiki/Knossos",
+      "World History Encyclopedia, Linear A: https://worldhistory.org/Linear_A"
+     ]
+    },
+    {
+     "name": "Cross-regional stage A: Farming-village formation",
+     "dates": "n/a (Levant PPNA-PPNB c. 9600-6500 BCE; China c. 7000-5000 BCE; Egypt c. 5400-4400 BCE; Oaxaca/Soconusco c. 1900-1150 BCE; central Europe 5500-5000 BCE)",
+     "defining_features": "Sedentary villages that depend on domesticates. Where the package was imported (Egypt, Europe) or co-developed (China), villages and farming appear together. Where crops were domesticated slowly (Mesoamerica), cultivation comes about 5,000 years before villages. Pottery usually arrives with the villages, except in the aceramic Levant.",
+     "maps_to_phases": "G1+G2. In most regions these two are one breakpoint, not two.",
+     "sources": [
+      "Kennett et al. 2020 (UCSB): https://news.ucsb.edu/2020/019919/roots-staple-crop",
+      "Linseele et al. 2014: https://escholarship.org/content/qt76t2b2zs/qt76t2b2zs.pdf",
+      "Bandy & Fox (eds) 2010, Becoming Villagers: Comparing Early Village Societies: https://uapress.arizona.edu/book/becoming-villagers"
+     ]
+    },
+    {
+     "name": "Cross-regional stage B: Growing village society (relatively egalitarian, achievement-based leaders)",
+     "dates": "n/a. Lasts about 300 years (Oaxaca) to about 2,000-3,000 years (China, Levant PPNB to Halaf)",
+     "defining_features": "Population growth, village fissioning, household storage, part-time crafts, and non-hereditary leaders such as men's houses and big-men. Durable wealth inequality is still low. Kohler et al. 2025 find that persistent wealth inequality usually appears more than 1,000 years after cultivation begins.",
+     "maps_to_phases": "G3 plus an early 'achieved leadership / dispute settlement' part taken out of G5.",
+     "sources": [
+      "Flannery & Marcus 2012, The Creation of Inequality (three transitions: egalitarian to achievement-based to hereditary rank to state): https://www.midwestarchaeology.org/sites/default/files/2013-BR16-Flannery-Marcus.pdf",
+      "Kohler, Bogaard et al. 2025 PNAS (WSU release): https://news.wsu.edu/press-release/2025/04/15/new-study-reveals-wealth-inequalitys-deep-roots-in-human-prehistory/"
+     ]
+    },
+    {
+     "name": "Cross-regional stage C: Ranked society / simple chiefdoms (2-tier settlement hierarchy)",
+     "dates": "n/a (China c. 4000-3500 BCE; Egypt c. 3750-3450 BCE; Oaxaca 1150-850 BCE; SE Europe Varna c. 4600-4350 BCE)",
+     "defining_features": "Hereditary rank, rich burials, a regional centre with satellite villages (one level of control above the village), public buildings, and prestige exchange. Wealth inequality and political hierarchy appear together and are linked to land becoming the limiting resource.",
+     "maps_to_phases": "G4 + hereditary G5, best handled as one stage.",
+     "sources": [
+      "Liu 2004 (mid-Yangshao hierarchy): https://resolve-he.cambridge.org/core/books/chinese-neolithic/reconstructing-social-processes/701446127039BDEDA15EC13E01BAD6CB",
+      "Kohler et al. 2017 Nature 551: 619-622 (house-size Gini): https://pmc.ncbi.nlm.nih.gov/articles/PMC5714260",
+      "Hierakonpolis HK6 elite cemetery: https://hierakonpolis-online.org/index.php/explore-the-predynastic-cemeteries"
+     ]
+    },
+    {
+     "name": "Cross-regional stage D: Competing complex chiefdoms / regional centres (3-tier)",
+     "dates": "n/a (China Longshan/Liangzhu c. 3300-1900 BCE; Egypt Naqada IIC-IIIA c. 3450-3200 BCE; Oaxaca Rosario 700-500 BCE; Mesopotamia Late Ubaid to Early Uruk)",
+     "defining_features": "Several rival polities, fortifications and buffer zones, raiding, monumental centres, regional styles, emblems and proto-writing such as seals, glyphs and tokens. Often unstable, with cycling between larger and smaller polities.",
+     "maps_to_phases": "Mature G5 plus the exchange and town parts of G6. This is the missing middle step between G5 and G6.",
+     "sources": [
+      "Flannery & Marcus 2003 PNAS (Rosario warfare): https://doi.org/10.1073/pnas.1934526100",
+      "UNESCO Liangzhu: https://whc.unesco.org/en/list/1592",
+      "Taosi (Wikipedia): https://en.wikipedia.org/wiki/Taosi"
+     ]
+    },
+    {
+     "name": "Cross-regional stage E: Early state and town (4-tier hierarchy, bureaucracy), with or without writing",
+     "dates": "n/a (Mesopotamia Uruk c. 3500-3100 BCE; Egypt c. 3200-3050 BCE; China Erlitou c. 1750-1530 BCE; Oaxaca 300-100 BCE)",
+     "defining_features": "A capital town, palace and temple administration, three or more levels of decision-making above the village, and territorial expansion beyond one day's travel. Writing appears close to this stage but its timing varies: before the state in Oaxaca, together with it in Egypt, after it in China.",
+     "maps_to_phases": "G6, which is better split into G6a (town/state) and G6b (records/writing) as separate triggers.",
+     "sources": [
+      "Spencer 2010 PNAS: https://pmc.ncbi.nlm.nih.gov/articles/PMC2867764",
+      "Wright & Johnson 1975, 'Population, exchange, and early state formation in southwestern Iran', American Anthropologist 77: https://acawiki.org/Population,_Exchange,_and_Early_State_Formation_in_Southwestern_Iran",
+      "Shin et al. 2020 Nature Communications 11: 2394, 'Scale and information-processing thresholds in Holocene social evolution': https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7224170/"
+     ]
+    }
+   ],
+   "major_breakpoints": [
+    "BP1, farming village established (G1+G2 merged): Levant c. 9600-8500 BCE; China c. 7000 BCE (Peiligang/Jiahu); Egypt c. 5400-5000 BCE (Fayum, Merimde); Soconusco/Oaxaca c. 1900-1400 BCE; central Europe c. 5500 BCE (LBK). The lag from domestication to village life varies a lot: about 5,000 years in Mesoamerica (maize c. 7000 BCE, staple only after c. 2000 BCE; Kennett et al. 2020, https://news.ucsb.edu/2020/019919/roots-staple-crop) but almost none where the package was imported (Egypt, Europe).",
+    "BP2, first durable inequality plus a 2-tier settlement hierarchy (G4 with hereditary G5): China mid-Yangshao c. 4000-3500 BCE (Liu 2004; Ma 2005), about 3,000 years after the first villages. Egypt Naqada I-IIB c. 3750-3450 BCE, about 1,600 years after the Fayum. Oaxaca San José phase 1150-850 BCE, only about 300 years after Tierras Largas. SE Europe Varna c. 4600 BCE. Kohler, Bogaard et al. 2025 PNAS (over 1,100 sites, about 47,000 houses): persistent wealth inequality generally lags the start of cultivation by more than 1,000 years and tracks land-limited production and settlement hierarchy (https://news.wsu.edu/press-release/2025/04/15/new-study-reveals-wealth-inequalitys-deep-roots-in-human-prehistory/).",
+    "BP3, competing complex chiefdoms / walled or monumental regional centres (the missing step between G5 and G6): China Liangzhu 3300-2300 BCE and Longshan 3000-1900 BCE (Taosi, Shimao); Egypt Naqada IIC-IIIA c. 3450-3200 BCE; Oaxaca Rosario 700-500 BCE (three polities, buffer zone, raiding; Flannery & Marcus 2003 PNAS). In most regions this stage lasts about 250-1,500 years and is where proto-writing and emblems appear.",
+    "BP4, state threshold (G6a): Spencer 2010 PNAS finds that bureaucratic state institutions and territorial expansion beyond one day's round trip appear together in Oaxaca (Late Monte Albán I, 300-100 BCE), Egypt, Mesopotamia (Uruk c. 3500 BCE onward), Peru and others (https://pmc.ncbi.nlm.nih.gov/articles/PMC2867764). Egypt reaches this point with Aha c. 3111-3045 BCE (Dee et al. 2013) and China with Erlitou c. 1750-1530 BCE. Archaeologically it is marked by three or more decision levels and a 4-tier settlement hierarchy (Wright 1977; Johnson 1982; see Wright & Johnson 1975).",
+    "BP5, information threshold (G6b, writing or records), which does NOT line up with BP4 across regions: Oaxaca glyphs c. 600 BCE come BEFORE the state (c. 300 BCE). In Egypt, Abydos U-j labels (c. 3320-3150 BCE) come together with unification (c. 3100). In China, oracle bones (c. 1250 BCE) come about 500 years AFTER Erlitou. Shin et al. 2020 (Seshat) model a 'scale threshold' after which polities invest in information processing, followed by an 'information threshold' that allows further growth (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7224170/).",
+    "Overall durations, village to state: Oaxaca about 1,200-1,300 years (but about 6,700 years from maize domestication); Egypt about 2,000-2,300 years from first domesticates; China about 5,000+ years (Peiligang to Erlitou); Levant/Mesopotamia about 6,000+ years (PPNA to Uruk, derived from the simulation's own anchors); Crete about 5,000 years to the palaces; central Europe had no pristine state. Borcan, Olsson & Putterman 2021 (Explorations in Economic History 82) estimate an average agriculture-to-state lag of about 3.1 millennia for internally originated states (https://ueaeprints.uea.ac.uk/id/eprint/80065).",
+    "Pattern in the durations: the early village era (BP1 to BP2) is the longest part almost everywhere. Once ranking appears, BP2 to BP4 tends to take only about 500-1,500 years, and in Egypt about 650 years. A simulation that spends equal time on G1-G6 will misrepresent the real tempo."
+   ],
+   "critiques_or_caveats": [
+    "Unilinear stage schemes (band-tribe-chiefdom-state; Service/Fried) are widely criticized. Liu (2004) concludes that Chinese social change followed 'no pre-determined sequence', and Flannery & Marcus (2012) present the transitions as deliberate social manipulation, not automatic results of surplus or population. Treat the stages as recurring configurations, not a required ladder.",
+    "Sequence order differs by region. In Mesoamerica cultivation (G2) came about 5,000 years before villages (G1). In Egypt and Europe G1 and G2 arrived together as an imported package. Pottery (currently a G3 marker) appears with or before the first villages in China, Mesoamerica, Egypt and Europe, so it is a poor marker of surplus specialization outside the aceramic Levant.",
+    "Exchange is not a late stage. Obsidian and shell exchange is present from the first villages (e.g. Early Formative Oaxaca and Soconusco), and Wright & Johnson (1975) found inter-regional exchange insufficient on its own to explain state formation. Model exchange as a continuous variable from G1 onward rather than as part of G6 only.",
+    "G4 (property and inequality) and G5 (leaders) are not cleanly sequential. Achievement-based leaders such as men's houses (Tierras Largas, 1500-1150 BCE) come BEFORE hereditary inequality, while hereditary rank and wealth inequality appear TOGETHER with settlement hierarchy (Kohler et al. 2025). A better split is 'achieved leadership / dispute settlement' (early) versus 'hereditary rank plus property' (later, as one stage).",
+    "Writing and the state are separate breakpoints (state before writing in China, writing before state in Oaxaca, roughly simultaneous in Egypt). G6 should probably have independent triggers for 'town/state' and 'records'.",
+    "Reversibility is the norm. European examples include LBK boom-bust (Shennan et al. 2013), Varna wealth with no state, and the Trypillia megasites dispersing. Liangzhu ended around 2300 BCE. Chiefdoms are known to cycle. Shin et al. (2020) suggest polities below the information threshold are prone to collapse without obvious external causes. The simulation should allow stalls and regressions.",
+    "Chronological uncertainty: Naqada phase dates are reliable for the main blocks but not for individual phases (Dee et al. 2014). Longshan's start is given as 3000, 2800 or 2700 BCE depending on the source. Erlitou is given as 1750-1530 or 1900-1500 BCE. Oaxaca phase boundaries shift by about 100 years between Marcus & Flannery, Blanton et al. and Seshat. Monument 3 is dated anywhere from c. 650 BCE to after 200 BCE. Some popular figures mix calibrated and uncalibrated dates.",
+    "Contested classifications: Liangzhu is called an 'early regional state' by UNESCO but a complex chiefdom by others. San Lorenzo is debated between chiefdom and state. Erlitou's identification with Xia is debated and its state status is mainstream but not universal. Varna is read variously as chiefdom, early state or non-hierarchical. Trypillia populations (12,000-46,000) depend on assuming the houses were contemporary.",
+    "Summed-radiocarbon population proxies such as Shennan et al. 2013 are debated, because site counts can reflect research intensity and preservation as well as population.",
+    "Source-access limitation: WebFetch was blocked for most domains (PMC, Wikipedia, UCL, Royal Society), so many figures (e.g. Dee et al. 2013 phase dates, Erlitou populations, the Kohler 2025 numbers) come from abstracts, press releases or secondary summaries found by web search, not checked against full texts. The Badarian 4400-3800 BCE and Naqada IA-B 3750(?)-3650 BCE figures come from a summary table 'based on Dee et al. 2013' (likely Stevenson 2016), not the original paper."
+   ],
+   "notes": "PROPOSED SPLIT OF 'SOCIETY 2.0' BASED ON THE CROSS-REGIONAL EVIDENCE (for discussion with the user):\n\n- 2.1 'Village formation' = G1+G2. Usually one breakpoint. Real duration from about 0 (imported package) to several thousand years.\n- 2.2 'Growing village and crafts' = G3 plus achievement-based leaders and dispute settlement (an early, non-hereditary part of G5, e.g. men's houses or council). Often the longest stage: about 300 years (Oaxaca) to about 3,000 years (China).\n- 2.3 'Ranked society' = G4 plus hereditary leaders, with a 2-tier settlement hierarchy (one centre and its satellites). Evidence: mid-Yangshao, Naqada I-IIB (Hierakonpolis), San José phase, Varna. About 300-600 years.\n- 2.4 'Competing chiefdoms / regional centres' = a new intermediate stage. Several polities, walls or buffer zones, raiding, prestige exchange, seals, tokens and emblems, 3-tier hierarchy. Evidence: Longshan/Liangzhu, Naqada IIC-IIIA, Rosario, Late Ubaid to Early Uruk. About 250-1,500 years, with failure possible (Europe).\n- 2.5 'Early state and town' = G6a (capital, 4-tier hierarchy, administrators, territorial expansion per Spencer 2010) and G6b (records and writing, Shin et al. 2020 information threshold) as separate triggers that may occur in either order. About 150-500 years.\n\nAn alternative 3-act split follows Flannery & Marcus's three transitions: (I) egalitarian village to achievement-based society, (II) to hereditary rank/chiefdom, (III) to state.\n\nEquivalents of the user's Near Eastern anchors in other regions: Ubaid-type chiefdoms correspond to China mid-Yangshao to Longshan, Egypt Naqada I-II and Oaxaca San José to Rosario. Uruk (c. 5300 BP / 3300 BCE) corresponds to Egypt Dynasty 0-1, China Erlitou (+ Shang writing) and Oaxaca Monte Albán Late I. Some items above (Fayum storage pits, collapse of the Varna/KGK VI horizon after c. 4200 BCE, Graeber & Wengrow-style critiques of stage models) are general background knowledge and were not verified in this search. Treat them as such."
+  }
+ ],
+ "synthesis": {
+  "options": [
+   {
+    "title": "案A: チャイルドの「2つの革命」で3つに分ける (3部)",
+    "parts": [
+     {
+      "name_ja": "第1部 村と畑 (新石器の村)",
+      "phases": "G1・G2 (どちらも済み)",
+      "real_world": "南レヴァントのナトゥーフ期 (約 1.5 万〜1.17 万年前 = 前 13,000〜9,700 年ごろ) → PPNA (前 9,700〜8,800 年ごろ。野生の麦をまいて刈る。ドゥラーの倉 約 11,300 年前) → PPNB (前 8,800〜6,900/6,500 年ごろ。作物と家畜の家畜化。ガンジ・ダレのヤギ 約 1 万年前 = 前 8,000 年ごろ) → PPNC で大きな村がばらける (アイン・ガザル 約 8,900〜8,600 年前 = 前 6,950〜6,650 年ごろ)",
+      "theory_basis": "Childe 1936 の「新石器革命」(食べ物を作る・定住・人が増えるを 1 つの変化とみる)。のちの研究で、定住 (Bar-Yosef 1998)、野生の麦の栽培と貯蔵 (Kuijt & Finlayson 2009)、家畜化 (Zeder 2011) の段階に分かれた。Johnson & Earle の「家族の群れ → 村 (地域の群れ)」、Flannery 2002 の村の段階 1 (丸い家と共同の倉) → 段階 2 (四角い家と家ごとの倉)、Bocquet-Appel 2011 の新石器時代の人口転換。PPNC で大きな村がばらけたことが自然な終わり (Kuijt 2000)",
+      "sources": [
+       "Childe 1936, Man Makes Himself (Britannica の要約: https://www.britannica.com/print/article/111108)",
+       "Bar-Yosef 1998, Evolutionary Anthropology 6:159-177",
+       "Kuijt & Finlayson 2009, PNAS, doi:10.1073/pnas.0812764106",
+       "Zeder 2011, Current Anthropology 52(S4): https://www.journals.uchicago.edu/doi/10.1086/659307",
+       "Zeder & Hesse 2000, Science 287:2254-2257",
+       "Flannery 2002, American Antiquity: https://resolve.cambridge.org/core/journals/american-antiquity/article/abs/origins-of-the-village-revisited-from-nuclear-to-extended-households/5176075CEEFAE75EB9E8FEB1706ECCCE",
+       "Bocquet-Appel 2011, Science 333:560-561",
+       "Kuijt 2000, J. Anthropological Archaeology 19:75-102: https://arheo.ffzg.unizg.hr/ska/tekstovi/people_space.pdf",
+       "Zielhofer et al. 2012, Quaternary Research (アイン・ガザルの衰え)"
+      ]
+     },
+     {
+      "name_ja": "第2部 土器と家と首長",
+      "phases": "G3・G4・G5",
+      "real_world": "上メソポタミアの土器新石器 (前 7,000〜6,700 年ごろ、テル・サビ・アビヤド) → ハッスーナ・サマッラ・ハラフ (おおよそ前 6,500〜5,000 年ごろ。土器の時期区分による年代で、資料により数百年ずれる) → ウバイド期 (南メソポタミアで前 6,200/5,500〜4,200 年ごろ。エリドゥの神殿、テル・アバダの「首長の家」)",
+      "theory_basis": "チャイルドの 2 つの革命のあいだにある「名前のない間」(前 6,500〜4,000 年ごろ)。Fried の平等社会 → ランク社会、Service の部族 → 首長制、Johnson 1982 の規模のストレス、Frangipane 2007 (ハラフの「水平な平等」と、サマッラ・ウバイドの「垂直な平等」)、Stein 1994 (ウバイドの首長は儀礼で主食を集め、みんなのための考え方をかかげた)",
+      "sources": [
+       "Leiden 'Relentlessly Plain' project (サビ・アビヤドの土器): https://www.universiteitleiden.nl/en/research/research-projects/archaeology/relentlessly-plain",
+       "Frangipane 2007, World Archaeology 39(2):151-176: https://iris.uniroma1.it/handle/11573/93529",
+       "Stein 1994, in Stein & Rothman (eds.), Chiefdoms and Early States in the Near East: https://ehrafarchaeology.yale.edu/traditions/mh55/documents/004",
+       "Carter & Philip (eds.) 2010, Beyond the Ubaid, SAOC 63",
+       "Johnson 1982, Organizational structure and scalar stress (要約): https://mapaspects.org/biblio/ref_4260/index.html",
+       "Fried 1967 (要約): https://cas-sca.journals.uvic.ca/index.php/anthropologica/article/download/624/732/1515"
+      ]
+     },
+     {
+      "name_ja": "第3部 町と文字",
+      "phases": "G6",
+      "real_world": "後期銅石器 LC2 のテル・ブラク (前 4,200〜3,800 年ごろ、約 55 ha) → 中期ウルク (前 3,800〜3,400 年ごろ。スシアナの何段もの集落。トークンを入れた粘土の封筒 前 3,700〜3,500 年ごろ) → 後期ウルク (前 3,400〜3,100 年ごろ。数だけの粘土板 前 3,500〜3,350 年ごろ、ウルク IV の原楔形文字 前 3,350〜3,200 年ごろ)",
+      "theory_basis": "Childe 1950 の「都市革命」と 10 の目安。Wright & Johnson 1975・Johnson 1973 (情報を扱う必要が増えて行政の段が増える。3 段以上の決める段 = 国)。Schmandt-Besserat (トークン → 封筒 → 数の粘土板 → 文字)。Algaze (ウルクの広がり)。Oates ほか 2007 (北の町は南より先、文字より前)",
+      "sources": [
+       "Childe 1950, Town Planning Review 21:3-17: https://faculty.washington.edu/plape/citiesaut11/readings/Childe-urban%20revolution%201950.pdf",
+       "Wright & Johnson 1975, American Anthropologist 77(2):267-289: https://acawiki.org/Population,_Exchange,_and_Early_State_Formation_in_Southwestern_Iran",
+       "Johnson 1973: https://press.umich.edu/Books/L/Local-Exchange-and-Early-State-Development-in-Southwestern-Iran",
+       "Oates et al. 2007, Antiquity 81:585-600",
+       "Jason Ur, Tell Brak: https://jasonur.scholars.harvard.edu/pages/tell-brak",
+       "Schmandt-Besserat 1996, How Writing Came About",
+       "CDLI (ウルク IV の粘土板): https://cdli.earth/artifacts/4362",
+       "Algaze 1993/2005, The Uruk World System"
+      ]
+     }
+    ],
+    "pros": [
+     "もっとも広く受け入れられている 2 つの大きな切れ目 (新石器革命・都市革命) に沿うので、説明がいちばん簡単",
+     "第1部 (G1・G2) はもう済んでいるので、いま区切りの報告ができる",
+     "3 部なので数が少なく、わかりやすい"
+    ],
+    "cons": [
+     "第2部が G3〜G5 の 3 フェーズ・約 3,000 年で、「区切りが大きすぎる」という今の不満がそのまま残る",
+     "第3部が G6 の 1 フェーズだけになる",
+     "Childe の新石器革命には土器や手仕事もふくまれていたので、G3 を第1部に入れる読み方もでき、境目にあいまいさがある",
+     "Childe の 10 の目安はメソポタミアから作ったものなので、ほかの地域との比べ方としては弱い (Ur、Smith 2009)"
+    ]
+   },
+   {
+    "title": "案B: 西アジアの考古学の時期で4つに分ける (4部)",
+    "parts": [
+     {
+      "name_ja": "第1部 村と畑",
+      "phases": "G1・G2 (どちらも済み)",
+      "real_world": "ナトゥーフ期 (約 1.5 万〜1.17 万年前 = 前 13,000〜9,700 年ごろ) → PPNA (前 9,700〜8,800 年ごろ) → PPNB (前 8,800〜6,900/6,500 年ごろ、ガンジ・ダレのヤギ 前 8,000 年ごろ) → PPNC の分散 (前 6,950〜6,650 年ごろ)",
+      "theory_basis": "新石器革命 (Childe 1936) を、定住 → 野生の麦の栽培と貯蔵 → 家畜化に分けた見方 (Bar-Yosef 1998; Kuijt & Finlayson 2009; Zeder 2011)。Johnson & Earle の「家族の群れ → 村」。Flannery 2002 の段階 1→2。終わりは PPNB の大きな村がばらけたこと (Kuijt 2000; Kadowaki 2012)",
+      "sources": [
+       "Bar-Yosef 1998, Evolutionary Anthropology 6:159-177",
+       "Richter et al. 2017, Scientific Reports (シュバイカ 1 の年代)",
+       "Kuijt & Finlayson 2009, PNAS, doi:10.1073/pnas.0812764106",
+       "Zeder 2011, Current Anthropology 52(S4): https://www.journals.uchicago.edu/doi/10.1086/659307",
+       "Flannery 2002, American Antiquity",
+       "Kadowaki 2012: https://www.num.nagoya-u.ac.jp/outline/staff/kadowaki/laboratory/pdf/Kadowaki2012.pdf",
+       "ASPRO chronology (Hours et al. 1994)"
+      ]
+     },
+     {
+      "name_ja": "第2部 土器と家の倉",
+      "phases": "G3・G4 (G3 はいま進行中)",
+      "real_world": "上メソポタミアの土器新石器 (前 7,000〜6,700 年ごろ。最初はめずらしく、よそから来る土器。前 6,700 年ごろから毎日使う粗い土器) → サビ・アビヤドの「焼けた村」の倉・印章・封泥・トークン (前 6,200〜6,000 年ごろ) → ハッスーナ・サマッラ・ハラフ (おおよそ前 6,500〜5,300 年ごろ。ハラフの細かい絵の土器を作る場所と村どうしの交換)。比べる例: チャタルヒュユクの家ごとの食料庫 (前 7,100〜6,000 年ごろ)",
+      "theory_basis": "Flannery 2002 の段階 2→3 (家ごとの倉から、大きな家族の倉へ)。Bogaard ほか 2009 (チャタルヒュユクの「家の中の食料庫」と、祭りで見せる余り)。Halstead 1989 の「ふつうの余り」(不作に備える余り)。Frangipane 2007 の「水平な平等」(ハラフ)。Fried の平等社会、Flannery & Marcus の「がんばりで得る名声 (受けつがない)」。Bogaard, Fochesato & Bowles 2019 (人手で決まる農業では差が小さい)",
+      "sources": [
+       "Nieuwenhuyse (ed.) 2018, Relentlessly Plain (Leiden): https://www.universiteitleiden.nl/en/research/research-projects/archaeology/relentlessly-plain",
+       "Akkermans & Duistermaat 1996 (サビ・アビヤドの封泥): https://scholarlypublications.universiteitleiden.nl/access/item%3A2715257/view",
+       "Bogaard et al. 2009, Antiquity 83:649-668 (Private pantries and celebrated surplus)",
+       "Halstead 1989, in Halstead & O'Shea (eds.), Bad Year Economics, 68-80",
+       "Frangipane 2007, World Archaeology 39(2):151-176",
+       "Flannery 2002, American Antiquity",
+       "Bogaard, Fochesato & Bowles 2019, Antiquity 93:1129-1143",
+       "Metropolitan Museum, The Halaf Period: https://www.metmuseum.org/toah/hd/half/hd_half.htm",
+       "Campbell, Rethinking Halaf Chronologies: https://www.academia.edu/2823262/Rethinking_Halaf_Chronologies"
+      ]
+     },
+     {
+      "name_ja": "第3部 まとめ役と神殿",
+      "phases": "G5",
+      "real_world": "ウバイド期 (南メソポタミアで前 6,200/5,500〜4,200 年ごろ。北のウバイドは前 5,300〜4,300 年ごろ)。エリドゥの同じ場所に建てなおされる神殿、テル・アバダの「首長の家」(倉の土器、器に入れたトークン)、テペ・ガウラやデイルメンテペの封泥。墓の副葬品の差は小さい",
+      "theory_basis": "Johnson 1982 の規模のストレス (家族が 6 つほどをこえると、まず話し合いと祭りでまとまる「順番の階層」、次に決まった役の「同時の階層」)。Fried のランク社会、Service の首長制、Carneiro 1981 (いくつもの村を 1 人の首長がまとめる)。Stein 1994 (儀礼で主食を集める、みんなのための考え方)。Blanton ほか 1996 の「みんな型 (corporate)」のまとめ役",
+      "sources": [
+       "Stein 1994: https://ehrafarchaeology.yale.edu/traditions/mh55/documents/004",
+       "Carter & Philip (eds.) 2010, Beyond the Ubaid, SAOC 63: https://isac.uchicago.edu/sites/default/files/uploads/shared/docs/saoc63.pdf",
+       "Johnson 1982 (要約): https://mapaspects.org/biblio/ref_4260/index.html",
+       "Blanton et al. 1996, Current Anthropology 37(1):1-14",
+       "Belleten (ウバイドの首長の家): https://belleten.gov.tr/tam-metin/61/eng",
+       "Kopanias & Barlagianni (ウバイドの墓): https://www.archaeopresspublishing.com/ojs/index.php/ash-sharq/article/view/711",
+       "Metropolitan Museum, The Ubaid Period: https://www.metmuseum.org/essays/the-ubaid-period-5500-4000-b-c"
+      ]
+     },
+     {
+      "name_ja": "第4部 町と文字",
+      "phases": "G6",
+      "real_world": "テル・ブラク LC2 (前 4,200〜3,800 年ごろ、約 55 ha、LC3 で約 130 ha) → 中期ウルク (前 3,800〜3,400 年ごろ。スシアナの 4 段の集落、トークンを入れた封筒 前 3,700〜3,500 年ごろ) → 後期ウルク (前 3,400〜3,100 年ごろ。原楔形文字 前 3,350〜3,200 年ごろ。ウルクは 100〜250 ha)",
+      "theory_basis": "Childe 1950 の都市革命。Wright & Johnson 1975・Johnson 1973 (行政の段)。Schmandt-Besserat (トークン → 文字)。Oates ほか 2007 (町は文字より先)。Shin ほか 2020 (規模のしきい → 情報のしきい)。Sherratt 1981・Bogaard ほか 2019 (前 4,000 年ごろの犂と牛で、家の豊かさの差が大きくなる)",
+      "sources": [
+       "Childe 1950, Town Planning Review 21:3-17",
+       "Wright & Johnson 1975: https://acawiki.org/Population,_Exchange,_and_Early_State_Formation_in_Southwestern_Iran",
+       "Oates et al. 2007, Antiquity 81:585-600",
+       "Schmandt-Besserat: https://sites.utexas.edu/dsb/tokens/tokens-and-writing-the-cognitive-development/",
+       "Shin et al. 2020, Nature Communications 11:2394: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7224170/",
+       "Sherratt 1981, Plough and pastoralism",
+       "Bogaard, Fochesato & Bowles 2019, Antiquity",
+       "CDLI (ウルク IV): https://cdli.earth/artifacts/4362"
+      ]
+     }
+    ],
+    "pros": [
+     "第1部 (G1・G2) が済んでいるので、いま区切りの評価・動画が作れる",
+     "各部が 1〜2 フェーズになり、「大きすぎる」を解消できる。どの部も考古学の時期名 (先土器新石器 / 土器新石器〜ハラフ / ウバイド / ウルク) にそのまま対応する",
+     "調べた 4 つの見方のうち 3 つが、ほぼ同じ切れ目 (PPNC の分散、前 6,200〜5,500 年ごろ、前 4,200 年ごろ) をあげている",
+     "いま進行中の G3 と次の G4 が「土器・印章・家の倉」の時代としてひとまとまりになる。サビ・アビヤドの印章 (持ち主の印) を G4 の目印に使える",
+     "Childe の 2 つの革命は、第1部と第4部として残る"
+    ],
+    "cons": [
+     "G4 の「差」(ジニ 0.3 以上) はハラフ期の証拠 (差が小さい) と合わない。第2部の G4 は「持ち物と受けつぎ」を中心にし、大きな差は第3部の終わり〜第4部に移す必要がある",
+     "第3部と第4部は 1 フェーズずつなので短く見える (実際はどちらも 1,000 年以上)。中を小さな段階に分けないと途中経過が見えにくい",
+     "ハラフ・サマッラ・ウバイドの年代は土器の時期区分による年代で、資料により 300〜1,000 年ずれる。第2部と第3部の境 (前 6,200〜5,500 年ごろ) ははっきりしない",
+     "ハラフ (北) とウバイド (南) は一部同じ時期に並んでいるので、時間の順というより「段階」の区切りになる"
+    ]
+   },
+   {
+    "title": "案C: 平等な村 → 受けつぐ差と首長 → 国 (Fried / Flannery & Marcus と地域比較による 3部)",
+    "parts": [
+     {
+      "name_ja": "第1部 平等な村",
+      "phases": "G1・G2・G3 (G3 はいま進行中)",
+      "real_world": "西アジア: ナトゥーフ期〜ハラフ期 (前 13,000〜5,500 年ごろ)。ほかの地域の同じ段階: 中国の裴李崗〜前期仰韶 (前 7,000〜4,000 年ごろ)、オアハカのティエラス・ラルガス期 (前 1,500〜1,150 年ごろ)、エジプトのファイユーム〜バダリ (前 5,400〜3,800 年ごろ)",
+      "theory_basis": "Fried の平等社会、Flannery & Marcus 2012 の「平等 → がんばりで得る名声 (受けつがない)」。Hodder 2022 (新石器時代の平等は、みんなで守っていたもの)。Halstead 1989 の「ふつうの余り」。地域比較では、村ができてから受けつぐ差が出るまでがいちばん長い (300〜3,000 年ほど)",
+      "sources": [
+       "Fried 1967 (要約): https://cas-sca.journals.uvic.ca/index.php/anthropologica/article/download/624/732/1515",
+       "Flannery & Marcus 2012, The Creation of Inequality (Harvard UP)",
+       "Hodder 2022, Cambridge Archaeological Journal 32(4):619-642, doi:10.1017/S0959774322000063",
+       "Halstead 1989, Bad Year Economics",
+       "Liu Li 2004, The Chinese Neolithic (CUP)",
+       "Marcus & Flannery 2004, FAMSI: https://www.famsi.org/reports/03006/index.html"
+      ]
+     },
+     {
+      "name_ja": "第2部 受けつぐ差と首長",
+      "phases": "G4・G5",
+      "real_world": "西アジア: サマッラ〜ウバイド期 (前 5,500〜4,000 年ごろ)。Flannery & Marcus は西アジアで受けつぐ身分を約 7,500 年前とする。ほかの地域: 中国の仰韶中期 (前 4,000〜3,500 年ごろ、最初の集落の段)、エジプトのナカダ I〜IIB (前 3,750〜3,450 年ごろ、ヒエラコンポリス HK6 の墓)、オアハカのサン・ホセ期 (前 1,150〜850 年ごろ)、ヴァルナ (前 4,600〜4,350 年ごろ、比べる例)",
+      "theory_basis": "Fried のランク社会、Flannery & Marcus の「受けつぐ身分」。Kohler ほか 2025 PNAS (長く続く豊かさの差は、畑を始めてから 1,000 年以上あとに、集落の段と一緒に出てくる)。地域比較の「段階 C」(受けつぐ差と首長、2 段の集落) を 1 つの部にする",
+      "sources": [
+       "Flannery & Marcus 2012 (7,500 年前の記述): https://themontrealreview.com/2009/The-Creation-of-Inequality.php",
+       "Kohler, Bogaard et al. 2025 PNAS (WSU の発表): https://news.wsu.edu/press-release/2025/04/15/new-study-reveals-wealth-inequalitys-deep-roots-in-human-prehistory/",
+       "Kohler et al. 2017, Nature 551:619-622, doi:10.1038/nature24646",
+       "Stein 1994 (ウバイド)",
+       "Liu Li 2004 (仰韶中期の階層): https://resolve-he.cambridge.org/core/books/chinese-neolithic/reconstructing-social-processes/701446127039BDEDA15EC13E01BAD6CB",
+       "Hierakonpolis Expedition: https://hierakonpolis-online.org/index.php/explore-the-predynastic-cemeteries",
+       "Higham et al. 2018, Radiocarbon (ヴァルナ)"
+      ]
+     },
+     {
+      "name_ja": "第3部 町と国と文字",
+      "phases": "G6",
+      "real_world": "西アジア: 後期銅石器〜後期ウルク (前 4,200〜3,100 年ごろ)。ほかの地域: エジプト第 0〜1 王朝 (前 3,200〜3,000 年ごろ。アビドス U-j の文字 前 3,320〜3,150 年ごろ)、中国の二里頭 (前 1,750〜1,530 年ごろ) と殷の甲骨文字 (前 1,250 年ごろ)、オアハカのモンテ・アルバン (国は前 300〜100 年ごろ、文字は前 600 年ごろ)",
+      "theory_basis": "Service・Fried・Johnson & Earle の「国」。Wright & Johnson 1975 (3 段以上の行政)。Spencer 2010 (国の仕組みと、1 日で行き来できない遠くへの広がりが一緒に出る)。Shin ほか 2020 (規模のしきいと情報のしきいは別)。国と文字の順番は地域で逆になる",
+      "sources": [
+       "Spencer 2010, PNAS 107:7119-7126: https://pmc.ncbi.nlm.nih.gov/articles/PMC2867764",
+       "Shin et al. 2020, Nature Communications 11:2394",
+       "Wright & Johnson 1975, American Anthropologist 77(2)",
+       "Dee et al. 2013, Proc. R. Soc. A 469:20130395 (エジプトの年代)",
+       "Liu & Xu 2007, Antiquity 81 (二里頭)",
+       "Borcan, Olsson & Putterman 2021, Explorations in Economic History 82"
+      ]
+     }
+    ],
+    "pros": [
+     "地域をこえてくり返し見られる切れ目 (平等な村 → 受けつぐ差と首長 → 国) に合う",
+     "「差」と「首長」を同じ部に入れるので、どちらが先かという順番の問題 (下の phase_order_issues) を部の中で扱える",
+     "Flannery & Marcus の「3 つの移り変わり」という、はっきりした理論の裏づけがある"
+    ],
+    "cons": [
+     "第1部が G1〜G3 で、G3 がまだ途中なので、いま区切りの報告ができない",
+     "第1部が約 7,000 年・3 フェーズで、まだ大きい",
+     "西アジアでは家ごとの倉 (G4 の前半) が PPNB (前 8,800〜6,900 年ごろ) に始まるので、G4 を「平等な村」のあとに置くのはずれる",
+     "段階をはしご (順番に必ず上る) とみる考えには批判が強い (Feinman & Neitzel 1984; Yoffee 2005; Graeber & Wengrow 2021)",
+     "ほかの地域の例が多く、西アジアの村の話としてはわかりにくい"
+    ]
+   }
+  ],
+  "recommended": "案B (4部) をすすめます。\n\n理由:\n(1) G1・G2 は済んでいるので、第1部「村と畑」をいま閉じて、区切りの評価と動画を作れます。\n(2) どの部も 1〜2 フェーズで、考古学の時期 (先土器新石器 / 土器新石器〜ハラフ / ウバイド / ウルク) と一対一になり、通説として説明しやすいです。調べた 4 つの見方のうち 3 つが、ほぼ同じ切れ目 (前 6,950〜6,650 年ごろの PPNC の分散、前 6,200〜5,500 年ごろ、前 4,200 年ごろ) をあげています。\n(3) いま進行中の G3 と次の G4 が、「土器・印章・家の倉」の時代 (サビ・アビヤド、ハラフ) としてひとまとまりになります。\n(4) チャイルドの 2 つの革命 (案A) は、第1部と第4部として残ります。\n案A は第2部が G3〜G5 の 3 フェーズで、「大きすぎる」がそのまま残ります。案C は G3 が終わるまで第1部が閉じません。\n\nあわせて相談したいこと:\nG4 の「差」の条件 (ジニ係数 0.3 以上) は、ハラフ期の証拠 (豊かさの差が小さい) と合いません。そこで、第2部の G4 は「家の倉・持ち主・受けつぎ」を中心にします。大きな差 (高いジニ係数) は、第3部の終わり〜第4部 (ウバイド後期〜ウルク、前 4,000 年ごろの犂と牛) の目安に移す案です (Bogaard ほか 2019; Kohler ほか 2025)。\n\n途中経過 (部の中の目安) の案:\n- 第2部「土器と家の倉」\n  - G3-1 土器を作りはじめる (前 7,000 年ごろ。最初はめずらしい品)\n  - G3-2 毎日使う土器・鎌 (前 6,700 年ごろから)\n  - G3-3 作る人が出る (いまの G3 の条件)\n  - G4a 家の倉 (Flannery 2002 の段階 2)\n  - G4b 受けつぎと持ち主の印 (サビ・アビヤドの印章 前 6,200 年ごろ)\n- 第3部「まとめ役と神殿」\n  - G5a 話し合い・長老・祭りでまとまる (Johnson 1982 の「順番の階層」。まとめ役がいなくても大きな共同作業はできた: ギョベクリ・テペ)\n  - G5b 決まったまとめ役・罰・裁き (「同時の階層」。テル・アバダの首長の家)\n- 第4部「町と文字」\n  - G6a 村どうしの交換と町 (テル・ブラク 前 4,200 年ごろ)\n  - G6b 記録 (トークン → 封筒 → 粘土板 → 文字、前 3,700〜3,200 年ごろ)\n  - 町と文字は地域によって順番が逆になるので、別々の条件にします。\n- 数で見える目安:\n  - 村の大きさ 約 60 → 約 300 → 約 700 人 (Kuijt 2000 のまた聞きで、のちに下方修正。ゲームでは人口を現実の 1/10〜1/100 に縮めているので、その割合にします)\n  - 家族が 6 つをこえると新しい決め方が要る (Johnson 1982)\n  - 家の倉と村の蓄えの割合\n  - 印・トークンを使っているか\n  - 集落の段の数 1→2→3→4\n  - 家の持ち物のジニ係数\n\n時間の配分について: 通説では村の時代がいちばん長く、首長が出てから国になるまでは 500〜1,500 年ほどと速いです。部ごとのゲーム内の年数は同じにしないほうが現実に近くなります。また、PPNB の大きな村がばらけたように、止まる・後もどりすることも起きてよい結果として扱うと、通説に合います。",
+  "phase_order_issues": [
+   "G3 の例「ウバイド期」がずれている: 上メソポタミアの土器は前 7,000〜6,700 年ごろに始まり (Leiden 'Relentlessly Plain'; Nieuwenhuyse ed. 2018)、ウバイドより 500〜1,500 年早い。最初の土器はめずらしい、交換で来る品で、毎日使う粗い土器は前 6,700 年ごろから。ウバイドは G5 (首長と神殿) の例にあたる。",
+   "土器は畑より約 2,500 年あと (西アジアの『先土器新石器』)。G2 → G3 の順番自体は西アジアでは正しい。ただし中国・メソアメリカ・エジプトでは、土器は最初の村と一緒に出るので、土器は『余りと分業』の目印としては西アジアでしか使えない (地域比較)。",
+   "分業に余りが要るとはかぎらない: PPNA・PPNB にはすでに作る人がいた (シュバイカ 6 のビーズ、ナヴィフォームの石刃、バジャの砂岩の輪、石灰しっくい)。階層のない社会で、余りとの結びつきもはっきりしない (Barzilai; Kuijt 2000)。Halstead 1989 の『ふつうの余り』では、余りは不作への備えで、自動的に作る人を養うわけではない。",
+   "貯蔵は家畜化より前: ドゥラーの倉は約 11,300〜11,175 年前で、作物が家畜化されるより約 1,000 年早い (Kuijt & Finlayson 2009 PNAS)。G3 の『余りをためる』は G2 より前から始まっている。",
+   "G4 の『家の持ち物』は G3 より前に始まる: 丸い家と共同の倉 → 四角い家と家ごとの倉への変化は PPNB (前 8,800〜7,500 年ごろ) で、土器より 1,500〜2,000 年早い (Flannery 2002; Byrd 1994)。",
+   "G4 の『差』が早すぎる: 豊かさの差は畑を始めてから少なくとも 4,000 年ほど小さいままで、前 4,000 年ごろの犂と牛 (土地で決まる農業) で大きくなる (Bogaard, Fochesato & Bowles 2019; Kohler ほか 2025 PNAS)。チャタルヒュユクは家の大きさがほぼ同じで、ウバイドも墓の差が小さい (Kopanias & Barlagianni)。Fried の順番でも、ランク (首長) が先で、経済の差 (階層化) があと。いまの『G4 差 → G5 リーダー』は、『差』の部分で通説と逆。",
+   "G4 の例 Kohler ほか 2017 とヴァルナは、遅い時期の例: ヴァルナ (前 4,596〜4,341 年ごろ) はバルカンの銅器時代で、西アジアではない。犂と結びつく後半の差 (G4b) の比べる例としてだけ使える (Higham ほか 2007/2018)。",
+   "G5 の『まとめ役がいないと大きな共同作業はできない』は早い時期の証拠と合わない: ギョベクリ・テペ (前 9,600〜8,200 年ごろ)、ジェリコの塔、ヒラゾン・タクティトの祭り (約 12,000 年前) は、目に見えるまとめ役なしに祭りと儀礼で行われた。規模のストレスはナトゥーフ期 (G1) から始まっていて、答え方には (1) 話し合いと祭り、(2) 決まった役、(3) 村が分かれる、の 3 つがある (Johnson 1982; Kuijt 2000; Watkins 2023)。",
+   "G5 の例『ウバイドの首長制』は主流だが、異論がある: Stein 1994 は首長制とみる。一方で墓の差はほとんどない (Kopanias & Barlagianni)、『平等の考え方』が表に出ていた (Graeber & Wengrow 2021) という見方もある。G5 の条件に目に見える豊かさの差を入れないほうがよい。",
+   "G6 は別々のものを 1 つにまとめている: 村どうしの交換は最初の村からある (黒曜石、ハラフの土器の交換 前 6,000 年ごろ)。記録の道具は早い (トークン 前 8,000/7,500 年ごろ〜、サビ・アビヤドの印章 前 6,200 年ごろ)。町 (テル・ブラク 前 4,200 年ごろ) は文字 (前 3,350〜3,200 年ごろ) より先。地域比較では国と文字の順番は逆にもなる (中国は国が先、オアハカは文字が先)。交換は G1 からの続く量、町と記録は別々の条件にするのが合う (Oates ほか 2007; Schmandt-Besserat; Spencer 2010; Shin ほか 2020)。",
+   "G1 の『定住で子が増える』: Bocquet-Appel 2011 は、出生の増加を畑を始めたこと (G2) と結びつけている。定住だけではない。南レヴァントでは PPNB の増え方が弱かったという研究もある。",
+   "通説の順番は一直線ではない: PPNB の大きな村は PPNC でばらけた (Kuijt 2000; Zielhofer ほか 2012)。ヨーロッパの LBK は人口が増えたあとに減った (Shennan ほか 2013)。ヴァルナやトリポリエの巨大集落は国にならなかった。止まる・後もどりする結果も起きてよい。",
+   "G2 の例ガンジ・ダレは、いちばん古い家畜の世話ではない: いちばんはっきりした、若いオスを選んでつぶした証拠 (約 1 万年前)。動物の世話は約 11,500 年前から (Zeder 2011)。"
+  ],
+  "claims_to_verify": [
+   "ハラフの較正年代 約 前 5,900〜5,300 年 (記憶によるもので未確認。資料により前 6,100〜5,100 年、前 6,500〜5,500 年)",
+   "サビ・アビヤドの印章・封泥・倉の年代: 前 6,200〜6,000 年ごろ (Leiden) と、前 5,700〜5,000 年ごろ (別のまとめ) で食い違う",
+   "ウバイドの年代: 全体で前 6,500〜3,800 年 (Carter & Philip 2010 によるとされるが未確認) と、前 5,500〜4,000 年 (Met) の食い違い。ウバイド 0 は前 7 千年紀 (CNRS) か前 5,500〜5,400 年か",
+   "Johnson 1982 の『家族など 6 つほどで新しい決め方が要る』というしきい (要約でしか確認していない)",
+   "Kohler ほか 2017 (Nature 551:619-622) の家の大きさのジニ係数の目安 (狩猟採集 約 0.17、園耕 約 0.27、農耕 約 0.35)。計画で使っている数",
+   "Bogaard, Fochesato & Bowles 2019: 前 4,000 年ごろの犂と牛で、家の豊かさのジニ係数が約 2 倍 (報道の要約による)",
+   "Kohler, Bogaard ほか 2025 PNAS: 長く続く豊かさの差は、畑を始めてから 1,000 年以上あと (大学の発表による)",
+   "Flannery & Marcus 2012: 西アジアで受けつぐ身分が約 7,500 年前に出る",
+   "上メソポタミアの土器の始まり 前 7,000〜6,700 年ごろと、毎日使う粗い土器 前 6,700 年ごろから (サビ・アビヤド)",
+   "PPNC のアイン・ガザル 約 8,900〜8,600 年前、PPNB 後期の大きな村の人口 (1,500〜4,000 人か、数百人か)",
+   "Kuijt 2000 の村の人口 (約 60、330、765、3,000〜4,000 人) はまた聞きで、のちに本人が下方修正している",
+   "テル・ブラクの大きさ: LC2 約 55 ha・LC3 約 130 ha (Ur) と、『ほぼ 300 ha』(別のまとめ) の食い違い",
+   "ウルクの大きさ (80、100、250 ha) と人口 (4〜8 万人、主に一般向けの資料)",
+   "原楔形文字 (ウルク IV) 前 3,350〜3,200 年ごろ、数の粘土板 前 3,500〜3,350 年ごろ、トークンを入れた封筒 前 3,700〜3,500 年ごろ",
+   "いちばん古いトークンの年代 (ガンジ・ダレ・テペ・アシアブの前 8,000/7,500 年ごろか、ムレイベトの前 9,000〜8,700 年ごろか)",
+   "ドゥラーの倉 約 11,300〜11,175 年前 (Kuijt & Finlayson 2009)",
+   "ガンジ・ダレのヤギ 約 1 万年前と、動物の世話の始まり 約 11,500 年前 (Zeder 2011)",
+   "ナトゥーフ期の始まり 約 15,000/14,600 年前と、ヤンガードリアス 約 12,900〜11,700 年前",
+   "ギョベクリ・テペ 前 9,600〜8,200 年ごろ (古い木の影響で年代が見なおされている)",
+   "ヴァルナの年代 前 4,596〜4,516 年〜前 4,427〜4,341 年 (Higham ほか 2018)",
+   "Bocquet-Appel 2011 の『女の人 1 人あたり子が約 2 人増える』と、500〜700 年の信号",
+   "Frangipane 2007 の『水平な平等 (ハラフ)』と『垂直な平等 (サマッラ・ウバイド)』の分け方",
+   "『行政の段が 3 つ以上・集落が 4 段で国』の出どころが Wright 1977 か Johnson 1982/1987 か",
+   "シュバイカ 6 のビーズづくりの研究の著者と年、Willcox & Stordeur の Antiquity 論文の年 (2012 か 2014 か)",
+   "エジプトのナカダの各時期の年代 (Dee ほか 2013 にもとづく要約表からで、原論文では未確認)"
+  ]
+ },
+ "verification": {
+  "checks": [
+   {
+    "claim": "1. ハラフの較正年代 約 前 5,900〜5,300 年",
+    "verdict": "correct",
+    "correction": "中心の年代としては正しい。サビ・アビヤドの報告ではハラフの始まりは約 前 5,900〜5,400 年 (較正)、その前の移行期 (プロト・ハラフ) は 前 6,100〜5,900 年。カヴィ・タルラスの研究計画は北メソポタミアのハラフを 前 6,000〜5,300 年とする。ハラフからウバイドへの移行は 前 5,300〜5,200 年ごろ (テル・タウィーラ)。『前 6,100〜5,100』は移行期を前後に含めた幅。『前 6,500〜5,500』は古いか、移行期を混ぜた数で、使わないほうがよい。Akkermans の『前 5,200〜4,500』は較正していない年代。",
+    "source": "https://www.brepols.net/products/IS-9782503524443-1 ; https://gepris.dfg.de/gepris/projekt/255465930 ; https://www.orientarch.uni-halle.de/digs/tawila/tawila_results_eng.pdf"
+   },
+   {
+    "claim": "2. サビ・アビヤドの印章・封泥・倉: 前 6,200〜6,000 年 (Leiden) か 前 5,700〜5,000 年か",
+    "verdict": "partly",
+    "correction": "本当の食い違いではない。前 6,200 年ごろ (較正) に大きな倉・トロス・印章・封泥が現れ、『焼けた村』(第 6 建築層) は 前 6,000 年ごろの火事で焼けた。『前 5,700〜5,000 年』は Akkermans & Duistermaat が使った較正前の年代で、同じ論文で較正すると 前 6,500〜5,800 年にあたると書いている。計画では較正した 前 6,200〜6,000 年に統一する。トークンが帳簿用だったかは議論がある (Bennison-Chapman)。",
+    "source": "https://en.wikipedia.org/wiki/Tell_Sabi_Abyad ; https://scholarlypublications.universiteitleiden.nl/access/item%3A2886007/download"
+   },
+   {
+    "claim": "3. ウバイド: 前 6,500〜3,800 年 (Carter & Philip 2010) と 前 5,500〜4,000 年 (Met)、ウバイド 0 は前 7 千年紀か 前 5,500〜5,400 年か",
+    "verdict": "partly",
+    "correction": "『前 6,500〜3,800 年』は Carter & Philip 2010 の 2 ページ (『南のウバイドはウバイド 0 と 5 を含めて約 3,000 年』) に由来するとされる。ただし確認できたのはウィキペディアと Pleiades を通したまた聞きだけ。Met の 前 5,500〜4,000 年は北まで広がった時期のまとめで、Met 自身も南での始まりを 前 6,200 年ごろとしている。ウバイド 0 (ウェイリ) は CNRS によると前 7 千年紀で、ほかの資料では 前 6,500〜5,400 年。『ウバイド 0 = 前 5,500〜5,400 年』は誤りで、5,400 年はウバイド 0 の終わり (ウバイド 1 の始まり) にあたる。北のウバイドは 前 5,300〜4,300 年ごろ。",
+    "source": "https://pleiades.stoa.org/vocabularies/time-periods/ubaid ; https://www.metmuseum.org/essays/the-ubaid-period-5500-4000-b-c ; https://umrtemps.cnrs.fr/en/terrain/tell-el-oueili-2/"
+   },
+   {
+    "claim": "4. Johnson 1982 の『家族など 6 つほどで新しい決め方が要る』しきい",
+    "verdict": "partly",
+    "correction": "Johnson の『魔法の数 6』は、決めごとをする集まりのなかの単位の数についての話。6 ほどを超えるとストレスが急に (指数関数的に) 増え、集団が分かれるか、単位を組みなおすか、上の段を作る。順番の階層にも同時の階層にもあてはまるとされる。規模は『いちばん下の単位』の数で測り、その単位は核家族でも拡大家族でもよい。そのため『家族 6 つ』はおおまかな言い換え。対処のしかたも『新しい決め方』だけでなく、分かれることや単位を大きくすること (核家族 → 拡大家族) も含む。P6 の『まず順番の階層、次に同時の階層』という順序は計画側の解釈で、Johnson は順番の階層を同時の階層に代わる平等な仕組みとして示している。",
+    "source": "https://mapaspects.org/biblio/ref_4260/index.html ; https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3953443/"
+   },
+   {
+    "claim": "5. Kohler ほか 2017: 家の大きさのジニ係数 狩猟採集 約 0.17、園耕 約 0.27、農耕 約 0.35",
+    "verdict": "correct",
+    "correction": "WSU の記事はそれぞれの中央値を 0.17・0.27・0.35 としていて、論文 (Nature 551:619-622) とも一致する。論文の表では未確認。どれも家の大きさだけで測った値で、資産全体のジニ係数ではない。Kerig ほかの 2025 年 PNAS 論文は、技術が広まった前後で家の格差は大きく変わらないと反論している (ブログ経由の要約で確認)。",
+    "source": "https://cas.wsu.edu/?p=6302 ; https://www.doi.org/10.1038/NATURE24646"
+   },
+   {
+    "claim": "6. Bogaard, Fochesato & Bowles 2019: 前 4,000 年ごろの犂と牛でジニ係数が約 2 倍",
+    "verdict": "partly",
+    "correction": "『前 4,000 年ごろから格差が急に増える』と、『人手で決まる農業から土地で決まる農業へ変わると、大きく長く続く格差が出る』は確認できた (90 の遺跡の時期、Antiquity 93)。牛に犂をひかせることを中心に置いたのは主に報道の書き方で、論文の要旨は『土地で決まる農業』として書いている。『約 2 倍』の数字は資料で確認できなかった。",
+    "source": "https://www.cambridge.org/core/journals/antiquity/article/abs/farminginequality-nexus-new-insights-from-ancient-western-eurasia/8EFE3B8F5AFA07450F87E4E9B553A43E ; https://www.sciencedaily.com/releases/2019/09/190918100228.htm"
+   },
+   {
+    "claim": "7. Kohler, Bogaard ほか 2025 PNAS: 長く続く豊かさの差は畑を始めてから 1,000 年以上あと",
+    "verdict": "correct",
+    "correction": "要旨に『長く続く豊かさの差は、ふつう畑を始めてから 1,000 年以上遅れて現れる』とある。WSU の発表は約 1,500 年としている。人口の増加、土地の不足、集落の段が増えることと結びつけていて (1,100 以上の遺跡、47,000 以上の家)、P9 の『集落の段と一緒に出る』とも合う。DOI 10.1073/pnas.2400691122。",
+    "source": "https://news.wsu.edu/press-release/2025/04/15/new-study-reveals-wealth-inequalitys-deep-roots-in-human-prehistory/ ; https://eprints.whiterose.ac.uk/id/eprint/225525"
+   },
+   {
+    "claim": "8. Flannery & Marcus 2012: 西アジアで受けつぐ身分が約 7,500 年前",
+    "verdict": "correct",
+    "correction": "本の抜粋に、西アジアの受けつぐエリートは約 7,500 年前、ペルーは約 4,000 年前、メキシコは約 3,000 年前とある (Montreal Review 経由で確認、ページ数は未確認)。約 7,500 年前は 前 5,500 年ごろで、サマッラ後期からウバイド前期にあたる。",
+    "source": "https://themontrealreview.com/2009/The-Creation-of-Inequality.php"
+   },
+   {
+    "claim": "9. 上メソポタミアの土器 前 7,000〜6,700 年ごろ、毎日使う粗い土器は 前 6,700 年ごろから (サビ・アビヤド)",
+    "verdict": "correct",
+    "correction": "前 7,000〜6,700 年 (較正) は『初期土器新石器』で、鉱物を混ぜたよく作られた少数の器 (Early Mineral Ware)。そのあと約 300 年して、植物を混ぜた粗い『Standard Ware』が多くなる。ただ、最初の土器は『よそから来た』だけではない。多くの遺跡でよそから来た器と地元で作った器が一緒に見つかり、どこで生まれたかはまだわからない。",
+    "source": "https://resolve.cambridge.org/core/journals/antiquity/article/not-so-coarse-nor-always-plain-the-earliest-pottery-of-syria/3FAD293EB7156B4AED3E73315E1CBB9F ; https://www.oxbowbooks.com/?p=7596"
+   },
+   {
+    "claim": "10. PPNC のアイン・ガザル 約 8,900〜8,600 年前、PPNB 後期の大きな村の人口 (1,500〜4,000 人か数百人か)",
+    "verdict": "partly",
+    "correction": "PPNC を 8.9〜8.6 千年前 (較正) とするのは、Rollefson が共著の 2012 年の研究のとおり。前 6,950〜6,650 年ごろにあたる。PPNC 全体は前 6,400 年ごろまでとする資料もある。人口ははっきりしない。ウィキペディアなどは最盛期 (前 7,000 年ごろ、10〜15 ha) を約 2,500〜3,000 人とし、Rollefson は PPNB 中期を 700〜900 人として、それが数世代で倍になったという。最近は、同じ時期に建っていた家を数えすぎているとして、アイン・ガザルなどを『数千人ではなく数百人』とみる意見がある (Kuijt ほか)。計画では『数百〜3,000 人ほど、議論あり』とするのが安全。",
+    "source": "https://en.wikipedia.org/wiki/Ayn_Ghazal_(archaeological_site) ; https://liverpool.ac.uk/archaeology-classics-and-egyptology/events/past-events/less-is-more-event"
+   },
+   {
+    "claim": "11. Kuijt 2000 の村の人口 (約 60、330、765、3,000〜4,000 人) と、のちに本人が下方修正したこと",
+    "verdict": "partly",
+    "correction": "60・330・765・3,000〜4,000 という数そのものは、原論文 (JAA 19) を開けず確認できなかった。下方修正のほうは確かめられた。Kuijt は Marciniak と 2024 年にチャタルヒュユクを 600〜800 人とし (以前の推定は 2,800〜10,000 人)、2025 年の講演では西アジア新石器の集落の人口推定全体がふくらみすぎていると論じている。ただ、2000 年の数字そのものを本人が直したかどうかは未確認。",
+    "source": "https://www.sciencenews.org/?p=3139707 ; https://www.arup.cas.cz/en/?p=14697"
+   },
+   {
+    "claim": "12. テル・ブラク: LC2 約 55 ha・LC3 約 130 ha (Ur) と『ほぼ 300 ha』",
+    "verdict": "partly",
+    "correction": "Ur によると LC2 (前 4,200〜3,800 年) は中心の丘と周りの小さな集落を合わせて約 55 ha。約 130 ha は LC3〜4 (前 3,800〜3,400 年) のほぼつながった輪の形の集落 (Ur, Karsgaard & Oates 2007 Science も 130 ha)。ウィキペディアは 130 ha を Period F (LC3) とする。ブラクを『ほぼ 300 ha』とする根拠は見つからなかった。近くのハムーカルの南の広がり (LC1〜2、約 280〜300 ha の黒曜石の散らばり) とまざった可能性が高い。",
+    "source": "https://jasonur.scholars.harvard.edu/pages/tell-brak ; https://en.wikipedia.org/wiki/Hamoukar ; https://ajaonline.org/book-review/1468/"
+   },
+   {
+    "claim": "13. ウルクの大きさ (80、100、250 ha) と人口 (4〜8 万人)",
+    "verdict": "partly",
+    "correction": "数のちがいは時期と測り方のちがい。後期ウルクの約 250 ha がいちばん多く引かれる。約 100 ha は Van De Mieroop の『前 3,200 年ごろ』の推定か、ウルク前期の値。約 80 ha の根拠は見つからなかった。人口 4 万人は 1 ha あたり約 160 人とした計算で、1 ha あたり 100〜300 人なら 2.5〜7.5 万人。5〜8 万人は前 2,900 年ごろの城壁内 (約 6 km²) の値で、後期ウルクではない。人口の数はおもに一般向けの資料にしかない。",
+    "source": "https://handwiki.org/wiki/Place:Uruk ; https://historyrise.com/article/uruks-urban-growth-demographic-changes-and-population-estimates/"
+   },
+   {
+    "claim": "14. 原楔形文字 (ウルク IV) 前 3,350〜3,200 年、数の粘土板 前 3,500〜3,350 年、トークン入りの封筒 前 3,700〜3,500 年",
+    "verdict": "partly",
+    "correction": "ウルク IV = 前 3,350〜3,200 年と、数だけの粘土板 = ウルク V (前 3,500〜3,350 年) は標準の区分どおり。数の粘土板はブラク、ハブーバ・カビーラ、ジェベル・アルーダでも出る。封筒 (ブッラ) は『いちばん古いものは前 4 千年紀の中ごろ (ウルク VI/V)』とされ、前 3,700 年は早すぎる。前 3,500 年前後とし、数の粘土板とほぼ同じ時期に重なると書くほうが正確。",
+    "source": "https://www.unicode.org/L2/L2019/19284-proto-cuneiform.pdf ; https://en.wikipedia.org/wiki/Proto-cuneiform"
+   },
+   {
+    "claim": "15. いちばん古いトークン (ガンジ・ダレ/テペ・アシアブの前 8,000/7,500 年か、ムレイベトの前 9,000〜8,700 年か)",
+    "verdict": "partly",
+    "correction": "Schmandt-Besserat はトークンの始まりを前 8,000 年ごろ (別の文では前 7,500 年ごろ) とし、テペ・アシアブを約 前 7,800 年とする。ガンジ・ダレもムレイベトもトークンの出る遺跡に挙げているが、遺跡ごとの年代は確認できなかった。彼女の年代はたいてい較正していない古い年代なので、較正すると古くなる。ムレイベトの前 9,000〜8,700 年が較正した値なら、食い違いの多くは較正の有無で説明できる (推測)。最初期の小さな粘土の玉が数を数える道具だったかは議論がある (Bennison-Chapman)。",
+    "source": "https://sites.utexas.edu/dsb/wp-content/uploads/sites/3043/2021/10/New-Tokens-FactsandInterpretationVisibleLanguage.pdf ; https://old.biblicalarchaeology.org/node/117841"
+   },
+   {
+    "claim": "16. ドゥラーの倉 約 11,300〜11,175 年前 (Kuijt & Finlayson 2009)",
+    "verdict": "correct",
+    "correction": "要旨どおり (約 11,300〜11,175 cal BP、PNAS 2009)。前 9,350〜9,225 年ごろにあたる。床を浮かせた倉で、植物の加工場のあいだにあり、作物の家畜化 (栽培化) より 1,000 年以上前。",
+    "source": "https://www.arch.ox.ac.uk/node/3697931"
+   },
+   {
+    "claim": "17. ガンジ・ダレのヤギ 約 1 万年前と、動物の世話の始まり 約 11,500 年前 (Zeder 2011)",
+    "verdict": "correct",
+    "correction": "ガンジ・ダレの集落は約 1 万年前で、ヤギの群れの管理は約 9,900 BP (Zeder & Hesse)。Zeder 2011 (Current Anthropology 52 S4) の要旨は、のちの家畜と作物の『形の変わらない野生のものの管理』が『少なくとも 11,500 cal BP、たぶんもっと前』に始まるとする。この 11,500 年前は動物と植物の両方についての値で、ヤギだけの値ではない。",
+    "source": "https://www.journals.uchicago.edu/doi/10.1086/659307 ; https://www.sciencenews.org/article/goat-busters-track-domestication"
+   },
+   {
+    "claim": "18. ナトゥーフ期の始まり 約 15,000/14,600 年前、ヤンガードリアス 約 12,900〜11,700 年前",
+    "verdict": "correct",
+    "correction": "ナトゥーフ前期の始まりは資料により約 15,000〜14,500 cal BP (シュバイカ 1 は 14,600 年前から)。ヤンガードリアスの 12,900〜11,700 年前は標準の値で、ナトゥーフ後期と重なる。",
+    "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5717003"
+   },
+   {
+    "claim": "19. ギョベクリ・テペ 前 9,600〜8,200 年 (古い木の影響で見なおし)",
+    "verdict": "partly",
+    "correction": "前 9,600〜8,200 年 (PPNA〜PPNB 前期) はよく引かれる値。終わりは DAI が PPNB 中期のあと (前 8,000 年ごろ) とし、もっと遅くまで続いたとする資料もある。年代の問題は『古い木』というより、埋め土に古いものが入ること (埋め土の年代は『それより前』の目安にしかならない) と、土の炭酸塩の年代の問題。壁のしっくいの炭で囲い D は 前 9,745〜9,314 年。『古い木で見なおし』とはっきり書いた資料は見つからなかった。",
+    "source": "https://dainst.blog/the-tepe-telegrams/2016/06/22/how-old-ist-it-dating-gobekli-tepe/"
+   },
+   {
+    "claim": "20. ヴァルナ 前 4,596〜4,516 年〜前 4,427〜4,341 年 (Higham ほか 2018)",
+    "verdict": "correct",
+    "correction": "要旨どおり (Radiocarbon 60(2):493-516、95.4%)。始まり 前 4,596〜4,516 年、終わり 前 4,427〜4,341 年、続いたのは約 120〜260 年。『前 4,590〜4,340 年』は別の論文 (Documenta Praehistorica 44) の値。",
+    "source": "https://www.cambridge.org/core/journals/radiocarbon/article/ams-dating-of-the-late-copper-age-varna-cemetery-bulgaria/706A7F638D010BB6C943FBDFC1062749"
+   },
+   {
+    "claim": "21. Bocquet-Appel 2011: 女の人 1 人あたり子が約 2 人増える、500〜700 年の信号",
+    "verdict": "partly",
+    "correction": "『合計特殊出生率が約 2 人増える』は 2011 年の Science (333:560-561) の要旨どおり。『500〜700 年』は 2002 年のヨーロッパ・北アフリカの墓地の研究 (子どもの骨の割合が 500〜700 年で 20〜30% 増える) の値で、2011 年の論文の値ではない。北アメリカでは 600〜800 年。",
+    "source": "https://hal.archives-ouvertes.fr/hal-00834316 ; https://en.wikipedia.org/wiki/Neolithic_demographic_transition"
+   },
+   {
+    "claim": "22. Frangipane 2007: ハラフ = 水平な平等、サマッラ・ウバイド = 垂直な平等",
+    "verdict": "correct",
+    "correction": "要旨 (World Archaeology 39(2):151-176) は、上下のない『水平な平等』と、特別な地位と大まかな平等が両立する『垂直な平等』を分け、北のハラフと中部・南のサマッラ・ウバイドを比べている。どちらがどちらかは要旨の書き方と、よく引かれる読み方からの判断で、本文は未確認。",
+    "source": "https://iris.uniroma1.it/handle/11573/93529"
+   },
+   {
+    "claim": "23. 『行政の段が 3 つ以上・集落が 4 段で国』の出どころは Wright 1977 か Johnson 1982/1987 か",
+    "verdict": "partly",
+    "correction": "もとは Wright & Johnson 1975 (American Anthropologist 77:267-289) の『国 = 専門の行政があり、決める段が少なくとも 3 つある社会』という定義。Johnson 1973 (国の操作上の定義、情報処理の必要)、Wright 1977 (首長制と国の段の数) がこれを補う。『集落 4 段』はそこから引き出した目安。Johnson 1982 は規模のストレスの論文で、出どころではない。3 段の文言は手元で直接は確認できず、記憶と要約による。",
+    "source": "https://acawiki.org/Population,_Exchange,_and_Early_State_Formation_in_Southwestern_Iran ; https://press.umich.edu/Books/L/Local-Exchange-and-Early-State-Development-in-Southwestern-Iran"
+   },
+   {
+    "claim": "24. シュバイカ 6 のビーズづくりの研究と、Willcox & Stordeur の Antiquity 論文の年 (2012 か 2014 か)",
+    "verdict": "partly",
+    "correction": "ビーズの研究は Thuesen, Alarashi, Ruter & Richter 2023 で、Antiquity ではなく PLOS ONE 18(12)。シュバイカ 6 の Antiquity 論文は Richter ほか 2016 の集落の報告。Willcox & Stordeur は 2012 (Antiquity 86(331):99-114、ジェルフ・エル・アフマルの大規模な穀物加工) で、2014 ではない。",
+    "source": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10707568/ ; https://www.cambridge.org/core/product/917BA330C6762E017DB6AF38B6783B58"
+   },
+   {
+    "claim": "25. エジプトのナカダの各時期の年代 (Dee ほか 2013 にもとづく要約表)",
+    "verdict": "partly",
+    "correction": "原論文の表 1 は開けなかった。要約によると、ナカダ期の始まり 前 3,800〜3,700 年、ナカダ IA〜IIB 前 3,800/3,750〜3,450 年、IIC〜D 前 3,450〜3,325 年、IID〜IIIA 前 3,377〜3,238 年 (2σ)、アハの即位 前 3,111〜3,045 年、バダリ 約 前 4,400〜3,800 年。Dee ほか 2014 は、細かい時期の単位ではナカダの相対編年は信頼が下がると注意している。",
+    "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3780825/ ; https://core.ac.uk/download/pdf/79518353.pdf"
+   },
+   {
+    "claim": "P1. 第1部 村と畑: ナトゥーフ (前 13,000〜9,700) → PPNA (前 9,700〜8,800) → PPNB (前 8,800〜6,900/6,500) → PPNC の分散 (前 6,950〜6,650)",
+    "verdict": "correct",
+    "correction": "年代はどれも確認した値と合う (ナトゥーフ 15,000〜11,700 BP、ドゥラー 11,300 BP は PPNA のなか、ガンジ・ダレ 約 1 万年前 = 前 8,000 年、アイン・ガザル PPNC 8.9〜8.6 ka)。注意点は 3 つ。ガンジ・ダレはレヴァントではなくザグロス。PPNC を地域全体で前 6,400 年ごろまでとする資料もある。Flannery 2002 の段階 1 (丸い家と共同の倉) → 段階 2 (四角い家と家ごとの倉) は要旨と一致する。",
+    "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5717003 ; https://resolve.cambridge.org/core/journals/american-antiquity/article/abs/origins-of-the-village-revisited-from-nuclear-to-extended-households/5176075CEEFAE75EB9E8FEB1706ECCCE"
+   },
+   {
+    "claim": "P2. 第2部 土器と家と首長: 土器新石器 (前 7,000〜6,700) → ハッスーナ・サマッラ・ハラフ (前 6,500〜5,000) → ウバイド (南で前 6,200/5,500〜4,200)",
+    "verdict": "partly",
+    "correction": "前半は正しい。ウバイドの終わりの 4,200 年は少数派で、Met は 4,000 年、Carter & Philip はウバイド 5 を含めて 3,800 年。テル・アバダの建物 A が特別なのは確か (いちばん大きく、壁に飾りがあり、乳児の埋葬の約半分がここにあり、トークンの多くもここで出て、16 個のトークンが入った鉢もある)。ただ『首長の家』は解釈で、資料で確かめられなかった。『名前のない間』はチャイルドの言葉ではなく計画側の言い方。Stein 1994 は『儀礼で主食を集め、仲間であることを強調するみんなのための考え方』で要旨と合う。",
+    "source": "https://www.metmuseum.org/essays/the-ubaid-period-5500-4000-b-c ; https://en.wikipedia.org/wiki/Tell_Abada ; https://ehrafarchaeology.yale.edu/traditions/mh55/documents/004"
+   },
+   {
+    "claim": "P3. 第3部 町と文字: ブラク LC2 (前 4,200〜3,800、約 55 ha) → 中期ウルク (前 3,800〜3,400、封筒 前 3,700〜3,500) → 後期ウルク (前 3,400〜3,100、数の粘土板 前 3,500〜3,350、ウルク IV 前 3,350〜3,200)",
+    "verdict": "partly",
+    "correction": "ブラク LC2 の約 55 ha、ウルク IV、Oates ほか 2007 (北は前 5 千年紀の終わりにはもう町に向かっていた)、Johnson 1973 (情報処理の必要) は確認できた。直すところは 2 つ。封筒は前 3,500 年前後が妥当で、前 3,700 年は早い。数の粘土板 (ウルク V、前 3,500〜3,350 年) は中期と後期の境にかかるので、『後期ウルク』の下に置くと少しずれる。Wright & Johnson 1975 は国の始まりをウルク前期 (前 4,000 年ごろ) に置いているので、スシアナの段の話は中期ウルクに限らない。",
+    "source": "https://jasonur.scholars.harvard.edu/pages/tell-brak ; https://www.unicode.org/L2/L2019/19284-proto-cuneiform.pdf ; https://acawiki.org/Population,_Exchange,_and_Early_State_Formation_in_Southwestern_Iran"
+   },
+   {
+    "claim": "P4. 第1部 村と畑 (P1 と同じ年代、Kuijt 2000; Kadowaki 2012)",
+    "verdict": "correct",
+    "correction": "年代は P1 と同じで問題ない。Kuijt 2000 は 8,500〜8,000 年前 (較正していない値とみられる) の大きな村の衰えと人口を論じていて、終わりを『大きな村の分散』とするのに合う。Kadowaki 2012 の中身は確認できなかった。",
+    "source": "https://www.escholarship.org/uc/item/7xv1b8bt"
+   },
+   {
+    "claim": "P5. 第2部 土器と家の倉: 土器新石器 → サビ・アビヤドの焼けた村 (前 6,200〜6,000) → ハッスーナ・サマッラ・ハラフ (前 6,500〜5,300)、チャタルヒュユク (前 7,100〜6,000)",
+    "verdict": "partly",
+    "correction": "年代はおおむね正しい。チャタルヒュユク東の丘は、ベイズモデルで最古の層が前 7,100 年ごろ、終わりが前 6,000 年の少しあと (Bayliss ほか 2015、Marciniak ほか 2015)。UNESCO は 前 7,400〜6,200 年としている。『最初はよそから来る土器』は言いすぎで、多くの遺跡でよそから来た器と地元の器が一緒に出る。Flannery 2002 の段階 3 (15〜20 人の拡大家族) は要旨と一致する。Bogaard ほか 2009 (Antiquity『Private pantries and celebrated surplus』) と Halstead 1989 は検索で確認できず、記憶でのみ存在を確認。",
+    "source": "https://resolve.cambridge.org/core/journals/antiquity/article/abs/fragmenting-times-interpreting-a-bayesian-chronology-for-the-late-neolithic-occupation-of-catalhoyuk-east-turkey/DBCE6E92D58E9709CCEEC4707F6428E5 ; https://whc.unesco.org/en/list/1405"
+   },
+   {
+    "claim": "P6. 第3部 まとめ役と神殿: ウバイド (南 前 6,200/5,500〜4,200、北 前 5,300〜4,300)、エリドゥ、テル・アバダ、テペ・ガウラ、デイルメンテペの封泥",
+    "verdict": "partly",
+    "correction": "北のウバイド 前 5,300〜4,300 年、テペ・ガウラ XIII 層のアクロポリスの封泥 (中央でまとめる経済の可能性)、デイルメンテペの約 450 の封泥は確認できた。南の終わりの 4,200 年は P2 と同じ問題がある。テル・アバダの『首長の家』は解釈。Johnson の『順番の階層 → 同時の階層』という順序は計画側の解釈 (項目 4 を参照)。Carneiro 1981 と Blanton ほか 1996 は検索の上限で確認できず、記憶によるもの。",
+    "source": "https://en.wikipedia.org/wiki/Tepe_Gawra ; https://en.wikipedia.org/wiki/De%C4%9Firmentepe ; https://dome.mit.edu/handle/1721.3/18564"
+   },
+   {
+    "claim": "P7. 第4部 町と文字: ブラク LC2 (55 ha、LC3 で 130 ha) → 中期ウルク (スシアナの 4 段の集落、封筒 前 3,700〜3,500) → 後期ウルク (ウルク 100〜250 ha)",
+    "verdict": "partly",
+    "correction": "Ur は 130 ha を LC3〜4 (前 3,800〜3,400 年) としている。封筒は前 3,500 年前後に直す。『スシアナの 4 段』の段の数は確認できなかった。Wright & Johnson 1975 は前期ウルクの段を論じている。Shin ほか 2020 は Antiquity ではなく Nature Communications 11 で、『規模のしきい → 情報のしきい』の順は要旨と合う。Bogaard ほか 2019 の前 4,000 年ごろも確認できた。",
+    "source": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7224170/ ; https://jasonur.scholars.harvard.edu/pages/tell-brak"
+   },
+   {
+    "claim": "P8. 第1部 平等な村: 西アジアのナトゥーフ〜ハラフ (前 13,000〜5,500)、裴李崗〜前期仰韶 (前 7,000〜4,000)、ティエラス・ラルガス (前 1,500〜1,150)、ファイユーム〜バダリ (前 5,400〜3,800)",
+    "verdict": "partly",
+    "correction": "ティエラス・ラルガスは 前 1,500〜1,150 年 (Marcus & Flannery、Seshat は 1,400 年から)。バダリは約 前 4,400〜3,800 年。直すところは 2 つ。(1) ハラフは前 5,300 年ごろまで続くので、5,500 年で切ると合わない。(2) サマッラ (前 6,200〜5,700 年ごろ) はハラフより前か同じころで、プロト・ハラフ (前 6,100〜5,900 年) にサマッラの影響がある。そのため『ナトゥーフ〜ハラフ = 平等、サマッラ以後 = 受けつぐ差』という分け方は年代が重なる。サビ・アビヤドの印章と倉 (前 6,200 年) もこの『平等』の期間に入る。『村から受けつぐ差まで 300〜3,000 年』は確認できなかった。",
+    "source": "https://ehrafarchaeology.yale.edu/traditions/m086/documents/001 ; https://www.fulcrum.org/concern/monographs/vh53wx60b ; https://orientlab.net/icaane/5icaane/ws3_prog.html"
+   },
+   {
+    "claim": "P9. 第2部 受けつぐ差と首長: サマッラ〜ウバイド (前 5,500〜4,000)、仰韶中期、ナカダ I〜IIB (前 3,750〜3,450)、サン・ホセ (前 1,150〜850)、ヴァルナ (前 4,600〜4,350)",
+    "verdict": "partly",
+    "correction": "Flannery & Marcus の約 7,500 年前、ナカダ IA〜IIB 前 3,800/3,750〜3,450 年 (Dee にもとづく要約)、サン・ホセ 前 1,150〜850 年 (Seshat)、ヴァルナ (Higham 2018)、Kohler 2025 は確認できた。ただしサマッラの始まりは前 5,500 年ではなく前 6,200 年ごろ。前 5,500 年から始めるなら『サマッラ後期〜ウバイド』か『ウバイド (0〜4)』と呼ぶほうが正確。",
+    "source": "https://themontrealreview.com/2009/The-Creation-of-Inequality.php ; https://core.ac.uk/download/pdf/79518353.pdf ; https://seshat-db.com/core/polity/522"
+   },
+   {
+    "claim": "P10. 第3部 町と国と文字: 後期銅石器〜後期ウルク (前 4,200〜3,100)、エジプト第 0〜1 王朝 (アビドス U-j 前 3,320〜3,150)、二里頭 (前 1,750〜1,530)、甲骨文字 (前 1,250)、モンテ・アルバン (国 前 300〜100、文字 前 600)",
+    "verdict": "partly",
+    "correction": "二里頭 前 1,750〜1,530 年 (2007 年の炭素年代)、武丁期の甲骨 前 1,254〜1,197 年、アハの即位 前 3,111〜3,045 年、モンテ・アルバン後期 I (前 300〜100 年) で国ができた (Spencer & Redmond) は確認できた。U-j の 前 3,320〜3,150 年は二次資料で、ナカダ IIIA1 か IIIA2 かも分かれている (約 前 3,300 年)。サン・ホセ・モゴテ記念物 3 の『前 600 年』は議論があり、前 200 年かもっと後とする説もある。Spencer 2010 PNAS (1 日で行き来できる範囲を超える広がり) は検索の上限で確認できなかった。国と文字の順番が地域で逆になる (エジプトとオアハカは文字が先、中国は国が先) は上の年代と合う。",
+    "source": "https://en.wikipedia.org/wiki/Erlitou_culture ; https://en.wikipedia.org/wiki/Oracle_bone_script ; https://sociostudies.org/almanac/articles/modeling_expansionism_and_resistance_state_formation_in_ancient_oaxaca_mexico ; https://en.wikipedia.org/wiki/Zapotec_script"
+   }
+  ],
+  "summary": "25 の主張のうち、そのまま使えるのは 8 つ (1、5、7、8、9、16〜18、20、22 のうちの主なもの)。残りはほとんどが一部だけ正しいもので、はっきりした誤りは数か所。年代の食い違いの多くは、較正した年代と較正していない古い年代がまざっていることで説明できる (サビ・アビヤドの『前 5,700〜5,000 年』、たぶんトークンの年代、Akkermans のハラフの年代)。\n\n**直す必要があるところ**\n- **ブラクの『ほぼ 300 ha』**: 根拠が見つからない。近くのハムーカルの約 280〜300 ha とまざった可能性が高い。ブラクは LC2 で約 55 ha、LC3〜4 で約 130 ha (Ur)。\n- **ウバイド 0 = 前 5,500〜5,400 年**: 誤り。ウバイド 0 は前 7 千年紀で、5,400 年はその終わりにあたる。\n- **シュバイカ 6 のビーズの研究**: Antiquity ではなく PLOS ONE (Thuesen ほか 2023)。Willcox & Stordeur は 2012 年。\n- **Shin ほか 2020**: 掲載誌は Nature Communications。\n- **国の定義『3 段以上』の出どころ**: Wright & Johnson 1975 (Johnson 1973 と Wright 1977 が補う)。Johnson 1982 ではない。\n- **Bocquet-Appel の『500〜700 年』**: 2011 年ではなく 2002 年の研究の値。\n- **トークン入りの封筒**: 前 3,700 年は早すぎ、前 3,500 年前後が妥当。\n- **区切りの年代のずれ**: サマッラの始まりは前 6,200 年ごろで、P9 の『前 5,500 年から』と P8 の『ハラフまで = 平等』の区切りと重なる。ハラフは前 5,300 年ごろまで続く。\n\n**確認できなかったもの**\n- Bogaard 2019 の『ジニ係数が約 2 倍』\n- Kuijt 2000 の人口の数そのもの\n- 原論文の表にあるナカダの細かい年代\n\n**途中の区切りに使える、年代が確かな目印**\n- ナトゥーフ (15,000〜11,700 BP)\n- ドゥラーの倉 (11,300 BP)\n- 動物と植物の世話の始まり (11,500 cal BP 以前)\n- PPNC の分散 (8,900〜8,600 BP)\n- 上メソポタミアの土器 (前 7,000〜6,700 年)\n- サビ・アビヤドの倉と印章 (前 6,200〜6,000 年)\n- ハラフ (前 5,900〜5,300 年)\n- 受けつぐ身分 (約 7,500 年前)\n- ブラク LC2 (前 4,200〜3,800 年)\n- 前 4,000 年ごろの土地で決まる農業\n- ウルク V/IV (前 3,500〜3,200 年)\n\nほかのものは中間の区切りの根拠としては弱い。\n\n**手が回らなかったこと**\n検索は上限 (200 回) に達し、多くの出版社のサイトは取得できなかった。そのため次の文献は検索で確認できず、記憶でのみ存在を確認している: Spencer 2010、Carneiro 1981、Blanton ほか 1996、Halstead 1989、Hodder 2022、Bogaard ほか 2009、Sherratt 1981、Kadowaki 2012。続きを調べるには、新しいメッセージで再開してほしい。"
+ }
+}
