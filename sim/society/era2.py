@@ -450,7 +450,8 @@ def _storage_season(state, frac):
 # ---------------- 家族の住まい (2026-10-08 追加。G3 から働く。本人の希望「人数が増えて家族になっているので、シミュレーションに反映したい」) ----------------
 # 【文献】Flannery 2002: 先土器新石器 B (PPNB) に、丸い家と共同の倉から、四角い家と家ごとの倉へ変わった。Kohler ほか 2017: 家の大きさで豊かさの差 (ジニ係数) を測る
 # 【仮定】家族の住まい 1 軒に、のべ 400 時間の働き (大人 2 人で 3 週間ほど。広さ 約 20 m²)。そのあと 200 時間ごとに 10 m² 広くなる (80 m² まで)。
-#   (2026-10-08 写しの試しで、120 時間では 4〜6 日で建ち、1 季節で 80 m² になったので、400 時間にした)
+#   (2026-10-08 写しの試しで、120 時間では 4〜6 日で建ち、1 季節で 80 m² になったので、400 時間にした。
+#    広げるのも 200 時間ごとでは 2 季節で 80 m² になったので、400 時間ごとに 10 m² にした (大人 2 人で 80 m² まで 半年ほど))
 #   村の住まい (キャンプのまん中) で眠れるのは 12 人まで (world.DWELL_CAP)。家族の住まいのある家族は、そこで眠る
 HOUSE_HOURS, HOUSE_BASE, HOUSE_STEP, HOUSE_MAX = 400, 20, 10, 80
 
@@ -501,7 +502,7 @@ def _build_house(state, p, t):
             t.setdefault("events", []).append(log(state, "住まい", p["name"], f"{p['name']} が、{h}の住まいを建てた (まだ建てかけ。でき具合 約 "
                                                   f"{max(1, round(v['work'] / HOUSE_HOURS * 10))} 割)", household=h))
     else:
-        size = min(HOUSE_MAX, HOUSE_BASE + HOUSE_STEP * int((v["work"] - HOUSE_HOURS) // (HOUSE_HOURS / 2)))
+        size = min(HOUSE_MAX, HOUSE_BASE + HOUSE_STEP * int((v["work"] - HOUSE_HOURS) // HOUSE_HOURS))
         if size > v["size"]:
             v["size"] = size
             v["sizes"].append([state["day"], size])
@@ -1419,8 +1420,46 @@ ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6"]
 NAMES2 = {"G1": "村ができる", "G2": "畑と家畜", "G3": "余りと分業", "G4": "持ち物と差", "G5": "リーダーと決まり", "G6": "交易・町・記録"}
 
 
+# ---------------- G の中の小さな区切り F (2026-10-08 本人の希望) ----------------
+# 本人「F はある一つの変化、G は一つの大きな変化。G の中に F はあるはず。F ごとにも G ごとにも動画と記録を残す」。
+# 区切りの中身は docs/research/society2_periodization.md の 4. (部の中の途中経過の目安) による。季節の終わりに見て、入った日を記録する (止まらない)。
+# 書くときは「G3 の F1」(Society 1.0 の F1〜F6 とまぎれないように G をつける)
+SUBSTEPS = {
+    "G3": [("F1", "土器を作り始める", lambda s: s["era2"].get("pots", 0) > 0 or any(e["type"] == "土器" and (e.get("data") or {}).get("count") for e in s["events"][-3000:])),
+           ("F2", "家族の住まいができる", lambda s: bool(_homes_built(s))),
+           ("F3", "作る人が出る", lambda s: bool(s["era2"].get("specialists")))],
+    "G4": [("F1", "家の倉に食べ物をためる", lambda s: any(h["store"] for h in s["era2"].get("house", {}).values())),
+           ("F2", "受けつぎ", lambda s: s["era2"].get("inherits", 0) >= 1)],
+    "G5": [("F1", "集まり・長老・祭りでまとまる", lambda s: bool((s["era2"].get("g5") or {}).get("stage1"))),
+           ("F2", "まとめ役が選ばれる", lambda s: bool((s["era2"].get("g5") or {}).get("leaders"))),
+           ("F3", "罰を払わせる", lambda s: (s["era2"].get("g5") or {}).get("penalties", 0) >= 1)],
+}
+# G1・G2 の F は、この仕組みを作る前に終わっていたので、記録 (出来事) から日を決めた (2026-10-08。G1_notes.md・G2_notes.md)
+RETRO_SUBSTEPS = [
+    {"g": "G1", "f": "F1", "name": "畑を始める", "day": 510, "why": "セナとウィロが初めて畑に草の種をまいた"},
+    {"g": "G1", "f": "F2", "name": "よそから人が加わる", "day": 629, "why": "ナギとソルが村に加わった"},
+    {"g": "G1", "f": "F3", "name": "村で子が生まれる", "day": 659, "why": "セナにミラが生まれた (2 回目の Society 2.0 で初めて)"},
+    {"g": "G2", "f": "F1", "name": "家族の代表で決める", "day": 1259, "why": "大人が 12 人をこえ、家族ごとに代表が答えるようになった"},
+    {"g": "G2", "f": "F2", "name": "ヤギを捕まえて飼う", "day": 1415, "why": "代表のセナが割り振り、タヒが子ヤギを捕まえた (この季節に 4 頭)"},
+    {"g": "G2", "f": "F3", "name": "ヤギが増える", "day": 1529, "why": "子ヤギが 3 頭生まれて 5 頭になった"},
+    # G3 は 1 季節 (1560〜1589 日目) で終わり、F を見つける仕組みを入れる前だった。起きたのは F3 だけ (F1 土器・F2 家族の住まいは起きなかった)
+    {"g": "G3", "f": "F3", "name": "作る人が出る", "day": 1589, "why": "ナギとソルが 30 日、道具づくりで石の鎌を作った (39 本)"},
+]
+
+
+def check_substeps(state):
+    """今の G の中の F に入ったかを見て、入った日を記録する (季節の終わり。フェーズが進む前に見る)"""
+    era = state.get("era")
+    done = state["era2"].setdefault("substeps", [])
+    for f, name, fn in SUBSTEPS.get(era, []):
+        if not any(x["g"] == era and x["f"] == f for x in done) and fn(state):
+            done.append({"g": era, "f": f, "name": name, "day": state["day"]})
+            log(state, "区切り", None, f"{era} の {f}「{name}」に入った", g=era, f=f)  # 「フェーズが…に進んだ」とは書かない (ワークフローが止まらないように)
+
+
 def check(state):
     era = state["era"]
+    check_substeps(state)
     ind = indicators(state)
     desc, fn = CRITERIA.get(era, ("(まだ作っていない)", lambda i: False))
     met = fn(ind)
@@ -1469,11 +1508,22 @@ def _season_digest(state, p, first):
     if grew:
         midden = sum(1 for e in grew if "殻を捨てた所" in e["text"])
         rows.append(f"- キャンプのそばで木の実の木が {len(grew)} 本育った (種を埋めた所から {len(grew) - midden} 本・殻を捨てた所から {midden} 本)")
-    village = [e for e in ev if e["type"] in ("生まれる", "死", "加わる", "去る", "訪れる", "畑", "ヤギ", "ヤギを食べる", "大人になる", "けが", "掟", "住まい", "フェーズ", "蓄えが尽きる", "家族", "虫")]
+    # 家族の住まいを建てた日 (毎日の記録は家族ごとにまとめる。できた・広げたは下の出来事に出る。2026-10-08)
+    build = {}
+    for e in ev:
+        h = (e.get("data") or {}).get("household")
+        if e["type"] == "住まい" and h and "size" not in (e.get("data") or {}):
+            build[h] = build.get(h, 0) + 1
+    if build:
+        rows.append("- 家族の住まいを建てた (人と日の数): " + "、".join(f"{h} {n}" for h, n in build.items()))
+    village = [e for e in ev if e["type"] in ("生まれる", "死", "加わる", "去る", "訪れる", "畑", "ヤギ", "ヤギを食べる", "大人になる", "けが", "掟", "住まい", "フェーズ", "蓄えが尽きる", "家族", "虫", "区切り")
+               and not (e["type"] == "住まい" and (e.get("data") or {}).get("household") and "size" not in (e.get("data") or {}))]
     rows += [f"- [出来事 {e['id']}] {e['text']}" for e in village[-25:] if e.get("who") != p["name"]]
-    rains = sum(1 for e in ev if e["type"] == "雨")
+    rains = [e for e in ev if e["type"] == "雨"]
     if rains:
-        rows.append(f"- 雨の夜 {rains} 回")
+        out = [e for e in rains if (e.get("data") or {}).get("outside")]
+        me_out = sum(1 for e in out if p["name"] in e["data"]["outside"])
+        rows.append(f"- 雨の夜 {len(rains)} 回" + (f" (村の住まいに入りきらず、外で濡れた人がいた夜 {len(out)} 回。あなたもそのうち {me_out} 回)" if out else ""))
     return "\n".join(rows) or "(Society 2.0 の最初の季節。まだ何もしていない)"
 
 
@@ -1515,7 +1565,7 @@ def _houses_line(state):
 
 
 FACTS_HOUSE = (f"家族の住まい: 村の住まい (キャンプのまん中) で眠れるのは {world.DWELL_CAP} 人まで。家族ごとに、キャンプのそばに四角い住まいを建てられる "
-               f"(住まいを建てる。家族の大人が働いて、のべ 約 {HOUSE_HOURS} 時間でできる。そのあとも働くと広くなる)。家族の住まいのある家族は、そこで眠る。"
+               f"(住まいを建てる。家族の大人が働いて、のべ 約 {HOUSE_HOURS} 時間でできる。そのあとも {HOUSE_HOURS} 時間ごとに 10 m² 広くなる)。家族の住まいのある家族は、そこで眠る。"
                "雨の夜に屋根の下で眠れなかった人は、疲れがとれない\n")
 
 

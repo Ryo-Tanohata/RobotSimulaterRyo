@@ -128,6 +128,8 @@ def export(state):
         "era": state.get("era_info") or {"era": "F1", "name": phase.ERAS["F1"]}, "era_log": state.get("era_log", []),
         "hold": bool(state.get("hold")), "store": world.food_words(phase._store_kinds(state)),
         "resumes": resume.build(state),
+        # G の中の小さな区切り F (G1・G2 は記録から決めた日、G3 からは見つけた日)
+        "substeps": era2.RETRO_SUBSTEPS + (state.get("era2") or {}).get("substeps", []),
         # 家族の住まい (G3 から): 3D の再生で、家族ごとの家を描く
         "houses": [{"household": h, "x": v["x"], "y": v["y"], "start": v["start"], "built": v["built"], "sizes": v["sizes"]}
                    for h, v in sorted((state.get("era2") or {}).get("homes", {}).items())],
@@ -213,7 +215,7 @@ def main():
         write_prompts(state, "season")
         export(state)
         for e in state["events"]:
-            if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ")) \
+            if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ", "区切り")) \
                     or (e["id"] >= before and e["type"] in era2.G5_EVENTS):
                 print("*", e["text"][:120])
         harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")
