@@ -13,5 +13,6 @@ for ((k=0; k<N; k++)); do
   FROM_SEC=$((k*60)) TO_SEC=$(((k+1)*60)) PART="$P.tmp.mp4" node make_video.mjs "$NARR" "$VOICE" "$OUT" && mv "$P.tmp.mp4" "$P" || exit 1
   echo "part $k / $N"
 done
-ls "$OUT"_p*.mp4 | sed "s/^/file '/; s/$/'/" > "$OUT.parts.txt"
+# ffmpeg は一覧の中の道筋を、一覧のファイルがあるフォルダから読むので、名前だけを書く (OUT に out/ などのフォルダがつくとき)
+for f in "$OUT"_p*.mp4; do echo "file '$(basename "$f")'"; done > "$OUT.parts.txt"
 ffmpeg -loglevel error -y -f concat -safe 0 -i "$OUT.parts.txt" -c copy "${OUT}_silent.mp4" && echo "→ ${OUT}_silent.mp4"

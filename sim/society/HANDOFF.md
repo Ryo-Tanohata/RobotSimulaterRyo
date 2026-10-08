@@ -34,6 +34,13 @@
 
 ## 3. G1・G2 の動画を作る (GPU で)
 
+**G1 はできた (2026-10-08、本人の PC の内蔵 GPU Intel Iris Xe で撮影。撮影 約 36 分 + 音と仕上げ 3 分)**: `app/society_G1.mp4` (9 分 12 秒)、アプリの「動画」にボタンを足した。**残りは G2** (下の 2 つ目の `render_parts.sh` の行と、`for G in G2` の仕上げ)。
+
+PC での注意 (2026-10-08 に G1 を撮って分かったこと)
+- ffmpeg は `winget install Gyan.FFmpeg` で入る。入れたあと、シェルを開き直すまで PATH に入らない (Git Bash なら `export PATH="$PATH:$LOCALAPPDATA/Microsoft/WinGet/Links"` か、`.../WinGet/Packages/Gyan.FFmpeg_.../bin` を足す)
+- `render_parts.sh` の最後の「区間をつなぐ」が、`out/` の下に撮ると `out/out/...` を探して失敗していたのを直した (撮った区間は残るので、同じコマンドをもう一度動かせば、つなぐところから続く)
+- Windows では `PY=python` をつける。撮影中に季節を進めるなら `DATA_DIR=写しのフォルダ` をつける
+
 クラウドでは GPU がなく、CPU で 3D を描いていたので、9 分の動画に 3 時間以上かかった。自分の PC の GPU (内蔵 GPU でもよい) を使うと速い。
 ナレーションの文 (`video/narration_G1.json`・`narration_G2.json`) と声 (`video/voice/G1`・`voice/G2`、VOICEVOX:ずんだもん) はリポジトリにある。
 

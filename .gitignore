@@ -20,6 +20,7 @@ web/checkpoints/*.partial.json
 web/audio/
 sim/bipedal/runs/
 sim/society/video/node_modules/
+sim/society/video/out/
 sim/society/video/voice_tmp/
 # 学習ライブラリ (orbax) が書く確認の記録。PC のフォルダの場所 (ユーザー名) が入るので入れない
 **/checkpoints/**/commit_success.txt
