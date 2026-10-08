@@ -73,7 +73,7 @@ def build(state):
             if t == "狩り" and (e.get("data") or {}).get("killer") == n and "kill" not in seen:
                 seen.add("kill")
                 hist.append({"day": e["day"], "text": "初めてルクをしとめる (" + e["text"] + ")"})
-            if t in ("けが", "死", "去る") and e.get("who") == n:
+            if t in ("けが", "死", "去る", "分かれる") and e.get("who") == n:
                 hist.append({"day": e["day"], "text": e["text"]})
         for e in ev:
             if e["type"] == "住まい" and "ができた" in e["text"] and n in e["text"] and not any(e["text"] in h["text"] for h in hist):

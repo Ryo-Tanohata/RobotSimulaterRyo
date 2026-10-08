@@ -191,6 +191,7 @@ def main():
         if state.get("hold"):
             print(f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
             sys.exit(3)
+        before = state["next_event"]  # G5: 季節の集まりで起きたこと (収める・裁き・罰・祭り・まとめ役) は、30 日を進める前の出来事
         era2.apply_answers(state, read_answers(state, "season"))
         first = era2.simulate_season(state)
         state["era2"]["last_first"] = first
@@ -209,13 +210,18 @@ def main():
         write_prompts(state, "season")
         export(state)
         for e in state["events"]:
-            if e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ"):
+            if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ")) \
+                    or (e["id"] >= before and e["type"] in era2.G5_EVENTS):
                 print("*", e["text"][:120])
         harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")
         if harv:
             print(f"* 畑で刈った草の種: 合わせて {harv} つかみ")
         i = state["era_info"]["indicators"]
         print(f"{state['day']} 日目まで進んだ / 人 {i['population']} (大人 {i['adults']}・子 {i['children']}) / ヤギ {i['goats']} / 育てた食べ物 {i['farm_share']}")
+        if i.get("g5_stage"):
+            print(f"G5 第 {i['g5_stage']} 段 / 家族 {i['households']} / まとめ役 {i['leader'] or 'いない'} / もめごと 残り {i['disputes_open']} "
+                  f"(まとめ役なしで収めた {i['settled']}・まとめ役の裁き {i['judged']}) / 罰のある掟 {i['penalty_laws']}・罰 {i['penalties']} / "
+                  f"祭り {i['feasts']} / 分かれた家 {i['fissions']} / 共同の仕事 {i['joint']} / 第 1 段 {'済み' if i['stage1'] else 'まだ'}")
         return
     if a.cmd == "day" and not any(p["alive"] for p in state["people"]):
         print("生きている人がいないので、進めない")
