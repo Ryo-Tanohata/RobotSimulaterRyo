@@ -76,6 +76,9 @@ def build(state):
             if t in ("けが", "死", "去る", "分かれる") and e.get("who") == n:
                 hist.append({"day": e["day"], "text": e["text"]})
         for e in ev:
+            if (e["type"] == "分かれる" and e.get("who") != n and p.get("left") == e["day"]
+                    and (e.get("data") or {}).get("household") == p.get("household")):  # 家の人みんなで村を出た (G5)
+                hist.append({"day": e["day"], "text": e["text"]})
             if e["type"] == "住まい" and "ができた" in e["text"] and n in e["text"] and not any(e["text"] in h["text"] for h in hist):
                 hist.append({"day": e["day"], "text": e["text"]})
             if e["type"] == "フェーズ" and e["day"] >= hist[0]["day"]:

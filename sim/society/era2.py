@@ -589,6 +589,8 @@ def _incident(state, kind, frm, against, kcal, what, eid=None):
 def _steal(state, p, want):
     """G5: ひどく空腹で、村の蓄えにも自分の家の倉にも食べ物がない大人は、よその家の倉 (多い家から) から取って食べる (出来事は家の組ごとに 1 季節 1 回)"""
     hs, mine, homes = state["era2"].get("house", {}), p.get("household"), _homes(state)
+    if not mine:  # 家のない人 (今はいない) は取らない。取ると、もめごとのもとにならず、毎日記録が出るため (2026-10-08 確認役の指摘)
+        return
     for h in sorted([h for h in hs if h in homes and h != mine and hs[h]["store"]], key=lambda h: -sum(f["kcal"] for f in hs[h]["store"])):
         if want <= 0:
             break
@@ -784,6 +786,8 @@ def _num(v):
 def _do(v):
     """収め方: 「つぐなう」か「ゆるす」(どちらも書いたもの・どちらでもないもの (お題の「...」) は読まない)"""
     s = str(v or "")
+    if any(w in s for w in ("ない", "なく", "ず", "せん")):  # 「払わなくてよい」「ゆるさない」のような打ち消しは、どちらとも読まない (2026-10-08 確認役の指摘)
+        return None
     pay, free = any(w in s for w in ("つぐな", "償", "払")), any(w in s for w in ("ゆる", "許"))
     return "つぐなう" if pay and not free else "ゆるす" if free and not pay else None
 
@@ -808,6 +812,8 @@ def _who(state, v):
     names = [q["name"] for q in adults(state)]
     if s in names:
         return s
+    for h in sorted({q.get("household") for q in state["people"] if q.get("household")}, key=len, reverse=True):
+        s = s.replace(h, "")  # 「ソル (ナギの家)」の「ナギの家」の中の「ナギ」を数えない (2026-10-08 確認役の指摘)
     hit = [n for n in names if n in s]
     hit = [n for n in hit if not any(n != m and n in m for m in hit)]  # 「ナギ」と「ナギ2」なら「ナギ2」
     if len(hit) == 1:
@@ -879,7 +885,7 @@ def _g5_meeting(state, c, n):
         talked += 1
         tally = {k: len(s) for k, s in c["judge"].get(d["id"], {}).items()}
         top = max(tally.values(), default=0)
-        elder = max([q for q in ads.values() if q.get("household") not in parties], key=lambda q: (q["age"], q["name"]), default=None)
+        elder = max([q for q in ads.values() if q.get("household") not in parties], key=lambda q: q["age"], default=None)  # 同じ年なら人の並びで先 (家の代表の決め方と同じ。2026-10-08)
         ev = c["by"].get(elder["name"], {}).get(d["id"]) if elder else None
         if top * 2 > n:
             _verdict(state, d, max(tally, key=tally.get), "集まり", None)
@@ -932,6 +938,8 @@ def _verdict(state, d, v, by, who):
     if v == "つぐなう":
         law = next((l for l in reversed(state["laws"]) if l["status"] == "採用" and (l.get("penalty") or {}).get("for") == d["kind"]), None)
         paid, words = _pay(state, d["against"], d["from"], (law["penalty"]["pay"] if law else min(d["harm"], MAX_PAY)) * GRAIN)
+        if round(paid / GRAIN) <= 0:  # 半つかみより少ないものは、払ったと数えない (2026-10-08 確認役の指摘)
+            paid, words = 0, ""
     d.update(status="収まった", verdict=v, by=by, judge=who, paid=round(paid / GRAIN), law=law["id"] if law else None, end=state["day"])
     if by == "まとめ役":
         g["judged"] += 1
@@ -1501,7 +1509,7 @@ def _g5_text(state):
         rows += ["この前の集まりから起きたこと:"] + [f"- [出来事 {e['id']}] {e['text']}" for e in ev[-12:]]
     if g.get("last_flow"):
         rows.append("前の季節の、家ごとの村の蓄えへの出し入れ (大人の分。草の種にして): "
-                    + "、".join(f"{h} 入れた 約 {i}・取った 約 {o} つかみ" for h, (i, o) in g["last_flow"].items()))
+                    + "、".join(f"{h} 入れた 約 {i}・取った 約 {o} つかみ" for h, (i, o) in g["last_flow"].items() if h in homes))
     return "\n## 村の集まり (もめごと・祭り" + ("・まとめ役" if two else "") + ")\n" + "\n".join(rows) + "\n"
 
 
@@ -1538,7 +1546,7 @@ def season_prompt(state, p, first):
                    f"あなたは {p.get('household')} の代表。\n" + ("\n".join(rows) if rows else "- (ほかの家族はいない)") +
                    "\n- 家族の大人の主な仕事も、あなたが決める (family。書かなかった人は、あなたと同じ仕事)"
                    "\n- sow・pick・plant・harvest の数は、家族の大人一人ひとりの量 (eat_goat は家族で何頭か)"
-                   f"\n- 掟の投票と、よそから来た人の受け入れ{'、もめごとの収め方・祭り・まとめ役の答え' if g5 else ''}は、家族の大人みんなの答えとして数える\n")
+                   f"\n- 掟の投票と、よそから来た人の受け入れ{('、もめごとの収め方・祭り' + ('・まとめ役' if two else '') + 'の答え') if g5 else ''}は、家族の大人みんなの答えとして数える\n")
         if fam:
             fam_json = '"family": {' + ", ".join(f'"{q["name"]}": {{"activity": "採集", "place": "camp"}}' for q in [q for q in fam if q["name"] != lead][:2]) + '}, '
 
