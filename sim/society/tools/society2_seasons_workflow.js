@@ -25,7 +25,7 @@ for (let k = 0; k < args.steps; k++) {
   const ls = await agent(runner(`ls ${ROOT}/sim/society/data/answers/day${pad(d)}/season/`), { label: `d${d} check`, model: 'haiku', phase: 'Seasons' })
   const miss = names.filter((n) => !(ls || '').includes(`${n}.json`))
   if (miss.length) { log(`day ${d}: retry ${miss.join('、')}`); await parallel(miss.map((n) => () => agent(rp(d, n) + ' ', { label: `d${d} ${n} retry`, model: 'haiku', phase: 'Seasons' }))) }
-  const out = await agent(runner(`bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
+  const out = await agent(runner(`CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })
   if (!out || !/season exit=0/.test(out)) return { stopped: d, why: /exit=4/.test(out || '') ? 'all dead' : 'season failed', out, log: log_ }
   if (/フェーズが .* に進んだ/.test(out)) return { stopped: d, why: 'phase', out, log: log_ }
