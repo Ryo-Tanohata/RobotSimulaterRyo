@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer-core";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const APP = path.join(HERE, "..", "app"), DATA = path.join(HERE, "..", "data");
+const APP = path.join(HERE, "..", "app"), DATA = process.env.DATA_DIR || path.join(HERE, "..", "data");  // DATA_DIR: 写しのデータで試し撮りするとき
 const [narrPath, voiceDir, outName, fromArg, toArg] = process.argv.slice(2);
 const FPS = 25, W = 1280, H = 720;
 const CHROME = process.env.CHROME || "C:/Program Files/Google/Chrome/Application/chrome.exe";
@@ -47,12 +47,28 @@ const VIDEO_CSS = `
   .v-credit { z-index: 60; position: absolute; inset: 0; display: grid; place-items: center; background: rgba(12, 16, 13, 0.82); color: #fff; font-size: 28px; line-height: 2; text-align: center; }
 `;
 
-const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new", args: ["--no-sandbox", "--hide-scrollbars", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
+// GPU=1: 自分の PC の GPU (内蔵 GPU でもよい) で 3D を描く。なければ CPU で描く swiftshader (クラウド用。とても遅い)
+const GL_ARGS = process.env.GPU ? ["--ignore-gpu-blocklist", "--enable-gpu-rasterization"] : ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"];
+const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new", args: ["--no-sandbox", "--hide-scrollbars", ...GL_ARGS] });
 const page = await browser.newPage();
 await page.setViewport({ width: W, height: H, deviceScaleFactor: 1 });
 await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "light" }]);
 page.on("pageerror", (e) => console.error("page error:", e.message));
-await page.goto(`http://localhost:${port}/index.html`, { waitUntil: "networkidle0" });
+// LIBS=フォルダ (npm で入れた three・marked の node_modules がある所): CDN に出られない環境では、CDN の代わりにそこから読む。フォントは使わない
+if (process.env.LIBS) {
+  const LOCAL = { "three.min.js": "three/build/three.min.js", "OrbitControls.js": "three/examples/js/controls/OrbitControls.js", "marked.min.js": "marked/marked.min.js" };
+  await page.setRequestInterception(true);
+  page.on("request", (req) => {
+    const u = new URL(req.url());
+    if (u.hostname === "localhost") return req.continue();
+    const key = Object.keys(LOCAL).find((k) => u.pathname.endsWith("/" + k));
+    if (!key) return req.abort();
+    req.respond({ status: 200, contentType: "text/javascript", body: fs.readFileSync(path.join(process.env.LIBS, "node_modules", LOCAL[key])) });
+  });
+}
+// 読み込みの終わりを待つ (2026-10-08: 「通信が止まるまで」は、Society 2.0 のデータで終わらないことがあったため、load と 3D の画面を待つ)
+await page.goto(`http://localhost:${port}/index.html`, { waitUntil: "load", timeout: 120000 });
+await page.waitForFunction(() => window.Replay3D && window.THREE, { timeout: 60000 });
 await page.addStyleTag({ content: VIDEO_CSS });
 await page.waitForFunction(() => document.querySelector(".r3-stage canvas"), { timeout: 60000 });
 await page.evaluate(() => {
@@ -95,11 +111,15 @@ const total = offset;
 fs.writeFileSync(`${outName}.timeline.json`, JSON.stringify({ fps: FPS, duration: total, narration, events: [], days: plan }, null, 1));
 console.log(`長さ ${total.toFixed(1)} 秒、${Math.round(total * FPS)} コマ`);
 
+// FROM_SEC・TO_SEC・PART=出力ファイル: その区間だけ撮る (途中で止まっても、撮り終えた区間を残してつなげるため。2026-10-07)
+const OUT = process.env.PART || `${outName}_silent.mp4`;
 const ff = spawn("ffmpeg", ["-loglevel", "error", "-y", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-",
-  "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "22", "-preset", "medium", "-movflags", "+faststart", `${outName}_silent.mp4`], { stdio: ["pipe", "inherit", "inherit"] });
+  "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "22", "-preset", "medium", "-movflags", "+faststart", OUT], { stdio: ["pipe", "inherit", "inherit"] });
 const t0 = Date.now();
 const N = Math.round((process.env.LIMIT ? Math.min(total, Number(process.env.LIMIT)) : total) * FPS);  // LIMIT=秒 で試し撮り
-for (let f = 0; f < N; f++) {
+const F0 = Math.round(Number(process.env.FROM_SEC || 0) * FPS), F1 = process.env.TO_SEC ? Math.min(N, Math.round(Number(process.env.TO_SEC) * FPS)) : N;
+if (process.env.PLAN_ONLY) { ff.stdin.end(); await browser.close(); server.close(); process.exit(0); }
+for (let f = F0; f < F1; f++) {
   const t = f / FPS;
   const P = plan.filter((p) => p.start <= t).pop();
   const v = t - P.start;
@@ -121,4 +141,4 @@ ff.stdin.end();
 await new Promise((r) => ff.on("close", r));
 await browser.close();
 server.close();
-console.log(`→ ${outName}_silent.mp4`);
+console.log(`→ ${OUT}`);

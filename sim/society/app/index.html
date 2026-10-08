@@ -134,6 +134,12 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
 .r3-label .b { position: relative; background: var(--surface); color: var(--fg); border: 2px solid var(--line); border-radius: 10px; padding: 4px 10px; font-weight: 400; font-size: 12px; max-width: 16em; text-shadow: none; line-height: 1.45; margin-bottom: 6px; }
 .r3-label .b::after { content: ""; position: absolute; left: 50%; bottom: -9px; width: 12px; height: 12px; background: var(--surface); border-right: 2px solid; border-bottom: 2px solid; border-color: inherit; transform: translateX(-50%) rotate(45deg); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+.cv { display: grid; gap: 16px; max-width: 80ch; }
+.cv h3 { margin: 4px 0 6px; font-size: 16px; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+.cv table { border-collapse: collapse; font-size: 14px; width: 100%; }
+.cv th, .cv td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; vertical-align: top; }
+.cv th { width: 9em; font-weight: 600; background: var(--bg); }
+.cv td.n { text-align: right; font-variant-numeric: tabular-nums; }
 </style>
 
 <div class="wrap">
@@ -157,14 +163,19 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
       <div class="tabs mv-tabs" role="tablist" aria-label="動画を選ぶ">
         <button role="tab" aria-selected="false" data-src="society_v1.mp4">1〜5 日目 (6 分 38 秒)</button>
         <button role="tab" aria-selected="false" data-src="society_F1.mp4">F1: 6〜12 日目 (10 分 46 秒)</button>
-        <button role="tab" aria-selected="true" data-src="society_F2.mp4">F2: 見どころ 7 日間 (11 分)</button>
+        <button role="tab" aria-selected="false" data-src="society_F2.mp4">F2: 見どころ 7 日間 (11 分)</button>
+        <button role="tab" aria-selected="false" data-src="society_F3c.mp4">F3 3 回目: 135〜154 日目 (9 分)</button>
+        <button role="tab" aria-selected="false" data-src="society_F3d.mp4">F3 4 回目: 住まいができるまで (9 分)</button>
+        <button role="tab" aria-selected="false" data-src="society_F4.mp4">F4: 定住から木の実の収穫まで (8 分 39 秒)</button>
+        <button role="tab" aria-selected="false" data-src="society_F5.mp4">F5: 種まきから農耕へ (7 分 57 秒)</button>
+        <button role="tab" aria-selected="true" data-src="society_G1.mp4">G1: 村ができる 489〜1229 日目 (9 分 12 秒)</button>
       </div>
       <div class="mv-speed" role="group" aria-label="再生スピード">
         <span>スピード</span>
         <button data-rate="1">1 倍</button><button data-rate="1.25">1.25 倍</button><button data-rate="1.5">1.5 倍</button><button data-rate="2">2 倍</button>
       </div>
     </div>
-    <video id="mv" src="society_F2.mp4" controls playsinline preload="metadata" style="max-width:100%"></video>
+    <video id="mv" src="society_G1.mp4" controls playsinline preload="metadata" style="max-width:100%"></video>
     <p class="explain" style="margin-top:8px">ナレーション: VOICEVOX:ずんだもん。音声入りの動画は MIT License の対象外です。</p>
   </section>
 
@@ -192,6 +203,7 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
     <div class="tabs" role="tablist">
       <button role="tab" id="t-events" aria-selected="true">出来事と会話</button>
       <button role="tab" id="t-know" aria-selected="false">知識と掟</button>
+      <button role="tab" id="t-cv" aria-selected="false">履歴書</button>
       <button role="tab" id="t-graph" aria-selected="false">グラフ</button>
       <button role="tab" id="t-walk" aria-selected="false">歩く姿</button>
       <button role="tab" id="t-docs" aria-selected="false">記録と評価</button>
@@ -212,6 +224,11 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
         <label>印 <select id="f-label"><option value="">すべて</option><option>創発</option><option>伝承</option><option>知識の再現の疑い</option><option>最初の知識</option></select></label>
       </div>
       <div class="klist" id="know"></div>
+    </div>
+    <div id="p-cv" role="tabpanel" hidden>
+      <p class="explain">一人ひとりの履歴書と職務経歴書です。どの数字も、この世界の記録 (出来事・掟・知識) から数えたもので、記録にないことは書いていません。</p>
+      <div class="filters"><label>人 <select id="cv-who"></select></label></div>
+      <div class="cv" id="cv"></div>
     </div>
     <div id="p-graph" role="tabpanel" hidden><div class="charts" id="charts"></div></div>
     <div id="p-walk" role="tabpanel" hidden>
@@ -238,7 +255,7 @@ function start3d() {
 const pcol = (i) => css(`--p${i % 5}`);
 
 function tabs() {
-  const ids = ["events", "know", "graph", "walk", "docs"];
+  const ids = ["events", "know", "cv", "graph", "walk", "docs"];
   ids.forEach((id) => $(`t-${id}`).addEventListener("click", () => select(id)));
   function select(id) {
     ids.forEach((x) => { $(`t-${x}`).setAttribute("aria-selected", String(x === id)); $(`p-${x}`).hidden = x !== id; });
@@ -282,7 +299,7 @@ function renderPeople() {
     const t = p.today || {}, plan = p.plan || {};
     return `<button class="person ${p.alive ? "" : "dead"}" data-name="${esc(p.name)}" aria-pressed="${focus === p.name}">
       <div class="row1"><i class="dot" style="background:${pcol(i)}"></i><span class="nm">${esc(p.name)}</span>
-        <span class="meta">${esc(p.sex)} ${p.age} 歳 ・ ${p.mass} kg${p.alive ? "" : " ・ 死亡"}${p.injured ? " ・ けが" : ""}</span></div>
+        <span class="meta">${esc(p.sex)} ${p.age} 歳 ・ ${p.mass} kg${p.household ? " ・ " + esc(p.household) : ""}${p.alive ? "" : p.left ? " ・ 村を出た" : " ・ 死亡"}${p.injured ? " ・ けが" : ""}</span></div>
       <div class="bars">
         <span>空腹</span><span class="bar hunger"><i style="width:${Math.round(p.hunger * 100)}%"></i></span><span class="num">${p.hunger.toFixed(2)}</span>
       </div>
@@ -294,7 +311,7 @@ function renderPeople() {
   }).join("");
   document.querySelectorAll(".person").forEach((b) => b.addEventListener("click", () => {
     focus = focus === b.dataset.name ? "" : b.dataset.name;
-    $("f-who").value = focus; renderPeople(); renderKnow(); selectTab("know");
+    $("f-who").value = focus; renderPeople(); renderKnow(); renderCV(); selectTab("know");
   }));
 }
 
@@ -319,6 +336,55 @@ function renderKnow() {
   $("know").innerHTML = rows.length ? rows.map(({ p, k }) => `<div class="k"><div>${esc(k.text)}<div class="who">${esc(p.name)} ・ ${k.day} 日目${k.from ? " ・ " + esc(k.from) + " から聞いた" : ""}${k.because.length ? " ・ きっかけ: 出来事 " + k.because.join(", ") : ""} ・ 確かさ ${k.confidence.toFixed(1)}</div></div>
     <div><span class="chip c-${esc(k.label)}">${esc(k.label)}</span></div></div>`).join("") : `<p class="empty">条件に合う知識はありません。</p>`;
 }
+
+function renderCV() {
+  const R = D.resumes || [], sel = $("cv-who");
+  if (!R.length) { $("cv").innerHTML = `<p class="empty">履歴書のデータがまだありません。</p>`; return; }
+  if (!sel.options.length) sel.innerHTML = R.map((r) => `<option>${esc(r.name)}</option>`).join("");
+  if (focus && R.some((r) => r.name === focus)) sel.value = focus;
+  const r = R.find((x) => x.name === sel.value) || R[0], w = r.work;
+  const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "―");
+  const row = (k, v, n) => `<tr><th>${k}</th><td${n ? ' class="n"' : ""}>${v}</td></tr>`;
+  const ACT = ["採集", "狩り", "探索", "住まい", "種まき", "休む", "蓄える", "蓄えから取る", "木から取る", "分ける", "話す"];
+  const eras = Object.keys(r.by_era);
+  $("cv").innerHTML = `
+    <section><h3>履歴書</h3><table>
+      ${row("名前", esc(r.name))}
+      ${row("性別・年齢", `${esc(r.sex)} ・ ${r.age} 歳 (0 日目の年齢)`)}
+      ${row("体重", `${r.mass} kg`)}
+      ${row("今", r.alive ? `生きている (${r.days} 日目)` : r.left ? `${r.left} 日目に村を出ていった` : r.death ? `${r.death.day} 日目に亡くなった: ${esc(r.death.text)}` : "―")}
+      ${row("性格", Object.entries(r.personality).map(([k, v]) => `${esc(k)} ${v.toFixed(2)}`).join(" ・ "))}
+      ${row("技能", Object.entries(r.skills).map(([k, v]) => `${esc(k)} ${Number(v).toFixed(2)}`).join(" ・ "))}
+      ${row("持ち物", r.items.length ? r.items.map(esc).join("・") : "なし")}
+      ${row("信頼している人", Object.entries(r.trust).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${esc(k)} ${v.toFixed(2)}`).join(" ・ ") || "―")}
+      ${r.feeling ? row("最後の気持ち", esc(r.feeling)) : ""}
+    </table></section>
+    <section><h3>経歴</h3><table>
+      ${r.history.map((h) => row(`${h.day} 日目`, esc(h.text))).join("")}
+    </table></section>
+    <section><h3>職務経歴書</h3><table>
+      ${row("期間", `0〜${r.days} 日目 (${r.days} 日)`)}
+      ${row("採集", `${w.gather} 回 (食べ物が見つかったのは ${w.gather_ok} 回、${pct(w.gather_ok, w.gather)}) ・ 合計 約 ${Math.round(w.gather_kcal / 1000)} 千 kcal`)}
+      ${row("狩り", `${w.hunt} 回 ・ 自分でルクをしとめた ${w.kills} 回`)}
+      ${row("探索", `${w.explore} 回`)}
+      ${row("住まいを建てる", `${w.build} 回`)}
+      ${row("種まき", `${w.sow} 回`)}
+      ${row("休む", `${w.rest} 回`)}
+      ${row("キャンプのそばの木から取る", `${w.pick || 0} 回`)}
+      ${row("蓄え", `入れた ${w.store} 回 ・ 取った ${w.take} 回`)}
+      ${row("分ける", `分けた ${w.gave} 回 (${Object.entries(w.gave_to).map(([k, v]) => `${esc(k)} ${v}`).join("・") || "―"}) ・ 分けてもらった ${w.received} 回`)}
+      ${row("話す", `${w.talk} 回`)}
+      ${row("よく行った場所", w.places.map(([k, v]) => `${esc(k)} ${v} 回`).join(" ・ ") || "―")}
+      ${row("掟", `提案 ${r.laws.proposed} 本 (今も採用中 ${r.laws.adopted} 本)`)}
+      ${r.laws.examples.length ? row("最近の提案", r.laws.examples.map((l) => `${l.day} 日目 (${esc(l.status)}): ${esc(l.text)}`).join("<br>")) : ""}
+      ${row("知識", `覚えたこと ${r.knowledge.added} 件 (${Object.entries(r.knowledge.labels).map(([k, v]) => `${esc(k)} ${v}`).join("・")}) ・ 今覚えている ${r.knowledge.now} 件`)}
+    </table></section>
+    <section><h3>フェーズごとの仕事 (回数)</h3><table>
+      <tr><th></th>${eras.map((e) => `<th>${esc(e)}</th>`).join("")}</tr>
+      ${ACT.map((a) => `<tr><th>${a}</th>${eras.map((e) => `<td class="n">${r.by_era[e][a] || 0}</td>`).join("")}</tr>`).join("")}
+    </table></section>`;
+}
+$("cv-who").addEventListener("change", renderCV);
 
 function lineChart(title, series, unit) {
   const W = 320, H = 150, L = 40, R = 10, T = 10, B = 26;
@@ -365,7 +431,7 @@ function renderEra() {
 function render() {
   $("day").textContent = D.day; $("season").textContent = D.season; renderEra();
   const sel = $("f-who"); sel.innerHTML = `<option value="">全員</option>` + D.people.map((p) => `<option>${esc(p.name)}</option>`).join(""); sel.value = focus;
-  drawMap(); renderPeople(); renderEvents(); renderKnow(); renderGraph();
+  drawMap(); renderPeople(); renderEvents(); renderKnow(); renderCV(); renderGraph();
 }
 $("f-who").addEventListener("change", (e) => { focus = e.target.value; renderPeople(); renderKnow(); });
 $("f-label").addEventListener("change", renderKnow);

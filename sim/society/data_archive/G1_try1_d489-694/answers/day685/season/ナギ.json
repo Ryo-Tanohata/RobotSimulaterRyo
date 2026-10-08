@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは空っぽで、俺もひどく腹が減っている。今日からの4日は北林12へ行って採集する。タヒ、一緒に来ないか。キャンプの木に実が残っているあいだは、毎晩そこから20つかみ取って食べるつもりだ。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["タヒ"]}, "pick": 20, "plant": 0, "harvest": 0,
+ "knowledge": [{"op": "add", "text": "冬のあいだも、キャンプのそばの木に残っている実は取って食べられる", "because": [9090], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に出るなら、離れないほうが安全だ"},
+  {"id": "L3", "against": "", "agree": true, "reason": "複数で行けば、けがをしても助けられる"},
+  {"id": "L27", "against": "", "agree": true, "reason": "冬は北林が頼りになる場所だと、今までの採集で分かった"},
+  {"id": "L28", "against": "", "agree": true, "reason": "行く前に行き先を決めれば、同じ場所で時間を無駄にしない"},
+  {"id": "L44", "against": "", "agree": true, "reason": "屋根があれば、蓄えが雨で傷むのを防げる"},
+  {"id": "L67", "against": "", "agree": true, "reason": "採集した人が空腹のままでは、次の採集もできない"},
+  {"id": "L70", "against": "", "agree": true, "reason": "採集で入れた人が、その日のうちに自分の分を食べるべきだ"},
+  {"id": "L72", "against": "", "agree": true, "reason": "自分の分を食べないと、採集で頑張った人が倒れてしまう"},
+  {"id": "L95", "against": "", "agree": true, "reason": "けがをした人が無理をすると、ほかの人にも迷惑がかかる"}
+ ],
+ "feeling": "腹が減って体が重いが、北林に行けば何か見つかるかもしれない。タヒと一緒なら少し安心だ。"}

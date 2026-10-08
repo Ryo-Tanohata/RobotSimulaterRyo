@@ -1,0 +1,8 @@
+{"knowledge": [{"op": "add", "text": "今日の採集で北の林では何も見つけられなかった。採集地の状態は日によって本当に大きく変わっている。同じ場所に何度も行くのではなく、毎日違う場所を試す習慣がもっと大事だ。", "because": [7979], "confidence": 1.0},
+{"op": "add", "text": "自分が種をまいた場所に、木の実の木が育った。次の季節が来れば、この木からもっと木の実が取れるようになる。", "because": [7976], "confidence": 1.0},
+{"op": "update", "id": "k4570", "confidence": 1.0},
+{"op": "update", "id": "k4578", "confidence": 1.0}],
+"proposal": null,
+"votes": [],
+"plan": {"activity": "採集", "place": "東林12", "with": ["セナ", "タヒ"]},
+"feeling": "必死"}

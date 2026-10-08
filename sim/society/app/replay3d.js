@@ -14,9 +14,9 @@
     { key: "eve", label: "夕方の焚き火", t0: 19, t1: 21.5, sec: 12 },
     { key: "night", label: "夜", t0: 21.5, t1: 22.5, sec: 5 },
   ];
-  const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが"];
-  const EVE_EVENTS = ["話す", "分ける", "蓄える", "蓄えから取る"];
-  const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ"];
+  const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが", "畑", "畑仕事", "ヤギの世話", "ヤギを捕まえる", "土器"];
+  const EVE_EVENTS = ["話す", "分ける", "蓄える", "蓄えから取る", "収穫", "木から取る"];
+  const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ", "生まれる", "訪れる", "加わる", "去る", "ヤギ", "大人になる", "家族", "虫", "雨", "受けつぎ", "区切り"];
 
   let S = null; // 状態
 
@@ -153,43 +153,123 @@
     hut.position.set(camp.x - 3.2, camp.y, camp.z - 2.2); hut.visible = false; scene.add(hut);
     const built = D.events.find((e) => e.type === "住まい" && /住まいができた/.test(e.text));
 
+    // 畑 (Society 2.0): 秋にまいた畑を、キャンプの南西に 1 枚ずつ並べる。色は季節で変える (fieldsOn で毎コマ決める)
+    const plots = [];
+    for (let k = 0; k < 16; k++) {
+      const m = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.08, 1.1), new THREE.MeshLambertMaterial({ color: T.tuber }));
+      const p = w2t(D, D.camp.x + 0.5 - 2.5 - (k % 4) * 1.8, D.camp.y + 0.5 + 2.5 + Math.floor(k / 4) * 1.4, 0.05);
+      m.position.copy(p); m.visible = false; scene.add(m); plots.push(m);
+    }
+    const sowings = D.events.filter((e) => e.type === "畑" && /をまいた/.test(e.text));
+
+    // 家族の住まい (G3 から): 四角い家。壁は土の色に家族の色をまぜ、平らな屋根。広さで大きさを変え、建てかけは低い壁だけ (housesOn で毎コマ決める)
+    const houses = (D.houses || []).map((v) => {
+      const g = new THREE.Group(), col = new THREE.Color(HOME_COLORS[Math.max(0, homesOf(D).indexOf(v.household)) % HOME_COLORS.length]);
+      const wall = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshLambertMaterial({ color: T.tuber.clone().lerp(col, 0.35) }));
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(1, 0.12, 1), new THREE.MeshLambertMaterial({ color: T.hill.clone().multiplyScalar(0.8) }));
+      g.add(wall); g.add(roof);
+      g.position.copy(w2t(D, v.x + 0.5, v.y + 0.5)); g.visible = false; scene.add(g);
+      return { v, g, wall, roof };
+    });
+
     const sun = new THREE.DirectionalLight(0xffffff, 0.9); sun.position.set(30, 50, 20); scene.add(sun);
     const amb = new THREE.AmbientLight(0xffffff, 0.55); scene.add(amb);
-    return { scene, camp, flame, fireLight, sun, amb, hut, hutDay: built ? built.day : null };
+    return { scene, camp, flame, fireLight, sun, amb, hut, hutDay: built ? built.day : null, plots, sowings, houses };
   }
 
   function placeOf(D, id) { return D.places.find((p) => p.id === id) || D.places[0]; }
+
+  // 家族 (2026-10-08 追加): 家族ごとの色・家・朝夕と夜に集まる場所。家族は D.people の household (前からいる人とその子は「川辺の家」)
+  const HOME_COLORS = ["#c2410c", "#7c3aed", "#0f766e", "#be185d", "#4d7c0f", "#1d4ed8", "#a16207", "#0e7490", "#9f1239", "#4338ca"];
+  function homesOf(D) {
+    const hs = [];
+    for (const p of D.people) { const h = p.household || "-"; if (!hs.includes(h)) hs.push(h); }
+    return hs;
+  }
+  function houseAt(D, h, day) {  // その日の家族の住まい: null (まだない) / {x, y, size, built}
+    const v = (D.houses || []).find((x) => x.household === h);
+    if (!v || v.start > day) return null;
+    const done = v.built != null && v.built <= day;
+    const size = done ? (v.sizes.filter((s) => s[0] <= day).pop() || [0, 20])[1] : 0;
+    return { x: v.x, y: v.y, size, built: done };
+  }
+  function homeSpot(D, h, day) {  // 家族の集まる場所: 家族の住まいができていればその前、なければキャンプの火のまわりの家族ごとの場所
+    const hs = homesOf(D), i = Math.max(0, hs.indexOf(h));
+    const v = houseAt(D, h, day);
+    if (v && v.built) return { x: v.x + 0.5, y: v.y + 1.6 };
+    const many = hs.filter((x) => D.people.some((p) => (p.household || "-") === x)).length;
+    if (many <= 1) return { x: D.camp.x + 0.5, y: D.camp.y + 0.5 };
+    const a = i * (2 * Math.PI / many) + 0.4;
+    return { x: D.camp.x + 0.5 + Math.cos(a) * 3.0, y: D.camp.y + 0.5 + Math.sin(a) * 3.0 };
+  }
 
   function planDay(D, day) {
     const rows = (D.days && D.days[day]) || [];
     const names = D.people.map((p) => p.name);
     const plan = {}, groups = {};
     names.forEach((n, i) => {
-      const r = rows.find((x) => x.name === n);
+      const r = rows.find((x) => x.name === n), P = D.people[i];
       const died = D.events.find((e) => e.type === "死" && e.who === n);
       const alive = !died || died.day >= day;  // 亡くなった日はまだ映す
+      const here = day >= (P.since || 0) && !(P.left && P.left < day);  // 村に来る前・生まれる前・村を出たあとは映さない (Society 2.0)
       const pl = placeOf(D, r ? r.place : "camp");
       (groups[pl.id] = groups[pl.id] || []).push(n);
-      plan[n] = { name: n, i, alive: !!r || alive, activity: r ? r.activity : "休む", place: pl };
+      const age = P.born_day != null ? (day - P.born_day) / 120 : 99;  // 子は小さく描く (1 年 = 120 日)
+      plan[n] = { name: n, i, alive: (!!r || alive) && here, activity: r ? r.activity : "休む", place: pl, size: age >= 15 ? 1 : 0.45 + 0.55 * Math.max(0, age) / 15,
+        home: P.household || "-", child: age < 15 };
     });
     let maxDist = 1;
+    const fams = {};  // 家族ごとの、その日にいる人 (家族の集まる場所で、まわりに並べるため)
+    for (const n of names) if (plan[n].alive) (fams[plan[n].home] = fams[plan[n].home] || []).push(n);
+    const oneHome = Object.keys(fams).length <= 1;
     for (const n of names) {
       const p = plan[n], k = groups[p.place.id].indexOf(n), a = k * 2.1;
       p.spot = { x: p.place.x + 0.5 + Math.cos(a) * 1.2 * (k > 0), y: p.place.y + 0.5 + Math.sin(a) * 1.2 * (k > 0) };
       if (p.place.id === "camp") p.spot = { x: D.camp.x + 0.5 + Math.cos(p.i * 1.26) * 2.2, y: D.camp.y + 0.5 + Math.sin(p.i * 1.26) * 2.2 };
-      p.ring = { x: D.camp.x + 0.5 + Math.cos(p.i * 1.2566) * 1.3, y: D.camp.y + 0.5 + Math.sin(p.i * 1.2566) * 1.3 };
+      if (oneHome) {  // 家族が 1 つ (Society 1.0) のときは、前と同じく火のまわり
+        p.ring = { x: D.camp.x + 0.5 + Math.cos(p.i * 1.2566) * 1.3, y: D.camp.y + 0.5 + Math.sin(p.i * 1.2566) * 1.3 };
+      } else {  // 朝・夕方・夜は、家族の集まる場所 (家族の住まいの前か、火のまわりの家族ごとの場所) に、家族で輪になる
+        const c = homeSpot(D, p.home, day), mates = fams[p.home] || [n], j = Math.max(0, mates.indexOf(n));
+        const r = mates.length > 1 ? 0.55 + 0.12 * mates.length : 0;
+        p.ring = { x: c.x + Math.cos(j * 2 * Math.PI / mates.length) * r, y: c.y + Math.sin(j * 2 * Math.PI / mates.length) * r };
+        if (p.child && p.activity === "休む") p.spot = p.ring;  // 子は昼も家族のところにいる
+      }
       p.dist = Math.hypot(p.spot.x - p.ring.x, p.spot.y - p.ring.y);
       maxDist = Math.max(maxDist, p.dist);
     }
     const ev = D.events.filter((e) => e.day === day);
     const eve = ev.filter((e) => EVE_EVENTS.includes(e.type));
     const segs = SEG.map((s) => ({ ...s }));
-    segs[4].sec = Math.max(10, eve.length * 2.6 + 2);
+    segs[4].sec = Math.max(10, Math.min(eve.length, 12) * 2.6 + 2);  // 人が増えても夕方が長くなりすぎないように
     const over = (S && S.segOverride && S.segOverride[day]) || {};  // 動画用: 場面ごとの秒数を指定できる
     for (const s of segs) if (over[s.key]) s.sec = over[s.key];
     let acc = 0; for (const s of segs) { s.v0 = acc; acc += s.sec; s.v1 = acc; }
     return { plan, maxDist, segs, total: acc, work: ev.filter((e) => WORK_EVENTS.includes(e.type)), eve,
       night: ev.filter((e) => NIGHT_EVENTS.includes(e.type)), fire: ev.some((e) => e.type === "火" && !/できなかった/.test(e.text)) || D.camp.fire > 0 };
+  }
+
+  // その日の畑: 秋にまいてから 30 日は土、次の 60 日 (冬・春) は芽、次の 30 日 (夏) は実り。そのあとは消える (era2.py の畑の育ち方と同じ)
+  function fieldsOn(day) {
+    const on = S.W.sowings.filter((e) => e.day <= day && day < e.day + 120);
+    S.W.plots.forEach((m, k) => {
+      const e = on[k];
+      m.visible = !!e;
+      if (!e) return;
+      const age = day - e.day;
+      m.material.color.copy(age < 30 ? S.T.tuber.clone().multiplyScalar(0.7) : age < 90 ? S.T.grass.clone().multiplyScalar(0.75) : new THREE.Color("#d9a520"));  // 実った畑は麦の金色 (木の実の赤とまぎれないように。2026-10-08)
+    });
+  }
+
+  // その日の家族の住まい: 建てかけは低い壁、できたら広さに合わせた大きさ (20 m² → 1.8 マス幅)
+  function housesOn(day) {
+    for (const H of S.W.houses) {
+      const v = houseAt(S.D, H.v.household, day);
+      H.g.visible = !!v;
+      if (!v) continue;
+      const w = 0.9 + Math.sqrt(Math.max(v.size, 20)) / 5, d = w * 0.75, h = v.built ? 0.9 : 0.35;
+      H.wall.scale.set(w, h, d); H.wall.position.y = h / 2;
+      H.roof.visible = v.built; H.roof.scale.set(w + 0.2, 1, d + 0.2); H.roof.position.y = h + 0.06;
+    }
   }
 
   function lerp(a, b, u) { return { x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * u }; }
@@ -205,6 +285,8 @@
     S.W.sun.intensity = light; S.W.amb.intensity = 0.25 + light * 0.35;
     const lit = P.fire && (hour >= 18.5 || hour < 6);
     S.W.hut.visible = S.W.hutDay !== null && S.dayNum >= S.W.hutDay;
+    fieldsOn(S.dayNum);
+    housesOn(S.dayNum);
     S.W.flame.visible = lit; S.W.fireLight.intensity = lit ? 1.6 + Math.sin(v * 13) * 0.3 : 0;
     S.W.scene.background = S.T.bg.clone().lerp(new THREE.Color(0x0b1220), 1 - Math.min(1, light / 0.9));
 
@@ -212,6 +294,7 @@
       const p = P.plan[n], fig = S.figs[n];
       fig.visible = p.alive;
       if (!p.alive) continue;
+      fig.scale.setScalar(p.size);
       let at = p.ring, heading = null, pose = "stand", moving = false;
       if (seg.key === "go" || seg.key === "back") {
         const need = p.dist / P.maxDist;
@@ -328,10 +411,15 @@
       const controls = new THREE.OrbitControls(camera, renderer.domElement);
       controls.target.copy(W.camp); controls.maxPolarAngle = Math.PI * 0.47; controls.minDistance = 4; controls.maxDistance = 120;
       const figs = {}, labels = {};
+      const hs = homesOf(D), seen = {};
       D.people.forEach((p, i) => {
-        const f = makeFigure(T.people[i % 5]); W.scene.add(f); figs[p.name] = f;
+        // 家族が 2 つ以上なら、家族ごとの色 (家族の中で明るさを少し変える)。1 つ (Society 1.0) なら前と同じ人ごとの色
+        const h = p.household || "-", k = (seen[h] = (seen[h] ?? -1) + 1);
+        const col = hs.length > 1 ? new THREE.Color(HOME_COLORS[hs.indexOf(h) % HOME_COLORS.length]).offsetHSL(0, 0, ((k % 3) - 1) * 0.09) : T.people[i % 5];
+        const hex = "#" + col.getHexString();
+        const f = makeFigure(col); W.scene.add(f); figs[p.name] = f;
         const el = document.createElement("div"); el.className = "r3-label";
-        el.innerHTML = `<div class="b" hidden style="border-color:${css(`--p${i % 5}`)}"></div><span style="color:${css(`--p${i % 5}`)}">${esc(p.name)}</span>`;
+        el.innerHTML = `<div class="b" hidden style="border-color:${hex}"></div><span style="color:${hex}">${esc(p.name)}</span>`;
         stage.appendChild(el); labels[p.name] = { el, pos: null, bubble: "" };
       });
       S = { D, walk, T, W, renderer, camera, controls, figs, labels, v: 0, speed: 1, playing: true,

@@ -8,11 +8,17 @@
 import json
 
 import knowledge
-from world import ACTIVITIES, SEASON_DAYS, food_words, holdings, season
+import math
 
+from world import ACT_EVENT, ACTIVITIES, GATHER_RADIUS, SEASON_DAYS, food_words, holdings, season, tried_activities
+
+# 2026-10-06 追加 (F3 の評価 5-2。本人の了承「２つを直して再開」): 決まりの 3・4 行目。実際に起きた出来事と、話・予定・約束・掟の区別と、人が何かをする時の決まり。
+#   世界に記録のない「肉の保存実験」(火・干す の出来事は 0 件) を 100 日以上話し、「実行した」「成功した」と覚えたため。どれも世界の事実で、よいことは書かない
 RULES = """あなたは、ある小さな世界に暮らす一人の人間を演じます。
 - この世界の外の知識 (現実の地名・国・歴史・宗教・王・お金 など) は持っていない前提で考えてください
 - 自分が経験したこと、聞いたこと、覚えていることだけをもとに考えてください
+- 「今日のこと」の [出来事] は、実際に起きたことです。人の話 (「」の中の言葉) は、その人がそう言ったということで、中身が実際に起きたとはかぎりません。予定・約束・掟も、決めただけではまだ起きていません
+- 昼にする活動は 1 日に 1 つ (ふつうは前の夜に決めた予定) です。夕方と夜にできるのは、話す・決める・食べ物を分ける・蓄えに入れる・蓄えから取る・食べる・眠る ことです
 - この世界の人は「カロリー」「kcal」という考えを知りません。食べ物の量は「木の実 5 つかみ」「芋 2 本」「魚 3 匹」のように、食べ物の名前と数で考えて話してください
 - 答えは JSON だけを出力してください (前後に説明を書かない)。JSON の中の文章はすべて日本語で書いてください"""
 
@@ -27,7 +33,7 @@ def _me(state, p):
     sk = "、".join(f"{k} {v:.2f}" for k, v in p["skills"].items())
     hold = holdings(p)
     hunger = "満腹" if p["hunger"] < 0.1 else "少し空腹" if p["hunger"] < 0.3 else "かなり空腹" if p["hunger"] < 0.6 else "ひどく空腹 (危ない)"
-    trust = "、".join(f"{n} {v:+.1f}" for n, v in p["trust"].items() if any(q["name"] == n and q["alive"] for q in state["people"]))
+    trust = "、".join(f"{n} {v:+.1f}" for n, v in p["trust"].items() if any(q["name"] == n and q["alive"] and not q.get("child") for q in state["people"]))
     return (f"あなたは {p['name']} ({p['sex']}、{p['age']} 歳)。今は {days}。\n"
             f"性格 (0〜1): {pers}\n技能 (0〜1): {sk}\n"
             f"おなか: {hunger} / 疲れ {p['fatigue']:.1f} / けが {'あり' if p['injured'] else 'なし'}\n"
@@ -35,8 +41,49 @@ def _me(state, p):
             + (f"持ち物: {'・'.join(p['items'])}\n" if p["items"] else "")
             + "1 日に食べる量の目安: 木の実なら 20 つかみ、芋なら 8 本、ルクの肉なら 3 切れ、魚なら 7 匹\n"
             + _seasons(state["day"])
+            + _sowing()
             + f"キャンプの蓄え (誰でも入れたり取ったりできる): {food_words(holdings({'food': state.get('store', [])}))}\n"
-            f"仲間への信頼 (-1〜+1): {trust}\n")
+            + _dwelling(state)
+            + _sown_trees(state)
+            + f"仲間への信頼 (-1〜+1): {trust}\n")
+
+
+def _sown_trees(state):
+    """キャンプのそばの、種から育った木 (見ればわかる事実。2026-10-06 追加)"""
+    camp = state["camp"]
+    trees = [q for q in state["plants"] if q.get("sown") and math.hypot(q["x"] - camp["x"], q["y"] - camp["y"]) <= GATHER_RADIUS]
+    if not trees:
+        return ""
+    who = [e["data"]["sower"] for e in state["events"] if e["type"] == "育つ" and (e.get("data") or {}).get("sower")]
+    midden = sum(1 for e in state["events"] if e["type"] == "育つ" and "殻を捨てた所" in e["text"])
+    whence = "・".join(([f"{'・'.join(dict.fromkeys(who))} が種を埋めた木"] if who else []) + ([f"殻を捨てた所から育った木 {midden} 本"] if midden else []))
+    return (f"キャンプのそばに、種から育った木の実の木が {len(trees)} 本ある" + (f" ({whence})" if whence else "")
+            + f"。今ついている実は 約 {round(sum(q['amount'] for q in trees))} つかみ\n")
+
+
+def _pick_line(state):
+    """夕方、キャンプのそばの木に実があれば、手を伸ばして取れる (見ればわかる事実だけ。2026-10-06 追加)"""
+    from world import camp_tree_fruit
+    n = camp_tree_fruit(state)
+    return f"キャンプのそばの木から、ついている木の実を取る (pick) こともできます (今ついている実 約 {n} つかみ。しなくてもよい)。\n" if n >= 1 else ""
+
+
+def _plant_line(p):
+    """持っている木の実を、キャンプのそばの土に埋められる (2026-10-07 追加。よいことは書かない)"""
+    n = sum(f["kcal"] for f in p["food"] if f["kind"] == "木の実") // 100
+    return (f"持っている木の実を、キャンプのそばの土に埋める (plant) こともできます (1 つかみが 1 つの種になる。今持っている木の実 {n} つかみ。しなくてもよい)。\n"
+            if n >= 1 else "")
+
+
+def _dwelling(state):
+    """キャンプの住まいの今のようす (見ればわかる事実。2026-10-06、本人の了承のうえ追加: 建てかけを完成と思い込んだため)"""
+    camp = state["camp"]
+    if camp.get("dwelling_day") is not None:
+        return "キャンプの住まい: できあがっている (屋根と壁があり、雨をしのげる)\n"
+    d = camp.get("dwelling", 0)
+    if d <= 0:
+        return ""
+    return f"キャンプの住まい: 建てかけ (でき具合 約 {max(1, round(d * 10))} 割)。できあがるまでは、雨は中の人も蓄えもしのげない\n"
 
 
 def _seasons(day):
@@ -46,8 +93,23 @@ def _seasons(day):
             f"次の季節 ({season(day + left)}) まで、あと {left} 日\n")
 
 
-def _knowledge(p):
-    return "\n".join(f"- [{k['id']}] {k['text']} (確かさ {k['confidence']:.1f})" for k in p["knowledge"])
+def _sowing():
+    """種をまくと何が起きるか。大人なら誰でも知っていること (2026-10-06 追加。F4 に入って 40 日、種を持っていても誰もまかなかったため。
+    よいこと・すすめることは書かず、世界で起きることだけを書く。20 日は世界の仮定で、本当の木はもっと長くかかる)"""
+    return "種 (持ち物の「種」) を土に埋めると、その場所に 20 日ほどで木の実の木が育つ。木に実がなって増えるのは夏と秋\n"
+
+
+def _knowledge(state, p):
+    """覚えていること。きっかけが人の話だけのものには「きっかけは話だけ」、話とほかの出来事のものには「きっかけに話をふくむ」を添える
+    (本人にわかる事実。2026-10-06 追加、F3 の評価 5-2)"""
+    kinds = {e["id"]: e["type"] for e in state["events"]}
+
+    def src(k):
+        ts = [kinds[i] for i in k.get("because", []) if i in kinds]
+        if not ts or "話す" not in ts:
+            return ""
+        return "、きっかけは話だけ" if all(t == "話す" for t in ts) else "、きっかけに話をふくむ"
+    return "\n".join(f"- [{k['id']}] {k['text']} (確かさ {k['confidence']:.1f}{src(k)})" for k in p["knowledge"])
 
 
 def _laws(state, with_pending=False):
@@ -66,7 +128,7 @@ def _today(state, p):
         if i in ev:
             lines.append(f"- [出来事 {i}] {ev[i]['text']}")
     others = [e for e in state["events"] if e["day"] == state["day"] and e["id"] not in t.get("events", [])
-              and e["type"] in ("狩り", "分ける", "けが", "死", "火", "育つ", "夜", "腐る", "蓄える", "蓄えから取る", "干す", "住まい") and e.get("who") != p["name"]]
+              and e["type"] in ("狩り", "分ける", "けが", "死", "火", "育つ", "夜", "腐る", "蓄える", "蓄えから取る", "干す", "住まい", "雨") and e.get("who") != p["name"]]
     if others:
         lines.append("キャンプに戻って見聞きしたこと:")
         lines += [f"- [出来事 {e['id']}] {e['text']}" for e in others[-8:]]
@@ -79,6 +141,7 @@ def _heard(p, n=8):
 
 def evening_prompt(state, p):
     names = [q["name"] for q in _alive(state) if q is not p]
+    where = "キャンプの火のまわり" if state["camp"].get("fire", 0) > 0 else "キャンプ"  # 2026-10-06: 火が一度もないのに毎夕「火のまわり」と書いていた (世界と食い違う文) のを、火があるときだけにした
     return f"""{RULES}
 
 {_me(state, p)}
@@ -86,7 +149,7 @@ def evening_prompt(state, p):
 {_today(state, p)}
 
 ## 覚えていること
-{_knowledge(p)}
+{_knowledge(state, p)}
 
 ## 集団の掟
 {_laws(state)}
@@ -95,16 +158,16 @@ def evening_prompt(state, p):
 {_heard(p)}
 
 ## いま
-夕方。キャンプの火のまわりに {'、'.join(names)} がいる。
+夕方。{where}に {'、'.join(names)} がいる。
 話したいことがあれば話してください (0〜2 つ。相手は仲間の名前か「みんな」)。
 前と同じ言い回しをくり返さず、あなたの性格と今日の出来事に合った、あなたらしい言葉で話してください。
 持っている食べ物を誰かに分けるなら、相手・食べ物の名前・数を書いてください (分けなくてもよい)。
 キャンプの蓄えに入れる (store) ことも、蓄えから取る (take) こともできます (しなくてもよい)。
-この世界の決まり: 夕方は「分ける・蓄えに入れる・蓄えから取る」のあと、手元に残った食べ物を食べます (1 日に食べられるのは目安の量の 1.5 倍くらいまで)。蓄えに入れた分は、取り出さないと食べられません。
+{_pick_line(state)}{_plant_line(p)}この世界の決まり: 夕方は「分ける・蓄えに入れる・蓄えから取る」のあと、手元に残った食べ物を食べます (1 日に食べられるのは目安の量の 1.5 倍くらいまで)。蓄えに入れた分は、取り出さないと食べられません。
 
 ## 答えの形 (JSON)
 {{"say": [{{"to": "みんな", "text": "..."}}], "give": [{{"to": "名前", "food": "芋", "count": 2}}],
- "store": [{{"food": "木の実", "count": 3}}], "take": [{{"food": "芋", "count": 1}}]}}"""
+ "store": [{{"food": "木の実", "count": 3}}], "take": [{{"food": "芋", "count": 1}}]{', "pick": [{"count": 5}]' if _pick_line(state) else ''}{', "plant": [{"count": 1}]' if _plant_line(p) else ''}}}"""
 
 
 def night_prompt(state, p, tonight_heard, gifts):
@@ -113,6 +176,11 @@ def night_prompt(state, p, tonight_heard, gifts):
     got = "\n".join(f"- [出来事 {g['event']}] {g['from']} から {g['food']} をもらった" for g in gifts) or "(なし)"
     meeting = knowledge.is_meeting(state["day"])
     names = [q["name"] for q in _alive(state) if q is not p]
+    # 2026-10-05 追加。並べるだけで、よいことは書かない。2026-10-06: 亡くなった人だけがしたことのある活動 (8 日目のルオの種まきなど) も、
+    # 今いる仲間がまだしたことがなければ並べる (F4 に入って 60 日、種まきが 0 回だったため)
+    done = {e["type"] for e in state["events"] if e.get("who") in {q["name"] for q in _alive(state)}}
+    untried = [a for a in ACTIVITIES if ACT_EVENT.get(a) not in done and (a != "キャンプを移す" or a not in tried_activities(state))]
+    untried = f"   (今いる仲間のなかで、まだ誰もしたことのない活動: {'・'.join(untried)})\n" if untried else ""
     law_part = (f"""
 ## 今日は集まりの日
 提案されている掟と、今の掟に賛成か反対かを投票してください (反対が多い掟は廃止される)。
@@ -133,7 +201,7 @@ def night_prompt(state, p, tonight_heard, gifts):
 {got}
 
 ## 覚えていること
-{_knowledge(p)}
+{_knowledge(state, p)}
 
 ## 集団の掟
 {_laws(state)}
@@ -145,7 +213,7 @@ def night_prompt(state, p, tonight_heard, gifts):
 3. 明日の予定を決める。活動は {' / '.join(ACTIVITIES)} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names)}) がいれば書く
    (「キャンプを移す」: 半分を超える人が同じ場所を選ぶと、次の日にキャンプごと (蓄えも) そこへ移る。選んだ人が少なければ、その場所を見に行くだけになる)
    (「住まいを建てる」: キャンプに、屋根と壁のある住まいを建てる。材料の木や枝は近くの林から運ぶ。一人では何日もかかる。キャンプを移すと、住まいは置いていくことになる)
-4. 今日の気持ちを一言
+{untried}4. 今日の気持ちを一言
 
 場所の一覧:
 {places}
@@ -201,6 +269,12 @@ def apply_evening(state, answers):
         for g in (a.get("take") or [])[:4]:
             if isinstance(g, dict):
                 takes.append({"who": name, "food": g.get("food"), "count": g.get("count", 0)})
+        for g in (a.get("plant") or [])[:1]:  # 持っている木の実をキャンプのそばに埋める (2026-10-07 追加)
+            if isinstance(g, dict):
+                takes.append({"who": name, "food": "木の実", "count": g.get("count", 0), "plant": True})
+        for g in (a.get("pick") or [])[:1]:  # キャンプのそばの木から実を取る (2026-10-06 追加)
+            if isinstance(g, dict):
+                takes.append({"who": name, "food": "木の実", "count": g.get("count", 0), "tree": True})
     for p in alive.values():
         p["heard"] = p["heard"][-30:]
     return gives, tonight, stores, takes

@@ -19,8 +19,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 import characters  # noqa: E402
+import era2  # noqa: E402
 import knowledge  # noqa: E402
 import phase  # noqa: E402
+import resume  # noqa: E402
 import world  # noqa: E402
 
 import os  # noqa: E402
@@ -45,10 +47,15 @@ def pdir(state, phase, kind):
 def write_prompts(state, phase):
     d = pdir(state, phase, "prompts")
     d.mkdir(parents=True, exist_ok=True)
+    who = set(era2.answerers(state)) if phase == "season" else None
     for p in state["people"]:
         if not p["alive"]:
             continue
-        if phase == "evening":
+        if p.get("child") or (who is not None and p["name"] not in who):
+            continue
+        if phase == "season":
+            text = era2.season_prompt(state, p, state["era2"].get("last_first", 0))
+        elif phase == "evening":
             text = characters.evening_prompt(state, p)
         else:
             text = characters.night_prompt(state, p, state.get("tonight", {}).get(p["name"], []),
@@ -62,8 +69,9 @@ def write_prompts(state, phase):
 def read_answers(state, phase):
     d = pdir(state, phase, "answers")
     out, missing = {}, []
+    who = set(era2.answerers(state)) if phase == "season" else None
     for p in state["people"]:
-        if not p["alive"]:
+        if not p["alive"] or p.get("child") or (who is not None and p["name"] not in who):
             continue
         f = d / f"{p['name']}.json"
         if f.exists():
@@ -75,7 +83,8 @@ def read_answers(state, phase):
     return out
 
 
-ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき"}
+ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき",
+                "畑仕事": "畑仕事", "ヤギの世話": "ヤギの世話", "ヤギを捕まえる": "ヤギを捕まえる", "土器": "土器づくり", "住まい": "住まいを建てる"}  # Society 2.0 の仕事
 
 
 def day_summaries(state):
@@ -109,7 +118,8 @@ def export(state):
                    for q in state["plants"]],
         "herds": state["herds"], "predators": state["predators"], "planted": state["planted"],
         "people": [{k: p.get(k) for k in ("name", "alive", "age", "sex", "mass", "personality", "skills", "hunger", "fatigue",
-                                          "injured", "items", "trust", "plan", "feeling")}
+                                          "injured", "items", "trust", "plan", "feeling", "child", "mother", "origin", "left", "household", "born_day")}
+                   | {"since": p.get("born_day", 0) if p.get("origin") == "生まれた" else resume._joined_day(state, p["name"]) if p.get("origin") == "よそから来た" else 0}
                    | {"food": sum(f["kcal"] for f in p["food"]), "food_words": world.food_words(world.holdings(p)), "today": p.get("today"),
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
         "events": ev_recent, "laws": state.get("laws", []),
@@ -117,6 +127,12 @@ def export(state):
         "days": day_summaries(state),
         "era": state.get("era_info") or {"era": "F1", "name": phase.ERAS["F1"]}, "era_log": state.get("era_log", []),
         "hold": bool(state.get("hold")), "store": world.food_words(phase._store_kinds(state)),
+        "resumes": resume.build(state),
+        # G の中の小さな区切り F (G1・G2 は記録から決めた日、G3 からは見つけた日)
+        "substeps": era2.RETRO_SUBSTEPS + (state.get("era2") or {}).get("substeps", []),
+        # 家族の住まい (G3 から): 3D の再生で、家族ごとの家を描く
+        "houses": [{"household": h, "x": v["x"], "y": v["y"], "start": v["start"], "built": v["built"], "sizes": v["sizes"]}
+                   for h, v in sorted((state.get("era2") or {}).get("homes", {}).items())],
     }
     (DATA / "app_data.json").write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print("アプリ用のデータ:", (DATA / "app_data.json").relative_to(DATA.parent))
@@ -124,7 +140,7 @@ def export(state):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume"])
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season"])
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
     a = ap.parse_args()
@@ -143,14 +159,16 @@ def main():
 
     state = load()
     if a.cmd == "status":
-        nxt = {"day": "day (1 日を進める)", "evening": "夕方の答えを集めて evening", "night": "夜の答えを集めて night"}[state["phase"]]
+        nxt = {"day": "day (1 日を進める)", "evening": "夕方の答えを集めて evening", "night": "夜の答えを集めて night",
+               "season": "季節の答えを集めて season (30 日進む)"}[state["phase"]]
         alive = [p["name"] for p in state["people"] if p["alive"]]
         print(f"{state['day']} 日目 / 段階 {state['phase']} / 次: {nxt} / 生きている人: {'、'.join(alive)}")
         info = state.get("era_info") or {}
-        print(f"フェーズ: {state.get('era', 'F1')} {phase.ERAS[state.get('era', 'F1')]} / 次の条件: {info.get('next', '-')}")
+        era = state.get("era", "F1")
+        print(f"フェーズ: {era} {phase.ERAS.get(era) or era2.NAMES2.get(era)} / 次の条件: {info.get('next', '-')}")
         if state.get("hold"):
             print("一時停止中: フェーズが進んだので評価待ち (再開は resume)")
-        if state["phase"] in ("evening", "night"):
+        if state["phase"] in ("evening", "night", "season"):
             print(f"お題: {pdir(state, state['phase'], 'prompts').relative_to(DATA.parent)}")
         return
     if a.cmd == "export":
@@ -161,6 +179,54 @@ def main():
         save(state)
         export(state)
         print("再開した")
+        return
+    if a.cmd == "start2":  # Society 2.0 を始める (F6 の世界を引きつぐ)
+        if state.get("era2"):
+            sys.exit("Society 2.0 はもう始まっている")
+        era2.start(state)
+        state["era2"]["last_first"] = state["next_event"]
+        era2.check(state)
+        save(state)
+        write_prompts(state, "season")
+        export(state)
+        return
+    if a.cmd == "season":
+        if state["phase"] != "season":
+            sys.exit(f"今の段階は {state['phase']} です")
+        if state.get("hold"):
+            print(f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
+            sys.exit(3)
+        before = state["next_event"]  # G5: 季節の集まりで起きたこと (収める・裁き・罰・祭り・まとめ役) は、30 日を進める前の出来事
+        era2.apply_answers(state, read_answers(state, "season"))
+        first = era2.simulate_season(state)
+        state["era2"]["last_first"] = first
+        if not any(p["alive"] for p in state["people"]):
+            save(state)
+            export(state)
+            gone = [p for p in state["people"] if p.get("left")]
+            print("生きている人がいない (亡くなった人と、村を出た人" + (f" {len(gone)} 人" if gone else " 0 人") + ")")
+            sys.exit(4)
+        if era2.check(state):
+            state["hold"] = True
+            e = state["era_log"][-1]
+            world.log(state, "フェーズ", None, f"フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ")
+            print(f"* フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ → 一時停止 (評価待ち)")
+        save(state)
+        write_prompts(state, "season")
+        export(state)
+        for e in state["events"]:
+            if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ", "区切り")) \
+                    or (e["id"] >= before and e["type"] in era2.G5_EVENTS):
+                print("*", e["text"][:120])
+        harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")
+        if harv:
+            print(f"* 畑で刈った草の種: 合わせて {harv} つかみ")
+        i = state["era_info"]["indicators"]
+        print(f"{state['day']} 日目まで進んだ / 人 {i['population']} (大人 {i['adults']}・子 {i['children']}) / ヤギ {i['goats']} / 育てた食べ物 {i['farm_share']}")
+        if i.get("g5_stage"):
+            print(f"G5 第 {i['g5_stage']} 段 / 家族 {i['households']} / まとめ役 {i['leader'] or 'いない'} / もめごと 残り {i['disputes_open']} "
+                  f"(まとめ役なしで収めた {i['settled']}・まとめ役の裁き {i['judged']}) / 罰のある掟 {i['penalty_laws']}・罰 {i['penalties']} / "
+                  f"祭り {i['feasts']} / 分かれた家 {i['fissions']} / 共同の仕事 {i['joint']} / 第 1 段 {'済み' if i['stage1'] else 'まだ'}")
         return
     if a.cmd == "day" and not any(p["alive"] for p in state["people"]):
         print("生きている人がいないので、進めない")
