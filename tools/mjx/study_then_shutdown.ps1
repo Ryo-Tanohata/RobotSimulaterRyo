@@ -25,7 +25,7 @@ git add sim/bipedal docs/bipedal_study.md docs/media/bipedal_study.png 2>$null
 git add docs/media/bipedal_study_*.mp4 2>$null
 foreach ($d in Get-ChildItem "sim\bipedal\runs" -Directory -Filter "*_seed*") {
   $ck = Get-ChildItem (Join-Path $d.FullName "checkpoints") -Directory -ErrorAction SilentlyContinue | Sort-Object { [long]$_.Name } | Select-Object -Last 1
-  if ($ck) { git add -f $ck.FullName }
+  if ($ck) { git add -f $ck.FullName; git rm -q --cached --ignore-unmatch (Join-Path $ck.FullName "commit_success.txt") }  # it holds the PC path (user name): keep it out
   foreach ($f in "log.csv", "config.json", "eval.json") { $p = Join-Path $d.FullName $f; if (Test-Path $p) { git add -f $p } }
 }
 git add -f sim/bipedal/runs/study.log sim/bipedal/runs/study.driver.log 2>$null

@@ -29,7 +29,7 @@ Log "commit and push"
 $ck = Get-ChildItem "sim\bipedal\runs\$Name\checkpoints" -Directory -ErrorAction SilentlyContinue | Sort-Object { [long]$_.Name } | Select-Object -Last 1
 git add "sim/bipedal/render.py" "tools/mjx/train_then_shutdown.ps1" 2>$null
 git add -f "sim/bipedal/runs/$Name/log.csv" "sim/bipedal/runs/$Name.driver.log" 2>$null
-if ($ck) { git add -f $ck.FullName }
+if ($ck) { git add -f $ck.FullName; git rm -q --cached --ignore-unmatch (Join-Path $ck.FullName "commit_success.txt") }  # it holds the PC path (user name): keep it out
 if (Test-Path "docs\media\bipedal_$Name.mp4") { git add "docs/media/bipedal_$Name.mp4" }
 $msg = Join-Path $env:TEMP "commit_$Name.txt"
 $text = "2 足歩行: GPU で $Minutes 分の学習 ($Name, s=$S) の結果`n`n- 最後に保存した脳、学習の記録 (log.csv)、動画`n- 学習のあと自動でプッシュし、パソコンをシャットダウン`n`nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
