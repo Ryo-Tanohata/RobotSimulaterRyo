@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "わたしは今季、畑の刈り入れを毎夕やるね。刈った量と畑に残った量は夜に言うよ。"}, {"to": "カイ", "text": "カイ、今季はわたしと一緒に畑で刈ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["カイ"]}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"カイ": {"activity": "畑仕事", "place": "camp"}}, "keep": false,
+ "feast": false,
+ "knowledge": [{"op": "add", "text": "実った畑の草の種は、夏のうちに毎夕だれかが刈り切らないと落ちてしまう", "because": [34371], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L30", "against": "肉を全部その日に食べると、乾かして冬に残す道が消えてしまう", "agree": false, "reason": "保存処理 (L112) で足りるので、今は反対"}, {"id": "L143", "against": "", "agree": true, "reason": "一人で林へ行くと、ザガに襲われたときに助けを呼べない。二人以上で行くのがいい"}, {"id": "L144", "against": "", "agree": true, "reason": "刈り入れで増える草の種を、土器に入れて虫やネズミから守るため"}, {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに畑を刈り切って、草の種を落とさないため"}, {"id": "L106", "against": "", "agree": true, "reason": "木の実は夏と秋にしか実らないので、冬の前に取っておくのがいい"}, {"id": "L112", "against": "", "agree": true, "reason": "肉はその日に食べるか、乾かすか燻して、腐らせないのがいい"}],
+ "feeling": "畑の草の種が夏のうちに落ちるのが一番心配。だれも刈らなければ、また大きな無駄になるから、わたしが毎夕刈る。"}
