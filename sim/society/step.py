@@ -64,6 +64,28 @@ def write_prompts(state, phase):
     a = pdir(state, phase, "answers")
     a.mkdir(parents=True, exist_ok=True)
     print(f"お題: {d.relative_to(DATA.parent)}  →  答えの置き場所: {a.relative_to(DATA.parent)}/<名前>.json")
+    if phase == "season" and era2.feelers(state):  # 代表でない大人は、気持ちと一言だけ答える (2026-10-09 本人の希望)
+        fd, fa = pdir(state, "feeling", "prompts"), pdir(state, "feeling", "answers")
+        fd.mkdir(parents=True, exist_ok=True)
+        fa.mkdir(parents=True, exist_ok=True)
+        for n in era2.feelers(state):
+            p = next(q for q in state["people"] if q["name"] == n)
+            (fd / f"{n}.md").write_text(era2.feeling_prompt(state, p, state["era2"].get("last_first", 0)), encoding="utf-8")
+        print(f"気持ちのお題: {fd.relative_to(DATA.parent)}  →  答えの置き場所: {fa.relative_to(DATA.parent)}/<名前>.json")
+
+
+def read_feelings(state):
+    """代表でない大人の、気持ちと一言の答え (ない人は、気持ちが前のまま)"""
+    d = pdir(state, "feeling", "answers")
+    out = {}
+    for n in era2.feelers(state):
+        f = d / f"{n}.json"
+        if f.exists():
+            out[n] = f.read_text(encoding="utf-8")
+    missing = [n for n in era2.feelers(state) if n not in out]
+    if missing:
+        print("気持ちの答えがない人:", "、".join(missing))
+    return out
 
 
 def read_answers(state, phase):
@@ -118,7 +140,7 @@ def export(state):
                    for q in state["plants"]],
         "herds": state["herds"], "predators": state["predators"], "planted": state["planted"],
         "people": [{k: p.get(k) for k in ("name", "alive", "age", "sex", "mass", "personality", "skills", "hunger", "fatigue",
-                                          "injured", "items", "trust", "plan", "feeling", "child", "mother", "origin", "left", "household", "born_day")}
+                                          "injured", "items", "trust", "plan", "feeling", "feeling_day", "child", "mother", "origin", "left", "household", "born_day")}
                    | {"since": p.get("born_day", 0) if p.get("origin") == "生まれた" else resume._joined_day(state, p["name"]) if p.get("origin") == "よそから来た" else 0}
                    | {"food": sum(f["kcal"] for f in p["food"]), "food_words": world.food_words(world.holdings(p)), "today": p.get("today"),
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
@@ -197,7 +219,9 @@ def main():
             print(f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
             sys.exit(3)
         before = state["next_event"]  # G5: 季節の集まりで起きたこと (収める・裁き・罰・祭り・まとめ役) は、30 日を進める前の出来事
+        feels = read_feelings(state)  # 代表を決める前の顔ぶれで読む (集まりで、まとめ役が変わることがあるため)
         era2.apply_answers(state, read_answers(state, "season"))
+        era2.apply_feelings(state, feels)
         first = era2.simulate_season(state)
         state["era2"]["last_first"] = first
         if not any(p["alive"] for p in state["people"]):

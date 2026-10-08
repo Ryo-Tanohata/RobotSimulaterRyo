@@ -95,6 +95,7 @@ Cloudflare Pages の本人だけが見られるページ (README「結果を見�
 計画は `docs/society2_phase_plan.md`。`python3 sim/society/step.py start2` で始めた (489 日目)。
 
 1. `sim/society/data/prompts/dayNNN/season/` のお題を、大人 1 人に 1 体のサブエージェント (haiku) に渡し、答えを `answers/dayNNN/season/名前.json` に書かせる (子は答えない)
+   - 家族の代表が答える形のときは、代表でない大人にも `prompts/dayNNN/feeling/` のお題 (気持ちと一言だけ) を渡し、答えを `answers/dayNNN/feeling/名前.json` に書かせる (2026-10-09 本人の希望)。気持ちの答えがない人がいても季節は進めてよい。`tools/society2_seasons_workflow.js` がこれをする
 2. そろったら `python3 sim/society/step.py season` (30 日進む。蓄えが尽きると途中で区切る)
 3. その回をコミット (push はしない): `社会シミュレーション: N 日目 (季節)`
 4. 20 回ごとに記録 (run_log・G?_notes) を書いて push。フェーズが進んだら (一時停止)、報告・評価の下書き・動画のあと `resume` して続ける

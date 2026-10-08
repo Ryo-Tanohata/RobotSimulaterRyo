@@ -165,6 +165,7 @@ def apply_answers(state, answers):
                                      "eat_goat": max(0, min(5, _int(a.get("eat_goat")))) if q is p and own else 0,
                                      "harvest": max(0, min(60, _int(a.get("harvest"))))}
         p["feeling"] = str(a.get("feeling", ""))[:120]
+        p["feeling_day"] = state["day"]  # いつの気持ちか (2026-10-09 から。ダッシュボードで日付を出す)
         if era_at_least(state, "G4") and own and "keep" in a and p.get("household"):
             _house(state, p["household"])["keep"] = a.get("keep") is True or a.get("keep") in ("true", "はい")
         for v, ok in (a.get("accept").items() if isinstance(a.get("accept"), dict) else []):
@@ -1334,6 +1335,75 @@ def answerers(state):
     _sync_households(state)
     who = _reps(state) | {_leader(state)}
     return [p["name"] for p in ads if p["name"] in who]
+
+
+def feelers(state):
+    """気持ちだけ答える人 (2026-10-09 本人の希望「全員が気持ちだけ答える」): 家族の代表 (と G5 のまとめ役) でない大人。
+    季節のはじめに、今の気持ちとだれかへの一言だけを答える。仕事・掟の投票・受け入れは、今までどおり代表が決める (世界の進み方は変わらない)"""
+    if not state["era2"].get("rep_mode"):
+        return []
+    who = set(answerers(state))
+    return [p["name"] for p in adults(state) if p["name"] not in who]
+
+
+def feeling_prompt(state, p, first):
+    """代表でない大人のお題 (気持ちと一言だけ)"""
+    st = dict(state, day=state["day"] + 1)
+    me = characters._me(st, p).replace("(誰でも入れたり取ったりできる)", "(日々の出し入れは自動)")
+    who = set(answerers(state))
+    rep = next((q["name"] for q in family(state, p["name"]) if q["name"] in who), None)
+    fam = [q for q in family(state, p["name"]) if q is not p]
+    kids = [c for c in children(state) if c.get("household") and c.get("household") == p.get("household")]
+    rows = [f"- {q['name']} ({q['sex']}、{q['age']} 歳{'。家族の代表' if q['name'] == rep else ''})" for q in fam]
+    rows += [f"- 子: {c['name']} ({c['sex']}、{c['age']} 歳)" for c in kids]
+    sea = season(state["day"] + 1)
+    return f"""{RULES2}
+
+{me}
+## 村のようす
+{_village(state)}
+## 前の季節のこと
+{_season_digest(state, p, first)}
+
+## 最近聞いた話
+{characters._heard(p)}
+
+## あなたの家族 ({p.get('household')})
+村の大人が {REP_FROM} 人をこえたので、季節の集まりでは家族ごとに、いちばん年上の大人が代表して答える。{f'{p.get("household")} の代表は {rep}。' if rep else ''}代表が、家族の大人の仕事・掟の投票・よそから来た人の受け入れを決める。あなたは代表ではないので、仕事は決めない。
+{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}
+
+## いま
+{state["day"] + 1} 日目、{sea}。季節のはじめの集まり。あなたが答えるのは次の 2 つだけ。
+1. 今の気持ち (feeling、120 字まで)。前の季節に起きたことと、あなた自身や家族のことから、あなたらしい言葉で
+2. だれかに一言 (say、0〜1 つ、60 字まで。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さない
+
+## 答えの形 (JSON)
+{{"say": [{{"to": "みんな", "text": "..."}}], "feeling": "..."}}"""
+
+
+def apply_feelings(state, answers):
+    """代表でない大人の、気持ちと一言 (2026-10-09 から)。世界のしくみには使わない。一言は話として記録し、聞き手に届く"""
+    alive = {p["name"]: p for p in adults(state)}
+    talk = []
+    for name, raw in answers.items():
+        p = alive.get(name)
+        if not p:
+            continue
+        a = characters.parse(raw)
+        f = str(a.get("feeling", "")).strip()[:120]
+        if f:
+            p["feeling"], p["feeling_day"] = f, state["day"]
+        for s in (a.get("say") or [])[:1]:
+            text = str((s or {}).get("text", ""))[:60] if isinstance(s, dict) else ""
+            to = (s or {}).get("to", "みんな") if isinstance(s, dict) else "みんな"
+            if text:
+                eid = log(state, "話す", name, f"{name} → {to}: 「{text}」", to=to)
+                talk.append({"day": state["day"], "from": name, "text": text, "event": eid, "to": to})
+    for t in talk:
+        for n, q in alive.items():
+            if n != t["from"] and (t["to"] == "みんな" or t["to"] == n):
+                q["heard"].append({k: t[k] for k in ("day", "from", "text", "event")})
+                q["heard"] = q["heard"][-30:]
 
 
 # ---------------- 判定 ----------------
