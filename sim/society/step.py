@@ -47,10 +47,11 @@ def pdir(state, phase, kind):
 def write_prompts(state, phase):
     d = pdir(state, phase, "prompts")
     d.mkdir(parents=True, exist_ok=True)
+    who = set(era2.answerers(state)) if phase == "season" else None
     for p in state["people"]:
         if not p["alive"]:
             continue
-        if p.get("child"):
+        if p.get("child") or (who is not None and p["name"] not in who):
             continue
         if phase == "season":
             text = era2.season_prompt(state, p, state["era2"].get("last_first", 0))
@@ -68,8 +69,9 @@ def write_prompts(state, phase):
 def read_answers(state, phase):
     d = pdir(state, phase, "answers")
     out, missing = {}, []
+    who = set(era2.answerers(state)) if phase == "season" else None
     for p in state["people"]:
-        if not p["alive"] or p.get("child"):
+        if not p["alive"] or p.get("child") or (who is not None and p["name"] not in who):
             continue
         f = d / f"{p['name']}.json"
         if f.exists():
@@ -115,7 +117,7 @@ def export(state):
                    for q in state["plants"]],
         "herds": state["herds"], "predators": state["predators"], "planted": state["planted"],
         "people": [{k: p.get(k) for k in ("name", "alive", "age", "sex", "mass", "personality", "skills", "hunger", "fatigue",
-                                          "injured", "items", "trust", "plan", "feeling", "child", "mother", "origin", "left")}
+                                          "injured", "items", "trust", "plan", "feeling", "child", "mother", "origin", "left", "household")}
                    | {"food": sum(f["kcal"] for f in p["food"]), "food_words": world.food_words(world.holdings(p)), "today": p.get("today"),
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
         "events": ev_recent, "laws": state.get("laws", []),

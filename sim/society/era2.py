@@ -123,19 +123,28 @@ def apply_answers(state, answers):
         if isinstance(prop, dict) and prop.get("text"):
             knowledge.propose(state, p, prop["text"], prop.get("because"))
         knowledge.vote(state, p, a.get("votes"))
-        job = a.get("job") or a.get("plan") or {}
-        if not isinstance(job, dict):
-            job = {"activity": job} if isinstance(job, str) else {}
-        act = job.get("activity") if job.get("activity") in ACTS2 else "休む"
-        place = job.get("place") if job.get("place") in places else "camp"
-        with_ = job.get("with") if isinstance(job.get("with"), list) else []
-        p["plan"] = {"activity": act, "place": place, "with": [w for w in with_ if isinstance(w, str) and w in alive]}
-        e2["jobs"][name] = {"sow": max(0, min(1000, _int(a.get("sow")))), "pick": max(0, min(40, _int(a.get("pick")))),
-                            "plant": max(0, min(5, _int(a.get("plant")))), "eat_goat": max(0, min(5, _int(a.get("eat_goat")))),
-                            "harvest": max(0, min(60, _int(a.get("harvest"))))}
+        fam = family(state, name) if e2.get("rep_mode") else [p]  # 代表の答えは、家族の大人みんなの答え
+        fjobs = a.get("family") if isinstance(a.get("family"), dict) else {}
+        for q in fam:
+            if q is not p:
+                for l in state["laws"]:
+                    if name in l["votes"]:
+                        l["votes"][q["name"]] = l["votes"][name]
+            job = (fjobs.get(q["name"]) if q is not p else None) or a.get("job") or a.get("plan") or {}
+            if not isinstance(job, dict):
+                job = {"activity": job} if isinstance(job, str) else {}
+            act = job.get("activity") if job.get("activity") in ACTS2 else "休む"
+            place = job.get("place") if job.get("place") in places else "camp"
+            with_ = job.get("with") if isinstance(job.get("with"), list) else []
+            q["plan"] = {"activity": act, "place": place, "with": [w for w in with_ if isinstance(w, str) and w in alive and w != q["name"]]}
+            e2["jobs"][q["name"]] = {"sow": max(0, min(1000, _int(a.get("sow")))), "pick": max(0, min(40, _int(a.get("pick")))),
+                                     "plant": max(0, min(5, _int(a.get("plant")))),
+                                     "eat_goat": max(0, min(5, _int(a.get("eat_goat")))) if q is p else 0,
+                                     "harvest": max(0, min(60, _int(a.get("harvest"))))}
         p["feeling"] = str(a.get("feeling", ""))[:120]
         for v, ok in (a.get("accept").items() if isinstance(a.get("accept"), dict) else []):
-            accept.setdefault(v, []).append((name, ok is True or ok in ("true", "はい", "賛成")))
+            for q in fam:
+                accept.setdefault(v, []).append((q["name"], ok is True or ok in ("true", "はい", "賛成")))
     for t in talk:  # 話は聞き手に届く
         for n, q in alive.items():
             if n != t["from"] and (t["to"] == "みんな" or t["to"] == n):
@@ -179,6 +188,7 @@ def _settle_visitors(state, accept, n_adults):
                 q = _new_person(state, rng, m["sex"], m["age"], child=m["age"] < ADULT, origin="よそから来た", name=m["name"],
                                 mother=guardian if m["age"] < ADULT else None)
                 e2["joined"].append(q["name"])
+                q["household"] = member_names[0] + "の家"
                 if not q.get("child"):
                     q["plan"] = {"activity": common["activity"], "place": common["place"], "with": []}
                     e2["jobs"][q["name"]] = {"sow": 0, "pick": 0, "plant": 0, "eat_goat": 0, "harvest": 0}
@@ -507,6 +517,72 @@ def _season_end(state, frac=1.0):
         e2["visitors"] = [{"name": members[0]["name"], "members": members, "day": day}]
         txt = "、".join(f"{m['name']} ({m['sex']}、{m['age']} 歳)" for m in members)
         log(state, "訪れる", None, f"よその群れから {txt} がやって来て、「ここで暮らしたい」と言った")
+    _sync_households(state)
+    _note_mode(state)
+
+
+# ---------------- 家族と代表 (計画 4: 大人が 12 人をこえたら、家族の代表だけが答える) ----------------
+
+REP_FROM = 12
+
+
+def _sync_households(state):
+    """家族 (家) を決める。【仮定】最初からいる人とその子で「川辺の家」、よそから一緒に来た群れごとに 1 つの家 (群れの最初の人の名前で呼ぶ)。
+    村で生まれた子は母の家に入り、大人になっても同じ家にいる"""
+    named = {}
+    for e in state["events"]:
+        if e["type"] == "加わる" and e["text"].startswith("よそから来た "):
+            names = e["text"][len("よそから来た "):].split(" が、")[0].split("・")
+            for n in names:
+                named.setdefault(n, names[0] + "の家")
+    for p in state["people"]:
+        if p.get("household"):
+            continue
+        if p["name"] in named:
+            p["household"] = named[p["name"]]
+        elif not p.get("origin"):
+            p["household"] = "川辺の家"
+    for p in state["people"]:
+        if not p.get("household") and p.get("mother"):
+            m = next((q for q in state["people"] if q["name"] == p["mother"]), None)
+            if m and m.get("household"):
+                p["household"] = m["household"]
+
+
+def _hunger_word(h):
+    return "満腹" if h < 0.1 else "少し空腹" if h < 0.3 else "かなり空腹" if h < 0.6 else "ひどく空腹 (危ない)"
+
+
+def rep_mode(state):
+    return len(adults(state)) > REP_FROM
+
+
+def _note_mode(state):
+    e2 = state["era2"]
+    on = rep_mode(state)
+    if on != e2.get("rep_mode", False):
+        e2["rep_mode"] = on
+        log(state, "家族", None, f"村の大人が {REP_FROM} 人をこえたので、これからは季節の集まりで、家族ごとに代表 (家族でいちばん年上の大人) が答える" if on
+            else f"村の大人が {REP_FROM} 人以下になったので、また大人みんなが季節の集まりで答える")
+
+
+def family(state, name):
+    """name と同じ家の、生きている大人 (年上から)"""
+    me = next(q for q in state["people"] if q["name"] == name)
+    h = me.get("household")
+    return sorted([q for q in adults(state) if h and q.get("household") == h], key=lambda q: -q["age"]) or [me]
+
+
+def answerers(state):
+    """季節のはじめに答える人"""
+    ads = adults(state)
+    if not state["era2"].get("rep_mode"):
+        return [p["name"] for p in ads]
+    _sync_households(state)
+    reps = {}
+    for p in sorted(ads, key=lambda q: -q["age"]):
+        reps.setdefault(p.get("household") or p["name"], p["name"])
+    return [p["name"] for p in ads if p["name"] in reps.values()]
 
 
 # ---------------- 判定 ----------------
@@ -517,7 +593,8 @@ def indicators(state):
     last = state["stats"][-YEAR:]
     total = sum(s["eaten"] for s in last) or 1
     sown = sum(s.get("eaten_sown", 0) for s in last)
-    kids_1y = sum(1 for c in children(state) if c["age"] >= 1)
+    # 村で生まれて 1 歳をこえた人 (2026-10-08: よその群れが連れてきた子は数えない。G1 は「定住すると子が生まれて人が増える」を見るため)
+    kids_1y = sum(1 for c in state["people"] if c["alive"] and c.get("origin") == "生まれた" and c["age"] >= 1)
     yrs = sorted(set(e2["harvest_years"]))
     consec = any(y + 1 in yrs for y in yrs)
     return {
@@ -531,7 +608,7 @@ def indicators(state):
 
 
 CRITERIA = {
-    "G1": ("人が 10 人以上 (子をふくむ)、1 歳をこえた子が 2 人以上、よそから来た人が 1 人以上",
+    "G1": ("人が 10 人以上 (子をふくむ)、村で生まれて 1 歳をこえた子が 2 人以上、よそから来た人が 1 人以上",
            lambda i: i["population"] >= 10 and i["children_1y"] >= 2 and i["joined"] >= 1),
     "G2": ("畑の収穫が 2 年続く、飼うヤギが 5 頭以上、1 年に食べた量の半分以上が育てた植物と家畜から",
            lambda i: i["harvest_2y"] and i["goats"] >= 5 and i["farm_share"] >= 0.5),
@@ -590,7 +667,7 @@ def _season_digest(state, p, first):
     if grew:
         midden = sum(1 for e in grew if "殻を捨てた所" in e["text"])
         rows.append(f"- キャンプのそばで木の実の木が {len(grew)} 本育った (種を埋めた所から {len(grew) - midden} 本・殻を捨てた所から {midden} 本)")
-    village = [e for e in ev if e["type"] in ("生まれる", "死", "加わる", "去る", "訪れる", "畑", "ヤギ", "ヤギを食べる", "大人になる", "けが", "掟", "住まい", "フェーズ", "蓄えが尽きる")]
+    village = [e for e in ev if e["type"] in ("生まれる", "死", "加わる", "去る", "訪れる", "畑", "ヤギ", "ヤギを食べる", "大人になる", "けが", "掟", "住まい", "フェーズ", "蓄えが尽きる", "家族")]
     rows += [f"- [出来事 {e['id']}] {e['text']}" for e in village[-25:] if e.get("who") != p["name"]]
     rains = sum(1 for e in ev if e["type"] == "雨")
     if rains:
@@ -647,6 +724,21 @@ def season_prompt(state, p, first):
     acc = f'"accept": {{"{e2["visitors"][0]["name"]}": true}}, ' if e2["visitors"] else ""
     pick = characters._pick_line(st)
     me = characters._me(st, p).replace("(誰でも入れたり取ったりできる)", "(日々の出し入れは自動)")
+    fam_txt, fam_json = "", ""
+    if e2.get("rep_mode"):
+        fam = [q for q in family(state, p["name"]) if q is not p]
+        kids = [c for c in children(state) if c.get("household") and c.get("household") == p.get("household")]
+        rows = [f"- {q['name']} ({q['sex']}、{q['age']} 歳。採集 {q['skills']['採集']:.2f}、狩り {q['skills']['狩り']:.2f}。"
+                f"おなか {_hunger_word(q['hunger'])}{'、けが' if q.get('injured') else ''})" for q in fam]
+        rows += [f"- 子: {c['name']} ({c['sex']}、{c['age']} 歳、母 {c.get('mother') or '-'})" for c in kids]
+        fam_txt = (f"\n## あなたの家族 ({p.get('household')})\n村の大人が {REP_FROM} 人をこえたので、季節の集まりでは家族ごとに、いちばん年上の大人が代表して答える。"
+                   f"あなたは {p.get('household')} の代表。\n" + ("\n".join(rows) if rows else "- (ほかの家族はいない)") +
+                   "\n- 家族の大人の主な仕事も、あなたが決める (family。書かなかった人は、あなたと同じ仕事)"
+                   "\n- sow・pick・plant・harvest の数は、家族の大人一人ひとりの量 (eat_goat は家族で何頭か)"
+                   "\n- 掟の投票と、よそから来た人の受け入れは、家族の大人みんなの答えとして数える\n")
+        if fam:
+            fam_json = '"family": {' + ", ".join(f'"{q["name"]}": {{"activity": "採集", "place": "camp"}}' for q in fam[:2]) + '}, '
+
     return f"""{RULES2}
 
 {me}{FACTS2}
@@ -657,7 +749,7 @@ def season_prompt(state, p, first):
 
 ## 最近聞いた話
 {characters._heard(p)}
-
+{fam_txt}
 ## 覚えていること
 {characters._knowledge(state, p)}
 
@@ -684,7 +776,7 @@ def season_prompt(state, p, first):
 
 ## 答えの形 (JSON)
 {{"say": [{{"to": "みんな", "text": "..."}}],
- "job": {{"activity": "採集", "place": "camp", "with": []}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}
+ "job": {{"activity": "採集", "place": "camp", "with": []}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}
  "knowledge": [{{"op": "add", "text": "...", "because": [出来事の番号], "confidence": 0.6}}],
  "proposal": {{"text": "...", "because": [出来事の番号]}},
  "votes": [{{"id": "L0", "against": "反対する理由", "agree": true, "reason": "決めた理由"}}],
