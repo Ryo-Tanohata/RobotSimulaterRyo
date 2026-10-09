@@ -1,0 +1,26 @@
+{"say": [{"to": "カイ", "text": "東林12へ一緒に行こう。前の季節に木の実と芋が取れた所だから。林は二人で入る決まりだしね。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["カイ"]},
+ "pick": 0,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "keep": true,
+ "feast": false,
+ "leader": "なし",
+ "knowledge": [
+  {"op": "add", "text": "季節のはじめに村の全員で祭りをした。村の蓄えから芋 13 本と木の実 1425 つかみを使った", "because": [36777], "confidence": 0.9},
+  {"op": "add", "text": "ザガは昼の北の林にも出るらしい。ウィロがけがをしたと聞いた", "because": [], "confidence": 0.6},
+  {"op": "add", "text": "ナギの家は前の季節、村の蓄えに約 10 つかみ入れ、約 691 つかみ取った。取った量が多いので、夏は多めに入れたい", "because": [], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るから、みんなでキャンプにいれば安心だ"},
+  {"id": "L143", "against": "", "agree": true, "reason": "採集も狩りも二人以上なら、けがや迷子のときに助けを呼べる"},
+  {"id": "L118", "against": "", "agree": true, "reason": "草取りと刈り入れを一人ずつ交代にすれば、畑の実りを減らさずにすむ"},
+  {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに刈り切らないと、前の季節のように草の種が落ちてしまう"},
+  {"id": "L138", "against": "", "agree": true, "reason": "春から土器を作れば、春と夏の草の種を虫やネズミから早く守れる"},
+  {"id": "L145", "against": "", "agree": true, "reason": "ナギの家も前の季節に多く取ったから、夏に多めに入れて差を小さくしたい"},
+  {"id": "L147", "against": "", "agree": true, "reason": "芋は腐りやすいから、採った夜のうちに食べきるのがいい"},
+  {"id": "L137", "against": "", "agree": true, "reason": "エマのような小さい子が雨で濡れると、疲れがとれずに弱ってしまう"}
+ ],
+ "feeling": "ナギの畑と家を受けついだから、しっかり食べ物を集めて、家の人を守りたい。"}
