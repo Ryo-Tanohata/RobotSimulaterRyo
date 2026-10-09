@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "わたしは秋のあいだ、北川12へソルといっしょに行って、魚と芋がまだあるか確かめてくるね。見つけた量と蓄えに入れた量は、夜に分けて言うね。キャンプの木の実も、毎晩すこしずつ取っておこう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ソル"]}, "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M6": "つぐなう", "M7": "つぐなう"}, "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "今、キャンプのそばの木には、たくさんの木の実が残っている", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが来るから、火と見張りがないと危ない"}, {"id": "L110", "against": "なし", "agree": true, "reason": "夕方に戻らない人を、すぐ探しに行けるから"}, {"id": "L121", "against": "なし", "agree": true, "reason": "二人以上で行けば、けがをしたときに助け合えるから"}, {"id": "L143", "against": "なし", "agree": true, "reason": "林でも近くでも二人以上なら、ザガが出ても安心だから"}, {"id": "L150", "against": "なし", "agree": true, "reason": "北丘12 は前の季節に草の種と木の実がよく見つかったと聞いたから"}],
+ "feeling": "木の実がたくさんあって、少し安心している。北川で何か見つけたい。"}

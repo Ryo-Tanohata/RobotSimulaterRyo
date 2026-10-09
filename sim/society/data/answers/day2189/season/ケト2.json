@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のあいだ、ハユ2 と北川12 へ行って、草と魚がどこにあるか見てくるよ。見つけた量と蓄えに入れた量は、夜に分けて言うね。木の実は 40 つかみ取って、5 つかみ埋めるよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ハユ2"]}, "sow": 500, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ハユ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M6": "つぐなう", "M7": "つぐなう", "M8": "つぐなう"}, "feast": true, "leader": "ウィロ",
+ "knowledge": [{"op": "add", "text": "南の林 (南林12) では、前の季節に何も見つからなかった", "because": [46132], "confidence": 0.6}, {"op": "add", "text": "北の丘では、前の季節にザガに襲われて、けがをする人が出た", "because": [46057], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L150", "against": "なし", "agree": true, "reason": "南川12 は前の冬に 30 日とも何も見つからなかったから、北丘12 を先に試したい"}, {"id": "L121", "against": "なし", "agree": true, "reason": "一人でザガに襲われたら助からないから、二人以上で行くのが安心だ"}, {"id": "L106", "against": "なし", "agree": true, "reason": "冬の前に木の実を蓄えるのは、冬を越えるために大事だ"}, {"id": "L107", "against": "なし", "agree": true, "reason": "埋めた木の実が育てば、夏と秋の蓄えが増える"}],
+ "feeling": "木の実を集めるのは得意だけど、冬が近いのが少し心配だ。"}
