@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "わたしは秋のあいだ、ユノ2と北川12へ行くね。冬にも魚と芋が取れるかを確かめて、見つけた量は夜に言うよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"]}, "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M24": "つぐなう", "M25": "つぐなう", "M26": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "ザガが出るから、夜に離れないのは大事だと思う。"}, {"id": "L98", "against": "なし", "agree": true, "reason": "同じ掟をひとつにまとめると、みんなが守りやすい。"}, {"id": "L121", "against": "なし", "agree": true, "reason": "採集も狩りも二人以上なら、ザガが来ても助け合える。"}, {"id": "L122", "against": "なし", "agree": true, "reason": "夜の報告を一度にまとめると、みんなが覚えやすい。"}, {"id": "L126", "against": "なし", "agree": true, "reason": "火と見張りの決まりをひとつにすると、夜の守りが分かりやすい。"}],
+ "feeling": "冬に魚と芋が取れる場所が増えるかどうか、ちゃんと確かめたい。"}
