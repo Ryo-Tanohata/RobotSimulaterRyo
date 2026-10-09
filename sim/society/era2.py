@@ -1897,13 +1897,15 @@ def season_prompt(state, p, first):
               + ("   もめごと: まだ収まっていないもめごとの収め方を、番号ごとに「つぐなう」か「ゆるす」で書く (judge)\n" if op else "")
               + "   祭り: この季節のはじめに、村の全員で祭りをするか (feast: するなら true、しないなら false)\n"
               + ("   まとめ役: まとめ役にしたい人の名前を書く (leader。まとめ役はいらないなら「なし」、決めないなら null)\n"
-                 '   罰: 掟を提案するときに罰をつけるなら、proposal の penalty に {"for": "ヤギ" か "倉" か "蓄え" か "刈る", "pay": 草の種のつかみ} を書く (つけないなら null)\n'
+                 '   罰: 掟を提案するときに罰をつけるなら、proposal の penalty に {"for": "ヤギ" か "倉" か "蓄え" か "刈る", "pay": 草の種のつかみ} を書く (つけないなら null か、pay を 0 のまま)\n'
                  if two else "")
               + ("   あなたは村のまとめ役。あなたの家のものでないもめごとは、あなたの judge で決まる。次の季節にみんなでする仕事を 1 つ呼びかけられる (call: 仕事の名前。しないなら null)\n"
                  if me5 else "")) if g5 else ""
     g5_json = ("\n " + ('"judge": {' + ", ".join(f'"{i}": "..."' for i in op) + "}, " if op else "") + '"feast": false, '
                + ('"leader": "...", ' if two else "") + ('"call": null, ' if me5 else "")) if g5 else ""
-    pen = ', "penalty": null' if g5 and two else ""
+    # 2026-10-09 (2909 日目、本人「お任せします」→ 案 B): 罰の例を null から欄の形に。null の例をそのまま写して、第 2 段の 30 季節で罰のある掟の提案が 0 だったため。
+    #   例のまま (pay 0) は _penalty が罰なしにする。世界の仕組みは変えない (つけるかは人が決める)
+    pen = ', "penalty": {"for": "...", "pay": 0}' if g5 and two else ""
     ye = year_end(state)  # 年の終わりの集まり: 年の名前を決める (ほかの集まりでは、お題は前と同じ)
     yname_now = f"{7 + bool(g5_now)}. この 1 年の名前を決める (year_name。上の「年の名前」を見て)\n" if ye else ""
     yname_json = ' "year_name": "...",\n' if ye else ""
