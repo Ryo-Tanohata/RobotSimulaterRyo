@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春のうちに土器をつくり始めよう。わたしは camp で土器をつくる。割れた数と、夜に作った数は、そのまま言うね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": []}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "世話をする人が少ないと、ヤギはいなくなる。ヤギは毎日の世話が大事だ", "because": [72731], "confidence": 0.8}],
+ "proposal": {"text": "春のうちに土器づくりをする人を決めて、割れた土器の数と作った数を夜に報告しよう。", "because": [72731], "penalty": null},
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜に火を絶やさず、ザガから身を守れるから"}, {"id": "L126", "against": "なし", "agree": true, "reason": "火と見張りの決まりがひとつになって、わかりやすいから"}, {"id": "L133", "against": "なし", "agree": true, "reason": "土器づくりの決まりがひとつにまとまり、虫やネズミから種を守れるから"}, {"id": "L146", "against": "なし", "agree": true, "reason": "よその畑で刈るときは、先に分け方を決めれば、もめごとが減るから"}],
+ "feeling": "土器づくりは得意なので、春のうちから草の種を守れるのがうれしい。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春は木の実が取れないから、東の林 (東林12) を探しに行くよ。二人で行こう。見つけた量は夜に言うね。"}, {"to": "ネム2", "text": "いっしょに東林12へ行こう。ひとりでは行かないようにしようね。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ネム2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ネム2": {"activity": "採集", "place": "東林12"}}, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "春はキャンプの木に実がならないので、東の林 (東林12) で木の実を探してみる。", "because": [72016], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L6", "against": "", "agree": true, "reason": "違う場所に分かれれば、食べ物が見つかりやすい"}, {"id": "L11", "against": "", "agree": true, "reason": "採集が苦手な人は、上手な人のやり方を見て覚えられる"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れると採集の力が落ちるから、休むのは大事"}, {"id": "L18", "against": "", "agree": true, "reason": "おなかがひどく減った人には、すぐ食べさせるべき"}, {"id": "L21", "against": "", "agree": true, "reason": "食べ物の量を毎日報告すれば、蓄えの減り方が分かる"}, {"id": "L98", "against": "", "agree": true, "reason": "蓄えを支えた人が、その日のうちに自分の分を食べられるのはよい"}, {"id": "L121", "against": "", "agree": true, "reason": "一人で行くと、ザガにも襲われやすい"}, {"id": "L137", "against": "", "agree": true, "reason": "子は外で濡れると弱るから、先に村の住まいに入れるのがよい"}, {"id": "L143", "against": "", "agree": true, "reason": "林や近い場所でも、二人以上で行けば安心"}, {"id": "L150", "against": "北丘12は前の季節に何も見つからなかった。東林12を先に試したい", "agree": false, "reason": "前の季節の結果から、北丘12より別の場所がよい"}],
+ "feeling": "木の実が取れない春は少し心配だけど、東の林を見てみたい。"}
