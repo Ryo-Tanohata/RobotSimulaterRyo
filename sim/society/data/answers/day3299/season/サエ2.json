@@ -1,0 +1,23 @@
+{"say": [{"to": "ユノ2", "text": "冬の食べ物をふやすために、北川12へ行って魚と芋が取れるかを確かめよう。ふたりで行って、見つけた量と場所を夜に言うね。"}, {"to": "みんな", "text": "ケト3とハユ3が村で暮らしたいと言っているね。人が増えれば、冬の採集も見回りもしやすくなると思う。"}],
+"job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"]},
+"pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+"accept": {"ケト3": true, "ハユ3": true},
+"family": {"ユノ2": {"activity": "採集", "place": "北川12"}},
+"keep": false,
+"judge": {"M36": "つぐなう"},
+"feast": false,
+"leader": null,
+"knowledge": [{"op": "add", "text": "スイ2もノア2と北川12へ行き、冬の魚と芋を確かめると言っていた", "because": [79797], "confidence": 0.5}],
+"proposal": null,
+"votes": [
+{"id": "L0", "against": null, "agree": true, "reason": "夜にザガが来ると、けがをする人が出てしまうから"},
+{"id": "L14", "against": null, "agree": true, "reason": "狩りが苦手な人も、上手な人と行けば覚えられるから"},
+{"id": "L98", "against": null, "agree": true, "reason": "採集で食べ物を入れた人が、その日のうちに自分の分を食べられるのはよいこと"},
+{"id": "L102", "against": null, "agree": true, "reason": "夏のうちに刈り切らないと、草の種が落ちてしまうから"},
+{"id": "L121", "against": null, "agree": true, "reason": "採集や狩りは二人以上で行けば、けがをしても助けられるから"},
+{"id": "L124", "against": "L121 と L143 で、採集は必ず二人以上と決まったので、一人で川へ行く決まりは守らない", "agree": false, "reason": "二人以上のほうが安全だから"},
+{"id": "L134", "against": null, "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれないから"},
+{"id": "L140", "against": null, "agree": true, "reason": "刈れる畑があるうちは、手のあいた大人がみんなで刈るのがよい"},
+{"id": "L143", "against": null, "agree": true, "reason": "採集の量と蓄えに入れた量を毎日言えば、蓄えの減り方が分かる"}
+],
+"feeling": "冬の食べ物が少ないのは心配だけど、北川12で魚か芋が見つかれば、村が安心できると思う。"}
