@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春のあいだは、西草原12へ採集に行ってみようと思う。ホノと二人で行って、見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヨナ2": true}, "family": {}, "keep": true,
+ "judge": {"M23": "ゆるす"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "西草原12 の食べ物は、まだだれも確かめていない。セキとホノが見に行くと言っている", "because": [64511], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "ザガが出るから、夜に離れないのは大事だ"}, {"id": "L10", "against": "なし", "agree": true, "reason": "採集から帰ったら話せば、みんなが場所を知れる"}, {"id": "L42", "against": "なし", "agree": true, "reason": "見つけた物を話せば、冬の計画が立てやすい"}, {"id": "L99", "against": "なし", "agree": true, "reason": "畑の草取りは、夏の実りを守るために必要だ"}],
+ "feeling": "畑の草取りが続くと思うと少し気が重いけど、みんなと一緒なら大丈夫だと思う。"}

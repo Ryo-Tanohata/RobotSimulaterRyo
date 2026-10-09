@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "春のあいだ、おれとスイは西草原12へ行って、草や実がどれくらいあるかを確かめてくる。二人で行って、見つけた量は夜に言うよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": []}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヨナ2": true}, "family": {"スイ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "judge": {"M23": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るのは本当だから、夜は離れないのがいい"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集も狩りも二人以上なら、助け合えて安心だ"},
+  {"id": "L10", "against": "", "agree": true, "reason": "帰ったら何を見つけたか話せば、みんなの知らせになる"},
+  {"id": "L16", "against": "", "agree": true, "reason": "疲れたままでは良い採集ができないから、休むのは大事だ"},
+  {"id": "L42", "against": "", "agree": true, "reason": "見つけた物を話し合うと、どこに食べ物があるか分かる"},
+  {"id": "L99", "against": "", "agree": true, "reason": "畑の草取りを毎日だれかがやれば、夏の実りが減らない"},
+  {"id": "L102", "against": "", "agree": true, "reason": "夏のうちに刈らないと実りは落ちるから、毎夕の刈り入れに賛成"},
+  {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めれば、帰らない人をすぐ探せる"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近くでも林でも二人以上で行くのが安全だ"},
+  {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るなら、先に持ち主と分け方を決めるべきだ"},
+  {"id": "L148", "against": "", "agree": true, "reason": "住まいがない家は雨に濡れて疲れがとれないから、建てる人を決めたい"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の仕事をひとまとめにすれば、分かりやすく守れる"}
+ ],
+ "feeling": "おれの仕事は採集だけど、西草原12はまだ行ったことがない。どんな草や実があるか、早く見てみたいな。"}

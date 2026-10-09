@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "俺は春のあいだ、石の鎌を作る。夏の刈り入れで畑が遅れないように、鎌を増やしておくよ。草取りは交代の順番どおりにやろう。ヨナ2の群れは受け入れていいと思う。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヨナ2": true}, "keep": false,
+ "judge": {"M23": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "石の鎌は 1 本作るのに 2 日ほどかかる。前の季節に 3 本作った", "because": [65025, 65042, 65059], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+ {"id": "L0", "against": "", "agree": true, "reason": "夜は誰もキャンプから離れないのが安心"},
+ {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは複数人で行けば助け合える"},
+ {"id": "L99", "against": "", "agree": true, "reason": "畑の草取りを毎日だれか一人がすれば、夏の実りが減らない"},
+ {"id": "L101", "against": "", "agree": true, "reason": "ヤギは世話がないといなくなるから"},
+ {"id": "L111", "against": "", "agree": true, "reason": "ヤギを捕まえるのは二人以上で行くべき"},
+ {"id": "L125", "against": "", "agree": true, "reason": "冬の採集は二人一組で、見つけた量を夜に報告すればいい"},
+ {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると疲れがとれないから"},
+ {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り入れを毎夕みんなで進めれば、刈り残しが出ない"},
+ {"id": "L150", "against": "", "agree": true, "reason": "北丘12 は前の冬に見つかった話があるので、先に試すのがいい"}
+ ],
+ "feeling": "鎌づくりは得意だから、春のうちに落ち着いてやれるのがいい。"}
