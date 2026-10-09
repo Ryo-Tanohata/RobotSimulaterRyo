@@ -2547,15 +2547,45 @@ def _g4_indicators(state):
             "wealth": w, "no_wealth": sum(1 for v in vals if v <= 0)}
 
 
+# まとめ役なしの道 (2026-10-09 本人と決めた。29年30日目 = 3509 日目): 村の人は第 2 段の 55 季節のうち 47 季節、まとめ役に「なし」を選び、
+#   集まり・長老・祭りでもめごとを収め続けた。【文献】Johnson 1982 は「順番の階層」(家の長の話し合いと儀礼) を、決まった役 (同時の階層) に代わる
+#   規模のストレスへの答えとした (計画 2.1 の 3 つの答えの 1 つめ)。そこで、まとめ役が 2 回以上裁いた道のほかに、この道でも G5 を終える
+NO_LEADER_SEASONS = 8  # 【仮定】まとめ役なしで続いた季節 (2 年)
+NO_LEADER_SETTLED = 2  # 【仮定】そのあいだに、集まり・長老・祭りで収めたもめごと
+
+
+def _g5_no_leader(state, g):
+    """まとめ役なしの道の目安: (まとめ役のいない季節, そのあいだに集まり・長老・祭りで収めたもめごと, 収まらないまま 2 季節をこえたもめごと)"""
+    day = state["day"]
+    if g["leader"]:
+        return 0, 0, 0
+    since = (g.get("open") or {}).get("day") or g["start"]
+    for e in reversed(state["events"]):  # いちばん新しい「まとめ役がいなくなった・なくなった」
+        if e["day"] < since:
+            break
+        if e["type"] == "まとめ役" and (e["text"].endswith("村にまとめ役がいなくなった") or "はまとめ役でなくなった" in e["text"]):
+            since = e["day"]
+            break
+    seasons = (day - since) // SEASON_DAYS
+    lo = day - NO_LEADER_SEASONS * SEASON_DAYS
+    settled = sum(1 for d in g["disputes"] if d["status"] == "収まった" and d.get("by") in ("集まり", "長老", "祭り") and lo < (d.get("end") or 0) <= day)
+    stale = sum(1 for d in g["disputes"] if d["status"] == OPEN and d["day"] <= day - 2 * SEASON_DAYS)
+    return seasons, settled, stale
+
+
 def _g5_indicators(state):
     """G5 の目安 (G5 の前は 0。家族の数は G4 の 5 季節ごとの報告にも使うので、いつも数える)"""
     base = {"households": len(_homes(state)), "g5_stage": 0, "stage1": None, "leader": None, "leader_seasons": 0, "disputes": 0,
             "disputes_open": 0, "settled": 0, "judged": 0, "penalty_laws": 0, "penalties": 0, "feasts": 0, "fissions": 0,
-            "left_people": 0, "joint": 0, "stress": 0.0}
+            "left_people": 0, "joint": 0, "stress": 0.0, "no_leader_seasons": 0, "no_leader_settled": 0, "stale_open": 0, "g5_path": None}
     g = state["era2"].get("g5")
     if not era_at_least(state, "G5") or not g:
         return base
-    return base | {"g5_stage": g["stage"], "stage1": g["stage1"], "leader": g["leader"],
+    nls, nlset, stale = _g5_no_leader(state, g)
+    path = ("まとめ役" if g["leader"] and g["judged"] >= 2 else
+            "まとめ役なし" if g["stage1"] and nls >= NO_LEADER_SEASONS and nlset >= NO_LEADER_SETTLED and not stale else None)
+    return base | {"no_leader_seasons": nls, "no_leader_settled": nlset, "stale_open": stale, "g5_path": path,
+                   "g5_stage": g["stage"], "stage1": g["stage1"], "leader": g["leader"],
                    "leader_seasons": (state["day"] + 1 - g["leader_day"]) // SEASON_DAYS if g["leader"] else 0,
                    "disputes": g["next"], "disputes_open": sum(1 for d in g["disputes"] if d["status"] == OPEN),
                    "settled": g["settled"], "judged": g["judged"],
@@ -2578,8 +2608,10 @@ CRITERIA = {
     # 2026-10-09 本人と決めた (27年120日目 = 3359 日目): 「罰のある掟が 3 つ以上」「罰を 1 回以上払わせた」を条件から外した。
     #   第 2 段に入って 50 季節、罰のある掟は 1 本も出なかった (お題の例を罰の欄の形にしたあとの 15 季節も 0)。罰を決めた掟の記録は
     #   ウル・ナンム法典 (前 2100 年ごろ) からで、手本のウバイド期にはまとめ役はいても罰の掟の証拠はない。罰の数は記録を続け、G6 のあとの目安にする
-    "G5": ("第 2 段: 家族が 6 つ以上で、まとめ役がいる。まとめ役がもめごとを 2 回以上裁いた",
-           lambda i: i["g5_stage"] >= 2 and i["households"] >= 6 and bool(i["leader"]) and i["judged"] >= 2),
+    # 2026-10-09 本人と決めた (29年30日目 = 3509 日目): まとめ役なしの道も認める (上の NO_LEADER_SEASONS)。どちらの道かは g5_path に残る
+    "G5": ("第 2 段: 家族が 6 つ以上で、(まとめ役がいて、もめごとを 2 回以上裁いた) か (第 1 段の目安に届き、まとめ役のいないまま 8 季節、"
+           "集まり・長老・祭りでもめごとを 2 回以上収め、収まらないまま 2 季節をこえたもめごとがない)",
+           lambda i: i["g5_stage"] >= 2 and i["households"] >= 6 and i.get("g5_path") is not None),  # 古い控えには g5_path がない
     # G6 (第 4 部「町と文字」): 町と記録は別々の条件で、どちらが先でもよい。それぞれ届いた日は区切り F3・F4。両方に一度でも届くと Society 2.0 の終わり
     #   (2026-10-09 本人と決めた: 町は 50 人、交換が 4 季節続く (相手は 2 つ以上の村)、記録は粘土の板で量を確かめた。一度届けば届いたまま)
     "G6": ("町 (村が 50 人以上で、この 4 季節は毎季節ほかの村と交換し、相手の村が 2 つ以上、村がいちばん大きい相手の村の 2 倍以上、食べ物をとらない人が大人の 1 割以上) と、"
