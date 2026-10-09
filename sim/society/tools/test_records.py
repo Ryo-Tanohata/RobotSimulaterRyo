@@ -37,11 +37,14 @@ def sha(p):
 
 def scratch(snapshots=True):
     """本物のデータの写し (state.json は写し、答えとお題は読むだけのリンク)。控えは本物の records/ から写すか、git から作る"""
-    d = Path(tempfile.mkdtemp(prefix="rec_test_", dir="/tmp"))
+    d = Path(tempfile.mkdtemp(prefix="rec_test_"))  # 写しはふつうの一時フォルダに (Linux は /tmp。Windows でも動くように)
     shutil.copy(REAL / "state.json", d / "state.json")
     for sub in ("answers", "prompts"):
         if (REAL / sub).exists():
-            os.symlink(REAL / sub, d / sub)
+            try:
+                os.symlink(REAL / sub, d / sub, target_is_directory=True)
+            except OSError:  # Windows はリンクに特別な権限が要るので、写す (2026-10-09)
+                shutil.copytree(REAL / sub, d / sub)
     if snapshots:
         global _SNAPS
         src = REAL / "records" / "snapshots.jsonl"
@@ -92,9 +95,11 @@ class B_KnownValues(Base):
     """B. 知っている値と合うか"""
 
     def test_snapshots(self):
-        self.assertEqual(self.meta["snapshots"]["valid"], 52)
+        # 16年90日目 (2009 日目) までの 52 は git から作った控え。そのあとは季節ごとに足される (2026-10-09: 決め打ちから「それより多い」に)
+        self.assertEqual(self.meta["snapshots"]["git"], 52)
+        self.assertGreaterEqual(self.meta["snapshots"]["valid"], 52)
         self.assertEqual(self.meta["snapshots"]["invalid"], 0)
-        self.assertEqual(len(self.V), 51)
+        self.assertGreaterEqual(len(self.V), 51)
         self.assertEqual(self.V[509]["days"], 20)
 
     def test_1709(self):
@@ -137,21 +142,22 @@ class B_KnownValues(Base):
         self.assertEqual(st, {"H01": 6551.0, "H02": 12137.26, "H03": 14.0, "H04": 14609.0, "H05": 4094.0})
 
     def test_people(self):
-        self.assertEqual(len(self.people), 35)
-        self.assertEqual([p["id"] for p in self.people], [f"P{i:03d}" for i in range(1, 36)])
+        self.assertGreaterEqual(len(self.people), 35)  # 16年90日目までの 35 人 (そのあとも人は増える)
+        self.assertEqual([p["id"] for p in self.people], [f"P{i:03d}" for i in range(1, len(self.people) + 1)])
         self.assertEqual(self.people[22]["name"], "ヨナ")
         causes = {p["name"]: (p["death_cause"], p["died_day"]) for p in self.people if p["died_day"] is not None}
-        self.assertEqual(causes, {"イサ": ("飢え", 32), "ルオ": ("ザガ", 84), "リオ": ("子", 1019), "テオ": ("子", 1649),
-                                  "ナギ": ("病", 1679), "ユノ": ("病", 1829), "カイ": ("病", 1949), "フウ": ("病", 1979)})
+        known = {"イサ": ("飢え", 32), "ルオ": ("ザガ", 84), "リオ": ("子", 1019), "テオ": ("子", 1649),
+                 "ナギ": ("病", 1679), "ユノ": ("病", 1829), "カイ": ("病", 1949), "フウ": ("病", 1979)}  # 16年90日目までに亡くなった人
+        self.assertEqual({n: c for n, c in causes.items() if c[1] <= 2009}, known)
         ev = self.state["events"]
         for p in self.people:  # 年齢が文に書かれていれば、それと同じ
             if p["death_event"] is not None:
                 m = __import__("re").search(r"\((\d+) 歳\)", ev[p["death_event"]]["text"])
                 if m:
                     self.assertEqual(p["age_at_death"], int(m.group(1)), p["name"])
-        self.assertEqual(len(self.mem), 35)
+        self.assertGreaterEqual(len(self.mem), len(self.people))  # 1 人 1 行以上 (家が分かれると行が増える)
         hs = json.loads((self.d / "records" / "households.json").read_text(encoding="utf-8"))
-        self.assertEqual([h["name"] for h in hs], ["川辺の家", "ナギの家", "ケトの家", "トワの家", "ユノの家", "フウの家", "アルの家", "クラの家", "セキの家", "スイの家"])
+        self.assertEqual([h["name"] for h in hs][:10], ["川辺の家", "ナギの家", "ケトの家", "トワの家", "ユノの家", "フウの家", "アルの家", "クラの家", "セキの家", "スイの家"])  # 16年90日目までの 10
 
     def test_meetings_and_rules(self):
         """答えのファイル名 = 代表 (と、代表でないまとめ役)。条件の中身 = CRITERIA。大人の区分 = 子でない。控えの生き死に = membership"""
@@ -200,7 +206,10 @@ class B_Prompts(Base):
             m = re.search(r"^村の蓄え: (.+?) \(今の人数で 約 (\d+) 日分\)", t, re.M)
             self.assertIsNotNone(m, D)
             w = build_records.words(m.group(1))
-            self.assertEqual(w, {k: round(x) for k, x in v["store"].items() if round(x) > 0}, D)
+            r = {k: x for k, x in v["store"].items() if round(x) > 0 or w.get(k)}
+            self.assertEqual(set(w), set(r), D)
+            for k, x in r.items():  # 記録は小数 2 桁まで。ちょうど .5 は丸め方で 1 ちがうことがある (2939 日目の木の実 15902.5)
+                self.assertLessEqual(abs(w[k] - x), 0.51, (D, k))
             self.assertEqual(int(m.group(2)), v["store_days"], D)
             m = re.search(r"^飼っているヤギ: (\d+) 頭 \(メス (\d+)・オス (\d+)\)", t, re.M)
             if m:
@@ -376,6 +385,7 @@ class F_YearNames(unittest.TestCase):
     def state(self, day):
         st = json.loads(self.base)
         st["day"] = day
+        st["era2"]["year_names"] = []  # 本物の state にもう年の名前があっても、まだない形で試す (2026-10-09)
         return st
 
     def test_text(self):
@@ -433,7 +443,7 @@ class G_StepSmoke(unittest.TestCase):
         return subprocess.run([sys.executable, str(code / "step.py"), "season"], env=e, capture_output=True, text=True)
 
     def copy_code(self):
-        c = Path(tempfile.mkdtemp(prefix="rec_code_", dir="/tmp"))
+        c = Path(tempfile.mkdtemp(prefix="rec_code_"))
         for f in SOC.glob("*.py"):
             shutil.copy(f, c / f.name)
         (c / "tools").mkdir()
