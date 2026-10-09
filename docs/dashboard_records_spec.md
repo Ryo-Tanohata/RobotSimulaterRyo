@@ -508,7 +508,7 @@ As §4.1/§4.2. Expected residuals: total ≤ 100 kcal per season; per item tens
 
 ### 4.8 Balancing rule and checks
 
-For every (season, holder, item) with known start and end: `diff = end − start − Σ flows` (kcal for food, count otherwise). Write `記録にない差` iff |diff| ≥ 0.005 units. `--check` and test C require `diff == 0` (|diff| < 1e-6 kcal or exact count) for: all H food accounts, all goat accounts, 村 土器 and 鎌, and (if notes adopted) seasons with notes.
+For every (season, holder, item) with known start and end: `diff = end − start − Σ flows` (kcal for food, count otherwise). Write `記録にない差` iff |diff| ≥ 0.005 kcal for food (so the kcal column always closes; e.g. 689 村 魚: 0.67 kcal, 0.002 units) or diff ≠ 0 for counts. `--check` and test C require `diff == 0` (|diff| < 1e-6 kcal or exact count) for: all H food accounts, all goat accounts, 村 土器 and 鎌, and (if notes adopted) seasons with notes.
 
 ### 4.9 Optional instrumentation: `era2.LEDGER_NOTES` (recommended)
 

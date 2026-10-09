@@ -10,6 +10,7 @@
 import math
 import random
 import re
+import unicodedata
 
 import characters
 import knowledge
@@ -123,6 +124,7 @@ def apply_answers(state, answers):
     g5 = era_at_least(state, "G5")
     reps = _reps(state) if g5 and e2.get("rep_mode") else set()
     c5 = {"judge": {}, "by": {}, "feast": set(), "feast_by": set(), "leader": {}, "call": {}}  # G5: 季節の集まりの答え
+    yname = [] if year_end(state) else None  # 年の名前 (年の終わりの集まりだけ読む)
     for name, raw in answers.items():
         p = alive.get(name)
         if not p:
@@ -147,6 +149,9 @@ def apply_answers(state, answers):
             fam = [p]
         elif g5 and e2.get("rep_mode"):  # 代表の答えに、自分で答えたまとめ役の分は入れない
             fam = [q for q in fam if q is p or q["name"] not in answers]
+        t = _year_name_text(a.get("year_name")) if yname is not None else ""
+        if t:
+            yname.append((p, t, len(fam)))  # 家族の大人の数だけ数える (ほかの答えと同じ)
         fjobs = a.get("family") if isinstance(a.get("family"), dict) else {}
         for q in fam:
             if q is not p:
@@ -184,6 +189,8 @@ def apply_answers(state, answers):
         _g5_meeting(state, c5, len(alive))  # 掟を決めてから (この集まりで採用された罰の掟も、この集まりで使う)
     _settle_visitors(state, accept, len(alive))
     _eat_goats(state)
+    if yname:
+        _year_name(state, yname, len(alive))  # 集まりの最後に (ほかの集まりの出来事の並びは変わらない)
 
 
 def accept_answered(e2):
@@ -1361,7 +1368,7 @@ def feeling_prompt(state, p, first):
 
 {me}
 ## 村のようす
-{_village(state)}
+{_village(state)}{_year_names_text(state)}
 ## 前の季節のこと
 {_season_digest(state, p, first)}
 
@@ -1542,6 +1549,119 @@ def check(state):
         state["era_info"] = {"era": nxt, "name": NAMES2[nxt], "next": CRITERIA.get(nxt, ("(まだ作っていない)",))[0], "met": False, "since": 0, "indicators": ind}
         return True
     return False
+
+
+# ---------------- 季節の集まりの出来事 (読むだけ。docs/dashboard_records_spec.md 3.4) ----------------
+
+MEETING_EVENTS = ("話す", "掟", "もめごと", "収める", "裁き", "罰", "祭り", "まとめ役", "共同の仕事", "加わる", "去る", "ヤギを食べる", "年の名前")
+
+
+def _meeting_event(e):
+    t, x = e["type"], e["text"]
+    if t not in MEETING_EVENTS:
+        return False
+    if t == "もめごと":
+        return "話し合ったが" in x  # 季節の終わりの「言い出した」「重なった」「言わなくなった」は、集まりの前
+    if t == "去る":
+        return "受け入れられず" in x  # 蓄えが尽きて出ていくのは、季節の途中
+    if t == "まとめ役":
+        return not x.endswith("村にまとめ役がいなくなった")  # 亡くなった・村を出たのは、季節の終わり
+    return True
+
+
+def meeting_first(state, day):
+    """day 日の終わりの季節の集まりの、最初の出来事の id (集まりの出来事がなければ、その日の次の id)。読むだけ
+    (集まりの出来事は、季節の終わりの出来事のあとに、同じ日の日付で記録される。2026-10-09 に、git に残る 51 回の集まりで、すべて合うことを確かめた)"""
+    ev = state["events"]
+    i = len(ev)
+    while i > 0 and ev[i - 1]["day"] > day:
+        i -= 1
+    end = i
+    while i > 0 and ev[i - 1]["day"] == day and _meeting_event(ev[i - 1]):
+        i -= 1
+    return ev[i]["id"] if i < end else (ev[end - 1]["id"] + 1 if end else 0)
+
+
+# ---------------- 年の名前 (口で伝える年代記。2026-10-09 本人と決めた。docs/dashboard_records_spec.md 5.) ----------------
+# 年の終わりの季節の集まり (年の最後の日 (day + 1) % YEAR == 0 の終わりに書くお題と、その答え) で、季節の答えをする人 (家族の代表と、まとめ役) が、
+#   終わった年に、その年いちばん大きな出来事で名前をつける。決まった名前は、そのあとのお題に「村で覚えている年の名前」として出る
+# 【文献】年の名前 (メソポタミア)・年の記録 (エジプト)・冬の数え (ラコタ) (docs/research/historical_records.md の ⑩)
+# 決め方: 同じ名前を書いた人の、家族の大人の数 (その答えが数える大人の数) を足して、いちばん多い名前 (半分をこえなくてもよい)。
+#   同じなら、その名前を書いた人でいちばん年上の人の名前 (同じ年なら人の並びで先。長老の決め方と同じ)。乱数は使わない。
+#   だれも書かなければ名前はつかない (state も出来事も前と同じ)
+YEAR_NAME_MAX = 20
+YEAR_EVENTS = ("フェーズ", "区切り", "段階", "分かれる", "死", "生まれる", "加わる", "去る", "まとめ役", "受けつぎ", "祭り", "住まい", "もめごと",
+               "収める", "裁き", "罰", "大人になる", "ヤギ", "ヤギを食べる", "虫", "蓄えが尽きる", "家族")  # お題に見せる出来事 (前のものほど先に残す)
+YEAR_DIGEST_MAX = 15
+STOP_WORDS = ("フェーズが", "Society 2.0 が終わった")  # ワークフローが止まる文と重なる名前は読まない (step.py が出来事を表示するため)
+
+
+def year_end(state):
+    """この集まりが、年の終わりの集まりか"""
+    return (state["day"] + 1) % YEAR == 0
+
+
+def _year_name_text(v):
+    """答えの year_name → 名前 (読めないもの・お題の例の写しは "")"""
+    s = unicodedata.normalize("NFKC", v if isinstance(v, str) else "").strip().strip("「」『』\"'“”。 ").strip()
+    if not s or s.lower() in ("...", "null", "none", "なし") or not s.isprintable() or any(w in s for w in STOP_WORDS):  # 改行などのある名前も読まない
+        return ""
+    return s[:YEAR_NAME_MAX].strip()
+
+
+def _year_digest(state):
+    """年の名前のお題: この 1 年のおもな出来事 (読むだけ)"""
+    y = state["day"] // YEAR
+    ev = state["events"][meeting_first(state, y * YEAR - 1):]  # この年の最初の季節の集まりから (出来事の id は並びの番号と同じ)
+    big = [e for e in ev if e["type"] in YEAR_EVENTS and not (e["type"] == "住まい" and "size" not in (e.get("data") or {}))
+           and not (e["type"] == "ヤギ" and e.get("who"))]  # 建てた日ごとの記録と、1 頭ずつ捕まえたのは入れない (下で数でまとめる)
+    if len(big) > YEAR_DIGEST_MAX:
+        big = sorted(sorted(big, key=lambda e: (YEAR_EVENTS.index(e["type"]), e["id"]))[:YEAR_DIGEST_MAX], key=lambda e: e["id"])
+    rows = [f"- [出来事 {e['id']}] {e['text']}" for e in big]
+    caught = sum(1 for e in ev if e["type"] == "ヤギ" and e.get("who"))
+    harv = sum((e.get("data") or {}).get("amount", 0) for e in ev if e["type"] == "収穫")
+    rows += ([f"- 野生の子ヤギを {caught} 頭捕まえた"] if caught else []) + ([f"- 畑で刈った草の種: 合わせて {harv} つかみ"] if harv else [])
+    return "\n".join(rows) or "- (大きな出来事はなかった)"
+
+
+def _year_end_text(state):
+    """年の終わりの集まりのお題の節 (ほかの集まりでは空)"""
+    if not year_end(state):
+        return ""
+    y = state["day"] // YEAR
+    count = ("家族の代表の答えは、家族の大人みんなの答えとして数える。同じ名前を書いた人の家族の大人の数を足して、いちばん多い名前に決まる"
+             if state["era2"].get("rep_mode") else "同じ名前を書いた人の数が、いちばん多い名前に決まる")
+    return (f"\n## 年の名前 (1 年に 1 回)\n{y * YEAR}〜{state['day']} 日目の 1 年が終わった。村では、1 年ごとに、その年いちばん大きな出来事で"
+            f"年に名前をつけ、口で伝えて覚えていく。この 1 年のおもな出来事:\n{_year_digest(state)}\n"
+            f"この年の名前を、あなたの言葉で 1 つ書く (year_name、{YEAR_NAME_MAX} 字まで)。{count} (同じなら、書いた人でいちばん年上の人の名前)\n")
+
+
+def _year_names_text(state):
+    """村で覚えている年の名前 (古い年から)。まだなければ空 (お題は前と同じ)"""
+    names = state["era2"].get("year_names") or []
+    if not names:
+        return ""
+    last = (state["day"] + 1) // YEAR - 1
+    rows = [f"- {x['year'] * YEAR}〜{x['year'] * YEAR + YEAR - 1} 日目の年: 「{x['name']}」" + (" (去年)" if x["year"] == last else "") for x in names]
+    return "\n## 村で覚えている年の名前\n村では、年を、その年いちばん大きな出来事の名前で呼び、口で伝えて覚えている (古い年から)。\n" + "\n".join(rows) + "\n"
+
+
+def _year_name(state, props, n):
+    """年の名前を決める (props: [(答えた人, 名前, 家族の大人の数)]。n: 集まりの大人の数)"""
+    e2, y = state["era2"], state["day"] // YEAR
+    if not props or any(x["year"] == y for x in e2.get("year_names", [])):
+        return
+    w, by = {}, {}
+    for p, t, k in props:
+        w[t] = w.get(t, 0) + k
+        by.setdefault(t, []).append(p)
+    top = max(w.values())
+    order = {id(q): i for i, q in enumerate(state["people"])}
+    best = min((t for t in w if w[t] == top), key=lambda t: min((-q["age"], order[id(q)]) for q in by[t]))  # 同じなら、書いた人でいちばん年上
+    eid = log(state, "年の名前", None, f"{y}年 ({y * YEAR}〜{state['day']} 日目) は「{best}」と呼ぶことになった "
+              f"(同じ名前を書いた家族の大人 {top} 人分 / 大人 {n} 人)", year=y, name=best)
+    e2.setdefault("year_names", []).append({"year": y, "name": best, "day": state["day"], "event": eid, "weight": top, "adults": n,
+                                            "proposals": [{"who": p["name"], "name": t, "weight": k} for p, t, k in props]})
 
 
 # ---------------- お題 ----------------
@@ -1784,6 +1904,9 @@ def season_prompt(state, p, first):
     g5_json = ("\n " + ('"judge": {' + ", ".join(f'"{i}": "..."' for i in op) + "}, " if op else "") + '"feast": false, '
                + ('"leader": "...", ' if two else "") + ('"call": null, ' if me5 else "")) if g5 else ""
     pen = ', "penalty": null' if g5 and two else ""
+    ye = year_end(state)  # 年の終わりの集まり: 年の名前を決める (ほかの集まりでは、お題は前と同じ)
+    yname_now = f"{7 + bool(g5_now)}. この 1 年の名前を決める (year_name。上の「年の名前」を見て)\n" if ye else ""
+    yname_json = ' "year_name": "...",\n' if ye else ""
 
     return f"""{RULES2}
 
@@ -1801,7 +1924,7 @@ def season_prompt(state, p, first):
 
 ## 集団の掟 (季節のはじめに、みんなで集まって決める)
 {characters._laws(state, with_pending=True)}
-{_g5_text(state)}{vis}
+{_year_names_text(state)}{_g5_text(state)}{vis}{_year_end_text(state)}
 ## いま
 {state["day"] + 1} 日目、{sea}。これから {SEASON_DAYS - (state["day"] + 1) % SEASON_DAYS} 日 (この季節の終わりまで) の仕事を決める集まり (途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。
 1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
@@ -1815,7 +1938,7 @@ def season_prompt(state, p, first):
 {'   飼っているヤギを、この回の最初の日に何頭つぶして肉にするか (eat_goat、頭。肉は干して蓄えに入れる。2 頭は残す) を書ける' + chr(10) if e2['goats'] and not solo else ''}
 {'   家の倉を持つか (keep: 持つなら true、持たないなら false) を決める (家の代表が決める)' + chr(10) if era_at_least(state, "G4") and not solo else ''}5. 覚えていることを更新する (新しく分かったことを追加、確かさを変える、間違っていたら忘れる)
 6. 掟: みんなで守りたい決まりがあれば提案できる (なければ null)。今の掟と提案に、賛成か反対かを投票する (against に反対する理由、reason に決めた理由)
-{g5_now}{8 if g5_now else 7}. 今の気持ちを一言
+{g5_now}{yname_now}{7 + bool(g5_now) + ye}. 今の気持ちを一言
 
 場所の一覧:
 {places}
@@ -1826,4 +1949,4 @@ def season_prompt(state, p, first):
  "knowledge": [{{"op": "add", "text": "...", "because": [出来事の番号], "confidence": 0.6}}],
  "proposal": {{"text": "...", "because": [出来事の番号]{pen}}},
  "votes": [{{"id": "L0", "against": "反対する理由", "agree": true, "reason": "決めた理由"}}],
- "feeling": "..."}}"""
+{yname_json} "feeling": "..."}}"""

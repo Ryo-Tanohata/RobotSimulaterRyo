@@ -26,9 +26,17 @@ import resume  # noqa: E402
 import world  # noqa: E402
 
 import os  # noqa: E402
+import subprocess  # noqa: E402
+
+try:
+    import records  # noqa: E402  (ダッシュボードの内側の記録。読むだけで、世界の進み方には使わない)
+except Exception as _ex:  # 記録の仕組みがこわれていても、季節は進める
+    records = None
+    print(f"記録: 記録の仕組みを読めなかった ({type(_ex).__name__}: {_ex})")
 
 DATA = Path(os.environ["SOC_DATA"]) if os.environ.get("SOC_DATA") else Path(__file__).parent / "data"
 STATE = DATA / "state.json"
+RECORDS_ON = os.environ.get("SOC_RECORDS", "1") != "0"  # 0 なら記録を作らない (試し用)
 
 
 def load():
@@ -38,6 +46,34 @@ def load():
 def save(state):
     DATA.mkdir(parents=True, exist_ok=True)
     STATE.write_text(json.dumps(state, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+
+def _snap(state, before, first):
+    """季節のあとの控え (records/snapshots.jsonl の 1 行。docs/dashboard_records_spec.md 2.)。state は読むだけ。失敗しても季節は進んだまま"""
+    try:  # 書きとめを空にするのも、この中で (失敗で、保存の前に止まらないように)
+        notes = era2.take_notes() if hasattr(era2, "take_notes") else None
+        if not RECORDS_ON:
+            return None
+        return records.snapshot(state, meeting_first=before, event_first=first, notes=notes)
+    except Exception as ex:  # 記録の失敗で、世界を止めない
+        print(f"記録: 季節の終わりの控えを作れなかった ({type(ex).__name__}: {ex})")
+        return None
+
+
+def _records(snap):
+    """控えを 1 行足して、記録を作り直す (保存のあと。別のプロセスで動かすので state にさわれない。失敗しても季節は進んだまま。終わりのコードも変えない)"""
+    if not RECORDS_ON:
+        return
+    try:
+        if snap:
+            records.append_snapshot(DATA, snap)
+        sys.stdout.flush()  # 表示の順を保つ (別のプロセスの表示より前に)
+        r = subprocess.run([sys.executable, str(Path(__file__).parent / "tools" / "build_records.py"), "--data", str(DATA), "--quiet"],
+                           timeout=300)
+        if r.returncode:
+            print(f"記録: 記録を作れなかった (終わりのコード {r.returncode})。python3 sim/society/tools/build_records.py で作り直せる")
+    except Exception as ex:
+        print(f"記録: 記録を作れなかった ({type(ex).__name__}: {ex})。python3 sim/society/tools/build_records.py で作り直せる")
 
 
 def pdir(state, phase, kind):
@@ -219,14 +255,21 @@ def main():
             print(f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
             sys.exit(3)
         before = state["next_event"]  # G5: 季節の集まりで起きたこと (収める・裁き・罰・祭り・まとめ役) は、30 日を進める前の出来事
+        if hasattr(era2, "take_notes"):
+            try:
+                era2.take_notes()  # 記録のための書きとめ: 前のものを捨てる
+            except Exception as ex:  # 記録の失敗で、世界を止めない
+                print(f"記録: 書きとめを空にできなかった ({type(ex).__name__}: {ex})")
         feels = read_feelings(state)  # 代表を決める前の顔ぶれで読む (集まりで、まとめ役が変わることがあるため)
         era2.apply_answers(state, read_answers(state, "season"))
         era2.apply_feelings(state, feels)
         first = era2.simulate_season(state)
         state["era2"]["last_first"] = first
         if not any(p["alive"] for p in state["people"]):
+            snap = _snap(state, before, first)
             save(state)
             export(state)
+            _records(snap)
             gone = [p for p in state["people"] if p.get("left")]
             print("生きている人がいない (亡くなった人と、村を出た人" + (f" {len(gone)} 人" if gone else " 0 人") + ")")
             sys.exit(4)
@@ -235,12 +278,14 @@ def main():
             e = state["era_log"][-1]
             world.log(state, "フェーズ", None, f"フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ")
             print(f"* フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ → 一時停止 (評価待ち)")
+        snap = _snap(state, before, first)  # 保存の前に読む (保存するのと同じ state)
         save(state)
         write_prompts(state, "season")
         export(state)
+        _records(snap)
         for e in state["events"]:
             if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ", "区切り")) \
-                    or (e["id"] >= before and e["type"] in era2.G5_EVENTS):
+                    or (e["id"] >= before and (e["type"] in era2.G5_EVENTS or e["type"] == "年の名前")):
                 print("*", e["text"][:120])
         harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")
         if harv:
