@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは西草原12へ行く。前に食べ物が見つかった場所だから、冬も取れるか二人で確かめたい。ホノと組んで行くよ。見つけた量と蓄えに入れた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "冬の採集は、西草原12をホノと二人で行って、食べ物があるかを確かめる", "because": [56793], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るので、離れないのは大事"}, {"id": "L121", "against": "", "agree": true, "reason": "二人以上で行けば、ザガが出ても助け合える"}, {"id": "L143", "against": "", "agree": true, "reason": "一人で林に行くと危ない"}, {"id": "L150", "against": "北丘12は前の季節に確かめていない場所で、西草原12の方が当てになる", "agree": false, "reason": "冬は西草原12を先に見たい"}],
+ "feeling": "二人で行けば西草原12の冬の食べ物も確かめられる。少し楽しみだ。"}
