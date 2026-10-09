@@ -3,7 +3,15 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
-## 0. いちばん新しい引き継ぎ (2026-10-09 夜、クラウドから)
+## 0. 今の状態 (2026-10-09 夜、本人の PC)
+
+- **27年120日目 (3359 日目)、G5 の第 2 段**。43 人 (大人 27・子 16)、家族 16、蓄え 約 52 日分。まとめ役はいない
+- G5 の条件から罰の 2 つを外した (本人)。次にまとめ役が選ばれて季節の終わりまでいれば G5 が終わる (家族 16・裁き 9 回はそろっている)。G5 のメモ: `docs/society_phase/G5_notes.md`
+- **G6 (交易・町・記録) は作った** (2082c4f。G6 に入ってから働く。作ったときの記録は `docs/society_phase/G6_design.md` のはじめの「作ったときの記録」)。町と記録の両方がそろうと「Society 2.0 が終わった」で止まる
+- 動画: G1〜G4 と F の 13 本、第 2 部の通しは撮った (本人の PC の GPU RTX 5070 Laptop)
+- 次: 季節を 5 季節ずつ再開 → G5 が終わったら報告・G5.md・動画・第 3 部のまとめ → G6 → Society 2.0 の終わり
+
+## 0.9 前の引き継ぎ (2026-10-09 夜、クラウドから。2009 日目のころ)
 
 本人「今の仕事が終わったらプッシュして終わってください。ローカルに仕事を引き渡します」。
 
@@ -113,7 +121,7 @@ done
 ## 4. シミュレーションを続ける
 
 - 自分の PC の Claude Code で、このリポジトリを開いて、たとえば「`sim/society/daily_run.md` と `sim/society/HANDOFF.md` に従って、Society 2.0 を続けて」と頼む
-- 季節を進めるワークフロー: `tools/society2_seasons_workflow.js`。**リポジトリの場所を `root` で渡す** (2026-10-09 から。渡さなければクラウドの `/home/user/RobotSimulaterRyo`)。Workflow で `{"steps": 20, "root": "<この PC のリポジトリの場所>"}` を渡して動かす (家族の代表ごとに haiku が役を演じて答え、`tools/season_step.sh` で 1 季節進めてコミットする)
+- 季節を進めるワークフロー: `tools/society2_seasons_workflow.js`。**リポジトリの場所を `root` で渡す** (2026-10-09 から。渡さなければクラウドの `/home/user/RobotSimulaterRyo`)。Workflow で `{"steps": 5, "root": "<この PC のリポジトリの場所>", "py": "<Python>"}` を渡して動かす (本人の PC では `{"steps": 5, "root": "C:/Users/Tan0Ry0/Desktop/26dev/RobotSimulaterRyo", "py": "py -3"}`。**本人の PC の `python` は別のアプリ (hermes-agent) の 3.11 で、季節を進めると食べ物の数の最後の桁がずれるので使わない**。`python3` はない。`tools/season_step.sh` も `PY="py -3"` で動く) (家族の代表ごとに haiku が役を演じて答え、`tools/season_step.sh` で 1 季節進めてコミットする)
 - 手で 1 季節進めるとき: 答えを `data/answers/dayNNNN/season/<名前>.json` に置いて、`python3 sim/society/step.py season`。今の状態は `python3 sim/society/step.py status`
 - フェーズが進んだら止まる (一時停止)。報告・評価の下書き・動画のあと `python3 sim/society/step.py resume`
 - G6 で町と記録の両方に届くと「Society 2.0 が終わった」と出て止まる (一時停止。ワークフローは `why: 'society2 end'` で止まる)。第 4 部のまとめ・通しの動画・次の相談をする (`daily_run.md`)

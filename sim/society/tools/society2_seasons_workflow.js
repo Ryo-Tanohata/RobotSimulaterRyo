@@ -5,6 +5,8 @@ export const meta = {
 }
 // ROOT はリポジトリの場所。args.root で渡す (本人の PC では、その PC のリポジトリの場所。渡さなければクラウドの /home/user/RobotSimulaterRyo)
 const ROOT = args.root || '/home/user/RobotSimulaterRyo'
+// PY は使う Python。args.py で渡す (本人の PC は 'py -3' = Python 3.13。3.11 だと食べ物の数の最後の桁がずれる。渡さなければ python3)
+const PY = args.py || 'python3'
 const pad = (n) => String(n).padStart(3, '0')
 function rp(d, n) {
   return `Read \`${ROOT}/sim/society/data/prompts/day${pad(d)}/season/${n}.md\` and follow its instructions exactly: role-play that character and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/sim/society/data/answers/day${pad(d)}/season/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
@@ -17,7 +19,7 @@ function runner(cmd) {
 }
 const log_ = []
 for (let k = 0; k < args.steps; k++) {
-  const st = await agent(runner(`cd ${ROOT}/sim/society && python3 -c "import json,era2;s=json.load(open('data/state.json'));print('DAY',s['day'],s['phase'],s.get('hold'));print('NAMES',' '.join(era2.answerers(s)));print('FEEL',' '.join(era2.feelers(s)))"`), { label: `step ${k} status`, model: 'haiku', phase: 'Seasons' })
+  const st = await agent(runner(`cd ${ROOT}/sim/society && PYTHONIOENCODING=utf-8 ${PY} -c "import json,era2;s=json.load(open('data/state.json'));print('DAY',s['day'],s['phase'],s.get('hold'));print('NAMES',' '.join(era2.answerers(s)));print('FEEL',' '.join(era2.feelers(s)))"`), { label: `step ${k} status`, model: 'haiku', phase: 'Seasons' })
   const dm = (st || '').match(/DAY (\d+) (\w+) (\w+)/), nm = (st || '').match(/NAMES ([^\n`]*)/)
   if (!dm || dm[2] !== 'season' || dm[3] === 'True' || !nm) return { stopped: k, why: 'bad status', out: st, log: log_ }
   const d = Number(dm[1]), names = nm[1].trim().split(/\s+/).filter(Boolean)
@@ -37,7 +39,7 @@ for (let k = 0; k < args.steps; k++) {
     const missF = feel.filter((n) => !(lf || '').includes(`${n}.json`))
     if (missF.length) await parallel(missF.map((n) => () => agent(rpf(d, n) + ' ', { label: `d${d} ${n} (気持ち) retry`, model: 'haiku', phase: 'Seasons' })))
   }
-  const out = await agent(runner(`CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
+  const out = await agent(runner(`PY='${PY}' CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })
   if (!out || !/season exit=0/.test(out)) return { stopped: d, why: /exit=4/.test(out || '') ? 'all dead' : 'season failed', out, log: log_ }
   // G6: 町と記録がそろうと Society 2.0 の終わり (フェーズは進まない。step.py は「Society 2.0 が終わった」と表示して一時停止する)。
