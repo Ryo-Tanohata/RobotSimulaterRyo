@@ -88,6 +88,7 @@
 {"table":"season_village","column":"no_wealth","label_ja":"持ち物のない家","unit":"家","tag":"シ","source":"控え (era_info)","exact":true,"since_day":1589,"note":null},
 {"table":"season_village","column":"laws","label_ja":"掟 (採用中・採用・廃止・提案・罰のある掟)","unit":"本","tag":"シ","source":"出来事「掟」・state","exact":true,"since_day":489,"note":"文字の前は残らない"},
 {"table":"season_village","column":"g5","label_ja":"G5 (段・まとめ役・もめごと・裁き・罰・祭り・共同の仕事・分かれた家)","unit":null,"tag":"シ","source":"出来事・控え","exact":true,"since_day":1709,"note":"祭りは食べ残しの跡で調べられる"},
+{"table":"season_village","column":"g6","label_ja":"G6 (知っている村・この 4 季節に交換した村・交換の続いた季節・交換と貸し借り・印と封のかけら・記録の道具・確かめた・覚え違い・食べ物をとらない人・町と記録に届いた日・この季節の G6 の出来事の数・交換に行った人・ほかの村との物の出し入れ)","unit":null,"tag":"シ","source":"控え (era_info)・出来事","exact":true,"since_day":null,"note":"G6 の季節の行だけにある"},
 {"table":"season_village","column":"answered","label_ja":"答えた人の数 (季節・気持ち・代表)","unit":"人","tag":"シ","source":"答えのファイル","exact":true,"since_day":489,"note":null},
 {"table":"season_village","column":"year_named","label_ja":"この季節をはじめた集まりで決まった年の名前","unit":null,"tag":"村","source":"era2.year_names","exact":true,"since_day":2039,"note":"口で伝える年代記"},
 {"table":"season_village","column":"criteria","label_ja":"フェーズの条件 (今の値・目標・そろったか)","unit":null,"tag":"シ","source":"控え (era_info) と条件の中身","exact":true,"since_day":489,"note":null},
