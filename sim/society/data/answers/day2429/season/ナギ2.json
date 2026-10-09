@@ -1,0 +1,22 @@
+{"say": [{"to": "ケト2", "text": "北川12の魚と芋の場所を、いっしょに確かめに行かないか。見つけた量は夜にはっきり言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ケト2"]}, "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M12": "ゆるす", "M13": "ゆるす", "M14": "ゆるす"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "北川12では、前の季節に木の実を 40 つかみ採れた。", "because": [53004], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るのは本当なので、夜は離れないのがいい。"},
+  {"id": "L38", "against": "", "agree": true, "reason": "火と見張りでザガを近づけないのは、けがを減らす。"},
+  {"id": "L79", "against": "", "agree": true, "reason": "毎晩火を焚くのは、けがを減らすための大事な決まりだ。"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採ってきた人が、その日のうちに自分の分を食べるのは当たり前だ。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "林や遠くへ行くときは二人以上で、ザガの危なさを減らせる。"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近くでも林でも二人以上で行くと、ぼくも安心して遠くを見られる。"},
+  {"id": "L113", "against": "", "agree": true, "reason": "北川12の魚と芋を知れば、冬の食べ物が増える。ぼくも行きたい。"},
+  {"id": "L125", "against": "", "agree": true, "reason": "冬の採集は南川12から試すのが、いちばん安全そうだ。"},
+  {"id": "L150", "against": "北丘12はザガが出る場所で、前の冬は何も見つからなかったと聞いた。まず川を見たい。", "agree": false, "reason": "二人で確かめてから行くほうがいい。"},
+  {"id": "L127", "against": "", "agree": true, "reason": "乳を子どもに先に分けるのは、子どもを守るためにいい。"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれない人が出る。順番で入るのがいい。"},
+  {"id": "L148", "against": "", "agree": true, "reason": "住まいがない家に手を貸すのは、雨の夜を減らす。"},
+  {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑があるあいだは、毎夕みんなで刈るのがいい。"},
+  {"id": "L141", "against": "", "agree": true, "reason": "蓄えから種をまく量は、まえに決めて書き残すと、もめごとを減らせる。"}
+ ],
+ "feeling": "木の実はまだたくさんある。北川12で何が見つかるか、早く行って確かめたいな。"}
