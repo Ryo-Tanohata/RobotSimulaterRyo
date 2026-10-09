@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬まで 30 日しかない。木の実は今たくさんついているから、毎晩 40 つかみずつ取って蓄えに入れよう。南の川の近くも、ぼくとケトで二人組で見てくるよ。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ケト"]}, "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "南川12"}}, "keep": true,
+ "judge": {"M3": "つぐなう", "M4": "つぐなう"}, "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "南の川 (南川12) の近くで、冬の食べ物を探せるかもしれない。二人組で見て、夜に報告すれば確かめられる", "because": [41560], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、離れないのは大事だと思う"}, {"id": "L121", "against": "", "agree": true, "reason": "二人以上なら、けがをしても助けられる"}, {"id": "L125", "against": "", "agree": true, "reason": "北の林は何も見つからなかったから、南の川を先に試したい"}, {"id": "L98", "against": "", "agree": true, "reason": "同じ決まりが何度もあるより、ひとつのほうが守りやすい"}],
+ "feeling": "冬が近いのに、木の実が多くついていて少し安心している。でも、南の川で何か見つかるかは分からないから、ちゃんと見てこよう。"}
