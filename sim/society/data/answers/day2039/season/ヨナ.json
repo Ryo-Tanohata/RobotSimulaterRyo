@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "わたしは土器を焼くよ。できた土器に草の種を入れて、虫とネズミから守ろう。割れた数は夜に言うね。"}, {"to": "ナギ2", "text": "来てくれてうれしいよ。村のことは、わたしたちがいっしょに教えるね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": []}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "accept": {"ナギ2": true}, "family": {"アル": {"activity": "畑仕事", "place": "camp"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "ナギ2 の群れが村に来て、ここで暮らしたいと言った。受け入れるかどうかは村の集まりで決まる", "because": [41548], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火と見張りを立てれば、ザガから守れる"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれないから"}, {"id": "L142", "against": "", "agree": true, "reason": "割れた土器は作り直さないと、草の種を守れなくなる"}, {"id": "L144", "against": "", "agree": true, "reason": "刈り入れで増える種を守るため、土器を足すのは大事"}],
+ "year_name": "土器と祭りの年",
+ "feeling": "土器を焼けるのはうれしい。新しい仲間が来てくれるのも楽しみ。"}

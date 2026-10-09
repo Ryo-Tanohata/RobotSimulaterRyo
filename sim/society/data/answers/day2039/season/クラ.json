@@ -1,0 +1,8 @@
+{"say": [{"to": "セナ", "text": "今日は南林12へ採集に行こうよ。二人で行って、見つけた量と蓄えに入れた量は夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["セナ"]}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "accept": {"ナギ2": true}, "keep": true,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "夏のはじめには畑の草の種が実る。夏のうちに刈り切らないと、実りは落ちてしまう", "because": [41530], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に出るから、夜は離れないほうがいい"}, {"id": "L121", "against": "", "agree": true, "reason": "ザガは昼の林にも出た。二人以上で行けば安心できる"}, {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻らない人がいたら、すぐ探しに行ける"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑が残っているうちに刈り切りたい"}],
+ "year_name": "カイのいない年",
+ "feeling": "畑が実ってほっとした。でも林へ行くときは、一人じゃなくてよかった。"}

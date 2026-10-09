@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切ろう。わたしは毎日キャンプで畑仕事をして、刈った量と残りの量を夜に言うね。ナギ2の群れも、いっしょに手伝ってくれたらうれしい。"}, {"to": "ウィロ", "text": "ウィロ、タヒ、二人で北林12へ採集に行ってきてね。夕方までに戻って、見つけた量と蓄えに入れた量を夜に言ってね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "accept": {"ナギ2": true}, "family": {"ウィロ": {"activity": "採集", "place": "北林12"}, "タヒ": {"activity": "採集", "place": "北林12"}}, "keep": true,
+ "feast": true, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "ナギ2 (男、20 歳) が、よその群れからいっしょに来て、ここで暮らしたいと言った。", "because": [41548], "confidence": 1.0}],
+ "proposal": null,
+ "votes": [{"id": "L140", "against": "なし", "agree": true, "reason": "夏の残りは畑を刈り切ることが大事だから。"}, {"id": "L145", "against": "なし", "agree": true, "reason": "多く取った家が多めに入れれば、もめごとを防げるから。"}, {"id": "L149", "against": "なし", "agree": true, "reason": "畑と刈り入れの決まりは一つにまとめたほうが守りやすいから。"}, {"id": "L106", "against": "なし", "agree": true, "reason": "木の実は夏と秋にしか実らないから、冬の前に取っておきたいから。"}, {"id": "L146", "against": "なし", "agree": true, "reason": "刈る前に決めておけば、もめごとにならないから。"}],
+ "year_name": "仲間が増えた年",
+ "feeling": "畑を夏のうちに刈り切って、いい秋を迎えたい。ナギ2たちが仲間になるのも楽しみ。"}
