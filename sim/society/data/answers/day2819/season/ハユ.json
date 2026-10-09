@@ -1,0 +1,7 @@
+{"say": [{"to": "ケト", "text": "冬は木の実が取れないから、北の丘へ二人で採集に行こう。食べ物が見つかるかどうかは、夜に一緒に言おう。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["ケト"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "北丘12"}}, "keep": true,
+ "feast": false, "leader": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火を焚いて、ザガから身を守るため"}, {"id": "L121", "against": "", "agree": true, "reason": "採集は二人以上で行けば、けがの時も助け合える"}, {"id": "L150", "against": "", "agree": true, "reason": "前の冬に南川で何も見つからなかったから、北丘を先に試すのがよい"}],
+ "feeling": "木の実がなくなる冬は不安だけど、ケトと一緒なら北の丘でも何か見つけられそうな気がする。"}

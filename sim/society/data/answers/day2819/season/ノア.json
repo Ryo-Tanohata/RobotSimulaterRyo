@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "わたしはホノと二人で北川12へ行って、冬でも魚と芋が取れるかを確かめてくるね。見つけた量と蓄えに入れた量は、夜に分けて言うよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ホノ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "冬に北川12で魚と芋が取れるかを、これから二人組で確かめに行く", "because": [63439], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": "", "agree": true, "reason": "採集した人が自分の分を蓄えから取って食べるのは、みんなが空腹にならないために大事だから"}, {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば、ザガに襲われても助け合えるから"}, {"id": "L125", "against": "", "agree": true, "reason": "冬の採集は南川12や北林12で何も見つからなかったので、北川12を二人組で試すのがいいと思うから"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、けがをしたときに助けてもらえるから"}, {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るときは、先に持ち主と分け方を決めれば、もめごとを防げるから"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、ひとりに仕事が偏らないから"}],
+ "feeling": "冬の食べ物がどこにあるか確かめられるのは、少しうれしい。ホノと一緒なら安心だ。"}
