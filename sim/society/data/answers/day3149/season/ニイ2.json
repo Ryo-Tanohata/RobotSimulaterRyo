@@ -1,0 +1,7 @@
+{"say": [{"to": "エマ2", "text": "西草原12へ、いっしょに行かない？ 西草原は前に何も見つからなかったけど、もう一つの道から見たら、草や実があるかもしれない。二人で行けば、夜までに戻れるよ。"}, {"to": "みんな", "text": "ルネ2とヤエ2を村に受け入れたいと思う。木の実は夜に自分の分を取るね。"}],
+ "job": {"activity": "探索", "place": "西草原12", "with": ["エマ2"]}, "sow": 0, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ルネ2": true, "ヤエ2": true}, "family": {"エマ2": {"activity": "探索", "place": "西草原12"}}, "keep": false,
+ "judge": {"M32": "つぐなう", "M33": "つぐなう"}, "feast": true, "leader": null,
+ "knowledge": [{"op": "add", "text": "よその群れから ルネ2 と ヤエ2 が来て、ここで暮らしたいと言った", "because": [74898], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火を焚くのは、ザガから身を守るのに必要だから"}, {"id": "L6", "against": "", "agree": true, "reason": "違う場所に分かれれば、食べ物を見つけやすい"}, {"id": "L10", "against": "", "agree": true, "reason": "見つけたものを話せば、どこに食べ物があるか分かる"}, {"id": "L106", "against": "", "agree": true, "reason": "木の実は冬の前に蓄えておくと安心できる"}, {"id": "L121", "against": "二人で行くと、採れる場所が減って、一人の採集が遅くなる。近くの草原や川は一人でも行けるようにしたい", "agree": false, "reason": "近い場所まで二人で行くと、採集の数が少なくなるから"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れて眠れない人が減る"}, {"id": "L140", "against": "", "agree": true, "reason": "夏の畑を刈り切れば、草の種が落ちない"}, {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈る前に決めておけば、もめごとが減る"}],
+ "feeling": "西草原12のことが気になって仕方ない。エマ2と行けるのがうれしい。新しい人が来てくれて、少し楽しみ。"}

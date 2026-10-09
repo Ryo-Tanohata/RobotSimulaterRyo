@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ルネ2とヤエ2を村に迎えたいと思う。石の鎌をもう少し作って、畑を刈る手を増やしておくよ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []}, "sow": 0, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ルネ2": true, "ヤエ2": true}, "keep": false,
+ "judge": {"M32": "つぐなう", "M33": "つぐなう"}, "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "川辺の家の畑で刈った草の種は、刈った人の家には残らず、川辺の家の倉に入る", "because": [74901, 74902], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火と見張りがあれば、ザガから身を守れる"}, {"id": "L3", "against": "", "agree": true, "reason": "二人以上なら、けがをしても助け合える"}, {"id": "L10", "against": "", "agree": true, "reason": "何を見つけたか話せば、みんなの計画が立てやすい"}],
+ "feeling": "道具づくりなら自信がある。新しい仲間が来るのは、村が大きくなる感じがしてうれしい。"}
