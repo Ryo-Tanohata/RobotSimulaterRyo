@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "今日は西草原12へ、ヨナといっしょに採集に行くよ。夕方までに戻って、見つけた量と蓄えに入れた量を夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ヨナ"]}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0,
+ "judge": {"M10": "ゆるす", "M11": "ゆるす"}, "feast": false, "leader": "ウィロ", "call": null,
+ "knowledge": [{"op": "add", "text": "まとめ役になったので、季節の集まりで答えて、もめごとを裁くことになった", "because": [48562], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に誰もキャンプから離れないのは、ザガから身を守るために大事だから"}, {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば、けがを防げるから"}, {"id": "L125", "against": "", "agree": true, "reason": "冬の採集は南川12から試して、二人一組で見つけた量を夜に報告すればいいから"}, {"id": "L146", "against": "", "agree": true, "reason": "よその家の畑で刈る前に決めれば、草の種が残らない人が出ないから"}],
+ "feeling": "まとめ役になって、みんなの話をしっかり聞きたい。"}
