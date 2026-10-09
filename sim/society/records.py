@@ -81,21 +81,32 @@ CRITERIA_PARTS = {
     "G3": [("surplus_2y", "is", True, "余りの年が 2 年続く"), ("specialists", ">=", 1, "作ることに 20 日以上使った人")],
     "G4": [("owned", "is", True, "家ごとの持ち物がある"), ("inherits", ">=", 1, "受けつぎ")],
     "G5": [("g5_stage", ">=", 2, "第 2 段"), ("households", ">=", 6, "家族"), ("leader", "set", None, "まとめ役がいる"),
-           ("penalty_laws", ">=", 3, "罰のある掟"), ("judged", ">=", 2, "まとめ役の裁き"), ("penalties", ">=", 1, "罰を払わせた")],
+           ("judged", ">=", 2, "まとめ役の裁き")],  # 2026-10-09 本人と決めた: 罰の 2 つを外した (era2.CRITERIA と同じ)
 }
 
 
-def _criteria_progress(era, ind):
+# 条件を変えた日より前の季節は、そのときの条件で記録する (era: [(この日までの季節は, その条件)])
+CRITERIA_BEFORE = {
+    "G5": [(3359, [("g5_stage", ">=", 2, "第 2 段"), ("households", ">=", 6, "家族"), ("leader", "set", None, "まとめ役がいる"),
+                   ("penalty_laws", ">=", 3, "罰のある掟"), ("judged", ">=", 2, "まとめ役の裁き"), ("penalties", ">=", 1, "罰を払わせた")])],
+}
+
+
+def _criteria_progress(era, ind, day=None):
     ok = {">=": lambda v, t: v is not None and v >= t, "is": lambda v, t: v is t or v == t, "set": lambda v, t: bool(v)}
     parts = getattr(era2, "CRITERIA_PARTS", CRITERIA_PARTS)
+    if day is not None:
+        old = next((p for until, p in CRITERIA_BEFORE.get(era, []) if day <= until), None)
+        if old:
+            parts = dict(parts, **{era: old})
     items = [{"key": k, "label": lab, "op": op, "target": t, "value": ind.get(k), "met": ok[op](ind.get(k), t)}
              for k, op, t, lab in parts.get(era, [])]
     return {"era": era, "items": items, "all_met": bool(items) and all(x["met"] for x in items)}
 
 
-def criteria_progress(era, ind):
-    """条件ごとの、今の値・目標・そろったか (読むだけ)"""
-    return getattr(era2, "criteria_progress", _criteria_progress)(era, ind)
+def criteria_progress(era, ind, day=None):
+    """条件ごとの、今の値・目標・そろったか (読むだけ)。day を渡すと、その季節に使っていた条件で見る"""
+    return getattr(era2, "criteria_progress", _criteria_progress)(era, ind, day)
 
 
 # ---- 季節の終わりの控え ----

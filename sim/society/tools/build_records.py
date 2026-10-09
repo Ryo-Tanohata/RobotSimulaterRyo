@@ -961,7 +961,7 @@ class Builder:
         ans = self.answers.get(a, {})
         crit = None
         if C and ind:
-            crit = records.criteria_progress(c["era"], ind)
+            crit = records.criteria_progress(c["era"], ind, D)
         eras = c["era"]
         return {
             "season_end_day": D, "season_start_day": max(D - SDAYS + 1, a + 1), "days": D - a, "year": D // YEAR, "season": world.season(D),
