@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "今日は西草原12へユノ2と二人で行って、芋が育っているか見てくる。見つけた量と蓄えに入れた量は、夜にそのまま言うよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ユノ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "北川12へ、ケト2たちが魚と芋を見に行った。結果はまだ分からない", "because": [76411], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": null, "agree": true, "reason": "夜に火を見張る人がいれば、ザガから身を守れる"}, {"id": "L126", "against": null, "agree": true, "reason": "火と見張りを二人ずつ決めれば、夜もみんなが安心できる"}, {"id": "L134", "against": null, "agree": true, "reason": "雨の夜に外で濡れる人が減るなら、ありがたい"}, {"id": "L143", "against": null, "agree": true, "reason": "二人以上で行けば、ザガにも迷子にも強い"}],
+ "feeling": "芋が育っているかもしれないと思うと、少しわくわくする。"}

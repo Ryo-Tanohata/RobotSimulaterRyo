@@ -1,0 +1,7 @@
+{"say": [{"to": "ネム2", "text": "春はキャンプの木に実がならないから、東林12へ一緒に行って木の実を探そう。二人で行けば安心して採れるし、見つけた量は夜にそのまま言うね。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ネム2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ネム2": {"activity": "採集", "place": "東林12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "春はキャンプの木に実がならないので、東林12で木の実を探してみる。", "because": [], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L151", "against": "なし", "agree": true, "reason": "春のうちから土器を作れば、草の種を虫やネズミから早く守れるから。割れた数と作った数を夜に言えば、土器づくりの様子が分かる。"}],
+ "feeling": "春の木の実探しは少し不安だけど、ネム2と二人なら前に向かえそう。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春のあいだ、キャンプで石の鎌を作るよ。夏の刈り入れの前に、鎌がほしい人は言ってくれ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "石の刃を木の柄にはめた鎌は、夏の刈り入れの前に作りためておけば、刈り入れの初めから使える", "because": [77182, 77208, 77234], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L129", "against": "", "agree": true, "reason": "鎌があれば、夏の刈り入れが 2 倍になる。俺が鎌を作るから、貸す順番も決めたい"}, {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り入れは一人ずつ毎夕やれば、刈り残しが減る"}, {"id": "L144", "against": "", "agree": true, "reason": "刈り入れの前に、土器で守れる草の種の量を比べるのは大事だ"}],
+ "feeling": "鎌を作るのは得意だから、春のうちに何本でも作ってやる。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "ノア2", "text": "北の林は前の季節に何も見つからなかったと聞いた。私は西草原12をまだ見ていないから、春のあいだに一緒に見に行かない？"}],
+ "job": {"activity": "探索", "place": "西草原12", "with": ["ノア2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ノア2": {"activity": "探索", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "木の実は、夏と秋にしか実らない。春はキャンプのそばの木から取れない", "because": [], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L121", "against": "", "agree": true, "reason": "近くでも林でも二人以上で行けば、ザガに襲われたときに助け合える"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑があるあいだは、手のあいた大人が毎夕みんなで刈れば、夏の実りを落とさずに済む"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、畑の仕事が誰かに偏らない"}],
+ "feeling": "春の野原を歩けるのが楽しみ。まだ知らない草の場所を見つけたい。"}
