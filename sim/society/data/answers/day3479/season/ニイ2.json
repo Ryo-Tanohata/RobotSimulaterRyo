@@ -1,0 +1,28 @@
+{
+  "say": [
+    {"to": "ルネ", "text": "西の草原は外れだったんだね。次は場所を変えよう。南林12 なら、エマ2 とわたしも一緒に行けるよ。"}
+  ],
+  "job": {"activity": "採集", "place": "南林12", "with": ["ルネ"]},
+  "pick": 40,
+  "plant": 0,
+  "harvest": 0,
+  "eat_goat": 0,
+  "family": {"エマ2": {"activity": "採集", "place": "南林12"}},
+  "keep": true,
+  "feast": false,
+  "leader": null,
+  "knowledge": [
+    {"op": "add", "text": "エマ2 は北の丘で何も見つけられなかったと言っていた。次は別の場所を一緒に見に行こうと言っている。", "because": [88282], "confidence": 0.5},
+    {"op": "add", "text": "ルネ は西の草原が外れだったので、次の採集は場所を変えたいと言っていた。一緒に行ける人を探している。", "because": [88276], "confidence": 0.5}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L98", "against": "なし", "agree": true, "reason": "採集で蓄えに入れた人が、その日のうちに自分の分を食べられる。空腹では次の採集ができないから。"},
+    {"id": "L121", "against": "なし", "agree": true, "reason": "二人以上なら、林で何かあっても助け合える。ザガもいるから。"},
+    {"id": "L140", "against": "なし", "agree": true, "reason": "夏のうちに刈り切らないと草の種が落ちてしまうから。"},
+    {"id": "L143", "against": "なし", "agree": true, "reason": "採集と狩りは、二人以上で行くのがいい。"},
+    {"id": "L146", "against": "なし", "agree": true, "reason": "刈る前に分け方を決めておけば、刈った人の家に残る草の種がわかる。"}
+  ],
+  "year_name": "家がたくさんできた年",
+  "feeling": "春に北の川は空振りだったから、夏は新しい林を見たい。"
+}

@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切りたい。わたしの家は、ホノとルネと三人で毎夕刈って、木の実も取る。よその畑で刈るなら、先に分け方を決めよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "family": {"ホノ": {"activity": "畑仕事", "place": "camp"}, "ルネ": {"activity": "畑仕事", "place": "camp"}}, "keep": true,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "ケト3 が病で亡くなった。病で具合の悪い人は、休ませて看る人を決めたほうがいい。", "because": [89416], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出る。夜は皆がキャンプにいるのがよい。"}, {"id": "L98", "against": "", "agree": true, "reason": "採って蓄えに入れた人が、その日のうちに自分の分を食べられる。"}, {"id": "L106", "against": "", "agree": true, "reason": "夏と秋の木の実は毎夕取れる。冬の前に蓄えを増やせる。"}, {"id": "L118", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で担当すれば、一人の負担が軽い。"}, {"id": "L140", "against": "", "agree": true, "reason": "夏の畑は、落ちる前に刈り切りたい。"}, {"id": "L145", "against": "", "agree": true, "reason": "わたしの家は前の季節に村の蓄えから多く取った。夏は木の実を多めに入れて差を縮める。"}, {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るなら、先に分け方を決めないともめごとになる。"}, {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りは、ザガから身を守るのに大事。"}, {"id": "L153", "against": "", "agree": true, "reason": "世話をする人がいないヤギは、いなくなってしまう。"}, {"id": "L148", "against": "", "agree": true, "reason": "住まいのない家が、雨の夜に濡れるのはよくない。"}, {"id": "L122", "against": "", "agree": true, "reason": "夜の報告が一つにまとまれば、覚えやすい。"}, {"id": "L143", "against": "近い場所まで二人にそろえると、採集の数が減る。", "agree": false, "reason": "近い川や草原は、一人のほうが早く回れる。"}],
+ "year_name": "家がふえた年",
+ "feeling": "夏の畑は、刈り切るまで気が抜けない。"}
