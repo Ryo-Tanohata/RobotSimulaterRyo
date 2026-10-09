@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏の畑は刈らないと実りが落ちてしまう。わたしは毎夕、畑の刈り入れをするよ。刈った量と畑に残った量は夜に言うね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "トワが亡くなり、トワの家の倉と畑は村のものになった", "because": [48547], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るので、キャンプから離れないのは大事だから"}, {"id": "L102", "against": "", "agree": true, "reason": "夏のうちに刈らないと、実りは落ちてしまうから"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑があるあいだは毎夕みんなで刈るのがいいと思う"}, {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えに入れず、その夜に食べきるのがいいと思う"}],
+ "year_name": "トワの家が消えた年",
+ "feeling": "トワのことは悲しいけど、畑は夏のうちに刈り切りたい。"}

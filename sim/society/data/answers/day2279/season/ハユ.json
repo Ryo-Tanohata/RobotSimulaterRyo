@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏は畑の刈り入れと木の実で食べ物を集めるのがいちばん確実だ。わたしは畑仕事をする。毎夕、刈った量と畑に残った量を夜に言うよ。木の実も夕方に取る。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ケト": {"activity": "畑仕事", "place": "camp"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "トワが亡くなり、トワの家にだれもいなくなったので、倉と畑はきっと村のものになった", "because": [48547], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L140", "against": "なし", "agree": true, "reason": "夏の畑は毎夕みんなで刈らないと草の種が落ちるから"}, {"id": "L146", "against": "なし", "agree": true, "reason": "刈る前に決めておけば、もめごとが減るから"}, {"id": "L102", "against": "なし", "agree": true, "reason": "夏のうちに刈り切らないと実りは落ちてしまうから"}],
+ "year_name": "トワが去った年",
+ "feeling": "トワがいなくなって静かになった。畑を毎日刈って、みんなの食べ物を守りたい。"}
