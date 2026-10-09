@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "今日から冬の前まで、北川12へ行って魚と芋がどれくらいあるかを見てくるよ。畑には草の種を千つかみまくつもり。木の実は夕方に取って、五つかみは埋めておくね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": []}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "北川12"}}, "keep": true,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "秋に畑へまいた草の種は、冬と春をこえて夏のはじめに実る。まいた量の数倍になることもある", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが出るから、キャンプから離れないのは大事だと思う"}, {"id": "L98", "against": "なし", "agree": true, "reason": "採った人が自分の分を食べられるのは、体が保てるので助かる"}, {"id": "L126", "against": "なし", "agree": true, "reason": "火と見張りをまとめて決めれば、夜に迷わなくてすむ"}, {"id": "L143", "against": "なし", "agree": true, "reason": "一人で林に入ると、けがをしたときに助けがない"}],
+ "feeling": "川の水が少し冷たくなってきた。冬の前に、魚と芋のある所をこの目で確かめたい。"}

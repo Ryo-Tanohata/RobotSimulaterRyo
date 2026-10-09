@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のあいだは、キャンプの木の実を毎夕 40 つかみずつ取って、蓄えに入れよう。冬の前に少しでも増やしておきたい。"}, {"to": "ホノ", "text": "ホノ、いっしょに西草原12へ行こう。冬の食べ物があるかどうか、まず秋のうちに見ておきたい。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "秋はキャンプの木の実がなる。毎夕 40 つかみずつ取って蓄えに入れれば、冬の食べ物が増える", "because": [60138], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが出るのは本当だから、夜は離れないのがよい"}, {"id": "L121", "against": "なし", "agree": true, "reason": "一人で行くとけがをしたときに助けがいない。二人以上で行くのがよい"}, {"id": "L102", "against": "なし", "agree": true, "reason": "刈らずに夏が終わると実りは落ちてしまうから、毎夕刈るのがよい"}],
+ "feeling": "秋の採集は、西草原12をホノとたしかめられるのが少し楽しみだ。"}
