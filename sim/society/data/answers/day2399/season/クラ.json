@@ -1,0 +1,8 @@
+{"say": [{"to": "ヨナ", "text": "ヨナ、南林12へいっしょに行こう。二人で行けば林でも安心だね。見つけた量と蓄えに入れた量は夜に分けて言うよ。"}, {"to": "みんな", "text": "夏のうちに畑を刈り切らないと実りが落ちるから、毎夕すこしずつでも刈りに行くね。"}],
+"job": {"activity": "採集", "place": "南林12", "with": ["ヨナ"]}, "pick": 20, "plant": 5, "harvest": 60, "eat_goat": 0, "keep": false,
+"feast": false, "leader": "セナ",
+"knowledge": [{"op": "add", "text": "2370 日目から、セナが村のまとめ役になった", "because": [51298], "confidence": 0.9}],
+"proposal": null,
+"votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、キャンプから離れないのは大事だと思う"}, {"id": "L98", "against": "", "agree": true, "reason": "採集した人が自分の分を食べられないと、次の採集の力が落ちてしまうから"}, {"id": "L99", "against": "", "agree": true, "reason": "畑の草取りを毎日だれかがすれば、夏の実りが減らずにすむから"}, {"id": "L121", "against": "", "agree": true, "reason": "一人で林へ行くとザガに襲われやすい。二人以上がいい"}, {"id": "L126", "against": "", "agree": true, "reason": "火と見張りを二人ずつ決めれば、夜を安全にすごせるから"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを一人ずつ交代で担当すれば、刈り残しが出にくくなるから"}],
+"year_name": "よそから二人が来た年",
+"feeling": "夏の畑が心配だけど、ヨナと林へ行けるのは少し安心。"}

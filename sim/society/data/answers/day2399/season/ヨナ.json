@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "わたしは夏のあいだ、キャンプで土器をつくります。焼けた数と割れた数は夜に言います。畑は毎夕だれかが刈って、刈った量を言ってください。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": []}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"アル": {"activity": "畑仕事", "place": "camp"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "土器づくりは、慣れるほど1日に多く作れる。焼いた数と割れた数を夜に言えば、土器の数を村みんなで把握できる。", "because": [51808, 51825], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、キャンプを離れないのは大事なことだ。"}, {"id": "L146", "against": "", "agree": true, "reason": "畑で刈る前に量と分け方を決めないと、刈った草の種が畑の持ち主の倉に入ってしまう。"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを毎日交代で一人ずつ担当すれば、夏の刈り残しが減る。"}],
+ "year_name": "仲間とまとめ役が替わった年",
+ "feeling": "土器をつくれるのはうれしい。夏のうちに畑を刈り切れるか少し心配。"}
