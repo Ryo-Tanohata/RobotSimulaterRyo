@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏の刈り入れが遅れないように、手のあいた日は毎夕わたしも畑に行くね。東林12へはネムと二人で行くよ。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ネム2"]}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ネム2": {"activity": "採集", "place": "東林12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "夏はキャンプの木に実がたくさんなる。毎夕 20 つかみ取っても、木の実は残る", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "特になし", "agree": true, "reason": "夜にザガが出るから、みんなで村の中にいるのは大事"}, {"id": "L3", "against": "特になし", "agree": true, "reason": "二人で行けば、助け合える"}, {"id": "L16", "against": "特になし", "agree": true, "reason": "疲れたまま働くと、けがをしやすい"}, {"id": "L143", "against": "特になし", "agree": true, "reason": "一人で林に入ると、ザガに襲われたときに危ない"}],
+ "year_name": "刈り取りのもめごとの年",
+ "feeling": "夏の刈り入れが間に合うか少し心配だけど、ネムと一緒ならがんばれる。"}

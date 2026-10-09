@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "おれは道具をつくるよ。石の刃を柄にはめた鎌を作って、畑の刈り入れを早く終わらせたい。作った数は夜に言うね。"}, {"to": "みんな", "text": "採集に行く人は、夕方までに戻ってね。木の実は夕方にキャンプで取るつもり。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "石の刃を柄にはめた鎌は、畑を刈る量を 2 倍にする。鎌は 1 本 2 日ほどで作れる", "because": [65078], "confidence": 0.8}, {"op": "add", "text": "川辺の家のヤギが、クラの家の畑を荒らし、川辺の家がクラの家に草の種を払った", "because": [65067, 65081], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "agree": true, "against": "", "reason": "夜にザガが出るから、誰もキャンプから離れないのは大事だと思う"}, {"id": "L121", "agree": true, "against": "", "reason": "一人で行くとけがをする。二人以上で行けば助け合える"}, {"id": "L129", "agree": true, "against": "", "reason": "おれは鎌づくりが得意だから、鎌を作って順番に貸すのはいい"}, {"id": "L140", "agree": true, "against": "", "reason": "夏のうちに畑を刈り切らないと実りが落ちてしまう"}],
+ "year_name": "ヨナ2が加わった年",
+ "feeling": "鎌をたくさん作って、夏のうちに畑を刈り切りたい。"}

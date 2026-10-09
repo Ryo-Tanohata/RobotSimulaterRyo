@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切ろう。毎夕だれか一人ずつ交代で刈って、刈った量と畑に残った量は夜に言ってね。わたしも毎夕刈るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": "セナ", "call": "種まき",
+ "knowledge": [{"op": "add", "text": "ヤギが他の家の畑を荒らすと、実りが2割減る。ヤギの世話は毎晩だれかが必ずすることが大事だ。", "because": [65067], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜に火と見張りがないと、ザガに襲われて人が死ぬから"}, {"id": "L1", "against": "なし", "agree": true, "reason": "同じ場所を重ねて探さなくて済むから"}, {"id": "L3", "against": "なし", "agree": true, "reason": "二人以上なら、けがをしても助け合えるから"}, {"id": "L10", "against": "なし", "agree": true, "reason": "見つけたものを話せば、どこに食べ物があるか分かるから"}, {"id": "L16", "against": "なし", "agree": true, "reason": "疲れたままでは、危ないし仕事の力も落ちるから"}, {"id": "L110", "against": "なし", "agree": true, "reason": "戻らない人を早く探せるから"}],
+ "year_name": "畑の刈りもめごとの年",
+ "feeling": "畑がまだ残っているから、刈り切れるか少し心配。でも今年はみんなで分けて刈れば大丈夫だと思う。"}

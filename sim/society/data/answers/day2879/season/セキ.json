@@ -1,0 +1,8 @@
+{"say": [{"to": "ホノ", "text": "西草原12へ一緒に行こう。冬に食べ物があるかどうか、二人で確かめてこよう。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "まとめ役のセナは、次の季節は土器づくりをしようと呼びかけた", "because": [65083], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": "", "agree": true, "reason": "食べ物を集めた人が、その日のうちに自分の分を食べられるのはいいことだ"}, {"id": "L102", "against": "", "agree": true, "reason": "夏のうちに毎夕だれかが刈れば、畑の実りを落とさずに済む"}, {"id": "L121", "against": "", "agree": true, "reason": "二人で動けば、ザガが出ても助け合える"}, {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈る前に決めておけば、草の種の行き先で争いにならない"}],
+ "year_name": "ヨナ2が村に来た年",
+ "feeling": "仲間と西草原12へ行けるのは、少しうれしい。冬の食べ物が見つかるといい。"}

@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "ぼくは夏のあいだ、北川12へ行って、魚と芋がどれくらい取れるかを見てくるよ。スイと二人で行って、見つけた量と蓄えに入れた量は夜にはっきり言う。木の実は夕方に20つかみ取って、その日のぶんにするね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["スイ"]}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "北川12で夏に魚と芋がどれくらい取れるかは、まだ確かめられていない。確かめに行く", "because": [65087], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": null, "agree": true, "reason": "採ったその日のうちに自分の分を食べられるのは、採集の力を保つのに大事だから"}, {"id": "L102", "against": null, "agree": true, "reason": "夏のうちに畑を刈り切らないと、実りが落ちてしまうから"}, {"id": "L112", "against": null, "agree": true, "reason": "肉の保存のやり方をひとつにまとめれば、迷わず守れるから"}, {"id": "L113", "against": null, "agree": true, "reason": "冬に取れる場所を知っておけば、冬の食べ物が増えるから"}, {"id": "L125", "against": null, "agree": true, "reason": "北林12は前に何も見つからなかったので、冬は南川12から試すのがいいと思うから"}, {"id": "L143", "against": null, "agree": true, "reason": "採集と狩りは必ず二人以上で行くほうが、安全だから"}, {"id": "L147", "against": null, "agree": true, "reason": "芋は蓄えに入れず、その夜のうちに食べきるほうが腐らないから"}, {"id": "L149", "against": null, "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、刈り残しが出ないから"}],
+ "year_name": "祭りで村が一つになった年",
+ "feeling": "夏の川を見て回れるのが楽しみだ。ひとりではないから、少し安心している。"}
