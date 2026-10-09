@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春のあいだは、南川12へハユ2と二人で行ってくるよ。キャンプから近くて、二人なら安心して採集できる。見つけた量は夜に言うね。"}, {"to": "ハユ2", "text": "いっしょに南川12へ行こう。落ちた実や草の種も見逃さないようにね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ハユ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ハユ2": {"activity": "採集", "place": "南川12"}}, "keep": false,
+ "judge": {"M27": "ゆるす"}, "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガは夜に来るから、夜は誰もキャンプから離れないのが安全だ。"}, {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは複数人で行けば助け合える。"}, {"id": "L15", "against": "", "agree": true, "reason": "得意な人が得意なことをすれば、みんなで食べ物を集められる。"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたままでは危ないし、採集の力も落ちる。"}, {"id": "L42", "against": "", "agree": true, "reason": "見つけた食べ物を共有すれば、冬までの計画が立てやすい。"}, {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻らない人がいたら、すぐ探しに行けるように時刻を決めるのは大事だ。"}, {"id": "L121", "against": "", "agree": true, "reason": "ザガは昼の林にも出るから、二人以上で行くのが安全だ。"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、けがをしても助けられる。"}, {"id": "L149", "against": "", "agree": true, "reason": "毎夕、畑の草取りと刈り入れを交代で担当するのは、実りを減らさないために必要だ。"}],
+ "feeling": "春になって、少しずつ暖かくなってきた。ハユ2と南川12で、確かな食べ物を見つけたい。"}

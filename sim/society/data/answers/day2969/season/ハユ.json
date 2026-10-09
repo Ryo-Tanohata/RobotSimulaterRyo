@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春の採集は西草原12へ、ケトと二人で行ってくるよ。まだ行ったことのない場所だから、草や実の様子を見て、見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ケト"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "西草原12"}}, "keep": true,
+ "judge": {"M27": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "西草原12は、前の季節に食べ物が見つかった場所だとセキが言っていた。春にどれだけ取れるかは、行ってみないと分からない", "because": [67902], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火を焚いて見張りを立てるのは、けがを防ぐのに大事だから"}, {"id": "L1", "against": "", "agree": true, "reason": "行き先を伝えておけば、同じ場所を重ねて探さずにすむから"}, {"id": "L3", "against": "", "agree": true, "reason": "二人以上なら助け合えて、けがのときも安心だから"}, {"id": "L121", "against": "", "agree": true, "reason": "一人で行くとザガにやられやすいので、二人以上がいい"}, {"id": "L125", "against": "南の川は前の冬に何も見つからなかったので、まず試す場所としては合わないと思う", "agree": false, "reason": "前の冬の結果から、南川12を先に試すのは避けたい"}, {"id": "L150", "against": "", "agree": true, "reason": "前の冬に南川12で何も見つからなかったので、北丘12を試すのがよい"}, {"id": "L102", "against": "", "agree": true, "reason": "夏のうちに毎夕刈らないと草の種が落ちてしまうから"}, {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行くのが安全だから"}],
+ "feeling": "春の畑が育つのを見るのは気持ちがいい。西草原12でどれだけ取れるか、少し楽しみだ。"}

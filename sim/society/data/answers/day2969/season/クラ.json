@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "春のあいだは、南林12へネム2と二人で行ってくるね。見つけた量と蓄えに入れた量は、夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ネム2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M27": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "川辺の家のヤギが、クラの家の畑を荒らして、草の種約 80 つかみ分の損が出た", "because": [68526, 68527], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、みんなで守るのがいい"},
+  {"id": "L3", "against": "", "agree": true, "reason": "二人以上で行けば、助け合えて安心できる"},
+  {"id": "L10", "against": "", "agree": true, "reason": "見つけたものを話せば、どこに食べ物があるかみんなで分かる"},
+  {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま動くと危ないから、休むのは大事"},
+  {"id": "L18", "against": "", "agree": true, "reason": "空腹の人に気づいて食べさせるのは、村を守ることになる"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるのはよい"},
+  {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めれば、帰らない人をすぐ探せる"},
+  {"id": "L121", "against": "", "agree": true, "reason": "ザガが昼にも出るから、二人以上で行くのがよい"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると疲れがとれないから、住まいに入れる決まりは助かる"},
+  {"id": "L139", "against": "", "agree": true, "reason": "病の人を一人にしないのは、前にフウが亡くなったことからも大事だ"}
+ ],
+ "feeling": "春になって、少しほっとしている。南林12で、何か見つかるといいな。"}
