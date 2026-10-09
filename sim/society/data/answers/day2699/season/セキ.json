@@ -1,0 +1,13 @@
+{"say": [{"to": "ホノ", "text": "冬の食べ物を探しに、西草原12へ行こうと思う。前に食べ物が見つかった場所だから。いっしょに二人で行ってくれないか。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": null, "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるのは大事なことだ。"},
+  {"id": "L126", "against": null, "agree": true, "reason": "夜の火と見張りを一つにまとめるのは、分かりやすくていい。"},
+  {"id": "L143", "against": null, "agree": true, "reason": "採集と狩りは二人以上で行けば、ザガにも一人で襲われずにすむ。"},
+  {"id": "L149", "against": null, "agree": true, "reason": "畑の仕事を一つにまとめれば、毎夕だれが何をするかが分かりやすい。"},
+  {"id": "L150", "against": "南川12は前の冬に何も見つからなかったけれど、西草原12は前の季節に食べ物が見つかった。北丘12を先に試すより、確かめた場所から行きたい。", "agree": false, "reason": "食べ物が見つかった場所を先に確かめるほうが、冬を越すのに確実だと思うから。"}
+ ],
+ "feeling": "冬は食べ物が少ないけれど、西草原12でホノといっしょに見つけてくる。"}
