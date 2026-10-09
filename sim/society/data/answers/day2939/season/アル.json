@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは、キャンプで石の鎌をつくろう。夏の刈り入れが始まったら、鎌を順番に貸せるように数をそろえておきたい。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが出るので、キャンプから誰も離れないのは安全を守るために必要だと思う。"},
+  {"id": "L126", "against": "なし", "agree": true, "reason": "火と見張りの決まりを一つにまとめたほうが、夜に皆が守りやすい。"},
+  {"id": "L133", "against": "なし", "agree": true, "reason": "土器づくりの決まりを一つにまとめたことで、誰がいつ作るのか分かりやすくなる。"},
+  {"id": "L134", "against": "なし", "agree": true, "reason": "雨の夜に外で濡れると疲れがとれないので、住まいに入る順番を決めるのは良いことだ。"}
+ ],
+ "feeling": "冬は少し寒いけど、道具づくりに集中して、夏にみんなの役に立ちたい。"}

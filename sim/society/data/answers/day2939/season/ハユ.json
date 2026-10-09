@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の採集は、北丘12 を試しに行こうと思う。南川12 と北の林は前の冬に何も見つからなかったから。ケトと二人で行って、見つけた量は夜に言うよ。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["ケト"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "北丘12"}}, "keep": true,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "前の季節、ケトの家の畑で刈った草の種は、刈った人の家に残らず、畑の持ち主の家の倉に入った。そのもめごとは、ケトの家がつぐなって収まった。", "because": [66684, 66685, 66686], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L150", "against": "", "agree": true, "reason": "北の丘を試せば、冬の食べ物の場所が増えるから"}, {"id": "L146", "against": "", "agree": true, "reason": "決めてから刈れば、刈った人の家に草の種が残るから"}, {"id": "L125", "against": "", "agree": true, "reason": "どこへ行くかを皆に伝えれば、同じ場所を重ねて探さずに済むから"}, {"id": "L121", "against": "", "agree": true, "reason": "林へ行くときは二人以上なら、ザガに襲われても助け合えるから"}],
+ "feeling": "冬に食べ物が見つかるか少し不安だけど、北丘を試すのは大事だと思う。"}

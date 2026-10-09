@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "わたしは冬のあいだ、ユノ2と二人で北川12へ行って、魚と芋が取れるかを確かめてくるよ。見つけた量と蓄えに入れた量は夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るのは本当にあったことで、夜は皆がキャンプにいるのがいちばん安全だから"},
+  {"id": "L3", "against": "", "agree": true, "reason": "二人以上で行けば、けがをしたときも助け合える"},
+  {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま出ると危ないし、採集の力も落ちるから"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるのは大事だから"},
+  {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻らない人を早く探せるように、戻る時刻を決めておくのはよいから"},
+  {"id": "L111", "against": "", "agree": true, "reason": "ヤギは一人では囲めず、ザガにも襲われやすいから"},
+  {"id": "L121", "against": "", "agree": true, "reason": "ザガが昼の林にも出てけがをした人がいたから、二人以上で行くのがよい"},
+  {"id": "L126", "against": "", "agree": true, "reason": "火と見張りを毎晩決めておけば、ザガが近づきにくいから"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、けがのときに助けられるから"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ受け持てば、畑が荒れないから"},
+  {"id": "L150", "against": "", "agree": true, "reason": "前の冬に南川12で何も見つからなかったなら、北丘12を試すのは筋がよいと思うから"}
+ ],
+ "feeling": "冬は食べ物を探すのが大変だけど、北川12に魚がいたら村の助けになると思うとわくわくする。ユノ2と一緒なら心強い。"}
