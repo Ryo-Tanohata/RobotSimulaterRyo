@@ -124,7 +124,7 @@
 {"id":"L122","text":"夜の報告は一つにまとめよう。見つけた量、蓄えに入れた量、蓄えから取った量を、夜に一度だけまとめて言う。同じ報告の掟が何度も決まっているので、まとめて守りやすくしよう。","proposer_id":"P010","proposed_day":1379,"status":"採用","adopted_day":1409,"abolished_day":null,"penalty":null,"label":"伝承"},
 {"id":"L123","text":"採集地の決まり (L28、L29、L56、L57、L88) を一つにまとめよう。冬は北林12 から試し、見つけた量と場所を夜に言う。駄目だった場所は理由を言い、次の日は別の場所を試そう。","proposer_id":"P019","proposed_day":1379,"status":"廃止","adopted_day":1409,"abolished_day":1529,"penalty":null,"label":"創発"},
 {"id":"L124","text":"一人での採集は、キャンプの近くの川や草原だけにしよう。林 (西林12・北林12・東林12 など) へ行くときは、必ず二人以上で行こう。","proposer_id":"P014","proposed_day":1439,"status":"採用","adopted_day":1499,"abolished_day":null,"penalty":null,"label":"知識の再現の疑い"},
-{"id":"L125","text":"冬の採集は、まず南の川 (南川12) を試そう。北の林 (北林12) は前の季節に何も見つからなかったから、今は避けたい。二人一組で行き、見つけた量を夜に報告しよう。","proposer_id":"P010","proposed_day":1499,"status":"採用","adopted_day":1529,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L125","text":"冬の採集は、まず南の川 (南川12) を試そう。北の林 (北林12) は前の季節に何も見つからなかったから、今は避けたい。二人一組で行き、見つけた量を夜に報告しよう。","proposer_id":"P010","proposed_day":1499,"status":"廃止","adopted_day":1529,"abolished_day":3389,"penalty":null,"label":"創発"},
 {"id":"L126","text":"夜の火と見張りの決まり (L0・L38・L39・L79・L116) を一つにまとめよう。キャンプの周りに毎晩火を焚き、火の番と見張りを二人ずつ決めて、夜は誰もキャンプから離れない。","proposer_id":"P014","proposed_day":1499,"status":"採用","adopted_day":1529,"abolished_day":null,"penalty":null,"label":"伝承"},
 {"id":"L127","text":"春と夏のあいだ、ヤギの乳を毎朝しぼる人を一人決めて、乳の量を夜に報告しよう。乳は子どもたちに先に分けよう。","proposer_id":"P002","proposed_day":1529,"status":"採用","adopted_day":1559,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L128","text":"夏のうちに土器づくりをする人を決めて、蓄えの草の種を土器に入れよう。土器に入らない草の種は、季節ごとに 20 分の 1 ほどが虫やネズミに食べられてしまう。","proposer_id":"P002","proposed_day":1559,"status":"採用","adopted_day":1589,"abolished_day":null,"penalty":null,"label":"創発"},
@@ -152,5 +152,5 @@
 {"id":"L150","text":"冬の採集は、まず北丘12 (北の丘) を試そう。南川12 は前の冬に 30 日とも何も見つからなかったから、後回しにしよう。","proposer_id":"P013","proposed_day":1979,"status":"採用","adopted_day":2069,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L151","text":"春のうちに土器づくりをする人を決めて、割れた土器の数と作った数を夜に報告しよう。","proposer_id":"P022","proposed_day":3089,"status":"採用","adopted_day":3269,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L152","text":"石の鎌は、夏の刈り入れの前に道具づくりが得意な人が作りためておこう。刈り入れの初めから鎌を使えば、畑の刈り残しを減らせる。","proposer_id":"P020","proposed_day":3269,"status":"採用","adopted_day":3359,"abolished_day":null,"penalty":null,"label":"創発"},
-{"id":"L153","text":"飼っているヤギ全部 (37 頭) の世話を、毎晩の集まりで世話をする人を決めて、キャンプで毎日行おう。世話をする人がいないヤギは、いなくなってしまう。","proposer_id":"P053","proposed_day":3359,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"}
+{"id":"L153","text":"飼っているヤギ全部 (37 頭) の世話を、毎晩の集まりで世話をする人を決めて、キャンプで毎日行おう。世話をする人がいないヤギは、いなくなってしまう。","proposer_id":"P053","proposed_day":3359,"status":"採用","adopted_day":3389,"abolished_day":null,"penalty":null,"label":"創発"}
 ]
