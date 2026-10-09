@@ -32,7 +32,7 @@ def year_label(d):
 
 
 def _font():
-    for name in ("IPAGothic", "IPAPGothic", "Noto Sans CJK JP", "WenQuanYi Zen Hei"):
+    for name in ("IPAGothic", "IPAPGothic", "Noto Sans CJK JP", "WenQuanYi Zen Hei", "Yu Gothic", "Meiryo", "MS Gothic"):  # 後ろの 3 つは Windows
         if any(f.name == name for f in font_manager.fontManager.ttflist):
             return name
     return None
