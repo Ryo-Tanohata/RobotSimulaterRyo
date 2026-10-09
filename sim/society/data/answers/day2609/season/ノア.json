@@ -1,0 +1,7 @@
+{"say": [{"to": "ホノ", "text": "春のうちに西草原12へ行こう。草や実がどれくらいあるか、二人で見てみたい。夜に見つけた量を言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "春に西草原12へ行けば、草や実がどれくらいあるかが分かる。これから確かめに行く", "because": [57995], "confidence": 0.6}, {"op": "add", "text": "春はキャンプのそばの木から実は取れない。実がなるのは夏と秋だけ", "because": [57991], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出るから、夜は離れないのがよい"}, {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めれば、夕方に探しに行ける"}, {"id": "L121", "against": "", "agree": true, "reason": "二人以上で行けば、けがをしても助けられる"}, {"id": "L150", "against": "冬の話は、もう終わった季節の決まりだから", "agree": false, "reason": "冬が過ぎた今は、場所を新しく確かめたほうがよい"}],
+ "feeling": "西草原12で草や実が見つかるかどうか、ホノと確かめるのが楽しみだ。"}
