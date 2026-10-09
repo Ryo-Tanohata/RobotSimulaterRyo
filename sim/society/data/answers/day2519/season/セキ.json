@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "夏のあいだは、ホノといっしょに西草原12へ行って、木の実と草の種を探すよ。見つけた数と蓄えに入れた数は、夜にそのまま言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "まとめ役のセナは、もめごとを自分で裁いて、つぐないで収めた", "because": [53048], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "夜にキャンプから離れないのは、ザガから身を守るために大事だから"},
+  {"id": "L1", "against": null, "agree": true, "reason": "どこへ行くかを前に伝えれば、同じ場所を重ねて探さずにすむから"},
+  {"id": "L10", "against": null, "agree": true, "reason": "採集から帰ったら何を見つけたか話すのは、ほかの人が場所を選ぶのに役立つから"},
+  {"id": "L17", "against": null, "agree": true, "reason": "行き先と一緒に行く人を決めておけば、混乱が少ないから"},
+  {"id": "L62", "against": null, "agree": true, "reason": "蓄えを朝と夜に見て、腐りかけた食べ物を出すのは大事だから"},
+  {"id": "L67", "against": null, "agree": true, "reason": "食べ物を集めた人が、その日のうちに自分の分を食べられるのは大事だから"},
+  {"id": "L98", "against": null, "agree": true, "reason": "同じ内容の掟をひとつにまとめたのは、分かりやすいから"},
+  {"id": "L110", "against": null, "agree": true, "reason": "夕方に戻らない人がいたら、すぐ探しに行けるから"},
+  {"id": "L121", "against": null, "agree": true, "reason": "二人以上で行けば、ザガに襲われたときも助け合えるから"},
+  {"id": "L140", "against": null, "agree": true, "reason": "夏のうちに畑を刈り切れば、草の種が落ちずにすむから"},
+  {"id": "L149", "against": null, "agree": true, "reason": "畑の草取りと刈り入れを、交代で一人ずつ担当するのは公平だから"},
+  {"id": "L150", "against": "冬の採集は北丘12から試すという掟には、前の冬に北丘12で何も見つからなかった話もあるので、まだ確かめが必要だと思う", "agree": false, "reason": "前の季節に西草原12で食べ物が見つかったので、冬の場所はそちらも候補に入れたい"}
+ ],
+ "year_name": "ナギの家の畑がもめごとになった年",
+ "feeling": "木の実は、キャンプのそばにまだたくさんついている。ホノといっしょなら、西草原で安心して採れると思う。"}

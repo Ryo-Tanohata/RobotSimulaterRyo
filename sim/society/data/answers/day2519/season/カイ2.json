@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "今年は南林12へ採集に行くよ。西の草原は前の季節に何も見つからなかったから、別の場所を見てみたい。木の実も少し取ってくるね。見つけた量と蓄えに入れた量は夜に言うよ。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": []}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ネム2": {"activity": "採集", "place": "南林12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "西の草原では、前の季節に採集をしても何も見つからなかった。", "because": [55516], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に誰もキャンプから離れないのは、ザガから身を守るために大事だから"}, {"id": "L6", "against": "", "agree": true, "reason": "採集は違う場所に分かれたほうが、食べ物が見つかりやすいと思うから"}, {"id": "L98", "against": "", "agree": true, "reason": "採集や狩りで蓄えに入れた人が、その日のうちに自分の分を食べられるのは大事だから"}, {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行けば、ザガに襲われたときも安心だから"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを毎日交代で行えば、実りが減らないから"}],
+ "year_name": "ソルとミラが亡くなった年",
+ "feeling": "木の実がよく実っていて少し安心している。南林12は初めてだから、少しどきどきする。"}
