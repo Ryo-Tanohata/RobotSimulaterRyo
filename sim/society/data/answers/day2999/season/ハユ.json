@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "今季は南川12へケトと二人で行って、魚と芋がどれくらいあるか見てくるよ。木の実は毎夕 40 つかみまで取って、蓄えに入れよう。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ケト"]}, "pick": 40, "plant": 0, "harvest": 40, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "南川12"}}, "keep": true,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "キャンプのそばの木の実の木は、夏のあいだ毎夕 40 つかみまで取れるくらい実っている。", "because": [68547], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火と見張りを立てれば、ザガからみんなを守れると思うから。"}, {"id": "L3", "against": "", "agree": true, "reason": "二人で行けば、けがをしても助け合えるから。"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを毎日交代でやれば、夏の実りが減らないから。"}, {"id": "L143", "against": "", "agree": true, "reason": "採集は必ず二人以上で行けば、一人で困ることがなくなるから。"}],
+ "year_name": "畑の実りと祭りの年",
+ "feeling": "夏の畑はまだ刈り残しが多いから、みんなで刈ってくれるとうれしい。"}

@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "今季は畑で刈り入れをする。夕方に刈った量と畑に残った量を言うよ。木の実は夕方に 40 つかみ取って、家に持ち帰って食べる。ハユ2と一緒に刈るね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ハユ2": {"activity": "畑仕事", "place": "camp"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "木の実の木の下には、夏に落ちた実がある。一緒に拾えば食べ物が増える。", "because": [68548], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを一つにまとめたほうが、誰が何をするか分かりやすい。"}, {"id": "L145", "against": "", "agree": true, "reason": "前の季節に村の蓄えから多く取った家として、木の実で入れる量を増やすのは当然だと思う。"}],
+ "year_name": "みんなで畑をした年",
+ "feeling": "畑の刈り残しが出ないか少し気がかりだけど、みんなで交代すれば夏のうちに刈り切れると思う。"}

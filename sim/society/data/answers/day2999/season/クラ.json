@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "セナの呼びかけに応えて、畑仕事をします。草取りと刈り入れは、手のあいた人と交代でやりましょう。刈った量と残りの量は夜に言います。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "前の季節、川辺の家のヤギが畑を荒らした。ゆるされて収まったが、ヤギの世話をする人を決めておけば防げる (確かさ 0.7)", "because": [68543], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火と見張りがあれば、ザガから身を守れる"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれないから"}, {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り残しを出さないために必要"}, {"id": "L148", "against": "", "agree": true, "reason": "住まいのない家が雨で濡れないように"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の仕事を一つにまとめるのは分かりやすい"}],
+ "year_name": "種まきと畑の年",
+ "feeling": "畑が実るように、セナと一緒にしっかり働きたい。"}

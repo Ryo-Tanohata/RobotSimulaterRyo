@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "畑の草取りと刈り入れを、毎日みんなで交代でしよう。刈った量と畑に残った量は、夜にちゃんと言うね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ネム2"]}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "family": {"ネム2": {"activity": "畑仕事", "place": "camp"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "畑の草の種は、刈り入れを毎日続けると、夏のうちに大きく実って刈れる。刈り残しが出ると、夏の終わりに落ちてしまう。", "because": [69138, 69139, 69141], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "特になし", "agree": true, "reason": "夜にザガが出るなら、誰もキャンプから離れないほうが安心できる"},
+  {"id": "L121", "against": "特になし", "agree": true, "reason": "採集や狩りは二人以上で行けば、けがをしても助け合える"},
+  {"id": "L126", "against": "特になし", "agree": true, "reason": "夜の火と見張りを一つにまとめれば、守る決まりが分かりやすい"},
+  {"id": "L149", "against": "特になし", "agree": true, "reason": "畑の草取りと刈り入れを毎日交代でやれば、刈り残しが減る"},
+  {"id": "L106", "against": "特になし", "agree": true, "reason": "冬の前に木の実を取っておけば、冬の食べ物が増える"},
+  {"id": "L111", "against": "特になし", "agree": true, "reason": "野生のヤギは一人では囲めないし、ザガにも襲われやすいから"},
+  {"id": "L134", "against": "特になし", "agree": true, "reason": "雨の夜に外で濡れて疲れがとれない人を減らせる"},
+  {"id": "L150", "against": "特になし", "agree": true, "reason": "南川12は前の冬に何も見つからなかったので、北丘12を試すのがよい"}
+ ],
+ "year_name": "畑の草の種がたくさん実った年",
+ "feeling": "畑の実りが多かったのは良かった。冬に向けて、木の実もしっかり取っておきたい。"}
