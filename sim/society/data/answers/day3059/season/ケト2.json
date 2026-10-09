@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の採集は北川12へ行くよ。ハユ2と二人で行って、魚と芋が取れるか確かめる。夜に見つけた量と蓄えに入れた量を別々に言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ハユ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ハユ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M31": "ゆるす"}, "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "冬の北川12で、魚と芋が取れるかを今季ハユ2と確かめる予定", "because": [70573], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L121", "against": "なし", "agree": true, "reason": "二人以上で行けば、林や遠い所でも安心して採集できる"}, {"id": "L125", "against": "なし", "agree": true, "reason": "南の川で冬に何も見つからなかったので、北の川を試すのは理にかなっている"}, {"id": "L150", "against": "なし", "agree": true, "reason": "南川12が冬に何も見つからなかったので、北丘12を試すのは良い"}, {"id": "L113", "against": "なし", "agree": true, "reason": "冬に魚が取れる場所を知っておけば、食べ物が増える"}, {"id": "L142", "against": "なし", "agree": true, "reason": "土器が割れたら知らせて作り直せば、草の種が守れる"}],
+ "feeling": "冬は食べ物が少なくて不安だけど、北川12をちゃんと確かめて、みんなの蓄えを増やしたい。"}
