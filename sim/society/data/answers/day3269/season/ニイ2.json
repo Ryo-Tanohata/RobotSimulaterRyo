@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "わたしは西草原12へ行って、草や実があるかを見てくる。エマ2といっしょに行くよ。見つけた量と蓄えに入れた量は、夜にそのまま言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": []}, "sow": 0, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"エマ2": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "judge": {"M34": "ゆるす", "M35": "ゆるす", "M36": "ゆるす"}, "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "ソル3 (女の子) が生まれた。母はわたし、ニイ2。", "because": [79773], "confidence": 1.0}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、夜はキャンプから離れないほうがいい。"}, {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは複数人で行けば助け合える。"}, {"id": "L43", "against": "", "agree": true, "reason": "雨から蓄えを守るのは大事。"}, {"id": "L99", "against": "", "agree": true, "reason": "畑の草取りを毎日交代ですれば、夏の実りが減らない。"}, {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば安全。"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれないから交代で入ろう。"}],
+ "feeling": "西草原12がどうなっているか、早く見てみたい。ソル3の世話もがんばる。"}

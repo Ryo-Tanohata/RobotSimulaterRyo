@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のうちに土器をたくさんつくろう。草の種を土器に入れておけば、虫やネズミに食べられずに冬と春を越せる。土器は割れることもあるから、割れた数は夜に言うね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": ["カイ2"]}, "sow": 20, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M34": "ゆるす", "M35": "ゆるす", "M36": "ゆるす"}, "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "世話をする人が少ない季節には、ヤギがいなくなることがある", "because": [79772], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りを一つにまとめれば、守る決まりがわかりやすい"}, {"id": "L133", "against": "", "agree": true, "reason": "土器づくりの決まりを一つにまとめれば、秋に土器をつくる人がはっきりする"}, {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行けば、けがをしても助け合える"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを一つにまとめれば、毎夕だれが担当か迷わない"}, {"id": "L138", "against": "", "agree": true, "reason": "春から土器をつくれば、草の種を守れる量が増える"}, {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り入れを毎夕みんなでやれば、畑の種を落とさずに済む"}],
+ "feeling": "土器をつくるのは得意だから、今季は役に立ちたい。草の種が虫に食べられないと思うと、少し安心する。"}

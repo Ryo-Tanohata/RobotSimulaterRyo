@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のあいだは石の鎌を作りためておきたい。夏の刈り入れの初めから使えれば、畑を早く刈り切れる。木の実も毎晩 40 つかみずつ取って、冬の前に蓄えへ入れよう。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []}, "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M34": "つぐなう", "M35": "つぐなう", "M36": "つぐなう"}, "feast": true, "leader": "なし",
+ "knowledge": [],
+ "proposal": {"text": "石の鎌は、夏の刈り入れの前に道具づくりが得意な人が作りためておこう。刈り入れの初めから鎌を使えば、畑の刈り残しを減らせる。", "because": [79647, 79697, 79747], "penalty": null},
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "ザガが出る夜は、キャンプから離れないのが大事だから"}, {"id": "L98", "against": "なし", "agree": true, "reason": "同じ掟をまとめた分かりやすい決まりだから"}, {"id": "L102", "against": "なし", "agree": true, "reason": "夏に刈らないと実りが落ちるから"}, {"id": "L106", "against": "なし", "agree": true, "reason": "冬の前に木の実を蓄えておけば、冬を越えやすいから"}, {"id": "L129", "against": "なし", "agree": true, "reason": "石の鎌は刈る量を 2 倍にするから"}, {"id": "L140", "against": "なし", "agree": true, "reason": "夏の残りに刈れる畑を、手のあいた大人みんなで刈れば実りを落とさずに済むから"}],
+ "feeling": "鎌を作るのは得意だから、これで夏の刈り入れに役立ちたい。"}
