@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "春のあいだ、おれは北川12へ採集に行くよ。見つけた量と蓄えに入れた量は、夜にわけて言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": []}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "北川12"}},
+ "keep": true,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "春は、キャンプのそばの木の実は取れない。木の実がなるのは夏と秋だけ", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが出るから、夜はキャンプにいるのが一番安全だ"},
+  {"id": "L1", "against": "", "agree": true, "reason": "行き先を言っておけば、同じ場所を重ねて探さずに済む"},
+  {"id": "L3", "against": "", "agree": true, "reason": "二人で行けば、見つけた物も運びやすく、けがのときも助けられる"},
+  {"id": "L10", "against": "", "agree": true, "reason": "帰ってから何を見つけたか話せば、みんなが食べ物のある場所を知れる"},
+  {"id": "L16", "against": "", "agree": true, "reason": "疲れたままでは採集の力が落ちるから、休むのは大事だ"},
+  {"id": "L18", "against": "", "agree": true, "reason": "空腹の人を見逃さないのは、みんなが冬を越えるために必要だ"},
+  {"id": "L44", "against": "", "agree": true, "reason": "屋根のある住まいがあれば、蓄えも雨の夜の人も守れる"},
+  {"id": "L121", "against": "", "agree": true, "reason": "二人以上で行けば、ザガに襲われても互いに気づける"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れる人が減れば、疲れがとれて助かる"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近くでも林でも二人で行くのは、けがや迷いから身を守る決まりとして正しい"},
+  {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るときは、先に分け方を決めないと損をする人が出るから"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつにすれば、刈り残しが減る"}
+ ],
+ "feeling": "春の採集は北川12で試す。どんな魚や芋があるか、少し楽しみだ。"}

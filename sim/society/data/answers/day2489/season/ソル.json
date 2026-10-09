@@ -1,0 +1,7 @@
+{"say": [{"to": "ケト", "text": "春のあいだは南川12へ行ってくるよ。近くて安全な場所だから、いっしょに行かないか。見つけた量と蓄えに入れた量は、夜に分けて言うね。"}, {"to": "みんな", "text": "春は木の実がなる木がないから、草や魚の場所を確かめておこう。見つけた量は、そのまま夜に言い合おう。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ケト"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種は今たくさんあり、今の人数で約 217 日分ある", "because": [54200], "confidence": 0.6}, {"op": "add", "text": "春は、キャンプの木に実がついていても取れない", "because": [54200], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、夜は誰もキャンプから離れないほうがいい"}, {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば、けがをしても助けられる"}, {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りの決まりを一つにまとめれば、守りやすい"}, {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行くのがいい"}, {"id": "L145", "against": "", "agree": true, "reason": "前に村の蓄えから多く取った家が、入れる量をふやすのは公平だ"}, {"id": "L149", "against": "", "agree": true, "reason": "畑と刈り入れの決まりを一つにまとめれば、わかりやすい"}, {"id": "L150", "against": "", "agree": true, "reason": "冬の採集は北丘12を試すのがいいと思う"}],
+ "feeling": "春の風が気持ちいい。冬に向けて、少しずつ食べ物の場所を確かめておきたい。"}

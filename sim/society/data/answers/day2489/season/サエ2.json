@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春のあいだは、ユノ2と西草原12へ行って採集するよ。二人で行って、見つけた量と蓄えに入れた量は夜に分けて言う。草の様子も話すね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ユノ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "前の季節の祭りで、村の蓄えから芋 45 本と木の実 1749 つかみが使われた", "because": [54200], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": "", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるのは大事だから"}, {"id": "L112", "against": "", "agree": true, "reason": "肉の保存は、食べるか乾かすか燻すかを決めてから蓄えに入れれば腐りにくいから"}, {"id": "L122", "against": "", "agree": true, "reason": "夜の報告が一つにまとまれば、覚えやすくて守りやすいから"}, {"id": "L126", "against": "", "agree": true, "reason": "火と見張りの決まりが一つになれば、夜にザガが来ても慌てずに済むから"}, {"id": "L133", "against": "", "agree": true, "reason": "土器に草の種を入れれば、虫やネズミに食べられにくくなるから"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、けがをしたときに助けられるから"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、畑の実りが減りにくいから"}, {"id": "L150", "against": "", "agree": true, "reason": "冬に北丘12を試せば、食べ物のある場所がわかるかもしれないから"}],
+ "feeling": "春になって、少し気持ちが軽い。ユノ2と一緒に、西草原12で新しい草を見つけたい。"}
