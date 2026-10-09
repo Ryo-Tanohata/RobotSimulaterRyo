@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の採集は北川12へ行こうと思う。前の季節に北の川で木の実が採れたことがあるから、スイと二人で行くよ。見つけた量と蓄えに入れた量は、夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["スイ"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M8": "ゆるす", "M9": "つぐなう"}, "feast": false, "leader": "ウィロ",
+ "knowledge": [{"op": "add", "text": "北の川 (北川12) では、前の季節に木の実を 38 つかみ採れた", "because": [47305], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L150", "against": "特になし", "agree": true, "reason": "冬の採集地を広く試せば、食べ物の見つかる場所が分かる"}, {"id": "L134", "against": "特になし", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれないから"}],
+ "feeling": "冬は食べ物が少ないけど、スイと一緒なら少し安心する。"}
