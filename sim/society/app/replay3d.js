@@ -14,9 +14,12 @@
     { key: "eve", label: "夕方の焚き火", t0: 19, t1: 21.5, sec: 12 },
     { key: "night", label: "夜", t0: 21.5, t1: 22.5, sec: 5 },
   ];
-  const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが", "畑", "畑仕事", "ヤギの世話", "ヤギを捕まえる", "土器"];
+  const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが", "畑", "畑仕事", "ヤギの世話", "ヤギを捕まえる", "土器", "交換に行く", "記録をつける"];
   const EVE_EVENTS = ["話す", "分ける", "蓄える", "蓄えから取る", "収穫", "木から取る"];
-  const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ", "生まれる", "訪れる", "加わる", "去る", "ヤギ", "大人になる", "家族", "虫", "雨", "受けつぎ", "区切り"];
+  // 夜の知らせ: G5 の出来事 (もめごと・祭り・まとめ役・分かれる など) と G6 の出来事 (ほかの村・交換・印・記録・町 など) も出す (2026-10-09 本人と決めた)
+  const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ", "生まれる", "訪れる", "加わる", "去る", "ヤギ", "大人になる", "家族", "虫", "雨", "受けつぎ", "区切り",
+    "もめごと", "収める", "裁き", "罰", "祭り", "まとめ役", "分かれる", "段階", "共同の仕事", "倉から取る",
+    "よその村", "交換", "貸し借り", "覚え", "印", "封", "記録", "確かめる", "町"];
   // 日付は「10年31日目」と表す (2026-10-09 本人の希望。年は過ぎた年の数で、最初の年は 0年。era2.py の day // YEAR と同じ)。この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ、era2.py の YEAR) で、現実の 1 年とは違う
   const YEAR_DAYS = 120;
   const yearDay = (d) => ({ year: Math.floor(d / YEAR_DAYS), day: (d % YEAR_DAYS) + 1 });
@@ -168,7 +171,7 @@
 
     // 家族の住まい (G3 から): 四角い家。壁は土の色に家族の色をまぜ、平らな屋根。広さで大きさを変え、建てかけは低い壁だけ (housesOn で毎コマ決める)
     const houses = (D.houses || []).map((v) => {
-      const g = new THREE.Group(), col = new THREE.Color(HOME_COLORS[Math.max(0, homesOf(D).indexOf(v.household)) % HOME_COLORS.length]);
+      const g = new THREE.Group(), col = new THREE.Color(homeColor(Math.max(0, homesOf(D).indexOf(v.household))));
       const wall = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshLambertMaterial({ color: T.tuber.clone().lerp(col, 0.35) }));
       const roof = new THREE.Mesh(new THREE.BoxGeometry(1, 0.12, 1), new THREE.MeshLambertMaterial({ color: T.hill.clone().multiplyScalar(0.8) }));
       g.add(wall); g.add(roof);
@@ -176,15 +179,34 @@
       return { v, g, wall, roof };
     });
 
+    // ほかの村 (G6): 知っている村ごとに、地図の端の内がわに小さな家 3 つと、キャンプからのうすい道 (知った日から見せる。villagesOn で毎コマ決める)
+    const villages = ((D.g6 && D.g6.others) || []).map((o) => {
+      const g = new THREE.Group();
+      const ex = Math.min(W - 2.5, Math.max(1.5, o.edge[0] + 0.5)), ey = Math.min(H - 2.5, Math.max(1.5, o.edge[1] + 0.5));
+      for (let k = 0; k < 3; k++) {
+        const m = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.6, 0.7), new THREE.MeshLambertMaterial({ color: T.hill.clone().multiplyScalar(0.65) }));
+        m.position.copy(w2t(D, ex + Math.cos(k * 2.1) * 1.1, ey + Math.sin(k * 2.1) * 1.1, 0.3)); g.add(m);
+      }
+      const cx = D.camp.x + 0.5, cy = D.camp.y + 0.5, n = Math.max(4, Math.round(Math.hypot(ex - cx, ey - cy) / 2));
+      for (let i = 1; i < n; i++) {  // 道: 平たい小さな板を点々と並べる
+        const dot = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.03, 0.35), new THREE.MeshLambertMaterial({ color: T.tuber.clone().multiplyScalar(0.85) }));
+        dot.position.copy(w2t(D, cx + (ex - cx) * i / n, cy + (ey - cy) * i / n, 0.04)); g.add(dot);
+      }
+      g.visible = false; scene.add(g);
+      return { o, g, at: w2t(D, ex, ey, 1.4) };
+    });
+
     const sun = new THREE.DirectionalLight(0xffffff, 0.9); sun.position.set(30, 50, 20); scene.add(sun);
     const amb = new THREE.AmbientLight(0xffffff, 0.55); scene.add(amb);
-    return { scene, camp, flame, fireLight, sun, amb, hut, hutDay: built ? built.day : null, plots, sowings, houses };
+    return { scene, camp, flame, fireLight, sun, amb, hut, hutDay: built ? built.day : null, plots, sowings, houses, villages };
   }
 
   function placeOf(D, id) { return D.places.find((p) => p.id === id) || D.places[0]; }
 
   // 家族 (2026-10-08 追加): 家族ごとの色・家・朝夕と夜に集まる場所。家族は D.people の household (前からいる人とその子は「川辺の家」)
   const HOME_COLORS = ["#c2410c", "#7c3aed", "#0f766e", "#be185d", "#4d7c0f", "#1d4ed8", "#a16207", "#0e7490", "#9f1239", "#4338ca"];
+  // 家族が 10 をこえたら (G6 で人が集まると)、色相を少しずつずらした色を足す (10 までは前と同じ色)
+  const homeColor = (i) => (i < HOME_COLORS.length ? HOME_COLORS[i] : `hsl(${Math.round((i * 137.5) % 360)}, 55%, 38%)`);
   function homesOf(D) {
     const hs = [];
     for (const p of D.people) { const h = p.household || "-"; if (!hs.includes(h)) hs.push(h); }
@@ -192,7 +214,7 @@
   }
   function houseAt(D, h, day) {  // その日の家族の住まい: null (まだない) / {x, y, size, built}
     const v = (D.houses || []).find((x) => x.household === h);
-    if (!v || v.start > day) return null;
+    if (!v || v.start > day || (v.left != null && v.left <= day)) return null;  // 家ごと村を出た家は、出た日から描かない (2026-10-09 本人と決めた)
     const done = v.built != null && v.built <= day;
     const size = done ? (v.sizes.filter((s) => s[0] <= day).pop() || [0, 20])[1] : 0;
     return { x: v.x, y: v.y, size, built: done };
@@ -291,6 +313,7 @@
     S.W.hut.visible = S.W.hutDay !== null && S.dayNum >= S.W.hutDay;
     fieldsOn(S.dayNum);
     housesOn(S.dayNum);
+    for (const V of S.W.villages) V.g.visible = V.o.known != null && S.dayNum >= V.o.known;
     S.W.flame.visible = lit; S.W.fireLight.intensity = lit ? 1.6 + Math.sin(v * 13) * 0.3 : 0;
     S.W.scene.background = S.T.bg.clone().lerp(new THREE.Color(0x0b1220), 1 - Math.min(1, light / 0.9));
 
@@ -350,6 +373,11 @@
 
   function placeLabels() {
     const r = S.renderer.domElement.getBoundingClientRect();
+    for (const { el, V } of S.vlabels || []) {  // ほかの村の名前 (村が見えている日だけ)
+      const p = V.at.clone().project(S.camera);
+      el.hidden = !V.g.visible || p.z > 1;
+      if (!el.hidden) el.style.transform = `translate(${(p.x * 0.5 + 0.5) * r.width}px, ${(-p.y * 0.5 + 0.5) * r.height}px) translate(-50%, -100%)`;
+    }
     for (const n in S.labels) {
       const L = S.labels[n], fig = S.figs[n];
       if (!fig.visible || !L.pos) { L.el.hidden = true; continue; }
@@ -420,14 +448,19 @@
       D.people.forEach((p, i) => {
         // 家族が 2 つ以上なら、家族ごとの色 (家族の中で明るさを少し変える)。1 つ (Society 1.0) なら前と同じ人ごとの色
         const h = p.household || "-", k = (seen[h] = (seen[h] ?? -1) + 1);
-        const col = hs.length > 1 ? new THREE.Color(HOME_COLORS[hs.indexOf(h) % HOME_COLORS.length]).offsetHSL(0, 0, ((k % 3) - 1) * 0.09) : T.people[i % 5];
+        const col = hs.length > 1 ? new THREE.Color(homeColor(hs.indexOf(h))).offsetHSL(0, 0, ((k % 3) - 1) * 0.09) : T.people[i % 5];
         const hex = "#" + col.getHexString();
         const f = makeFigure(col); W.scene.add(f); figs[p.name] = f;
         const el = document.createElement("div"); el.className = "r3-label";
         el.innerHTML = `<div class="b" hidden style="border-color:${hex}"></div><span style="color:${hex}">${esc(p.name)}</span>`;
         stage.appendChild(el); labels[p.name] = { el, pos: null, bubble: "" };
       });
-      S = { D, walk, T, W, renderer, camera, controls, figs, labels, v: 0, speed: 1, playing: true,
+      const vlabels = W.villages.map((V) => {  // ほかの村の名前 (G6)
+        const el = document.createElement("div"); el.className = "r3-label";
+        el.innerHTML = `<span>${esc(V.o.name)} (歩いて ${V.o.days} 日)</span>`; el.hidden = true;
+        stage.appendChild(el); return { el, V };
+      });
+      S = { D, walk, T, W, renderer, camera, controls, figs, labels, vlabels, v: 0, speed: 1, playing: true,
         clock: stage.querySelector(".r3-clock"), toast: stage.querySelector(".r3-toast"),
         playBtn: root.querySelector("#r3-play"), slider: root.querySelector("#r3-slider"), follow: "" };
       const days = Object.keys(D.days || {}).map(Number).sort((a, b) => a - b);

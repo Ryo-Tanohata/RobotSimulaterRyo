@@ -1,10 +1,10 @@
 export const meta = {
   name: 'society2-seasons',
-  description: 'Run Society 2.0 season by season (haiku role-play per adult + step runner) until a phase change, all deaths, or the step limit',
+  description: 'Run Society 2.0 season by season (haiku role-play per adult + step runner) until a phase change, the end of Society 2.0, all deaths, or the step limit',
   phases: [{ title: 'Seasons', detail: 'season answers per adult, then step.py season' }],
 }
-// ROOT は自分の PC のリポジトリの場所に書きかえる (クラウドでは /home/user/RobotSimulaterRyo)
-const ROOT = '/home/user/RobotSimulaterRyo'
+// ROOT はリポジトリの場所。args.root で渡す (本人の PC では、その PC のリポジトリの場所。渡さなければクラウドの /home/user/RobotSimulaterRyo)
+const ROOT = args.root || '/home/user/RobotSimulaterRyo'
 const pad = (n) => String(n).padStart(3, '0')
 function rp(d, n) {
   return `Read \`${ROOT}/sim/society/data/prompts/day${pad(d)}/season/${n}.md\` and follow its instructions exactly: role-play that character and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/sim/society/data/answers/day${pad(d)}/season/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
@@ -40,6 +40,9 @@ for (let k = 0; k < args.steps; k++) {
   const out = await agent(runner(`CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })
   if (!out || !/season exit=0/.test(out)) return { stopped: d, why: /exit=4/.test(out || '') ? 'all dead' : 'season failed', out, log: log_ }
+  // G6: 町と記録がそろうと Society 2.0 の終わり (フェーズは進まない。step.py は「Society 2.0 が終わった」と表示して一時停止する)。
+  // why の 'end' は「回数を終えた」に使っているので、別の言葉にする
+  if (/Society 2\.0 が終わった/.test(out)) return { stopped: d, why: 'society2 end', out, log: log_ }
   if (/フェーズが .* に進んだ/.test(out)) return { stopped: d, why: 'phase', out, log: log_ }
   log(`day ${d} season done`)
 }

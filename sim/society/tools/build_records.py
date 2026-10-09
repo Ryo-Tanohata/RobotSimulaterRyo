@@ -39,7 +39,9 @@ PAY_RE = re.compile(r"。(\S+?)が(\S+?)に (.+?) を払った")
 GOATS_RE = re.compile(r"ヤギ (\d+) 頭")
 ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき",
                 "畑仕事": "畑仕事", "ヤギの世話": "ヤギの世話", "ヤギを捕まえる": "ヤギを捕まえる", "土器": "土器づくり", "住まい": "住まいを建てる",
-                "狩り": "狩り"}  # step.py の ACT_BY_EVENT と同じ (+ 狩り)
+                "狩り": "狩り", "交換に行く": "交換に行く", "記録をつける": "記録をつける"}  # step.py の ACT_BY_EVENT と同じ (+ 狩り)
+G6_TYPES = getattr(era2, "G6_EVENTS", ())  # G6 の出来事 (G6 の前は起きない)
+OUT_G6, IN_G6 = "ほかの村へ出した", "ほかの村から入った"  # G6: 交換・貸した・返してもらった・交換に持って行った・持ち帰った (出来事の data の moves)
 START, END, DIFF = "季節のはじめの残り", "季節の終わりの残り", "記録にない差"
 FLOWS = ("採った", "木から取った", "狩った", "乳をしぼった", "刈った (村の蓄えに入った)", "刈った (自分の家の畑)", "ヤギをつぶした",
          "家にだれもいなくなり、村のものになった", "家の倉から食べた", "家の倉から食べた (子)", "よその家の倉から取った",
@@ -47,7 +49,7 @@ FLOWS = ("採った", "木から取った", "狩った", "乳をしぼった", "
          "食べた", "まいた (畑)", "種として埋めた", "腐った", "虫やネズミ", "祭り", "雨で傷んだ", "干した",
          "亡くなった人の手元", "村を出た人の手元", "家の人が食べた", "子が食べた", "よその家の人に取られた",
          "だれもいなくなり、村のものになった", "村を出て持っていった", "いなくなった (世話が足りない)", "つぶした", "罰・つぐないで払った",
-         "割れた", "村の蓄えに入れた (大人)", "村の蓄えから取った (大人)")
+         "割れた", "村の蓄えに入れた (大人)", "村の蓄えから取った (大人)", "ほかの村へ出した", "ほかの村から入った")
 WHY_ROUND = "採集の記録は、物ごとの量を整数に丸めて書いている"
 EPS = 1e-6
 
@@ -360,8 +362,24 @@ class Builder:
         def mark(n, day, a_):
             act.setdefault(n, {}).setdefault(day, a_)
 
+        g6 = {"events": {}, "moves": [], "meet_in": [], "meet_out": set(), "in": {}, "out": {}, "trips": 0}  # G6 (G6 の前は空のまま)
         for e in ev:
             t, x, who, d, day = e["type"], e["text"], e.get("who"), e.get("data") or {}, e["day"]
+            if t in G6_TYPES:
+                add(g6["events"], t, 1)
+            if t == "交換に行く" and "へ交換に行った" in x:
+                g6["trips"] += 1
+            if t == "交換" and who and e["id"] not in meeting_ids:  # 向こうの村で交換した日も「交換に行く」(step.py の day_summaries と同じ)
+                mark(who, day, "交換に行く")
+            for side, sg, goods, ids in d.get("moves") or []:  # G6: 物が村や家に出入りした (era2._mv)
+                g6["moves"].append((side, sg, goods))
+                for gid, sex, born in ids:
+                    (g6["in"] if sg > 0 else g6["out"])[gid] = side
+                    if e["id"] in meeting_ids:  # 集まりで (ヤギをつぶす前に) 出入りしたヤギ
+                        if sg > 0:
+                            g6["meet_in"].append({"id": gid, "sex": sex, "born": born})
+                        else:
+                            g6["meet_out"].add(gid)
             if t in ACT_BY_EVENT and e["id"] not in meeting_ids:
                 if t == "狩り" and d.get("hunters"):
                     for n in d["hunters"]:
@@ -545,14 +563,14 @@ class Builder:
             rain_nights += 1 if s.get("rain") else 0
 
         # ---- ヤギ (1 頭ずつの番号で。spec 4.5) ----
-        goats = self.goats(D, P, C, caught_ev, goat_ev, inherit, g5, hh)
+        goats = self.goats(D, P, C, caught_ev, goat_ev, inherit, g5, hh, g6)
 
         ctx = {"D": D, "a": a, "P": P, "C": C, "rds": rds, "ev": ev, "era": era, "era_end": era_end, "present": present,
                "alive_end": alive_end, "act": act, "out": out, "said": said, "inj": inj, "rain_out": rain_out, "sown_ev": sown_ev,
                "demo": demo, "fields_ev": fields_ev, "pests": pests, "pots": pots, "sick": sick, "goat_ev": goat_ev, "laws": laws,
                "g5": g5, "inherit": inherit, "flows_v": flows_v, "harvest": harvest, "eaten": eaten, "eaten_total": eaten_total,
                "eaten_sown": eaten_sown, "rain_nights": rain_nights, "goats": goats, "year_named": year_named, "substeps": substeps,
-               "hh": hh}
+               "hh": hh, "g6": g6}
         ledger = self.ledger(ctx)
         return self.village_row(ctx), self.household_rows_for(ctx), self.person_rows(ctx), ledger
 
@@ -605,7 +623,7 @@ class Builder:
         return res
 
     # ---- ヤギ ----
-    def goats(self, D, P, C, caught_ev, goat_ev, inherit, g5, hh):
+    def goats(self, D, P, C, caught_ev, goat_ev, inherit, g5, hh, g6=None):
         res = {"known": P is not None and C is not None, "flows": {}, "check": {}, "by_holder_end": {}}
         if C is not None:
             for g in C["goats"]:
@@ -616,7 +634,8 @@ class Builder:
         cg = {g["id"]: g for g in C["goats"]}
         new = list(range(P["village"].get("next_goat") or 0, C["village"].get("next_goat") or 0))
         kids = [i for i in new if cg.get(i, {}).get("born") == D]
-        caught = [i for i in new if i not in kids]
+        g6 = g6 or {"in": {}, "out": {}, "meet_in": [], "meet_out": set()}
+        caught = [i for i in new if i not in kids and i not in g6["in"]]  # G6: ほかの村から入ったヤギは、捕まえたヤギではない
         fl = res["flows"]
 
         def f(holder, reason, n, ids):
@@ -634,14 +653,21 @@ class Builder:
         for i in kids:
             owner0[i] = cg[i].get("owner")
             f(owner0[i], "生まれた", 1, [i])
+        for i in sorted(g6["in"]):
+            owner0[i] = None if g6["in"][i] == "村" else g6["in"][i]
+            f(owner0[i], IN_G6, 1, [i])
         gone = [i for i in sorted(set(pg) | set(new)) if i not in cg]
         n_eat = goat_ev["eaten"]
-        cand = sorted([g for g in P["goats"] if g["sex"] == "オス"], key=lambda g: g["born"]) + \
-            sorted([g for g in P["goats"] if g["sex"] != "オス"], key=lambda g: g["born"])
+        herd = [g for g in P["goats"] if g["id"] not in g6["meet_out"]] + g6["meet_in"]  # G6: つぶすのは、集まりでの交換のあと
+        cand = sorted([g for g in herd if g["sex"] == "オス"], key=lambda g: g["born"]) + \
+            sorted([g for g in herd if g["sex"] != "オス"], key=lambda g: g["born"])
         eaten = [g["id"] for g in cand[:n_eat] if g["id"] in gone]
         fis = g5.get("fission")
-        left = [i for i in gone if i not in eaten and fis and owner0.get(i) == fis]
-        lost = [i for i in gone if i not in eaten and i not in left]
+        out6 = [i for i in gone if i in g6["out"] and i not in eaten]  # G6: ほかの村へ出したヤギ
+        left = [i for i in gone if i not in eaten and i not in out6 and fis and owner0.get(i) == fis]
+        lost = [i for i in gone if i not in eaten and i not in left and i not in out6]
+        for i in out6:
+            f(owner0[i], OUT_G6, -1, [i])
         for i in eaten:
             f(owner0[i], "つぶした", -1, [i])
         for i in left:
@@ -749,6 +775,11 @@ class Builder:
             for kk, v in left.items():
                 add(fh.setdefault((h, "だれもいなくなり、村のものになった"), {}), kk, v)
                 add(fv.setdefault("家にだれもいなくなり、村のものになった", {}), kk, v)
+        for side, sg, goods in c["g6"]["moves"]:  # G6: ほかの村との出し入れ (食べ物。土器・鎌は下で村の帳簿に)
+            for kk, n in goods.items():
+                if kk in UNIT:
+                    tgt = fv.setdefault(IN_G6 if sg > 0 else OUT_G6, {}) if side == "村" else fh.setdefault((side, IN_G6 if sg > 0 else OUT_G6), {})
+                    add(tgt, kk, n * UNIT[kk][1])
         fis = c["g5"]["fission"]
         if fis and known:
             for kk, v in self._left_over(fis, houses0.get(fis, {}), houses1.get(fis, {}), fh).items():
@@ -756,7 +787,7 @@ class Builder:
 
         sign = {"食べた": -1, "まいた (畑)": -1, "種として埋めた": -1, "腐った": -1, "虫やネズミ": -1, "祭り": -1, "雨で傷んだ": -1,
                 "亡くなった人の手元": -1, "村を出た人の手元": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1,
-                "だれもいなくなり、村のものになった": -1, "村を出て持っていった": -1, "罰・つぐないで払った": -1, "干した": 1}
+                "だれもいなくなり、村のものになった": -1, "村を出て持っていった": -1, "罰・つぐないで払った": -1, "干した": 1, OUT_G6: -1}
         src = {"刈った (村の蓄えに入った)": "replay", "刈った (自分の家の畑)": "replay", "食べた": "stats", "虫やネズミ": "snapshot",
                "亡くなった人の手元": "snapshot", "村を出た人の手元": "snapshot", "家の倉から食べた": "notes", "家の倉から食べた (子)": "notes",
                "よその家の倉から取った": "notes", "家の人が食べた": "notes", "子が食べた": "notes", "よその家の人に取られた": "notes",
@@ -807,7 +838,10 @@ class Builder:
         for item, key, st in (("土器", "pots", c["pots"]), ("鎌", "sickles", c["sick"])):
             s0 = P["village"].get(key) if P else None
             s1 = C["village"].get(key) if C else None
-            d_ = self.emit(rows, D, "村", item, s0, [("作った", st["made"], "events", None), ("割れた", -st["broken"], "events", None)], s1, food=False)
+            g6o = sum(gd.get(item, 0) for _, sg, gd in c["g6"]["moves"] if sg < 0)  # G6 (土器・鎌は、いつも村の物)
+            g6i = sum(gd.get(item, 0) for _, sg, gd in c["g6"]["moves"] if sg > 0)
+            d_ = self.emit(rows, D, "村", item, s0, [("作った", st["made"], "events", None), ("割れた", -st["broken"], "events", None),
+                                                     (OUT_G6, -g6o, "events", None), (IN_G6, g6i, "events", None)], s1, food=False)
             if d_ is not None:
                 exact.append((item, "村", d_))
         out_rows += rows
@@ -842,7 +876,7 @@ class Builder:
 
     def _left_over(self, h, s0, s1, fh):
         """家の倉が空になったとき、出ていった量 = はじめ + ほかの動き − 終わり (物ごと)"""
-        sign = {"罰・つぐないで払った": -1, "虫やネズミ": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1}
+        sign = {"罰・つぐないで払った": -1, "虫やネズミ": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1, OUT_G6: -1}
         out = {}
         for kk in FOODS:
             v = s0.get(kk, 0) - s1.get(kk, 0)
@@ -1003,7 +1037,23 @@ class Builder:
             "year_named": c["year_named"],
             "criteria": crit,
             "snapshot": C is not None,
-        }
+        } | ({"g6": self.g6_row(c, ind)} if c["era"] == "G6" else {})
+
+    def g6_row(self, c, ind):
+        """村の行の G6 (ほかの村・交換・印と封・記録の道具・確かめた・町)。数の多くは控えの era_info の目安 (era2._g6_indicators)、この季節の数は出来事から"""
+        g6 = c["g6"]
+        moved = {}
+        for side, sg, goods in g6["moves"]:
+            for kk, n in goods.items():
+                add(moved.setdefault(kk, {"out": 0, "in": 0}), "in" if sg > 0 else "out", n)
+        return {"known_villages": ind.get("g6_known"), "partners_last4": ind.get("g6_partners"), "biggest_partner": ind.get("g6_biggest"),
+                "trade_run": ind.get("g6_run"), "exchanges_total": ind.get("g6_exchanges"), "debts_open": ind.get("g6_debts_open"),
+                "joined_total": ind.get("g6_joined"), "seals": ind.get("g6_seals"), "sealings_total": ind.get("g6_sealings"),
+                "seal_seasons": ind.get("g6_seal_seasons"), "tools": ind.get("g6_tools"), "record_seasons": ind.get("g6_records"),
+                "checked": ind.get("g6_checked"), "checked_tablet": ind.get("g6_checked_tablet"), "misremember": ind.get("g6_misremember"),
+                "nonfood": ind.get("g6_nonfood"), "town_now": ind.get("g6_town"), "town_day": ind.get("g6_town_day"), "record_day": ind.get("g6_record_day"),
+                "events": {t: g6["events"][t] for t in G6_TYPES if g6["events"].get(t)}, "trips": g6["trips"],
+                "moved": {k: moved[k] for k in sorted(moved)}}
 
     # ---- 代表 ----
     def reps_at(self, a, P):
@@ -1395,6 +1445,9 @@ COLUMNS = [
     ("season_village", "laws", "掟 (採用中・採用・廃止・提案・罰のある掟)", "本", "シ", "出来事「掟」・state", True, 489, "文字の前は残らない"),
     ("season_village", "g5", "G5 (段・まとめ役・もめごと・裁き・罰・祭り・共同の仕事・分かれた家)", None, "シ", "出来事・控え", True, 1709,
      "祭りは食べ残しの跡で調べられる"),
+    ("season_village", "g6", "G6 (知っている村・この 4 季節に交換した村・交換の続いた季節・交換と貸し借り・印と封のかけら・記録の道具・確かめた・覚え違い・"
+     "食べ物をとらない人・町と記録に届いた日・この季節の G6 の出来事の数・交換に行った人・ほかの村との物の出し入れ)", None, "シ", "控え (era_info)・出来事", True, None,
+     "G6 の季節の行だけにある"),
     ("season_village", "answered", "答えた人の数 (季節・気持ち・代表)", "人", "シ", "答えのファイル", True, 489, None),
     ("season_village", "year_named", "この季節をはじめた集まりで決まった年の名前", None, "村", "era2.year_names", True, 2039, "口で伝える年代記"),
     ("season_village", "criteria", "フェーズの条件 (今の値・目標・そろったか)", None, "シ", "控え (era_info) と条件の中身", True, 489, None),

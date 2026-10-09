@@ -361,8 +361,10 @@ function renderCV() {
   const r = R.find((x) => x.name === sel.value) || R[0], w = r.work;
   const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "―");
   const row = (k, v, n) => `<tr><th>${k}</th><td${n ? ' class="n"' : ""}>${v}</td></tr>`;
-  const ACT = ["採集", "狩り", "探索", "住まい", "種まき", "休む", "蓄える", "蓄えから取る", "木から取る", "分ける", "話す"];
   const eras = Object.keys(r.by_era);
+  // G6 の仕事 (交換に行く・記録をつける) は、した人だけ行を足す (G6 の前の表は前と同じ)
+  const ACT = ["採集", "狩り", "探索", "住まい", "種まき", "休む", "蓄える", "蓄えから取る", "木から取る", "分ける", "話す",
+    ...["交換に行く", "記録をつける"].filter((a) => eras.some((e) => r.by_era[e][a]))];
   $("cv").innerHTML = `
     <section><h3>履歴書</h3><table>
       ${row("名前", esc(r.name))}
@@ -438,7 +440,7 @@ function renderGraph() {
 function renderEra() {
   const E = D.era || { era: "F1", name: "移動する採集民" }, names = ["移動する採集民", "食べ物の幅を広げる", "蓄える", "定住する", "野生植物を育てる", "農耕に頼る"];
   const n = Number(E.era.slice(1));
-  $("era").innerHTML = `<div>今のフェーズ (狩猟採集 → 農耕): <b>${esc(E.era)} ${esc(E.name)}</b>${D.hold ? ` <span class="chip c-提案">一時停止中: フェーズが進んだので評価待ち</span>` : ""}</div>
+  $("era").innerHTML = `<div>今のフェーズ (狩猟採集 → 農耕): <b>${esc(E.era)} ${esc(E.name)}</b>${D.hold ? ` <span class="chip c-提案">${D.g6 && D.g6.end ? "一時停止中: Society 2.0 が終わったので、第 4 部のまとめ待ち" : "一時停止中: フェーズが進んだので評価待ち"}</span>` : ""}</div>
     <div class="steps">${names.map((m, i) => `<span class="${i + 1 < n ? "done" : i + 1 === n ? "now" : ""}">F${i + 1} ${m}</span>`).join("")}</div>
     ${E.next ? `<div class="meta">次のフェーズの条件: ${esc(E.next)}</div>` : ""}
     ${E.indicators ? `<div class="meta">直近 7 日に食べたもの: ${esc(E.indicators.eaten)} ・ 蓄える・干す: ${E.indicators.stored_acts} 回 ・ キャンプの蓄え: ${esc(D.store || "なし")}</div>` : ""}`;

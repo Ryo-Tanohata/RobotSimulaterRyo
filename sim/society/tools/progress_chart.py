@@ -4,6 +4,7 @@
 
 4 つの小さなグラフ (目盛りは 1 つずつ。2 つの量を 1 つのグラフに重ねない):
   1. 人数 (大人・子)  2. 村の蓄え (今の人数で何日分。お題と同じ数え方)  3. 1 季節に食べたものの内訳 (割合)  4. 家族の住まいの数
+  G6 に入ったら、下に 2 つ足す: 5. 人数と町の目安 50 人  6. この 4 季節に交換した村の数 (era2 の g6.log から。G6 の前は 4 つのまま)
 日付は「10年31日目」で表す (2026-10-09 本人の希望。daily_run.md の冒頭。年は過ぎた年の数で、最初の年は 0年。この世界の 1 年は 120 日 = 季節 30 日 × 4)。
 すべて state.json の記録 (人の生まれた日・加わった日・亡くなった日・村を出た日、毎日の stats、era2 の家族の住まい) から数える。
 色は dataviz の手引きの決まった順 (validate_palette.js で確かめた: 青・橙・水色・黄)。水色と黄は背景との濃さの差が小さいので、凡例と文字を必ずつける。
@@ -51,6 +52,7 @@ def series(state, start):
     days = [d for d in range(start, end + 1) if (d + 1) % SEASON == 0 or d == end]
     rows = []
     homes = (state.get("era2") or {}).get("homes", {})
+    g6log = {x["day"]: x for x in ((state.get("era2") or {}).get("g6") or {}).get("log", [])}  # G6 の季節の終わりの記録 (G6 の前は空)
     for d in days:
         ad = ch = 0
         need = 0  # その日の人数で 1 日に要る量 (era2.store_days と同じ数え方。お題の「今の人数で 約 N 日分」とそろえる)
@@ -75,7 +77,8 @@ def series(state, start):
         store = stats[d]["store"] if d in stats else None
         rows.append({"day": d, "adults": ad, "children": ch, "store_days": (store / need) if store is not None and need else None,
                      "by": by, "eaten": eaten,
-                     "houses": sum(1 for v in homes.values() if v.get("built") is not None and v["built"] <= d)})
+                     "houses": sum(1 for v in homes.values() if v.get("built") is not None and v["built"] <= d)}
+                    | ({"g6": g6log[d]} if d in g6log else {}))
     return rows
 
 
@@ -102,7 +105,8 @@ def draw(state, out, start=489):
         plt.rcParams["font.family"] = font
     rows = series(state, start)
     xs = [r["day"] for r in rows]
-    fig, axes = plt.subplots(2, 2, figsize=(12, 7.2), dpi=130, facecolor=SURFACE)
+    g6 = [r for r in rows if r.get("g6")]  # G6 に入ったら、下に 2 つ (町の目安の人数・この 4 季節に交換した村) を足す。G6 の前は 4 つのまま
+    fig, axes = plt.subplots(3 if g6 else 2, 2, figsize=(12, 10.6 if g6 else 7.2), dpi=130, facecolor=SURFACE)
     fig.suptitle(f"川辺の村 (Society 2.0) の移り変わり: {year_label(start)} 〜 {year_label(state['day'])} (季節の終わりごと)", x=0.01, ha="left", fontsize=14, color=INK)
     fig.text(0.01, 0.945, "※ 年は過ぎた年の数 (最初の年は 0年)。この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ。現実の 1 年とは違います)", ha="left", va="top", fontsize=9, color=MUTED)
     ph = phases(state, start)
@@ -163,6 +167,24 @@ def draw(state, out, start=489):
     ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True))
     ax.annotate(f"{rows[-1]['houses']} 軒", (xs[-1], rows[-1]["houses"]), xytext=(6, 0), textcoords="offset points", color=INK2, fontsize=9, va="center")
     marks(ax)
+    if g6:
+        # 5. 町の目安: 人数 (子をふくむ) と 50 人の線 (era2.TOWN_POP)
+        ax = axes[2][0]
+        _style(ax, "人数 (子をふくむ) と町の目安 50 人")
+        gx = [r["day"] for r in g6]
+        ax.plot(gx, [r["g6"]["pop"] for r in g6], color=S1, linewidth=2)
+        ax.axhline(50, color=MUTED, linewidth=1, linestyle=(0, (4, 3)))
+        ax.annotate("町の目安 50 人", (gx[0], 50), xytext=(2, 4), textcoords="offset points", color=MUTED, fontsize=8, va="bottom", ha="left")  # 線に重ならないように少し上
+        ax.set_ylim(0, max(60, max(r["g6"]["pop"] for r in g6) + 5))
+        ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True))
+        ax.annotate(f"{g6[-1]['g6']['pop']} 人", (gx[-1], g6[-1]["g6"]["pop"]), xytext=(6, 0), textcoords="offset points", color=INK2, fontsize=9, va="center")
+        # 6. この 4 季節に交換した村の数 (町の目安は 2 つ以上)
+        ax = axes[2][1]
+        _style(ax, "この 4 季節に交換した村 (町の目安は 2 つ以上)")
+        ax.step(gx, [r["g6"]["partners"] for r in g6], where="post", color=S1, linewidth=2)
+        ax.set_ylim(0, max(4, max(r["g6"]["partners"] for r in g6) + 1))
+        ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True))
+        ax.annotate(f"{g6[-1]['g6']['partners']} つ", (gx[-1], g6[-1]["g6"]["partners"]), xytext=(6, 0), textcoords="offset points", color=INK2, fontsize=9, va="center")
     first, last = start // YEAR + 1, state["day"] // YEAR  # 目盛りは、その年のはじめ (グラフの中に入る年だけ)
     step = max(1, (last - first + 1) // 8)  # 目盛りは 8 つほど
     ticks = [y * YEAR for y in range(first + (-first) % step, last + 1, step)]
@@ -172,6 +194,19 @@ def draw(state, out, start=489):
             ax.set_xticklabels([f"{x // YEAR}年" for x in ticks])
             ax.set_xlim(start - SEASON, state["day"] + SEASON)
             ax.set_xlabel("年 (過ぎた年の数。目盛りは年のはじめ)", color=MUTED, fontsize=9, loc="right")
+    if g6:  # G6 の 2 つは、G6 に入ってからだけを見せる (目盛りは年のはじめ。2 つより少なければ季節のはじめ)
+        lo = g6[0]["day"] - SEASON
+        t6 = [y * YEAR for y in range(lo // YEAR + 1, state["day"] // YEAR + 1)]
+        lab = [f"{x // YEAR}年" for x in t6]
+        if len(t6) < 2:
+            t6 = [d for d in range(lo + (-lo) % SEASON, state["day"] + 1, SEASON)]
+            t6 = t6[::max(1, len(t6) // 6)]
+            lab = [year_label(x) for x in t6]
+        for ax in axes[2]:
+            ax.set_xticks(t6)
+            ax.set_xticklabels(lab)
+            ax.set_xlim(lo, state["day"] + SEASON)
+            ax.set_xlabel("G6 に入ってから (過ぎた年の数)", color=MUTED, fontsize=9, loc="right")
     fig.tight_layout(rect=(0, 0, 1, 0.92))
     fig.savefig(out, facecolor=SURFACE)
     return rows

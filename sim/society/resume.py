@@ -52,7 +52,8 @@ def build(state):
         by_era = defaultdict(Counter)
         for e in mine:
             if e.get("who") == n or e["type"] == "狩り":
-                if e["type"] in ("採集", "狩り", "探索", "休む", "住まい", "種まき", "蓄える", "蓄えから取る", "木から取る", "分ける", "話す"):
+                if e["type"] in ("採集", "狩り", "探索", "休む", "住まい", "種まき", "蓄える", "蓄えから取る", "木から取る", "分ける", "話す",
+                                 "交換に行く", "記録をつける"):  # 交換に行く・記録をつけるは G6 から
                     by_era[_era_of(e["day"], eras)][e["type"]] += 1
 
         # 経歴 (年表): 初めてのこと・大きな出来事
@@ -63,11 +64,13 @@ def build(state):
         else:
             hist = [{"day": 0, "text": "川辺のキャンプで 5 人と暮らし始める"}]
         firsts = {"採集": "初めて採集に出る", "狩り": "初めて狩りに出る", "探索": "初めて探索に出る", "蓄える": "初めてキャンプの蓄えに食べ物を入れる",
-                  "種まき": "種をまく", "住まい": "住まいを建てる"}
+                  "種まき": "種をまく", "住まい": "住まいを建てる",
+                  "交換に行く": "初めてほかの村へ交換に行く", "記録をつける": "初めて記録をつける", "印": "家の印を作る"}  # 後ろの 3 つは G6 から
         seen = set()
         for e in mine:
             t = e["type"]
-            if t in firsts and t not in seen and (e.get("who") == n or t == "狩り"):
+            if t in firsts and t not in seen and (e.get("who") == n or t == "狩り") \
+                    and not (t == "交換に行く" and "へ交換に行った" not in e["text"]):  # G6: 出かけた日だけ (行かなかった日・歩いた日は入れない)
                 seen.add(t)
                 hist.append({"day": e["day"], "text": firsts[t] + " (" + e["text"] + ")"})
             if t == "狩り" and (e.get("data") or {}).get("killer") == n and "kill" not in seen:

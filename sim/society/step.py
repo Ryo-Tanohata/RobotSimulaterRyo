@@ -76,6 +76,16 @@ def _records(snap):
         print(f"記録: 記録を作れなかった ({type(ex).__name__}: {ex})。python3 sim/society/tools/build_records.py で作り直せる")
 
 
+def _society2_end(state):
+    """G6: 町と記録がそろって、Society 2.0 が終わったか (一時停止のわけ)"""
+    return bool(((state.get("era2") or {}).get("g6") or {}).get("end"))
+
+
+def _yd(day):
+    """通しの日 → 「16年90日目 (2009 日目)」(本人に見せる日の書き方。daily_run.md の冒頭)"""
+    return f"{day // era2.YEAR}年{day % era2.YEAR + 1}日目 ({day} 日目)"
+
+
 def pdir(state, phase, kind):
     return DATA / kind / f"day{state['day']:03d}" / phase
 
@@ -142,12 +152,13 @@ def read_answers(state, phase):
 
 
 ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき",
-                "畑仕事": "畑仕事", "ヤギの世話": "ヤギの世話", "ヤギを捕まえる": "ヤギを捕まえる", "土器": "土器づくり", "住まい": "住まいを建てる"}  # Society 2.0 の仕事
+                "畑仕事": "畑仕事", "ヤギの世話": "ヤギの世話", "ヤギを捕まえる": "ヤギを捕まえる", "土器": "土器づくり", "住まい": "住まいを建てる",
+                "交換に行く": "交換に行く", "記録をつける": "記録をつける"}  # Society 2.0 の仕事 (交換に行く・記録をつけるは G6 から)
 
 
-def day_summaries(state):
+def day_summaries(state, extra=()):
     """3D 再生用: 日ごとに、誰がどの活動でどの場所へ行ったか (出来事の記録から組み立てる)"""
-    labels = sorted(state["places"], key=lambda p: -len(p["label"]))
+    labels = sorted(list(state["places"]) + list(extra), key=lambda p: -len(p["label"]))  # G6: ほかの村へ行く人は、地図の端へ歩く
     out = {}
     for d in range(1, state["day"] + 1):
         rows = {}
@@ -155,7 +166,8 @@ def day_summaries(state):
             if e["day"] != d:
                 continue
             names = e.get("data", {}).get("hunters") if e["type"] == "狩り" else [e["who"]]
-            act = "狩り" if e["type"] == "狩り" else ACT_BY_EVENT.get(e["type"])
+            # G6: 向こうの村で交換した日も、その村にいる (集まりでの交換は who がない)
+            act = "狩り" if e["type"] == "狩り" else "交換に行く" if e["type"] == "交換" and e.get("who") else ACT_BY_EVENT.get(e["type"])
             if not act or not names:
                 continue
             pid = next((p["id"] for p in labels if p["label"] in e["text"]), "camp")
@@ -168,10 +180,12 @@ def day_summaries(state):
 def export(state):
     """アプリ (Web ページ) 用のデータ"""
     ev_recent = state["events"]  # すべての日 (過去の日の 3D 再生と動画のため)
+    extra = era2.g6_places(state)  # G6: 知っているほかの村の、地図の端の場所 (G6 の前は空)
+    left = {f["household"]: f["day"] for f in ((state.get("era2") or {}).get("g5") or {}).get("fissions", [])}  # 村を出た家 (3D でその日から描かない)
     data = {
         "day": state["day"], "season": world.season(max(1, state["day"])), "phase": state["phase"],
         "map": {"w": world.W, "h": world.H, "cell": world.CELL, "terrain": state["terrain"], "legend": world.TERRAIN},
-        "camp": state["camp"], "places": state["places"],
+        "camp": state["camp"], "places": state["places"] + extra,
         "plants": [{"x": q["x"], "y": q["y"], "kind": q["kind"], "amount": round(q["amount"], 1), "sown": q.get("sown", False)}
                    for q in state["plants"]],
         "herds": state["herds"], "predators": state["predators"], "planted": state["planted"],
@@ -182,15 +196,18 @@ def export(state):
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
         "events": ev_recent, "laws": state.get("laws", []),
         "knowledge_log": state.get("knowledge_log", [])[-300:], "stats": state["stats"],
-        "days": day_summaries(state),
+        "days": day_summaries(state, extra),
         "era": state.get("era_info") or {"era": "F1", "name": phase.ERAS["F1"]}, "era_log": state.get("era_log", []),
         "hold": bool(state.get("hold")), "store": world.food_words(phase._store_kinds(state)),
         "resumes": resume.build(state),
         # G の中の小さな区切り F (G1・G2 は記録から決めた日、G3 からは見つけた日)
         "substeps": era2.RETRO_SUBSTEPS + (state.get("era2") or {}).get("substeps", []),
         # 家族の住まい (G3 から): 3D の再生で、家族ごとの家を描く
+        # (2026-10-09 本人と決めた: 家ごと村を出た家は、出た日から描かない。left は村を出た家だけにつける)
         "houses": [{"household": h, "x": v["x"], "y": v["y"], "start": v["start"], "built": v["built"], "sizes": v["sizes"]}
+                   | ({"left": left[h]} if h in left else {})
                    for h, v in sorted((state.get("era2") or {}).get("homes", {}).items())],
+        **({"g6": era2.g6_export(state)} if (state.get("era2") or {}).get("g6") else {}),  # G6: ほかの村・印・記録 (G6 の前は鍵がない)
     }
     (DATA / "app_data.json").write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print("アプリ用のデータ:", (DATA / "app_data.json").relative_to(DATA.parent))
@@ -225,7 +242,8 @@ def main():
         era = state.get("era", "F1")
         print(f"フェーズ: {era} {phase.ERAS.get(era) or era2.NAMES2.get(era)} / 次の条件: {info.get('next', '-')}")
         if state.get("hold"):
-            print("一時停止中: フェーズが進んだので評価待ち (再開は resume)")
+            print("一時停止中: Society 2.0 が終わったので、第 4 部のまとめ待ち (再開は resume)" if _society2_end(state)
+                  else "一時停止中: フェーズが進んだので評価待ち (再開は resume)")
         if state["phase"] in ("evening", "night", "season"):
             print(f"お題: {pdir(state, state['phase'], 'prompts').relative_to(DATA.parent)}")
         return
@@ -252,7 +270,8 @@ def main():
         if state["phase"] != "season":
             sys.exit(f"今の段階は {state['phase']} です")
         if state.get("hold"):
-            print(f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
+            print("一時停止中: Society 2.0 が終わったので、第 4 部のまとめ待ち。進めない (再開は resume)" if _society2_end(state)
+                  else f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
             sys.exit(3)
         before = state["next_event"]  # G5: 季節の集まりで起きたこと (収める・裁き・罰・祭り・まとめ役) は、30 日を進める前の出来事
         if hasattr(era2, "take_notes"):
@@ -273,7 +292,13 @@ def main():
             gone = [p for p in state["people"] if p.get("left")]
             print("生きている人がいない (亡くなった人と、村を出た人" + (f" {len(gone)} 人" if gone else " 0 人") + ")")
             sys.exit(4)
-        if era2.check(state):
+        r = era2.check(state)
+        if r == "end":  # G6: 町と記録がそろった (「フェーズが…に進んだ」とは書かない。"end" も真なので、先に見る)
+            state["hold"] = True
+            g = state["era2"]["g6"]["end"]
+            world.log(state, "フェーズ", None, f"Society 2.0 の終わり: 町 ({g['town']} 日目) と記録 ({g['record']} 日目) がそろった (先にそろったのは {g['first']})")
+            print(f"* Society 2.0 が終わった: 町 ({_yd(g['town'])}) と記録 ({_yd(g['record'])}) がそろった → 一時停止 (第 4 部のまとめ待ち)")
+        elif r:
             state["hold"] = True
             e = state["era_log"][-1]
             world.log(state, "フェーズ", None, f"フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ")
@@ -285,7 +310,7 @@ def main():
         _records(snap)
         for e in state["events"]:
             if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ", "区切り")) \
-                    or (e["id"] >= before and (e["type"] in era2.G5_EVENTS or e["type"] == "年の名前")):
+                    or (e["id"] >= before and (e["type"] in era2.G5_EVENTS + era2.G6_EVENTS or e["type"] == "年の名前")):
                 print("*", e["text"][:120])
         harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")
         if harv:
@@ -296,6 +321,12 @@ def main():
             print(f"G5 第 {i['g5_stage']} 段 / 家族 {i['households']} / まとめ役 {i['leader'] or 'いない'} / もめごと 残り {i['disputes_open']} "
                   f"(まとめ役なしで収めた {i['settled']}・まとめ役の裁き {i['judged']}) / 罰のある掟 {i['penalty_laws']}・罰 {i['penalties']} / "
                   f"祭り {i['feasts']} / 分かれた家 {i['fissions']} / 共同の仕事 {i['joint']} / 第 1 段 {'済み' if i['stage1'] else 'まだ'}")
+        if i.get("g6_on"):
+            print(f"G6 / 人 {i['population']} (大人 {i['adults']}) / 知っている村 {i['g6_known']} (この 4 季節に交換した村 {i['g6_partners']}・いちばん大きい相手 {i['g6_biggest']} 人) / "
+                  f"交換の続いた季節 {i['g6_run']} / 交換 {i['g6_exchanges']}・返されていない貸し借り {i['g6_debts_open']} / G6 で加わった人 {i['g6_joined']} / "
+                  f"印 {i['g6_seals']} 家・封のかけら {i['g6_sealings']} (封をした季節 {i['g6_seal_seasons']}) / 記録の道具 {i['g6_tools']} / 記録した季節 {i['g6_records']} / "
+                  f"確かめた {i['g6_checked']} (板 {i['g6_checked_tablet']})・覚え違い {i['g6_misremember']} / 食べ物をとらない人 {i['g6_nonfood']} / "
+                  f"町 {_yd(i['g6_town_day']) if i['g6_town_day'] is not None else 'まだ'} / 記録 {_yd(i['g6_record_day']) if i['g6_record_day'] is not None else 'まだ'}")
         return
     if a.cmd == "day" and not any(p["alive"] for p in state["people"]):
         print("生きている人がいないので、進めない")

@@ -22,6 +22,10 @@ ADULT = 15
 # 現実の言葉と重ならないように作った名前 (子とよそから来る人)
 NAMES = ["ナギ", "ソル", "ミラ", "ケト", "ハユ", "リオ", "トワ", "サエ", "ユノ", "カイ", "ネム", "ラタ", "フウ", "モエ", "シノ",
          "テオ", "アル", "ヨナ", "クラ", "ニイ", "エマ", "オト", "セキ", "ホノ", "ルネ", "ヤエ", "マロ", "コハ", "スイ", "ノア"]
+# G6 から使う名前 (2026-10-09 本人と決めた: 上の 30 個は使い切って「ソル2」のような名前が続くので、G6 から新しく作った 30 個を使う。G5 のあいだは変えない)。
+#   上と同じく、現実のよくある言葉と重ならないように作った (前からいる人の名前とも重ならない)
+NAMES_G6 = ["ラキ", "ソナ", "ケナ", "トナ", "ハソ", "オセ", "キサ", "セヤ", "リセ", "タユ", "ヒセ", "ロワ", "ヌオ", "キオ", "テナ",
+            "ラニ", "ケセ", "シエ", "ナセ", "ホタ", "ムイ", "セオ", "ルタ", "アコ", "オネ", "ワユ", "ネイ", "ソワ", "ユエ", "ホミ"]
 ACTS2 = ["採集", "狩り", "探索", "休む", "道具づくり", "火おこし", "種まき", "住まいを建てる", "畑仕事", "ヤギの世話", "ヤギを捕まえる"]
 ACTS_G3 = ["土器づくり"]  # G3 (余りと分業) から
 CRAFTS = ("土器づくり", "道具づくり")
@@ -33,7 +37,8 @@ def era_at_least(state, era):
 
 
 def acts2(state):
-    return ACTS2 + (ACTS_G3 if era_at_least(state, "G3") else [])
+    return (ACTS2 + (ACTS_G3 if era_at_least(state, "G3") else []) + (ACTS_G6 if era_at_least(state, "G6") else [])
+            + ([ACT_RECORD] if era_at_least(state, "G6") and ((state["era2"].get("g6") or {}).get("open") or {}).get("数え札") else []))
 CHILD_EAT = [(3, 800), (10, 1300), (15, 1800)]  # 【仮定】子が 1 日に食べる量 (年齢まで, kcal)
 UNITS.setdefault("乳", ("杯", 150))              # 【仮定】ヤギの乳 1 杯
 world.FOOD_NAME.setdefault("乳", "ヤギの乳")
@@ -79,11 +84,22 @@ def _name(i):
     return NAMES[i % len(NAMES)] + ("" if i < len(NAMES) else str(i // len(NAMES) + 1))
 
 
+def _next_name(state):
+    """新しい名前 (生まれた子・よそから来る人)。G6 からは NAMES_G6 から (数は g6 の next_name。G6 の前は前のまま)"""
+    e2, g = state["era2"], state["era2"].get("g6")
+    if g is not None and era_at_least(state, "G6"):
+        i = g.get("next_name", 0)
+        g["next_name"] = i + 1
+        return NAMES_G6[i % len(NAMES_G6)] + ("" if i < len(NAMES_G6) else str(i // len(NAMES_G6) + 1))
+    n = _name(e2["next_name"])
+    e2["next_name"] += 1
+    return n
+
+
 def _new_person(state, rng, sex, age, child=False, mother=None, origin="生まれた", name=None):
     e2 = state["era2"]
     if name is None:
-        name = _name(e2["next_name"])
-        e2["next_name"] += 1
+        name = _next_name(state)
     names = [q["name"] for q in state["people"]]
     p = {"name": name, "alive": True, "age": age, "sex": sex, "mass": round(rng.uniform(45, 55), 1) if not child else 10.0,
          "personality": {k: round(rng.random(), 2) for k in ("協力", "大胆", "好奇心", "社交")},
@@ -124,6 +140,10 @@ def apply_answers(state, answers):
     g5 = era_at_least(state, "G5")
     reps = _reps(state) if g5 and e2.get("rep_mode") else set()
     c5 = {"judge": {}, "by": {}, "feast": set(), "feast_by": set(), "leader": {}, "call": {}}  # G5: 季節の集まりの答え
+    g6 = era_at_least(state, "G6")  # G6 の部分は、G6 の前は何もしない
+    c6 = {"trade": {}, "trade_by": {}, "house": {}, "seal": {}, "store": set(), "store_by": set()}  # G6: 季節の集まりの答え
+    if g6:
+        _g6_new_season(state)
     yname = [] if year_end(state) else None  # 年の名前 (年の終わりの集まりだけ読む)
     for name, raw in answers.items():
         p = alive.get(name)
@@ -165,6 +185,8 @@ def apply_answers(state, answers):
             place = job.get("place") if job.get("place") in places else "camp"
             with_ = job.get("with") if isinstance(job.get("with"), list) else []
             q["plan"] = {"activity": act, "place": place, "with": [w for w in with_ if isinstance(w, str) and w in alive and w != q["name"]]}
+            if g6 and act in ACTS_G6 + [ACT_RECORD]:  # 行き先・持って行く物・残すもの (e2["jobs"] には入れない)
+                _g6_job(state, q, job, own)
             e2["jobs"][q["name"]] = {"sow": max(0, min(1000, _int(a.get("sow")))), "pick": max(0, min(40, _int(a.get("pick")))),
                                      "plant": max(0, min(5, _int(a.get("plant")))),
                                      "eat_goat": max(0, min(5, _int(a.get("eat_goat")))) if q is p and own else 0,
@@ -178,6 +200,8 @@ def apply_answers(state, answers):
                 accept.setdefault(v, []).append((q["name"], ok is True or ok in ("true", "はい", "賛成")))
         if g5:
             _g5_collect(state, c5, p, a, fam)
+        if g6:
+            _g6_collect(state, c6, p, a, fam, own)
     for t in talk:  # 話は聞き手に届く
         for n, q in alive.items():
             if n != t["from"] and (t["to"] == "みんな" or t["to"] == n):
@@ -187,6 +211,8 @@ def apply_answers(state, answers):
         log(state, "掟", None, msg)
     if g5:
         _g5_meeting(state, c5, len(alive))  # 掟を決めてから (この集まりで採用された罰の掟も、この集まりで使う)
+    if g6:
+        _g6_meeting(state, c6, len(alive))  # 印 → 村の蓄えの封 → 申し出 (よそから来た人の受け入れの前)
     _settle_visitors(state, accept, len(alive))
     _eat_goats(state)
     if yname:
@@ -208,6 +234,7 @@ def _settle_visitors(state, accept, n_adults):
     e2 = state["era2"]
     rng = _rng(state, 11)
     for v in e2["visitors"]:
+        vr = random.Random(v["seed"]) if v.get("seed") is not None else rng  # G6: ほかの村から来た群れは、その群れの乱数で (前からの列に足さない)
         member_names = [m["name"] for m in v["members"]]
         votes = {}  # 大人ごとの答え (群れのだれの名前で書いても同じ群れの受け入れ)
         for key, vals in accept.items():
@@ -219,20 +246,27 @@ def _settle_visitors(state, accept, n_adults):
             grown = [m for m in v["members"] if m["age"] >= ADULT]
             guardian = next((m["name"] for m in grown if m["sex"] == "女"), grown[0]["name"] if grown else None)
             # 加わった大人は、この季節は村でいちばん多い仕事をする (【仮定】次の季節から自分で決める)
-            plans = [q["plan"] for q in adults(state) if q["name"] in accept_answered(e2)]
+            # G6: 行き先のない「交換に行く」・記録の中身のない「記録をつける」はまねない (G6 の前はだれも選べないので、前と同じ)
+            plans = [q["plan"] for q in adults(state) if q["name"] in accept_answered(e2) and q["plan"]["activity"] not in ACTS_G6 + [ACT_RECORD]]
             common = max(plans, key=lambda pl: sum(1 for x in plans if x["activity"] == pl["activity"] and x["place"] == pl["place"])) if plans else {"activity": "採集", "place": "camp"}
             for m in v["members"]:
-                q = _new_person(state, rng, m["sex"], m["age"], child=m["age"] < ADULT, origin="よそから来た", name=m["name"],
+                q = _new_person(state, vr, m["sex"], m["age"], child=m["age"] < ADULT, origin="よそから来た", name=m["name"],
                                 mother=guardian if m["age"] < ADULT else None)
                 e2["joined"].append(q["name"])
                 q["household"] = member_names[0] + "の家"
+                if v.get("from"):  # G6: 来たほかの村 (家を建てる場所を、その村の方角にする)
+                    q["from_village"] = v["from"]
                 if not q.get("child"):
                     q["plan"] = {"activity": common["activity"], "place": common["place"], "with": []}
                     e2["jobs"][q["name"]] = {"sow": 0, "pick": 0, "plant": 0, "eat_goat": 0, "harvest": 0}
             names = "・".join(member_names)
-            log(state, "加わる", None, f"よそから来た {names} が、村に加わった (賛成 {yes} / {n_adults})")
+            o = _other(state, v.get("from")) if v.get("from") else None
+            log(state, "加わる", None, f"よそから来た {names} が、村に加わった ({o['name'] + 'から。' if o else ''}賛成 {yes} / {n_adults})")
         else:
-            log(state, "去る", None, f"よそから来た {v['name']} たちは、受け入れられず去っていった (賛成 {yes} / {n_adults})")
+            o = _other(state, v.get("from")) if v.get("from") else None
+            log(state, "去る", None, f"よそから来た {v['name']} たちは、受け入れられず{'、' + o['name'] + 'へ帰って' if o else '去って'}いった (賛成 {yes} / {n_adults})")
+        if v.get("from"):
+            _g6_settled(state, v, yes * 2 > n_adults)
     e2["visitors"] = []
 
 
@@ -290,15 +324,19 @@ def _day(state):
             _catch_goat(state, p, t, rng)
         elif act == "住まいを建てる" and era_at_least(state, "G3") and state["camp"].get("dwelling_day") is not None:
             _build_house(state, p, t)
+        elif act == ACT_RECORD and era_at_least(state, "G6"):
+            _g6_keep_day(state, p, t)
         if act in CRAFTS:
             e2.setdefault("craft_days", {})[p["name"]] = e2.get("craft_days", {}).get(p["name"], 0) + 1
             if era_at_least(state, "G3"):
                 _craft(state, p, t, act)
+    if era_at_least(state, "G6"):
+        _g6_trips_day(state)  # 交換に行く (出かけている人は、夕方に木から取らず、畑も刈らない)
     # 夕方、キャンプのそばの木から取る (季節のはじめに決めた量。world.evening の「取る」を使う)
     takes = []
     for p in adults(state):
         job = e2["jobs"].get(p["name"], {})
-        if job.get("pick") and not _injured_today(p):
+        if job.get("pick") and not _injured_today(p) and not (p.get("today") or {}).get("away"):
             takes.append({"who": p["name"], "food": "木の実", "count": job["pick"], "tree": True})
         if job.get("plant") and day == e2.get("step_day"):  # この回の最初の日に、木の実を埋める
             _plant(state, p, job["plant"])
@@ -312,7 +350,7 @@ def _day(state):
     sickles = e2.get("sickles", 0)
     for p in adults(state):
         n = e2["jobs"].get(p["name"], {}).get("harvest", 0)
-        if n and not _injured_today(p):
+        if n and not _injured_today(p) and not (p.get("today") or {}).get("away"):
             if sickles > 0 and any(f["state"] == "実った" for f in e2["fields"]):  # 鎌を使うと 2 倍刈れる (村の鎌の数の人まで)
                 sickles -= 1
                 n *= 2
@@ -367,7 +405,10 @@ def _feed(state, rng):
             got = sum(_move_food(state["store"], p["food"], None, keep - have).values())
             _flow(state, p, 1, got)
             if have + got < keep and era_at_least(state, "G4"):  # 村の蓄えが足りないときは、家の倉から
-                got += sum(_move_food(_house(state, p.get("household"))["store"], p["food"], None, keep - have - got).values())
+                took = sum(_move_food(_house(state, p.get("household"))["store"], p["food"], None, keep - have - got).values())
+                got += took
+                if took and era_at_least(state, "G6"):  # G6: 印で封をした家の倉を開けた (封のかけら)
+                    _g6_opened(state, p, "倉")
                 if have + got < keep and p["hunger"] >= 0.6 and era_at_least(state, "G5"):  # G5: それでも足りず、ひどく空腹 (前からの 0.6) なら、よその家の倉から
                     _steal(state, p, keep - have - got)
     ate = {"total": 0, "sown": 0, "by": {}}
@@ -429,7 +470,9 @@ def _craft(state, p, t, act):
         p["skills"]["道具"] = round(min(1, sk + 0.02), 3)
         if n:
             e2["sickles"] = e2.get("sickles", 0) + n
-            log(state, "道具", p["name"], f"{p['name']} が石の刃を木の柄にはめた鎌を {n} 本作った (村の鎌 {e2['sickles']} 本)", count=n)
+            obs = _g6_obsidian_blades(state, n) if era_at_least(state, "G6") else 0
+            extra = f" (うち {obs} 本は黒曜石の刃)" if obs else ""
+            log(state, "道具", p["name"], f"{p['name']} が石の刃を木の柄にはめた鎌を {n} 本作った{extra} (村の鎌 {e2['sickles']} 本)", count=n)
         else:
             log(state, "道具", p["name"], f"{p['name']} がキャンプで石の刃を打ち欠き、鎌の柄を削った", count=0)
 
@@ -449,7 +492,11 @@ def _storage_season(state, frac):
                 _move_food(st, [], "草の種", g / grain * lost * UNITS["草の種"][1])
         log(state, "虫", None, f"蓄えの草の種 約 {lost} つかみ が、虫やネズミに食べられた" + (f" (土器に入れていた 約 {int(safe)} つかみ は無事)" if safe else ""), amount=lost)
     for key, rate, what in (("pots", POT_BREAK, "土器"), ("sickles", SICKLE_BREAK, "鎌")):
-        broke = sum(1 for _ in range(e2.get(key, 0)) if rng.random() < rate * frac)
+        obs = min(e2.get(key, 0), (e2.get("g6") or {}).get("obs_sickles", 0)) if key == "sickles" and era_at_least(state, "G6") else 0
+        hits = [i for i in range(e2.get(key, 0)) if rng.random() < rate * frac * (OBS_BREAK if i < obs else 1)]  # 1 つに 1 回引く (G6 の前と同じ数)
+        broke = len(hits)
+        if obs:
+            e2["g6"]["obs_sickles"] -= sum(1 for i in hits if i < obs)
         if broke:
             e2[key] -= broke
             log(state, "道具", None, f"村の{what}が {broke} {'個' if key == 'pots' else '本'} 割れた (残り {e2[key]})")
@@ -468,22 +515,41 @@ def _homes_built(state):
     return {h for h, v in state["era2"].get("homes", {}).items() if v.get("built") is not None}
 
 
-def _house_site(state):
-    """家族の住まいを建てる場所: キャンプから 5〜9 マスの輪の上で、川でなく、南西の畑と村の住まいから離れ、ほかの家と重ならない所"""
+def _house_site(state, h=None):
+    """家族の住まいを建てる場所: キャンプから 5〜9 マスの輪の上で、川でなく、南西の畑と村の住まいから離れ、ほかの家と重ならない所
+    (G6: 11〜15 マスの輪も使う。ほかの村から来た家は、まずその村の方角の 11〜15 マスに建てる。ブラクのまわりの、来たところごとの小さな集まり)"""
     cx, cy = state["camp"]["x"], state["camp"]["y"]
     used = [(v["x"], v["y"]) for v in state["era2"].get("homes", {}).values()]
-    for r in (5, 7, 9):
+
+    def ok(x, y):
+        ix, iy = int(x), int(y)
+        if not (0 <= ix < W and 0 <= iy < H) or state["terrain"][iy][ix] == "r":
+            return False
+        if (x < cx - 1 and y > cy + 1) or math.hypot(x - (cx - 2.7), y - (cy - 1.7)) < 3:  # 南西は畑、北西は村の住まい
+            return False
+        return not any(math.hypot(x - ux, y - uy) < 2.2 for ux, uy in used)
+
+    rings = (5, 7, 9)
+    if era_at_least(state, "G6"):
+        src = next((q.get("from_village") for q in state["people"] if h and q.get("household") == h and q.get("from_village")), None)
+        o = _other(state, src) if src else None
+        if o:
+            ang = math.atan2(o["edge"][1] - cy, o["edge"][0] - cx)
+            for r in (11, 13, 15):
+                for k in sorted(range(24), key=lambda k: abs(math.remainder(math.radians(k * 15) - ang, 2 * math.pi))):
+                    a = math.radians(k * 15)
+                    if abs(math.remainder(a - ang, 2 * math.pi)) > math.radians(60):
+                        continue
+                    x, y = round(cx + r * math.cos(a), 1), round(cy + r * math.sin(a), 1)
+                    if ok(x, y):
+                        return x, y
+        rings += (11, 13, 15)
+    for r in rings:
         for k in range(12):
-            a = math.radians(k * 30 + (15 if r == 7 else 0))
+            a = math.radians(k * 30 + (15 if r in (7, 11, 15) else 0))
             x, y = round(cx + r * math.cos(a), 1), round(cy + r * math.sin(a), 1)
-            ix, iy = int(x), int(y)
-            if not (0 <= ix < W and 0 <= iy < H) or state["terrain"][iy][ix] == "r":
-                continue
-            if (x < cx - 1 and y > cy + 1) or math.hypot(x - (cx - 2.7), y - (cy - 1.7)) < 3:  # 南西は畑、北西は村の住まい
-                continue
-            if any(math.hypot(x - ux, y - uy) < 2.2 for ux, uy in used):
-                continue
-            return x, y
+            if ok(x, y):
+                return x, y
     return cx + 3.0, cy - 4.0
 
 
@@ -495,7 +561,7 @@ def _build_house(state, p, t):
     homes = state["era2"].setdefault("homes", {})
     v = homes.get(h)
     if not v:
-        x, y = _house_site(state)
+        x, y = _house_site(state, h)
         v = homes[h] = {"x": x, "y": y, "start": state["day"], "built": None, "size": 0, "work": 0.0, "sizes": []}
     before = v["work"]
     v["work"] = round(before + t.get("work_h", 6) * (0.6 + 0.4 * p["skills"].get("道具", 0.1)), 2)
@@ -660,9 +726,11 @@ def _flow(state, p, i, kcal):
     """G5: 家ごとに、村の蓄えに入れた量 (0)・取った量 (1)・家の倉を持つ家が自分の畑にまいた村の草の種 (2) を数える (大人の分だけ。子は村の蓄えで育つ決まり)"""
     if kcal > 0 and era_at_least(state, "G5"):
         _g5(state)["flow"].setdefault(p.get("household") or "-", [0, 0, 0])[i] += kcal
+        if i == 1 and era_at_least(state, "G6"):  # G6: 印で封をした村の蓄えを開けた (封のかけら)
+            _g6_opened(state, p, "蓄え")
 
 
-def _incident(state, kind, frm, against, kcal, what, eid=None):
+def _incident(state, kind, frm, against, kcal, what, eid=None, sealed=False):
     """もめごとのもと (世界で起きたこと)。季節の終わりに、もめごとになるか決める。frm = 損をした家 (言い出す家)、against = 相手の家"""
     if not frm or not against or frm == against or kcal <= 0:
         return
@@ -673,6 +741,8 @@ def _incident(state, kind, frm, against, kcal, what, eid=None):
         inc.append(x)
     x["kcal"] += kcal
     x["events"] += [eid] if eid is not None else []
+    if sealed:  # G6: 印で封をした倉の封が割れていた (必ずもめごとになる)
+        x["sealed"] = True
 
 
 def _steal(state, p, want):
@@ -680,14 +750,19 @@ def _steal(state, p, want):
     hs, mine, homes = state["era2"].get("house", {}), p.get("household"), _homes(state)
     if not mine:  # 家のない人 (今はいない) は取らない。取ると、もめごとのもとにならず、毎日記録が出るため (2026-10-08 確認役の指摘)
         return
-    for h in sorted([h for h in hs if h in homes and h != mine and hs[h]["store"]], key=lambda h: -sum(f["kcal"] for f in hs[h]["store"])):
+    sealed = ((state["era2"].get("g6") or {}).get("seals") or {}) if era_at_least(state, "G6") else {}  # G6: 封をした倉は、ほかの倉がからになってから
+    for h in sorted([h for h in hs if h in homes and h != mine and hs[h]["store"]], key=lambda h: (h in sealed, -sum(f["kcal"] for f in hs[h]["store"]))):
         if want <= 0:
             break
         by = _move_food(hs[h]["store"], p["food"], None, want)
         want -= sum(by.values())
         new = not any((x["kind"], x["from"], x["against"]) == ("倉", h, mine) for x in _g5(state)["incidents"])
-        eid = log(state, "倉から取る", p["name"], f"ひどく空腹の {p['name']} が、{h}の倉から {food_words(by)} を取って食べた", owner=h, home=mine) if new else None
-        _incident(state, "倉", h, mine, sum(by.values()), f"{mine}の人が、{h}の倉から食べ物を取って食べた", eid)
+        if h in sealed:
+            eid = log(state, "封", p["name"], f"{h}の倉の封が割れていた: ひどく空腹の {p['name']} ({mine}) が、封を割って食べ物を取って食べた", owner=h, home=mine) if new else None
+        else:
+            amt = "食べ物" if era_at_least(state, "G6") else food_words(by)  # G6: 量は記録にない
+            eid = log(state, "倉から取る", p["name"], f"ひどく空腹の {p['name']} が、{h}の倉から {amt} を取って食べた", owner=h, home=mine) if new else None
+        _incident(state, "倉", h, mine, sum(by.values()), f"{mine}の人が、{h}の倉から食べ物を取って食べた", eid, sealed=h in sealed)
 
 
 def _g5_reap(state, p, owner, n, to_village):
@@ -707,8 +782,9 @@ def _dispute(state, inc):
     g["next"] += 1
     g["disputes"].append(d)
     # 注意: log() の引数名 kind・who・text を、データの名前に使わない (TypeError になる)
+    claim = _g6_claim(state, d) if era_at_least(state, "G6") else ""  # G6: 記録があれば正しい量、なければ言い出した家の覚え
     d["event"] = log(state, "もめごと", None, f"もめごと [{d['id']}] ({d['kind']}): {d['from']}が、{d['against']}のことで不満を言い出した。"
-                     f"{d['what']} (草の種にして 約 {d['harm']} つかみ 分)", dispute=d["id"], about=d["kind"])
+                     f"{d['what']} (草の種にして {'' if d.get('record') else '約 '}{d['harm']} つかみ 分{claim})", dispute=d["id"], about=d["kind"])
 
 
 def _g5_season_end(state, frac):
@@ -739,9 +815,14 @@ def _g5_season_end(state, frac):
     # (4) 刈る: よその家の畑で刈った草の種が、みな畑の持ち主の家の倉に入った (刈った人の家の取り分を 1 割とみる)
     for hh, row in sorted(g["reap"].items()):
         for o, n in sorted(row.items()):
-            _incident(state, "刈る", hh, o, n * REAP_SHARE * GRAIN, f"{hh}の人が{o}の畑で刈った草の種 {n} つかみ は、みな{o}の倉に入った")
+            what = f"{hh}の人が{o}の畑で刈った草の種 {n} つかみ は、みな{o}の倉に入った"
+            if era_at_least(state, "G6") and not _g6_cover(state, "刈る"):  # G6: 記録がなければ量は分からない
+                what = f"{hh}の人が{o}の畑で刈った草の種は、みな{o}の倉に入った (量は記録になく、覚えによる)"
+            _incident(state, "刈る", hh, o, n * REAP_SHARE * GRAIN, what)
     # (3) 蓄え: 村の蓄えに入れた量にくらべて、ほかの家より多く取った家 (1 季節に 1 つの家まで。言い出すのは、いちばん多く入れた家)
-    flow = {h: v for h, v in g["flow"].items() if h in homes}
+    flow = raw = {h: v for h, v in g["flow"].items() if h in homes}
+    if era_at_least(state, "G6"):
+        flow = _g6_credit(state, raw)  # G6: 配給の記録 (村の蓄えの記録を全部残せた季節は、作る人などの働いた日を「入れた」に数える)
     tin, tout = sum(v[0] for v in flow.values()), sum(v[1] + v[2] for v in flow.values())
     if len(flow) >= 2 and tin > 0 and tin >= 0.25 * tout:  # 【仮定】ほとんど蓄えで暮らした季節 (冬・春) は、だれの出し入れも目立たない
         r = max(1.0, tout / tin)  # 村みんなで蓄えを減らした季節は、入れた量の r 倍まで取っても多くない
@@ -755,13 +836,17 @@ def _g5_season_end(state, frac):
             h = max(sorted(cand), key=lambda x: over[x] / need[x])
             i, o, s = flow[h]
             acts = "・".join(dict.fromkeys(q["plan"]["activity"] for q in adults(state) if q.get("household") == h))
-            _incident(state, "蓄え", frm, h, over[h] / len(homes),  # 【仮定】言い出した家の損 = 取りすぎを村の家の数で割った分
-                      f"この季節、{h}の大人は、村の蓄えから草の種にして 約 {round((o + s) / GRAIN)} つかみ 分を取り"
-                      + (f" (家の畑にまいた村の草の種 {round(s / GRAIN)} つかみ をふくむ)" if s else "")
-                      + f"、入れたのは 約 {round(i / GRAIN)} つかみ 分だった (おもな仕事: {acts}"
-                      + (f"。家の倉に {food_words(holdings({'food': hs[h]['store']}))} がある" if h in full else "")
-                      + f")。{frm}は 約 {round(flow[frm][0] / GRAIN)} つかみ 分を入れた")
-    g["last_flow"] = {h: [round(v[0] / GRAIN), round((v[1] + v[2]) / GRAIN)] for h, v in sorted(flow.items())}
+            what = (f"この季節、{h}の大人は、村の蓄えから草の種にして 約 {round((o + s) / GRAIN)} つかみ 分を取り"
+                    + (f" (家の畑にまいた村の草の種 {round(s / GRAIN)} つかみ をふくむ)" if s else "")
+                    + f"、入れたのは 約 {round(i / GRAIN)} つかみ 分だった (おもな仕事: {acts}"
+                    + (f"。家の倉に {food_words(holdings({'food': hs[h]['store']}))} がある" if h in full else "")
+                    + f")。{frm}は 約 {round(flow[frm][0] / GRAIN)} つかみ 分を入れた")
+            if era_at_least(state, "G6") and not _g6_cover(state, "蓄え"):  # G6: 記録がなければ量は分からない
+                what = f"この季節、{h}の大人は、村の蓄えに入れた量にくらべて多く取った (おもな仕事: {acts})。量は記録になく、{frm}の覚えによる"
+            elif flow is not raw and (flow[h][0] != raw[h][0] or flow[frm][0] != raw[frm][0]):  # G6: 入れた量に、配給の記録の働いた日を数えた (文を事実どおりに)
+                what += " (入れた量は、記録した働いた日の分をふくむ)"
+            _incident(state, "蓄え", frm, h, over[h] / len(homes), what)  # 【仮定】言い出した家の損 = 取りすぎを村の家の数で割った分
+    g["last_flow"] = {h: [round(v[0] / GRAIN), round((v[1] + v[2]) / GRAIN)] for h, v in sorted(raw.items())}
     g["flow"], g["reap"] = {}, {}
     # もめごとのもと → もめごと (家が多いほどなりやすい。罰のある掟にあたることは必ずなる。同じ家どうしの同じ中身で収まっていないものには重ねる)
     pen = {l["penalty"]["for"] for l in state["laws"] if l["status"] == "採用" and l.get("penalty")}
@@ -771,10 +856,15 @@ def _g5_season_end(state, frac):
             continue
         old = next((d for d in g["disputes"] if d["status"] == OPEN and (d["kind"], d["from"], d["against"]) == (inc["kind"], inc["from"], inc["against"])), None)
         if old:
-            old["harm"] += max(1, round(inc["kcal"] / GRAIN))
+            add = max(1, round(inc["kcal"] / GRAIN))
+            if "harm_true" in old:  # G6: 記録のないもめごとは、言い出した家の覚えで重ねる
+                ratio = old["harm"] / max(1, old["harm_true"])
+                old["harm_true"] += add
+                add = max(1, round(add * ratio))
+            old["harm"] += add
             old["because"] += inc["events"]
             log(state, "もめごと", None, f"もめごと [{old['id']}] に、また同じことが重なった: {inc['what']}", dispute=old["id"])
-        elif new < MAX_NEW and (inc["kind"] in pen or rng.random() < p):
+        elif new < MAX_NEW and (inc["kind"] in pen or inc.get("sealed") or rng.random() < p):  # sealed は G6 だけ
             _dispute(state, inc)
             new += 1
     g["incidents"] = []
@@ -966,12 +1056,17 @@ def _g5_meeting(state, c, n):
     for d in [d for d in g["disputes"] if d["status"] == OPEN]:
         parties = (d["from"], d["against"])
         v = c["by"].get(lead, {}).get(d["id"]) if lead in ads and ads[lead].get("household") not in parties else None
+        rec = d.get("record")  # G6: 記録のあるもめごとは、記録を見て確かめる (話し合える数に数えない)
         if v:
+            if rec:
+                _g6_check(state, d)
             _verdict(state, d, v, "まとめ役", lead)
             continue
-        if talked >= TALK_MAX:
+        if talked >= TALK_MAX and not rec:
             continue
-        talked += 1
+        talked += 0 if rec else 1
+        if rec:
+            _g6_check(state, d)
         tally = {k: len(s) for k, s in c["judge"].get(d["id"], {}).items()}
         top = max(tally.values(), default=0)
         elder = max([q for q in ads.values() if q.get("household") not in parties], key=lambda q: q["age"], default=None)  # 同じ年なら人の並びで先 (家の代表の決め方と同じ。2026-10-08)
@@ -1044,6 +1139,8 @@ def _verdict(state, d, v, by, who):
     if law and paid > 0:  # 罰は、実際に何か払われたときだけ数える
         g["penalties"] += 1
         log(state, "罰", None, f"{d['against']}が、掟 [{law['id']}] の罰として、{d['from']}に {words} を払った", dispute=d["id"], law=law["id"])
+    if v == "つぐなう" and not law and era_at_least(state, "G6"):  # G6: 記録のない量を覚えで払った (払った家が多く払ったと思うと、覚え違いのもと。払ったと書いたあとに)
+        _g6_after_pay(state, d, round(paid / GRAIN))
 
 
 def _pay(state, a, b, kcal):
@@ -1063,6 +1160,991 @@ def _pay(state, a, b, kcal):
     if n:
         words.append(f"ヤギ {n} 頭")
     return paid, "・".join(words)
+
+
+# ---------------- G6 交易・町・記録: ほかの村・交換・貸し借り・印と封・覚え・数え札 → 封筒 → 粘土の板・町 (2026-10-09 追加。G6 に入ってから働く) ----------------
+# 第 4 部「町と文字」(計画 2.1。設計書 docs/society_phase/G6_design.md。「本人に確かめること」1〜17 は、2026-10-09 にすべておすすめの通りに決まった)。
+#   町と記録は別々の条件で、どちらが先でもよい (届いた日を区切り F3・F4 に残す)。両方そろうと Society 2.0 の終わり
+# 考え方: 目標を上から置かない。ほかの村は、記録に残る出来事 (村を出た家・G6 で来たよその群れの来たところ・交換をもとめて来た人) からだけ生まれる。
+#   記録の道具は、それが答える困りごとが起きてから使えるようになる (印 → 数え札 → 封筒 → 粘土の板。順は本人と決めた。part2.md 6.3)。使うかは人が決める
+# 【文献】Renfrew, Dixon & Cann 1968・Ortega ほか 2014・Ibáñez ほか 2015: 黒曜石は 300 km ほどまで多く届き、遠くへは少しずつ (模型では、手渡しだけでは
+#   300 km より遠くへ届きにくく、遠くの相手をもつ村があると説明しやすい)。Yacobi & Gopher 2023: 親族どうしの交換 (という読み)。Davidson & McKerrell 1976・1980: ハラフの土器も村から村へ動いた
+# 【文献】Duistermaat 1996・Akkermans & Duistermaat 1996/97・2004: サビ・アビヤドの封泥 (前 6,300〜6,000 年ごろ。多くは焼けた村、前 6,000 年ごろ)。入れ物に封をし、開けたあとの封のかけらを
+#   取っておいた。Frangipane ほか 2007: アルスランテペの宮殿 (前 3,400〜3,000 年ごろ) の 1 つの倉に 30 の印 (取り出す多くの人の印という読み)。印が「持ち主」を示したかは
+#   議論がある (Duistermaat 2012・2013) ので、文は「封をした家の印」とする
+# 【文献】Johnson 1978・1982・Wright & Johnson 1975・Shin ほか 2020: 扱う量と決める単位が増えると、記録の道具が要る。Englund 2011: ウルク IV の粘土板は、数のしるしと物のしるしを分けて記す
+#   (原楔形文字の約 85% は帳簿)。数のしるしが押したトークンから来たことは広く認められるが、物のしるしがトークンから来たかは弱い (Zimansky 1993・Michalowski 1993・Englund 1993。
+#   Kelley ほか 2024 は、一部の物のしるしは印の絵から来たとする)
+# 【文献】Ur, Karsgaard & Oates 2007・Ur ほか 2011: テル・ブラク LC2 (前 4,200〜3,900/3,800 年ごろ) は約 55 ha (まん中の丘と、まわりの小さな集まり)。集まりが内へ広がり、LC3〜4 に約 130 ha。
+#   よそから移り住んだ人が加わったとする調べがある (歯の形の調べ。【文献・二次】)。Childe 1950: 町には食べ物をとらない専門の人がいる
+# 【仮定】数: よその村は 3 つまで (最初の G6 の季節の終わりに必ず 1 つ来る)。来る見込み: 分かれた家 0.35・よその村 0.15 (信頼で変わる)。
+#   よその村の人は 10〜25 人。交換している村から住みたい人が来る見込み 1 季節 0.15。苦しい年 1 年 0.2。値うち (草の種のつかみ): ヤギ 375・鎌 75・土器 40・黒曜石 40・干し肉 6。
+#   1 人が運べるのは 20 kg ほど (草の種 900 つかみ)。覚えのずれ 0.05 × (家の数 + 返されていない貸し借り)、0.5 まで。
+#   数え札 1 個 = 草の種 100 つかみ・ヤギ 1 頭・土器や鎌 10 個・働いた日 10 日。1 人 1 日に数え札 10 個 (板なら 50 個分)。
+#   粘土の板が使えるようになるのは、数え札で記録した季節が 4 つ以上で、1 季節に数え札が 200 個以上要る季節があったとき。
+#   町: 50 人以上 (ブラク LC2 の約 1/55〜1/110)、この 4 季節は毎季節交換し、相手の村が 2 つ以上、いちばん大きい相手の 2 倍以上、食べ物をとらない人が大人の 1 割以上
+# 帳簿: 物が村や家に出入りする出来事には data の moves (家か「村」・+1 か −1・物と数・ヤギの番号) をつける。記録 (tools/build_records.py) が読むだけで、世界の進み方には使わない
+G6_SALT = 41  # 41 を 31 で割った余り 10 は、前からの塩 3・7・11・23・29・31・37 の余り 3・7・11・23・29・0・6 と重ならない
+ACTS_G6, ACT_RECORD = ["交換に行く"], "記録をつける"
+G6_EVENTS = ("よその村", "交換", "貸し借り", "覚え", "印", "封", "記録", "確かめる", "町")  # お題と step.py で見せる (毎日の「交換に行く」「記録をつける」は入れない)
+DIRS = {"南": ("川にそって南へ", (39, 79)), "北": ("川にそって北へ", (49, 0)), "東": ("東へ", (79, 40)), "西": ("西へ", (0, 40))}
+MAX_STRANGERS, STRANGER_P, JOIN_P, JOIN_MIN, BAD_P = 3, 0.10, 0.15, 12, 0.2
+CONTACT_P = {"分かれた家": 0.35, "よその村": 0.15}
+USE_OBSIDIAN, OBS_BREAK = True, 0.5
+VALUE = {"草の種": 1, "干し肉": 6, "ヤギ": 375, "土器": 40, "鎌": 75, "黒曜石": 40}
+LOAD = {"草の種": 900, "土器": 4, "鎌": 10}  # 1 人が運べる量。持って行けるのは、ほかの村が受けとる物 (_g6_cap と同じ 3 つ) だけ
+TRIP_WALK, TRIP_LOAD, TRIP_HURT, TRIP_LOSS = 30000, 1.4, 0.005, 0.03
+SPREAD, SPREAD_MAX, BLAME = 0.05, 0.5, 1.25
+TOKEN = {"草の種": 100, "干し肉": 16, "ヤギ": 1, "土器": 10, "鎌": 10, "黒曜石": 10, "日": 10}
+RATE = {"数え札": 10, "封筒": 10, "板": 50}
+WHATS = ("蓄え", "交換", "刈る")
+WHAT_WORDS = {"蓄え": "村の蓄えへの家ごとの出し入れ", "交換": "ほかの村との交換と貸し借り", "刈る": "よその家の畑で刈った量"}
+TABLET_SEASONS, TABLET_TOKENS, KEEPER_DAYS = 4, 200, 20
+TOWN_POP, TOWN_RUN, TOWN_PARTNERS, CENTRE, NONFOOD = 50, 4, 2, 2, 0.10
+GOOD_WORDS = (("黒曜石", "黒曜石"), ("黒い石", "黒曜石"), ("干し肉", "干し肉"), ("肉", "干し肉"), ("土器", "土器"), ("つぼ", "土器"), ("壺", "土器"),
+              ("器", "土器"), ("鎌", "鎌"), ("ヤギ", "ヤギ"), ("山羊", "ヤギ"), ("草の種", "草の種"), ("麦", "草の種"), ("穀", "草の種"), ("種", "草の種"))
+UNIT = {"草の種": "つかみ", "干し肉": "切れ", "ヤギ": "頭", "土器": "個", "鎌": "本", "黒曜石": "個"}
+FOOD_KCAL = {"草の種": GRAIN, "干し肉": UNITS["干し肉"][1]}
+NODE_KEY = {"ヤギ": "goats", "草の種": "grain", "土器": "pots", "鎌": "sickles", "黒曜石": "obsidian"}
+
+
+def _g6(state):
+    """G6 の状態 (G6 の最初の集まりで作る。start から数えるので、G6 の前のことは G6 の条件に数えない)"""
+    e2 = state["era2"]
+    if "g6" not in e2:
+        e2["g6"] = {"start": state["day"], "seed": _rng(state, G6_SALT).getrandbits(31), "meets": [], "meet_first": None,
+                    "others": [], "next_other": 1, "offers": [], "next_offer": 1, "debts": [], "next_debt": 1, "next_trip": 1,
+                    "taken": {}, "moved": {}, "seals": {}, "store_sealed": None, "season_seals": {}, "opened": {}, "sealings": {}, "seal_seasons": 0,
+                    "jobs": {}, "keep_days": {}, "trips": {}, "trip_log": [], "records": [], "cover": {}, "credit": {},
+                    "open": {"印": state["day"], "数え札": None, "封筒": None, "板": None}, "token_seasons": 0, "big": 0,
+                    "unchecked": 0, "misremember": 0, "checked": {"数え札": 0, "封筒": 0, "板": 0},
+                    "exchanges": 0, "joined": 0, "obsidian": 0, "obs_sickles": 0, "nonfood": [], "shown": None,
+                    "town_seen": None, "town_low": 0, "log": [], "end": None, "next_name": 0}
+    return e2["g6"]
+
+
+def _g6_r(state, k):
+    """集まりと 30 日のあいだの G6 の乱数 (季節の終わりに塩 41 から引いた seed から作る。前からの乱数の列には足さない)"""
+    return random.Random(state["era2"]["g6"]["seed"] * 1000003 + state["day"] * 1009 + k)
+
+
+def _other(state, oid):
+    return next((o for o in (state["era2"].get("g6") or {}).get("others", []) if o["id"] == oid), None)
+
+
+def _okey(o):
+    return f"{o['name']} ({o['way']}歩いて {o['days']} 日)"
+
+
+def _gw(goods):
+    """{"ヤギ": 2, "土器": 18} → 「ヤギ 2 頭・土器 18 個」"""
+    return "・".join(f"{k} {n} {UNIT[k]}" for k, n in goods.items() if n > 0) or "なし"
+
+
+def _mv(side, sign, goods, ids=()):
+    """帳簿のための物の出し入れ 1 つ (出来事の data の moves。記録が読むだけ): [家か「村」, +1 か −1, 物と数, ヤギの [番号, オスかメスか, 生まれた日]]"""
+    return [side, sign, {k: n for k, n in goods.items() if n > 0}, list(ids)]
+
+
+def _g6_spread(state):
+    """覚えのずれ (家が多いほど、返されていない貸し借りが多いほど大きい)"""
+    g = state["era2"].get("g6") or {}
+    return min(SPREAD_MAX, SPREAD * (len(_homes(state)) + sum(1 for d in g.get("debts", []) if d["status"] == "まだ")))
+
+
+def _g6_cover(state, what):
+    """この季節の記録 (全部残せたもの) の道具。なければ None"""
+    return ((state["era2"].get("g6") or {}).get("cover") or {}).get(what)
+
+
+# ---- ほかの村 (地図の外。Claude は演じない。決まりで動く) ----
+
+def _new_other(state, rng, kind, household=None, people=None, goats=0, grain=0):
+    g = _g6(state)
+    used = {o["dir"] for o in g["others"]}
+    d = rng.choice([x for x in DIRS if x not in used] or list(DIRS))
+    strangers = [o for o in g["others"] if o["kind"] == "よその村"]
+    obs = USE_OBSIDIAN and kind == "よその村" and len(strangers) == 1  # 2 つ目のよその村 (歩いて 2 日) は黒曜石を持つ【仮定】
+    days = 1 if kind == "分かれた家" or not strangers else 2 if obs else rng.choice([1, 2])
+    name = (household[:-2] if household.endswith("の家") else household) + "の村" if kind == "分かれた家" else f"{d}の村"
+    if any(o["name"] == name for o in g["others"]):
+        name = f"{name}{g['next_other']}"
+    n = people if people is not None else rng.randint(10, 25)
+    far = kind == "よその村"
+    o = {"id": f"N{g['next_other']}", "name": name, "kind": kind, "household": household, "dir": d, "way": DIRS[d][0], "days": days,
+         "edge": list(DIRS[d][1]), "since": state["day"], "known": None, "people": n,
+         "goats": round(n * 0.4) if far else goats, "grain": n * 100 if far else grain, "pots": n // 4 if far else 0,
+         "sickles": n // 8 if far else 0, "obsidian": 20 if obs else 0, "has_obsidian": obs, "bad": None, "trust": 0.5, "contacts": []}
+    g["next_other"] += 1
+    g["others"].append(o)
+    return o
+
+
+def _g6_cap(o):
+    """ほかの村が 1 季節に受けとる物の上限【仮定】(土器は 3 人に 1 個 (3 個から)、鎌は 6 人に 1 本 (1 本から)、草の種は 1 人 10 つかみ。苦しい年は 100 つかみ)"""
+    return {"土器": max(3, o["people"] // 3), "鎌": max(1, o["people"] // 6), "草の種": o["people"] * (100 if o["bad"] is not None else 10)}
+
+
+def _g6_wants(state, o):
+    t = _g6(state)["taken"].get(o["id"], {})
+    return {k: max(0, n - t.get(k, 0)) for k, n in _g6_cap(o).items()}
+
+
+def _g6_supply(o):
+    """ほかの村が出せる物 (ヤギは 2 頭残す。草の種は苦しい年でなく、1 人 100 つかみより多い分)"""
+    return {"ヤギ": max(0, o["goats"] - 2), "黒曜石": o["obsidian"],
+            "草の種": max(0, o["grain"] - o["people"] * 100) if o["bad"] is None else 0}
+
+
+def _node_add(o, goods, sign):
+    for k, n in goods.items():
+        if NODE_KEY.get(k):
+            o[NODE_KEY[k]] = max(0, o[NODE_KEY[k]] + sign * n)
+
+
+def _g6_pay(o, value, want, skip=()):
+    """ほかの村が value (草の種のつかみ) を払う: want の物から、なければほかの物で。戻り値: 払う物、払いきれない値うち
+    (skip: 受けとったのと同じ物では払わない。2026-10-09 作るときの試しで、草の種を渡して同じ量の草の種を受けとる交換が出たため)"""
+    sup, pay = _g6_supply(o), {}
+    for k in [x for x in [want] + [x for x in ("ヤギ", "黒曜石", "草の種") if x != want] if x not in skip]:
+        n = min(sup.get(k, 0), int(value // VALUE[k]))
+        if n > 0:
+            pay[k] = n
+            value -= n * VALUE[k]
+    return pay, value
+
+
+def _g6_note(state, o, took, moved=()):
+    g = _g6(state)
+    t = g["taken"].setdefault(o["id"], {})
+    for k, n in took.items():
+        t[k] = t.get(k, 0) + n
+    for goods in (took,) + tuple(moved):
+        for k, n in goods.items():
+            g["moved"][k] = g["moved"].get(k, 0) + n
+
+
+def _g6_contact(state, o):
+    """交換・貸し借り・返すが 1 つ済んだ (この季節に交換した村として数える)"""
+    g, sd = _g6(state), state["era2"]["step_day"]
+    if sd not in o["contacts"]:
+        o["contacts"].append(sd)
+    g["exchanges"] += 1
+    o["trust"] = min(1.0, round(o["trust"] + 0.1, 2))
+
+
+# ---- 村の物・家の物 ----
+
+def _g6_have(state, side, k):
+    e2 = state["era2"]
+    if side == "村":
+        if k in FOOD_KCAL:
+            return int(sum(f["kcal"] for f in state["store"] if f["kind"] == k) // FOOD_KCAL[k])
+        if k == "ヤギ":
+            return max(0, sum(1 for x in e2["goats"] if x.get("owner") is None) - 2)  # 村のヤギは 2 頭残す
+        return {"土器": e2.get("pots", 0), "鎌": e2.get("sickles", 0), "黒曜石": _g6(state)["obsidian"]}.get(k, 0)
+    if k in FOOD_KCAL:
+        return int(sum(f["kcal"] for f in _house(state, side)["store"] if f["kind"] == k) // FOOD_KCAL[k])
+    return sum(1 for x in e2["goats"] if x.get("owner") == side) if k == "ヤギ" else 0
+
+
+def _g6_take(state, side, goods, ids=None):
+    """side (「村」か家の名前) の物を出す (足りなければある分だけ)。戻り値: 出した物 (ids があれば、出したヤギの [番号, オスかメスか, 生まれた日] を足す。帳簿のため)"""
+    e2, out = state["era2"], {}
+    for k, n in goods.items():
+        n = min(n, _g6_have(state, side, k))
+        if n <= 0:
+            continue
+        if k in FOOD_KCAL:
+            _move_food(state["store"] if side == "村" else _house(state, side)["store"], [], k, n * FOOD_KCAL[k])
+        elif k == "ヤギ":
+            mine = [x for x in e2["goats"] if x.get("owner") == (None if side == "村" else side)]
+            for x in sorted(mine, key=lambda x: (x["sex"] != "オス", x["born"]))[:n]:  # オスの、年上から
+                e2["goats"].remove(x)
+                if ids is not None:
+                    ids.append([x["id"], x["sex"], x["born"]])
+        elif k == "黒曜石":
+            _g6(state)["obsidian"] -= n
+        else:
+            e2["pots" if k == "土器" else "sickles"] -= n
+            if k == "鎌":  # 黒曜石の刃の鎌の数は、村の鎌の数をこえない
+                _g6(state)["obs_sickles"] = min(_g6(state)["obs_sickles"], e2["sickles"])
+        out[k] = n
+    return out
+
+
+def _g6_put(state, side, goods, goats_in=(), ids=None):
+    """side に物を入れる (土器・鎌・黒曜石は、いつも村の物)。戻り値: 入れた先 (家がもうなければ「村」)。ids があれば、入れたヤギの [番号, オスかメスか, 生まれた日] を足す"""
+    e2, day, gi = state["era2"], state["day"], list(goats_in)
+    if side != "村" and side not in _homes(state):
+        side = "村"  # 家がもうない (村を出た) ときは村へ
+    for k, n in goods.items():
+        if n <= 0:
+            continue
+        if k in FOOD_KCAL:
+            (state["store"] if side == "村" else _house(state, side)["store"]).append({"kind": k, "kcal": n * FOOD_KCAL[k], "day": day})
+        elif k == "ヤギ":
+            for i in range(n):
+                x = gi[i] if i < len(gi) else {"sex": "メス", "age": 2}
+                e2["goats"].append({"id": e2["next_goat"], "sex": x["sex"], "born": day - x["age"] * YEAR, "owner": None if side == "村" else side})
+                if ids is not None:
+                    ids.append([e2["next_goat"], x["sex"], day - x["age"] * YEAR])
+                e2["next_goat"] += 1
+        elif k == "黒曜石":
+            _g6(state)["obsidian"] += n
+        else:
+            key = "pots" if k == "土器" else "sickles"
+            e2[key] = e2.get(key, 0) + n
+    return side
+
+
+# ---- 季節の終わりに、ほかの村の人が来る (申し出) ----
+
+def _g6_offer_new(state, rng, o, first):
+    g, day, s = _g6(state), state["day"], _g6_spread(state)
+    head = (f"前に村を出た{o['household']}の人たちが、村に来た。いまは {_okey(o)} で暮らしているという" if first and o["kind"] == "分かれた家"
+            else f"{_okey(o)} の人たちが、交換をもとめて村に来た" if first else f"{_okey(o)} の人たちが、また村に来た")
+    due = next((d for d in g["debts"] if d["other"] == o["id"] and d["status"] == "まだ" and d["due"] <= day + 1), None)
+    off, what = None, ""
+    bring = None
+    if due:
+        exact = due.get("proof") in ("封筒", "板")
+        bring = {k: min(n if exact else int(n * rng.uniform(1 - s, 1)), o[NODE_KEY[k]] if NODE_KEY.get(k) else n) for k, n in due["goods"].items()}
+        if sum(VALUE[k] * n for k, n in bring.items()) * 2 < sum(VALUE[k] * n for k, n in due["goods"].items()):
+            bring = None  # 半分も返せないときは、まだ返しに来ない
+    if o["bad"] is not None and o["grain"] < o["people"] * 60:
+        n = min(3000, max(100, round(o["people"] * 120, -2)))
+        off = {"kind": "貸して", "give": {}, "want": {"草の種": n}}
+        what = f"この年は畑が実らず苦しいので、草の種 {n} つかみ を貸してほしい、1 年のうちに同じ量を返す、と言った"
+    elif bring:
+        off = {"kind": "返す", "debt": due["id"], "give": bring, "want": {}}
+        what = f"[{due['id']}] の分として、{_gw(bring)} を返しに来た"
+    else:
+        sup, wants = _g6_supply(o), _g6_wants(state, o)
+        cap = sum(VALUE[k] * n for k, n in wants.items())
+        # ほしい物がヤギ半頭分 (草の種 約 190 つかみ) 以上あれば、ヤギ 1 頭を出す (12 人より小さい村は、ほしい物がヤギ 1 頭分に届かないため。2026-10-09 確かめ役)
+        good = "ヤギ" if sup["ヤギ"] >= 1 and cap >= VALUE["ヤギ"] / 2 else "黒曜石" if sup["黒曜石"] >= 5 and cap >= 5 * VALUE["黒曜石"] else None
+        if good:
+            k = max(1, min(3, sup["ヤギ"], int(cap // VALUE["ヤギ"]))) if good == "ヤギ" else min(15, sup["黒曜石"], int(cap // VALUE["黒曜石"]))
+            ask, left = {}, k * VALUE[good]
+            for w in ("土器", "鎌", "草の種"):
+                m = min(wants.get(w, 0), int(left // VALUE[w]))
+                if m > 0:
+                    ask[w], left = m, left - m * VALUE[w]
+            off = {"kind": "交換", "give": {good: k}, "want": ask}
+            what = f"{_gw(off['give'])} を出すので、{_gw(ask)} がほしいと言った"
+    if not off:
+        log(state, "よその村", None, f"{head}。交換できる物がなく、帰っていった", other=o["id"])
+        return
+    off.update(id=f"T{g['next_offer']}", other=o["id"], day=day,
+               goats_in=[{"sex": "メス" if rng.random() < 0.5 else "オス", "age": rng.randint(1, 4)} for _ in range(off["give"].get("ヤギ", 0))],
+               mem={"village": round(rng.uniform(1, 1 + s), 3), "other": round(rng.uniform(1 - s, 1), 3)})
+    g["next_offer"] += 1
+    g["offers"].append(off)
+    log(state, "よその村", None, f"{head}。{what} [{off['id']}]", other=o["id"], offer=off["id"])
+
+
+# ---- 季節の集まり (G6): 答えを読む・決める ----
+
+def _tid(k):
+    m = re.search(r"\d+", str(k or ""))
+    return f"T{int(m.group())}" if m else ""
+
+
+def _g6_side(v):
+    """申し出の答え: "村" / "家" / False (受けない) / None (読めない。お題の「...」)"""
+    if v is True:
+        return "村"
+    if v is False:
+        return False
+    s = str(v or "").strip()
+    if s.lower() in ("false", "no") or any(w in s for w in ("受けない", "しない", "断", "ことわ", "いらない")):
+        return False
+    vil, home = "村" in s, "家" in s
+    return "村" if vil and not home else "家" if home and not vil else None
+
+
+def _g6_good(v):
+    s = str(v or "")
+    return next((g for w, g in GOOD_WORDS if w in s), None)
+
+
+def _g6_goods(d):
+    out = {}
+    for k, v in (d.items() if isinstance(d, dict) else []):
+        good, n = _g6_good(k), _num(v)
+        if good and n > 0:
+            out[good] = out.get(good, 0) + n
+    return out
+
+
+def _g6_node(state, v):
+    """行き先: 「N1」か、知っている村の名前 (まわりに字があってもよい)"""
+    s = str(v or "")
+    known = [o for o in (state["era2"].get("g6") or {}).get("others", []) if o["known"] is not None]
+    m = re.search(r"[NnＮ]\s*(\d+)", s)
+    if m:
+        return next((o["id"] for o in known if o["id"] == f"N{int(m.group(1))}"), None)
+    hit = [o for o in known if o["name"] in s]
+    return max(hit, key=lambda o: len(o["name"]))["id"] if hit else None
+
+
+def _g6_new_season(state):
+    """季節の集まりのはじめ (G6): この季節の仕事の答えなどを空にする"""
+    g = _g6(state)
+    g["meets"].append(state["era2"]["step_day"])
+    g["meet_first"] = state["next_event"]
+    g["jobs"], g["keep_days"], g["trips"] = {}, {}, {}
+
+
+def _g6_job(state, q, job, own):
+    """交換に行く・記録をつける の、くわしい答え (e2["jobs"] には入れない)"""
+    g = _g6(state)
+    act = q["plan"]["activity"]
+    if act == "交換に行く":
+        then = job.get("then")
+        then = then.get("activity") if isinstance(then, dict) else then
+        g["jobs"][q["name"]] = {"activity": act, "to": _g6_node(state, job.get("to")), "carry": _g6_goods(job.get("carry")),
+                                "want": _g6_good(job.get("want")) or "ヤギ",
+                                "then": then if then in acts2(state) and then not in ACTS_G6 + [ACT_RECORD] else "休む",
+                                "house": bool(own and _yes(job.get("house")))}
+    elif act == ACT_RECORD:
+        w = job.get("what")
+        w = [w] if isinstance(w, str) else w if isinstance(w, list) else []
+        what = []
+        for y in w:
+            what += [x for x in WHATS if x in str(y) and x not in what]
+        how = next((h for h in ("板", "封筒", "数え札") if h in str(job.get("how") or "") and g["open"].get(h)), "数え札")
+        g["jobs"][q["name"]] = {"activity": act, "what": what or list(WHATS), "how": how}
+
+
+def _g6_collect(state, c, p, a, fam, own):
+    """季節の答えから、申し出 (trade)・家の印 (seal)・村の蓄えの封 (seal_store) を集める (代表の答えは家族の大人みんなの答え)"""
+    names = {q["name"] for q in fam}
+    tr = a.get("trade")
+    for k, v in (tr.items() if isinstance(tr, dict) else []):
+        tid, side = _tid(k), _g6_side(v)
+        if not tid or side is None or (side == "家" and not own):
+            continue
+        c["trade"].setdefault(tid, {}).setdefault(side, set()).update(names)
+        c["trade_by"].setdefault(tid, {})[p["name"]] = side
+        if side == "家" and p.get("household"):
+            c["house"].setdefault(tid, []).append(p["household"])
+    if own and p.get("household") and _yes(a.get("seal")):
+        c["seal"].setdefault(p["household"], p["name"])
+    if _yes(a.get("seal_store")):
+        c["store"] |= names
+        c["store_by"].add(p["name"])
+
+
+def _g6_meeting(state, c, n):
+    """季節の集まり (G6。G5 の集まりのあと、よそから来た人の受け入れの前): 家の印 → 村の蓄えの封 → 申し出"""
+    e2, g = state["era2"], _g6(state)
+    lead, homes = _leader(state), _homes(state)
+    for h, who in sorted(c["seal"].items()):
+        if h in homes and h not in g["seals"]:
+            g["seals"][h] = {"day": e2["step_day"], "by": who}
+            log(state, "印", who, f"{h}の代表の {who} が、家の印 (焼いた粘土に形を刻んだもの) を作った。これから{h}の倉の口は、粘土でふさいで{h}の印を押しておく",
+                household=h)
+    if len(c["store"]) * 2 > n or (lead and lead in c["store_by"]):
+        g["store_sealed"] = e2["step_day"]
+        alone = len(c["store"]) * 2 <= n
+        log(state, "封", lead if alone else None, (f"まとめ役の {lead} が決めて、" if alone else "")
+            + "この季節は、村の蓄えの土器の口を粘土でふさぐことになった。取るときは封を割り、取った人の家の印を押した粘土で封をし直す。割った封のかけらは取っておく")
+    for off in g["offers"]:
+        o = _other(state, off["other"])
+        if o:
+            _g6_decide(state, c, off, o, n, lead)
+    g["offers"] = []
+
+
+def _g6_decide(state, c, off, o, n, lead):
+    g = _g6(state)
+    if off["kind"] == "返す":
+        _g6_repay(state, off, o)
+        return
+    tally = {k: len(v) for k, v in c["trade"].get(off["id"], {}).items()}
+    if tally.get("村", 0) * 2 > n or (lead and c["trade_by"].get(off["id"], {}).get(lead) == "村"):
+        side = "村"
+    else:
+        cands = [h for h in c["house"].get(off["id"], []) if all(_g6_have(state, h, k) >= m for k, m in off["want"].items())]
+        side = max(sorted(cands), key=lambda h: sum(f["kcal"] for f in _house(state, h)["store"])) if cands else None
+    votes = f"村 {tally.get('村', 0)}・家 {tally.get('家', 0)}・受けない {tally.get(False, 0)} / 大人 {n}"
+    if side is None:
+        o["trust"] = max(0.0, round(o["trust"] - 0.1, 2))
+        log(state, "よその村", None, f"季節の集まりで、{o['name']} の申し出 [{off['id']}] は受けなかった ({votes})", other=o["id"], offer=off["id"])
+        return
+    if any(_g6_have(state, side, k) < m for k, m in off["want"].items()):
+        log(state, "交換", None, f"季節の集まりで、{o['name']} の申し出 [{off['id']}] を{side}の物で受けようとしたが、{_gw(off['want'])} がなかった",
+            other=o["id"], offer=off["id"])
+        return
+    out_ids = []
+    gave = _g6_take(state, side, off["want"], out_ids)
+    _node_add(o, gave, 1)
+    who = "村は、村の物で" if side == "村" else f"{side}が、家の物で"
+    if off["kind"] == "貸して":
+        d = {"id": f"D{g['next_debt']}", "other": o["id"], "lender": side, "goods": gave, "day": state["day"], "due": state["day"] + YEAR,
+             "proof": None, "mem": off["mem"], "status": "まだ", "end": None}
+        g["next_debt"] += 1
+        g["debts"].append(d)
+        _g6_note(state, o, {}, (gave,))
+        _g6_contact(state, o)
+        log(state, "貸し借り", None, f"季節の集まりで、{who} {o['name']} に {_gw(gave)} を貸した [{d['id']}] (1 年のうちに同じ量を返すと言った。{votes})",
+            other=o["id"], debt=d["id"], moves=[_mv(side, -1, gave, out_ids)])
+        return
+    _node_add(o, off["give"], -1)
+    in_ids = []
+    to = _g6_put(state, side, off["give"], off["goats_in"], in_ids)
+    _g6_note(state, o, gave, (off["give"],))
+    _g6_contact(state, o)
+    sx = (" (" + "・".join(f"{x['sex']} {x['age']} 歳" for x in off["goats_in"]) + ")") if off["goats_in"] else ""
+    log(state, "交換", None, f"季節の集まりで、{who} {o['name']} の申し出 [{off['id']}] を受け、{_gw(gave)} を {_gw(off['give'])}{sx} と取り替えた ({votes})",
+        other=o["id"], offer=off["id"], moves=[_mv(side, -1, gave, out_ids), _mv(to, 1, off["give"], in_ids)], **({"household": side} if side != "村" else {}))
+
+
+def _g6_repay(state, off, o):
+    """ほかの村が貸し借りを返しに来た (集まりで決めずに受けとる)。封筒・板の記録があれば、約束した数を両方で確かめる"""
+    g, day = _g6(state), state["day"]
+    d = next((x for x in g["debts"] if x["id"] == off["debt"] and x["status"] == "まだ"), None)
+    if not d:
+        return
+    bring = {k: min(n, o[NODE_KEY[k]]) if NODE_KEY.get(k) else n for k, n in off["give"].items()}
+    _node_add(o, bring, -1)
+    in_ids = []
+    side = _g6_put(state, d["lender"], bring, (), in_ids)
+    mv = [_mv(side, 1, bring, in_ids)]
+    _g6_note(state, o, {}, (bring,))
+    _g6_contact(state, o)
+    true = d["goods"]
+    short = {k: n - bring.get(k, 0) for k, n in true.items() if n - bring.get(k, 0) > 0}
+    to = "村" if d["lender"] == "村" else d["lender"]
+    # 足りない分が草の種 50 つかみ分より少なければ、返さなくてよいことにする (交換に行ったときの「あとで返す」と同じ目安。2026-10-09 試し回し:
+    #   数え札の記録では、向こうは覚えで持って来るので、草の種 1 つかみのような残りが季節ごとに続き、最後は「返されないまま」になっていた)
+    small = bool(short) and sum(VALUE[k] * n for k, n in short.items()) < 50
+    if d.get("proof") in ("封筒", "板", "数え札"):
+        g["checked"][d["proof"]] += 1
+        if short and not small:
+            d["goods"] = short
+        else:
+            d.update(status="返した", end=day)
+        how = "封筒を割って" if d["proof"] == "封筒" else f"{d['proof']}の記録を見て"
+        log(state, "確かめる", None, f"{o['name']} の人が [{d['id']}] を返しに来た。{how}、貸した数 ({_gw(true)}) を確かめ、{to}は {_gw(bring)} を受けとった"
+            + (f"。足りない {_gw(short)} は、わずかなので、返さなくてよいことになった" if small
+               else f"。足りない {_gw(short)} は、あとで返すことになった" if short else ""), other=o["id"], debt=d["id"], how=d["proof"], moves=mv)
+        return
+    g["unchecked"] += 1  # 記録のない量を、覚えで決めた
+    d.update(status="返した", end=day)
+    mem = {k: math.ceil(n * d["mem"]["village"]) for k, n in true.items()}
+    if any(mem[k] > bring.get(k, 0) * BLAME for k in mem):
+        g["misremember"] += 1
+        o["trust"] = max(0.0, round(o["trust"] - 0.2, 2))
+        log(state, "覚え", None, f"{o['name']} の人は、[{d['id']}] の分として {_gw(bring)} を返した。{to}の覚えでは {_gw(mem)} を貸したはずだった (記録はない)",
+            other=o["id"], debt=d["id"], moves=mv)
+    else:
+        log(state, "貸し借り", None, f"{o['name']} の人が、[{d['id']}] の分として {_gw(bring)} を返した ({to}が受けとった。記録はなく、量は覚えで決めた)",
+            other=o["id"], debt=d["id"], moves=mv)
+
+
+# ---- 30 日のあいだ: 交換に行く・記録をつける・封 ----
+
+def _g6_then(p, j):
+    p["plan"] = {"activity": j["then"], "place": "camp", "with": []}
+
+
+def _g6_trips_day(state):
+    """交換に行く (G6。毎日、仕事の計算のあと・食べる前): 出かける → 歩く → 向こうの村で交換 → 歩く → 帰る"""
+    e2, g, day = state["era2"], _g6(state), state["day"]
+    for p in adults(state):
+        j = g["jobs"].get(p["name"])
+        if not j and (p.get("plan") or {}).get("activity") == "交換に行く":  # 答えがなく、前の季節の「交換に行く」のまま (行き先が分からない)
+            j = {"activity": "交換に行く", "to": None, "carry": {}, "want": "ヤギ", "then": "休む", "house": False}
+        if not j or j["activity"] != "交換に行く":
+            continue
+        t = p.get("today") or {}
+        tr = g["trips"].get(p["name"])
+        if tr is None:
+            if day != e2["step_day"]:
+                continue
+            tr = g["trips"][p["name"]] = _g6_depart(state, p, t, j)
+        if tr["state"] != "行く":
+            continue
+        o, k = _other(state, tr["to"]), day - tr["start"]
+        t["away"] = True
+        if k != tr["days"]:
+            t["spent"] = round(t.get("spent", BASE_KCAL) + world._walk_kcal(p, TRIP_WALK) * TRIP_LOAD)
+        if k == tr["days"]:
+            _g6_barter(state, p, t, tr, o)
+        elif k == 2 * tr["days"]:
+            _g6_return(state, p, t, tr, o, j)
+        elif k > 0:
+            t.setdefault("events", []).append(log(state, "交換に行く", p["name"], f"{p['name']} が、{o['name']} {'への' if k < tr['days'] else 'からの帰り'}道を歩いた",
+                                                  other=o["id"], trip=tr["id"]))
+
+
+def _g6_depart(state, p, t, j):
+    g = _g6(state)
+    o = _other(state, j["to"]) if j.get("to") else None
+    side = p["household"] if j["house"] and p.get("household") in _homes_built(state) else "村"
+    carry = {k: n for k, n in j["carry"].items() if k in LOAD}  # ほかの村が受けとる物 (_g6_cap) だけを持って行く (ヤギ・干し肉・黒曜石は受けとらないので持って行かない)
+    load = sum(n / LOAD[k] for k, n in carry.items())
+    if load > 1:
+        carry = {k: int(n / load) for k, n in carry.items()}
+    ok = o is not None and t.get("activity") == "交換に行く"
+    took = _g6_take(state, side, carry) if ok else {}
+    why = "行き先の村が分からず" if not o else "けがをしていて" if not ok else "持って行ける物がなく" if not took else None
+    if why:
+        _g6_then(p, j)
+        t.setdefault("events", []).append(log(state, "交換に行く", p["name"], f"{p['name']} は、{why}、交換に行かなかった"))
+        return {"state": "行かなかった"}
+    tr = {"id": f"R{g['next_trip']}", "who": p["name"], "to": o["id"], "start": state["day"], "days": o["days"], "side": side,
+          "took": took, "want": j["want"], "got": {}, "back": {}, "goats_in": [], "debt": None, "state": "行く"}
+    g["next_trip"] += 1
+    t.setdefault("events", []).append(log(state, "交換に行く", p["name"], f"{p['name']} が、{'村' if side == '村' else side}の {_gw(took)} を持って、"
+                                          f"{_okey(o)} へ交換に行った", other=o["id"], trip=tr["id"], moves=[_mv(side, -1, took)]))
+    return tr
+
+
+def _g6_barter(state, p, t, tr, o):
+    """向こうの村で: ほしい分だけ受けとり、want の物 (なければほかの物) で払う。払いきれない分は、あとで返す約束"""
+    g = _g6(state)
+    tr["bartered"] = True  # 季節の終わりに、まだ帰っていないときの持ち帰り方を分ける
+    wants = _g6_wants(state, o)
+    took = {k: min(n, wants.get(k, 0)) for k, n in tr["took"].items()}
+    took = {k: n for k, n in took.items() if n > 0}
+    tr["back"] = {k: n - took.get(k, 0) for k, n in tr["took"].items() if n - took.get(k, 0) > 0}
+    if not took:
+        t.setdefault("events", []).append(log(state, "交換", p["name"], f"{p['name']} は {o['name']} で {_gw(tr['took'])} を見せたが、"
+                                              "この季節はもう足りていると言われ、交換できなかった", other=o["id"], trip=tr["id"]))
+        return
+    pay, left = _g6_pay(o, sum(VALUE[k] * n for k, n in took.items()), tr["want"], skip=set(took))
+    _node_add(o, took, 1)
+    _node_add(o, pay, -1)
+    r = _g6_r(state, 200 + int(tr["id"][1:]))
+    tr["got"] = pay
+    tr["goats_in"] = [{"sex": "メス" if r.random() < 0.5 else "オス", "age": r.randint(1, 4)} for _ in range(pay.get("ヤギ", 0))]
+    owe = ""
+    if left >= 50:
+        # その村が出せる物でだけ約束する (ヤギは 2 頭残すので、2 頭より多く飼う村だけ。2026-10-09 試し回し: ヤギのいない分かれた家の村が、ヤギ 1 頭を返すと約束していた)
+        can = (tr["want"] == "ヤギ" and o["goats"] > 2) or (tr["want"] == "黒曜石" and o["has_obsidian"])
+        k = tr["want"] if can and left >= VALUE[tr["want"]] / 2 else "草の種"
+        s = _g6_spread(state)
+        d = {"id": f"D{g['next_debt']}", "other": o["id"], "lender": tr["side"], "goods": {k: max(1, round(left / VALUE[k]))}, "day": state["day"],
+             "due": state["day"] + 2 * SEASON_DAYS, "proof": None,
+             "mem": {"village": round(r.uniform(1, 1 + s), 3), "other": round(r.uniform(1 - s, 1), 3)}, "status": "まだ", "end": None}
+        g["next_debt"] += 1
+        g["debts"].append(d)
+        tr["debt"] = d["id"]
+        owe = (f"。足りない分の {_gw(d['goods'])} は、あとで返すと言った [{d['id']}]" if pay  # 何も払えなかったときは「足りない分」と書かない (2026-10-09 試し回し)
+               else f"。{o['name']} は、いま払える物がなく、{_gw(d['goods'])} をあとで返すと言った [{d['id']}]")
+    _g6_note(state, o, took, (pay,))
+    _g6_contact(state, o)
+    t.setdefault("events", []).append(log(state, "交換", p["name"], f"{p['name']} は {o['name']} で、{_gw(took)} を渡し"
+                                          + (f"、{_gw(pay)} を受けとった" if pay else "た") + owe
+                                          + (f" (受けとってもらえなかった {_gw(tr['back'])} は持ち帰る)" if tr["back"] else ""), other=o["id"], trip=tr["id"]))
+
+
+def _g6_home(*goods):
+    """持ち帰った物の文: 受けとった物と、受けとってもらえなかった物を合わせて書く (何もなければ「何も持ち帰らなかった」)
+    (2026-10-09 試し回し: 受けとってもらえなかった物だけを持ち帰ったとき「なし を持ち帰った」と出ていた)"""
+    both = {}
+    for x in goods:
+        for k, n in x.items():
+            both[k] = both.get(k, 0) + n
+    return f"{_gw(both)} を持ち帰った" if any(n > 0 for n in both.values()) else "何も持ち帰らなかった"
+
+
+def _g6_return(state, p, t, tr, o, j):
+    r = _g6_r(state, 300 + int(tr["id"][1:]))
+    got, lost, hurt = dict(tr["got"]), "", ""
+    if r.random() < TRIP_LOSS:
+        if got.get("ヤギ"):
+            got["ヤギ"] -= 1
+            lost = "。帰り道でヤギ 1 頭がはぐれていなくなった"
+        elif got.get("草の種"):
+            m = max(1, got["草の種"] // 10)
+            got["草の種"] -= m
+            lost = f"。帰り道で草の種 {m} つかみ をこぼして失った"
+    if r.random() < TRIP_HURT * 2 * tr["days"]:
+        p["injured"] = 2
+        hurt = "。帰り道でけがをした"
+    ids = []
+    side = _g6_put(state, tr["side"], got, tr["goats_in"], ids)
+    _g6_put(state, tr["side"], tr["back"])
+    tr.update(state="帰った", end=state["day"], got=got)
+    _g6(state)["trip_log"].append(dict(tr))
+    _g6_then(p, j)
+    t.setdefault("events", []).append(log(state, "交換に行く", p["name"], f"{p['name']} が {o['name']} から帰った ({_g6_home(got, tr['back'])}{lost}{hurt})",
+                                          other=o["id"], trip=tr["id"], moves=[_mv(side, 1, got, ids), _mv(side, 1, tr["back"])]))
+
+
+def _g6_keep_day(state, p, t):
+    """記録をつける (1 日)"""
+    g = _g6(state)
+    j = g["jobs"].get(p["name"]) or {"what": list(WHATS), "how": "数え札"}
+    g["keep_days"][p["name"]] = g["keep_days"].get(p["name"], 0) + 1
+    w = "・".join(WHAT_WORDS[x] for x in j["what"])
+    txt = {"数え札": f"粘土の数え札を作り、{w} を数えた", "封筒": f"粘土の数え札を作って {w} を数え、貸し借りの分は粘土の玉 (封筒) に入れて印を押した",
+           "板": f"粘土の板に、物のしるしと数のしるしを分けて押し、{w} を記した"}[j["how"]]
+    t.setdefault("events", []).append(log(state, "記録をつける", p["name"], f"{p['name']} がキャンプで、{txt}"))
+
+
+def _g6_opened(state, p, where):
+    """封のかけら: 印で封をした村の蓄え (この季節) か家の倉を、家の人が開けた (1 つの家で 1 日 1 回まで)"""
+    g, h = state["era2"].get("g6"), p.get("household")
+    if not g or not h:
+        return
+    if where == "蓄え" and g["store_sealed"] != state["era2"].get("step_day"):
+        return
+    if where == "倉" and h not in g["seals"]:
+        return
+    if g["opened"].get(f"{where}:{h}") == state["day"]:
+        return
+    g["opened"][f"{where}:{h}"] = state["day"]
+    key = h if h in g["seals"] else "(印なし)"
+    g["season_seals"][key] = g["season_seals"].get(key, 0) + 1
+
+
+def _g6_obsidian_blades(state, n):
+    """道具づくり (G6): 村に黒曜石があれば、鎌に黒曜石の刃をはめる (1 本に 1 個)"""
+    g = state["era2"].get("g6")
+    if not g or not USE_OBSIDIAN:
+        return 0
+    use = min(n, g["obsidian"])
+    g["obsidian"] -= use
+    g["obs_sickles"] += use
+    return use
+
+
+# ---- もめごと (G5 の仕組みに、G6 の覚えと記録を足す) ----
+
+def _g6_claim(state, d):
+    """G6 のもめごとの量: 記録 (数え札・板を全部残せた) があれば正しい量。なければ、言い出した家の覚え (多めのことがある)"""
+    how = _g6_cover(state, d["kind"]) if d["kind"] in ("蓄え", "刈る") else None
+    if how:
+        d["record"] = how
+        return f"。{how}の記録がある"
+    if d["kind"] not in ("蓄え", "刈る", "倉", "覚え"):
+        return ""  # ヤギに荒らされた畑は、見ればわかる
+    r, s = _g6_r(state, 1000 + int(d["id"][1:])), _g6_spread(state)
+    d["harm_true"], d["mem"] = d["harm"], round(r.uniform(1 - s, 1), 3)
+    d["harm"] = max(1, round(d["harm"] * r.uniform(1, 1 + s)))
+    return "。言い出した家の覚えで、記録はない"
+
+
+def _g6_check(state, d):
+    """記録のあるもめごとを、季節の集まりで確かめた (一度だけ数える)"""
+    if d.get("checked"):
+        return
+    g = _g6(state)
+    d["checked"] = state["day"]
+    g["checked"][d["record"]] += 1
+    log(state, "確かめる", None, f"季節の集まりで、もめごと [{d['id']}] の量を、{d['record']}の記録で確かめた (草の種にして {d['harm']} つかみ 分)",
+        dispute=d["id"], how=d["record"])
+
+
+def _g6_after_pay(state, d, paid):
+    """覚えで払ったあと: 払った家の覚えより多く払ったと思えば、覚え違いのもめごとのもと"""
+    if d.get("record") or "harm_true" not in d or paid <= 0 or d["kind"] == "覚え":
+        return
+    g = _g6(state)
+    g["unchecked"] += 1
+    mine = d["harm_true"] * d["mem"]
+    if paid > mine * BLAME:
+        g["misremember"] += 1
+        what = (f"{d['against']}は、もめごと [{d['id']}] で{d['from']}に草の種にして 約 {paid} つかみ 分を払ったが、"
+                f"{d['against']}の覚えでは 約 {round(mine)} つかみ 分だった (記録はない)")
+        eid = log(state, "覚え", None, what, dispute=d["id"])
+        _incident(state, "覚え", d["against"], d["from"], (paid - mine) * GRAIN, what, eid)
+
+
+def _g6_credit(state, flow):
+    """配給の記録 (G6): 村の蓄えの記録を全部残せた季節は、作る・記録をつける・交換に行った日を、1 日 = 大人 1 人の 1 日分として「入れた」に数える"""
+    cr = (state["era2"].get("g6") or {}).get("credit") or {}
+    return {h: [v[0] + cr.get(h, 0) * DAY_FOOD, v[1], v[2]] for h, v in flow.items()}
+
+
+def _g6_workdays(state):
+    e2, g, days = state["era2"], _g6(state), {}
+    rows = list(e2.get("craft_days", {}).items()) + list(g["keep_days"].items())
+    rows += [(tr["who"], 2 * tr["days"] + 1) for tr in g["trips"].values() if tr.get("start") is not None]
+    for n, d in rows:
+        q = next((q for q in state["people"] if q["name"] == n), None)
+        if q and q.get("household"):
+            days[q["household"]] = days.get(q["household"], 0) + d
+    return days
+
+
+# ---- 季節の終わり (G6) ----
+
+def _g6_records(state, frac):
+    """この季節の記録 (G5 のもめごとを決める前。どの量に記録があるかを決める)"""
+    e2, g, g5 = state["era2"], _g6(state), state["era2"].get("g5") or {}
+    g["cover"], g["credit"] = {}, {}
+    keep = {n: d for n, d in sorted(g["keep_days"].items()) if d > 0}
+    if not keep:
+        return
+    homes = _homes(state)
+    flow = {h: v for h, v in g5.get("flow", {}).items() if h in homes}
+    work = _g6_workdays(state)
+    sd = e2["step_day"]
+    need = {"蓄え": math.ceil(sum(v[0] + v[1] + v[2] for v in flow.values()) / GRAIN / TOKEN["草の種"]) + math.ceil(sum(work.values()) / TOKEN["日"]),
+            "交換": sum(math.ceil(n / TOKEN.get(k, 100)) for k, n in g["moved"].items()) + sum(1 for d in g["debts"] if d["day"] >= sd - 1),
+            "刈る": math.ceil(sum(n for row in g5.get("reap", {}).values() for n in row.values()) / TOKEN["草の種"])}
+    done, how, env = {w: 0 for w in WHATS}, {w: None for w in WHATS}, None
+    for n, days in keep.items():
+        j = g["jobs"].get(n) or {"what": list(WHATS), "how": "数え札"}
+        cap = days * RATE[j["how"]]
+        for w in j["what"]:
+            use = min(cap, need[w] - done[w])
+            if use > 0:
+                done[w] += use
+                cap -= use
+                how[w] = "板" if "板" in (j["how"], how[w]) else "数え札"
+                if w == "交換" and j["how"] in ("封筒", "板"):
+                    env = "板" if j["how"] == "板" or env == "板" else "封筒"
+    full = [w for w in WHATS if need[w] > 0 and done[w] >= need[w]]
+    g["cover"] = {w: how[w] for w in full}
+    if "交換" in full:
+        for d in g["debts"]:
+            if d["day"] >= sd - 1 and not d.get("proof"):
+                d["proof"] = env or "数え札"
+    if "蓄え" in full:
+        g["credit"] = work
+    tokens = sum(done.values())
+    if tokens:
+        g["token_seasons"] += 1
+        g["big"] = max(g["big"], sum(need.values()))
+    g["records"] = (g["records"] + [{"day": state["day"], "keepers": {n: [d, (g["jobs"].get(n) or {}).get("how", "数え札")] for n, d in keep.items()},
+                                      "need": need, "done": done, "how": how, "complete": full, "envelope": env}])[-8:]
+    who = "・".join(keep)
+    parts = [f"{WHAT_WORDS[w]} ({'全部残せた' if w in full else '途中まで'}。{done[w]} / {need[w]} 個分)" for w in WHATS if need[w] and done[w]]
+    log(state, "記録", list(keep)[0], f"{who} が、この季節の " + ("、".join(parts) if parts else "記録をつけようとしたが、残せたものはなかった")
+        + (" を残した" if parts else ""), count=tokens, how="・".join(sorted({x for x in how.values() if x})) or "数え札")
+
+
+def _g6_range(rng, x, s):
+    lo, hi = x * rng.uniform(1 - s, 1), x * rng.uniform(1, 1 + s)
+    return [int(lo // 100 * 100), int(-(-hi // 100) * 100)]
+
+
+def _g6_ladder(state):
+    """記録の道具 (困りごとが起きてから使えるようになる)。使うかは人が決める"""
+    g, day = _g6(state), state["day"]
+    op = g["open"]
+    if not op["数え札"] and g["seal_seasons"] >= 1 and g["unchecked"] >= 1:
+        op["数え札"] = day
+        log(state, "記録", None, "印で封をするようになり、記録のない量を覚えで決めることも起きた。これからは、粘土の数え札で量を数えて残せる (主な仕事「記録をつける」)",
+            tool="数え札")
+    if op["数え札"] and not op["封筒"] and any(d["status"] == "まだ" for d in g["debts"]):
+        op["封筒"] = day
+        log(state, "記録", None, "ほかの村との貸し借りがある。これからは、貸し借りの数え札を粘土の玉 (封筒) に入れ、外に印を押して残せる", tool="封筒")
+    if op["数え札"] and not op["板"] and g["token_seasons"] >= TABLET_SEASONS and g["big"] >= TABLET_TOKENS:
+        op["板"] = day
+        log(state, "記録", None, f"数え札で記録した季節が {g['token_seasons']} つになり、数え札が 1 季節に {g['big']} 個も要る季節があった。"
+            "これからは、粘土の板に、物のしるしと数のしるしを分けて押して記せる", tool="板")
+
+
+def _town(state):
+    """町の目安 (いまの季節)。届いた日は区切り F3 に残る (あとで下回っても消さない)"""
+    g = state["era2"].get("g6") or {}
+    last = g.get("meets", [])[-TOWN_RUN:]
+    others = g.get("others", [])
+    run = len(last) == TOWN_RUN and all(any(d in o["contacts"] for o in others) for d in last)
+    partners = [o for o in others if any(d in last for d in o["contacts"])]
+    biggest = max((o["people"] for o in partners), default=0)
+    pop = sum(1 for q in state["people"] if q["alive"])
+    ads, nf = len(adults(state)), len(g.get("nonfood", []))
+    ok = bool(g) and pop >= TOWN_POP and run and len(partners) >= TOWN_PARTNERS and pop >= CENTRE * biggest and nf >= NONFOOD * ads - 1e-9
+    return {"ok": ok, "pop": pop, "run": run, "partners": len(partners), "biggest": biggest, "nonfood": nf, "adults": ads}
+
+
+def _record_ok(state):
+    """記録 (文字の入口): 物のしるしと数のしるしを分けて記した粘土の板で、量を確かめた"""
+    return ((state["era2"].get("g6") or {}).get("checked") or {}).get("板", 0) >= 1
+
+
+def _g6_settled(state, v, accepted):
+    """ほかの村から来た群れを、受け入れた / 受け入れなかった"""
+    o = _other(state, v.get("from"))
+    if not o:
+        return
+    if accepted:
+        o["trust"] = min(1.0, round(o["trust"] + 0.1, 2))
+        if v.get("seed") is not None:
+            o["people"] = max(0, o["people"] - len(v["members"]))
+            _g6(state)["joined"] += len(v["members"])
+    else:
+        o["trust"] = max(0.0, round(o["trust"] - 0.1, 2))
+
+
+def _g6_season_end(state, frac):
+    """季節の終わり (G6。G5 の季節の終わりのあと): ほかの村ができる → 来る (申し出) → 住みたい人 → 貸し借り → 封のかけら → 出し入れの見え方 → 記録の道具 → 町"""
+    e2, g, day = state["era2"], _g6(state), state["day"]
+    rng = _rng(state, G6_SALT)  # この季節の終わりの G6 の乱数は、すべてこの列から (順番を変えない)
+    sd, g5 = e2["step_day"], e2.get("g5") or {}
+    # 0. 途中で区切った季節: まだ帰っていない人は、持ち物を持ち帰ったことにする (向こうで交換したあとなら、受けとった物と受けとってもらえなかった物。
+    #    交換の前なら、持って行った物。2026-10-09 確かめ役: 前は、向こうが受けとって何も払えなかったとき、渡した物も持ち帰っていた)
+    for name, tr in g["trips"].items():
+        if tr.get("state") == "行く":
+            ids = []
+            if tr.get("bartered"):
+                side = _g6_put(state, tr["side"], tr["got"], tr["goats_in"], ids)
+                _g6_put(state, tr["side"], tr["back"])
+                mv = [_mv(side, 1, tr["got"], ids), _mv(side, 1, tr["back"])]
+                brought = {k: tr["got"].get(k, 0) + tr["back"].get(k, 0) for k in list(tr["got"]) + [k for k in tr["back"] if k not in tr["got"]]}
+            else:
+                side = _g6_put(state, tr["side"], tr["took"])
+                mv, brought = [_mv(side, 1, tr["took"])], tr["took"]
+            tr.update(state="帰った", end=day)
+            g["trip_log"].append(dict(tr))
+            o = _other(state, tr["to"])
+            log(state, "交換に行く", name, f"季節が途中で区切られたので、{name} は {o['name'] if o else 'ほかの村'} から帰ってきた ({_g6_home(brought)})",
+                other=tr["to"], trip=tr["id"], moves=mv)
+    # 1. 村を出た家 (G5) は、まだだれも知らない「分かれた家の村」になる (G6 の前に出た家も。来たときに初めてお題に出る)
+    for f in g5.get("fissions", []):
+        if not any(o["household"] == f["household"] for o in g["others"]):
+            _new_other(state, rng, "分かれた家", household=f["household"], people=len(f["people"]), goats=f["goats"], grain=round(f["store"] / GRAIN))
+    # 2. この季節の終わりに来たよその群れの、来たところ (G6 に入る前に来た人の来たところは書かない)
+    for v in e2["visitors"]:
+        if v.get("day") == day and "from" not in v:
+            st = [o for o in g["others"] if o["kind"] == "よその村"]
+            o = rng.choice(st) if st and (len(st) >= MAX_STRANGERS or rng.random() < 0.5) else _new_other(state, rng, "よその村")
+            v["from"] = o["id"]
+            o["known"] = o["known"] or day
+            log(state, "よその村", None, f"よその群れの {'・'.join(m['name'] for m in v['members'])} は、{_okey(o)} から来たと言った", other=o["id"])
+    # 3. 交換をもとめて、よその村の人が来る (G6 の最初の季節の終わりは必ず。【仮定】交換は村の始まりからあったので、待たない (計画 3.))
+    #    最初の季節の終わりに、2. で群れの来たところの村ができていたら、その村の人が来る (新しい村は作らない。2026-10-09 確かめ役: 前は 2. で村ができると、来ないことが多かった)
+    st = [o for o in g["others"] if o["kind"] == "よその村"]
+    came = set()
+    if not g["log"] or (len(st) < MAX_STRANGERS and rng.random() < STRANGER_P * frac):
+        o = st[0] if st and not g["log"] else _new_other(state, rng, "よその村")
+        o["known"] = o["known"] or day
+        _g6_offer_new(state, rng, o, True)
+        came.add(o["id"])
+    # 4. ほかの村の 1 季節 (【仮定】人は 1 季節 0.5% ほど増える。夏のはじめに、その年が苦しい年か決まる。ヤギは春に増える。土器・鎌は少しずつ割れる)
+    nxt = season(day + 1)
+    for o in g["others"]:
+        if rng.random() < o["people"] * 0.005 * frac:
+            o["people"] += 1
+        if nxt == "夏":
+            o["bad"] = day if rng.random() < BAD_P else None
+            o["grain"] = min(o["grain"], o["people"] * 20) if o["bad"] is not None else min(o["people"] * 300, o["grain"] + o["people"] * 100)
+        if nxt == "春":
+            o["goats"] = min(max(o["people"], 2), round(o["goats"] * 1.3))
+        o["pots"], o["sickles"] = int(o["pots"] * 0.97), int(o["sickles"] * 0.95)
+        if o["has_obsidian"]:
+            o["obsidian"] = min(40, o["obsidian"] + 8)
+    # 5. ほかの村の人が来る (この季節に村の人が行った村は来ない)
+    went = {tr.get("to") for tr in g["trips"].values()}
+    for o in g["others"]:
+        if o["id"] in came:
+            continue
+        due = any(d["other"] == o["id"] and d["status"] == "まだ" and d["due"] <= day + 1 for d in g["debts"])
+        # 返す分のある村は、村の人が行った季節でも返しに来る (2026-10-09 試し回し: 毎季節行く村は一度も来られず、貸し借りがみな「返されないまま」になっていた)
+        if o["id"] in went and not due:
+            continue
+        p = min(0.8, max(0.8 if due else 0.0, CONTACT_P[o["kind"]] * o["trust"] / 0.5))
+        if rng.random() < p * frac:
+            first = o["known"] is None
+            o["known"] = o["known"] or day
+            _g6_offer_new(state, rng, o, first)
+    # 6. 交換している村から、ここで暮らしたい人が来る (町に人が集まる。【文献・二次】ブラクには移り住んだ人が加わったとする調べがある【仮定】見込み)
+    recent = g["meets"][-TOWN_RUN:]
+    for o in g["others"]:
+        if o["known"] is None or o["people"] < JOIN_MIN or not any(c in recent for c in o["contacts"]):
+            continue
+        if rng.random() < JOIN_P * min(1.0, store_days(state) / 120) * (2 if o["bad"] is not None else 1) * frac:
+            members = []
+            for i in range(rng.choice([1, 2, 2, 3])):
+                age = rng.randint(16, 35) if i < 2 else rng.randint(2, 12)
+                members.append({"name": _next_name(state), "sex": "女" if rng.random() < 0.5 else "男", "age": age})
+            e2["visitors"].append({"name": members[0]["name"], "members": members, "day": day, "from": o["id"], "seed": rng.getrandbits(31)})
+            txt = "、".join(f"{m['name']} ({m['sex']}、{m['age']} 歳)" for m in members)
+            log(state, "訪れる", None, f"{_okey(o)} から {txt} がやって来て、「ここで暮らしたい」と言った", other=o["id"])
+    # 7. 返されないまま 1 年たった貸し借り
+    for d in g["debts"]:
+        if d["status"] == "まだ" and day - d["due"] >= YEAR:
+            d.update(status="返されない", end=day)
+            o = _other(state, d["other"])
+            if o:
+                o["trust"] = max(0.0, round(o["trust"] - 0.2, 2))
+            log(state, "貸し借り", None, f"[{d['id']}] ({o['name'] if o else 'ほかの村'} が返すはずの {_gw(d['goods'])}) は、返されないまま 1 年たった", debt=d["id"])
+    # 8. 封のかけら (この季節)
+    ss = g["season_seals"]
+    if ss:
+        log(state, "封", None, "この季節、印で封をした倉や村の蓄えが開けられた (割った封のかけらは取っておいた): "
+            + "、".join(f"{h}の印 {n} 回" if h != "(印なし)" else f"印のない封 {n} 回" for h, n in sorted(ss.items())), count=sum(ss.values()))
+        for h, n in ss.items():
+            g["sealings"][h] = g["sealings"].get(h, 0) + n
+        if sum(1 for h in ss if h != "(印なし)") >= 2:
+            g["seal_seasons"] += 1
+    # 9. 前の季節の、家ごとの村の蓄えへの出し入れの見え方 (記録がなければ、みんなの覚えの幅。印で封をした家は幅が半分)
+    s, how = _g6_spread(state), g["cover"].get("蓄え")
+    rows = {}
+    for h, (i, out) in sorted(g5.get("last_flow", {}).items()):
+        sh = s / 2 if h in g["seals"] and g["store_sealed"] == sd else s
+        rows[h] = [i, out] if how else [_g6_range(rng, i, sh), _g6_range(rng, out, sh)]
+    g["shown"] = {"day": day, "how": how, "rows": rows}
+    # 10. 食べ物をとらない人・記録の道具・町
+    g["nonfood"] = sorted(set(e2.get("specialists", [])) | {n for n, x in g["keep_days"].items() if x >= KEEPER_DAYS * frac})
+    _g6_ladder(state)
+    t = _town(state)
+    if t["ok"] and g["town_seen"] is None:
+        g["town_seen"] = day
+        log(state, "町", None, f"村の人は {t['pop']} 人で、交換した村のうちいちばん大きい村 (約 {t['biggest']} 人) の {CENTRE} 倍をこえた。この {TOWN_RUN} 季節は毎季節ほかの村と"
+            f"交換し、相手の村は {t['partners']} つ。この季節、作ることや記録に 20 日以上を使った人は、大人 {t['adults']} 人のうち {t['nonfood']} 人")
+    if g["town_seen"] is not None:
+        g["town_low"] = 0 if t["ok"] else g["town_low"] + 1
+        if g["town_low"] == 4:
+            log(state, "町", None, f"町の目安を下回ったまま 1 年たった (村の人 {t['pop']} 人、この 4 季節に交換した村 {t['partners']} つ)")
+    g["log"].append({"day": day, "pop": t["pop"], "adults": t["adults"], "households": len(_homes(state)), "known": sum(1 for o in g["others"] if o["known"]),
+                     "partners": t["partners"], "biggest": t["biggest"], "run": t["run"], "exchanges": g["exchanges"], "joined": g["joined"],
+                     "seals": len(g["seals"]), "sealings": sum(ss.values()), "tools": [k for k, v in g["open"].items() if v],
+                     "tokens": sum(g["records"][-1]["done"].values()) if g["records"] and g["records"][-1]["day"] == day else 0,
+                     "checked": dict(g["checked"]), "misremember": g["misremember"], "nonfood": t["nonfood"], "town": t["ok"]})
+    g["season_seals"], g["opened"], g["taken"], g["moved"] = {}, {}, {}, {}
+    g["seed"] = rng.getrandbits(31)  # 次の季節の集まりと 30 日の乱数のもと (この列の最後に引く)
+
+
+def _g6_indicators(state):
+    """G6 の目安 (G6 の前は鍵を足さない。だから G6 の前の state.json・app_data.json は前とまったく同じ。G6 に入って g6 を作る前は 0)"""
+    if not era_at_least(state, "G6"):
+        return {}
+    base = {"g6_on": False, "g6_known": 0, "g6_partners": 0, "g6_biggest": 0, "g6_run": 0, "g6_exchanges": 0, "g6_debts_open": 0, "g6_joined": 0,
+            "g6_seals": 0, "g6_sealings": 0, "g6_seal_seasons": 0, "g6_tools": "", "g6_records": 0, "g6_checked": 0, "g6_checked_tablet": 0,
+            "g6_misremember": 0, "g6_nonfood": 0, "g6_town": False, "g6_town_day": None, "g6_record_day": None}
+    g = state["era2"].get("g6")
+    if not g:
+        return base
+    t = _town(state)
+    sub = {x["f"]: x["day"] for x in state["era2"].get("substeps", []) if x["g"] == "G6"}
+    run = 0
+    for d in reversed(g["meets"]):
+        if not any(d in o["contacts"] for o in g["others"]):
+            break
+        run += 1
+    return base | {"g6_on": True, "g6_known": sum(1 for o in g["others"] if o["known"] is not None), "g6_partners": t["partners"], "g6_biggest": t["biggest"],
+                   "g6_run": run, "g6_exchanges": g["exchanges"], "g6_debts_open": sum(1 for d in g["debts"] if d["status"] == "まだ"),
+                   "g6_joined": g["joined"], "g6_seals": len(g["seals"]), "g6_sealings": sum(g["sealings"].values()), "g6_seal_seasons": g["seal_seasons"],
+                   "g6_tools": "・".join(k for k, v in g["open"].items() if v), "g6_records": g["token_seasons"],
+                   "g6_checked": sum(g["checked"].values()), "g6_checked_tablet": g["checked"]["板"], "g6_misremember": g["misremember"],
+                   "g6_nonfood": t["nonfood"], "g6_town": t["ok"], "g6_town_day": sub.get("F3"), "g6_record_day": sub.get("F4")}
+
+
+# ---- アプリ用 ----
+
+def g6_places(state):
+    """3D の再生で、ほかの村へ行く人が歩いて行く地図の端 (知っている村だけ。G6 の前は空)"""
+    g = (state.get("era2") or {}).get("g6") or {}
+    return [{"id": o["id"], "label": o["name"], "x": min(79, max(0, o["edge"][0])), "y": min(79, max(0, o["edge"][1])), "far": True}
+            for o in g.get("others", []) if o["known"] is not None]
+
+
+def g6_export(state):
+    g = state["era2"]["g6"]
+    return {"others": [{k: o[k] for k in ("id", "name", "kind", "household", "dir", "days", "edge", "known", "people", "contacts")} for o in g["others"]
+                       if o["known"] is not None],
+            "seals": g["seals"], "open": g["open"], "records": g["records"], "debts": g["debts"], "trips": g["trip_log"][-200:], "log": g["log"], "end": g["end"]}
 
 
 def _sow(state, p, want):
@@ -1251,8 +2333,7 @@ def _season_end(state, frac=1.0):
         members = []
         for i in range(n):
             age = rng.randint(16, 35) if i < 2 else rng.randint(2, 12)
-            members.append({"name": _name(e2["next_name"]), "sex": "女" if rng.random() < 0.5 else "男", "age": age})
-            e2["next_name"] += 1  # 受け入れなくても名前は使い切る (同じ名前の別人を作らない)
+            members.append({"name": _next_name(state), "sex": "女" if rng.random() < 0.5 else "男", "age": age})  # 受け入れなくても名前は使い切る (同じ名前の別人を作らない)
         e2["visitors"] = [{"name": members[0]["name"], "members": members, "day": day}]
         txt = "、".join(f"{m['name']} ({m['sex']}、{m['age']} 歳)" for m in members)
         log(state, "訪れる", None, f"よその群れから {txt} がやって来て、「ここで暮らしたい」と言った")
@@ -1269,8 +2350,12 @@ def _season_end(state, frac=1.0):
         if e2["specialists"]:
             e2.setdefault("specialist_log", []).append({"day": day, "names": e2["specialists"]})
     _sync_households(state)
+    if era_at_least(state, "G6"):
+        _g6_records(state, frac)  # この季節の記録 (G5 のもめごとを決める前に。どの量に記録があるかを決める)
     if era_at_least(state, "G5"):  # 家族を決めてから (この季節に生まれた子も母の家に入る)。村が分かれて大人が 12 人以下になれば、次の _note_mode で代表の方式が終わる
         _g5_season_end(state, frac)
+    if era_at_least(state, "G6"):  # G5 のあと (この季節に村を出た家も、ほかの村になる)
+        _g6_season_end(state, frac)
     _note_mode(state)
 
 
@@ -1439,6 +2524,7 @@ def indicators(state):
         **_g4_indicators(state),
         **_g5_indicators(state),
         **_house_indicators(state),
+        **_g6_indicators(state),
     }
 
 
@@ -1494,6 +2580,11 @@ CRITERIA = {
     #   ウル・ナンム法典 (前 2100 年ごろ) からで、手本のウバイド期にはまとめ役はいても罰の掟の証拠はない。罰の数は記録を続け、G6 のあとの目安にする
     "G5": ("第 2 段: 家族が 6 つ以上で、まとめ役がいる。まとめ役がもめごとを 2 回以上裁いた",
            lambda i: i["g5_stage"] >= 2 and i["households"] >= 6 and bool(i["leader"]) and i["judged"] >= 2),
+    # G6 (第 4 部「町と文字」): 町と記録は別々の条件で、どちらが先でもよい。それぞれ届いた日は区切り F3・F4。両方に一度でも届くと Society 2.0 の終わり
+    #   (2026-10-09 本人と決めた: 町は 50 人、交換が 4 季節続く (相手は 2 つ以上の村)、記録は粘土の板で量を確かめた。一度届けば届いたまま)
+    "G6": ("町 (村が 50 人以上で、この 4 季節は毎季節ほかの村と交換し、相手の村が 2 つ以上、村がいちばん大きい相手の村の 2 倍以上、食べ物をとらない人が大人の 1 割以上) と、"
+           "記録 (物のしるしと数のしるしを分けて記した粘土の板で、量を確かめた) の両方に、一度でも届く (どちらが先でもよい)",
+           lambda i: bool(i["g6_town_day"]) and bool(i["g6_record_day"])),
 }
 ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6"]
 NAMES2 = {"G1": "村ができる", "G2": "畑と家畜", "G3": "余りと分業", "G4": "持ち物と差", "G5": "リーダーと決まり", "G6": "交易・町・記録"}
@@ -1512,6 +2603,11 @@ SUBSTEPS = {
     "G5": [("F1", "集まり・長老・祭りでまとまる", lambda s: bool((s["era2"].get("g5") or {}).get("stage1"))),
            ("F2", "まとめ役が選ばれる", lambda s: bool((s["era2"].get("g5") or {}).get("leaders"))),
            ("F3", "罰を払わせる", lambda s: (s["era2"].get("g5") or {}).get("penalties", 0) >= 1)],
+    # G6 の F (2026-10-09 本人と決めた 4 つ)。数え札・封筒・粘土の板は、出来事「記録」に残す
+    "G6": [("F1", "村どうしの交換", lambda s: (s["era2"].get("g6") or {}).get("exchanges", 0) >= 1),
+           ("F2", "印で封をする", lambda s: (s["era2"].get("g6") or {}).get("seal_seasons", 0) >= 1),
+           ("F3", "町", lambda s: _town(s)["ok"]),
+           ("F4", "物と数を分けて記す", lambda s: _record_ok(s))],
 }
 # G1・G2 の F は、この仕組みを作る前に終わっていたので、記録 (出来事) から日を決めた (2026-10-08。G1_notes.md・G2_notes.md)
 RETRO_SUBSTEPS = [
@@ -1544,6 +2640,13 @@ def check(state):
     met = fn(ind)
     since = state["day"] - state["era_log"][-1]["day"]
     state["era_info"] = {"era": era, "name": NAMES2[era], "next": desc, "met": met, "since": since, "indicators": ind}
+    if met and era == ORDER2[-1]:  # G6: 町と記録がそろった → Society 2.0 の終わり (一度だけ "end" を返す。フェーズは進まない。step.py は "end" を先に見る)
+        g6 = state["era2"].get("g6") or {}
+        if g6 and not g6.get("end"):
+            t, r = ind["g6_town_day"], ind["g6_record_day"]
+            g6["end"] = {"day": state["day"], "town": t, "record": r, "first": "町" if t < r else "記録" if r < t else "同じ日"}
+            return "end"
+        return False
     if met and era != ORDER2[-1]:
         nxt = ORDER2[ORDER2.index(era) + 1]
         state["era"] = nxt
@@ -1555,13 +2658,20 @@ def check(state):
 
 # ---------------- 季節の集まりの出来事 (読むだけ。docs/dashboard_records_spec.md 3.4) ----------------
 
-MEETING_EVENTS = ("話す", "掟", "もめごと", "収める", "裁き", "罰", "祭り", "まとめ役", "共同の仕事", "加わる", "去る", "ヤギを食べる", "年の名前")
+MEETING_EVENTS = ("話す", "掟", "もめごと", "収める", "裁き", "罰", "祭り", "まとめ役", "共同の仕事", "加わる", "去る", "ヤギを食べる", "年の名前",
+                  "印", "封", "よその村", "交換", "貸し借り", "確かめる", "覚え")  # 後ろの 7 つは G6 の集まりの出来事 (G6 の前は起きない)
 
 
 def _meeting_event(e):
     t, x = e["type"], e["text"]
     if t not in MEETING_EVENTS:
         return False
+    if t == "封":
+        return "ふさぐことになった" in x  # 季節の終わりの「封のかけら」と、30 日のあいだの「封が割れていた」は、集まりの前
+    if t in ("よその村", "交換"):
+        return x.startswith("季節の集まりで")  # 季節の終わりに来た人・交換に行った先での交換は、集まりの前
+    if t == "貸し借り":
+        return "返されないまま" not in x  # 返されないまま 1 年たったのは、季節の終わり
     if t == "もめごと":
         return "話し合ったが" in x  # 季節の終わりの「言い出した」「重なった」「言わなくなった」は、集まりの前
     if t == "去る":
@@ -1593,7 +2703,8 @@ def meeting_first(state, day):
 #   だれも書かなければ名前はつかない (state も出来事も前と同じ)
 YEAR_NAME_MAX = 20
 YEAR_EVENTS = ("フェーズ", "区切り", "段階", "分かれる", "死", "生まれる", "加わる", "去る", "まとめ役", "受けつぎ", "祭り", "住まい", "もめごと",
-               "収める", "裁き", "罰", "大人になる", "ヤギ", "ヤギを食べる", "虫", "蓄えが尽きる", "家族")  # お題に見せる出来事 (前のものほど先に残す)
+               "収める", "裁き", "罰", "大人になる", "ヤギ", "ヤギを食べる", "虫", "蓄えが尽きる", "家族",
+               "町", "記録")  # お題に見せる出来事 (前のものほど先に残す)。町・記録は G6 から (記録は、道具が使えるようになったときだけ)
 YEAR_DIGEST_MAX = 15
 STOP_WORDS = ("フェーズが", "Society 2.0 が終わった")  # ワークフローが止まる文と重なる名前は読まない (step.py が出来事を表示するため)
 
@@ -1616,7 +2727,8 @@ def _year_digest(state):
     y = state["day"] // YEAR
     ev = state["events"][meeting_first(state, y * YEAR - 1):]  # この年の最初の季節の集まりから (出来事の id は並びの番号と同じ)
     big = [e for e in ev if e["type"] in YEAR_EVENTS and not (e["type"] == "住まい" and "size" not in (e.get("data") or {}))
-           and not (e["type"] == "ヤギ" and e.get("who"))]  # 建てた日ごとの記録と、1 頭ずつ捕まえたのは入れない (下で数でまとめる)
+           and not (e["type"] == "ヤギ" and e.get("who"))  # 建てた日ごとの記録と、1 頭ずつ捕まえたのは入れない (下で数でまとめる)
+           and not (e["type"] == "記録" and "tool" not in (e.get("data") or {}))]  # G6: 季節ごとの記録は入れない (道具が使えるようになったときだけ)
     if len(big) > YEAR_DIGEST_MAX:
         big = sorted(sorted(big, key=lambda e: (YEAR_EVENTS.index(e["type"]), e["id"]))[:YEAR_DIGEST_MAX], key=lambda e: e["id"])
     rows = [f"- [出来事 {e['id']}] {e['text']}" for e in big]
@@ -1837,20 +2949,181 @@ def _g5_text(state):
         rows.append(f"前に祭りをしたのは {g['feast_day']} 日目 (これまで {g['feasts']} 回)")
     op = [d for d in g.get("disputes", []) if d["status"] == OPEN]
     rows.append("まだ収まっていないもめごと:" + ("" if op else " なし"))
+    j = 0  # 話し合える数に数えるもめごと (G6: 記録のあるものは数えない。G6 の前は i と同じ)
     for i, d in enumerate(op):
         age = (state["day"] - d["day"]) // SEASON_DAYS
         when = ("前の季節の終わりに起きた" if age == 0 else f"{age} 季節 収まっていない。この季節の集まりでも収まらないと、季節の終わりに、"
                 + (f"{d['from']}が村を出ていくことがある" if age + 1 < DROP_AGE else "だれも言わなくなる"))
-        talk = "" if lead else "。この季節の集まりで話し合う" if i < TALK_MAX else f"。この季節の集まりでは話し合えない (古いものから {TALK_MAX} つまで)"
+        rec = d.get("record")
+        talk = ("" if lead and not rec else "。この季節の集まりで、記録を見て確かめる" if rec else "。この季節の集まりで話し合う" if j < TALK_MAX
+                else f"。この季節の集まりでは話し合えない (古いものから {TALK_MAX} つまで)")
+        j += 0 if rec else 1
+        amt = (f"草の種にして {d['harm']} つかみ 分。{rec}の記録がある" if rec else f"言い出した家の覚えでは、草の種にして 約 {d['harm']} つかみ 分。記録はない"
+               if "harm_true" in d else f"草の種にして 約 {d['harm']} つかみ 分")
         rows.append(f"- [{d['id']}] ({d['kind']}) {d['from']}が言い出した。相手は{d['against']} ({when}{talk}): {d['what']}"
-                    f" (草の種にして 約 {d['harm']} つかみ 分) [出来事 {d['event']}]")
+                    f" ({amt}) [出来事 {d['event']}]")
     ev = [e for e in state["events"] if e["id"] >= since and e["type"] in G5_EVENTS]
     if ev:
         rows += ["この前の集まりから起きたこと:"] + [f"- [出来事 {e['id']}] {e['text']}" for e in ev[-12:]]
-    if g.get("last_flow"):
+    if g.get("last_flow") and not era_at_least(state, "G6"):  # G6 では「ほかの村・印・記録」に (記録がなければ覚えの幅で)
         rows.append("前の季節の、家ごとの村の蓄えへの出し入れ (大人の分。草の種にして): "
                     + "、".join(f"{h} 入れた 約 {i}・取った 約 {o} つかみ" for h, (i, o) in g["last_flow"].items() if h in homes))
     return "\n## 村の集まり (もめごと・祭り" + ("・まとめ役" if two else "") + ")\n" + "\n".join(rows) + "\n"
+
+
+FACTS_G6 = ("ほかの村: 村の外 (地図の外。歩いて 1〜2 日) にも、人の暮らす村がある。知っている村は「ほかの村・印・記録」に出る。"
+            "ほかの村の人は、季節の終わりに村に来て、申し出をすることがある (交換したい / 食べ物を貸してほしい / 前に借りた分を返す)。"
+            "交換したい・貸してほしいの申し出は、次の季節の集まりで決める (trade: 申し出の番号ごとに、村の物で受けるなら \"村\"、"
+            "自分の家の倉の食べ物と家のヤギで受けるなら \"家\"、受けないなら false)。"
+            "大人の半分をこえる人が \"村\" と答えるか、まとめ役が \"村\" と答えると、村の蓄え・村の土器・村の鎌・村のヤギで受け、手に入れた物は村のものになる。"
+            "そうでなければ、\"家\" と答えた家の代表のうち、払える家で、家の倉の食べ物がいちばん多い家が受け、手に入れた食べ物とヤギはその家のものになる "
+            "(土器・鎌・黒曜石は、いつも村のもの)。返す申し出は、決めずに受けとる。"
+            "交換している村から「ここで暮らしたい」と人が来ることもある (よそから来た人と同じく、受け入れるかを決める)\n"
+            "交換に行く: 主な仕事を「交換に行く」(camp) にすると、季節のはじめの日に、知っているほかの村へ、ほかの村がほしがる物 (村の草の種・土器・鎌) を持って出かける "
+            "(to: 村の番号、carry: 持って行く物と数、want: ほしい物、then: 帰ってからの仕事)。"
+            f"1 人が持てるのは、草の種なら {LOAD['草の種']} つかみ、土器なら {LOAD['土器']} 個、鎌なら {LOAD['鎌']} 本ほど "
+            "(2 つ持つときは、それぞれ半分ずつ)。"
+            "歩いて 1 日の村なら、行く・交換する・帰るで 3 日、2 日の村なら 5 日かかる。歩く日はおなかが多くすく。帰り道で物をなくしたり、けがをしたりすることがある。"
+            "向こうの村は、その季節にほしい分だけを受けとり、want の物 (なければほかの物) で払う。受けとらなかった物は持ち帰る。払いきれない分は、あとで返す約束 (貸し借り) になる。"
+            "家の代表は、家の倉の草の種を持って行かせることもできる (house: true。家族の住まいのある家だけ。手に入れた食べ物とヤギは家のもの)\n"
+            f"値うち: 交換では、草の種にして、ヤギ 1 頭 = {VALUE['ヤギ']} つかみ、鎌 1 本 = {VALUE['鎌']} つかみ、土器 1 個 = {VALUE['土器']} つかみ、"
+            f"黒曜石 1 個 = {VALUE['黒曜石']} つかみ、干し肉 1 切れ = {VALUE['干し肉']} つかみ ほどとして釣り合わせる\n"
+            "覚え: 記録のない量 (家ごとの村の蓄えへの出し入れ・もめごとの量・貸し借りの量) は、人の覚えにたよるので、はっきりしない。"
+            "村の家が多いほど、ほかの村との貸し借りが多いほど、覚えはずれる。もめごとを言い出した家は、損を多めに覚えていることがある。"
+            "覚えた量で払うと、払った家が「多く払った」と言い出すことがある (もめごとのもと (5) 覚え)\n"
+            "印: 家の代表は、家の印 (焼いた粘土に形を刻んだもの) を作れる (seal)。印のある家の倉は、口を粘土でふさいで印を押しておく (封)。封は割らずには開けられない。"
+            "よその家の人が開けると、封が割れているので分かり、必ずもめごとになる。"
+            "大人の半分をこえる人か、まとめ役が望むと (seal_store)、この季節は村の蓄えの土器にも封をする。そのときは、取るたびに封を割り、取った人の家の印で封をし直す。"
+            "割った封のかけらは取っておくので、どの家が何日開けたかが分かる (量は分からない)\n")
+
+FACTS_TOKEN = ("数え札: 粘土を小さく丸めたり形をつけたりした札で、量を数えて残せる (草の種 100 つかみ分に 1 個、ヤギ 1 頭に 1 個、土器・鎌・黒曜石 10 個に 1 個、"
+               "働いた日 10 日に 1 個)。主な仕事を「記録をつける」(camp) にすると、この季節の出し入れを残す (what: 残すもの。"
+               "「蓄え」= 家ごとの村の蓄えへの出し入れと、作る人などの働いた日、「交換」= ほかの村との交換と貸し借り、「刈る」= よその家の畑で刈った量。"
+               "書いた順に残す。how: \"数え札\")。"
+               f"1 人が 1 日に作って数えられる数え札は {RATE['数え札']} 個ほどで、足りないと途中までしか残らない。"
+               "全部残せた量ははっきり分かる。その量のもめごとは、季節の集まりで記録を見て確かめる (話し合える 2 つには数えない)。"
+               "記録のある貸し借りは、返しに来たときに、正しい数が分かる (足りない分は、あとで返す約束のまま残る)。"
+               "村の蓄えの出し入れを全部残せた季節は、作る人・記録をつける人・交換に行った人の働いた日を、1 日を大人 1 人の 1 日分として、その家が村の蓄えに入れた量に数える\n")
+
+FACTS_ENVELOPE = ("封筒: 記録をつける人が how を \"封筒\" にして「交換」を残すと、その季節の貸し借りの数え札を粘土の玉に入れて閉じ、外に印を押しておく。"
+                  "返しに来たときに玉を割ると、約束した数がどちらにも分かり、その数が返される\n")
+
+FACTS_TABLET = (f"粘土の板: 数え札を 1 つずつ作るかわりに、平たい粘土の板に、物を表すしるし (草の種・ヤギ・土器 など) と、数を表すしるしを分けて押して記せる (how: \"板\")。"
+                f"1 人が 1 日に、数え札 {RATE['板']} 個分ほどを記せる。板に記した量も、数え札と同じように確かめるのに使える。"
+                "板で記した貸し借りは、封筒と同じく、どちらにも数が分かる\n")
+
+FACTS_OBSIDIAN = ("黒曜石: 黒く光る石で、割ると鋭い刃になる。村に黒曜石があると、道具づくりで作る鎌に黒曜石の刃をはめる (鎌 1 本に 1 個)。"
+                  "黒曜石の刃の鎌は、割れにくい (半分ほど)\n")
+
+
+def _g6_facts(state):
+    if not era_at_least(state, "G6"):
+        return ""
+    g = state["era2"].get("g6") or {}
+    op = g.get("open") or {}
+    obs = USE_OBSIDIAN and (g.get("obsidian") or any(o.get("has_obsidian") and o["known"] is not None for o in g.get("others", [])))
+    return (FACTS_G6 + (FACTS_TOKEN if op.get("数え札") else "") + (FACTS_ENVELOPE if op.get("封筒") else "")
+            + (FACTS_TABLET if op.get("板") else "") + (FACTS_OBSIDIAN if obs else ""))
+
+
+def _g6_rw(x):
+    return "ほとんどなし" if x[1] == 0 else f"約 {x[0]}〜{x[1]} つかみ"
+
+
+def _g6_text(state):
+    """G6 のお題の節 (見ればわかる事実だけ。状態は変えない)"""
+    if not era_at_least(state, "G6"):
+        return ""
+    g = state["era2"].get("g6") or {}
+    homes = _homes(state)
+    rows = []
+    known = [o for o in g.get("others", []) if o["known"] is not None]
+    rows.append("知っているほかの村:" + ("" if known else " まだない"))
+    for o in known:
+        who = f"前に村を出た{o['household']}の人たちが暮らす" if o["kind"] == "分かれた家" else "よその村"
+        has = "・".join(k for k, n in _g6_supply(o).items() if n > 0) or "目立つ物はない"
+        last = max(o["contacts"]) if o["contacts"] else None
+        rows.append(f"- [{o['id']}] {_okey(o)}: {who}。人 約 {max(5, 5 * round(o['people'] / 5))} 人。出せる物: {has}。ほしがる物: {'・'.join(_g6_cap(o))}。"
+                    f"はじめて知った日 {o['known']} 日目。交換した季節 {len(o['contacts'])} 回" + (f" (最後は {last} 日目)" if last else "")
+                    + ("。この年は畑が実らず苦しいと言っていた" if o["bad"] is not None else ""))
+    offers = g.get("offers", [])
+    if offers:
+        rows.append("この季節の集まりで決める申し出 (trade。返す申し出は、決めずに受けとる):")
+        for off in offers:
+            o = _other(state, off["other"])
+            rows.append(f"- [{off['id']}] {o['name']}: " + {"交換": f"{_gw(off['give'])} を出すので、{_gw(off['want'])} がほしい",
+                                                          "貸して": f"{_gw(off['want'])} を貸してほしい (1 年のうちに同じ量を返す)",
+                                                          "返す": f"[{off.get('debt')}] の分として {_gw(off['give'])} を返しに来た"}[off["kind"]])
+    debts = [d for d in g.get("debts", []) if d["status"] == "まだ"]
+    if debts:
+        rows.append("まだ返されていない貸し借り:")
+        for d in debts:
+            o = _other(state, d["other"])
+            amt = (f"{_gw(d['goods'])} ({d['proof']}の記録がある)" if d.get("proof")
+                   else "覚えでは " + _gw({k: math.ceil(n * d["mem"]["village"]) for k, n in d["goods"].items()}) + " ほど (記録はない)")
+            rows.append(f"- [{d['id']}] {o['name'] if o else 'ほかの村'} が{'村' if d['lender'] == '村' else d['lender']}に返す分: {amt}。{d['day']} 日目から")
+    seals = g.get("seals", {})
+    rows.append("家の印: " + ("、".join(f"{h} ({v['day']} 日目から)" for h, v in sorted(seals.items()) if h in homes) or "まだない")
+                + ("。印のない家: " + ("、".join(h for h in homes if h not in seals) or "なし") if seals else ""))
+    if g.get("store_sealed") is not None and g.get("store_sealed") == state["era2"].get("step_day"):
+        rows.append("前の季節は、村の蓄えに封をした")
+    rec = g.get("records", [])
+    last = rec[-1] if rec and rec[-1]["day"] == state["day"] else None
+    if last:
+        rows.append("前の季節の記録 (" + "、".join(f"{n} {d} 日・{h}" for n, (d, h) in last["keepers"].items()) + "): "
+                    + ("、".join(f"{WHAT_WORDS[w]} は{'全部残せた' if w in last['complete'] else '途中までしか残せなかった'}"
+                                for w in WHATS if last["need"][w] and last["done"][w]) or "残せたものはなかった"))
+    else:
+        rows.append("前の季節の記録: なし")
+    op = g.get("open") or {}
+    rows.append("使える記録の道具: " + ("・".join(k for k in ("印", "数え札", "封筒", "板") if op.get(k)) or "印"))  # G6 の最初のお題 (g6 を作る前) も「印」
+    if g.get("obsidian") or g.get("obs_sickles"):
+        rows.append(f"村の黒曜石: {g['obsidian']} 個 (黒曜石の刃の鎌 {g['obs_sickles']} 本)")
+    sh = g.get("shown")
+    if sh and sh["rows"]:
+        if sh["how"]:
+            rows.append(f"前の季節の、家ごとの村の蓄えへの出し入れ ({sh['how']}の記録による。大人の分。草の種にして): "
+                        + "、".join(f"{h} 入れた {i}・取った {o_} つかみ" for h, (i, o_) in sh["rows"].items() if h in homes))
+        else:
+            rows.append("前の季節の、家ごとの村の蓄えへの出し入れ (記録はない。みんなの覚えでは、だいたい。大人の分。草の種にして): "
+                        + "、".join(f"{h} 入れた {_g6_rw(i)}・取った {_g6_rw(o_)}" for h, (i, o_) in sh["rows"].items() if h in homes))
+    ev = [e for e in state["events"] if e["id"] >= (g.get("meet_first") or state["next_event"]) and e["type"] in G6_EVENTS]
+    if ev:
+        rows += ["この前の集まりから起きたこと (ほかの村・印・記録):"] + [f"- [出来事 {e['id']}] {e['text']}" for e in ev[-12:]]
+    return "\n## ほかの村・印・記録\n" + "\n".join(rows) + "\n"
+
+
+def _g6_now(state, p, solo, n=8):
+    """お題の「いま」の G6 の項目 (n はその番号。G6 の前は空)"""
+    if not era_at_least(state, "G6"):
+        return ""
+    g = state["era2"].get("g6") or {}
+    offers = [o for o in g.get("offers", []) if o["kind"] != "返す"]
+    rows = [f"{n}. ほかの村・印・記録 (上の「ほかの村・印・記録」を見て決める。どれも書かなくてもよい)"]
+    if offers:
+        rows.append("   申し出: 申し出の番号ごとに、村の物で受けるなら \"村\"" + ("" if solo else "、自分の家の物で受けるなら \"家\"") + "、受けないなら false (trade)")
+    if not solo and p.get("household") and p["household"] not in g.get("seals", {}):
+        rows.append("   印: 家の印を作るなら true (seal。家ごとに 1 回だけ)")
+    rows.append("   村の蓄えの封: この季節、村の蓄えに封をするなら true、しないなら false (seal_store)")
+    if any(o["known"] is not None for o in g.get("others", [])):
+        rows.append('   交換に行く: 主な仕事を「交換に行く」にする人は、job か family に、to (村の番号)・carry (持って行く物と数)・want (ほしい物)・then (帰ってからの仕事) を書く。'
+                    '例 {"activity": "交換に行く", "place": "camp", "to": "N1", "carry": {"土器": 4}, "want": "ヤギ", "then": "採集"}')
+    op = g.get("open") or {}
+    if op.get("数え札"):
+        hows = " / ".join(h for h in ("数え札", "封筒", "板") if op.get(h))
+        rows.append(f'   記録をつける: 主な仕事を「記録をつける」にする人は、what (残すもの: 蓄え・交換・刈る。書いた順に残す) と how ({hows}) を書く。'
+                    '例 {"activity": "記録をつける", "place": "camp", "what": ["蓄え", "交換", "刈る"], "how": "数え札"}')
+    return "\n".join(rows) + "\n"
+
+
+def _g6_json(state, p, solo):
+    if not era_at_least(state, "G6"):
+        return ""
+    g = state["era2"].get("g6") or {}
+    offers = [o["id"] for o in g.get("offers", []) if o["kind"] != "返す"]
+    return (('"trade": {' + ", ".join(f'"{i}": "..."' for i in offers) + "}, " if offers else "")
+            + ('"seal": false, ' if not solo and p.get("household") and p["household"] not in g.get("seals", {}) else "")
+            + '"seal_store": false, ')
 
 
 def season_prompt(state, p, first):
@@ -1858,10 +3131,19 @@ def season_prompt(state, p, first):
     g5, g = era_at_least(state, "G5"), e2.get("g5") or {}  # G5 の部分は、G5 の前はみな空の文字 (お題は前と同じ)
     lead, two = g.get("leader"), g.get("stage", 1) >= 2
     solo = bool(g5 and e2.get("rep_mode") and p["name"] not in _reps(state))  # 家族の代表でないまとめ役 (自分の分だけ答える)
+    g6 = era_at_least(state, "G6")  # G6 の部分は、G6 の前はみな空の文字
     places = "\n".join(f"- {pl['id']}: {pl['label']}" for pl in state["places"])
     names = [q["name"] for q in adults(state) if q is not p]
     vis = ""
-    if e2["visitors"]:
+    if e2["visitors"] and g6:  # G6: 群れが 2 つ以上のこともある (ほかの村から来た人)
+        rows = []
+        for v in e2["visitors"]:
+            o = _other(state, v.get("from")) if v.get("from") else None
+            rows.append("- " + "、".join(f"{m['name']} ({m['sex']}、{m['age']} 歳)" for m in v["members"]) + (f" ({o['name']} から来た)" if o else " (よその群れ)"))
+        vis = ("\n## よそから来た人\n" + "\n".join(rows) + "\nそれぞれ「ここで暮らしたい」と言っている (1 行が、いっしょに来た一つの群れ)。群れごとに、村に受け入れるか決めてください "
+               "(accept: 群れの最初の人の名前ごとに、受け入れるなら true、受け入れないなら false)。大人の半分をこえる賛成で、その群れの全員が村に加わる。"
+               "加わった大人は、この季節は村でいちばん多い仕事をし、次の季節から自分で決める\n")
+    elif e2["visitors"]:
         v = e2["visitors"][0]
         txt = "、".join(f"{m['name']} ({m['sex']}、{m['age']} 歳)" for m in v["members"])
         vis = (f"\n## よそから来た人\n{txt} が「ここで暮らしたい」と言っている (いっしょに来た一つの群れ)。村に受け入れるか決めてください "
@@ -1873,6 +3155,8 @@ def season_prompt(state, p, first):
     keep = '"keep": false, ' if era_at_least(state, "G4") and not solo else ""
     goat = '"eat_goat": 0, ' if e2["goats"] and not solo else ""
     acc = f'"accept": {{"{e2["visitors"][0]["name"]}": true}}, ' if e2["visitors"] else ""
+    if g6 and e2["visitors"]:
+        acc = '"accept": {' + ", ".join(f'"{v["name"]}": true' for v in e2["visitors"]) + "}, "
     pick = characters._pick_line(st)
     me = characters._me(st, p).replace("(誰でも入れたり取ったりできる)", "(日々の出し入れは自動)")
     fam_txt, fam_json = "", ""
@@ -1886,13 +3170,14 @@ def season_prompt(state, p, first):
                    f"あなたは {p.get('household')} の代表。\n" + ("\n".join(rows) if rows else "- (ほかの家族はいない)") +
                    "\n- 家族の大人の主な仕事も、あなたが決める (family。書かなかった人は、あなたと同じ仕事)"
                    "\n- sow・pick・plant・harvest の数は、家族の大人一人ひとりの量 (eat_goat は家族で何頭か)"
-                   f"\n- 掟の投票と、よそから来た人の受け入れ{('、もめごとの収め方・祭り' + ('・まとめ役' if two else '') + 'の答え') if g5 else ''}は、家族の大人みんなの答えとして数える\n")
+                   f"\n- 掟の投票と、よそから来た人の受け入れ{('、もめごとの収め方・祭り' + ('・まとめ役' if two else '') + ('・申し出 (trade)・村の蓄えの封' if g6 else '') + 'の答え') if g5 else ''}は、家族の大人みんなの答えとして数える\n")
         if fam:
             fam_json = '"family": {' + ", ".join(f'"{q["name"]}": {{"activity": "採集", "place": "camp"}}' for q in [q for q in fam if q["name"] != lead][:2]) + '}, '
 
     if solo:
         fam_txt = (f"\n## あなたはまとめ役\nあなたは {p.get('household')} の代表ではないが、村のまとめ役なので、季節の集まりで答える。決めるのは自分の仕事だけ "
-                   "(家族の仕事・家の倉・ヤギをつぶす数は、家族の代表が決める)。掟の投票・受け入れ・もめごとの収め方・祭り・まとめ役の答えは、あなた一人の答えとして数える\n")
+                   "(家族の仕事・家の倉・ヤギをつぶす数は、家族の代表が決める)。掟の投票・受け入れ・もめごとの収め方・祭り・まとめ役"
+                   + ("・申し出 (trade)・村の蓄えの封" if g6 else "") + "の答えは、あなた一人の答えとして数える\n")
     op = [d["id"] for d in g.get("disputes", []) if d["status"] == OPEN] if g5 else []
     me5 = g5 and lead == p["name"]
     g5_now = ("7. 村の集まり (上の「村の集まり」を見て決める。どれも書かなくてもよい)\n"
@@ -1908,13 +3193,18 @@ def season_prompt(state, p, first):
     # 2026-10-09 (2909 日目、本人「お任せします」→ 案 B): 罰の例を null から欄の形に。null の例をそのまま写して、第 2 段の 30 季節で罰のある掟の提案が 0 だったため。
     #   例のまま (pay 0) は _penalty が罰なしにする。世界の仕組みは変えない (つけるかは人が決める)
     pen = ', "penalty": {"for": "...", "pay": 0}' if g5 and two else ""
+    n6 = 7 + bool(g5_now)  # G6 の「ほかの村・印・記録」の番号 (G6 では 8)
+    g6_now, g6_json = _g6_now(state, p, solo, n6), _g6_json(state, p, solo)  # G6 の前は空
+    rec6 = g6 and ACT_RECORD in acts2(state)  # 記録をつけるは、数え札が使えるようになってから書く (使えない道具のことは書かない。2026-10-09 試し回し)
+    g6_act = (f"   交換に行く{'・記録をつける' if rec6 else ''}は camp と書く (行き先・持って行く物{'・残すもの' if rec6 else ''}は {n6}. に書く)\n"
+              if g6 else "")
     ye = year_end(state)  # 年の終わりの集まり: 年の名前を決める (ほかの集まりでは、お題は前と同じ)
-    yname_now = f"{7 + bool(g5_now)}. この 1 年の名前を決める (year_name。上の「年の名前」を見て)\n" if ye else ""
+    yname_now = f"{7 + bool(g5_now) + bool(g6_now)}. この 1 年の名前を決める (year_name。上の「年の名前」を見て)\n" if ye else ""
     yname_json = ' "year_name": "...",\n' if ye else ""
 
     return f"""{RULES2}
 
-{me}{FACTS2}{(FACTS_G3 + FACTS_HOUSE) if era_at_least(state, "G3") else ""}{FACTS_G4 if era_at_least(state, "G4") else ""}{_g5_facts(state)}
+{me}{FACTS2}{(FACTS_G3 + FACTS_HOUSE) if era_at_least(state, "G3") else ""}{FACTS_G4 if era_at_least(state, "G4") else ""}{_g5_facts(state)}{_g6_facts(state)}
 ## 村のようす
 {_village(state)}
 ## 前の季節のこと
@@ -1928,28 +3218,28 @@ def season_prompt(state, p, first):
 
 ## 集団の掟 (季節のはじめに、みんなで集まって決める)
 {characters._laws(state, with_pending=True)}
-{_year_names_text(state)}{_g5_text(state)}{vis}{_year_end_text(state)}
+{_year_names_text(state)}{_g5_text(state)}{_g6_text(state)}{vis}{_year_end_text(state)}
 ## いま
 {state["day"] + 1} 日目、{sea}。これから {SEASON_DAYS - (state["day"] + 1) % SEASON_DAYS} 日 (この季節の終わりまで) の仕事を決める集まり (途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。
 1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
 2. この季節の主な仕事を決める (job)。仕事は {' / '.join(acts2(state))} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
    畑仕事 (草取り・刈り入れ) は camp で行う
    ヤギの世話は camp で行う。ヤギを捕まえるは、野生のヤギのいる場所で行う
-3. {(pick.strip().rstrip('。') + '。取るのはこの季節の毎夕で、1 人 40 つかみまで') if pick.strip() else 'この季節 (' + sea + ') は、キャンプのそばの木から実は取れない (実がなるのは夏と秋)'}
+{g6_act}3. {(pick.strip().rstrip('。') + '。取るのはこの季節の毎夕で、1 人 40 つかみまで') if pick.strip() else 'この季節 (' + sea + ') は、キャンプのそばの木から実は取れない (実がなるのは夏と秋)'}
 4. 持っている木の実 (なければ村の蓄えの木の実) を、この回の最初の日にキャンプのそばに埋める (plant、つかみ、5 まで) こともできる
    秋なら、季節のはじめに、蓄えの草の種をキャンプのそばの畑にまく量 (sow、つかみ、1000 まで) を書ける (主な仕事とは別にできる)
    実った畑があれば、毎夕いくつ刈るか (harvest、つかみ、60 まで) を書ける (主な仕事とは別にできる)
 {'   飼っているヤギを、この回の最初の日に何頭つぶして肉にするか (eat_goat、頭。肉は干して蓄えに入れる。2 頭は残す) を書ける' + chr(10) if e2['goats'] and not solo else ''}
 {'   家の倉を持つか (keep: 持つなら true、持たないなら false) を決める (家の代表が決める)' + chr(10) if era_at_least(state, "G4") and not solo else ''}5. 覚えていることを更新する (新しく分かったことを追加、確かさを変える、間違っていたら忘れる)
 6. 掟: みんなで守りたい決まりがあれば提案できる (なければ null)。今の掟と提案に、賛成か反対かを投票する (against に反対する理由、reason に決めた理由)
-{g5_now}{yname_now}{7 + bool(g5_now) + ye}. 今の気持ちを一言
+{g5_now}{g6_now}{yname_now}{7 + bool(g5_now) + bool(g6_now) + ye}. 今の気持ちを一言
 
 場所の一覧:
 {places}
 
 ## 答えの形 (JSON)
 {{"say": [{{"to": "みんな", "text": "..."}}],
- "job": {{"activity": "採集", "place": "camp", "with": []}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}{keep}{g5_json}
+ "job": {{"activity": "採集", "place": "camp", "with": []}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}{keep}{g5_json}{g6_json}
  "knowledge": [{{"op": "add", "text": "...", "because": [出来事の番号], "confidence": 0.6}}],
  "proposal": {{"text": "...", "because": [出来事の番号]{pen}}},
  "votes": [{{"id": "L0", "against": "反対する理由", "agree": true, "reason": "決めた理由"}}],
