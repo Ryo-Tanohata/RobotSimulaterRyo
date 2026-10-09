@@ -1,0 +1,7 @@
+{"say": [{"to": "ユノ2", "text": "北川12 へ一緒に行って、冬に魚と芋が取れるか確かめよう。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"]}, "sow": 200, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ニイ2": true, "エマ2": true}, "family": {"ユノ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M28": "ゆるす", "M29": "ゆるす", "M30": "ゆるす"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "ケトの家の畑は、前の季節の終わりにクラの家とケト2の家に刈られて、草の種が ケトの家の倉に入った", "because": [70554, 70556], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "特になし", "agree": true, "reason": "夜に一人で出ると、ザガにやられるから"}, {"id": "L143", "against": "林は一人で行くと危ない", "agree": true, "reason": "二人なら、見つけた量を確かめ合える"}, {"id": "L146", "against": "決めずに刈ると、草の種が残らない", "agree": true, "reason": "刈る前に分け方を決めるほうが、もめごとが減る"}, {"id": "L147", "against": "芋を村の蓄えに入れると、腐るのが早い", "agree": true, "reason": "採った夜に食べきれば、無駄がない"}, {"id": "L150", "against": "北丘12 は前の季節に何も見つからなかった", "agree": true, "reason": "冬の採集場所を試すのは大事だから"}],
+ "feeling": "北川12で魚と芋が取れたら、冬がずいぶん楽になる。ユノ2と行くのが少し楽しみだ。"}

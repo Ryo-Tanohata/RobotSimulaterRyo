@@ -1,0 +1,7 @@
+{"say": [{"to": "ケト", "text": "秋のあいだは南川12へ行って、魚と芋がどれくらいあるか見てくる。二人で行こう。見つけた量は夜に言うね。"}, {"to": "みんな", "text": "ニイ2とエマ2が来てくれるなら、村の仕事を手伝ってもらいたい。冬の前に、どこで食べ物が取れるかを夜に分けて話そう。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ケト"]}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ニイ2": true, "エマ2": true}, "family": {"ケト": {"activity": "採集", "place": "南川12"}}, "keep": true,
+ "judge": {"M28": "ゆるす", "M29": "ゆるす", "M30": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "南川12には魚と芋があるかもしれない。冬の前に二人組で確かめたい。", "because": [69162], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るので、キャンプを離れないのは大事だ"}, {"id": "L6", "against": "", "agree": true, "reason": "違う場所に分かれれば、食べ物が見つかりやすい"}, {"id": "L99", "against": "", "agree": true, "reason": "畑の草取りは夏の実りを守る"}, {"id": "L102", "against": "", "agree": true, "reason": "夏の畑は毎夕刈らないと落ちてしまう"}, {"id": "L124", "against": "", "agree": false, "reason": "林は二人以上で行くほうが安全だ"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑があるかぎり毎夕刈るのがよい"}],
+ "feeling": "蓄えが減っていくのが気になるが、みんなで分ければ冬も越せると思う。"}
