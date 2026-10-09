@@ -43,7 +43,7 @@
 
 | 記録 | 時代と場所 | だれがつけたか | 何について | 中身 | 時間の単位 | 出典 |
 |---|---|---|---|---|---|---|
-| **トークン** (粘土で作った小さな玉や円すい。数える道具) | 前 8000 年ごろ〜前 3000 年 (いちばん古い例はムレイベトの前 9000〜8700 年の円盤 2 つ。Schmandt-Besserat の数え)。ザグロス (ガンジ・ダレ)、レヴァント (エリコ)、ユーフラテス上流 (ムレイベト)、ジャルモ (前 6500 年ごろ、約 2,000 個)、テル・アバダ (ウバイド期)、サビ・アビヤド | 分からない (家か村と考えられる)。数える道具だったかどうか自体が【議論あり】 | 物 (1 個 = 物 1 つ分、という説) | 形で物の種類を表したという説: 円すい・玉・円盤 = 穀物の量、卵形 = 油のつぼ、円柱 = 家畜、四面体 = 働き 1 回分【議論あり】。**名前・持ち主・日付はない** | なし (やりとりごと、数えたときごと) | Schmandt-Besserat 1992。反対: Michalowski 1993、Zimansky 1993、Bennison-Chapman 2018 |
+| **トークン** (粘土で作った小さな玉や円すい。数える道具) | 前 8000 年ごろ〜前 3000 年 (いちばん古い例はムレイベトの前 9000〜8700 年の円盤 2 つ。Schmandt-Besserat の数え)。ザグロス (ガンジ・ダレ)、レヴァント (エリコ)、ユーフラテス上流 (ムレイベト)、ジャルモ (前 6500 年ごろ、約 2,000 個)、テル・アバダ (ウバイド期)、サビ・アビヤド | 分からない (家か村と考えられる)。数える道具だったかどうか自体が【議論あり】 | 物 (1 個 = 物 1 つ分、という説) | 形で物の種類を表したという説: 円すい・玉・円盤 = 穀物の量、卵形 = 油のつぼ、円柱 = 家畜、四面体 = 働き 1 回分【議論あり】。**名前・持ち主・日付はない** | なし (やりとりごと、数えたときごと) | Schmandt-Besserat 1992。反対: Michalowski 1993、Zimansky 1993、Bennison-Chapman 2019 |
 | **入れ物の封泥** (ふうでい: かご・つぼ・袋の口を閉じた粘土に、石の印を押したもの) | 前 6000 年ごろ。テル・サビ・アビヤド (シリア) の「焼けた村」 | 印を持つ人か家。共同の倉に物を預けた。遊牧の人も預けたという読み【議論あり】 | 物 (入れ物 1 つ) + 人か家 (印の持ち主) | 封泥 約 300 個 (遺跡ぜんぶで 275 個以上とする紹介もある)。押した印は少なくとも 61 個 (Wikipedia の紹介。元の報告では確かめていない)、図柄は 27 の型に分けられる。裏にかご・つぼ・石の器・革袋・ひもの跡。開けたあとも数部屋に取っておいた → 受け取った記録だったという読み【解釈】。焼けた村からは印そのものは見つかっていない (遺跡ぜんぶでも少し)。**数は書かない** | 閉じた・開けた 1 回ごと | Duistermaat 1996、Akkermans & Duistermaat 1996/97 |
 | **大きな建物の封泥と印** | ウバイド期〜後期銅石器時代 (前 5000〜4000 年代)。デイルメンテペ (ウバイド期)、テペ・ガウラ (12 層 前 4400〜4200 年ごろ、11 層 前 4100〜3900 年ごろ。4,000 年以上の全部の層で印と封泥 約 700)、テル・ブラク | 大きな建物 (神殿のような建物・役の人) | 物 (入れ物・倉) + 印の持ち主 | 倉の物を役の人が見張っていたあと。ガウラには文字はなく、トークンと封泥だけ。層ごとに印の図柄が変わる | 封をした 1 回ごと | Esin 1994、Rothman 1994、Oates ほか 2007 (ブラクの封泥の中身は【未確認】) |
 | **トークンの集まり** (ウバイド期の大きな家) | ウバイド 1〜3 期 (前 5400〜4500 年ごろの間)。テル・アバダ (イラク) | 村でいちばん大きな建物 A の人 (「首長の家」というのは【解釈】) | 物 | トークン約 90 個、ほとんどが建物 A から。1 つの鉢の中に、玉 8・円すい 4・円盤 2・棒 1 と、平たい粘土の板 1 の組 (発掘報告を引いた紹介から) | なし | Jasim & Oates 1986 |
@@ -53,7 +53,7 @@
 
 | 記録 | 時代と場所 | だれがつけたか | 何について | 中身 | 時間の単位 | 出典 |
 |---|---|---|---|---|---|---|
-| **刻み線のあるトークン** | 前 3500〜3100 年。スーサ、ウルク | 町の神殿・大きな家 | 物 (布・器・油・家畜など決まった品) | 線や点を刻んだトークン。字のもとになったかは【議論あり】(数字のもとになったことは広く認められている) | やりとりごと | Schmandt-Besserat 1992、Antiquity 2024「Seals and signs」 |
+| **刻み線のあるトークン** | 前 3500〜3100 年。スーサ、ウルク | 町の神殿・大きな家 | 物 (布・器・油・家畜など決まった品) | 線や点を刻んだトークン。字のもとになったかは【議論あり】(数字のもとになったことは広く認められている) | やりとりごと | Schmandt-Besserat 1992、Kelley ほか 2024「Seals and signs」 |
 | **粘土の封筒 (ブッラ)** (中が空の粘土の玉にトークンを入れて閉じたもの) | 前 3500〜3300 年。スーサ、ウルク、ハブバ・カビーラ、ジェベル・アルダ、チョガ・ミシュ | やりとりの両方 (送る人・受け取る人・保証する人) という読み【解釈】 | やりとり 1 回 (物を 1 回送る) | 中にトークン。外に円筒の印を転がした跡。外に中身の数の跡があることも (中のトークンと数が合う例がある) | 送った 1 回ごと | Le Brun & Vallat 1978、Englund 2011 |
 | **数だけの粘土板** | 前 3500〜3300 年。ウルク、スーサ、ゴディン・テペ、テル・ブラク、ハブバ・カビーラ | 町の役所と、遠くの出店 | やりとり + 責任のある人の印 | 数の記号と印だけ。何の数かは、数え方 (下) で分かる | やりとりごと | Englund 1998、Englund 2011 |
 | **数と物の名前の粘土板** | 前 3400〜3300 年 | 役所 | 物 (1 枚に 1 種類) | 数 + 物の名前 1〜2 字 (ヒツジ・つぼ・果物・布) | やりとりごと | Englund 1998、Englund 2011 |
@@ -93,7 +93,7 @@
 |---|---|---|---|---|---|---|
 | **王の年代記** (パレルモ石) | エジプト、第 1〜5 王朝 (前 3000〜2400 年)。第 5 王朝に刻んだ | 王の宮廷と神殿の書き手 | 国 (王) + 国じゅうの測った値 | 1 年に 1 つの枠。その年の出来事で年に名前 (祭り・像を作った・建てた・戦・「N 回目の数え」)。下にナイル川の水の高さ (キュービットなど)。2 年で 1 枠の所があるという読み【議論あり】 | 王の年 | Wilkinson 2000、Smith 1952 |
 | **国の数え** (金と畑の数え、のちウシの数え) | エジプト、第 2 王朝〜古王国 (前 2800〜2200 年) | 王の役所 | 家畜と畑 (領地・地方ごと) | 金・畑・ウシの数。水の高さとあわせて税を決めたという読み【解釈】。「N 回目の数えの年」と年を呼んだ | 2 年に 1 回 (毎年になったのは古王国の終わり、第 6 王朝のペピ 1 世のころから) | Wilkinson 2000、Baud & Dobrev 1995 |
-| **ゲベレインの文書** | エジプト、第 4 王朝の終わり (前 2500 年ごろ) | 王の領地の書き手 (名前のある監督ごと) | 人 (監督ごとの働き手) と家畜 | 働き手の名前・場所・監督、一人ずつ配った大麦、王のヒツジ・ヤギの表 | 日ごとか、ときどき | Posener-Kriéger & Demichelis |
+| **ゲベレインの文書** | エジプト、第 4 王朝の終わり (前 2500 年ごろ) | 王の領地の書き手 (名前のある監督ごと) | 人 (監督ごとの働き手) と家畜 | 働き手の名前・場所・監督、一人ずつ配った大麦、王のヒツジ・ヤギの表 | 日ごとか、ときどき | Posener-Kriéger 2004 (『ゲベレインの文書』) |
 | **アブシールの神殿の文書** | エジプト、第 5 王朝 (前 2450〜2350 年) | 王の葬祭殿の役所 | 神殿と、交代で働く組 | 交代の当番表、日ごと・月ごとの入り、道具の一覧 (いたみも書く)【未確認】 | 日・30 日の月 | Posener-Kriéger 1976 |
 | **家の表** (ウプウト) | エジプトのカフーン (ラフーン)、第 12 王朝 (前 1850 年ごろ) | 町の役所 (写しを家族も持った) | 家 (役のある男とその下の人) | 長の名前と役、妻、子、使用人。あとで亡くなった人・来た人を書き足す。家というより「国への務めの単位」という読み【議論あり】 | ときどき書き足す | Griffith 1898、Kóthay 2001 |
 | **ウィルバー文書** (土地の測量と税) | エジプト、前 1140 年ごろ | 王と神殿の測量の役人 | 畑 + 持つ人 | 場所、持つ人の名前と身分 (兵・神官・牧人・女)、広さ、税の大麦 | 1 年 | Gardiner 1941–48 |
@@ -146,7 +146,7 @@
 3. **記録の基本は「出し入れ 1 回」**。1 つの封泥 = 1 回閉じた・開けた、1 つの封筒 = 1 回送った、1 枚の粘土板 = 1 回受け取った・配った。それを**小計 → 合計**にまとめ、何か月・何年分の最後のまとめを作った (37 か月分のクシムの帳簿)。季節の終わりに「今いくつあるか」だけを書く形ではない
 4. **記録の単位は、家 (印の持ち主) か役所・神殿**。役所 (アルスランテペの宮殿、ウルクのエアンナ) ができると、倉・扉・群れ・畑・働き手の組ごとの帳簿になる。いちばん古い文字の記録は、ほとんどが神殿・宮殿の「大きな家」の帳簿で、ふつうの家族のものではない
 5. **一人ひとりの名前が出てくるのは、配給と働きの表から** (ウルク III 期、前 3200〜3000 年ごろ)。書くのは名前・男女・大人か若者か子か・仕事の組・受け取った量。**人 × 月の配給表** (ラガシュ 前 2400 年ごろ) が、たたき台の ② 人 × 季節にいちばん近い
-6. **人を数える表 (戸籍) は、どの地域でも家ごと** (エジプト、秦、インカ、奈良、江戸)。家の長が先で、ほかの人は長との続柄。**年齢は、はじめは数でなく区分** (大人か小か、働ける力)。数の年齢が入るのはあと (秦 前 231 年、奈良 702 年)
+6. **人を数える表 (戸籍) は、今回見たものはどれも家ごと** (エジプト、秦、インカ、奈良、江戸。メソポタミアの配給表とミケーネの粘土板は、家ではなく働く組ごと)。家の長が先で、ほかの人は長との続柄。**年齢は、はじめは数でなく区分** (大人か小か、働ける力)。数の年齢が入るのはあと (秦 前 231 年、奈良 702 年)
 7. **家畜は雌雄・年齢で数え、「出るはずの量」とくらべた** (ウルク、クノッソス、ウル第 3 王朝、秦の牛)。畑は広さと持つ人 (ピュロスでは**広さを種の量で**書いた。この世界の畑も「まいた種の量」を持っているので、史実にある書き方になる)
 8. **村や県の合計は 1 年に 1 回、前の年からの増減つき** (漢、インカのキープは下の段を足して上の段)
 9. **30 日の月と 360 日の年**。メソポタミアの役所は、1 か月をいつも 30 日として計算した (ウルク期〜古バビロニア期。Englund 1988、Brack-Bernsen 2007)。本当の月 (月の満ち欠け) は 29 日か 30 日で、日付にはそちらを使った。エジプトも 1 か月 30 日で、4 か月 = 120 日が 1 つの季節。→ **この世界の 1 季節 (30 日) は、昔の役所の 1 か月と同じ長さ**。この世界の 1 年 (4 季節 = 120 日) は、エジプトの 1 季節と同じ長さで、昔の役所の 1 年 (360 日) とは違う。月ごとの配給・働いた日数・納めた量は、1 季節 1 行にそのまま当てはまる
@@ -162,7 +162,7 @@
 
 | 札 | 意味 | 例 |
 |---|---|---|
-| 【村】 | 村の人がつけた記録。G6 で村が記録を始めてから | 家の倉の印、トークンで数えたヤギ、配給の表 |
+| 【村】 | 村の人がつけた記録。G6 で村が記録を始めてから | 入れ物に押した印、トークンで数えたヤギ、配給の表 |
 | 【調】 | あとから調べる人 (考古学者・歴史家) が分かること | 家の広さ、亡くなった年齢、ヤギの雌雄と年齢、畑の数、人数 |
 | 【シ】 | シミュレーションだから分かること (史実の記録にはない) | 気持ち、話したこと、性格、技能、空腹、信頼、kcal、毎日の出来事 |
 
@@ -175,19 +175,19 @@
 | たたき台の表 | 似ている昔の記録 | 史実にもある列 (【村】か【調】) | 史実にない列 (【シ】) | 足すとよい列 |
 |---|---|---|---|---|
 | ① 人 | 教区簿冊・IDS の人の表、骨から一人の一生 | 名前・男女・生まれた日・来た日と来かた・親・家・亡くなった日と年齢・死因 (骨で分かるのはけがと一部の病)・村を出た日 | 性格 | 家の長との続柄の移り変わり (宗門人別改帳・戸籍) |
-| ② 人 × 季節 | 配給表 (人 × 月)、働いた日数の帳簿 | 年齢と区分、大人か子か、家の代表か、仕事 (組)、仕事の日数、成果 (刈った・作った数)、けが | 気持ち、話したこと、新しく覚えたこと、技能、空腹・疲れ、掟の投票 (文字の前は残らない) | 年齢の区分 (働ける力)、受け取った食べ物 (配給にあたる。村の蓄えから・家の倉から) |
+| ② 人 × 季節 | 配給表 (人 × 月)、働いた日数の帳簿 | 年齢と区分、大人か子か、家の代表か、仕事 (組)、仕事の日数、成果 (刈った・作った数)、けが | 気持ち、話したこと、新しく覚えたこと、技能、空腹・疲れ、掟の投票 (文字の前は残らない) | 年齢の区分 (働ける力)、受け取った食べ物 (配給にあたる。村の蓄えから・家の倉から。今は G5 から家ごとの合計 (大人の分) だけで、人ごとの量は記録にない。これから季節ごとに残す ×) |
 | ③ 家族 × 季節 | 宗門人別改帳・戸籍 (家ごと)、ドゥームズデイ、家の考古学 | 顔ぶれと代表、住まい (広さ m²)、畑 (まいた種の量・刈った・落ちた)、ヤギ、家の倉 | 持ち物 (kcal) | 顔ぶれの続柄と区分、ヤギの雌雄と年齢、家の倉の「何日分」、出し入れの小計 (⑨)、受けつぎ・払った罰・村を出た |
-| ④ 村 × 季節 | 役所のまとめの帳簿、漢の 1 年の合計、遺跡の調べ・墓・植物と動物の骨 | 人数 (大人・子)・家の数、生まれた・亡くなった・来た・出た、蓄え、畑、ヤギの数、土器・鎌、家の住まいの数、家の大きさの差、掟・もめごと・まとめ役・祭り | 食べたものの正確な割合 (調べる人に分かるのは種と骨の割合くらい)、持ち物の差 (kcal のジニ係数)、虫やネズミの害の正確な量 | **前の季節からの増減**、亡くなった年齢の分け方 (区分ごとの数)、家の倉と村の蓄えの割合、ヤギの群れの雌雄・年齢 |
+| ④ 村 × 季節 | 役所のまとめの帳簿、漢の 1 年の合計、遺跡の調べ・墓・植物と動物の骨 | 人数 (大人・子)・家の数、生まれた・亡くなった・来た・出た、蓄え、畑、ヤギの数、土器・鎌、家の住まいの数、家の大きさの差、まとめ役・祭り (調べる人に分かるのは、大きな建物や祭りの鉢があったかどうかくらい) | 食べたものの正確な割合 (調べる人に分かるのは種と骨の割合くらい)、持ち物の差 (kcal のジニ係数)、虫やネズミの害の正確な量、掟・もめごとの数 (文字の前は残らない。形は ⑦⑧ のとおり後の記録と同じ) | **前の季節からの増減**、亡くなった年齢の分け方 (区分ごとの数)、家の倉と村の蓄えの割合、ヤギの群れの雌雄・年齢 |
 | ⑤ フェーズの条件 | セシャトの「ある・ない・推しはかった」 | (本物の記録はない。調べる人の見方) | 条件の今の値と目標 | 史実の手本の時代 (例: G5 = ウバイド期) |
 | ⑥ 出来事 | 封泥・粘土板 1 枚 = 出し入れ 1 件 | (毎日の出来事そのものは【シ】) | 33,762 件の文章 | G6 から「村の人が記録した出来事」の印 |
-| ⑦ 掟 | 法の集まり (ずっと後。前 2100 年〜) | 罰つきの掟は「もし…なら…を払う」で、ウルナンムの法と同じ形 | 文字の前の掟は口伝えなので、本物の記録には残らない | 罰の物と量 (今の penalty) |
+| ⑦ 掟 | 法の集まり (ずっと後。前 2100 年〜) | 罰つきの掟は「もし…なら…を払う」で、ウルナンムの法と同じ形 | 文字の前の掟は口伝えなので、本物の記録には残らない | 罰の理由と量 (今の penalty の for と pay。払うのは草の種のつかみ) |
 | ⑧ もめごと | 裁きの記録 (ディティラ。ずっと後)、境のもめごとの碑文 | 双方の家・訴えの中身・決め・決めた人 (集まり・長老・まとめ役)・払った量 = ディティラの列とほぼ同じ形 | 文字の前は残らない | (証人・誓いは今の仕組みにない。足さなくてよい) |
 
 **足す表 (案)**
 
 | 表 | 1 行は | 中身 | なぜ |
 |---|---|---|---|
-| ⑨ 出し入れの帳簿 (小計) | 1 家 (と村の蓄え) × 1 季節 × 1 つの物 × 1 つの理由 | 物 (草の種・ヤギ・土器・鎌…)、理由 (刈った・食べた・まいた・虫やネズミ・罰で払った・罰で受け取った・祭り・受けついだ・生まれた・つぶした・死んだ・村を出て持っていった)、量 (物の単位) | 昔の記録の基本は出し入れ。③④ の × の列 (ヤギ・家の倉・出し入れ) がそろい、季節の終わりの数は「前の数 + 入り − 出」で確かめられる (昔の書き手と同じ作り方) |
+| ⑨ 出し入れの帳簿 (小計) | 1 家 (と村の蓄え) × 1 季節 × 1 つの物 × 1 つの理由 | 物 (草の種・ヤギ・土器・鎌…)、理由 (今の仕組みにある動きだけ: 刈った・食べた・まいた・虫やネズミ・村の蓄えに入れた・村の蓄えから取った・よその家の倉から取った / 取られた (G5)・罰で払った・罰で受け取った・祭り・受けついだ・ヤギが生まれた・捕まえた・つぶした・いなくなった (世話が足りず)・村を出て持っていった)、量 (物の単位) | 昔の記録の基本は出し入れ。③④ の × の列 (ヤギ・家の倉・出し入れ) がそろい、季節の終わりの数は「前の数 + 入り − 出」で確かめられる (昔の書き手と同じ作り方) |
 | ⑩ 年の名前 (村の年代記) | 1 年 | その年のいちばん大きな出来事 (例:「ナギが亡くなった年」「アルの家が家の倉を持った年」)、刈り入れの量 (エジプトのナイルの高さにあたる 1 つの測った値) | メソポタミア・エジプト・ラコタに共通。文字がなくても残る形 |
 | ⑪ 印と役の一覧 (G6 から) | 1 つの印か役 | 印の持ち主 (家・役)、作った日、役の名前の順 | サビ・アビヤドの印、役の名前の表 |
 
@@ -200,10 +200,10 @@
 
 | 段階 | 史実の手本 | 1 行は | 見せること |
 |---|---|---|---|
-| 1. 印 | サビ・アビヤドの封泥 | 家の倉 (入れ物) を閉じた・開けた 1 回 | 日・家・入れ物・印 (数は書かない) |
+| 1. 印 | サビ・アビヤドの封泥 (共同の倉に入れた入れ物に、家の印を押した) | 入れ物を閉じた・開けた 1 回 (この村では、印を押すのが家の倉か村の蓄えかを G6 の設計書で決める) | 日・家・入れ物・印 (数は書かない) |
 | 2. トークン | トークン | 家ごとの数 (草の種・ヤギ) | 家・物・玉の数 (名前なし) |
 | 3. 封筒 | 粘土の封筒 | 村どうしの交換 1 回 | 相手の村・物・数・印 |
-| 4. 表 | ウルク III 期の帳簿、ラガシュの配給表 | 人 × 季節 (配給・働いた日数)、家 × 年 (ヤギの群れ: 雌雄・年齢、生まれた・死んだ・つぶした、乳の出るはずの量と出た量)、畑 (持つ家・まいた種の量)、役の名前、年の名前 | 名前・男女・区分・組・量 |
+| 4. 表 | ウルク III 期の帳簿、ラガシュの配給表 | 人 × 季節 (配給・働いた日数)、家 × 年 (ヤギの群れ: 雌雄・年齢、生まれた・いなくなった・つぶした、乳の出るはずの量と出た量)、畑 (持つ家・まいた種の量)、役の名前、年の名前 | 名前・男女・区分・組・量 |
 
 - **今 (G5) 見せるもの**: 「この村はまだ記録をつけていない。覚えていること・掟は人の頭の中 (口伝え)」の 1 行と、注「本物の世界では、この時代 (ウバイド期) にはもうトークンと封泥があった」
 
@@ -215,7 +215,7 @@
 |---|---|---|
 | **人** (一人の一生) | 生まれた・来た・家・親 → 季節ごとの区分・仕事の日数・成果・けが → 亡くなった年齢・死因 (骨の一生の見方)。【シ】気持ち・話したこと・性格・技能 | 記録に名前が出たか (【村】の配給表に出たか) |
 | **家** (宗門人別改帳の形) | 季節ごとに、代表・顔ぶれ (続柄・区分)、畑 (まいた種・刈った)、ヤギ (雌雄・年齢)、家の倉 (何日分)、家の広さ、出し入れの小計、受けつぎ、もめごと、払った罰・受け取った罰。【シ】持ち物 kcal | 家の印、記録された量と本当の量のずれ |
-| **村** (役所のまとめ + 遺跡の調べ) | 人数 (区分・男女)、家の数、生まれた・亡くなった・来た・出た (前の季節からの増減)、亡くなった年齢の分け方、蓄え (何日分)・家の倉との割合、食べたものの割合、ヤギの群れ、土器・鎌、家の大きさの差 (Kohler の値と並べる)、掟・もめごと・祭り・まとめ役、年の名前 | **集落ごとの行** (ほかの村・町ができたら)、集落の段の数、村どうしの交換 |
+| **村** (役所のまとめ + 遺跡の調べ) | 人数 (区分・男女)、家の数、生まれた・亡くなった・来た・出た (前の季節からの増減)、亡くなった年齢の分け方、蓄え (何日分)・家の倉との割合、食べたものの割合、ヤギの群れ、土器・鎌、家の大きさの差 (Kohler の値と並べる)、祭り・まとめ役、掟・もめごと (【シ】)、年の名前 | **集落ごとの行** (ほかの村・町ができたら)、集落の段の数、村どうしの交換 |
 
 ### 5.4 時間の単位
 
@@ -230,10 +230,10 @@
 |---|---|---|---|
 | G1 村ができる | なし (トークンは【議論あり】) | 人 (骨)、村 (遺跡) | 人・村 |
 | G2 畑と家畜 | 数だけのトークン (名前なし)【議論あり】 | 植物の種と動物の骨の割合、ヤギの殺した年齢 | 村・家畜 |
-| G3 余りと分業 | 共同の倉の封泥 (サビ・アビヤド) | 倉の場所、土器 | 村・物 |
-| G4 持ち物と差 | 家ごとの印と倉 | 家の考古学、家の大きさの差 | 家 |
-| G5 リーダーと決まり (今) | 大きな建物の封泥とトークン (テル・アバダ、ガウラ)、祭りの鉢 (アルスランテペ) | 家・村・大きな建物 | 家・村・まとめ役 (役所の芽) |
-| G6 交易・町・記録 | 封筒・粘土板、名前つきの表、家畜の帳簿、畑の測量、配給表、役の名前、年の名前 | 集落の段 | 役所・人 × 季節・家 × 年・集落 |
+| G3 余りと分業 | 数だけのトークン (ジャルモに多い。前 6500 年ごろ)【議論あり】 | 倉の場所、土器 | 村・物 |
+| G4 持ち物と差 | 共同の倉の入れ物に家ごとの印を押した封泥 (サビ・アビヤド、前 6000 年ごろ) | 家の考古学、家の大きさの差 | 家 |
+| G5 リーダーと決まり (今) | 大きな建物の封泥とトークン (テル・アバダ、デイルメンテペ、ガウラ 12 層) | 家・村・大きな建物 | 家・村・まとめ役 (役所の芽) |
+| G6 交易・町・記録 | 神殿・宮殿の封泥と祭りの鉢 (アルスランテペ)、封筒・粘土板、名前つきの表、家畜の帳簿、畑の測量、配給表、役の名前、年の名前 | 集落の段 | 役所・人 × 季節・家 × 年・集落 |
 
 この村では、2026-10-08 に決めた通り【村】の記録は G6 から (印 → トークン → 文字)。G1〜G5 は【調】と【シ】だけになる。
 
@@ -241,7 +241,7 @@
 
 - 今の状態から組み立てられるもの: ヤギには雌雄と生まれた日があるので、今いるヤギの群れの雌雄・年齢は出せる (いなくなったヤギは出来事の文章から組み立てる)。畑には、まいた人・まいた種の量・刈った量がある
 - 出し入れの小計 (⑨) は、これから季節の終わりに書く (たたき台 3. の 1 と同じ所)。過去の分は、出来事から組み立てられるものだけ
-- 掟・もめごとは【調】の見方に入れるが、「文字の前なので本物の記録には残らない」と注をつける。罰つきの掟とまとめ役の裁きは、形はウルナンムの法・ディティラに近い (ただし 1,000 年以上あとの形)
+- 掟・もめごとは「あとから調べる人の記録」のページに出すが、札は【シ】にし、「文字の前なので本物の記録には残らない」と注をつける。罰つきの掟とまとめ役の裁きは、形はウルナンムの法・ディティラに近い (ただし 1,000 年以上あとの形)
 
 ---
 
@@ -258,7 +258,7 @@
 ### 問 2. 出し入れの帳簿 (⑨) を足すか
 
 - (a) 足さない。季節の終わりの数だけ (たたき台の通り)
-- (b) 「家 × 季節 × 物 × 理由」の小計で足す (刈った・食べた・まいた・虫やネズミ・罰・祭り・受けついだ・生まれた・つぶした・持って出た) ← **おすすめ**
+- (b) 「家 × 季節 × 物 × 理由」の小計で足す (刈った・食べた・まいた・虫やネズミ・村の蓄えとの出し入れ・よその家の倉から取った / 取られた・罰・祭り・受けついだ・生まれた・捕まえた・つぶした・いなくなった・持って出た) ← **おすすめ**
 - (c) 1 回ずつ全部 (毎日 25 人が食べる分まで)
 
 おすすめの理由: 昔の記録の基本は出し入れで、1 件 → 小計 → 合計の形。(b) で ③④ の × の列がそろい、季節の終わりの数を確かめられる。(c) はファイルが大きくなりすぎる。
@@ -304,44 +304,46 @@
 ### 西アジア: 文字の前
 
 - Schmandt-Besserat, D. 1992. *Before Writing*. University of Texas Press. (紹介: https://sites.utexas.edu/dsb/making-tokens-talk/)
-- Jasim, S.A. & Oates, J. 1986. Early tokens and tablets in Mesopotamia. *World Archaeology* 17: 348–362.
+- Jasim, S.A. & Oates, J. 1986. Early tokens and tablets in Mesopotamia. *World Archaeology* 17(3): 348–362.
 - Michalowski, P. 1993. (Schmandt-Besserat 1992 の書評). *American Anthropologist* 95.
 - Zimansky, P. 1993. (同じ本の書評). *Journal of Field Archaeology* 20: 513–517.
 - Friberg, J. 1994. (同じ本の書評). *Orientalistische Literaturzeitung* 89.【未確認】
-- Bennison-Chapman, L. 2018. Reconsidering 'tokens'. *Cambridge Archaeological Journal*. https://www.cambridge.org/core/product/7E6C04CB040AD8AA0EA84B94D4D275C4
+- Bennison-Chapman, L. 2019 (ネット公開 2018). Reconsidering 'tokens': the Neolithic origins of accounting or multifunctional, utilitarian tools? *Cambridge Archaeological Journal* 29(2): 233–. https://www.cambridge.org/core/product/7E6C04CB040AD8AA0EA84B94D4D275C4
+- Schmandt-Besserat, D. (ムレイベト・ジャルモのトークンの年と数): https://sites.utexas.edu/dsb/tokens/the-invention-of-tokens/
 - Duistermaat, K. 1996. The seals and sealings. In P.M.M.G. Akkermans (ed.), *Tell Sabi Abyad: The Late Neolithic Settlement*, 339–401.
-- Akkermans, P.M.M.G. & Duistermaat, K. 1996/97. Of storage and nomads. *Paléorient* 22(2): 17–44. https://www.academia.edu/737491/
-- Tell Sabi Abyad (封泥の図柄 27 の型): https://en.wikipedia.org/wiki/Tell_Sabi_Abyad
-- Esin, U. 1994. (デイルメンテペ). In *Archives Before Writing*, 59–81.
-- Rothman, M. 1994. Monitoring changes in administrative oversight. In *Archives Before Writing*, 97–119. (テペ・ガウラの印: https://journals.openedition.org/syria/237?lang=en)
+- Akkermans, P.M.M.G. & Duistermaat, K. 1996/97. Of storage and nomads: the sealings from Late Neolithic Sabi Abyad, Syria. *Paléorient* 22(2): 17–44. https://www.academia.edu/737491/
+- Tell Sabi Abyad (封泥の数・印の数・図柄 27 の型・焼けた村の年): https://en.wikipedia.org/wiki/Tell_Sabi_Abyad
+- Esin, U. 1994. The functional evidence of seals and sealings of Değirmentepe. In *Archives Before Writing*, 59–81.
+- Rothman, M. 1994. Seal and sealing findspot, design, audience and function: monitoring changes in administrative oversight and structure at Tepe Gawra during the fourth millennium B.C. In *Archives Before Writing*, 97–119. (テペ・ガウラの印: https://journals.openedition.org/syria/237?lang=en。層ごとの年はペン博物館の目録)
+- Jasim, S.A. 2021. *Tell Abada: An Ubaid Village in Central Mesopotamia*. OIP 147. (テル・アバダの年とトークン)
 - Oates, J., McMahon, A., Karsgaard, P., Al Quntar, S. & Ur, J. 2007. Early Mesopotamian urbanism: a new view from the north. *Antiquity* 81: 585–600. https://jasonur.scholars.harvard.edu/publications/early-mesopotamian-urbanism-new-view-north
-- Frangipane, M. et al. 2007. *Arslantepe Cretulae: An Early Centralised Administrative System Before Writing*. (書評: https://ajaonline.org/book-review/605/)
+- Frangipane, M. et al. 2007. *Arslantepe Cretulae: An Early Centralised Administrative System Before Writing* (Arslantepe V。宮殿の封泥 2,200 個以上). (書評: https://ajaonline.org/book-review/605/)
 - Frangipane, M. 1994. The record function of clay sealings.
 - Balossi Restelli, F. (アルスランテペ神殿 C・D の鉢の紹介文、Sapienza): https://research.uniroma1.it/node/33887
-- Antiquity 2024. Seals and signs: tracing the origins of writing in ancient Southwest Asia. https://www.cambridge.org/core/journals/antiquity/article/seals-and-signs-tracing-the-origins-of-writing-in-ancient-southwest-asia/B3C2D400F3F80A7A0162D9035C9C2804
+- Kelley, K., Cartolano, M. & Ferrara, S. 2024. Seals and signs: tracing the origins of writing in ancient South-west Asia. *Antiquity* (ネット公開 2024-11-05). https://www.cambridge.org/core/journals/antiquity/article/seals-and-signs-tracing-the-origins-of-writing-in-ancient-southwest-asia/B3C2D400F3F80A7A0162D9035C9C2804
 
 ### 西アジア: 文字のはじまり (ウルク期)
 
-- Le Brun, A. & Vallat, F. 1978. *Cahiers de la DAFI* 8: 11–70.
+- Le Brun, A. & Vallat, F. 1978. L'origine de l'écriture à Suse. *Cahiers de la DAFI* 8: 11–70 (目録によっては 7–59。ページは【未確認】).
 - Nissen, H.J., Damerow, P. & Englund, R.K. 1993. *Archaic Bookkeeping*. University of Chicago Press.
 - Englund, R.K. 1998. Texts from the Late Uruk Period. *OBO* 160/1.
 - Englund, R.K. 2001. Grain accounting practices in archaic Mesopotamia. https://cdli.earth/files-up/publications/englund2001b.pdf
 - Englund, R.K. 2004. Proto-cuneiform account-books and journals. In Hudson & Wunsch (eds.), *Creating Economic Order*.
 - Englund, R.K. 2009. The smell of the cage. *CDLJ* 2009:4. https://cdli.earth/articles/cdlj/2009-4
 - Englund, R.K. 2011. Accounting in proto-cuneiform. https://cdli.earth/files-up/publications/englund2011a.pdf
-- Englund, R.K. 1995a. Late Uruk period cattle and dairy products. *BSA* 8: 33–48.
+- Englund, R.K. 1995a. Late Uruk period cattle and dairy products: evidence from proto-cuneiform sources. *BSA* 8: 33–48.
 - Englund, R.K. 1995b. Late Uruk pigs and other herded animals. *FS Boehmer*, 121–133.
-- Englund, R.K., Grégoire, J.-P. & Matthews, R. 1991. *MSVO 1* (ジェムデト・ナスルの畑の測量). https://cdli.earth/artifacts/5071
+- Englund, R.K., Grégoire, J.-P. & Matthews, R. 1991. *The Proto-Cuneiform Texts from Jemdet Nasr I* (MSVO 1。ジェムデト・ナスルの畑の測量)。「EN の畑」の粘土板: CDLI P005069、https://cdli.ox.ac.uk/wiki/complex_calculations_jemdetnasr
 - Englund, R.K. & Nissen, H.J. 1993. *ATU 3* (言葉の表).
-- Englund, R.K. 1988. Administrative timekeeping in ancient Mesopotamia. *JESHO* 31: 121–185.
-- Brack-Bernsen, L. The 360-day year in Mesopotamia. https://epub.uni-regensburg.de/58013/1/31.the%20360%20day%20year.pdf
-- MSVO 3, 29 (クシムの帳簿), CDLI P005340. https://cdli.ucla.edu/P005340
+- Englund, R.K. 1988. Administrative timekeeping in ancient Mesopotamia. *JESHO* 31(2): 121–185. (「1 年 = 12 (うるう年は 13) か月 = 360 (390) 日」)
+- Brack-Bernsen, L. 2007. The 360-day year in Mesopotamia. In J.M. Steele (ed.), *Calendars and Years*, 83–100. Oxbow. https://epub.uni-regensburg.de/58013/1/31.the%20360%20day%20year.pdf
+- MSVO 3, 29 (クシムの帳簿。シェーエン・コレクション MS 1717), CDLI P005340. https://cdli.ucla.edu/P005340
 - Damerow, P. 2012. Sumerian beer. *CDLJ* 2012:2.
-- Green, M.W. 1980. Animal husbandry at Uruk in the archaic period. *JNES* 39.【未確認】
+- Green, M.W. 1980. Animal husbandry at Uruk in the archaic period. *JNES* 39: 1–35.
 - Szarzyńska, K. 1993. Offerings for the goddess Inana in archaic Uruk. *RA* 87: 7–28.
 - Vaiman, A.A. 1974. (働く人の記号).
-- Kelley, K. 2018. Gender, age, and labour organization in the earliest texts from Mesopotamia and Iran. Oxford DPhil. https://ora.ox.ac.uk/objects/uuid:afa3362e-1182-43aa-a2b9-d675bd8c585a
-- Bartash, V. 2018. *AOAT* 440: 45–80.
+- Kelley, K. 2018. Gender, age, and labour organization in the earliest texts from Mesopotamia and Iran (c. 3300–2900 BC). Oxford DPhil. https://ora.ox.ac.uk/objects/uuid:afa3362e-1182-43aa-a2b9-d675bd8c585a
+- Bartash, V. 2018. Age, gender and labor: recording human resources in 3350–2500 BC Mesopotamia. In *What's in a Name?* (AOAT 440), 45–80 (ページは【未確認】). / Bartash, V. 2015. Children in institutional households of Late Uruk period Mesopotamia. *ZA* 105: 131–138.
 - Goulder, J. 2010. Administrators' bread. *Antiquity* (斜めの縁の鉢の使いみち).
 - DCCLT (古い言葉の表): https://oracc.museum.upenn.edu/dcclt/lexicallistsperiods/archaic/index.html
 - 職業の表 (キシュのかけら): https://cdli.earth/articles/cdln/2014-15
@@ -355,7 +357,7 @@
 - i3.MesopOil (乳製品の資料): https://www.i3-mesop-oil.gwi.uni-muenchen.de/dossier/a-2-1-06/ 、 https://www.i3-mesop-oil.gwi.uni-muenchen.de/?p=2898
 - Englund, R.K. 1995. Regulating dairy productivity in the Ur III period. *Orientalia* 64: 377–429.
 - Englund, R.K. 1991. Hard work – where will it get you? *JNES* 50: 255–280.
-- Gelb, I.J. 1965. The ancient Mesopotamian ration system. *JNES* 24.
+- Gelb, I.J. 1965. The ancient Mesopotamian ration system. *JNES* 24: 230–243.
 - Andersson, J. 2014. (ファラの売り買いの証文). *CDLB* 2014:1. https://cdli.earth/articles/cdlb/2014-1
 - Gelb, I.J., Steinkeller, P. & Whiting, R. 1991. *Earliest Land Tenure Systems in the Near East*. OIP 104.
 - Cooper, J. 1983. *Reconstructing History from Ancient Inscriptions*. (確かめていない)
@@ -363,17 +365,17 @@
 - Goetzmann, W. (利子の率。Yale SOM)。
 - Falkenstein, A. 1956–57. *Die neusumerischen Gerichtsurkunden*.
 - Molina, M. 2010. (ウンマの裁きの記録). https://bdtns.cesga.es/PDFs/Molina_2010_FS_Owen.pdf
-- Veenker, R. & Johnson, J.C. 2009. (ディティラの上への訴え). *AoF* 36. https://research.birmingham.ac.uk/en/publications/the-appellate-process-in-a-legal-record-di-til-la-from-ur-iii-umm/
-- Roth, M. 1997. *Law Collections from Mesopotamia and Asia Minor*.
+- Veenker, R. & Johnson, J.C. 2009. The appellate process in a legal record (di til-la) from Ur III Umma. *AoF* 36(2): 349–364. https://research.birmingham.ac.uk/en/publications/the-appellate-process-in-a-legal-record-di-til-la-from-ur-iii-umm/
+- Roth, M. 1997. *Law Collections from Mesopotamia and Asia Minor* (2nd ed.). Scholars Press.
 - ウルナンムの法: https://en.wikipedia.org/wiki/Code_of_Ur-Nammu
-- Sigrist, M. & Damerow, P. 年の名前の一覧。年の名前のまとめ: https://www.encyclopedia.com/history/news-wires-white-papers-and-books/reckoning-time
+- Sigrist, M. & Damerow, P. 2001. *Mesopotamian Year Names* (CDLI の年の名前の一覧。2,000 以上)。年の名前のまとめ: https://www.encyclopedia.com/history/news-wires-white-papers-and-books/reckoning-time
 
 ### ほかの地域
 
 - Wilkinson, T. 2000. *Royal Annals of Ancient Egypt*.
 - Smith, W.S. 1952. *JNES* 11. / Schaeffer 1902 (パレルモ石の写し).
 - Baud, M. & Dobrev, V. 1995. *BIFAO* 95.
-- Posener-Kriéger, P. & Demichelis, S. *I Papiri di Gebelein*.
+- Posener-Kriéger, P. 2004. *I papiri di Gebelein* (トリノのエジプト博物館。Demichelis が関わったかは【未確認】).
 - Posener-Kriéger, P. 1976. *Les archives du temple funéraire de Néferirkarê-Kakaï*.【未確認】
 - Griffith, F.Ll. 1898. *Hieratic Papyri from Kahun and Gurob*. / Kóthay, K. 2001. *Bulletin du Musée Hongrois des Beaux-Arts* suppl.
 - Gardiner, A.H. 1941–48. *The Wilbour Papyrus*.
@@ -381,9 +383,9 @@
 - Frenez, D. & Tosi, M. (ロータルの封泥); Kenoyer, J.M.; Meadow, R. & Kenoyer, J.M. 1997 (ハラッパー); Rao, R. 2018. arXiv:1812.00049.
 - Keightley, D. 1978. *Sources of Shang History*. / 2000. *The Ancestral Landscape*. / 2012. *Working for His Majesty*.
 - Ventris, M. & Chadwick, J. 1956/1973. *Documents in Mycenaean Greek*. / Killen, J. 1964. *BSA*. / Palaima, T. 1982/1984. / Nosch, M.-L. (Od 粘土板). / Montecchi (ta-ra-si-ja). / Koropeckyj. / Bartoněk、Stavrianopoulou、Carpenter (ピュロスの土地).
-- Julien, C. 1988. How Inca decimal administration worked. *Ethnohistory* 35.
+- Julien, C. 1988. How Inca decimal administration worked. *Ethnohistory* 35(3): 257–279. / Escudero, A. (インカの年齢の区分と、植民地時代にそろえた数の年齢。書名は【未確認】)
 - Guaman Poma de Ayala, F. 1615. *Nueva corónica*. / Cieza de León, P. 1550.
-- Urton, G. & Brezine, C. 2005. Khipu accounting in ancient Peru. *Science* 309. / Urton, G. & Chu, A. 2015. *Latin American Antiquity*.【未確認】
+- Urton, G. & Brezine, C. 2005. Khipu accounting in ancient Peru. *Science* 309. / Urton, G. & Chu, A. 2015. Accounting in the King's Storehouse: the Inkawasi khipu archive. *Latin American Antiquity* 26(4): 512–529. (中身は【未確認】)
 - 『里耶発掘報告』2006. / 王子今、邢義田 (里耶の戸籍). / Yates, R. *Early China* 35–36.
 - 『史記』秦始皇本紀 (前 231 年「初令男子書年」).
 - Hulsewé, A.F.P. 1985. *Remnants of Ch'in Law*. / 『睡虎地秦墓竹簡』.
@@ -400,7 +402,7 @@
 ### 歴史家・考古学者の見方
 
 - Wilk, R. & Rathje, W. 1982. Household archaeology. *American Behavioral Scientist* 25(6): 617–639.
-- Wilk, R. & Netting, R. 1984. (家の働き).
+- Wilk, R. & Netting, R. 1984. Households: changing forms and functions. In Netting, Wilk & Arnould (eds.), *Households*. University of California Press. (家の働き 5 つ)
 - Souvatzi, S. 2008. *A Social Archaeology of Households in Neolithic Greece*.
 - Flannery, K. 1972. / Flannery, K. 2002. The origins of the village revisited. *American Antiquity* 67(3).
 - Kuijt, I. & Finlayson, B. 2009. *PNAS* 106 (ドゥラの倉).
@@ -409,11 +411,12 @@
 - Halstead, P. 1989. The economy has a normal surplus. In Halstead & O'Shea (eds.), *Bad Year Economics*, 68–80.
 - Jasim, S.A. 1988. (テル・アバダ).
 - Pearson, J. et al. 2015. (チャタルヒュユクの骨の成分).
-- Kohler, T. et al. 2017. Greater post-Neolithic wealth disparities in Eurasia than in North America and Mesoamerica. *Nature* 551: 619–622.
+- Kohler, T. et al. 2017. Greater post-Neolithic wealth disparities in Eurasia than in North America and Mesoamerica. *Nature* 551: 619–622. (あとで訂正が出ている)
 - Adams, R.McC. 1965. *Land Behind Baghdad*. / Adams & Nissen 1972. *The Uruk Countryside*. / Adams 1981. *Heartland of Cities*.
 - Johnson, G. 1973, 1987. / Wright, H. & Johnson, G. 1975. Population, exchange, and early state formation in southwestern Iran. *American Anthropologist* 77(2): 267–289.
 - Naroll, R. 1962. *American Antiquity* 27. / Kuijt, I. 2000. *Journal of Anthropological Archaeology* 19: 75–102. / Birch 2017.
-- Bocquet-Appel, J.-P. 2002. *Current Anthropology* 43. / 2008 (ed.). / 2011. *Science* 333; *Current Anthropology* 52 S4. / Downey et al. 2014. *PLoS ONE*.
+- Kuijt, I. & Marciniak, A. 2024. (チャタルヒュユクの人数を 600〜800 人と見積もる). *Journal of Anthropological Archaeology*. 紹介: https://www.sciencenews.org/article/earliest-farming-villages-housed-people
+- Bocquet-Appel, J.-P. 2002. Paleoanthropological traces of a Neolithic demographic transition. *Current Anthropology* 43: 637–650. / 2008 (ed.). / 2011. *Science* 333; *Current Anthropology* 52 S4. / Downey et al. 2014. *PLoS ONE*.
 - Wood, J., Milner, G., Harpending, H. & Weiss, K. 1992. The osteological paradox. *Current Anthropology* 33: 343–370.
 - Stodder, A. & Palkovich, A. (eds.) 2012. *The Bioarchaeology of Individuals*.
 - Payne, S. 1973. *Anatolian Studies* 23: 281–303. / Blaise & Balasse 2011. / Balasse et al. 2017.
@@ -424,3 +427,32 @@
 - 速水融 1973. 『近世農村の歴史人口学的研究』. / Tsuya, N. & Kurosu, S. (EurAsia Project, *Life Under Pressure* 2004, *Prudence and Pressure* 2010). / コトバンク「宗門改」.
 - Seshat Global History Databank (https://seshat-db.com). / Turchin, P. et al. 2018.
 - Topoi A-4-4 (古いヒツジの飼い方): https://static.topoi.org/project/a-4-4/
+
+---
+
+## 8. 確かめなおしで直したこと (2026-10-09)
+
+年と出典をウェブ検索でもう一度確かめた。元の本や論文そのものは、ほとんど開けていない (目録・紹介・博物館の説明で確かめた)。
+
+**確かめられたこと (そのまま)**: 役所の 1 か月 = 30 日・1 年 = 360 日 (Englund 1988、Brack-Bernsen 2007)、ウルク IV 期 前 3350〜3200 年・III 期 前 3200〜3000 年 (CDLI)、『Archaic Bookkeeping』(Nissen・Damerow・Englund、シカゴ大学出版、1993)、クシムの帳簿 = MSVO 3, 29 (P005340、約 13.5 万リットル、37 か月)、Wilk & Rathje 1982 (*American Behavioral Scientist* 25(6): 617–639)、Kohler ほか 2017 (0.17・0.27・0.35)、宗門人別改帳 (1671 年から全国)、里耶の戸籍 (5 段)、前 231 年に男の年齢を届けさせた、プルチュコのキープ (上の段 = 下の段の合計)、ウルナンムの法 (目 = 銀 1/2 ミナ、歯 = 2 シクル)、エンメテナの円すい (ルーブル AO 3004)、大英博物館の配給の粘土板 (約 200 人、大人 30〜40 シラ・子 20 シラ)。
+
+**直したこと**:
+1. うるう月の年 = 13 か月 = 390 日を書き足した。役所の 30 日の月は古バビロニア期まで使われた
+2. トークンの始まりを「前 9000/8000 年」から「前 8000 年ごろ (いちばん古い例は前 9000〜8700 年のムレイベト)」に。ジャルモは「約 2,000 個、前 6500 年ごろ」
+3. サビ・アビヤド: 封泥 約 300 個、印は少なくとも 61 個 (「約 60【未確認】」を直した)。「家の中から印は見つかっていない」を「焼けた村からは印そのものは見つかっていない」に
+4. テペ・ガウラ 11 層の年を 前 4100〜3900 年ごろに (前は 12〜11 層をまとめて「前 4400〜4100 年」)
+5. テル・アバダの年を「前 5000 年代」から「ウバイド 1〜3 期 (前 5400〜4500 年ごろの間)」に。トークンの組の数は紹介で確かめられた
+6. 「29,086」は読み方の違いではなく、28,086 (小さい単位の数) の写しまちがいらしい (こちらの計算。【解釈】)
+7. ジェムデト・ナスルの畑の測量: 役の名前の一覧を、確かめられた形 (EN の畑: 2/3 を EN、1/3 を 5 人の役の人) に直した
+8. 言葉の表の割合: 「1〜2 割【未確認】」を「ウルク III 期の約 4,900 点のうち約 700 点 (1 割半)」に
+9. エンメテナ: 借りの帳消し (アマルギ) は、境の円すいではなく別の碑文に書かれている
+10. 奈良の年齢区分: 「次丁 61〜」を「老丁 61〜65 (病の人と合わせて次丁)」に
+11. 線文字 B: クノッソスの年に【議論あり】を足した。「家は出てこない」を「ふつうの家の記録は出てこない」に
+12. インダス: 「封泥は約 100〜200」を「印 10 に封泥 1 ほど。ロータルで約 70〜100 個」に
+13. 漢: 「前 127〜前 1 年」を、楽浪 (前 45 年) など遺跡ごとの年に
+14. インカ: 「数の年齢は植民地時代にそろえたもの」を、一つの見方 (【議論あり】) に
+15. 遺跡の調べ: 国の見分け方を「村の上にまとめる段が 3 つ以上 (集落の大きさで 4 段)」に。チャタルヒュユクの 600〜800 人は Kuijt & Marciniak 2024
+16. 出典: Bennison-Chapman は 2019 年 (ネット公開 2018)、Antiquity 2024 の著者 (Kelley・Cartolano・Ferrara)、Rothman 1994 の題、Veenker & Johnson 2009 のページ、Bartash 2018 の題 (AOAT 440)、MSVO 1 の CDLI の番号 (P005069) などを直した
+17. 5. の当てはめ: G3 の手本はサビ・アビヤドではなく、その前 (前 7000〜6700 年ごろ) なので、5.5 の表と 4. の 2 を直した (サビ・アビヤドは G4 の手本)。アルスランテペ (前 3900 年〜) はウバイド期より後なので、G5 から G6 の行に移した。⑨ の理由を、今の仕組みにある動き (村の蓄えとの出し入れ、よその家の倉から取った、ヤギがいなくなった など) に合わせた。掟・もめごとの数は【シ】にした (文字の前は残らないため)
+
+**まだ確かめられていないこと** (本文に【未確認】の印): 働く人の表の数 (W 9827 の 211 人、男 23・女 12)、ウル第 3 王朝の乳製品の決まり (雌牛 1 頭にバター 5 シラ・チーズ 7.5 シラ)、Gelb の配給の量、ラガシュの配給表の枚数 (約 1,800) と「何回目の配給」の書き方、役の名前の表の数 (約 125)、天長と尹湾の年、インカワシのキープの中身、Le Brun & Vallat のページ。調べのとちゅうでウェブ検索の回数の上限に達したので、ウィルバー文書の年 (前 1140 年ごろ)・ラコタの冬の数え・アルプスの割り符・ヌエル・甲骨・パレルモ石の「金と畑の数え」は、今回は確かめなおしていない (前の調べのまま)。
