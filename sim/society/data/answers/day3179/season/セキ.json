@@ -1,0 +1,7 @@
+{"say": [{"to": "ホノ", "text": "西草原12へ行こう。前の季節に食べ物が見つかった場所だから、冬も取れるか二人で確かめよう。"}, {"to": "みんな", "text": "冬のあいだ、わたしとホノで西草原12へ採集に行く。二人で行くよ。見つけた量と蓄えに入れた量は、夜にそのまま言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"スイ2": true}, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}, "ルネ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "ホノと西草原12へ行けば、冬の食べ物がある場所かどうかを確かめられる。今季はそれを試す。", "because": [74925], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L121", "against": "なし", "agree": true, "reason": "二人以上で行けば、ザガが出ても守り合える。"}, {"id": "L143", "against": "なし", "agree": true, "reason": "林でも川でも二人で行けば安心だ。"}, {"id": "L110", "against": "なし", "agree": true, "reason": "夕方に戻らない人を早く探せる。"}, {"id": "L134", "against": "なし", "agree": true, "reason": "雨の夜に外で濡れる人が減る。"}],
+ "feeling": "木の実はもうなくて心細いが、蓄えはまだ十分ある。ホノと西草原12で食べ物が見つかれば、みんなが助かる。"}

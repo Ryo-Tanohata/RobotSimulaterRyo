@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、わたしは土器を作るよ。割れた土器は次の日に作り直すから、草の種を入れる器が足りなくならないようにする。スイ2とノア2が村に来てくれてうれしい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": []}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"スイ2": true, "ノア2": true}, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "土器は、一日に 2〜3 個焼ける。焼いた土器に草の種を入れると、虫やネズミに食べられない", "because": [76279, 76324, 76369], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L126", "against": "", "agree": true, "reason": "蓄えの動きが分かると、無駄を見つけやすい"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れる人が減って、疲れがとれるようになる"}, {"id": "L137", "against": "", "agree": true, "reason": "小さい子は外で濡れると弱ってしまうから"}, {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り入れを毎夕みんなで進めれば、刈り残しが減る"}, {"id": "L142", "against": "", "agree": true, "reason": "割れた土器をすぐ作り直せば、草の種を守れなくなる日が減る"}, {"id": "L151", "against": "", "agree": true, "reason": "春に土器づくりを始めれば、春と夏の草の種を守れる"}],
+ "feeling": "冬でも手を動かせるのがうれしい。土器が増えれば、草の種を虫から守れる。"}

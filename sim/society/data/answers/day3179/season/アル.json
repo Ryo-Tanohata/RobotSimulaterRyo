@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬は北川12へ行って、魚と芋が残っているかを確かめてくる。ホノといっしょに行く。見つけた量と蓄えに入れた量は、夜にそのまま言うよ。新しく来た二人も、村になじめるといいな。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ホノ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"スイ2": true, "ノア2": true}, "keep": false,
+ "feast": false, "leader": "ケト",
+ "knowledge": [{"op": "add", "text": "北川12には、魚と芋がいくらか残っているかもしれないと聞いた (まだ確かめていない)", "because": [74915], "confidence": 0.4}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出るので、夜に離れないのは今も大事だ"},
+  {"id": "L121", "against": "", "agree": true, "reason": "二人以上で行けば、ザガに襲われても助け合える"},
+  {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りを一つにまとめれば、守りやすい"},
+  {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上がいい"},
+  {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るなら、先に分け方を決めるべきだ"},
+  {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えに置くと腐るので、その夜に食べきるのがいい"},
+  {"id": "L150", "against": "北川12のほうが魚と芋が取れるかもしれないので、先に北川12を試したい", "agree": false, "reason": "南川12は前の冬に何も見つからなかったので、北丘12より先に確かめたい場所がある"}],
+ "feeling": "冬は木の実がならなくて心配だけど、川へ行けば魚か芋が見つかるかもしれない。"}
