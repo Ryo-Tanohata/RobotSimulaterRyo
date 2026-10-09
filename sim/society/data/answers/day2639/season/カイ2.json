@@ -1,0 +1,8 @@
+{"say": [{"to": "ネム2", "text": "夏は東林12へ二人で行こう。木の実と草の種を見つけたら、夜に量を言うね。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ネム2"]}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ネム2": {"activity": "採集", "place": "東林12"}}, "keep": false,
+ "judge": {"M18": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に誰もキャンプを離れないことは、子どもたちを守るためにも大事だから"}, {"id": "L121", "against": "", "agree": true, "reason": "林へ行くときは二人以上で行けば、ザガに襲われても助け合える"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、けがをしても安心だから"}],
+ "year_name": "子が増えた年",
+ "feeling": "夏の実りが多くて、少し気分がいい。"}

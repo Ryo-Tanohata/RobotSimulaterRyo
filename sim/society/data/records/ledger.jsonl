@@ -2589,3 +2589,67 @@
 {"season_end_day":2639,"holder":"H14","holder_name":"カイ2の家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節の終わりの残り","amount":72.0,"kcal":5760.0,"source":"snapshot","detail":null}
 {"season_end_day":2639,"holder":"H14","holder_name":"カイ2の家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えに入れた (大人)","amount":0,"kcal":null,"source":"snapshot","detail":null}
 {"season_end_day":2639,"holder":"H14","holder_name":"カイ2の家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えから取った (大人)","amount":1145,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節のはじめの残り","amount":150809.06,"kcal":12064725.04,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"草の種","unit":"つかみ","kind":"動き","reason":"採った","amount":501.1,"kcal":40088.21,"source":"events","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"草の種","unit":"つかみ","kind":"動き","reason":"刈った (村の蓄えに入った)","amount":21475.0,"kcal":1718000.0,"source":"replay","detail":{"by_household":{"H07":5523,"H14":3120,"H08":1560,"H12":3120,"H03":7632,"H01":520}}}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"草の種","unit":"つかみ","kind":"動き","reason":"食べた","amount":-262.74,"kcal":-21019.04,"source":"stats","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"草の種","unit":"つかみ","kind":"動き","reason":"記録にない差","amount":-4.1,"kcal":-328.21,"source":"balance","detail":{"why":"採集の記録は、物ごとの量を整数に丸めて書いている","total_kcal":0.0}}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節の終わりの残り","amount":172518.33,"kcal":13801466.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"木の実","unit":"つかみ","kind":"残り","reason":"季節のはじめの残り","amount":0.0,"kcal":0.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"木の実","unit":"つかみ","kind":"動き","reason":"採った","amount":7534.92,"kcal":753492.35,"source":"events","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"木の実","unit":"つかみ","kind":"動き","reason":"木から取った","amount":15600.0,"kcal":1560000.0,"source":"events","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"木の実","unit":"つかみ","kind":"動き","reason":"食べた","amount":-18117.24,"kcal":-1811723.96,"source":"stats","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"木の実","unit":"つかみ","kind":"動き","reason":"記録にない差","amount":-8.36,"kcal":-835.87,"source":"balance","detail":{"why":"採集の記録は、物ごとの量を整数に丸めて書いている","total_kcal":0.0}}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"木の実","unit":"つかみ","kind":"残り","reason":"季節の終わりの残り","amount":5009.33,"kcal":500932.52,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"芋","unit":"本","kind":"残り","reason":"季節のはじめの残り","amount":0.0,"kcal":0.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"芋","unit":"本","kind":"動き","reason":"採った","amount":284.82,"kcal":71205.92,"source":"events","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"芋","unit":"本","kind":"動き","reason":"食べた","amount":-264.43,"kcal":-66107.0,"source":"stats","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"芋","unit":"本","kind":"動き","reason":"記録にない差","amount":4.66,"kcal":1164.08,"source":"balance","detail":{"why":"採集の記録は、物ごとの量を整数に丸めて書いている","total_kcal":0.0}}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"芋","unit":"本","kind":"残り","reason":"季節の終わりの残り","amount":25.05,"kcal":6263.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"ヤギ","unit":"頭","kind":"残り","reason":"季節のはじめの残り","amount":18,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"ヤギ","unit":"頭","kind":"動き","reason":"いなくなった (世話が足りない)","amount":-5,"kcal":null,"source":"snapshot","detail":{"goats":[73,87,96,100,104]}}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"ヤギ","unit":"頭","kind":"残り","reason":"季節の終わりの残り","amount":13,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"土器","unit":"個","kind":"残り","reason":"季節のはじめの残り","amount":809,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"土器","unit":"個","kind":"動き","reason":"割れた","amount":-22,"kcal":null,"source":"events","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"土器","unit":"個","kind":"残り","reason":"季節の終わりの残り","amount":787,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"鎌","unit":"本","kind":"残り","reason":"季節のはじめの残り","amount":23,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"鎌","unit":"本","kind":"動き","reason":"割れた","amount":-1,"kcal":null,"source":"events","detail":null}
+{"season_end_day":2669,"holder":"村","holder_name":"村","item":"鎌","unit":"本","kind":"残り","reason":"季節の終わりの残り","amount":22,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H01","holder_name":"川辺の家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節のはじめの残り","amount":26336.0,"kcal":2106880.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H01","holder_name":"川辺の家","item":"草の種","unit":"つかみ","kind":"動き","reason":"罰・つぐないで払った","amount":-432.0,"kcal":-34560.0,"source":"events","detail":null}
+{"season_end_day":2669,"holder":"H01","holder_name":"川辺の家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節の終わりの残り","amount":25904.0,"kcal":2072320.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H01","holder_name":"川辺の家","item":"ヤギ","unit":"頭","kind":"残り","reason":"季節のはじめの残り","amount":6,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H01","holder_name":"川辺の家","item":"ヤギ","unit":"頭","kind":"動き","reason":"いなくなった (世話が足りない)","amount":-1,"kcal":null,"source":"snapshot","detail":{"goats":[106]}}
+{"season_end_day":2669,"holder":"H01","holder_name":"川辺の家","item":"ヤギ","unit":"頭","kind":"残り","reason":"季節の終わりの残り","amount":5,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H01","holder_name":"川辺の家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えに入れた (大人)","amount":618,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H01","holder_name":"川辺の家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えから取った (大人)","amount":108,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H02","holder_name":"ナギの家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節のはじめの残り","amount":26522.26,"kcal":2121780.55,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H02","holder_name":"ナギの家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節の終わりの残り","amount":26522.26,"kcal":2121780.55,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H03","holder_name":"ケトの家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節のはじめの残り","amount":7057.0,"kcal":564560.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H03","holder_name":"ケトの家","item":"草の種","unit":"つかみ","kind":"動き","reason":"刈った (自分の家の畑)","amount":3888.0,"kcal":311040.0,"source":"replay","detail":{"by_household":{"H03":3888}}}
+{"season_end_day":2669,"holder":"H03","holder_name":"ケトの家","item":"草の種","unit":"つかみ","kind":"動き","reason":"罰・つぐないで受け取った","amount":432.0,"kcal":34560.0,"source":"events","detail":null}
+{"season_end_day":2669,"holder":"H03","holder_name":"ケトの家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節の終わりの残り","amount":11377.0,"kcal":910160.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H03","holder_name":"ケトの家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えに入れた (大人)","amount":8574,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H03","holder_name":"ケトの家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えから取った (大人)","amount":48,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H05","holder_name":"ユノの家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節のはじめの残り","amount":4094.0,"kcal":327520.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H05","holder_name":"ユノの家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節の終わりの残り","amount":4094.0,"kcal":327520.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H07","holder_name":"アルの家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節のはじめの残り","amount":902.0,"kcal":72160.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H07","holder_name":"アルの家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節の終わりの残り","amount":902.0,"kcal":72160.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H07","holder_name":"アルの家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えに入れた (大人)","amount":5523,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H07","holder_name":"アルの家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えから取った (大人)","amount":278,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H08","holder_name":"クラの家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えに入れた (大人)","amount":2811,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H08","holder_name":"クラの家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えから取った (大人)","amount":0,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H09","holder_name":"セキの家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えに入れた (大人)","amount":1274,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H09","holder_name":"セキの家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えから取った (大人)","amount":48,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H10","holder_name":"スイの家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えに入れた (大人)","amount":3832,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H10","holder_name":"スイの家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えから取った (大人)","amount":0,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H12","holder_name":"ケト2の家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節のはじめの残り","amount":35.0,"kcal":2800.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H12","holder_name":"ケト2の家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節の終わりの残り","amount":35.0,"kcal":2800.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H12","holder_name":"ケト2の家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えに入れた (大人)","amount":6897,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H12","holder_name":"ケト2の家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えから取った (大人)","amount":0,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H13","holder_name":"サエ2の家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えに入れた (大人)","amount":1569,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H13","holder_name":"サエ2の家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えから取った (大人)","amount":0,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H14","holder_name":"カイ2の家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節のはじめの残り","amount":72.0,"kcal":5760.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H14","holder_name":"カイ2の家","item":"草の種","unit":"つかみ","kind":"残り","reason":"季節の終わりの残り","amount":72.0,"kcal":5760.0,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H14","holder_name":"カイ2の家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えに入れた (大人)","amount":5408,"kcal":null,"source":"snapshot","detail":null}
+{"season_end_day":2669,"holder":"H14","holder_name":"カイ2の家","item":"食べ物 (草の種にして)","unit":"つかみ","kind":"メモ","reason":"村の蓄えから取った (大人)","amount":0,"kcal":null,"source":"snapshot","detail":null}
