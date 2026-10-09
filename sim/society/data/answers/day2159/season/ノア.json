@@ -1,0 +1,8 @@
+{"say": [{"to": "スイ", "text": "北の川のまわりで食べ物をさがそう。二人で行って、夜に見つけた量と蓄えに入れた量を言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["スイ"]}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "西草原12は、前の季節に歩き回ったけれど何も見つからなかった", "because": [44845], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "反対する理由はない", "agree": true, "reason": "夜は外に出ないのが安全だから"}, {"id": "L121", "against": "反対する理由はない", "agree": true, "reason": "二人以上なら、けがをしても助け合えるから"}, {"id": "L143", "against": "反対する理由はない", "agree": true, "reason": "林でも二人で行けば安心だから"}],
+ "year_name": "木の実がふえた年",
+ "feeling": "木の実の木が増えて、少し安心している。"}
