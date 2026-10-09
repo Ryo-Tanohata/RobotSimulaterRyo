@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春は北川12へ採集に行くよ。ソルと二人で行って、見つけた量と蓄えに入れた量は夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ソル"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"サエ2": true, "ユノ2": true}, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "南川12は冬に何も見つからなかったと聞いた。北川12は冬にまだ魚と芋が取れるかどうか、これから確かめたい", "because": [50768], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "特に反対する理由はない", "agree": true, "reason": "夜に火を焚いてザガを近づけないのは、村を守るために大事だから"}, {"id": "L121", "against": "特になし", "agree": true, "reason": "一人で林に行くと、けがをしたときに助けを呼べないから"}, {"id": "L149", "against": "特になし", "agree": true, "reason": "畑の草取りと刈り入れを交代で担当すれば、みんなで畑を守れるから"}, {"id": "L150", "against": "北丘12はまだ確かめていないから、先に試すのは少し不安", "agree": true, "reason": "前の冬に何も見つからなかった南川12より、試す価値があると思うから"}],
+ "feeling": "春になって少しほっとした。北川12で何が見つかるか、楽しみだ。"}
