@@ -1,0 +1,7 @@
+{"say": [{"to": "タヒ", "text": "春は西草原12へ、二人で採集に行こう。草の種と木の実が見つかるか、夜に正直に報告するね。ウィロは畑の草取りをお願い。"}, {"to": "みんな", "text": "ケト2、ハユ2、リオ2が村に来てくれるのはうれしい。夜は火のそばで、いっしょにご飯を分けよう。林へ行くときは、必ず二人以上でね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["タヒ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ケト2": true, "ハユ2": true, "リオ2": true}, "family": {"タヒ": {"activity": "採集", "place": "西草原12"}, "ウィロ": {"activity": "畑仕事", "place": "camp"}}, "keep": true,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "前の季節、北の丘で採集したが、何も見つからなかった。", "because": [44284], "confidence": 1.0}],
+ "proposal": null,
+ "votes": [{"id": "L121", "against": null, "agree": true, "reason": "採集や狩りは二人以上で行けば、ザガがいても身を守れる。"}, {"id": "L143", "against": null, "agree": true, "reason": "林でも近くでも二人以上で行けば、けがをしても助け合える。"}, {"id": "L134", "against": null, "agree": true, "reason": "雨の夜に外で濡れると疲れがとれないから、順番に村の住まいに入るのがよい。"}, {"id": "L137", "against": null, "agree": true, "reason": "小さい子は外で濡れると弱ってしまうから、先に入れるのがよい。"}, {"id": "L146", "against": null, "agree": true, "reason": "よその畑で刈る前に、持ち主と分け方を決めるのは大事なこと。"}, {"id": "L147", "against": null, "agree": true, "reason": "芋は腐りやすいので、その夜に分けて食べきるのがよい。"}, {"id": "L148", "against": null, "agree": true, "reason": "住まいのない家が雨の夜に濡れないよう、春のうちに建てる人を決めるのがよい。"}, {"id": "L149", "against": null, "agree": true, "reason": "畑の草取りと刈り入れを交代で担当すれば、一人に負担が偏らない。"}, {"id": "L150", "against": "北の丘は前の季節に何も見つからなかったので、まだ試すには早いと思う。", "agree": false, "reason": "前の季節に見つからなかった場所を、次の季節にすぐ頼るのは危ない。"}],
+ "feeling": "木の実の木が増えて、村に新しい仲間が来てくれた。春のうちに食べ物の場所をもっと知りたい。"}
