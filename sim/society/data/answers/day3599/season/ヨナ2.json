@@ -1,0 +1,47 @@
+{
+ "say": [
+  {"to": "みんな", "text": "今日から夏のあいだ、おれはユノ2と南林12へ採りに行く。夕方に戻ったら、木の実を40つかみ取って蓄えに入れるよ。"},
+  {"to": "ソナ", "text": "ソナとケナが村で暮らすのは、おれはいいと思う。最初の十日は、おれたちと組になって採りに行こう。"}
+ ],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ユノ2"]},
+ "pick": 40,
+ "plant": 0,
+ "harvest": 0,
+ "eat_goat": 0,
+ "accept": {"ソナ": true},
+ "keep": false,
+ "feast": false,
+ "leader": "なし",
+ "seal": false,
+ "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "南の村とは、土器 7 個・鎌 1 本・草の種 20 つかみで、ヤギ 1 頭と取り替えられた。南の村はヤギを出せる", "because": [94485], "confidence": 0.8},
+  {"op": "add", "text": "南の村のソナとケナが、ここで暮らしたいと言っている。村に加わるかは、みんなで決める", "because": [95637], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが出るから、夜はキャンプから離れないほうがいい"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採った人が、その日のうちに自分の分を食べられるのは大事"},
+  {"id": "L105", "against": "", "agree": true, "reason": "よそから来た人は、最初は村の人と組で採りに行けば安心"},
+  {"id": "L106", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えるのは大事"},
+  {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めれば、戻らない人をすぐ探せる"},
+  {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば、ザガに襲われても助けられる"},
+  {"id": "L126", "against": "", "agree": true, "reason": "夜は火を焚いて見張りを立てないと、けがをする人が出る"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れが取れなくなる"},
+  {"id": "L137", "against": "", "agree": true, "reason": "小さい子は外で濡れると弱ってしまうから、先に入れたほうがいい"},
+  {"id": "L139", "against": "", "agree": true, "reason": "具合の悪い人を一人にしないのは大事"},
+  {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに畑を刈り切らないと、実りが落ちてしまう"},
+  {"id": "L141", "against": "", "agree": true, "reason": "蓄えから草の種を取ったら、家ごとに書き残せば分かりやすい"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも、二人以上なら安心して採れる"},
+  {"id": "L144", "against": "", "agree": true, "reason": "刈り入れの前に、土器で守れる種の量を比べておくのがいい"},
+  {"id": "L145", "against": "", "agree": true, "reason": "ヨナ2の家は前の季節に蓄えから多く取ったので、夏のうちに返したい"},
+  {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るなら、刈る前に決めておかないともめごとになる"},
+  {"id": "L148", "against": "", "agree": true, "reason": "住まいのない家を建てるのは、雨の夜を越すために大事"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを、毎日だれか一人が交代で担当すればよい"},
+  {"id": "L153", "against": "", "agree": true, "reason": "ヤギは世話をする人がいないと減ってしまうので、毎日決めて世話をしたい"},
+  {"id": "L30", "against": "L112 で、肉は保存処理をすれば蓄えに入れてよいと決まった。全部その日に食べると無駄が出る", "agree": false, "reason": "保存処理ができるなら、肉を捨てずに残したい"},
+  {"id": "L154", "against": "", "agree": true, "reason": "住まいのない家を建てるのは大事。雨の夜に外で濡れると疲れが取れない"}
+ ],
+ "year_name": "シノが殺された年",
+ "feeling": "夏の採集は、南林12で食べ物が見つかりそうで、少し楽しみ。"
+}
