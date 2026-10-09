@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "今季は南林12へ行って、木の実や草の実がどれくらいあるかを見てくる。ケトといっしょに行くよ。見つけた量と蓄えに入れた量は、夜にそのまま言うね。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ケト"]}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "キャンプのそばの木の実の木が育ち、夏には実がなり始めている", "because": [77262], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にキャンプから離れないのは、ザガから身を守るために大事だから"}, {"id": "L1", "against": "", "agree": true, "reason": "同じ場所を重ねて探さないように、行き先は皆に伝えたい"}, {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行くと安心できるから"}, {"id": "L102", "against": "", "agree": true, "reason": "夏のうちに刈らないと実りが落ちてしまうから"}, {"id": "L143", "against": "", "agree": true, "reason": "一人で行くと、ザガや思わぬけがのとき助けがないから"}, {"id": "L147", "against": "", "agree": true, "reason": "芋は村の蓄えに入れず、その夜に分けて食べきるほうが腐らなくてよいから"}],
+ "year_name": "畑が実り刈られた年",
+ "feeling": "少し疲れはあるけど、行く場所が決まって気持ちは落ち着いている。"}

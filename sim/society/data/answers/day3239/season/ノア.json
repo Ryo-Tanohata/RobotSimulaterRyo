@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実りが多いから、刈る人を毎夕そろえよう。ぼくは北川12へ行って、魚と芋がどのくらいあるかを見てくる。"}],
+"job": {"activity": "採集", "place": "北川12", "with": ["サエ2"]}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"スイ": {"activity": "畑仕事", "place": "camp"}}, "keep": false,
+"feast": false, "leader": "なし",
+"knowledge": [{"op": "add", "text": "夏の畑には実った草の種が多く、刈る人が毎夕そろわないと実りが落ちる", "because": [78144], "confidence": 0.7}],
+"proposal": null,
+"votes": [{"id": "L98", "against": "", "agree": true, "reason": "食べ物を集めた人が、その日のうちに自分の分を食べられるのは大事だから"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑が残るあいだは、手のあいた大人が毎夕刈らないと実りが落ちるから"}, {"id": "L149", "against": "", "agree": true, "reason": "草取りと刈り入れを交代で一人ずつ担当すれば、担当が分かりやすいから"}],
+"year_name": "ヤギと畑もめごとの年",
+"feeling": "木の実がたくさん残っていて安心した。北川の魚と芋も、早く確かめたい。"}

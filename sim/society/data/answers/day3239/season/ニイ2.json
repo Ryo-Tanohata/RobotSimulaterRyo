@@ -1,0 +1,8 @@
+{"say": [{"to": "エマ2", "text": "西草原12へ行って、草の種や実がどれくらいあるか見てくるね。いっしょに行こう。見つけた量と蓄えに入れた量は、夜にそのまま言うよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["エマ2"]}, "pick": 20, "plant": 0, "harvest": 20, "eat_goat": 0, "family": {"エマ2": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": "反対する理由はない", "agree": true, "reason": "採集で頑張った人が、その日のうちに自分の分を食べられるのは大事だと思う。"}, {"id": "L121", "against": "反対する理由はない", "agree": true, "reason": "採集や狩りは二人以上で行けば、ザガが出ても助け合えて安心できる。"}, {"id": "L149", "against": "反対する理由はない", "agree": true, "reason": "草取りと刈り入れを交代で一人ずつ担当すれば、夏の実りを落とさずにすむ。"}],
+ "year_name": "ネムが亡くなった年",
+ "feeling": "西草原12がどうなっているか、早く見てみたい。"}
