@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切ろう。わたしはキャンプで畑仕事をする。刈った量と畑に残った量は夜に言うね。木の実も少し取っておく。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "セナが亡くなり、川辺の家の倉・ヤギ・畑はラタが受けついだ。まとめ役もいなくなった", "because": [72735, 72738], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火や見張りがないとザガが来て、けがをする人が出るから"}, {"id": "L3", "against": "", "agree": true, "reason": "一人より二人のほうが、けがや迷子を防げるから"}, {"id": "L121", "against": "", "agree": true, "reason": "一人で行くと、けがをしたときに助けがいないから"}, {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに刈り切らないと、畑の実りが落ちてしまうから"}, {"id": "L149", "against": "", "agree": true, "reason": "草取りと刈り入れを毎日交代で決めておけば、畑が手薄にならないから"}, {"id": "L137", "against": "", "agree": true, "reason": "子どもは外で濡れると弱ってしまうから、先に住まいへ入れるのがよいから"}],
+ "year_name": "セナが亡くなった年",
+ "feeling": "セナがいなくなって、まとめ役もいなくなった。夏のうちに畑を刈り切って、みんなで冬を迎えたい。"}

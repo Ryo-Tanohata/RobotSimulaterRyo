@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "春に始めた土器は、夏も少しずつ作るね。割れた数と作った数は夜に言うから、蓄えの草の種を入れる分を一緒に考えよう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": []}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "土器は、夏も春と同じように川の粘土をこねて作れる。割れた土器は次の日に作り直せる", "because": [72734], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜の火と見張りは、ザガから身を守るのに必要だから"}, {"id": "L1", "against": "", "agree": true, "reason": "どこへ行くか分かっていれば、同じ場所を重ねて探さずにすむから"}, {"id": "L3", "against": "", "agree": true, "reason": "二人いれば、けがをしたときに助け合えるから"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま動くと危ないから"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れて疲れがとれない人が減るから"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代でやれば、実りが減らないから"}],
+ "year_name": "セナが亡くなった年",
+ "feeling": "セナがいなくなって静かだけど、土器をこねていると落ち着くよ。"}

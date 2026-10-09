@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏の畑が実っている。刈り残しが出ないように、毎夕だれかが交代で刈ろう。刈った量と畑に残った量は、夜に言うね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["カイ2"]}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"スイ": {"activity": "畑仕事", "place": "camp"}}, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "夏の畑には実った草の種が多く、刈る人が足りないと実りが落ちてしまう", "because": [73465], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L140", "against": "", "agree": true, "reason": "夏の畑を刈り切るには、手のあいた大人が毎夕そろって刈るのが確実だから"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、だれかに負担が偏らないから"}, {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るときに分け方を先に決めておけば、もめごとを防げるから"}, {"id": "L141", "against": "", "agree": true, "reason": "まく量と取った量を家ごとに書き残せば、蓄えの出し入れが分かるから"}],
+ "year_name": "セナが亡くなった年",
+ "feeling": "畑が実っているのを見ると、刈り残しが出ないか気になる。みんなで刈り切れたらうれしい。"}
