@@ -10,12 +10,12 @@
 **G6 で足すもの**
 - **ほかの村**: 地図の外 (歩いて 1〜2 日) にある村。記録に残る出来事からだけ生まれる: (1) G5 で村を出た家の人たちの村、(2) G6 で来たよその群れが「…から来た」と言った村、(3) 交換をもとめて来た人の村。G6 の最初の季節の終わりには、必ず 1 つの村の人が交換をもとめて来る。ほかの村は Claude が演じず、決まりで動く (お金はかからない)
 - **交換**: ほかの村の人が季節の終わりに来て、申し出をする (交換したい / 苦しい年なので草の種を貸してほしい / 借りた分を返す)。次の集まりで、村の物で受けるか、家の物で受けるか、受けないかを決める。自分たちから「交換に行く」こともできる (歩いて 1 日の村なら 3 日。1 人で運べるのは草の種 900 つかみ・土器 4 個ほど)。払いきれない分は「あとで返す」約束 (貸し借り) になる
-- **町に人が集まる**: 交換している村から「ここで暮らしたい」人が来る (受け入れるかは、これまで通り大人が決める)。来た家は、来た村の方角の、キャンプから 250〜375 m の所に住まいを建てる (ブラクのまわりの、来たところごとの小さな集まり)
+- **町に人が集まる**: 交換している村から「ここで暮らしたい」人が来る (受け入れるかは、これまで通り大人が決める)。来た家は、来た村の方角の、キャンプから 275〜375 m の所に住まいを建てる (ブラクのまわりにあった小さな集まりをまねた。集まりは来たところごとに分かれていたという読みがある。距離は縮めた【仮定】)
 - **印と封**: 家の代表は家の印を作れる。印のある家の倉は封をする (よその家の人が開けると、封が割れているので分かり、必ずもめごとになる)。みんなが望めば、村の蓄えにも封をし、取るたびにその家の印の封のかけらが残る
 - **覚え**: G6 では、記録のない量 (家ごとの村の蓄えへの出し入れ・もめごとの量・貸し借りの量) は「約 a〜b」の幅でしか分からない。家が多いほど、貸し借りが多いほど、幅が広い。言い出した家は損を多めに覚えていることがあり、覚えで払うと「多く払った」という覚え違いのもめごとが起きる
 - **記録の道具** (本人と決めた順: 印 → 数え札 → 封筒 → 粘土の板): 次の道具は、その道具が答える困りごとが起きてから使えるようになる。使うかは人が決める
   - 数え札: 印で封をするようになり、記録のない量を覚えで決めることが起きたあと。仕事「記録をつける」(1 人 1 日に数え札 10 個ほど)
-  - 封筒: ほかの村との貸し借りがあるとき (数え札を粘土の玉に入れ、印を押す。返すとき、どちらにも数が分かる)
+  - 封筒: 数え札が使えるようになり、ほかの村との貸し借りがあるとき (数え札を粘土の玉に入れ、印を押す。返すとき、どちらにも数が分かる)
   - 粘土の板 (物のしるしと数のしるしを分けて記す): 数え札で記録した季節が 4 つ以上になり、1 季節に数え札が 200 個以上要る季節があったあと (1 人 1 日に数え札 50 個分)
 - **記録の使い道**: 記録のある量ははっきり分かり、もめごとや貸し借りを確かめられる (覚え違いが起きない)。記録のあるもめごとは、集まりで話し合える 2 つに数えない。村の蓄えの記録を全部残せた季節は、作る人・記録をつける人・交換に行った人の働いた日を「入れた」に数える (配給の記録)
 - **黒曜石**: 2 つ目のよその村 (歩いて 2 日) は黒曜石を持つ。黒曜石の刃の鎌は割れにくい (半分)
@@ -29,33 +29,33 @@
 **人が決めること** (季節の答え): 申し出を村で受けるか・家で受けるか・受けないか (trade) / 交換に行く人と、行き先・持って行く物・ほしい物 (job) / 家の印を作るか (seal) / 村の蓄えに封をするか (seal_store) / 記録をつける人と、残すもの・残し方 (job) / ほかの村から来た人を受け入れるか (accept)。家族の代表の答えは家族の大人みんなの答え。家の物で受ける・印を作るのは家の代表だけ
 
 **縮め方**
-- 人数: ブラク LC2 (約 55 ha。1 ha に 50〜100 人として 2,750〜5,500 人) の約 1/55〜1/110 で、町を 50 人にした。ほかの村 (10〜25 人) は、まわりの小さな中心地 (10〜20 ha) の約 1/100
+- 人数: ブラク LC2 (約 55 ha。1 ha に 50〜100 人として 2,750〜5,500 人。1 ha の人数は【仮定】) の約 1/55〜1/110 で、町を 50 人にした。ほかの村 (10〜25 人) は、まわりの小さな中心地 (10〜20 ha。この広さは元の論文で確かめきれていない) の約 1/100
 - 距離: 縮めない (歩いて 1〜2 日、約 25〜60 km。地図の外に置く)
-- 時間: 現実の約 1,000 年 (ブラク LC2 → ウルク IV) を、ゲームの 5〜10 年に縮める (思いつくまでの待ち時間を縮める。計画 3.)
-- 印: サビ・アビヤドの 60〜77 個の印のかわりに、家ごとに 1 つ
+- 時間: 現実の約 900〜1,000 年 (ブラク LC2 → ウルク IV) を、ゲームの 5〜10 年に縮める (思いつくまでの待ち時間を縮める。計画 3.)
+- 印: サビ・アビヤドの、少なくとも約 60 個の印 (封泥に押されていた印の数。紹介文による数で、元の報告では確かめていない) のかわりに、家ごとに 1 つ
 
-**G5 とのつながり**: G5 の仕組み (もめごと・まとめ役・祭り・罰・村が分かれる) は G6 でも続く。人が増えて家が増えるほど、もめごとが増え、村が分かれやすい。記録とまとめ役が、それをおさえる。村を出た家は「分かれた家の村」になり、のちに交換の相手になることがある。町が小さくなる (後もどり) ことも起きてよく、そのことも記録する
+**G5 とのつながり**: G5 の仕組み (もめごと・まとめ役・祭り・罰・村が分かれる) は G6 でも続く。人が増えて家が増えるほど、もめごとが増え、村が分かれやすい。記録とまとめ役は、それをおさえる向きに働くように作った (ねらい。試しの台本はもめごとを全部収めたので、本当におさえるかはまだ確かめていない)。村を出た家は「分かれた家の村」になり、のちに交換の相手になることがある。町が小さくなる (後もどり) ことも起きてよく、そのことも記録する
 
-**試したこと** (写しの木で、メモリの中だけ。くわしくは 0.): G5 の本物の 5 季節 (1709〜1829 日目の答え) と台本の 6 季節 (村が分かれる季節をふくむ) で、お題・気持ちのお題・state.json が今のコードと同じだった。G6 にした写しで、台本の答えで 24〜40 季節を進めた (約 300 季節。止まるような誤りはなかった)。みんなで交換・印・記録をする答えでは、印で封をする (F2) が G6 の 1 季節目、交換 (F1) が 2 季節目、記録 (F4) が 9〜10 季節目、町 (F3) が 11〜35 季節目で、4 回とも記録が先にそろった。交換だけ・記録だけ・答えない・受けない、の答えでは、それぞれ記録・町・どちらもがそろわなかった。`step.py season` も写しのデータで 3 回進め、「Society 2.0 が終わった」で止まった
+**試したこと** (写しの木で、メモリの中だけ。くわしくは 0.): G5 の本物の 5 季節 (14年30日目〜15年30日目 (1709〜1829 日目) の答え) と台本の 6 季節 (村が分かれる季節をふくむ) で、お題・気持ちのお題・state.json が今のコードと同じだった。G6 にした写しで、台本の答えで 24〜40 季節を進めた (約 300 季節。止まるような誤りはなかった)。みんなで交換・印・記録をする答えでは、印で封をする (F2) が G6 の 1 季節目、交換 (F1) が 2 季節目、記録 (F4) が 9〜10 季節目、町 (F3) が 11〜35 季節目で、4 回とも記録が先にそろった。交換だけ・記録だけ・答えない・受けない、の答えでは、それぞれ記録・町・どちらもがそろわなかった。`step.py season` も写しのデータで 3 回進め、「Society 2.0 が終わった」で止まった
 
 **本人に確かめること** (おすすめを先に書いた。数はすべて【仮定】)
-1. 町の人数の目安: **50 人 (おすすめ)** / 40 人 / 60 人 / 100 人 (計画のまま)。今の 25 人から、交換を続け、村が分かれる季節が半分あるとき、50 人の町にそろう見込みは 8 年で 5 割、10 年で 8 割 (40 人なら 8 年で 8 割、60 人なら 10 年で 5 割、100 人なら 15 年でも 1 割)
+1. 町の人数の目安: **50 人 (おすすめ)** / 40 人 / 60 人 / 100 人 (計画のまま)。15年60日目 (1859 日目) の 25 人から (16年30日目 (1949 日目) は 26 人)、交換を続け、村が分かれる季節が半分あるとき、50 人の町にそろう見込みは 8 年で 5 割、10 年で 8 割 (40 人なら 8 年で 8 割、60 人なら 10 年で 5 割、100 人なら 15 年でも 1 割)
 2. 計画の「ほかの村との交換が 4 季節以上続く」を町の条件に**残す (おすすめ)**。相手は毎季節同じ村でなくてよく、4 季節で 2 つ以上の村とする。考古学では交換は町よりずっと古いので、F1 だけにする案もある
-3. 交換している村から「ここで暮らしたい」人が来る仕組みを**入れる (おすすめ)**。ブラクは移り住む人で大きくなった。入れないと、50 人に 10 年でそろう見込みは 4 割ほど
+3. 交換している村から「ここで暮らしたい」人が来る仕組みを**入れる (おすすめ)**。ブラクには、よそから移り住んだ人が加わって大きくなったとする調べがある (歯の形の調べ。紹介文で見ただけ)。入れないと、50 人に 10 年でそろう見込みは 4 割ほど (村が分かれないときの見積もり)
 4. ほかの村は記録に残る出来事からだけ作り、**G6 の最初の季節の終わりに、必ず 1 つの村の人が交換をもとめて来る**形でよいか (おすすめ)
 5. 町と記録は、**一度届けば届いたまま**にする (おすすめ)。あとで町が小さくなったら、そのことも記録して報告する。別の案は「同じ季節に両方」
 6. 止まるのは、**両方そろった「Society 2.0 の終わり」だけ** (おすすめ)。そのとき第 4 部のまとめと動画を作る
 7. **覚え** (記録のない量を幅で見せる。覚え違いのもめごと) を入れる (おすすめ)。入れないと、記録をつけても世界は何も変わらない
 8. 記録の条件を「**粘土の板で量を確かめた**」にする (おすすめ)。板が使えるようになる目安 (数え札の季節 4 つ・1 季節 200 個) はこれでよいか。記録が町より先にそろいそう (現実は町が先で、文字は約 900 年あと) なので、そのまま違いとして報告する
 9. 「**交換に行く**」を最初から入れる (おすすめ)。ないと、毎季節の交換が、ほかの村の人が来るかどうかの運だけになる
-10. **家の物で交換する** ("家") を入れる (おすすめ)。家ごとの差が広がることがある
+10. **家の物で交換する** ("家") を入れる (おすすめ)。家ごとの差が広がることがある。ただし、交換の申し出は土器・鎌をほしがり、土器・鎌はいつも村のものなので、集まりで家の物で受けられるのは「貸して」(草の種) だけになる。家の物での交換は、おもに「交換に行く」で家の倉の草の種を持って行くとき (手に入れたヤギは家のもの) に起きる (2026-10-09 確かめ役が見つけた)。集まりの交換の申し出も家で受けられるようにするなら、家には草の種だけをもとめる形にする (仕組みを変えるので、本人に聞く)
 11. **黒曜石** (鎌が割れにくくなる) を入れる (おすすめ)。貝の玉 (飾り) は入れない
-12. **印は家ごとに 1 つ** (家の代表が作る。手間はかからない) でよいか (おすすめ)
+12. **印は家ごとに 1 つ** (家の代表が作る。手間はかからない) でよいか (おすすめ)。印は決めた通り G6 の記録の始まりとして入れるが、文では「持ち主の印」ではなく「家の印」と書く (おすすめ。昔の印が持ち主を示したのか、みんなの倉に封をした印なのかは、考古学で読みが分かれているため)
 13. F は **4 つ** (F1 交換 / F2 印で封 / F3 町 / F4 物と数を分けて記す) でよいか (おすすめ)。数え札・封筒・板は出来事「記録」として残す
 14. **大きな倉 (神殿)** は、いまは入れない (おすすめ)。町の条件にもしない
 15. **名前**: 作った名前 30 個はもうすぐ使い切り、「ソル2」のような名前になる (写しで G6 を進めると、すぐに出た)。G6 から、新しく作った名前 30 個を足してよいか (おすすめ。G5 のあいだは変えない)
 16. **3D**: 村を出た家の住まいを、出た日から描かない・G5 の出来事 (もめごと・祭り・まとめ役・分かれる など) も夜の知らせに出す (おすすめ: どちらもする。G5 の表示も変わる)
-17. **調べの文書の直し** (14 か所。この文書の 24.): G6 を作るときに直す (おすすめ)
+17. **調べの文書の直し** (14 か所を見直し、直すのは 12 か所。2 か所は確かめた結果、今のままでよかった。この文書の 24.): G6 を作るときに直す (おすすめ)。本人と決めたことを書いた part2.md は書きかえず、12. が決まったら注をそえるだけにする
 
 次にすること: 上の 1〜17 を本人と決めてから、この文書の 5. のコードを入れ (era2.py に約 1,100 行、world.py 3 行、step.py 約 20 行)、19. の試し方 A〜D で確かめ、計画書の 2.・2.2・5. に G6 の節を足す。
 
@@ -116,8 +116,8 @@ Why:
 | 「交換が 4 季節以上続く」 | Kept in the town condition (plan, user-approved): a completed transfer in **each** of the last 4 G6 seasons, with **≥ 2 different villages** over those 4 seasons. F1 is the first exchange. | Minimal/Historical keep it; Emergent moved it out. Exchange predates towns, so question 2 offers the alternative. |
 | How exchange happens | Offers at the meeting (village or household goods) **and** trips (交換に行く). Partner villages take goods only up to per-season caps and pay in the wanted good, else other goods; an unpaid remainder becomes a debt owed by the partner. | Without trips, 4 consecutive seasons would depend on chance; caps keep demand steady (Historical). |
 | Who owns traded goods | "村" → village store / village pots, sickles, goats (owner None). "家" → that household's 倉 and goats. Pots, sickles and obsidian are always village things. Trips with village goods are **not** counted as the trader's household withdrawals. | Ur 2014 "great household"; avoids unfair 蓄え disputes (Emergent flaw). |
-| Debts | Only partner → village/household (loans in a partner's bad year, unpaid trip remainders). No interest. No 「返して」 offers. | Interest-bearing debt is attested only ~2400 BC; the village never borrows in this design. |
-| Unrecorded amounts | G6 only: per-household store flows are shown as ranges (independent lower and upper draws, so the truth is not the midpoint); disputes of kind 蓄え/刈る/倉/覚え carry the complainant's claim (true × U(1, 1+s)); paying by memory can raise a 覚え incident. Spread s = 0.05 × (households + open debts), ≤ 0.5; halved for a sealed household while the store was sealed. | Emergent; Johnson 1973 (information load). Debt-misremembering as *the* trigger of records is 【仮定】; stores and withdrawals are better attested, so both are used. |
+| Debts | Only partner → village/household (loans in a partner's bad year, unpaid trip remainders). No interest. No 「返して」 offers. | Interest-bearing grain loans are first clearly attested in the mid-3rd millennium BC (Early Dynastic Lagash; Enmetena's debt cancellation c. 2400 BC) 【文献・二次】(Hudson 2018); the village never borrows in this design. |
+| Unrecorded amounts | G6 only: per-household store flows are shown as ranges (independent lower and upper draws, so the truth is not the midpoint); disputes of kind 蓄え/刈る/倉/覚え carry the complainant's claim (true × U(1, 1+s)); paying by memory can raise a 覚え incident. Spread s = 0.05 × (households + open debts), ≤ 0.5; halved for a sealed household while the store was sealed. | Emergent; Johnson 1978, 1982 (information load, scalar stress). Debt-misremembering as *the* trigger of records is 【仮定】; stores and withdrawals are better attested, so both are used. |
 | Record ladder | 印 (from G6 start) → 数え札 (after F2 and after one amount was settled by memory) → 封筒 (after tokens open and while a debt is open) → 板 (after ≥ 4 token seasons and one season needing ≥ 200 tokens). Use is chosen. | User's order 印 → トークン → 文字 (part2.md 6.3); problem first (Emergent); envelopes from Historical. |
 | Record criterion | ≥ 1 amount checked with a 板 record (a dispute taken up at the meeting, or a debt repaid). | Uruk IV standard: number and kind signs separate (Englund 2011); counting tokens alone are not writing. |
 | Holds | None at F1–F4 (区切り). One hold at the end of Society 2.0 (F3 and F4 both reached at any time; days are sticky). A town that later falls below the bar is logged (町). | Plan 2.1; going backwards is allowed. |
@@ -128,14 +128,14 @@ Why:
 
 | Quantity | Real | Sim | Factor | Basis |
 |---|---|---|---|---|
-| Town | Tell Brak LC1–2 ≈ 55 ha 【文献】(Ur, Karsgaard & Oates 2007; Ur et al. 2011); low-density northern urbanism 【文献】(McMahon 2019) at 50–100 people/ha 【仮定】 → 2,750–5,500 | **50** | ≈ 1/55–1/110 | plan §2 allows 1/10–1/100 |
-| Partner villages | LC small centres 10–20 ha 【文献】(Lawrence & Wilkinson 2015); village densities 83–139/ha 【文献】(Kramer 1982; Watson 1979) | 10–25 people | ≈ 1/100 | same scale as the town |
-| Primacy | Brak 55 ha vs largest neighbour ≈ 15 ha (≈ 3.7×) 【文献】(Ur et al. 2007) | ≥ 2× the largest partner | lowered | 【仮定】 |
+| Town | Tell Brak LC2 (c. 4200–3900/3800 BC) ≈ 55 ha (central mound + satellite clusters; 130 ha in LC3–4) 【文献】(Ur's Brak project summary of Ur, Karsgaard & Oates 2007 and Ur et al. 2011; some summaries say LC1–2); low-density northern urbanism 【文献】(McMahon 2019/2020 abstract) at 50–100 people/ha 【仮定】 → 2,750–5,500 | **50** | ≈ 1/55–1/110 | plan §2 allows 1/10–1/100 |
+| Partner villages | LC small centres 10–20 ha (Lawrence & Wilkinson 2015 — paper confirmed, the 10–20 ha figure not re-checked) 【未確認】; ethnographic village densities ≈ 100–200/ha are the usual range (Kramer's ≈ 120/ha, cited via Hassan 1981) 【文献・二次】 — the earlier 「83–139/ha (Kramer 1982; Watson 1979)」 was not found | 10–25 people | ≈ 1/100 | same scale as the town |
+| Primacy | Brak 55 ha vs a neighbour of ≈ 13–16 ha (Hamoukar's walled LC core, Oriental Institute) — but Hamoukar's LC1–2 southern extension is a dispersed scatter of ≈ 280–300 ha (Ur 2010), so the ratio depends on what is measured; the earlier 「≈ 15 ha, 3.7× (Ur et al. 2007)」 was not found in that paper 【文献・二次】 | ≥ 2× the largest partner | lowered | 【仮定】 |
 | Distance | walking with loads ≈ 30 km/day 【文献・二次】(Hallan Çemi → Nemrut Dağ, ~100 km in 3 days) | 1–2 days (≈ 25–60 km), off-map | 1/1 | research §7(c) asks ≥ 1 day |
-| Satellites | Brak LC1–2 clusters 200–400 m from the central mound 【文献】(Ur et al. 2007) | G6 newcomers build 11–15 cells (275–375 m) toward their village | 1/1 | migration into Brak 【文献・二次】(isotope/dental studies 2020, 2022) |
-| Seals | Sabi Abyad ≥ 60–77 seals 【文献】(Akkermans & Duistermaat 2004); Arslantepe A340 ≈ 30 seals on 175 sealings 【文献】(Frangipane et al. 2007) | 1 per household (9–20) | ≈ 1/3–1/10 | 【仮定】 |
+| Satellites | Brak late-5th-millennium sherd clusters roughly 500 m (N, E) to 1,000 m (SW) from the central mound 【文献・二次】(Harvard Magazine on Ur's survey; the earlier 「200–400 m (Ur et al. 2007)」 was not found) | G6 newcomers build 11–15 cells (275–375 m) toward their village | ≈ 1/2 【仮定】 | migration into Brak 【文献・二次】(dental-morphology study of LC Brak, J. Anthropol. Archaeol., c. 2022, seen only in a press summary: migrants in neighbourhoods by origin) |
+| Seals | Sabi Abyad: hundreds of sealings (≈ 300), at least ≈ 60 different seals (61 per a Wikipedia summary, not checked in the reports), 27 design types (Duistermaat 1996) 【文献・二次】; Arslantepe VI A storeroom A340: 30 seals on 175 cretulae 【文献】(Frangipane et al. 2007, as reported in Weingarten's 2009 AJA review) | 1 per household (9–20) | ≈ 1/3–1/10 | 【仮定】 |
 | Load | – | 20 kg per traveller (草の種 900 つかみ, 土器 4, 鎌 10, 干し肉 100) | – | 【仮定】(porter rule of thumb, unverified) |
-| Time | Brak LC2 (~4200 BC) → Uruk IV (3350–3200 BC) ≈ 1,000 years | expected 5–10 game years (20–40 seasons) | ≈ 1/100–1/200 | plan §3: compress waiting-to-invent, not biology |
+| Time | Brak LC2 (~4200 BC) → Uruk IV (3350–3200 BC) ≈ 900–1,000 years | expected 5–10 game years (20–40 seasons) | ≈ 1/100–1/200 | plan §3: compress waiting-to-invent, not biology |
 
 **Projection** (Monte Carlo, 1,500 runs from today's 25 people, the code's birth/death/visitor rates, every known partner traded with every season, the town rule of §16; scratch `proj.py`). P(town reached within 5 / 8 / 10 / 15 years), median season:
 
@@ -221,14 +221,16 @@ No key is added to `_house()`, `e2["jobs"]`, `KINDS`, `answerers()` or `feelers(
 # 第 4 部「町と文字」(計画 2.1)。町と記録は別々の条件で、どちらが先でもよい (届いた日を区切り F3・F4 に残す)。両方そろうと Society 2.0 の終わり
 # 考え方: 目標を上から置かない。ほかの村は、記録に残る出来事 (村を出た家・G6 で来たよその群れの来たところ・交換をもとめて来た人) からだけ生まれる。
 #   記録の道具は、それが答える困りごとが起きてから使えるようになる (印 → 数え札 → 封筒 → 粘土の板。順は本人と決めた。part2.md 6.3)。使うかは人が決める
-# 【文献】Renfrew, Dixon & Cann 1968・Ortega ほか 2014・Ibáñez ほか 2015: 黒曜石は 300 km ほどまで多く届き、遠くへは少しずつ (手渡しだけでは説明できず、
-#   遠くの相手をもつ村があった)。Yacobi & Gopher 2023: 親族どうしの交換。Davidson & McKerrell 1976・1980: ハラフの土器も村から村へ動いた
-# 【文献】Duistermaat 1996・Akkermans & Duistermaat 2004: サビ・アビヤドの封泥 (前 6,200 年ごろ)。倉や小さな入れ物に封をし、開けたあとの封のかけらを残した。
-#   Frangipane ほか 2007: アルスランテペで、1 つの倉に約 30 の印 (多くの人が取り出した)。印が「持ち主」を示したかは議論がある (Duistermaat 2012) ので、文は「封をした家の印」とする
-# 【文献】Johnson 1973・Wright & Johnson 1975・Shin ほか 2020: 扱う量と単位が増えると、記録の道具が要る。Englund 2011: ウルク IV の粘土板は、数のしるしと物のしるしを分けて記す
-#   (原楔形文字の約 85% は帳簿)。数のしるしが押したトークンから来たことは広く認められるが、物のしるしがトークンから来たかは弱い (Zimansky 1993・Englund 1993・Kelley ほか 2024)
-# 【文献】Ur, Karsgaard & Oates 2007・Ur ほか 2011: テル・ブラク LC1〜2 は約 55 ha。まわりの小さな集まりが中心に寄り集まって大きくなった。移り住む人で大きくなった
-#   (歯のストロンチウムの調べ 2020・2022)。Childe 1950: 町には食べ物をとらない専門の人がいる
+# 【文献】Renfrew, Dixon & Cann 1968・Ortega ほか 2014・Ibáñez ほか 2015: 黒曜石は 300 km ほどまで多く届き、遠くへは少しずつ (模型では、手渡しだけでは
+#   300 km より遠くへ届きにくく、遠くの相手をもつ村があると説明しやすい)。Yacobi & Gopher 2023: 親族どうしの交換 (という読み)。Davidson & McKerrell 1976・1980: ハラフの土器も村から村へ動いた
+# 【文献】Duistermaat 1996・Akkermans & Duistermaat 1996/97・2004: サビ・アビヤドの封泥 (前 6,300〜6,000 年ごろ。多くは焼けた村、前 6,000 年ごろ)。入れ物に封をし、開けたあとの封のかけらを
+#   取っておいた。Frangipane ほか 2007: アルスランテペの宮殿 (前 3,400〜3,000 年ごろ) の 1 つの倉に 30 の印 (取り出す多くの人の印という読み)。印が「持ち主」を示したかは
+#   議論がある (Duistermaat 2012・2013) ので、文は「封をした家の印」とする
+# 【文献】Johnson 1978・1982・Wright & Johnson 1975・Shin ほか 2020: 扱う量と決める単位が増えると、記録の道具が要る。Englund 2011: ウルク IV の粘土板は、数のしるしと物のしるしを分けて記す
+#   (原楔形文字の約 85% は帳簿)。数のしるしが押したトークンから来たことは広く認められるが、物のしるしがトークンから来たかは弱い (Zimansky 1993・Michalowski 1993・Englund 1993。
+#   Kelley ほか 2024 は、一部の物のしるしは印の絵から来たとする)
+# 【文献】Ur, Karsgaard & Oates 2007・Ur ほか 2011: テル・ブラク LC2 (前 4,200〜3,900/3,800 年ごろ) は約 55 ha (まん中の丘と、まわりの小さな集まり)。集まりが内へ広がり、LC3〜4 に約 130 ha。
+#   よそから移り住んだ人が加わったとする調べがある (歯の形の調べ。【文献・二次】)。Childe 1950: 町には食べ物をとらない専門の人がいる
 # 【仮定】数: よその村は 3 つまで (最初の G6 の季節の終わりに必ず 1 つ来る)。来る見込み: 分かれた家 0.35・よその村 0.15 (信頼で変わる)。
 #   よその村の人は 10〜25 人。交換している村から住みたい人が来る見込み 1 季節 0.15。苦しい年 1 年 0.2。値うち (草の種のつかみ): ヤギ 375・鎌 75・土器 40・黒曜石 40・干し肉 6。
 #   1 人が運べるのは 20 kg ほど (草の種 900 つかみ)。覚えのずれ 0.05 × (家の数 + 返されていない貸し借り)、0.5 まで。
@@ -243,8 +245,8 @@ MAX_STRANGERS, STRANGER_P, JOIN_P, JOIN_MIN, BAD_P = 3, 0.10, 0.15, 12, 0.2
 CONTACT_P = {"分かれた家": 0.35, "よその村": 0.15}
 USE_OBSIDIAN, OBS_BREAK = True, 0.5
 VALUE = {"草の種": 1, "干し肉": 6, "ヤギ": 375, "土器": 40, "鎌": 75, "黒曜石": 40}
-LOAD = {"草の種": 900, "干し肉": 100, "土器": 4, "鎌": 10, "黒曜石": 40}
-GOATS_PER, TRIP_WALK, TRIP_LOAD, TRIP_HURT, TRIP_LOSS = 4, 30000, 1.4, 0.005, 0.03
+LOAD = {"草の種": 900, "土器": 4, "鎌": 10}  # 1 人が運べる量。持って行けるのは、ほかの村が受けとる物 (_g6_cap と同じ 3 つ) だけ
+TRIP_WALK, TRIP_LOAD, TRIP_HURT, TRIP_LOSS = 30000, 1.4, 0.005, 0.03
 SPREAD, SPREAD_MAX, BLAME = 0.05, 0.5, 1.25
 TOKEN = {"草の種": 100, "干し肉": 16, "ヤギ": 1, "土器": 10, "鎌": 10, "黒曜石": 10, "日": 10}
 RATE = {"数え札": 10, "封筒": 10, "板": 50}
@@ -410,6 +412,8 @@ def _g6_take(state, side, goods):
             _g6(state)["obsidian"] -= n
         else:
             e2["pots" if k == "土器" else "sickles"] -= n
+            if k == "鎌":  # 黒曜石の刃の鎌の数は、村の鎌の数をこえない
+                _g6(state)["obs_sickles"] = min(_g6(state)["obs_sickles"], e2["sickles"])
         out[k] = n
     return out
 
@@ -460,9 +464,10 @@ def _g6_offer_new(state, rng, o, first):
     else:
         sup, wants = _g6_supply(o), _g6_wants(state, o)
         cap = sum(VALUE[k] * n for k, n in wants.items())
-        good = "ヤギ" if sup["ヤギ"] >= 1 and cap >= VALUE["ヤギ"] else "黒曜石" if sup["黒曜石"] >= 5 and cap >= 5 * VALUE["黒曜石"] else None
+        # ほしい物がヤギ半頭分 (草の種 約 190 つかみ) 以上あれば、ヤギ 1 頭を出す (12 人より小さい村は、ほしい物がヤギ 1 頭分に届かないため。2026-10-09 確かめ役)
+        good = "ヤギ" if sup["ヤギ"] >= 1 and cap >= VALUE["ヤギ"] / 2 else "黒曜石" if sup["黒曜石"] >= 5 and cap >= 5 * VALUE["黒曜石"] else None
         if good:
-            k = min(3, sup["ヤギ"], int(cap // VALUE["ヤギ"])) if good == "ヤギ" else min(15, sup["黒曜石"], int(cap // VALUE["黒曜石"]))
+            k = max(1, min(3, sup["ヤギ"], int(cap // VALUE["ヤギ"]))) if good == "ヤギ" else min(15, sup["黒曜石"], int(cap // VALUE["黒曜石"]))
             ask, left = {}, k * VALUE[good]
             for w in ("土器", "鎌", "草の種"):
                 m = min(wants.get(w, 0), int(left // VALUE[w]))
@@ -712,13 +717,10 @@ def _g6_depart(state, p, t, j):
     g = _g6(state)
     o = _other(state, j["to"]) if j.get("to") else None
     side = p["household"] if j["house"] and p.get("household") in _homes_built(state) else "村"
-    carry = {k: n for k, n in j["carry"].items() if k in VALUE}
-    goats = min(carry.pop("ヤギ", 0), GOATS_PER)
+    carry = {k: n for k, n in j["carry"].items() if k in LOAD}  # ほかの村が受けとる物 (_g6_cap) だけを持って行く (ヤギ・干し肉・黒曜石は受けとらないので持って行かない)
     load = sum(n / LOAD[k] for k, n in carry.items())
     if load > 1:
         carry = {k: int(n / load) for k, n in carry.items()}
-    if goats:
-        carry["ヤギ"] = goats
     ok = o is not None and t.get("activity") == "交換に行く"
     took = _g6_take(state, side, carry) if ok else {}
     why = "行き先の村が分からず" if not o else "けがをしていて" if not ok else "持って行ける物がなく" if not took else None
@@ -737,6 +739,7 @@ def _g6_depart(state, p, t, j):
 def _g6_barter(state, p, t, tr, o):
     """向こうの村で: ほしい分だけ受けとり、want の物 (なければほかの物) で払う。払いきれない分は、あとで返す約束"""
     g = _g6(state)
+    tr["bartered"] = True  # 季節の終わりに、まだ帰っていないときの持ち帰り方を分ける
     wants = _g6_wants(state, o)
     took = {k: min(n, wants.get(k, 0)) for k, n in tr["took"].items()}
     took = {k: n for k, n in took.items() if n > 0}
@@ -962,7 +965,7 @@ def _g6_ladder(state):
 
 def _town(state):
     """町の目安 (いまの季節)。届いた日は区切り F3 に残る (あとで下回っても消さない)"""
-    e2, g = state["era2"], state["era2"].get("g6") or {}
+    g = state["era2"].get("g6") or {}
     last = g.get("meets", [])[-TOWN_RUN:]
     others = g.get("others", [])
     run = len(last) == TOWN_RUN and all(any(d in o["contacts"] for o in others) for d in last)
@@ -1005,11 +1008,15 @@ def _g6_season_end(state, frac):
     e2, g, day = state["era2"], _g6(state), state["day"]
     rng = _rng(state, G6_SALT)  # この季節の終わりの G6 の乱数は、すべてこの列から (順番を変えない)
     sd, g5 = e2["step_day"], e2.get("g5") or {}
-    # 0. 途中で区切った季節: まだ帰っていない人は、持ち物を持ち帰ったことにする
+    # 0. 途中で区切った季節: まだ帰っていない人は、持ち物を持ち帰ったことにする (向こうで交換したあとなら、受けとった物と受けとってもらえなかった物。
+    #    交換の前なら、持って行った物。2026-10-09 確かめ役: 前は、向こうが受けとって何も払えなかったとき、渡した物も持ち帰っていた)
     for name, tr in g["trips"].items():
         if tr.get("state") == "行く":
-            _g6_put(state, tr["side"], tr["got"] or tr["took"], tr["goats_in"])
-            _g6_put(state, tr["side"], tr["back"] if tr["got"] else {})
+            if tr.get("bartered"):
+                _g6_put(state, tr["side"], tr["got"], tr["goats_in"])
+                _g6_put(state, tr["side"], tr["back"])
+            else:
+                _g6_put(state, tr["side"], tr["took"])
             tr.update(state="帰った", end=day)
             g["trip_log"].append(dict(tr))
     # 1. 村を出た家 (G5) は、まだだれも知らない「分かれた家の村」になる (G6 の前に出た家も。来たときに初めてお題に出る)
@@ -1025,11 +1032,12 @@ def _g6_season_end(state, frac):
             o["known"] = o["known"] or day
             log(state, "よその村", None, f"よその群れの {'・'.join(m['name'] for m in v['members'])} は、{_okey(o)} から来たと言った", other=o["id"])
     # 3. 交換をもとめて、よその村の人が来る (G6 の最初の季節の終わりは必ず。【仮定】交換は村の始まりからあったので、待たない (計画 3.))
+    #    最初の季節の終わりに、2. で群れの来たところの村ができていたら、その村の人が来る (新しい村は作らない。2026-10-09 確かめ役: 前は 2. で村ができると、来ないことが多かった)
     st = [o for o in g["others"] if o["kind"] == "よその村"]
     came = set()
-    if len(st) < MAX_STRANGERS and (not st or rng.random() < STRANGER_P * frac):
-        o = _new_other(state, rng, "よその村")
-        o["known"] = day
+    if not g["log"] or (len(st) < MAX_STRANGERS and rng.random() < STRANGER_P * frac):
+        o = st[0] if st and not g["log"] else _new_other(state, rng, "よその村")
+        o["known"] = o["known"] or day
         _g6_offer_new(state, rng, o, True)
         came.add(o["id"])
     # 4. ほかの村の 1 季節 (【仮定】人は 1 季節 0.5% ほど増える。夏のはじめに、その年が苦しい年か決まる。ヤギは春に増える。土器・鎌は少しずつ割れる)
@@ -1056,7 +1064,7 @@ def _g6_season_end(state, frac):
             first = o["known"] is None
             o["known"] = o["known"] or day
             _g6_offer_new(state, rng, o, first)
-    # 6. 交換している村から、ここで暮らしたい人が来る (町に人が集まる。【文献】ブラクは移り住む人で大きくなった【仮定】見込み)
+    # 6. 交換している村から、ここで暮らしたい人が来る (町に人が集まる。【文献・二次】ブラクには移り住んだ人が加わったとする調べがある【仮定】見込み)
     recent = g["meets"][-TOWN_RUN:]
     for o in g["others"]:
         if o["known"] is None or o["people"] < JOIN_MIN or not any(c in recent for c in o["contacts"]):
@@ -1115,12 +1123,14 @@ def _g6_season_end(state, frac):
 
 
 def _g6_indicators(state):
-    """G6 の目安 (G6 の前は 0。G6 の前は state.json を変えないので、この鍵は試し方 A で取りのぞいて比べる)"""
+    """G6 の目安 (G6 の前は鍵を足さない。だから G6 の前の state.json・app_data.json は前とまったく同じ。G6 に入って g6 を作る前は 0)"""
+    if not era_at_least(state, "G6"):
+        return {}
     base = {"g6_on": False, "g6_known": 0, "g6_partners": 0, "g6_biggest": 0, "g6_run": 0, "g6_exchanges": 0, "g6_debts_open": 0, "g6_joined": 0,
             "g6_seals": 0, "g6_sealings": 0, "g6_seal_seasons": 0, "g6_tools": "", "g6_records": 0, "g6_checked": 0, "g6_checked_tablet": 0,
             "g6_misremember": 0, "g6_nonfood": 0, "g6_town": False, "g6_town_day": None, "g6_record_day": None}
     g = state["era2"].get("g6")
-    if not era_at_least(state, "G6") or not g:
+    if not g:
         return base
     t = _town(state)
     sub = {x["f"]: x["day"] for x in state["era2"].get("substeps", []) if x["g"] == "G6"}
@@ -1217,7 +1227,8 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
          votes = {}  # 大人ごとの答え (群れのだれの名前で書いても同じ群れの受け入れ)
          for key, vals in accept.items():
 @@ -215,17 +227,23 @@
-             plans = [q["plan"] for q in adults(state) if q["name"] in accept_answered(e2)]
+-            plans = [q["plan"] for q in adults(state) if q["name"] in accept_answered(e2)]
++            plans = [q["plan"] for q in adults(state) if q["name"] in accept_answered(e2) and q["plan"]["activity"] not in ACTS_G6 + [ACT_RECORD]]  # G6: 行き先のない「交換に行く」をまねない
              common = max(plans, key=lambda pl: sum(1 for x in plans if x["activity"] == pl["activity"] and x["place"] == pl["place"])) if plans else {"activity": "採集", "place": "camp"}
              for m in v["members"]:
 -                q = _new_person(state, rng, m["sex"], m["age"], child=m["age"] < ADULT, origin="よそから来た", name=m["name"],
@@ -1445,7 +1456,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
      tin, tout = sum(v[0] for v in flow.values()), sum(v[1] + v[2] for v in flow.values())
      if len(flow) >= 2 and tin > 0 and tin >= 0.25 * tout:  # 【仮定】ほとんど蓄えで暮らした季節 (冬・春) は、だれの出し入れも目立たない
          r = max(1.0, tout / tin)  # 村みんなで蓄えを減らした季節は、入れた量の r 倍まで取っても多くない
-@@ -748,13 +813,15 @@
+@@ -748,13 +813,17 @@
              h = max(sorted(cand), key=lambda x: over[x] / need[x])
              i, o, s = flow[h]
              acts = "・".join(dict.fromkeys(q["plan"]["activity"] for q in adults(state) if q.get("household") == h))
@@ -1459,12 +1470,14 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
 -    g["last_flow"] = {h: [round(v[0] / GRAIN), round((v[1] + v[2]) / GRAIN)] for h, v in sorted(flow.items())}
 +            if era_at_least(state, "G6") and not _g6_cover(state, "蓄え"):  # G6: 記録がなければ量は分からない
 +                what = f"この季節、{h}の大人は、村の蓄えに入れた量にくらべて多く取った (おもな仕事: {acts})。量は記録になく、{frm}の覚えによる"
++            elif flow is not raw and (flow[h][0] != raw[h][0] or flow[frm][0] != raw[frm][0]):  # G6: 入れた量に、配給の記録の働いた日を数えた (文を事実どおりに)
++                what += " (入れた量は、記録した働いた日の分をふくむ)"
 +            _incident(state, "蓄え", frm, h, over[h] / len(homes), what)  # 【仮定】言い出した家の損 = 取りすぎを村の家の数で割った分
 +    g["last_flow"] = {h: [round(v[0] / GRAIN), round((v[1] + v[2]) / GRAIN)] for h, v in sorted(raw.items())}
      g["flow"], g["reap"] = {}, {}
      # もめごとのもと → もめごと (家が多いほどなりやすい。罰のある掟にあたることは必ずなる。同じ家どうしの同じ中身で収まっていないものには重ねる)
      pen = {l["penalty"]["for"] for l in state["laws"] if l["status"] == "採用" and l.get("penalty")}
-@@ -764,10 +831,15 @@
+@@ -764,10 +833,15 @@
              continue
          old = next((d for d in g["disputes"] if d["status"] == OPEN and (d["kind"], d["from"], d["against"]) == (inc["kind"], inc["from"], inc["against"])), None)
          if old:
@@ -1482,7 +1495,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
              _dispute(state, inc)
              new += 1
      g["incidents"] = []
-@@ -959,12 +1031,17 @@
+@@ -959,12 +1033,17 @@
      for d in [d for d in g["disputes"] if d["status"] == OPEN]:
          parties = (d["from"], d["against"])
          v = c["by"].get(lead, {}).get(d["id"]) if lead in ads and ads[lead].get("household") not in parties else None
@@ -1502,7 +1515,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
          tally = {k: len(s) for k, s in c["judge"].get(d["id"], {}).items()}
          top = max(tally.values(), default=0)
          elder = max([q for q in ads.values() if q.get("household") not in parties], key=lambda q: q["age"], default=None)  # 同じ年なら人の並びで先 (家の代表の決め方と同じ。2026-10-08)
-@@ -1022,6 +1099,8 @@
+@@ -1022,6 +1101,8 @@
          paid, words = _pay(state, d["against"], d["from"], (law["penalty"]["pay"] if law else min(d["harm"], MAX_PAY)) * GRAIN)
          if round(paid / GRAIN) <= 0:  # 半つかみより少ないものは、払ったと数えない (2026-10-08 確認役の指摘)
              paid, words = 0, ""
@@ -1511,7 +1524,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
      d.update(status="収まった", verdict=v, by=by, judge=who, paid=round(paid / GRAIN), law=law["id"] if law else None, end=state["day"])
      if by == "まとめ役":
          g["judged"] += 1
-@@ -1058,6 +1137,9 @@
+@@ -1058,6 +1139,9 @@
      return paid, "・".join(words)
  
  
@@ -1521,7 +1534,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
  def _sow(state, p, want):
      e2 = state["era2"]
      by = _move_food(state["store"], [], "草の種", want * UNITS["草の種"][1])
-@@ -1262,8 +1344,12 @@
+@@ -1262,8 +1346,12 @@
          if e2["specialists"]:
              e2.setdefault("specialist_log", []).append({"day": day, "names": e2["specialists"]})
      _sync_households(state)
@@ -1534,7 +1547,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
      _note_mode(state)
  
  
-@@ -1432,6 +1518,7 @@
+@@ -1432,6 +1520,7 @@
          **_g4_indicators(state),
          **_g5_indicators(state),
          **_house_indicators(state),
@@ -1542,7 +1555,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
      }
  
  
-@@ -1485,6 +1572,10 @@
+@@ -1485,6 +1574,10 @@
      "G5": ("第 2 段: 家族が 6 つ以上で、まとめ役がいる。罰のある掟が 3 つ以上採用されている。まとめ役がもめごとを 2 回以上裁いた。罰を 1 回以上払わせた",
             lambda i: i["g5_stage"] >= 2 and i["households"] >= 6 and bool(i["leader"]) and i["penalty_laws"] >= 3
             and i["judged"] >= 2 and i["penalties"] >= 1),
@@ -1553,7 +1566,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
  }
  ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6"]
  NAMES2 = {"G1": "村ができる", "G2": "畑と家畜", "G3": "余りと分業", "G4": "持ち物と差", "G5": "リーダーと決まり", "G6": "交易・町・記録"}
-@@ -1503,6 +1594,10 @@
+@@ -1503,6 +1596,10 @@
      "G5": [("F1", "集まり・長老・祭りでまとまる", lambda s: bool((s["era2"].get("g5") or {}).get("stage1"))),
             ("F2", "まとめ役が選ばれる", lambda s: bool((s["era2"].get("g5") or {}).get("leaders"))),
             ("F3", "罰を払わせる", lambda s: (s["era2"].get("g5") or {}).get("penalties", 0) >= 1)],
@@ -1564,7 +1577,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
  }
  # G1・G2 の F は、この仕組みを作る前に終わっていたので、記録 (出来事) から日を決めた (2026-10-08。G1_notes.md・G2_notes.md)
  RETRO_SUBSTEPS = [
-@@ -1535,6 +1630,13 @@
+@@ -1535,6 +1632,13 @@
      met = fn(ind)
      since = state["day"] - state["era_log"][-1]["day"]
      state["era_info"] = {"era": era, "name": NAMES2[era], "next": desc, "met": met, "since": since, "indicators": ind}
@@ -1578,7 +1591,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
      if met and era != ORDER2[-1]:
          nxt = ORDER2[ORDER2.index(era) + 1]
          state["era"] = nxt
-@@ -1715,31 +1817,48 @@
+@@ -1715,31 +1819,48 @@
          rows.append(f"前に祭りをしたのは {g['feast_day']} 日目 (これまで {g['feasts']} 回)")
      op = [d for d in g.get("disputes", []) if d["status"] == OPEN]
      rows.append("まだ収まっていないもめごと:" + ("" if op else " なし"))
@@ -1631,7 +1644,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
          v = e2["visitors"][0]
          txt = "、".join(f"{m['name']} ({m['sex']}、{m['age']} 歳)" for m in v["members"])
          vis = (f"\n## よそから来た人\n{txt} が「ここで暮らしたい」と言っている (いっしょに来た一つの群れ)。村に受け入れるか決めてください "
-@@ -1751,6 +1870,8 @@
+@@ -1751,6 +1872,8 @@
      keep = '"keep": false, ' if era_at_least(state, "G4") and not solo else ""
      goat = '"eat_goat": 0, ' if e2["goats"] and not solo else ""
      acc = f'"accept": {{"{e2["visitors"][0]["name"]}": true}}, ' if e2["visitors"] else ""
@@ -1640,7 +1653,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
      pick = characters._pick_line(st)
      me = characters._me(st, p).replace("(誰でも入れたり取ったりできる)", "(日々の出し入れは自動)")
      fam_txt, fam_json = "", ""
-@@ -1764,7 +1885,7 @@
+@@ -1764,7 +1887,7 @@
                     f"あなたは {p.get('household')} の代表。\n" + ("\n".join(rows) if rows else "- (ほかの家族はいない)") +
                     "\n- 家族の大人の主な仕事も、あなたが決める (family。書かなかった人は、あなたと同じ仕事)"
                     "\n- sow・pick・plant・harvest の数は、家族の大人一人ひとりの量 (eat_goat は家族で何頭か)"
@@ -1649,7 +1662,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
          if fam:
              fam_json = '"family": {' + ", ".join(f'"{q["name"]}": {{"activity": "採集", "place": "camp"}}' for q in [q for q in fam if q["name"] != lead][:2]) + '}, '
  
-@@ -1784,10 +1905,12 @@
+@@ -1784,10 +1907,12 @@
      g5_json = ("\n " + ('"judge": {' + ", ".join(f'"{i}": "..."' for i in op) + "}, " if op else "") + '"feast": false, '
                 + ('"leader": "...", ' if two else "") + ('"call": null, ' if me5 else "")) if g5 else ""
      pen = ', "penalty": null' if g5 and two else ""
@@ -1663,7 +1676,7 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
  ## 村のようす
  {_village(state)}
  ## 前の季節のこと
-@@ -1801,28 +1924,28 @@
+@@ -1801,28 +1926,28 @@
  
  ## 集団の掟 (季節のはじめに、みんなで集まって決める)
  {characters._laws(state, with_pending=True)}
@@ -1701,13 +1714,13 @@ Unified diff against `f8a9e46` (the two new blocks are shown as one-line placeho
 What each hook does:
 - `acts2`: 交換に行く from G6; 記録をつける only after 数え札 opens (read with `.get`, never creates state).
 - `apply_answers`: `_g6_new_season` at the start (resets jobs, keep days, trips; records the meeting); `_g6_job` after a plan is set (details go to `g6.jobs`, never `e2["jobs"]`); `_g6_collect` after `_g5_collect` (respects `own`); `_g6_meeting` after `_g5_meeting`, before `_settle_visitors`.
-- `_settle_visitors`: a G6 group (with `seed`) creates its members from its own `random.Random(seed)`; members get `from_village`; the 加わる text keeps 「よそから来た A・B が、」 so `_sync_households` still parses it; refusal says 「…へ帰っていった」; `_g6_settled` updates the partner.
+- `_settle_visitors`: a G6 group (with `seed`) creates its members from its own `random.Random(seed)`; members get `from_village`; the 加わる text keeps 「よそから来た A・B が、」 so `_sync_households` still parses it; refusal says 「…へ帰っていった」; `_g6_settled` updates the partner. The "most common job" a newcomer copies for its first season ignores 交換に行く and 記録をつける (a newcomer has no destination or record details and would otherwise sit idle for 30 days; before G6 nobody can plan these, so the choice is unchanged).
 - `_day`: 記録をつける in the work chain; `_g6_trips_day` after the chain (before the evening takes, `_feed` and `world.evening`, so a raised `spent` is eaten); travellers (`today.away`) neither pick nor harvest.
 - `_feed` / `_flow`: sealing pieces when a sealed household opens its 倉 or takes from the sealed village store (1 per household per day).
 - `_craft`, `_storage_season`: obsidian blades; the sickle loop still draws once per item, so the salt-31 stream is unchanged.
 - `_house_site(state, h)`: identical sequence before G6 (the ring check moved into `ok()`); in G6 rings 11/13/15, and households from a partner village try the ±60° sector toward it first.
 - `_steal`, `_incident`: sealed stores are robbed last; a broken seal logs 封 and the incident is `sealed` (always becomes a dispute, `_g5_season_end`); in G6 the theft text has no amount.
-- `_dispute`, `_g5_season_end`: record or claim on new disputes; G6 texts without exact amounts when there is no record; merging keeps the claim ratio; ration credit only in the 蓄え comparison (`last_flow` is still the raw flow).
+- `_dispute`, `_g5_season_end`: record or claim on new disputes; G6 texts without exact amounts when there is no record; merging keeps the claim ratio; ration credit only in the 蓄え comparison (`last_flow` is still the raw flow); when the credit changed what a household 「入れた」, the dispute text says so (「入れた量は、記録した働いた日の分をふくむ」), so the logged amount is not presented as grain actually put in.
 - `_g5_meeting`: a recorded dispute is checked (確かめる) and does not use a talk slot.
 - `_verdict`: after a つぐなう payment without a law, `_g6_after_pay` (覚え incident).
 - `_season_end`: `_g6_records` before `_g5_season_end` (so new disputes know the record), `_g6_season_end` after it (so a fission in this season already becomes a dormant village), `_note_mode` last.
@@ -1760,13 +1773,13 @@ FACTS_G6 = ("ほかの村: 村の外 (地図の外。歩いて 1〜2 日) にも
             "そうでなければ、\"家\" と答えた家の代表のうち、払える家で、家の倉の食べ物がいちばん多い家が受け、手に入れた食べ物とヤギはその家のものになる "
             "(土器・鎌・黒曜石は、いつも村のもの)。返す申し出は、決めずに受けとる。"
             "交換している村から「ここで暮らしたい」と人が来ることもある (よそから来た人と同じく、受け入れるかを決める)\n"
-            "交換に行く: 主な仕事を「交換に行く」(camp) にすると、季節のはじめの日に、知っているほかの村へ、村の草の種・干し肉・土器・鎌・ヤギを持って出かける "
+            "交換に行く: 主な仕事を「交換に行く」(camp) にすると、季節のはじめの日に、知っているほかの村へ、ほかの村がほしがる物 (村の草の種・土器・鎌) を持って出かける "
             "(to: 村の番号、carry: 持って行く物と数、want: ほしい物、then: 帰ってからの仕事)。"
-            f"1 人が持てるのは、草の種なら {LOAD['草の種']} つかみ、干し肉なら {LOAD['干し肉']} 切れ、土器なら {LOAD['土器']} 個、鎌なら {LOAD['鎌']} 本ほど "
-            f"(2 つ持つときは、それぞれ半分ずつ)。ヤギは 1 人 {GOATS_PER} 頭まで引いて行ける。"
+            f"1 人が持てるのは、草の種なら {LOAD['草の種']} つかみ、土器なら {LOAD['土器']} 個、鎌なら {LOAD['鎌']} 本ほど "
+            "(2 つ持つときは、それぞれ半分ずつ)。"
             "歩いて 1 日の村なら、行く・交換する・帰るで 3 日、2 日の村なら 5 日かかる。歩く日はおなかが多くすく。帰り道で物をなくしたり、けがをしたりすることがある。"
             "向こうの村は、その季節にほしい分だけを受けとり、want の物 (なければほかの物) で払う。受けとらなかった物は持ち帰る。払いきれない分は、あとで返す約束 (貸し借り) になる。"
-            "家の代表は、家の倉の食べ物と家のヤギを持って行かせることもできる (house: true。家族の住まいのある家だけ。手に入れた食べ物とヤギは家のもの)\n"
+            "家の代表は、家の倉の草の種を持って行かせることもできる (house: true。家族の住まいのある家だけ。手に入れた食べ物とヤギは家のもの)\n"
             f"値うち: 交換では、草の種にして、ヤギ 1 頭 = {VALUE['ヤギ']} つかみ、鎌 1 本 = {VALUE['鎌']} つかみ、土器 1 個 = {VALUE['土器']} つかみ、"
             f"黒曜石 1 個 = {VALUE['黒曜石']} つかみ、干し肉 1 切れ = {VALUE['干し肉']} つかみ ほどとして釣り合わせる\n"
             "覚え: 記録のない量 (家ごとの村の蓄えへの出し入れ・もめごとの量・貸し借りの量) は、人の覚えにたよるので、はっきりしない。"
@@ -1857,7 +1870,7 @@ def _g6_text(state):
     else:
         rows.append("前の季節の記録: なし")
     op = g.get("open") or {}
-    rows.append("使える記録の道具: " + "・".join(k for k in ("印", "数え札", "封筒", "板") if op.get(k)))
+    rows.append("使える記録の道具: " + ("・".join(k for k in ("印", "数え札", "封筒", "板") if op.get(k)) or "印"))  # G6 の最初のお題 (g6 を作る前) も「印」
     if g.get("obsidian") or g.get("obs_sickles"):
         rows.append(f"村の黒曜石: {g['obsidian']} 個 (黒曜石の刃の鎌 {g['obs_sickles']} 本)")
     sh = g.get("shown")
@@ -1916,7 +1929,7 @@ def _g6_json(state, p, solo):
 - **Directions** are drawn among unused 南 (39,79, river exit), 北 (49,0, river exit), 東 (79,40), 西 (0,40). Labels say only direction and days (「川にそって南へ歩いて 2 日」); the world has no river flow direction, so never 上流/川下.
 - **Season dynamics** (salt-41 stream): +1 person with p = people × 0.005; at the start of summer a bad year with p 0.2 (grain falls to 20/person; otherwise +100/person up to 300/person); goats ×1.3 in spring up to the number of people; pots −3%, sickles −5% per season.
 - **Contact**: each known or dormant node comes with p = min(0.8, CONTACT_P × trust / 0.5) (分かれた家 0.35, よその村 0.15), or 0.8 when a debt it owes is due; not if villagers visited it this season. trust +0.1 per completed transfer or accepted group, −0.1 per refused offer or group, −0.2 per 覚え on repayment or an unpaid debt after a year.
-- **Offers** (in this order): bad year and grain < 60/person → 貸して (草の種 = people × 120, rounded to 100, ≤ 3000); a due debt it can at least half repay → 返す (brings the exact amount if the debt has an envelope or tablet proof, otherwise its own memory = true × U(1−s, 1)); otherwise 交換: up to 3 goats (keeping 2), or obsidian (5–15), for its wants of equal value in the order 土器, 鎌, 草の種. Goat sexes/ages and memory factors are drawn at the season end and stored in the offer, so the meeting is deterministic.
+- **Offers** (in this order): bad year and grain < 60/person → 貸して (草の種 = people × 120, rounded to 100, ≤ 3000); a due debt it can at least half repay → 返す (brings the exact amount if the debt has an envelope or tablet proof, otherwise its own memory = true × U(1−s, 1)); otherwise 交換: up to 3 goats (keeping 2), or obsidian (5–15), for its wants of equal value in the order 土器, 鎌, 草の種. A village whose wants are worth less than one goat but at least half a goat still offers 1 goat for all of them (otherwise villages under 12 people could never offer — checked 2026-10-09: 5–11 people had wants worth 245–305 < 375). Goat sexes/ages and memory factors are drawn at the season end and stored in the offer, so the meeting is deterministic.
 - **Per-season caps** (what a partner takes in one season): 土器 max(3, people/3), 鎌 max(1, people/6), 草の種 10/person (100 in a bad year).
 
 ## 7. Exchange at the meeting, loans and repayment
@@ -1924,17 +1937,18 @@ def _g6_json(state, p, solo):
 - Answer `"trade": {"T3": "村" | "家" | false}`; rep-weighted (`fam`), a non-rep leader counts only for themself and cannot answer "家".
 - "村" by more than half of adults, **or by the leader alone**, → village goods. Otherwise the households whose reps answered "家" and can pay; the one with the most food in its 倉 takes it. Otherwise refused (trust −0.1, logged 「…の申し出 [T3] は受けなかった (村 a・家 b・受けない c / 大人 n)」).
 - 交換: our goods to the partner, its goods to us (goats with the pre-drawn sexes/ages; owner None or the household). 貸して: a debt `D#` (lender 村 or household, due one year later).
+- **Limit of "家" at the meeting** (checked 2026-10-09): every 交換 offer asks for 土器 and 鎌 first, and pots and sickles are always village things, so no household can pay a 交換 offer; "家" works at the meeting only for 貸して (grain). Household trade happens through trips (`house: true`, the household's grain → goats/obsidian for the household). Question 10 is worded accordingly; if the user wants households to take 交換 offers, the offer would have to ask a household for grain only (a design change, not made here).
 - 返す (not voted): the goods go to the lender (to the village if the household has left). Proof 封筒 or 板 → exact, 確かめる, `checked[proof] += 1`; proof 数え札 → the village knows the exact number, the partner brings its memory, the shortfall stays as an open debt, 確かめる; no proof → the debt closes, `unchecked += 1`, and if the village's memory (true × U(1, 1+s)) exceeds what was brought by more than 25%: 覚え event, trust −0.2.
 - Every completed transfer appends the season's `step_day` to the partner's `contacts`, `exchanges += 1`.
 
 ## 8. Trips (job 交換に行く)
 
 - Job: `{"activity": "交換に行く", "place": "camp", "to": "N1", "carry": {"土器": 4}, "want": "ヤギ", "then": "採集", "house": false}` (job or family). `then` must be in `acts2` (default 休む). `house: true` only for the household's own rep answer and only for a household with a built home.
-- **Departure** on the season's first day: the load is scaled so that Σ n / LOAD ≤ 1 (goats ≤ 4 extra). Goods leave the village stocks (or the household's 倉 and goats). If the target is unknown, the person is injured that day, or nothing could be taken: 「…は、…、交換に行かなかった」 and the plan switches to `then`.
+- **Departure** on the season's first day: only goods a partner takes (`_g6_cap`: 草の種, 土器, 鎌) can be carried; the load is scaled so that Σ n / LOAD ≤ 1. (An earlier draft also let travellers carry goats, meat and obsidian; partners never take them, so they always came back, and returned goats were re-created as 2-year-old females, changing the herd — removed 2026-10-09.) Goods leave the village stocks (or the household's 倉: grain only). If the target is unknown, the person is injured that day, or nothing could be taken: 「…は、…、交換に行かなかった」 and the plan switches to `then`.
 - **Schedule** (D = days): walk on days 0…D−1, trade on day D, walk back D+1…2D, the plan becomes `then` after day 2D. 3 days for D = 1, 5 for D = 2. On walking days `today.spent += world._walk_kcal(p, 30000) × 1.4` (the load). `today.away` on all trip days.
 - **Barter**: the partner takes only what is under its caps; pays in `want`, else ヤギ / 黒曜石 / 草の種 (keeping 2 goats; no grain in a bad year); unwanted goods come back; a remaining value ≥ 50 becomes a debt in the wanted good (if worth ≥ half a unit) or in 草の種, due two seasons later.
 - **Return**: p 0.03 a goat strays or 10% of the grain is spilled; p 0.005 × 2D the traveller is hurt (`injured = 2`). Goods go to the side that carried them. Trip goods are **not** household withdrawals or deposits (the village account is the 「交換」 record).
-- A season cut short by a famine break returns unfinished trips at the season end.
+- A season cut short by a famine break returns unfinished trips at the season end: before the barter, what was carried; after it (`bartered`), what was received plus what the partner did not take (never both — the first draft returned the carried goods even when the partner had taken them and paid nothing, duplicating them).
 - Note (observed in the trial): 4 pots (160) cannot buy a goat (375); goats come mostly from offers at the meeting, trips bring grain or obsidian, or several travellers go together. This follows from the values and is left to the players.
 
 ## 9. Seals and sealings
@@ -1942,7 +1956,7 @@ def _g6_json(state, p, solo):
 - `"seal": true` from a household's own rep: the household seal (once). From then on its 倉 is sealed; theft from it is logged as 封 (「ナギの家の倉の封が割れていた: …」) and always becomes a dispute; sealed stores are robbed last.
 - `"seal_store": true` by more than half of adults or by the leader: the village store is sealed this season. Every day a household takes from it leaves one piece with its seal, or an unstamped piece (「(印なし)」); a household opening its own sealed 倉 also leaves one.
 - Season end: event 封 「この季節、印で封をした倉や村の蓄えが開けられた (割った封のかけらは取っておいた): 川辺の家の印 30 回、…」. **F2** = a season in which pieces from ≥ 2 households' seals were left (`seal_seasons ≥ 1`).
-- Narration says 「家の印」「封をした」, never 「持ち主の印」 (both the communal-storage and private-property readings exist: Akkermans & Duistermaat 1996/97; Duistermaat 2012).
+- Narration says 「家の印」「封をした」, never 「持ち主の印」 (both the communal-storage and private-property readings exist: Akkermans & Duistermaat 1996/97; Duistermaat 2012, 2013). The seal itself is still introduced in G6 as the start of records, as decided (part2.md 6.3); only the wording changes (question 12).
 
 ## 10. Memory (覚え), G6 only
 
@@ -1958,7 +1972,7 @@ def _g6_json(state, p, solo):
   - 板: 数え札 open, `token_seasons ≥ 4`, `big ≥ 200`.
 - **Keeper** (job 記録をつける, camp): `{"what": ["蓄え", "交換", "刈る"], "how": "数え札" | "封筒" | "板"}` (opened tools only; default 数え札, all three). Daily event 記録をつける 「セナ がキャンプで、粘土の数え札を作り、村の蓄えへの家ごとの出し入れ … を数えた」.
 - **Season record** (`_g6_records`, before `_g5_season_end`): tokens needed — 蓄え = (in + out + own-field sowing) / 100 つかみ + work days / 10; 交換 = units moved (TOKEN per good) + debts made this season; 刈る = reaped-for-others / 100. Capacity = days × 10 (数え札, 封筒) or × 50 (板), filled in each keeper's `what` order. A complete kind sets `cover[kind]` (板 if a tablet keeper contributed). A complete 交換 record gives this season's debts `proof` 封筒 / 板 (if such a keeper recorded 交換) or 数え札. Event 記録 「セナ が、この季節の 村の蓄えへの家ごとの出し入れ (全部残せた。229 / 229 個分) … を残した」.
-- **Ration credit**: with a complete 蓄え record, each household's craft, keeping and trip days × DAY_FOOD count as 入れた in the G5 蓄え comparison (rations in proto-cuneiform: Englund 2011; Arslantepe meal distribution: Frangipane et al. 2007; the credit rule is 【仮定】). Specialists' households otherwise look like over-takers (アルの家 took 1425 and put in 0 in spring 1769).
+- **Ration credit**: with a complete 蓄え record, each household's craft, keeping and trip days × DAY_FOOD count as 入れた in the G5 蓄え comparison (rations in proto-cuneiform: Englund 2011; Arslantepe food distribution from mass-produced bowls: Frangipane et al. 2007, an interpretation; the credit rule is 【仮定】). Specialists' households otherwise look like over-takers (アルの家 took 1425 and put in 0 in spring 1769).
 - **Use**: recorded disputes are checked (確かめる) at the meeting and do not use a talk slot; debts with proof are checked on repayment.
 
 ## 12. Town pull, satellite houses, obsidian, names
@@ -2050,7 +2064,7 @@ The whole prompt was about 86 KB (≈ 32k characters) with 29 people and 10 hous
 
 ## 16. Indicators, CRITERIA, SUBSTEPS, end of Society 2.0
 
-- `_g6_indicators` (§5.1) adds 20 keys, all prefixed `g6_`, with a zero base before G6 (test A strips `g6_*`).
+- `_g6_indicators` (§5.1) adds 20 keys, all prefixed `g6_`, from G6 on (a zero base until `g6` is created at the first G6 meeting). Before G6 it returns `{}`, so `state.json` and `app_data.json` are byte-identical to the current code (test A compares them without stripping anything).
 - **F1 村どうしの交換**: `exchanges ≥ 1`. **F2 印で封をする**: `seal_seasons ≥ 1`. **F3 町**: `_town(state)["ok"]`. **F4 物と数を分けて記す**: `checked["板"] ≥ 1`. Logged once each as 区切り with the day (`check_substeps`), any order.
 - **Town** (`_town`): alive people ≥ 50; the last 4 G6 meetings each have a completed transfer with some village; ≥ 2 villages over those 4; people ≥ 2 × the largest of those partners; non-food producers this season (G3 specialists with ≥ 20 craft days ∪ keepers with ≥ 20 days) ≥ 10% of adults.
 - **CRITERIA["G6"]**: both `g6_town_day` and `g6_record_day` set (from the G6 F3/F4 substeps), i.e. each reached at least once.
@@ -2071,7 +2085,7 @@ The whole prompt was about 86 KB (≈ 32k characters) with 29 people and 10 hous
 ```diff
 --- a/sim/society/step.py
 +++ b/sim/society/step.py
-@@ -106,12 +106,13 @@
+@@ -106,20 +106,21 @@
  
  
  ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき",
@@ -2088,6 +2102,15 @@ The whole prompt was about 86 KB (≈ 32k characters) with 29 people and 10 hous
      out = {}
      for d in range(1, state["day"] + 1):
          rows = {}
+         for e in state["events"]:
+             if e["day"] != d:
+                 continue
+             names = e.get("data", {}).get("hunters") if e["type"] == "狩り" else [e["who"]]
+-            act = "狩り" if e["type"] == "狩り" else ACT_BY_EVENT.get(e["type"])
++            act = "狩り" if e["type"] == "狩り" else "交換に行く" if e["type"] == "交換" and e.get("who") else ACT_BY_EVENT.get(e["type"])  # G6: 向こうの村で交換した日も、その村にいる (集まりでの交換は who がない)
+             if not act or not names:
+                 continue
+             pid = next((p["id"] for p in labels if p["label"] in e["text"]), "camp")
 @@ -132,10 +133,11 @@
  def export(state):
      """アプリ (Web ページ) 用のデータ"""
@@ -2128,7 +2151,17 @@ The whole prompt was about 86 KB (≈ 32k characters) with 29 people and 10 hous
          if state["phase"] in ("evening", "night", "season"):
              print(f"お題: {pdir(state, state['phase'], 'prompts').relative_to(DATA.parent)}")
          return
-@@ -230,7 +234,13 @@
+@@ -216,7 +220,8 @@
+         if state["phase"] != "season":
+             sys.exit(f"今の段階は {state['phase']} です")
+         if state.get("hold"):
+-            print(f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
++            print("一時停止中: Society 2.0 が終わったので、第 4 部のまとめ待ち。進めない (再開は resume)" if ((state.get("era2") or {}).get("g6") or {}).get("end")
++                  else f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
+             sys.exit(3)
+         before = state["next_event"]  # G5: 季節の集まりで起きたこと (収める・裁き・罰・祭り・まとめ役) は、30 日を進める前の出来事
+         feels = read_feelings(state)  # 代表を決める前の顔ぶれで読む (集まりで、まとめ役が変わることがあるため)
+@@ -230,7 +235,13 @@
              gone = [p for p in state["people"] if p.get("left")]
              print("生きている人がいない (亡くなった人と、村を出た人" + (f" {len(gone)} 人" if gone else " 0 人") + ")")
              sys.exit(4)
@@ -2143,7 +2176,7 @@ The whole prompt was about 86 KB (≈ 32k characters) with 29 people and 10 hous
              state["hold"] = True
              e = state["era_log"][-1]
              world.log(state, "フェーズ", None, f"フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ")
-@@ -240,7 +250,7 @@
+@@ -240,7 +251,7 @@
          export(state)
          for e in state["events"]:
              if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ", "区切り")) \
@@ -2152,7 +2185,7 @@ The whole prompt was about 86 KB (≈ 32k characters) with 29 people and 10 hous
                  print("*", e["text"][:120])
          harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")
          if harv:
-@@ -251,6 +261,12 @@
+@@ -251,6 +262,12 @@
              print(f"G5 第 {i['g5_stage']} 段 / 家族 {i['households']} / まとめ役 {i['leader'] or 'いない'} / もめごと 残り {i['disputes_open']} "
                    f"(まとめ役なしで収めた {i['settled']}・まとめ役の裁き {i['judged']}) / 罰のある掟 {i['penalty_laws']}・罰 {i['penalties']} / "
                    f"祭り {i['feasts']} / 分かれた家 {i['fissions']} / 共同の仕事 {i['joint']} / 第 1 段 {'済み' if i['stage1'] else 'まだ'}")
@@ -2167,7 +2200,9 @@ The whole prompt was about 86 KB (≈ 32k characters) with 29 people and 10 hous
          print("生きている人がいないので、進めない")
 ```
 
-**tools/society2_seasons_workflow.js**, before the phase regex (L43):
+Notes on the step.py diff: `day_summaries` maps a 交換 event that has a `who` (the barter day of a trip) to 交換に行く, so the 3D replay keeps the traveller at the partner village on that day instead of resting at camp (meeting exchanges have no `who`; before G6 there are no 交換 events, so the export is unchanged); `season` with `hold` set prints the end-of-Society-2.0 reason too. Both were checked in test D (2026-10-09).
+
+**sim/society/tools/society2_seasons_workflow.js**, before the phase regex (L43):
 ```js
   if (/Society 2\.0 が終わった/.test(out)) return { stopped: d, why: 'society2 end', out, log: log_ }
 ```
@@ -2195,7 +2230,7 @@ All tests use scratch copies (`git archive` trees, in-memory deep copies, `SOC_D
 - OLD = `git archive HEAD sim/society` (without data/), NEW = the edited tree; each run in its own process (`sys.path` = its own `sim/society`) so world.py differences count.
 - Start: `git show 5a17727:sim/society/data/state.json` (day 1709). Real seasons with the committed answers `answers/day1709 … day1859` (and later ones once committed; feeling answers from `answers/dayNNNN/feeling/` from 1859 on). Per season: render every `season_prompt` (answerers) and `feeling_prompt` (feelers), `apply_answers`, `apply_feelings`, `simulate_season`, `last_first`, `check` (hold + phase log as step.py).
 - Then ≥ 6 scripted G5 seasons whose answers include every G6 field, a feast, judge answers, and one injected stale dispute with `LEAVE_P` raised in both trees (a fission).
-- Assert: prompts and feeling prompts byte-identical; `json.dumps(state, sort_keys=True)` equal after deleting `g6_*` keys from `era_info.indicators` and `era_log[*].indicators`; `"g6" not in era2`; salts recorded by a monkeypatched `_rng` never include 41; `answerers`/`feelers` equal; the G6 jobs became 休む; `export()` without a `g6` key and with the same `places`/`days`; `_house_site` returns the same sites (also with 20 homes forced).
+- Assert: prompts and feeling prompts byte-identical; `json.dumps(state, sort_keys=True)` equal **without removing anything** (no `g6_*` key exists before G6); `"g6" not in era2`; salts recorded by a monkeypatched `_rng` never include 41; `answerers`/`feelers` equal; the G6 jobs became 休む; `export()` without a `g6` key and with the same `places`/`days`; `_house_site` returns the same sites (also with 20 homes forced).
 
 **B. Unit checks** (NEW, deep copy forced to G6):
 - Parsers: `_g6_side` ("村", 「村で受ける」, 「村の物で受ける」 → 村; "家", 「自分の家の倉で」 → 家; false, "false", 「受けない」, 「交換しない」 → False; "...", 「村か家」, None → None; True → 村), `_g6_goods` (麦/つぼ aliases, unknown goods dropped), `_g6_node` ("N1", 「東の村へ」, unknown → None), `_tid`, `_g6_job` (then not in acts2 → 休む; how not open → 数え札; what order kept).
@@ -2226,12 +2261,12 @@ All tests use scratch copies (`git archive` trees, in-memory deep copies, `SOC_D
 - **Names**: suffix names appear at once (question 15).
 - **Answer load and data**: one more rep per accepted group (≈ 15–20 answers a season at 50 people); app_data.json (≈ 15 MB now) may reach 40–60 MB; the daily keeper and traveller events add ≈ 30–60 events a season.
 - **Narration**: other villages are model constructs created by logged events; captions quote only those events; pre-G6 visitors get no origin; 「家の印」, not 「持ち主の印」.
-- **Contested archaeology**: token meaning and token → word signs, down-the-line exchange, debt as the trigger of records — never stated as fact (§24).
+- **Contested archaeology**: token meaning and token → word signs, down-the-line exchange, debt as the trigger of records, what seals meant (owner or communal store), migration into Brak — never stated as fact (§24). Several 【文献】 entries were checked only against abstracts or reviews (§23); re-check the full texts before quoting numbers in narration.
 - **Live run**: the checkout is shared with the live run (and other sessions push code). Implement only after the decisions, rebase the diffs on the current HEAD, and re-run test A with the newest committed answers.
 
 ## 21. Decisions for 本人 (recommendation first)
 
-Same 17 items as the Japanese summary. In short: (1) town 50; (2) keep the 4-season exchange in the town condition, ≥ 2 villages; (3) town pull yes; (4) villages only from logged events + a guaranteed first trader; (5) days sticky; (6) hold only at the end; (7) 覚え yes; (8) record = checked with a tablet, thresholds as given, report record-before-town; (9) trips yes; (10) household trade yes; (11) obsidian yes, no beads; (12) one seal per household; (13) four F; (14) no storehouse now; (15) NAMES_G6 from G6; (16) hide houses after fission and add G5 toasts; (17) fix the research docs when G6 is built.
+Same 17 items as the Japanese summary. In short: (1) town 50; (2) keep the 4-season exchange in the town condition, ≥ 2 villages; (3) town pull yes; (4) villages only from logged events + a guaranteed first trader; (5) days sticky; (6) hold only at the end; (7) 覚え yes; (8) record = checked with a tablet, thresholds as given, report record-before-town; (9) trips yes; (10) household trade yes; (11) obsidian yes, no beads; (12) one seal per household, worded 「家の印」 rather than 「持ち主の印」; (13) four F; (14) no storehouse now; (15) NAMES_G6 from G6; (16) hide houses after fission and add G5 toasts; (17) fix the research docs when G6 is built.
 
 ## 22. Flaws found in the three designs → fixes in this spec
 
@@ -2254,57 +2289,61 @@ Same 17 items as the Japanese summary. In short: (1) town 50; (2) keep the 4-sea
 | All | `check()` returning `"end"` is truthy → step.py would log 「フェーズが G6…に進んだ」 | `r == "end"` branch first (§18) |
 | All | NAMES runs out (seen in the trial) | question 15 |
 
-## 23. Literature (【文献】 = literature basis; 【文献・二次】 = seen only in a secondary summary; (memory, unverified) = not checked this session)
+## 23. Literature (【文献】 = literature basis; 【文献・二次】 = seen only in a secondary summary; 【未確認】 / (memory, unverified) = not checked this session)
+
+Fact check (2026-10-09, web search only; full texts mostly paywalled, so most entries were checked against abstracts, publisher records or reviews). Changed after the check: Sabi Abyad date and seal count, Brak satellite distances and primacy, the Brak migration study (dental, not strontium), Hamoukar obsidian sources, village densities, Johnson 1973 → 1978/1982 for information load, interest-bearing debt, Kelley et al. 2024 (seal motifs, not a token critique), §24 items 9–11. The literature reviews in `docs/research/historical_records.md` (checked version) agree with the corrected values.
 
 Exchange and obsidian
 - Renfrew, Dixon & Cann 1968, Proc. Prehist. Soc. 34:319–331 — fall-off curves; supply zone ≤ ~300 km 【文献】
 - Renfrew 1975, "Trade as action at a distance" (Sabloff & Lamberg-Karlovsky eds.) — modes of exchange 【文献】; Renfrew 1977 — monotonic decrement 【文献】
 - Hodder & Orton 1976 — equifinality of fall-off curves 【文献・二次】
-- Ortega, Ibáñez, Khalidi, Méndez, Campos & Teira 2014, J. Archaeol. Method Theory 21:461–485; Ibáñez et al. 2015, J. R. Soc. Interface 12:20150210 — down-the-line alone cannot explain the spread; small-world networks 【文献・二次】
-- Yacobi & Gopher 2023, Camb. Archaeol. J. 33(3):431–448 — kin-based trade partnerships 【文献】
+- Ortega, Ibáñez, Khalidi, Méndez, Campos & Teira 2014, J. Archaeol. Method Theory 21(2):461–485; Ibáñez et al. 2015, J. R. Soc. Interface 12:20150210 — agent-based models: down-the-line does not carry obsidian beyond ~300 km; a small-world network explains spread up to ~800 km 【文献】(abstracts checked; a model result, not an observation)
+- Yacobi & Gopher 2023, Camb. Archaeol. J. 33(3):431–448 — kin-based trade partnership model (Wadi Rabah, Hagoshrim) 【文献】(abstract checked; the authors' model)
 - Carter et al. 2006/2007/2008 — Çatalhöyük obsidian sources 【文献】
-- Davidson & McKerrell 1976, Iraq 38:45–56; 1980, Iraq 42:155–167 — Halaf pottery moved between sites 【文献】
-- Hamoukar LC1–2 obsidian (~85% Nemrut Dağ), Oriental Institute reports 2005–2007 【文献】
+- Davidson & McKerrell 1976, Iraq 38:45–56 (Khabur headwaters); 1980, Iraq 42:155–167 (neutron activation, Arpachiyah and Gawra) — Halaf pottery moved between sites 【文献】
+- Khalidi, Gratuze & Boucetta 2009, Archaeometry 51(6):879–893 — LC2 obsidian at Hamoukar and Brak mostly from the Bingöl region, minor Lake Van source (Bingöl A and Nemrut Dağ are hard to tell apart) 【文献】(abstract). The earlier note 「Hamoukar LC1–2 obsidian ~85% Nemrut Dağ, OI reports 2005–2007」 was not confirmed and conflicts with this abstract
 - Hallan Çemi → Nemrut Dağ ≈ 100 km in 3 days 【文献・二次】
 
 Seals, sealings, tokens, writing
-- Duistermaat 1996; Akkermans & Duistermaat 1996/97, Paléorient 22(2):17–44; Akkermans & Duistermaat 2004, Levant 36:1–11 — Sabi Abyad sealings (~6175–6125 cal BC, level 8B; Burnt Village ~6000 BC) 【文献】
-- Duistermaat 2012, OLA 219:1–16 — non-administrative origins of seals 【文献】 (text not read)
-- Frangipane et al. 2007, *Arslantepe Cretulae* — >2,200 impressed sealings; A340 ≈ 30 seals on 175 sealings; Temple C bowls 【文献】
-- McMahon 2009, Iraq 71 — Brak sealings 【文献】
+- Duistermaat 1996; Akkermans & Duistermaat 1996/97, Paléorient 22(2):17–44; Akkermans & Duistermaat 2004, Levant 36:1–11 — Sabi Abyad: hundreds of sealings (communal storage, settled and mobile groups: the authors' reading); the 2004 finds date c. 6300–6000 BC; most sealings come from the Burnt Village (level 6, c. 6000 BC) 【文献】(abstracts). The earlier 「level 8B, ~6175–6125 cal BC」 was not confirmed
+- Duistermaat 2012, OLA 219:1–16 — non-administrative origins of seals 【文献】 (text not read); Duistermaat 2013, "Private matters" (in Nieuwenhuyse et al. eds., *Interpreting the Late Neolithic of Upper Mesopotamia*, 315–322) — private-property reading 【文献】 (text not read)
+- Stamp seals from the late 8th millennium BC (Ras Shamra, Byblos, Bouqras, Çatalhöyük) 【文献・二次】(Durham repository paper)
+- Frangipane et al. 2007, *Arslantepe Cretulae* (Arslantepe V) — >2,200 sealings with impressions from the Period VI A palace (c. 3400–3000 BC); storeroom A340: 30 seals on 175 cretulae, read by the authors as the seals of many people withdrawing goods (a reviewer finds this possible but not compelling: Weingarten 2009, AJA 113.2); Temple C bowls 【文献】
+- McMahon 2009, Iraq 71 — Late Chalcolithic seal iconography at Brak 【文献】
 - Schmandt-Besserat 1992, *Before Writing* — tokens → envelopes → tablets (her interpretation) 【文献】
-- Bennison-Chapman 2018, Levant 50(3); 2019, Camb. Archaeol. J. 29(2) — tokens multifunctional, from the 10th millennium cal BC 【文献】
-- Englund 1993, Science; Englund 2011, "Accounting in proto-cuneiform"; Damerow & Englund 1987 — numerical tablets (Uruk V), number and kind signs (Uruk IV), ~85% administrative 【文献】
-- Zimansky 1993, J. Field Archaeol. 20(4):513–517; Michalowski 1993, Am. Anthropol.; Friberg 1994; Kelley, Cartolano & Ferrara 2024, Antiquity — critiques of token → word signs 【文献】
+- Bennison-Chapman 2018, Levant 50(3):305– ("Clay objects as 'tokens'?", Tell Sabi Abyad: some contexts suggest counting/administration); 2019, Camb. Archaeol. J. 29(2):233– ("Reconsidering 'tokens'": tokens from the 10th millennium cal BC, mostly multifunctional) 【文献】
+- Englund 1993, Science 260:1670–1671 (review of *Before Writing*); Englund 1998, OBO 160/1; Englund 2011, "Accounting in proto-cuneiform"; Damerow & Englund 1987 — numerical tablets (Uruk V, c. 3500–3350 BC), number and kind signs (Uruk IV, c. 3350–3200 BC), ~85% administrative 【文献】; envelopes (bullae) with tokens from the mid-4th millennium (Uruk VI/V, c. 3500 BC) 【文献・二次】
+- Zimansky 1993, J. Field Archaeol. 20(4):513–517; Michalowski 1993, "Tokenism", Am. Anthropol. 95(4):996–999; Friberg 1994 — critiques of token → word signs 【文献】; Kelley, Cartolano & Ferrara 2024, "Seals and signs", Antiquity (doi 10.15184/aqy.2024.165) — some proto-cuneiform signs derive from seal motifs of c. 4400–3400 BC (another source of kind signs) 【文献】
 
 Towns and information
 - Childe 1950, Town Planning Review 21:3–17 — urban revolution criteria 【文献】
-- Johnson 1973, Anthropol. Pap. 51 (Univ. Michigan) — information processing and state origins 【文献】; Johnson 1982 — scalar stress (used in G5) 【文献】
-- Wright & Johnson 1975, Am. Anthropol. 77:267–289 — administrative hierarchy and settlement tiers 【文献】
-- Shin et al. 2020, Nat. Commun. 11 — scale threshold before information threshold 【文献】
-- Ur, Karsgaard & Oates 2007, Science; Ur et al. 2011, Iraq 73; Oates et al. 2007, Antiquity 81:585–600 — Tell Brak LC 【文献】
+- Johnson 1973, *Local Exchange and Early State Development in Southwestern Iran*, Anthropol. Pap. 51 (Univ. Michigan) — Uruk settlement and exchange on the Susiana plain 【文献】; Johnson 1978 (in Redman et al. eds., *Social Archeology*, 87–112) — information sources and decision-making organizations 【文献】(bibliographic record only); Johnson 1982 — scalar stress (used in G5) 【文献】
+- Wright & Johnson 1975, "Population, exchange, and early state formation in southwestern Iran", Am. Anthropol. 77(2):267–289 — administrative hierarchy and settlement tiers 【文献】
+- Shin, Price, Wolpert, Shimao, Tracey & Kohler 2020, Nat. Commun. 11:2394 — scale threshold before information threshold (Seshat) 【文献】
+- Ur, Karsgaard & Oates 2007, Science 317:1188; Ur, Karsgaard & Oates 2011, Iraq 73:1–19; Oates et al. 2007, Antiquity 81:585–600 — Tell Brak LC: LC2 (c. 4200–3900/3800 BC) ≈ 55 ha, LC3–4 ≈ 130 ha (figures from Ur's Brak project page; Science text not read) 【文献】
 - McMahon, Sołtysiak & Weber 2011, J. Field Archaeol. 36:201–220 — Tell Majnuna 【文献】
-- Brak isotope and dental studies 2020 (Archaeol. Anthropol. Sci., doi 10.1007/s12520-020-01104-3) and 2022 (J. Anthropol. Archaeol.) — migration 【文献・二次】
-- Lawrence & Wilkinson 2015, Antiquity — "Hubs and upstarts" 【文献】
-- McMahon 2019, J. Archaeol. Res. — low-density early cities 【文献】
+- Brak migration: a dental-morphology (not strontium) study of Late Chalcolithic Brak, J. Anthropol. Archaeol. (c. 2022; Sołtysiak and colleagues) — growth partly by migration, neighbourhoods by origin 【文献・二次】(press summary only). The earlier 「isotope study 2020, Archaeol. Anthropol. Sci., doi 10.1007/s12520-020-01104-3」 could not be found
+- Lawrence & Wilkinson 2015, "Hubs and upstarts: pathways to urbanism in the northern Fertile Crescent", Antiquity 89 【文献】(abstract; the 10–20 ha small-centre figure not re-checked)
+- Ur 2010, *Urbanism and Cultural Landscapes in Northeastern Syria: The Tell Hamoukar Survey* (OIP 137) — Hamoukar LC1–2 southern extension ≈ 280–300 ha dispersed 【文献・二次】
+- McMahon 2020 (online 2019), J. Archaeol. Res. 28 — low-density zones in early northern cities 【文献】(abstract; no density figure)
 - Ur 2014, Camb. Archaeol. J. 24(2):249–268 — households and the emergence of cities 【文献】
-- Kramer 1982; Watson 1979 — village densities 【文献】; Nissen 2003 — Uruk ≈ 40,000 【文献・二次】
+- Village densities ≈ 100–200 persons/ha (Kramer's ≈ 120/ha, cited via Hassan 1981) 【文献・二次】; Kramer 1982 and Watson 1979 themselves not read; Nissen 2003 — Uruk ≈ 40,000 【文献・二次】
 - Bandy 2004, Am. Anthropol. 106 — fission size (G5) 【文献】; Stein 1994; Fried; Flannery 2002 (G5) 【文献】
-- Halstead & O'Shea 1982 — social storage (memory, unverified); Hudson — debt cancellations after ~2400 BC 【文献・二次】
+- Halstead & O'Shea 1982 — social storage (memory, unverified); Hudson 2018, *…and forgive them their debts* — interest-bearing grain loans and debt cancellations from c. 2400 BC (Enmetena of Lagash); Hudson's reading 【文献・二次】
 
 ## 24. Corrections to the research docs (fix when G6 is built; question 17)
 
 1. society2_research.md L262 「村から村へ手渡しで運ばれた」: contested; down-the-line cannot reach far unless villages are ~100 km apart or pass on ~90% (Ortega et al. 2014; Ibáñez et al. 2015); small-world/kin networks fit better.
 2. L262 「それより遠いと急に減る」: the decline is smooth (log-linear); the 300 km / 80% zone thresholds lack an ethnographic basis.
 3. L260 「約 200 km」: usually ~190 km (unverified); Çatalhöyük also received eastern Anatolian obsidian >600 km away (Carter et al. 2008).
-4. L263, L275 「前8000年頃から…形ごとに穀物1かご・ヒツジ1頭」: Schmandt-Besserat's interpretation with uncalibrated dates; tokens from the 10th millennium cal BC, multifunctional (Bennison-Chapman 2018, 2019).
+4. L263, L275 「前8000年頃から…形ごとに穀物1かご・ヒツジ1頭」: Schmandt-Besserat's interpretation and dating; in calibrated terms tokens appear from the 10th millennium cal BC and were mostly multifunctional, with possible counting use in some contexts (Bennison-Chapman 2018, 2019).
 5. L264–265 「数の記号と物の記号に分かれ、文字」: accepted for number signs; weak for word signs from complex tokens (Zimansky 1993; Michalowski 1993; Englund 1993; Kelley et al. 2024); tokens continued after writing.
 6. L266 「約9割は役所の帳簿」: ~85% overall; Uruk IV almost all administrative, Uruk III ~80% (Englund 2011).
 7. L267, L278 「最初の町の人口」 for Uruk: Brak (LC2) and Hamoukar are earlier towns; 40–50k is an estimate (Nissen 2003 ~40,000).
 8. L277 「トークン → 文字 約5000年」: ~4,800–6,500 years depending on the start date.
-9. periodization.md L56 「約 300 ha は根拠がなく…」: partly wrong; ~300 ha is Ur's figure for the whole complex over all periods; not the size of any one LC phase (55 ha and 130 ha stand).
-10. periodization.md L19, L56 「LC2 (前 4,200〜3,800)」: the 55 ha is for LC1–2; some sources end LC2 ~3900 BC.
-11. periodization.md L40 「トークン 前 8,000/7,500 年ごろ〜」「サビ・アビヤドの印章 前 6,200」: stamp seals already late 8th millennium (Bouqras, Çatalhöyük); what is new at Sabi Abyad is the sealing (level 8B, ~6175–6125 cal BC).
+9. periodization.md L56 「約 300 ha は根拠がなく、近くのハムーカルとまざった可能性が高い」: **no change** (this item was withdrawn after checking). No source gives Brak ~300 ha; Hamoukar's LC1–2 southern extension is ≈ 280–300 ha (Ur 2010), so the periodization note stands.
+10. periodization.md L19, L56 「LC2 (前 4,200〜3,800)・約 55 ha」: **matches** Ur's Brak project page (LC2 4200–3800 BC, 55 ha). Optional: add that other sources (Oates et al. 2007; Wikipedia's Period E) end LC2 ~3900 BC.
+11. periodization.md L40 「トークン 前 8,000/7,500 年ごろ〜」「サビ・アビヤドの印章 前 6,200」: tokens from the 10th millennium cal BC (Bennison-Chapman 2019); stamp seals already from the late 8th millennium BC (Ras Shamra, Byblos, Bouqras, Çatalhöyük); Sabi Abyad stands out for its hundreds of sealings, c. 6300–6000 BC, most from the Burnt Village c. 6000 BC (Akkermans & Duistermaat 2004; historical_records.md uses 前 6000 年ごろ).
 12. society2_phase_plan.md L21 G6 町: exchange predates towns by millennia; 100 people is unreachable for decades (§3) — update after question 1 and 2.
-13. part2.md L61 and plan L41 「持ち主の印」: both communal-storage (Akkermans & Duistermaat) and private-property (Duistermaat 2010/2013) readings exist; narration says 「家の印」「封をした」.
+13. part2.md L61 and plan L41 「持ち主の印」: both communal-storage (Akkermans & Duistermaat 1996/97) and private-property (Duistermaat 2010, 2013) readings exist; narration says 「家の印」「封をした」. part2.md records the user's decision, so do not rewrite it; add a note there only if the user approves question 12.
 14. research §7(c), §9 「記録なしの貸し借りの覚え違い」: 【仮定】; stores, withdrawals, rations and transfers are better attested triggers (§2, §11).
