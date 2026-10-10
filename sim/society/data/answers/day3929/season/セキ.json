@@ -1,0 +1,46 @@
+{
+  "say": [
+    {"to": "みんな", "text": "去年、南の林で 30 日採ったけど、食べ物が見つかったのは 2 日だけだった。それでも、今は当てになる所が少ないから、今季も南林12 をもう一度試すよ。"},
+    {"to": "みんな", "text": "春は木の実が取れないから、わたしは木の実を 5 つかみ埋める。夏と秋に実がなる木が増えるように。"}
+  ],
+  "job": {"activity": "採集", "place": "南林12", "with": ["ホノ", "ルネ"]},
+  "pick": 0,
+  "plant": 5,
+  "harvest": 0,
+  "eat_goat": 0,
+  "accept": {"セオ": true},
+  "family": {
+    "ホノ": {"activity": "採集", "place": "南林12"},
+    "ルネ": {"activity": "採集", "place": "南林12"}
+  },
+  "keep": true,
+  "feast": true,
+  "leader": "なし",
+  "seal_store": false,
+  "knowledge": [
+    {"op": "add", "text": "南の林 (南林12) は、前の季節に 30 日採集して、食べ物が見つかったのは 2 日だけだった。", "because": [118877], "confidence": 0.8}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L0", "against": null, "agree": true, "reason": "夜は皆でキャンプにいれば、ザガから身を守れる。"},
+    {"id": "L30", "against": "肉を全部その日に食べると、獲れなかった日や多く獲れた日に備えられない。乾かす・燻す方法 (L112) で足りる。", "agree": false, "reason": "肉は乾かすか燻して残す方が、冬越しに役立つ。"},
+    {"id": "L98", "against": null, "agree": true, "reason": "採ってきた人が空腹では、次の採集の力が落ちる。"},
+    {"id": "L112", "against": null, "agree": true, "reason": "肉の扱いが一つにまとまって分かりやすい。"},
+    {"id": "L117", "against": null, "agree": true, "reason": "春に木の実を埋めれば、夏と秋に実る木が増える。"},
+    {"id": "L119", "against": null, "agree": true, "reason": "まだ行ったことのない林を見れば、冬の食べ物の場所が増えるかもしれない。"},
+    {"id": "L121", "against": null, "agree": true, "reason": "一人で行くと、ザガに襲われたときに助けがない。"},
+    {"id": "L126", "against": null, "agree": true, "reason": "夜の火と見張りを一つにまとめれば、守りやすい。"},
+    {"id": "L134", "against": null, "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれない。"},
+    {"id": "L138", "against": null, "agree": true, "reason": "春のうちから土器をつくれば、草の種を虫やネズミから守れる。"},
+    {"id": "L143", "against": null, "agree": true, "reason": "近くでも林でも二人以上なら、けがのときに助けを呼べる。"},
+    {"id": "L145", "against": null, "agree": true, "reason": "取った量と入れた量の差を小さくすれば、もめごとを防げる。"},
+    {"id": "L146", "against": null, "agree": true, "reason": "刈る前に分け方を決めないと、刈った草の種が残らずもめごとになる。"},
+    {"id": "L149", "against": null, "agree": true, "reason": "畑の草取りと刈り入れを交代で担当すれば、夏の実りが減らない。"},
+    {"id": "L150", "against": "北丘12 は前の季節に何も見つからなかったと聞いた。自分の覚えでは、南林12 のほうがまだ当てになる。", "agree": false, "reason": "冬の採集は、少しでも覚えのある南林12 を先に試したい。"},
+    {"id": "L152", "against": null, "agree": true, "reason": "夏の刈り入れの前に鎌を作りためておけば、刈り残しが減る。"},
+    {"id": "L156", "against": null, "agree": true, "reason": "ヤギの世話を一つにまとめれば、いなくなるのを防ぎやすい。"},
+    {"id": "L157", "against": null, "agree": true, "reason": "住まいのない家が春に建てれば、雨の夜に濡れずに済む。"},
+    {"id": "L158", "against": null, "agree": true, "reason": "出し入れを書き残せば、覚えだけで争わずに済む。"}
+  ],
+  "feeling": "春は木の実が取れなくて心細いけど、南林12 で何か見つかるといい。新しく来た人たちとも話してみたい。"
+}

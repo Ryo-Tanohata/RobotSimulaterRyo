@@ -1,0 +1,31 @@
+{"say": [{"to": "みんな", "text": "北丘12 へ行ってみる。ヤギの群れがいるあたりだ。冬の前に、どこに食べ物があるかを確かめておきたい。"}],
+"job": {"activity": "採集", "place": "北丘12", "with": ["コハ"]},
+"pick": 0,
+"plant": 5,
+"harvest": 0,
+"eat_goat": 0,
+"accept": {"セオ": true},
+"family": {"コハ": {"activity": "採集", "place": "北丘12"}, "ミラ2": {"activity": "ヤギの世話", "place": "camp"}},
+"keep": true,
+"feast": false,
+"leader": "なし",
+"seal_store": false,
+"knowledge": [
+{"op": "add", "text": "飼っているヤギに子ヤギが生まれ、群れがふえた。ヤギは春に子を産む", "because": [118912], "confidence": 0.8},
+{"op": "add", "text": "冬の西の林 (西林12) では、30 日の採集で食べ物が見つかったのは 3 日だけだった", "because": [118873], "confidence": 0.7}
+],
+"proposal": null,
+"votes": [
+{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、キャンプから離れないのは守る価値がある"},
+{"id": "L111", "against": "", "agree": true, "reason": "野生のヤギは一人では囲めないし、ザガにも襲われやすい"},
+{"id": "L117", "against": "", "agree": true, "reason": "春のうちに木の実を埋めれば、夏と秋に実る木がふえる"},
+{"id": "L121", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行けば、ザガに襲われても助けられる"},
+{"id": "L140", "against": "", "agree": true, "reason": "夏のあいだに畑を刈り切れば、草の種が落ちない"},
+{"id": "L143", "against": "", "agree": true, "reason": "近くでも林でも二人以上なら安心だ"},
+{"id": "L145", "against": "", "agree": true, "reason": "前の季節に多く取ったのは私たちの家なので、夏に多めに入れるのは当然だ"},
+{"id": "L147", "against": "", "agree": true, "reason": "芋は腐りやすいので、採った夜に食べきるのがよい"},
+{"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で行えば、実りは減らない"},
+{"id": "L150", "against": "", "agree": true, "reason": "冬の前に北丘12を知っておくのはよい。今回も見に行く"},
+{"id": "L156", "against": "", "agree": true, "reason": "ヤギが多いので、毎日の世話をする人は要る"}
+],
+"feeling": "木の実を待つより、まだ知らない所の草や実を見てみたい。"}
