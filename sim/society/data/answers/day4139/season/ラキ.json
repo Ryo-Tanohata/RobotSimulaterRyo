@@ -1,0 +1,7 @@
+{"say": [{"to": "ルタ", "text": "ルタ、いっしょに東川へ行こうよ。前の冬は芋が多くて、川に魚も泳いでいたから。二人なら、ザガが来ても守り合えるし。"}, {"to": "みんな", "text": "東の林は冬だと当てにしにくいから、今季は東川を試してみる。ひとりでは行かないよ。"}],
+ "job": {"activity": "採集", "place": "東川28", "with": ["ルタ"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"オセ2": true}, "keep": false,
+ "feast": false, "leader": "なし", "trade": {"T10": "村"}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "南の村は、ヤギ 3 頭を出して、土器 7 個・鎌 3 本・草の種 620 つかみをほしがっている。", "because": [137171], "confidence": 0.8}, {"op": "add", "text": "ネム2 と ルタ は、東の林へは一人で行かないようにと言ってくれた。", "because": [134329, 134334], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るのは本当に怖いから、キャンプから離れないのは大事だと思う。"}, {"id": "L126", "against": "", "agree": true, "reason": "火と見張りの決まりが一つにまとまれば、守りやすいと思う。"}, {"id": "L143", "against": "", "agree": true, "reason": "東の川で一人のとき、ザガに襲われてけがをしたから。"}, {"id": "L156", "against": "", "agree": true, "reason": "ヤギがいなくなると困るから、毎日世話をする人を決めておくのは大事。"}, {"id": "L162", "against": "", "agree": true, "reason": "よその畑で勝手に刈られたら、もめごとのもとになるから。"}],
+ "feeling": "冬の食べ物が少なくて心配だけど、ルタと川へ行けるなら少し安心している。"}

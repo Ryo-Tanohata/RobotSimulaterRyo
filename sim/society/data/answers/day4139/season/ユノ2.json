@@ -1,0 +1,26 @@
+{
+  "say": [
+    {"to": "ルネ2", "text": "北川12へ一緒に行こう。二人で行く決まりだからな。"}
+  ],
+  "job": {"activity": "採集", "place": "北川12", "with": ["ルネ2"]},
+  "pick": 0,
+  "plant": 0,
+  "harvest": 0,
+  "eat_goat": 0,
+  "accept": {"オセ2": false},
+  "keep": true,
+  "feast": false,
+  "leader": "なし",
+  "trade": {"T10": "家"},
+  "seal_store": false,
+  "knowledge": [
+    {"op": "add", "text": "西の村の人は、冬に来ても交換できる物がなく、そのまま帰っていった", "because": [137172], "confidence": 0.8},
+    {"op": "add", "text": "南の村から、オセ2・キサ2・セヤ2の三人が来て、ここで暮らしたいと言った", "because": [137173], "confidence": 0.9}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L30", "against": "肉は保存できないと決めつけるのは早い。干すか燻すかの実験の結果がまだ出ていない。その日に全部食べる決まりは L112 で採用済み", "agree": false, "reason": "同じ内容の掟が採用済みで、二つ目は要らない"},
+    {"id": "L162", "against": "", "agree": true, "reason": "よその家の畑で勝手に刈られると、うちの畑の草の種が持ち主に入らない。罰があれば、先に許しを取る人が増える"}
+  ],
+  "feeling": "冬は退屈だけど、北川12で採ってくれば食べ物には困らない。"
+}

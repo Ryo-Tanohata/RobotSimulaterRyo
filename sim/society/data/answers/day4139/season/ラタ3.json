@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の北の林は、前の季節 30 日とも何も見つからなかった。西林12 はまだ行ったことがないから、ネム3 と二人で見てくるね。夜に見つけた物と量を話すよ。"}],
+ "job": {"activity": "探索", "place": "西林12", "with": ["ネム3"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"オセ2": true}, "family": {"ネム3": {"activity": "探索", "place": "西林12"}}, "keep": false,
+ "feast": false, "leader": "なし", "trade": {"T10": "村"}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節の北の林 (北林12) では、30 日とも何も見つからなかった。冬の食べ物は、別の林や川も試して探す必要がある", "because": [137113], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出るなら、夜は離れないのがいちばん安全。"}, {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻る時刻を決めれば、戻らない人をすぐに探せる。"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑がある限り手のあいた大人が毎夕刈れば、夏の実りを守れる。"}, {"id": "L143", "against": "", "agree": true, "reason": "林でも近くでも二人以上で行けば、けがをしても助けられる。わたしも西林12へ二人で行く。"}, {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えに置くと腐りやすいので、その夜に食べきるのがよい。"}, {"id": "L158", "against": "", "agree": true, "reason": "蓄えの出し入れを書き残せば、覚えのずれでもめごとになりにくい。"}, {"id": "L160", "against": "", "agree": true, "reason": "探した場所と量を残せば、次に行く人が同じ場所を無駄に試さずに済む。"}, {"id": "L162", "against": "", "agree": true, "reason": "許しなく畑の物を刈られると持ち主が損をするので、罰で防ぐのに賛成。"}],
+ "feeling": "冬の林は少し怖いけど、ネム3と一緒なら知らない林を見に行ってみたい。"}

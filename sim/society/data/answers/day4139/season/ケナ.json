@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "冬は木の実がならないから、北の林の下に芋や草の実が落ちていないか、ソナと二人で見てくるね。夕方までには戻る。"}, {"to": "オセ2", "text": "南の村から来たんだね。来る途中の道や、そこで採れる物を、夜の集まりで聞かせてほしい。"}],
+"job": {"activity": "採集", "place": "北林12", "with": ["ソナ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+"accept": {"オセ2": true},
+"family": {"ソナ": {"activity": "採集", "place": "北林12"}}, "keep": true,
+"feast": false, "leader": "なし", "trade": {"T10": "村"}, "seal_store": true,
+"knowledge": [{"op": "add", "text": "南の村の人たちが、ヤギ 3 頭 と、土器 7 個・鎌 3 本・草の種 620 つかみ を取り替えたいと言ってきた", "because": [137171], "confidence": 0.8}, {"op": "add", "text": "西の村の人は、交換できる物がなくて、そのまま帰っていった", "because": [137172], "confidence": 0.7}, {"op": "add", "text": "村の蓄えの土器は、口を粘土でふさいで封をすることになった。取るときは封を割り、取った人の家の印で封をし直す", "because": [134317], "confidence": 0.8}, {"op": "add", "text": "クラに女の子のハソ2が生まれた", "because": [137167], "confidence": 0.9}, {"op": "add", "text": "南の村から、オセ2 たち三人が「ここで暮らしたい」と言って来た", "because": [137173], "confidence": 0.8}],
+"proposal": null,
+"votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るのは本当だから、夜に一人で出ないのはいい。"}, {"id": "L30", "against": "", "agree": true, "reason": "肉はすぐ腐るから、その日に食べきるのが安心。"}, {"id": "L98", "against": "", "agree": true, "reason": "採った人が、その日に自分の分を食べられるのは大事。"}, {"id": "L143", "against": "近い川や草原は、一人で行っても危なくない。", "agree": false, "reason": "林は二人で行くけど、近いところまで二人にそろえると時間がかかる。"}, {"id": "L156", "against": "", "agree": true, "reason": "ヤギがいなくなると、村の宝が減るから。"}, {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりしないから、板に残すのはいい。"}, {"id": "L162", "against": "罰を決めると、言い争いがもっと増えそう。", "agree": false, "reason": "よその畑で刈った人とは、罰より先に話し合って決めたい。"}],
+"feeling": "冬は少し心細いけど、北の林で新しい場所を見られるのは楽しみ。"}
