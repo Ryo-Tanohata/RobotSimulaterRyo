@@ -1,0 +1,39 @@
+{
+ "say": [{"to": "みんな", "text": "北川12の魚と芋の場所を、エマ2と二人で確かめに行くよ。冬の前に分かっていれば安心だから。夜に見つけた量を報告するね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["エマ2"]},
+ "sow": 1000,
+ "pick": 40,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "accept": {"キオ2": true},
+ "family": {"エマ2": {"activity": "採集", "place": "北川12"}},
+ "keep": true,
+ "judge": {"M66": "ゆるす", "M67": "ゆるす"},
+ "feast": true,
+ "leader": "なし",
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "北の村から キオ2 (男、25 歳) が「ここで暮らしたい」と来た", "because": [144386], "confidence": 0.9},
+  {"op": "add", "text": "村の蓄えの土器に封をすると、取るたびに封が割れて、取った人の印が分かる。どの家が何回開けたかは分かるが、量は分からない", "because": [140624], "confidence": 0.8},
+  {"op": "add", "text": "この季節、封が割れた倉や蓄えのうち、ハソの家の印のものが 21 回あった。ハソの家が村の蓄えから何度も取ったようだ", "because": [144387], "confidence": 0.6},
+  {"op": "add", "text": "夜にザガがキャンプに来て、コハがけがをした。夜もキャンプの周りに火を焚くことが大事だと言われている", "because": [144363], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが来るので、誰もキャンプを離れないのは大事"},
+  {"id": "L38", "against": "", "agree": true, "reason": "火と見張りでザガを近づけない"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採集した人が自分の分を食べられる"},
+  {"id": "L103", "against": "", "agree": true, "reason": "同じ確認の掟をまとめて守りやすい"},
+  {"id": "L106", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えに入れられる"},
+  {"id": "L107", "against": "", "agree": true, "reason": "木が育てば夏と秋の蓄えが増える"},
+  {"id": "L109", "against": "", "agree": true, "reason": "畑にまく量は刈り入れの後に決めるのがいい"},
+  {"id": "L113", "against": "", "agree": true, "reason": "冬に魚が取れる場所を知りたい"},
+  {"id": "L121", "against": "", "agree": true, "reason": "ザガが昼にも出るので二人以上で行く"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近くでも林でも二人以上なら安心"},
+  {"id": "L146", "against": "", "agree": true, "reason": "畑の持ち主と決めてから刈れば、もめごとが減る"},
+  {"id": "L147", "against": "芋は少ししか取れないので、食べきれない分は捨てることになる", "agree": false, "reason": "芋を蓄えに入れられないと、冬の分が減る"},
+  {"id": "L30", "against": "肉を全部その日に食べるのは無理で、乾かせば冬の分になる", "agree": false, "reason": "L31の乾燥や燻製のほうが冬の備えになる"}
+ ],
+ "feeling": "北の川の魚と芋が冬の助けになればいい。エマ2と行くのは心強いけど、ザガが少し心配。"
+}
