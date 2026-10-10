@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬の北川12で、魚と芋がまだ取れるかを見てくる。ユノ2と二人で行くよ。見つけた量と蓄えに入れた量は、夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M50": "ゆるす"}, "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "ネム2に子のキオ (男)、キサに子のテナ (男) が生まれた", "because": [109015, 109016], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L30", "against": "肉をその日のうちに全部食べる決まりにすると、干して保存する道 (L112 で採用) と合わなくなる。", "agree": false, "reason": "狩りが少ない季節は、獲れた肉を干して蓄えに残せるようにしておきたいから。"},
+ {"id": "L156", "against": "", "agree": true, "reason": "ヤギの世話の決まり (L101・L114・L153) を一つにまとめるのはよい。ただ頭数は今の 90 頭で書き直したい。"}],
+ "feeling": "冬でも、まだ行っていない所を見に行けるのは少し楽しい。"}
