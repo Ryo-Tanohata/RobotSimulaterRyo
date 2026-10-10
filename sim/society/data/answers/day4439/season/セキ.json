@@ -1,0 +1,9 @@
+{"say": [{"to": "ホノ", "text": "南林12へいっしょに行こう。夏は毎日食べ物が見つかった所だから。"}, {"to": "みんな", "text": "北の村のヤギは受けないでおこう。草が足りないのに、ヤギを増やしたくない。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ホノ", "ルネ"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホノ": {"activity": "採集", "place": "南林12"}, "ルネ": {"activity": "採集", "place": "南林12"}}, "keep": true,
+ "feast": true, "leader": "なし", "trade": {"T17": false}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える数の 2 倍以上いて、毎季節たくさんがやせていなくなる。ほかの村からヤギを受けとると、さらに減りやすい", "because": [161226], "confidence": 0.8}, {"op": "add", "text": "夜にザガがキャンプに来て、ノア2 が殺された。夜は火を焚いて、見張りを立てたほうがいい", "because": [155430], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出る夜は、キャンプの外に出ないほうがいい。"}, {"id": "L98", "against": "", "agree": true, "reason": "食べ物を集めた人が、その日に食べられないと力が落ちる。"}, {"id": "L106", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えられる。"}, {"id": "L121", "against": "", "agree": true, "reason": "二人以上なら、ザガに襲われても助け合える。"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑がある限り、夏のうちに刈り切りたい。"}, {"id": "L169", "against": "", "agree": true, "reason": "草で養えないヤギを先に肉にすれば、やせて消えるより無駄が少ない。"}, {"id": "L170", "against": "", "agree": true, "reason": "草が足りない分は、持ち主が肉にして干すのがよい。"}, {"id": "L171", "against": "", "agree": true, "reason": "ヤギを増やすと草の取り合いになる。北の村のヤギは受けない。"}],
+ "year_name": "夜のザガでノア2を失った年",
+ "feeling": "夏の終わりまで、南林の実りをあてにして働く。ノアのことは、まだ胸に残っている。"}

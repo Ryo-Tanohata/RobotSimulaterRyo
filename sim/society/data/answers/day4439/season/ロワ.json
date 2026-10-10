@@ -1,0 +1,24 @@
+{"say": [{"to": "ネム3", "text": "東の川の魚を見に行こう。二人で行って、見たものは夜に言うよ。"}],
+ "job": {"activity": "採集", "place": "東川28", "with": ["ネム3"]}, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "trade": {"T17": false}, "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "東の川 (東川28) で魚がいたと、ネム3 が言っていた。まだ自分では見ていない", "because": [159516], "confidence": 0.5},
+  {"op": "add", "text": "南の川 (南川12) で前の季節に 30 日採集したが、何も見つからなかった", "because": [161176], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L30", "against": "肉を全部その日に食べると決めると、乾かす・燻す試しが生かせない", "agree": false, "reason": "保存の試しの結果を見てから決めた方がいいから"},
+  {"id": "L106", "against": "なし", "agree": true, "reason": "冬の前に木の実を蓄えておけば、冬の食べ物が増える"},
+  {"id": "L110", "against": "なし", "agree": true, "reason": "戻らない人を早く探せば、けがや迷いを防げる"},
+  {"id": "L111", "against": "なし", "agree": true, "reason": "ヤギは一人では囲めず、ザガにも襲われやすいから"},
+  {"id": "L112", "against": "なし", "agree": true, "reason": "肉の決まりがまとまれば、狩った人も迷わない"},
+  {"id": "L121", "against": "なし", "agree": true, "reason": "一人で行くとザガにやられるから、二人以上がいい"},
+  {"id": "L140", "against": "なし", "agree": true, "reason": "刈り残すと草の種が落ちてしまうから"},
+  {"id": "L158", "against": "なし", "agree": true, "reason": "覚えだけだと量がはっきりせず、もめごとのもとになるから"},
+  {"id": "L165", "against": "なし", "agree": true, "reason": "探索も二人以上なら、ザガが出ても助け合える"},
+  {"id": "L169", "against": "なし", "agree": true, "reason": "草で養えない分のヤギは、いずれ減って無駄になるから肉にする方がいい"},
+  {"id": "L170", "against": "なし", "agree": true, "reason": "草が足りない分のヤギは、持ち主が肉にして蓄えれば無駄がない"},
+  {"id": "L171", "against": "なし", "agree": true, "reason": "ヤギが増えると草の取り合いになり、子ヤギも減るから"}
+ ],
+ "year_name": "仲間が来て、仲間を失った年",
+ "feeling": "食べ物が見つからない季節が続いて、少し焦っている。東の川の魚が本当にいるなら、見に行くのが楽しみだ。"}

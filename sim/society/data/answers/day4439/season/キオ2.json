@@ -1,0 +1,11 @@
+{"say": [{"to": "キサ2", "text": "北の林で木の実と草を探そう。前の季節に芋が見つかった場所だから、いっしょに行かない？"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["キサ2"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "trade": {"T17": false}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "北の林（北林12）で前の季節に 30 日採集すると、食べ物が見つかる日もあった（芋が見つかった）", "because": [161183], "confidence": 0.8},
+  {"op": "add", "text": "夜にザガがキャンプに来て、ノア2 が殺された", "because": [155430], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L169", "against": "", "agree": true, "reason": "草で養える数を超えるヤギは、村でまとめて肉にして蓄えに入れたほうがよい。"},
+  {"id": "L170", "against": "持ち主ごとに肉にして干すのは手間がかかり、L169 で村がまとめてやれば足りる。", "agree": false, "reason": "L169 で村が決めるほうが確かだから。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのにヤギを増やすと、草の取り合いになって子ヤギも減る。"}],
+ "year_name": "ザガに仲間が殺された年",
+ "feeling": "木の実はまだ多いし、北の林で芋を探すのは楽しみだ。"}
