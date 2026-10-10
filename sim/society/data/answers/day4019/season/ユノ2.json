@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬は木の実も草の種も実らない。おれは鎌をつくって、夏の刈り入れにそなえる。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M60": "ゆるす"}, "feast": false, "leader": "なし", "trade": {"T6": "村"}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "サエ2が病で亡くなり、サエ2の家の畑2枚を、おれが受けついだ。", "because": [127134, 127135], "confidence": 1.0},
+  {"op": "add", "text": "秋に、キャンプのそばの木から一度に40つかみ取れた。冬は木の実が実らない。", "because": [126938, 127108], "confidence": 1.0},
+  {"op": "add", "text": "木の実を土に埋めると、20日ほどで木が育つ。", "because": [124366], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": "", "agree": true, "reason": "蓄えに入れた日に自分の分を取れるなら、おれの分が減らずにすむ。"},
+  {"id": "L121", "against": "一人で行けなくなると、取れる量が減る。", "agree": false, "reason": "二人で動くと待つ時間が増えて、取れる量が減るから。"},
+  {"id": "L143", "against": "二人以上でないと行けないのは、動きづらい。", "agree": false, "reason": "一人で動けないと、取れる量が減るから。"},
+  {"id": "L118", "against": "毎日だれか一人が畑の担当になると、自分の仕事ができない。", "agree": false, "reason": "畑の担当が回ってくると、鎌づくりの時間が減るから。"},
+  {"id": "L134", "against": "", "agree": true, "reason": "おれの家には住まいがあるから、雨の夜の決まりには関係ない。"}],
+ "feeling": "蓄えは多いが、冬はまだ長い。鎌づくりに集中したい。"}
