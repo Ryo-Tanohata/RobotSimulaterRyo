@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏の畑は刈り残すと秋までに落ちてしまう。わたしは毎夕 60 つかみ刈るから、手のあいた人も手伝ってほしい。"}, {"to": "エマ2", "text": "東川28 にいっしょに行こう。芋がまだあるか見てみたいの。"}],
+ "job": {"activity": "採集", "place": "東川28", "with": ["エマ2"]}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "accept": {"シエ2": true}, "family": {"エマ2": {"activity": "採集", "place": "東川28"}}, "keep": true,
+ "feast": false, "leader": null, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "東川28 には芋が多く、川に魚が泳いでいた。夏の今も残っているか確かめたい", "because": [150633, 150679], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L140", "against": "", "agree": true, "reason": "夏の残りは刈れる畑を毎夕刈らないと、草の種が落ちてしまうから"}, {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行けば、ザガや迷子の心配が減るから"}, {"id": "L98", "against": "", "agree": true, "reason": "蓄えに入れた人が自分の分を取れないと、働く力が落ちるから"}, {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りを二人ずつにすれば、キャンプを守りやすいから"}, {"id": "L122", "against": "", "agree": true, "reason": "夜の報告が一つにまとまれば、覚えちがいが減るから"}, {"id": "L166", "against": "", "agree": true, "reason": "土器の決まりが散らばっているので、まとめるのがよいから"}],
+ "year_name": "草の種をたくさん刈った年",
+ "feeling": "畑の草が落ちないか気がかり。東川で新しい芋も見つけたい。"}
