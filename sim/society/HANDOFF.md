@@ -3,6 +3,22 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 古い記録を年ごとのファイルに分ける (2026-10-10 本人が決めた。消さない)
+
+- state.json (59 MB) と app_data.json (49 MB) が大きくなったので、今の年と前の 2 年より古い記録 (出来事・掟の投票の記録・木から採った記録・知識の移り変わり・日ごとの数) を `sim/society/data/archive/` の年ごとのファイルに移すしくみを作った (`archive.py`。わけと確かめ方は `docs/society2_phase_plan.md` の 7.)。世界は変わらない
+- **1 回だけの移行 (本物ではまだしていない)**: 季節を進めていないとき (`step.py season` の最中でないとき) に、リポジトリのいちばん上で:
+  ```bash
+  python3.13 sim/society/tools/archive_records.py --dry-run   # 確かめて大きさを出すだけ (何も書きかえない)
+  python3.13 sim/society/tools/archive_records.py             # しまう (30 秒ほど。戻すと 1 バイトもちがわないことを確かめてから書きかえる)
+  git add sim/society/data
+  git -c user.name=Ryo-Tanohata -c user.email=39688846+Ryo-Tanohata@users.noreply.github.com commit -q -m "社会シミュレーション: 古い記録を年ごとのファイルに分けた" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+  ```
+  本人の PC では `py -3 sim/society/tools/archive_records.py`。4379 日目なら 0年〜33年をしまい、state.json 59 MB → 15 MB、app_data.json 49 MB → 9 MB、`data/archive/` は 52 MB (202 ファイル。いちばん大きいもので 1.7 MB)。`records/` とダッシュボードは作り直さなくても中身は同じ。何度動かしてもよい (しまう年がなければ何もしない)
+- 移行のあとは、年が変わって最初の季節の終わりに `step.py season` が 1 年分ずつしまう (「記録: 34年の記録を data/archive/ にしまった」と出る)。止めるときは `SOC_ARCHIVE=0`
+- 全部の記録を読むときは `archive.load_state(データの場所)` (アプリ用のデータ・履歴書・記録・ダッシュボード・グラフ・`standalone.py` はそうしている)
+- state.json を前のコミットに戻すときは、`data/archive/` も同じコミットに戻す (`git checkout <コミット> -- sim/society/data/state.json sim/society/data/archive`)
+- アプリは、しまった年を見るときだけ `data/archive/events_YYYY.jsonl`・`days_YYYY.json` を読む (出来事のタブの「年」と、3D の「日」)。動画 (`make_video.mjs`) も撮る日の年を先に読む
+
 ## 0. 今の状態 (2026-10-10、本人の PC。本人「次の作業で終わって」で止めた)
 
 - **30年90日目 (3689 日目)、G6 (交易・町・記録)、第 4 部**。52 人 (大人 35・子 17)、家族 21、蓄え 約 102 日分。止めているだけで一時停止ではない (step.py season で続けられる)

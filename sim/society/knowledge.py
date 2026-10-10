@@ -6,6 +6,7 @@
 - 伝承: 他人の話だけをきっかけにしたもの (元をたどれるように、誰から聞いたかを残す)
 - 知識の再現の疑い: きっかけの出来事がないもの (Claude が元々持つ人類の知識から来た可能性)
 """
+import archive  # 古い出来事は年ごとのファイルにしまう (2026-10-10)。しまった番号も「ある」と数え、種類は「話す以外」(話すは残している)
 
 INITIAL = [
     "食べると空腹が減る。川の水を飲むと、のどの渇きが減る",
@@ -31,8 +32,8 @@ def init(state):
 
 
 def _label(state, because):
-    ev = {e["id"]: e for e in state["events"]}
-    kinds = [ev[i]["type"] for i in because if i in ev]
+    ev = archive.Events(state)  # しまう前の {番号: 出来事} と同じ答え (archive.py)
+    kinds = [ev.type(i) for i in because if i in ev]
     if any(k != "話す" for k in kinds):
         return "創発"
     if kinds:
@@ -44,7 +45,7 @@ def apply_updates(state, person, updates):
     """夜の振り返りの答え (knowledge の配列) を反映する"""
     day = state["day"]
     known = {k["id"]: k for k in person["knowledge"]}
-    valid_events = {e["id"] for e in state["events"]}
+    valid_events = archive.Events(state)  # しまった番号も入る (しまう前と同じ)
     for u in updates or []:
         op = u.get("op")
         if op == "add" and u.get("text"):
@@ -54,8 +55,7 @@ def apply_updates(state, person, updates):
             label = _label(state, because)
             src = None
             if label == "伝承":
-                ev = {e["id"]: e for e in state["events"]}
-                src = ev[because[0]]["who"]
+                src = valid_events.who(because[0])  # 伝承のきっかけは話すだけ (話すは state.json に残している)
             k = {"id": f"k{state['next_knowledge']}", "text": str(u["text"])[:200],
                  "confidence": float(max(0, min(1, u.get("confidence", 0.6)))), "label": label,
                  "because": because, "from": src, "day": day, "updated": day}
@@ -85,7 +85,7 @@ def apply_updates(state, person, updates):
 def propose(state, person, text, because):
     if not text:
         return
-    valid = {e["id"] for e in state["events"]}
+    valid = archive.Events(state)  # しまった番号も入る (しまう前と同じ)
     because = [i for i in (because or []) if isinstance(i, int) and i in valid]
     law = {"id": f"L{state['next_law']}", "text": str(text)[:200], "proposer": person["name"], "day": state["day"],
            "status": "提案", "votes": {}, "because": because, "label": _label(state, because), "changed": state["day"]}

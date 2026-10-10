@@ -16,6 +16,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
+import archive  # noqa: E402
 import records  # noqa: E402
 
 DAY_RE = re.compile(rb'"day":(-?\d+)')
@@ -75,7 +76,7 @@ def _blobs(repo, path, shas):
 
 
 def backfill(data_dir, repo, path, dry_run=False, quiet=False):
-    state = json.loads((Path(data_dir) / "state.json").read_text(encoding="utf-8"))
+    state = archive.load_state(data_dir)  # 古い年をしまったあとも、全部の出来事と比べる (2026-10-10)
     e2 = state.get("era2") or {}
     start = e2.get("start_day")
     if start is None:
@@ -101,7 +102,8 @@ def backfill(data_dir, repo, path, dry_run=False, quiet=False):
             if not oe or day is None or day < start:
                 continue
             n = old.get("next_event", len(old.get("events", [])))
-            if n < 1 or n > len(cur) or not _same(old["events"][n - 1], cur[n - 1]):  # 今の記録につながらない (取りやめた回)
+            last = archive.event_at(old, n - 1)  # 古い年をしまった state でも、最後の出来事は state.json にある
+            if n < 1 or n > len(cur) or last is None or not _same(last, cur[n - 1]):  # 今の記録につながらない (取りやめた回)
                 epoch += 1
                 continue
             row = records.snapshot(old, meeting_first=None, event_first=oe.get("last_first"), source="git", notes=None)

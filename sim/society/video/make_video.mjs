@@ -23,10 +23,11 @@ const CREDIT = "ナレーション: VOICEVOX:ずんだもん<br>描画: three.js
 // アプリのファイルをこの PC の中だけで配る (file:// では JSON を読めないため)
 const server = http.createServer((req, res) => {
   const name = decodeURIComponent(req.url.split("?")[0]).replace(/^\//, "") || "index.html";
-  const file = name === "app_data.json" ? path.join(DATA, name) : path.join(APP, name);
+  // しまった年の出来事と再生の行 (archive/、2026-10-10) も、app_data.json と同じデータの場所から配る
+  const file = name === "app_data.json" || name.startsWith("archive/") ? path.join(DATA, name) : path.join(APP, name);
   // アプリに入れた動画は撮影に使わない (読み込みが終わらず、ページの読み込み待ちが切れるため)
   if (!fs.existsSync(file) || name.endsWith(".mp4")) { res.writeHead(404); return res.end(); }
-  const type = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".json": "application/json", ".mp4": "video/mp4" }[path.extname(file)] || "application/octet-stream";
+  const type = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".json": "application/json", ".jsonl": "application/x-ndjson", ".mp4": "video/mp4" }[path.extname(file)] || "application/octet-stream";
   res.writeHead(200, { "content-type": type });
   if (name === "index.html") return res.end("<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'>" + fs.readFileSync(file, "utf8"));
   fs.createReadStream(file).pipe(res);
@@ -86,6 +87,7 @@ const from = Number(fromArg || 1), to = Number(toArg || Math.max(...lines.map((l
 // DAYS=21,28,29 のように、飛び飛びの日をつなぐこともできる
 const dayList = process.env.DAYS ? process.env.DAYS.split(",").map(Number) : Array.from({ length: to - from + 1 }, (_, i) => from + i);
 const lastDay = dayList[dayList.length - 1];
+await page.evaluate((ds) => Replay3D.need(ds), dayList);  // しまった年の日は、その年のファイルを先に読む (2026-10-10)
 const LABEL = {};  // 日ごとの「10年31日目」(アプリと同じ書き方。replay3d.js の dayLabel)
 for (const d of dayList) LABEL[d] = await page.evaluate((d) => Replay3D.dayLabel(d), d);
 

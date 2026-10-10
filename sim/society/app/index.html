@@ -267,9 +267,25 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 // 日付は「10年31日目」と表す (replay3d.js の dayLabel。年は過ぎた年の数で、最初の年は 0年。この世界の 1 年は 120 日で、現実の 1 年とは違う)
 const dayLabel = (d) => (window.Replay3D ? Replay3D.dayLabel(d) : `${d} 日目`);
 let D = null, focus = "", WALK = null;
+// しまった年 (2026-10-10 本人が決めた「古い記録を年ごとのファイルに分ける」): app_data.json には、しまっていない年の出来事と再生の行だけがある。
+// しまった年の出来事 (archive/events_YYYY.jsonl) と再生の行 (archive/days_YYYY.json) は、その年を見るときに、app_data.json と同じ場所から読む
+let BASE = "";  // app_data.json を読めた場所 ("" か "../data/")
+const YEARS = {};
+function loadYear(y) {
+  const A = D && D.archive, Y = A && A.years.find((x) => x.year === y);
+  if (!Y) return Promise.reject(new Error(`${y}年はしまっていない`));
+  if (!YEARS[y]) {
+    const n = String(y).padStart(4, "0");
+    const get = (f) => fetch(BASE + A.dir + f, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(`${f} (${r.status})`); return r.text(); });
+    YEARS[y] = Promise.all([Y.events ? get(`events_${n}.jsonl`) : "", get(`days_${n}.json`)])
+      .then(([ev, dy]) => ({ events: ev.split("\n").filter((l) => l.trim()).map((l) => JSON.parse(l)), days: JSON.parse(dy).days }))
+      .catch((e) => { delete YEARS[y]; throw e; });
+  }
+  return YEARS[y];
+}
 function start3d() {
   if (!D || !WALK || !window.Replay3D || !window.THREE) return;
-  try { Replay3D.start($("r3"), D, WALK, css); } catch (e) { $("r3").innerHTML = `<p class="empty">3D の表示を始められませんでした (${esc(e.message)})。</p>`; }
+  try { Replay3D.start($("r3"), D, WALK, css, loadYear); } catch (e) { $("r3").innerHTML = `<p class="empty">3D の表示を始められませんでした (${esc(e.message)})。</p>`; }
 }
 const pcol = (i) => css(`--p${i % 5}`);
 
@@ -334,12 +350,27 @@ function renderPeople() {
   }));
 }
 
+let EV_YEAR = "";  // 出来事のタブで見ている年 ("" はしまっていない年。しまった年を選ぶと、その年のファイルを読む)
 function renderEvents() {
+  const A = D.archive;
+  $("p-events").innerHTML = (A ? `<div class="filters"><label>年 <select id="ev-year"><option value="">${A.upto + 1}年から今まで</option>${
+    A.years.slice().reverse().map((y) => `<option value="${y.year}">${y.year}年 (${y.events} 件)</option>`).join("")}</select></label></div>` : "") + `<div id="ev-list"></div>`;
+  if (A) { const s = $("ev-year"); s.value = EV_YEAR; s.addEventListener("change", () => { EV_YEAR = s.value; showEvents(); }); }
+  showEvents();
+}
+function showEvents() {
+  if (EV_YEAR === "") return listEvents(D.events);
+  const y = Number(EV_YEAR);
+  $("ev-list").innerHTML = `<p class="empty">${y}年の出来事を読み込んでいます…</p>`;
+  loadYear(y).then((r) => { if (EV_YEAR === String(y)) listEvents(r.events); })
+    .catch((e) => { $("ev-list").innerHTML = `<p class="empty">${y}年の出来事を読み込めませんでした (${esc(e.message)})。</p>`; });
+}
+function listEvents(events) {
   const byDay = {};
-  for (const e of D.events) (byDay[e.day] = byDay[e.day] || []).push(e);
+  for (const e of events) (byDay[e.day] = byDay[e.day] || []).push(e);
   const days = Object.keys(byDay).map(Number).sort((a, b) => b - a);
-  if (!days.length) { $("p-events").innerHTML = `<p class="empty">まだ出来事はありません。最初の 1 日は明日の朝 7 時に進みます。</p>`; return; }
-  $("p-events").innerHTML = days.map((d) => `<div class="day"><h3>${dayLabel(d)}</h3>${byDay[d].map((e) => {
+  if (!days.length) { $("ev-list").innerHTML = `<p class="empty">まだ出来事はありません。最初の 1 日は明日の朝 7 時に進みます。</p>`; return; }
+  $("ev-list").innerHTML = days.map((d) => `<div class="day"><h3>${dayLabel(d)}</h3>${byDay[d].map((e) => {
     const say = e.type === "話す", bad = ["死", "けが", "腐る"].includes(e.type), good = ["掟", "育つ", "火", "住まい"].includes(e.type);
     return `<div class="ev ${say ? "say" : ""} ${bad ? "bad" : ""} ${good ? "good" : ""}"><span class="t">${esc(e.type)}</span><span class="x">${esc(e.text)}</span></div>`;
   }).join("")}</div>`).join("");
@@ -466,7 +497,7 @@ selectTab = tabs();
 // 最初の場所になければ、リポジトリでの場所を読む
 const fetchAny = (paths, opt) => paths.reduce((p, u) => p.catch(() => fetch(u, opt).then((r) => { if (!r.ok) throw new Error(r.status); return r; })), Promise.reject());
 Promise.all([
-  fetchAny(["app_data.json", "../data/app_data.json"], { cache: "no-store" }).then((r) => r.json()),
+  fetchAny(["app_data.json", "../data/app_data.json"], { cache: "no-store" }).then((r) => { BASE = (r.url || "").replace(/app_data\.json([?#].*)?$/, ""); return r.json(); }),
   fetch("walk_cycle.json").then((r) => (r.ok ? r.json() : null)).catch(() => null),
 ]).then(([d, w]) => { D = d; WALK = w; render(); start3d(); })
   .catch(() => { $("people").innerHTML = `<p class="empty">データ (app_data.json) を読み込めませんでした。ページを開き直してください。</p>`; });

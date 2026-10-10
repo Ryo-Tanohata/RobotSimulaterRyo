@@ -12,6 +12,7 @@ import random
 import re
 import unicodedata
 
+import archive
 import characters
 import knowledge
 import world
@@ -2426,7 +2427,7 @@ def _sync_households(state):
     """家族 (家) を決める。【仮定】最初からいる人とその子で「川辺の家」、よそから一緒に来た群れごとに 1 つの家 (群れの最初の人の名前で呼ぶ)。
     村で生まれた子は母の家に入り、大人になっても同じ家にいる"""
     named = {}
-    for e in state["events"]:
+    for e in state["events"]:  # 加わる は、古い年をしまっても state.json に残す (archive.KEEP_TYPES)
         if e["type"] == "加わる" and e["text"].startswith("よそから来た "):
             names = e["text"][len("よそから来た "):].split(" が、")[0].split("・")
             for n in names:
@@ -2618,7 +2619,7 @@ def _g5_no_leader(state, g):
     if g["leader"]:
         return 0, 0, 0
     since = (g.get("open") or {}).get("day") or g["start"]
-    for e in reversed(state["events"]):  # いちばん新しい「まとめ役がいなくなった・なくなった」
+    for e in reversed(state["events"]):  # いちばん新しい「まとめ役がいなくなった・なくなった」(まとめ役 は、古い年をしまっても state.json に残す)
         if e["day"] < since:
             break
         if e["type"] == "まとめ役" and (e["text"].endswith("村にまとめ役がいなくなった") or "はまとめ役でなくなった" in e["text"]):
@@ -2815,7 +2816,7 @@ def _year_name_text(v):
 def _year_digest(state):
     """年の名前のお題: この 1 年のおもな出来事 (読むだけ)"""
     y = state["day"] // YEAR
-    ev = state["events"][meeting_first(state, y * YEAR - 1):]  # この年の最初の季節の集まりから (出来事の id は並びの番号と同じ)
+    ev = archive.events_from(state, meeting_first(state, y * YEAR - 1))  # この年の最初の季節の集まりから (古い年をしまうと、id は並びの番号でなくなる。2026-10-10)
     big = [e for e in ev if e["type"] in YEAR_EVENTS and not (e["type"] == "住まい" and "size" not in (e.get("data") or {}))
            and not (e["type"] == "ヤギ" and e.get("who"))  # 建てた日ごとの記録と、1 頭ずつ捕まえたのは入れない (下で数でまとめる)
            and not (e["type"] == "記録" and "tool" not in (e.get("data") or {}))]  # G6: 季節ごとの記録は入れない (道具が使えるようになったときだけ)

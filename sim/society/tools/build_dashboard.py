@@ -2,7 +2,7 @@
 """ダッシュボード「村の跡と記録」の小さな JSON を作る (読むだけ。標準ライブラリだけ)。
 
 設計: docs/dashboard_design.md (4. 作り方)。
-入力: <data>/state.json と <data>/records/ (どちらも読むだけ)。
+入力: <data>/state.json (しまった古い年の記録 <data>/archive/ も戻して) と <data>/records/ (どれも読むだけ)。
 出力: 村が残すもの (掘ってわかる跡・G6 からは村の記録) だけを、季節の行にした JSON。
       名前・人と家の番号・本当の人数・気持ち・正確な年齢や日は入れない (年の名の中の名前だけは出す)。
 
@@ -28,6 +28,8 @@ import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SOC = os.path.dirname(HERE)
+sys.path.insert(0, SOC)
+import archive  # noqa: E402  (古い年の記録を戻す。2026-10-10)
 DEFAULT_DATA = os.path.join(SOC, "data")
 DEFAULT_OUT = os.path.join(SOC, "app", "dashboard_data.json")
 PROTECTED = os.path.join(SOC, "data")
@@ -249,7 +251,7 @@ def load(data_dir, tries=3, wait=2.0):
     for i in range(tries + 1):
         try:
             meta = _read_json(os.path.join(R, "meta.json"))
-            st = _read_json(os.path.join(data_dir, "state.json"))
+            st = archive.load_state(data_dir)  # 古い年をしまったあとも、全部の記録から (2026-10-10。archive.py も標準ライブラリだけ)
             if meta.get("state_day") != st.get("day") or meta.get("state_next_event") != st.get("next_event"):
                 raise GateError("records/meta.json (%s日目・%s) と state.json (%s日目・%s) が合わない"
                                 % (meta.get("state_day"), meta.get("state_next_event"), st.get("day"), st.get("next_event")))
@@ -276,7 +278,7 @@ def load(data_dir, tries=3, wait=2.0):
             if meta2 != meta:
                 raise GateError("読んでいるあいだに records/ が書きかわった")
             return st, rec
-        except (GateError, ValueError, OSError) as e:  # ValueError = 書きかけの JSON
+        except (GateError, ValueError, OSError, archive.ArchiveError) as e:  # ValueError = 書きかけの JSON。ArchiveError = しまっている途中
             last = e
             if i < tries:
                 time.sleep(wait)

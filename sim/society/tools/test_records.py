@@ -22,6 +22,7 @@ HERE = Path(__file__).resolve().parent
 SOC = HERE.parent
 sys.path.insert(0, str(SOC))
 sys.path.insert(0, str(HERE))
+import archive  # noqa: E402
 import build_records  # noqa: E402
 import era2  # noqa: E402
 import records  # noqa: E402
@@ -40,6 +41,8 @@ def scratch(snapshots=True):
     """本物のデータの写し (state.json は写し、答えとお題は読むだけのリンク)。控えは本物の records/ から写すか、git から作る"""
     d = Path(tempfile.mkdtemp(prefix="rec_test_"))  # 写しはふつうの一時フォルダに (Linux は /tmp。Windows でも動くように)
     shutil.copy(REAL / "state.json", d / "state.json")
+    if (REAL / archive.DIR).exists():  # しまった古い年の記録 (写す。季節を進める試しが書き足すので、リンクにしない)
+        shutil.copytree(REAL / archive.DIR, d / archive.DIR)
     for sub in ("answers", "prompts"):
         if (REAL / sub).exists():
             try:
@@ -382,7 +385,7 @@ class F_YearNames(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.base = (REAL / "state.json").read_text(encoding="utf-8")
+        cls.base = archive._dump(archive.load_state(REAL))  # 古い年をしまったあとも、全部の記録で (16 年の出来事を読むため)
 
     def state(self, day):
         st = json.loads(self.base)
@@ -558,13 +561,14 @@ class G_StepSmoke(unittest.TestCase):
         d1, d2, d3 = self.data(), self.data(), self.data()
         try:
             n0 = len((d1 / "records" / "snapshots.jsonl").read_text(encoding="utf-8").splitlines())
+            live0 = sum(1 for x in jl(d1 / "records" / "snapshots.jsonl") if x.get("source") == "live")  # 本物の控えにも live がある (2026-10-10)
             r = self.run_step(code, d1)
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
             self.assertEqual(len((d1 / "records" / "snapshots.jsonl").read_text(encoding="utf-8").splitlines()), n0 + 1)
             meta = json.loads((d1 / "records" / "meta.json").read_text(encoding="utf-8"))
             st = json.loads((d1 / "state.json").read_text(encoding="utf-8"))
             self.assertEqual(meta["state_day"], st["day"])
-            self.assertEqual(meta["snapshots"]["live"], 1)
+            self.assertEqual(meta["snapshots"]["live"], live0 + 1)
             self.assertEqual(meta["ledger"]["exact_accounts_with_difference"], 0)
             # 記録を作るのに失敗しても、季節は進み、控えは足される
             (code / "tools" / "build_records.py").write_text("import sys\nsys.exit(2)\n", encoding="utf-8")

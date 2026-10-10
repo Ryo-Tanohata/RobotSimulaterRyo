@@ -214,7 +214,10 @@ def draw(state, out, start=489):
 
 if __name__ == "__main__":
     root = Path(__file__).resolve().parents[1]
-    st = json.loads(Path(sys.argv[1] if len(sys.argv) > 1 else root / "data" / "state.json").read_text(encoding="utf-8"))
+    sys.path.insert(0, str(root))
+    import archive  # 古い年をしまったあとも、全部の記録から (stats・出来事。2026-10-10)
+    src = Path(sys.argv[1]) if len(sys.argv) > 1 else root / "data" / "state.json"
+    st = archive.full(json.loads(src.read_text(encoding="utf-8")), src.parent)  # しまった年は、その state.json と同じ場所の archive/ から
     out = sys.argv[2] if len(sys.argv) > 2 else "progress.png"
     start = int(sys.argv[3]) if len(sys.argv) > 3 else 489
     rows = draw(st, out, start)

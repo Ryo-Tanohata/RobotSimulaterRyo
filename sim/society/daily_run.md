@@ -73,6 +73,7 @@ Artifact ツールで、アプリを同じ URL のまま更新する:
 - `url`: https://claude.ai/artifact/QuYyaTsj7d7JyNnnL64GfV
 - `file_path`: `sim/society/app/index.html`
 - `files`: `{"app_data.json": "sim/society/data/app_data.json", "replay3d.js": "sim/society/app/replay3d.js"}` に加えて、この実行で書いたり直したりした評価の文書を、同じ道筋で入れる (例: `"docs/society_phase/F3.md": "docs/society_phase/F3.md"`)。アプリの「記録と評価」タブで読める
+- 古い記録を年ごとのファイルに分けたあと (2026-10-10 から) は、しまった年の出来事と 3D の再生は `archive/events_YYYY.jsonl`・`archive/days_YYYY.json` を読む。見せたい年があれば `"archive/events_0010.jsonl": "sim/society/data/archive/events_0010.jsonl"` のように同じ道筋で入れる (入れなければ、その年は「読み込めませんでした」と出るだけで、ほかはそのまま)
 
 公開が「新しい版がある」と断られたら、公開中のページと app_data.json を読んでから、もう一度公開する。
 
@@ -99,13 +100,14 @@ Cloudflare Pages の本人だけが見られるページ (README「結果を見�
 2. そろったら `python3 sim/society/step.py season` (30 日進む。蓄えが尽きると途中で区切る)
 3. その回をコミット (push はしない): `社会シミュレーション: N 日目 (季節)`
 4. 20 回ごとに記録 (run_log・G?_notes) を書いて push。フェーズが進んだら (一時停止)、報告・評価の下書き・動画のあと `resume` して続ける
-   - 動画の撮影は数時間かかるので、`app_data.json` の写しを固定して (`DATA_DIR=写しのフォルダ`) 撮り始めたら、撮り終わるのを待たずに `resume` してよい (写しから撮るので、動画の中身は変わらない。2026-10-08)
+   - 動画の撮影は数時間かかるので、`app_data.json` の写しを固定して (`DATA_DIR=写しのフォルダ`) 撮り始めたら、撮り終わるのを待たずに `resume` してよい (写しから撮るので、動画の中身は変わらない。2026-10-08)。古い記録を分けたあとは、`data/archive/` も同じ写しに入れる
+5. **古い記録を年ごとのファイルに分ける** (2026-10-10 本人が決めた。消さない。くわしくは `HANDOFF.md` のはじめ): はじめに 1 回だけ、季節を進めていないときに `python3.13 sim/society/tools/archive_records.py` (本人の PC は `py -3`。`--dry-run` で確かめるだけ) を動かしてコミットする。そのあとは `step.py season` が、年が変わって最初の季節の終わりに 1 年分ずつ `data/archive/` にしまう (`git add sim/society/data` でいっしょにコミットされる)。全部の記録を読むときは `archive.load_state(データの場所)`。state.json を戻すときは `data/archive/` も同じコミットに戻す
 
 ## 全員が亡くなった・立ち行かなくなったとき (2026-10-07、本人の決まり)
 
 本人: 「A でお願いします。今までもそのようなことがあったら同じように戻していたと思います。今後もそのようにして下さい」
 
-- 相談せずに、そのフェーズの始まり (または原因の前の日) のコミットに `state.json` を戻し、世界のつくり・お題を見直してやり直す
+- 相談せずに、そのフェーズの始まり (または原因の前の日) のコミットに `state.json` を戻し、世界のつくり・お題を見直してやり直す (古い記録を分けたあとは `data/archive/` も同じコミットに戻す)
 - 戻す前の日の `answers/`・`prompts/` と最後の `state.json` は `data_archive/<フェーズ>_try<回>_d<始め>-<終わり>/` に移して残す
 - 何を変えたか・なぜか・出典 (仮定なら【仮定】) を、フェーズのメモ (`*_notes.md`) と `run_log.md` に書く。通説と比べるときの注意も書く
 - 本番の前に、写し (`SOC_DATA=/tmp/...`) で、決まった答え方を何通りか回して、すぐに全員が亡くならないかを確かめる

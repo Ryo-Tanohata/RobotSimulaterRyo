@@ -8,6 +8,7 @@ import json
 import pathlib
 import tempfile
 
+import archive
 import step
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -19,7 +20,7 @@ def main():
     ap.add_argument("--state", default=str(HERE / "data" / "state.json"))
     ap.add_argument("--out", default=str(ROOT / "_site" / "society_view.html"))
     a = ap.parse_args()
-    state = json.loads(pathlib.Path(a.state).read_text(encoding="utf-8"))
+    state = archive.full(json.loads(pathlib.Path(a.state).read_text(encoding="utf-8")), pathlib.Path(a.state).parent)  # しまった古い年も入れる (1 つの HTML にまとめるので)
     with tempfile.TemporaryDirectory() as tmp:
         step.DATA = pathlib.Path(tmp) / "data"
         step.DATA.mkdir()

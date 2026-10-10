@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+import archive  # noqa: E402
 import era2  # noqa: E402
 import world  # noqa: E402
 
@@ -130,10 +131,11 @@ def _kinds(foods):
 
 def event_sig(state, eid):
     """出来事 1 つのしるし (控えが今の記録とつながっているかを見る)"""
-    ev = state["events"]
-    if eid is None or eid < 0 or eid >= len(ev):
+    if eid is None or eid < 0:
         return None
-    e = ev[eid]
+    e = archive.event_at(state, eid)  # 古い年をしまった state でも、番号で探す (しまった出来事は None。全部を読むときは archive.full)
+    if e is None:
+        return None
     return hashlib.sha1(f"{e['day']}|{e['type']}|{e.get('who')}|{e['text']}".encode("utf-8")).hexdigest()[:16]
 
 

@@ -11,6 +11,8 @@
 段階は state.json の phase に記録するので、途中で止まっても続きから再開できる。
 フェーズ (狩猟採集 → 農耕、docs/society_phase_plan.md) が進むと state.json の hold が立ち、day は進まなくなる。
 環境変数 SOC_DATA でデータの置き場所を変えられる (試験用)。
+古い年の記録 (出来事など) は data/archive/ の年ごとのファイルにしまう (2026-10-10。archive.py。1 回だけの移行 tools/archive_records.py のあと、
+季節の終わりに 1 年分ずつ。SOC_ARCHIVE=0 で止められる)。
 """
 import argparse
 import json
@@ -18,6 +20,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+import archive  # noqa: E402
 import characters  # noqa: E402
 import era2  # noqa: E402
 import knowledge  # noqa: E402
@@ -25,6 +28,7 @@ import phase  # noqa: E402
 import resume  # noqa: E402
 import world  # noqa: E402
 
+import hashlib  # noqa: E402
 import os  # noqa: E402
 import subprocess  # noqa: E402
 
@@ -37,6 +41,7 @@ except Exception as _ex:  # 記録の仕組みがこわれていても、季節�
 DATA = Path(os.environ["SOC_DATA"]) if os.environ.get("SOC_DATA") else Path(__file__).parent / "data"
 STATE = DATA / "state.json"
 RECORDS_ON = os.environ.get("SOC_RECORDS", "1") != "0"  # 0 なら記録を作らない (試し用)
+ARCHIVE_ON = os.environ.get("SOC_ARCHIVE", "1") != "0"  # 0 なら古い年をしまわない (試し用)
 
 
 def load():
@@ -74,6 +79,19 @@ def _records(snap):
             print(f"記録: 記録を作れなかった (終わりのコード {r.returncode})。python3 sim/society/tools/build_records.py で作り直せる")
     except Exception as ex:
         print(f"記録: 記録を作れなかった ({type(ex).__name__}: {ex})。python3 sim/society/tools/build_records.py で作り直せる")
+
+
+def _archive(state):
+    """年が変わっていれば、古い年の記録を data/archive/ の年ごとのファイルに移す (保存の前。1 回だけの移行のあと ("archive" がある) だけ。
+    失敗しても季節は進んだまま。state はしまう前のまま)"""
+    if not ARCHIVE_ON or "archive" not in state:
+        return
+    try:
+        ys = archive.move(state, DATA)
+        if ys:
+            print(f"記録: {ys[0]}年" + (f"〜{ys[-1]}年" if len(ys) > 1 else "") + f"の記録を {DATA.name}/{archive.DIR}/ にしまった")
+    except Exception as ex:  # しまえなくても、世界を止めない
+        print(f"記録: 古い年をしまえなかった ({type(ex).__name__}: {ex})。state.json はしまう前のまま")
 
 
 def _society2_end(state):
@@ -156,15 +174,21 @@ ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道
                 "交換に行く": "交換に行く", "記録をつける": "記録をつける"}  # Society 2.0 の仕事 (交換に行く・記録をつけるは G6 から)
 
 
-def day_summaries(state, extra=()):
-    """3D 再生用: 日ごとに、誰がどの活動でどの場所へ行ったか (出来事の記録から組み立てる)"""
-    labels = sorted(list(state["places"]) + list(extra), key=lambda p: -len(p["label"]))  # G6: ほかの村へ行く人は、地図の端へ歩く
+def day_labels(state, extra=()):
+    return sorted(list(state["places"]) + list(extra), key=lambda p: -len(p["label"]))  # G6: ほかの村へ行く人は、地図の端へ歩く
+
+
+def day_summaries(state, extra=(), days=None):
+    """3D 再生用: 日ごとに、誰がどの活動でどの場所へ行ったか (出来事の記録から組み立てる)。days: 作る日 (なければ 1 日目から今日まで)
+    (2026-10-10: 出来事を日ごとに分けてから組み立てる。前は 日 × 出来事 を見て 1 分以上かかった。中身は前と同じ)"""
+    labels = day_labels(state, extra)
+    by_day = {}
+    for e in state["events"]:
+        by_day.setdefault(e["day"], []).append(e)
     out = {}
-    for d in range(1, state["day"] + 1):
+    for d in (range(1, state["day"] + 1) if days is None else days):
         rows = {}
-        for e in state["events"]:
-            if e["day"] != d:
-                continue
+        for e in by_day.get(d, ()):
             names = e.get("data", {}).get("hunters") if e["type"] == "狩り" else [e["who"]]
             # G6: 向こうの村で交換した日も、その村にいる (集まりでの交換は who がない)
             act = "狩り" if e["type"] == "狩り" else "交換に行く" if e["type"] == "交換" and e.get("who") else ACT_BY_EVENT.get(e["type"])
@@ -177,9 +201,48 @@ def day_summaries(state, extra=()):
     return out
 
 
+def _export_archive(whole, extra, upto):
+    """しまった年の、アプリ用の目次 (年ごとの出来事の数) と、3D の再生がどの日でも使う出来事 (亡くなった・畑にまいた・住まいができた)。
+    しまった年の再生の行は data/archive/days_YYYY.json に書く (まだないか、場所の名前が変わったときだけ。出来事は events_YYYY.jsonl をそのまま読む)"""
+    since = (upto + 1) * era2.YEAR
+    labels = day_labels(whole, extra)
+    sig = hashlib.sha1(json.dumps([[p["id"], p["label"]] for p in labels], ensure_ascii=False).encode("utf-8")).hexdigest()[:16]
+    count, keep = {}, []
+    for e in whole["events"]:
+        if e["day"] >= since:
+            break
+        count[e["day"] // era2.YEAR] = count.get(e["day"] // era2.YEAR, 0) + 1
+        if e["type"] == "死" or (e["type"] == "畑" and "をまいた" in e["text"]) or (e["type"] == "住まい" and "住まいができた" in e["text"]):
+            keep.append(e)  # replay3d.js の 亡くなった日・畑 (sowings)・住まい (built) と同じ選び方
+    todo = []
+    for y in range(upto + 1):
+        f = DATA / archive.DIR / f"days_{y:04d}.json"
+        try:
+            ok = json.loads(f.read_text(encoding="utf-8")).get("labels") == sig
+        except (OSError, ValueError):
+            ok = False
+        if not ok:
+            todo.append(y)
+    if todo:
+        rows = day_summaries(whole, extra, [d for y in todo for d in range(max(1, y * era2.YEAR), (y + 1) * era2.YEAR)])
+        for y in todo:
+            f = DATA / archive.DIR / f"days_{y:04d}.json"
+            f.parent.mkdir(parents=True, exist_ok=True)
+            f.write_text(json.dumps({"labels": sig, "days": {d: rows[d] for d in range(max(1, y * era2.YEAR), (y + 1) * era2.YEAR)}},
+                                    ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    return {"upto": upto, "since": since, "dir": archive.DIR + "/",
+            "years": [{"year": y, "first_day": max(1, y * era2.YEAR), "last_day": (y + 1) * era2.YEAR - 1, "events": count.get(y, 0)}
+                      for y in range(upto + 1)],
+            "keep": keep}
+
+
 def export(state):
-    """アプリ (Web ページ) 用のデータ"""
-    ev_recent = state["events"]  # すべての日 (過去の日の 3D 再生と動画のため)
+    """アプリ (Web ページ) 用のデータ。古い年をしまったあと (2026-10-10) は、しまっていない年の出来事と再生の行だけを入れ、
+    しまった年の分は、アプリがその年を見るときに data/archive/ の年ごとのファイル (events_YYYY.jsonl・days_YYYY.json) を読む"""
+    whole = archive.full(state, DATA)  # 履歴書・グラフ・知識の移り変わりは、しまった年もふくめた全部から (しまう前と同じ)
+    upto = (state.get("archive") or {}).get("upto", -1)
+    since = (upto + 1) * era2.YEAR  # この日からの出来事と再生の行を app_data.json に入れる
+    ev_recent = [e for e in whole["events"] if e["day"] >= since]  # しまっていない年のすべての日 (過去の日の 3D 再生と動画のため)
     extra = era2.g6_places(state)  # G6: 知っているほかの村の、地図の端の場所 (G6 の前は空)
     left = {f["household"]: f["day"] for f in ((state.get("era2") or {}).get("g5") or {}).get("fissions", [])}  # 村を出た家 (3D でその日から描かない)
     data = {
@@ -191,15 +254,16 @@ def export(state):
         "herds": state["herds"], "predators": state["predators"], "planted": state["planted"],
         "people": [{k: p.get(k) for k in ("name", "alive", "age", "sex", "mass", "personality", "skills", "hunger", "fatigue",
                                           "injured", "items", "trust", "plan", "feeling", "feeling_day", "child", "mother", "origin", "left", "household", "born_day")}
-                   | {"since": p.get("born_day", 0) if p.get("origin") == "生まれた" else resume._joined_day(state, p["name"]) if p.get("origin") == "よそから来た" else 0}
+                   | {"since": p.get("born_day", 0) if p.get("origin") == "生まれた" else resume._joined_day(whole, p["name"]) if p.get("origin") == "よそから来た" else 0}
                    | {"food": sum(f["kcal"] for f in p["food"]), "food_words": world.food_words(world.holdings(p)), "today": p.get("today"),
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
-        "events": ev_recent, "laws": state.get("laws", []),
-        "knowledge_log": state.get("knowledge_log", [])[-300:], "stats": state["stats"],
-        "days": day_summaries(state, extra),
+        # 掟の投票の記録 (vote_log) はアプリが使わないので入れない (2026-10-10。12 MB あった)
+        "events": ev_recent, "laws": [{k: v for k, v in law.items() if k != "vote_log"} for law in state.get("laws", [])],
+        "knowledge_log": whole.get("knowledge_log", [])[-300:], "stats": whole["stats"],
+        "days": day_summaries(whole, extra, range(max(1, since), state["day"] + 1)),
         "era": state.get("era_info") or {"era": "F1", "name": phase.ERAS["F1"]}, "era_log": state.get("era_log", []),
         "hold": bool(state.get("hold")), "store": world.food_words(phase._store_kinds(state)),
-        "resumes": resume.build(state),
+        "resumes": resume.build(whole),
         # G の中の小さな区切り F (G1・G2 は記録から決めた日、G3 からは見つけた日)
         "substeps": era2.RETRO_SUBSTEPS + (state.get("era2") or {}).get("substeps", []),
         # 家族の住まい (G3 から): 3D の再生で、家族ごとの家を描く
@@ -208,6 +272,8 @@ def export(state):
                    | ({"left": left[h]} if h in left else {})
                    for h, v in sorted((state.get("era2") or {}).get("homes", {}).items())],
         **({"g6": era2.g6_export(state)} if (state.get("era2") or {}).get("g6") else {}),  # G6: ほかの村・印・記録 (G6 の前は鍵がない)
+        # しまった年の目次 (古い年をしまう前は鍵がない)。アプリは「archive/」を app_data.json と同じ場所から読む
+        **({"archive": _export_archive(whole, extra, upto)} if upto >= 0 else {}),
     }
     (DATA / "app_data.json").write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print("アプリ用のデータ:", (DATA / "app_data.json").relative_to(DATA.parent))
@@ -286,6 +352,7 @@ def main():
         state["era2"]["last_first"] = first
         if not any(p["alive"] for p in state["people"]):
             snap = _snap(state, before, first)
+            _archive(state)
             save(state)
             export(state)
             _records(snap)
@@ -304,6 +371,7 @@ def main():
             world.log(state, "フェーズ", None, f"フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ")
             print(f"* フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ → 一時停止 (評価待ち)")
         snap = _snap(state, before, first)  # 保存の前に読む (保存するのと同じ state)
+        _archive(state)  # 年が変わっていれば、古い年をしまう (お題・控え・出来事の表示は、しまう前と同じ)
         save(state)
         write_prompts(state, "season")
         export(state)
@@ -336,6 +404,8 @@ def main():
         sys.exit(3)
     if a.cmd != state["phase"]:
         sys.exit(f"今の段階は {state['phase']} です ({a.cmd} はまだできない)")
+    if state.get("archive"):  # Society 1.0 の段階 (今は使わない) は、出来事をすべて読むので、しまった記録を戻してから (保存すると、しまう前の形になる)
+        state = archive.full(state, DATA)
 
     if a.cmd == "day":
         ids = world.simulate_day(state)

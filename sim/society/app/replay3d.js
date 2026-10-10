@@ -27,6 +27,22 @@
 
   let S = null; // 状態
 
+  // しまった年 (2026-10-10 本人が決めた「古い記録を年ごとのファイルに分ける」): D.events と D.days は、しまっていない年 (D.archive.since の日から) の分だけ。
+  // しまった年の日は、その年の出来事と再生の行を loadYear で読んでから見せる (need)。亡くなった日・畑にまいた日・住まいができた日は、どの日にも使うので D.archive.keep にある
+  const allEvents = (D) => ((D.archive && D.archive.keep) || []).concat(D.events);
+  const oldYear = (D, day) => (D.archive && day < D.archive.since ? Math.floor(day / YEAR_DAYS) : null);
+  function dayData(D, day) {  // その日の出来事と、再生の行 (だれがどの活動でどこへ)
+    const y = oldYear(D, day);
+    if (y === null) return { events: D.events.filter((e) => e.day === day), rows: (D.days && D.days[day]) || [] };
+    const Y = S && S.years[y];
+    return { events: Y ? Y.events.filter((e) => e.day === day) : [], rows: (Y && Y.days[day]) || [] };
+  }
+  function allDays(D) {  // 選べる日 (しまった年の日もふくむ)
+    const out = [];
+    for (const y of (D.archive && D.archive.years) || []) for (let d = y.first_day; d <= y.last_day; d++) out.push(d);
+    return out.concat(Object.keys(D.days || {}).map(Number)).sort((a, b) => a - b);
+  }
+
   function hgt(D, x, y) {  // 地面の高さ
     const t = D.map.terrain, W = D.map.w, H = D.map.h;
     let sum = 0, n = 0;
@@ -158,7 +174,7 @@
     const roof = new THREE.Mesh(new THREE.ConeGeometry(1.8, 1.5, 12), new THREE.MeshLambertMaterial({ color: T.hill }));
     roof.position.y = 1.85; hut.add(roof);
     hut.position.set(camp.x - 3.2, camp.y, camp.z - 2.2); hut.visible = false; scene.add(hut);
-    const built = D.events.find((e) => e.type === "住まい" && /住まいができた/.test(e.text));
+    const built = allEvents(D).find((e) => e.type === "住まい" && /住まいができた/.test(e.text));
 
     // 畑 (Society 2.0): 秋にまいた畑を、キャンプの南西に 1 枚ずつ並べる。色は季節で変える (fieldsOn で毎コマ決める)
     const plots = [];
@@ -167,7 +183,7 @@
       const p = w2t(D, D.camp.x + 0.5 - 2.5 - (k % 4) * 1.8, D.camp.y + 0.5 + 2.5 + Math.floor(k / 4) * 1.4, 0.05);
       m.position.copy(p); m.visible = false; scene.add(m); plots.push(m);
     }
-    const sowings = D.events.filter((e) => e.type === "畑" && /をまいた/.test(e.text));
+    const sowings = allEvents(D).filter((e) => e.type === "畑" && /をまいた/.test(e.text));
 
     // 家族の住まい (G3 から): 四角い家。壁は土の色に家族の色をまぜ、平らな屋根。広さで大きさを変え、建てかけは低い壁だけ (housesOn で毎コマ決める)
     const houses = (D.houses || []).map((v) => {
@@ -230,12 +246,12 @@
   }
 
   function planDay(D, day) {
-    const rows = (D.days && D.days[day]) || [];
+    const { events: ev, rows } = dayData(D, day);
     const names = D.people.map((p) => p.name);
     const plan = {}, groups = {};
     names.forEach((n, i) => {
       const r = rows.find((x) => x.name === n), P = D.people[i];
-      const died = D.events.find((e) => e.type === "死" && e.who === n);
+      const died = S.died[n];
       const alive = !died || died.day >= day;  // 亡くなった日はまだ映す
       const here = day >= (P.since || 0) && !(P.left && P.left < day);  // 村に来る前・生まれる前・村を出たあとは映さない (Society 2.0)
       const pl = placeOf(D, r ? r.place : "camp");
@@ -263,7 +279,6 @@
       p.dist = Math.hypot(p.spot.x - p.ring.x, p.spot.y - p.ring.y);
       maxDist = Math.max(maxDist, p.dist);
     }
-    const ev = D.events.filter((e) => e.day === day);
     const eve = ev.filter((e) => EVE_EVENTS.includes(e.type));
     const segs = SEG.map((s) => ({ ...s }));
     segs[4].sec = Math.max(10, Math.min(eve.length, 12) * 2.6 + 2);  // 人が増えても夕方が長くなりすぎないように
@@ -423,7 +438,8 @@
 
   window.Replay3D = {
     dayLabel, yearDay,
-    start(root, D, walk, css) {
+    // loadYear(年) → Promise<{events, days}>: しまった年のファイルを読む (index.html が渡す)
+    start(root, D, walk, css, loadYear) {
       this.stop();
       const T = tokens(css);
       root.innerHTML = `<div class="r3-bar">
@@ -460,10 +476,12 @@
         el.innerHTML = `<span>${esc(V.o.name)} (歩いて ${V.o.days} 日)</span>`; el.hidden = true;
         stage.appendChild(el); return { el, V };
       });
-      S = { D, walk, T, W, renderer, camera, controls, figs, labels, vlabels, v: 0, speed: 1, playing: true,
+      const died = {};  // 人ごとの、亡くなった出来事 (しまった年もふくめて最初のもの)
+      for (const e of allEvents(D)) if (e.type === "死" && !(e.who in died)) died[e.who] = e;
+      S = { D, walk, T, W, renderer, camera, controls, figs, labels, vlabels, v: 0, speed: 1, playing: true, loadYear: loadYear || null, years: {}, died,
         clock: stage.querySelector(".r3-clock"), toast: stage.querySelector(".r3-toast"),
         playBtn: root.querySelector("#r3-play"), slider: root.querySelector("#r3-slider"), follow: "" };
-      const days = Object.keys(D.days || {}).map(Number).sort((a, b) => a - b);
+      const days = allDays(D);
       const daySel = root.querySelector("#r3-day");
       daySel.innerHTML = days.map((d) => `<option value="${d}">${dayLabel(d)}</option>`).join("") || `<option>―</option>`;
       const fol = root.querySelector("#r3-follow");
@@ -475,7 +493,12 @@
         S.playing = !S.playing; S.playBtn.textContent = S.playing ? "一時停止" : "再生";
       });
       S.slider.addEventListener("input", () => { S.v = Number(S.slider.value) * S.day.total; });
-      daySel.addEventListener("change", () => setDay(Number(daySel.value)));
+      daySel.addEventListener("change", () => {
+        const d = Number(daySel.value);
+        if (oldYear(D, d) !== null && !S.years[oldYear(D, d)]) S.clock.textContent = `${dayLabel(d)} の記録を読み込んでいます…`;
+        this.need([d]).then(() => { if (S && Number(daySel.value) === d) setDay(d); })
+          .catch((e) => { if (S) S.clock.textContent = `${dayLabel(d)} の記録を読み込めませんでした (${e.message})`; });
+      });
       root.querySelector("#r3-speed").addEventListener("change", (e) => (S.speed = Number(e.target.value)));
       fol.addEventListener("change", (e) => { S.follow = e.target.value; if (!S.follow) S.controls.target.copy(W.camp); });
       if (!days.length) { S.clock.textContent = "まだ再生できる日がありません"; return; }
@@ -483,6 +506,14 @@
       setDay(days[days.length - 1]);
       if (matchMedia("(prefers-reduced-motion: reduce)").matches) { S.playing = false; S.playBtn.textContent = "再生"; S.v = S.day.segs[2].v0 + 4; }
       S.raf = requestAnimationFrame(loop);
+    },
+    // しまった年の日を見る前に、その年のファイルを読む (動画を撮るときは、撮る日をまとめて先に読む)
+    need(days) {
+      if (!S) return Promise.resolve();
+      const ys = [...new Set(days.map((d) => oldYear(S.D, d)).filter((y) => y !== null && !S.years[y]))];
+      if (ys.length && !S.loadYear) return Promise.reject(new Error("しまった年のファイルを読めない"));
+      const s = S;
+      return Promise.all(ys.map((y) => s.loadYear(y).then((r) => { s.years[y] = r; }))).then(() => undefined);
     },
     // 動画を作るとき用: 日と再生位置 (秒) を指定して 1 コマ描く
     setAutoCamera(on) { if (S) S.autoCam = !!on; },

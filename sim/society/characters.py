@@ -7,6 +7,7 @@
 """
 import json
 
+import archive
 import knowledge
 import math
 
@@ -54,7 +55,7 @@ def _sown_trees(state):
     trees = [q for q in state["plants"] if q.get("sown") and math.hypot(q["x"] - camp["x"], q["y"] - camp["y"]) <= GATHER_RADIUS]
     if not trees:
         return ""
-    who = [e["data"]["sower"] for e in state["events"] if e["type"] == "育つ" and (e.get("data") or {}).get("sower")]
+    who = [e["data"]["sower"] for e in state["events"] if e["type"] == "育つ" and (e.get("data") or {}).get("sower")]  # 育つ は全部 state.json に残す (archive.py)
     midden = sum(1 for e in state["events"] if e["type"] == "育つ" and "殻を捨てた所" in e["text"])
     whence = "・".join(([f"{'・'.join(dict.fromkeys(who))} が種を埋めた木"] if who else []) + ([f"殻を捨てた所から育った木 {midden} 本"] if midden else []))
     return (f"キャンプのそばに、種から育った木の実の木が {len(trees)} 本ある" + (f" ({whence})" if whence else "")
@@ -102,10 +103,10 @@ def _sowing():
 def _knowledge(state, p):
     """覚えていること。きっかけが人の話だけのものには「きっかけは話だけ」、話とほかの出来事のものには「きっかけに話をふくむ」を添える
     (本人にわかる事実。2026-10-06 追加、F3 の評価 5-2)"""
-    kinds = {e["id"]: e["type"] for e in state["events"]}
+    kinds = archive.Events(state)  # 古いきっかけは年ごとのファイルにしまっても、種類 (話すか、ほかか) はしまう前と同じ (2026-10-10)
 
     def src(k):
-        ts = [kinds[i] for i in k.get("because", []) if i in kinds]
+        ts = [kinds.type(i) for i in k.get("because", []) if i in kinds]
         if not ts or "話す" not in ts:
             return ""
         return "、きっかけは話だけ" if all(t == "話す" for t in ts) else "、きっかけに話をふくむ"
@@ -178,7 +179,7 @@ def night_prompt(state, p, tonight_heard, gifts):
     names = [q["name"] for q in _alive(state) if q is not p]
     # 2026-10-05 追加。並べるだけで、よいことは書かない。2026-10-06: 亡くなった人だけがしたことのある活動 (8 日目のルオの種まきなど) も、
     # 今いる仲間がまだしたことがなければ並べる (F4 に入って 60 日、種まきが 0 回だったため)
-    done = {e["type"] for e in state["events"] if e.get("who") in {q["name"] for q in _alive(state)}}
+    done = {e["type"] for e in state["events"] if e.get("who") in {q["name"] for q in _alive(state)}}  # Society 1.0 の夜だけ (step.py は古い記録を戻してから呼ぶ)
     untried = [a for a in ACTIVITIES if ACT_EVENT.get(a) not in done and (a != "キャンプを移す" or a not in tried_activities(state))]
     untried = f"   (今いる仲間のなかで、まだ誰もしたことのない活動: {'・'.join(untried)})\n" if untried else ""
     law_part = (f"""

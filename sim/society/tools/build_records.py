@@ -2,7 +2,7 @@
 
   python3 sim/society/tools/build_records.py [--data DIR] [--check] [--quiet]
 
-state.json・答え・お題・records/snapshots.jsonl (季節の終わりの控え) を読むだけで、records/ の中の記録を作り直す:
+state.json (しまった古い年の記録 data/archive/ も戻して)・答え・お題・records/snapshots.jsonl (季節の終わりの控え) を読むだけで、records/ の中の記録を作り直す:
 人 (people.json)・家 (households.json)・だれがどの家にいたか (membership.json)・季節ごとの行 (season_village / season_household /
 season_person .jsonl)・出し入れの帳簿 (ledger.jsonl)・年の名前 (year_names.json)・掟 (laws.json)・もめごと (disputes.json)・
 列の説明 (columns.json)・まとめ (meta.json)。
@@ -21,6 +21,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
+import archive  # noqa: E402
 import characters  # noqa: E402
 import era2  # noqa: E402
 import records  # noqa: E402
@@ -121,7 +122,7 @@ def load_answers(data, start):
 class Builder:
     def __init__(self, data):
         self.data = Path(data)
-        self.state = json.loads((self.data / "state.json").read_text(encoding="utf-8"))
+        self.state = archive.load_state(self.data)  # 古い年をしまったあとも、全部の記録から作る (しまう前と同じ中身。2026-10-10)
         st = self.state
         self.e2 = st.get("era2") or {}
         self.start = self.e2.get("start_day")
