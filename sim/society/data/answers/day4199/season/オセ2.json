@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "家がまだないので、キサ2と二人で住まいを建てる。手の空いた人は、交代で手伝ってくれるとうれしい。夕方は木の実を 40 つかみ取って、蓄えに入れるよ。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["キサ2"]},
+ "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キサ2": {"activity": "住まいを建てる", "place": "camp"}},
+ "keep": true,
+ "judge": {"M65": "ゆるす"},
+ "feast": true,
+ "leader": "なし",
+ "trade": {"T13": "村"},
+ "seal_store": true,
+ "knowledge": [{"op": "add", "text": "西の林 (西林12) では、前の季節に 30 日さがしても何も見つからなかった。芋が残っているという話は、まだ確かめていない", "because": [140522], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "なし", "agree": true, "reason": "働いた人が、その日のうちに自分の分を食べられるのは大事だ。"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "林では二人なら助け合えるし、ザガが出ても安心だ。"},
+  {"id": "L126", "against": "なし", "agree": true, "reason": "火と見張りを二人ずつ決めれば、夜もキャンプを守れる。"},
+  {"id": "L140", "against": "なし", "agree": true, "reason": "刈れる畑を夏のうちに刈り切れば、草の種を落とさずに済む。"},
+  {"id": "L156", "against": "なし", "agree": true, "reason": "ヤギの世話が一つにまとまれば、世話をする人がいなくなるのを防げる。"},
+  {"id": "L163", "against": "なし", "agree": true, "reason": "ヤギの数を毎晩数えれば、世話が足りているかすぐ分かる。"}
+ ],
+ "year_name": "南の村から三人が来た年",
+ "feeling": "家がまだなかったのが気になっていた。キサ2と建てられるのは心強い。"}
