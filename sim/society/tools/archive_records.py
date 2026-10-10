@@ -72,6 +72,7 @@ def main():
                     os.replace(f, archive.path(data, k, y))
                 elif archive.path(data, k, y).exists():  # 前の試みの残り (その年に何もない種類)
                     archive.path(data, k, y).unlink()
+            archive.days_path(data, y).unlink(missing_ok=True)  # 前の試みの再生の行 (下の export が作り直す)
         tmp = data / "state.json.tmp"
         tmp.write_text(small, encoding="utf-8")
         os.replace(tmp, data / "state.json")

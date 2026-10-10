@@ -1,7 +1,7 @@
 """古い記録を年ごとのファイルに分ける (2026-10-10 本人が決めた「古い記録を年ごとのファイルに分ける」。消さない)
 
 4379 日目に state.json が 59 MB (出来事 29 MB・掟の投票の記録 12.5 MB・木から採った記録 10 MB・知識の移り変わり 2.5 MB)、app_data.json が 49 MB になり、
-1 季節に 約 1.7 MB ずつ増える。【文献】GitHub は 50 MB をこえるファイルに注意を出し、100 MB をこえると受けとらない (GitHub Docs「About large files on GitHub」)。
+2 つ合わせて 1 季節に 約 1.7 MB ずつ増える (4049〜4379 日目の 11 季節で state.json +10.3 MB・app_data.json +8.3 MB)。【文献】GitHub は 50 MB をこえるファイルに注意を出し、100 MB をこえると受けとらない (GitHub Docs「About large files on GitHub」)。
 Cloudflare Pages は 1 ファイル 25 MiB まで (tools/cloudflare/build.sh は、こえるファイルを入れない)。
 そこで、世界の仕組みが読まない古い記録を data/archive/ の年ごとのファイル (1 行 = 1 件の JSONL。番号も中身もそのまま) に移す。
 世界は変わらない (前のコードと、写しで季節を進めて比べた。docs/society2_phase_plan.md の 7.)。
@@ -44,6 +44,11 @@ class ArchiveError(Exception):
 def path(data, kind, year):
     """年のファイル (例: data/archive/events_0030.jsonl = 30年 (3600〜3719 日目) の出来事)"""
     return Path(data) / DIR / f"{kind}_{year:04d}.jsonl"
+
+
+def days_path(data, year):
+    """しまった年の、アプリの 3D の再生の行 (step.py の export が作る。例: data/archive/days_0030.json)"""
+    return Path(data) / DIR / f"days_{year:04d}.json"
 
 
 def _dump(x):
@@ -142,6 +147,8 @@ def move(state, data, start=False):
                 _write(path(data, k, y), out[k][y])
             elif path(data, k, y).exists():
                 path(data, k, y).unlink()
+    for y in range(upto + 1, last + 1):  # アプリの再生の行 (step.py が作る) も、前の試みや、戻してやり直す前の世界のものなら消す (作り直させる)
+        days_path(data, y).unlink(missing_ok=True)
     for k in KINDS:  # 読みもどして確かめる (ちがえば state は変えない)
         for y, rows in out.get(k, {}).items():
             if path(data, k, y).read_text(encoding="utf-8") != "".join(_dump(r) + "\n" for r in rows):

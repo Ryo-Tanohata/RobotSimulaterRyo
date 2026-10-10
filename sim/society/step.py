@@ -203,7 +203,8 @@ def day_summaries(state, extra=(), days=None):
 
 def _export_archive(whole, extra, upto):
     """しまった年の、アプリ用の目次 (年ごとの出来事の数) と、3D の再生がどの日でも使う出来事 (亡くなった・畑にまいた・住まいができた)。
-    しまった年の再生の行は data/archive/days_YYYY.json に書く (まだないか、場所の名前が変わったときだけ。出来事は events_YYYY.jsonl をそのまま読む)"""
+    しまった年の再生の行は data/archive/days_YYYY.json に書く (まだないか、場所の名前が変わったときだけ。その年をしまうとき archive.move が前のものを消すので、
+    state.json を戻してやり直した世界でも作り直す。出来事は events_YYYY.jsonl をそのまま読む)"""
     since = (upto + 1) * era2.YEAR
     labels = day_labels(whole, extra)
     sig = hashlib.sha1(json.dumps([[p["id"], p["label"]] for p in labels], ensure_ascii=False).encode("utf-8")).hexdigest()[:16]
@@ -216,7 +217,7 @@ def _export_archive(whole, extra, upto):
             keep.append(e)  # replay3d.js の 亡くなった日・畑 (sowings)・住まい (built) と同じ選び方
     todo = []
     for y in range(upto + 1):
-        f = DATA / archive.DIR / f"days_{y:04d}.json"
+        f = archive.days_path(DATA, y)
         try:
             ok = json.loads(f.read_text(encoding="utf-8")).get("labels") == sig
         except (OSError, ValueError):
@@ -226,7 +227,7 @@ def _export_archive(whole, extra, upto):
     if todo:
         rows = day_summaries(whole, extra, [d for y in todo for d in range(max(1, y * era2.YEAR), (y + 1) * era2.YEAR)])
         for y in todo:
-            f = DATA / archive.DIR / f"days_{y:04d}.json"
+            f = archive.days_path(DATA, y)
             f.parent.mkdir(parents=True, exist_ok=True)
             f.write_text(json.dumps({"labels": sig, "days": {d: rows[d] for d in range(max(1, y * era2.YEAR), (y + 1) * era2.YEAR)}},
                                     ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

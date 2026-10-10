@@ -117,7 +117,10 @@ class Archive(unittest.TestCase):
             y = st["archive"]["upto"] + 1
             stale = archive.path(d2, "harvests", y)
             stale.write_text('{"day":0}\n', encoding="utf-8")  # 前の試みの残り
+            days = archive.days_path(d2, y)
+            days.write_text('{"labels":"","days":{}}', encoding="utf-8")  # 戻してやり直す前の世界の、アプリの再生の行
             self.assertEqual(archive.move(st, d2), [y])
+            self.assertFalse(days.exists())  # しまうときに消す (step.py の export が作り直す)
             self.assertEqual(st["archive"]["upto"], y)
             self.assertEqual(dump(archive.full(st, d2)), dump(w))
             self.assertTrue(all(e["day"] >= (y + 1) * archive.YEAR for e in st["events"] if e["id"] >= st["archive"]["event"]))
