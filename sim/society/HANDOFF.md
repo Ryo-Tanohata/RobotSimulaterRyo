@@ -11,6 +11,7 @@
 - 動画: 24 本 (Society 1.0 の 7 本、Society 2.0 の G1〜G5 と F・第 2 部の通しの 17 本)。G5 は 9 分 26 秒、F1・F2 は 4 分 50 秒・5 分 19 秒 (決めた長さより少し長い)
 - ダッシュボード「村の跡と記録」: `app/dashboard.html` (開くだけで見られる)。作り直しは `py -3 -X utf8 sim/society/tools/build_dashboard.py --data sim/society/data --embed sim/society/app/dashboard.html` (季節ごとの自動はまだ。step.py に入れていない)
 - 続けるとき: 季節を進めるワークフローを `{"steps": 5, "root": "C:/Users/Tan0Ry0/Desktop/26dev/RobotSimulaterRyo", "py": "py -3"}` で (台本の改行が CRLF だと Workflow が読めないので、LF の写しを作って scriptPath に渡す)。5 季節ごとに文とグラフで報告
+- クラウドで続けるとき (2026-10-10 から): `python3` は 3.11 なので、ワークフローに `{"steps": 5, "py": "python3.13"}` を渡す (クラウドにも /usr/bin/python3.13 がある)
 - 本人の PC の注意: `python` は別のアプリ (hermes-agent) の 3.11 なので使わない (季節を進めると数の最後の桁がずれる)。`py -3` (3.13) と PYTHONUTF8=1 を使う。声は WSL の VOICEVOX (`~/.cache/robotsim-voicevox`)、撮影は GPU=1 (RTX 5070 Laptop)
 
 ## 0.9 前の引き継ぎ (2026-10-09 夜、クラウドから。2009 日目のころ)

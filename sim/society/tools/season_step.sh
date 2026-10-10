@@ -2,7 +2,7 @@
 # Society 2.0: 1 季節を進めて (step.py season)、データをコミットする。ワークフロー (society2_seasons_workflow.js) から呼ぶ
 # 作者は Ryo-Tanohata、Claude は共同作者 (本人の決まり)
 cd "$(dirname "$0")/../../.."
-# PY: 使う Python (クラウドは python3。本人の PC は PY="py -3" = Python 3.13。2026-10-09: 3.11 で進めると食べ物の数の最後の桁がずれる (3.12 から sum() の足し方が変わった))
+# PY: 使う Python (クラウドは PY=python3.13 を渡す (python3 は 3.11)。本人の PC は PY="py -3" = Python 3.13。2026-10-09: 3.11 で進めると食べ物の数の最後の桁がずれる (3.12 から sum() の足し方が変わった))
 PY=${PY:-python3}
 export PYTHONIOENCODING=utf-8 PYTHONUTF8=1  # Windows でも記録を UTF-8 で読む
 D=$($PY -c "import json;print(json.load(open('sim/society/data/state.json', encoding='utf-8'))['day'])")
