@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 import random
+import re
 import shutil
 import subprocess
 import sys
@@ -433,6 +434,88 @@ class F_YearNames(unittest.TestCase):
         t3 = era2.season_prompt(st2, p, st2["era2"].get("last_first", 0))
         self.assertIn("「雨の年」 (去年)", t3)
         self.assertNotIn("「大きな祭りの年」 (去年)", t3)
+
+
+class I_Pasture(unittest.TestCase):
+    """I. 草の量でヤギの数に上限 (2026-10-10。state の写しで、メモリの中だけ)"""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.base = (REAL / "state.json").read_text(encoding="utf-8")
+
+    def state(self, owners):
+        st = json.loads(self.base)
+        st["era2"]["goats"] = [{"id": i, "sex": "メス" if i % 2 else "オス", "born": 0, "owner": h}
+                               for i, h in enumerate(h for h, n in owners for _ in range(n))]
+        return st
+
+    def test_cap_and_text(self):
+        st = self.state([(None, 100)])
+        cap = era2.pasture_cap(st)
+        self.assertEqual(cap, 140)  # この地図の草原と丘 276 ha × 0.5 頭
+        self.assertEqual(era2._pasture_text(st), "")  # K の 8 割より少なければ、お題は前と同じ
+        self.assertIn("約 140 頭 (今は 120 頭)", era2._pasture_text(self.state([(None, 120)])))
+        self.assertIn("今は 141 頭で、草が足りない", era2._pasture_text(self.state([(None, 141)])))
+
+    def test_loss(self):
+        st = self.state([(None, 140)])
+        n0 = st["next_event"]
+        era2._pasture_loss(st, 140, 1.0, random.Random(1))  # K 頭以下: 何も変えない
+        self.assertEqual((len(st["era2"]["goats"]), st["next_event"]), (140, n0))
+        runs = []
+        for _ in range(2):
+            st = self.state([(None, 150), ("ルオの家", 40), ("セナの家", 10)])
+            era2._pasture_loss(st, 140, 1.0, random.Random(1))  # 多すぎる 60 頭の 3 分の 1 = 20 頭を、持ち主の頭数に比べて分ける
+            left = {}
+            for g in st["era2"]["goats"]:
+                left[g.get("owner")] = left.get(g.get("owner"), 0) + 1
+            self.assertEqual(left, {None: 135, "ルオの家": 36, "セナの家": 9})
+            e = st["events"][-1]
+            self.assertEqual((e["type"], e["who"], e["data"]["cap"], e["data"]["herd"], len(e["data"]["goat_ids"])), ("ヤギ", None, 140, 200, 20))
+            self.assertIn("ヤギ 20 頭がやせていなくなった (村 15 頭・セナの家 1 頭・ルオの家 4 頭)", e["text"])
+            self.assertEqual(build_records.GOATS_RE.search(e["text"]).group(1), "20")  # 記録は「ヤギ n 頭」と「いなくなった」で数える
+            runs.append(e["data"]["goat_ids"])
+        self.assertEqual(runs[0], runs[1])  # 同じ乱数なら同じヤギ
+
+    def spring(self, owners):
+        """春のはじめの季節の終わり (子ヤギが生まれる) にした state"""
+        st = self.state(owners)
+        st["day"] = next(d for d in range(st["day"], st["day"] + era2.YEAR) if era2.season(d + 1) == "春" and era2.season(d) != "春")
+        st["era2"]["kid_year"] = None
+        return st
+
+    def season_end(self, st, cap=None):
+        old = era2.pasture_cap
+        if cap is not None:
+            era2.pasture_cap = lambda state: cap
+        try:
+            era2._season_end(st, 1.0)
+        finally:
+            era2.pasture_cap = old
+        return st
+
+    def test_below_cap_same_as_before(self):
+        """K 頭以下なら、上限がないとき (前のコード) と同じに進む (乱数も引かない)"""
+        a = self.season_end(self.spring([(None, 120), ("ルオの家", 20)]))
+        b = self.season_end(self.spring([(None, 120), ("ルオの家", 20)]), cap=10 ** 9)
+        self.assertEqual(json.dumps(a, ensure_ascii=False, sort_keys=True), json.dumps(b, ensure_ascii=False, sort_keys=True))
+        self.assertFalse([e for e in a["events"] if "草が足りず" in e["text"]])
+
+    def test_over_cap_fewer_kids(self):
+        """K 頭より多いと、多すぎる分の 3 分の 1 がいなくなり、子を産む母ヤギが K/N に減る。同じ state なら同じ結果"""
+        free = self.season_end(self.spring([(None, 300), ("ルオの家", 100)]), cap=10 ** 9)
+        runs = [self.season_end(self.spring([(None, 300), ("ルオの家", 100)])) for _ in range(2)]
+        self.assertEqual(json.dumps(runs[0], ensure_ascii=False, sort_keys=True), json.dumps(runs[1], ensure_ascii=False, sort_keys=True))
+        st = runs[0]
+        ev = [e for e in st["events"] if "草が足りず" in e["text"]]
+        self.assertEqual(len(ev), 2, [e["text"] for e in ev])
+        self.assertIn("ヤギ 87 頭がやせていなくなった", ev[0]["text"])  # (400 − 140) / 3
+        kids = int(re.search(r"子ヤギが (\d+) 頭生まれた", ev[1]["text"]).group(1))
+        kids_free = sum(1 for g in free["era2"]["goats"] if g["born"] == free["day"])
+        self.assertEqual(sum(1 for g in st["era2"]["goats"] if g["born"] == st["day"]), kids)
+        self.assertLess(kids, kids_free * 0.6)  # 見込み 140/313 = 0.45
+        self.assertEqual(len(st["era2"]["goats"]), 400 - 87 + kids)
+        self.assertTrue(any(g.get("owner") == "ルオの家" and g["born"] == st["day"] for g in st["era2"]["goats"]))  # 子は母の持ち主
 
 
 @unittest.skipUnless(STEP, "--step のときだけ (写しで季節を進める)")

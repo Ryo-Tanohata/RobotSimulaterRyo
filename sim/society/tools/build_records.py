@@ -48,7 +48,7 @@ FLOWS = ("採った", "木から取った", "狩った", "乳をしぼった", "
          "捕まえた", "生まれた", "作った", "罰・つぐないで受け取った", "持ち主がいなくなり村のものになった",
          "食べた", "まいた (畑)", "種として埋めた", "腐った", "虫やネズミ", "祭り", "雨で傷んだ", "干した",
          "亡くなった人の手元", "村を出た人の手元", "家の人が食べた", "子が食べた", "よその家の人に取られた",
-         "だれもいなくなり、村のものになった", "村を出て持っていった", "いなくなった (世話が足りない)", "つぶした", "罰・つぐないで払った",
+         "だれもいなくなり、村のものになった", "村を出て持っていった", "いなくなった (世話が足りない)", "いなくなった (草が足りない)", "つぶした", "罰・つぐないで払った",
          "割れた", "村の蓄えに入れた (大人)", "村の蓄えから取った (大人)", "ほかの村へ出した", "ほかの村から入った")
 WHY_ROUND = "採集の記録は、物ごとの量を整数に丸めて書いている"
 EPS = 1e-6
@@ -346,7 +346,7 @@ class Builder:
         pests = {"amount": 0, "safe": None, "events": []}
         pots = {"made": 0, "broken": 0}
         sick = {"made": 0, "broken": 0}
-        goat_ev = {"kids": 0, "lost": 0, "eaten": 0, "caught": 0}
+        goat_ev = {"kids": 0, "lost": 0, "eaten": 0, "caught": 0, "grass": []}  # grass: 草が足りずにいなくなったヤギの番号 (2026-10-10 から)
         laws = {"adopted": [], "abolished": []}
         g5 = {"leader_elected": None, "new": [], "settled": [], "judged": 0, "payments": [], "feast": None, "joint": 0, "fission": None,
               "penalty_laws": []}
@@ -449,6 +449,7 @@ class Builder:
                 elif "いなくなった" in x:
                     m = GOATS_RE.search(x)
                     goat_ev["lost"] += int(m.group(1)) if m else 0
+                    goat_ev["grass"] += d.get("goat_ids") or []
                 elif d.get("field") is not None:
                     m = re.search(r"約 (\d+) つかみ", x)
                     lost = int(m.group(1)) if m else 0
@@ -672,8 +673,9 @@ class Builder:
             f(owner0[i], "つぶした", -1, [i])
         for i in left:
             f(owner0[i], "村を出て持っていった", -1, [i])
+        grass = set(goat_ev.get("grass") or [])
         for i in lost:
-            f(owner0[i], "いなくなった (世話が足りない)", -1, [i])
+            f(owner0[i], "いなくなった (草が足りない)" if i in grass else "いなくなった (世話が足りない)", -1, [i])
         empty = {x["household"] for x in inherit if x["to_village"]}
         paid = {}
         for pm in g5["payments"]:
@@ -1137,7 +1139,7 @@ class Builder:
                 "goats": ({"count": len(gl), "female": sum(1 for x in gl if x.get("sex") == "メス"), "male": sum(1 for x in gl if x.get("sex") == "オス"),
                            "adult": sum(1 for x in gl if x.get("born") is not None and D - x["born"] >= YEAR),
                            "kids_born": gflow.get("生まれた", 0), "caught": gflow.get("捕まえた", 0),
-                           "lost": -gflow.get("いなくなった (世話が足りない)", 0), "eaten": -gflow.get("つぶした", 0)} if gl is not None else None),
+                           "lost": -gflow.get("いなくなった (世話が足りない)", 0) - gflow.get("いなくなった (草が足りない)", 0), "eaten": -gflow.get("つぶした", 0)} if gl is not None else None),
                 "wealth_kcal": (ind.get("wealth") or {}).get(h) if "wealth" in ind else None,
                 "fields": {"sown": sum(1 for e in c["sown_ev"] if self.byname.get(e["who"], {}).get("household") == h),
                            "seed": sum(e["data"]["seed"] for e in c["sown_ev"] if self.byname.get(e["who"], {}).get("household") == h),

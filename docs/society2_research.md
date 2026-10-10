@@ -114,6 +114,7 @@
 | ヤギの妊娠期間 | 約5か月 | 双子が多い |
 | ヤギ・ヒツジが子を産める年齢 | 約1〜1.5歳 | |
 | 群れの増え方 | 条件がよい年 年10〜30%、日照り・病気の年はマイナス | 牧畜民の研究（Dahl & Hjort 1976）。ケニアの干ばつ年では -18〜-37% の例 |
+| 草地が1年に養える頭数 | 乾いた草原 約0.2頭/ha（シリア、雌ヒツジ1頭に4.5 ha）〜一年草の草原 約1〜1.7頭/ha（イスラエル南、雨 年250 mm）。低い木の林でヤギ1頭/ha が「ほどほど」、4頭/ha は草が減りヤギがやせた | 1年じゅう草だけで、草地をこわさない数。草は春に多く、夏〜秋のはじめに少ない。2026-10-10 に「1 ha に 0.5頭」（仮定）でヤギの上限を入れた |
 | 乳の量（伝統的なヤギ） | 1日 約0.5〜1 L、搾れる期間 約4〜6か月 | 現代の伝統品種からの推定（仮定） |
 | 肉の量（ヤギ1頭） | 約10〜20 kg | 同上（仮定） |
 | 貯蔵の損失 | 年 2〜10%（よい貯蔵）〜30%以上（虫・ネズミ） | 現代の伝統的な穀物倉の調査。新石器の倉からもコクゾウムシが出ている |
@@ -133,6 +134,11 @@
 - Goat domestication（Wikipedia）https://en.wikipedia.org/wiki/Goat#Domestication
 - Secondary products revolution（Wikipedia）https://en.wikipedia.org/wiki/Secondary_products_revolution
 - Dahl & Hjort『Having Herds』(1976) 書誌 https://www.oeaw.ac.at/resources/Record/993416601704498
+- van der Veen 1967（シリアの草原の放牧の試し。雌ヒツジ1頭に4.5 ha）https://library.wur.nl/ojs/index.php/njas/article/view/17438
+- Tadmor ほか 1974（イスラエル南ミグダの一年草の草原。ヒツジ1頭に0.6〜1.0 ha）https://repository.arizona.edu/handle/10150/647166
+- Tsiouvaras ほか 1999（ギリシャの低い木の林。ヤギ 1・2・4頭/ha の試し）https://ressources.ciheam.org/ressources/om/pdf/b27/99600306.pdf
+- Louhaichi・Gamoun ほか 2021（ヨルダンの草原。養える頭数は春に多く、秋のはじめまで減る）https://repo.mel.cgiar.org/handle/20.500.11766/13194
+- Zeder & Hesse 2000（ガンジ・ダレ。若いオスを先に食べた）https://doi.org/10.1126/science.287.5461.2254
 - ケニアの家畜増減 https://pastoralismjournal.springeropen.com/articles/10.1186/s13570-015-0045-6
 - FAO 収穫後損失 https://www.fao.org/4/W1544E/W1544E05.htm
 

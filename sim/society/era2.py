@@ -44,6 +44,25 @@ UNITS.setdefault("乳", ("杯", 150))              # 【仮定】ヤギの乳 1 
 world.FOOD_NAME.setdefault("乳", "ヤギの乳")
 world.SPOIL.setdefault("乳", 1)                  # 【仮定】乳はその日のうちに飲む
 GOAT_MEAT = 20                                   # 【仮定】ヤギ 1 頭の肉 (ルクの肉の切れ、600 kcal)
+# 草の量でヤギの数に上限をつける (2026-10-10 本人と決めた「草の量で上限をつける」。計画 5 の G2「草が足りないと弱る」を、ここで入れた。
+#   それまでは数を止めるものがなく、G6 に入った 3539 日目の 45 頭が、4289 日目に 711 頭になった)
+#   【文献】草地 1 ha が 1 年に養える頭数 (1 年じゅう草だけで、草地をこわさない数):
+#   シリアの草原 (雨 年 200 mm ほど) で雌ヒツジ 1 頭に 4.5 ha (約 0.2 頭/ha。van der Veen 1967, FAO の放牧の試し)。
+#   イスラエル南の草原 (雨 年 250 mm。一年草) でヒツジ 1 頭に 0.6〜1.0 ha (約 1〜1.7 頭/ha。Tadmor ほか 1974)。
+#   ギリシャの低い木の林で、ヤギ 1 ha に 1 頭が「ほどほど」、4 頭は草が減りヤギがやせた (Tsiouvaras ほか 1999)。
+#   草は春に多く、夏から秋のはじめに少ない (ヨルダンの草原。Louhaichi・Gamoun ほか 2021)。1 年の頭数は、それをならした数なので、季節では変えない
+#   【仮定】この世界 (冬に雨が降り、野生の麦が育つ川ぞいの草原と丘) は、その間の 1 ha に 0.5 頭 (日照りの年にも養える側。
+#   干し草や足しのえさはなく、野生のヤギやけものも同じ草を食べる)。ヤギとヒツジ、子ヤギと大人は同じ 1 頭と数える。
+#   広さは地図 (1 マス 25 m、80 × 80 マス = 2 km 四方) の草原と丘のマスだけで数え、群れは地図の外へは行かない
+#   (林と川は数えない。畑は小さいので引かない)。10 頭単位に丸める (今の地図は 276 ha で、養える頭数 K = 約 140 頭)。
+#   【仮定】飼っている頭数 N が K より多い季節は、多すぎる分 (N − K) の 3 分の 1 がやせていなくなり (持ち主ごとの頭数に比べて分ける)、
+#   春に子を産む母ヤギは K/N の見込みに減る。世話が足りないといなくなる決まりは前のまま。N が K 以下の季節は何も変えない (乱数も引かない)
+#   (春に子が生まれると K をこえ、夏から冬に減るので、群れは K の 1〜2 倍のあいだを上下する。4379 日目の写しを 8 季節進めると、
+#   だれもつぶさなくても 608 → 264 → 春に 307 → 189 頭になった)
+#   【文献】初めのヤギ飼いは、若いオスを先に食べ、メスを残した (Zeder & Hesse 2000, Science 287)。つぶすかどうかは、村の人が決める
+PASTURE_PER_HA = 0.5
+PASTURE_LOSS = 1 / 3
+PASTURE_SALT = 43  # 草が足りないときだけ引く乱数 (43 を 31 で割った余り 12 は、前からの塩の余り 3・7・11・23・29・0・6・10 と重ならない)
 
 
 # ---------------- はじまり ----------------
@@ -2239,6 +2258,35 @@ def _catch_goat(state, p, t, rng):
         log(state, "ヤギ", p["name"], f"{p['name']} が北の丘で野生の子ヤギ ({sex}) を捕まえて、キャンプに連れ帰った")
 
 
+def pasture_cap(state):
+    """草原と丘の草で 1 年に養えるヤギの数 K (10 頭単位)。地図の草原と丘のマスの広さ × PASTURE_PER_HA"""
+    ha = sum(row.count("g") + row.count("h") for row in state["terrain"]) * world.CELL ** 2 / 10000
+    return int(round(ha * PASTURE_PER_HA / 10)) * 10
+
+
+def _pasture_loss(state, cap, frac, rng):
+    """草が足りない季節 (飼っているヤギ N が K より多い): 多すぎる分の PASTURE_LOSS がやせていなくなる。
+    いなくなる数は持ち主 (村・家) ごとの頭数に比べて分け (端数の大きい順。同じなら村 → 家の名前の順)、持ち主の中では rng で選ぶ"""
+    e2 = state["era2"]
+    n = len(e2["goats"])
+    m = round(PASTURE_LOSS * (n - cap) * frac) if n > cap else 0
+    if m <= 0:
+        return
+    by = {}
+    for g in e2["goats"]:
+        by.setdefault(g.get("owner"), []).append(g)
+    keys = sorted(by, key=lambda h: (h is not None, h or ""))
+    share = {h: m * len(by[h]) // n for h in keys}
+    for h in sorted(keys, key=lambda h: -(m * len(by[h]) % n))[:m - sum(share.values())]:
+        share[h] += 1
+    gone = {g["id"] for h in keys if share[h] for g in rng.sample(by[h], share[h])}
+    e2["goats"][:] = [g for g in e2["goats"] if g["id"] not in gone]
+    hit = [h for h in keys if share[h]]
+    who = "・".join(f"{'村' if h is None else h} {share[h]} 頭" for h in hit) if hit != [None] else ""  # 村のヤギだけなら書かない
+    log(state, "ヤギ", None, f"草が足りず、飼っていたヤギ {m} 頭がやせていなくなった{' (' + who + ')' if who else ''}"
+        f"。草原と丘の草で養えるヤギは 約 {cap} 頭で、{n} 頭いた", cap=cap, herd=n, goat_ids=sorted(gone))
+
+
 def _famine_leave(state):
     """飢饉: よそから来た大人で、ひどく空腹の人は、見込み 4 割で村を出ていく (子は母といっしょに)。
     【文献】飢饉のとき、農耕の村でも人は親族やほかの集団のもとへ移って生きのびた (村の分裂・移住)。【仮定】割合は試作の値
@@ -2282,15 +2330,25 @@ def _season_end(state, frac=1.0):
             e2["goats"].remove(g)
         if gone:
             log(state, "ヤギ", None, f"世話をする人が少なく、飼っていたヤギ {len(gone)} 頭がいなくなった")
+    # 草が足りない (ヤギが K 頭より多い) と、やせていなくなる・子が少ない (2026-10-10 本人と決めた。上の PASTURE_PER_HA)。
+    #   この乱数は草が足りないときだけ引く (K 頭以下の世界は、前と同じに進む)
+    cap, prng = pasture_cap(state), _rng(state, PASTURE_SALT)
+    _pasture_loss(state, cap, frac, prng)
     if sea == "春" and e2.get("kid_year") != (day + 1) // YEAR:
         e2["kid_year"] = (day + 1) // YEAR
-        kids = 0
-        for g in [g for g in e2["goats"] if g["sex"] == "メス" and day - g["born"] >= YEAR]:
+        kids, n = 0, len(e2["goats"])
+        mothers = [g for g in e2["goats"] if g["sex"] == "メス" and day - g["born"] >= YEAR]
+        for g in mothers:
+            if n > cap and prng.random() >= cap / n:  # 草が足りないと、子を産む母ヤギが K/N に減る
+                continue
             for _ in range(2 if rng.random() < 0.4 else 1):  # 【仮定】双子の見込み 4 割
                 e2["goats"].append({"id": e2["next_goat"], "sex": "メス" if rng.random() < 0.5 else "オス", "born": day, "owner": g.get("owner")})
                 e2["next_goat"] += 1
                 kids += 1
-        if kids:
+        if n > cap and mothers:
+            log(state, "ヤギ", None, f"草が足りず、子ヤギがあまり生まれなかった (飼っているヤギに、子ヤギが {kids} 頭生まれた)" if kids
+                else "草が足りず、子ヤギが生まれなかった", cap=cap, herd=n)
+        elif kids:
             log(state, "ヤギ", None, f"飼っているヤギに、子ヤギが {kids} 頭生まれた")
     wild = e2["wild_goats"]
     if wild["count"] < 15 and rng.random() < 0.5 * frac:
@@ -2884,10 +2942,23 @@ def _village(state):
     days = store_days(state)
     return (f"村の大人: {ads}\n村の子: {kids}\n村の蓄え: {food_words(world.holdings({'food': state['store']}))} (今の人数で 約 {days} 日分)\n"
             f"畑: {fl}\n飼っているヤギ: {gl}\n"
+            + _pasture_text(state)
             + (f"村の土器: {e2.get('pots', 0)} 個 (草の種 {e2.get('pots', 0) * POT_HOLD} つかみ分)、村の石の鎌: {e2.get('sickles', 0)} 本\n" if era_at_least(state, "G3") else "")
             + (_houses_text(state) if era_at_least(state, "G3") else "")
             + (_houses_line(state) if era_at_least(state, "G4") else "")
             + f"{wild} のあたりに、野生のヤギの群れ (約 {e2['wild_goats']['count']} 頭) がいる\n")
+
+
+def _pasture_text(state):
+    """草の量 (2026-10-10): 飼っているヤギが K の 8 割をこえたときだけ書く (それより少ないときのお題は前と同じ)"""
+    n, cap = len(state["era2"]["goats"]), pasture_cap(state)
+    if n > cap:
+        return (f"草: 草原と丘の草で養えるヤギは 約 {cap} 頭。今は {n} 頭で、草が足りない (草が足りないと、春に生まれる子ヤギが減り、"
+                "季節ごとに、多すぎる分の 3 分の 1 ほどがやせていなくなる。つぶして肉にすれば、ヤギは減る"
+                + ("。ほかの村からヤギを受けとると、ヤギは増える" if state["era2"].get("g6") else "") + ")\n")
+    if n * 10 >= cap * 8:
+        return f"草: 草原と丘の草で養えるヤギは 約 {cap} 頭 (今は {n} 頭)。それより多くなると、草が足りなくなる\n"
+    return ""
 
 
 def _houses_line(state):
@@ -3261,7 +3332,7 @@ def season_prompt(state, p, first):
 4. 持っている木の実 (なければ村の蓄えの木の実) を、この回の最初の日にキャンプのそばに埋める (plant、つかみ、5 まで) こともできる
    秋なら、季節のはじめに、蓄えの草の種をキャンプのそばの畑にまく量 (sow、つかみ、1000 まで) を書ける (主な仕事とは別にできる)
    実った畑があれば、毎夕いくつ刈るか (harvest、つかみ、60 まで) を書ける (主な仕事とは別にできる)
-{'   飼っているヤギを、この回の最初の日に何頭つぶして肉にするか (eat_goat、頭。肉は干して蓄えに入れる。2 頭は残す) を書ける' + chr(10) if e2['goats'] and not solo else ''}
+{'   飼っているヤギを、この回の最初の日に何頭つぶして肉にするか (eat_goat、頭。肉は干して蓄えに入れる。2 頭は残す' + ('。1 つの答えで 5 頭まで' if len(e2['goats']) > pasture_cap(state) else '') + ') を書ける' + chr(10) if e2['goats'] and not solo else ''}
 {'   家の倉を持つか (keep: 持つなら true、持たないなら false) を決める (家の代表が決める)' + chr(10) if era_at_least(state, "G4") and not solo else ''}5. 覚えていることを更新する (新しく分かったことを追加、確かさを変える、間違っていたら忘れる)
 6. 掟: みんなで守りたい決まりがあれば提案できる (なければ null)。今の掟と提案に、賛成か反対かを投票する (against に反対する理由、reason に決めた理由)
 {g5_now}{g6_now}{yname_now}{7 + bool(g5_now) + bool(g6_now) + ye}. 今の気持ちを一言
