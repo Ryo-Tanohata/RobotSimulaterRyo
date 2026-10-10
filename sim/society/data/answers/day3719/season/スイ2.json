@@ -1,0 +1,41 @@
+{
+  "say": [
+    {"to": "ノア2", "text": "北林12へ一緒に行こうね。二人で行けば、見つけたものを夜にすぐ言えるし、ザガが出ても助け合えるよ。"},
+    {"to": "みんな", "text": "前の季節、うちの家は蓄えから多めに取ってしまったと思う。今季は毎晩、木の実を 40 つかみまで取って蓄えに入れるね。"}
+  ],
+  "job": {"activity": "採集", "place": "北林12", "with": ["ノア2"]},
+  "pick": 40,
+  "plant": 0,
+  "harvest": 0,
+  "eat_goat": 0,
+  "family": {"ノア2": {"activity": "採集", "place": "北林12"}},
+  "keep": false,
+  "feast": false,
+  "leader": null,
+  "trade": {"T2": "村"},
+  "seal_store": false,
+  "knowledge": [
+    {"op": "add", "text": "北の川では、木の実 1 つかみと芋 1 本しか見つからなかった", "because": [103304], "confidence": 0.9},
+    {"op": "add", "text": "畑の刈り入れは、畑の持ち主の家が自分の畑から刈るもの。よその家の畑で刈ると、草の種は持ち主の倉に入ってしまう", "because": [103321], "confidence": 0.8}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L143", "against": "", "agree": true, "reason": "二人で行けば、けがをしたときも助け合える"},
+    {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑は夏のうちに刈らないと種が落ちるから"},
+    {"id": "L98", "against": "", "agree": true, "reason": "採ってきた人が空腹で働けなくなるのを防げる"},
+    {"id": "L106", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えておきたいから。うちも取って入れる"},
+    {"id": "L145", "against": "", "agree": true, "reason": "前の季節、うちは多く取ったので入れて差を小さくしたい"},
+    {"id": "L146", "against": "", "agree": true, "reason": "決めずに刈ると、草の種がもめごとのもとになるから"},
+    {"id": "L149", "against": "", "agree": true, "reason": "畑の仕事を交代で一人ずつ分け合えば、みんなの負担が少ない"},
+    {"id": "L137", "against": "", "agree": true, "reason": "うちにも小さい子がいるから、雨の夜は先に入れてほしい"},
+    {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれなくなるから"},
+    {"id": "L119", "against": "", "agree": true, "reason": "冬の採集地を増やすため、まだ行っていない林を見てみたい"},
+    {"id": "L111", "against": "", "agree": true, "reason": "ヤギは一人では囲めないし、ザガにも襲われやすい"},
+    {"id": "L101", "against": "", "agree": true, "reason": "世話がなければヤギはいなくなるから"},
+    {"id": "L116", "against": "", "agree": true, "reason": "夜明けまで火を絶やさないことが、ザガを近づけない守りになる"},
+    {"id": "L155", "against": "", "agree": true, "reason": "よその村の道と採れる物が分かれば、交換や採集に役立つ"},
+    {"id": "L30", "against": "狩った肉を必ず全部その日に食べると決めると、たくさん獲れた日に食べきれず無駄になる", "agree": false, "reason": "乾かす・燻す方法も選べるようにして、肉を無駄にしないため"}
+  ],
+  "year_name": "よそから仲間が加わった年",
+  "feeling": "夏の実りは多いけれど、前の季節に取りすぎたことが気になっている。"
+}
