@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "実った畑を夏のうちに刈り切ろう。刈った量は夜に言うね。"}, {"to": "エマ2", "text": "木の実を取る夕方は声をかけるね。いっしょに取ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["エマ2"]}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": false,
+ "judge": {"M51": "つぐなう"}, "feast": true, "leader": "ハユ", "seal": false, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "畑の草の種は、実ってから夏のうちに刈らないと落ちてしまう", "because": [111852], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガがこわい。夜に一人で外へ出るのは危ない"}, {"id": "L98", "against": "", "agree": true, "reason": "取った人が空腹では、次の日も働けない"}, {"id": "L106", "against": "", "agree": true, "reason": "夏のうちに木の実を蓄えておけば、冬が楽になる"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑は夏のうちに刈らないと落ちる。手のあいた人がみんなで刈ろう"}, {"id": "L143", "against": "", "agree": true, "reason": "二人いれば、けがをしたときにも助けられる"}, {"id": "L146", "against": "", "agree": true, "reason": "刈る前に決めておけば、もめごとにならない"}],
+ "year_name": "ヌオが村に加わった年",
+ "feeling": "村に来て一年がたった。実った畑を見ると、ほっとする。"}

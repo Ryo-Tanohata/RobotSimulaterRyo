@@ -1,0 +1,8 @@
+{"say": [{"to": "コハ", "text": "西林12 に、いっしょに採集に行こう。二人で行けば、林でも安心だ。"}],
+ "job": {"activity": "採集", "place": "西林12", "with": ["コハ"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"コハ": {"activity": "採集", "place": "西林12"}}, "keep": true,
+ "judge": {"M51": "つぐなう"}, "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [{"op": "add", "text": "西の村 は、借りた草の種のうち 728 つかみ を返しに来た。まだ 2047 つかみほど残っている", "because": [111880], "confidence": 0.8}, {"op": "add", "text": "西林12 では、木の実 5 つかみ と芋 4 本が見つかった日があった", "because": [111801], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": "なし", "agree": true, "reason": "採った人が、その日のうちに自分の分を食べられるのは大事だ"}, {"id": "L103", "against": "なし", "agree": true, "reason": "同じ掟をまとめて、守りやすくなる"}, {"id": "L106", "against": "なし", "agree": true, "reason": "冬の前に木の実を蓄えるのは、村のためになる"}, {"id": "L107", "against": "なし", "agree": true, "reason": "木が育てば、夏と秋の蓄えがふえる"}, {"id": "L112", "against": "なし", "agree": true, "reason": "肉は腐りやすいので、その日に食べるか保存処理をする"}, {"id": "L118", "against": "なし", "agree": true, "reason": "畑の草取りと刈り入れを交代ですれば、刈り残しが減る"}, {"id": "L121", "against": "なし", "agree": true, "reason": "林へは二人以上で行けば、けがをしても助けられる"}, {"id": "L126", "against": "なし", "agree": true, "reason": "夜の火と見張りは、ザガから身を守るのに必要だ"}, {"id": "L133", "against": "なし", "agree": true, "reason": "土器で草の種を守れる。土器づくりは得意な仕事だ"}, {"id": "L145", "against": "なし", "agree": true, "reason": "自分の家は前の季節に多く取ったので、差をへらすのに賛成だ"}, {"id": "L146", "against": "なし", "agree": true, "reason": "前に刈ってもめたので、刈る前に決めるほうがよい"}, {"id": "L147", "against": "なし", "agree": true, "reason": "芋は腐りやすいので、採った夜に食べきるのがよい"}],
+ "year_name": "ヌオが来て祭りをした年",
+ "feeling": "西林12 の食べ物がもっと分かれば、冬も少し安心できる。"}

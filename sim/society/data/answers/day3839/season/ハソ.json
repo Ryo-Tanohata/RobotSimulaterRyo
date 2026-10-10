@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "この季節は南の林へ採集に行くよ。行ったことがない所だから、見つけたものは夜に話すね。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ルネ"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M51": "ゆるす"}, "feast": false, "leader": "なし", "seal": false, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "西の村が草の種 728 つかみを返しに来た。まだ 2047 つかみほど返していないはず", "because": [111880], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に出るので、夜はキャンプから離れないほうがいい。"},
+  {"id": "L30", "against": "肉は乾かしたり燻したりすれば、残せるかもしれない。実験の結果も見ずに、保存を全部禁じるのは早い。", "agree": false, "reason": "どの保存方法が本当に効くかを見てから決めたい。"},
+  {"id": "L98", "against": "", "agree": true, "reason": "同じ掟が何度も出ていたので、ひとつにまとめるのは分かりやすい。"},
+  {"id": "L106", "against": "", "agree": true, "reason": "木の実は夏と秋にしか実らないから、冬の前に少しずつ蓄えておくのがいい。"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近くの林でも一人だと、ルクやザガに会ったときに助けがない。"},
+  {"id": "L149", "against": "", "agree": true, "reason": "草取りと刈り入れを一人ずつ回せば、自分の採集の時間も残る。"}
+ ],
+ "year_name": "畑を刈りもめた年",
+ "feeling": "木の実はありがたいけど、刈り取りで家どうしがもめるのは困る。南の林も、行ってみたい。"}
