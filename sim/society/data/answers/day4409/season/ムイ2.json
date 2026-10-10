@@ -1,0 +1,17 @@
+{"say": [{"to": "ユノ2", "text": "春のうちに、まだ見ていない西草原12へ行ってみたい。ユノ2、いっしょに行かないか。草や実のようすは夜に話すよ。"}],
+ "job": {"activity": "探索", "place": "西草原12", "with": ["ユノ2"]},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "seal": false, "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "草が足りないと、飼っているヤギがやせていなくなる。前の季節には 156 頭がいなくなった", "because": [159453], "confidence": 0.9},
+  {"op": "add", "text": "土器に入れた草の種は、虫やネズミに食べられずに残る。土器に入れていない種は食べられる", "because": [159455], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "夜に用があるとき、キャンプの外に出られない", "agree": true, "reason": "ザガが出るので、夜は離れないほうがいい"},
+  {"id": "L165", "against": "一人で探したいときも、二人を探す手間がかかる", "agree": true, "reason": "ザガに襲われたとき、二人いれば助けられる"},
+  {"id": "L140", "against": "刈り入れで体が疲れる", "agree": true, "reason": "夏のうちに刈り切らないと、実りが落ちてしまう"},
+  {"id": "L167", "against": "毎晩の世話で、探索や道具づくりに出る人が減る", "agree": true, "reason": "世話がないとヤギがいなくなるから"},
+  {"id": "L168", "against": "冬は手が足りなくなり、ほかの仕事が減る", "agree": true, "reason": "土器に入らない草の種は季節ごとに失われるから"}
+ ],
+ "feeling": "西草原12を見られると思うと、気持ちがはずむ。"}
