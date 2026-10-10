@@ -1,0 +1,41 @@
+{
+ "say": [
+  {"to": "オト", "text": "オト、北林12へ一緒に行こう。二人で動いて、夕方までに戻る時刻を決めよう。見つけた量と蓄えに入れた量は、夜に別々に言うね。"},
+  {"to": "みんな", "text": "春のうちに木の実を 5 つかみずつキャンプのそばに埋めよう。夏と秋に実る木が増えれば、蓄えも増えるよ。"}
+ ],
+ "job": {"activity": "採集", "place": "北林12", "with": ["オト"]},
+ "pick": 0,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "accept": {"ロワ": true},
+ "family": {"オト": {"activity": "採集", "place": "北林12"}},
+ "keep": true,
+ "feast": true,
+ "leader": "なし",
+ "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "前の季節に、飼っているヤギに子ヤギが 41 頭生まれた", "because": [101938], "confidence": 0.9},
+  {"op": "add", "text": "前の季節に、ノアとセヤが病で亡くなった", "because": [101941, 101943], "confidence": 0.9},
+  {"op": "add", "text": "北の村から来たと言うロワ (男、16 歳) が、ここで暮らしたいと言って来た", "because": [101944, 101947], "confidence": 0.7}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "", "agree": true, "reason": "採集で蓄えに入れた人が、その日のうちに自分の分を食べられる。採集の力が落ちない。"},
+  {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めておけば、夕方に戻らない人をすぐ探せる。"},
+  {"id": "L112", "against": "", "agree": true, "reason": "肉の保存の決まりを一つにまとめれば、分かりやすく守れる。"},
+  {"id": "L114", "against": "", "agree": true, "reason": "ヤギの世話をする人が毎晩決まっていれば、ヤギがいなくならない。"},
+  {"id": "L118", "against": "", "agree": true, "reason": "草取りと刈り入れを毎日一人ずつ担当すれば、畑の実りが減らない。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "ザガがいつ出るか分からないので、採集や狩りは二人以上がよい。"},
+  {"id": "L122", "against": "", "agree": true, "reason": "夜の報告が一つにまとまれば、蓄えの流れが分かりやすい。"},
+  {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りがあれば、ザガからキャンプを守れる。"},
+  {"id": "L133", "against": "", "agree": true, "reason": "土器で草の種を虫やネズミから守れる。決まりも一つにまとまって分かりやすい。"},
+  {"id": "L137", "against": "", "agree": true, "reason": "小さい子がいる家族から先に入れば、子どもが外で濡れずに済む。"},
+  {"id": "L139", "against": "", "agree": true, "reason": "病の人を一人にしないことは、村の大事な助け合いだ。"},
+  {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り残しを減らせるので、刈る量の決まりは役に立つ。"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近くでも林でも二人以上なら、けがをしても助けられる。"},
+  {"id": "L147", "against": "", "agree": true, "reason": "芋は腐りやすいので、採った日の夜に食べきるのがよい。"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の担当と報告が一つにまとまり、毎夕の刈り入れが確実になる。"}
+ ],
+ "feeling": "北林12で木の実と芋が見つかるといいな。オトと一緒に行けるのは心強い。"
+}
