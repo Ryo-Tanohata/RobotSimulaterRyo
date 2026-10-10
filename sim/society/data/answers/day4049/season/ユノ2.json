@@ -1,0 +1,12 @@
+{"say": [{"to": "ハユ2", "text": "春は木の実がならない。北川12へ行って、魚と芋をさがそう。二人で行けば、ザガが来ても安心だ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ハユ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": "なし", "trade": {"T7": false}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "北の村は、畑が実らず苦しい年に、草の種を貸してほしいと言ってきた", "because": [128607], "confidence": 0.8},
+  {"op": "add", "text": "印で封をした倉や村の蓄えは、割らずには開けられず、開けられると封が割れて分かる", "because": [128608], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L30", "against": "肉を全部その日に食べるだけでは、冬のための蓄えができない", "agree": false, "reason": "乾かす・燻す保存の掟があるので、この決まりは要らない"},
+  {"id": "L98", "against": "なし", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられる。空腹では次の採集ができない"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "ザガが林や川にも出るから、採集と狩りは二人以上で行く方がよい"},
+  {"id": "L117", "against": "なし", "agree": true, "reason": "木を増やせば夏と秋の木の実が増える。一人 5 つかみなら少ない量で済む"},
+  {"id": "L106", "against": "なし", "agree": true, "reason": "冬の前に木の実を蓄えへ入れておかないと、冬を越せない"}],
+ "feeling": "今は腹がいっぱいだが、手元に食べ物がないのは落ち着かない。"}
