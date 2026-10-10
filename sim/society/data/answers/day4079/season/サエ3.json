@@ -1,0 +1,27 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切るため、わたしは今季、石の鎌を作る。鋭い石はたくさんあるから、鎌が足りない所があれば言ってね。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []},
+ "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M61": "ゆるす"},
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "北の草原 (キャンプから約 700 m) には芋が多い", "because": [130157], "confidence": 0.9},
+  {"op": "add", "text": "北の草原には、割ると鋭くなる石がある", "because": [130202], "confidence": 0.9},
+  {"op": "add", "text": "冬の北の林では何も見つからなかったと、ネム3 が言っていた (話だけで、確かではない)", "because": [128665], "confidence": 0.5}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "特になし", "agree": true, "reason": "夜にザガが出るので、キャンプの外に出ないのが安全だから"},
+  {"id": "L1", "against": "特になし", "agree": true, "reason": "同じ場所を重ねて探さないために役立つから"},
+  {"id": "L18", "against": "特になし", "agree": true, "reason": "空腹の人を見のがさないため"},
+  {"id": "L98", "against": "特になし", "agree": true, "reason": "同じ掟が重なっていて、一つにまとめる方が分かりやすいから"},
+  {"id": "L102", "against": "特になし", "agree": true, "reason": "夏のうちに刈り切らないと、畑の実りが落ちるから"},
+  {"id": "L106", "against": "特になし", "agree": true, "reason": "冬の前に木の実を蓄えるため"},
+  {"id": "L137", "against": "特になし", "agree": true, "reason": "子どもは外で濡れると弱るから"},
+  {"id": "L140", "against": "特になし", "agree": true, "reason": "夏の残りに畑を刈り切るため"},
+  {"id": "L143", "against": "特になし", "agree": true, "reason": "林は一人だと危ないから"},
+  {"id": "L156", "against": "特になし", "agree": true, "reason": "ヤギの世話が途切れないように"},
+  {"id": "L158", "against": "特になし", "agree": true, "reason": "覚えだけでは量がはっきりしないから"},
+  {"id": "L159", "against": "特になし", "agree": true, "reason": "魚も肉と同じく腐りやすいから"}
+ ],
+ "year_name": "ユエとホミが加わった年",
+ "feeling": "夏のうちに畑が落ちないか少し気になる。鎌をたくさん作って役に立ちたい。"}
