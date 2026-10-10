@@ -491,8 +491,8 @@ With snapshots at D−30 (P) and D (C): `new = range(P.next_goat, C.next_goat)`;
 - 捕まえた: new ids whose `born != D` (kids are born with `born == D`), credited to the catcher's household (= recorded `owner`); count must equal 「…子ヤギ (…) を捕まえて」 events.
 - 生まれた: new ids with `born == D`, credited to `owner` (the mother's owner); sum equals 「子ヤギが n 頭生まれた」.
 - つぶした: ids in P gone, ≤ the 「ヤギを食べる」 count at the meeting (era2 eats oldest males first) — classify the first n of the gone ids that match that order.
-- 村を出て持っていった: gone ids whose owner is the fission household (`g5.fissions`).
-- いなくなった: remaining gone ids; total must equal 「ヤギ n 頭がいなくなった」.
+- 村を出て持っていった: gone ids whose owner is the fission household (`g5.fissions`), except ids in a 「ヤギ」 event's `data.goat_ids` (the grass loss runs earlier in the same season end).
+- いなくなった: remaining gone ids; total must equal 「ヤギ n 頭がいなくなった」 + 「ヤギ n 頭がやせていなくなった」. Ids in `data.goat_ids` → いなくなった (草が足りない) (2026-10-10 から); the rest → いなくなった (世話が足りない).
 - Owner changes P → C: to None with an empty-house 受けつぎ → 「持ち主がいなくなり村のものになった」 (out of H, into 村); a → b with a 収める/裁き 「… ヤギ n 頭 を払った」 → 罰・つぐない; anything else → 記録にない差 (should never occur).
 
 Without snapshots goat holders cannot be reconstructed (owner of a lost goat is not in the event) → rows null.

@@ -665,7 +665,8 @@ class Builder:
         eaten = [g["id"] for g in cand[:n_eat] if g["id"] in gone]
         fis = g5.get("fission")
         out6 = [i for i in gone if i in g6["out"] and i not in eaten]  # G6: ほかの村へ出したヤギ
-        left = [i for i in gone if i not in eaten and i not in out6 and fis and owner0.get(i) == fis]
+        grass = set(goat_ev.get("grass") or [])  # 草が足りずにいなくなったヤギは、村が分かれるより前 (季節の終わり) に減るので、出ていった家のヤギでも「いなくなった」
+        left = [i for i in gone if i not in eaten and i not in out6 and i not in grass and fis and owner0.get(i) == fis]
         lost = [i for i in gone if i not in eaten and i not in left and i not in out6]
         for i in out6:
             f(owner0[i], OUT_G6, -1, [i])
@@ -673,7 +674,6 @@ class Builder:
             f(owner0[i], "つぶした", -1, [i])
         for i in left:
             f(owner0[i], "村を出て持っていった", -1, [i])
-        grass = set(goat_ev.get("grass") or [])
         for i in lost:
             f(owner0[i], "いなくなった (草が足りない)" if i in grass else "いなくなった (世話が足りない)", -1, [i])
         empty = {x["household"] for x in inherit if x["to_village"]}

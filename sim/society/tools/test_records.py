@@ -477,11 +477,22 @@ class I_Pasture(unittest.TestCase):
             runs.append(e["data"]["goat_ids"])
         self.assertEqual(runs[0], runs[1])  # 同じ乱数なら同じヤギ
 
+    def test_ledger_grass_before_fission(self):
+        """帳簿: 草が足りずにいなくなったヤギ (goat_ids) は、同じ季節に村を出た家のヤギでも「いなくなった (草が足りない)」"""
+        g = lambda i, h: {"id": i, "sex": "メス", "born": 0, "owner": h}
+        P = {"goats": [g(0, "ルオの家"), g(1, "ルオの家"), g(2, None)], "village": {"next_goat": 3}}
+        C = {"goats": [g(2, None)], "village": {"next_goat": 3}}
+        ev = {"kids": 0, "lost": 1, "eaten": 0, "caught": 0, "grass": [0]}
+        res = build_records.Builder.goats(None, 100, P, C, [], ev, [], {"fission": "ルオの家", "payments": []}, {})
+        self.assertEqual(res["flows"], {("ルオの家", "いなくなった (草が足りない)"): [-1, [0]], ("ルオの家", "村を出て持っていった"): [-1, [1]]})
+        self.assertEqual(res["check"]["lost"], (1, 1))
+
     def spring(self, owners):
         """春のはじめの季節の終わり (子ヤギが生まれる) にした state"""
         st = self.state(owners)
         st["day"] = next(d for d in range(st["day"], st["day"] + era2.YEAR) if era2.season(d + 1) == "春" and era2.season(d) != "春")
         st["era2"]["kid_year"] = None
+        self.n0 = st["next_event"]  # この試しで足された出来事だけを見る (本物の state にも、もう草の出来事がある)
         return st
 
     def season_end(self, st, cap=None):
@@ -499,7 +510,7 @@ class I_Pasture(unittest.TestCase):
         a = self.season_end(self.spring([(None, 120), ("ルオの家", 20)]))
         b = self.season_end(self.spring([(None, 120), ("ルオの家", 20)]), cap=10 ** 9)
         self.assertEqual(json.dumps(a, ensure_ascii=False, sort_keys=True), json.dumps(b, ensure_ascii=False, sort_keys=True))
-        self.assertFalse([e for e in a["events"] if "草が足りず" in e["text"]])
+        self.assertFalse([e for e in a["events"] if e["id"] >= self.n0 and "草が足りず" in e["text"]])
 
     def test_over_cap_fewer_kids(self):
         """K 頭より多いと、多すぎる分の 3 分の 1 がいなくなり、子を産む母ヤギが K/N に減る。同じ state なら同じ結果"""
@@ -507,7 +518,7 @@ class I_Pasture(unittest.TestCase):
         runs = [self.season_end(self.spring([(None, 300), ("ルオの家", 100)])) for _ in range(2)]
         self.assertEqual(json.dumps(runs[0], ensure_ascii=False, sort_keys=True), json.dumps(runs[1], ensure_ascii=False, sort_keys=True))
         st = runs[0]
-        ev = [e for e in st["events"] if "草が足りず" in e["text"]]
+        ev = [e for e in st["events"] if e["id"] >= self.n0 and "草が足りず" in e["text"]]
         self.assertEqual(len(ev), 2, [e["text"] for e in ev])
         self.assertIn("ヤギ 87 頭がやせていなくなった", ev[0]["text"])  # (400 − 140) / 3
         kids = int(re.search(r"子ヤギが (\d+) 頭生まれた", ev[1]["text"]).group(1))
