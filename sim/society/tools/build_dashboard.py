@@ -1021,7 +1021,7 @@ FORBIDDEN_KEYS = {"population", "adults", "children", "by_age_class", "by_sex", 
                   "sickles", "died_day", "born_day", "came_day", "age", "age_at_death", "death_cause", "mother_id",
                   "household_id", "person_id", "laws", "disputes", "feeling", "feelings", "said", "shown", "leader_id",
                   "injuries", "votes", "who", "members"}
-ALLOW_TERMS = ["テル・セケル・アル・アヘイマル"]  # 本物の地名 (人の名前と字がかさなる)
+ALLOW_TERMS = ["テル・セケル・アル・アヘイマル", "ケセム洞窟"]  # 本物の地名 (人の名前と字がかさなる。ケセム洞窟は 31年の子「ケセ」とかさなる)
 
 
 def _walk(o, path, fn):
