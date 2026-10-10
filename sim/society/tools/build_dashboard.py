@@ -1053,7 +1053,10 @@ def checks(out, st, rec, prev=None):
         t = s
         for a in ALLOW_TERMS:
             t = t.replace(a, "")
-        for n in names:
+        # 技術の表の「現実の年代・遺跡」の欄は、こちらで決めた変わらない文 (村の人の名前は入らない)。遺跡の名前に子の名前がかさなる
+        # (ケセム洞窟とケセ、ゲシャー・ベノット・ヤアコブとアコ) ので、名前の確かめはしない (2026-10-10)
+        static = len(path) >= 3 and path[0] == "tech" and path[-1] in ("real", "real_place", "also")
+        for n in ([] if static else names):
             if n in t:
                 errs.append("名前がもれている: %s (%s)" % (n, "/".join(map(str, path))))
                 break
