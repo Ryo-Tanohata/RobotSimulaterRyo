@@ -1,0 +1,25 @@
+{"say": [{"to": "みんな", "text": "今季は土器を焼きます。草の種を虫やネズミから守るため、焼けた数と割れた数は夜に言います。木の実は一人 40 つかみまで取って、冬の分を蓄えに入れましょう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": ["ユエ"]},
+ "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ3": true},
+ "family": {"ユエ": {"activity": "土器づくり", "place": "camp"}},
+ "keep": false,
+ "judge": {"M81": "ゆるす", "M82": "ゆるす"},
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T22": "村"},
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "ルタ2 (28 歳) が病で亡くなった", "because": [186292], "confidence": 0.9},
+  {"op": "add", "text": "よその群れのリセ3・タユ3・ヒセ3 は北の村から来て、ここで暮らしたいと言っている", "because": [186299], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L30", "against": "肉をまったく蓄えないと決めると、L112 の乾かす・燻すやり方が使えなくなるから", "agree": false, "reason": "肉は保存処理をして蓄えに入れたほうが、冬に残せるから"},
+  {"id": "L98", "against": "", "agree": true, "reason": "蓄えに入れた人が自分の分を取れないと、採集の力が落ちるから"},
+  {"id": "L166", "against": "", "agree": true, "reason": "土器づくりを春から毎日進めれば、草の種を守れるから"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギ 50 頭ごとに世話をする人を決めれば、ヤギが減りにくいから"},
+  {"id": "L169", "against": "", "agree": true, "reason": "草で養えない分を肉にすれば、ヤギの草の取り合いが減るから"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのにヤギを受けとると、子ヤギが減るから"}
+ ],
+ "feeling": "土器を焼くのは楽しい。ただ、草の種が虫やネズミに食われる話を聞くと落ち着かない。"}

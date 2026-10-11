@@ -1,0 +1,49 @@
+{
+ "say": [
+  {"to": "ケナ3", "text": "ケナ3さんの家は、59日分の働きでできたと聞きました。屋根と壁は、どの順番で組んだのですか。私とハソ3の家も同じように建てたいので、教えてほしいです。"},
+  {"to": "みんな", "text": "屋根のない家の人は、春まで待たずに今の季節から住まいを建てよう。雨の夜に小さいセヤ3を濡らしたくない。手の空いた人は、ハソ3と私を手伝ってください。"}
+ ],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": []},
+ "sow": 500,
+ "pick": 40,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "accept": {"リセ3": true},
+ "family": {"ハソ3": {"activity": "住まいを建てる", "place": "camp"}},
+ "keep": false,
+ "judge": {"M81": "つぐなう", "M82": "つぐなう"},
+ "feast": true,
+ "leader": "なし",
+ "trade": {"T22": false},
+ "seal": true,
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "わたしの子は セヤ3 (男)。生まれたばかり", "because": [186291], "confidence": 1.0},
+  {"op": "add", "text": "ルタ2 が病で亡くなった", "because": [186292], "confidence": 1.0},
+  {"op": "add", "text": "世話をする人が少ないと、飼っているヤギがいなくなる", "because": [186288], "confidence": 0.9},
+  {"op": "add", "text": "刈らずに残った草の種は、季節の終わりに落ちて失われる", "because": [186269], "confidence": 0.9},
+  {"op": "add", "text": "北の村は、畑が実らず苦しいと言い、草の種を借りに来た", "because": [186300], "confidence": 0.7}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L30", "against": "狩った肉を全部その日に食べきるのは、狩りの少ない冬に備えられなくなる", "agree": false, "reason": "L112 で保存処理をした肉は蓄えてよいと決まっているので、『蓄えに置いてはいけない』には反対する"},
+  {"id": "L98", "against": "", "agree": true, "reason": "蓄えに入れた人が、その日のうちに自分の分を食べられる"},
+  {"id": "L112", "against": "", "agree": true, "reason": "肉を腐らせず、保存処理をしたものだけを蓄えにする"},
+  {"id": "L121", "against": "", "agree": true, "reason": "二人以上なら助け合える。わたしは勇気が少ないので特に賛成"},
+  {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りは、キャンプを守るのに必要"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると疲れがとれない"},
+  {"id": "L137", "against": "", "agree": true, "reason": "0〜4歳の子がいる家族を先に住まいに入れる。わたしの子 セヤ3 も含まれる"},
+  {"id": "L145", "against": "", "agree": true, "reason": "取った量と入れた量の差を、次の夏に小さくするため"},
+  {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えるとすぐ腐るので、採った夜に食べきる"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で分ければ、夏の実りが減らない"},
+  {"id": "L157", "against": "", "agree": true, "reason": "住まいがない家は、家ごとに建てる人を決めて手伝い合う"},
+  {"id": "L163", "against": "", "agree": true, "reason": "ヤギの数が分かれば、世話が足りているかすぐ分かる"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギ 50 頭ごとに一人の世話をすれば、いなくなるヤギを減らせる"},
+  {"id": "L169", "against": "", "agree": true, "reason": "草で養えない分のヤギは、肉にして蓄えれば無駄がない"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、よそからヤギを受けとるのは避けたい"},
+  {"id": "L172", "against": "", "agree": true, "reason": "封を割った人が名乗れば、もめごとが減る"},
+  {"id": "L174", "against": "", "agree": true, "reason": "前に貸した草の種が返されていないので、新しく貸すのは止める"}
+ ],
+ "feeling": "雨の夜にセヤ3が濡れないか心配。家を早く建てて、みんなの役に立ちたい。"
+}
