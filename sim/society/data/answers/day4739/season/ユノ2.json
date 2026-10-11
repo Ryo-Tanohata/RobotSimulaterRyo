@@ -1,0 +1,22 @@
+{"say": [{"to": "ヨナ2", "text": "北の川へ魚と芋を探しに行こう。二人で行って、夜に見つけた量を言おう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ヨナ2"]},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": "なし", "trade": {"T23": false, "T24": false}, "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "秋に、東の林 (キャンプから約300 m) で木の実を 44 つかみ取れた。", "because": [189441], "confidence": 0.9},
+  {"op": "add", "text": "前の季節、草が足りずヤギ 12 頭がやせていなくなった。草で養えるヤギは約 140 頭。", "because": [189521], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜のザガは危ない。キャンプの中にいれば、けがを避けられる。"},
+  {"id": "L98", "against": "", "agree": true, "reason": "自分の分は自分で取って食べるのが筋。"},
+  {"id": "L113", "against": "", "agree": true, "reason": "冬に魚と芋が取れる所が分かれば、食べ物が増える。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "一人で林に行って、ザガに襲われるのは損だ。"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の中で外にいると疲れが取れない。入れる人から入るのはいい。"},
+  {"id": "L149", "against": "毎日一人ずつ交代で担当すると、採集に出る時間が減る。自分の仕事を取られる。", "agree": false, "reason": "採集を優先したい。交代は自分の番だけにしてほしい。"},
+  {"id": "L150", "against": "北の丘は前の冬に行ったが、何も見つからなかった。最初に試す場所ではない。", "agree": false, "reason": "北川12の方が見込みがある。"},
+  {"id": "L167", "against": "わたしの家にはヤギがいない。世話の番だけ取られて、得がない。", "agree": false, "reason": "採集の時間を取られたくない。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに受けとると、ヤギが増えて子ヤギが減る。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "今は草が足りない。野生のヤギを増やす必要はない。"}
+ ],
+ "feeling": "冬は食べ物が少ないが、蓄えがあるので落ち着いている。"}
