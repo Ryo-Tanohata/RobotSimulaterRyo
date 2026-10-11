@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "畑の草の種は、夏のうちに刈り切らないと落ちてしまう。わたしは毎夕、畑で 60 つかみ刈るね。手のあいた人も、刈った量と残りを夜に言ってほしい。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ルネ2"]}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ルネ2": {"activity": "採集", "place": "東林12"}}, "keep": true,
+ "judge": {"M76": "ゆるす"}, "feast": true, "leader": "なし", "trade": {"T19": false}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "南の村はヤギ 1 頭を出して、土器・鎌・草の種を欲しがっている。ヤギを受けとると、草がさらに足りなくなる", "because": [171423], "confidence": 0.7}, {"op": "add", "text": "印のない封が毎日割られている。封を割った人が名乗り出ないと、誰が取ったのか分からない", "because": [171424], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L30", "against": "肉をすべてその日に食べると決めると、干し肉を蓄えに入れられなくなる。L112 で決めた干す・燻す方法とも合わない", "agree": false, "reason": "冬の備えが減るので反対"}, {"id": "L98", "against": "", "agree": true, "reason": "同じ掟が何度もあったので一つにまとめたのは良い。自分の分は自分で食べる"}, {"id": "L106", "against": "", "agree": true, "reason": "木の実は冬に実らないので、夏と秋のうちに蓄えへ入れておきたい"}, {"id": "L112", "against": "", "agree": true, "reason": "肉の保存のやり方が一つにまとまり、迷わなくなる"}, {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに畑を刈り切らないと、去年のように草の種が落ちてしまう"}, {"id": "L143", "against": "", "agree": true, "reason": "林でのけがやザガから身を守るため、二人以上で行く"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ヤギを増やすと困るから"}],
+ "year_name": "ネイ2が来て、畑が実った年",
+ "feeling": "畑の刈り残しが心配だけれど、やることが決まって少し落ち着いた。"}
