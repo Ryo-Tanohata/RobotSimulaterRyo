@@ -1,0 +1,33 @@
+{"say": [],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []},
+ "pick": 0,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "family": {"ユエ": {"activity": "畑仕事", "place": "camp"}},
+ "keep": false,
+ "feast": true,
+ "leader": "なし",
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "前の季節、世話をする人が少なく、飼っていたヤギ 37 頭がいなくなった。ヤギは世話がないと減る", "because": [169627], "confidence": 0.9},
+  {"op": "add", "text": "前の季節、草が足りず、ヤギ 11 頭がやせていなくなった。草で養えるヤギは約 140 頭", "because": [169628], "confidence": 0.9},
+  {"op": "add", "text": "前の季節、草が足りず子ヤギはあまり生まれなかった。草が足りない年は、子ヤギが減る", "because": [169629], "confidence": 0.8},
+  {"op": "add", "text": "ヤエに子が生まれ、ソワ2 (男) と名付けられた", "because": [169630], "confidence": 0.9},
+  {"op": "add", "text": "ルタに子が生まれ、ユエ2 (女) と名付けられた", "because": [169631], "confidence": 0.9},
+  {"op": "add", "text": "前の季節、私はキャンプで土器を 7 個焼いた", "because": [169532, 169578, 169625], "confidence": 0.9},
+  {"op": "add", "text": "木の実 5 つかみを埋めた所から、木が 140 本育った。木の実を埋めると、木が育つ", "because": [168126], "confidence": 0.8},
+  {"op": "add", "text": "村の蓄えの土器は、取るたびに封を割り、取った人の家の印で封をし直す決まりになった。割れた封のかけらで、どの家が開けたか分かる", "because": [168038], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L30", "against": "肉は太陽で干すか火で燻して保存できる。全部その日に食べる決まりは、保存の実験と合わない", "agree": false, "reason": "保存処理をした肉は蓄えに入れられるので、この決まりは要らない"},
+  {"id": "L172", "against": "", "agree": true, "reason": "封を割った人が名乗り出れば、取り過ぎや開けた人が分かりやすくなる"},
+  {"id": "L117", "against": "", "agree": true, "reason": "春に木の実を埋めておけば、夏と秋に実る木が増える"},
+  {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行くと安全で、ザガにも襲われにくい"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りを毎日一人ずつ交代で行うと、夏の実りが減らない"},
+  {"id": "L168", "against": "", "agree": true, "reason": "土器に入らない草の種は虫やネズミに食べられるので、土器づくりを早く始めたい"},
+  {"id": "L169", "against": "", "agree": true, "reason": "草で養えない分のヤギは減らさないと、草の取り合いで子ヤギが減る"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとらない方がよい"}
+ ],
+ "feeling": "畑の草取りは地味だけど、夏の実りのために毎日やりたい。"}

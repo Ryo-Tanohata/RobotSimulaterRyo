@@ -1,0 +1,7 @@
+{"say": [{"to": "ネム2", "text": "春は西草原12へ行こう。まだ行ったことがない所だから、組んで見て回ろう。"}, {"to": "みんな", "text": "わたしは西草原12で採集する。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ネム2"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ネム2": {"activity": "採集", "place": "西草原12"}, "ラタ2": {"activity": "採集", "place": "西草原12"}}, "keep": true,
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節の冬、南の林 (キャンプから約 400 m) で 30 日採集したが、何も見つからなかった。冬の南の林は当てにならない。", "because": [169595], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出る。キャンプから離れないのは、わたしも守りたい。"}, {"id": "L38", "against": "", "agree": true, "reason": "夜にザガが来て、シノが殺された。火と見張りは必要だ。"}, {"id": "L98", "against": "", "agree": true, "reason": "採集で蓄えに入れたのに食べられないのは困る。その日のうちに自分の分を取りたい。"}, {"id": "L143", "against": "", "agree": true, "reason": "採集は二人以上なら安心。ザガもいるから、ひとりでは行かない。"}, {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりしない。粘土の板に残せば、もめごとが減る。"}, {"id": "L169", "against": "", "agree": true, "reason": "ヤギが草で養える数より多い。余った分を肉にして干せば、蓄えも増える。"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとれば、草の取り合いになる。"}, {"id": "L172", "against": "", "agree": true, "reason": "封を割った人が名乗り出れば分かりやすい。わたしの家の倉も何度も割られている。"}],
+ "feeling": "前の冬は何も見つからなかったから、西草原12は見てみたい。"}
