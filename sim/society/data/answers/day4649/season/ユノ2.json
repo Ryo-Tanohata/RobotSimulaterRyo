@@ -1,0 +1,24 @@
+{"say": [{"to": "みんな", "text": "春のあいだ、わたしは土器を焼く。焼けた数と割れた数は、夜に言うよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": []}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ケナ3": true}, "keep": true,
+ "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "前の季節、わたしはキャンプで土器を 7 個焼いた", "because": [180195, 180243, 180289], "confidence": 0.9},
+  {"op": "add", "text": "前の季節、クラ2 (14 歳) と ホミ2 (0 歳) が亡くなった", "because": [180298, 180299], "confidence": 0.9},
+  {"op": "add", "text": "ラタ3 に女の子が生まれ、名前は ソナ3 になった", "because": [180297], "confidence": 0.9},
+  {"op": "add", "text": "北の村から ケナ3 と トナ3 が来て、ここで暮らしたいと言っている", "because": [180302], "confidence": 0.9},
+  {"op": "add", "text": "前の季節に埋めた木の実から、キャンプのそばに木が 170 本育った", "because": [178760], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "", "agree": true, "reason": "採ったのに自分の分が食べられないと、次の採集の力が出ない。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "ザガは昼の林にも出る。一人では助けを呼べない。"},
+  {"id": "L126", "against": "", "agree": true, "reason": "夜の火は、ザガを近づけないのに要る。"},
+  {"id": "L137", "against": "", "agree": true, "reason": "子は外で濡れると、疲れがとれずに弱る。"},
+  {"id": "L139", "against": "", "agree": true, "reason": "病の人を一人にしないのは当たり前だ。"},
+  {"id": "L158", "against": "毎晩粘土の板に刻むのは手間が大きく、覚えで足りる。", "agree": false, "reason": "手間に見合わない。"},
+  {"id": "L161", "against": "", "agree": true, "reason": "手の空いた大人が毎夕刈れば、刈り残しは減る。"},
+  {"id": "L167", "against": "", "agree": true, "reason": "世話をする人がいないヤギは減る。数に合わせて決めるのはよい。"},
+  {"id": "L169", "against": "", "agree": true, "reason": "草で養えない分を減らさないと、春の子ヤギも減ってしまう。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "今は草が足りない。ほかの村のヤギは受けとらない方がいい。"}
+ ],
+ "feeling": "土器を焼く春だ。二人増えるのも、まあいい。"}

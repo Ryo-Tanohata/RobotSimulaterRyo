@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "西草原12 は、まだ行ったことがない。コハとミラ2と行って、冬に食べられる物がないか見てくる。"}],
+ "job": {"activity": "探索", "place": "西草原12", "with": ["コハ", "ミラ2"]},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケナ3": true},
+ "family": {"コハ": {"activity": "探索", "place": "西草原12"}, "ミラ2": {"activity": "探索", "place": "西草原12"}},
+ "keep": true,
+ "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "北の川に、魚が泳いでいるのを見た人がいる。取れるかは、まだ分からない。", "because": [178682], "confidence": 0.5},
+  {"op": "add", "text": "この季節、封は家ごとに 29 回ずつ割られた。割れたかけらは取ってある。", "because": [180303], "confidence": 0.7}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りがなければ、ザガが来てけがをする。コハがけがをした夜を覚えている。"},
+  {"id": "L143", "against": "", "agree": true, "reason": "ザガは昼の林にも出る。一人で襲われるより、二人で行くほうがいい。"},
+  {"id": "L165", "against": "", "agree": true, "reason": "知らない場所を見るなら、なおさら二人で行くほうがいい。"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採った人がその日の食べ物を取れないのは困る。自分の分は自分で取る。"},
+  {"id": "L149", "against": "", "agree": true, "reason": "草取りを毎日だれかがしないと、夏の実りが減る。"},
+  {"id": "L117", "against": "", "agree": true, "reason": "木が育てば夏と秋に実がなる。埋めた量を夜に言えば十分だ。"},
+  {"id": "L122", "against": "夜に、見つけた量と入れた量と取った量を一度に言うのは、覚えがずれるうえに面倒だ。", "agree": false, "reason": "言うより、粘土に刻んで残すほうが確かだから。"},
+  {"id": "L151", "against": "", "agree": true, "reason": "前に自分が出した掟だ。割れた数と作った数が分かれば、土器づくりの様子が見える。"},
+  {"id": "L160", "against": "", "agree": true, "reason": "見つけた物と量を残せば、次に行く人が同じ場所を何度も試さずに済む。"},
+  {"id": "L169", "against": "", "agree": true, "reason": "草で養えないぶんのヤギは、いずれいなくなる。肉にして干しておくほうがいい。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "ヤギが増えると草の取り合いになる。よその村のヤギは受けとらないほうがいい。"}
+ ],
+ "feeling": "知らない草原を見に行くのが、少し楽しみだ。"}
