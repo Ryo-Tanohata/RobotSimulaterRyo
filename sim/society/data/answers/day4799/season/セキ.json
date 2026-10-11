@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "畑の草の種が、まだ12万つかみほど実ったまま残っている。夏の終わりまでに刈り切らないと、ぜんぶ落ちてしまう。手のあいた人は、毎夕、畑へ刈りに来てくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ホノ": {"activity": "畑仕事", "place": "camp"}, "ルネ": {"activity": "畑仕事", "place": "camp"}}, "keep": true,
+ "judge": {"M84": "ゆるす"}, "feast": true, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "キサの家が、ソナの家は村の蓄えに入れた量より多く取ったと言い出している。量は覚えによるもので、記録はない", "because": [192907], "confidence": 0.5}, {"op": "add", "text": "東の川では何も見つからなかったと、マロが言っている", "because": [191333], "confidence": 0.5}, {"op": "add", "text": "北の川にはまだ魚がいるはずだと、ソル2が言っている。まだ確かめられていない", "because": [191334], "confidence": 0.4}],
+ "proposal": null,
+ "votes": [{"id": "L140", "against": "", "agree": true, "reason": "畑に実りが残っていて、夏のうちに刈らないと落ちてしまう"}, {"id": "L161", "against": "", "agree": true, "reason": "刈り入れを手のあいた大人が毎夕続けるのは、今いちばん大事なことだ"}, {"id": "L167", "against": "", "agree": true, "reason": "世話をする人がいないとヤギはいなくなる。ヤギの数に合わせて人を決めるのは筋が通る"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとれば草の取り合いになる"}, {"id": "L297", "against": "", "agree": true, "reason": "草が足りないのに、野生のヤギまで増やす必要はない"}],
+ "year_name": "アルが殺された年",
+ "feeling": "畑の実りが落ちないか気がかりだ。夏のうちに、みんなで刈り切りたい。"}
