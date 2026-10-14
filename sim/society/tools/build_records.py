@@ -1200,6 +1200,16 @@ class Builder:
                     if plan:
                         jobs.append({"from_day": rd["start"] + 1, "activity": plan.get("activity"), "place": plan.get("place"),
                                      "with": [self.P(w) for w in plan.get("with") or []], "decided_by": decided})
+            why, why_by = None, None  # 仕事の理由 (段階 1。お題に why の欄があるときだけ答えにある)
+            if n in sea and isinstance(sea[n].get("job"), dict):
+                why, why_by = sea[n]["job"].get("why"), "自分"
+            elif decided in ("代表と同じ仕事", "代表が割り振った"):
+                rep = next((r for r in sea if r in reps and self.byname[r].get("household") == h and h), None)
+                if rep:
+                    fam = sea[rep].get("family") if isinstance(sea[rep].get("family"), dict) else {}
+                    src = fam.get(n) if decided == "代表が割り振った" else sea[rep].get("job")
+                    why, why_by = (src.get("why"), "代表") if isinstance(src, dict) else (None, None)
+            why = why.strip()[:120] if isinstance(why, str) and grounding.read_reason(why) else None
             ja = ((C or {}).get("season", {}).get("jobs") or {}).get(n) if C else None
             days = {}
             plan_act = jobs[-1]["activity"] if jobs else None
@@ -1226,6 +1236,7 @@ class Builder:
                 "answered": "season" if n in sea else "feeling" if n in fee else None,
                 "said": {"count": sd["count"], "to": sd["to"]} if sd else {"count": 0, "to": []},
                 "jobs": jobs, "decided_by": decided,
+                "why": why, "why_by": why_by if why else None, "why_read": grounding.read_reason(why),
                 "job_amounts": ({k: ja.get(k) for k in ("sow", "pick", "plant", "harvest", "eat_goat")} if ja else None),
                 "days_by_activity": {k: days[k] for k in sorted(days)},
                 "outputs": outputs,
@@ -1349,6 +1360,7 @@ class Builder:
             for r in ps:  # 接地度 (grounding.py。仕事ごとの日数から計算するだけ)
                 r["grounding"] = grounding.person(r["days_by_activity"])
             v["grounding"] = grounding.village(ps)
+            v["reasons"] = grounding.village_reasons(ps)
             self.village.append(v)
             self.house_rows += hs
             self.person_rows_all += ps
@@ -1459,6 +1471,8 @@ COLUMNS = [
     ("season_village", "year_named", "この季節をはじめた集まりで決まった年の名前", None, "村", "era2.year_names", True, 2039, "口で伝える年代記"),
     ("season_village", "criteria", "フェーズの条件 (今の値・目標・そろったか)", None, "シ", "控え (era_info) と条件の中身", True, 489, None),
     ("season_village", "snapshot", "季節の終わりの値が控えから取れたか", None, "-", "", True, 489, None),
+    ("season_village", "reasons", "仕事の理由 (仕事を決めた大人・理由を書いた人・習慣の言い方の人)", "人", "シ", "season_person の why_read", True, None,
+     "理由がだれにもなければ null (段階 1 の前)"),
     ("season_village", "grounding", "接地度 (大人の平均・いちばん低い・いちばん高い)", "0〜1", "シ", "season_person の grounding", True, 489,
      "大きいほど身体や現場に根ざしている (記述で、良い・悪いではない)。docs/humanity/design_note.md の D06・D10"),
     ("season_household", "season_end_day", "季節の終わりの日", "日", "-", "", True, 489, "1 行 = 1 季節 × 1 家"),
@@ -1511,6 +1525,11 @@ COLUMNS = [
     ("season_person", "laws", "掟の提案と投票", None, "シ", "state の laws と答え", True, 489, None),
     ("season_person", "knowledge_added", "新しく覚えたこと", "件", "シ", "knowledge_log", True, 489, None),
     ("season_person", "snapshot", "季節の終わりの値が控えから取れたか", None, "-", "", True, 489, None),
+    ("season_person", "why", "主な仕事を選んだ理由の一言", None, "シ", "季節の答えの job.why", True, None,
+     "段階 1 (docs/humanity の D09)。step.py resume のあとのお題から。代表が決めた人は代表の理由"),
+    ("season_person", "why_by", "理由を書いた人 (自分・代表)", None, "シ", "季節の答え", True, None, None),
+    ("season_person", "why_read", "理由の読み取り (書いてあるか・習慣の言い方か)", None, "シ", "grounding.read_reason", True, None,
+     "言葉の一覧で読むだけ【仮定】。理由・理念の判定は段階 2 の陪審団"),
     ("season_person", "grounding", "接地度 (意味・結果・身体・接地度・自律性・働いた日)", "0〜1", "シ", "days_by_activity と grounding.py の表", True, 489,
      "職務特性モデルの評定【評定】と O*NET の身体活動。働いた日で重みづけした平均。休んだ日は数えない。働いた日がなければ null"),
     ("ledger", "season_end_day", "季節の終わりの日", "日", "-", "", True, 489, "家 × 季節 × 物 × 理由"),

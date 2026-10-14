@@ -7,7 +7,8 @@
 
 - 人類史のテックツリーと人間性の設計 (`docs/humanity/`) の段階 0。`build_records.py` が人ごとの行と村の行に `grounding` (意味・結果・身体・接地度・自律性。0〜1) を足す。計算は `sim/society/grounding.py` (仕事ごとの日数から。職務特性モデルの評定と O*NET の実データ。乱数・お題・state は使わない)
 - 季節を進めると step.py が記録を作り直すので、何もしなくても次の季節から入る。すぐ見たいときは `python3.13 sim/society/tools/build_records.py` (本人の PC は `py -3`)
-- 段階 1 (お題に理由の一言) と段階 2 (陪審団) はまだ。どちらも本人が決めてから (`docs/humanity/README.md`)
+- 段階 1 (お題に理由の一言) を入れた (2026-10-14、本人の依頼)。**次にフェーズが進んで `step.py resume` したときから**、季節のお題の `job` に `why` (仕事の理由の一言) の欄が出る (state の `era2.ask_why` が立つ。一度立てたら下ろさない。止めるときは `SOC_ASK_WHY=0`)。それまでお題は 1 文字も変わらない (試しで確かめた)。理由は記録の `why`・`why_read`・村の行の `reasons` に入る
+- 段階 2 (陪審団) はまだ (`docs/humanity/README.md`)
 
 ## 古い記録を年ごとのファイルに分ける (2026-10-10 本人が決めた。消さない)
 

@@ -76,3 +76,26 @@ def village(person_rows):
     mean = {k: round(sum(v[k] for v in vals) / n, 3) for k in ("meaning", "feedback", "body", "value", "autonomy")}
     vs = [v["value"] for v in vals]
     return mean | {"people": n, "min": min(vs), "max": max(vs)}
+
+
+# ---- 段階 1: 仕事の理由 (docs/humanity の D09。2026-10-14) ----
+# 季節のお題の job.why を、Claude を使わずに機械的に読む。「理由があるか」と「習慣で選んだ言い方か」だけを見る。
+# 言葉の一覧は【仮定】。あいまいなものは段階 2 の陪審団が読む (理由・理念の判定はここではしない)
+HABIT_WORDS = ("いつも", "前と同じ", "同じように", "同じ仕事", "変わらず", "慣れ", "引き続き", "そのまま", "決まり", "言われた")
+
+
+def read_reason(text):
+    """仕事の理由の一言 → {"stated": 理由が書いてあるか, "habit": 習慣・言われたからの言い方か}。書いていなければ None"""
+    t = (text or "").strip() if isinstance(text, str) else ""
+    if not t or t in ("...", "…"):
+        return None
+    return {"stated": True, "habit": any(w in t for w in HABIT_WORDS)}
+
+
+def village_reasons(person_rows):
+    """季節の村: 仕事を決めた大人のうち、理由を書いた人と、習慣の言い方の人の数 (理由がだれにもなければ None)"""
+    rows = [r for r in person_rows if not r.get("child") and r.get("decided_by") in ("自分", "代表と同じ仕事", "代表が割り振った")]
+    read = [r["why_read"] for r in rows if r.get("why_read")]
+    if not read:
+        return None
+    return {"deciders": len(rows), "with_reason": len(read), "habit": sum(1 for x in read if x["habit"])}

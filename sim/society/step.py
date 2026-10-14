@@ -319,6 +319,12 @@ def main():
         return
     if a.cmd == "resume":
         state["hold"] = False
+        # 2026-10-14 (本人の依頼。docs/humanity の D09 の段階 1): フェーズが進んだあとの再開から、季節のお題で仕事の理由を一言たずねる。
+        #   一度立てたら下ろさない。止めるときは SOC_ASK_WHY=0
+        if state.get("era2") and not state["era2"].get("ask_why") and os.environ.get("SOC_ASK_WHY", "1") != "0":
+            state["era2"]["ask_why"] = True
+            state["era2"]["ask_why_day"] = state["day"]
+            print(f"次の季節のお題から、仕事の理由を一言たずねる ({state['day']} 日目から)")
         save(state)
         export(state)
         print("再開した")

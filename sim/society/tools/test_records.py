@@ -663,6 +663,46 @@ class J_Grounding(Base):
             self.assertEqual((v["grounding"]["min"], v["grounding"]["max"]), (min(gs), max(gs)))
 
 
+class K_Reasons(Base):
+    """K. 仕事の理由 (段階 1。docs/humanity の D09)"""
+
+    def test_read_reason(self):
+        import grounding
+        self.assertIsNone(grounding.read_reason(None))
+        self.assertIsNone(grounding.read_reason(" "))
+        self.assertIsNone(grounding.read_reason("..."))
+        self.assertEqual(grounding.read_reason("冬に備えて木の実を蓄えたい"), {"stated": True, "habit": False})
+        self.assertEqual(grounding.read_reason("いつもそうしているから"), {"stated": True, "habit": True})
+        rows = [{"child": False, "decided_by": "自分", "why_read": {"stated": True, "habit": False}},
+                {"child": False, "decided_by": "代表と同じ仕事", "why_read": {"stated": True, "habit": True}},
+                {"child": False, "decided_by": "自分", "why_read": None},
+                {"child": True, "decided_by": None, "why_read": None}]
+        self.assertEqual(grounding.village_reasons(rows), {"deciders": 3, "with_reason": 2, "habit": 1})
+        self.assertIsNone(grounding.village_reasons(rows[2:]))
+
+    def test_prompt_gated(self):
+        # ask_why が立つ前は、お題が前と同じ (1 文字も変わらない)。立つと理由の欄が出る
+        import copy
+        import era2
+        st = copy.deepcopy(self.state)
+        p = next(q for q in era2.adults(st))
+        st["era2"].pop("ask_why", None)
+        before = era2.season_prompt(st, p, st["era2"].get("last_first", 0))
+        st["era2"]["ask_why"] = False
+        self.assertEqual(era2.season_prompt(st, p, st["era2"].get("last_first", 0)), before)
+        self.assertNotIn('"why"', before)
+        st["era2"]["ask_why"] = True
+        after = era2.season_prompt(st, p, st["era2"].get("last_first", 0))
+        self.assertIn('"why": "..."', after)
+        self.assertIn("その仕事を選んだ理由を一言で書く", after)
+        self.assertEqual(after.replace("   その仕事を選んだ理由を一言で書く (why。前と同じ仕事なら、なぜ同じにしたのかを)\n", "").replace(', "why": "..."', ""), before)
+
+    def test_rows_before_stage1(self):
+        # 今の記録には理由がない (お題に欄がまだない)
+        self.assertTrue(all(r["why"] is None and r["why_read"] is None for r in self.P.values()))
+        self.assertTrue(all(v["reasons"] is None for v in self.V.values()))
+
+
 def tearDownModule():
     if hasattr(Base, "_d"):
         shutil.rmtree(Base._d, ignore_errors=True)

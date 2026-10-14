@@ -3302,6 +3302,11 @@ def season_prompt(state, p, first):
     rec6 = g6 and ACT_RECORD in acts2(state)  # 記録をつけるは、数え札が使えるようになってから書く (使えない道具のことは書かない。2026-10-09 試し回し)
     g6_act = (f"   交換に行く{'・記録をつける' if rec6 else ''}は camp と書く (行き先・持って行く物{'・残すもの' if rec6 else ''}は {n6}. に書く)\n"
               if g6 else "")
+    # 2026-10-14 (本人の依頼。docs/humanity の D09 の段階 1): 主な仕事を選んだ理由を一言書いてもらう。
+    #   step.py resume (フェーズが進んだあとの再開) で e2["ask_why"] が立ってから働く。立つ前は、お題は前と同じ
+    ask_why = bool(e2.get("ask_why"))
+    why_now = "   その仕事を選んだ理由を一言で書く (why。前と同じ仕事なら、なぜ同じにしたのかを)\n" if ask_why else ""
+    why_json = ', "why": "..."' if ask_why else ""
     ye = year_end(state)  # 年の終わりの集まり: 年の名前を決める (ほかの集まりでは、お題は前と同じ)
     yname_now = f"{7 + bool(g5_now) + bool(g6_now)}. この 1 年の名前を決める (year_name。上の「年の名前」を見て)\n" if ye else ""
     yname_json = ' "year_name": "...",\n' if ye else ""
@@ -3329,7 +3334,7 @@ def season_prompt(state, p, first):
 2. この季節の主な仕事を決める (job)。仕事は {' / '.join(acts2(state))} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
    畑仕事 (草取り・刈り入れ) は camp で行う
    ヤギの世話は camp で行う。ヤギを捕まえるは、野生のヤギのいる場所で行う
-{g6_act}3. {(pick.strip().rstrip('。') + '。取るのはこの季節の毎夕で、1 人 40 つかみまで') if pick.strip() else 'この季節 (' + sea + ') は、キャンプのそばの木から実は取れない (実がなるのは夏と秋)'}
+{why_now}{g6_act}3. {(pick.strip().rstrip('。') + '。取るのはこの季節の毎夕で、1 人 40 つかみまで') if pick.strip() else 'この季節 (' + sea + ') は、キャンプのそばの木から実は取れない (実がなるのは夏と秋)'}
 4. 持っている木の実 (なければ村の蓄えの木の実) を、この回の最初の日にキャンプのそばに埋める (plant、つかみ、5 まで) こともできる
    秋なら、季節のはじめに、蓄えの草の種をキャンプのそばの畑にまく量 (sow、つかみ、1000 まで) を書ける (主な仕事とは別にできる)
    実った畑があれば、毎夕いくつ刈るか (harvest、つかみ、60 まで) を書ける (主な仕事とは別にできる)
@@ -3343,7 +3348,7 @@ def season_prompt(state, p, first):
 
 ## 答えの形 (JSON)
 {{"say": [{{"to": "みんな", "text": "..."}}],
- "job": {{"activity": "採集", "place": "camp", "with": []}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}{keep}{g5_json}{g6_json}
+ "job": {{"activity": "採集", "place": "camp", "with": []{why_json}}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}{keep}{g5_json}{g6_json}
  "knowledge": [{{"op": "add", "text": "...", "because": [出来事の番号], "confidence": 0.6}}],
  "proposal": {{"text": "...", "because": [出来事の番号]{pen}}},
  "votes": [{{"id": "L0", "against": "反対する理由", "agree": true, "reason": "決めた理由"}}],
