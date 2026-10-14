@@ -607,18 +607,30 @@ class G_StepSmoke(unittest.TestCase):
 
 
 class J_Grounding(Base):
-    """J. 接地度 (grounding.py。docs/humanity/design_note.md の D06・D09 の段階 0)"""
+    """J. 接地度 (grounding.py。docs/humanity/design_note.md の D06・D09・D10 の段階 0)"""
 
     def test_formula(self):
         import grounding
         g = grounding.person({"採集": 30})
-        self.assertEqual((g["distance"], g["body"], g["meaning"], g["height"], g["work_days"]), (0.0, -0.1, 0.0, -0.1, 30))
+        m, f = ((5 + 7 + 6) / 3 - 1) / 6, (7 - 1) / 6
+        self.assertAlmostEqual(g["meaning"], m, places=3)
+        self.assertAlmostEqual(g["feedback"], f, places=3)
+        self.assertEqual((g["body"], g["work_days"]), (0.8, 30))
+        self.assertAlmostEqual(g["value"], (m + f + 0.8) / 3, places=3)
         g = grounding.person({"記録をつける": 10, "採集": 10, "休む": 5})  # 休んだ日は数えない
         self.assertEqual(g["work_days"], 20)
-        self.assertAlmostEqual(g["height"], ((-0.5 - 0.7 - 0.5) + (0 - 0.1 + 0)) / 2, places=3)
+        self.assertAlmostEqual(g["body"], (0.16 + 0.8) / 2, places=3)
         self.assertIsNone(grounding.person({"休む": 30}))
         self.assertIsNone(grounding.person({}))
         self.assertEqual(grounding.person({"未知の仕事": 3, "採集": 1})["unscored_days"], {"未知の仕事": 3})
+
+    def test_table(self):
+        # 評定は 1〜7、身体は 0〜1、出どころと理由がある
+        import grounding
+        for act, a in grounding.ACTS.items():
+            self.assertTrue(all(1 <= x <= 7 for x in a[:5]), act)
+            self.assertTrue(0 <= a[5] <= 1, act)
+            self.assertTrue(a[6] and a[7], act)
 
     def test_all_activities_scored(self):
         # 記録に出てくる仕事は、休む以外すべて表にある
@@ -635,17 +647,17 @@ class J_Grounding(Base):
                 self.assertIsNone(g, (D, pid))
                 continue
             self.assertEqual(g["work_days"], work, (D, pid))
-            self.assertTrue(-3 - 1e-9 <= g["height"] <= 0, (D, pid, g))
-            self.assertAlmostEqual(g["height"], g["distance"] + g["body"] + g["meaning"], places=2)
+            self.assertTrue(0 <= g["value"] <= 1, (D, pid, g))
+            self.assertAlmostEqual(g["value"], (g["meaning"] + g["feedback"] + g["body"]) / 3, places=2)
 
     def test_village_mean(self):
         for D, v in self.V.items():
-            gs = [r["grounding"]["height"] for (d, _), r in self.P.items() if d == D and not r["child"] and r["grounding"]]
+            gs = [r["grounding"]["value"] for (d, _), r in self.P.items() if d == D and not r["child"] and r["grounding"]]
             if not gs:
                 self.assertIsNone(v["grounding"])
                 continue
             self.assertEqual(v["grounding"]["people"], len(gs))
-            self.assertAlmostEqual(v["grounding"]["height"], sum(gs) / len(gs), places=2)
+            self.assertAlmostEqual(v["grounding"]["value"], sum(gs) / len(gs), places=2)
             self.assertEqual((v["grounding"]["min"], v["grounding"]["max"]), (min(gs), max(gs)))
 
 

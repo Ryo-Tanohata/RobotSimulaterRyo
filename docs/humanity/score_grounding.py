@@ -1,181 +1,175 @@
-# 接地度（grounding）を計算して tech_tree.json に書き込む
+# 接地度（grounding）を計算して tech_tree.json と design_note.md の表に書き込む（v0.5、D10）
 #
-# 接地度 = 高さ（構造） + 手綱（姿勢）
-#   高さ：距離 + 身体 + 意味（それぞれ 0〜-1、合計 0〜-3）
-#     距離 = -min(段階数,4)/4
-#     身体 = -(1-身体比率)
-#     意味 = 誰にでも 0 / 身近な人まで -0.5 / 同業者だけ -1
-#   手綱：理由を言える かつ 理念から選んでいる とき「握っている」
-#     握っている → エージェントの段階を距離から引く（道具が身体の延長になる）
-#                  意味を1段よくする（何のために使うかを説明できる）
-#     波及 = 周りの接地への影響 -1〜+1（他者を接地させれば＋、意味を奪えば−）
-#   身体の軸は手綱で打ち消さない（D07）
-import json, pathlib
+# 接地度は「身体や現場にどれだけ根ざして働いているか」の記述（0〜1、大きいほど深い）。良い・悪いの判定はしない（判定は陪審団、D08）。
+#   意味 M = (技能多様性・タスク完結性・タスク重要性 の平均 − 1) / 6      … 職務特性モデルの「意味を感じる」（R28）
+#   結果 F = (仕事からのフィードバック − 1) / 6                          … 同「結果が分かる」（R28）
+#   身体 B = O*NET の「一般的な身体活動」の重要度 / 100                  … 職業の実データ（R27）。近い職業がないときは推定
+#   接地度 G = (M + F + B) / 3
+# 手綱の余地（自律性）と波及は、接地度に足さずに別に出す。
+#   自律性 A = (自律性 − 1) / 6                                          … 同「責任を感じる」。O*NET の「決める自由」を参考に並べる
+#   波及 = 周りの接地への影響（−1〜+1）。符号は陪審団が決める（D07・D08）
+# JDS の 1〜7 の評定は Claude が尺度の定義に沿って付けた【評定】。理由を "why" に書く。
+import json, pathlib, re
 here = pathlib.Path(__file__).parent
 p = here/'tech_tree.json'
 d = json.loads(p.read_text(encoding='utf-8'))
 
-LEVELS = ["誰にでも", "身近な人まで", "同業者だけ"]
-MSCORE = {"誰にでも": 0.0, "身近な人まで": -0.5, "同業者だけ": -1.0}
+# O*NET の「一般的な身体活動」の重要度と「決める自由」の分布（2026-10-14 に O*NET OnLine で確かめた）
+ONET = {
+  "45-2092.00": ("農作業員（作物）", 76, {"かなり": 24, "いくらか": 17, "限られる": 18, "ほとんどない": 21, "ない": 20}),
+  "45-2093.00": ("農作業員（家畜）", 75, {"かなり": 54, "いくらか": 17, "限られる": 14, "ない": 14}),
+  "47-2061.00": ("建設作業員", 68, {"いくらか": 50, "限られる": 34, "ほとんどない": 16}),
+  "51-8091.00": ("化学プラントの運転員", 68, {"かなり": 26, "いくらか": 39, "限られる": 12, "ない": 24}),
+  "51-7011.00": ("家具職人", 64, None),
+  "51-5112.00": ("印刷機の運転員", 63, {"かなり": 52, "いくらか": 26, "ほとんどない": 16}),
+  "51-2092.00": ("組立工", 62, {"かなり": 27, "いくらか": 50, "限られる": 23}),
+  "51-6064.00": ("繊維機械の運転員", 51, {"いくらか": 32, "限られる": 26, "ほとんどない": 37}),
+  "43-9061.00": ("一般事務員", 29, {"かなり": 14, "いくらか": 34, "限られる": 24, "ほとんどない": 25}),
+  "11-1021.00": ("経営・管理職", 28, {"かなり": 86, "いくらか": 11}),
+  "15-1252.00": ("ソフトウェア開発者", 17, {"かなり": 41, "いくらか": 46, "限られる": 13}),
+  "43-3031.00": ("簿記・会計の事務員", 16, {"かなり": 27, "いくらか": 33, "限られる": 34}),
+}
+FREEDOM_W = {"かなり": 1.0, "いくらか": 0.75, "限られる": 0.5, "ほとんどない": 0.25, "ない": 0.0}
 
-def score(steps, chain, ratio, meaning, agent_steps=0, reason=False, principle=False, spread=0.0):
-    held = reason and principle
-    eff_steps = steps - agent_steps if held else steps
-    eff_meaning = LEVELS[max(0, LEVELS.index(meaning)-1)] if held else meaning
-    ds = round(-min(eff_steps, 4)/4, 2)
-    bs = round(-(1-ratio), 2)
-    ms = MSCORE[eff_meaning]
-    height = round(ds+bs+ms, 2)
+def onet_freedom(code):
+    dist = ONET[code][2]
+    if not dist:
+        return None
+    tot = sum(dist.values())
+    return round(sum(FREEDOM_W[k]*v for k, v in dist.items())/tot, 2)
+
+def body(code=None, est=None, note=None):
+    if code:
+        name, gpa, _ = ONET[code]
+        return {"value": round(gpa/100, 2), "source": f"O*NET {code} {name}（一般的な身体活動 {gpa}）", "status": "実データ", "refs": ["R27"]}
+    return {"value": est, "source": note, "status": "推定", "refs": ["R19"] if "狩猟" in (note or "") else []}
+
+def score(sv, ti, ts, fb, au, b, why, spread=0.0, onet=None):
+    m = round(((sv+ti+ts)/3 - 1)/6, 3)
+    f = round((fb-1)/6, 3)
+    g = round((m + f + b["value"])/3, 3)
     out = {
       "components": {
-        "distance": {"steps": steps, "counted_steps": eff_steps, "chain": chain, "score": ds},
-        "body": {"ratio": ratio, "score": bs},
-        "meaning": {"level": meaning, "counted_level": eff_meaning, "score": ms},
+        "meaning": {"skill_variety": sv, "task_identity": ti, "task_significance": ts, "score": m},
+        "feedback": {"feedback": fb, "score": f},
+        "body": {**b, "score": b["value"]},
       },
-      "height": height,
-      "value": round(height+spread, 2),
+      "value": g,
+      "autonomy": {"rating": au, "score": round((au-1)/6, 3), "onet_freedom": onet_freedom(onet) if onet else None},
+      "spread": spread,
+      "why": why,
     }
-    if agent_steps or reason or principle or spread:
-        out["reins"] = {"reason": reason, "principle": principle, "held": held,
-                        "agent_steps": agent_steps, "spread": spread}
     return out
 
-# 代表者・段階の鎖・身体比率・意味の範囲（いずれも推定）
+# 代表者（JDS の評定: 技能多様性・完結性・重要性・フィードバック・自律性）
 S = {
- "N01": ("狩猟採集民", score(0, "獲る→食べる", 0.9, "誰にでも")),
- "N02": ("集団で狩る者", score(1, "獲る→分け合う→食べる", 0.9, "誰にでも")),
- "N03": ("農民", score(2, "育てる→蓄える→食べる・納める", 0.9, "誰にでも")),
- "N04": ("職人", score(2, "作る→交換する→食べる", 0.8, "誰にでも")),
- "N05": ("書記", score(3, "記録する→行政→徴税→食べる", 0.3, "身近な人まで")),
- "N06": ("印刷工", score(3, "組む→刷る→流通→読まれる", 0.6, "誰にでも")),
- "N07": ("工場労働者", score(4, "部品→製品→市場→賃金→食べる", 0.8, "身近な人まで")),
- "N08": ("管理職", score(4, "指示→部下の作業→製品・サービス→賃金→食べる", 0.2, "身近な人まで")),
- "N09": ("エージェントと働く知識労働者（無自覚に使う）",
-         score(4, "指示→エージェント→成果物→顧客→賃金→食べる", 0.1, "同業者だけ", agent_steps=1)),
+ "N01": ("狩猟採集民", score(6, 7, 6, 7, 6, body(est=0.80, note="狩猟採集。近い職業がないので推定（農作業員 0.76 より歩く・運ぶが多い）"),
+         "獲物を探して獲り、分けて食べるまで全部に関わり、うまくいったかがすぐ分かる")),
+ "N02": ("集団で狩る者", score(6, 6, 6, 6, 5, body(est=0.80, note="集団の狩猟。推定（N01 と同じ）"),
+         "分担はあるが分配まで見える。合図や段取りで技能が増える")),
+ "N03": ("農民", score(5, 6, 5, 5, 5, body("45-2092.00"),
+         "種まきから刈り入れまで関わるが、結果は季節の終わりまで分からない", onet="45-2092.00")),
+ "N04": ("職人", score(6, 7, 5, 6, 6, body("51-7011.00"),
+         "材料から完成品まで一人で作り、出来ばえが手で分かる")),
+ "N05": ("書記", score(3, 3, 5, 3, 3, body("43-3031.00"),
+         "決まった形式で記録する。記録が何に使われたかは見えにくいが、行政への影響は大きい", onet="43-3031.00")),
+ "N06": ("印刷工", score(5, 5, 5, 6, 4, body("51-5112.00"),
+         "組版から刷り上がりまで関わり、刷り上がりで出来が分かる（ブラウナーの職人型）", onet="51-5112.00")),
+ "N07": ("工場労働者（組立ライン）", score(1, 1, 3, 3, 1, body("51-2092.00"),
+         "流れ作業の一工程だけ。ペースは機械が決め、製品の全体は見えない（ブラウナーの組立ライン）", onet="51-2092.00")),
+ "N08": ("管理職", score(6, 4, 6, 3, 6, body("11-1021.00"),
+         "仕事は多様で影響も大きいが、成果は部下を通してしか見えない", onet="11-1021.00")),
+ "N09": ("エージェントと働く知識労働者（無自覚に使う）", score(3, 2, 3, 2, 4, body("15-1252.00"),
+         "出力をそのまま流すだけで、何がなぜできたかが分からない", onet="15-1252.00")),
 }
-N09_CHAIN = "指示→エージェント→成果物→顧客→賃金→食べる"
 VARIANTS = {
- "N07": [("事務職", score(4, "書類→承認→組織→製品→賃金→食べる", 0.2, "同業者だけ"))],
+ "N07": [
+   ("事務職", score(3, 2, 3, 2, 2, body("43-9061.00"), "書類の一部を処理し、その先は見えない", onet="43-9061.00")),
+   ("繊維機械の運転員（ブラウナーの機械番）", score(2, 2, 3, 4, 2, body("51-6064.00"),
+     "多くの機械を見回るだけ。不具合はすぐ分かるが、作業は単調", onet="51-6064.00")),
+ ],
+ "N08": [
+   ("化学プラントの運転員（ブラウナーの自動化）", score(4, 5, 5, 5, 4, body("51-8091.00"),
+     "工程の全体を見張り、計器で結果が分かる。責任の範囲が広い", onet="51-8091.00")),
+ ],
  "N09": [
-   ("理念を持って使う", score(4, N09_CHAIN, 0.1, "同業者だけ", agent_steps=1, reason=True, principle=True)),
-   ("理念を持ち、誰でも使える仕組みを作る（使う人の理解を残す）",
-    score(4, N09_CHAIN, 0.1, "同業者だけ", agent_steps=1, reason=True, principle=True, spread=1.0)),
-   ("仕組みを作るが、中身を隠して使う人の意味を奪う",
-    score(4, N09_CHAIN, 0.1, "同業者だけ", agent_steps=1, reason=True, principle=False, spread=-1.0)),
+   ("理念を持って使う", score(6, 6, 5, 5, 6, body("15-1252.00"),
+     "目的を自分で決め、エージェントを手の延長として使う。全体を組み立て、結果を確かめる", onet="15-1252.00")),
+   ("理念を持ち、誰でも使える仕組みを作る（理解を残す）", score(6, 6, 7, 5, 6, body("15-1252.00"),
+     "上に加え、多くの人の暮らしに届く", spread=1.0, onet="15-1252.00")),
+   ("仕組みを作るが、中身を隠して使う人の意味を奪う", score(5, 5, 5, 4, 6, body("15-1252.00"),
+     "作る人の仕事は豊かだが、使う人を空中に置く", spread=-1.0, onet="15-1252.00")),
  ],
 }
-AIR = "指示→エージェント→生命維持系→暮らす"
 N10_SCENARIOS = [
- ("再接地：生命維持を自分たちで営む", score(1, "育てる・直す→暮らす", 0.7, "誰にでも")),
- ("再接地し、技能を周りに伝える", score(1, "育てる・直す→暮らす", 0.7, "誰にでも", spread=0.5)),
- ("空中：すべてを無自覚にエージェントに任せる", score(4, AIR, 0.0, "同業者だけ", agent_steps=1)),
- ("空中だが、理念を持ってエージェントに任せる", score(4, AIR, 0.0, "同業者だけ", agent_steps=1, reason=True, principle=True)),
- ("空中だが、理念を持って任せ、他者も接地させる", score(4, AIR, 0.0, "同業者だけ", agent_steps=1, reason=True, principle=True, spread=1.0)),
+ ("再接地：生命維持を自分たちで営む", score(6, 6, 6, 6, 6, body(est=0.60, note="閉鎖生態系の世話・修理。推定（建設・農作業より少し低い）"),
+   "育てる・直すを自分たちで行い、結果が暮らしにすぐ表れる")),
+ ("再接地し、技能を周りに伝える", score(6, 6, 7, 6, 6, body(est=0.60, note="同上"), "上に加え、周りの人も接地させる", spread=0.5)),
+ ("空中：すべてを無自覚にエージェントに任せる", score(2, 1, 2, 1, 2, body(est=0.05, note="体を使う仕事がほぼない。推定"),
+   "何も作らず、何が起きているかも分からない")),
+ ("空中だが、理念を持ってエージェントに任せる", score(5, 5, 5, 4, 6, body(est=0.05, note="同上"),
+   "体は使わないが、目的を決めて全体を組み立てる")),
+ ("空中だが、理念を持って任せ、他者も接地させる", score(5, 5, 7, 4, 6, body(est=0.05, note="同上"),
+   "上に加え、周りの人の暮らしを支える", spread=1.0)),
 ]
-
-# 身体の比率の裏付け
-EVIDENCE = {
- "N01": ("裏付けあり（方向）", ["R19"]), "N02": ("裏付けあり（方向）", ["R19"]), "N03": ("裏付けあり（方向）", ["R19"]),
- "N04": ("推定のみ", []), "N05": ("推定のみ", []), "N06": ("推定のみ", []),
- "N07": ("裏付けあり（方向）", ["R20"]), "N08": ("裏付けあり（方向）", ["R20"]), "N09": ("推定のみ", []),
-}
 
 for n in d["nodes"]:
     nid = n["id"]
     if nid in S:
         who, g = S[nid]
-        n["grounding"] = {"representative": who, **g, "status": "推定", "refs": ["D03", "D06"]}
-        ev, r = EVIDENCE[nid]
-        n["grounding"]["components"]["body"].update({"evidence": ev, "refs": r})
+        n["grounding"] = {"representative": who, **g, "status": "評定＋実データ", "refs": ["D03", "D06", "D10"]}
         if nid in VARIANTS:
             n["grounding"]["variants"] = [{"representative": w, **v} for w, v in VARIANTS[nid]]
         if nid == "N09":
-            n["grounding"]["refs"] = ["D03", "D06", "D07"]
+            n["grounding"]["refs"] = ["D03", "D06", "D07", "D10"]
     elif nid == "N10":
         n["grounding"] = {"representative": "宇宙居住者", "value": None, "status": "未決",
                           "scenarios": [{"label": w, **v} for w, v in N10_SCENARIOS],
-                          "refs": ["D03", "D06", "D07"]}
+                          "refs": ["D03", "D06", "D07", "D10"]}
 
-d["meta"]["version"] = "0.3.0"
+d["meta"]["version"] = "0.5.0"
+d["meta"]["design_note"] = "テックツリー設計ノート（参照ID R00〜R30 と D01〜D10 はノートの「参考文献」「設計判断」に対応）"
 d["meta"]["grounding_formula"] = {
   "target": "そのノードで新しく生まれた仕事の担い手",
-  "total": "接地度 = 高さ（距離+身体+意味、0〜-3） + 波及（-1〜+1）。範囲は -4〜+1",
-  "distance": "成果までの段階数 n → -min(n,4)/4。手綱を握っていればエージェントの段階を n から引く",
-  "body": "身体・物に触れる時間の比率 r → -(1-r)。手綱では打ち消さない",
-  "meaning": "仕事を説明できる相手：誰にでも 0 / 身近な人まで -0.5 / 同業者だけ -1。手綱を握っていれば1段よくする",
-  "reins": "理由を言える かつ 理念から選んでいる とき握っている。波及は周りの接地への影響",
-  "refs": ["D03", "D06", "D07"]
+  "direction": "0〜1。大きいほど身体や現場に根ざしている。記述であって、良い・悪いではない",
+  "meaning": "職務特性モデルの技能多様性・タスク完結性・タスク重要性（1〜7）の平均 → (x−1)/6",
+  "feedback": "職務特性モデルの仕事からのフィードバック（1〜7） → (x−1)/6",
+  "body": "O*NET の一般的な身体活動の重要度 / 100（近い職業がないときは推定）",
+  "total": "接地度 = (意味 + 結果 + 身体) / 3",
+  "separate": "自律性（手綱の余地）と波及は接地度に足さず、別に出す",
+  "refs": ["D06", "D10", "R27", "R28", "R29"]
 }
-
-# 状況で評価が変わる事象の判定表（行為ではなく判断の質を見る）
-d["reins_rubric"] = {
-  "criteria": [
-    {"id": "reason", "label": "理由を言えるか", "question": "なぜ使うのか、なぜ使わないのかを説明できるか"},
-    {"id": "principle", "label": "理念から選んでいるか", "question": "自分の目的から選んでいるか、惰性や恐れからか"},
-    {"id": "spread", "label": "周りの接地を増やすか", "question": "その選択で、周りの人の距離・意味はどうなるか"}
-  ],
-  "cases": [
-    {"id": "C1", "event": "AIを使うより自分でやった方が早い",
-     "plus": "経験に基づく判断で、手の技能を保っている（理由あり・理念あり）",
-     "minus": "試さずに避けている（理由なし・惰性）"},
-    {"id": "C2", "event": "AIを学ぶ時間があるなら仕事をする",
-     "plus": "手仕事が本分で、AIを入れると距離が増えるだけだと分かっている",
-     "minus": "変化への恐れや惰性で学ばない"},
-    {"id": "C3", "event": "みんな学ぶ時間がないので、学習コスト0の仕組みを作る",
-     "plus": "使う人の理解を残したまま距離を縮める（波及＋）",
-     "minus": "中身を完全に隠し、使う人を空中に置く（波及−）"}
-  ],
-  "refs": ["D07", "R05"]
-}
-
-d["reins_rubric"]["version"] = "2026"
-d["reins_rubric"]["era_versions"] = {
-  "note": "同じ一生を時代ごとの版で採点し直し、版が変わっても評価が変わらない部分を不変項の候補とする",
-  "planned": ["2026"],
-  "refs": ["D08"]
-}
-
-# 判定の仕組み（D08・D09）
-d["meta"]["version"] = "0.4.0"
-d["judgment_pipeline"] = {
-  "tiers": [
-    {"tier": 0, "name": "記録", "when": "毎ターン", "uses_llm": False,
-     "does": "時代・仕事・成果までの段階数・身体の時間を欄に記録し、高さをスクリプトで計算する"},
-    {"tier": 1, "name": "抜き出し", "when": "ライフステージの区切りごと（一生で8回）", "uses_llm": True,
-     "model": "小さく安いモデル", "does": "記録から理由・理念・波及の有無を あり／なし／不明 で抜き出す。価値判断はしない",
-     "output": {"reason": "あり|なし|不明", "principle": "あり|なし|不明", "spread": "-1〜+1|不明"}},
-    {"tier": 2, "name": "陪審団", "when": "下の発動条件のどれかに当てはまる場面だけ", "uses_llm": True,
-     "triggers": ["段階1の結果に「不明」がある", "波及が0でない", "新しいノードに切り替わった直後の選択", "品質確認の抜き取り（数%）"],
-     "escalation": "まず3人で判定し、全員一致なら終了。割れたら12人に増やす",
-     "output": "賛否の分布（＋の人数・−の人数）と一致度",
-     "self_check": "同じ事例を言い換えて判定が変わらないか確かめる"}
-  ],
-  "rescoring": "判定表の版が変わったら、段階2の場面だけ採点し直す",
-  "token_estimate_per_life": {"tier1": "約1.6万トークン", "tier2": "約1万〜7万トークン", "status": "概算（未計測）"},
-  "refs": ["D09"]
-}
-d["jury_spec"] = {
-  "status": "叩き台",
-  "size": {"initial": 3, "max": 12},
-  "attributes": [
-    {"key": "era", "label": "生きた時代", "source": "テックツリーのノード（N01〜N10）"},
-    {"key": "region", "label": "地域・文化圏", "source": "R26（要確認）"},
-    {"key": "life_stage", "label": "年齢・ライフステージ", "source": "life_stages（S1〜S8）"},
-    {"key": "work", "label": "仕事", "source": "各ノードの仕事層"},
-    {"key": "values", "label": "価値観（伝統↔世俗、生存↔自己表現など）", "source": "R26 の分布から抽出（要確認）"}
-  ],
-  "rules": [
-    "属性はClaudeの想像ではなく、調査データの分布から抽出する",
-    "陪審員は判定の理由を一文で述べる",
-    "陪審員どうしは相談しない（独立に判定する）"
-  ],
-  "caution": "言語モデルが演じる集団は多様さが平板になりやすい（R22）",
-  "refs": ["D08", "R21", "R22", "R26"]
-}
+d["reins_rubric"]["refs"] = ["D07", "D10", "R05", "R28"]
 
 p.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding='utf-8')
+
+# ---- ノートの表を書き換える（印のあいだだけ） ----
+def row(nid, who, g):
+    c = g["components"]
+    m = c["meaning"]
+    sp = g.get("spread") or 0
+    return (f"| {nid} | {who} | {m['skill_variety']}・{m['task_identity']}・{m['task_significance']} | {c['meaning']['score']:.2f} | "
+            f"{c['feedback']['feedback']} | {c['feedback']['score']:.2f} | {c['body']['score']:.2f}（{c['body']['status']}） | **{g['value']:.2f}** | "
+            f"{g['autonomy']['rating']} | {'' if not sp else ('+' if sp > 0 else '−') + str(abs(sp))} |")
+
+lines = ["| ID | 代表者 | 多様性・完結性・重要性 | 意味 | フィードバック | 結果 | 身体 | 接地度 | 自律性 | 波及 |",
+         "|---|---|---|---|---|---|---|---|---|---|"]
+for n in d["nodes"]:
+    g = n["grounding"]
+    if "components" in g:
+        lines.append(row(n["id"], g["representative"], g))
+    for v in g.get("variants", []):
+        lines.append(row(n["id"], "（別例）" + v["representative"], v))
+    for s in g.get("scenarios", []):
+        lines.append(row(n["id"], s["label"], s))
+table = "\n".join(lines)
+notep = here/'design_note.md'
+note = notep.read_text(encoding='utf-8')
+note = re.sub(r"(<!-- grounding-table:start -->\n)(?:.*?\n)?(<!-- grounding-table:end -->)", lambda mm: mm.group(1)+table+"\n"+mm.group(2), note, flags=re.S)
+notep.write_text(note, encoding='utf-8')
+
 for n in d["nodes"]:
     g = n["grounding"]
     print(n["id"], g.get("representative"), g["value"])
     for v in g.get("variants", []) + g.get("scenarios", []):
-        print("   ", v.get("representative") or v.get("label"), "高さ", v["height"], "→", v["value"])
+        print("   ", v.get("representative") or v.get("label"), v["value"], "波及", v["spread"])

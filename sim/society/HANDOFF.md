@@ -5,7 +5,7 @@
 
 ## 接地度を記録に足した (2026-10-14、本人の依頼。世界は変わらない)
 
-- 人類史のテックツリーと人間性の設計 (`docs/humanity/`) の段階 0。`build_records.py` が人ごとの行と村の行に `grounding` (距離・身体・意味・高さ) を足す。計算は `sim/society/grounding.py` (仕事ごとの日数から。乱数・お題・state は使わない)
+- 人類史のテックツリーと人間性の設計 (`docs/humanity/`) の段階 0。`build_records.py` が人ごとの行と村の行に `grounding` (意味・結果・身体・接地度・自律性。0〜1) を足す。計算は `sim/society/grounding.py` (仕事ごとの日数から。職務特性モデルの評定と O*NET の実データ。乱数・お題・state は使わない)
 - 季節を進めると step.py が記録を作り直すので、何もしなくても次の季節から入る。すぐ見たいときは `python3.13 sim/society/tools/build_records.py` (本人の PC は `py -3`)
 - 段階 1 (お題に理由の一言) と段階 2 (陪審団) はまだ。どちらも本人が決めてから (`docs/humanity/README.md`)
 

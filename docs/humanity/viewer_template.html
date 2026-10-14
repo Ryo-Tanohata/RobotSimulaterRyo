@@ -110,7 +110,7 @@ footer{margin-top:48px;font-size:12.5px;color:var(--muted)}
       <span><i class="sw" style="background:var(--body)"></i>身体＝物質的な土台</span>
       <span><i class="sw" style="background:var(--cap)"></i>能力＝外部化された知性</span>
       <span><i class="sw" style="background:var(--work)"></i>仕事＝生まれた働き方</span>
-      <span>接地度＝距離・身体・意味の合計（0が密着、−3が空中。棒が長いほど離れている）</span>
+      <span>接地度＝意味・結果・身体の平均（0〜1。棒が長いほど身体や現場に根ざしている。良い・悪いではない）</span>
     </div>
     <div class="nodes" id="nodes"></div>
   </section>
@@ -153,18 +153,17 @@ footer{margin-top:48px;font-size:12.5px;color:var(--muted)}
     const eff = Object.entries(n.life_stage_effects||{}).map(([s,t]) => `<li>${esc(stageName[s]||s)}：${esc(t)}</li>`).join('');
     const fmt = v => (v === 0 ? '0' : v.toFixed(2).replace('-', '−'));
     const parts = gg => {
-      let s = `距離 ${fmt(gg.components.distance.score)}・身体 ${fmt(gg.components.body.score)}・意味 ${fmt(gg.components.meaning.score)}`;
-      if (gg.reins) {
-        s += gg.reins.held ? '・手綱あり' : '・手綱なし';
-        if (gg.reins.spread) s += `・波及 ${gg.reins.spread > 0 ? '+' : ''}${fmt(gg.reins.spread)}`;
-      }
+      const c = gg.components;
+      let s = `意味 ${fmt(c.meaning.score)}・結果 ${fmt(c.feedback.score)}・身体 ${fmt(c.body.score)}`;
+      if (gg.autonomy) s += `・自律性 ${fmt(gg.autonomy.score)}`;
+      if (gg.spread) s += `・波及 ${gg.spread > 0 ? '+' : ''}${fmt(gg.spread)}`;
       return s;
     };
     const G = n.grounding;
     let gdetail = '';
     if (G.components) {
-      gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">${fmt(G.value)}</b><span class="gbar"><i style="width:${(-G.value/3*100).toFixed(0)}%"></i></span></div>
-        <div class="gsub">${esc(G.representative)}：${esc(G.components.distance.chain)}<br>${parts(G)}</div>
+      gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">${fmt(G.value)}</b><span class="gbar"><i style="width:${(G.value*100).toFixed(0)}%"></i></span></div>
+        <div class="gsub">${esc(G.representative)}：${esc(G.why || '')}<br>${parts(G)}<br>身体の出どころ：${esc(G.components.body.source || '')}</div>
         ${(G.variants||[]).map(v => `<div class="gsub">別例 ${esc(v.representative)}：<b class="ground">${fmt(v.value)}</b>（${parts(v)}）</div>`).join('')}</div>`;
     } else if (G.scenarios) {
       gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">未決</b></div>
