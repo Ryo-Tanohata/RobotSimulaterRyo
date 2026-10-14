@@ -719,6 +719,345 @@ class J_Grounding(Base):
             self.assertEqual((v["grounding"]["min"], v["grounding"]["max"]), (min(gs), max(gs)))
 
 
+ACC_BASE = "3f428a6"  # 村の会計を足す前のコード (2026-10-14)。前からある列を直したら、そのコミットに変える
+ACC_KEYS = ("accounts", "sectors", "grain_fate", "store_days_all", "binding", "balance")  # 村の行に足した列 (この順で、いちばん後ろ)
+ACC_NOTES = {("season_village", "goats"), ("season_village", "wealth_gini"), ("season_village", "no_wealth"), ("season_household", "goats"),
+             ("season_household", "wealth_kcal")}  # note に 4409 日目の区切りを書きそえた列
+GONE = ("亡くなった人の手元", "村を出た人の手元", "村を出て持っていった")
+AFTER_PESTS = ("祭り", "ほかの村へ出した", "罰・つぐないで払った", "村を出て持っていった")  # 虫のあと (_g5_season_end・_g6_season_end) に出ていくことのある草の種
+
+
+class M_Accounts(Base):
+    """M. 村の会計 (accounts.py。記録から計算するだけの【シ】の列。2026-10-14 本人「お任せします」)"""
+
+    def worth(self, x, D):
+        """帳簿の 1 行の値うち (試しの中で別に計算する): 食べ物は kcal・ヤギ 3 万・土器と鎌は G6 の季節だけ VALUE"""
+        if x["item"] == "ヤギ":
+            return x["amount"] * era2.GOAT_WORTH
+        if x["item"] in ("土器", "鎌"):
+            return x["amount"] * era2.VALUE[x["item"]] * era2.GRAIN if self.V[D]["era"] == "G6" else 0
+        return x["kcal"]
+
+    def by_season(self):
+        out = {}
+        for x in self.L:
+            if x["kind"] != "メモ":
+                out.setdefault(x["season_end_day"], []).append(x)
+        return out
+
+    def test_reasons_classified(self):
+        # 帳簿の理由は、メモのほかはみな行が決まっている (決まっていない理由があると、恒等式が合わなくなる)
+        import accounts
+        memo = {"村の蓄えに入れた (大人)", "村の蓄えから取った (大人)"}
+        self.assertEqual(set(build_records.FLOWS) - memo - set(accounts.KIND), set())
+        self.assertEqual({x["reason"] for x in self.L if x["kind"] == "動き"} - set(accounts.KIND), set())
+        self.assertTrue(all("unclassified" not in v["accounts"]["identity"] for v in self.V.values()))
+
+    def test_identity(self):
+        # 純生産 = 食べた・祭り + 残りの増え (住まいをふくむ) + よその村へ出した差 + 持って出た分 − 記録にない差 (帳簿から別に計算して確かめる)
+        prod = {"採った", "木から取った", "狩った", "乳をしぼった", "刈った (村の蓄えに入った)", "刈った (自分の家の畑)", "ヤギをつぶした", "生まれた", "捕まえた", "作った"}
+        use = {"まいた (畑)", "種として埋めた", "腐った", "虫やネズミ", "雨で傷んだ", "干した", "いなくなった (世話が足りない)", "いなくなった (草が足りない)",
+               "つぶした", "割れた"}
+        gap = 0
+        for D, rows in self.by_season().items():
+            a = self.V[D]["accounts"]
+            homes = sum(r["days_by_activity"].get("住まいを建てる", 0) for (d, _), r in self.P.items() if d == D) * era2.DAY_FOOD
+            s = dict.fromkeys(("prod", "use", "eat", "ds", "nx", "gone", "res"), 0.0)
+            for x in rows:
+                v, r = self.worth(x, D), x["reason"]
+                if r == build_records.START:
+                    s["ds"] -= v
+                    continue
+                key = ("ds" if r == build_records.END else "prod" if r in prod else "use" if r in use else "eat" if r in ("食べた", "祭り")
+                       else "nx" if r in (build_records.OUT_G6, build_records.IN_G6) else "gone" if r in GONE else "res" if r == build_records.DIFF else None)
+                if key:
+                    s[key] += v
+            net = s["prod"] + s["use"] + homes
+            self.assertAlmostEqual(a["identity"]["net_product"], net, delta=1, msg=D)
+            self.assertAlmostEqual(a["identity"]["stock_change"], s["ds"] + homes, delta=1, msg=D)
+            self.assertAlmostEqual(a["identity"]["consumption"], -s["eat"], delta=1, msg=D)
+            g = net - (-s["eat"] + s["ds"] + homes - s["nx"] - s["gone"] - s["res"])
+            gap = max(gap, abs(g), abs(a["identity"]["gap"]))
+            self.assertAlmostEqual(a["food_net"], a["food_gross"] - a["seed"] - a["food_loss"], delta=0.05, msg=D)
+            self.assertEqual(a["goods"] is None, self.V[D]["era"] != "G6", D)  # 土器・鎌の値うちは G6 の季節だけ (季節そのものの時期で決める)
+        self.assertLess(gap, 1, f"恒等式のずれ いちばん大きい {gap:.2f} kcal")
+        # 列の note と文書の日: goods は 3569 日目の季節から (3539 日目の季節は G5 で null。balance は 1 季節早く、3539 日目の季節の終わりから)
+        self.assertEqual(min(D for D, v in self.V.items() if v["accounts"]["goods"] is not None), 3569)
+
+    def test_known_totals(self):
+        # 調べ (2026-10-14) で確かめた数 (4829 日目まで): 食べ物を作ったのは 5 億 710 万 kcal で、夕方に木から取ったのがその 37%。
+        #   草の種は 212 万つかみ作り、家の倉に 74 万 4 千つかみ (だれもいない H02・H06 の倉の 2 万 5 千つかみをふくむ)
+        V = [v for v in self.V.values() if v["season_end_day"] <= 4829]
+        gross = sum(v["accounts"]["food_gross"] for v in V)
+        self.assertAlmostEqual(gross / 1e6, 507.1, delta=0.1)
+        share = sum(v["accounts"]["food_gross"] * (v["accounts"]["evening_share"] or 0) for v in V) / gross
+        self.assertAlmostEqual(share, 0.372, delta=0.002)
+        g = self.V[4829]["grain_fate"]
+        self.assertAlmostEqual(g["produced"], 2121092, delta=1)
+        self.assertAlmostEqual(g["stored"]["households"], 744376, delta=1)
+        self.assertAlmostEqual(g["stored"]["orphaned"], 24979, delta=1)
+
+    def test_sectors(self):
+        # どの行も足すと 0、村と家の列の合計は残りの増え (帳簿のはじめと終わりから別に計算)、よその村の列はよその村へ出した差
+        for D, rows in self.by_season().items():
+            s = self.V[D]["sectors"]
+            for k, r in s["rows"].items():
+                self.assertEqual(list(r), ["村", "家", "よその村", "自然・暮らし"])
+                self.assertAlmostEqual(sum(r.values()), 0, delta=0.05, msg=(D, k))
+            for sec in ("村", "家"):
+                ds = sum(self.worth(x, D) * (1 if x["reason"] == build_records.END else -1) for x in rows
+                         if x["kind"] == "残り" and (x["holder"] == "村") == (sec == "村"))
+                self.assertAlmostEqual(s["stock_change"][sec], ds, delta=1, msg=(D, sec))
+                self.assertAlmostEqual(sum(r[sec] for r in s["rows"].values()), ds, delta=1, msg=(D, sec))
+            self.assertAlmostEqual(sum(r["よその村"] for r in s["rows"].values()), self.V[D]["accounts"]["identity"]["net_exports"], delta=0.05)
+            # 移ったもの: 村と家のあいだ・家どうしは合わせて 0。出ていった分 (持って出た) だけが自然・暮らしへ。罰・つぐないは払った = 受け取った
+            t = s["transfers_by_kind"]
+            self.assertAlmostEqual(s["rows"]["transfers"]["自然・暮らし"], t["持って出た"], delta=0.05, msg=D)
+            self.assertAlmostEqual(sum(self.worth(x, D) for x in rows if x["reason"] == "罰・つぐないで受け取った"), t["罰・つぐない"], delta=0.05, msg=D)
+            self.assertTrue(all(x >= 0 for x in t.values()), D)
+
+    def test_grain_fate(self):
+        # はじめ + 作った + 入った = 食べた・まいた・虫・祭り・出した・腐った・そのほか + 残り。合計は季節ごとに増えるだけ
+        prev = None
+        for D in sorted(self.V):
+            g = self.V[D]["grain_fate"]
+            have = g["start"] + g["produced"] + g["imported"]
+            gone = sum(g[k] for k in ("eaten", "sown", "pests", "feast", "exported", "rotted", "other"))
+            self.assertAlmostEqual(have, gone + g["stored"]["village"] + g["stored"]["households"], delta=1, msg=D)
+            self.assertLessEqual(g["stored"]["orphaned"], g["stored"]["households"] + 1e-6)
+            if prev:
+                for k in ("start", "produced", "imported", "eaten", "sown", "pests", "feast", "exported"):
+                    self.assertGreaterEqual(g[k], prev[k] - 1e-6, (D, k))
+            prev = g
+        produced = sum(x["amount"] for x in self.L if x["item"] == "草の種" and x["reason"] in ("採った", "刈った (村の蓄えに入った)", "刈った (自分の家の畑)"))
+        self.assertAlmostEqual(prev["produced"], produced, delta=1)
+
+    def test_store_days_all(self):
+        # 家の倉を合わせた日数は store_days より少なくない。割る 1 日分は store_days と同じ (控えから era2.store_days を作り直せる)
+        b = self.sum["builder"]
+        for D, v in self.V.items():
+            if v["store_days"] is None:
+                self.assertIsNone(v["store_days_all"])
+                continue
+            self.assertGreaterEqual(v["store_days_all"], v["store_days"], D)
+            C = b.snaps[D]
+            self.assertEqual(int(sum(C["village"]["store"].values()) / b.need(C)), v["store_days"], D)
+        self.assertGreater(self.V[4829]["store_days_all"], 2 * self.V[4829]["store_days"])  # 4829 日目: 247 日 → 約 600 日
+
+    def test_binding(self):
+        import accounts
+        cap = era2.pasture_cap(self.state)
+        rows = self.by_season()
+        for D, v in self.V.items():
+            b = v["binding"]
+            p = b["pasture"]
+            self.assertEqual(p["goats"], (v["goats"] or {}).get("count"))
+            if D < accounts.PASTURE_FROM:  # 草の上限は 4409 日目の季節から (コードを変えた日)
+                self.assertEqual((p["K"], p["ratio"], p["at_limit"]), (None, None, None), D)
+            else:
+                self.assertEqual(p["K"], cap)
+                self.assertAlmostEqual(p["ratio"], p["goats"] / cap, places=3)
+                self.assertEqual(p["at_limit"], p["goats"] >= cap)
+            craft = accounts.at_least(v["era"], "G3")  # 土器と鎌は G3 の季節から (季節そのものの時期で決める)
+            self.assertEqual(b["pots"] is not None, craft, D)
+            self.assertEqual(b["sickles"] is not None, craft, D)
+            if craft:
+                self.assertEqual(b["pots"]["hold"], v["pots"] * era2.POT_HOLD)
+                self.assertEqual(b["pots"]["at_limit"], b["pots"]["grain"] > b["pots"]["hold"])
+                if v["pests"]:  # 虫の害が出た季節は、虫のとき (era2._storage_season) 草の種が土器に入る量をこえていた。列は季節の終わりの数なので、
+                    # そのあとに出ていった草の種 (祭り・よその村へ・罰・村を出た家) と、よその村から来た土器の分だけ、こえていないことがある
+                    out = sum(-x["amount"] for x in rows.get(D, []) if x["item"] == "草の種" and x["reason"] in AFTER_PESTS)
+                    got = sum(x["amount"] for x in rows.get(D, []) if x["item"] == "土器" and x["reason"] == build_records.IN_G6) * era2.POT_HOLD
+                    self.assertGreater(b["pots"]["grain"] + out, b["pots"]["hold"] - got, D)
+                self.assertLessEqual(b["sickles"]["harvesters"], v["adults"] + len(v["deaths"]) + len(v["left"]))
+                self.assertEqual(b["sickles"]["at_limit"], b["sickles"]["harvesters"] > b["sickles"]["sickles"])
+            lb = b["labour"]
+            self.assertEqual(lb["adult_days"], sum(n for (d, _), r in self.P.items() if d == D and not r["child"] for n in r["days_by_activity"].values()))
+            self.assertTrue(0 <= lb["rest_share"] <= 1)
+            self.assertIsNone(lb["at_limit"])  # 働く日には限りの印をつけない (休んだ日が 0 なのがふつうなので)
+        self.assertFalse(self.V[4829]["binding"]["sickles"]["at_limit"])  # 鎌はずっと余っている
+        # 列の note と文書の日: 土器と鎌は 1559 日目の季節から (1529 日目の季節は G2 で、終わりに G3 になる。まだ null)
+        self.assertEqual(min(D for D, v in self.V.items() if v["binding"]["pots"] is not None), 1559)
+        self.assertEqual(min(D for D, v in self.V.items() if v["binding"]["sickles"] is not None), 1559)
+
+    def test_balance(self):
+        # 貸借対照表 (2026-10-14): 重なる列と合う。村の蓄え = store_kcal、大人の手元を足すと帳簿の村の食べ物の残り、家の草の種 = grain_fate の
+        #   stored.households、ヤギ = goats.count、倉かヤギのある家 = 人のいる家 − no_wealth、できた住まい = homes_built。
+        #   マイナスがない。純資産 = 持ち物 − 借り (借りはいつも 0)。持ち物は分けた値の合計。住まいの建てた手間は住まいを建てる日数 × 2,400 を足したもの
+        rows, prev = self.by_season(), None
+
+        def numbers(o):
+            if isinstance(o, dict):
+                for x in o.values():
+                    yield from numbers(x)
+            elif isinstance(o, list):
+                for x in o:
+                    yield from numbers(x)
+            elif isinstance(o, (int, float)) and not isinstance(o, bool):
+                yield o
+        for D in sorted(self.V):
+            v = self.V[D]
+            b = v["balance"]
+            vb, hb = b["村"], b["家"]
+            end = [x for x in rows.get(D, []) if x["kind"] == "残り" and x["reason"] == build_records.END]
+            self.assertEqual((vb["food"]["kcal"], vb["food"]["by_item"]), (v["store_kcal"], v["store"]), D)
+            self.assertAlmostEqual(vb["food"]["kcal"] + vb["hands_kcal"],
+                                   sum(x["kcal"] for x in end if x["holder"] == "村" and x["item"] in build_records.FOODS), delta=0.1, msg=D)
+            self.assertAlmostEqual(hb["food"]["kcal"], sum(x["kcal"] for x in end if x["holder"] != "村" and x["item"] in build_records.FOODS),
+                                   delta=0.1, msg=D)
+            self.assertAlmostEqual(hb["food"]["by_item"].get("草の種", 0), v["grain_fate"]["stored"]["households"], delta=0.05, msg=D)
+            self.assertEqual(vb["goats"]["count"], sum(x["amount"] for x in end if x["holder"] == "村" and x["item"] == "ヤギ"), D)
+            self.assertEqual(vb["goats"]["count"] + hb["goats"]["count"], v["goats"]["count"], D)
+            self.assertEqual((vb["goats"]["kcal"], hb["goats"]["kcal"]), (vb["goats"]["count"] * era2.GOAT_WORTH, hb["goats"]["count"] * era2.GOAT_WORTH))
+            self.assertEqual((vb["pots"]["count"], vb["sickles"]["count"]), (v["pots"], v["sickles"]), D)
+            valued = v["era_end"] == "G6"  # 土器・鎌の値うちは G6 の季節の終わり (3539 日目) から (accounts の goods より 1 季節早い)
+            for key, item in (("pots", "土器"), ("sickles", "鎌")):
+                self.assertEqual(vb[key]["kcal"], vb[key]["count"] * era2.VALUE[item] * era2.GRAIN if valued else None, D)
+            self.assertEqual((vb["dwellings"]["count"], vb["dwellings"]["kcal"]), (1, None))  # 村の住まいは 153 日目 (記録の前) にできた
+            self.assertEqual(hb["dwellings"]["count"], v["homes_built"], D)
+            self.assertEqual(hb["living"], v["households_with_members"], D)
+            if v["no_wealth"] is not None:
+                self.assertEqual(hb["with_stores"], v["households_with_members"] - v["no_wealth"], D)
+            self.assertTrue(hb["with_stores"] <= hb["with_assets"] <= hb["living"], D)
+            self.assertTrue(hb["top"]["share"] is None or 0 < hb["top"]["share"] <= 1, D)
+            parts = {"村": [vb["food"]["kcal"], vb["hands_kcal"], vb["goats"]["kcal"], vb["pots"]["kcal"] or 0, vb["sickles"]["kcal"] or 0,
+                           vb["loans"]["kcal"]],
+                     "家": [hb["food"]["kcal"], hb["goats"]["kcal"], hb["dwellings"]["kcal"], hb["loans"]["kcal"]]}
+            for side in ("村", "家"):
+                self.assertAlmostEqual(b[side]["assets"], sum(parts[side]), delta=0.05, msg=(D, side))
+            self.assertAlmostEqual(b["total"]["assets"], vb["assets"] + hb["assets"], delta=0.05, msg=D)
+            for x in (vb, hb, b["total"]):
+                self.assertEqual(x["liabilities"], 0, D)  # 村も家も借りを持たない (コードに借りる道がない)
+                self.assertAlmostEqual(x["equity"], x["assets"] - x["liabilities"], delta=0.01, msg=D)
+            self.assertTrue(all(n >= 0 for n in numbers(b)), D)
+            build = sum(r["days_by_activity"].get("住まいを建てる", 0) for (d, _), r in self.P.items() if d == D and r["household_id"]) * era2.DAY_FOOD
+            self.assertAlmostEqual(hb["dwellings"]["kcal"] - (prev["家"]["dwellings"]["kcal"] if prev else 0), build, delta=0.01, msg=D)
+            prev = b
+        # 列の note と文書の日: 土器・鎌の値うちは 3539 日目の季節の終わりから (accounts の goods は 3569 日目の季節から)
+        self.assertEqual(min(D for D, v in self.V.items() if v["balance"]["村"]["pots"]["kcal"] is not None), 3539)
+        b = self.V[4829]["balance"]  # 2026-10-14 の調べ: 家の倉 74 万 4 千つかみ (だれもいない H02・H06 の倉をふくむ)、家族の住まい 30 (のべ 1,890 日)
+        self.assertAlmostEqual(b["家"]["food"]["by_item"]["草の種"], 744376, delta=1)
+        self.assertEqual((b["家"]["dwellings"]["count"], b["家"]["dwellings"]["kcal"]), (30, 1890 * era2.DAY_FOOD))
+
+    def test_balance_loans(self):
+        # よその村への貸し: 前の残り + 新しく貸した − 返った − 返らずに閉じた = 残り。いちばん後の季節のまだの貸しは state の g6.debts の「まだ」と同じ。
+        #   調べ (2026-10-14、4829 日目まで): 貸した 10,000 (D1〜D5)・返った 4,056・失った 1,844、4829 日目の残りは D4 1,900 + D5 2,200 = 4,100 つかみ
+        import accounts
+        g6 = self.state["era2"].get("g6") or {}
+        debts = g6.get("debts") or []
+        others = {o["id"] for o in g6.get("others") or []}
+        self.assertTrue(all(d["other"] in others for d in debts))  # 借りるのは、いつもよその村 (村と家は借りない)
+        prev = None
+        for D in sorted(self.V):
+            b = self.V[D]["balance"]
+            for side in ("村", "家"):
+                x = b[side]["loans"]
+                start = prev[side]["loans"]["handfuls"] if prev else 0
+                self.assertAlmostEqual(start + x["new"] - x["returned"] - x["lost"], x["handfuls"], delta=1e-6, msg=(D, side))
+                self.assertAlmostEqual(x["handfuls"], sum(o["handfuls"] for o in x["open"]), delta=1e-6)
+                self.assertAlmostEqual(sum(x["by_kind"].values()), x["handfuls"], delta=1e-6)
+                self.assertEqual(x["kcal"], round(x["handfuls"] * era2.GRAIN, 2))
+                self.assertTrue(all(o["kind"] in (accounts.LENT, accounts.SHORT) for o in x["open"]))
+            prev = b
+        last = max(self.V)
+        still = {d["id"]: d for d in debts if d["status"] == "まだ"}
+        op = {o["id"]: o for s in ("村", "家") for o in self.V[last]["balance"][s]["loans"]["open"]}
+        self.assertEqual(set(op), set(still))
+        for i, o in op.items():
+            self.assertAlmostEqual(o["handfuls"], sum(era2.VALUE[k] * n for k, n in still[i]["goods"].items()), delta=1e-6)
+            self.assertEqual(o["overdue_days"], max(0, last - still[i]["due"]))
+        # 貸し借りの出来事の moves と合う (返った = debt のある出来事の +1 の合計。交換で足りない分がなければ、新しく貸した = −1 の合計)
+        ev = [e for e in self.state["events"] if (e.get("data") or {}).get("debt")]
+        mv = [m for e in ev for m in e["data"].get("moves") or []]
+        tot = {k: sum(self.V[D]["balance"][s]["loans"][k] for D in self.V for s in ("村", "家")) for k in ("new", "returned", "lost")}
+        val = lambda m: sum(era2.VALUE[k] * n for k, n in m[2].items())  # noqa: E731
+        self.assertAlmostEqual(tot["returned"], sum(val(m) for m in mv if m[1] > 0), delta=1e-6)
+        if {e["data"]["debt"] for e in ev if any(m[1] < 0 for m in e["data"].get("moves") or [])} == {d["id"] for d in debts}:
+            self.assertAlmostEqual(tot["new"], sum(val(m) for m in mv if m[1] < 0), delta=1e-6)
+        upto = [D for D in self.V if D <= 4829]
+        if 4829 in self.V:
+            s = {k: sum(self.V[D]["balance"]["村"]["loans"][k] for D in upto) for k in ("new", "returned", "lost")}
+            self.assertEqual(s, {"new": 10000, "returned": 4056, "lost": 1844})
+            x = self.V[4829]["balance"]["村"]["loans"]
+            self.assertEqual((x["handfuls"], [(o["id"], o["handfuls"]) for o in x["open"]]), (4100, [("D4", 1900), ("D5", 2200)]))
+            self.assertEqual(x["open"][0]["overdue_days"], 90)  # D4 は返す日 (4739 日目) から 90 日
+
+    def test_balance_wear(self):
+        # 土器・鎌の傷み: はじめの数 = 前の季節の終わりの数、作った・割れた = pots_made・pots_broken などの列、rate = 割れた ÷ はじめの数、寿命 = 1 ÷ rate。
+        #   G6 の平均の割合は、コードの見込み (季節に 土器 3%・鎌 5%) に近い
+        prev = None
+        for D in sorted(self.V):
+            v = self.V[D]
+            for key in ("pots", "sickles"):
+                x = v["balance"]["wear"][key]
+                if prev:
+                    self.assertEqual(x["start"], prev[key], (D, key))
+                self.assertEqual((x["made"], x["broken"]), (v[f"{key}_made"] or 0, v[f"{key}_broken"] or 0), (D, key))
+                if x["start"]:
+                    self.assertAlmostEqual(x["rate"], x["broken"] / x["start"], delta=0.0000501)  # 4 けたに丸める
+                    if x["broken"]:
+                        self.assertAlmostEqual(x["life_seasons"], x["start"] / x["broken"], delta=0.0501)  # 0.1 に丸める
+                    else:
+                        self.assertIsNone(x["life_seasons"])
+                else:
+                    self.assertEqual((x["rate"], x["life_seasons"]), (None, None), (D, key))
+            prev = v
+        g = [self.V[D]["balance"]["wear"] for D in self.V if self.V[D]["era"] == "G6"]
+        for key, rate in (("pots", era2.POT_BREAK), ("sickles", era2.SICKLE_BREAK)):
+            self.assertAlmostEqual(sum(w[key]["broken"] for w in g) / sum(w[key]["start"] for w in g), rate, delta=0.01, msg=key)
+
+    def test_same_python(self):
+        # 村の会計の列は Python 3.11 と 3.13 で同じ (足し算は math.fsum)。両方の版があれば、写しのデータからそれぞれで作りなおして比べる
+        code = ("import sys; sys.path[:0] = [sys.argv[1], sys.argv[2]]; import build_records; b = build_records.Builder(sys.argv[3]); b.build(); "
+                "sys.stdout.buffer.write('\\n'.join(build_records.jdump({k: v[k] for k in sys.argv[4:]}) for v in b.village).encode('utf-8'))")
+        exe = [p for p in ("python3.11", "python3.13") if shutil.which(p)]
+        if len(exe) < 2:
+            self.skipTest("python3.11 と python3.13 の両方はない")
+        out = []
+        for p in exe:
+            r = subprocess.run([p, "-c", code, str(SOC), str(HERE), str(self.d), *ACC_KEYS], capture_output=True, env=dict(os.environ, PYTHONUTF8="1"))
+            self.assertEqual(r.returncode, 0, r.stderr.decode("utf-8", "replace"))
+            out.append(r.stdout)
+        self.assertEqual(out[0], out[1])
+        self.assertEqual(out[0].decode("utf-8").splitlines(), [build_records.jdump({k: self.V[D][k] for k in ACC_KEYS}) for D in sorted(self.V)])
+
+    def test_same_as_before(self):
+        # 前からある列とファイルは、村の会計を足す前のコード (ACC_BASE) で作ったものとバイトまで同じ。ちがうのは columns.json と、村の行の後ろに足した列だけ
+        top = subprocess.run(["git", "-C", str(SOC), "rev-parse", "--show-toplevel"], capture_output=True, text=True).stdout.strip()
+        ls = subprocess.run(["git", "-C", top or str(SOC), "ls-tree", "--name-only", ACC_BASE, "sim/society/", "sim/society/tools/"],
+                            capture_output=True, text=True)
+        if not top or ls.returncode or not ls.stdout.strip():
+            self.skipTest("git に前のコードがない")
+        code, d2 = Path(tempfile.mkdtemp(prefix="rec_base_")), scratch()
+        try:
+            (code / "sim/society/tools").mkdir(parents=True)
+            for f in ls.stdout.split():
+                if f.endswith(".py"):
+                    (code / f).write_bytes(subprocess.run(["git", "-C", top, "show", f"{ACC_BASE}:{f}"], capture_output=True, check=True).stdout)
+            r = subprocess.run([sys.executable, str(code / "sim/society/tools/build_records.py"), "--data", str(d2), "--quiet"],
+                               capture_output=True, text=True, encoding="utf-8", env=dict(os.environ, PYTHONUTF8="1"))
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            old, new = d2 / "records", self.d / "records"
+            names = sorted(p.name for p in old.iterdir())
+            self.assertEqual(names, sorted(p.name for p in new.iterdir()))
+            for n in names:
+                a, b = (old / n).read_bytes(), (new / n).read_bytes()
+                if n == "columns.json":  # 足した列のほかは同じ並び。4409 日目の区切りを書きそえた列は note だけちがう
+                    cs = [c for c in json.loads(b) if not (c["table"] == "season_village" and c["column"] in ACC_KEYS)]
+                    self.assertTrue(all("4409" in c["note"] for c in cs if (c["table"], c["column"]) in ACC_NOTES))
+                    was, now = ([dict(c, note=None) if (c["table"], c["column"]) in ACC_NOTES else c for c in x] for x in (json.loads(a), cs))
+                    self.assertEqual(now, was)
+                elif n == "season_village.jsonl":
+                    rows = [json.loads(x) for x in b.decode("utf-8").splitlines()]
+                    self.assertTrue(all(tuple(x)[-len(ACC_KEYS):] == ACC_KEYS for x in rows))
+                    self.assertEqual([build_records.jdump({k: v for k, v in x.items() if k not in ACC_KEYS}) for x in rows], a.decode("utf-8").splitlines())
+                else:
+                    self.assertEqual(a, b, n)
+        finally:
+            shutil.rmtree(code, ignore_errors=True)
+            shutil.rmtree(d2, ignore_errors=True)
+
+
 WHY_ADDED = ("   その仕事にした理由を一言で書く (why。続けている仕事なら、続ける理由を)\n",
              "\n- family に書いた人ごとに、その仕事にした理由も一言書く (family の why)", ', "why": "..."')  # ask_why でお題に足す文
 ASK_KEYS = ("ask_why", "ask_why_log")

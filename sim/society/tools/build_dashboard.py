@@ -1022,7 +1022,8 @@ FORBIDDEN_KEYS = {"population", "adults", "children", "by_age_class", "by_sex", 
                   "store_kcal", "wealth", "wealth_kcal", "house_gini", "wealth_gini", "farm_share", "fields", "goats", "pots",
                   "sickles", "died_day", "born_day", "came_day", "age", "age_at_death", "death_cause", "mother_id",
                   "household_id", "person_id", "laws", "disputes", "feeling", "feelings", "said", "shown", "leader_id",
-                  "injuries", "votes", "who", "members"}
+                  "injuries", "votes", "who", "members",
+                  "accounts", "sectors", "grain_fate", "store_days_all", "binding", "balance"}  # 村の会計・貸借対照表 (【シ】。報告 G?.md だけに使う。2026-10-14)
 ALLOW_TERMS = ["テル・セケル・アル・アヘイマル", "ケセム洞窟"]  # 本物の地名 (人の名前と字がかさなる。ケセム洞窟は 31年の子「ケセ」とかさなる)
 
 

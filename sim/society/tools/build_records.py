@@ -21,6 +21,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
+import accounts  # noqa: E402
 import archive  # noqa: E402
 import characters  # noqa: E402
 import era2  # noqa: E402
@@ -1364,12 +1365,22 @@ class Builder:
         self.build_rounds()
         self.village, self.house_rows, self.person_rows_all, self.ledger_rows = [], [], [], []
         self.exact, self.vres = [], {}
+        fate, cap = None, era2.pasture_cap(self.state)
+        books = accounts.Books(((self.e2.get("g6") or {}).get("debts") or []), self.ev, self.hid, (self.state.get("camp") or {}).get("dwelling_day"))
         for D in sorted(self.seasons):
             v, hs, ps, lg = self.season(D, self.seasons[D])
             for r in ps:  # 接地度 (grounding.py。仕事ごとの日数から計算するだけ)
                 r["grounding"] = grounding.person(r["days_by_activity"])
             v["grounding"] = grounding.village(ps)
             v["reasons"] = grounding.village_reasons(ps, self.why_asked(self.seasons[D][0]["start"]))
+            # 村の会計 (accounts.py。帳簿と季節の行から計算するだけ。【シ】で、ダッシュボードとお題には出さない)
+            goods, C = accounts.valued(v["era"]), self.snaps.get(D)
+            v["accounts"] = accounts.accounts(lg, ps, goods)
+            v["sectors"] = accounts.sectors(lg, goods)
+            v["grain_fate"] = fate = accounts.grain_fate(fate, lg, {h["household_id"] for h in hs if h["members"]})
+            v["store_days_all"] = accounts.store_days_all(v["store_kcal"], lg, self.need(C) if C else None)
+            v["binding"] = accounts.binding(v, ps, lg, cap if D >= accounts.PASTURE_FROM else None)
+            v["balance"] = books.season(v, hs, ps, lg, C, self.seasons[D][-1]["event_end"])  # 貸借対照表と、土器・鎌の傷み
             self.village.append(v)
             self.house_rows += hs
             self.person_rows_all += ps
@@ -1455,7 +1466,7 @@ COLUMNS = [
      "調べる人には畑の数。量はシ"),
     ("season_village", "pests", "虫やネズミに食べられた草の種", "つかみ", "シ", "出来事「虫」", True, 1529, None),
     ("season_village", "pests_safe", "土器に入れて無事だった草の種", "つかみ", "シ", "出来事「虫」", True, 1529, None),
-    ("season_village", "goats", "ヤギ (数・メス・オス・大人・持ち主ごと・野生)", "頭", "調", "控え", True, 489, "骨から"),
+    ("season_village", "goats", "ヤギ (数・メス・オス・大人・持ち主ごと・野生)", "頭", "調", "控え", True, 489, "骨から。4409 日目の季節から草の上限 (コードの変更) が効いた。前と後は分けて読む"),
     ("season_village", "pots", "村の土器", "個", "調", "控え", True, 1529, "かけら"),
     ("season_village", "sickles", "村の鎌", "本", "調", "控え", True, 1529, "石の刃"),
     ("season_village", "pots_made", "作った土器", "個", "調", "出来事「土器」", True, 1529, None),
@@ -1468,8 +1479,8 @@ COLUMNS = [
     ("season_village", "rain_nights", "雨の夜", "夜", "シ", "stats", True, 489, None),
     ("season_village", "rain_outside_people", "雨の夜に外で寝た人", "人", "シ", "出来事「雨」", True, 1529, None),
     ("season_village", "rain_outside_person_nights", "雨の夜に外で寝た、のべの夜", "人・夜", "シ", "出来事「雨」", True, 1529, None),
-    ("season_village", "wealth_gini", "持ち物の差 (ジニ係数)", None, "シ", "控え (era_info)", True, 1589, None),
-    ("season_village", "no_wealth", "持ち物のない家", "家", "シ", "控え (era_info)", True, 1589, None),
+    ("season_village", "wealth_gini", "持ち物の差 (ジニ係数)", None, "シ", "控え (era_info)", True, 1589, "家の持ち物 (家の倉 + ヤギ。生きている人のいる家だけ) の差。4409 日目の季節から草の上限 (コードの変更) が効いた。前と後は分けて読む"),
+    ("season_village", "no_wealth", "持ち物のない家", "家", "シ", "控え (era_info)", True, 1589, "持ち物 (家の倉 + ヤギ) が 0 の家。4409 日目の季節から草の上限 (コードの変更) が効いた。前と後は分けて読む"),
     ("season_village", "laws", "掟 (採用中・採用・廃止・提案・罰のある掟)", "本", "シ", "出来事「掟」・state", True, 489, "文字の前は残らない"),
     ("season_village", "g5", "G5 (段・まとめ役・もめごと・裁き・罰・祭り・共同の仕事・分かれた家)", None, "シ", "出来事・控え", True, 1709,
      "祭りは食べ残しの跡で調べられる"),
@@ -1486,6 +1497,53 @@ COLUMNS = [
      "お題に理由の欄がなかった季節は null (段階 1 の前と、やめていたあいだ。era2.ask_why_log)。欄があって、だれも書かなければ with_reason は 0"),
     ("season_village", "grounding", "接地度 (大人の平均・いちばん低い・いちばん高い)", "0〜1", "シ", "season_person の grounding", True, 489,
      "大きいほど身体や現場に根ざしている (記述で、良い・悪いではない)。docs/humanity/design_note.md の D06・D10"),
+    # 村の会計 (accounts.py。2026-10-14 本人「お任せします」。フェーズの報告 G?.md に使う。ダッシュボードとお題には出さない)
+    ("season_village", "accounts", "村の会計 (食べ物の生産・種・損・食べた・祭り・ヤギ・土器と鎌・住まい・恒等式の確かめ)", "kcal", "シ",
+     "帳簿 (ledger) と season_person (accounts.py)", True, 489,
+     "食べ物を作った = 採った・木から取った・狩った・乳をしぼった・刈った (村の蓄え・自分の家の畑)・ヤギをつぶした。food_net = food_gross − seed (まいた・埋めた) − "
+     "food_loss (腐った・虫やネズミ・雨で傷んだ・干して減った分)。need = いた日数 × 1 日分 (大人 2,400、子は年齢で 800〜1,800。store_days と同じ)。"
+     "evening_share = 夕方に木から取った分の割合 (夕方の仕事は働いた日に数えない)。ヤギは 1 頭 3 万 kcal (GOAT_WORTH) で、食べ物と分けて出す "
+     "(値うちが大きく動く。草の上限は 4409 日目の季節から。コードを変えた日で、世界の中の出来事ではない)。goods = 土器 40・鎌 75 つかみ (交換の値うち VALUE) で、"
+     "VALUE のある G6 の季節 (3569 日目の季節) から。それより前は null (季節そのものの時期で決めるので、3539 日目の季節の終わりで値うちがつく balance とは 1 季節ずれる)。homes = 住まいを建てる日数 × 2,400。identity: 純生産 = consumption + stock_change "
+     "(住まいをふくむ) + net_exports + transfers (亡くなった人・村を出た人が持って出た分) − residual (記録にない差)。gap はその差で、丸めの分だけ"),
+    ("season_village", "sectors", "部門ごとの出し入れ (村・家・よその村・自然・暮らし)", "kcal", "シ", "帳簿 (accounts.py)", True, 489,
+     "rows = production (作った)・seed (種)・consumption (食べた・祭り)・losses (損。いなくなった・つぶしたヤギと割れた土器・鎌をふくむ)・transfers (移った)・"
+     "external (よその村との出し入れ。交換・貸した・返ってきた)・residual (記録にない差)。入るは +。どの行も足すと 0 で、村と家の列の合計は stock_change。"
+     "村 = 村の蓄え + 大人の手元 (帳簿と同じ)、家 = 家の倉と家のヤギ (だれもいなくなった家の倉もふくむ)。transfers_by_kind は出した側で数える: "
+     "家にだれもいない (家→村)・家の倉から食べた (家→村)・罰・つぐない (家→家)・持って出た (亡くなった人や村を出た人の手元。自然・暮らしへ)。"
+     "村を出た家が持って出た分も自然・暮らしへ数える (G6 では村を出た家はほかの村になるが、交換・貸しとは分ける。2026-10-14 までの帳簿では 0 行)。"
+     "ヤギ 3 万 kcal (4409 日目の季節から草の上限 (コードの変更) が効いた。前と後は分けて読む)、土器・鎌は G6 の季節 (3569 日目の季節) から (accounts の goods と同じ)。住まいは帳簿の残りにないので入れない"),
+    ("season_village", "grain_fate", "草の種の行方 (はじめからの合計)", "つかみ", "シ", "帳簿 (accounts.py)", True, 489,
+     "start (記録のはじめの残り) + produced (採った・刈った) + imported (よその村から) = eaten + sown + pests + feast + exported + rotted + other + "
+     "stored の village と households。other = 亡くなった人の手元・記録にない差など。village = 村の蓄え + 大人の手元、households = 家の倉 "
+     "(だれもいなくなった家の倉もふくむ。orphaned はそのうちの分)"),
+    ("season_village", "store_days_all", "村の蓄えと家の倉を合わせて、今の人数で何日分か", "日", "シ", "store_kcal と帳簿の家の倉 (accounts.py)", True, 489,
+     "store_days と同じ 1 日分で割る (切り捨て)。食べ物ぜんぶ。家の倉の中身は 1709 日目の季節から (家の倉を持てるのは G4 から。それより前は store_days と同じ)。だれもいなくなった家の倉もふくむ。村の人はほかの家の倉を知らないので、お題には出さない"),
+    ("season_village", "binding", "制約の点検表 (草・土器・鎌・働く日)", None, "シ", "season_village・season_person・帳簿 (accounts.py)", True, 489,
+     "at_limit = 上限に届いている (余りがない)。最適化はしないで、制約つき最適化のカルーシュ・キューン・タッカー条件 (KKT 条件。アクチュアリー試験の科目「会計・経済・投資理論」の略の KKT とは別) "
+     "の相補性のように読む (余りのある制約は効いていない)。pasture: ヤギと K (era2.pasture_cap)。"
+     "K は 4409 日目の季節から (36年60日目 (4379 日目) のあとにコードを変えた)。それより前は null。pots: 土器 × 500 つかみ と、守る草の種 (村の蓄え + 家の倉)。"
+     "季節の終わり (割れたあと) の数で見る。虫の害が出たかは pests の列 (虫は割れる前の土器で決まり、そのあと祭り・よその村へで草の種が出ていくこともあるので、"
+     "at_limit と虫の害は、いつも同じにはならない。4049・4469 日目は虫の害が 0 で at_limit)。sickles: 鎌と、刈った大人。土器と鎌は G3 の季節 (1559 日目の季節) から (季節そのものの時期で決める。それより前は null)。"
+     "labour: 大人の日のうち休んだ日 (けがは別)。labour の at_limit はいつも null: 大人は毎日なにかの仕事を選ぶので、休んだ日が 0 なのがふつうで、"
+     "限りに届いた印にならない (夕方の仕事は日数にない。線形計画でも働く日の影の値段は 0。docs/research/economic_lenses.md 5.5)"),
+    ("season_village", "balance", "貸借対照表 (季節の終わりの村と家の持ち物・借り・純資産) と、土器・鎌の傷み", "kcal", "シ",
+     "season_village・帳簿・season_person・控え・貸し借りの出来事と g6 の debts (accounts.py)", True, 489,
+     "会計・経済・投資理論 (アクチュアリー試験の科目。略して KKT) の会計の見方 (2026-10-14)。村と家 (家をみな合わせて) に分け、equity (純資産) = assets (持ち物) − liabilities (借り)。"
+     "借りは村も家もいつも 0 (コードに借りる道がない: よその村とは貸すだけ。罰・つぐないはその場で払うか、払えなければ消える)。"
+     "村: food = 村の蓄え (store_kcal と同じ)、hands_kcal = 大人の手元 (帳簿では村に数える。food と足すと帳簿の村の食べ物の残り)、"
+     "goats = 村のヤギ × 3 万 kcal (4409 日目の季節から草の上限 (コードの変更) が効いた。前と後は分けて読む)、pots・sickles = 数と、交換の値うち (40・75 つかみ)。"
+     "値うちは G6 の季節の終わり (3539 日目) から。それより前は kcal が null で assets に入れない (3539 日目で assets がとぶ。accounts の goods は 3569 日目の季節からなので、3539 日目のとびに見合う出し入れは accounts にない)。"
+     "dwellings = 村の住まい (153 日目、記録のはじまりより前にできたので、建てた手間は分からず kcal は null)。"
+     "loans = よその村への貸しの残り (つかみと kcal。1 つかみ 80 kcal)。by_kind で 貸して (集まりで決めて貸した) と 交換で足りない分 (交換で向こうが払いきれず、あとで返すと言った分) を分ける。"
+     "new・returned・lost = この季節に新しく貸した・返った・返らないまま閉じた分 (前の残り + new − returned − lost = 残り)。open = まだの貸し (overdue_days = 返す日からたった日数)。"
+     "家: food = 家の倉 (帳簿の季節の終わりの残り。だれもいなくなった家の倉もふくむ。草の種は grain_fate の stored.households と同じ)、goats = 家のヤギ、"
+     "dwellings = できた住まいの数・建てかけの数・建てた手間 (住まいを建てる日数 × 2,400 kcal を、はじめから足す。減らさない)、loans = 家が貸した分。"
+     "living = 人のいる家、with_assets = そのうち持ち物 (住まいをふくむ) のある家、with_stores = 倉かヤギのある家 (households_with_members − no_wealth と同じ)、"
+     "orphaned = 人のいない家に残った持ち物、top = 持ち物のいちばん多い家と、家の合計のうちの割合。土器・鎌・黒曜石はいつも村のもの (黒曜石は帳簿になく、2026-10-14 まで 0 個)。"
+     "total = 村 + 家。wear = 土器・鎌の傷み: start (季節のはじめの数)・made・broken・rate (broken ÷ start)・life_seasons (1 ÷ rate。start か broken が 0 なら null)。"
+     "コードでは季節の終わりに、そのときの数の 3% (土器)・5% (鎌) ずつ割れる見込みなので、たくさん作った季節は rate が少し高く出る。"
+     "歴史: はじめ + 入り − 出 = 終わり の帳簿はメソポタミアの粘土板にある。複式簿記と貸借対照表は中世・近代の道具で、ここでは外から見る人の物差しとしてだけ使う"),
     ("season_household", "season_end_day", "季節の終わりの日", "日", "-", "", True, 489, "1 行 = 1 季節 × 1 家"),
     ("season_household", "household_id", "家", None, "-", "", True, 489, None),
     ("season_household", "status", "家のようす", None, "-", "membership", True, 489, "村にいる・大人がいない・村を出た・だれもいない"),
@@ -1498,8 +1556,8 @@ COLUMNS = [
     ("season_household", "home", "住まい (建てはじめ・できた日・広さ・働いた時間)", None, "調", "控え", True, 1529, "広さは家の跡"),
     ("season_household", "keep", "家の倉を持つか (この季節)", None, "シ", "控え", True, 1589, None),
     ("season_household", "store", "家の倉 (物ごと)", "単位", "シ", "控え", True, 1589, "倉の跡"),
-    ("season_household", "goats", "家のヤギ (数・生まれた・捕まえた・いなくなった・つぶした)", "頭", "調", "控え・ヤギの番号", True, 1589, None),
-    ("season_household", "wealth_kcal", "家の持ち物 (家の倉 + ヤギ)", "kcal", "シ", "控え (era_info)", True, 1589, None),
+    ("season_household", "goats", "家のヤギ (数・生まれた・捕まえた・いなくなった・つぶした)", "頭", "調", "控え・ヤギの番号", True, 1589, "4409 日目の季節から草の上限 (コードの変更) が効いた。前と後は分けて読む"),
+    ("season_household", "wealth_kcal", "家の持ち物 (家の倉 + ヤギ)", "kcal", "シ", "控え (era_info)", True, 1589, "4409 日目の季節から草の上限 (コードの変更) が効いた。前と後は分けて読む"),
     ("season_household", "fields", "家の畑", "枚 / つかみ", "調", "出来事・畑のたどり直し", True, 489, None),
     ("season_household", "village_flow", "村の蓄えに入れた・取った (大人、草の種にして)", "つかみ", "シ", "控え (g5.last_flow)", True, 1739, None),
     ("season_household", "disputes", "もめごと (言い出した・言われた・払った・受け取った)", None, "シ", "g5.disputes・出来事", True, 1709, None),
