@@ -1,7 +1,7 @@
 """ダッシュボードの内側の記録の試し (docs/dashboard_records_spec.md 8.)
 
   python3 sim/society/tools/test_records.py            速い試し (本物のデータは読むだけ。書くのは /tmp の写しだけ)
-  python3 sim/society/tools/test_records.py --step     step.py の試しも (写しで季節を 4 回進める。1 分ほど)
+  python3 sim/society/tools/test_records.py --step     step.py の試しも (写しで季節を 6 回進める。5 分ほど)
 
 本物の sim/society/data には何も書かない。step.py season を本物のデータで動かさない
 """
@@ -604,6 +604,430 @@ class G_StepSmoke(unittest.TestCase):
         finally:
             shutil.rmtree(code, ignore_errors=True)
             shutil.rmtree(d, ignore_errors=True)
+
+
+    def test_ask_why_same_world(self):
+        # 仕事の理由をたずねても (お題と答えに why があっても)、世界は同じ。記録には理由が入る (代表と同じ仕事の人には入らない)
+        code = self.copy_code()
+        d1, d2 = self.data(), self.data()
+        try:
+            st = json.loads((d1 / "state.json").read_text(encoding="utf-8"))
+            for k in ASK_KEYS:  # 立てる前の村から (本物の村で、もう立てていても。写しの state だけを変える)
+                st.get("era2", {}).pop(k, None)
+            for d in (d1, d2):
+                (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            for d, onoff in ((d1, "off"), (d2, "on")):
+                r = subprocess.run([sys.executable, str(code / "step.py"), "ask_why", onoff], env=dict(os.environ, SOC_DATA=str(d)),
+                                   capture_output=True, text=True)
+                self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            ans = {}
+            for n in era2.answerers(st):
+                a = {"job": {"activity": "採集", "place": "camp"}, "feeling": "ふつう"}
+                fam = [q["name"] for q in era2.family(st, n) if q["name"] != n] if st["era2"].get("rep_mode") else []
+                if fam:
+                    a["family"] = {fam[0]: {"activity": "畑仕事", "place": "camp"}}
+                ans[n] = a
+            for d, why in ((d1, False), (d2, True)):
+                a_dir = d / "answers" / f"day{st['day']:03d}" / "season"
+                a_dir.mkdir(parents=True, exist_ok=True)
+                for n, a in ans.items():
+                    a = json.loads(json.dumps(a))
+                    if why:
+                        a["job"]["why"] = "冬に備えて木の実を蓄えたい"
+                        for j in (a.get("family") or {}).values():
+                            j["why"] = "畑が実っているから"
+                    (a_dir / f"{n}.json").write_text(json.dumps(a, ensure_ascii=False), encoding="utf-8")
+            r = self.run_step(code, d1, {"SOC_RECORDS": "0"})
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            r = self.run_step(code, d2)
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            s1, s2 = (json.loads((d / "state.json").read_text(encoding="utf-8")) for d in (d1, d2))
+            for s in (s1, s2):
+                for k in ASK_KEYS:
+                    s["era2"].pop(k, None)
+            self.assertEqual(s1, s2)
+            D = s2["day"]
+            rows = [x for x in jl(d2 / "records" / "season_person.jsonl") if x["season_end_day"] == D]
+            by = {k: [x for x in rows if x["decided_by"] == k] for k in ("自分", "代表が割り振った", "代表と同じ仕事")}
+            self.assertTrue(by["自分"])
+            self.assertTrue(by["代表が割り振った"] or not any("family" in a for a in ans.values()))
+            self.assertTrue(all((x["why"], x["why_by"]) == ("冬に備えて木の実を蓄えたい", "自分") for x in by["自分"]))
+            self.assertTrue(all((x["why"], x["why_by"]) == ("畑が実っているから", "代表") for x in by["代表が割り振った"]))
+            self.assertTrue(all(x["why"] is None and x["why_by"] is None for x in by["代表と同じ仕事"]))
+            v = next(x for x in jl(d2 / "records" / "season_village.jsonl") if x["season_end_day"] == D)
+            self.assertEqual(v["reasons"], {"asked": len(by["自分"]) + len(by["代表が割り振った"]), "with_reason": len(by["自分"]) + len(by["代表が割り振った"]),
+                                            "habit": 0, "same_as_rep": len(by["代表と同じ仕事"])})
+        finally:
+            for x in (code, d1, d2):
+                shutil.rmtree(x, ignore_errors=True)
+
+
+class J_Grounding(Base):
+    """J. 接地度 (grounding.py。docs/humanity/design_note.md の D06・D09・D10 の段階 0)"""
+
+    def test_formula(self):
+        import grounding
+        g = grounding.person({"採集": 30})
+        sv, ti, ts, fb, au, body = grounding.ACTS["採集"][:6]
+        m, f = ((sv + ti + ts) / 3 - 1) / 6, (fb - 1) / 6
+        self.assertAlmostEqual(g["meaning"], m, places=3)
+        self.assertAlmostEqual(g["feedback"], f, places=3)
+        self.assertEqual((g["body"], g["work_days"]), (body, 30))
+        self.assertAlmostEqual(g["value"], (m + f + body) / 3, places=3)
+        self.assertAlmostEqual(g["autonomy"], (au - 1) / 6, places=3)
+        g = grounding.person({"記録をつける": 10, "採集": 10, "休む": 5})  # 休んだ日は数えない
+        self.assertEqual(g["work_days"], 20)
+        self.assertAlmostEqual(g["body"], (0.16 + 0.8) / 2, places=3)
+        self.assertIsNone(grounding.person({"休む": 30}))
+        self.assertIsNone(grounding.person({}))
+        self.assertEqual(grounding.person({"未知の仕事": 3, "採集": 1})["unscored_days"], {"未知の仕事": 3})
+
+    def test_table(self):
+        # 評定は 1〜7、身体は 0〜1、出どころと理由がある
+        import grounding
+        for act, a in grounding.ACTS.items():
+            self.assertTrue(all(1 <= x <= 7 for x in a[:5]), act)
+            self.assertTrue(0 <= a[5] <= 1, act)
+            self.assertTrue(a[6] and a[7], act)
+
+    def test_all_activities_scored(self):
+        # 記録に出てくる仕事は、休む以外すべて表にある
+        import grounding
+        seen = {k for r in self.P.values() for k in r["days_by_activity"]}
+        self.assertEqual(seen - set(grounding.ACTS) - set(grounding.REST), set())
+
+    def test_rows(self):
+        for (D, pid), r in self.P.items():
+            self.assertIn("grounding", r)
+            g = r["grounding"]
+            work = sum(n for k, n in r["days_by_activity"].items() if not k.startswith("休む"))
+            if not work:
+                self.assertIsNone(g, (D, pid))
+                continue
+            self.assertEqual(g["work_days"], work, (D, pid))
+            self.assertTrue(0 <= g["value"] <= 1, (D, pid, g))
+            self.assertAlmostEqual(g["value"], (g["meaning"] + g["feedback"] + g["body"]) / 3, places=2)
+
+    def test_village_mean(self):
+        for D, v in self.V.items():
+            gs = [r["grounding"]["value"] for (d, _), r in self.P.items() if d == D and not r["child"] and r["grounding"]]
+            if not gs:
+                self.assertIsNone(v["grounding"])
+                continue
+            self.assertEqual(v["grounding"]["people"], len(gs))
+            self.assertAlmostEqual(v["grounding"]["value"], sum(gs) / len(gs), places=2)
+            self.assertEqual((v["grounding"]["min"], v["grounding"]["max"]), (min(gs), max(gs)))
+
+
+WHY_ADDED = ("   その仕事にした理由を一言で書く (why。続けている仕事なら、続ける理由を)\n",
+             "\n- family に書いた人ごとに、その仕事にした理由も一言書く (family の why)", ', "why": "..."')  # ask_why でお題に足す文
+ASK_KEYS = ("ask_why", "ask_why_log")
+
+
+def no_why(text):
+    """お題から、ask_why で足した文を除く (除いたものが、立てる前のお題と 1 文字も違わないはず)"""
+    for w in WHY_ADDED:
+        text = text.replace(w, "")
+    return text
+
+
+class K_Reasons(Base):
+    """K. 仕事の理由 (段階 1。docs/humanity の D09。2026-10-14 本人が決めた: step.py ask_why で、次に村を進めるときから)"""
+
+    def test_read_reason(self):
+        import grounding
+        for t in (None, 3, ["理由"], "", " ", "...", "…", "なし", "特になし", "特にない。", "とくになし", "ない", "無し",
+                  "特に理由はない", "理由はない", "わからない", "とくに無い",
+                  # 2026-10-14 点検で足した
+                  "理由はありません", "特に理由はありません", "わかりません", "なしです", "特にこれといった理由はない", "特に、なし", "ないです"):
+            self.assertIsNone(grounding.read_reason(t), t)
+        # 習慣の言い方があっても、それを除いて別のわけ (から・ので・ため・たい) が残れば、習慣とはしない
+        habit = {"冬に備えて木の実を蓄えたい": False, "前と同じ仕事にしたのは、畑がよく実っているから": False,
+                 "同じ仕事にした。ヤギが増えたので世話が要るから": False, "畑がいつもより実っているので刈りたい": False,
+                 "慣れない仕事だが、人が足りないから": False, "言われたから": True, "いつもどおり": True, "決まりだから": True,
+                 "慣れているので": True, "いつもそうしているから": True,
+                 # 習慣の言い方と「だから・なので」のあいだに名詞 (仕事の名前も) があっても習慣 (2026-10-14 点検)
+                 "前と同じ仕事だから": True, "いつもの仕事だから": True, "慣れた仕事なので": True, "いつもどおりの仕事だから": True,
+                 "前と同じ土器づくりだから": True, "いつものヤギの世話だから": True, "前の季節と同じ仕事だから": True,
+                 "前と同じ。だいたいうまくいく": True,
+                 # 名詞のあとに別のわけ・ねらいが続けば、習慣ではない
+                 "前と同じ仕事で畑を守りたいから": False, "慣れた仕事で家族を養うため": False, "変わらず家族のため": False,
+                 "いつもの仕事が好きだから": False, "慣れた仕事で、家族の食べ物を集めたいから": False,
+                 # わけ・ねらいは文の区切りになるところだけ数える。同じ仕事を「続けたい・したい・でいたい」は習慣のうち (2026-10-14 点検)
+                 "これからも同じ仕事を続ける": True, "いつもどおり、これからも採集する": True, "からだが慣れている": True,
+                 "前と同じ。木の実をためる": True, "前と同じ。川の水が冷たい": True, "前と同じ。何も見つからないが続ける": True,
+                 "前と同じ仕事を続けたい": True, "慣れた仕事を続けたい": True, "いつもの仕事をしたい": True, "前と同じでいたい": True,
+                 "前と同じ仕事にしたい": True, "いつもの仕事がしたい": True,
+                 "前と同じ。ヤギが増えたから": False, "いつもの採集。冬のために木の実を集める": False, "いつもの仕事だが、冬に備えて肉を狩りたい": False,
+                 "前と同じ。様子を見たい": False,
+                 # 仕事の名前も「仕事」と読みかえて、習慣の言い方を探す
+                 "前の季節と同じ畑仕事だから": True, "同じ採集だから": True, "同じ畑仕事を続ける": True, "前の季節と同じヤギの世話を続ける": True,
+                 "いつもと同じ": True, "前の季節と同じ": True, "習慣だから": True, "ずっとやってきたから": True, "ずっとやってきた仕事だから": True, "同じ畑仕事にした": True,
+                 "採集よりずっと多く採れる": False,
+                 # 続けている・仕事を変えるわけがない、という言い方も習慣 (2026-10-14 点検。お題の「続ける理由を」にこう答える人が多い)
+                 "いつもやっているから": True, "いつもしているから": True, "いつもこの仕事をしているから": True, "慣れてきたから": True,
+                 "これまで通り": True, "今まで通り採集する": True, "今までと同じ": True, "前回と同じ": True, "ずっとこの仕事をしてきたから": True,
+                 "変える理由はない": True, "仕事を変える理由はない": True, "変える必要がない": True,
+                 "変える理由はないが、冬に備えて木の実を集めたい": False, "前と同じだと楽だから": False}
+        for t, h in habit.items():
+            self.assertEqual(grounding.read_reason(t), {"stated": True, "habit": h}, t)
+        for w in grounding.HABIT_WORDS:  # お題に足す文には、習慣の言い方を入れない (写されないように)
+            self.assertFalse(any(w in x for x in WHY_ADDED), w)
+
+    def test_village_reasons(self):
+        # 数えるのは、理由をたずねた大人 (自分で答えた人と、代表が割り振った人) だけ。代表と同じ仕事の人は same_as_rep に数だけ
+        import grounding
+        rows = [{"child": False, "decided_by": "自分", "why_read": {"stated": True, "habit": False}},
+                {"child": False, "decided_by": "代表が割り振った", "why_read": {"stated": True, "habit": True}},
+                {"child": False, "decided_by": "代表と同じ仕事", "why_read": None},
+                {"child": False, "decided_by": "自分", "why_read": None},
+                {"child": False, "decided_by": "答えなし (前と同じ)", "why_read": None},
+                {"child": True, "decided_by": None, "why_read": None}]
+        self.assertEqual(grounding.village_reasons(rows, True), {"asked": 3, "with_reason": 2, "habit": 1, "same_as_rep": 1})
+        # お題に理由の欄があって、だれも書かなければ with_reason は 0。欄がなければ (段階 1 の前・やめていたあいだ) None
+        self.assertEqual(grounding.village_reasons(rows[2:], True), {"asked": 1, "with_reason": 0, "habit": 0, "same_as_rep": 1})
+        self.assertIsNone(grounding.village_reasons(rows, False))
+
+    def test_village_fsum(self):
+        # 村の平均は math.fsum で足す (足す順と Python の版によらない。この例は Python 3.11 の sum だと 0.467 になる)
+        import itertools
+        import grounding
+        for vs in itertools.permutations([0.495, 0.453, 0.464, 0.458]):
+            rows = [{"child": False, "grounding": dict.fromkeys(("meaning", "feedback", "body", "value", "autonomy"), x)} for x in vs]
+            self.assertEqual(grounding.village(rows)["value"], 0.468)
+        for D, v in self.V.items():  # 記録の値は、人の並びを逆にしても同じ
+            self.assertEqual(grounding.village([r for (d, _), r in reversed(self.P.items()) if d == D]), v["grounding"], D)
+
+    def test_prompt_gated(self):
+        # ask_why が立っていなければ、お題は前と同じ (1 文字も変わらない)。立つと理由の欄が出る (代表は family の人ごとにも)
+        import copy
+        st = copy.deepcopy(self.state)
+        for k in ASK_KEYS:
+            st["era2"].pop(k, None)
+        first = st["era2"].get("last_first", 0)
+        who = [p for p in era2.adults(st) if p["name"] in set(era2.answerers(st))]
+        fee = [p for p in era2.adults(st) if p["name"] in set(era2.feelers(st))]
+
+        def prompts():
+            return ({p["name"]: era2.season_prompt(st, p, first) for p in who}, {p["name"]: era2.feeling_prompt(st, p, first) for p in fee})
+        before = prompts()
+        self.assertTrue(who)
+        st["era2"]["ask_why"] = False
+        self.assertEqual(prompts(), before)
+        st["era2"]["ask_why"] = True
+        after = prompts()
+        self.assertEqual(after[1], before[1])  # 気持ちのお題は変わらない
+        for n, t in after[0].items():
+            self.assertNotIn('"why"', before[0][n])
+            self.assertEqual(no_why(t), before[0][n], n)
+            self.assertIn(WHY_ADDED[0], t)
+            self.assertIn('"with": [], "why": "..."}', t)
+            if '"family": {' in t:  # 代表: family の例の一人ひとりに why
+                self.assertIn(WHY_ADDED[1], t)
+                fam = t[t.index('"family": {'):]
+                fam = fam[:fam.index("}}") + 2]
+                self.assertEqual(fam.count('"why": "..."'), fam.count('"activity"'), n)
+            if '例 {"activity": "交換に行く"' in t:
+                self.assertIn('"then": "採集", "why": "..."}', t)
+            if '例 {"activity": "記録をつける"' in t:
+                self.assertIn('"how": "数え札", "why": "..."}', t)
+        if st["era2"].get("rep_mode"):
+            self.assertTrue(any(WHY_ADDED[1] in t for t in after[0].values()))
+
+    def test_rows_before_stage1(self):
+        # 理由の欄のないお題で答えた季節 (era2.ask_why_log で、季節のはじめのお題がたずねていない。立てたことがなければ全部) には、理由がない
+        b = self.sum["builder"]
+        off = {D for D, rds in b.seasons.items() if not b.why_asked(rds[0]["start"])}
+        self.assertTrue(off)
+        self.assertTrue(all(r["why"] is None and r["why_by"] is None and r["why_read"] is None for (D, _), r in self.P.items() if D in off))
+        self.assertTrue(all((v["reasons"] is None) == (D in off) for D, v in self.V.items()))
+
+    def test_why_asked(self):
+        # 切り替えの控え [その日のお題から, たずねるか] から、その日のお題に理由の欄があったか (立てる → やめる → また立てる)
+        from types import SimpleNamespace
+        b = SimpleNamespace(e2={"ask_why_log": [[4829, True], [4889, False], [4949, True]]})
+        got = {d: build_records.Builder.why_asked(b, d) for d in (4799, 4829, 4859, 4889, 4919, 4949, 4979)}
+        self.assertEqual(got, {4799: False, 4829: True, 4859: True, 4889: False, 4919: False, 4949: True, 4979: True})
+        self.assertFalse(build_records.Builder.why_asked(SimpleNamespace(e2={}), 4829))
+
+    def test_family_why_rows(self):
+        # 代表が割り振った人の理由は、代表が family に書いたその人の理由 (why_by 代表)。代表と同じ仕事の人には、理由をたずねていないので null。
+        #   いちばん新しい「代表が割り振った」季節の答えに why を足して (写しで)、その季節の行だけ作り直す
+        import copy
+        import grounding
+        b = self.sum["builder"]
+        D = next((D for D in sorted(self.V, reverse=True)
+                  if {"自分", "代表が割り振った", "代表と同じ仕事"} <= {r["decided_by"] for (d, _), r in self.P.items() if d == D}), None)
+        if D is None:
+            self.skipTest("代表が割り振った季節がない")
+        a = b.seasons[D][0]["start"]
+        b2 = copy.copy(b)
+        b2.answers, b2.warnings = dict(b.answers), []
+        b2.e2 = dict(b.e2, ask_why_log=[[a, True]])  # この季節のはじめのお題から、理由をたずねた
+        b2.answers[a] = copy.deepcopy(b.answers[a])
+        for ans in b2.answers[a]["season"].values():
+            if isinstance(ans.get("job"), dict):
+                ans["job"]["why"] = "冬に備えて木の実を蓄えたい"
+            for j in (ans.get("family") or {}).values() if isinstance(ans.get("family"), dict) else []:
+                if isinstance(j, dict):
+                    j["why"] = " いつもどおり "
+        ps = json.loads(json.dumps(b2.season(D, b2.seasons[D])[2], ensure_ascii=False))
+        n = {"自分": 0, "代表が割り振った": 0, "代表と同じ仕事": 0}
+        for r in ps:
+            k = r["decided_by"]
+            if k == "代表が割り振った":
+                self.assertEqual((r["why"], r["why_by"], r["why_read"]), ("いつもどおり", "代表", {"stated": True, "habit": True}), r["person_id"])
+            elif k == "代表と同じ仕事":
+                self.assertEqual((r["why"], r["why_by"], r["why_read"]), (None, None, None), r["person_id"])
+            elif k == "自分" and r["why"] is not None:
+                self.assertEqual((r["why"], r["why_by"], r["why_read"]), ("冬に備えて木の実を蓄えたい", "自分", {"stated": True, "habit": False}))
+            else:
+                self.assertIsNone(r["why"], r["person_id"])
+            n[k] = n.get(k, 0) + 1
+            orig = self.P[(D, r["person_id"])]  # 理由のほかは、もとの行と同じ
+            self.assertEqual({x: y for x, y in r.items() if not x.startswith("why")},
+                             {x: y for x, y in orig.items() if not x.startswith("why") and x != "grounding"}, r["person_id"])
+        mine = sum(1 for r in ps if r["decided_by"] == "自分" and r["why"])
+        self.assertGreater(mine, 0)
+        self.assertEqual(grounding.village_reasons(ps, True), {"asked": n["自分"] + n["代表が割り振った"], "with_reason": mine + n["代表が割り振った"],
+                                                               "habit": n["代表が割り振った"], "same_as_rep": n["代表と同じ仕事"]})
+        b2.e2 = dict(b.e2, ask_why_log=[[a + 1, True]])  # 季節のはじめのお題に欄がなければ、答えに why があっても読まない
+        ps = b2.season(D, b2.seasons[D])[2]
+        self.assertTrue(all(r["why"] is None and r["why_by"] is None for r in ps))
+
+
+class L_AskWhy(unittest.TestCase):
+    """L. step.py ask_why (写しで動かす。2026-10-14 本人が決めた: 次に村を進めるときから仕事の理由をたずねる)"""
+
+    def setUp(self):
+        self.d = Path(tempfile.mkdtemp(prefix="rec_ask_"))
+        self.raw = (REAL / "state.json").read_text(encoding="utf-8")
+        st = json.loads(self.raw)
+        self.flagged = any(k in st.get("era2", {}) for k in ASK_KEYS)
+        for k in ASK_KEYS:  # 立てる前の村から (写しの state だけを変える)
+            st.get("era2", {}).pop(k, None)
+        self.st = st
+        self.day = st["day"]
+        self.write(st)
+        self.sea, self.fee = (self.d / "prompts" / f"day{self.day:03d}" / x for x in ("season", "feeling"))
+        (self.d / "answers" / f"day{self.day:03d}" / "season").mkdir(parents=True)
+
+    def tearDown(self):
+        shutil.rmtree(self.d, ignore_errors=True)
+
+    def write(self, st):
+        (self.d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+    def step(self, *args, code=None):
+        r = subprocess.run([sys.executable, str(code or SOC / "step.py"), *args], env=dict(os.environ, SOC_DATA=str(self.d), PYTHONUTF8="1"),
+                           capture_output=True, text=True, encoding="utf-8")
+        return r
+
+    def files(self, d):
+        return {f.name: f.read_text(encoding="utf-8") for f in sorted(d.glob("*.md"))} if d.is_dir() else {}
+
+    def state(self):
+        return json.loads((self.d / "state.json").read_text(encoding="utf-8"))
+
+    def test_on_off(self):
+        st = json.loads(json.dumps(self.st))
+        if st["phase"] != "season" or not st.get("era2"):
+            self.skipTest("季節の段階でない")
+        first = st["era2"].get("last_first", 0)
+        base = ({n: era2.season_prompt(st, p, first) for p in era2.adults(st) for n in [p["name"]] if n in set(era2.answerers(st))},
+                {n: era2.feeling_prompt(st, p, first) for p in era2.adults(st) for n in [p["name"]] if n in set(era2.feelers(st))})
+        if not self.flagged:  # 立てる前のお題は、本物のお題 (季節を進めたときに書いたもの) と 1 文字も違わない
+            real = REAL / "prompts" / f"day{self.day:03d}"
+            self.assertEqual((self.files(real / "season"), self.files(real / "feeling")),
+                             tuple({f"{n}.md": t for n, t in x.items()} for x in base))
+        base = tuple({f"{n}.md": t for n, t in x.items()} for x in base)
+        self.assertIn("仕事の理由: まだ始めていない", self.step("status").stdout)
+        # 1) 立てる: まだだれも答えていないので、今の季節のお題を作り直す (気持ちのお題は前と同じ)
+        r = self.step("ask_why")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn(f"{self.day} 日目のお題から", r.stdout)
+        self.assertIn(f"仕事の理由: たずねている ({self.day} 日目のお題から)", self.step("status").stdout)
+        e2 = self.state()["era2"]
+        self.assertEqual((e2["ask_why"], e2["ask_why_log"]), (True, [[self.day, True]]))
+        on = self.files(self.sea)
+        self.assertEqual(on.keys(), base[0].keys())
+        self.assertTrue(all(WHY_ADDED[0] in t for t in on.values()))
+        self.assertEqual({n: no_why(t) for n, t in on.items()}, base[0])
+        self.assertEqual(self.files(self.fee), base[1])
+        # 2) もう一度: 何も変えない
+        h = sha(self.d / "state.json")
+        r = self.step("ask_why")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("もうたずねている", r.stdout)
+        self.assertEqual((sha(self.d / "state.json"), self.files(self.sea)), (h, on))
+        # 3) やめる: お題は立てる前と 1 文字も違わない
+        r = self.step("ask_why", "off")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        e2 = self.state()["era2"]
+        self.assertEqual((e2["ask_why"], e2["ask_why_log"]), (False, [[self.day, True], [self.day, False]]))
+        self.assertEqual((self.files(self.sea), self.files(self.fee)), base)
+        # 4) もう答えがあれば、お題はそのままで、次の季節のお題から (切り替えは控えに足していく)。
+        #   本物の村が季節の終わりの日にいるときだけ (途中で集まり直したあとは test_mid_season)
+        if (self.day + 1) % era2.SEASON_DAYS == 0:
+            (self.d / "answers" / f"day{self.day:03d}" / "season" / f"{next(iter(base[0]))[:-3]}.json").write_text("{}", encoding="utf-8")
+            r = self.step("ask_why")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertIn(f"{self.day + era2.SEASON_DAYS} 日目のお題から", r.stdout)
+            e2 = self.state()["era2"]
+            self.assertEqual((e2["ask_why"], e2["ask_why_log"]), (True, [[self.day, True], [self.day, False], [self.day + era2.SEASON_DAYS, True]]))
+            self.assertEqual((self.files(self.sea), self.files(self.fee)), base)
+        # このコマンドで state が変わるのは、era2 の ask_why の欄だけ (世界は同じ)
+        st2 = self.state()
+        for k in ASK_KEYS:
+            st2["era2"].pop(k, None)
+        self.assertEqual(st2, self.st)
+
+    def test_mid_season(self):
+        # 季節の途中 (蓄えが尽きて集まり直したあと) で、もう答えがあれば、次の季節のはじめのお題 (季節の終わりの日) から
+        st = json.loads(json.dumps(self.st))
+        if st["phase"] != "season" or not st.get("era2") or (st["day"] + 1) % era2.SEASON_DAYS:
+            self.skipTest("季節の終わりの日でない")
+        st["day"] += 10
+        self.write(st)
+        a = self.d / "answers" / f"day{st['day']:03d}" / "season"
+        a.mkdir(parents=True)
+        (a / "x.json").write_text("{}", encoding="utf-8")
+        r = self.step("ask_why")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn(f"{self.day + era2.SEASON_DAYS} 日目のお題から", r.stdout)
+        self.assertEqual(self.state()["era2"]["ask_why_log"], [[self.day + era2.SEASON_DAYS, True]])
+        self.assertFalse((self.d / "prompts").exists())
+
+    def test_onoff_only_ask_why(self):
+        # on / off は ask_why のときだけ (ほかのコマンドに書いたら、何もしないで止まる)
+        h = sha(self.d / "state.json")
+        for cmd in ("status", "season", "resume"):
+            r = self.step(cmd, "off")
+            self.assertNotEqual(r.returncode, 0, cmd)
+            self.assertIn("ask_why のときだけ", r.stderr, cmd)
+        self.assertEqual(sha(self.d / "state.json"), h)
+
+    def test_no_era2(self):
+        self.write({"day": 3, "phase": "night", "people": []})
+        r = self.step("ask_why")
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("Society 2.0", r.stderr)
+        self.assertEqual(self.state(), {"day": 3, "phase": "night", "people": []})
+
+    def test_resume_leaves_ask_why(self):
+        # resume は一時停止を解くだけ (仕事の理由をたずねるかは変えない。アプリ用のデータは書かずに試す)
+        st = json.loads(json.dumps(self.st))
+        st["hold"] = True
+        self.write(st)
+        code = self.d / "resume_test.py"
+        code.write_text(f"import sys\nsys.path.insert(0, {str(SOC)!r})\nimport step\nstep.export = lambda s: None\n"
+                        "sys.argv = ['step.py', 'resume']\nstep.main()\n", encoding="utf-8")
+        r = self.step(code=code)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        st2 = self.state()
+        self.assertFalse(st2["hold"])
+        self.assertEqual(st2["era2"], self.st["era2"])
+        self.assertNotIn("理由", r.stdout)
 
 
 def tearDownModule():

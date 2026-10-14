@@ -24,6 +24,7 @@ sys.path.insert(0, str(HERE.parent))
 import archive  # noqa: E402
 import characters  # noqa: E402
 import era2  # noqa: E402
+import grounding  # noqa: E402
 import records  # noqa: E402
 import world  # noqa: E402
 
@@ -320,6 +321,14 @@ class Builder:
             if x["day"] <= day:
                 era = x["era"]
         return era
+
+    def why_asked(self, day):
+        """day 日の集まりのお題に、仕事の理由の欄があったか (段階 1。step.py ask_why の切り替えの控え era2.ask_why_log から)"""
+        on = False
+        for d, x in self.e2.get("ask_why_log") or []:
+            if d <= day:
+                on = x
+        return on
 
     # ---------------- 1 季節 ----------------
     def season(self, D, rds):
@@ -1199,6 +1208,17 @@ class Builder:
                     if plan:
                         jobs.append({"from_day": rd["start"] + 1, "activity": plan.get("activity"), "place": plan.get("place"),
                                      "with": [self.P(w) for w in plan.get("with") or []], "decided_by": decided})
+            why, why_by = None, None  # 仕事の理由 (段階 1。step.py ask_why のあとの、理由の欄があるお題の答えだけ読む)
+            asked = self.why_asked(a)
+            if asked and decided == "自分" and isinstance(sea[n].get("job"), dict):
+                why, why_by = sea[n]["job"].get("why"), "自分"
+            elif asked and decided == "代表が割り振った":  # 代表が family に書いた、その人の理由 (代表と同じ仕事の人には、理由をたずねていない)
+                rep = next((r for r in sea if r in reps and self.byname[r].get("household") == h and h), None)
+                if rep:
+                    fam = sea[rep].get("family") if isinstance(sea[rep].get("family"), dict) else {}
+                    src = fam.get(n)
+                    why, why_by = (src.get("why"), "代表") if isinstance(src, dict) else (None, None)
+            why = why.strip()[:120] if isinstance(why, str) and grounding.read_reason(why) else None
             ja = ((C or {}).get("season", {}).get("jobs") or {}).get(n) if C else None
             days = {}
             plan_act = jobs[-1]["activity"] if jobs else None
@@ -1225,6 +1245,7 @@ class Builder:
                 "answered": "season" if n in sea else "feeling" if n in fee else None,
                 "said": {"count": sd["count"], "to": sd["to"]} if sd else {"count": 0, "to": []},
                 "jobs": jobs, "decided_by": decided,
+                "why": why, "why_by": why_by if why else None, "why_read": grounding.read_reason(why),
                 "job_amounts": ({k: ja.get(k) for k in ("sow", "pick", "plant", "harvest", "eat_goat")} if ja else None),
                 "days_by_activity": {k: days[k] for k in sorted(days)},
                 "outputs": outputs,
@@ -1345,6 +1366,10 @@ class Builder:
         self.exact, self.vres = [], {}
         for D in sorted(self.seasons):
             v, hs, ps, lg = self.season(D, self.seasons[D])
+            for r in ps:  # 接地度 (grounding.py。仕事ごとの日数から計算するだけ)
+                r["grounding"] = grounding.person(r["days_by_activity"])
+            v["grounding"] = grounding.village(ps)
+            v["reasons"] = grounding.village_reasons(ps, self.why_asked(self.seasons[D][0]["start"]))
             self.village.append(v)
             self.house_rows += hs
             self.person_rows_all += ps
@@ -1455,6 +1480,12 @@ COLUMNS = [
     ("season_village", "year_named", "この季節をはじめた集まりで決まった年の名前", None, "村", "era2.year_names", True, 2039, "口で伝える年代記"),
     ("season_village", "criteria", "フェーズの条件 (今の値・目標・そろったか)", None, "シ", "控え (era_info) と条件の中身", True, 489, None),
     ("season_village", "snapshot", "季節の終わりの値が控えから取れたか", None, "-", "", True, 489, None),
+    ("season_village", "reasons", "仕事の理由 (理由をたずねた大人・理由を書いた人・習慣の言い方の人・代表と同じ仕事の人)", "人", "シ",
+     "season_person の decided_by と why_read", True, None,
+     "asked = 自分で答えた大人と、代表が割り振った大人。with_reason・habit はそのうちの人数。same_as_rep = 代表と同じ仕事の大人 (理由はたずねていない)。"
+     "お題に理由の欄がなかった季節は null (段階 1 の前と、やめていたあいだ。era2.ask_why_log)。欄があって、だれも書かなければ with_reason は 0"),
+    ("season_village", "grounding", "接地度 (大人の平均・いちばん低い・いちばん高い)", "0〜1", "シ", "season_person の grounding", True, 489,
+     "大きいほど身体や現場に根ざしている (記述で、良い・悪いではない)。docs/humanity/design_note.md の D06・D10"),
     ("season_household", "season_end_day", "季節の終わりの日", "日", "-", "", True, 489, "1 行 = 1 季節 × 1 家"),
     ("season_household", "household_id", "家", None, "-", "", True, 489, None),
     ("season_household", "status", "家のようす", None, "-", "membership", True, 489, "村にいる・大人がいない・村を出た・だれもいない"),
@@ -1505,6 +1536,14 @@ COLUMNS = [
     ("season_person", "laws", "掟の提案と投票", None, "シ", "state の laws と答え", True, 489, None),
     ("season_person", "knowledge_added", "新しく覚えたこと", "件", "シ", "knowledge_log", True, 489, None),
     ("season_person", "snapshot", "季節の終わりの値が控えから取れたか", None, "-", "", True, 489, None),
+    ("season_person", "why", "主な仕事にした理由の一言", None, "シ", "季節の答えの job.why と、代表の答えの family の why", True, None,
+     "段階 1 (docs/humanity の D09)。step.py ask_why のあとのお題から。代表が割り振った人は代表が書いた理由。代表と同じ仕事の人は null (理由をたずねていない)"),
+    ("season_person", "why_by", "理由を書いた人 (自分・代表)", None, "シ", "季節の答え", True, None,
+     "自分 = 自分で答えた人。代表 = 代表が割り振った人 (代表が一人ずつ書いた)。理由がなければ null"),
+    ("season_person", "why_read", "理由の読み取り (書いてあるか・習慣の言い方か)", None, "シ", "grounding.read_reason", True, None,
+     "言葉の一覧で読むだけ【仮定】。理由・理念の判定は段階 2 の陪審団"),
+    ("season_person", "grounding", "接地度 (意味・結果・身体・接地度・自律性・働いた日)", "0〜1", "シ", "days_by_activity と grounding.py の表", True, 489,
+     "職務特性モデルの評定【評定】と O*NET の身体活動。働いた日で重みづけした平均。休んだ日は数えない。働いた日がなければ null"),
     ("ledger", "season_end_day", "季節の終わりの日", "日", "-", "", True, 489, "家 × 季節 × 物 × 理由"),
     ("ledger", "holder", "持ち主 (村 か 家)", None, "-", "", True, 489, "村 = 村の蓄え + 大人の手元"),
     ("ledger", "item", "物", None, "-", "", True, 489, None),

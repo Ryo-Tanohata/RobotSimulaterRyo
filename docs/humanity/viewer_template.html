@@ -1,0 +1,235 @@
+<title>人類史テックツリー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 配置：上に3層のツリー一覧（年代順の列）、下に設計ノート。参照IDのチップでノートの該当見出しへ飛ぶ */
+:root{
+  --bg:#f3f4f1; --surface:#fbfbf9; --fg:#1f2724; --muted:#5d6762; --line:#d6dad4;
+  --accent:#2d5b6b; --accent-soft:#dfe9ec;
+  --body:#7a5a2f; --body-soft:#f0e7d9;
+  --cap:#2f5f8a; --cap-soft:#dfe8f2;
+  --work:#4f6b3a; --work-soft:#e3ecda;
+  --hl:#fff1b8;
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#151a19; --surface:#1c2221; --fg:#e4e8e5; --muted:#9aa49f; --line:#2f3836;
+  --accent:#8cc0cf; --accent-soft:#22343a;
+  --body:#d9b47e; --body-soft:#33291c; --cap:#8db8e0; --cap-soft:#1f2c3a; --work:#a9c78e; --work-soft:#25301d;
+  --hl:#4a4320; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151a19; --surface:#1c2221; --fg:#e4e8e5; --muted:#9aa49f; --line:#2f3836;
+  --accent:#8cc0cf; --accent-soft:#22343a;
+  --body:#d9b47e; --body-soft:#33291c; --cap:#8db8e0; --cap-soft:#1f2c3a; --work:#a9c78e; --work-soft:#25301d;
+  --hl:#4a4320; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.75}
+.wrap{max-width:1120px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:grid;gap:6px;margin-bottom:28px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+h1{font-family:var(--f-display);font-size:clamp(26px,4vw,36px);line-height:1.3;margin:0;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:24px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+nav.tabs a{padding:10px 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;font-weight:500}
+nav.tabs a:hover{color:var(--fg)}
+nav.tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted);margin-bottom:16px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+.nodes{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.node{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:grid;gap:10px;min-width:0}
+.node-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.nid{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.node h3{font-family:var(--f-display);font-size:20px;margin:0}
+.era{font-size:12px;color:var(--muted);margin-left:auto}
+.req{font-size:12px;color:var(--muted)}
+.layer{display:grid;grid-template-columns:3.2em 1fr;gap:8px;align-items:start;font-size:14px}
+.layer .tag{font-size:12px;font-weight:700;text-align:center;border-radius:3px;padding:1px 0}
+.layer.body .tag{background:var(--body-soft);color:var(--body)}
+.layer.capability .tag{background:var(--cap-soft);color:var(--cap)}
+.layer.work .tag{background:var(--work-soft);color:var(--work)}
+.meta-row{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.ground{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.gbox{display:grid;gap:4px;background:var(--bg);border-radius:4px;padding:8px 10px}
+.gtop{display:flex;align-items:center;gap:8px;font-size:13px}
+.gtop .ground{font-size:16px}
+.gbar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.gbar i{display:block;height:100%;background:var(--accent)}
+.gsub{font-size:12.5px;color:var(--muted);line-height:1.6}
+.tiers{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.tier{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:grid;gap:6px;min-width:0}
+.tier h3{font-family:var(--f-display);font-size:18px;margin:0}
+.tier p{margin:0;font-size:14px}
+.tiers > p{grid-column:1/-1;margin:0}
+.effects{font-size:13px;color:var(--muted);margin:0;padding:0;list-style:none;display:grid;gap:2px}
+a.ref{font-family:var(--f-mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:3px;padding:0 5px;text-decoration:none;white-space:nowrap}
+a.ref:hover{text-decoration:underline}
+a.ref:focus-visible{outline:2px solid var(--accent)}
+.refs{display:inline-flex;gap:4px;flex-wrap:wrap;margin-left:4px}
+section{scroll-margin-top:56px}
+h2.sec{font-family:var(--f-display);font-size:24px;margin:48px 0 16px}
+.stages{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{font-weight:700;color:var(--muted);font-size:12.5px}
+td.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.note{max-width:72ch}
+.note h1{display:none}
+.note h2{font-family:var(--f-display);font-size:22px;margin:40px 0 12px;padding-top:12px;border-top:1px solid var(--line)}
+.note h3{font-size:16px;margin:24px 0 6px;scroll-margin-top:60px;border-radius:4px;transition:background .6s}
+.note h3.flash{background:var(--hl)}
+.note p,.note li{color:var(--fg)}
+.note hr{display:none}
+.note code{font-family:var(--f-mono);font-size:.9em;background:var(--accent-soft);padding:0 4px;border-radius:3px}
+.note table{margin:12px 0}
+.note .tablebox{overflow-x:auto}
+.note a{color:var(--accent)}
+.note strong{color:var(--body)}
+footer{margin-top:48px;font-size:12.5px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){.note h3{transition:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="ver"></div>
+    <h1>人類史シミュレーター テックツリー</h1>
+    <p class="lede">各ノードを「身体 → 能力 → 仕事」の3層で記述した叩き台です。青い参照IDを押すと、設計ノートの根拠に移ります。</p>
+  </header>
+
+  <nav class="tabs" aria-label="セクション">
+    <a href="#tree">ノード</a>
+    <a href="#stages">ライフステージ</a>
+    <a href="#judge">判定の流れ</a>
+    <a href="#note">設計ノート</a>
+  </nav>
+
+  <section id="tree">
+    <div class="legend">
+      <span><i class="sw" style="background:var(--body)"></i>身体＝物質的な土台</span>
+      <span><i class="sw" style="background:var(--cap)"></i>能力＝外部化された知性</span>
+      <span><i class="sw" style="background:var(--work)"></i>仕事＝生まれた働き方</span>
+      <span>接地度＝意味・結果・身体の平均（0〜1。棒が長いほど身体や現場に根ざしている。良い・悪いではない）</span>
+    </div>
+    <div class="nodes" id="nodes"></div>
+  </section>
+
+  <section id="stages">
+    <h2 class="sec">ライフステージと不変項</h2>
+    <div class="stages"><table id="stageTable"></table></div>
+  </section>
+
+  <section id="judge">
+    <h2 class="sec">判定の流れ</h2>
+    <div class="tiers" id="tiers"></div>
+  </section>
+
+  <section id="note">
+    <h2 class="sec">設計ノート</h2>
+    <article class="note" id="noteBody"></article>
+  </section>
+
+  <footer>元データ：tech_tree.json と design_note.md。どちらも同じフォルダに置いて管理します。</footer>
+</div>
+
+<script type="application/json" id="treeData">__TREE__</script>
+<script type="application/json" id="noteData">__NOTE__</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script>
+(function(){
+  const tree = JSON.parse(document.getElementById('treeData').textContent);
+  const noteMd = JSON.parse(document.getElementById('noteData').textContent);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const refs = arr => (arr && arr.length) ? '<span class="refs">' + arr.map(r => `<a class="ref" href="#${r}">${r}</a>`).join('') + '</span>' : '';
+  const stageName = Object.fromEntries(tree.life_stages.map(s => [s.id, s.name]));
+  const nodeName = Object.fromEntries(tree.nodes.map(n => [n.id, n.name]));
+  const invName = Object.fromEntries(tree.invariant_hypotheses.map(i => [i.id, i.name]));
+  document.getElementById('ver').textContent = `v${tree.meta.version} ・ ${tree.meta.status} ・ ${tree.meta.updated}`;
+
+  const order = ['body','capability','work'];
+  document.getElementById('nodes').innerHTML = tree.nodes.map(n => {
+    const layers = order.map(k => `<div class="layer ${k}"><span class="tag">${tree.layers[k].label}</span><span>${esc(n.layers[k].label)}${refs(n.layers[k].refs)}</span></div>`).join('');
+    const eff = Object.entries(n.life_stage_effects||{}).map(([s,t]) => `<li>${esc(stageName[s]||s)}：${esc(t)}</li>`).join('');
+    const fmt = v => (v === 0 ? '0' : v.toFixed(2).replace('-', '−'));
+    const parts = gg => {
+      const c = gg.components;
+      let s = `意味 ${fmt(c.meaning.score)}・結果 ${fmt(c.feedback.score)}・身体 ${fmt(c.body.score)}`;
+      if (gg.autonomy) s += `・自律性 ${fmt(gg.autonomy.score)}`;
+      if (gg.spread) s += `・波及 ${gg.spread > 0 ? '+' : ''}${fmt(gg.spread)}`;
+      return s;
+    };
+    const G = n.grounding;
+    let gdetail = '';
+    if (G.components) {
+      gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">${fmt(G.value)}</b><span class="gbar"><i style="width:${(G.value*100).toFixed(0)}%"></i></span></div>
+        <div class="gsub">${esc(G.representative)}<br>理由（作り手）：${esc(G.why || '')}<br>${parts(G)}<br>評定：${esc(G.rating_source || '')}／身体の出どころ：${esc(G.components.body.source || '')}</div>
+        ${(G.variants||[]).map(v => `<div class="gsub">別例 ${esc(v.representative)}：<b class="ground">${fmt(v.value)}</b>（${parts(v)}）</div>`).join('')}</div>`;
+    } else if (G.scenarios) {
+      gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">未決</b></div>
+        ${G.scenarios.map(s => `<div class="gsub">${esc(s.label)}：<b class="ground">${fmt(s.value)}</b>（${parts(s)}）</div>`).join('')}</div>`;
+    }
+    const g = G.value === null ? '未決' : fmt(G.value);
+    const req = n.requires.length ? '前提：' + n.requires.map(r => esc(nodeName[r])).join('・') : '前提なし（起点）';
+    let ind = '';
+    if (n.indicators.kind === 'benchmark') {
+      ind = '指標：実在ベンチ' + refs(n.indicators.refs);
+    } else if (n.indicators.kind === 'historical_proxy') {
+      ind = '指標：' + n.indicators.candidates.map(esc).join('・');
+    } else ind = '指標：推測';
+    return `<article class="node" id="${n.id}">
+      <div class="node-head"><span class="nid">${n.id}</span><h3>${esc(n.name)}</h3><span class="era">${esc(n.era)}</span></div>
+      <div class="req">${req}</div>
+      ${layers}
+      ${eff ? `<ul class="effects">${eff}</ul>` : ''}
+      ${gdetail}
+      <div class="meta-row"><span>接地度は${esc(G.status)}${refs(G.refs)}</span><span>${ind}</span></div>
+    </article>`;
+  }).join('');
+
+  document.getElementById('stageTable').innerHTML =
+    '<thead><tr><th>ID</th><th>段階</th><th>関わる不変項（仮説）</th></tr></thead><tbody>' +
+    tree.life_stages.map(s => `<tr><td class="mono">${s.id}</td><td>${esc(s.name)}</td><td>${s.invariants.map(i => `<a class="ref" href="#${i}">${i}</a> ${esc(invName[i])}`).join('<br>')}</td></tr>`).join('') +
+    '</tbody>';
+
+  const jp = tree.judgment_pipeline;
+  if (jp) {
+    document.getElementById('tiers').innerHTML = jp.tiers.map(t => `
+      <article class="tier">
+        <div class="node-head"><span class="nid">段階${t.tier}</span><h3>${esc(t.name)}</h3><span class="era">${t.uses_llm ? 'Claudeを使う' : 'Claudeを使わない'}</span></div>
+        <div class="req">${esc(t.when)}</div>
+        <p>${esc(t.does || t.escalation)}</p>
+        ${t.triggers ? `<ul class="effects">${t.triggers.map(x => `<li>・${esc(x)}</li>`).join('')}</ul><p class="gsub">${esc(t.escalation)}</p>` : ''}
+      </article>`).join('') +
+      `<p class="gsub">${esc(jp.rescoring)}。一生あたりの目安：段階1 ${esc(jp.token_estimate_per_life.tier1)}、段階2 ${esc(jp.token_estimate_per_life.tier2)}（${esc(jp.token_estimate_per_life.status)}）${refs(jp.refs)}${refs(tree.jury_spec ? tree.jury_spec.refs.slice(0,1) : [])}</p>`;
+  }
+
+  const body = document.getElementById('noteBody');
+  if (window.marked) {
+    body.innerHTML = marked.parse(noteMd);
+  } else {
+    body.innerHTML = '<pre style="white-space:pre-wrap">' + esc(noteMd) + '</pre>';
+  }
+  body.querySelectorAll('h3').forEach(h => {
+    const m = h.textContent.trim().match(/^([RDI]\d{1,2})\b/);
+    if (m) h.id = m[1];
+  });
+  body.querySelectorAll('table').forEach(t => { const d = document.createElement('div'); d.className = 'tablebox'; t.replaceWith(d); d.appendChild(t); });
+  const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT);
+  const targets = [];
+  while (walker.nextNode()) { if (/\[[RDI]\d{1,2}\]/.test(walker.currentNode.nodeValue)) targets.push(walker.currentNode); }
+  targets.forEach(t => {
+    const span = document.createElement('span');
+    span.innerHTML = esc(t.nodeValue).replace(/\[([RDI]\d{1,2})\]/g, '<a class="ref" href="#$1">$1</a>');
+    t.replaceWith(span);
+  });
+
+  function flash(){
+    const id = location.hash.slice(1);
+    const el = id && document.getElementById(id);
+    if (el && el.tagName === 'H3') { el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 1600); }
+  }
+  window.addEventListener('hashchange', flash);
+  if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) { el.scrollIntoView(); flash(); } }
+})();
+</script>

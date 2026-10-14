@@ -3202,6 +3202,7 @@ def _g6_now(state, p, solo, n=8):
     if not era_at_least(state, "G6"):
         return ""
     g = state["era2"].get("g6") or {}
+    why = ', "why": "..."' if state["era2"].get("ask_why") else ""  # 仕事の理由 (段階 1。season_prompt と同じ)
     offers = [o for o in g.get("offers", []) if o["kind"] != "返す"]
     rows = [f"{n}. ほかの村・印・記録 (上の「ほかの村・印・記録」を見て決める。どれも書かなくてもよい)"]
     if offers:
@@ -3211,12 +3212,12 @@ def _g6_now(state, p, solo, n=8):
     rows.append("   村の蓄えの封: この季節、村の蓄えに封をするなら true、しないなら false (seal_store)")
     if any(o["known"] is not None for o in g.get("others", [])):
         rows.append('   交換に行く: 主な仕事を「交換に行く」にする人は、job か family に、to (村の番号)・carry (持って行く物と数)・want (ほしい物)・then (帰ってからの仕事) を書く。'
-                    '例 {"activity": "交換に行く", "place": "camp", "to": "N1", "carry": {"土器": 4}, "want": "ヤギ", "then": "採集"}')
+                    '例 {"activity": "交換に行く", "place": "camp", "to": "N1", "carry": {"土器": 4}, "want": "ヤギ", "then": "採集"' + why + '}')
     op = g.get("open") or {}
     if op.get("数え札"):
         hows = " / ".join(h for h in ("数え札", "封筒", "板") if op.get(h))
         rows.append(f'   記録をつける: 主な仕事を「記録をつける」にする人は、what (残すもの: 蓄え・交換・刈る。書いた順に残す) と how ({hows}) を書く。'
-                    '例 {"activity": "記録をつける", "place": "camp", "what": ["蓄え", "交換", "刈る"], "how": "数え札"}')
+                    '例 {"activity": "記録をつける", "place": "camp", "what": ["蓄え", "交換", "刈る"], "how": "数え札"' + why + '}')
     return "\n".join(rows) + "\n"
 
 
@@ -3236,6 +3237,10 @@ def season_prompt(state, p, first):
     lead, two = g.get("leader"), g.get("stage", 1) >= 2
     solo = bool(g5 and e2.get("rep_mode") and p["name"] not in _reps(state))  # 家族の代表でないまとめ役 (自分の分だけ答える)
     g6 = era_at_least(state, "G6")  # G6 の部分は、G6 の前はみな空の文字
+    # 2026-10-14 (本人の依頼。docs/humanity の D09 の段階 1): 主な仕事にした理由を一言書いてもらう。代表は、family に書いた人ごとの理由も。
+    #   step.py ask_why で e2["ask_why"] が立ってから働く (本人が決めた: 次に村を進めるときから)。立っていなければ、お題は前と同じ (1 文字も変わらない)
+    ask_why = bool(e2.get("ask_why"))
+    why_json = ', "why": "..."' if ask_why else ""
     places = "\n".join(f"- {pl['id']}: {pl['label']}" for pl in state["places"])
     names = [q["name"] for q in adults(state) if q is not p]
     vis = ""
@@ -3273,10 +3278,11 @@ def season_prompt(state, p, first):
         fam_txt = (f"\n## あなたの家族 ({p.get('household')})\n村の大人が {REP_FROM} 人をこえたので、季節の集まりでは家族ごとに、いちばん年上の大人が代表して答える。"
                    f"あなたは {p.get('household')} の代表。\n" + ("\n".join(rows) if rows else "- (ほかの家族はいない)") +
                    "\n- 家族の大人の主な仕事も、あなたが決める (family。書かなかった人は、あなたと同じ仕事)"
+                   + ("\n- family に書いた人ごとに、その仕事にした理由も一言書く (family の why)" if ask_why else "") +
                    "\n- sow・pick・plant・harvest の数は、家族の大人一人ひとりの量 (eat_goat は家族で何頭か)"
                    f"\n- 掟の投票と、よそから来た人の受け入れ{('、もめごとの収め方・祭り' + ('・まとめ役' if two else '') + ('・申し出 (trade)・村の蓄えの封' if g6 else '') + 'の答え') if g5 else ''}は、家族の大人みんなの答えとして数える\n")
         if fam:
-            fam_json = '"family": {' + ", ".join(f'"{q["name"]}": {{"activity": "採集", "place": "camp"}}' for q in [q for q in fam if q["name"] != lead][:2]) + '}, '
+            fam_json = '"family": {' + ", ".join(f'"{q["name"]}": {{"activity": "採集", "place": "camp"{why_json}}}' for q in [q for q in fam if q["name"] != lead][:2]) + '}, '
 
     if solo:
         fam_txt = (f"\n## あなたはまとめ役\nあなたは {p.get('household')} の代表ではないが、村のまとめ役なので、季節の集まりで答える。決めるのは自分の仕事だけ "
@@ -3302,6 +3308,7 @@ def season_prompt(state, p, first):
     rec6 = g6 and ACT_RECORD in acts2(state)  # 記録をつけるは、数え札が使えるようになってから書く (使えない道具のことは書かない。2026-10-09 試し回し)
     g6_act = (f"   交換に行く{'・記録をつける' if rec6 else ''}は camp と書く (行き先・持って行く物{'・残すもの' if rec6 else ''}は {n6}. に書く)\n"
               if g6 else "")
+    why_now = "   その仕事にした理由を一言で書く (why。続けている仕事なら、続ける理由を)\n" if ask_why else ""  # 習慣の言い方 (grounding.py) はお題の文に入れない (写されないように)
     ye = year_end(state)  # 年の終わりの集まり: 年の名前を決める (ほかの集まりでは、お題は前と同じ)
     yname_now = f"{7 + bool(g5_now) + bool(g6_now)}. この 1 年の名前を決める (year_name。上の「年の名前」を見て)\n" if ye else ""
     yname_json = ' "year_name": "...",\n' if ye else ""
@@ -3329,7 +3336,7 @@ def season_prompt(state, p, first):
 2. この季節の主な仕事を決める (job)。仕事は {' / '.join(acts2(state))} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
    畑仕事 (草取り・刈り入れ) は camp で行う
    ヤギの世話は camp で行う。ヤギを捕まえるは、野生のヤギのいる場所で行う
-{g6_act}3. {(pick.strip().rstrip('。') + '。取るのはこの季節の毎夕で、1 人 40 つかみまで') if pick.strip() else 'この季節 (' + sea + ') は、キャンプのそばの木から実は取れない (実がなるのは夏と秋)'}
+{why_now}{g6_act}3. {(pick.strip().rstrip('。') + '。取るのはこの季節の毎夕で、1 人 40 つかみまで') if pick.strip() else 'この季節 (' + sea + ') は、キャンプのそばの木から実は取れない (実がなるのは夏と秋)'}
 4. 持っている木の実 (なければ村の蓄えの木の実) を、この回の最初の日にキャンプのそばに埋める (plant、つかみ、5 まで) こともできる
    秋なら、季節のはじめに、蓄えの草の種をキャンプのそばの畑にまく量 (sow、つかみ、1000 まで) を書ける (主な仕事とは別にできる)
    実った畑があれば、毎夕いくつ刈るか (harvest、つかみ、60 まで) を書ける (主な仕事とは別にできる)
@@ -3343,7 +3350,7 @@ def season_prompt(state, p, first):
 
 ## 答えの形 (JSON)
 {{"say": [{{"to": "みんな", "text": "..."}}],
- "job": {{"activity": "採集", "place": "camp", "with": []}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}{keep}{g5_json}{g6_json}
+ "job": {{"activity": "採集", "place": "camp", "with": []{why_json}}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}{keep}{g5_json}{g6_json}
  "knowledge": [{{"op": "add", "text": "...", "because": [出来事の番号], "confidence": 0.6}}],
  "proposal": {{"text": "...", "because": [出来事の番号]{pen}}},
  "votes": [{{"id": "L0", "against": "反対する理由", "agree": true, "reason": "決めた理由"}}],

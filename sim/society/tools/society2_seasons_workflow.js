@@ -19,9 +19,11 @@ function runner(cmd) {
 }
 const log_ = []
 for (let k = 0; k < args.steps; k++) {
-  const st = await agent(runner(`cd ${ROOT}/sim/society && PYTHONUTF8=1 PYTHONIOENCODING=utf-8 ${PY} -c "import json,era2;s=json.load(open('data/state.json',encoding='utf-8'));print('DAY',s['day'],s['phase'],s.get('hold'));print('NAMES',' '.join(era2.answerers(s)));print('FEEL',' '.join(era2.feelers(s)))"`), { label: `step ${k} status`, model: 'haiku', phase: 'Seasons' })
+  const st = await agent(runner(`cd ${ROOT}/sim/society && PYTHONUTF8=1 PYTHONIOENCODING=utf-8 ${PY} -c "import json,era2;s=json.load(open('data/state.json',encoding='utf-8'));print('DAY',s['day'],s['phase'],s.get('hold'));print('NAMES',' '.join(era2.answerers(s)));print('FEEL',' '.join(era2.feelers(s)));print('ASKLOG','ask_why_log' in s['era2'])"`), { label: `step ${k} status`, model: 'haiku', phase: 'Seasons' })
   const dm = (st || '').match(/DAY (\d+) (\w+) (\w+)/), nm = (st || '').match(/NAMES ([^\n`]*)/)
   if (!dm || dm[2] !== 'season' || dm[3] === 'True' || !nm) return { stopped: k, why: 'bad status', out: st, log: log_ }
+  // 仕事の理由 (2026-10-14 本人が決めた: 次に村を進めるときから)。まだ一度も step.py ask_why を動かしていなければ、進めずに止まる (daily_run.md)
+  if (!/ASKLOG True/.test(st)) return { stopped: k, why: 'ask_why not started: run step.py ask_why once, commit the prompts, then run again', out: st, log: log_ }
   const d = Number(dm[1]), names = nm[1].trim().split(/\s+/).filter(Boolean)
   const fm = (st || '').match(/FEEL ([^\n`]*)/), feel = fm ? fm[1].trim().split(/\s+/).filter(Boolean) : []
   if (!names.length) return { stopped: d, why: 'no adults', log: log_ }

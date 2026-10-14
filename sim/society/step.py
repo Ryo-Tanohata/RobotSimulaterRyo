@@ -6,6 +6,7 @@
   python sim/society/step.py evening             夕方の答えを反映 (話す・分ける・食事・夜の危険) → 夜のお題を作る
   python sim/society/step.py night               夜の答えを反映 (知識・掟・明日の予定) → フェーズの判定 → アプリ用のデータを書き出す
   python sim/society/step.py resume              フェーズが進んで一時停止しているのを解く (本人が評価したあと)
+  python sim/society/step.py ask_why [on|off]    季節のお題で、主な仕事にした理由を一言たずねる (off でやめる。理由は世界の計算には使わない)
 
 お題は data/prompts/日/段階/名前.md、答えは data/answers/日/段階/名前.json に置く。
 段階は state.json の phase に記録するので、途中で止まっても続きから再開できる。
@@ -282,10 +283,13 @@ def export(state):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season"])
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why"])
+    ap.add_argument("onoff", nargs="?", choices=["on", "off"], help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
     a = ap.parse_args()
+    if a.onoff and a.cmd != "ask_why":
+        sys.exit(f"on / off は ask_why のときだけ書く ({a.cmd} {a.onoff} とは書けない)")
 
     if a.cmd == "init":
         if STATE.exists() and not a.force:
@@ -311,6 +315,10 @@ def main():
         if state.get("hold"):
             print("一時停止中: Society 2.0 が終わったので、第 4 部のまとめ待ち (再開は resume)" if _society2_end(state)
                   else "一時停止中: フェーズが進んだので評価待ち (再開は resume)")
+        if state.get("era2"):  # 仕事の理由 (段階 1。2026-10-14 本人が決めた: 次に村を進めるときから。daily_run.md)
+            log = state["era2"].get("ask_why_log")
+            print(f"仕事の理由: {'たずねている' if state['era2'].get('ask_why') else 'たずねていない'} ({log[-1][0]} 日目のお題から)" if log
+                  else "仕事の理由: まだ始めていない (村を進める前に step.py ask_why を 1 回動かす)")
         if state["phase"] in ("evening", "night", "season"):
             print(f"お題: {pdir(state, state['phase'], 'prompts').relative_to(DATA.parent)}")
         return
@@ -322,6 +330,29 @@ def main():
         save(state)
         export(state)
         print("再開した")
+        return
+    if a.cmd == "ask_why":  # 2026-10-14 (本人が決めた。docs/humanity の D09 の段階 1): 季節のお題で、主な仕事にした理由を一言たずねる
+        #   このコマンドは世界 (乱数・出来事・蓄え) を変えない。why は世界の計算には使わない (同じ答えなら同じ世界。お題が変わるので、村の人の答えは変わりうる)。
+        #   まだだれも答えていなければ、今の季節のお題から
+        e2 = state.get("era2")
+        if not e2:
+            sys.exit("Society 2.0 が始まっていないので、仕事の理由はたずねられない")
+        on = a.onoff != "off"
+        what = "仕事の理由をたずねる" if on else "仕事の理由をたずねるのをやめる"
+        past = e2.get("ask_why_log") or []  # 切り替えの控え: [その日のお題から, たずねるか] の並び (記録が、季節ごとにお題に理由の欄があったかを読む)
+        if bool(e2.get("ask_why")) == on:
+            print(f"仕事の理由は、もうたずねている ({past[-1][0] if past else '?'} 日目のお題から。何も変えない)" if on
+                  else "仕事の理由は、たずねていない (何も変えない)")
+            return
+        now = state["phase"] == "season" and not any(pdir(state, "season", "answers").glob("*.json"))
+        # もう答えがあれば、お題はそのままで、次の季節のはじめのお題 (季節の終わりの日に書く) から。途中で集まり直しても、記録は季節のはじめの答えから読む
+        day = state["day"] if now else (state["day"] + 1) // era2.SEASON_DAYS * era2.SEASON_DAYS + era2.SEASON_DAYS - 1
+        e2["ask_why"] = on
+        e2["ask_why_log"] = past + [[day, on]]
+        save(state)
+        if now:
+            write_prompts(state, "season")  # 今の季節のお題を作り直す (気持ちのお題は前と同じ)
+        print(f"{what}: {day} 日目のお題から" + ("" if now else " (今の季節は、もう答えがあるので、お題はそのまま)"))
         return
     if a.cmd == "start2":  # Society 2.0 を始める (F6 の世界を引きつぐ)
         if state.get("era2"):
