@@ -1,5 +1,5 @@
 # 陪審団の評定を集め、陪審員どうしの一致（級内相関）と、Claude（作り手）の評定との一致を計算する（D10）
-#   python3 docs/humanity/jury/analyze_jury.py
+#   python3.13 docs/humanity/jury/analyze_jury.py (本人の PC は py -3。PYTHONUTF8=1)
 # 出力: jury/results.json（集計）と、標準出力の要約
 import json, pathlib, statistics as st, sys
 here = pathlib.Path(__file__).parent

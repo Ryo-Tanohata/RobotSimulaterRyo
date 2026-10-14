@@ -1,4 +1,4 @@
-# 接地度（grounding）を計算して tech_tree.json と design_note.md の表に書き込む（v0.5、D10）
+# 接地度（grounding）を計算して tech_tree.json と design_note.md の表に書き込む（v0.7、D10）
 #
 # 接地度は「身体や現場にどれだけ根ざして働いているか」の記述（0〜1、大きいほど深い）。良い・悪いの判定はしない（判定は陪審団、D08）。
 #   意味 M = (技能多様性・タスク完結性・タスク重要性 の平均 − 1) / 6      … 職務特性モデルの「意味を感じる」（R28）
@@ -8,7 +8,8 @@
 # 手綱の余地（自律性）と波及は、接地度に足さずに別に出す。
 #   自律性 A = (自律性 − 1) / 6                                          … 同「責任を感じる」。O*NET の「決める自由」を参考に並べる
 #   波及 = 周りの接地への影響（−1〜+1）。符号は陪審団が決める（D07・D08）
-# JDS の 1〜7 の評定は Claude が尺度の定義に沿って付けた【評定】。理由を "why" に書く。
+# JDS の 1〜7 の評定は、陪審団 12 人の平均（jury/results.json の jury_ratings。D08・D10）。
+# 下の S・VARIANTS・N10_SCENARIOS の数は作り手（Claude）が先に付けた評定で、陪審団の評定がない仕事にだけ使う。理由（作り手が書いたもの）を "why" に書く。
 import json, pathlib, re
 here = pathlib.Path(__file__).parent
 p = here/'tech_tree.json'

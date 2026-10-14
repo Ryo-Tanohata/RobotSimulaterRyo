@@ -1,6 +1,6 @@
 """接地度 (grounding) を記録から計算する (段階 0: 記録だけ。世界の進み方には使わない)
 
-設計は docs/humanity/design_note.md (D03・D06・D09・D10)、データは docs/humanity/tech_tree.json (v0.5)。
+設計は docs/humanity/design_note.md (D03・D06・D09・D10)、データは docs/humanity/tech_tree.json (v0.7)。
 接地度は「身体や現場にどれだけ根ざして働いているか」の記述 (0〜1、大きいほど深い)。良い・悪いの判定ではない。
 
   意味 = (技能多様性・タスク完結性・タスク重要性 の平均 − 1) / 6   職務特性モデル (Hackman & Oldham 1975) の「意味を感じる」
@@ -12,8 +12,10 @@
 人ごとの値は、その季節に働いた日数で仕事ごとの値を重みづけした平均。休んだ日は数えない。
 1〜7 の評定は、陪審団 12 人 (Claude の 3 つのモデルが演じた人物。docs/humanity/jury/) が独立に付けた値の平均 (D10)。
 作り手 (Claude) の評定は docs/humanity/jury/creator_ratings.json に残してある。理由は作り手が書いたもの。身体の値の出どころも表に書いた。
-乱数も時刻も使わないので、同じ記録からは同じ値になる。
+乱数も時刻も使わないので、同じ記録からは同じ値になる (村の平均は math.fsum で足すので、Python の版にもよらない)。
 """
+import math
+import re
 
 # 仕事: (技能多様性, タスク完結性, タスク重要性, フィードバック, 自律性, 身体, 身体の出どころ, 理由)。評定は陪審団の平均
 ACTS = {
@@ -73,29 +75,68 @@ def village(person_rows):
     if not vals:
         return None
     n = len(vals)
-    mean = {k: round(sum(v[k] for v in vals) / n, 3) for k in ("meaning", "feedback", "body", "value", "autonomy")}
+    mean = {k: round(math.fsum(v[k] for v in vals) / n, 3) for k in ("meaning", "feedback", "body", "value", "autonomy")}
     vs = [v["value"] for v in vals]
     return mean | {"people": n, "min": min(vs), "max": max(vs)}
 
 
 # ---- 段階 1: 仕事の理由 (docs/humanity の D09。2026-10-14) ----
-# 季節のお題の job.why を、Claude を使わずに機械的に読む。「理由があるか」と「習慣で選んだ言い方か」だけを見る。
+# 季節のお題の job.why (代表が割り振った人は family の why) を、Claude を使わずに機械的に読む。「理由があるか」と「習慣で選んだ言い方か」だけを見る。
 # 言葉の一覧は【仮定】。あいまいなものは段階 2 の陪審団が読む (理由・理念の判定はここではしない)
-HABIT_WORDS = ("いつも", "前と同じ", "同じように", "同じ仕事", "変わらず", "慣れ", "引き続き", "そのまま", "決まり", "言われた")
+NO_REASON = ("...", "…", "なし", "ない", "無し", "無い", "理由はない", "理由なし", "わからない", "分からない")  # 書いていないのと同じ (はじめの「特に・とくに」は除いて見る)
+# 「理由はありません」「これといった理由はない」「なしです」なども、書いていないのと同じ (2026-10-14 点検)
+_NO_REASON = re.compile(r"(?:これといった|これという)?(?:理由|わけ)?(?:は|が|も)?(?:ない|無い|なし|無し)(?:です)?|(?:理由|わけ)?(?:は|が|も)?ありません"
+                        r"|(?:わから|分から)(?:ない|ん)(?:です)?|わかりません|分かりません")
+HABIT_WORDS = ("いつもどおり", "いつも通り", "いつもの", "いつもそう", "いつもと同じ", "前と同じ", "前の季節と同じ", "同じように", "同じ仕事", "変わらず",
+               "慣れている", "慣れた", "引き続き", "そのまま", "決まり", "言われた", "習慣", "ずっとやって", "ずっと続け",
+               # 2026-10-14 点検で足した (「いつも」「慣れ」だけでは、「いつもより」「慣れない」も入るので、言い方ごとに書く)
+               "いつもやって", "いつもして", "いつもこの仕事", "ずっとこの仕事", "慣れてき", "これまで通り", "これまでどおり", "これまでと同じ",
+               "今まで通り", "今までどおり", "今までと同じ", "前回と同じ", "去年と同じ")
+# 仕事を変えるわけがない、という言い方も習慣とする (例「変える理由はない」。お題の「続ける理由を」に、こう答える人が多い)
+_INERTIA = r"(?:変える|変わる|ほかにする|他にする|ほかの仕事にする)(?:理由|必要|わけ)(?:は|が|も)?(?:ない|無い|ありません)"
+#   「ずっと」だけでは習慣としない (村の人の答えでは「採集よりずっと多い」のように、比べる言い方によく出てくる)
+# わけ・ねらいの言い方。文の区切りになるところだけ数える (「これから・それから・からだ」「ためる・ためて」「冷たい」は数えない)
+#   から・ので: 動詞・形容詞・「だ」のあと (例「実っているから」「増えたので」「好きだから」。「見つからない」「捕まえてから」は数えない)
+#   なので: 文のはじめでないとき (例「大事なので」)。ため: そのあとが区切りか「に・だ・で・の」(例「家族のため」「備えるために」)
+#   たい: 動詞のあと (例「蓄えたい」「刈りたい」)
+_CAUSE = re.compile(r"(?<=[うくぐすつぬぶむるいただ])(?:から(?!ない|なか|なく|ず)|ので)|(?<=[^、。，．,.!?！？…\s])なので"
+                    r"|ため(?:(?=[にだでの])|(?![ぁ-ゖ]))|(?<=[いきぎしじちにひびみりえけげせぜてでねへべめれ見寝出来居])たい")
+NOT_CAUSE = ("だいたい", "たいてい", "たいへん", "たいせつ", "ぜったい")  # 「たい」があるが、ねらいの言い方ではない言葉
+# 習慣の言い方と、そのすぐあとの「から・ので」。あいだには、ひらがなだけの短い言葉 (例「いつもそうしているから」) か、
+#   短い名詞と「だから・なので」(例「いつもの仕事だから」「前と同じ仕事なので」「ずっとやってきた仕事だから」) があってもよい
+#   (習慣の言い方のすぐあとが「だ・で」なら、名詞ははさまない。例「前と同じだと楽だから」は、楽だからが別のわけ)。名詞のあとが「で・を・が」なら、そこから先は別のわけ
+#   (例「慣れた仕事で家族を養うため」は習慣としない)。ただし、同じ仕事を「続けたい・したい・でいたい」は、習慣の言い方のうち
+#   (例「前と同じ仕事を続けたい」「いつもの仕事をしたい」「前と同じでいたい」)
+_HABIT = re.compile("(?:" + "|".join(map(re.escape, HABIT_WORDS)) + "|" + _INERTIA + ")"
+                    r"(?:[ぁ-ゖ]{0,8}?(?:だから|なので|から|ので|ため)|(?![だで])[ぁ-ゖ]{0,3}?の?[^ぁ-ゖ、。，．,.!?！？…\s]{1,6}(?:だから|なので)"
+                    r"|(?:の?仕事)?[をでにが]?(?:これからも)?(?:やり続け|続け|やり|し|い)(?:てい)?たい(?:から|ので)?)?")
+_ACT = re.compile("(?:" + "|".join(map(re.escape, sorted(ACTS, key=len, reverse=True))) + ")(?!た)")  # 仕事の名前は「仕事」と読みかえる (例「いつものヤギの世話だから」。「狩りたい」はそのまま)
 
 
 def read_reason(text):
-    """仕事の理由の一言 → {"stated": 理由が書いてあるか, "habit": 習慣・言われたからの言い方か}。書いていなければ None"""
-    t = (text or "").strip() if isinstance(text, str) else ""
-    if not t or t in ("...", "…"):
+    """仕事の理由の一言 → {"stated": True, "habit": 習慣・言われたからの言い方か}。書いていなければ (なし・特に理由はない・... も) None
+    習慣の言い方があっても、それを除いたあとに別のわけ・ねらい (から・ので・ため・たい) があれば、習慣とはしない
+    (例「前と同じ仕事にしたのは、畑がよく実っているから」)"""
+    t = text.strip() if isinstance(text, str) else ""
+    u = re.sub("^(?:特に|とくに)、?", "", t.rstrip("。"))
+    if not t or u in NO_REASON + ("",) or _NO_REASON.fullmatch(u):
         return None
-    return {"stated": True, "habit": any(w in t for w in HABIT_WORDS)}
+    s = _ACT.sub("仕事", t)  # 仕事の名前を「仕事」と読みかえてから、習慣の言い方を探す (例「同じ畑仕事を続ける」)
+    rest = _HABIT.sub("", s)
+    for w in NOT_CAUSE:
+        rest = rest.replace(w, "")
+    habit = (any(w in s for w in HABIT_WORDS) or bool(re.search(_INERTIA, s))) and not _CAUSE.search(rest)
+    return {"stated": True, "habit": habit}
 
 
-def village_reasons(person_rows):
-    """季節の村: 仕事を決めた大人のうち、理由を書いた人と、習慣の言い方の人の数 (理由がだれにもなければ None)"""
-    rows = [r for r in person_rows if not r.get("child") and r.get("decided_by") in ("自分", "代表と同じ仕事", "代表が割り振った")]
-    read = [r["why_read"] for r in rows if r.get("why_read")]
-    if not read:
+def village_reasons(person_rows, asked_why):
+    """季節の村: 理由をたずねた大人 (自分で答えた人と、代表が一人ずつ仕事を割り振った人) のうち、理由を書いた人と、習慣の言い方の人の数。
+    代表と同じ仕事の人 (理由はたずねていない) は same_as_rep に数だけ出す。
+    asked_why = その季節のお題に理由の欄があったか。なければ None (段階 1 の前と、やめていたあいだ)。欄があって、だれも書かなければ with_reason は 0"""
+    if not asked_why:
         return None
-    return {"deciders": len(rows), "with_reason": len(read), "habit": sum(1 for x in read if x["habit"])}
+    rows = [r for r in person_rows if not r.get("child")]
+    asked = [r for r in rows if r.get("decided_by") in ("自分", "代表が割り振った")]
+    read = [r["why_read"] for r in asked if r.get("why_read")]
+    return {"asked": len(asked), "with_reason": len(read), "habit": sum(1 for x in read if x["habit"]),
+            "same_as_rep": sum(1 for r in rows if r.get("decided_by") == "代表と同じ仕事")}

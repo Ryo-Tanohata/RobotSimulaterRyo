@@ -208,6 +208,8 @@ One row per season end D. Sources: E = events of the season slice (§3.4), S = s
 | `answered` | `{"season": n, "feeling": n, "reps": n}` | A file names | yes | シ |
 | `year_named` | `{"year": 15, "name": "…"}` if the meeting that opened this season named a year | `era2.year_names` | yes | 村 (oral) |
 | `criteria` | `{"era": "G5", "items": [{"key","label","op","target","value","met"}], "all_met": bool}` | S `era_info.indicators` + `era2.criteria_progress` | yes (S) | シ |
+| `grounding` | `{"meaning","feedback","body","value","autonomy","people","min","max"}`: adults' mean (`math.fsum`) / lowest / highest `value` of `season_person.grounding`; null if no adult worked (docs/humanity D06・D10) | `grounding.village` | yes | シ |
+| `reasons` | `{"asked","with_reason","habit","same_as_rep"}` (stage 1, docs/humanity D09): asked = adults with `decided_by` 自分 or 代表が割り振った; with_reason / habit among them; same_as_rep = adults with 代表と同じ仕事 (not asked). null if the season's first meeting prompts had no `why` field (before `step.py ask_why`, or while off: `era2.ask_why_log`) | `season_person` `decided_by` + `why_read` | yes | シ |
 | `snapshot` | bool | | | – |
 
 ### 1.7 `season_household.jsonl` (③)
@@ -255,6 +257,9 @@ One row per season × person present at any time in the season (born, joined, di
 | `skills`, `hunger`, `fatigue`, `injured_days_left`, `items` | at D | S | yes (S) | シ |
 | `laws` | `{"proposed":[L…],"votes":{"yes":n,"no":n,"by":"自分"|P…}}` | L (`proposer`, `day`) + A `votes` | yes | シ |
 | `knowledge_added` | n | `state["knowledge_log"]` (`who`, `day` = meeting day, `op == "追加"`) | yes | シ |
+| `why`, `why_by` | the one-line reason for the main job (stage 1, ≤ 120 chars) and who wrote it: `"自分"` (own `job.why`) / `"代表"` (rep's `family[name].why`, for 代表が割り振った). null for 代表と同じ仕事 (not asked), for seasons whose prompts had no `why` field, and for an empty reason (なし, …) | A + `era2.ask_why_log` | yes | シ |
+| `why_read` | `{"stated": true, "habit": bool}` from word lists (【仮定】, no LLM); null when `why` is null | `grounding.read_reason` | yes | シ |
+| `grounding` | `{"meaning","feedback","body","value","autonomy","work_days"}` (+ `unscored_days`), 0–1, weighted by `days_by_activity` (rest days not counted); null if no work days (docs/humanity D06・D10) | `grounding.person` | yes | シ |
 | `snapshot` | bool | | | |
 
 ### 1.9 `ledger.jsonl` (家 × 季節 × 物 × 理由)

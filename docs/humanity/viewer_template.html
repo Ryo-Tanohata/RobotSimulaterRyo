@@ -134,12 +134,12 @@ footer{margin-top:48px;font-size:12.5px;color:var(--muted)}
 </div>
 
 <script type="application/json" id="treeData">__TREE__</script>
-<script type="text/plain" id="noteData">__NOTE__</script>
+<script type="application/json" id="noteData">__NOTE__</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
 <script>
 (function(){
   const tree = JSON.parse(document.getElementById('treeData').textContent);
-  const noteMd = document.getElementById('noteData').textContent;
+  const noteMd = JSON.parse(document.getElementById('noteData').textContent);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const refs = arr => (arr && arr.length) ? '<span class="refs">' + arr.map(r => `<a class="ref" href="#${r}">${r}</a>`).join('') + '</span>' : '';
   const stageName = Object.fromEntries(tree.life_stages.map(s => [s.id, s.name]));
@@ -163,7 +163,7 @@ footer{margin-top:48px;font-size:12.5px;color:var(--muted)}
     let gdetail = '';
     if (G.components) {
       gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">${fmt(G.value)}</b><span class="gbar"><i style="width:${(G.value*100).toFixed(0)}%"></i></span></div>
-        <div class="gsub">${esc(G.representative)}：${esc(G.why || '')}<br>${parts(G)}<br>評定：${esc(G.rating_source || '')}／身体の出どころ：${esc(G.components.body.source || '')}</div>
+        <div class="gsub">${esc(G.representative)}<br>理由（作り手）：${esc(G.why || '')}<br>${parts(G)}<br>評定：${esc(G.rating_source || '')}／身体の出どころ：${esc(G.components.body.source || '')}</div>
         ${(G.variants||[]).map(v => `<div class="gsub">別例 ${esc(v.representative)}：<b class="ground">${fmt(v.value)}</b>（${parts(v)}）</div>`).join('')}</div>`;
     } else if (G.scenarios) {
       gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">未決</b></div>
