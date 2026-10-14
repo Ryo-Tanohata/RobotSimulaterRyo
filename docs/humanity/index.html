@@ -1,0 +1,536 @@
+<title>人類史テックツリー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 配置：上に3層のツリー一覧（年代順の列）、下に設計ノート。参照IDのチップでノートの該当見出しへ飛ぶ */
+:root{
+  --bg:#f3f4f1; --surface:#fbfbf9; --fg:#1f2724; --muted:#5d6762; --line:#d6dad4;
+  --accent:#2d5b6b; --accent-soft:#dfe9ec;
+  --body:#7a5a2f; --body-soft:#f0e7d9;
+  --cap:#2f5f8a; --cap-soft:#dfe8f2;
+  --work:#4f6b3a; --work-soft:#e3ecda;
+  --hl:#fff1b8;
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#151a19; --surface:#1c2221; --fg:#e4e8e5; --muted:#9aa49f; --line:#2f3836;
+  --accent:#8cc0cf; --accent-soft:#22343a;
+  --body:#d9b47e; --body-soft:#33291c; --cap:#8db8e0; --cap-soft:#1f2c3a; --work:#a9c78e; --work-soft:#25301d;
+  --hl:#4a4320; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151a19; --surface:#1c2221; --fg:#e4e8e5; --muted:#9aa49f; --line:#2f3836;
+  --accent:#8cc0cf; --accent-soft:#22343a;
+  --body:#d9b47e; --body-soft:#33291c; --cap:#8db8e0; --cap-soft:#1f2c3a; --work:#a9c78e; --work-soft:#25301d;
+  --hl:#4a4320; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.75}
+.wrap{max-width:1120px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:grid;gap:6px;margin-bottom:28px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+h1{font-family:var(--f-display);font-size:clamp(26px,4vw,36px);line-height:1.3;margin:0;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:24px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+nav.tabs a{padding:10px 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;font-weight:500}
+nav.tabs a:hover{color:var(--fg)}
+nav.tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted);margin-bottom:16px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+.nodes{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.node{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:grid;gap:10px;min-width:0}
+.node-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.nid{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.node h3{font-family:var(--f-display);font-size:20px;margin:0}
+.era{font-size:12px;color:var(--muted);margin-left:auto}
+.req{font-size:12px;color:var(--muted)}
+.layer{display:grid;grid-template-columns:3.2em 1fr;gap:8px;align-items:start;font-size:14px}
+.layer .tag{font-size:12px;font-weight:700;text-align:center;border-radius:3px;padding:1px 0}
+.layer.body .tag{background:var(--body-soft);color:var(--body)}
+.layer.capability .tag{background:var(--cap-soft);color:var(--cap)}
+.layer.work .tag{background:var(--work-soft);color:var(--work)}
+.meta-row{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.ground{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.gbox{display:grid;gap:4px;background:var(--bg);border-radius:4px;padding:8px 10px}
+.gtop{display:flex;align-items:center;gap:8px;font-size:13px}
+.gtop .ground{font-size:16px}
+.gbar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.gbar i{display:block;height:100%;background:var(--accent)}
+.gsub{font-size:12.5px;color:var(--muted);line-height:1.6}
+.tiers{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.tier{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:grid;gap:6px;min-width:0}
+.tier h3{font-family:var(--f-display);font-size:18px;margin:0}
+.tier p{margin:0;font-size:14px}
+.tiers > p{grid-column:1/-1;margin:0}
+.effects{font-size:13px;color:var(--muted);margin:0;padding:0;list-style:none;display:grid;gap:2px}
+a.ref{font-family:var(--f-mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:3px;padding:0 5px;text-decoration:none;white-space:nowrap}
+a.ref:hover{text-decoration:underline}
+a.ref:focus-visible{outline:2px solid var(--accent)}
+.refs{display:inline-flex;gap:4px;flex-wrap:wrap;margin-left:4px}
+section{scroll-margin-top:56px}
+h2.sec{font-family:var(--f-display);font-size:24px;margin:48px 0 16px}
+.stages{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{font-weight:700;color:var(--muted);font-size:12.5px}
+td.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.note{max-width:72ch}
+.note h1{display:none}
+.note h2{font-family:var(--f-display);font-size:22px;margin:40px 0 12px;padding-top:12px;border-top:1px solid var(--line)}
+.note h3{font-size:16px;margin:24px 0 6px;scroll-margin-top:60px;border-radius:4px;transition:background .6s}
+.note h3.flash{background:var(--hl)}
+.note p,.note li{color:var(--fg)}
+.note hr{display:none}
+.note code{font-family:var(--f-mono);font-size:.9em;background:var(--accent-soft);padding:0 4px;border-radius:3px}
+.note table{margin:12px 0}
+.note .tablebox{overflow-x:auto}
+.note a{color:var(--accent)}
+.note strong{color:var(--body)}
+footer{margin-top:48px;font-size:12.5px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){.note h3{transition:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="ver"></div>
+    <h1>人類史シミュレーター テックツリー</h1>
+    <p class="lede">各ノードを「身体 → 能力 → 仕事」の3層で記述した叩き台です。青い参照IDを押すと、設計ノートの根拠に移ります。</p>
+  </header>
+
+  <nav class="tabs" aria-label="セクション">
+    <a href="#tree">ノード</a>
+    <a href="#stages">ライフステージ</a>
+    <a href="#judge">判定の流れ</a>
+    <a href="#note">設計ノート</a>
+  </nav>
+
+  <section id="tree">
+    <div class="legend">
+      <span><i class="sw" style="background:var(--body)"></i>身体＝物質的な土台</span>
+      <span><i class="sw" style="background:var(--cap)"></i>能力＝外部化された知性</span>
+      <span><i class="sw" style="background:var(--work)"></i>仕事＝生まれた働き方</span>
+      <span>接地度＝距離・身体・意味の合計（0が密着、−3が空中。棒が長いほど離れている）</span>
+    </div>
+    <div class="nodes" id="nodes"></div>
+  </section>
+
+  <section id="stages">
+    <h2 class="sec">ライフステージと不変項</h2>
+    <div class="stages"><table id="stageTable"></table></div>
+  </section>
+
+  <section id="judge">
+    <h2 class="sec">判定の流れ</h2>
+    <div class="tiers" id="tiers"></div>
+  </section>
+
+  <section id="note">
+    <h2 class="sec">設計ノート</h2>
+    <article class="note" id="noteBody"></article>
+  </section>
+
+  <footer>元データ：tech_tree.json と design_note.md。どちらも同じフォルダに置いて管理します。</footer>
+</div>
+
+<script type="application/json" id="treeData">{"meta": {"title": "人類史シミュレーター テックツリー", "version": "0.4.0", "updated": "2026-10-14", "status": "叩き台", "design_note": "テックツリー設計ノート（参照ID R00〜R26 と D01〜D09 はノートの「参考文献」「設計判断」に対応）", "unlock_order": ["body", "capability", "work"], "unlock_rule": "各ノード内で身体→能力→仕事の順に開放。3層すべて開放でノード習得", "refs": ["D01", "D02"], "grounding_formula": {"target": "そのノードで新しく生まれた仕事の担い手", "total": "接地度 = 高さ（距離+身体+意味、0〜-3） + 波及（-1〜+1）。範囲は -4〜+1", "distance": "成果までの段階数 n → -min(n,4)/4。手綱を握っていればエージェントの段階を n から引く", "body": "身体・物に触れる時間の比率 r → -(1-r)。手綱では打ち消さない", "meaning": "仕事を説明できる相手：誰にでも 0 / 身近な人まで -0.5 / 同業者だけ -1。手綱を握っていれば1段よくする", "reins": "理由を言える かつ 理念から選んでいる とき握っている。波及は周りの接地への影響", "refs": ["D03", "D06", "D07"]}}, "layers": {"body": {"label": "身体", "definition": "その技術を成り立たせる物質的な土台", "refs": ["R01", "R05", "D01"]}, "capability": {"label": "能力", "definition": "土台によって拡張・外部化された知性のはたらき", "refs": ["R05", "R06", "R14", "D01"]}, "work": {"label": "仕事", "definition": "その能力によって生まれた働き方・役割", "refs": ["R12", "R13", "D01"]}}, "invariant_hypotheses": [{"id": "I1", "name": "身体を持ち、いつか死ぬ", "status": "仮説", "refs": ["R01"]}, {"id": "I2", "name": "他者に養われて育つ", "status": "仮説", "refs": ["R07"]}, {"id": "I3", "name": "言葉で意味を分け合う", "status": "仮説", "refs": ["R03", "R04"]}, {"id": "I4", "name": "先を思い、悼む", "status": "仮説", "refs": ["R00"]}], "life_stages": [{"id": "S1", "order": 1, "name": "誕生", "invariants": ["I1"]}, {"id": "S2", "order": 2, "name": "養われる", "invariants": ["I2"]}, {"id": "S3", "order": 3, "name": "学ぶ", "invariants": ["I3"]}, {"id": "S4", "order": 4, "name": "働く", "invariants": ["I3", "I4"]}, {"id": "S5", "order": 5, "name": "つがう", "invariants": ["I3"]}, {"id": "S6", "order": 6, "name": "育てる", "invariants": ["I2", "I4"]}, {"id": "S7", "order": 7, "name": "老いる", "invariants": ["I1", "I2"]}, {"id": "S8", "order": 8, "name": "看取られる", "invariants": ["I1", "I4"]}], "nodes": [{"id": "N01", "order": 1, "name": "火と道具", "era": "旧石器時代", "requires": [], "layers": {"body": {"label": "石器・火の制御", "refs": ["R05", "R07"]}, "capability": {"label": "加熱調理による消化の外部化と、脳に回る余裕", "refs": ["R07"]}, "work": {"label": "狩猟・採集・調理の分担", "refs": ["R07"]}}, "life_stage_effects": {"S2": "火のそばで養われる", "S6": "調理された食べ物を分け与える"}, "grounding": {"representative": "狩猟採集民", "components": {"distance": {"steps": 0, "counted_steps": 0, "chain": "獲る→食べる", "score": 0.0}, "body": {"ratio": 0.9, "score": -0.1, "evidence": "裏付けあり（方向）", "refs": ["R19"]}, "meaning": {"level": "誰にでも", "counted_level": "誰にでも", "score": 0.0}}, "height": -0.1, "value": -0.1, "status": "推定", "refs": ["D03", "D06"]}, "indicators": {"kind": "historical_proxy", "candidates": ["火の使用痕跡の年代", "石器の種類"]}}, {"id": "N02", "order": 2, "name": "言語", "era": "旧石器時代", "requires": ["N01"], "layers": {"body": {"label": "声と聴覚", "refs": ["R03"]}, "capability": {"label": "身体に接地した記号による抽象化と経験の共有", "refs": ["R03", "R04"]}, "work": {"label": "集団狩猟と分業の調整", "refs": ["R03"]}}, "life_stage_effects": {"S3": "語り聞かせで学ぶ", "S6": "ことばで教える"}, "grounding": {"representative": "集団で狩る者", "components": {"distance": {"steps": 1, "counted_steps": 1, "chain": "獲る→分け合う→食べる", "score": -0.25}, "body": {"ratio": 0.9, "score": -0.1, "evidence": "裏付けあり（方向）", "refs": ["R19"]}, "meaning": {"level": "誰にでも", "counted_level": "誰にでも", "score": 0.0}}, "height": -0.35, "value": -0.35, "status": "推定", "refs": ["D03", "D06"]}, "indicators": {"kind": "historical_proxy", "candidates": ["共有される物語・儀礼の有無"]}}, {"id": "N03", "order": 3, "name": "農耕", "era": "新石器時代", "requires": ["N01", "N02"], "layers": {"body": {"label": "栽培植物・家畜・定住地", "refs": ["R08"]}, "capability": {"label": "季節の予測と貯蔵の計画", "refs": ["R08"]}, "work": {"label": "農民・牧畜民、余剰の管理", "refs": ["R08", "R09"]}}, "life_stage_effects": {"S4": "毎日の農作業", "S6": "子が労働力になる"}, "grounding": {"representative": "農民", "components": {"distance": {"steps": 2, "counted_steps": 2, "chain": "育てる→蓄える→食べる・納める", "score": -0.5}, "body": {"ratio": 0.9, "score": -0.1, "evidence": "裏付けあり（方向）", "refs": ["R19"]}, "meaning": {"level": "誰にでも", "counted_level": "誰にでも", "score": 0.0}}, "height": -0.6, "value": -0.6, "status": "推定", "refs": ["D03", "D06"]}, "indicators": {"kind": "historical_proxy", "candidates": ["人口密度", "農業生産性"]}}, {"id": "N04", "order": 4, "name": "都市", "era": "古代", "requires": ["N03"], "layers": {"body": {"label": "建築・水路・城壁", "refs": ["R09"]}, "capability": {"label": "大集団の組織化", "refs": ["R09"]}, "work": {"label": "職人・兵士・祭司・役人", "refs": ["R09"]}}, "life_stage_effects": {"S4": "専門職に就く", "S5": "出会いの範囲が広がる"}, "grounding": {"representative": "職人", "components": {"distance": {"steps": 2, "counted_steps": 2, "chain": "作る→交換する→食べる", "score": -0.5}, "body": {"ratio": 0.8, "score": -0.2, "evidence": "推定のみ", "refs": []}, "meaning": {"level": "誰にでも", "counted_level": "誰にでも", "score": 0.0}}, "height": -0.7, "value": -0.7, "status": "推定", "refs": ["D03", "D06"]}, "indicators": {"kind": "historical_proxy", "candidates": ["都市人口", "職業の種類数"]}}, {"id": "N05", "order": 5, "name": "文字", "era": "古代", "requires": ["N04"], "layers": {"body": {"label": "粘土板・パピルス・紙", "refs": ["R10"]}, "capability": {"label": "記憶の外部化", "refs": ["R05", "R10"]}, "work": {"label": "書記・会計・行政", "refs": ["R09", "R10"]}}, "life_stage_effects": {"S3": "読み書きの訓練", "S8": "記録や墓碑に名が残る"}, "grounding": {"representative": "書記", "components": {"distance": {"steps": 3, "counted_steps": 3, "chain": "記録する→行政→徴税→食べる", "score": -0.75}, "body": {"ratio": 0.3, "score": -0.7, "evidence": "推定のみ", "refs": []}, "meaning": {"level": "身近な人まで", "counted_level": "身近な人まで", "score": -0.5}}, "height": -1.95, "value": -1.95, "status": "推定", "refs": ["D03", "D06"]}, "indicators": {"kind": "historical_proxy", "candidates": ["識字率"]}}, {"id": "N06", "order": 6, "name": "印刷", "era": "近世", "requires": ["N05"], "layers": {"body": {"label": "活版・紙の大量生産", "refs": ["R11"]}, "capability": {"label": "知識の複製と標準化", "refs": ["R06", "R11"]}, "work": {"label": "出版・教師・学者", "refs": ["R11"]}}, "life_stage_effects": {"S3": "本による独学"}, "grounding": {"representative": "印刷工", "components": {"distance": {"steps": 3, "counted_steps": 3, "chain": "組む→刷る→流通→読まれる", "score": -0.75}, "body": {"ratio": 0.6, "score": -0.4, "evidence": "推定のみ", "refs": []}, "meaning": {"level": "誰にでも", "counted_level": "誰にでも", "score": 0.0}}, "height": -1.15, "value": -1.15, "status": "推定", "refs": ["D03", "D06"]}, "indicators": {"kind": "historical_proxy", "candidates": ["書籍の出版点数", "識字率"]}}, {"id": "N07", "order": 7, "name": "産業機械", "era": "近代", "requires": ["N06"], "layers": {"body": {"label": "蒸気機関・鉄・工場", "refs": ["R06"]}, "capability": {"label": "力の外部化", "refs": ["R06"]}, "work": {"label": "工場労働・事務職", "refs": ["R12", "R13"]}}, "life_stage_effects": {"S4": "時計で区切られた労働", "S6": "家庭と職場が分かれる"}, "grounding": {"representative": "工場労働者", "components": {"distance": {"steps": 4, "counted_steps": 4, "chain": "部品→製品→市場→賃金→食べる", "score": -1.0}, "body": {"ratio": 0.8, "score": -0.2, "evidence": "裏付けあり（方向）", "refs": ["R20"]}, "meaning": {"level": "身近な人まで", "counted_level": "身近な人まで", "score": -0.5}}, "height": -1.7, "value": -1.7, "status": "推定", "refs": ["D03", "D06"], "variants": [{"representative": "事務職", "components": {"distance": {"steps": 4, "counted_steps": 4, "chain": "書類→承認→組織→製品→賃金→食べる", "score": -1.0}, "body": {"ratio": 0.2, "score": -0.8}, "meaning": {"level": "同業者だけ", "counted_level": "同業者だけ", "score": -1.0}}, "height": -2.8, "value": -2.8}]}, "indicators": {"kind": "historical_proxy", "candidates": ["労働時間", "事務職の比率"]}}, {"id": "N08", "order": 8, "name": "電気・通信", "era": "近代〜現代", "requires": ["N07"], "layers": {"body": {"label": "電線・電波・電力網", "refs": ["R06"]}, "capability": {"label": "距離の消去", "refs": ["R06"]}, "work": {"label": "通信・管理職・サービス業", "refs": ["R13"]}}, "life_stage_effects": {"S5": "遠く離れた相手との関係"}, "grounding": {"representative": "管理職", "components": {"distance": {"steps": 4, "counted_steps": 4, "chain": "指示→部下の作業→製品・サービス→賃金→食べる", "score": -1.0}, "body": {"ratio": 0.2, "score": -0.8, "evidence": "裏付けあり（方向）", "refs": ["R20"]}, "meaning": {"level": "身近な人まで", "counted_level": "身近な人まで", "score": -0.5}}, "height": -2.3, "value": -2.3, "status": "推定", "refs": ["D03", "D06"]}, "indicators": {"kind": "historical_proxy", "candidates": ["電化率", "通信普及率"]}}, {"id": "N09", "order": 9, "name": "計算機・AI", "era": "現代", "requires": ["N08"], "layers": {"body": {"label": "半導体・GPU・データセンター", "refs": ["R17"]}, "capability": {"label": "思考の外部化", "refs": ["R14", "R15"]}, "work": {"label": "エージェントとの協働", "refs": ["R16", "R00"]}}, "life_stage_effects": {"S4": "エージェントと分担して働く", "S7": "見守りと生活の支援"}, "grounding": {"representative": "エージェントと働く知識労働者（無自覚に使う）", "components": {"distance": {"steps": 4, "counted_steps": 4, "chain": "指示→エージェント→成果物→顧客→賃金→食べる", "score": -1.0}, "body": {"ratio": 0.1, "score": -0.9, "evidence": "推定のみ", "refs": []}, "meaning": {"level": "同業者だけ", "counted_level": "同業者だけ", "score": -1.0}}, "height": -2.9, "value": -2.9, "reins": {"reason": false, "principle": false, "held": false, "agent_steps": 1, "spread": 0.0}, "status": "推定", "refs": ["D03", "D06", "D07"], "variants": [{"representative": "理念を持って使う", "components": {"distance": {"steps": 4, "counted_steps": 3, "chain": "指示→エージェント→成果物→顧客→賃金→食べる", "score": -0.75}, "body": {"ratio": 0.1, "score": -0.9}, "meaning": {"level": "同業者だけ", "counted_level": "身近な人まで", "score": -0.5}}, "height": -2.15, "value": -2.15, "reins": {"reason": true, "principle": true, "held": true, "agent_steps": 1, "spread": 0.0}}, {"representative": "理念を持ち、誰でも使える仕組みを作る（使う人の理解を残す）", "components": {"distance": {"steps": 4, "counted_steps": 3, "chain": "指示→エージェント→成果物→顧客→賃金→食べる", "score": -0.75}, "body": {"ratio": 0.1, "score": -0.9}, "meaning": {"level": "同業者だけ", "counted_level": "身近な人まで", "score": -0.5}}, "height": -2.15, "value": -1.15, "reins": {"reason": true, "principle": true, "held": true, "agent_steps": 1, "spread": 1.0}}, {"representative": "仕組みを作るが、中身を隠して使う人の意味を奪う", "components": {"distance": {"steps": 4, "counted_steps": 4, "chain": "指示→エージェント→成果物→顧客→賃金→食べる", "score": -1.0}, "body": {"ratio": 0.1, "score": -0.9}, "meaning": {"level": "同業者だけ", "counted_level": "同業者だけ", "score": -1.0}}, "height": -2.9, "value": -3.9, "reins": {"reason": true, "principle": false, "held": false, "agent_steps": 1, "spread": -1.0}}]}, "indicators": {"kind": "benchmark", "refs": ["D04"], "by_layer": {"body": {"candidates": ["GPU・クラウドの性能ベンチ"], "refs": ["R17"]}, "capability": {"candidates": ["GPQA Diamond", "FrontierMath"], "refs": ["R15"]}, "work": {"candidates": ["AutomationBench", "GDPval", "法務・金融エージェント系ベンチ"], "refs": ["R16"]}}}}, {"id": "N10", "order": 10, "name": "宇宙居住", "era": "近未来", "requires": ["N09"], "layers": {"body": {"label": "生命維持装置・閉鎖生態系", "refs": ["R00"]}, "capability": {"label": "環境そのものの設計", "refs": ["R00", "R01"]}, "work": {"label": "エージェントと共に営む宇宙での暮らし", "refs": ["R00"]}}, "life_stage_effects": {"S1": "地球外で生まれる", "S2": "人とエージェントに養われる"}, "grounding": {"representative": "宇宙居住者", "value": null, "status": "未決", "scenarios": [{"label": "再接地：生命維持を自分たちで営む", "components": {"distance": {"steps": 1, "counted_steps": 1, "chain": "育てる・直す→暮らす", "score": -0.25}, "body": {"ratio": 0.7, "score": -0.3}, "meaning": {"level": "誰にでも", "counted_level": "誰にでも", "score": 0.0}}, "height": -0.55, "value": -0.55}, {"label": "再接地し、技能を周りに伝える", "components": {"distance": {"steps": 1, "counted_steps": 1, "chain": "育てる・直す→暮らす", "score": -0.25}, "body": {"ratio": 0.7, "score": -0.3}, "meaning": {"level": "誰にでも", "counted_level": "誰にでも", "score": 0.0}}, "height": -0.55, "value": -0.05, "reins": {"reason": false, "principle": false, "held": false, "agent_steps": 0, "spread": 0.5}}, {"label": "空中：すべてを無自覚にエージェントに任せる", "components": {"distance": {"steps": 4, "counted_steps": 4, "chain": "指示→エージェント→生命維持系→暮らす", "score": -1.0}, "body": {"ratio": 0.0, "score": -1.0}, "meaning": {"level": "同業者だけ", "counted_level": "同業者だけ", "score": -1.0}}, "height": -3.0, "value": -3.0, "reins": {"reason": false, "principle": false, "held": false, "agent_steps": 1, "spread": 0.0}}, {"label": "空中だが、理念を持ってエージェントに任せる", "components": {"distance": {"steps": 4, "counted_steps": 3, "chain": "指示→エージェント→生命維持系→暮らす", "score": -0.75}, "body": {"ratio": 0.0, "score": -1.0}, "meaning": {"level": "同業者だけ", "counted_level": "身近な人まで", "score": -0.5}}, "height": -2.25, "value": -2.25, "reins": {"reason": true, "principle": true, "held": true, "agent_steps": 1, "spread": 0.0}}, {"label": "空中だが、理念を持って任せ、他者も接地させる", "components": {"distance": {"steps": 4, "counted_steps": 3, "chain": "指示→エージェント→生命維持系→暮らす", "score": -0.75}, "body": {"ratio": 0.0, "score": -1.0}, "meaning": {"level": "同業者だけ", "counted_level": "身近な人まで", "score": -0.5}}, "height": -2.25, "value": -1.25, "reins": {"reason": true, "principle": true, "held": true, "agent_steps": 1, "spread": 1.0}}], "refs": ["D03", "D06", "D07"]}, "indicators": {"kind": "speculative", "candidates": []}}], "reins_rubric": {"criteria": [{"id": "reason", "label": "理由を言えるか", "question": "なぜ使うのか、なぜ使わないのかを説明できるか"}, {"id": "principle", "label": "理念から選んでいるか", "question": "自分の目的から選んでいるか、惰性や恐れからか"}, {"id": "spread", "label": "周りの接地を増やすか", "question": "その選択で、周りの人の距離・意味はどうなるか"}], "cases": [{"id": "C1", "event": "AIを使うより自分でやった方が早い", "plus": "経験に基づく判断で、手の技能を保っている（理由あり・理念あり）", "minus": "試さずに避けている（理由なし・惰性）"}, {"id": "C2", "event": "AIを学ぶ時間があるなら仕事をする", "plus": "手仕事が本分で、AIを入れると距離が増えるだけだと分かっている", "minus": "変化への恐れや惰性で学ばない"}, {"id": "C3", "event": "みんな学ぶ時間がないので、学習コスト0の仕組みを作る", "plus": "使う人の理解を残したまま距離を縮める（波及＋）", "minus": "中身を完全に隠し、使う人を空中に置く（波及−）"}], "refs": ["D07", "R05"], "version": "2026", "era_versions": {"note": "同じ一生を時代ごとの版で採点し直し、版が変わっても評価が変わらない部分を不変項の候補とする", "planned": ["2026"], "refs": ["D08"]}}, "judgment_pipeline": {"tiers": [{"tier": 0, "name": "記録", "when": "毎ターン", "uses_llm": false, "does": "時代・仕事・成果までの段階数・身体の時間を欄に記録し、高さをスクリプトで計算する"}, {"tier": 1, "name": "抜き出し", "when": "ライフステージの区切りごと（一生で8回）", "uses_llm": true, "model": "小さく安いモデル", "does": "記録から理由・理念・波及の有無を あり／なし／不明 で抜き出す。価値判断はしない", "output": {"reason": "あり|なし|不明", "principle": "あり|なし|不明", "spread": "-1〜+1|不明"}}, {"tier": 2, "name": "陪審団", "when": "下の発動条件のどれかに当てはまる場面だけ", "uses_llm": true, "triggers": ["段階1の結果に「不明」がある", "波及が0でない", "新しいノードに切り替わった直後の選択", "品質確認の抜き取り（数%）"], "escalation": "まず3人で判定し、全員一致なら終了。割れたら12人に増やす", "output": "賛否の分布（＋の人数・−の人数）と一致度", "self_check": "同じ事例を言い換えて判定が変わらないか確かめる"}], "rescoring": "判定表の版が変わったら、段階2の場面だけ採点し直す", "token_estimate_per_life": {"tier1": "約1.6万トークン", "tier2": "約1万〜7万トークン", "status": "概算（未計測）"}, "refs": ["D09"]}, "jury_spec": {"status": "叩き台", "size": {"initial": 3, "max": 12}, "attributes": [{"key": "era", "label": "生きた時代", "source": "テックツリーのノード（N01〜N10）"}, {"key": "region", "label": "地域・文化圏", "source": "R26（要確認）"}, {"key": "life_stage", "label": "年齢・ライフステージ", "source": "life_stages（S1〜S8）"}, {"key": "work", "label": "仕事", "source": "各ノードの仕事層"}, {"key": "values", "label": "価値観（伝統↔世俗、生存↔自己表現など）", "source": "R26 の分布から抽出（要確認）"}], "rules": ["属性はClaudeの想像ではなく、調査データの分布から抽出する", "陪審員は判定の理由を一文で述べる", "陪審員どうしは相談しない（独立に判定する）"], "caution": "言語モデルが演じる集団は多様さが平板になりやすい（R22）", "refs": ["D08", "R21", "R22", "R26"]}}</script>
+<script type="text/plain" id="noteData"># テックツリー設計ノート
+
+人類史シミュレーター-cloud のテックツリー（`tech_tree.json`）が、どの思想と資料に基づいて設計されたかを記録するノートです。
+
+- 対象データ：`tech_tree.json` v0.4.0（叩き台）
+- 更新日：2026-10-14
+- 参照の約束：JSON の `refs` に書かれた ID は、このノートの見出しに対応します。`R` は参考文献、`D` は設計判断、`I` は人間性の不変項（仮説）です。
+
+---
+
+## 1. 設計の思想
+
+### 出発点：人間性を「変わらないもの」として取り出す
+
+一般人の一生を、時代を変えて何度も走らせます。時代ごとに変わるものと、どの時代にも残るものを分けます。残るほうを人間性の候補とします。テックツリーは「時代」を、ライフステージは「一生」を表します。[R00]
+
+### 三本柱：身体・技術・倫理
+
+理論の三本柱は、『知の生態学的転回』の身体・技術・倫理を採ります。環境との関わりから知性を捉える生態学的アプローチ（ギブソン）が背景にあります。テックツリーでは「身体」を層として、「技術」をノード全体として、「倫理」を不変項の判定として扱います。[R01] [R02] [D05]
+
+### 空中メリーゴーランド：接地を失った回転
+
+近代社会は、身体や現場に接地しないまま回り続けているという見立てです。言葉が身体経験に接地していないと意味が成り立たないという「記号接地問題」と重ねて、ノードごとに接地度を持たせます。バベルの塔は接地を失った崩壊の例です。[R00] [R03] [R04] [D03]
+
+### ベンチマークの型を借りる
+
+AI ベンチマークは、タスク・環境・成功基準・採点者でできています。この型を、ライフステージ（タスク）、ノード（環境）、不変項（成功基準）、Claude（採点者）に置き換えます。ベンチの中身を能力・仕事・身体に分けた整理を、各ノードの3層に使います。[R14] [D01]
+
+---
+
+## 2. 設計判断
+
+### D01 ノードを「身体・能力・仕事」の3層で記述する
+
+AI ベンチマークを中身で分けると、知性の核を測る「能力」、人間の業務を測る「仕事」、基盤を測る「身体」の3つになります。この分類をそのまま全時代に広げ、各技術が何を土台にし、何を可能にし、どんな働き方を生んだかを記述します。[R14] [R15] [R16] [R17]
+
+### D02 開放順は「身体 → 能力 → 仕事」
+
+土台がなければ能力は生まれず、能力がなければ仕事は生まれない、という依存関係を表します。環境が行為の可能性を与えるというアフォーダンスの考え方に沿っています。ゲームとしては、3層すべてを開放するとノード習得です。[R02] [R01]
+
+### D03 接地度（grounding）
+
+「空中メリーゴーランド」を数値で見えるようにする値です。0 は身体と現場に密着した状態で、マイナスになるほど離れます。距離・身体・意味の3軸を足して出します（D06）。宇宙居住（N10）は、離れきるか、もう一度接地するかが問いそのものです。そのため値を1つに決めず、2つのシナリオを並べています。[R00] [R03] [R12]
+
+### D06 接地度の合成ルール
+
+採点するのは、そのノードで新しく生まれた仕事の担い手です。3軸はそれぞれ0〜−1点で、合計は0〜−3点になります。最初は3軸の重みを等しくしています。距離は疎外論から、意味は記号接地から来ています。身体は、歴史資料（労働時間・生活時間の調査）で裏付けられる軸として採りました。[R12] [R03] [R04]
+
+- 距離：成果までの段階数 n から −min(n,4)/4
+- 身体：体を使い物に触れる時間の比率 r から −(1−r)
+- 意味：仕事を説明できる相手。誰にでも 0、身近な人まで −0.5、同業者だけ −1
+
+### D04 指標：AI の時代だけ実在のベンチで埋める
+
+計算機・AI（N09）だけは、実在のベンチで3層すべてに数値を入れられます。能力は GPQA など、仕事は AutomationBench など、身体は GPU ベンチです。N01〜N08 は識字率や人口密度などの歴史的な代理指標で代えます。[R15] [R16] [R17]
+
+### D05 倫理は層にせず、ライフステージ側で判定する
+
+既存のベンチは倫理をほとんど測っていません。そこで倫理を4つ目の層にはせず、各ライフステージで「人間性の不変項が保たれたか」を判定する形で扱います。エージェントの有無で一生を比べ、不変項が保たれるか削られるかを見ます。[R00] [R01]
+
+### D07 手綱：道具との付き合い方を接地度に入れる
+
+3軸は、その人がどこに立っているかという「高さ」しか測りません。そこで、道具と付き合う姿勢を「手綱」として足します。理由を言えて、理念から選んでいるとき、手綱を握っているとみなします。握っていれば、エージェントを自分の延長と数えて、その段階を距離から引きます。意味も1段よくします。さらに、周りの接地への影響（波及、−1〜+1）を足します。身体の軸は打ち消しません。体を使わない時間の長さは別の問題として残るからです（I1）。Lou の指摘をもとに決めました。[R00] [R05]
+
+### D08 判定は仮想の陪審団が行い、判定表には時代ごとの版を付ける
+
+人による検査は行いません。Claude で「一般的な人間」を陪審員として作り、判定させます。陪審員の属性や価値観は、人が積み上げた調査データの分布から生成します。結果は一つの正解ではなく、賛否の分布で出します。全員が一致した判定は安定した評価、割れた判定は時代や価値観で変わる部分として記録します。判定表は「2026年版」のように版を付けて固定し、時代ごとの版で同じ一生を採点し直します。版が変わっても評価が変わらない部分を、人間性の不変項の候補とします。[R21] [R22] [R23] [R24] [R25] [R26]
+
+判定する者を判定するという入れ子は残ります。しかし、陪審団の判定そのものを「機械が持つ人間像」として観察の対象にします。これはヒューマノイドの人間らしさを測る後半のテーマにつながります。言語モデルが演じる集団は多様さが平板になりやすい点に注意し、同じ事例を言い換えても判定が変わらないかを機械的に確かめます。[R22]
+
+### D09 判定は3段階に分け、陪審団は大事な場面だけで使う
+
+トークンの消費を抑えるため、判定を3段階に分けます。段階0（毎ターン）は記録だけで、接地度の「高さ」はスクリプトで計算します。段階1（ライフステージの区切りごと）は、安いモデル1回で「理由」「理念」「波及」の有無を抜き出します。段階2（陪審団）は、抜き出しが「不明」、波及がある、ノード切り替え直後、品質確認の抜き取り、のどれかの場面だけで使います。まず3人で判定し、割れたときだけ12人に増やします。判定表の版が変わったときは、段階2の場面だけを採点し直します。
+
+---
+
+## 3. 人間性の不変項（仮説）
+
+どれも検証前の仮説です。どこかのノードで消えれば不変項から外します。
+
+### I1 身体を持ち、いつか死ぬ
+
+誕生・老い・看取りに現れます。宇宙居住でも残るかが試金石です。[R01]
+
+### I2 他者に養われて育つ
+
+育ての担い手が家族から施設、エージェントへと変わっても、「養われる」構造が残るかを見ます。調理と分配の起源までさかのぼります。[R07]
+
+### I3 言葉で意味を分け合う
+
+もっとも脆い不変項です。接地を失うと壊れる（バベル）ため、接地度と直接つながります。[R03] [R04]
+
+### I4 先を思い、悼む
+
+計画と喪失、つまり時間の中を生きることです。現時点では本人の構想が根拠で、学術的な裏付けは今後の課題です。[R00]
+
+---
+
+## 4. ノード別の根拠
+
+| ID | ノード | 主な根拠 |
+|---|---|---|
+| N01 | 火と道具 | 加熱調理が消化を外部化し、脳に余裕を生んだ [R07] |
+| N02 | 言語 | 身体に接地した記号として言語が生まれた [R03] [R04] |
+| N03 | 農耕 | 定住・余剰・家畜化が社会を変えた [R08] [R09] |
+| N04 | 都市 | 穀物国家と集団の組織化 [R09] |
+| N05 | 文字 | 声の文化から文字の文化へ、記憶の外部化 [R10] [R05] |
+| N06 | 印刷 | 知識の複製と標準化 [R11] [R06] |
+| N07 | 産業機械 | 力の外部化と労働の疎外、事務職の増加 [R06] [R12] [R13] |
+| N08 | 電気・通信 | 距離の消去、メディアによる人間の拡張 [R06] [R13] |
+| N09 | 計算機・AI | 思考の外部化と、ベンチで測れる3層 [R14] [R15] [R16] [R17] |
+| N10 | 宇宙居住 | 本人の構想（宇宙での暮らしとエージェント） [R00] |
+
+### 接地度の採点表（推定値）
+
+| ID | 代表者 | 成果までの段階 | 距離 | 身体 | 意味 | 接地度 |
+|---|---|---|---|---|---|---|
+| N01 | 狩猟採集民 | 獲る→食べる | 0 | −0.1 | 0 | **−0.10** |
+| N02 | 集団で狩る者 | 獲る→分け合う→食べる | −0.25 | −0.1 | 0 | **−0.35** |
+| N03 | 農民 | 育てる→蓄える→食べる・納める | −0.5 | −0.1 | 0 | **−0.60** |
+| N04 | 職人 | 作る→交換する→食べる | −0.5 | −0.2 | 0 | **−0.70** |
+| N05 | 書記 | 記録する→行政→徴税→食べる | −0.75 | −0.7 | −0.5 | **−1.95** |
+| N06 | 印刷工 | 組む→刷る→流通→読まれる | −0.75 | −0.4 | 0 | **−1.15** |
+| N07 | 工場労働者 | 部品→製品→市場→賃金→食べる | −1 | −0.2 | −0.5 | **−1.70** |
+| N07 | （別例）事務職 | 書類→承認→組織→製品→賃金→食べる | −1 | −0.8 | −1 | **−2.80** |
+| N08 | 管理職 | 指示→作業→製品→賃金→食べる | −1 | −0.8 | −0.5 | **−2.30** |
+| N09 | エージェントと働く知識労働者（無自覚に使う） | 指示→エージェント→成果物→顧客→賃金→食べる | −1 | −0.9 | −1 | **−2.90** |
+| N10 | 再接地シナリオ | 育てる・直す→暮らす | −0.25 | −0.3 | 0 | **−0.55** |
+| N10 | 空中シナリオ（無自覚に任せる） | 指示→エージェント→生命維持系→暮らす | −1 | −1 | −1 | **−3.00** |
+
+### 手綱による違い（v0.3.0、推定値）
+
+同じ構造でも、使い方で接地度が変わります。「手綱あり」は、理由を言えて、理念から選んでいる状態です（D07）。
+
+| ID | 使い方 | 手綱 | 距離 | 身体 | 意味 | 高さ | 波及 | 接地度 |
+|---|---|---|---|---|---|---|---|---|
+| N09 | 無自覚に使う | なし | −1 | −0.9 | −1 | −2.90 | 0 | **−2.90** |
+| N09 | 理念を持って使う | あり | −0.75 | −0.9 | −0.5 | −2.15 | 0 | **−2.15** |
+| N09 | 理念を持ち、誰でも使える仕組みを作る（理解を残す） | あり | −0.75 | −0.9 | −0.5 | −2.15 | +1 | **−1.15** |
+| N09 | 仕組みを作るが、中身を隠して意味を奪う | なし | −1 | −0.9 | −1 | −2.90 | −1 | **−3.90** |
+| N10 | 再接地し、技能を周りに伝える | なし | −0.25 | −0.3 | 0 | −0.55 | +0.5 | **−0.05** |
+| N10 | 空中だが、理念を持って任せる | あり | −0.75 | −1 | −0.5 | −2.25 | 0 | **−2.25** |
+| N10 | 空中だが、理念を持って任せ、他者も接地させる | あり | −0.75 | −1 | −0.5 | −2.25 | +1 | **−1.25** |
+
+**読み取れること**
+
+- 接地度は時代順に一方的には下がりません。書記（文字）は印刷工（印刷）より低くなります。手で物を扱う仕事は、新しい時代にも接地を保てます。
+- 産業の時代で一番低いのは、工場ではなく事務職です。産業革命以降の事務職と労働疎外という問題意識と合っています。[R00] [R13]
+- AI の時代でも、手綱を握れば無自覚な使い方より 0.75 戻ります。他者を接地させればさらに 1 戻ります。全体で最も低いのは、仕組みで他人の意味を奪う使い方（−3.90）です。
+- 身体の軸は手綱でも戻りません。そのため、空中で暮らしながらプラスに届くことはありません。プラスに届くのは、自分が再接地し、そのうえで周りも接地させる場合だけです。
+
+### 状況で評価が変わる事象（判定表）
+
+行為（使う・使わない）ではなく、判断の質で採点します。物差しは「理由を言えるか」「理念から選んでいるか」「周りの接地を増やすか」の3つです。[D07]
+
+| ID | 事象 | ＋になる状況 | −になる状況 |
+|---|---|---|---|
+| C1 | AIを使うより自分でやった方が早い | 経験に基づく判断で、手の技能を保っている | 試さずに避けている |
+| C2 | AIを学ぶ時間があるなら仕事をする | 手仕事が本分で、AIを入れると距離が増えるだけだと分かっている | 変化への恐れや惰性で学ばない |
+| C3 | 学習コスト0の仕組みを作る | 使う人の理解を残したまま距離を縮める | 中身を完全に隠し、使う人を空中に置く |
+
+---
+
+## 5. 参考文献
+
+### R00 ヒューマノイド・エージェント論（Lou の構想）
+
+「ヒューマノイド・エージェント論 ── 空中メリーゴーランドの手綱」と、講義シリーズ「機械を人間化する ── 宇宙で暮らす人類と、エージェントの12講」。未刊行の構想で、本設計の思想上の出発点です。
+
+### R01 『知の生態学的転回』（東京大学出版会）
+
+全3巻（身体・技術・倫理）。三本柱の出典です。**要確認**：各巻の正式な書名・編者・刊行年。
+
+### R02 J・J・ギブソン『生態学的視覚論』
+
+原著 *The Ecological Approach to Visual Perception*（1979）。アフォーダンスの概念。R01 の理論的な背景です。
+
+### R03 今井むつみ・秋田喜美『言語の本質 ことばはどう生まれ、進化したか』
+
+中公新書、2023年。記号接地問題を軸に、言語と身体の関わりを論じています。接地度の考え方の根拠です。
+
+### R04 Stevan Harnad &quot;The Symbol Grounding Problem&quot;
+
+*Physica D* 42, 1990。記号が身体経験に接地しないと意味を持たないという問題の原論文です。
+
+### R05 Andy Clark &amp; David Chalmers &quot;The Extended Mind&quot;
+
+*Analysis* 58, 1998。認知は道具や記録にまで広がるという「拡張された心」。記憶・思考の外部化の根拠です。
+
+### R06 マーシャル・マクルーハン『メディア論 人間の拡張の諸相』
+
+原著 *Understanding Media*（1964）。技術を人間の身体や感覚の拡張とみる視点。能力層の「外部化」の根拠です。
+
+### R07 リチャード・ランガム『火の賜物 ヒトは料理で進化した』
+
+原著 *Catching Fire*（2009）。加熱調理が人類の進化を駆動したという仮説です。
+
+### R08 ジャレド・ダイアモンド『銃・病原菌・鉄』
+
+原著 *Guns, Germs, and Steel*（1997）。農耕と家畜化が社会の分岐を生んだという議論です。
+
+### R09 ジェームズ・C・スコット『反穀物の人類史』
+
+原著 *Against the Grain*（2017）。穀物・定住・初期国家と、書記・徴税の結びつきを論じています。
+
+### R10 W・J・オング『声の文化と文字の文化』
+
+原著 *Orality and Literacy*（1982）。文字が思考と記憶のあり方を変えたという議論です。
+
+### R11 エリザベス・アイゼンステイン『印刷革命』
+
+原著 *The Printing Press as an Agent of Change*（1979）。印刷による知識の複製と標準化です。
+
+### R12 カール・マルクス『経済学・哲学草稿』
+
+1844年執筆。労働の疎外の概念。接地度の低下と事務職の問題につながります。
+
+### R13 C・ライト・ミルズ『ホワイト・カラー』
+
+原著 *White Collar*（1951）。事務職・管理職の増加と、その働き方の分析です。
+
+### R14 ベンチマーク三分類（本プロジェクトでの整理）
+
+2026-10-14 の議論で、AI ベンチを集計団体ではなく中身で「能力・仕事・身体」に分け直したもの。D01 の直接の根拠です。
+
+### R15 Epoch AI Benchmarking Hub
+
+https://epoch.ai/benchmarks — 難度の高いベンチを厳選して追跡（約65）。能力層（GPQA Diamond、FrontierMath など）の参照先です。
+
+### R16 BenchLM Benchmarks Directory
+
+https://www.benchlm.ai/benchmarks — 比較可能なスコアのあるベンチ（2026年9月時点で435）。仕事層（AutomationBench、GDPval、法務・金融系）の参照先です。
+
+### R17 AIMultiple &quot;800+ Leading AI Benchmarks&quot;
+
+https://www.aimultiple.com/ai-benchmarks/ — GPU・クラウドまで含む一覧（836）。身体層の参照先です。
+
+### R18 オリヴァー・サックスの言葉（構想の出発点）
+
+「人間は機械を人間化しなければならない。機械によって人間性を失われる前に」。**要確認**：原典（書名・頁）。JSON からは直接参照していません。
+
+### R19 Dyble ほか &quot;Engagement in agricultural work is associated with reduced leisure time among Agta hunter-gatherers&quot;
+
+*Nature Human Behaviour*, 2019（DOI: 10.1038/s41562-019-0614-6）。フィリピンのアグタの人々を2年間観察した研究です。農耕中心の集団は週約30時間働き、狩猟採集中心の集団は約20時間でした。N01〜N03 の身体の比率が高いことの裏付けで、農耕で労働時間そのものが増えることも示しています。
+
+### R20 Church ほか &quot;Trends over 5 Decades in U.S. Occupation-Related Physical Activity and Their Associations with Obesity&quot;
+
+*PLoS ONE* 6(5): e19657, 2011。米国の民間雇用で、中程度以上の身体活動を要する仕事は1960年代初めの約50%から、2000年代には約20%に減りました。N07（工場）から N08（管理職・サービス）にかけて身体の比率が下がることの裏付けです。
+
+### R21 Argyle ほか &quot;Out of One, Many: Using Language Models to Simulate Human Samples&quot;
+
+*Political Analysis* 31(3), 2023。属性を与えた仮想の回答者を言語モデルで作り、実際の世論調査の分布をかなり再現できることを示しました（シリコン・サンプリング）。D08 の陪審団の根拠です。
+
+### R22 Wang ほか &quot;Large language models that replace human participants can harmfully misportray and flatten identity groups&quot;
+
+arXiv:2402.01908。言語モデルが演じる集団は、外からの見え方に寄りやすく、集団の中の多様さが平板になる傾向を示しました。D08 の注意点の根拠です。
+
+### R23 Arora ほか &quot;HealthBench: Evaluating Large Language Models Towards Improved Human Health&quot;
+
+OpenAI、2025年（arXiv:2505.08775）。262人の医師が採点基準を48,562項目書き、AIが採点し、AIと医師の一致度が医師どうしと同程度であることを確かめました。人間が基準を書き、AIが当てはめる方式の例です。
+
+### R24 Anthropic &quot;Collective Constitutional AI&quot;
+
+2023年。約1,000人の市民が Polis 上で AI のルールを議論しました。多くは合意できましたが、2つの意見グループの間で割れた項目は除外しました。合意と対立を分けて記録する方式の例です。
+
+### R25 Hendrycks ほか &quot;Aligning AI With Shared Human Values&quot;
+
+ICLR 2021（arXiv:2008.02275）。道徳的な判断に人の付けた正解を固定した ETHICS データセット。時代の価値観が凍結されるという限界の例です。
+
+### R26 世界価値観調査（World Values Survey）
+
+https://www.worldvaluessurvey.org/ — 各国の価値観を継続的に調べている国際調査です。陪審員の価値観の分布を決める出典の候補です。**要確認**：どの波・どの国のデータを使うか。
+
+---
+
+## 6. 未決事項
+
+- 身体の比率：N01〜N03 と N07〜N08 は方向の裏付けあり（R19、R20）。N04〜N06（職人・書記・印刷工）と N09 は推定のみ
+- 段階数の裏付け（職業史）
+- 陪審員の生成に使う調査データを決める（R26 のどの波・国か、過去の時代の価値観をどう補うか）
+- 陪審団のトークン消費を、実際に一生を走らせて測る（D09 の目安は概算）
+- 3軸の重みを等しくしたままでよいか検討する（D06）
+- R01 の書誌と R18 の原典を確認する
+- I4 の学術的な裏付けを探す
+- 10ノードで足りるか検討する（貨幣・宗教・医療などが入っていない）
+- 人類史シミュレーター本体への組み込み方を決める
+
+---
+
+## 7. 作業記録
+
+- 2026-10-14：ベンチマークの構造（タスク・環境・成功基準・採点者）を確認し、生活評価への応用を検討
+- 2026-10-14：テックツリー10ノード・ライフステージ8段階の項目を決定
+- 2026-10-14：ベンチを中身で「能力・仕事・身体」に分ける整理に合意（R14）
+- 2026-10-14：3層をノードに当てる設計を決め、`tech_tree.json` v0.1.0 とこのノートを作成
+- 2026-10-14：接地度を距離・身体・意味の3軸の合計にすると決定（D06）。10ノードを採点して v0.2.0 に更新（計算は `score_grounding.py`）
+- 2026-10-14：身体の比率の裏付けとして R19（狩猟採集と農耕）・R20（米国の職業の身体活動）を追加。Lou から「理念を持って創造的にエージェントを使えば接地はプラスになりうる」との指摘があり、評価方法を相談
+- 2026-10-14：手綱を接地度に組み込むと決定（D07、身体の軸は打ち消さない）。N09・N10 に使い方のケースを、JSON に判定表 `reins_rubric` を追加して v0.3.0 に更新
+- 2026-10-14：Claude の判定の入れ子をどう止めるかを議論。人による検査は行わず、仮想の陪審団で判定すると決定（D08）。トークン消費を抑えるため3段階の判定にすると決定（D09）。v0.4.0 に更新
+- 2026-10-14：RobotSimulaterRyo の社会シミュレーションに段階0を導入（`sim/society/grounding.py`、`build_records.py` の `grounding` 列）。0年〜38年の村の大人の平均は −0.1〜−0.3 で、農耕（N03）の見積もり −0.6 より接地していた（`docs/humanity/README.md`）
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script>
+(function(){
+  const tree = JSON.parse(document.getElementById('treeData').textContent);
+  const noteMd = document.getElementById('noteData').textContent;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const refs = arr => (arr && arr.length) ? '<span class="refs">' + arr.map(r => `<a class="ref" href="#${r}">${r}</a>`).join('') + '</span>' : '';
+  const stageName = Object.fromEntries(tree.life_stages.map(s => [s.id, s.name]));
+  const nodeName = Object.fromEntries(tree.nodes.map(n => [n.id, n.name]));
+  const invName = Object.fromEntries(tree.invariant_hypotheses.map(i => [i.id, i.name]));
+  document.getElementById('ver').textContent = `v${tree.meta.version} ・ ${tree.meta.status} ・ ${tree.meta.updated}`;
+
+  const order = ['body','capability','work'];
+  document.getElementById('nodes').innerHTML = tree.nodes.map(n => {
+    const layers = order.map(k => `<div class="layer ${k}"><span class="tag">${tree.layers[k].label}</span><span>${esc(n.layers[k].label)}${refs(n.layers[k].refs)}</span></div>`).join('');
+    const eff = Object.entries(n.life_stage_effects||{}).map(([s,t]) => `<li>${esc(stageName[s]||s)}：${esc(t)}</li>`).join('');
+    const fmt = v => (v === 0 ? '0' : v.toFixed(2).replace('-', '−'));
+    const parts = gg => {
+      let s = `距離 ${fmt(gg.components.distance.score)}・身体 ${fmt(gg.components.body.score)}・意味 ${fmt(gg.components.meaning.score)}`;
+      if (gg.reins) {
+        s += gg.reins.held ? '・手綱あり' : '・手綱なし';
+        if (gg.reins.spread) s += `・波及 ${gg.reins.spread > 0 ? '+' : ''}${fmt(gg.reins.spread)}`;
+      }
+      return s;
+    };
+    const G = n.grounding;
+    let gdetail = '';
+    if (G.components) {
+      gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">${fmt(G.value)}</b><span class="gbar"><i style="width:${(-G.value/3*100).toFixed(0)}%"></i></span></div>
+        <div class="gsub">${esc(G.representative)}：${esc(G.components.distance.chain)}<br>${parts(G)}</div>
+        ${(G.variants||[]).map(v => `<div class="gsub">別例 ${esc(v.representative)}：<b class="ground">${fmt(v.value)}</b>（${parts(v)}）</div>`).join('')}</div>`;
+    } else if (G.scenarios) {
+      gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">未決</b></div>
+        ${G.scenarios.map(s => `<div class="gsub">${esc(s.label)}：<b class="ground">${fmt(s.value)}</b>（${parts(s)}）</div>`).join('')}</div>`;
+    }
+    const g = G.value === null ? '未決' : fmt(G.value);
+    const req = n.requires.length ? '前提：' + n.requires.map(r => esc(nodeName[r])).join('・') : '前提なし（起点）';
+    let ind = '';
+    if (n.indicators.kind === 'benchmark') {
+      ind = '指標：実在ベンチ' + refs(n.indicators.refs);
+    } else if (n.indicators.kind === 'historical_proxy') {
+      ind = '指標：' + n.indicators.candidates.map(esc).join('・');
+    } else ind = '指標：推測';
+    return `<article class="node" id="${n.id}">
+      <div class="node-head"><span class="nid">${n.id}</span><h3>${esc(n.name)}</h3><span class="era">${esc(n.era)}</span></div>
+      <div class="req">${req}</div>
+      ${layers}
+      ${eff ? `<ul class="effects">${eff}</ul>` : ''}
+      ${gdetail}
+      <div class="meta-row"><span>接地度は${esc(G.status)}${refs(G.refs)}</span><span>${ind}</span></div>
+    </article>`;
+  }).join('');
+
+  document.getElementById('stageTable').innerHTML =
+    '<thead><tr><th>ID</th><th>段階</th><th>関わる不変項（仮説）</th></tr></thead><tbody>' +
+    tree.life_stages.map(s => `<tr><td class="mono">${s.id}</td><td>${esc(s.name)}</td><td>${s.invariants.map(i => `<a class="ref" href="#${i}">${i}</a> ${esc(invName[i])}`).join('<br>')}</td></tr>`).join('') +
+    '</tbody>';
+
+  const jp = tree.judgment_pipeline;
+  if (jp) {
+    document.getElementById('tiers').innerHTML = jp.tiers.map(t => `
+      <article class="tier">
+        <div class="node-head"><span class="nid">段階${t.tier}</span><h3>${esc(t.name)}</h3><span class="era">${t.uses_llm ? 'Claudeを使う' : 'Claudeを使わない'}</span></div>
+        <div class="req">${esc(t.when)}</div>
+        <p>${esc(t.does || t.escalation)}</p>
+        ${t.triggers ? `<ul class="effects">${t.triggers.map(x => `<li>・${esc(x)}</li>`).join('')}</ul><p class="gsub">${esc(t.escalation)}</p>` : ''}
+      </article>`).join('') +
+      `<p class="gsub">${esc(jp.rescoring)}。一生あたりの目安：段階1 ${esc(jp.token_estimate_per_life.tier1)}、段階2 ${esc(jp.token_estimate_per_life.tier2)}（${esc(jp.token_estimate_per_life.status)}）${refs(jp.refs)}${refs(tree.jury_spec ? tree.jury_spec.refs.slice(0,1) : [])}</p>`;
+  }
+
+  const body = document.getElementById('noteBody');
+  if (window.marked) {
+    body.innerHTML = marked.parse(noteMd);
+  } else {
+    body.innerHTML = '<pre style="white-space:pre-wrap">' + esc(noteMd) + '</pre>';
+  }
+  body.querySelectorAll('h3').forEach(h => {
+    const m = h.textContent.trim().match(/^([RDI]\d{1,2})\b/);
+    if (m) h.id = m[1];
+  });
+  body.querySelectorAll('table').forEach(t => { const d = document.createElement('div'); d.className = 'tablebox'; t.replaceWith(d); d.appendChild(t); });
+  const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT);
+  const targets = [];
+  while (walker.nextNode()) { if (/\[[RDI]\d{1,2}\]/.test(walker.currentNode.nodeValue)) targets.push(walker.currentNode); }
+  targets.forEach(t => {
+    const span = document.createElement('span');
+    span.innerHTML = esc(t.nodeValue).replace(/\[([RDI]\d{1,2})\]/g, '<a class="ref" href="#$1">$1</a>');
+    t.replaceWith(span);
+  });
+
+  function flash(){
+    const id = location.hash.slice(1);
+    const el = id && document.getElementById(id);
+    if (el && el.tagName === 'H3') { el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 1600); }
+  }
+  window.addEventListener('hashchange', flash);
+  if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) { el.scrollIntoView(); flash(); } }
+})();
+</script>

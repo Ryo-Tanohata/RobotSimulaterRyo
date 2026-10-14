@@ -1,0 +1,1288 @@
+{
+  "meta": {
+    "title": "人類史シミュレーター テックツリー",
+    "version": "0.4.0",
+    "updated": "2026-10-14",
+    "status": "叩き台",
+    "design_note": "テックツリー設計ノート（参照ID R00〜R26 と D01〜D09 はノートの「参考文献」「設計判断」に対応）",
+    "unlock_order": [
+      "body",
+      "capability",
+      "work"
+    ],
+    "unlock_rule": "各ノード内で身体→能力→仕事の順に開放。3層すべて開放でノード習得",
+    "refs": [
+      "D01",
+      "D02"
+    ],
+    "grounding_formula": {
+      "target": "そのノードで新しく生まれた仕事の担い手",
+      "total": "接地度 = 高さ（距離+身体+意味、0〜-3） + 波及（-1〜+1）。範囲は -4〜+1",
+      "distance": "成果までの段階数 n → -min(n,4)/4。手綱を握っていればエージェントの段階を n から引く",
+      "body": "身体・物に触れる時間の比率 r → -(1-r)。手綱では打ち消さない",
+      "meaning": "仕事を説明できる相手：誰にでも 0 / 身近な人まで -0.5 / 同業者だけ -1。手綱を握っていれば1段よくする",
+      "reins": "理由を言える かつ 理念から選んでいる とき握っている。波及は周りの接地への影響",
+      "refs": [
+        "D03",
+        "D06",
+        "D07"
+      ]
+    }
+  },
+  "layers": {
+    "body": {
+      "label": "身体",
+      "definition": "その技術を成り立たせる物質的な土台",
+      "refs": [
+        "R01",
+        "R05",
+        "D01"
+      ]
+    },
+    "capability": {
+      "label": "能力",
+      "definition": "土台によって拡張・外部化された知性のはたらき",
+      "refs": [
+        "R05",
+        "R06",
+        "R14",
+        "D01"
+      ]
+    },
+    "work": {
+      "label": "仕事",
+      "definition": "その能力によって生まれた働き方・役割",
+      "refs": [
+        "R12",
+        "R13",
+        "D01"
+      ]
+    }
+  },
+  "invariant_hypotheses": [
+    {
+      "id": "I1",
+      "name": "身体を持ち、いつか死ぬ",
+      "status": "仮説",
+      "refs": [
+        "R01"
+      ]
+    },
+    {
+      "id": "I2",
+      "name": "他者に養われて育つ",
+      "status": "仮説",
+      "refs": [
+        "R07"
+      ]
+    },
+    {
+      "id": "I3",
+      "name": "言葉で意味を分け合う",
+      "status": "仮説",
+      "refs": [
+        "R03",
+        "R04"
+      ]
+    },
+    {
+      "id": "I4",
+      "name": "先を思い、悼む",
+      "status": "仮説",
+      "refs": [
+        "R00"
+      ]
+    }
+  ],
+  "life_stages": [
+    {
+      "id": "S1",
+      "order": 1,
+      "name": "誕生",
+      "invariants": [
+        "I1"
+      ]
+    },
+    {
+      "id": "S2",
+      "order": 2,
+      "name": "養われる",
+      "invariants": [
+        "I2"
+      ]
+    },
+    {
+      "id": "S3",
+      "order": 3,
+      "name": "学ぶ",
+      "invariants": [
+        "I3"
+      ]
+    },
+    {
+      "id": "S4",
+      "order": 4,
+      "name": "働く",
+      "invariants": [
+        "I3",
+        "I4"
+      ]
+    },
+    {
+      "id": "S5",
+      "order": 5,
+      "name": "つがう",
+      "invariants": [
+        "I3"
+      ]
+    },
+    {
+      "id": "S6",
+      "order": 6,
+      "name": "育てる",
+      "invariants": [
+        "I2",
+        "I4"
+      ]
+    },
+    {
+      "id": "S7",
+      "order": 7,
+      "name": "老いる",
+      "invariants": [
+        "I1",
+        "I2"
+      ]
+    },
+    {
+      "id": "S8",
+      "order": 8,
+      "name": "看取られる",
+      "invariants": [
+        "I1",
+        "I4"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "N01",
+      "order": 1,
+      "name": "火と道具",
+      "era": "旧石器時代",
+      "requires": [],
+      "layers": {
+        "body": {
+          "label": "石器・火の制御",
+          "refs": [
+            "R05",
+            "R07"
+          ]
+        },
+        "capability": {
+          "label": "加熱調理による消化の外部化と、脳に回る余裕",
+          "refs": [
+            "R07"
+          ]
+        },
+        "work": {
+          "label": "狩猟・採集・調理の分担",
+          "refs": [
+            "R07"
+          ]
+        }
+      },
+      "life_stage_effects": {
+        "S2": "火のそばで養われる",
+        "S6": "調理された食べ物を分け与える"
+      },
+      "grounding": {
+        "representative": "狩猟採集民",
+        "components": {
+          "distance": {
+            "steps": 0,
+            "counted_steps": 0,
+            "chain": "獲る→食べる",
+            "score": 0.0
+          },
+          "body": {
+            "ratio": 0.9,
+            "score": -0.1,
+            "evidence": "裏付けあり（方向）",
+            "refs": [
+              "R19"
+            ]
+          },
+          "meaning": {
+            "level": "誰にでも",
+            "counted_level": "誰にでも",
+            "score": 0.0
+          }
+        },
+        "height": -0.1,
+        "value": -0.1,
+        "status": "推定",
+        "refs": [
+          "D03",
+          "D06"
+        ]
+      },
+      "indicators": {
+        "kind": "historical_proxy",
+        "candidates": [
+          "火の使用痕跡の年代",
+          "石器の種類"
+        ]
+      }
+    },
+    {
+      "id": "N02",
+      "order": 2,
+      "name": "言語",
+      "era": "旧石器時代",
+      "requires": [
+        "N01"
+      ],
+      "layers": {
+        "body": {
+          "label": "声と聴覚",
+          "refs": [
+            "R03"
+          ]
+        },
+        "capability": {
+          "label": "身体に接地した記号による抽象化と経験の共有",
+          "refs": [
+            "R03",
+            "R04"
+          ]
+        },
+        "work": {
+          "label": "集団狩猟と分業の調整",
+          "refs": [
+            "R03"
+          ]
+        }
+      },
+      "life_stage_effects": {
+        "S3": "語り聞かせで学ぶ",
+        "S6": "ことばで教える"
+      },
+      "grounding": {
+        "representative": "集団で狩る者",
+        "components": {
+          "distance": {
+            "steps": 1,
+            "counted_steps": 1,
+            "chain": "獲る→分け合う→食べる",
+            "score": -0.25
+          },
+          "body": {
+            "ratio": 0.9,
+            "score": -0.1,
+            "evidence": "裏付けあり（方向）",
+            "refs": [
+              "R19"
+            ]
+          },
+          "meaning": {
+            "level": "誰にでも",
+            "counted_level": "誰にでも",
+            "score": 0.0
+          }
+        },
+        "height": -0.35,
+        "value": -0.35,
+        "status": "推定",
+        "refs": [
+          "D03",
+          "D06"
+        ]
+      },
+      "indicators": {
+        "kind": "historical_proxy",
+        "candidates": [
+          "共有される物語・儀礼の有無"
+        ]
+      }
+    },
+    {
+      "id": "N03",
+      "order": 3,
+      "name": "農耕",
+      "era": "新石器時代",
+      "requires": [
+        "N01",
+        "N02"
+      ],
+      "layers": {
+        "body": {
+          "label": "栽培植物・家畜・定住地",
+          "refs": [
+            "R08"
+          ]
+        },
+        "capability": {
+          "label": "季節の予測と貯蔵の計画",
+          "refs": [
+            "R08"
+          ]
+        },
+        "work": {
+          "label": "農民・牧畜民、余剰の管理",
+          "refs": [
+            "R08",
+            "R09"
+          ]
+        }
+      },
+      "life_stage_effects": {
+        "S4": "毎日の農作業",
+        "S6": "子が労働力になる"
+      },
+      "grounding": {
+        "representative": "農民",
+        "components": {
+          "distance": {
+            "steps": 2,
+            "counted_steps": 2,
+            "chain": "育てる→蓄える→食べる・納める",
+            "score": -0.5
+          },
+          "body": {
+            "ratio": 0.9,
+            "score": -0.1,
+            "evidence": "裏付けあり（方向）",
+            "refs": [
+              "R19"
+            ]
+          },
+          "meaning": {
+            "level": "誰にでも",
+            "counted_level": "誰にでも",
+            "score": 0.0
+          }
+        },
+        "height": -0.6,
+        "value": -0.6,
+        "status": "推定",
+        "refs": [
+          "D03",
+          "D06"
+        ]
+      },
+      "indicators": {
+        "kind": "historical_proxy",
+        "candidates": [
+          "人口密度",
+          "農業生産性"
+        ]
+      }
+    },
+    {
+      "id": "N04",
+      "order": 4,
+      "name": "都市",
+      "era": "古代",
+      "requires": [
+        "N03"
+      ],
+      "layers": {
+        "body": {
+          "label": "建築・水路・城壁",
+          "refs": [
+            "R09"
+          ]
+        },
+        "capability": {
+          "label": "大集団の組織化",
+          "refs": [
+            "R09"
+          ]
+        },
+        "work": {
+          "label": "職人・兵士・祭司・役人",
+          "refs": [
+            "R09"
+          ]
+        }
+      },
+      "life_stage_effects": {
+        "S4": "専門職に就く",
+        "S5": "出会いの範囲が広がる"
+      },
+      "grounding": {
+        "representative": "職人",
+        "components": {
+          "distance": {
+            "steps": 2,
+            "counted_steps": 2,
+            "chain": "作る→交換する→食べる",
+            "score": -0.5
+          },
+          "body": {
+            "ratio": 0.8,
+            "score": -0.2,
+            "evidence": "推定のみ",
+            "refs": []
+          },
+          "meaning": {
+            "level": "誰にでも",
+            "counted_level": "誰にでも",
+            "score": 0.0
+          }
+        },
+        "height": -0.7,
+        "value": -0.7,
+        "status": "推定",
+        "refs": [
+          "D03",
+          "D06"
+        ]
+      },
+      "indicators": {
+        "kind": "historical_proxy",
+        "candidates": [
+          "都市人口",
+          "職業の種類数"
+        ]
+      }
+    },
+    {
+      "id": "N05",
+      "order": 5,
+      "name": "文字",
+      "era": "古代",
+      "requires": [
+        "N04"
+      ],
+      "layers": {
+        "body": {
+          "label": "粘土板・パピルス・紙",
+          "refs": [
+            "R10"
+          ]
+        },
+        "capability": {
+          "label": "記憶の外部化",
+          "refs": [
+            "R05",
+            "R10"
+          ]
+        },
+        "work": {
+          "label": "書記・会計・行政",
+          "refs": [
+            "R09",
+            "R10"
+          ]
+        }
+      },
+      "life_stage_effects": {
+        "S3": "読み書きの訓練",
+        "S8": "記録や墓碑に名が残る"
+      },
+      "grounding": {
+        "representative": "書記",
+        "components": {
+          "distance": {
+            "steps": 3,
+            "counted_steps": 3,
+            "chain": "記録する→行政→徴税→食べる",
+            "score": -0.75
+          },
+          "body": {
+            "ratio": 0.3,
+            "score": -0.7,
+            "evidence": "推定のみ",
+            "refs": []
+          },
+          "meaning": {
+            "level": "身近な人まで",
+            "counted_level": "身近な人まで",
+            "score": -0.5
+          }
+        },
+        "height": -1.95,
+        "value": -1.95,
+        "status": "推定",
+        "refs": [
+          "D03",
+          "D06"
+        ]
+      },
+      "indicators": {
+        "kind": "historical_proxy",
+        "candidates": [
+          "識字率"
+        ]
+      }
+    },
+    {
+      "id": "N06",
+      "order": 6,
+      "name": "印刷",
+      "era": "近世",
+      "requires": [
+        "N05"
+      ],
+      "layers": {
+        "body": {
+          "label": "活版・紙の大量生産",
+          "refs": [
+            "R11"
+          ]
+        },
+        "capability": {
+          "label": "知識の複製と標準化",
+          "refs": [
+            "R06",
+            "R11"
+          ]
+        },
+        "work": {
+          "label": "出版・教師・学者",
+          "refs": [
+            "R11"
+          ]
+        }
+      },
+      "life_stage_effects": {
+        "S3": "本による独学"
+      },
+      "grounding": {
+        "representative": "印刷工",
+        "components": {
+          "distance": {
+            "steps": 3,
+            "counted_steps": 3,
+            "chain": "組む→刷る→流通→読まれる",
+            "score": -0.75
+          },
+          "body": {
+            "ratio": 0.6,
+            "score": -0.4,
+            "evidence": "推定のみ",
+            "refs": []
+          },
+          "meaning": {
+            "level": "誰にでも",
+            "counted_level": "誰にでも",
+            "score": 0.0
+          }
+        },
+        "height": -1.15,
+        "value": -1.15,
+        "status": "推定",
+        "refs": [
+          "D03",
+          "D06"
+        ]
+      },
+      "indicators": {
+        "kind": "historical_proxy",
+        "candidates": [
+          "書籍の出版点数",
+          "識字率"
+        ]
+      }
+    },
+    {
+      "id": "N07",
+      "order": 7,
+      "name": "産業機械",
+      "era": "近代",
+      "requires": [
+        "N06"
+      ],
+      "layers": {
+        "body": {
+          "label": "蒸気機関・鉄・工場",
+          "refs": [
+            "R06"
+          ]
+        },
+        "capability": {
+          "label": "力の外部化",
+          "refs": [
+            "R06"
+          ]
+        },
+        "work": {
+          "label": "工場労働・事務職",
+          "refs": [
+            "R12",
+            "R13"
+          ]
+        }
+      },
+      "life_stage_effects": {
+        "S4": "時計で区切られた労働",
+        "S6": "家庭と職場が分かれる"
+      },
+      "grounding": {
+        "representative": "工場労働者",
+        "components": {
+          "distance": {
+            "steps": 4,
+            "counted_steps": 4,
+            "chain": "部品→製品→市場→賃金→食べる",
+            "score": -1.0
+          },
+          "body": {
+            "ratio": 0.8,
+            "score": -0.2,
+            "evidence": "裏付けあり（方向）",
+            "refs": [
+              "R20"
+            ]
+          },
+          "meaning": {
+            "level": "身近な人まで",
+            "counted_level": "身近な人まで",
+            "score": -0.5
+          }
+        },
+        "height": -1.7,
+        "value": -1.7,
+        "status": "推定",
+        "refs": [
+          "D03",
+          "D06"
+        ],
+        "variants": [
+          {
+            "representative": "事務職",
+            "components": {
+              "distance": {
+                "steps": 4,
+                "counted_steps": 4,
+                "chain": "書類→承認→組織→製品→賃金→食べる",
+                "score": -1.0
+              },
+              "body": {
+                "ratio": 0.2,
+                "score": -0.8
+              },
+              "meaning": {
+                "level": "同業者だけ",
+                "counted_level": "同業者だけ",
+                "score": -1.0
+              }
+            },
+            "height": -2.8,
+            "value": -2.8
+          }
+        ]
+      },
+      "indicators": {
+        "kind": "historical_proxy",
+        "candidates": [
+          "労働時間",
+          "事務職の比率"
+        ]
+      }
+    },
+    {
+      "id": "N08",
+      "order": 8,
+      "name": "電気・通信",
+      "era": "近代〜現代",
+      "requires": [
+        "N07"
+      ],
+      "layers": {
+        "body": {
+          "label": "電線・電波・電力網",
+          "refs": [
+            "R06"
+          ]
+        },
+        "capability": {
+          "label": "距離の消去",
+          "refs": [
+            "R06"
+          ]
+        },
+        "work": {
+          "label": "通信・管理職・サービス業",
+          "refs": [
+            "R13"
+          ]
+        }
+      },
+      "life_stage_effects": {
+        "S5": "遠く離れた相手との関係"
+      },
+      "grounding": {
+        "representative": "管理職",
+        "components": {
+          "distance": {
+            "steps": 4,
+            "counted_steps": 4,
+            "chain": "指示→部下の作業→製品・サービス→賃金→食べる",
+            "score": -1.0
+          },
+          "body": {
+            "ratio": 0.2,
+            "score": -0.8,
+            "evidence": "裏付けあり（方向）",
+            "refs": [
+              "R20"
+            ]
+          },
+          "meaning": {
+            "level": "身近な人まで",
+            "counted_level": "身近な人まで",
+            "score": -0.5
+          }
+        },
+        "height": -2.3,
+        "value": -2.3,
+        "status": "推定",
+        "refs": [
+          "D03",
+          "D06"
+        ]
+      },
+      "indicators": {
+        "kind": "historical_proxy",
+        "candidates": [
+          "電化率",
+          "通信普及率"
+        ]
+      }
+    },
+    {
+      "id": "N09",
+      "order": 9,
+      "name": "計算機・AI",
+      "era": "現代",
+      "requires": [
+        "N08"
+      ],
+      "layers": {
+        "body": {
+          "label": "半導体・GPU・データセンター",
+          "refs": [
+            "R17"
+          ]
+        },
+        "capability": {
+          "label": "思考の外部化",
+          "refs": [
+            "R14",
+            "R15"
+          ]
+        },
+        "work": {
+          "label": "エージェントとの協働",
+          "refs": [
+            "R16",
+            "R00"
+          ]
+        }
+      },
+      "life_stage_effects": {
+        "S4": "エージェントと分担して働く",
+        "S7": "見守りと生活の支援"
+      },
+      "grounding": {
+        "representative": "エージェントと働く知識労働者（無自覚に使う）",
+        "components": {
+          "distance": {
+            "steps": 4,
+            "counted_steps": 4,
+            "chain": "指示→エージェント→成果物→顧客→賃金→食べる",
+            "score": -1.0
+          },
+          "body": {
+            "ratio": 0.1,
+            "score": -0.9,
+            "evidence": "推定のみ",
+            "refs": []
+          },
+          "meaning": {
+            "level": "同業者だけ",
+            "counted_level": "同業者だけ",
+            "score": -1.0
+          }
+        },
+        "height": -2.9,
+        "value": -2.9,
+        "reins": {
+          "reason": false,
+          "principle": false,
+          "held": false,
+          "agent_steps": 1,
+          "spread": 0.0
+        },
+        "status": "推定",
+        "refs": [
+          "D03",
+          "D06",
+          "D07"
+        ],
+        "variants": [
+          {
+            "representative": "理念を持って使う",
+            "components": {
+              "distance": {
+                "steps": 4,
+                "counted_steps": 3,
+                "chain": "指示→エージェント→成果物→顧客→賃金→食べる",
+                "score": -0.75
+              },
+              "body": {
+                "ratio": 0.1,
+                "score": -0.9
+              },
+              "meaning": {
+                "level": "同業者だけ",
+                "counted_level": "身近な人まで",
+                "score": -0.5
+              }
+            },
+            "height": -2.15,
+            "value": -2.15,
+            "reins": {
+              "reason": true,
+              "principle": true,
+              "held": true,
+              "agent_steps": 1,
+              "spread": 0.0
+            }
+          },
+          {
+            "representative": "理念を持ち、誰でも使える仕組みを作る（使う人の理解を残す）",
+            "components": {
+              "distance": {
+                "steps": 4,
+                "counted_steps": 3,
+                "chain": "指示→エージェント→成果物→顧客→賃金→食べる",
+                "score": -0.75
+              },
+              "body": {
+                "ratio": 0.1,
+                "score": -0.9
+              },
+              "meaning": {
+                "level": "同業者だけ",
+                "counted_level": "身近な人まで",
+                "score": -0.5
+              }
+            },
+            "height": -2.15,
+            "value": -1.15,
+            "reins": {
+              "reason": true,
+              "principle": true,
+              "held": true,
+              "agent_steps": 1,
+              "spread": 1.0
+            }
+          },
+          {
+            "representative": "仕組みを作るが、中身を隠して使う人の意味を奪う",
+            "components": {
+              "distance": {
+                "steps": 4,
+                "counted_steps": 4,
+                "chain": "指示→エージェント→成果物→顧客→賃金→食べる",
+                "score": -1.0
+              },
+              "body": {
+                "ratio": 0.1,
+                "score": -0.9
+              },
+              "meaning": {
+                "level": "同業者だけ",
+                "counted_level": "同業者だけ",
+                "score": -1.0
+              }
+            },
+            "height": -2.9,
+            "value": -3.9,
+            "reins": {
+              "reason": true,
+              "principle": false,
+              "held": false,
+              "agent_steps": 1,
+              "spread": -1.0
+            }
+          }
+        ]
+      },
+      "indicators": {
+        "kind": "benchmark",
+        "refs": [
+          "D04"
+        ],
+        "by_layer": {
+          "body": {
+            "candidates": [
+              "GPU・クラウドの性能ベンチ"
+            ],
+            "refs": [
+              "R17"
+            ]
+          },
+          "capability": {
+            "candidates": [
+              "GPQA Diamond",
+              "FrontierMath"
+            ],
+            "refs": [
+              "R15"
+            ]
+          },
+          "work": {
+            "candidates": [
+              "AutomationBench",
+              "GDPval",
+              "法務・金融エージェント系ベンチ"
+            ],
+            "refs": [
+              "R16"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "N10",
+      "order": 10,
+      "name": "宇宙居住",
+      "era": "近未来",
+      "requires": [
+        "N09"
+      ],
+      "layers": {
+        "body": {
+          "label": "生命維持装置・閉鎖生態系",
+          "refs": [
+            "R00"
+          ]
+        },
+        "capability": {
+          "label": "環境そのものの設計",
+          "refs": [
+            "R00",
+            "R01"
+          ]
+        },
+        "work": {
+          "label": "エージェントと共に営む宇宙での暮らし",
+          "refs": [
+            "R00"
+          ]
+        }
+      },
+      "life_stage_effects": {
+        "S1": "地球外で生まれる",
+        "S2": "人とエージェントに養われる"
+      },
+      "grounding": {
+        "representative": "宇宙居住者",
+        "value": null,
+        "status": "未決",
+        "scenarios": [
+          {
+            "label": "再接地：生命維持を自分たちで営む",
+            "components": {
+              "distance": {
+                "steps": 1,
+                "counted_steps": 1,
+                "chain": "育てる・直す→暮らす",
+                "score": -0.25
+              },
+              "body": {
+                "ratio": 0.7,
+                "score": -0.3
+              },
+              "meaning": {
+                "level": "誰にでも",
+                "counted_level": "誰にでも",
+                "score": 0.0
+              }
+            },
+            "height": -0.55,
+            "value": -0.55
+          },
+          {
+            "label": "再接地し、技能を周りに伝える",
+            "components": {
+              "distance": {
+                "steps": 1,
+                "counted_steps": 1,
+                "chain": "育てる・直す→暮らす",
+                "score": -0.25
+              },
+              "body": {
+                "ratio": 0.7,
+                "score": -0.3
+              },
+              "meaning": {
+                "level": "誰にでも",
+                "counted_level": "誰にでも",
+                "score": 0.0
+              }
+            },
+            "height": -0.55,
+            "value": -0.05,
+            "reins": {
+              "reason": false,
+              "principle": false,
+              "held": false,
+              "agent_steps": 0,
+              "spread": 0.5
+            }
+          },
+          {
+            "label": "空中：すべてを無自覚にエージェントに任せる",
+            "components": {
+              "distance": {
+                "steps": 4,
+                "counted_steps": 4,
+                "chain": "指示→エージェント→生命維持系→暮らす",
+                "score": -1.0
+              },
+              "body": {
+                "ratio": 0.0,
+                "score": -1.0
+              },
+              "meaning": {
+                "level": "同業者だけ",
+                "counted_level": "同業者だけ",
+                "score": -1.0
+              }
+            },
+            "height": -3.0,
+            "value": -3.0,
+            "reins": {
+              "reason": false,
+              "principle": false,
+              "held": false,
+              "agent_steps": 1,
+              "spread": 0.0
+            }
+          },
+          {
+            "label": "空中だが、理念を持ってエージェントに任せる",
+            "components": {
+              "distance": {
+                "steps": 4,
+                "counted_steps": 3,
+                "chain": "指示→エージェント→生命維持系→暮らす",
+                "score": -0.75
+              },
+              "body": {
+                "ratio": 0.0,
+                "score": -1.0
+              },
+              "meaning": {
+                "level": "同業者だけ",
+                "counted_level": "身近な人まで",
+                "score": -0.5
+              }
+            },
+            "height": -2.25,
+            "value": -2.25,
+            "reins": {
+              "reason": true,
+              "principle": true,
+              "held": true,
+              "agent_steps": 1,
+              "spread": 0.0
+            }
+          },
+          {
+            "label": "空中だが、理念を持って任せ、他者も接地させる",
+            "components": {
+              "distance": {
+                "steps": 4,
+                "counted_steps": 3,
+                "chain": "指示→エージェント→生命維持系→暮らす",
+                "score": -0.75
+              },
+              "body": {
+                "ratio": 0.0,
+                "score": -1.0
+              },
+              "meaning": {
+                "level": "同業者だけ",
+                "counted_level": "身近な人まで",
+                "score": -0.5
+              }
+            },
+            "height": -2.25,
+            "value": -1.25,
+            "reins": {
+              "reason": true,
+              "principle": true,
+              "held": true,
+              "agent_steps": 1,
+              "spread": 1.0
+            }
+          }
+        ],
+        "refs": [
+          "D03",
+          "D06",
+          "D07"
+        ]
+      },
+      "indicators": {
+        "kind": "speculative",
+        "candidates": []
+      }
+    }
+  ],
+  "reins_rubric": {
+    "criteria": [
+      {
+        "id": "reason",
+        "label": "理由を言えるか",
+        "question": "なぜ使うのか、なぜ使わないのかを説明できるか"
+      },
+      {
+        "id": "principle",
+        "label": "理念から選んでいるか",
+        "question": "自分の目的から選んでいるか、惰性や恐れからか"
+      },
+      {
+        "id": "spread",
+        "label": "周りの接地を増やすか",
+        "question": "その選択で、周りの人の距離・意味はどうなるか"
+      }
+    ],
+    "cases": [
+      {
+        "id": "C1",
+        "event": "AIを使うより自分でやった方が早い",
+        "plus": "経験に基づく判断で、手の技能を保っている（理由あり・理念あり）",
+        "minus": "試さずに避けている（理由なし・惰性）"
+      },
+      {
+        "id": "C2",
+        "event": "AIを学ぶ時間があるなら仕事をする",
+        "plus": "手仕事が本分で、AIを入れると距離が増えるだけだと分かっている",
+        "minus": "変化への恐れや惰性で学ばない"
+      },
+      {
+        "id": "C3",
+        "event": "みんな学ぶ時間がないので、学習コスト0の仕組みを作る",
+        "plus": "使う人の理解を残したまま距離を縮める（波及＋）",
+        "minus": "中身を完全に隠し、使う人を空中に置く（波及−）"
+      }
+    ],
+    "refs": [
+      "D07",
+      "R05"
+    ],
+    "version": "2026",
+    "era_versions": {
+      "note": "同じ一生を時代ごとの版で採点し直し、版が変わっても評価が変わらない部分を不変項の候補とする",
+      "planned": [
+        "2026"
+      ],
+      "refs": [
+        "D08"
+      ]
+    }
+  },
+  "judgment_pipeline": {
+    "tiers": [
+      {
+        "tier": 0,
+        "name": "記録",
+        "when": "毎ターン",
+        "uses_llm": false,
+        "does": "時代・仕事・成果までの段階数・身体の時間を欄に記録し、高さをスクリプトで計算する"
+      },
+      {
+        "tier": 1,
+        "name": "抜き出し",
+        "when": "ライフステージの区切りごと（一生で8回）",
+        "uses_llm": true,
+        "model": "小さく安いモデル",
+        "does": "記録から理由・理念・波及の有無を あり／なし／不明 で抜き出す。価値判断はしない",
+        "output": {
+          "reason": "あり|なし|不明",
+          "principle": "あり|なし|不明",
+          "spread": "-1〜+1|不明"
+        }
+      },
+      {
+        "tier": 2,
+        "name": "陪審団",
+        "when": "下の発動条件のどれかに当てはまる場面だけ",
+        "uses_llm": true,
+        "triggers": [
+          "段階1の結果に「不明」がある",
+          "波及が0でない",
+          "新しいノードに切り替わった直後の選択",
+          "品質確認の抜き取り（数%）"
+        ],
+        "escalation": "まず3人で判定し、全員一致なら終了。割れたら12人に増やす",
+        "output": "賛否の分布（＋の人数・−の人数）と一致度",
+        "self_check": "同じ事例を言い換えて判定が変わらないか確かめる"
+      }
+    ],
+    "rescoring": "判定表の版が変わったら、段階2の場面だけ採点し直す",
+    "token_estimate_per_life": {
+      "tier1": "約1.6万トークン",
+      "tier2": "約1万〜7万トークン",
+      "status": "概算（未計測）"
+    },
+    "refs": [
+      "D09"
+    ]
+  },
+  "jury_spec": {
+    "status": "叩き台",
+    "size": {
+      "initial": 3,
+      "max": 12
+    },
+    "attributes": [
+      {
+        "key": "era",
+        "label": "生きた時代",
+        "source": "テックツリーのノード（N01〜N10）"
+      },
+      {
+        "key": "region",
+        "label": "地域・文化圏",
+        "source": "R26（要確認）"
+      },
+      {
+        "key": "life_stage",
+        "label": "年齢・ライフステージ",
+        "source": "life_stages（S1〜S8）"
+      },
+      {
+        "key": "work",
+        "label": "仕事",
+        "source": "各ノードの仕事層"
+      },
+      {
+        "key": "values",
+        "label": "価値観（伝統↔世俗、生存↔自己表現など）",
+        "source": "R26 の分布から抽出（要確認）"
+      }
+    ],
+    "rules": [
+      "属性はClaudeの想像ではなく、調査データの分布から抽出する",
+      "陪審員は判定の理由を一文で述べる",
+      "陪審員どうしは相談しない（独立に判定する）"
+    ],
+    "caution": "言語モデルが演じる集団は多様さが平板になりやすい（R22）",
+    "refs": [
+      "D08",
+      "R21",
+      "R22",
+      "R26"
+    ]
+  }
+}

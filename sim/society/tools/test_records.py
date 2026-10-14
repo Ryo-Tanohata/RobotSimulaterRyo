@@ -606,6 +606,49 @@ class G_StepSmoke(unittest.TestCase):
             shutil.rmtree(d, ignore_errors=True)
 
 
+class J_Grounding(Base):
+    """J. 接地度 (grounding.py。docs/humanity/design_note.md の D06・D09 の段階 0)"""
+
+    def test_formula(self):
+        import grounding
+        g = grounding.person({"採集": 30})
+        self.assertEqual((g["distance"], g["body"], g["meaning"], g["height"], g["work_days"]), (0.0, -0.1, 0.0, -0.1, 30))
+        g = grounding.person({"記録をつける": 10, "採集": 10, "休む": 5})  # 休んだ日は数えない
+        self.assertEqual(g["work_days"], 20)
+        self.assertAlmostEqual(g["height"], ((-0.5 - 0.7 - 0.5) + (0 - 0.1 + 0)) / 2, places=3)
+        self.assertIsNone(grounding.person({"休む": 30}))
+        self.assertIsNone(grounding.person({}))
+        self.assertEqual(grounding.person({"未知の仕事": 3, "採集": 1})["unscored_days"], {"未知の仕事": 3})
+
+    def test_all_activities_scored(self):
+        # 記録に出てくる仕事は、休む以外すべて表にある
+        import grounding
+        seen = {k for r in self.P.values() for k in r["days_by_activity"]}
+        self.assertEqual(seen - set(grounding.ACTS) - set(grounding.REST), set())
+
+    def test_rows(self):
+        for (D, pid), r in self.P.items():
+            self.assertIn("grounding", r)
+            g = r["grounding"]
+            work = sum(n for k, n in r["days_by_activity"].items() if not k.startswith("休む"))
+            if not work:
+                self.assertIsNone(g, (D, pid))
+                continue
+            self.assertEqual(g["work_days"], work, (D, pid))
+            self.assertTrue(-3 - 1e-9 <= g["height"] <= 0, (D, pid, g))
+            self.assertAlmostEqual(g["height"], g["distance"] + g["body"] + g["meaning"], places=2)
+
+    def test_village_mean(self):
+        for D, v in self.V.items():
+            gs = [r["grounding"]["height"] for (d, _), r in self.P.items() if d == D and not r["child"] and r["grounding"]]
+            if not gs:
+                self.assertIsNone(v["grounding"])
+                continue
+            self.assertEqual(v["grounding"]["people"], len(gs))
+            self.assertAlmostEqual(v["grounding"]["height"], sum(gs) / len(gs), places=2)
+            self.assertEqual((v["grounding"]["min"], v["grounding"]["max"]), (min(gs), max(gs)))
+
+
 def tearDownModule():
     if hasattr(Base, "_d"):
         shutil.rmtree(Base._d, ignore_errors=True)
