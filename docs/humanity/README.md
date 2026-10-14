@@ -10,6 +10,7 @@
 | `tech_tree.json` | 人類史の 10 ノード (火と道具 → 宇宙居住) と 8 つのライフステージ、接地度・手綱・判定の仕組み (v0.7.0) |
 | `design_note.md` | 設計の思想・設計判断 (D01〜D10)・参考文献 (R00〜R31)・未決事項・作業記録。JSON の `refs` の ID はここの見出しに対応 |
 | `score_grounding.py` | `tech_tree.json` の接地度を計算して書き込み、ノートの採点表も作り直す |
+| `jury/` | 陪審団による職務特性モデルの評定の材料・答え・集計 (`jury/README.md`) |
 | `build_viewer.py`・`viewer_template.html` → `index.html` | 2 つを 1 枚で見るページを作る (`python3 docs/humanity/build_viewer.py`) |
 
 ## 社会シミュレーションとの関係
