@@ -113,11 +113,34 @@ N10_SCENARIOS = [
    "上に加え、周りの人の暮らしを支える", spread=1.0)),
 ]
 
+# 陪審団の平均を正式な評定として使う（D10。作り手の評定は jury/creator_ratings.json に残す）
+JURY = {}
+jr = here/'jury'/'results.json'
+if jr.exists():
+    JURY = {k: v["jury_ratings"] for k, v in json.loads(jr.read_text(encoding='utf-8'))["per_job"].items()}
+
+def use_jury(jid, e):
+    r = JURY.get(jid)
+    if not r:
+        e["rating_source"] = "作り手（Claude）の評定"
+        return e
+    b = e["components"]["body"]
+    new = score(r["sv"], r["ti"], r["ts"], r["fb"], r["au"], {k: v for k, v in b.items() if k != "score"}, e["why"], spread=e.get("spread", 0.0))
+    new["autonomy"]["onet_freedom"] = e["autonomy"]["onet_freedom"]
+    new["rating_source"] = "陪審団 6 人の平均"
+    return new
+
+for nid in list(S):
+    S[nid] = (S[nid][0], use_jury(nid, S[nid][1]))
+for nid in VARIANTS:
+    VARIANTS[nid] = [(w, use_jury(nid + "abc"[k], v)) for k, (w, v) in enumerate(VARIANTS[nid])]
+N10_SCENARIOS = [(w, use_jury("N10" + "abcde"[k], v)) for k, (w, v) in enumerate(N10_SCENARIOS)]
+
 for n in d["nodes"]:
     nid = n["id"]
     if nid in S:
         who, g = S[nid]
-        n["grounding"] = {"representative": who, **g, "status": "評定＋実データ", "refs": ["D03", "D06", "D10"]}
+        n["grounding"] = {"representative": who, **g, "status": "陪審団の評定＋実データ", "refs": ["D03", "D06", "D10"]}
         if nid in VARIANTS:
             n["grounding"]["variants"] = [{"representative": w, **v} for w, v in VARIANTS[nid]]
         if nid == "N09":
@@ -127,17 +150,17 @@ for n in d["nodes"]:
                           "scenarios": [{"label": w, **v} for w, v in N10_SCENARIOS],
                           "refs": ["D03", "D06", "D07", "D10"]}
 
-d["meta"]["version"] = "0.5.0"
-d["meta"]["design_note"] = "テックツリー設計ノート（参照ID R00〜R30 と D01〜D10 はノートの「参考文献」「設計判断」に対応）"
+d["meta"]["version"] = "0.6.0"
+d["meta"]["design_note"] = "テックツリー設計ノート（参照ID R00〜R31 と D01〜D10 はノートの「参考文献」「設計判断」に対応）"
 d["meta"]["grounding_formula"] = {
   "target": "そのノードで新しく生まれた仕事の担い手",
   "direction": "0〜1。大きいほど身体や現場に根ざしている。記述であって、良い・悪いではない",
-  "meaning": "職務特性モデルの技能多様性・タスク完結性・タスク重要性（1〜7）の平均 → (x−1)/6",
+  "meaning": "職務特性モデルの技能多様性・タスク完結性・タスク重要性（1〜7。陪審団 6 人の平均）の平均 → (x−1)/6",
   "feedback": "職務特性モデルの仕事からのフィードバック（1〜7） → (x−1)/6",
   "body": "O*NET の一般的な身体活動の重要度 / 100（近い職業がないときは推定）",
   "total": "接地度 = (意味 + 結果 + 身体) / 3",
   "separate": "自律性（手綱の余地）と波及は接地度に足さず、別に出す",
-  "refs": ["D06", "D10", "R27", "R28", "R29"]
+  "refs": ["D06", "D10", "R27", "R28", "R29", "R31"]
 }
 d["reins_rubric"]["refs"] = ["D07", "D10", "R05", "R28"]
 
@@ -148,9 +171,9 @@ def row(nid, who, g):
     c = g["components"]
     m = c["meaning"]
     sp = g.get("spread") or 0
-    return (f"| {nid} | {who} | {m['skill_variety']}・{m['task_identity']}・{m['task_significance']} | {c['meaning']['score']:.2f} | "
-            f"{c['feedback']['feedback']} | {c['feedback']['score']:.2f} | {c['body']['score']:.2f}（{c['body']['status']}） | **{g['value']:.2f}** | "
-            f"{g['autonomy']['rating']} | {'' if not sp else ('+' if sp > 0 else '−') + str(abs(sp))} |")
+    return (f"| {nid} | {who} | {m['skill_variety']:.1f}・{m['task_identity']:.1f}・{m['task_significance']:.1f} | {c['meaning']['score']:.2f} | "
+            f"{c['feedback']['feedback']:.1f} | {c['feedback']['score']:.2f} | {c['body']['score']:.2f}（{c['body']['status']}） | **{g['value']:.2f}** | "
+            f"{g['autonomy']['rating']:.1f} | {'' if not sp else ('+' if sp > 0 else '−') + str(abs(sp))} |")
 
 lines = ["| ID | 代表者 | 多様性・完結性・重要性 | 意味 | フィードバック | 結果 | 身体 | 接地度 | 自律性 | 波及 |",
          "|---|---|---|---|---|---|---|---|---|---|"]

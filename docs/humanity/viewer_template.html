@@ -163,7 +163,7 @@ footer{margin-top:48px;font-size:12.5px;color:var(--muted)}
     let gdetail = '';
     if (G.components) {
       gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">${fmt(G.value)}</b><span class="gbar"><i style="width:${(G.value*100).toFixed(0)}%"></i></span></div>
-        <div class="gsub">${esc(G.representative)}：${esc(G.why || '')}<br>${parts(G)}<br>身体の出どころ：${esc(G.components.body.source || '')}</div>
+        <div class="gsub">${esc(G.representative)}：${esc(G.why || '')}<br>${parts(G)}<br>評定：${esc(G.rating_source || '')}／身体の出どころ：${esc(G.components.body.source || '')}</div>
         ${(G.variants||[]).map(v => `<div class="gsub">別例 ${esc(v.representative)}：<b class="ground">${fmt(v.value)}</b>（${parts(v)}）</div>`).join('')}</div>`;
     } else if (G.scenarios) {
       gdetail = `<div class="gbox"><div class="gtop"><span>接地度</span><b class="ground">未決</b></div>

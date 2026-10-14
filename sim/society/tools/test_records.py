@@ -612,11 +612,13 @@ class J_Grounding(Base):
     def test_formula(self):
         import grounding
         g = grounding.person({"採集": 30})
-        m, f = ((5 + 7 + 6) / 3 - 1) / 6, (7 - 1) / 6
+        sv, ti, ts, fb, au, body = grounding.ACTS["採集"][:6]
+        m, f = ((sv + ti + ts) / 3 - 1) / 6, (fb - 1) / 6
         self.assertAlmostEqual(g["meaning"], m, places=3)
         self.assertAlmostEqual(g["feedback"], f, places=3)
-        self.assertEqual((g["body"], g["work_days"]), (0.8, 30))
-        self.assertAlmostEqual(g["value"], (m + f + 0.8) / 3, places=3)
+        self.assertEqual((g["body"], g["work_days"]), (body, 30))
+        self.assertAlmostEqual(g["value"], (m + f + body) / 3, places=3)
+        self.assertAlmostEqual(g["autonomy"], (au - 1) / 6, places=3)
         g = grounding.person({"記録をつける": 10, "採集": 10, "休む": 5})  # 休んだ日は数えない
         self.assertEqual(g["work_days"], 20)
         self.assertAlmostEqual(g["body"], (0.16 + 0.8) / 2, places=3)

@@ -1,0 +1,479 @@
+{
+  "jurors": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5",
+    "J6"
+  ],
+  "jobs": 33,
+  "items": {
+    "sv": {
+      "icc_single": 0.89,
+      "icc_avg": 0.98,
+      "r_with_creator": 0.86,
+      "rho_with_creator": 0.81,
+      "mean_abs_diff": 0.73,
+      "jury_mean": 4.12,
+      "creator_mean": 4.58
+    },
+    "ti": {
+      "icc_single": 0.88,
+      "icc_avg": 0.98,
+      "r_with_creator": 0.76,
+      "rho_with_creator": 0.73,
+      "mean_abs_diff": 1.06,
+      "jury_mean": 4.05,
+      "creator_mean": 4.91
+    },
+    "ts": {
+      "icc_single": 0.8,
+      "icc_avg": 0.96,
+      "r_with_creator": 0.71,
+      "rho_with_creator": 0.62,
+      "mean_abs_diff": 0.74,
+      "jury_mean": 4.78,
+      "creator_mean": 5.09
+    },
+    "au": {
+      "icc_single": 0.92,
+      "icc_avg": 0.99,
+      "r_with_creator": 0.86,
+      "rho_with_creator": 0.89,
+      "mean_abs_diff": 0.85,
+      "jury_mean": 4.11,
+      "creator_mean": 4.88
+    },
+    "fb": {
+      "icc_single": 0.86,
+      "icc_avg": 0.97,
+      "r_with_creator": 0.8,
+      "rho_with_creator": 0.66,
+      "mean_abs_diff": 0.83,
+      "jury_mean": 4.29,
+      "creator_mean": 4.76
+    }
+  },
+  "composites": {
+    "meaning": {
+      "r": 0.85,
+      "rho": 0.8,
+      "mean_abs_diff": 0.116
+    },
+    "feedback": {
+      "r": 0.8,
+      "rho": 0.66,
+      "mean_abs_diff": 0.138
+    },
+    "grounding": {
+      "r": 0.91,
+      "rho": 0.86,
+      "mean_abs_diff": 0.072
+    }
+  },
+  "per_job": {
+    "N01": {
+      "jury": 0.628,
+      "creator": 0.896,
+      "jury_sd_ti": 0.76,
+      "jury_ratings": {
+        "sv": 4.67,
+        "ti": 3.5,
+        "ts": 4.33,
+        "au": 5.17,
+        "fb": 4.33
+      }
+    },
+    "N02": {
+      "jury": 0.745,
+      "creator": 0.822,
+      "jury_sd_ti": 0.58,
+      "jury_ratings": {
+        "sv": 5.5,
+        "ti": 5,
+        "ts": 5.83,
+        "au": 3,
+        "fb": 5.17
+      }
+    },
+    "N03": {
+      "jury": 0.716,
+      "creator": 0.716,
+      "jury_sd_ti": 0.76,
+      "jury_ratings": {
+        "sv": 5.67,
+        "ti": 5.5,
+        "ts": 5.33,
+        "au": 4.33,
+        "fb": 4.83
+      }
+    },
+    "N04": {
+      "jury": 0.76,
+      "creator": 0.769,
+      "jury_sd_ti": 0.5,
+      "jury_ratings": {
+        "sv": 6.17,
+        "ti": 6.5,
+        "ts": 4.33,
+        "au": 5.33,
+        "fb": 6.17
+      }
+    },
+    "N05": {
+      "jury": 0.242,
+      "creator": 0.313,
+      "jury_sd_ti": 0.47,
+      "jury_ratings": {
+        "sv": 2.67,
+        "ti": 2.67,
+        "ts": 3.83,
+        "au": 2,
+        "fb": 2.33
+      }
+    },
+    "N06": {
+      "jury": 0.722,
+      "creator": 0.71,
+      "jury_sd_ti": 0.58,
+      "jury_ratings": {
+        "sv": 5.5,
+        "ti": 6,
+        "ts": 4.67,
+        "au": 4.17,
+        "fb": 5.83
+      }
+    },
+    "N07": {
+      "jury": 0.318,
+      "creator": 0.355,
+      "jury_sd_ti": 0.37,
+      "jury_ratings": {
+        "sv": 1.33,
+        "ti": 1.83,
+        "ts": 2.83,
+        "au": 1,
+        "fb": 2
+      }
+    },
+    "N07a": {
+      "jury": 0.168,
+      "creator": 0.245,
+      "jury_sd_ti": 0.37,
+      "jury_ratings": {
+        "sv": 2,
+        "ti": 1.83,
+        "ts": 2.5,
+        "au": 2,
+        "fb": 1.17
+      }
+    },
+    "N07b": {
+      "jury": 0.5,
+      "creator": 0.411,
+      "jury_sd_ti": 0.37,
+      "jury_ratings": {
+        "sv": 3.67,
+        "ti": 2.83,
+        "ts": 3.33,
+        "au": 2.83,
+        "fb": 4.67
+      }
+    },
+    "N08": {
+      "jury": 0.393,
+      "creator": 0.445,
+      "jury_sd_ti": 0.37,
+      "jury_ratings": {
+        "sv": 4.33,
+        "ti": 3.17,
+        "ts": 5.17,
+        "au": 4.17,
+        "fb": 3.17
+      }
+    },
+    "N08a": {
+      "jury": 0.65,
+      "creator": 0.653,
+      "jury_sd_ti": 0.37,
+      "jury_ratings": {
+        "sv": 4.5,
+        "ti": 3.83,
+        "ts": 6,
+        "au": 4.17,
+        "fb": 4.83
+      }
+    },
+    "N09": {
+      "jury": 0.146,
+      "creator": 0.205,
+      "jury_sd_ti": 0.0,
+      "jury_ratings": {
+        "sv": 2,
+        "ti": 2,
+        "ts": 2.83,
+        "au": 2,
+        "fb": 1.33
+      }
+    },
+    "N09a": {
+      "jury": 0.513,
+      "creator": 0.538,
+      "jury_sd_ti": 0.5,
+      "jury_ratings": {
+        "sv": 5.17,
+        "ti": 5.5,
+        "ts": 5,
+        "au": 6,
+        "fb": 5
+      }
+    },
+    "N09b": {
+      "jury": 0.591,
+      "creator": 0.575,
+      "jury_sd_ti": 0.37,
+      "jury_ratings": {
+        "sv": 6,
+        "ti": 5.83,
+        "ts": 6,
+        "au": 6.17,
+        "fb": 5.67
+      }
+    },
+    "N09c": {
+      "jury": 0.409,
+      "creator": 0.446,
+      "jury_sd_ti": 0.69,
+      "jury_ratings": {
+        "sv": 4.33,
+        "ti": 5.17,
+        "ts": 6,
+        "au": 6,
+        "fb": 3.17
+      }
+    },
+    "N10a": {
+      "jury": 0.802,
+      "creator": 0.756,
+      "jury_sd_ti": 0.37,
+      "jury_ratings": {
+        "sv": 6,
+        "ti": 5.17,
+        "ts": 6.33,
+        "au": 5,
+        "fb": 7
+      }
+    },
+    "N10b": {
+      "jury": 0.79,
+      "creator": 0.774,
+      "jury_sd_ti": 0.5,
+      "jury_ratings": {
+        "sv": 6,
+        "ti": 5.5,
+        "ts": 6.83,
+        "au": 5.33,
+        "fb": 6.5
+      }
+    },
+    "N10c": {
+      "jury": 0.078,
+      "creator": 0.054,
+      "jury_sd_ti": 0.47,
+      "jury_ratings": {
+        "sv": 1,
+        "ti": 1.33,
+        "ts": 4,
+        "au": 1,
+        "fb": 1
+      }
+    },
+    "N10d": {
+      "jury": 0.421,
+      "creator": 0.406,
+      "jury_sd_ti": 0.0,
+      "jury_ratings": {
+        "sv": 3.83,
+        "ti": 4,
+        "ts": 6,
+        "au": 6,
+        "fb": 4.67
+      }
+    },
+    "N10e": {
+      "jury": 0.495,
+      "creator": 0.443,
+      "jury_sd_ti": 0.0,
+      "jury_ratings": {
+        "sv": 4.83,
+        "ti": 5,
+        "ts": 7,
+        "au": 6,
+        "fb": 5
+      }
+    },
+    "V:採集": {
+      "jury": 0.588,
+      "creator": 0.878,
+      "jury_sd_ti": 0.0,
+      "jury_ratings": {
+        "sv": 3.5,
+        "ti": 3,
+        "ts": 3.83,
+        "au": 4.83,
+        "fb": 4.33
+      }
+    },
+    "V:狩り": {
+      "jury": 0.696,
+      "creator": 0.878,
+      "jury_sd_ti": 0.47,
+      "jury_ratings": {
+        "sv": 4.67,
+        "ti": 4.33,
+        "ts": 5.17,
+        "au": 3.83,
+        "fb": 5
+      }
+    },
+    "V:探索": {
+      "jury": 0.568,
+      "creator": 0.62,
+      "jury_sd_ti": 0.0,
+      "jury_ratings": {
+        "sv": 3.83,
+        "ti": 3,
+        "ts": 4.83,
+        "au": 5.83,
+        "fb": 3.83
+      }
+    },
+    "V:道具づくり": {
+      "jury": 0.75,
+      "creator": 0.75,
+      "jury_sd_ti": 0.0,
+      "jury_ratings": {
+        "sv": 5.5,
+        "ti": 6,
+        "ts": 4.5,
+        "au": 5,
+        "fb": 6.33
+      }
+    },
+    "V:火おこし": {
+      "jury": 0.494,
+      "creator": 0.704,
+      "jury_sd_ti": 0.75,
+      "jury_ratings": {
+        "sv": 2.17,
+        "ti": 2.67,
+        "ts": 5.83,
+        "au": 2.83,
+        "fb": 4.33
+      }
+    },
+    "V:住まいを建てる": {
+      "jury": 0.751,
+      "creator": 0.782,
+      "jury_sd_ti": 0.37,
+      "jury_ratings": {
+        "sv": 5.33,
+        "ti": 6.17,
+        "ts": 5.33,
+        "au": 4.17,
+        "fb": 5.83
+      }
+    },
+    "V:種まき": {
+      "jury": 0.469,
+      "creator": 0.476,
+      "jury_sd_ti": 0.76,
+      "jury_ratings": {
+        "sv": 2.33,
+        "ti": 2.5,
+        "ts": 4.33,
+        "au": 3.83,
+        "fb": 2.83
+      }
+    },
+    "V:畑仕事": {
+      "jury": 0.676,
+      "creator": 0.716,
+      "jury_sd_ti": 0.69,
+      "jury_ratings": {
+        "sv": 4.5,
+        "ti": 5.17,
+        "ts": 5.17,
+        "au": 3.83,
+        "fb": 4.67
+      }
+    },
+    "V:ヤギの世話": {
+      "jury": 0.593,
+      "creator": 0.75,
+      "jury_sd_ti": 0.47,
+      "jury_ratings": {
+        "sv": 3.67,
+        "ti": 3.33,
+        "ts": 4,
+        "au": 4.17,
+        "fb": 4.5
+      }
+    },
+    "V:ヤギを捕まえる": {
+      "jury": 0.606,
+      "creator": 0.748,
+      "jury_sd_ti": 0.5,
+      "jury_ratings": {
+        "sv": 4,
+        "ti": 3.5,
+        "ts": 3.83,
+        "au": 3,
+        "fb": 4.33
+      }
+    },
+    "V:土器づくり": {
+      "jury": 0.71,
+      "creator": 0.75,
+      "jury_sd_ti": 0.47,
+      "jury_ratings": {
+        "sv": 5.17,
+        "ti": 5.67,
+        "ts": 4,
+        "au": 4.67,
+        "fb": 6
+      }
+    },
+    "V:交換に行く": {
+      "jury": 0.502,
+      "creator": 0.663,
+      "jury_sd_ti": 0.75,
+      "jury_ratings": {
+        "sv": 3.83,
+        "ti": 3.67,
+        "ts": 4.33,
+        "au": 5.5,
+        "fb": 3.5
+      }
+    },
+    "V:記録をつける": {
+      "jury": 0.242,
+      "creator": 0.331,
+      "jury_sd_ti": 0.5,
+      "jury_ratings": {
+        "sv": 2.33,
+        "ti": 2.5,
+        "ts": 4.33,
+        "au": 2.33,
+        "fb": 2.33
+      }
+    }
+  },
+  "blauner_order_jury": [
+    "N06",
+    "N08a",
+    "N07b",
+    "N07"
+  ]
+}
