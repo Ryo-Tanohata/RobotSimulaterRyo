@@ -127,7 +127,7 @@ def use_jury(jid, e):
     b = e["components"]["body"]
     new = score(r["sv"], r["ti"], r["ts"], r["fb"], r["au"], {k: v for k, v in b.items() if k != "score"}, e["why"], spread=e.get("spread", 0.0))
     new["autonomy"]["onet_freedom"] = e["autonomy"]["onet_freedom"]
-    new["rating_source"] = "陪審団 6 人の平均"
+    new["rating_source"] = "陪審団 12 人の平均"
     return new
 
 for nid in list(S):
@@ -150,12 +150,12 @@ for n in d["nodes"]:
                           "scenarios": [{"label": w, **v} for w, v in N10_SCENARIOS],
                           "refs": ["D03", "D06", "D07", "D10"]}
 
-d["meta"]["version"] = "0.6.0"
+d["meta"]["version"] = "0.7.0"
 d["meta"]["design_note"] = "テックツリー設計ノート（参照ID R00〜R31 と D01〜D10 はノートの「参考文献」「設計判断」に対応）"
 d["meta"]["grounding_formula"] = {
   "target": "そのノードで新しく生まれた仕事の担い手",
   "direction": "0〜1。大きいほど身体や現場に根ざしている。記述であって、良い・悪いではない",
-  "meaning": "職務特性モデルの技能多様性・タスク完結性・タスク重要性（1〜7。陪審団 6 人の平均）の平均 → (x−1)/6",
+  "meaning": "職務特性モデルの技能多様性・タスク完結性・タスク重要性（1〜7。陪審団 12 人の平均）の平均 → (x−1)/6",
   "feedback": "職務特性モデルの仕事からのフィードバック（1〜7） → (x−1)/6",
   "body": "O*NET の一般的な身体活動の重要度 / 100（近い職業がないときは推定）",
   "total": "接地度 = (意味 + 結果 + 身体) / 3",

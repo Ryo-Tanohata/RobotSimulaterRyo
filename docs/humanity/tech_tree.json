@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "人類史シミュレーター テックツリー",
-    "version": "0.6.0",
+    "version": "0.7.0",
     "updated": "2026-10-14",
     "status": "叩き台",
     "design_note": "テックツリー設計ノート（参照ID R00〜R31 と D01〜D10 はノートの「参考文献」「設計判断」に対応）",
@@ -18,7 +18,7 @@
     "grounding_formula": {
       "target": "そのノードで新しく生まれた仕事の担い手",
       "direction": "0〜1。大きいほど身体や現場に根ざしている。記述であって、良い・悪いではない",
-      "meaning": "職務特性モデルの技能多様性・タスク完結性・タスク重要性（1〜7。陪審団 6 人の平均）の平均 → (x−1)/6",
+      "meaning": "職務特性モデルの技能多様性・タスク完結性・タスク重要性（1〜7。陪審団 12 人の平均）の平均 → (x−1)/6",
       "feedback": "職務特性モデルの仕事からのフィードバック（1〜7） → (x−1)/6",
       "body": "O*NET の一般的な身体活動の重要度 / 100（近い職業がないときは推定）",
       "total": "接地度 = (意味 + 結果 + 身体) / 3",
@@ -204,14 +204,14 @@
         "representative": "狩猟採集民",
         "components": {
           "meaning": {
-            "skill_variety": 4.67,
-            "task_identity": 3.5,
-            "task_significance": 4.33,
-            "score": 0.528
+            "skill_variety": 4.92,
+            "task_identity": 4.58,
+            "task_significance": 5.08,
+            "score": 0.643
           },
           "feedback": {
-            "feedback": 4.33,
-            "score": 0.555
+            "feedback": 5.33,
+            "score": 0.722
           },
           "body": {
             "value": 0.8,
@@ -223,15 +223,15 @@
             "score": 0.8
           }
         },
-        "value": 0.628,
+        "value": 0.722,
         "autonomy": {
-          "rating": 5.17,
-          "score": 0.695,
+          "rating": 5.25,
+          "score": 0.708,
           "onet_freedom": null
         },
         "spread": 0.0,
         "why": "獲物を探して獲り、分けて食べるまで全部に関わり、うまくいったかがすぐ分かる",
-        "rating_source": "陪審団 6 人の平均",
+        "rating_source": "陪審団 12 人の平均",
         "status": "陪審団の評定＋実データ",
         "refs": [
           "D03",
@@ -284,14 +284,14 @@
         "representative": "集団で狩る者",
         "components": {
           "meaning": {
-            "skill_variety": 5.5,
-            "task_identity": 5,
-            "task_significance": 5.83,
-            "score": 0.741
+            "skill_variety": 5.33,
+            "task_identity": 5.42,
+            "task_significance": 6.08,
+            "score": 0.768
           },
           "feedback": {
-            "feedback": 5.17,
-            "score": 0.695
+            "feedback": 5.92,
+            "score": 0.82
           },
           "body": {
             "value": 0.8,
@@ -303,15 +303,15 @@
             "score": 0.8
           }
         },
-        "value": 0.745,
+        "value": 0.796,
         "autonomy": {
-          "rating": 3,
-          "score": 0.333,
+          "rating": 3.25,
+          "score": 0.375,
           "onet_freedom": null
         },
         "spread": 0.0,
         "why": "分担はあるが分配まで見える。合図や段取りで技能が増える",
-        "rating_source": "陪審団 6 人の平均",
+        "rating_source": "陪審団 12 人の平均",
         "status": "陪審団の評定＋実データ",
         "refs": [
           "D03",
@@ -364,14 +364,14 @@
         "representative": "農民",
         "components": {
           "meaning": {
-            "skill_variety": 5.67,
-            "task_identity": 5.5,
-            "task_significance": 5.33,
-            "score": 0.75
+            "skill_variety": 5.17,
+            "task_identity": 5.58,
+            "task_significance": 5.92,
+            "score": 0.759
           },
           "feedback": {
-            "feedback": 4.83,
-            "score": 0.638
+            "feedback": 5.33,
+            "score": 0.722
           },
           "body": {
             "value": 0.76,
@@ -383,15 +383,15 @@
             "score": 0.76
           }
         },
-        "value": 0.716,
+        "value": 0.747,
         "autonomy": {
-          "rating": 4.33,
-          "score": 0.555,
+          "rating": 3.92,
+          "score": 0.487,
           "onet_freedom": 0.51
         },
         "spread": 0.0,
         "why": "種まきから刈り入れまで関わるが、結果は季節の終わりまで分からない",
-        "rating_source": "陪審団 6 人の平均",
+        "rating_source": "陪審団 12 人の平均",
         "status": "陪審団の評定＋実データ",
         "refs": [
           "D03",
@@ -444,13 +444,13 @@
         "components": {
           "meaning": {
             "skill_variety": 6.17,
-            "task_identity": 6.5,
-            "task_significance": 4.33,
-            "score": 0.778
+            "task_identity": 6.67,
+            "task_significance": 4.5,
+            "score": 0.797
           },
           "feedback": {
-            "feedback": 6.17,
-            "score": 0.862
+            "feedback": 6.33,
+            "score": 0.888
           },
           "body": {
             "value": 0.64,
@@ -462,15 +462,15 @@
             "score": 0.64
           }
         },
-        "value": 0.76,
+        "value": 0.775,
         "autonomy": {
-          "rating": 5.33,
-          "score": 0.722,
+          "rating": 5.42,
+          "score": 0.737,
           "onet_freedom": null
         },
         "spread": 0.0,
         "why": "材料から完成品まで一人で作り、出来ばえが手で分かる",
-        "rating_source": "陪審団 6 人の平均",
+        "rating_source": "陪審団 12 人の平均",
         "status": "陪審団の評定＋実データ",
         "refs": [
           "D03",
@@ -524,14 +524,14 @@
         "representative": "書記",
         "components": {
           "meaning": {
-            "skill_variety": 2.67,
-            "task_identity": 2.67,
-            "task_significance": 3.83,
-            "score": 0.343
+            "skill_variety": 2.58,
+            "task_identity": 2.58,
+            "task_significance": 4.17,
+            "score": 0.352
           },
           "feedback": {
-            "feedback": 2.33,
-            "score": 0.222
+            "feedback": 2.75,
+            "score": 0.292
           },
           "body": {
             "value": 0.16,
@@ -543,7 +543,7 @@
             "score": 0.16
           }
         },
-        "value": 0.242,
+        "value": 0.268,
         "autonomy": {
           "rating": 2,
           "score": 0.167,
@@ -551,7 +551,7 @@
         },
         "spread": 0.0,
         "why": "決まった形式で記録する。記録が何に使われたかは見えにくいが、行政への影響は大きい",
-        "rating_source": "陪審団 6 人の平均",
+        "rating_source": "陪審団 12 人の平均",
         "status": "陪審団の評定＋実データ",
         "refs": [
           "D03",
@@ -602,10 +602,10 @@
         "representative": "印刷工",
         "components": {
           "meaning": {
-            "skill_variety": 5.5,
-            "task_identity": 6,
-            "task_significance": 4.67,
-            "score": 0.732
+            "skill_variety": 5.33,
+            "task_identity": 5.92,
+            "task_significance": 4.75,
+            "score": 0.722
           },
           "feedback": {
             "feedback": 5.83,
@@ -621,15 +621,15 @@
             "score": 0.63
           }
         },
-        "value": 0.722,
+        "value": 0.719,
         "autonomy": {
-          "rating": 4.17,
-          "score": 0.528,
+          "rating": 3.75,
+          "score": 0.458,
           "onet_freedom": 0.8
         },
         "spread": 0.0,
         "why": "組版から刷り上がりまで関わり、刷り上がりで出来が分かる（ブラウナーの職人型）",
-        "rating_source": "陪審団 6 人の平均",
+        "rating_source": "陪審団 12 人の平均",
         "status": "陪審団の評定＋実データ",
         "refs": [
           "D03",
@@ -682,14 +682,14 @@
         "representative": "工場労働者（組立ライン）",
         "components": {
           "meaning": {
-            "skill_variety": 1.33,
-            "task_identity": 1.83,
+            "skill_variety": 1.17,
+            "task_identity": 1.5,
             "task_significance": 2.83,
-            "score": 0.166
+            "score": 0.139
           },
           "feedback": {
-            "feedback": 2,
-            "score": 0.167
+            "feedback": 2.5,
+            "score": 0.25
           },
           "body": {
             "value": 0.62,
@@ -701,7 +701,7 @@
             "score": 0.62
           }
         },
-        "value": 0.318,
+        "value": 0.336,
         "autonomy": {
           "rating": 1,
           "score": 0.0,
@@ -709,7 +709,7 @@
         },
         "spread": 0.0,
         "why": "流れ作業の一工程だけ。ペースは機械が決め、製品の全体は見えない（ブラウナーの組立ライン）",
-        "rating_source": "陪審団 6 人の平均",
+        "rating_source": "陪審団 12 人の平均",
         "status": "陪審団の評定＋実データ",
         "refs": [
           "D03",
@@ -721,14 +721,14 @@
             "representative": "事務職",
             "components": {
               "meaning": {
-                "skill_variety": 2,
-                "task_identity": 1.83,
-                "task_significance": 2.5,
-                "score": 0.185
+                "skill_variety": 1.67,
+                "task_identity": 1.5,
+                "task_significance": 2.33,
+                "score": 0.139
               },
               "feedback": {
-                "feedback": 1.17,
-                "score": 0.028
+                "feedback": 1.25,
+                "score": 0.042
               },
               "body": {
                 "value": 0.29,
@@ -740,28 +740,28 @@
                 "score": 0.29
               }
             },
-            "value": 0.168,
+            "value": 0.157,
             "autonomy": {
-              "rating": 2,
-              "score": 0.167,
+              "rating": 1.67,
+              "score": 0.112,
               "onet_freedom": 0.6
             },
             "spread": 0.0,
             "why": "書類の一部を処理し、その先は見えない",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           },
           {
             "representative": "繊維機械の運転員（ブラウナーの機械番）",
             "components": {
               "meaning": {
-                "skill_variety": 3.67,
-                "task_identity": 2.83,
-                "task_significance": 3.33,
-                "score": 0.379
+                "skill_variety": 3.5,
+                "task_identity": 2.92,
+                "task_significance": 3.5,
+                "score": 0.384
               },
               "feedback": {
-                "feedback": 4.67,
-                "score": 0.612
+                "feedback": 4.92,
+                "score": 0.653
               },
               "body": {
                 "value": 0.51,
@@ -773,15 +773,15 @@
                 "score": 0.51
               }
             },
-            "value": 0.5,
+            "value": 0.516,
             "autonomy": {
-              "rating": 2.83,
-              "score": 0.305,
+              "rating": 2.92,
+              "score": 0.32,
               "onet_freedom": 0.49
             },
             "spread": 0.0,
             "why": "多くの機械を見回るだけ。不具合はすぐ分かるが、作業は単調",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           }
         ]
       },
@@ -828,14 +828,14 @@
         "representative": "管理職",
         "components": {
           "meaning": {
-            "skill_variety": 4.33,
-            "task_identity": 3.17,
-            "task_significance": 5.17,
-            "score": 0.537
+            "skill_variety": 4.25,
+            "task_identity": 2.92,
+            "task_significance": 5,
+            "score": 0.509
           },
           "feedback": {
-            "feedback": 3.17,
-            "score": 0.362
+            "feedback": 2.83,
+            "score": 0.305
           },
           "body": {
             "value": 0.28,
@@ -847,15 +847,15 @@
             "score": 0.28
           }
         },
-        "value": 0.393,
+        "value": 0.365,
         "autonomy": {
-          "rating": 4.17,
-          "score": 0.528,
+          "rating": 4.08,
+          "score": 0.513,
           "onet_freedom": 0.97
         },
         "spread": 0.0,
         "why": "仕事は多様で影響も大きいが、成果は部下を通してしか見えない",
-        "rating_source": "陪審団 6 人の平均",
+        "rating_source": "陪審団 12 人の平均",
         "status": "陪審団の評定＋実データ",
         "refs": [
           "D03",
@@ -867,14 +867,14 @@
             "representative": "化学プラントの運転員（ブラウナーの自動化）",
             "components": {
               "meaning": {
-                "skill_variety": 4.5,
-                "task_identity": 3.83,
-                "task_significance": 6,
-                "score": 0.629
+                "skill_variety": 4,
+                "task_identity": 3.58,
+                "task_significance": 5.75,
+                "score": 0.574
               },
               "feedback": {
-                "feedback": 4.83,
-                "score": 0.638
+                "feedback": 4.58,
+                "score": 0.597
               },
               "body": {
                 "value": 0.68,
@@ -886,15 +886,15 @@
                 "score": 0.68
               }
             },
-            "value": 0.649,
+            "value": 0.617,
             "autonomy": {
-              "rating": 4.17,
-              "score": 0.528,
+              "rating": 3.58,
+              "score": 0.43,
               "onet_freedom": 0.61
             },
             "spread": 0.0,
             "why": "工程の全体を見張り、計器で結果が分かる。責任の範囲が広い",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           }
         ]
       },
@@ -944,10 +944,10 @@
         "representative": "エージェントと働く知識労働者（無自覚に使う）",
         "components": {
           "meaning": {
-            "skill_variety": 2,
-            "task_identity": 2,
-            "task_significance": 2.83,
-            "score": 0.213
+            "skill_variety": 1.67,
+            "task_identity": 1.92,
+            "task_significance": 2.67,
+            "score": 0.181
           },
           "feedback": {
             "feedback": 1.33,
@@ -963,15 +963,15 @@
             "score": 0.17
           }
         },
-        "value": 0.146,
+        "value": 0.135,
         "autonomy": {
-          "rating": 2,
-          "score": 0.167,
+          "rating": 1.75,
+          "score": 0.125,
           "onet_freedom": 0.82
         },
         "spread": 0.0,
         "why": "出力をそのまま流すだけで、何がなぜできたかが分からない",
-        "rating_source": "陪審団 6 人の平均",
+        "rating_source": "陪審団 12 人の平均",
         "status": "陪審団の評定＋実データ",
         "refs": [
           "D03",
@@ -984,14 +984,14 @@
             "representative": "理念を持って使う",
             "components": {
               "meaning": {
-                "skill_variety": 5.17,
-                "task_identity": 5.5,
+                "skill_variety": 5.42,
+                "task_identity": 5.75,
                 "task_significance": 5,
-                "score": 0.704
+                "score": 0.732
               },
               "feedback": {
-                "feedback": 5,
-                "score": 0.667
+                "feedback": 5.08,
+                "score": 0.68
               },
               "body": {
                 "value": 0.17,
@@ -1003,28 +1003,28 @@
                 "score": 0.17
               }
             },
-            "value": 0.514,
+            "value": 0.527,
             "autonomy": {
-              "rating": 6,
-              "score": 0.833,
+              "rating": 6.08,
+              "score": 0.847,
               "onet_freedom": 0.82
             },
             "spread": 0.0,
             "why": "目的を自分で決め、エージェントを手の延長として使う。全体を組み立て、結果を確かめる",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           },
           {
             "representative": "理念を持ち、誰でも使える仕組みを作る（理解を残す）",
             "components": {
               "meaning": {
-                "skill_variety": 6,
-                "task_identity": 5.83,
-                "task_significance": 6,
-                "score": 0.824
+                "skill_variety": 5.92,
+                "task_identity": 6,
+                "task_significance": 6.25,
+                "score": 0.843
               },
               "feedback": {
-                "feedback": 5.67,
-                "score": 0.778
+                "feedback": 5.33,
+                "score": 0.722
               },
               "body": {
                 "value": 0.17,
@@ -1036,7 +1036,7 @@
                 "score": 0.17
               }
             },
-            "value": 0.591,
+            "value": 0.578,
             "autonomy": {
               "rating": 6.17,
               "score": 0.862,
@@ -1044,20 +1044,20 @@
             },
             "spread": 1.0,
             "why": "上に加え、多くの人の暮らしに届く",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           },
           {
             "representative": "仕組みを作るが、中身を隠して使う人の意味を奪う",
             "components": {
               "meaning": {
-                "skill_variety": 4.33,
-                "task_identity": 5.17,
-                "task_significance": 6,
-                "score": 0.694
+                "skill_variety": 4.58,
+                "task_identity": 5.33,
+                "task_significance": 5.42,
+                "score": 0.685
               },
               "feedback": {
-                "feedback": 3.17,
-                "score": 0.362
+                "feedback": 3.5,
+                "score": 0.417
               },
               "body": {
                 "value": 0.17,
@@ -1069,15 +1069,15 @@
                 "score": 0.17
               }
             },
-            "value": 0.409,
+            "value": 0.424,
             "autonomy": {
-              "rating": 6,
-              "score": 0.833,
+              "rating": 6.08,
+              "score": 0.847,
               "onet_freedom": 0.82
             },
             "spread": -1.0,
             "why": "作る人の仕事は豊かだが、使う人を空中に置く",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           }
         ]
       },
@@ -1160,9 +1160,9 @@
             "components": {
               "meaning": {
                 "skill_variety": 6,
-                "task_identity": 5.17,
-                "task_significance": 6.33,
-                "score": 0.806
+                "task_identity": 5.58,
+                "task_significance": 6.67,
+                "score": 0.847
               },
               "feedback": {
                 "feedback": 7,
@@ -1176,28 +1176,28 @@
                 "score": 0.6
               }
             },
-            "value": 0.802,
+            "value": 0.816,
             "autonomy": {
-              "rating": 5,
-              "score": 0.667,
+              "rating": 4.83,
+              "score": 0.638,
               "onet_freedom": null
             },
             "spread": 0.0,
             "why": "育てる・直すを自分たちで行い、結果が暮らしにすぐ表れる",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           },
           {
             "label": "再接地し、技能を周りに伝える",
             "components": {
               "meaning": {
-                "skill_variety": 6,
-                "task_identity": 5.5,
-                "task_significance": 6.83,
-                "score": 0.852
+                "skill_variety": 6.33,
+                "task_identity": 5.75,
+                "task_significance": 6.92,
+                "score": 0.889
               },
               "feedback": {
-                "feedback": 6.5,
-                "score": 0.917
+                "feedback": 6.75,
+                "score": 0.958
               },
               "body": {
                 "value": 0.6,
@@ -1207,28 +1207,28 @@
                 "score": 0.6
               }
             },
-            "value": 0.79,
+            "value": 0.816,
             "autonomy": {
-              "rating": 5.33,
-              "score": 0.722,
+              "rating": 5.25,
+              "score": 0.708,
               "onet_freedom": null
             },
             "spread": 0.5,
             "why": "上に加え、周りの人も接地させる",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           },
           {
             "label": "空中：すべてを無自覚にエージェントに任せる",
             "components": {
               "meaning": {
                 "skill_variety": 1,
-                "task_identity": 1.33,
-                "task_significance": 4,
-                "score": 0.185
+                "task_identity": 1.17,
+                "task_significance": 2.92,
+                "score": 0.116
               },
               "feedback": {
-                "feedback": 1,
-                "score": 0.0
+                "feedback": 1.08,
+                "score": 0.013
               },
               "body": {
                 "value": 0.05,
@@ -1238,28 +1238,28 @@
                 "score": 0.05
               }
             },
-            "value": 0.078,
+            "value": 0.06,
             "autonomy": {
-              "rating": 1,
-              "score": 0.0,
+              "rating": 1.17,
+              "score": 0.028,
               "onet_freedom": null
             },
             "spread": 0.0,
             "why": "何も作らず、何が起きているかも分からない",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           },
           {
             "label": "空中だが、理念を持ってエージェントに任せる",
             "components": {
               "meaning": {
-                "skill_variety": 3.83,
-                "task_identity": 4,
-                "task_significance": 6,
-                "score": 0.602
+                "skill_variety": 4.17,
+                "task_identity": 4.5,
+                "task_significance": 6.17,
+                "score": 0.658
               },
               "feedback": {
-                "feedback": 4.67,
-                "score": 0.612
+                "feedback": 4.58,
+                "score": 0.597
               },
               "body": {
                 "value": 0.05,
@@ -1269,7 +1269,7 @@
                 "score": 0.05
               }
             },
-            "value": 0.421,
+            "value": 0.435,
             "autonomy": {
               "rating": 6,
               "score": 0.833,
@@ -1277,20 +1277,20 @@
             },
             "spread": 0.0,
             "why": "体は使わないが、目的を決めて全体を組み立てる",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           },
           {
             "label": "空中だが、理念を持って任せ、他者も接地させる",
             "components": {
               "meaning": {
-                "skill_variety": 4.83,
-                "task_identity": 5,
+                "skill_variety": 5.17,
+                "task_identity": 5.25,
                 "task_significance": 7,
-                "score": 0.768
+                "score": 0.801
               },
               "feedback": {
-                "feedback": 5,
-                "score": 0.667
+                "feedback": 4.83,
+                "score": 0.638
               },
               "body": {
                 "value": 0.05,
@@ -1300,7 +1300,7 @@
                 "score": 0.05
               }
             },
-            "value": 0.495,
+            "value": 0.496,
             "autonomy": {
               "rating": 6,
               "score": 0.833,
@@ -1308,7 +1308,7 @@
             },
             "spread": 1.0,
             "why": "上に加え、周りの人の暮らしを支える",
-            "rating_source": "陪審団 6 人の平均"
+            "rating_source": "陪審団 12 人の平均"
           }
         ],
         "refs": [
