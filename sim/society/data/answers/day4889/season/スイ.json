@@ -1,0 +1,13 @@
+{"say": [{"to": "ケナ3", "text": "西林12は、まだ行ったことがない。いっしょに行って、食べ物があるか見てみよう。"}],
+ "job": {"activity": "採集", "place": "西林12", "with": ["ケナ3"], "why": "採集ならいちばん自信がある。冬は空振りが続いたので、まだ行っていない西林12を確かめたい。"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ワユ3": true}, "keep": true,
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節、北の川で 30 日採集したが、何も見つからなかった。冬の採集は当てにしにくい。", "because": [201986], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L121", "against": "一人で遠くまで見て回れなくなる。二人だと、探せる場所が減る。", "agree": false, "reason": "掟は守るが、一人で行く判断も必要だと思う。"},
+  {"id": "L28", "against": "", "agree": true, "reason": "どこに食べ物があるかを先に決めれば、無駄に歩かずにすむ。"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採ってきた人が空腹では、次の採集も続かない。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草より多いと、世話も足りず、いなくなってしまう。"}
+ ],
+ "feeling": "食べ物の蓄えは十分にあるが、冬の採集が空振りばかりだったのは気になる。西林12はどうだろう。"}
