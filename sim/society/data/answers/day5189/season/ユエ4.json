@@ -1,0 +1,35 @@
+{
+"say": [{"to": "ホミ4", "text": "ホミ4、ぼくらの家を建てよう。二人で毎日働けば、この季節の終わりまでに屋根ができるはずだ。"}],
+"job": {"activity": "住まいを建てる", "place": "camp", "with": ["ホミ4"], "why": "ぼくの家はまだない。雨の夜に外で濡れると疲れがとれないので、冬の前に屋根の下で眠りたい。"},
+"sow": 0,
+"pick": 20,
+"plant": 0,
+"harvest": 0,
+"eat_goat": 0,
+"accept": {"ソナ5": false},
+"family": {"ホミ4": {"activity": "住まいを建てる", "place": "camp", "why": "ユエ4と同じ家の住まいを、二人で建てるため。"}},
+"keep": false,
+"judge": {"M99": "ゆるす", "M100": "ゆるす", "M101": "ゆるす"},
+"feast": true,
+"leader": "なし",
+"seal": false,
+"seal_store": false,
+"knowledge": [
+{"op": "add", "text": "屋根のある家があると、雨の夜に外で濡れずに眠れる", "because": [232015], "confidence": 0.8},
+{"op": "add", "text": "草が足りないと、飼っているヤギは減っていく", "because": [233759], "confidence": 0.8}
+],
+"proposal": null,
+"votes": [
+{"id": "L0", "against": "夜にキャンプから離れられないと、昼に遠くへ行った人が戻れなくなる", "agree": false, "reason": "縛るより、火と見張りで守るほうがいい"},
+{"id": "L1", "against": "なし", "agree": true, "reason": "行き先を言っておけば、同じ林を二度探さずに済む"},
+{"id": "L3", "against": "一人のほうが速く採れるので、組で行くと手間が多い", "agree": false, "reason": "複数人の決まりは、ぼくの採り方に合わない"},
+{"id": "L121", "against": "近い場所まで二人にすると、動きが遅くなる", "agree": false, "reason": "近くの林なら、一人でも危なくない"},
+{"id": "L134", "against": "なし", "agree": true, "reason": "ぼくも雨の夜に外で濡れた。屋根の下に入れる順番は必要だ"},
+{"id": "L148", "against": "なし", "agree": true, "reason": "住まいがない家に、手の空いた大人が手伝うのは助かる"},
+{"id": "L157", "against": "なし", "agree": true, "reason": "ユエ4の家もまだない。家ごとに建てる人を決めるのはいい"},
+{"id": "L171", "against": "なし", "agree": true, "reason": "草が足りない今、ほかの村のヤギを入れると困る"},
+{"id": "L175", "against": "なし", "agree": true, "reason": "草が足りず、ヤギがやせている。今は捕まえるのをやめよう"},
+{"id": "L182", "against": "なし", "agree": true, "reason": "木が増えれば、夏と秋に木の実がなる。埋めた数を夜に言えばいい"}
+],
+"feeling": "屋根の下で眠るのは、まだ先の話だと思っていた。今度はやる。"
+}
