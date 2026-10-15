@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "冬は北林12へ、ムイ4と二人で行くね。見つけた量は夜にそのまま言うよ。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["ムイ4"], "why": "冬の林は一人では危ないから、ムイ4と二人で組む。冬の北林の様子を確かめたい。"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ムイ4": {"activity": "採集", "place": "北林12", "why": "ホタ4と二人組で行くため。"}},
+ "keep": false,
+ "feast": false,
+ "leader": null,
+ "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節、南の川で木の実 38 つかみを採れた。", "because": [238134], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に出るから、夜は誰もキャンプを離れない決まりは大事だと思う。"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採集で蓄えに入れた人が、その日のうちに自分の分を食べられないと、次の採集ができない。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "林に一人で行くと、ザガに襲われたとき助けを呼べない。"},
+  {"id": "L137", "against": "", "agree": true, "reason": "うちには 0 歳の子が二人いる。雨の夜に外で濡れると、子は弱ってしまう。"},
+  {"id": "L172", "against": "", "agree": true, "reason": "封を割って開けた人が名乗り出れば、もめごとが減る。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草が足りず、前の季節は 24 頭が減った。ヤギが多すぎるあいだは、捕まえるのを止めたい。"}
+ ],
+ "feeling": "おなかは満たされているけど、冬の林で何も見つからないのが怖い。ムイ4と組めるのは心強い。"}
