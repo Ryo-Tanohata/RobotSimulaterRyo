@@ -48,6 +48,8 @@ for (let k = 0; k < args.steps; k++) {
   // why の 'end' は「回数を終えた」に使っているので、別の言葉にする
   if (/Society 2\.0 が終わった/.test(out)) return { stopped: d, why: 'society2 end', out, log: log_ }
   if (/フェーズが .* に進んだ/.test(out)) return { stopped: d, why: 'phase', out, log: log_ }
+  // args.stop_on_town: 町の条件がそろったら止める (2026-10-15 本人が決めた: 町に届くか 45年までで止めて相談する)。状態の行は「町 43年120日目」のように日付になる
+  if (args.stop_on_town && /町 (?!まだ)[0-9]/.test(out)) return { stopped: d, why: 'town', out, log: log_ }
   log(`day ${d} season done`)
 }
 return { stopped: 'steps', why: 'end', log: log_ }
