@@ -190,6 +190,9 @@ done
 
 ## 4. シミュレーションを続ける
 
+- **2026-10-15 本人が決めた: 村 (G6) を 5 季節ずつ進め、町の条件がそろうか、45年 (5400 日目) になったら止めて報告する**。記録の条件 (板で量を確かめる) は進みが遅いので、止めたところで、どうするかを史実とのずれの一覧 (`docs/society_phase/fidelity_checklist.md`) といっしょに相談する。42年90日目 (5129 日目) で、記録をつけた季節 3 (みな途中まで)・板はまだ使えない
+
+
 - 自分の PC の Claude Code で、このリポジトリを開いて、たとえば「`sim/society/daily_run.md` と `sim/society/HANDOFF.md` に従って、Society 2.0 を続けて」と頼む
 - 季節を進めるワークフロー: `tools/society2_seasons_workflow.js`。**リポジトリの場所を `root` で渡す** (2026-10-09 から。渡さなければクラウドの `/home/user/RobotSimulaterRyo`)。Workflow で `{"steps": 5, "root": "<この PC のリポジトリの場所>", "py": "<Python>"}` を渡して動かす (本人の PC では `{"steps": 5, "root": "C:/Users/Tan0Ry0/Desktop/26dev/RobotSimulaterRyo", "py": "py -3"}`。**本人の PC の `python` は別のアプリ (hermes-agent) の 3.11 で、季節を進めると食べ物の数の最後の桁がずれるので使わない**。`python3` はない。`tools/season_step.sh` も `PY="py -3"` で動く) (家族の代表ごとに haiku が役を演じて答え、`tools/season_step.sh` で 1 季節進めてコミットする)
 - 手で 1 季節進めるとき: 答えを `data/answers/dayNNNN/season/<名前>.json` に置いて、`python3 sim/society/step.py season`。今の状態は `python3 sim/society/step.py status`
