@@ -1,0 +1,38 @@
+{
+ "say": [
+  {"to": "ホノ", "text": "北川で魚がまだいるか見に行かないか。二人で行けば、ザガが来ても守り合えるだろう。"},
+  {"to": "みんな", "text": "秋に北川で魚が泳いでいるのを見た。冬の食べ物になるか、確かめてくるよ。"}
+ ],
+ "job": {"activity": "狩り", "place": "北川12", "with": ["ホノ"], "why": "秋に北川で魚を見た。冬も魚がいるかを、狩りの腕で確かめたい。二人で行けば安心だ。"},
+ "pick": 0,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "accept": {"ハソ4": true},
+ "keep": false,
+ "feast": false,
+ "leader": "なし",
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "北の川 (キャンプから約 300 m) には魚がいる。冬も取れるかもしれない", "because": [211845], "confidence": 0.6},
+  {"op": "add", "text": "北の川の近くに、ルクの群れ (5 頭) がいた", "because": [211738], "confidence": 0.7}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に来てアルが殺された。夜にキャンプを離れないのは命を守る"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りを複数人でやれば、助け合える"},
+  {"id": "L16", "against": "", "agree": true, "reason": "疲れたままでは、採集も狩りも危ない"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採集した人が空腹のままでは、次の日の力が出ない"},
+  {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りは、ザガから守る決まりとして必要"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近くても林でも二人以上なら、ザガが来ても守り合える"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で分けるのは、畑の実りを守る"},
+  {"id": "L159", "against": "", "agree": true, "reason": "魚も取った日のうちに食べるか燻せば、蓄えが傷まない"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギは世話がないといなくなるので、数に合わせて世話をする人を決めるのがよい"},
+  {"id": "L169", "against": "", "agree": true, "reason": "草で養える数を超えた分は肉にして干すほうが、痩せていなくなるより良い"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けないのは正しい"},
+  {"id": "L174", "against": "", "agree": true, "reason": "北の村が借りた草の種を返しきるまで、新しく貸すのは控えたい"},
+  {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草の数より多いあいだは、野生のヤギを増やす必要がない"},
+  {"id": "L178", "against": "", "agree": true, "reason": "交換に行く人が行き先と戻る日を伝えれば、戻らない時に探しやすい"}
+ ],
+ "feeling": "北川の魚を取りに行けるのが、少し楽しみだ。"
+}
