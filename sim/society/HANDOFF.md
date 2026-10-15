@@ -167,6 +167,25 @@ done
 - `out/` はコミットしない。`app/society_G1.mp4`・`society_G2.mp4` はコミットする (前の動画と同じ)
 - 動画の最後にクレジット (VOICEVOX:ずんだもん、three.js) が入る (`make_video.mjs` が入れる)
 
+## 3.1 Society 1.0 の短いまとめ動画 (S1) (2026-10-15、本人の依頼)
+
+- Society 1.0 (狩猟採集の時代。0 日目〜489 日目 = 0年1日目〜4年10日目、F1 移動する採集民 → F5 → F6 に着いて Society 2.0 が始まる) を約 10 分にまとめた動画。文は記録にあることだけで、やり直し (戻してやり直した回) と作る側が世界を変えたところは、そうと言っている
+- ファイル (`sim/society/video/`): `narration_S1.json` (42 文)・`days_S1.txt` (撮る日 8,32,84,153,285,489 = 0年9日目・0年33日目・0年85日目・1年34日目・2年46日目・4年10日目)・`voice/S1/` (声。VOICEVOX:ずんだもん。2026-10-15 にクラウドで作った。n01〜n42.wav・`durations.json`・読みの一覧 `readings.md`)。`render_all.sh` の一覧に `S1` を足した
+- 長さ: 計画 (PLAN_ONLY) で 621.9 秒 (10 分 22 秒)。声は合わせて 416 秒
+- クラウドでは撮っていない (2026-10-15 本人が決めた: PC で撮った最初の 1 分を試し撮りにする)。最初の 60 秒の区間 `video/out/society_S1_p00.mp4` (音なし、字幕あり) ができたら、それを見て確かめる
+- 本人の PC (Windows の Git Bash) で撮る:
+  ```bash
+  cd sim/society/video && GPU=1 PY="py -3" bash render_all.sh S1
+  ```
+  - `render_all.sh` に名前を渡すと、その動画だけ撮る (名前がなければ今まで通り一覧の全部。できたものは飛ばす)
+  - 内蔵 GPU でも `GPU=1` で撮れる (RTX 5070 より遅い)。RTX 5070 なら 1 本ずつで 10 秒ぶんに約 25 秒なので、約 26 分の見込み
+  - 途中で止まっても、同じコマンドで続きから撮れる。声を作り直したとき (長さが変わる) は `out/society_S1*` を消してから撮る
+- できるもの: `app/society_S1.mp4` (コミットする。`out/` はコミットしない)
+- 撮ったあと、アプリの「動画」の一覧 (`app/index.html` の `<div class="tabs mv-tabs" ...>` の中) に、Society 1.0 の動画の先頭 (`data-src="society_v1.mp4"` の行の上) に次の 1 行を足す。長さは `ffprobe -v error -show_entries format=duration -of csv=p=0 ../app/society_S1.mp4` (render_all.sh の記録 `out/ordered.log` にも出る) で見て、(10 分 22 秒) を直す。**mp4 ができるまでは足さない**
+  ```html
+          <button role="tab" aria-selected="false" data-src="society_S1.mp4">Society 1.0 のまとめ: 0年1日目〜4年10日目 (10 分 22 秒)</button>
+  ```
+
 ## 4. シミュレーションを続ける
 
 - 自分の PC の Claude Code で、このリポジトリを開いて、たとえば「`sim/society/daily_run.md` と `sim/society/HANDOFF.md` に従って、Society 2.0 を続けて」と頼む

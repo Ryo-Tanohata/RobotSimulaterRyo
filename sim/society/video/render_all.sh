@@ -1,6 +1,8 @@
 #!/bin/bash
 # Society 2.0 の動画 (G1〜G4 と F、13 本) を話の順に 2 本ずつ撮り、音を合わせて app/ に入れ、最後に第 2 部の通し (G3 + G4) をつなぐ。
+# Society 1.0 の短いまとめ (S1) も一覧にある (2026-10-15)。
 # 本人の PC (Windows・Git Bash・GPU) 用:  bash sim/society/video/render_all.sh   (PY は既定で py)
+# 名前を渡すと、その動画だけ撮る:  bash sim/society/video/render_all.sh S1   (いくつでも並べられる。名前がなければ一覧の全部)
 # 続きから撮れる: できた動画は out/society_<名前>.final があれば飛ばす。撮り終えた 60 秒の区間も render_parts.sh が飛ばす
 set -u
 cd "$(dirname "$0")"
@@ -19,7 +21,20 @@ fi
 ITEMS=(G1:510,600,629,659,990,1019,1229 G1F1:509,510,600 G1F2:629,630,631 G1F3:659,660,779
        G2:1230,1259,1320,1415,1469,1529 G2F1:1259,1260,1290 G2F2:1409,1415,1435 G2F3:1499,1529
        G3:1530,1559,1562,1573,1580,1589 G3F3:1559,1562,1589
-       G4:1591,1625,1675,1679,1680,1709 G4F1:1680,1695,1709 G4F2:1636,1679,1680)
+       G4:1591,1625,1675,1679,1680,1709 G4F1:1680,1695,1709 G4F2:1636,1679,1680
+       S1:8,32,84,153,285,489)
+# 名前が渡されたら、一覧からその動画だけを選ぶ (知らない名前なら何もせずに止まる)
+PART2=1
+if [ $# -gt 0 ]; then
+  SEL=() PART2=
+  for want in "$@"; do
+    found=
+    for item in "${ITEMS[@]}"; do [ "${item%%:*}" = "$want" ] && { SEL+=("$item"); found=1; }; done
+    [ -n "$found" ] || { echo "unknown video name: $want (known: ${ITEMS[*]%%:*})" >&2; exit 1; }
+    case "$want" in G3|G4) PART2=1 ;; esac  # 第 2 部の通しは、G3 か G4 を撮るときだけつなぎ直す
+  done
+  ITEMS=("${SEL[@]}")
+fi
 
 render_one() {
   local name=$1 days=$2 out="out/society_$1"
@@ -42,7 +57,7 @@ for item in "${ITEMS[@]}"; do
   sleep 2
 done
 wait
-if [ -f out/society_G3.final ] && [ -f out/society_G4.final ]; then
+if [ -n "$PART2" ] && [ -f out/society_G3.final ] && [ -f out/society_G4.final ]; then
   printf "file '%s'\n" ../../app/society_G3.mp4 ../../app/society_G4.mp4 > out/part2.txt
   ffmpeg -loglevel error -y -f concat -safe 0 -i out/part2.txt -c copy -movflags +faststart ../app/society_part2.mp4 >> "$LOG" 2>&1 \
     && log "part2: done -> app/society_part2.mp4 ($(ffprobe -v error -show_entries format=duration -of csv=p=0 ../app/society_part2.mp4) s)" \
