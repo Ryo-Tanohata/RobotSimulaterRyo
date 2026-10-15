@@ -1,0 +1,33 @@
+{"say": [{"to": "みんな", "text": "夏の刈りの前に、石の鎌を作りためるよ。鎌がほしい人は夜に言ってくれ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりが一番の得意。石の鎌は割れて減っていくから、夏の刈りの前に作りためておきたい"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ3": {"activity": "畑仕事", "place": "camp", "why": "畑は草取りをしないと夏の実りが減るので、キャンプの近くで手伝いたい"}},
+ "keep": false,
+ "feast": false,
+ "leader": "なし",
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "村の蓄えの土器は、口を粘土でふさいで印の封をしてある。取るときは封を割り、取った人の家の印で封をし直す", "because": [224255], "confidence": 0.8},
+  {"op": "add", "text": "村の石の鎌は、作った数 (604 本) より少ない 578 本になっている。鎌は割れて減る", "because": [226299], "confidence": 0.7},
+  {"op": "add", "text": "北丘と北の林は前に何も見つからなかったと聞いた。西林12 も 30 日探して何も見つからなかったと聞いた (人の話)", "because": [224249, 224250], "confidence": 0.5}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "ザガが夜に出るので、夜はキャンプから離れないのがいい"},
+  {"id": "L126", "against": "なし", "agree": true, "reason": "夜の火と見張りがあれば、ザガから身を守れる"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "二人いれば、けがをしたときに助けられる"},
+  {"id": "L161", "against": "なし", "agree": true, "reason": "刈りは手の空いた大人が毎夕。草取りは交代で一人ずつ"},
+  {"id": "L152", "against": "なし", "agree": true, "reason": "石の鎌は割れて減るので、夏の刈りの前に作りためたい"},
+  {"id": "L166", "against": "なし", "agree": true, "reason": "土器に入れた草の種は虫やネズミに食べられない"},
+  {"id": "L167", "against": "なし", "agree": true, "reason": "世話をする人がいないとヤギが減るので、ヤギの数に合わせて決める"},
+  {"id": "L169", "against": "なし", "agree": true, "reason": "草で養えない分を肉にして干せば、草の取り合いが減る"},
+  {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると、さらに足りなくなる"},
+  {"id": "L172", "against": "なし", "agree": true, "reason": "名乗り出れば、封の割れで疑われずに済む"},
+  {"id": "L174", "against": "なし", "agree": true, "reason": "返されない草の種を、また貸すのは危ない"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "草が足りないのに野生のヤギを増やすと、ヤギはいなくなる"},
+  {"id": "L177", "against": "なし", "agree": true, "reason": "刈った種をその日のうちに土器へ入れれば、虫やネズミに食べられない"},
+  {"id": "L180", "against": "なし", "agree": true, "reason": "黒曜石の刃の鎌は割れにくいので、鎌を作る人に回したい"},
+  {"id": "L181", "against": "なし", "agree": true, "reason": "人が増えたので、住まいを広げて雨の夜に外で濡れる人をなくしたい"},
+  {"id": "L137", "against": "なし", "agree": true, "reason": "子どもが外で濡れると、疲れがとれず弱ってしまう"}
+ ],
+ "feeling": "道具で村の役に立てるのは、うれしい。"}
