@@ -1,0 +1,51 @@
+{
+  "say": [
+    {"to": "ネム3", "text": "西林12に行こうよ。木の実が多いって言ってたよね。ルクの群れがいるかもしれないから、二人で離れずに行こう。"},
+    {"to": "みんな", "text": "北から来た三人を迎えよう。北の村の道や、そこで採れる物も聞いてみたい。"}
+  ],
+  "job": {"activity": "採集", "place": "西林12", "with": ["ネム3"], "why": "西林12は木の実が多いとネム3が言っていた。秋の木の実は今が取りどき。二人で行けば、ザガやルクにも気をつけられる。"},
+  "sow": 0,
+  "pick": 40,
+  "plant": 5,
+  "harvest": 0,
+  "eat_goat": 0,
+  "accept": {"テナ4": true},
+  "keep": true,
+  "judge": {"M94": "ゆるす", "M95": "ゆるす", "M96": "ゆるす"},
+  "feast": true,
+  "leader": "なし",
+  "seal_store": true,
+  "knowledge": [
+    {"op": "add", "text": "北の村から テナ4・ラニ4・ケセ4 が来て、ここで暮らしたいと言った。", "because": [220349], "confidence": 0.9},
+    {"op": "add", "text": "草が足りず、ヤギが 24 頭やせていなくなり、ヤギは 213 頭から 189 頭になった。前に 36 頭と聞いていたが、24 頭だったようだ。", "because": [220342], "confidence": 0.9},
+    {"op": "add", "text": "前の季節の終わりに、オセ2の家の人がカイ2の家・サエ2の家・スイの家の畑で刈った草の種は、みな畑の持ち主の倉に入った。もめごとになっている。", "because": [220346, 220347, 220348], "confidence": 0.7},
+    {"op": "add", "text": "この季節、印で封をした倉や村の蓄えが、いくつも開けられた。キサの家とルタ3の家は 30 回ずつ。割った封のかけらは取ってある。", "because": [220350], "confidence": 0.8},
+    {"op": "add", "text": "西林12 は木の実が多いと、ネム3 が言っていた。ルクの群れがいるとも。", "because": [215839], "confidence": 0.4}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L0", "against": null, "agree": true, "reason": "夜のザガは怖い。キャンプにいるのが一番安全。"},
+    {"id": "L30", "against": "肉を全部その日に食べると、乾かして冬に残す道がなくなる。狩りの肉も冬の備えになる。", "agree": false, "reason": "乾かせば肉も冬に残せる。"},
+    {"id": "L38", "against": null, "agree": true, "reason": "火と見張りで、けがを減らせる。"},
+    {"id": "L98", "against": null, "agree": true, "reason": "蓄えを支える人が空腹のままでは、仕事ができない。"},
+    {"id": "L121", "against": null, "agree": true, "reason": "ザガは昼の林にも出る。二人以上が安全。"},
+    {"id": "L134", "against": null, "agree": true, "reason": "雨で濡れると、疲れがとれない。"},
+    {"id": "L137", "against": null, "agree": true, "reason": "子どもを先に雨から守るべき。"},
+    {"id": "L143", "against": null, "agree": true, "reason": "林でも草原でも、二人なら助け合える。"},
+    {"id": "L146", "against": null, "agree": true, "reason": "決めずに刈ると、もめごとのもとになる。"},
+    {"id": "L149", "against": null, "agree": true, "reason": "畑の手入れは交代で分けるのがよい。"},
+    {"id": "L164", "against": null, "agree": true, "reason": "刈る前に決めれば、もめごとが減る。"},
+    {"id": "L167", "against": null, "agree": true, "reason": "ヤギの世話が足りないと、ヤギが減る。"},
+    {"id": "L169", "against": null, "agree": true, "reason": "草で養えない分は、肉にして干すのが筋だ。"},
+    {"id": "L171", "against": null, "agree": true, "reason": "草が足りないのに、ヤギを増やすのは避けたい。"},
+    {"id": "L172", "against": null, "agree": true, "reason": "名乗り出れば、もめごとが小さくなる。"},
+    {"id": "L174", "against": null, "agree": true, "reason": "前に貸した分が返らないうちは、貸さない。"},
+    {"id": "L175", "against": null, "agree": true, "reason": "草が足りないのに、野生のヤギを増やすのはまずい。"},
+    {"id": "L176", "against": null, "agree": true, "reason": "草の多い場所を知れば、草を増やす道が見える。"},
+    {"id": "L177", "against": null, "agree": true, "reason": "刈ったあとすぐ土器に入れれば、虫に食われない。"},
+    {"id": "L178", "against": null, "agree": true, "reason": "戻らない人を早く探せる。"},
+    {"id": "L179", "against": "北川12は前に 30 日探して何もなかった。北丘12も冬に何もなかった。", "agree": false, "reason": "先に試すなら、西林12 と東林28 がよい。"},
+    {"id": "L180", "against": null, "agree": true, "reason": "黒曜石の鎌は割れにくい。"}
+  ],
+  "feeling": "木の実の季節で、体は軽い。村の話がまとまらないのが、少し気になる。"
+}
