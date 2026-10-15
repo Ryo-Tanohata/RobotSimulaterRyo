@@ -1,0 +1,25 @@
+{"say": [{"to": "ネム3", "text": "西林12 に木の実が多いと言っていたよね。詳しく聞かせてくれないか。夏の林は前の季節とは違うかもしれないから、一緒に見に行きたい。"}],
+ "job": {"activity": "採集", "place": "西林12", "with": ["ネム3"], "why": "夏は木に実がなるので、前の季節は空振りだった林も違うかもしれない。西林12 は木の実が多いと聞いた。採集は二人以上の決まりなので、ネム3 と行く。"},
+ "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "accept": {"ユエ4": true}, "keep": true,
+ "judge": {"M98": "つぐなう"}, "feast": false, "leader": "なし",
+ "trade": {"T35": "村", "T36": false}, "seal_store": true,
+ "knowledge": [
+   {"op": "add", "text": "南の村は、畑が実らず苦しいと言い、草の種 2000 つかみを貸してほしいと言った。", "because": [228354], "confidence": 0.7},
+   {"op": "add", "text": "ユエ4 とホミ4 は、北の村から来て「ここで暮らしたい」と言った。", "because": [228349, 228353], "confidence": 0.6}
+ ],
+ "proposal": null,
+ "votes": [
+   {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に出るので、夜はキャンプから離れないほうがいい。"},
+   {"id": "L121", "against": "", "agree": true, "reason": "昼でもザガが出るので、二人以上で行くほうが安全。"},
+   {"id": "L106", "against": "", "agree": true, "reason": "夏と秋の木の実は、冬の前に蓄えておく助けになる。"},
+   {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに畑を刈り切らないと、実りが落ちてしまう。"},
+   {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとると困る。"},
+   {"id": "L174", "against": "", "agree": true, "reason": "前に貸した草の種がまだ返っていないので、新しく貸すのは待つ。"},
+   {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いので、野生のヤギを増やす必要はない。"},
+   {"id": "L158", "against": "", "agree": true, "reason": "記録がないと、蓄えの量でもめごとになるから。"},
+   {"id": "L146", "against": "", "agree": true, "reason": "刈る前に持ち主と決めれば、もめごとを防げる。"},
+   {"id": "L112", "against": "", "agree": true, "reason": "肉は腐りやすいので、その日のうちに処理する決まりは守りたい。"}
+ ],
+ "year_name": "よそから五人が加わった年",
+ "feeling": "満腹だけど、冬の前に木の実と草の種の蓄えが足りるか気になる。"}
