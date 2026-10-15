@@ -1,0 +1,39 @@
+{
+ "say": [{"to": "ヨナ2", "text": "北林12 へ草の種を取りに行こう。二人ならザガが来ても平気だ。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["ヨナ2"], "why": "採集がいちばん得意だから。北林12 は冬も食べ物が見つかることがあり、キャンプから近い。"},
+ "sow": 1000,
+ "pick": 40,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "accept": {"ヒセ5": true},
+ "keep": true,
+ "judge": {"M103": "ゆるす", "M104": "ゆるす", "M105": "ゆるす"},
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T39": false},
+ "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "南の村は、前に借りた草の種をまだ返していないと覚えている。今年も 2000 つかみを貸してほしいと言っている", "because": [248808], "confidence": 0.8},
+  {"op": "add", "text": "この季節、印で封をした倉は何度も割られた。封は割れたと分かるだけで、守りにはならない", "because": [248809], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るから、キャンプにいるのが安全"},
+  {"id": "L1", "against": "", "agree": true, "reason": "同じ場所を重ねて探すのは時間の無駄"},
+  {"id": "L3", "against": "", "agree": true, "reason": "ザガがこわい。二人なら助けあえる"},
+  {"id": "L106", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えるのは大事"},
+  {"id": "L107", "against": "", "agree": true, "reason": "食べきれない木の実は埋めて、木を増やすのがよい"},
+  {"id": "L141", "against": "", "agree": true, "reason": "まく量をはっきり決めておけば、あとで文句が出にくい"},
+  {"id": "L146", "against": "", "agree": true, "reason": "畑の持ち主として、刈る前に分け方を決めるのは当然"},
+  {"id": "L149", "against": "", "agree": true, "reason": "草取りは交代でやればよい。自分の畑が実らないと困る"},
+  {"id": "L164", "against": "", "agree": true, "reason": "決めずに刈られた草の種は、畑の持ち主のものにするべき"},
+  {"id": "L174", "against": "", "agree": true, "reason": "貸した草の種が返されないのに、また貸すのは損"},
+  {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草より多いうちは、捕まえてもすぐ減る"},
+  {"id": "L176", "against": "", "agree": true, "reason": "草を増やすか数を減らすか、秋に決めるのがよい"},
+  {"id": "L183", "against": "", "agree": true, "reason": "南の村は前に借りた草の種を返していない。もう貸すのはやめよう"},
+  {"id": "L184", "against": "", "agree": true, "reason": "どの村も、返されるまで貸すのはやめたい"},
+  {"id": "L185", "against": "", "agree": true, "reason": "北と同じく南も貸さないのは、わかりやすくてよい"}
+ ],
+ "feeling": "秋にまいた草の種が夏に実るか、少し楽しみだ。ただ、一人で林に行くのは気が進まない。"
+}
