@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは土器を焼く。草の種を入れたい人は、割れた土器の数を夜に言ってくれ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは一番得意な仕事だ。冬のうちから作りためれば、草の種を虫とネズミから守れる。"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": "なし", "trade": {"T46": false, "T47": false}, "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "前の季節、南の川で採集して木の実 37 つかみを見つけた", "because": [269836], "confidence": 1.0},
+  {"op": "add", "text": "前の季節、キャンプのそばの木から木の実 40 つかみを 3 回取った", "because": [269624, 269765, 269906], "confidence": 1.0},
+  {"op": "add", "text": "タユ5 (1 歳) が亡くなった", "because": [269973], "confidence": 0.9},
+  {"op": "add", "text": "コハに子が生まれ、セオ5 と名づけられた", "because": [269969], "confidence": 0.9},
+  {"op": "add", "text": "前の季節の集まりで、南の村の申し出は受けなかった", "because": [265242], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L168", "against": "なし", "agree": true, "reason": "土器は草の種を虫とネズミから守れる。冬のうちに作りはじめれば、春までに数がそろう"},
+  {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないのに、よそからヤギを入れたら草の取り合いになる"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "今はヤギが多すぎて、やせていなくなる数も多い"},
+  {"id": "L147", "against": "なし", "agree": true, "reason": "芋は傷みやすい。取った日に食べきったほうが、むだがない"},
+  {"id": "L98", "against": "なし", "agree": true, "reason": "採った人が空腹のままでは、次の日に働けない"},
+  {"id": "L121", "against": "近い場所なら一人で行けば、それだけ早く採れる", "agree": false, "reason": "人と組まなくても自分の仕事はできる"},
+  {"id": "L165", "against": "探索も一人で十分できる。組むと動きが遅くなる", "agree": false, "reason": "必要のない決まりは、ふやさないほうがいい"}
+ ],
+ "feeling": "寒い冬だが、手は空いている。土器を焼いて草の種を守るのが今の仕事だ。"}
