@@ -9,6 +9,9 @@
 - C: 第 4 部の終わりで止まる → status・who・resume・season が断る → next_part で G7 に入る (step.py を写しで動かす)
 - D: 史実のずれの直し (G7 に入ってからだけ)・はじめの集落・地域の天気
 - E: 止まるわけ (部の終わり・次の G を待つ・相談) と、ワークフローの止まる合図 (HOLD の行)
+- F: 年 1 回の答えと見本の家 (4.A・4.F の 8): 見本の家の数と組・選び直し・手本・年の答えの読み方・広げた票・方針・ask・お題・欄が初めて出た日・
+  ワークフローの year の形 (node)・「全部の家を見本にし、毎季節寄る」G7 が、同じ答えの G6 と同じ世界になる (6.2 の「同じになる試し」。数分かかる)
+- G (SOC_SLOW=1 のときだけ。数分): 写しで step.py を回す (年の集まり → 答えのない季節) と、記録 (1 行 = 1 季節・decided_by・is_sample)
 本物の state.json が G6 でないとき (もう G7 に入ったあと) は、G6 の state が要る試しをとばす。
 """
 import copy
@@ -630,7 +633,7 @@ class D_Fixes(unittest.TestCase):
             self.assertIn(new, t)
         self.assertIn("守る・壁", t)
         self.assertIn("守る", t.split("2. この季節の主な仕事を決める (job)。仕事は ")[1].split("\n")[0])
-        self.assertEqual(st["era2"]["g7"]["offered"], {"guard": st["day"]})
+        self.assertEqual(st["era2"]["g7"]["offered"]["guard"], st["day"])  # ほかの欄は F_Year.test_offered
 
 
 # ---------------------------------------------------------------- E
@@ -719,6 +722,631 @@ class E_Hold(unittest.TestCase):
                 "console.log(JSON.stringify([bad.match(re), (good.match(re) || [])[1]]));")
         r = subprocess.run([node, "-e", code], capture_output=True, text=True)
         self.assertEqual(json.loads(r.stdout), [None, "consult"])
+
+
+# ---------------------------------------------------------------- F
+YEAR_SRC = {"年の答え (自分)", "年の答え (代表が割り振った)", "年の答え (代表と同じ仕事)", "見本から広げた", "決まり (前の年と同じ)", "加わった季節",
+            "答えなし (前と同じ)", "自分", "代表が割り振った", "代表と同じ仕事"}
+
+
+def add_law(st, text="試しの掟"):
+    """提案中の掟を 1 本足す (写しの中だけ)"""
+    l = {"id": f"L{st['next_law']}", "text": text, "proposer": era2.adults(st)[0]["name"], "day": st["day"], "status": "提案", "votes": {},
+         "because": [], "label": "知識の再現の疑い", "changed": st["day"]}
+    st["next_law"] += 1
+    st["laws"].append(l)
+    return l
+
+
+def year_answer(seas, **kw):
+    """台本の年の答え (季節ごとの予定と 1 年の方針)"""
+    a = {"say": [], "year": {s: {"job": {"activity": "採集", "place": "camp"}, "pick": 0, "plant": 0, "harvest": 0} for s in seas}, "feeling": "試しの気持ち"}
+    a.update(kw)
+    return json.dumps(a, ensure_ascii=False)
+
+
+def to_year_end(st):
+    """写しの日を、次の年の最後の日にする (年の集まりの答えを読む試しだけ。世界は進めない)"""
+    st["day"] = (st["day"] // era2.YEAR + 1) * era2.YEAR - 1
+    st["era2"]["g7"]["ask"] = "年"
+    return st
+
+
+class F_Year(unittest.TestCase):
+    """年 1 回の答えと見本の家 (4.A。メモリの中の写し。世界は進めない)"""
+
+    @classmethod
+    def setUpClass(cls):
+        if not is_g6(real_state()):
+            raise unittest.SkipTest("本物の state が G6 でない")
+        import g7
+        cls.g7 = g7
+        cls.base = g7_state()
+
+    def st(self):
+        return copy.deepcopy(self.base)
+
+    def test_size(self):
+        self.assertEqual([self.g7.sample_size(h) for h in (5, 12, 13, 30, 42, 60, 100)], [5, 12, 12, 12, 17, 24, 25])
+
+    def test_choose(self):
+        st, g7 = self.st(), self.g7
+        G, homes = st["era2"]["g7"], era2._homes(st)
+        must = {h for h, v in G["sample"].items() if v["must"]}
+        self.assertEqual(len(G["sample"]), max(g7.sample_size(len(homes)), len(must)))
+        self.assertEqual(set(G["cells"]), set(homes))
+        for c in set(G["cells"].values()):
+            hs = [h for h in homes if G["cells"][h] == c]
+            if len(hs) <= 2:
+                self.assertTrue(set(hs) <= must, c)
+            else:
+                self.assertTrue(any(h in G["sample"] for h in hs), f"{c} に見本がある")
+        roles = {p["household"] for p in era2.adults(st) if p["name"] in g7.role_people(st)}
+        self.assertTrue(roles and roles <= must, "役の人の家はいつも見本")
+        for c, w in G["weights"].items():
+            rest = [h for h in homes if G["cells"][h] == c and h not in must]
+            self.assertAlmostEqual(w, len(rest) / sum(1 for h in rest if h in G["sample"]), places=2)
+        again = self.st()
+        g7.choose(again, era2._rng(again, era2.SAMPLE_SALT))
+        self.assertEqual(again["era2"]["g7"]["sample"], G["sample"], "同じ state から同じ見本")
+        # まとめ役の家はいつも入る
+        lead = next(p for p in era2.adults(st) if p["household"] not in G["sample"])
+        st["era2"]["g5"]["leader"] = lead["name"]
+        g7.choose(st, random.Random(3))
+        self.assertIn(lead["household"], G["sample"])
+        self.assertTrue(G["sample"][lead["household"]]["must"])
+        self.assertIn(lead["name"], era2.answerers(st), "まとめ役は答える")
+
+    def test_small_village(self):
+        st, g7 = self.st(), self.g7
+        homes = era2._homes(st)[:12]
+        for p in st["people"]:
+            if p["alive"] and p.get("household") not in homes:
+                p["alive"] = False
+        g7.choose(st, random.Random(1))
+        g7.donors(st)
+        self.assertEqual(set(st["era2"]["g7"]["sample"]), set(era2._homes(st)), "12 家以下なら全部")
+        self.assertEqual(st["era2"]["g7"]["donor"], {})
+
+    def test_rotation(self):
+        st, g7 = self.st(), self.g7
+        G, D = st["era2"]["g7"], st["day"]
+        old = copy.deepcopy(G["sample"])
+        for v in G["sample"].values():
+            if not v["must"]:
+                v["since"] = D + 1 - 3 * era2.YEAR  # 3 年続いた
+        g7.choose(st, random.Random(7))
+        new = G["sample"]
+        for h, v in new.items():
+            if not v["must"]:
+                self.assertNotIn(h, old, "3 年続いた家は外れ、一度も見本になっていない家が先")
+                self.assertEqual(v["since"], D)
+        for h in old:
+            if h not in new:
+                self.assertEqual(G["sample_hist"][h], D)
+        # 次は、見本だったのがいちばん前の家から (一度もなっていない家がなくなったら)
+        self.assertEqual(len(new), len(old))
+
+    def test_donors(self):
+        st, g7 = self.st(), self.g7
+        G = st["era2"]["g7"]
+        homes = era2._homes(st)
+        self.assertEqual(set(G["donor"]), set(homes) - set(G["sample"]))
+        n_ad = {h: sum(1 for p in era2.adults(st) if p["household"] == h) for h in homes}
+        for h, d in G["donor"].items():
+            self.assertIn(d, G["sample"])
+            self.assertEqual(G["cells"][d], G["cells"][h])
+            best = min(abs(n_ad[s] - n_ad[h]) for s in G["sample"] if G["cells"][s] == G["cells"][h])
+            self.assertEqual(abs(n_ad[d] - n_ad[h]), best, "大人の数がいちばん近い家")
+        before = dict(G["donor"])
+        self.assertEqual(g7.donors(st), before, "乱数を使わない")
+
+    def test_cells_tie(self):
+        st, g7 = self.st(), self.g7
+        G = st["era2"]["g7"]
+        reps = g7._rep_of(st)
+        h = next(h for h in era2._homes(st) if sum(1 for p in era2.adults(st) if p["household"] == h) >= 2)
+        rep = reps[h]
+        other = next(p["name"] for p in era2.adults(st) if p["household"] == h and p["name"] != rep)
+        G["past"] = [{"day": st["day"], "season": "冬", "days": {rep: {"採集": 10}, other: {"畑仕事": 10}}, "home": {}}]
+        self.assertTrue(g7._cells(st)[h].endswith("×集める"), "日数が同じなら代表の仕事の組")
+        G["past"] = [{"day": st["day"], "season": "冬", "days": {other: {"採集": 5, "土器づくり": 5}}, "home": {}}]
+        self.assertTrue(g7._cells(st)[h].endswith("×作る"), "代表でも決まらなければ 作る → 畑 → 集める")
+
+    def test_plan_and_part(self):
+        st, g7 = self.st(), self.g7
+        a = {"year": {"夏": {"job": "採集", "sow": 5}, "秋": {"job": {"activity": "畑仕事"}, "sow": 300}, "冬": "x"},
+             "feast": ["秋", "春"], "seal_store": "冬と春", "judge_rule": "つぐなう", "accept_rule": {"よその群れ": True, "ほかの村から": "受け入れない"},
+             "trade_rule": {"交換": "村", "貸して": False, "max": "500 つかみ", "not": ["N2", "3"]}, "call": {"activity": "畑仕事", "when": "冬"}}
+        pl = g7._plan(a, st["day"], "夏")
+        self.assertNotIn("sow", pl["year"]["夏"], "秋でない sow は読まない")
+        self.assertEqual(pl["year"]["秋"]["sow"], 300)
+        self.assertNotIn("冬", pl["year"])
+        self.assertEqual(pl["policy"], {"feast": ["秋", "春"], "seal_store": ["冬", "春"], "judge_rule": "つぐなう",
+                                        "accept_rule": {"よその群れ": True, "ほかの村から": False},
+                                        "trade_rule": {"交換": "村", "貸して": False, "max": 500, "not": ["N2", "N3"]},
+                                        "call": {"activity": "畑仕事", "when": "冬"}})
+        w = g7._part(st, pl, "冬")
+        self.assertTrue(w["_missing"], "季節が抜けた答えは決まりで")
+        self.assertEqual((w["feast"], w["seal_store"]), (False, True))
+        f = g7._part(st, pl, "秋", {"say": [{"to": "みんな", "text": "x"}], "votes": [], "call": "畑仕事"})
+        self.assertEqual((f["sow"], f["feast"], f["call_when"]), (300, True, "冬"))
+
+    def test_copy(self):
+        st, g7 = self.st(), self.g7
+        G = st["era2"]["g7"]
+        reps = g7._rep_of(st)
+        size = {h: len(era2.family(st, reps[h])) for h in era2._homes(st)}
+        h, d = next((h, d) for h, d in sorted(G["donor"].items()) if size[h] >= 2 and size[d] >= 2)
+        rep, drep = reps[h], reps[d]
+        d2 = era2.family(st, drep)[1]["name"]
+        da = {"job": {"activity": "交換に行く", "place": "camp", "to": "N1", "then": "畑仕事", "house": True, "with": [drep], "why": "x"},
+              "family": {d2: {"activity": "ヤギの世話", "place": "camp", "why": "y"}}, "pick": 7, "eat_goat": 1, "say": [{"to": "みんな", "text": "z"}],
+              "votes": [{"id": "L0", "agree": True, "reason": "r"}], "trade": {"T1": "家", "T2": "村"}, "proposal": {"text": "p"}, "feeling": "f", "leave": True}
+        G["prev"][h] = {}
+        common = {"activity": "採集", "place": "camp", "with": []}
+        a = g7._copy(st, h, rep, d, drep, da, "春", common)
+        self.assertEqual(a["job"], {"activity": "畑仕事", "place": "camp", "with": []}, "前の年にしていない交換に行くは、then に")
+        fam = era2.family(st, rep)
+        self.assertEqual(a["family"][fam[1]["name"]]["activity"], "ヤギの世話", "2 番目の大人は、手本の 2 番目の大人の仕事")
+        self.assertEqual((a["pick"], a["eat_goat"]), (7, 1))
+        self.assertEqual(a["votes"], [{"id": "L0", "agree": True}], "票はまねる。理由はまねない")
+        self.assertEqual(a["trade"], {"T2": "村"}, "家の物で受けるのは、答えた家だけ")
+        for k in ("say", "proposal", "feeling", "leave", "knowledge"):
+            self.assertNotIn(k, a)
+        G["prev"][h] = {"春": {"交換に行く": 30}}
+        a = g7._copy(st, h, rep, d, drep, da, "春", common)
+        self.assertEqual(a["job"]["activity"], "交換に行く")
+        self.assertNotIn("house", a["job"])
+        self.assertEqual(a["job"]["with"], [])
+
+    def answers(self, st, seas, **kw):
+        return {n: year_answer(seas, **kw) for n in era2.answerers(st)}
+
+    def test_apply_year(self):
+        st, g7 = self.st(), self.g7
+        G = st["era2"]["g7"]
+        l = add_law(st)
+        sea = world.season(st["day"] + 1)
+        ans = self.answers(st, [sea], votes=[{"id": l["id"], "agree": True}], judge_rule="ゆるす")
+        quiet = next(n for n in era2.answerers(st) if G["sample"][next(p for p in era2.adults(st) if p["name"] == n)["household"]]["must"] is False)
+        del ans[quiet]  # 答えない見本の家がひとつ
+        feel = {p["name"]: p.get("feeling") for p in era2.adults(st)}
+        g7.apply_year(st, ans)
+        n = len(era2.adults(st))
+        self.assertEqual(l["status"], "採用")
+        qh = next(p for p in era2.adults(st) if p["name"] == quiet)["household"]
+        q_ad = [p["name"] for p in era2.adults(st) if p["household"] == qh]
+        txt = next(e["text"] for e in st["events"] if e["type"] == "掟" and "試しの掟" in e["text"])
+        self.assertIn(f"/ {n})", txt)
+        yes = int(re.search(r"賛成 (\d+)", txt).group(1))
+        self.assertEqual(yes, n - len(q_ad), "見本の答えが手本でみんなに広がる (答えなかった家の大人だけ数えない)")
+        src = G["src"]
+        self.assertEqual(set(src), {p["name"] for p in era2.adults(st)})
+        self.assertLessEqual(set(src.values()), YEAR_SRC)
+        self.assertEqual(sum(1 for v in src.values() if v == "年の答え (自分)"), len(ans))
+        self.assertTrue(all(src[x] == "答えなし (前と同じ)" for x in q_ad))
+        for h, d in G["step"]["donor"].items():
+            self.assertNotEqual(d, qh, "答えなかった見本の家はまねない")
+        for p in era2.adults(st):
+            if p["name"] not in ans:
+                self.assertEqual(p.get("feeling"), feel[p["name"]], "答えなかった人の気持ちは変えない")
+        self.assertEqual(G["step"]["answered"], sorted(ans))
+        self.assertEqual(G["answer_day"], st["day"])
+
+    def test_year_names(self):
+        st, g7 = to_year_end(self.st()), self.g7
+        ans = self.answers(st, list(g7.SEASONS), year_name="試しの名前")
+        g7.apply_year(st, ans)
+        e = next(e for e in reversed(st["events"]) if e["type"] == "年の名前")
+        n = len(era2.adults(st))
+        self.assertIn(f"大人 {n} 人分 / 大人 {n} 人", e["text"], "年の名前は、手本として受け持つ家の大人まで数える")
+        self.assertEqual(st["era2"]["year_names"][-1]["name"], "試しの名前")
+
+    def test_apply_plan(self):
+        st, g7 = to_year_end(self.st()), self.g7
+        e2, G = st["era2"], st["era2"]["g7"]
+        ans = self.answers(st, list(g7.SEASONS), judge_rule="ゆるす", trade_rule={"交換": "村", "貸して": "村", "max": 5000, "not": ["N2"]},
+                           accept_rule={"よその群れ": True}, feast=["冬"], seal_store=["秋"])
+        g7.apply_year(st, ans)
+        st["day"] += 30  # 夏の終わり (秋のはじめは答えのない季節)
+        G["ask"] = g7.ask_next(st)
+        self.assertIsNone(G["ask"])
+        homes = era2._homes(st)
+        g5 = e2["g5"]
+        for i in range(3):
+            g5["disputes"].append({"id": f"M{900 + i}", "kind": "倉", "from": homes[i], "against": homes[i + 1], "day": st["day"] - 30, "harm": 10,
+                                   "what": "試し", "because": [], "status": era2.OPEN, "event": 0})
+        for i, (o, n) in enumerate((("N1", 10), ("N2", 10), ("N3", 6000))):  # 受ける / 相手にしない村 / 上限をこえる
+            e2["g6"]["offers"].append({"kind": "貸して", "give": {}, "want": {"草の種": n}, "id": f"T{900 + i}", "other": o, "day": st["day"], "goats_in": [],
+                                       "mem": {"village": 1.0, "other": 1.0}})
+        e2["visitors"] = [{"name": "テスオ", "members": [{"name": "テスオ", "sex": "女", "age": 20}], "day": st["day"]}]
+        votes = {l["id"]: dict(l["votes"]) for l in st["laws"]}
+        feel = {p["name"]: (p.get("feeling"), p.get("feeling_day")) for p in era2.adults(st)}
+        n0 = st["next_event"]
+        g7.apply_plan(st)
+        ev = [e for e in st["events"] if e["id"] >= n0]
+        settled = [e for e in ev if e["type"] == "収める"]
+        self.assertEqual(len(settled), era2.TALK_MAX, "方針で収めるのは古いものから 2 つまで")
+        self.assertTrue(all(era2.POLICY in e["text"] and (e.get("data") or {}).get("how") == "方針" for e in settled))
+        loan = next(e for e in ev if e["type"] == "貸し借り")
+        self.assertTrue(loan["text"].startswith(era2.POLICY))
+        self.assertEqual([x["data"]["offer"] for x in ev if x["type"] == "よその村" and "受けなかった" in x["text"]], ["T901", "T902"], "相手にしない村・上限")
+        self.assertEqual(loan["data"]["other"], "N1")
+        self.assertTrue(era2._meeting_event(loan))
+        self.assertTrue(any(e["type"] == "加わる" and "年の方針で" in e["text"] for e in ev))
+        self.assertFalse(any(e["type"] in ("掟", "話す") for e in ev), "答えのない季節は、掟の投票も話もない")
+        self.assertEqual({l["id"]: dict(l["votes"]) for l in st["laws"]}, {k: {} for k in votes} | {k: v for k, v in votes.items() if v})
+        self.assertEqual(G["step"]["how"], "方針")
+        self.assertEqual(G["src"]["テスオ"], "加わった季節")
+        for p in era2.adults(st):
+            if p["name"] in feel:
+                self.assertEqual((p.get("feeling"), p.get("feeling_day")), feel[p["name"]], "答えのない季節は、気持ちを変えない")
+        self.assertEqual(e2["g6"]["store_sealed"], e2["step_day"], "封をする季節 (秋)")
+        # 同じ state からは同じ結果 (乱数は今のまま)
+        a, b = to_year_end(self.st()), to_year_end(self.st())
+        for x in (a, b):
+            g7.apply_year(x, self.answers(x, list(g7.SEASONS)))
+            x["day"] += 30
+            x["era2"]["g7"]["ask"] = None
+            g7.apply_plan(x)
+        self.assertEqual(sha(json.dumps(a, sort_keys=True, ensure_ascii=False)), sha(json.dumps(b, sort_keys=True, ensure_ascii=False)))
+
+    def test_leader_policy(self):
+        st, g7 = to_year_end(self.st()), self.g7
+        e2 = st["era2"]
+        homes = era2._homes(st)
+        lead = next(p for p in era2.adults(st) if p["household"] in e2["g7"]["sample"] and p["name"] in era2._reps(st))
+        e2["g5"]["leader"] = lead["name"]
+        ans = self.answers(st, list(g7.SEASONS))
+        ans[lead["name"]] = year_answer(list(g7.SEASONS), judge_rule="つぐなう", call={"activity": "畑仕事", "when": "冬"})
+        g7.apply_year(st, ans)
+        self.assertEqual(e2["g5"]["call"]["when"], "冬")
+        self.assertIn("「冬は、みんなで 畑仕事 をしよう」", st["events"][-1]["text"] if st["events"][-1]["type"] == "まとめ役"
+                      else next(e["text"] for e in reversed(st["events"]) if e["type"] == "まとめ役"))
+        st["day"] += 30
+        st["era2"]["g7"]["ask"] = None
+        others = [h for h in homes if h != lead["household"]]
+        for i in range(4):
+            e2["g5"]["disputes"].append({"id": f"M{950 + i}", "kind": "倉", "from": others[i], "against": others[i + 1], "day": st["day"] - 30, "harm": 1,
+                                         "what": "試し", "because": [], "status": era2.OPEN, "event": 0})
+        n0 = st["next_event"]
+        g7.apply_plan(st)
+        judged = [e for e in st["events"] if e["id"] >= n0 and e["type"] == "裁き"]
+        self.assertEqual(len(judged), 4, "まとめ役の方針は、自分の家のもの以外ならいくつでも")
+        self.assertIsNotNone(e2["g5"]["call"], "冬の呼びかけは、冬まで数えない")
+
+    def test_ask_next(self):
+        st, g7 = self.st(), self.g7
+        G = st["era2"]["g7"]
+        st["day"] = (st["day"] // era2.YEAR + 1) * era2.YEAR - 1
+        G["zoom"] = None
+        self.assertEqual(g7.ask_next(st), "年")
+        G["zoom"] = {"year": (st["day"] + 1) // era2.YEAR, "why": ["Z1"], "day": st["day"]}
+        self.assertEqual(g7.ask_next(st), "寄る")
+        st["day"] += 30
+        self.assertEqual(g7.ask_next(st), "寄る", "寄る年は 4 季節とも")
+        G["zoom"] = None
+        self.assertIsNone(g7.ask_next(st))
+        world.G7_PARTS["year"] = False
+        try:
+            self.assertEqual(g7.ask_next(st), "寄る")
+        finally:
+            world.G7_PARTS["year"] = True
+        st["day"] += 7  # 季節の途中で区切った (蓄えが尽きた)
+        n = len(st["events"])
+        self.assertEqual(g7.ask_next(st), "集まり直し")
+        self.assertEqual(G["zoom"]["why"], ["Z5"])
+        self.assertEqual(st["events"][-1]["type"], "年の集まり")
+        self.assertEqual(g7.ask_next(st), "集まり直し")
+        self.assertEqual(len(st["events"]), n + 1, "出来事は一度だけ")
+        st["day"] = (st["day"] // era2.SEASON_DAYS + 1) * era2.SEASON_DAYS - 1
+        self.assertEqual(g7.ask_next(st), "寄る", "その年の残りの季節も寄る")
+
+    def test_zoom(self):
+        st, g7 = self.st(), self.g7
+        st["day"] = (st["day"] // era2.YEAR + 1) * era2.YEAR - 1
+        self.assertIsNone(g7._zoom(st))
+        st["era2"]["g7"]["region"]["yoru"] = {"year": (st["day"] + 1) // era2.YEAR, "Z1": ["Q1"], "Z3": []}
+        self.assertEqual(g7._zoom(st)["why"], ["Z1"])
+        st["store"] = []
+        for h in st["era2"]["house"].values():
+            h["store"] = []
+        self.assertEqual(g7._zoom(st)["why"], ["Z1", "Z4"])
+        n = len(st["events"])
+        g7.year_turn(st)
+        self.assertIn("季節ごとに集まって決める", st["events"][n]["text"])
+        self.assertNotIn("見本", st["events"][n]["text"])
+
+    def test_prompts(self):
+        st, g7 = self.st(), self.g7
+        G = st["era2"]["g7"]
+        p = next(q for q in era2.adults(st) if q["name"] in era2.answerers(st))
+        t = g7.year_prompt(st, p, g7.since(st))
+        for w in ("見本", "手本", "まねる", "重み"):
+            self.assertNotIn(w, t, "見本であることは書かない")
+        for k in ("tax", "write", "loan", "guard", "others"):
+            self.assertIn(era2.FACTS_G7[k].strip(), t)
+        self.assertIn('"demand": null', t)
+        self.assertIn('"tax": null, "rate": null', t)
+        self.assertIn('"利子": 0', t)
+        self.assertIn("1 年に 1 回の村の集まり", t)
+        self.assertIn("(採用された掟のうち、古い", t)
+        self.assertNotIn("year_name", t, "年の終わりでない日 (G7 に入った日) は年の名前を決めない")
+        y = to_year_end(self.st())
+        ty = g7.year_prompt(y, next(q for q in era2.adults(y) if q["name"] == p["name"]), g7.since(y))
+        self.assertIn("## 年の名前 (1 年に 1 回)", ty)
+        self.assertIn('"year_name": "..."', ty)
+        self.assertEqual(ty.count('"job": {"activity": "採集"'), 4, "4 季節分の予定")
+        self.assertIn('"秋": {"job"', ty)
+        self.assertIn('"sow": 0}', ty)
+        # 寄る季節のお題: 今の季節のお題に、わけの 1 行・短い掟・G7 の欄
+        G["ask"], G["zoom"] = "寄る", {"year": (st["day"] + 1) // era2.YEAR, "why": ["Z4"], "day": st["day"]}
+        z = era2.season_prompt(st, p, g7.since(st))
+        self.assertIn("今年は季節ごとに集まる (わけ: 村の蓄えと家の倉を合わせても、30 日分より少ない)", z)
+        self.assertIn("(採用された掟のうち、古い", z)
+        self.assertIn("新しい仕組み (上の決まりを見て決める", z)
+        self.assertIn('"tax": null, "rate": null', z)
+        self.assertRegex(z, r"\n9\. 新しい仕組み[^\n]*\n(?:   [^\n]*\n)+10\. 今の気持ちを一言")
+
+    def test_facts(self):
+        bad = ("王", "お金", "国", "神", "銀", "青銅", "法", "税", "預言者", "奴隷", "都市")
+        for k, t in era2.FACTS_G7.items():
+            self.assertFalse([w for w in bad if w in t], k)
+            if k != "cattle":  # 牛は、ほかの村のようすを書いた文
+                self.assertIn("ない", t, f"{k}: しないことも同じ重さで")
+        st, g7 = self.st(), self.g7
+        on = [k for k in era2.FACTS_G7 if g7.FACTS_ON[k](st)]
+        self.assertLessEqual({"tax", "write", "loan", "guard", "others"}, set(on))
+        self.assertNotIn("leave", on)
+        self.assertNotIn("try", on)
+        add_law(st)["tax"] = {"what": "草の種", "share": 0.1}
+        st["laws"][-1]["status"] = "採用"
+        self.assertTrue(g7.FACTS_ON["leave"](st), "税の掟があれば、家ごとに村を出る")
+
+    def test_offered(self):
+        st, g7 = self.st(), self.g7
+        G, D = st["era2"]["g7"], st["day"]
+        self.assertEqual(set(G["offered"]), {k for k in era2.FACTS_G7 if g7.FACTS_ON[k](st)} | set(g7.fields_on(st)))
+        self.assertEqual(set(G["offered"].values()), {D})
+        st["day"] += 30
+        G["region"]["demands"] = [{"id": "Q1", "from": "N1", "to": "V0", "end": None}]
+        G["ask"] = None
+        g7._offer(st)
+        self.assertNotIn("answer_demand", G["offered"], "お題を書かない歩では数えない")
+        G["ask"] = "寄る"
+        g7._offer(st)
+        self.assertEqual((G["offered"]["answer_demand"], G["offered"]["leave"], G["offered"]["tax"]), (D + 30, D + 30, D), "初めて出た日だけ")
+
+    def test_meeting_event(self):
+        self.assertTrue(era2._meeting_event({"type": "交換", "text": era2.POLICY + "、村は、村の物で 南の村 の申し出 [T1] を受け"}))
+        self.assertTrue(era2._meeting_event({"type": "もめごと", "text": era2.POLICY + "、もめごと [M1] を収めようとしたが、まとまらなかった"}))
+        self.assertFalse(era2._meeting_event({"type": "もめごと", "text": "もめごと [M1] (倉): A が、B のことで不満を言い出した"}))
+        self.assertFalse(era2._meeting_event({"type": "交換", "text": "ソル が 南の村 で、土器 を ヤギ と取り替えた"}))
+
+    def test_g6_unchanged_helpers(self):
+        g6 = real_state()
+        self.assertEqual(era2.answerers(g6), [p["name"] for p in era2.adults(g6) if p["name"] in era2._reps(g6) | {era2._leader(g6)}])
+        self.assertNotIn("(採用された掟のうち", characters_laws(g6))
+
+    def test_workflow_year(self):
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("node がない")
+        harness = r"""
+const fs = require('fs')
+const src = fs.readFileSync(process.argv[2], 'utf8').replace(/^export const meta/m, 'const meta')
+const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor
+const run = async (args, start, mode) => {
+  let day = start
+  const labels = []
+  const meetOf = (d) => ((d + 1) % 120 === 0 ? '年' : 'none')
+  const agent = async (prompt, opts) => {
+    labels.push(opts.label)
+    if (prompt.includes('step.py who')) {
+      const m = meetOf(day)
+      return `DAY ${day} season False\nPHASE G7\nHOLD none\nMODE ${mode}\nMEET ${m}\nNAMES ${m === 'none' ? '' : 'ソル ミナ'}\nFEEL ${m === 'none' ? '' : 'カイ'}\nCOUNCIL \nASKLOG True`
+    }
+    if (prompt.includes('season_step.sh')) { day += 30; return `season exit=0\n${day} 日目まで進んだ / 人 10\ncommitted` }
+    if (prompt.includes('echo FEELING:')) return 'FEELING:'
+    if (prompt.includes('/feeling/`')) return 'カイ.json'
+    if (prompt.includes('ls ')) return 'ソル.json ミナ.json'
+    return 'done'
+  }
+  const fn = new AsyncFunction('args', 'agent', 'parallel', 'log', src)
+  const res = await fn(args, agent, async (fs_) => Promise.all(fs_.map((f) => f())), () => {})
+  return { res, labels }
+}
+;(async () => {
+  const a = await run({ mode: 'year', years: 1 }, 5519, 'year')
+  const b = await run({ mode: 'season', steps: 3 }, 5519, 'year')
+  console.log(JSON.stringify({ a: { why: a.res.why, stopped: a.res.stopped, labels: a.labels }, b: { why: b.res.why } }))
+})()
+"""
+        f = Path(tmpdir()) / "h.js"
+        try:
+            f.write_text(harness, encoding="utf-8")
+            r = subprocess.run([node, str(f), str(SOC / "tools" / "society2_seasons_workflow.js")], capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            out = json.loads(r.stdout)
+        finally:
+            shutil.rmtree(f.parent, ignore_errors=True)
+        a = out["a"]
+        self.assertEqual((a["why"], a["stopped"]), ("end", 5639), "年の終わりを 1 回すぎたら止まる")
+        roles = [x for x in a["labels"] if re.match(r"d\d+ (ソル|ミナ|カイ)", x)]
+        self.assertEqual({x.split()[0] for x in roles}, {"d5519"}, "役を演じる体を起こすのは集まりの歩だけ")
+        self.assertEqual(sum(1 for x in a["labels"] if x.endswith("season step")), 4)
+        self.assertTrue(out["b"]["why"].startswith("mode"), "G7 なのに season の形なら進めずに止まる")
+
+    def test_pythons(self):
+        """年の集まりと答えのない季節の当てはめ方は、python3.13 と python3 (3.11) で同じ (世界は進めない)"""
+        code = ("import sys, json, hashlib; sys.path[:0] = [sys.argv[1], sys.argv[1] + '/tools']; import test_g7 as t, g7, era2; "
+                "st = t.to_year_end(t.g7_state()); g7.apply_year(st, {n: t.year_answer(list(g7.SEASONS), judge_rule='ゆるす', feast=['秋']) for n in era2.answerers(st)}); "
+                "st['day'] += 30; st['era2']['g7']['ask'] = g7.ask_next(st); g7.apply_plan(st); "
+                "print(hashlib.sha256(json.dumps(st, sort_keys=True, ensure_ascii=False).encode()).hexdigest())")
+        outs = {}
+        for py in pythons():
+            r = subprocess.run([py, "-c", code, str(SOC)], capture_output=True, text=True, env=dict(os.environ, PYTHONUTF8="1"))
+            self.assertEqual(r.returncode, 0, r.stderr[-2000:])
+            outs[py] = r.stdout.strip()
+        self.assertEqual(len(set(outs.values())), 1, outs)
+
+    def test_same_as_g6(self):
+        """全部の家を見本にし、毎季節寄るようにした G7 (直し・天気も止める) は、同じ答えの G6 と同じ世界になる (6.2 の「同じになる試し」)"""
+        days = sorted(int(p.name[3:]) for p in (REAL / "answers").glob("day*") if p.name[3:].isdigit())
+        if not days:
+            self.skipTest("答えがない")
+        tmp = tmpdir()
+        try:
+            (tmp / "runner.py").write_text(RUNNER_SAME, encoding="utf-8")
+            env = dict(os.environ, PYTHONUTF8="1", PYTHONHASHSEED="0")
+            ps = {m: subprocess.Popen([sys.executable, str(tmp / "runner.py"), str(SOC), str(REAL), str(REAL / "answers" / f"day{days[-1]}"), m,
+                                       str(tmp / f"{m}.json")], env=env, stderr=subprocess.PIPE, text=True) for m in ("g6", "g7")}
+            for m, p in ps.items():
+                err = p.communicate()[1]
+                self.assertEqual(p.returncode, 0, err[-3000:])
+            a, b = (json.loads((tmp / f"{m}.json").read_text(encoding="utf-8")) for m in ("g6", "g7"))
+            diff = [k for k in sorted(set(a) | set(b)) if a.get(k) != b.get(k)]
+            diff += [f"era2.{k}" for k in sorted(set(a.get("era2", {})) | set(b.get("era2", {}))) if a["era2"].get(k) != b["era2"].get(k)]
+            self.assertEqual(diff, [], "ちがう鍵")
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+
+def characters_laws(st):
+    import characters
+    return characters._laws(st, with_pending=True)
+
+
+RUNNER_SAME = r'''
+import json, sys
+from pathlib import Path
+soc, real, ans, mode, out_f = sys.argv[1:6]
+sys.path[:0] = [soc, soc + "/tools"]
+import era2, world, test_g7
+st = json.loads(Path(real, "state.json").read_text(encoding="utf-8"))
+test_g7.part_end(st)
+if mode == "g7":  # 年 1 回の答え・直し・天気を止めた G7 (全部の家が見本で、毎季節寄る)
+    world.G7_PARTS.update(fix=False, weather=False, year=False)
+    import g7
+    g7.enter(st, 0.0)
+else:  # 出来事の番号をそろえる (G7 に入った日の出来事と同じ数)
+    world.log(st, "フェーズ", None, "第 5 部「王と青銅」を始めた: フェーズ G7 (王と役所)")
+def read(kind, who):
+    d = Path(ans) / kind
+    return {n: (d / f"{n}.json").read_text(encoding="utf-8") for n in who if (d / f"{n}.json").exists()}
+feels = read("feeling", era2.feelers(st))
+answers = read("season", era2.answerers(st))
+if mode == "g7":
+    assert st["era2"]["g7"]["ask"] == "寄る" and not st["era2"]["g7"]["donor"]
+    g7.apply_year(st, answers)
+else:
+    era2.apply_answers(st, answers)
+era2.apply_feelings(st, feels)
+first = era2.simulate_season(st)
+st["era2"]["last_first"] = first
+era2.check(st)
+for k in ("era", "era_info", "era_log", "hold", "next_event"):
+    st.pop(k, None)
+for k in ("g7", "ahead", "cattle", "walls"):
+    st["era2"].pop(k, None)
+for o in st["era2"]["g6"]["others"]:  # G6 の鍵だけくらべる
+    for k in ("cell", "land", "parent", "org", "commit", "stance", "walls", "tech", "head_age", "cattle_f", "pots_f", "sickles_f"):
+        o.pop(k, None)
+st["events"] = [e for e in st["events"] if e["type"] != "年の集まり"]
+Path(out_f).write_text(json.dumps(st, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+'''
+
+
+# ---------------------------------------------------------------- G
+@unittest.skipUnless(os.environ.get("SOC_SLOW") == "1", "SOC_SLOW=1 のときだけ (写しで step.py を 3 季節回す。10 分ほど)")
+class G_Flow(unittest.TestCase):
+    """写しで step.py を回す: G7 に入る (短い年の集まり) → 年の集まり → 答えのない季節。記録は 1 行 = 1 季節 (4.A.10)"""
+
+    @classmethod
+    def setUpClass(cls):
+        st = real_state()
+        if not is_g6(st) or st["phase"] != "season" or st.get("hold"):
+            raise unittest.SkipTest("本物の state が、季節の答えを待っている G6 でない")
+        cls.tmp = tmpdir()
+        cls.data = cls.tmp / "data"
+        cls.data.mkdir()
+        for d in ("archive", "records"):
+            if (REAL / d).exists():
+                shutil.copytree(REAL / d, cls.data / d)
+        part_end(st)
+        (cls.data / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        cls.env = dict(os.environ, SOC_DATA=str(cls.data), SOC_RECORDS="1", SOC_ARCHIVE="0", PYTHONUTF8="1", PYTHONIOENCODING="utf-8")
+
+    @classmethod
+    def tearDownClass(cls):
+        if getattr(cls, "tmp", None):
+            shutil.rmtree(cls.tmp, ignore_errors=True)
+
+    def step(self, *args):
+        r = subprocess.run([sys.executable, str(SOC / "step.py"), *args], capture_output=True, text=True, env=self.env)
+        self.assertEqual(r.returncode, 0, (r.stdout + r.stderr)[-3000:])
+        return r.stdout
+
+    def who(self):
+        w = dict((l.split(" ", 1) + [""])[:2] for l in self.step("who").strip().splitlines())
+        return int(w["DAY"].split()[0]), w["MEET"].strip(), w["NAMES"].split(), w["FEEL"].split()
+
+    def answer(self, day, names, feel, seas):
+        a = self.data / "answers" / f"day{day:03d}"
+        for kind, who in (("season", names), ("feeling", feel)):
+            (a / kind).mkdir(parents=True, exist_ok=True)
+            for n in who:
+                txt = (year_answer(seas, judge_rule="ゆるす", feast=["秋"], year_name="試しの年") if kind == "season"
+                       else json.dumps({"feeling": "試し", "say": []}, ensure_ascii=False))
+                (a / kind / f"{n}.json").write_text(txt, encoding="utf-8")
+
+    def test_flow(self):
+        self.step("next_part")
+        d0, meet, names, feel = self.who()
+        self.assertEqual(meet, "年")
+        self.assertTrue(names and feel)
+        seas = list(__import__("g7").SEASONS)
+        self.answer(d0, names, feel, seas[seas.index(world.season(d0 + 1)):])
+        self.step("season")
+        d1, meet, names, feel = self.who()
+        self.assertEqual((d1, meet), (d0 + 30, "年" if (d1 + 1) % era2.YEAR == 0 else meet))
+        if meet != "年":
+            self.skipTest("G7 に入った日の次が年の終わりでない (この試しは 5489 日目の state 向け)")
+        y = (self.data / "prompts" / f"day{d1:03d}" / "season" / f"{names[0]}.md").read_text(encoding="utf-8")
+        self.assertIn("1 年に 1 回の村の集まり", y)
+        self.assertIn('"year_name": "..."', y)
+        self.assertNotIn("見本", y)
+        f = (self.data / "prompts" / f"day{d1:03d}" / "feeling" / f"{feel[0]}.md").read_text(encoding="utf-8")
+        self.assertIn("1 年に 1 回の村の集まり。あなたが答えるのは", f)
+        self.answer(d1, names, feel, seas)
+        self.step("season")
+        d2, meet, names2, feel2 = self.who()
+        self.assertEqual((d2, meet, names2, feel2), (d1 + 30, "none", [], []))
+        self.assertFalse((self.data / "prompts" / f"day{d2:03d}").exists(), "集まりのない季節は、お題のフォルダを作らない")
+        out = self.step("season")
+        self.assertIn("この季節は集まらない", out)
+        st = json.loads((self.data / "state.json").read_text(encoding="utf-8"))
+        G = st["era2"]["g7"]
+        self.assertEqual((st["day"], G["step"]["how"], G["step"]["answer_day"]), (d2 + 30, "方針", d1))
+        self.assertIn("見本から広げた", G["src"].values())
+        self.assertTrue(any(e["type"] == "年の名前" and "試しの年" in e["text"] for e in st["events"]))
+        # 記録: 1 行 = 1 季節。G7 の季節は decided_by・is_sample・plan_answer_day
+        rows = [json.loads(x) for x in (self.data / "records" / "season_person.jsonl").read_text(encoding="utf-8").splitlines()]
+        vil = {r["season_end_day"]: r for r in (json.loads(x) for x in (self.data / "records" / "season_village.jsonl").read_text(encoding="utf-8").splitlines())}
+        for D, plan_day in ((d1, d0), (d2, d1), (d2 + 30, d1)):
+            rs = [r for r in rows if r["season_end_day"] == D]
+            self.assertTrue(rs, D)
+            self.assertEqual(len({r["person_id"] for r in rs}), len(rs), "1 人 1 季節に 1 行")
+            ad = [r for r in rs if not r["child"] and r["status_at_end"] == "生きている"]
+            self.assertTrue(all(r["plan_answer_day"] == plan_day and "is_sample" in r for r in ad), D)
+            self.assertLessEqual({r["decided_by"] for r in ad}, YEAR_SRC | {None})
+            self.assertIn("見本から広げた", {r["decided_by"] for r in ad})
+            self.assertEqual(vil[D]["answered"]["plan_answer_day"], plan_day)
+            self.assertGreater(vil[D]["answered"]["sample_households"], 0)
+        self.assertEqual(vil[d2 + 30]["answered"]["season"], 0, "答えのない季節")
+        self.assertTrue(any(r["answered"] == "season" for r in rows if r["season_end_day"] == d2))
+        self.assertTrue(any(r["decided_by"] == "年の答え (自分)" for r in rows if r["season_end_day"] == d2 + 30))
 
 
 if __name__ == "__main__":

@@ -1048,7 +1048,7 @@ class M_Accounts(Base):
             for n in names:
                 a, b = (old / n).read_bytes(), (new / n).read_bytes()
                 if n == "columns.json":  # 足した列のほかは同じ並び。4409 日目の区切りを書きそえた列は note だけちがう
-                    cs = [c for c in json.loads(b) if not (c["table"] == "season_village" and c["column"] in ACC_KEYS)]
+                    cs = [c for c in json.loads(b) if not (c["table"] == "season_village" and c["column"] in ACC_KEYS) and (c["table"], c["column"]) not in G7_COLS]
                     self.assertTrue(all("4409" in c["note"] for c in cs if (c["table"], c["column"]) in ACC_NOTES))
                     was, now = ([dict(c, note=None) if (c["table"], c["column"]) in ACC_NOTES else c for c in x] for x in (json.loads(a), cs))
                     self.assertEqual(now, was)
@@ -1063,6 +1063,7 @@ class M_Accounts(Base):
             shutil.rmtree(d2, ignore_errors=True)
 
 
+G7_COLS = {("season_person", "is_sample"), ("season_person", "plan_answer_day"), ("season_person", "donor_household_id")}  # G7 (年 1 回の答え) で足した列。G7 の行にだけある
 WHY_ADDED = ("   その仕事にした理由を一言で書く (why。続けている仕事なら、続ける理由を)\n",
              "\n- family に書いた人ごとに、その仕事にした理由も一言書く (family の why)", ', "why": "..."')  # ask_why でお題に足す文
 ASK_KEYS = ("ask_why", "ask_why_log")

@@ -143,7 +143,20 @@ def pdir(state, phase, kind):
     return DATA / kind / f"day{state['day']:03d}" / phase
 
 
+def _g7(state):
+    """G7 から働く仕組み (g7.py)。G7 に入ったあと (state["era2"] に "g7" がある) だけ読みこむ。G6 までは None"""
+    if "g7" not in (state.get("era2") or {}):
+        return None
+    import g7  # noqa: E402
+    return g7
+
+
 def write_prompts(state, phase):
+    g7 = _g7(state) if phase == "season" else None
+    if g7 and not state["era2"]["g7"].get("ask"):  # G7: 集まりのない季節はお題を書かない (年の予定と方針で進む。docs/society_phase/G7_design.md 4.A.2)
+        print("お題: この季節は集まらない (年の集まりの予定と方針で進む)。次: season")
+        return
+    first = g7.since(state) if g7 else (state.get("era2") or {}).get("last_first", 0)  # G7: この前の集まりの歩から
     d = pdir(state, phase, "prompts")
     d.mkdir(parents=True, exist_ok=True)
     who = set(era2.answerers(state)) if phase == "season" else None
@@ -153,7 +166,8 @@ def write_prompts(state, phase):
         if p.get("child") or (who is not None and p["name"] not in who):
             continue
         if phase == "season":
-            text = era2.season_prompt(state, p, state["era2"].get("last_first", 0))
+            text = (g7.year_prompt(state, p, first) if g7 and state["era2"]["g7"]["ask"] == "年"  # G7 の年の集まり (寄る季節は季節のお題)
+                    else era2.season_prompt(state, p, first))
         elif phase == "evening":
             text = characters.evening_prompt(state, p)
         else:
@@ -169,7 +183,7 @@ def write_prompts(state, phase):
         fa.mkdir(parents=True, exist_ok=True)
         for n in era2.feelers(state):
             p = next(q for q in state["people"] if q["name"] == n)
-            (fd / f"{n}.md").write_text(era2.feeling_prompt(state, p, state["era2"].get("last_first", 0)), encoding="utf-8")
+            (fd / f"{n}.md").write_text(era2.feeling_prompt(state, p, first), encoding="utf-8")
         print(f"気持ちのお題: {fd.relative_to(DATA.parent)}  →  答えの置き場所: {fa.relative_to(DATA.parent)}/<名前>.json")
 
 
@@ -392,8 +406,9 @@ def main():
         print(f"HOLD {code or 'none'}")
         print(f"MODE {'year' if g7 else 'season'}")
         print(f"MEET {(g7.get('ask') or 'none') if g7 else '季節' if season_ok else 'none'}")
-        print("NAMES " + (" ".join(era2.answerers(state)) if season_ok else ""))
-        print("FEEL " + (" ".join(era2.feelers(state)) if season_ok else ""))
+        meet = season_ok and (not g7 or bool(g7.get("ask")))  # G7: 答える人がいるのは集まりの歩だけ
+        print("NAMES " + (" ".join(era2.answerers(state)) if meet else ""))
+        print("FEEL " + (" ".join(era2.feelers(state)) if meet else ""))
         print("COUNCIL " + " ".join(sorted(((g7 or {}).get("region") or {}).get("councils", {}).get("ask", []))))
         print(f"ASKLOG {'ask_why_log' in e2}")
         return
@@ -471,11 +486,22 @@ def main():
                 era2.take_notes()  # 記録のための書きとめ: 前のものを捨てる
             except Exception as ex:  # 記録の失敗で、世界を止めない
                 print(f"記録: 書きとめを空にできなかった ({type(ex).__name__}: {ex})")
-        feels = read_feelings(state)  # 代表を決める前の顔ぶれで読む (集まりで、まとめ役が変わることがあるため)
-        era2.apply_answers(state, read_answers(state, "season"))
-        era2.apply_feelings(state, feels)
+        g7 = _g7(state)
+        met = not g7 or bool(state["era2"]["g7"].get("ask"))  # G7: 集まりの歩 (年の集まり・寄る季節・集まり直し) か
+        if g7 and not met:  # G7 の答えのない季節: 年の答えの、この季節の予定と 1 年の方針で進む (docs/society_phase/G7_design.md 4.A.6)
+            print(f"この季節は集まらない (年の集まり {state['era2']['g7'].get('answer_day')} 日目の予定と方針で進む)")
+            g7.apply_plan(state)
+        else:
+            feels = read_feelings(state)  # 代表を決める前の顔ぶれで読む (集まりで、まとめ役が変わることがあるため)
+            if g7:  # G7 の集まりの歩: 見本の家の答えを、見本でない家に広げる
+                g7.apply_year(state, read_answers(state, "season"))
+            else:
+                era2.apply_answers(state, read_answers(state, "season"))
+            era2.apply_feelings(state, feels)
         first = era2.simulate_season(state)
         state["era2"]["last_first"] = first
+        if g7:
+            g7.after_season(state, first, met)
         if not any(p["alive"] for p in state["people"]):
             snap = _snap(state, before, first)
             _archive(state)
@@ -520,7 +546,8 @@ def main():
         export(state)
         _records(snap)
         for e in state["events"]:
-            if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ", "区切り")) \
+            if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ", "区切り",
+                                                   "年の集まり")) \
                     or (e["id"] >= before and (e["type"] in era2.G5_EVENTS + era2.G6_EVENTS or e["type"] == "年の名前")):
                 print("*", e["text"][:120])
         harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")

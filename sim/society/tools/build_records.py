@@ -1047,11 +1047,23 @@ class Builder:
                      "penalty_laws": ind.get("penalty_laws") if C else None},
             "g5": g5row,
             "answered": {"season": len(ans.get("season") or {}), "feeling": len(ans.get("feeling") or {}),
-                         "reps": len([n for n in (ans.get("season") or {}) if n in self.reps_at(a, P)])},
+                         "reps": len([n for n in (ans.get("season") or {}) if n in self.reps_at(a, P)])} | self.g7_answered(C, D),
             "year_named": c["year_named"],
             "criteria": crit,
             "snapshot": C is not None,
         } | ({"g6": self.g6_row(c, ind)} if accounts.at_least(c["era"], "G6") else {})  # G6 から (G7 からも、ほかの村・記録は続く)
+
+    @staticmethod
+    def g7_answered(C, D):
+        """G7: 見本の家・見本から広げた家・年の答えの日・寄る年 (G6 までは何も足さない)"""
+        G = (C or {}).get("g7") or {}
+        st = G.get("step")
+        if not st:
+            return {}
+        z = G.get("zoom")
+        return {"sample_households": len(st.get("sample", [])), "expanded_households": len(st.get("donor", {})), "rule_households": len(st.get("rule", [])),
+                "plan_answer_day": st.get("answer_day"), "ask": st.get("ask"),
+                "zoom": z["why"] if z and z.get("year") == (D // YEAR) else None}
 
     def g6_row(self, c, ind):
         """村の行の G6 (ほかの村・交換・印と封・記録の道具・確かめた・町)。数の多くは控えの era_info の目安 (era2._g6_indicators)、この季節の数は出来事から"""
@@ -1177,6 +1189,8 @@ class Builder:
         ans = self.answers.get(a, {})
         sea, fee = ans.get("season") or {}, ans.get("feeling") or {}
         joined_here = set(c["demo"]["joined"])
+        G = (C or {}).get("g7") or {}  # G7 (年 1 回の答え。docs/society_phase/G7_design.md 4.A.10): だれの答えで仕事が決まったかは控えの g7.src から
+        g7src, g7step = G.get("src"), G.get("step") or {}
         out = []
         for n in c["present"]:
             p = self.byname[n]
@@ -1191,7 +1205,9 @@ class Builder:
             jobs, decided = [], None
             joined_adult = n in joined_here and (self.age(n, a) or 0) >= era2.ADULT  # 集まりで加わった大人 (子は仕事をしない)
             if adult_meeting or joined_adult:
-                if n in sea:
+                if g7src is not None and n in g7src:  # G7: 年の答え (自分・代表が割り振った・代表と同じ仕事)・見本から広げた・決まり・加わった季節 (寄る季節は今と同じ値)
+                    decided = g7src[n]
+                elif n in sea:
                     decided = "自分"
                 elif joined_adult:
                     decided = "加わった季節"
@@ -1206,13 +1222,15 @@ class Builder:
                     S = self.snaps.get(rd["end"])
                     plan = ((S or {}).get("people", {}).get(n) or {}).get("plan") if S else None
                     if plan is None:
-                        plan = self.plan_from_answers(n, h, sea, reps)
+                        plan = self.plan_from_answers(n, h, sea, reps, era2.season(rd["start"] + 1))
                     if plan:
                         jobs.append({"from_day": rd["start"] + 1, "activity": plan.get("activity"), "place": plan.get("place"),
                                      "with": [self.P(w) for w in plan.get("with") or []], "decided_by": decided})
             why, why_by = None, None  # 仕事の理由 (段階 1。step.py ask_why のあとの、理由の欄があるお題の答えだけ読む)
             asked = self.why_asked(a)
-            if asked and decided == "自分" and isinstance(sea[n].get("job"), dict):
+            if asked and decided in ("年の答え (自分)", "年の答え (代表が割り振った)"):  # G7: 年の答えの、この季節の分の理由
+                why, why_by = self.g7_why(n, h, g7step, decided)
+            elif asked and decided == "自分" and isinstance(sea[n].get("job"), dict):
                 why, why_by = sea[n]["job"].get("why"), "自分"
             elif asked and decided == "代表が割り振った":  # 代表が family に書いた、その人の理由 (代表と同じ仕事の人には、理由をたずねていない)
                 rep = next((r for r in sea if r in reps and self.byname[r].get("household") == h and h), None)
@@ -1257,7 +1275,8 @@ class Builder:
                 "items": (self.counts(sp1.get("items")) if alive1 else None),
                 "laws": lw if adult_meeting else {"proposed": lw["proposed"], "votes": None}, "knowledge_added": kn,
                 "snapshot": C is not None,
-            })
+            } | ({"is_sample": h in g7step.get("sample", []), "plan_answer_day": g7step.get("answer_day"),  # G7 から (G6 までは鍵がない)
+                  "donor_household_id": self.H(g7step["donor"][h]) if h in g7step.get("donor", {}) else None} if g7step else {}))
         return out
 
     @staticmethod
@@ -1268,19 +1287,36 @@ class Builder:
             add(out, x, 1)
         return {k: out[k] for k in sorted(out)}
 
-    def plan_from_answers(self, n, h, sea, reps):
+    def plan_from_answers(self, n, h, sea, reps, season=None):
+        def part(a_):  # G7 の年の答え: その季節の分 (G6 までの答えには year がない)
+            y = a_.get("year") if isinstance(a_.get("year"), dict) else None
+            return (y.get(season) if isinstance(y.get(season), dict) else {}) if y is not None and season else a_
         a_ = sea.get(n)
         if a_ is None:
             rep = next((r for r in sea if r in reps and self.byname[r].get("household") == h and h), None)
             if not rep:
                 return None
-            fam = sea[rep].get("family") if isinstance(sea[rep].get("family"), dict) else {}
-            job = fam.get(n) or sea[rep].get("job") or sea[rep].get("plan")
+            r_ = part(sea[rep])
+            fam = r_.get("family") if isinstance(r_.get("family"), dict) else {}
+            job = fam.get(n) or r_.get("job") or r_.get("plan")
         else:
+            a_ = part(a_)
             job = a_.get("job") or a_.get("plan")
         if isinstance(job, str):
             job = {"activity": job}
         return job if isinstance(job, dict) else None
+
+    def g7_why(self, n, h, step, decided):
+        """G7: 年の答えの、この季節の分の理由 (自分の job.why か、代表の family の why)。戻り値: (理由, 書いた人)"""
+        sea = (self.answers.get(step.get("answer_day")) or {}).get("season") or {}
+        sname = step.get("season")
+        who = n if decided == "年の答え (自分)" else next((r for r in step.get("answered", []) if r in sea and self.byname.get(r, {}).get("household") == h), None)
+        y = (sea.get(who) or {}).get("year") if who else None
+        sub = y.get(sname) if isinstance(y, dict) else None
+        if not isinstance(sub, dict):
+            return None, None
+        src = sub.get("job") if who == n else (sub.get("family") or {}).get(n) if isinstance(sub.get("family"), dict) else None
+        return (src.get("why"), "自分" if who == n else "代表") if isinstance(src, dict) else (None, None)
 
     def laws_by_person(self, n, a, sea, reps, h):
         proposed = [l["id"] for l in self.state.get("laws", []) if l.get("proposer") == n and l.get("day") == a]
@@ -1595,6 +1631,12 @@ COLUMNS = [
     ("season_person", "laws", "掟の提案と投票", None, "シ", "state の laws と答え", True, 489, None),
     ("season_person", "knowledge_added", "新しく覚えたこと", "件", "シ", "knowledge_log", True, 489, None),
     ("season_person", "snapshot", "季節の終わりの値が控えから取れたか", None, "-", "", True, 489, None),
+    ("season_person", "is_sample", "見本の家か (G7 から。年 1 回の答えで答えた家)", None, "シ", "控え (g7.step)", True, None,
+     "G7 から。decided_by に、年の答え (自分)・年の答え (代表が割り振った)・年の答え (代表と同じ仕事)・見本から広げた・決まり (前の年と同じ) が加わる。"
+     "見本から広げた = 見本でない家が、同じ組の手本の家の答えをまねた (【シ】。村の人は知らない)"),
+    ("season_person", "plan_answer_day", "この季節の仕事を決めた集まりの日 (G7 から)", "日", "シ", "控え (g7.step)", True, None,
+     "年の集まりか、寄る季節の集まりの日"),
+    ("season_person", "donor_household_id", "手本の家 (G7 から。見本から広げた家だけ)", None, "シ", "控え (g7.step)", True, None, None),
     ("season_person", "why", "主な仕事にした理由の一言", None, "シ", "季節の答えの job.why と、代表の答えの family の why", True, None,
      "段階 1 (docs/humanity の D09)。step.py ask_why のあとのお題から。代表が割り振った人は代表が書いた理由。代表と同じ仕事の人は null (理由をたずねていない)"),
     ("season_person", "why_by", "理由を書いた人 (自分・代表)", None, "シ", "季節の答え", True, None,

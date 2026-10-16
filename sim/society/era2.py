@@ -166,8 +166,9 @@ def _give_initial_knowledge(state, p):
 
 # ---------------- 1 季節を進める ----------------
 
-def apply_answers(state, answers):
-    """季節のはじめの答え: 話す・仕事・畑にまく量・ヤギを食べる・受け入れ・知識・掟の提案と投票・気持ち"""
+def apply_answers(state, answers, how="集まり"):
+    """季節のはじめの答え: 話す・仕事・畑にまく量・ヤギを食べる・受け入れ・知識・掟の提案と投票・気持ち
+    (how: G7 の答えのない季節は "方針" (g7.apply_plan。年の方針で決めた、と書く)。G6 までは "集まり" のまま)"""
     e2 = state["era2"]
     alive = {p["name"]: p for p in adults(state)}
     places = {pl["id"] for pl in state["places"]}
@@ -253,10 +254,10 @@ def apply_answers(state, answers):
     for msg in knowledge.settle_meeting(state):  # 季節ごとに集まる
         log(state, "掟", None, msg)
     if g5:
-        _g5_meeting(state, c5, len(alive))  # 掟を決めてから (この集まりで採用された罰の掟も、この集まりで使う)
+        _g5_meeting(state, c5, len(alive), how)  # 掟を決めてから (この集まりで採用された罰の掟も、この集まりで使う)
     if g6:
-        _g6_meeting(state, c6, len(alive))  # 印 → 村の蓄えの封 → 申し出 (よそから来た人の受け入れの前)
-    _settle_visitors(state, accept, len(alive))
+        _g6_meeting(state, c6, len(alive), how)  # 印 → 村の蓄えの封 → 申し出 (よそから来た人の受け入れの前)
+    _settle_visitors(state, accept, len(alive), how)
     _eat_goats(state)
     if yname:
         _year_name(state, yname, len(alive))  # 集まりの最後に (ほかの集まりの出来事の並びは変わらない)
@@ -273,8 +274,9 @@ def _int(v):
         return 0
 
 
-def _settle_visitors(state, accept, n_adults):
+def _settle_visitors(state, accept, n_adults, how="集まり"):
     e2 = state["era2"]
+    pol = "年の方針で。" if how == "方針" else ""  # G7 の答えのない季節 (G6 までは空の文字)
     rng = _rng(state, 11)
     for v in e2["visitors"]:
         vr = random.Random(v["seed"]) if v.get("seed") is not None else rng  # G6: ほかの村から来た群れは、その群れの乱数で (前からの列に足さない)
@@ -304,10 +306,10 @@ def _settle_visitors(state, accept, n_adults):
                     e2["jobs"][q["name"]] = {"sow": 0, "pick": 0, "plant": 0, "eat_goat": 0, "harvest": 0}
             names = "・".join(member_names)
             o = _other(state, v.get("from")) if v.get("from") else None
-            log(state, "加わる", None, f"よそから来た {names} が、村に加わった ({o['name'] + 'から。' if o else ''}賛成 {yes} / {n_adults})")
+            log(state, "加わる", None, f"よそから来た {names} が、村に加わった ({o['name'] + 'から。' if o else ''}{pol}賛成 {yes} / {n_adults})")
         else:
             o = _other(state, v.get("from")) if v.get("from") else None
-            log(state, "去る", None, f"よそから来た {v['name']} たちは、受け入れられず{'、' + o['name'] + 'へ帰って' if o else '去って'}いった (賛成 {yes} / {n_adults})")
+            log(state, "去る", None, f"よそから来た {v['name']} たちは、受け入れられず{'、' + o['name'] + 'へ帰って' if o else '去って'}いった ({pol}賛成 {yes} / {n_adults})")
         if v.get("from"):
             _g6_settled(state, v, yes * 2 > n_adults)
     e2["visitors"] = []
@@ -1102,10 +1104,13 @@ def _g5_collect(state, c, p, a, fam):
     act = next((x for x in sorted(acts2(state), key=len, reverse=True) if x in str(a.get("call") or "")), None)
     if act:
         c["call"][p["name"]] = act
+        if a.get("call_when"):  # G7: 呼びかける季節 (年の答え。G6 までは、この鍵はない)
+            c.setdefault("when", {})[p["name"]] = a["call_when"]
 
 
-def _g5_meeting(state, c, n):
-    """季節の集まり (G5。掟を決めたあと): 呼びかけに応じたか → もめごとを収める (まとめ役 → 集まり → 長老) → 祭り → まとめ役を選ぶ → 呼びかけ"""
+def _g5_meeting(state, c, n, how="集まり"):
+    """季節の集まり (G5。掟を決めたあと): 呼びかけに応じたか → もめごとを収める (まとめ役 → 集まり → 長老) → 祭り → まとめ役を選ぶ → 呼びかけ
+    (how: G7 の答えのない季節は "方針"。数え方は同じで、文だけ「季節のはじめに、年の方針で…」)"""
     e2, g = state["era2"], _g5(state)
     g["meet_first"] = state["next_event"]  # この集まりからの出来事を、次のお題に見せる (集まりの出来事は 30 日の前に起きるので、前の季節のまとめに入らない)
     _check_leader(state)
@@ -1113,7 +1118,7 @@ def _g5_meeting(state, c, n):
     lead = g["leader"]  # お題を書いたときのまとめ役 (この集まりで選ばれた人は、次の集まりから)
     # 前の集まりのまとめ役の呼びかけに、この季節、大人の何人が応じたか (大人の半分をこえると「共同の仕事」。【文献】Fried)
     cl = g["call"]
-    if cl:
+    if cl and cl.get("when") in (None, season(state["day"] + 1)):  # G7: 季節を決めた呼びかけ (when) は、その季節に数える (G6 までは when がない)
         m = sum(1 for q in ads.values() if q["plan"]["activity"] == cl["activity"])
         ok = m * 2 > len(ads)
         g["joint"] += 1 if ok else 0
@@ -1130,7 +1135,7 @@ def _g5_meeting(state, c, n):
         if v:
             if rec:
                 _g6_check(state, d)
-            _verdict(state, d, v, "まとめ役", lead)
+            _verdict(state, d, v, "まとめ役", lead, how)
             continue
         if talked >= TALK_MAX and not rec:
             continue
@@ -1142,11 +1147,12 @@ def _g5_meeting(state, c, n):
         elder = max([q for q in ads.values() if q.get("household") not in parties], key=lambda q: q["age"], default=None)  # 同じ年なら人の並びで先 (家の代表の決め方と同じ。2026-10-08)
         ev = c["by"].get(elder["name"], {}).get(d["id"]) if elder else None
         if top * 2 > n:
-            _verdict(state, d, max(tally, key=tally.get), "集まり", None)
+            _verdict(state, d, max(tally, key=tally.get), "集まり", None, how)
         elif ev and tally.get(ev, 0) >= top:
-            _verdict(state, d, ev, "長老", elder["name"])
+            _verdict(state, d, ev, "長老", elder["name"], how)
         elif tally:
-            log(state, "もめごと", None, f"季節の集まりで、もめごと [{d['id']}] を話し合ったが、まとまらなかった ("
+            log(state, "もめごと", None, (f"季節の集まりで、もめごと [{d['id']}] を話し合ったが" if how == "集まり"
+                                         else f"季節のはじめに、年の方針で、もめごと [{d['id']}] を収めようとしたが") + "、まとまらなかった ("
                 + "・".join(f"{k} {x} 人" for k, x in sorted(tally.items())) + f" / 大人 {n} 人)", dispute=d["id"])
     # 祭り: 大人の半分をこえる人が望むか、まとめ役が望むと (【文献】Stein 1994)。まだ収まっていないもめごとの半分 (古いものから) が仲直りで収まる
     if len(c["feast"]) * 2 > n or lead in c["feast_by"]:
@@ -1181,11 +1187,12 @@ def _g5_meeting(state, c, n):
     # まとめ役の呼びかけ (次の季節にみんなでする仕事。応じるかは、それぞれが決める)
     act = c["call"].get(lead) if lead and g["leader"] == lead else None
     if act:
-        g["call"] = {"by": lead, "activity": act, "day": e2["step_day"]}
-        log(state, "まとめ役", lead, f"まとめ役の {lead} が、「次の季節は、みんなで {act} をしよう」と呼びかけた")
+        when = (c.get("when") or {}).get(lead)  # G7: 呼びかける季節 (G6 までは None)
+        g["call"] = {"by": lead, "activity": act, "day": e2["step_day"]} | ({"when": when} if when else {})
+        log(state, "まとめ役", lead, f"まとめ役の {lead} が、「{when or '次の季節'}は、みんなで {act} をしよう」と呼びかけた")
 
 
-def _verdict(state, d, v, by, who):
+def _verdict(state, d, v, by, who, how="集まり"):
     """もめごとが収まる。「つぐなう」なら、相手の家が言い出した家に払う (罰のある掟があれば罰の量、なければもめごとの分)"""
     g = _g5(state)
     law, paid, words = None, 0, ""
@@ -1202,10 +1209,14 @@ def _verdict(state, d, v, by, who):
     if by != "祭り":
         head = {"まとめ役": f"まとめ役の {who} が裁いた", "集まり": "季節の集まりで決まった",
                 "長老": f"長老 (もめごとの家の人でない大人でいちばん年上) の {who} の言葉で決まった"}[by]
+        if how == "方針":  # G7 の答えのない季節: 年の集まりで決めた方針で収めた
+            head = {"まとめ役": f"季節のはじめに、まとめ役の {who} の年の方針で裁いた", "集まり": "季節のはじめに、年の方針で決まった",
+                    "長老": f"季節のはじめに、長老 (もめごとの家の人でない大人でいちばん年上) の {who} の年の方針で決まった"}[by]
         res = (f"{d['from']}は{d['against']}をゆるした (払いはない)" if v == "ゆるす" else
                f"{d['against']}が{d['from']}に {words} を払った" + (f" (掟 [{law['id']}] の罰)" if law else "") if paid
                else f"{d['against']}には、払えるものがなかった")
-        log(state, "裁き" if by == "まとめ役" else "収める", who, f"もめごと [{d['id']}] ({d['what']}) は、{head}: 「{v}」。{res}", dispute=d["id"], by=by)
+        log(state, "裁き" if by == "まとめ役" else "収める", who, f"もめごと [{d['id']}] ({d['what']}) は、{head}: 「{v}」。{res}", dispute=d["id"], by=by,
+            **({"how": how} if how != "集まり" else {}))
     if law and paid > 0:  # 罰は、実際に何か払われたときだけ数える
         g["penalties"] += 1
         log(state, "罰", None, f"{d['against']}が、掟 [{law['id']}] の罰として、{d['from']}に {words} を払った", dispute=d["id"], law=law["id"])
@@ -1618,7 +1629,7 @@ def _g6_collect(state, c, p, a, fam, own):
         c["store_by"].add(p["name"])
 
 
-def _g6_meeting(state, c, n):
+def _g6_meeting(state, c, n, how="集まり"):
     """季節の集まり (G6。G5 の集まりのあと、よそから来た人の受け入れの前): 家の印 → 村の蓄えの封 → 申し出"""
     e2, g = state["era2"], _g6(state)
     lead, homes = _leader(state), _homes(state)
@@ -1635,12 +1646,13 @@ def _g6_meeting(state, c, n):
     for off in g["offers"]:
         o = _other(state, off["other"])
         if o:
-            _g6_decide(state, c, off, o, n, lead)
+            _g6_decide(state, c, off, o, n, lead, how)
     g["offers"] = []
 
 
-def _g6_decide(state, c, off, o, n, lead):
+def _g6_decide(state, c, off, o, n, lead, how="集まり"):
     g = _g6(state)
+    at = "季節の集まりで" if how == "集まり" else "季節のはじめに、年の方針で"  # G7 の答えのない季節 (G6 までは「季節の集まりで」のまま)
     if off["kind"] == "返す":
         _g6_repay(state, off, o)
         return
@@ -1653,10 +1665,10 @@ def _g6_decide(state, c, off, o, n, lead):
     votes = f"村 {tally.get('村', 0)}・家 {tally.get('家', 0)}・受けない {tally.get(False, 0)} / 大人 {n}"
     if side is None:
         o["trust"] = max(0.0, round(o["trust"] - 0.1, 2))
-        log(state, "よその村", None, f"季節の集まりで、{o['name']} の申し出 [{off['id']}] は受けなかった ({votes})", other=o["id"], offer=off["id"])
+        log(state, "よその村", None, f"{at}、{o['name']} の申し出 [{off['id']}] は受けなかった ({votes})", other=o["id"], offer=off["id"])
         return
     if any(_g6_have(state, side, k) < m for k, m in off["want"].items()):
-        log(state, "交換", None, f"季節の集まりで、{o['name']} の申し出 [{off['id']}] を{side}の物で受けようとしたが、{_gw(off['want'])} がなかった",
+        log(state, "交換", None, f"{at}、{o['name']} の申し出 [{off['id']}] を{side}の物で受けようとしたが、{_gw(off['want'])} がなかった",
             other=o["id"], offer=off["id"])
         return
     out_ids = []
@@ -1670,7 +1682,7 @@ def _g6_decide(state, c, off, o, n, lead):
         g["debts"].append(d)
         _g6_note(state, o, {}, (gave,))
         _g6_contact(state, o)
-        log(state, "貸し借り", None, f"季節の集まりで、{who} {o['name']} に {_gw(gave)} を貸した [{d['id']}] (1 年のうちに同じ量を返すと言った。{votes})",
+        log(state, "貸し借り", None, f"{at}、{who} {o['name']} に {_gw(gave)} を貸した [{d['id']}] (1 年のうちに同じ量を返すと言った。{votes})",
             other=o["id"], debt=d["id"], moves=[_mv(side, -1, gave, out_ids)])
         return
     _node_add(o, off["give"], -1)
@@ -1679,7 +1691,7 @@ def _g6_decide(state, c, off, o, n, lead):
     _g6_note(state, o, gave, (off["give"],))
     _g6_contact(state, o)
     sx = (" (" + "・".join(f"{x['sex']} {x['age']} 歳" for x in off["goats_in"]) + ")") if off["goats_in"] else ""
-    log(state, "交換", None, f"季節の集まりで、{who} {o['name']} の申し出 [{off['id']}] を受け、{_gw(gave)} を {_gw(off['give'])}{sx} と取り替えた ({votes})",
+    log(state, "交換", None, f"{at}、{who} {o['name']} の申し出 [{off['id']}] を受け、{_gw(gave)} を {_gw(off['give'])}{sx} と取り替えた ({votes})",
         other=o["id"], offer=off["id"], moves=[_mv(side, -1, gave, out_ids), _mv(to, 1, off["give"], in_ids)], **({"household": side} if side != "村" else {}))
 
 
@@ -2572,7 +2584,10 @@ def _reps(state):
 
 
 def answerers(state):
-    """季節のはじめに答える人 (G5: まとめ役は、家族の代表でなくても答える。代表は家族でいちばん年上の大人のまま (計画 4))"""
+    """季節のはじめに答える人 (G5: まとめ役は、家族の代表でなくても答える。代表は家族でいちばん年上の大人のまま (計画 4))
+    (G7 からは、見本の家の代表とまとめ役。答えるのは集まりの歩だけ。g7.answerers)"""
+    if "g7" in state["era2"]:
+        return _g7m().answerers(state)
     ads = adults(state)
     if not state["era2"].get("rep_mode"):
         return [p["name"] for p in ads]
@@ -2583,7 +2598,10 @@ def answerers(state):
 
 def feelers(state):
     """気持ちだけ答える人 (2026-10-09 本人の希望「全員が気持ちだけ答える」): 家族の代表 (と G5 のまとめ役) でない大人。
-    季節のはじめに、今の気持ちとだれかへの一言だけを答える。仕事・掟の投票・受け入れは、今までどおり代表が決める (世界の進み方は変わらない)"""
+    季節のはじめに、今の気持ちとだれかへの一言だけを答える。仕事・掟の投票・受け入れは、今までどおり代表が決める (世界の進み方は変わらない)
+    (G7 からは、見本の家の大人で代表でない人だけ。g7.feelers)"""
+    if "g7" in state["era2"]:
+        return _g7m().feelers(state)
     if not state["era2"].get("rep_mode"):
         return []
     who = set(answerers(state))
@@ -2606,13 +2624,14 @@ def _feeling_prompt(state, p, first):
     rows = [f"- {q['name']} ({q['sex']}、{q['age']} 歳{'。家族の代表' if q['name'] == rep else ''})" for q in fam]
     rows += [f"- 子: {c['name']} ({c['sex']}、{c['age']} 歳)" for c in kids]
     sea = season(state["day"] + 1)
+    g7 = _g7m() if "g7" in state["era2"] else None  # G7 から (G6 までは前と同じ文)
     return f"""{RULES2}
 
 {me}
 ## 村のようす
 {_village(state)}{_year_names_text(state)}
-## 前の季節のこと
-{_season_digest(state, p, first)}
+## {g7.digest_head(state) if g7 else "前の季節のこと"}
+{g7.digest(state, p, first) if g7 else _season_digest(state, p, first)}
 
 ## 最近聞いた話
 {characters._heard(p)}
@@ -2622,8 +2641,8 @@ def _feeling_prompt(state, p, first):
 {chr(10).join(rows) if rows else '- (ほかの家族はいない)'}
 
 ## いま
-{state["day"] + 1} 日目、{sea}。季節のはじめの集まり。あなたが答えるのは次の 2 つだけ。
-1. 今の気持ち (feeling、120 字まで)。前の季節に起きたことと、あなた自身や家族のことから、あなたらしい言葉で
+{state["day"] + 1} 日目、{sea}。{g7.meeting_word(state) if g7 else "季節のはじめの集まり"}。あなたが答えるのは次の 2 つだけ。
+1. 今の気持ち (feeling、120 字まで)。{g7.since_word(state) if g7 else "前の季節"}に起きたことと、あなた自身や家族のことから、あなたらしい言葉で
 2. だれかに一言 (say、0〜1 つ、60 字まで。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さない
 
 ## 答えの形 (JSON)
@@ -2902,6 +2921,9 @@ MEETING_EVENTS = ("話す", "掟", "もめごと", "収める", "裁き", "罰",
                   "印", "封", "よその村", "交換", "貸し借り", "確かめる", "覚え")  # 後ろの 7 つは G6 の集まりの出来事 (G6 の前は起きない)
 
 
+POLICY = "季節のはじめに、年の方針で"  # G7 の答えのない季節に、年の集まりの方針で決まったこと (集まりの出来事に数える。G6 までは出ない)
+
+
 def _meeting_event(e):
     t, x = e["type"], e["text"]
     if t not in MEETING_EVENTS:
@@ -2909,11 +2931,11 @@ def _meeting_event(e):
     if t == "封":
         return "ふさぐことになった" in x  # 季節の終わりの「封のかけら」と、30 日のあいだの「封が割れていた」は、集まりの前
     if t in ("よその村", "交換"):
-        return x.startswith("季節の集まりで")  # 季節の終わりに来た人・交換に行った先での交換は、集まりの前
+        return x.startswith(("季節の集まりで", POLICY))  # 季節の終わりに来た人・交換に行った先での交換は、集まりの前 (POLICY は G7 の答えのない季節)
     if t == "貸し借り":
         return "返されないまま" not in x  # 返されないまま 1 年たったのは、季節の終わり
     if t == "もめごと":
-        return "話し合ったが" in x  # 季節の終わりの「言い出した」「重なった」「言わなくなった」は、集まりの前
+        return "話し合ったが" in x or x.startswith(POLICY)  # 季節の終わりの「言い出した」「重なった」「言わなくなった」は、集まりの前
     if t == "去る":
         return "受け入れられず" in x  # 蓄えが尽きて出ていくのは、季節の途中
     if t == "まとめ役":
@@ -2944,7 +2966,8 @@ def meeting_first(state, day):
 YEAR_NAME_MAX = 20
 YEAR_EVENTS = ("フェーズ", "区切り", "段階", "分かれる", "死", "生まれる", "加わる", "去る", "まとめ役", "受けつぎ", "祭り", "住まい", "もめごと",
                "収める", "裁き", "罰", "大人になる", "ヤギ", "ヤギを食べる", "虫", "蓄えが尽きる", "家族",
-               "町", "記録")  # お題に見せる出来事 (前のものほど先に残す)。町・記録は G6 から (記録は、道具が使えるようになったときだけ)
+               "町", "記録",  # お題に見せる出来事 (前のものほど先に残す)。町・記録は G6 から (記録は、道具が使えるようになったときだけ)
+               "年の集まり")  # G7 から (次の年が、1 年に 1 回の集まりか、季節ごとに集まるか。年の終わりに決まる)
 YEAR_DIGEST_MAX = 15
 STOP_WORDS = ("フェーズが", "Society 2.0 が終わった")  # ワークフローが止まる文と重なる名前は読まない (step.py が出来事を表示するため)
 
@@ -3184,7 +3207,7 @@ def _g5_text(state):
     if not era_at_least(state, "G5"):
         return ""
     g = state["era2"].get("g5") or {}
-    lead, two, since = g.get("leader"), g.get("stage", 1) >= 2, g.get("meet_first") or state["next_event"]
+    lead, two, since = g.get("leader"), g.get("stage", 1) >= 2, (state["era2"].get("g7") or {}).get("meet_first") or g.get("meet_first") or state["next_event"]
     homes = _homes(state)
     rows = [f"村の家族: {len(homes)} つ ({'、'.join(homes)})"]
     if two:
@@ -3196,7 +3219,9 @@ def _g5_text(state):
                         + "、".join(f"{k} (大人 {x} 人分)" for k, x in sorted(v["votes"].items(), key=lambda kv: -kv[1])) + f" (大人 {v['adults']} 人)")
         rows.append("罰のある掟: " + ("、".join(l["id"] for l in state["laws"] if l["status"] == "採用" and l.get("penalty")) or "まだない"))
     c = g.get("call")
-    if c:
+    if c and c.get("when"):  # G7: 季節を決めた呼びかけ
+        rows.append(f"{c['day']} 日目の集まりで、まとめ役の {c['by']} が「{c['when']}は、みんなで {c['activity']} をしよう」と呼びかけた")
+    elif c:
         rows.append(f"{c['day']} 日目の集まりで、まとめ役の {c['by']} が「次の季節は、みんなで {c['activity']} をしよう」と呼びかけた (この季節のこと)")
     if g.get("feast_day") is not None:
         rows.append(f"前に祭りをしたのは {g['feast_day']} 日目 (これまで {g['feasts']} 回)")
@@ -3369,7 +3394,8 @@ def _g6_text(state):
         else:
             rows.append("前の季節の、家ごとの村の蓄えへの出し入れ (記録はない。みんなの覚えでは、だいたい。大人の分。草の種にして): "
                         + "、".join(f"{h} 入れた {_g6_rw(i)}・取った {_g6_rw(o_)}" for h, (i, o_) in sh["rows"].items() if h in homes))
-    ev = [e for e in state["events"] if e["id"] >= (g.get("meet_first") or state["next_event"]) and e["type"] in G6_EVENTS]
+    ev = [e for e in state["events"] if e["id"] >= ((state["era2"].get("g7") or {}).get("meet_first") or g.get("meet_first") or state["next_event"])
+          and e["type"] in G6_EVENTS]
     if ev:
         rows += ["この前の集まりから起きたこと (ほかの村・印・記録):"] + [f"- [出来事 {e['id']}] {e['text']}" for e in ev[-12:]]
     return "\n## ほかの村・印・記録\n" + "\n".join(rows) + "\n"
@@ -3501,12 +3527,15 @@ def _season_prompt(state, p, first):
     pen = ', "penalty": {"for": "...", "pay": 0}' if g5 and two else ""
     n6 = 7 + bool(g5_now)  # G6 の「ほかの村・印・記録」の番号 (G6 では 8)
     g6_now, g6_json = _g6_now(state, p, solo, n6), _g6_json(state, p, solo)  # G6 の前は空
+    g7 = _g7m() if "g7" in e2 else None  # G7 (寄る季節・集まり直しのお題)。G6 までは空の文字
+    g7_now, g7_json, g7_prop = (g7.fields_now(state, p, solo, n6 + bool(g6_now), year=False), g7.fields_json(state, p, solo),
+                                g7.fields_prop(state)) if g7 else ("", "", "")
     rec6 = g6 and ACT_RECORD in acts2(state)  # 記録をつけるは、数え札が使えるようになってから書く (使えない道具のことは書かない。2026-10-09 試し回し)
     g6_act = (f"   交換に行く{'・記録をつける' if rec6 else ''}は camp と書く (行き先・持って行く物{'・残すもの' if rec6 else ''}は {n6}. に書く)\n"
               if g6 else "")
     why_now = "   その仕事にした理由を一言で書く (why。続けている仕事なら、続ける理由を)\n" if ask_why else ""  # 習慣の言い方 (grounding.py) はお題の文に入れない (写されないように)
     ye = year_end(state)  # 年の終わりの集まり: 年の名前を決める (ほかの集まりでは、お題は前と同じ)
-    yname_now = f"{7 + bool(g5_now) + bool(g6_now)}. この 1 年の名前を決める (year_name。上の「年の名前」を見て)\n" if ye else ""
+    yname_now = f"{7 + bool(g5_now) + bool(g6_now) + bool(g7_now)}. この 1 年の名前を決める (year_name。上の「年の名前」を見て)\n" if ye else ""
     yname_json = ' "year_name": "...",\n' if ye else ""
 
     return f"""{RULES2}
@@ -3514,8 +3543,8 @@ def _season_prompt(state, p, first):
 {me}{FACTS2}{(FACTS_G3 + FACTS_HOUSE) if era_at_least(state, "G3") else ""}{FACTS_G4 if era_at_least(state, "G4") else ""}{_g5_facts(state)}{_g6_facts(state)}{_g7_facts(state)}
 ## 村のようす
 {_village(state)}
-## 前の季節のこと
-{_season_digest(state, p, first)}
+## {g7.digest_head(state) if g7 else "前の季節のこと"}
+{g7.digest(state, p, first) if g7 else _season_digest(state, p, first)}
 
 ## 最近聞いた話
 {characters._heard(p)}
@@ -3524,10 +3553,10 @@ def _season_prompt(state, p, first):
 {characters._knowledge(state, p)}
 
 ## 集団の掟 (季節のはじめに、みんなで集まって決める)
-{characters._laws(state, with_pending=True)}
+{characters._laws(state, with_pending=True, short=bool(g7))}
 {_year_names_text(state)}{_g5_text(state)}{_g6_text(state)}{_g7_text(state, p)}{vis}{_year_end_text(state)}
 ## いま
-{state["day"] + 1} 日目、{sea}。これから {SEASON_DAYS - (state["day"] + 1) % SEASON_DAYS} 日 (この季節の終わりまで) の仕事を決める集まり (途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。
+{state["day"] + 1} 日目、{sea}。これから {SEASON_DAYS - (state["day"] + 1) % SEASON_DAYS} 日 (この季節の終わりまで) の仕事を決める集まり (途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。{g7.zoom_line(state) if g7 else ""}
 1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
 2. この季節の主な仕事を決める (job)。仕事は {' / '.join(acts2(state))} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
    畑仕事 (草取り・刈り入れ) は camp で行う
@@ -3539,15 +3568,15 @@ def _season_prompt(state, p, first):
 {'   飼っているヤギを、この回の最初の日に何頭つぶして肉にするか (eat_goat、頭。肉は干して蓄えに入れる。2 頭は残す' + ('。1 つの答えで 5 頭まで' if len(e2['goats']) > pasture_cap(state) else '') + ') を書ける' + chr(10) if e2['goats'] and not solo else ''}
 {'   家の倉を持つか (keep: 持つなら true、持たないなら false) を決める (家の代表が決める)' + chr(10) if era_at_least(state, "G4") and not solo else ''}5. 覚えていることを更新する (新しく分かったことを追加、確かさを変える、間違っていたら忘れる)
 6. 掟: みんなで守りたい決まりがあれば提案できる (なければ null)。今の掟と提案に、賛成か反対かを投票する (against に反対する理由、reason に決めた理由)
-{g5_now}{g6_now}{yname_now}{7 + bool(g5_now) + bool(g6_now) + ye}. 今の気持ちを一言
+{g5_now}{g6_now}{g7_now}{yname_now}{7 + bool(g5_now) + bool(g6_now) + bool(g7_now) + ye}. 今の気持ちを一言
 
 場所の一覧:
 {places}
 
 ## 答えの形 (JSON)
 {{"say": [{{"to": "みんな", "text": "..."}}],
- "job": {{"activity": "採集", "place": "camp", "with": []{why_json}}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}{keep}{g5_json}{g6_json}
+ "job": {{"activity": "採集", "place": "camp", "with": []{why_json}}}, {sow}"pick": 0, "plant": 0, "harvest": 0, {goat}{acc}{fam_json}{keep}{g5_json}{g6_json}{g7_json}
  "knowledge": [{{"op": "add", "text": "...", "because": [出来事の番号], "confidence": 0.6}}],
- "proposal": {{"text": "...", "because": [出来事の番号]{pen}}},
+ "proposal": {{"text": "...", "because": [出来事の番号]{pen}{g7_prop}}},
  "votes": [{{"id": "L0", "against": "反対する理由", "agree": true, "reason": "決めた理由"}}],
 {yname_json} "feeling": "..."}}"""

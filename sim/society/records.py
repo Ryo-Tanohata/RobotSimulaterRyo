@@ -208,7 +208,8 @@ def _g7_snap(state, g7):
     """控えの g7 の欄 (state は読むだけ)。年 1 回の答え・見本の家・つながりと段は、それぞれの部分を入れるときに足す"""
     reg = g7.get("region") or {}
     others = ((state.get("era2") or {}).get("g6") or {}).get("others", [])
-    keys = ("start", "fix_from", "part", "ask", "answer_day", "zoom", "sample", "weights", "donor", "src", "hold", "offered", "role_days", "kid_jobs")
+    keys = ("start", "fix_from", "part", "ask", "answer_day", "zoom", "sample", "weights", "cells", "donor", "src", "step", "hold", "offered", "role_days",
+            "kid_jobs")  # step: この季節の仕事を、だれの答えで決めたか (見本の家・手本・決まり。g7._apply)
     return {**{k: _copy(g7[k]) for k in keys if k in g7},
             "region": {"weather": _copy(reg.get("weather")), "fill": _copy(reg.get("fill")),
                        "others": [{k: _copy(o.get(k)) for k in ("id", "cell", "land", "people", "known", "org", "bad", "cattle_f")} for o in others]},
