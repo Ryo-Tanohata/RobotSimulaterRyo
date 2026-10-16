@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "冬でも食べ物を探すのはあきらめたくない。北川12で魚と芋が取れるか、二人で確かめに行こう。ラタ2、いっしょに来てくれないか。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ラタ2"], "why": "冬に魚と芋が取れるか確かめたい。採集は得意だし、二人で行けば見つけた物を夜に言い合える"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "trade": {"T51": false}, "seal": false, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "草が足りる場所を探せば、ヤギの世話もしやすくなるかもしれない", "because": [296841], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にキャンプの外へ出るのは危ないから、誰も離れないのがよい"},
+  {"id": "L121", "against": "", "agree": true, "reason": "ザガは昼の林にも出るので、採集も狩りも二人以上がよい"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、けがをしても助けられる"},
+  {"id": "L171", "against": "", "agree": true, "reason": "ヤギが増えると草の取り合いになるので、今は受けとらないのがよい"},
+  {"id": "L188", "against": "", "agree": true, "reason": "近い南川12なら一人でも採集に行ける。林は二人以上にする"},
+  {"id": "L190", "against": "", "agree": true, "reason": "草で養えない分のヤギは、食べ物を無駄にしないよう肉にして干すのがよい"}
+ ],
+ "feeling": "冬は寒いけれど、まだ食べ物の見つかる場所がありそうで少し気持ちが軽い。"}

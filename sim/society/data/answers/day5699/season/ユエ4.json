@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "冬は木の実がならない。今のうちに石の鎌を作りためておこう。夏の刈り入れで鎌が足りなくなると困るから、割れた分も早めに直したい。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりが一番得意で、石の鎌は夏の刈り入れに欠かせない。割れて減った鎌を作りためておきたい。"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ4": {"activity": "採集", "place": "南川12", "why": "南川12はキャンプから近く、一人でも行ける。冬でも食べ物が取れるか見てきたい。"}},
+ "keep": true,
+ "feast": false, "leader": "なし", "trade": {"T51": false}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節、ユエ4の家は村の蓄えに 2405 つかみ入れ、2021 つかみ取った (板の記録)。入れた量より多く取っている", "because": [301667], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが出る夜は、キャンプの中にいるのが一番安全だ"},
+  {"id": "L1", "against": "", "agree": true, "reason": "同じ場所を重ねて探さないのは、無駄を減らせる"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば、けがをしても助けられる"},
+  {"id": "L14", "against": "", "agree": true, "reason": "苦手な人が上手な人から学べば、村全体の力になる"},
+  {"id": "L99", "against": "", "agree": true, "reason": "畑の草取りを交代ですれば、夏の実りが減らない"},
+  {"id": "L101", "against": "", "agree": true, "reason": "ヤギを連れ帰ったら世話する人を決めるのは大事だ"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草が足りない今は、野生のヤギを増やすべきではない"},
+  {"id": "L176", "against": "", "agree": true, "reason": "草の多い場所を見に行けば、草を増やす手立てが分かる"}
+ ],
+ "feeling": "冬の蓄えはまだ足りているが、鎌が減っているのが気になる。夏の刈り入れまでに整えたい。"}

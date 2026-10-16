@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは北の川に魚と芋があるか確かめたい。二人組で行って、夜に何があったか話そう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"], "why": "冬は木の実も草の種も実らない。北川12なら魚と芋が取れるかもしれないので、二人で確かめに行きたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"リセ6": {"activity": "採集", "place": "北川12", "why": "家の食べ物を冬のあいだ途切れさせないため。二人以上で行くきまりにも合う。"}},
+ "keep": false,
+ "feast": false, "leader": "なし", "trade": {"T51": false}, "seal": false, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "北川12で冬に魚と芋が取れるかもしれない (まだ確かめていない)", "because": [], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [
+  {"id": "L121", "against": "", "agree": true, "reason": "近くても林でも一人では行かないほうが、けがをしたときに助けてもらえる。"},
+  {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは必ず二人以上で行くほうが安心できる。"},
+  {"id": "L179", "against": "", "agree": true, "reason": "北丘12は冬に何も見つからなかったので、先に北川12を試すのがよい。"},
+  {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻らない人を早く探せるように、戻る時刻を決めておくのがよい。"}
+ ],
+ "feeling": "寒くなってきて、食べ物が見つかるかが心配。北の川で何か見つかるといいな。"}
