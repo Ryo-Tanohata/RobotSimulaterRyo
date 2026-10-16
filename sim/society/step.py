@@ -395,7 +395,9 @@ def main():
         if r == "end":  # G6: 町と記録がそろった (「フェーズが…に進んだ」とは書かない。"end" も真なので、先に見る)
             state["hold"] = True
             g = state["era2"]["g6"]["end"]
-            world.log(state, "フェーズ", None, f"Society 2.0 の終わり: 町 ({g['town']} 日目) と記録 ({g['record']} 日目) がそろった (先にそろったのは {g['first']})")
+            # 2026-10-16: 本人が「G を付け足していく。工業社会に行き着くまで」と決めた (2026-10-15) ので、残す文は「Society 2.0 の終わり」ではなく「第 4 部の終わり」にする
+            #   (state.json は手で直さないので、G7 を足す前に変えておく。docs/society2_extension_plan.md)。止まる動きと、下の表示 (ワークフローが止まる合図) はそのまま
+            world.log(state, "フェーズ", None, f"第 4 部の終わり (G6): 町 ({g['town']} 日目) と記録 ({g['record']} 日目) がそろった (先にそろったのは {g['first']})。Society 2.0 は G7 から続ける")
             print(f"* Society 2.0 が終わった: 町 ({_yd(g['town'])}) と記録 ({_yd(g['record'])}) がそろった → 一時停止 (第 4 部のまとめ待ち)")
         elif r:
             state["hold"] = True
