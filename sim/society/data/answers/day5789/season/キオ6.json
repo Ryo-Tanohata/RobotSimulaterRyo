@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋のうちに、西草原12の草の種を一緒にとりに行こう。二人で行けば安心だよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ヌオ6"], "why": "採集が得意だから。冬の前に、草の種をできるだけ多く集めたい。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ6": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、キオ6と組んで行けば安心だから。"}},
+ "keep": false,
+ "judge": {"M120": "ゆるす", "M121": "ゆるす", "M122": "ゆるす"},
+ "feast": true,
+ "leader": null,
+ "seal_store": false,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "夜に外へ出ないのは、ザガから身を守るために大事だから。"},
+  {"id": "L38", "against": "なし", "agree": true, "reason": "火と見張りでザガを近づけないのは、けがを防ぐために必要だから。"},
+  {"id": "L98", "against": "なし", "agree": true, "reason": "同じ掟が何度も決まっていたので、ひとつにまとめるのがよいから。"},
+  {"id": "L140", "against": "なし", "agree": true, "reason": "夏の刈り入れを毎夕みんなでするのは、実りを落とさないために大事だから。"},
+  {"id": "L167", "against": "なし", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギがいなくならずに済むから。"}
+ ],
+ "feeling": "木の実を取り続けて、冬の前に少し安心した。仲間と組んで行けるのが心強い。"}
