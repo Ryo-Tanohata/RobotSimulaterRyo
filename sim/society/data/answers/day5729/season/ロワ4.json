@@ -1,0 +1,25 @@
+{"say": [{"to": "みんな", "text": "春のうちから土器を毎日少しずつ作ろう。草の種を入れておけば、虫とネズミに食べられないから。できた数と割れた数は夜に言うよ。"}],
+"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは慣れていて、草の種を虫やネズミから守れるから。"},
+"pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+"family": {"ヒセ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを続ければ、夏の実りが減らないから。"}},
+"keep": false,
+"judge": {"M119": "つぐなう"},
+"feast": false,
+"leader": null,
+"seal_store": true,
+"knowledge": [
+{"op": "add", "text": "春に土器を毎日少しずつ作れば、草の種を虫やネズミから守れる", "because": [304321], "confidence": 0.7},
+{"op": "add", "text": "セオの家は村の蓄えから多く取り、入れた量は少なかった。もめごとは記録の数で確かめられる", "because": [304343], "confidence": 0.7}
+],
+"proposal": null,
+"votes": [
+{"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが出るので、火を焚いて見張ることは大事だから。"},
+{"id": "L98", "against": "なし", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるのは大事だから。"},
+{"id": "L112", "against": "なし", "agree": true, "reason": "肉は、食べるか保存処理をしてから蓄えに入れるべきだから。"},
+{"id": "L143", "against": "なし", "agree": true, "reason": "採集と狩りは二人以上で行けば、危ないことが少ないから。"},
+{"id": "L149", "against": "なし", "agree": true, "reason": "畑の草取りと刈り入れを交代で行えば、畑の実りが守れるから。"},
+{"id": "L167", "against": "なし", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギがいなくならないから。"},
+{"id": "L168", "against": "なし", "agree": true, "reason": "土器は早くから作るほど、草の種を多く守れるから。"},
+{"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないうちは、ほかの村からヤギを受けとらないほうがよいから。"}
+],
+"feeling": "おなかは空いているけれど、土器で仲間の草の種を守れるなら、春のうちから頑張りたい。"}

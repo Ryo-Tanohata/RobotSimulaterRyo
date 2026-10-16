@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "春のあいだは西の草原で採集をしよう。二人で行って、見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ユノ2"], "why": "採集なら自分がいちばん得意だから。林は一人では危ないので、草原を二人で見て回りたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M119": "つぐなう"},
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "この季節、印のない封が59回も割られた。村の蓄えは封だけでは守れていない", "because": [304344], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火と見張りがないと、ザガが来て人がけがをするから。"}, {"id": "L121", "against": "", "agree": true, "reason": "一人で行くとザガに襲われたと覚えているので、二人で行くのがよい。"}],
+ "feeling": "蓄えの封が何十回も割られたのは気がかりだけど、草原で二人で採集できるならまだ安心できる。"}

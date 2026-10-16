@@ -1,0 +1,25 @@
+{"say": [{"to": "ロワ5", "text": "ロワ5、春の草の種を集めに西草原12へいっしょに行こう。二人で行けば、帰り道も安心だよね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ロワ5"], "why": "採集は得意だし、草の種を集めれば蓄えを増やせる。二人組の決まりも守れる"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ5": {"activity": "採集", "place": "西草原12", "why": "ヒセ5といっしょに二人組で行くため"}},
+ "keep": false,
+ "judge": {"M119": "つぐなう"},
+ "feast": false,
+ "leader": "なし",
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "北の川には、前の季節に魚が泳いでいるのを見た", "because": [304144, 304224, 304301], "confidence": 0.8},
+  {"op": "add", "text": "前の季節、印のない封が59回割られた。封をしておけば、だれが開けたかが割れたかけらで分かる", "because": [304344], "confidence": 0.6}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "ザガが出るので、夜はキャンプから離れないほうがよい"},
+  {"id": "L98", "against": "なし", "agree": true, "reason": "同じ掟が何度も決まっていたので、一つにまとめるのがよい"},
+  {"id": "L121", "against": "なし", "agree": true, "reason": "ザガは昼の林にも出るので、二人以上で行くのがよい"},
+  {"id": "L140", "against": "なし", "agree": true, "reason": "夏のうちに畑を刈り切らないと、草の種が落ちてしまう"},
+  {"id": "L161", "against": "なし", "agree": true, "reason": "刈り入れは毎夕、手の空いた大人が行うのがはやい"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "草が足りないのに、ヤギを増やすとヤギがやせてしまう"},
+  {"id": "L181", "against": "なし", "agree": true, "reason": "住まいが人数に合わないと、雨の夜に濡れて疲れがとれない"},
+  {"id": "L190", "against": "なし", "agree": true, "reason": "草で養えないヤギを干し肉にすれば、冬の蓄えになる"}
+ ],
+ "feeling": "春になって、子どもたちが元気そうでほっとしている。"}
