@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "夏の畑が実っているから、毎夕だれかが刈りに出よう。刈り残すと実りが落ちてしまうよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ムイ4"], "why": "夏のうちに刈り切らないと畑の草の種が落ちてしまう。ムイ4と組めば、草取りと刈り入れを交代でできる。"},
+ "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "accept": {"ホミ6": true}, "keep": false,
+ "feast": false, "leader": "なし", "trade": {"T52": false}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "よそから来たホミ6は、北の村から来たと言っている", "because": [306722], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "ザガが出るので、夜は離れない方がよい"},
+  {"id": "L1", "against": "なし", "agree": true, "reason": "行き先を伝えれば、同じ場所を重ねて探さずに済む"},
+  {"id": "L3", "against": "なし", "agree": true, "reason": "採集や狩りは二人以上なら助け合える"},
+  {"id": "L134", "against": "なし", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれないから"},
+  {"id": "L140", "against": "なし", "agree": true, "reason": "夏のうちに畑を刈り切らないと、草の種が落ちてしまう"},
+  {"id": "L149", "against": "なし", "agree": true, "reason": "草取りと刈り入れを交代で担当すれば、畑の世話が途切れない"},
+  {"id": "L167", "against": "なし", "agree": true, "reason": "ヤギの世話が足りないと減ってしまうので、世話をする人を決めておきたい"},
+  {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとると困る"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを捕まえない方がよい"},
+  {"id": "L189", "against": "なし", "agree": true, "reason": "小さい子をひとりにしないよう、大人をつけるのは大事"},
+  {"id": "L190", "against": "なし", "agree": true, "reason": "草で養えないヤギを肉にして干せば、ヤギの数が草に合う"}
+ ],
+ "year_name": "子が六人生まれた年",
+ "feeling": "畑の刈り入れが間に合うか心配だけど、みんなで分ければ大丈夫そう。"}

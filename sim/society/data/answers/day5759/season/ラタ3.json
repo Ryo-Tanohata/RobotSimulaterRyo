@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "畑の草取りと刈り入れは、わたしたちネム3の家が毎夕やるね。夏のうちに刈り切って、草の種を落とさないようにしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ネム3"], "why": "夏のうちに畑を刈り切って、草の種を実らせたままにしたくないから。"},
+ "pick": 40,
+ "plant": 0,
+ "harvest": 60,
+ "eat_goat": 0,
+ "accept": {"ホミ6": true},
+ "family": {"ネム3": {"activity": "畑仕事", "place": "camp", "why": "家族で畑を刈り切るため。"}},
+ "keep": true,
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T52": "村"},
+ "seal_store": false,
+ "knowledge": [{"op": "add", "text": "南の村は、ヤギ1頭と引きかえに土器5個・鎌2本・草の種25つかみをほしがっている", "because": [306723], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るので、キャンプから離れないのは大事。"},
+  {"id": "L38", "against": "", "agree": true, "reason": "火と見張りでザガを近づけないのは、けがを減らすため。"},
+  {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り入れを毎夕進めれば、草の種を落とさずに済む。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを増やすのは良くない。"}
+ ],
+ "year_name": "草の種が実り続けた年",
+ "feeling": "畑が実ってくれそうで、少し安心している。"}

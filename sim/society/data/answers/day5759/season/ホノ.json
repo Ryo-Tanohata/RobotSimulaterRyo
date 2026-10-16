@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切ろう。手の空いた人は毎夕刈って、刈った量を夜に言ってね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草の種は夏のうちに刈らないと落ちてしまうから。刈りの方が、冬の分の種をたくさん集められる。"},
+ "pick": 40,
+ "plant": 0,
+ "harvest": 60,
+ "eat_goat": 0,
+ "accept": {"ホミ6": true},
+ "keep": true,
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T52": false},
+ "seal_store": true,
+ "knowledge": [
+   {"op": "add", "text": "北の村から来た人がいて、北の村には黒曜石やヤギがあるらしい", "because": [306722], "confidence": 0.6},
+   {"op": "add", "text": "南の村は、土器・鎌・草の種をほしがっている", "because": [306723], "confidence": 0.7}
+ ],
+ "proposal": null,
+ "votes": [
+   {"id": "L175", "against": null, "agree": true, "reason": "草で養える数より多いうちは、野生のヤギを捕まえるのを待つほうがいい。"},
+   {"id": "L190", "against": null, "agree": true, "reason": "ヤギが草より多いのだから、秋の終わりまでに余りを肉にして干すのがよい。"}
+ ],
+ "year_name": "セキが亡くなった年",
+ "feeling": "セキの家を任されて、少し重い。夏のうちに畑を刈り切って、冬の分を集めたい。"}
