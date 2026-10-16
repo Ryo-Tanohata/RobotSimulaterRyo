@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "冬は木の実がならない。草の種は蓄えにたくさんあるけれど、ヤギは草で養える数より多すぎる。北川12 で魚と芋が取れるか、二人組で行って確かめよう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ホノ"], "why": "冬に食べ物が取れる場所をまだ知らない。北川12 で魚と芋が取れるかを確かめたい。"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ6": true},
+ "family": {"ホノ": {"activity": "採集", "place": "北川12", "why": "二人組で行くため。一人では危ない。"}},
+ "keep": true,
+ "judge": {"M115": "つぐなう"},
+ "feast": false,
+ "leader": "なし",
+ "seal_store": true,
+ "knowledge": [{"op": "add", "text": "冬は木の実がならず、草の種が村の食べ物の主になる", "because": [286304], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L113", "against": "", "agree": true, "reason": "北川12 で魚と芋を確かめてから冬の食べ物を増やすのは、いい考えだ。"},
+  {"id": "L170", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いので、春を待たずに肉にして干すのがいい。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると草の取り合いになる。"},
+  {"id": "L172", "against": "", "agree": true, "reason": "封を割った人が名乗り出れば、もめごとが減る。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草で養える数より多いうちは、野生のヤギを捕まえないほうがいい。"},
+  {"id": "L183", "against": "", "agree": true, "reason": "前に借りた草の種が返されるまで、南の村に貸さないほうがいい。"}
+ ],
+ "feeling": "冬は長いが、草の種がまだあるのは救いだ。ヤギの数が心配だ。"}
