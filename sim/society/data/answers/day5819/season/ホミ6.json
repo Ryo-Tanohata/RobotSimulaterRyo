@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬は木の実も草の種も少なくなるから、北川12 で魚と芋を探しに行こう。一人では行かず二人で組んで、夜に何が取れたか話そう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"], "why": "冬でも魚と芋が取れる場所を探したい。二人以上で行く決まりなので、ユノ2と組む。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M122": "ゆるす", "M123": "つぐなう"}, "feast": false, "leader": "なし", "trade": {"T53": false}, "seal": false, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "冬には北川12 で魚と芋が取れることがあると聞いた", "because": [], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火と見張りを立てて、ザガから身を守るため"}, {"id": "L121", "against": "", "agree": true, "reason": "二人以上で行けば、けがをしても助け合える"}],
+ "feeling": "冬の終わりが近づいて少し不安だが、みんなで助け合えば越えられると思う。"}
