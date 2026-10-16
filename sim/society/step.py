@@ -7,6 +7,9 @@
   python sim/society/step.py night               夜の答えを反映 (知識・掟・明日の予定) → フェーズの判定 → アプリ用のデータを書き出す
   python sim/society/step.py resume              フェーズが進んで一時停止しているのを解く (本人が評価したあと)
   python sim/society/step.py ask_why [on|off]    季節のお題で、主な仕事にした理由を一言たずねる (off でやめる。理由は世界の計算には使わない)
+  python sim/society/step.py next_part [--fill F] 部の終わり (か次の G を待つ) で止まっているときだけ、次の部 (次の G) に入る (本人と決めてから 1 回だけ。
+                                                 G7 なら F は地域の人数を K の何割にするか。書かなければ 0 = 今のまま、集落を置かない)
+  python sim/society/step.py who                 ワークフローのための、読むだけの状態の行 (DAY・PHASE・HOLD・MODE・MEET・NAMES・FEEL・COUNCIL・ASKLOG)
 
 お題は data/prompts/日/段階/名前.md、答えは data/answers/日/段階/名前.json に置く。
 段階は state.json の phase に記録するので、途中で止まっても続きから再開できる。
@@ -31,6 +34,7 @@ import world  # noqa: E402
 
 import hashlib  # noqa: E402
 import os  # noqa: E402
+import shutil  # noqa: E402
 import subprocess  # noqa: E402
 
 try:
@@ -95,9 +99,39 @@ def _archive(state):
         print(f"記録: 古い年をしまえなかった ({type(ex).__name__}: {ex})。state.json はしまう前のまま")
 
 
-def _society2_end(state):
-    """G6: 町と記録がそろって、Society 2.0 が終わったか (一時停止のわけ)"""
-    return bool(((state.get("era2") or {}).get("g6") or {}).get("end"))
+def _hold_text(state):
+    """一時停止のわけ: (HOLD の言葉, 人が読む文)。止まっていなければ (None, "")。G6 は g6.end、G7 からは e2.g7.hold を見る (era2.hold_why)"""
+    if not state.get("era2"):
+        return ("phase", f"フェーズ {state.get('era')} に進んだので評価待ち (再開は resume)") if state.get("hold") else (None, "")
+    return era2.hold_why(state)
+
+
+def _next_part_refusal(state, fill):
+    """next_part ができないわけ (できるなら None)。docs/society_phase/G7_design.md 4.E.1 の 1"""
+    if not state.get("era2") or state["phase"] != "season":
+        return f"段階が season でない (今は {state['phase']})"
+    if not state.get("hold"):
+        return "一時停止していない"
+    code, why = _hold_text(state)
+    if code == "entrance":
+        return "工業の入口では、次の部には進まない (Society 2.0 のまとめと、その先を本人と相談する)"
+    if code not in ("part_end", "wait"):
+        return f"部の終わりか次の G を待つで止まっていない ({why})"
+    i = era2.ORDER2.index(state["era"])
+    if i + 1 >= len(era2.ORDER2):
+        return f"次の G ({state['era']} の次) のコードがまだない"
+    nxt = era2.ORDER2[i + 1]
+    have = [f.name for kind in ("season", "feeling") for f in sorted(pdir(state, kind, "answers").glob("*.json"))]
+    if have:
+        return f"{state['day']} 日目の答えがもうある ({len(have)} 通。前の部のお題への答え)"
+    if fill is not None and nxt != "G7":
+        return "--fill は G7 に入るときだけ"
+    if fill is not None and not 0 <= fill <= 0.9:
+        return f"--fill は 0 から 0.9 まで (今 {fill})"
+    if nxt == "G7":
+        import g7  # noqa: E402
+        return g7.can_enter(state)
+    return None
 
 
 def _yd(day):
@@ -172,7 +206,8 @@ def read_answers(state, phase):
 
 ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき",
                 "畑仕事": "畑仕事", "ヤギの世話": "ヤギの世話", "ヤギを捕まえる": "ヤギを捕まえる", "土器": "土器づくり", "住まい": "住まいを建てる",
-                "交換に行く": "交換に行く", "記録をつける": "記録をつける"}  # Society 2.0 の仕事 (交換に行く・記録をつけるは G6 から)
+                "交換に行く": "交換に行く", "記録をつける": "記録をつける",
+                "守る": "守る", "取り立てる": "取り立てる", "戦に出る": "戦に出る", "試す": "試す"}  # Society 2.0 の仕事 (交換に行く・記録をつけるは G6 から、後ろの 4 つは G7 から)
 
 
 def day_labels(state, extra=()):
@@ -274,6 +309,7 @@ def export(state):
                    | ({"left": left[h]} if h in left else {})
                    for h, v in sorted((state.get("era2") or {}).get("homes", {}).items())],
         **({"g6": era2.g6_export(state)} if (state.get("era2") or {}).get("g6") else {}),  # G6: ほかの村・印・記録 (G6 の前は鍵がない)
+        **({"hold_why": _hold_text(state)[1]} if (state.get("era2") or {}).get("g7") else {}),  # G7 から: 一時停止のわけ (G6 までは鍵を足さない)
         # しまった年の目次 (古い年をしまう前は鍵がない)。アプリは「archive/」を app_data.json と同じ場所から読む
         **({"archive": _export_archive(whole, extra, upto)} if upto >= 0 else {}),
     }
@@ -283,13 +319,17 @@ def export(state):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why"])
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who"])
     ap.add_argument("onoff", nargs="?", choices=["on", "off"], help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
+    ap.add_argument("--fill", type=float, default=None,
+                    help="next_part で G7 に入るとき: 地域の人数 (村を除く) を、暮らせる人数 K の合計の何割にするか (0〜0.9。書かなければ 0 = 今のまま)")
     a = ap.parse_args()
     if a.onoff and a.cmd != "ask_why":
         sys.exit(f"on / off は ask_why のときだけ書く ({a.cmd} {a.onoff} とは書けない)")
+    if a.fill is not None and a.cmd != "next_part":
+        sys.exit("--fill は next_part のときだけ書く")
 
     if a.cmd == "init":
         if STATE.exists() and not a.force:
@@ -313,8 +353,13 @@ def main():
         era = state.get("era", "F1")
         print(f"フェーズ: {era} {phase.ERAS.get(era) or era2.NAMES2.get(era)} / 次の条件: {info.get('next', '-')}")
         if state.get("hold"):
-            print("一時停止中: Society 2.0 が終わったので、第 4 部のまとめ待ち (再開は resume)" if _society2_end(state)
-                  else "一時停止中: フェーズが進んだので評価待ち (再開は resume)")
+            print(f"一時停止中: {_hold_text(state)[1]}")
+        g7 = (state.get("era2") or {}).get("g7")
+        if g7:  # G7 から: 次の答え (年 1 回の答え。docs/society_phase/G7_design.md 4.A.2) と、G7 の行
+            ask = {"年": "年の集まり", "寄る": "寄る季節", "集まり直し": "集まり直し"}.get(g7.get("ask"), "いらない")
+            fl = (g7.get("region") or {}).get("fill")
+            print(f"次の答え: {ask} / G7 に入った日 {_yd(g7['start'])} / 史実のずれの直し {g7['fix_from']} 日目から / "
+                  f"まわりの集落 {len(era2._g6(state)['others'])} (はじめに置いた集落 {len(fl['placed']) if fl else 0})")
         if state.get("era2"):  # 仕事の理由 (段階 1。2026-10-14 本人が決めた: 次に村を進めるときから。daily_run.md)
             log = state["era2"].get("ask_why_log")
             print(f"仕事の理由: {'たずねている' if state['era2'].get('ask_why') else 'たずねていない'} ({log[-1][0]} 日目のお題から)" if log
@@ -326,10 +371,58 @@ def main():
         export(state)
         return
     if a.cmd == "resume":
+        code, why = _hold_text(state)
+        if code in ("part_end", "wait", "entrance"):  # 部の終わり・待ち・入口では resume しない (G6 のまま止まらずに進まないように。4.E.2)
+            print(f"一時停止中: {why}。resume では進めない (何も変えない)" + ("。次へは next_part (本人と決めてから)" if code != "entrance" else ""))
+            sys.exit(3)
         state["hold"] = False
+        if (state.get("era2") or {}).get("g7"):
+            state["era2"]["g7"]["hold"] = None
         save(state)
         export(state)
         print("再開した")
+        return
+    if a.cmd == "who":  # 読むだけ (ワークフローのため。docs/society_phase/G7_design.md 4.E.5)
+        e2 = state.get("era2") or {}
+        g7 = e2.get("g7")
+        code = _hold_text(state)[0]
+        season_ok = bool(e2) and state["phase"] == "season"
+        print(f"DAY {state['day']} {state['phase']} {bool(state.get('hold'))}")
+        print(f"PHASE {state.get('era')}")
+        print(f"HOLD {code or 'none'}")
+        print(f"MODE {'year' if g7 else 'season'}")
+        print(f"MEET {(g7.get('ask') or 'none') if g7 else '季節' if season_ok else 'none'}")
+        print("NAMES " + (" ".join(era2.answerers(state)) if season_ok else ""))
+        print("FEEL " + (" ".join(era2.feelers(state)) if season_ok else ""))
+        print("COUNCIL " + " ".join(sorted(((g7 or {}).get("region") or {}).get("councils", {}).get("ask", []))))
+        print(f"ASKLOG {'ask_why_log' in e2}")
+        return
+    if a.cmd == "next_part":  # 部の終わり (か次の G を待つ) から、次の部 (次の G) に入る (docs/society_phase/G7_design.md 4.E.1)
+        why = _next_part_refusal(state, a.fill)
+        if why:
+            print(f"next_part はできない: {why} (何も変えない)")
+            sys.exit(3)
+        import g7  # noqa: E402  (G7 から働く仕組み。G6 までは読みこまない)
+        nxt = era2.ORDER2[era2.ORDER2.index(state["era"]) + 1]
+        if nxt == "G7":
+            g = g7.enter(state, a.fill or 0.0)
+        else:
+            g7.enter_next(state)
+            g = state["era2"]["g7"]
+        for kind in ("season", "feeling"):  # 前の部のお題 (もうコミットしてある) を消して、新しい部のお題を書く (ask_why の作り直しと同じ)
+            d = pdir(state, kind, "prompts")
+            if d.exists():
+                shutil.rmtree(d)
+        save(state)
+        write_prompts(state, "season")
+        export(state)
+        _records(None)  # 記録を作り直す (控えの行は足さない。控えは季節の終わりだけ)
+        fl = (g.get("region") or {}).get("fill")
+        print(f"* フェーズ {state['era']} ({era2.NAMES2[state['era']]}) に入った ({_yd(state['day'])}。G7 の史実のずれの直しは {g['fix_from']} 日目から)")
+        if nxt == "G7":
+            print(f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめに置いた集落 {len(fl['placed'])}・{fl['people']} 人。地域の人数を K の {fl['share']:.0%} に)"
+                  if fl else f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめの集落は置かなかった。--fill なし = 今のまま)")
+        print("次: 答えを集めて season")
         return
     if a.cmd == "ask_why":  # 2026-10-14 (本人が決めた。docs/humanity の D09 の段階 1): 季節のお題で、主な仕事にした理由を一言たずねる
         #   このコマンドは世界 (乱数・出来事・蓄え) を変えない。why は世界の計算には使わない (同じ答えなら同じ世界。お題が変わるので、村の人の答えは変わりうる)。
@@ -368,8 +461,9 @@ def main():
         if state["phase"] != "season":
             sys.exit(f"今の段階は {state['phase']} です")
         if state.get("hold"):
-            print("一時停止中: Society 2.0 が終わったので、第 4 部のまとめ待ち。進めない (再開は resume)" if _society2_end(state)
-                  else f"一時停止中: フェーズ {state.get('era')} に進んだので評価待ち。進めない (再開は resume)")
+            code, why = _hold_text(state)
+            print(f"一時停止中: {why}。進めない")
+            print(f"HOLD {code}")  # ワークフローが読む機械用の 1 行 (行の頭から。4.E.2)
             sys.exit(3)
         before = state["next_event"]  # G5: 季節の集まりで起きたこと (収める・裁き・罰・祭り・まとめ役) は、30 日を進める前の出来事
         if hasattr(era2, "take_notes"):
@@ -392,18 +486,33 @@ def main():
             print("生きている人がいない (亡くなった人と、村を出た人" + (f" {len(gone)} 人" if gone else " 0 人") + ")")
             sys.exit(4)
         r = era2.check(state)
-        if r == "end":  # G6: 町と記録がそろった (「フェーズが…に進んだ」とは書かない。"end" も真なので、先に見る)
+        hold = None  # 一時停止したときの、機械用の言葉 (最後に「HOLD …」の 1 行で出す。4.E.2)
+        if r == "end" and state["era"] == "G6":  # G6: 町と記録がそろった (「フェーズが…に進んだ」とは書かない。"end" も真なので、先に見る)
             state["hold"] = True
             g = state["era2"]["g6"]["end"]
             # 2026-10-16: 本人が「G を付け足していく。工業社会に行き着くまで」と決めた (2026-10-15) ので、残す文は「Society 2.0 の終わり」ではなく「第 4 部の終わり」にする
-            #   (state.json は手で直さないので、G7 を足す前に変えておく。docs/society2_extension_plan.md)。止まる動きと、下の表示 (ワークフローが止まる合図) はそのまま
+            #   (state.json は手で直さないので、G7 を足す前に変えておく。docs/society2_extension_plan.md)
             world.log(state, "フェーズ", None, f"第 4 部の終わり (G6): 町 ({g['town']} 日目) と記録 ({g['record']} 日目) がそろった (先にそろったのは {g['first']})。Society 2.0 は G7 から続ける")
-            print(f"* Society 2.0 が終わった: 町 ({_yd(g['town'])}) と記録 ({_yd(g['record'])}) がそろった → 一時停止 (第 4 部のまとめ待ち)")
-        elif r:
+            # 表示の文には、前のワークフローが止まる合図 (「Society 2.0 が終わった」) も残す (G6 のまま走っているワークフローのため)
+            print(f"* 第 4 部の終わり (G6): Society 2.0 が終わった。町 ({_yd(g['town'])}) と記録 ({_yd(g['record'])}) がそろった → 一時停止 (第 4 部のまとめ待ち。次の部へは next_part)")
+            hold = "part_end"
+        elif r is True:
             state["hold"] = True
             e = state["era_log"][-1]
             world.log(state, "フェーズ", None, f"フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ")
             print(f"* フェーズが {e['era']} ({era2.NAMES2[e['era']]}) に進んだ → 一時停止 (評価待ち)")
+            hold = "phase"
+        elif r:  # G7 から: 部の終わり ("end")・工業の入口 ("entrance")・次の G を待つ ("wait")・止めて相談する ("consult")
+            state["hold"] = True
+            hold = _hold_text(state)[0]
+            h = state["era2"]["g7"]["hold"]
+            if r in ("end", "entrance"):  # 部の終わりは、G6 と同じく出来事に残す (待ちと相談は、作る側の都合なので残さない)
+                n = era2.PART_END[h["era"]]
+                world.log(state, "フェーズ", None, f"第 {n} 部の終わり ({h['era']}): {h['era']} の条件がそろった" + ("。工業の入口に着いた" if r == "entrance" else ""))
+            print({"end": f"* 第 {era2.PART_END.get(h['era'])} 部の終わり ({h['era']}): {h['era']} の条件がそろった → 一時停止 (第 {era2.PART_END.get(h['era'])} 部のまとめ待ち。次の部へは next_part)",
+                   "entrance": "* 工業の入口に着いた: Society 2.0 のまとめと、その先を本人と相談する → 一時停止 (next_part は受けつけない)",
+                   "wait": f"* {h['era']} の条件がそろった: 次の G を作るまで一時停止 (次の G のコードを入れてから next_part)",
+                   "consult": f"* 止めて相談する: {h.get('what', '')} → 一時停止 (相談のあと、続けるなら resume)"}[r])
         snap = _snap(state, before, first)  # 保存の前に読む (保存するのと同じ state)
         _archive(state)  # 年が変わっていれば、古い年をしまう (お題・控え・出来事の表示は、しまう前と同じ)
         save(state)
@@ -429,6 +538,13 @@ def main():
                   f"印 {i['g6_seals']} 家・封のかけら {i['g6_sealings']} (封をした季節 {i['g6_seal_seasons']}) / 記録の道具 {i['g6_tools']} / 記録した季節 {i['g6_records']} / "
                   f"確かめた {i['g6_checked']} (板 {i['g6_checked_tablet']})・覚え違い {i['g6_misremember']} / 食べ物をとらない人 {i['g6_nonfood']} / "
                   f"町 {_yd(i['g6_town_day']) if i['g6_town_day'] is not None else 'まだ'} / 記録 {_yd(i['g6_record_day']) if i['g6_record_day'] is not None else 'まだ'}")
+        if i.get("g7_on"):
+            print(f"G7 / 役の人 {i['g7_role_people']} / まわりの集落 {i['g7_others']} (人 約 {i['g7_region_people']}) / "
+                  f"条件: 決める段 3 {_yd(i['g7_f3_day']) if i['g7_f3_day'] is not None else 'まだ'} / "
+                  f"取り立ての記録 2 年 {_yd(i['g7_tribute2_day']) if i['g7_tribute2_day'] is not None else 'まだ'} / "
+                  f"書いた決まりで裁く {_yd(i['g7_f4_day']) if i['g7_f4_day'] is not None else 'まだ'}")
+        if hold:
+            print(f"HOLD {hold}")  # ワークフローが読む機械用の 1 行 (行の頭から。村の人の文 (出来事は「* 」で始まる) からは出ない。4.E.2)
         return
     if a.cmd == "day" and not any(p["alive"] for p in state["people"]):
         print("生きている人がいないので、進めない")

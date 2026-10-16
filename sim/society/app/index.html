@@ -473,10 +473,16 @@ function renderGraph() {
 }
 
 function renderEra() {
-  const E = D.era || { era: "F1", name: "移動する採集民" }, names = ["移動する採集民", "食べ物の幅を広げる", "蓄える", "定住する", "野生植物を育てる", "農耕に頼る"];
+  const E = D.era || { era: "F1", name: "移動する採集民" };
+  // Society 2.0 (G…) のあいだは G1〜G7 を並べる (2026-10-16。前は Society 1.0 の F1〜F6 を並べていて、G7 では全部「済み」に見えた)
+  const gen = E.era.startsWith("G"), pre = gen ? "G" : "F";
+  const names = gen ? ["村ができる", "畑と家畜", "余りと分業", "持ち物と差", "リーダーと決まり", "交易・町・記録", "王と役所"]
+    : ["移動する採集民", "食べ物の幅を広げる", "蓄える", "定住する", "野生植物を育てる", "農耕に頼る"];
   const n = Number(E.era.slice(1));
-  $("era").innerHTML = `<div>今のフェーズ (狩猟採集 → 農耕): <b>${esc(E.era)} ${esc(E.name)}</b>${D.hold ? ` <span class="chip c-提案">${D.g6 && D.g6.end ? "一時停止中: Society 2.0 が終わったので、第 4 部のまとめ待ち" : "一時停止中: フェーズが進んだので評価待ち"}</span>` : ""}</div>
-    <div class="steps">${names.map((m, i) => `<span class="${i + 1 < n ? "done" : i + 1 === n ? "now" : ""}">F${i + 1} ${m}</span>`).join("")}</div>
+  // 一時停止のわけ: G7 からは hold_why (step.py)。G6 までは前の文
+  const why = D.hold_why ? `一時停止中: ${D.hold_why}` : D.g6 && D.g6.end ? "一時停止中: Society 2.0 が終わったので、第 4 部のまとめ待ち" : "一時停止中: フェーズが進んだので評価待ち";
+  $("era").innerHTML = `<div>今のフェーズ (${gen ? "Society 2.0" : "狩猟採集 → 農耕"}): <b>${esc(E.era)} ${esc(E.name)}</b>${D.hold ? ` <span class="chip c-提案">${esc(why)}</span>` : ""}</div>
+    <div class="steps">${names.map((m, i) => `<span class="${i + 1 < n ? "done" : i + 1 === n ? "now" : ""}">${pre}${i + 1} ${m}</span>`).join("")}</div>
     ${E.next ? `<div class="meta">次のフェーズの条件: ${esc(E.next)}</div>` : ""}
     ${E.indicators ? `<div class="meta">直近 7 日に食べたもの: ${esc(E.indicators.eaten)} ・ 蓄える・干す: ${E.indicators.stored_acts} 回 ・ キャンプの蓄え: ${esc(D.store || "なし")}</div>` : ""}`;
 }

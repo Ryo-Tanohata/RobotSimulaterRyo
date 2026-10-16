@@ -892,7 +892,7 @@ def report(data):
     years = full_years(village)
     short = short_years(years, "G5") if acc else []
     u = village[-1]["store_days"]
-    lowest = min((r for r in village if r.get("store_days") is not None and r["era"] in ("G4", "G5", "G6")), key=lambda r: r["store_days"])
+    lowest = min((r for r in village if r.get("store_days") is not None and accounts.at_least(r["era"], "G4")), key=lambda r: r["store_days"])  # G4 から (G7 からも)
     c0, c1, c2 = R["come"]
     rt = field_ratio(state)
     chain = field_chain(state, village)

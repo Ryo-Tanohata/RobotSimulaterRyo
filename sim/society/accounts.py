@@ -69,6 +69,12 @@ def at_least(era, e):
     return era in era2.ORDER2 and era2.ORDER2.index(era) >= era2.ORDER2.index(e)
 
 
+def fix_from(state):
+    """G7 の史実のずれの直し (docs/society_phase/G7_design.md 4.E.4) が効いた最初の日。G7 に入るまでは None。
+    PASTURE_FROM のように決め打ちにせず、state (e2.g7.fix_from) から読む"""
+    return (((state or {}).get("era2") or {}).get("g7") or {}).get("fix_from")
+
+
 def valued(era):
     """この季節の土器・鎌に値うちをつけるか (VALUE のある G6 から)"""
     return at_least(era, VALUE_FROM)

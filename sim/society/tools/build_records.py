@@ -42,7 +42,8 @@ PAY_RE = re.compile(r"。(\S+?)が(\S+?)に (.+?) を払った")
 GOATS_RE = re.compile(r"ヤギ (\d+) 頭")
 ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき",
                 "畑仕事": "畑仕事", "ヤギの世話": "ヤギの世話", "ヤギを捕まえる": "ヤギを捕まえる", "土器": "土器づくり", "住まい": "住まいを建てる",
-                "狩り": "狩り", "交換に行く": "交換に行く", "記録をつける": "記録をつける"}  # step.py の ACT_BY_EVENT と同じ (+ 狩り)
+                "狩り": "狩り", "交換に行く": "交換に行く", "記録をつける": "記録をつける",
+                "守る": "守る", "取り立てる": "取り立てる", "戦に出る": "戦に出る", "試す": "試す"}  # step.py の ACT_BY_EVENT と同じ (+ 狩り)
 G6_TYPES = getattr(era2, "G6_EVENTS", ())  # G6 の出来事 (G6 の前は起きない)
 OUT_G6, IN_G6 = "ほかの村へ出した", "ほかの村から入った"  # G6: 交換・貸した・返してもらった・交換に持って行った・持ち帰った (出来事の data の moves)
 START, END, DIFF = "季節のはじめの残り", "季節の終わりの残り", "記録にない差"
@@ -519,7 +520,7 @@ class Builder:
                 g5["fission"] = d.get("household")
             elif t == "受けつぎ":
                 m = re.search(r"が亡くなり、(.+?の家)(?:の|には)", x)
-                h = m.group(1) if m else None
+                h = m.group(1) if m else d.get("household")  # G7 (直し A3): 家にだれも暮らしていないので村のものになった (data に household)
                 to_v = "村のものになった" in x
                 rest = x.split("が亡くなり、", 1)[-1]
                 wm = re.search(r"ので、(.+)は村のものになった", rest) if to_v else re.search(r"の家の(.+)は、", rest)
@@ -1050,7 +1051,7 @@ class Builder:
             "year_named": c["year_named"],
             "criteria": crit,
             "snapshot": C is not None,
-        } | ({"g6": self.g6_row(c, ind)} if c["era"] == "G6" else {})
+        } | ({"g6": self.g6_row(c, ind)} if accounts.at_least(c["era"], "G6") else {})  # G6 から (G7 からも、ほかの村・記録は続く)
 
     def g6_row(self, c, ind):
         """村の行の G6 (ほかの村・交換・印と封・記録の道具・確かめた・町)。数の多くは控えの era_info の目安 (era2._g6_indicators)、この季節の数は出来事から"""

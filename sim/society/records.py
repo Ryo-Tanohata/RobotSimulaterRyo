@@ -86,6 +86,10 @@ CRITERIA_PARTS = {
     # G6: 町と記録に、それぞれ一度でも届いた (届いた日は区切り F3・F4。era2.CRITERIA と同じ。両方そろうと Society 2.0 の終わり)
     "G6": [("g6_town_day", "set", None, "町に届いた (50 人以上・4 季節続けて交換・相手の村 2 つ以上・いちばん大きい相手の 2 倍以上・食べ物をとらない人が大人の 1 割以上)"),
            ("g6_record_day", "set", None, "記録に届いた (粘土の板で量を確かめた)")],
+    # G7: 3 つに、それぞれ一度でも届いた (era2.CRITERIA と同じ。docs/society_phase/G7_design.md 4.D.1)
+    "G7": [("g7_f3_day", "set", None, "決める段が 3 つ以上のまとまりに村がいる【地域で生まれた】"),
+           ("g7_tribute2_day", "set", None, "決まった取り立てを粘土の板の記録で 2 年続けて全部残した【村が決めた】"),
+           ("g7_f4_day", "set", None, "板に書いた決まりで、もめごとを裁いて払わせた【村が決めた】")],
 }
 
 
@@ -175,8 +179,10 @@ def snapshot(state, meeting_first=None, event_first=None, source="live", notes=N
               "joint": g.get("joint"), "votes": _copy(g.get("votes")), "call": _copy(g.get("call")), "next": g.get("next"),
               "open": [d["id"] for d in g.get("disputes", []) if d.get("status") == "収まっていない"],
               "fissions": len(g.get("fissions") or []), "meet_first": g.get("meet_first")}
+    g7 = e2.get("g7")
     return {
-        "v": SNAP_V, "day": state["day"], "season_end": season_end(state["day"]), "source": source,
+        # 控えの版: G7 からは 2 (g7 の欄がある)。G6 までは SNAP_V (1) のまま (新しいコードで回した G6 の控えも、前と同じ)
+        "v": 2 if g7 else SNAP_V, "day": state["day"], "season_end": season_end(state["day"]), "source": source,
         "meeting_first": meeting_first, "event_first": event_first if event_first is not None else e2.get("last_first"),
         "event_end": end, "sig": event_sig(state, end - 1),
         "era": state.get("era"), "era_info": _copy(state.get("era_info")), "hold": bool(state.get("hold")),
@@ -193,7 +199,20 @@ def snapshot(state, meeting_first=None, event_first=None, source="live", notes=N
         "laws": {l["id"]: l.get("status") for l in state.get("laws", [])},
         "year_names": len(e2.get("year_names") or []),
         "notes": _copy(notes) if notes is not None else None,
+        # G7 から (G6 までは鍵を足さない): 年 1 回の答え・止まるわけ・まわりの集落・史実のずれの直しの帳簿 (【シ】と【村】。記録が読む)
+        **({"g7": _g7_snap(state, g7)} if g7 else {}),
     }
+
+
+def _g7_snap(state, g7):
+    """控えの g7 の欄 (state は読むだけ)。年 1 回の答え・見本の家・つながりと段は、それぞれの部分を入れるときに足す"""
+    reg = g7.get("region") or {}
+    others = ((state.get("era2") or {}).get("g6") or {}).get("others", [])
+    keys = ("start", "fix_from", "part", "ask", "answer_day", "zoom", "sample", "weights", "donor", "src", "hold", "offered", "role_days", "kid_jobs")
+    return {**{k: _copy(g7[k]) for k in keys if k in g7},
+            "region": {"weather": _copy(reg.get("weather")), "fill": _copy(reg.get("fill")),
+                       "others": [{k: _copy(o.get(k)) for k in ("id", "cell", "land", "people", "known", "org", "bad", "cattle_f")} for o in others]},
+            "ledger": _copy((g7.get("ledger") or [None])[-1])}
 
 
 def append_snapshot(data_dir, row):

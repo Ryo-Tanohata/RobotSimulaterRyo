@@ -46,8 +46,13 @@ for (let k = 0; k < args.steps; k++) {
   if (!out || !/season exit=0/.test(out)) return { stopped: d, why: /exit=4/.test(out || '') ? 'all dead' : 'season failed', out, log: log_ }
   // G6: 町と記録がそろうと Society 2.0 の終わり (フェーズは進まない。step.py は「Society 2.0 が終わった」と表示して一時停止する)。
   // why の 'end' は「回数を終えた」に使っているので、別の言葉にする
+  // (前からの 2 つの合図は、G6 のまま走っているあいだのために残す。G6 では止まるわけも前と同じ)
   if (/Society 2\.0 が終わった/.test(out)) return { stopped: d, why: 'society2 end', out, log: log_ }
   if (/フェーズが .* に進んだ/.test(out)) return { stopped: d, why: 'phase', out, log: log_ }
+  // 2026-10-16 (docs/society_phase/G7_design.md 4.E.2): step.py は一時停止したとき、機械用の 1 行「HOLD …」を行の頭から出す。
+  // 村の人の文 (掟など。表示は「* 」で始まる) からは出ないので、これで止まる (部の終わり・次の G を待つ・工業の入口・止めて相談する・フェーズが進んだ)
+  const hold = (out || '').match(/^HOLD (part_end|wait|entrance|consult|phase)$/m)
+  if (hold) return { stopped: d, why: { part_end: 'part end', wait: 'wait', entrance: 'entrance', consult: 'consult', phase: 'phase' }[hold[1]], out, log: log_ }
   // args.stop_on_town: 町の条件がそろったら止める (2026-10-15 本人が決めた: 町に届くか 45年までで止めて相談する)。状態の行は「町 43年120日目」のように日付になる
   if (args.stop_on_town && /町 (?!まだ)[0-9]/.test(out)) return { stopped: d, why: 'town', out, log: log_ }
   log(`day ${d} season done`)
