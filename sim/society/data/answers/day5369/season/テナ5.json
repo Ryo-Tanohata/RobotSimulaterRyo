@@ -1,0 +1,52 @@
+{
+  "say": [
+    {"to": "みんな", "text": "北の川では、前の季節いくら探しても何も見つからなかった。今日は近い南の川を見てくるね。見つけたら夜にみんなに話すから。"},
+    {"to": "ネイ3", "text": "前に冬はいっしょに取りに行こうって言ってくれたよね。今日は南の川へ、いっしょに食べ物を探しに行こう。二人なら見逃しも減るし、安心だよ。"}
+  ],
+  "job": {"activity": "採集", "place": "南川12", "with": ["ネイ3"], "why": "北川12では前の季節に何も見つからなかったので、近くて歩く分も少ない南川12を試すため"},
+  "pick": 0,
+  "plant": 0,
+  "harvest": 0,
+  "eat_goat": 0,
+  "accept": {"ケセ5": true},
+  "keep": false,
+  "feast": false,
+  "leader": "なし",
+  "trade": {"T42": false},
+  "seal": false,
+  "seal_store": false,
+  "knowledge": [
+    {"op": "add", "text": "北川12で採集をしても、前の季節は食べ物が見つからなかった", "because": [256167], "confidence": 0.9},
+    {"op": "add", "text": "南の村は、畑が実らず苦しい年があった", "because": [256186], "confidence": 0.6},
+    {"op": "add", "text": "ケセ5は南の村から来たと言っている", "because": [256185], "confidence": 0.7}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L30", "against": "肉を全部その日に食べると決めると、干して蓄える実験ができなくなる", "agree": false, "reason": "干し肉と燻製の結果を見てから決めたい"},
+    {"id": "L98", "against": "", "agree": true, "reason": "採った人が空腹のままだと、明日の採集に響くから"},
+    {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めておけば、戻らない人をすぐ探せる"},
+    {"id": "L111", "against": "", "agree": true, "reason": "ヤギは一人では囲めず、ザガにも襲われやすいから"},
+    {"id": "L121", "against": "", "agree": true, "reason": "二人なら、けがをしても助けを呼べるから"},
+    {"id": "L140", "against": "", "agree": true, "reason": "夏の終わりまでに刈り切るには、手のあいた大人が毎夕刈るのがいい"},
+    {"id": "L143", "against": "", "agree": true, "reason": "林は迷いやすいので、二人以上で行くのがいい"},
+    {"id": "L158", "against": "", "agree": true, "reason": "覚えではずれるから、毎晩板に書いて残すのがいい"},
+    {"id": "L160", "against": "", "agree": true, "reason": "何も見つからなかった場所も書けば、次の人が無駄足を減らせる"},
+    {"id": "L165", "against": "", "agree": true, "reason": "探索も二人以上なら、見落としも減る"},
+    {"id": "L167", "against": "", "agree": true, "reason": "世話がないとヤギはいなくなるから、数に合わせて世話の人を決めるのがいい"},
+    {"id": "L168", "against": "", "agree": true, "reason": "土器が増えれば草の種が守れる。自分は採集をするけれど賛成"},
+    {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに増やすと、子ヤギが減ってしまうから"},
+    {"id": "L172", "against": "", "agree": true, "reason": "こっそり封を割ると疑いが広がるから、名乗り出るのがいい"},
+    {"id": "L174", "against": "", "agree": true, "reason": "前の借りが返されていないのに貸すと、また返ってこないから"},
+    {"id": "L175", "against": "", "agree": true, "reason": "草が足りない今は、野生のヤギを増やさないほうがいい"},
+    {"id": "L176", "against": "", "agree": true, "reason": "草が足りない場所を二人で見れば、次の判断に役立つ"},
+    {"id": "L178", "against": "", "agree": true, "reason": "戻る日を言っておけば、戻らないときに探しに行ける"},
+    {"id": "L180", "against": "", "agree": true, "reason": "黒曜石の刃の鎌は割れにくいから、鎌を作る人に回したい"},
+    {"id": "L182", "against": "", "agree": true, "reason": "夏と秋に実る木が増えれば、蓄えが増えるから"},
+    {"id": "L183", "against": "", "agree": true, "reason": "南の村は前の借りをまだ返していないから、新しく貸すのはやめるべき"},
+    {"id": "L184", "against": "", "agree": true, "reason": "返されない貸しが続かないように、どの村にも同じ決まりを"},
+    {"id": "L185", "against": "", "agree": true, "reason": "前の分が返されてから貸す、というのは筋が通っている"},
+    {"id": "L186", "against": "", "agree": true, "reason": "貸した量と返す量を板に残せば、もめごとを防げる"},
+    {"id": "L187", "against": "", "agree": true, "reason": "覚えはずれるから、記録を休む人がいても続くように二人ずつ決めるのがいい"}
+  ],
+  "feeling": "北の川で空振りした分、今日は見つけたい。ネイ3と組めるのは少し心強い。"
+}
