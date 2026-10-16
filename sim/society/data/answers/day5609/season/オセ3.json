@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "北から来たヌオ6さんとキオ6さん、ようこそ。蓄えはまだ余裕があるから、春のあいだに村の暮らしを少しずつ覚えてね。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["ユノ2"], "why": "採集はわたしが得意な仕事で、北の林はまだ今季は誰も行っていない。ユノ2と二人で行けば、ザガが出ても安心。"},
+ "pick": 20,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "accept": {"ヌオ6": true},
+ "keep": false,
+ "feast": false,
+ "leader": null,
+ "seal_store": true,
+ "knowledge": [{"op": "add", "text": "北の村から来た ヌオ6 と キオ6 が、ここで暮らしたいと言っている", "because": [288799, 288802], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが出るので、みんなで離れないほうが安全。"},
+  {"id": "L98", "against": "なし", "agree": true, "reason": "採ってきた人が自分の分を食べられないと、採集の力が落ちるから。"},
+  {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないのにヤギを増やすと、子ヤギが減って、多すぎる分がやせていなくなるから。"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "草で養えない数より多いあいだは、ヤギを増やさないほうがいいから。"}
+ ],
+ "feeling": "新しい人が来て少しうれしい。でも蓄えの減り方が気になる。"}

@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "俺は土器をつくる。草の種を虫とネズミに食わせるのは、もったいない。焼けた土器は、割れた数と作った数を夜に言うよ。"}],
+"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは一番得意な仕事で、草の種を虫やネズミから守れる。北と南の村も土器をほしがっている。"},
+"pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+"accept": {"ヌオ6": false},
+"keep": true,
+"feast": false,
+"leader": "なし",
+"seal_store": true,
+"knowledge": [
+{"op": "add", "text": "トワ3の家は、村の蓄えに入れた量より多く取り、つぐないを払うことになった", "because": [286367], "confidence": 0.9},
+{"op": "add", "text": "ヌオ6 と キオ6 は、北の村から来た", "because": [288802], "confidence": 0.9}],
+"proposal": null,
+"votes": [
+{"id": "L0", "against": "", "agree": true, "reason": "夜に火がなければ、ザガに襲われる。"},
+{"id": "L143", "against": "近い川や草原まで二人で行くのは手間になる。", "agree": false, "reason": "林だけ二人にすれば足りる。"},
+{"id": "L166", "against": "", "agree": true, "reason": "土器は草の種を守る。作った数と割れた数を言えば、次の土器づくりに役立つ。"},
+{"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、よそからヤギを受けとるのはよくない。"},
+{"id": "L190", "against": "", "agree": true, "reason": "草で養えないヤギは減らさないと、春に痩せていなくなる。"}],
+"feeling": "土器があれば、草の種を守れる。今日は静かに働きたい。"}
