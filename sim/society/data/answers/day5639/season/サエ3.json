@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切ろう。わたしは畑仕事をするよ。手のあいた人は、夕方に少しずつ手伝ってね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈り切らないと、畑の実りが落ちてしまうから。わたしは採集と道具づくりが得意で、畑の草取りと刈り入れも手早くできる。"},
+ "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り入れを毎夕みんなで進めれば、畑の実りが落ちずにすむから。"},
+  {"id": "L149", "against": "", "agree": true, "reason": "草取りと刈り入れを一人ずつ交代で担当すれば、畑が手薄にならないから。"},
+  {"id": "L102", "against": "", "agree": true, "reason": "夏が終わる前に毎夕刈れば、刈り残しが出ないから。"},
+  {"id": "L128", "against": "", "agree": true, "reason": "蓄えの草の種を土器に入れれば、虫やネズミに食べられずにすむから。"}
+ ],
+ "year_name": "畑の草の種がたくさん実った年",
+ "feeling": "畑の草の種が実って、ほっとしている。夏のうちに刈り切りたい。"}

@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "畑の草の種がもうすぐ実るね。夏のうちに毎夕だれかが刈って、刈り残しが出ないようにしよう。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["リオ3"], "why": "キャンプから近い南川で、木の実と草の種を集めて冬の蓄えにしたいから。"},
+ "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"リオ3": {"activity": "採集", "place": "南川12", "why": "わたしと一緒に川辺で採ると、二人で同じ量を集められるから。"}},
+ "keep": false,
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "この季節も村の蓄えの封が何度も割られた。封を割る人がいるので、蓄えに封をしたほうがよい", "because": [291369], "confidence": 0.9},
+  {"op": "add", "text": "飼っているヤギが 181 頭いて、草で養えるのは約 140 頭。草が足りず、世話をする人も足りない", "because": [291363], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L175", "against": "", "agree": true, "reason": "草が足りないあいだは、野生のヤギを増やさないほうがいい。"},
+  {"id": "L172", "against": "", "agree": true, "reason": "封を割った人が名乗り出れば、蓄えのもめごとを防げる。"},
+  {"id": "L184", "against": "", "agree": true, "reason": "前に貸した分が返らないのに、また貸すと損をする。"},
+  {"id": "L188", "against": "", "agree": true, "reason": "南川12は近くて安全なので、一人で行ってもいい。"},
+  {"id": "L137", "against": "", "agree": true, "reason": "小さい子は外で濡れると弱ってしまうから。"},
+  {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに畑を刈り切れば、実りが落ちない。"}
+ ],
+ "year_name": "子が生まれ、仲間が亡くなった年",
+ "feeling": "蓄えを守る人が必要だと思う。みんなで働けば冬は越せると信じている。"}
