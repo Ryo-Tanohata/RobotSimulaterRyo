@@ -1362,6 +1362,8 @@ class C2_ClosedByDecision(unittest.TestCase):
         cls.data = cls.tmp / "data"
         cls.data.mkdir()
         cls.D = st["day"]
+        if (REAL / "archive").exists():
+            shutil.copytree(REAL / "archive", cls.data / "archive")
         (cls.data / "state.json").write_text(real_text(), encoding="utf-8")
         cls.env = dict(os.environ, SOC_DATA=str(cls.data), SOC_RECORDS="0", SOC_ARCHIVE="0", PYTHONUTF8="1", PYTHONIOENCODING="utf-8")
 

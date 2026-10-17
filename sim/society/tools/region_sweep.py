@@ -223,7 +223,11 @@ def table(base, seeds, years, procs):
 
 def fmt(rows, base, seeds, years):
     def f(v, p=False, d=1):
-        return "-" if v is None else f"{v:.0%}" if p else f"{v:.{d}f}"
+        if v is None:
+            return "-"
+        if p:
+            return "1% 未満" if 0 < v and f"{v:.0%}" == "0%" else "99% より上" if v < 1 and f"{v:.0%}" == "100%" else f"{v:.0%}"
+        return f"{v:.{d}f}"
     out = [f"| はじめの集落 | 村の動き方 | 条件 1 (段 3 に村) | 年の真ん中 | 地域のどこかに段 3 | 段の最大 (平均) | いちばん上 | 戦 | 逃げた | 崩れ | なくなった | "
            f"求めへの答え (1 回あたり) | 囲まれていた割合 | 分かれた | 出ていった (新しい集落) | B − D | 8 年進まない | 16 年進まない | {years} 年後の集落と人 |",
            "|" + "---|" * 19]
