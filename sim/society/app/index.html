@@ -461,15 +461,18 @@ function lineChart(title, series, unit) {
 
 function renderGraph() {
   if (!D.stats.length) { $("charts").innerHTML = `<p class="empty">最初の日が終わるとグラフが表示されます。</p>`; return; }
-  const cum = { 創発: 0, 伝承: 0, 知識の再現の疑い: 0 }, byDay = {};
+  // G7 から「よその便り」(史実のヒントをもとにした知識) の線を足す (その知識があるときだけ。G6 までのグラフは前と同じ)
+  const hint = D.knowledge_log.some((k) => k.op === "追加" && k.label === "よその便り");
+  const cum = { 創発: 0, 伝承: 0, 知識の再現の疑い: 0, ...(hint ? { よその便り: 0 } : {}) }, byDay = {};
   for (const k of D.knowledge_log) if (k.op === "追加" && k.label in cum) (byDay[k.day] = byDay[k.day] || []).push(k.label);
-  const kser = { 創発: [], 伝承: [], 知識の再現の疑い: [] };
+  const kser = { 創発: [], 伝承: [], 知識の再現の疑い: [], ...(hint ? { よその便り: [] } : {}) };
   for (const s of D.stats) { for (const l of byDay[s.day] || []) cum[l]++; for (const l in kser) kser[l].push(cum[l]); }
   $("charts").innerHTML =
     lineChart("生きている人", [{ n: "人数", v: D.stats.map((s) => s.alive), c: css("--accent") }], "人") +
     lineChart("食べた量 (全員の合計)", [{ n: "食べた量", v: D.stats.map((s) => s.eaten), c: css("--emerge") }], "kcal / 日") +
     lineChart("分け合った回数", [{ n: "分けた", v: D.stats.map((s) => s.shares), c: css("--lore") }], "回 / 日") +
-    lineChart("生まれた知識 (累計)", [{ n: "創発", v: kser["創発"], c: css("--emerge") }, { n: "伝承", v: kser["伝承"], c: css("--lore") }, { n: "知識の再現の疑い", v: kser["知識の再現の疑い"], c: css("--suspect") }], "件");
+    lineChart("生まれた知識 (累計)", [{ n: "創発", v: kser["創発"], c: css("--emerge") }, { n: "伝承", v: kser["伝承"], c: css("--lore") }, { n: "知識の再現の疑い", v: kser["知識の再現の疑い"], c: css("--suspect") }]
+      .concat(hint ? [{ n: "よその便り", v: kser["よその便り"], c: css("--accent") }] : []), "件");
 }
 
 function renderEra() {
@@ -480,7 +483,7 @@ function renderEra() {
     : ["移動する採集民", "食べ物の幅を広げる", "蓄える", "定住する", "野生植物を育てる", "農耕に頼る"];
   const n = Number(E.era.slice(1));
   // 一時停止のわけ: G7 からは hold_why (step.py)。G6 までは前の文
-  const why = D.hold_why ? `一時停止中: ${D.hold_why}` : D.g6 && D.g6.end ? "一時停止中: Society 2.0 が終わったので、第 4 部のまとめ待ち" : "一時停止中: フェーズが進んだので評価待ち";
+  const why = D.hold_why ? `一時停止中: ${D.hold_why}` : D.g6 && D.g6.end ? "一時停止中: 第 4 部の終わり (G6)。第 4 部のまとめ待ち" : "一時停止中: フェーズが進んだので評価待ち";
   $("era").innerHTML = `<div>今のフェーズ (${gen ? "Society 2.0" : "狩猟採集 → 農耕"}): <b>${esc(E.era)} ${esc(E.name)}</b>${D.hold ? ` <span class="chip c-提案">${esc(why)}</span>` : ""}</div>
     <div class="steps">${names.map((m, i) => `<span class="${i + 1 < n ? "done" : i + 1 === n ? "now" : ""}">${pre}${i + 1} ${m}</span>`).join("")}</div>
     ${E.next ? `<div class="meta">次のフェーズの条件: ${esc(E.next)}</div>` : ""}

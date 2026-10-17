@@ -1408,6 +1408,28 @@ function renderKiroku(p) {
       h("p", { class: "notice" }, "記録に残るのは数え札の数だけ (はんぱは1個に切り上げ)。本当の量は出さない")));
   }
   if (g6.town && g6.town.row <= d) p.append(h("div", { class: "card" }, h("h3", {}, "町"), h("p", {}, `${g6.town.label} に町の目安に届いた。村の広がり 約${g6.town.ha}ha (テル・ブラク LC2 は約55ha)`)));
+  renderKiroku7(p, d);
+}
+
+/* ---------------------------------------------------------------- 記録 (G7 から。村の人が残したものだけ) */
+function renderKiroku7(p, d) {
+  const g7 = D.g7;
+  if (!g7 || !g7.entered) return;
+  const tk = (o) => Object.entries(o || {}).map(([k, v]) => `${k} 数え札${fmt(v)}個`).join("・") || "なし";
+  const tr = g7.tribute.filter((r) => r.d != null && r.d <= d);
+  p.append(h("div", { class: "card" }, h("h3", {}, "取り立ての板 (G7から)"),
+    tr.length ? tbl([{ t: "季節" }, { t: "取り立て" }, { t: "家の数", n: 1 }, { t: "量 (数え札)" }, { t: "道具" }],
+      tr.slice(-12).map((r) => [r.label, { "税": "村の中の取り立て", "貢ぎ出す": "ほかの村へ出した貢ぎ", "貢ぎ受ける": "ほかの村から受けた貢ぎ" }[r.kind] || r.kind,
+        r.homes != null ? fmt(r.homes) : "―", tk(r.tokens), r.how || "―"])) : h("p", { class: "empty" }, "まだない (記録をつける人が全部残せた取り立てだけが残る)"),
+    h("p", { class: "notice" }, "記録に残るのは数え札の数だけ (1個 = 草の種100つかみ・ヤギ1頭。はんぱは1個に切り上げ)")));
+  const wr = g7.written.filter((r) => r.d != null && r.d <= d);
+  p.append(h("div", { class: "card" }, h("h3", {}, "粘土の板に書いた掟 (G7から)"),
+    wr.length ? h("ul", { class: "dots" }, wr.slice(-12).map((r) => h("li", {}, h("b", {}, r.label), `  ${r.text}`, r.kind !== "決まり" ? h("span", { class: "tag" }, r.kind) : null,
+      r.dropped ? h("span", { class: "muted" }, " (のちにやめになったが、板は残る)") : null))) : h("p", { class: "empty" }, "まだない")));
+  const ln = g7.loans.filter((r) => r.d != null && r.d <= d);
+  if (ln.length) p.append(h("div", { class: "card" }, h("h3", {}, "上乗せのある貸し借りの記録 (G7から)"),
+    tbl([{ t: "季節" }, { t: "貸した物 (数え札)" }, { t: "上乗せ", n: 1 }, { t: "道具" }, { t: "返された" }],
+      ln.slice(-12).map((r) => [r.label, tk(r.tokens), `${Math.round(r.rate * 100)}%`, r.how, r.back ? "返された" : "まだ"]))));
 }
 </script>
 </body>

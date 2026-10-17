@@ -55,6 +55,8 @@ LAYER_REAL = {
     "G6": ("テル・ブラク LC2 → ウルク期", "前4200〜3800年ごろ → 原楔形文字 前3350〜3200年"),
 }
 LAYER_IDS = ["F", "G1", "G2", "G3", "G4", "G5", "G6"]
+# G7 (王と役所) の層は、G7 に入ってからだけ足す (G6 までのダッシュボードは前と同じ)
+LAYER_REAL_G7 = ("初期王朝期 → アッカド → ウル第 3 王朝", "前2900〜2000年ごろ")
 
 # 跡を残した技と、本物 (西アジア) でいちばん古い例 (動かない表。docs/dashboard_design.md 2.5・K22・6.4)
 # 年代と場所は docs/research/archaeological_evidence.md と app/tech_tree_demo.html (どちらも出典つき) にそろえた
@@ -267,13 +269,15 @@ def load(data_dir, tries=3, wait=2.0):
                         rec["ledger_goats"].append(json.loads(l))
             sp = os.path.join(R, "season_person.jsonl")
             rec["work_days"] = {}
-            if any(r.get("era") == "G6" for r in rec["season_village"]):
+            if any(r.get("era") in ("G6", "G7") for r in rec["season_village"]):  # G6 以上 (G7 からも村の記録は続く)
                 for r in _read_jsonl(sp):
                     dba = r.get("days_by_activity") or {}
                     n = sum(v for k, v in dba.items() if k in G6_WORK)
                     if n:
                         key = (r["season_end_day"], r.get("household_id"))
                         rec["work_days"][key] = rec["work_days"].get(key, 0) + n
+            tp = os.path.join(R, "tribute.jsonl")  # G7 から: 取り立てと貢ぎの払い (【村】の行だけを使う)
+            rec["tribute"] = _read_jsonl(tp) if os.path.exists(tp) else []
             meta2 = _read_json(os.path.join(R, "meta.json"))
             if meta2 != meta:
                 raise GateError("読んでいるあいだに records/ が書きかわった")
@@ -299,7 +303,7 @@ def build(st, rec):
     # 層: フェーズが進んだ日の次の日から (F1〜F6 はまとめて F)
     adv = []
     for x in st.get("era_log", []):
-        if x["era"].startswith("G") and x["era"] in LAYER_IDS:
+        if x["era"].startswith("G") and (x["era"] in LAYER_IDS or (x["era"] == "G7" and e2.get("g7"))):
             adv.append((x["day"], x["era"]))
     adv.sort()
 
@@ -671,10 +675,12 @@ def build(st, rec):
 
     # ---- 層
     layers = []
-    for lid in LAYER_IDS:
+    g7_on = bool(e2.get("g7"))
+    ids = LAYER_IDS + (["G7"] if g7_on else [])
+    for lid in ids:
         idx = [i for i, L in enumerate(layer_of_row) if L == lid]
-        real, real_years = LAYER_REAL[lid]
-        ramp = 6 - LAYER_IDS.index(lid)
+        real, real_years = LAYER_REAL[lid] if lid in LAYER_REAL else LAYER_REAL_G7
+        ramp = 6 - ids.index(lid)
         if idx:
             f, l = rows[idx[0]]["s"], rows[idx[-1]]["d"]
             layers.append({"id": lid, "first": f, "last": l, "last_row": rows[idx[-1]]["d"], "first_date": dlab(f), "last_date": dlab(l),
@@ -765,6 +771,7 @@ def build(st, rec):
 
     # ---- G6 (村の記録)。G6 の前は空
     g6 = build_g6(st, rec, rows, seasons, layer_of_row, row_of_event, ev_by_type, adv)
+    g7 = build_g7(st, rec, rows, seasons, row_of_day) if e2.get("g7") else None  # G7 (王と役所) から。G6 までは鍵を足さない
 
     last = seasons[-1]
     lc = last["cum"]
@@ -855,6 +862,7 @@ def build(st, rec):
         "chronicle": chronicle,
         "how": how,
         "g6": g6,
+        **({"g7": g7} if g7 is not None else {}),
     }
     return out
 
@@ -952,7 +960,7 @@ def build_g6(st, rec, rows, seasons, layer_of_row, row_of_event, ev_by_type, adv
         sh_by[r["season_end_day"]].append(r)
     hh_name = {h["id"]: h["name"] for h in rec["households"]}
     for i, L in enumerate(layer_of_row):
-        if L != "G6":
+        if L not in ("G6", "G7"):  # G6 以上 (G7 からも村の記録は続く。G6 までは前と同じ)
             continue
         d = D[i]
         p = per.get(i) or {"sealings": collections.Counter(), "kinds": [], "checked": []}
@@ -998,6 +1006,49 @@ def build_g6(st, rec, rows, seasons, layer_of_row, row_of_event, ev_by_type, adv
             break
     _ = name2id
     return out
+
+
+G7_TOKEN = {"草の種": 100, "ヤギ": 1}
+
+
+def build_g7(st, rec, rows, seasons, row_of_day):
+    """G7 の村の記録 (【村】だけ。docs/society_phase/G7_design.md 4.D.9): 取り立ての板 (記録をつける人が数え札か板に全部残せた取り立てと貢ぎ)・
+    書いた掟の板 (粘土の板に書いた掟。文・罰か換算・書いた日)・証文 (上乗せのある貸し借りで、記録の残ったもの)。
+    名前は出さない (掟の文の中の名前は「(名)」にする)。量は数え札の数で出す。【シ】(決める段・便りの帳簿など) は出さない"""
+    names = sorted({p["name"] for p in rec["people"]} | {h["name"] for h in rec["households"]}, key=len, reverse=True)
+
+    def mask(t):
+        for n in names:
+            t = t.replace(n, "(名)")
+        return t
+
+    def row_d(day):
+        i = row_of_day(day)
+        return (rows[i]["d"], seasons[i]["label"]) if i is not None else (None, None)
+
+    def tok(goods):
+        return {k: -(-int(n) // G7_TOKEN.get(k, 100)) for k, n in (goods or {}).items() if n}
+    trib = []
+    for r in rec.get("tribute", []):
+        if r.get("tag") != "村":
+            continue
+        d, lab = row_d(r["day"])
+        trib.append({"d": d, "label": lab, "kind": r["kind"], "tokens": tok(r.get("goods")), "homes": len(r.get("from") or []) if r["kind"] == "税" else None,
+                     "how": r.get("recorded")})
+    written = []
+    for l in st.get("laws", []):
+        w = l.get("written")
+        if not w:
+            continue
+        d, lab = row_d(w["day"])
+        written.append({"d": d, "label": lab, "text": mask(l["text"]), "kind": "罰" if l.get("penalty") else "換算" if l.get("rate") else "取り立て" if l.get("tax") else "決まり",
+                        "dropped": l.get("status") == "廃止"})
+    loans = []
+    for x in ((st.get("era2") or {}).get("g6") or {}).get("debts", []):
+        if (x.get("rate") or 0) > 0 and x.get("proof"):
+            d, lab = row_d(x["day"])
+            loans.append({"d": d, "label": lab, "tokens": tok(x.get("goods")), "rate": x["rate"], "how": x["proof"], "back": x.get("status") == "返した"})
+    return {"entered": True, "tribute": trib, "written": written, "loans": loans, "token_units": dict(G7_TOKEN)}
 
 
 def _seal_letter(k):

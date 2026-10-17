@@ -46,6 +46,9 @@ ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道
                 "守る": "守る", "取り立てる": "取り立てる", "戦に出る": "戦に出る", "試す": "試す"}  # step.py の ACT_BY_EVENT と同じ (+ 狩り)
 G6_TYPES = getattr(era2, "G6_EVENTS", ())  # G6 の出来事 (G6 の前は起きない)
 OUT_G6, IN_G6 = "ほかの村へ出した", "ほかの村から入った"  # G6: 交換・貸した・返してもらった・交換に持って行った・持ち帰った (出来事の data の moves)
+# G7 から: 取り立て (村の中の税)・貢ぎ・戦の出し入れは、ほかの村との交換と分けて書く (G6 までは、この種類の出来事に moves はない)
+MOVE7 = {"取り立て": ("取り立てで出した", "取り立てで入った"), "貢ぎ": ("貢ぎで出した", "貢ぎで受けた"), "崩れ": ("貢ぎで出した", "貢ぎで受けた"),
+         "戦": ("戦で取られた", "戦で持ち帰った")}
 START, END, DIFF = "季節のはじめの残り", "季節の終わりの残り", "記録にない差"
 FLOWS = ("採った", "木から取った", "狩った", "乳をしぼった", "刈った (村の蓄えに入った)", "刈った (自分の家の畑)", "ヤギをつぶした",
          "家にだれもいなくなり、村のものになった", "家の倉から食べた", "家の倉から食べた (子)", "よその家の倉から取った",
@@ -384,7 +387,10 @@ class Builder:
             if t == "交換" and who and e["id"] not in meeting_ids:  # 向こうの村で交換した日も「交換に行く」(step.py の day_summaries と同じ)
                 mark(who, day, "交換に行く")
             for side, sg, goods, ids in d.get("moves") or []:  # G6: 物が村や家に出入りした (era2._mv)
-                g6["moves"].append((side, sg, goods))
+                if t in MOVE7:  # G7: 取り立て・貢ぎ・戦 (食べ物の帳簿のわけを分ける。ヤギの番号は下の G6 と同じに読む)
+                    g6.setdefault("moves7", []).append((side, sg, goods, MOVE7[t][0 if sg < 0 else 1]))
+                else:
+                    g6["moves"].append((side, sg, goods))
                 for gid, sex, born in ids:
                     (g6["in"] if sg > 0 else g6["out"])[gid] = side
                     if e["id"] in meeting_ids:  # 集まりで (ヤギをつぶす前に) 出入りしたヤギ
@@ -794,6 +800,10 @@ class Builder:
                 if kk in UNIT:
                     tgt = fv.setdefault(IN_G6 if sg > 0 else OUT_G6, {}) if side == "村" else fh.setdefault((side, IN_G6 if sg > 0 else OUT_G6), {})
                     add(tgt, kk, n * UNIT[kk][1])
+        for side, sg, goods, why in c["g6"].get("moves7", []):  # G7: 取り立て・貢ぎ・戦
+            for kk, n in goods.items():
+                if kk in UNIT:
+                    add(fv.setdefault(why, {}) if side == "村" else fh.setdefault((side, why), {}), kk, n * UNIT[kk][1])
         fis = c["g5"]["fission"]
         if fis and known:
             for kk, v in self._left_over(fis, houses0.get(fis, {}), houses1.get(fis, {}), fh).items():
@@ -801,7 +811,8 @@ class Builder:
 
         sign = {"食べた": -1, "まいた (畑)": -1, "種として埋めた": -1, "腐った": -1, "虫やネズミ": -1, "祭り": -1, "雨で傷んだ": -1,
                 "亡くなった人の手元": -1, "村を出た人の手元": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1,
-                "だれもいなくなり、村のものになった": -1, "村を出て持っていった": -1, "罰・つぐないで払った": -1, "干した": 1, OUT_G6: -1}
+                "だれもいなくなり、村のものになった": -1, "村を出て持っていった": -1, "罰・つぐないで払った": -1, "干した": 1, OUT_G6: -1,
+                **{w[0]: -1 for w in MOVE7.values()}}
         src = {"刈った (村の蓄えに入った)": "replay", "刈った (自分の家の畑)": "replay", "食べた": "stats", "虫やネズミ": "snapshot",
                "亡くなった人の手元": "snapshot", "村を出た人の手元": "snapshot", "家の倉から食べた": "notes", "家の倉から食べた (子)": "notes",
                "よその家の倉から取った": "notes", "家の人が食べた": "notes", "子が食べた": "notes", "よその家の人に取られた": "notes",
@@ -890,7 +901,8 @@ class Builder:
 
     def _left_over(self, h, s0, s1, fh):
         """家の倉が空になったとき、出ていった量 = はじめ + ほかの動き − 終わり (物ごと)"""
-        sign = {"罰・つぐないで払った": -1, "虫やネズミ": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1, OUT_G6: -1}
+        sign = {"罰・つぐないで払った": -1, "虫やネズミ": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1, OUT_G6: -1,
+                **{w[0]: -1 for w in MOVE7.values()}}
         out = {}
         for kk in FOODS:
             v = s0.get(kk, 0) - s1.get(kk, 0)
@@ -1051,7 +1063,26 @@ class Builder:
             "year_named": c["year_named"],
             "criteria": crit,
             "snapshot": C is not None,
-        } | ({"g6": self.g6_row(c, ind)} if accounts.at_least(c["era"], "G6") else {})  # G6 から (G7 からも、ほかの村・記録は続く)
+        } | ({"g6": self.g6_row(c, ind)} if accounts.at_least(c["era"], "G6") else {}) \
+          | ({"g7": self.g7_row(C, ind)} if C and C.get("g7") else {})  # G6 から (G7 からも、ほかの村・記録は続く)。g7 は G7 から (【シ】)
+
+    @staticmethod
+    def g7_row(C, ind):
+        """村の行の G7 (【シ】。docs/society_phase/G7_design.md 4.D.9): 決める段・集落の段・役の段・中心・村の位置・まとまりの集落の数・続くつながり・
+        取り立ての記録・役の割合・書いた掟・掟で裁いた数・利子の貸し借り・F に届いた日・条件ごとの止まり・よその便りの数"""
+        G = C["g7"]
+        m = G.get("measure") or {}
+        lv = m.get("levels") or {}
+        reg = G.get("region") or {}
+        return {"levels": lv.get("D"), "tiers": lv.get("T"), "office_levels": lv.get("office"), "centre": lv.get("top"), "village": lv.get("village"),
+                "members": lv.get("members"), "region_max_levels": lv.get("region_max"),
+                "settlements": sum(1 for o in reg.get("others", []) if not o.get("gone")), "region_people": sum(o.get("people") or 0 for o in reg.get("others", [])),
+                "ties": sum(1 for t in reg.get("ties", []) if t.get("status") == "続く"),
+                "village_ties": [t["id"] for t in reg.get("ties", []) if t.get("status") == "続く" and "V0" in (t.get("payer"), t.get("payee"))],
+                "tribute_season": m.get("coll"), "tribute_years_ok": sum(1 for y in m.get("tribute_years", []) if y.get("ok")), "tribute2_day": m.get("tribute2_day"),
+                "role": m.get("role"), "f6_run": m.get("f6_run"), "written_laws": ind.get("g7_written_laws"), "law_judged": m.get("judged"),
+                "interest_debts": ind.get("g7_interest"), "reached": m.get("reached"), "stall": m.get("stall"), "walls": m.get("walls"),
+                "cattle": m.get("cattle"), "sick": m.get("sick"), "hints": (G.get("hints") or {}) and {k: G["hints"][k] for k in ("delivered", "planned", "things")}}
 
     @staticmethod
     def g7_answered(C, D):
@@ -1424,6 +1455,46 @@ class Builder:
             self.ledger_rows += lg
         self.build_disputes()
         self.build_year_names()
+        self.build_g7()
+
+    def build_g7(self):
+        """G7 から (G6 までは作らない): records/polity.jsonl (1 季節 1 行。集落・つながり・段。【シ】) と records/tribute.jsonl (取り立てと貢ぎの払い 1 回 1 行。
+        数え札か板に全部残せた季節の行は【村】、残らなかった行は【シ】。docs/society_phase/G7_design.md 4.D.9)"""
+        self.polity_rows, self.tribute_rows = [], []
+        G = self.e2.get("g7")
+        if not G:
+            return
+        for D in sorted(self.snaps):
+            C = self.snaps[D]
+            g = C.get("g7")
+            if not g:
+                continue
+            reg = g.get("region") or {}
+            self.polity_rows.append({"season_end_day": D, "settlements": reg.get("others"), "ties": reg.get("ties"), "wars": reg.get("wars"),
+                                     "levels": (g.get("measure") or {}).get("levels")})
+        rec = {}
+        for r in G.get("tribute_log", []):
+            rec[(r["day"], r["kind"], r.get("tie") or r.get("by"))] = r.get("recorded")
+        for e in self.ev:
+            d = e.get("data") or {}
+            if e["type"] == "取り立て":
+                key = (e["day"], "税", e.get("who"))
+                row = {"day": e["day"], "kind": "税", "law": d.get("law"), "by": e.get("who"), "from": d.get("homes"), "to": "村", "goods": d.get("goods")}
+            elif e["type"] == "貢ぎ" and d.get("tie") and d.get("amount"):
+                t = next((x for x in (G.get("region") or {}).get("ties", []) if x["id"] == d["tie"]), None)
+                if not t or "V0" not in (t["payer"], t["payee"]):
+                    continue
+                kind = "貢ぎ出す" if t["payer"] == "V0" else "貢ぎ受ける"
+                key = (e["day"], kind, d["tie"])
+                row = {"day": e["day"], "kind": kind, "tie": d["tie"], "by": None, "from": t["payer"], "to": t["payee"], "goods": {"草の種": d["amount"]}}
+            else:
+                continue
+            how = rec.get(key)
+            self.tribute_rows.append({**row, "season_end_day": self.season_of(e["day"]), "event": e["id"], "recorded": how, "tag": "村" if how else "シ"})
+
+    def season_of(self, day):
+        """その日をふくむ季節の終わりの日 (季節のはじめの集まりの日は、前の季節の最後の日なので、次の季節に数える)"""
+        return min((D for D in self.seasons if D >= day + (1 if (day + 1) % era2.SEASON_DAYS == 0 else 0)), default=None)
 
 
 # ---------------- 列の説明 ----------------
@@ -1637,6 +1708,14 @@ COLUMNS = [
     ("season_person", "plan_answer_day", "この季節の仕事を決めた集まりの日 (G7 から)", "日", "シ", "控え (g7.step)", True, None,
      "年の集まりか、寄る季節の集まりの日"),
     ("season_person", "donor_household_id", "手本の家 (G7 から。見本から広げた家だけ)", None, "シ", "控え (g7.step)", True, None, None),
+    ("season_village", "g7", "G7 の物差し (決める段 D・集落の段 T・役の段・いちばん上・村の位置 (中心 / 従う / 外)・まとまりの集落の数・地域のいちばん高い段・"
+     "集落の数と人数・続くつながり・村のつながり・この季節の取り立てと記録・取り立てを全部残せた年の数・条件 2 に届いた日・季節の役の人・F6 の続いた季節・"
+     "板に書いた掟・書いた掟で裁いた数・利子の貸し借り・F に届いた日・条件ごとの止まり・壁・牛・病・よその便りの数)", None, "シ", "控え (g7.measure・region・hints)",
+     True, None, "G7 から。お題にもダッシュボードにも出さない (docs/society_phase/G7_design.md 4.D.9)。決める段は 4.D.2 の数え方 (集落と役の両方、どの段も 2 つ以上を下に)"),
+    ("polity", "season_end_day", "季節の終わりの日 (1 季節 1 行。G7 から)", "日", "シ", "控え (g7.region)", True, None,
+     "settlements (集落: 番号・ます・土地・人数・村が知った日・役の段・悪い年・牛・壁・なくなった日)・ties (貢ぎのつながり)・wars (この 1 年の戦)・levels (村のいるまとまりの段)"),
+    ("tribute", "kind", "取り立ての種類 (税 = 村の中の取り立て / 貢ぎ出す / 貢ぎ受ける。払い 1 回 1 行。G7 から)", None, "村", "出来事「取り立て」「貢ぎ」",
+     True, None, "tag が「村」の行は、その季節の取り立てを、記録をつける人が数え札か板に全部残せたもの (recorded にどちらか)。「シ」の行は残らなかったもの (ダッシュボードには出さない)"),
     ("season_person", "why", "主な仕事にした理由の一言", None, "シ", "季節の答えの job.why と、代表の答えの family の why", True, None,
      "段階 1 (docs/humanity の D09)。step.py ask_why のあとのお題から。代表が割り振った人は代表が書いた理由。代表と同じ仕事の人は null (理由をたずねていない)"),
     ("season_person", "why_by", "理由を書いた人 (自分・代表)", None, "シ", "季節の答え", True, None,
@@ -1772,6 +1851,9 @@ def build(data_dir, quiet=False, check=False):
     write(out / "year_names.json", as_array(b.year_rows), written)
     write(out / "laws.json", as_array(b.laws_rows), written)
     write(out / "disputes.json", as_array(b.disputes_rows), written)
+    if b.e2.get("g7"):  # G7 から (G6 までは作らない)
+        write(out / "polity.jsonl", as_lines(b.polity_rows), written)
+        write(out / "tribute.jsonl", as_lines(b.tribute_rows), written)
     write(out / "columns.json", as_array(columns()), written)
     write(out / "meta.json", jdump(meta) + "\n", written)
     dt = time.time() - t0
