@@ -194,7 +194,7 @@ else:
     out["n_prompts"] = len(ps)
     out["salts"] = sorted(set(salts))
 out["state"] = sha(json.dumps(st, ensure_ascii=False, sort_keys=True))
-out["g7_loaded"] = "g7" in sys.modules
+out["g7_loaded"] = any(m in sys.modules for m in ("g7", "region", "hints", "yardstick"))
 out["day"] = st["day"]
 print(json.dumps(out))
 '''
@@ -235,7 +235,7 @@ class B_SameAsOld(unittest.TestCase):
         cls.tmp = tmpdir()
         old = cls.tmp / "old"
         old.mkdir()
-        files = [f"sim/society/{f.name}" for f in sorted(SOC.glob("*.py")) if f.name not in ("g7.py", "region.py")]
+        files = [f"sim/society/{f.name}" for f in sorted(SOC.glob("*.py")) if f.name not in ("g7.py", "region.py", "hints.py", "yardstick.py")]  # G7 で足したファイルは前のコードにない
         a = _git("archive", cls.base, "--", *files)
         if a.returncode:
             raise unittest.SkipTest(f"前のコードを取り出せない ({a.stderr.decode()[:200]})")

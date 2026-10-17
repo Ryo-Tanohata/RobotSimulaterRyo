@@ -392,8 +392,9 @@ def open_techs(state):
     return sorted(c for c, t in _h(state)["tech"].items() if t.get("open") is not None and not t.get("done"))
 
 
-def can_try(state, name, card):
-    return card in open_techs(state) and knows(state, name, card)
+def can_try(state, name, card, with_=()):
+    """試してよいか: 開いた札を知っている人。知らない人も、知っている人と一緒に (with) なら試せる (その日に一緒に試すと、次の季節から知っている人。4.C.6 の 3)"""
+    return card in open_techs(state) and (knows(state, name, card) or any(knows(state, w, card) for w in with_ or ()))
 
 
 def try_day(state, p, t):
@@ -401,13 +402,15 @@ def try_day(state, p, t):
     g7 = state["era2"]["g7"]
     j = (g7.get("jobs7") or {}).get(p["name"]) or {}
     card = j.get("try")
-    if not card or not can_try(state, p["name"], card):
+    mates = [q for q in era2.adults(state) if q is not p and (q.get("today") or {}).get("activity") == "試す"
+             and ((g7.get("jobs7") or {}).get(q["name"]) or {}).get("try") == card] if card else []
+    knower = bool(card) and knows(state, p["name"], card)
+    helped = [q for q in mates if q["name"] in ((p.get("plan") or {}).get("with") or []) and knows(state, q["name"], card)]
+    if not card or card not in open_techs(state) or not (knower or helped):
         t.setdefault("events", []).append(log(state, "休む", p["name"], f"{p['name']} は、試すことが分からず、休んだ"))
         return
     key = f"試す:{card}"
     sk = p["skills"].setdefault(key, TRY_SKILL0)
-    mates = [q for q in era2.adults(state) if q is not p and (q.get("today") or {}).get("activity") == "試す"
-             and ((g7.get("jobs7") or {}).get(q["name"]) or {}).get("try") == card]
     teach = any(q["skills"].get(key, 0) >= TEACH_AT for q in mates)
     tech = _h(state)["tech"][card]
     tech["progress"] = round(tech["progress"] + t.get("work_h", 6) / 6 * (0.5 + sk) * (2 if teach else 1), 3)
@@ -419,11 +422,10 @@ def try_day(state, p, t):
         for r in _h(state)["ledger"]:
             if r["to"] == "V0" and r["card"] == card and r["status"] == "届いた":
                 r["outcome"].append(["試した", state["day"], p["name"]])
-    for w in (p.get("plan") or {}).get("with") or []:  # 知っている人と同じ日に一緒に試した人は、次の季節から知っている人 (手を動かして覚える道)
-        if any(q["name"] == w for q in mates) and not knows(state, w, card):
-            _h(state)["pending_knowers"].setdefault(card, [])
-            if w not in _h(state)["pending_knowers"][card]:
-                _h(state)["pending_knowers"][card].append(w)
+    if not knower:  # 知っている人と同じ日に一緒に試した人は、次の季節から知っている人 (手を動かして覚える道。4.C.6 の 3)
+        pk = _h(state)["pending_knowers"].setdefault(card, [])
+        if p["name"] not in pk:
+            pk.append(p["name"])
     name = cards()[card]["name"]
     t.setdefault("events", []).append(log(state, "試す", p["name"], f"{p['name']} がキャンプで、よその便りで聞いたこと ({name}) を試した"
                                           + ("。腕のある人に教わりながら" if teach else ""), card=card))

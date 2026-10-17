@@ -297,7 +297,7 @@ def job(state, q, j):
     out = {}
     if act == "試す":
         card = str(j.get("try") or "").strip().upper()
-        if hints.can_try(state, q["name"], card):
+        if hints.can_try(state, q["name"], card, (q.get("plan") or {}).get("with")):
             out["try"] = card
         else:
             q["plan"]["activity"] = "休む"

@@ -1063,7 +1063,8 @@ class M_Accounts(Base):
             shutil.rmtree(d2, ignore_errors=True)
 
 
-G7_COLS = {("season_person", "is_sample"), ("season_person", "plan_answer_day"), ("season_person", "donor_household_id")}  # G7 (年 1 回の答え) で足した列。G7 の行にだけある
+G7_COLS = {("season_person", "is_sample"), ("season_person", "plan_answer_day"), ("season_person", "donor_household_id"),  # G7 (年 1 回の答え) で足した列。G7 の行にだけある
+           ("season_village", "g7"), ("polity", "season_end_day"), ("tribute", "kind")}  # G7 の物差しと記録 (4.D.9)。g7 は G7 の行にだけ、polity・tribute は G7 に入ってからのファイル
 WHY_ADDED = ("   その仕事にした理由を一言で書く (why。続けている仕事なら、続ける理由を)\n",
              "\n- family に書いた人ごとに、その仕事にした理由も一言書く (family の why)", ', "why": "..."')  # ask_why でお題に足す文
 ASK_KEYS = ("ask_why", "ask_why_log")

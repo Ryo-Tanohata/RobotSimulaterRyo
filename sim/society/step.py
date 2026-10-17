@@ -646,7 +646,8 @@ def main():
             ask = [k for k, v in sorted((G.get("stall") or {}).items()) if v.get("ask") and not v.get("done")]
             print(f"G7 / 決める段 {i.get('g7_levels', 0)} (村は{i.get('g7_village', '外')}) / 取り立てを全部残せた年 {i.get('g7_tribute_years', 0)} / "
                   f"板に書いた掟 {i.get('g7_written_laws', 0)} / F {'・'.join(sorted(G.get('reached') or {})) or 'まだ'} / "
-                  f"よその便り 届いた {sum(1 for r in led if r['to'] == 'V0' and r['status'] in ('届いた', '忘れられた'))}・待つ {len((G.get('hints') or {}).get('plan', []))}"
+                  f"よその便り (村) 届いた {sum(1 for r in led if r['to'] == 'V0' and r['status'] in ('届いた', '忘れられた'))}・"
+                  f"これから {sum(1 for r in led if r['to'] == 'V0' and r['status'] == '待つ')}"
                   + (f" / 8 年進まない条件 {'・'.join(ask)} (5 年ごとの報告で相談)" if ask else ""))
         if hold:
             print(f"HOLD {hold}")  # ワークフローが読む機械用の 1 行 (行の頭から。村の人の文 (出来事は「* 」で始まる) からは出ない。4.E.2)

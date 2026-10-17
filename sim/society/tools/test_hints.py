@@ -318,6 +318,29 @@ class D_Try(unittest.TestCase):
         self.assertIsNone(t["done"])
         self.assertEqual(t["progress"], 100.0)
 
+    def test_learn_by_trying_with(self):
+        """知らない人も、知っている人と一緒に (with) 試すと、次の季節から知っている人 (4.C.6 の 3)"""
+        st = copy.deepcopy(self.base)
+        st["era2"]["cattle"] = [{"id": i, "sex": "メス", "born": st["day"] - 3 * era2.YEAR, "owner": None} for i in (1, 2)]
+        hints._open(st, "H7-06", "ヒント")
+        a, b = era2.adults(st)[:2]
+        hints._add_knowers(st, "H7-06", [a["name"]])
+        st["era2"]["g7"]["jobs7"] = {a["name"]: {"try": "H7-06"}, b["name"]: {"try": "H7-06"}}
+        a["today"], b["today"] = {"activity": "試す", "work_h": 6}, {"activity": "試す", "work_h": 6}
+        a["plan"], b["plan"] = {"activity": "試す", "place": "camp", "with": []}, {"activity": "試す", "place": "camp", "with": [a["name"]]}
+        self.assertTrue(hints.can_try(st, b["name"], "H7-06", [a["name"]]))
+        self.assertFalse(hints.can_try(st, b["name"], "H7-06"))
+        hints.try_day(st, b, b["today"])
+        self.assertEqual(st["events"][-1]["type"], "試す")
+        self.assertFalse(hints.knows(st, b["name"], "H7-06"), "知っている人になるのは次の季節から")
+        hints._tech_season(st)
+        self.assertTrue(hints.knows(st, b["name"], "H7-06"))
+        c = era2.adults(st)[2]
+        c["today"], c["plan"] = {"activity": "試す", "work_h": 6}, {"activity": "試す", "place": "camp", "with": []}
+        st["era2"]["g7"]["jobs7"][c["name"]] = {"try": "H7-06"}
+        hints.try_day(st, c, c["today"])
+        self.assertEqual(st["events"][-1]["type"], "休む", "知らない人がひとりでは試せない")
+
     def test_unknown_person_rests(self):
         import g7
         st = copy.deepcopy(self.base)

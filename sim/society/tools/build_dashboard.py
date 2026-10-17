@@ -1009,6 +1009,7 @@ def build_g6(st, rec, rows, seasons, layer_of_row, row_of_event, ev_by_type, adv
 
 
 G7_TOKEN = {"草の種": 100, "ヤギ": 1}
+G7_KEEP, G7_TEXT = {"tribute": 40, "written": 20, "loans": 20}, 80  # G7 の記録は新しいものからこの数まで (掟の文はこの字数まで)
 
 
 def build_g7(st, rec, rows, seasons, row_of_day):
@@ -1048,7 +1049,11 @@ def build_g7(st, rec, rows, seasons, row_of_day):
         if (x.get("rate") or 0) > 0 and x.get("proof"):
             d, lab = row_d(x["day"])
             loans.append({"d": d, "label": lab, "tokens": tok(x.get("goods")), "rate": x["rate"], "how": x["proof"], "back": x.get("status") == "返した"})
-    return {"entered": True, "tribute": trib, "written": written, "loans": loans, "token_units": dict(G7_TOKEN)}
+    # 大きさを抑える (ダッシュボードの JSON は 300 KB まで): 新しいものから、取り立て 40・掟 20 (文は 80 字まで)・証文 20
+    for w in written:
+        w["text"] = w["text"][:G7_TEXT] + ("…" if len(w["text"]) > G7_TEXT else "")
+    return {"entered": True, "tribute": trib[-G7_KEEP["tribute"]:], "written": written[-G7_KEEP["written"]:], "loans": loans[-G7_KEEP["loans"]:],
+            "counts": {"tribute": len(trib), "written": len(written), "loans": len(loans)}, "token_units": dict(G7_TOKEN)}
 
 
 def _seal_letter(k):
