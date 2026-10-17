@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春のあいだに土器をたくさん焼こう。草の種が虫やネズミにやられる前に、入れられるだけ入れたい。割れた土器は、すぐ数えて教えてね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器 1 個に 500 つかみの草の種が守られる。土器づくりは慣れていて数を作れるし、蓄えの草の種を虫やネズミから守るのに一番役立つ。"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M119": "つぐなう"}, "feast": false, "leader": null, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "ミラ3 に子 ワユ6 (女) が生まれた", "because": [304329], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は外に出ないほうがいい。ザガは怖い。"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを、毎夕だれかが交代で担当すれば、実りが減らない。"}, {"id": "L171", "against": "", "agree": true, "reason": "ヤギは今でも草より多い。よそからヤギを受けとると、草の取り合いがひどくなる。"}, {"id": "L175", "against": "", "agree": true, "reason": "草が足りないのに野生のヤギを捕まえると、もっと困る。"}],
+ "feeling": "土器をたくさん焼けるのはうれしい。でも、封を割っていく人がいるのは気になる。"}

@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "春のうちに西の林へ行こう。冬に芋がたくさんあったから、まずそこを確かめたい。ひとりでは行かず、二人で行こう。"}],
+ "job": {"activity": "採集", "place": "西林12", "with": ["ヒセ4"], "why": "冬に西の林で芋が多く取れた。春の食べ物をさがすのに、いちばん当てになる場所だから。"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヌオ6": true},
+ "family": {"ヒセ4": {"activity": "採集", "place": "西林12", "why": "ロワ4と組になって西の林へ行き、芋を取るため。二人で行けば林でも安心できる。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "西の林12には、冬に芋が多くあった。", "because": [288631, 288701, 288770], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "夜にザガが出るので、キャンプから離れないのは大事なことだ。"},
+  {"id": "L140", "against": null, "agree": true, "reason": "夏の刈り入れを毎夕みんなでするのは、実りを落とさないために必要だ。"},
+  {"id": "L143", "against": null, "agree": true, "reason": "採集と狩りを二人以上で行えば、けがをしても助けられる。"},
+  {"id": "L149", "against": null, "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当するのは、分かりやすくていい。"},
+  {"id": "L167", "against": null, "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギがいなくなりにくい。"}
+ ],
+ "feeling": "春の林へ行くのが楽しみだ。ヒセ4と組になって、芋がまだあるか確かめたい。"}

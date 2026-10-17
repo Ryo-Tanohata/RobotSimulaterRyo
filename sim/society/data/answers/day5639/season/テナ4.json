@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切ろう。手が空いたら、夕方に声をかけてね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ホタ4"], "why": "夏のうちに刈らないと草の種が落ちてしまうから。畑の刈り入れを毎夕ていねいにやりたい。"},
+ "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"ラニ4": {"activity": "畑仕事", "place": "camp", "why": "同じ家の大人として、刈り入れを手伝ってほしい。"}, "ケセ4": {"activity": "畑仕事", "place": "camp", "why": "若いから草取りを覚えてほしい。刈り入れも手伝える。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+   {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るのは本当だから、夜は離れないほうがいい。"},
+   {"id": "L98", "against": "", "agree": true, "reason": "同じ掟が何度も決まっているので、ひとつにまとめるのは分かりやすい。"},
+   {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに畑を刈り切るには、手の空いた大人が毎夕刈るのがよい。"},
+   {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると困る。"},
+   {"id": "L174", "against": "", "agree": true, "reason": "前に貸した草の種が返されないのに、また貸すのは損になる。"},
+   {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いあいだは、捕まえないほうがいい。"}
+ ],
+ "year_name": "封を割られた年",
+ "feeling": "畑の実りが落ちないか少し心配。でも手が空けばみんなで刈れると思うと、少し安心する。"}

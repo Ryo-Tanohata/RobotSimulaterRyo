@@ -1,0 +1,23 @@
+{"say": [{"to": "ユノ2", "text": "東林12へ木の実を取りに行こう。二人で行けば安心だし、夕方までには戻ろう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ユノ2"], "why": "夏は木の実が実る季節。前の季節に東林12で木の実を27つかみ取れた。"},
+ "pick": 40,
+ "plant": 0,
+ "harvest": 60,
+ "eat_goat": 0,
+ "family": {},
+ "keep": false,
+ "feast": false,
+ "leader": null,
+ "seal_store": true,
+ "knowledge": [{"op": "add", "text": "東林12は夏から秋にかけて木の実が実りやすい。二人組で行くのがよい。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "なし", "agree": true, "reason": "採集した人が自分の分を食べられるのは大事だから"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "林は一人だと危ないから"},
+  {"id": "L165", "against": "なし", "agree": true, "reason": "探索も二人以上で行けば安全だから"},
+  {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると困るから"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "ヤギが草で養える数より多いうちは、野生のヤギを増やさないほうがよいから"},
+  {"id": "L190", "against": "なし", "agree": true, "reason": "草が足りないので、草で養えない分のヤギを減らす必要があるから"}
+ ],
+ "year_name": "畑の草の種がたくさん刈れた年",
+ "feeling": "夏の林に行けるのがうれしい。ユノ2と一緒に、食べ物をしっかり持ち帰りたい。"}

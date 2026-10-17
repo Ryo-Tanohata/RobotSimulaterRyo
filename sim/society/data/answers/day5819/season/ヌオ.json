@@ -1,0 +1,9 @@
+{"say":[{"to":"ユノ2","text":"冬のうちに北川12で魚と芋がとれるか、いっしょに見に行かないか。二人で行けば安心だ。"}],
+"job":{"activity":"探索","place":"北川12","with":["ユノ2"],"why":"冬に魚と芋がとれる所を知りたい。北丘12は冬に何も見つからなかったので、先に北川12を試す決まりだから。"},
+"pick":0,"plant":0,"harvest":0,"eat_goat":0,"keep":true,
+"judge":{"M122":"ゆるす","M123":"ゆるす"},
+"feast":false,"leader":"なし","trade":{"T53":false},"seal_store":true,
+"knowledge":[{"op":"add","text":"この季節、ヌオの家の印の封が10回割られた。だれが割ったかは分からない。","because":[318395],"confidence":0.9}],
+"proposal":null,
+"votes":[{"id":"L98","against":"","agree":true,"reason":"同じ掟が何度も決められていたので、一つにまとめたのは分かりやすい。自分の分を食べられるのは大事だ。"},{"id":"L99","against":"","agree":true,"reason":"畑の草取りを交代で行えば、夏の実りが減らない。"},{"id":"L112","against":"","agree":true,"reason":"肉は腐りやすいので、その日のうちに食べるか保存処理をする方がよい。"},{"id":"L149","against":"","agree":true,"reason":"畑の草取りと刈り入れを交代で担当すれば、刈り残しが出にくい。"},{"id":"L167","against":"","agree":true,"reason":"ヤギの世話をする人を決めておけば、ヤギがいなくなりにくい。"},{"id":"L168","against":"","agree":true,"reason":"土器に入らない草の種は失われるので、冬のうちから土器づくりを始めるのがよい。"},{"id":"L171","against":"","agree":true,"reason":"草が足りないのに、ほかの村からヤギを受けとると草の取り合いになる。"},{"id":"L172","against":"","agree":true,"reason":"封を割った人が名乗り出れば、もめごとが減る。"}],
+"feeling":"冬は寒いけど、魚のとれる川が見つかればみんなが助かる。"}

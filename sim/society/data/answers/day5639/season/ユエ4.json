@@ -1,0 +1,22 @@
+{"say": [{"to": "ホミ4", "text": "畑の草取りをたのむ。刈った数も夜に言ってくれ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "石の鎌が割れて減っている。夏の刈り入れまでに作りためておかないと、刈る人に鎌を回せないから"},
+ "pick": 10, "plant": 5, "harvest": 60, "eat_goat": 0,
+ "family": {"ホミ4": {"activity": "畑仕事", "place": "camp", "why": "草取りが少ないと、夏の実りが減るから"}},
+ "keep": true,
+ "feast": false,
+ "leader": "なし",
+ "seal_store": true,
+ "knowledge": [{"op": "add", "text": "村の蓄えの封は、印のない封も何度も割られている。割れたかけらを取っておけば、どの家が開けたか分かる", "because": [291369], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに受けとると、ヤギが増えて草の取り合いになる"},
+  {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草より多いうちは、捕まえても世話が足りずに減ってしまう"},
+  {"id": "L152", "against": "", "agree": true, "reason": "石の鎌は道具づくりの得意な人が作りためておくのがよい。今の自分の仕事でもある"},
+  {"id": "L129", "against": "", "agree": true, "reason": "夏のうちに刈り切るには鎌が要る。鎌を作る手が増えるならよい"},
+  {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑がある限り刈らないと、夏が終われば実りは落ちる"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、いなくなるヤギが減る"},
+  {"id": "L177", "against": "", "agree": true, "reason": "刈った種は、その日のうちに土器に入れれば虫やネズミに食べられない"},
+  {"id": "L181", "against": "", "agree": true, "reason": "住まいが足りなければ、雨の夜に濡れて疲れがとれない人が出る"}
+ ],
+ "year_name": "ヤギが草より多かった年",
+ "feeling": "石の鎌を作りためるのが、今いちばん大事な仕事だ。"}

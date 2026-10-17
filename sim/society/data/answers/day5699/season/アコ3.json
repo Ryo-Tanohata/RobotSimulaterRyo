@@ -1,0 +1,17 @@
+{"say":[{"to":"みんな","text":"冬は木の実が取れないから、北川12へ行ってみるね。ユノ2、いっしょに来てくれる？見つけた量は夜に言うね。"}],
+"job":{"activity":"採集","place":"北川12","with":["ユノ2"],"why":"冬はキャンプの木の実が取れず、北の林も前ほど実らない。北川12で魚と芋が取れるか確かめたい。"},
+"pick":0,"plant":0,"harvest":0,"eat_goat":0,"keep":false,
+"feast":false,"leader":"なし","trade":{"T51":false},"seal_store":true,
+"knowledge":[{"op":"add","text":"北川12は冬に魚と芋が取れるかもしれない。たしかめたい","because":[296849],"confidence":0.5}],
+"proposal":null,
+"votes":[
+{"id":"L0","against":"なし","agree":true,"reason":"ザガが夜に来るから、夜は離れないほうがいい"},
+{"id":"L121","against":"なし","agree":true,"reason":"ザガは昼の林にも出るので、二人で行くほうが安心"},
+{"id":"L126","against":"なし","agree":true,"reason":"火と見張りを毎晩そろえると、夜が安心できる"},
+{"id":"L143","against":"なし","agree":true,"reason":"二人以上なら、けがをしても助け合える"},
+{"id":"L149","against":"なし","agree":true,"reason":"畑の草取りを交代ですると、だれかに負担が偏らない"},
+{"id":"L167","against":"なし","agree":true,"reason":"ヤギの世話をする人がいないと、ヤギが減るから"},
+{"id":"L171","against":"なし","agree":true,"reason":"草が足りないのに、よそのヤギを入れると草の取り合いになる"},
+{"id":"L175","against":"なし","agree":true,"reason":"ヤギが多すぎると、草が足りず、やせてしまう"},
+{"id":"L190","against":"なし","agree":true,"reason":"草で養えないヤギは、冬の前に肉にしておけば、蓄えが増える"}],
+"feeling":"おなかは落ち着いているけど、冬の食べ物が減っていくのが気がかり。"}

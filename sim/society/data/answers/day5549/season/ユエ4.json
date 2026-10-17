@@ -1,0 +1,30 @@
+{"say": [{"to": "みんな", "text": "石の鎌がどんどん割れて減っている。夏の刈り入れまでに、わしが石の刃の鎌を作りためるよ。手が空いたら手伝ってくれ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": ["ホミ4"], "why": "鎌は割れて減っている。夏の刈り入れで鎌が足りなくなる前に、わしが一番うまく作って備える。"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ4": {"activity": "道具づくり", "place": "camp", "why": "石の刃をはめる手伝いをする。鎌を作る人が増えれば、夏の刈り入れが早くなる。"}},
+ "keep": true,
+ "judge": {"M112": "ゆるす", "M113": "ゆるす", "M114": "ゆるす"},
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T49": false},
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "石の鎌は割れて減っている。夏の刈り入れまでに作りためておかないと、鎌を回せなくなる", "because": [281034, 281238, 281445], "confidence": 0.8},
+  {"op": "add", "text": "南の村のヤギは、草より多い今の村では受けとらないほうがいい", "because": [281583], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るから、キャンプを離れないのは大事だ。"},
+  {"id": "L38", "against": "", "agree": true, "reason": "火と見張りで、夜のけがを減らせる。"},
+  {"id": "L99", "against": "", "agree": true, "reason": "畑の草取りを続ければ、夏の実りが減らない。"},
+  {"id": "L102", "against": "", "agree": true, "reason": "夏の刈り入れを毎夕行えば、刈り残しが出ない。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "二人以上なら、ザガに襲われても助けられる。"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に眠れないと、疲れがとれない。"},
+  {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑は、夏のうちに刈り切りたい。"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をすれば、いなくなるヤギを減らせる。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとるのは避けたい。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草より多いヤギを捕まえれば、ますます草が足りなくなる。"},
+  {"id": "L176", "against": "", "agree": true, "reason": "草を増やすか、ヤギを減らすかを決めないといけない。"},
+  {"id": "L189", "against": "", "agree": true, "reason": "小さい子をひとりにしないのは大事。"}
+ ],
+ "feeling": "鎌が減っているのが気がかりだが、道具づくりでできることはまだある。"}

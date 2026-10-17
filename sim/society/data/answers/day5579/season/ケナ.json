@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "冬の北川12で魚をとりに行こう。二人以上で行けば安心だし、魚がどれくらいとれるか見てみたい。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": ["ソナ"], "why": "冬の北川12では魚がとれると知っていて、狩りは得意だから。二人で行くと安心だから"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ6": true},
+ "family": {"ソナ": {"activity": "狩り", "place": "北川12", "why": "冬の北川12の魚をケナと一緒にとりに行くため。二人以上で行ける"}},
+ "keep": true,
+ "judge": {"M115": "つぐなう"},
+ "feast": false,
+ "leader": "なし",
+ "seal_store": false,
+ "knowledge": [{"op": "add", "text": "北の村から、リセ6・タユ6・ヒセ6 の3人が、ここで暮らしたいと言って来た", "because": [286319], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るので、キャンプから離れないのは大事"},
+  {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば、けがをしたときに助けられる"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行くのは安心"},
+  {"id": "L98", "against": "", "agree": true, "reason": "蓄えに入れた人が、その日のうちに自分の分を食べられるのはよい"},
+  {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを捕まえないのがよい"}
+ ],
+ "feeling": "木の実がない冬だけど、川で魚がとれるかもしれないのが楽しみ。"}

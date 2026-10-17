@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "今季は北林12 へ採りに行くよ。二人以上で行って、夜に見つけた量を言い合おう。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["クラ"], "why": "採集は得意だし、北林12 は冬に食べ物が見つかったと聞いているから。二人で行けば、見つからない日も助け合える。"},
+ "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "わたしの子 トナ6 は生まれたが、0 歳で亡くなった", "because": [281572, 286309], "confidence": 0.9},
+  {"op": "add", "text": "西草原12 は前の季節、30 日採っても何も見つからなかった", "because": [291295], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "夜にザガが出るから、キャンプから離れないのは大事"},
+  {"id": "L98", "against": null, "agree": true, "reason": "採った人が、その日のうちに自分の分を取って食べられる"},
+  {"id": "L143", "against": null, "agree": true, "reason": "採集と狩りは二人以上で行けば、けがをしても助けられる"},
+  {"id": "L110", "against": null, "agree": true, "reason": "戻る時刻を決めれば、戻らない人をすぐ探せる"}
+ ],
+ "year_name": "畑の草の種が実った年",
+ "feeling": "草の種がよく実った年だったけど、トナ6 のことが胸に残っている。"}

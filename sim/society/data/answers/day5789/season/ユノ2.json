@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "土器をつくれる人は手を貸してほしい。草の種を虫やネズミから守ろう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えの草の種が虫やネズミに食べられている。土器に入れれば守れるから、粘土をこねて焼くのが今いちばん大事だと思う。"},
+ "sow": 0, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M120": "ゆるす", "M121": "ゆるす", "M122": "ゆるす"},
+ "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、キャンプから離れないのは大事だと思う。"},
+  {"id": "L1", "against": "", "agree": true, "reason": "同じ場所を重ねて探さないように、行き先を伝えるのは役に立つ。"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは複数人で行けば、助け合えて安心できる。"},
+  {"id": "L15", "against": "", "agree": true, "reason": "得意な人が得意な仕事をすれば、村全体で食べ物を集めやすい。"}
+ ],
+ "feeling": "土器が割れないように、今日もていねいに作りたい。"}

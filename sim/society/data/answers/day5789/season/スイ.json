@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "夕方に南林12へ採集に行ける人がいたら一緒にどうかな。二人で行って、取った量はその夜に言うね。冬までに木の実と草の種をしっかりためよう。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ユノ2", "ネム2"], "why": "採集は得意だし、冬の前に食べ物を集めておきたい。南林12は近くて実りもある。"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M120": "ゆるす", "M121": "ゆるす"}, "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜のザガがこわいから、キャンプから離れないのはいいと思う。"},
+  {"id": "L143", "against": "", "agree": true, "reason": "けがをした人がいるから、二人いれば助け合える。"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をする人がいれば、ヤギが減りにくい。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、よその村からヤギを受けとると困る。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "今はヤギが多すぎて草が足りないから、野生のヤギを捕まえるのはやめたほうがいい。"},
+  {"id": "L176", "against": "", "agree": true, "reason": "草の多い場所を知っておけば、ヤギを養える。"},
+  {"id": "L188", "against": "", "agree": true, "reason": "南川12は近いから、一人で採集に行ってもよいと思う。"},
+  {"id": "L190", "against": "", "agree": true, "reason": "ヤギが多すぎるなら、草で養えない分は肉にして干すのがいい。"}
+ ],
+ "feeling": "冬が近くて少し落ち着かないけど、みんなで集めれば大丈夫だと思う。"}

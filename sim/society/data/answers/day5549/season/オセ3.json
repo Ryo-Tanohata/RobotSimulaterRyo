@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "冬までの木の実が気になる。北林12 は冬の前にも実りがあると聞いたよ。北林12 に行ける人は声をかけてね。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["ラタ3"], "why": "わたしは採集が得意で、北林12 は冬の前に食べ物が見つかりやすいと聞いた。二人で行けば、けがをしても助け合える"},
+ "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M112": "つぐなう", "M113": "つぐなう", "M114": "つぐなう"},
+ "feast": false, "leader": "なし", "trade": {"T49": false}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "木の実は夏と秋に実る。秋の間は毎夕、一人 40 つかみまで取って蓄えに入れられる", "because": [281121], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜に外へ出ると、ザガにおそわれるから"}, {"id": "L3", "against": "なし", "agree": true, "reason": "二人で行けば、けがをしても助け合えるから"}, {"id": "L167", "against": "なし", "agree": true, "reason": "ヤギが増えすぎて草が足りないので、世話をする人を決めておくのがいい"}, {"id": "L171", "against": "なし", "agree": true, "reason": "ほかの村のヤギを受けとると、草の取り合いになるから"}, {"id": "L184", "against": "なし", "agree": true, "reason": "前に貸した草の種が返ってくるまで、新しく貸さないほうが安心"}],
+ "feeling": "木の実を取りに行けるのは助かるけど、冬が近くて少し落ち着かない。"}

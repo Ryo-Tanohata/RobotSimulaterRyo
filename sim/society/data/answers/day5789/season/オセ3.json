@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋の木の実は、今がとれる時だね。わたしは南の林へ行って、ヒセ3と一緒に木の実を集めてくるよ。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ヒセ3"], "why": "採集が得意だから、秋のうちに林で食べ物を多く集めて、冬に備えたい。ヒセ3と一緒に行く約束をしたから"},
+ "sow": 200, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M120": "ゆるす", "M121": "ゆるす", "M122": "ゆるす"}, "feast": true, "leader": null, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "ヒセ3は、夏もいっしょに木の実を探しにいこうと言っている", "because": [306799], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "ザガが出る夜に、キャンプから離れないのは大事だから"},
+  {"id": "L143", "against": null, "agree": true, "reason": "採集と狩りは二人以上で行けば、けがや迷いを防げるから"},
+  {"id": "L171", "against": null, "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとると困るから"},
+  {"id": "L167", "against": null, "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギが減らないから"},
+  {"id": "L182", "against": null, "agree": true, "reason": "木の実を埋めて木を増やせば、夏と秋の食べ物が増えるから"},
+  {"id": "L184", "against": null, "agree": true, "reason": "前に貸した草の種が返されるまで、新しく貸さないのは公平だから"},
+  {"id": "L190", "against": null, "agree": true, "reason": "ヤギが草で養える数より多いので、草の足りる分にヤギを減らすのは良いと思う"}
+ ],
+ "feeling": "今日は秋の仕事を前に、ヒセ3と林へ行けるのがうれしい。子どもたちのためにも、食べ物をしっかり集めたい。"}

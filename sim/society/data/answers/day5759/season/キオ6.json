@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "北の村から来たホミ6を、仲間として迎えたい。北川12の魚と芋も、二人組で一緒に確かめよう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ヌオ6"], "why": "北川12で魚と芋が取れるかを確かめたい。冬の食べ物を増やすために、二人で行くのが決まりだから"},
+ "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホミ6": true},
+ "family": {"ヌオ6": {"activity": "採集", "place": "北川12", "why": "二人で行くのが決まりで、魚と芋の場所を確かめたい"}},
+ "keep": true,
+ "feast": false,
+ "leader": null,
+ "trade": {"T52": false},
+ "seal_store": true,
+ "knowledge": [{"op": "add", "text": "ホミ6は北の村から来た。北の村は川にそって北へ2日歩く", "because": [306722], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L143", "against": "なし", "agree": true, "reason": "ザガが出るので、採集と狩りは二人以上で行くのがよい"},
+  {"id": "L121", "against": "なし", "agree": true, "reason": "昼でも夜でも二人以上で行けば、けがを防げる"},
+  {"id": "L165", "against": "なし", "agree": true, "reason": "探索も二人以上で行くのが安全"},
+  {"id": "L106", "against": "なし", "agree": true, "reason": "冬の前に、木の実を蓄えに入れておくのは大事"},
+  {"id": "L140", "against": "なし", "agree": true, "reason": "夏の刈り入れを毎夕続けるのがよい"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "草が足りないあいだは、ヤギを増やさない方がよい"},
+  {"id": "L188", "against": "ザガが出るので、一人での採集は危ない", "agree": false, "reason": "二人以上の決まり (L143) を守るため"}
+ ],
+ "year_name": "子が生まれて、人が亡くなった年",
+ "feeling": "新しい人が来て、村がにぎやかになった。亡くなった人たちのことも忘れたくない。"}

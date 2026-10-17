@@ -1,0 +1,8 @@
+{"say": [{"to": "ニイ", "text": "西草原12へ行こう。まだ見ていない場所だから、草の実があるか二人で確かめたい。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ニイ"], "why": "西草原12はまだ採集に行ったことがない。北の川では何も見つからなかったので、ほかの場所で草の種を集めて夏の蓄えを増やしたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M119": "つぐなう"}, "feast": false, "leader": null, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "北の川 (キャンプから約 300 m) で採集をしたが、前の季節は何も見つからなかった", "because": [304290], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L175", "against": "", "agree": true, "reason": "草が足りないのにヤギが増えると、ヤギがやせて減ってしまうから。"}, {"id": "L171", "against": "", "agree": true, "reason": "ほかの村からヤギを受けとると草の取り合いになるから。"}, {"id": "L190", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いので、草で養えない分を肉にして干すのがよいと思う。"}],
+ "feeling": "ヤギが多すぎて草が足りないのが気がかりだ。西草原で草の種が見つかるといい。"}

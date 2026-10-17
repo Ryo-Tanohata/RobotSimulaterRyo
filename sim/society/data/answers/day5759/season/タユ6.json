@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "南川12へリオ2とリセ6と行くね。二人以上で行く約束を守って、見つけた量は夜にはっきり言うよ。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["リオ2", "リセ6"], "why": "南川12はキャンプから近く、二人以上で行けば安全。前に何も見つからなかった場所だけど、人数を合わせて広く探せば木の実が見つかるかもしれないから"},
+ "pick": 20, "plant": 5, "harvest": 60, "eat_goat": 0,
+ "accept": {"ホミ6": true},
+ "family": {"リセ6": {"activity": "採集", "place": "南川12", "why": "タユ6と一緒に二人で行くと、決まりを守れて、見つかる量も増えるから"}},
+ "keep": false,
+ "feast": false, "leader": "なし",
+ "trade": {"T52": "村"}, "seal": false, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "ホミ6は北の村から来た。北の村は川にそって北へ歩いて2日の所にある", "because": [306719, 306722], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L143", "against": "", "agree": true, "reason": "採集は一人で行くと危ないから、二人以上で行くのがいい"}, {"id": "L106", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えに入れると、冬の食べ物が増える"}, {"id": "L147", "against": "", "agree": true, "reason": "芋を夜に分けて食べきれば、蓄えを減らさずに済む"}],
+ "year_name": "草の種を刈り切った年",
+ "feeling": "夏の木の実がたくさんついていて、少し安心している。"}

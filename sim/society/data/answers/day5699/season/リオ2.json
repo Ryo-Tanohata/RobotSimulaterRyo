@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "冬は木の実も草の種も取れないから、北の川で魚と芋が取れるか、ニイと組になって確かめてくるね。夜に見つけた量を言うよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ニイ"], "why": "冬は南の川や林で食べ物が取れない。北の川で魚と芋を確かめて、冬の食べ物を増やしたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"リオ3": {"activity": "採集", "place": "北川12", "why": "採集が上手だから、北の川で魚と芋を探せる。"}},
+ "keep": false,
+ "feast": false, "leader": "なし", "trade": {"T51": "村"}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "冬は南の川や林で木の実と草の種が取れない。北の川で魚と芋が取れるかもしれない", "because": [296847], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが出るなら、みんなで離れないのがよい。"},
+  {"id": "L98", "against": "なし", "agree": true, "reason": "採集で入れた人が自分の分を取れば、力が落ちずに済む。"},
+  {"id": "L126", "against": "なし", "agree": true, "reason": "火と見張りを二人ずつにすれば、夜の守りが確かになる。"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "採集は二人以上で行けば、けがをしても助けられる。"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "ヤギが草より多いうちは、野生のヤギを増やさないほうがよい。"},
+  {"id": "L178", "against": "なし", "agree": true, "reason": "戻る日を決めておけば、帰らない人をすぐ探せる。"}
+ ],
+ "feeling": "冬は長いけど、みんなで食べ物の場所を確かめれば、春まで持つと思う。"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "ヌオの家の倉の封が、何度も割られている。だれが開けたのか、割れた封のかけらを見て、みんなで確かめよう。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": ["ヨナ2"], "why": "前の季節に北の川で魚が取れたので、春の魚を取りに行く。ふたりで行けば、掟にもあう。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M119": "つぐなう"}, "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "北川12 では魚が取れる。前の季節に魚を取ったことがある。", "because": [304309], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "夜に火があると、ザガが近づかない。"},
+  {"id": "L1", "against": "なし", "agree": true, "reason": "同じ場所を重ねて探さずに済む。"},
+  {"id": "L3", "against": "なし", "agree": true, "reason": "ふたりなら、けがをしたときも助けられる。"},
+  {"id": "L110", "against": "なし", "agree": true, "reason": "戻らない人を早く探せる。"},
+  {"id": "L111", "against": "なし", "agree": true, "reason": "ヤギは一人では囲めず、ザガにも襲われやすい。"},
+  {"id": "L121", "against": "なし", "agree": true, "reason": "ザガは昼の林にも出るので、二人以上が安全。"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "ヤギが草より多いと、草もヤギも足りなくなるから。"}
+ ],
+ "feeling": "春の川で魚を取れるのが楽しみだ。封が割られ続けているのが気がかりだ。"}

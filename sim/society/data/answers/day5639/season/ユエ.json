@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "わたしは土器づくりが一番慣れている。夏のうちに土器を増やして、蓄えの草の種を虫とネズミから守りたい。手の空いている人は、川の粘土を運ぶのを手伝ってほしい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは一番得意で、慣れるほど多く作れる。草の種が虫やネズミに食べられる前に、土器に入れておきたいから。"},
+ "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "わたしは土器づくりが得意で、慣れると一日に多くの土器を作れる", "because": [288855], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、誰もキャンプから離れないのがよい"},
+ {"id": "L98", "against": "", "agree": true, "reason": "同じ掟が何度も決まっていたので、ひとつにまとめるのがよい"},
+ {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、世話が足りなくなりにくい"},
+ {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると草の取り合いになる"},
+ {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを捕まえないほうがよい"}],
+ "year_name": "畑の草の種がたくさん実った年",
+ "feeling": "土器をたくさん作って、今年の草の種を守りたい。"}

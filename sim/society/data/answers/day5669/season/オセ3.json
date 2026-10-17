@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "今日は西草原12に行って、まだ行ったことのない草原の実りを見てくるね。夜に様子を話すよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["リセ3"], "why": "冬の食べ物がどこにあるかを知りたい。まだ見ていない場所を確かめて、夜に報告したいから。"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ6": true}, "keep": true,
+ "judge": {"M116": "ゆるす", "M117": "ゆるす"},
+ "feast": true, "leader": null, "trade": {"T50": false}, "seal_store": true,
+ "knowledge": [
+   {"op": "add", "text": "西の村の人が、ヤギ1頭を出すので土器4個・鎌2本・草の種65つかみがほしいと申し出た", "because": [296764], "confidence": 0.9},
+   {"op": "add", "text": "ルタ6は西の村から来て、ここで暮らしたいと言っている", "because": [296763, 296757], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+   {"id": "L0", "against": "", "agree": true, "reason": "ザガが出るので、夜に誰もキャンプから離れないのは大事だから"},
+   {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは複数人で行けば、助け合えて安全だから"},
+   {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのにヤギを受けとると、子ヤギが減ってヤギがやせていなくなるから"},
+   {"id": "L184", "against": "", "agree": true, "reason": "貸した草の種が返されないうちに新しく貸すと、村の蓄えが減るから"}
+ ],
+ "feeling": "食べ物はあるけれど、冬の場所がはっきりしないのが少し気がかり。西草原で何か見つかるといいな。"}

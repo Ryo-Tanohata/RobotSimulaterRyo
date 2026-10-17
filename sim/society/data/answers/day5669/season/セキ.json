@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "土器をつくって、草の種を虫とネズミから守ろう。畑の刈り入れの前に、土器の数を数えておこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えの草の種が、土器に入らないと季節ごとに虫やネズミに食べられる。土器づくりは得意だから、わたしがやるのがいい。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ルタ6": true},
+ "family": {"ホノ": {"activity": "採集", "place": "camp", "why": "キャンプの木の実は秋のうちにしか取れない。今のうちに毎夕取って蓄えに入れたい。"}},
+ "keep": true,
+ "judge": {"M116": "つぐなう", "M117": "つぐなう"},
+ "feast": false, "leader": "なし", "trade": {"T50": false}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節、印で封をした倉や村の蓄えが多くの回数開けられた。割れた封のかけらで、どの家が開けたかは分かる。", "because": [296765], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は皆がキャンプにいれば、ザガから身を守れる。"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとるとヤギが増えて、やせていなくなる。"}, {"id": "L175", "against": "", "agree": true, "reason": "草で養える数より多いヤギを増やすと、子ヤギが減る。"}, {"id": "L98", "against": "", "agree": true, "reason": "採集した人が、その日のうちに自分の分を蓄えから取れるようにしたい。"}, {"id": "L190", "against": "", "agree": true, "reason": "草で養えない分のヤギを肉にして干せば、ヤギを減らせて、草の取り合いも減る。"}],
+ "feeling": "蓄えは十分あるけど、冬の前に草の種を守る土器づくりを急ぎたい。"}

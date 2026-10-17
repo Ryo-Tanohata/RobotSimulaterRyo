@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の食べ物が少ないから、北川12 で魚と芋がないか、二人で確かめてくる。夜に見つけた量を言うよ。"}, {"to": "ニイ", "text": "北川12 へいっしょに行かないか。魚と芋がある所を見たいんだ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ニイ"], "why": "冬は北丘12 では何も見つからなかったと聞いた。北川12 で魚と芋が取れれば、冬の食べ物が増える。採集は得意だから、道を開きたい。"}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M122": "ゆるす", "M123": "つぐなう"}, "feast": false, "leader": null, "trade": {"T53": false}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "北の林ではザガに襲われることがあり、昼でも一人で行くと危ない", "because": [313552], "confidence": 0.8}, {"op": "add", "text": "冬は北丘12 で何も見つからなかったと聞いた", "because": [], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出る夜は、キャンプの火を守るためにも離れないほうがいい"}, {"id": "L98", "against": "", "agree": true, "reason": "採集で蓄えに入れた人が、その日に自分の分を食べられるのは大事"}, {"id": "L121", "against": "", "agree": true, "reason": "ザガは昼の林にも出るから、採集や狩りは二人以上がいい"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、けがをしても助けられる"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、よその村のヤギを受けとるとヤギが増えて困る"}, {"id": "L179", "against": "", "agree": true, "reason": "北丘12 で何も見つからなかったので、冬は北川12 を先に試したい"}, {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をする人がいないと、ヤギがいなくなる"}],
+ "feeling": "冬は長くて不安だけど、北川12 で何か見つかれば、みんなの役に立てる気がする。"}
