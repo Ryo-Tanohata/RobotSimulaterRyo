@@ -1,6 +1,6 @@
 export const meta = {
   name: 'society2-seasons',
-  description: 'Run Society 2.0 season by season (haiku role-play per adult + step runner) until a phase change, the end of Society 2.0, all deaths, or the step limit. From G7: mode year (answers only at the yearly meeting and zoom seasons)',
+  description: 'Run Society 2.0 season by season (haiku role-play per adult + step runner) until a phase change, the end of a part (HOLD line), all deaths, or the step limit. From G7: mode year (answers only at the yearly meeting and zoom seasons)',
   phases: [{ title: 'Seasons', detail: 'season answers per adult, then step.py season' }],
 }
 // args.mode: 'season' (G6 まで。1 回 = 1 季節、毎季節答える。args.steps 回) / 'year' (G7 から。1 回 = 1 季節のまま、答えるのは年の集まりと寄る季節だけ。
@@ -71,14 +71,13 @@ for (let k = 0; k < STEPS; k++) {
   }
   const out = await agent(runner(`PY='${PY}' CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })
-  if (!out || !/season exit=0/.test(out)) return { stopped: d, why: /exit=4/.test(out || '') ? 'all dead' : 'season failed', out, log: log_ }
-  // G6: 町と記録がそろうと Society 2.0 の終わり (フェーズは進まない。step.py は「Society 2.0 が終わった」と表示して一時停止する)。
-  // why の 'end' は「回数を終えた」に使っているので、別の言葉にする
-  // (前からの 2 つの合図は、G6 のまま走っているあいだのために残す。G6 では止まるわけも前と同じ)
-  if (/Society 2\.0 が終わった/.test(out)) return { stopped: d, why: 'society2 end', out, log: log_ }
-  if (/フェーズが .* に進んだ/.test(out)) return { stopped: d, why: 'phase', out, log: log_ }
-  // 2026-10-16 (docs/society_phase/G7_design.md 4.E.2): step.py は一時停止したとき、機械用の 1 行「HOLD …」を行の頭から出す。
-  // 村の人の文 (掟など。表示は「* 」で始まる) からは出ないので、これで止まる (部の終わり・次の G を待つ・工業の入口・止めて相談する・フェーズが進んだ)
+  // exit=4: 生きている人がいない / exit=5: G7 の札の表 (よその便り) が変わった (直したなら step.py cards "<note>" のあとで、また動かす)
+  if (!out || !/season exit=0/.test(out)) return { stopped: d, why: /exit=4/.test(out || '') ? 'all dead' : /exit=5/.test(out || '') ? 'cards changed' : 'season failed', out, log: log_ }
+  // 止まる合図 (docs/society_phase/G7_design.md 4.E.2): step.py は一時停止したとき、機械用の 1 行「HOLD …」を行の頭から出す。
+  // 村の人の文 (掟など。表示は「* 」で始まる) からは出ないので、これで止まる。G1〜G5 のフェーズが進んだ (phase)・G6 の第 4 部の終わり (part_end)・
+  // G7 からの部の終わり・次の G を待つ (wait)・工業の入口 (entrance)・止めて相談する (consult)。why の 'end' は「回数を終えた」に使っている
+  // 2026-10-17: 前の合図 (「Society 2.0 が終わった」「フェーズが … に進んだ」の文) は外した。step.py の G6 の終わりの文から「Society 2.0 が終わった」を
+  // 消したのと同じコミット (第 4 部の終わりは Society 2.0 の終わりではない)。G6 の終わりは、今は 'part end' で止まる (前は 'society2 end')
   const hold = (out || '').match(/^HOLD (part_end|wait|entrance|consult|phase)$/m)
   if (hold) return { stopped: d, why: { part_end: 'part end', wait: 'wait', entrance: 'entrance', consult: 'consult', phase: 'phase' }[hold[1]], out, log: log_ }
   // args.stop_on_town: 町の条件がそろったら止める (2026-10-15 本人が決めた: 町に届くか 45年までで止めて相談する)。状態の行は「町 43年120日目」のように日付になる

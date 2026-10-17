@@ -589,8 +589,9 @@ def main():
             # 2026-10-16: 本人が「G を付け足していく。工業社会に行き着くまで」と決めた (2026-10-15) ので、残す文は「Society 2.0 の終わり」ではなく「第 4 部の終わり」にする
             #   (state.json は手で直さないので、G7 を足す前に変えておく。docs/society2_extension_plan.md)
             world.log(state, "フェーズ", None, f"第 4 部の終わり (G6): 町 ({g['town']} 日目) と記録 ({g['record']} 日目) がそろった (先にそろったのは {g['first']})。Society 2.0 は G7 から続ける")
-            # 表示の文には、前のワークフローが止まる合図 (「Society 2.0 が終わった」) も残す (G6 のまま走っているワークフローのため)
-            print(f"* 第 4 部の終わり (G6): Society 2.0 が終わった。町 ({_yd(g['town'])}) と記録 ({_yd(g['record'])}) がそろった → 一時停止 (第 4 部のまとめ待ち。次の部へは next_part)")
+            # 2026-10-17: ワークフローは、最後の機械用の 1 行「HOLD part_end」で止まる (tools/society2_seasons_workflow.js と同じコミットで変えた)。
+            #   前の合図「Society 2.0 が終わった」は、もう出さない (第 4 部の終わりは Society 2.0 の終わりではない。2026-10-15 本人「G を付け足していく」)
+            print(f"* 第 4 部の終わり (G6): 町 ({_yd(g['town'])}) と記録 ({_yd(g['record'])}) がそろった → 一時停止 (第 4 部のまとめ待ち。次の部へは next_part)")
             hold = "part_end"
         elif r is True:
             state["hold"] = True

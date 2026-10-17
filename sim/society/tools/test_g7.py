@@ -713,7 +713,13 @@ class E_Hold(unittest.TestCase):
         js = (SOC / "tools" / "society2_seasons_workflow.js").read_text(encoding="utf-8")
         m = re.search(r"match\((/\^HOLD [^\n]*?/m)\)", js)
         self.assertTrue(m, "ワークフローに HOLD の合図がある")
-        self.assertIn("Society 2\\.0 が終わった", js, "前の合図も残す")
+        # 2026-10-17: 前の合図 (「Society 2.0 が終わった」「フェーズが … に進んだ」) は、step.py の G6 の終わりの文と同じコミットで外した
+        self.assertNotIn("Society 2\\.0 が終わった", js)
+        self.assertNotIn("フェーズが .* に進んだ", js)
+        step = (SOC / "step.py").read_text(encoding="utf-8")
+        self.assertNotIn("Society 2.0 が終わった。町", step, "G6 の第 4 部の終わりの文は「Society 2.0 が終わった」と書かない")
+        for code in ("part_end", "phase", "wait", "entrance", "consult"):
+            self.assertIn(code, era2.HOLD_CODES)
         if not node:
             self.skipTest("node がない")
         lines = ["* 掟「…仕事を止めて相談する」が採用された", "* 掟「第 5 部の終わり」が採用された", "* 掟「HOLD consult」が採用された"]
