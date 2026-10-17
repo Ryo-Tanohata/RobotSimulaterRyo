@@ -295,7 +295,7 @@ ACTS2_EXTRA = ("畑仕事", "ヤギの世話", "ヤギを捕まえる", "土器�
 ACTS7 = ("守る", "取り立てる", "戦に出る", "試す")
 # G7 の仕組みを試しで止めるための切りかえ (いつもは True。tools/test_g7.py だけが変える): fix = 史実のずれの直し、weather = 地域の天気、
 #   year = 年 1 回の答え (False なら、全部の家を見本にし、毎季節寄る。今の「季節ごと・代表みんな」と同じ答え方)
-G7_PARTS = {"fix": True, "weather": True, "year": True}
+G7_PARTS = {"fix": True, "weather": True, "year": True, "region": True}
 TREE_DAYS7 = 3 * 4 * SEASON_DAYS  # G7 に入ったあとに埋めた種が木になるまで (3 年。直し A1b。G6 までと、それより前に埋めた種は 20 日)
 
 

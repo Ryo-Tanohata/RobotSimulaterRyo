@@ -9,6 +9,9 @@
   python sim/society/step.py ask_why [on|off]    季節のお題で、主な仕事にした理由を一言たずねる (off でやめる。理由は世界の計算には使わない)
   python sim/society/step.py next_part [--fill F] 部の終わり (か次の G を待つ) で止まっているときだけ、次の部 (次の G) に入る (本人と決めてから 1 回だけ。
                                                  G7 なら F は地域の人数を K の何割にするか。書かなければ 0 = 今のまま、集落を置かない)
+  python sim/society/step.py next_part --closed-by-decision "<本人の言葉>" [--fill F]
+                                                 G6 を、町の条件がそろわないまま本人の決めで閉じたとき (2026-10-17) に、G7 に入る。
+                                                 閉じたことを出来事「フェーズ」と g6.closed に残してから入る (止まっていなくてよい。G6 のときだけ)
   python sim/society/step.py who                 ワークフローのための、読むだけの状態の行 (DAY・PHASE・HOLD・MODE・MEET・NAMES・FEEL・COUNCIL・ASKLOG)
 
 お題は data/prompts/日/段階/名前.md、答えは data/answers/日/段階/名前.json に置く。
@@ -106,16 +109,26 @@ def _hold_text(state):
     return era2.hold_why(state)
 
 
-def _next_part_refusal(state, fill):
-    """next_part ができないわけ (できるなら None)。docs/society_phase/G7_design.md 4.E.1 の 1"""
+def _next_part_refusal(state, fill, closed=None):
+    """next_part ができないわけ (できるなら None)。docs/society_phase/G7_design.md 4.E.1 の 1。
+    closed: G6 を本人の決めで閉じたときの本人の言葉 (このときは止まっていなくてよい。G6 で、町がそろっていないときだけ)"""
     if not state.get("era2") or state["phase"] != "season":
         return f"段階が season でない (今は {state['phase']})"
-    if not state.get("hold"):
+    if closed is not None:
+        if not closed.strip():
+            return "--closed-by-decision に本人の言葉がない"
+        if state.get("era") != "G6" or "g7" in state["era2"]:
+            return f"本人の決めで閉じて入れるのは G6 から G7 だけ (今は {state.get('era')})"
+        if state.get("hold"):
+            return "一時停止している (部の終わりなら --closed-by-decision なしの next_part で入る)"
+        if (state["era2"].get("g6") or {}).get("end") or (state["era2"].get("g6") or {}).get("closed"):
+            return "G6 はもう閉じている"
+    elif not state.get("hold"):
         return "一時停止していない"
     code, why = _hold_text(state)
     if code == "entrance":
         return "工業の入口では、次の部には進まない (Society 2.0 のまとめと、その先を本人と相談する)"
-    if code not in ("part_end", "wait"):
+    if code not in ("part_end", "wait") and closed is None:
         return f"部の終わりか次の G を待つで止まっていない ({why})"
     i = era2.ORDER2.index(state["era"])
     if i + 1 >= len(era2.ORDER2):
@@ -177,6 +190,15 @@ def write_prompts(state, phase):
     a = pdir(state, phase, "answers")
     a.mkdir(parents=True, exist_ok=True)
     print(f"お題: {d.relative_to(DATA.parent)}  →  答えの置き場所: {a.relative_to(DATA.parent)}/<名前>.json")
+    if g7 and phase == "season":  # G7: まわりの集落の集まり (分かれ目の年だけ、集落ごとに 1 体。docs/society_phase/G7_design.md 4.B.6)
+        ask = ((state["era2"]["g7"].get("region") or {}).get("councils") or {}).get("ask") or []
+        if ask and (state["era2"]["g7"]["region"]["councils"].get("day") == state["day"]):
+            cd, ca = pdir(state, "council", "prompts"), pdir(state, "council", "answers")
+            cd.mkdir(parents=True, exist_ok=True)
+            ca.mkdir(parents=True, exist_ok=True)
+            for sid in ask:
+                (cd / f"{sid}.md").write_text(g7.council_prompt(state, sid), encoding="utf-8")
+            print(f"集まりのお題: {cd.relative_to(DATA.parent)}  →  答えの置き場所: {ca.relative_to(DATA.parent)}/<番号>.json ({len(ask)} 通)")
     if phase == "season" and era2.feelers(state):  # 代表でない大人は、気持ちと一言だけ答える (2026-10-09 本人の希望)
         fd, fa = pdir(state, "feeling", "prompts"), pdir(state, "feeling", "answers")
         fd.mkdir(parents=True, exist_ok=True)
@@ -185,6 +207,19 @@ def write_prompts(state, phase):
             p = next(q for q in state["people"] if q["name"] == n)
             (fd / f"{n}.md").write_text(era2.feeling_prompt(state, p, first), encoding="utf-8")
         print(f"気持ちのお題: {fd.relative_to(DATA.parent)}  →  答えの置き場所: {fa.relative_to(DATA.parent)}/<名前>.json")
+
+
+def read_councils(state):
+    """まわりの集落の集まりの答え {番号: 答えの文} (G7。分かれ目の年だけ。ない集落は決まりの手)"""
+    c = (((state.get("era2") or {}).get("g7") or {}).get("region") or {}).get("councils") or {}
+    if c.get("day") != state["day"]:
+        return {}
+    d = pdir(state, "council", "answers")
+    out = {sid: (d / f"{sid}.json").read_text(encoding="utf-8") for sid in c.get("ask", []) if (d / f"{sid}.json").exists()}
+    missing = [sid for sid in c.get("ask", []) if sid not in out]
+    if missing:
+        print("集まりの答えがない集落 (決まりで選ぶ):", "、".join(missing))
+    return out
 
 
 def read_feelings(state):
@@ -337,6 +372,8 @@ def main():
     ap.add_argument("onoff", nargs="?", choices=["on", "off"], help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
+    ap.add_argument("--closed-by-decision", dest="closed", default=None,
+                    help="next_part で、G6 を本人の決めで閉じて G7 に入るとき: 本人の言葉 (記録に残す)")
     ap.add_argument("--fill", type=float, default=None,
                     help="next_part で G7 に入るとき: 地域の人数 (村を除く) を、暮らせる人数 K の合計の何割にするか (0〜0.9。書かなければ 0 = 今のまま)")
     a = ap.parse_args()
@@ -344,6 +381,8 @@ def main():
         sys.exit(f"on / off は ask_why のときだけ書く ({a.cmd} {a.onoff} とは書けない)")
     if a.fill is not None and a.cmd != "next_part":
         sys.exit("--fill は next_part のときだけ書く")
+    if a.closed is not None and a.cmd != "next_part":
+        sys.exit("--closed-by-decision は next_part のときだけ書く")
 
     if a.cmd == "init":
         if STATE.exists() and not a.force:
@@ -413,14 +452,20 @@ def main():
         print(f"ASKLOG {'ask_why_log' in e2}")
         return
     if a.cmd == "next_part":  # 部の終わり (か次の G を待つ) から、次の部 (次の G) に入る (docs/society_phase/G7_design.md 4.E.1)
-        why = _next_part_refusal(state, a.fill)
+        why = _next_part_refusal(state, a.fill, a.closed)
         if why:
             print(f"next_part はできない: {why} (何も変えない)")
             sys.exit(3)
         import g7  # noqa: E402  (G7 から働く仕組み。G6 までは読みこまない)
         nxt = era2.ORDER2[era2.ORDER2.index(state["era"]) + 1]
+        if a.closed is not None:  # G6 を本人の決めで閉じた (町の条件がそろわないまま。2026-10-17): 閉じたことを残してから G7 に入る
+            c = g7.close_g6(state, a.closed.strip())
+            print(f"* 第 4 部の終わり (G6): 町の条件はそろわないまま、本人の決めで閉じた ({_yd(c['day'])}。記録の条件 "
+                  f"{_yd(c['record']) if c['record'] is not None else 'まだ'})")
         if nxt == "G7":
             g = g7.enter(state, a.fill or 0.0)
+            if a.closed is not None:
+                state["era_log"][-1]["g6_closed"] = state["day"]
         else:
             g7.enter_next(state)
             g = state["era2"]["g7"]
@@ -493,8 +538,8 @@ def main():
             g7.apply_plan(state)
         else:
             feels = read_feelings(state)  # 代表を決める前の顔ぶれで読む (集まりで、まとめ役が変わることがあるため)
-            if g7:  # G7 の集まりの歩: 見本の家の答えを、見本でない家に広げる
-                g7.apply_year(state, read_answers(state, "season"))
+            if g7:  # G7 の集まりの歩: 見本の家の答えを、見本でない家に広げる (まわりの集落の集まりの答えも、ここで先に読む)
+                g7.apply_year(state, read_answers(state, "season"), read_councils(state))
             else:
                 era2.apply_answers(state, read_answers(state, "season"))
             era2.apply_feelings(state, feels)
@@ -548,7 +593,7 @@ def main():
         for e in state["events"]:
             if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ", "区切り",
                                                    "年の集まり")) \
-                    or (e["id"] >= before and (e["type"] in era2.G5_EVENTS + era2.G6_EVENTS or e["type"] == "年の名前")):
+                    or (e["id"] >= before and (e["type"] in era2.G5_EVENTS + era2.G6_EVENTS + era2.G7_EVENTS or e["type"] == "年の名前")):
                 print("*", e["text"][:120])
         harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")
         if harv:

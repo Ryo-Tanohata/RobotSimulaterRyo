@@ -124,6 +124,19 @@ def enter(state, fill=0.0):
     return g
 
 
+def close_g6(state, note):
+    """G6 を本人の決めで閉じる (町の条件がそろわないまま。2026-10-17 本人「町は生まれなかったとして G6 を閉じる」)。
+    step.py next_part --closed-by-decision から、G7 に入る前に 1 回だけ。出来事「フェーズ」と g6.closed に残す (本人の言葉は data と g6.closed に。
+    文は村の人の年のまとめにも出るので、作る側のことばは入れない)。乱数は使わない"""
+    g6, D = era2._g6(state), state["day"]
+    ind = era2.indicators(state)
+    c = {"day": D, "by": "本人の決め", "note": note, "town": ind.get("g6_town_day"), "record": ind.get("g6_record_day")}
+    g6["closed"] = c
+    log(state, "フェーズ", None, "第 4 部の終わり (G6): 町の条件はそろわないまま、ここで閉じた"
+        + (f" (記録は {c['record']} 日目にそろった)" if c["record"] is not None else ""), closed_by="本人の決め", note=note, town=c["town"], record=c["record"])
+    return c
+
+
 def enter_next(state):
     """次の G の待ち・部の終わりから、次の G に入る (G8 から。その G のコードを入れたあと)。G7 に入るのは enter"""
     e2, D, g = state["era2"], state["day"], _g(state)
@@ -561,8 +574,8 @@ def _offer(state):
 
 
 def text(state, p):
-    """G7 のお題の節 (season_prompt の「ほかの村・印・記録」のあと)"""
-    return _ledger_text(state)
+    """G7 のお題の節 (season_prompt の「ほかの村・印・記録」のあと): 板の帳簿・まわりの集落"""
+    return _ledger_text(state) + region_text(state)
 
 
 # 直しで変わった決まりの、お題の文の置きかえ (G7 に入ってから。前の文が見つからなければ何もしない)
@@ -606,8 +619,8 @@ def season_end(state, frac):
     g["past"] = [s for s in g.get("past", []) if s["day"] > D - YEAR] + [  # 前の 1 年 (120 日) の季節だけ (途中で区切った季節も 1 つ)
         {"day": D, "season": season(D), "days": days, "home": {n: homes.get(n) for n in sorted(days)}}]
     _derive(g)
-    # 8. 地域の 1 年 (まわりの集落の部分) → 9. 病・寄る年の目印 region.yoru (つなぎ目の部分)
     if (D + 1) % YEAR == 0:
+        region_year(state)  # 8. 地域の 1 年 (塩 59) → 9. 病 (塩 71)・寄る年の目印 region.yoru
         year_turn(state)  # 10. 寄るか → 見本の選び直し → 手本 (塩 61)
     # 11. よその便り → 12. きっかけ (便りの部分)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
@@ -1162,21 +1175,21 @@ def _apply(state, own, kinds, real, how):
     g.setdefault("last_plans", {})[sea] = {p["name"]: {k: p["plan"][k] for k in ("activity", "place")} for p in era2.adults(state)}
 
 
-def begin(state):
-    """次の歩のはじめ (4.G.1。年の集まりの歩も、答えのない歩も同じ): 1 まわりの集落の集まりの答え → 2 待ち → 3 続く貢ぎの今年の分 → 4 村の答え。
-    1〜3 は、まわりの集落の部分が、ここに足す (今は何もしない)"""
-    return None
-
-
-def apply_year(state, answers):
+def apply_year(state, answers, councils=None):
     """集まりの歩 (年の集まり・寄る季節・集まり直し) の答えを読む (step.py season。4.A.6)。
-    年の集まりは、年の答えを整えて g7.plan に残し、この季節の分を当てる。寄る季節・集まり直しは、季節の形の答えをそのまま当てる"""
+    年の集まりは、年の答えを整えて g7.plan に残し、この季節の分を当てる。寄る季節・集まり直しは、季節の形の答えをそのまま当てる。
+    順 (4.G.1・4.B.5): 家ごとに出ていく (leave) → まわりの集落の集まりの答え・待ち・続く貢ぎ (残った家で数えた、求めへの答えで) → 村の答え → 村が求める (demand)。
+    councils: まわりの集落の集まりの答え {番号: 答えの文} (step.py が council/ から読む)"""
     g, e2, D = _g(state), state["era2"], state["day"]
-    begin(state)
     ask, now = g.get("ask") or "寄る", season(D + 1)
     g["meet_first"], g["answer_day"] = state["next_event"], D
     alive = {p["name"] for p in era2.adults(state)}
     real = {n: characters.parse(raw) for n, raw in answers.items() if n in alive}  # step.read_answers の順 (人の並び) のまま
+    if region_on(state):
+        leave_households(state, real)
+        alive = {p["name"] for p in era2.adults(state)}
+        real = {n: a for n, a in real.items() if n in alive}
+    begin(state, village_answers(state, real) if region_on(state) else None, councils)
     own, kinds = {}, {}
     if ask == "年":
         reps = set(_rep_of(state).values())
@@ -1190,6 +1203,7 @@ def apply_year(state, answers):
         for n, a in real.items():
             own[n], kinds[n] = dict(a), "季節"
     _apply(state, own, kinds, set(real), "集まり")
+    village_demand(state, real)
 
 
 def apply_plan(state):
@@ -1513,3 +1527,571 @@ def year_prompt(state, p, first):
  "votes": [{{"id": "L0", "against": "反対する理由", "agree": true, "reason": "決めた理由"}}],
 {' "year_name": "...",' + chr(10) if era2.year_end(state) else ''} "feeling": "..."}}"""
     return fix_text(state, out)
+
+
+# ---------------- まわりの集落 (4.B。地域の決まりは region.py) ----------------
+# 川辺の村は「V0」として加わる。人数・蓄え・役の段は、毎回 state から数える (_v0)。まわりの集落は g6.others の同じ辞書 (G6 の鍵はそのまま)。
+# 年の終わり (4.G.1 の 8・9): 地域の 1 年 (塩 59) → 病 (塩 71) → 寄る年の目印。次の歩のはじめ (夏の集まりの日): 集まりの答え → 待ち → 続く貢ぎ。
+# 戦の日は era2._day から (交換に行くのあと)。村が知らない地域のこと (遠くの戦など) は出来事にせず、g7.region.log だけに書く【シ】
+V0_KCAP = 10 ** 6  # 村の暮らせる人数は地図の K でなく、世界の計算で決まる
+NEAR_WAR = 2  # 1 日 (2 ます) 以内の戦は、出来事「よその村」として村に届く (交換の相手の戦も)
+VILLAGE_KINDS = ("求め", "貢ぎ", "戦", "同盟", "崩れ", "集落", "逃げる")  # 村がかかわる地域の出来事の種類 (4.B.7。どれも G6 までは使っていない)
+WAR_NEXT_DAY = 9  # 村が求めて断られ、then が「戦う」なら、次の季節の 10 日目に戦 (乱数なし。4.B.5)
+STANCES = ("求める", "守る", "ふつう")
+
+
+def _reg(state):
+    return _g(state)["region"]
+
+
+def region_on(state):
+    """地域の決まりが働くか (G7 から。world.G7_PARTS["region"] は試しで止めるためだけの切りかえ)"""
+    return "g7" in state["era2"] and world.G7_PARTS["region"]
+
+
+def _v0_org(state):
+    """村の役の段 (4.B.5): まとめ役がいれば 1。この 1 年に「取り立てる」か「守る」をした役の人 (役の仕事を合わせて 20 日以上) がいれば 2"""
+    rd = _g(state).get("role_days") or {}
+    if any(n in rd and (rd[n].get("取り立てる") or rd[n].get("守る")) for n in role_people(state)):
+        return 2
+    return 1 if era2._leader(state) else 0
+
+
+def _v0(state):
+    """川辺の村 (V0) の見た目 (地域の決まりが読むもの。毎回 state から数え、手で数を入れない)"""
+    e2, reg = state["era2"], _reg(state)
+    vs = reg.setdefault("v0", {"commit": {}, "conflict": None})
+    w = reg.get("weather") or {}
+    y = (state["day"] + 1) // YEAR
+    bad = state["day"] if w.get("year") in (y, state["day"] // YEAR) and "V0" in w.get("bad", []) else None
+    return {"id": "V0", "name": "川辺の村", "village": True, "people": _pop(state), "cell": list(region.VILLAGE), "land": region.land(region.VILLAGE),
+            "kcap": V0_KCAP, "org": _v0_org(state), "grain": era2._g6_have(state, "村", "草の種"),
+            "goats": sum(1 for x in e2["goats"] if x.get("owner") is None), "tech": 1, "walls": e2.get("walls"), "commit": vs["commit"],
+            "stance": "ふつう", "known": 0, "bad": bad, "conflict": vs.get("conflict")}
+
+
+def _setts(state):
+    return [_v0(state)] + [o for o in _others(state) if not o.get("gone")]
+
+
+def _maker(state):
+    def make(parent, cell, n, kind):
+        o = _new_settlement(state, cell, n)
+        o.update(kind=kind, grain=0, goats=0, pots=0, sickles=0, pots_f=0.0, sickles_f=0.0, cattle_f=0.0, trust=0.5)
+        return o
+    return make
+
+
+def _hook(state, moves):
+    """続く貢ぎの、村の出し入れ (村の蓄えの草の種から。足りないときは家の倉から、倉の量に合わせて出す。4.B.5)"""
+    def hook(t, n, how):
+        if how == "受ける":
+            era2._g6_put(state, "村", {"草の種": n})
+            moves.setdefault(t["id"], []).append(era2._mv("村", 1, {"草の種": n}))
+            return n
+        got = era2._g6_take(state, "村", {"草の種": n}).get("草の種", 0)
+        mv = [era2._mv("村", -1, {"草の種": got})] if got else []
+        rest = n - got
+        if rest > 0:
+            have = {h: era2._g6_have(state, h, "草の種") for h in sorted(era2._homes(state))}
+            tot = sum(have.values())
+            for h in [h for h in have if have[h] > 0]:
+                k = min(have[h], rest, math.ceil((n - got) * have[h] / tot)) if tot else 0
+                if k > 0:
+                    era2._g6_take(state, h, {"草の種": k})
+                    mv.append(era2._mv(h, -1, {"草の種": k}))
+                    rest -= k
+        moves.setdefault(t["id"], []).extend(mv)
+        return n - max(0, rest)
+    return hook
+
+
+def _partners(state):
+    """この 1 年に交換した集落 (G6 の contacts)"""
+    D = state["day"]
+    return {o["id"] for o in _others(state) if any(c > D - YEAR for c in o.get("contacts", []))}
+
+
+def _region_after(state, setts, out, moves=None):
+    """地域の決まりのあと: 村の見た目を書きもどし、なくなった集落を g6.others から外し、出来事を書く。
+    村がかかわる出来事 → その種類で。1 日 (2 ます) 以内か交換の相手の戦 → 「よその村」。ほかは g7.region.log だけ"""
+    reg, D, g6 = _reg(state), state["day"], era2._g6(state)
+    v0 = next(s for s in setts if s["id"] == "V0")
+    reg["v0"]["conflict"] = v0.get("conflict")
+    by = region._by(setts)
+    part = _partners(state)
+    for ev in out:
+        who = ev["who"]
+        if "V0" in who:
+            for x in who:
+                if x != "V0" and x in by and by[x].get("known") is None:
+                    by[x]["known"] = D  # 求め・戦・貢ぎでかかわった集落は、村が知る (4.B.2)
+            mv = (moves or {}).get(ev["data"].get("tie")) if ev["kind"] in ("貢ぎ", "崩れ") else None
+            log(state, ev["kind"], None, ev["text"], region=True, **ev["data"], **({"moves": mv} if mv else {}))
+        elif ev["kind"] == "戦" and any(x in by and by[x].get("known") is not None and
+                                        (region.dist(region.cell_of(by[x]), region.VILLAGE) <= NEAR_WAR or x in part) for x in who):
+            log(state, "よその村", None, ev["text"], region=True, **ev["data"])
+        else:
+            reg["log"].append({"day": D, "kind": ev["kind"], "text": ev["text"], "who": who, **ev["data"]})
+    gone = {s["id"] for s in setts if s.get("gone")}
+    if gone:
+        g6["others"] = [o for o in g6["others"] if o["id"] not in gone]
+
+
+def region_year(state):
+    """年の最後の日の季節の終わり (4.G.1 の 8・9): 地域の 1 年 (塩 59) → 病 (塩 71) → 寄る年の目印 → 決める段の記録【シ】"""
+    if not region_on(state):
+        return
+    reg, D = _reg(state), state["day"]
+    y = (D + 1) // YEAR
+    setts = _setts(state)
+    out = region.year_end(reg, setts, era2._rng(state, era2.REGION_SALT), y, D, out=[])
+    _sick_year(state, setts, y, out)
+    _region_after(state, setts, out)
+    _yoru(state, y)
+    _levels_log(state)
+
+
+def _sick_year(state, setts, y, out):
+    """病 (4.F の 7。塩 71): 村 → まわりの集落の番号の順に 1 回ずつ。村でははやる季節も引く (響きは世界の側。g7.sick に残す)"""
+    reg, D, g = _reg(state), state["day"], _g(state)
+    rng = era2._rng(state, era2.SICK_SALT)
+    last = set(reg.get("sick_last") or [])
+    part = _partners(state)
+    now = []
+    for s in region._live(setts):
+        mine = {t["payer"] if t["payee"] == s["id"] else t["payee"] for t in region.ties_on(reg) if s["id"] in (t["payer"], t["payee"])}
+        links = (part | mine) if s["id"] == "V0" else ({x for x in ("V0",) if s["id"] in part} | mine)
+        hit, p = region.sick(rng, s, len(links), bool(links & last))
+        if not hit:
+            continue
+        now.append(s["id"])
+        if s["id"] == "V0":
+            g["sick"] = {"year": y, "season": SEASONS[rng.randrange(4)], "p": round(p, 5), "day": D}
+        else:
+            k = round(s["people"] * rng.uniform(*region.SICK_DEATH))
+            s["people"] -= k
+            region._ev(out, "病", f"{region._name(s)} で病がはやり、{k} 人が亡くなった", [s["id"]], dead=k)
+    reg["sick_last"] = now
+    region.collapse(reg, setts, D, out)
+
+
+def _yoru(state, y):
+    """寄る年の目印 (4.A.7 の Z1〜Z3)。g7._zoom が読む"""
+    reg, D = _reg(state), state["day"]
+    lo = D - YEAR + 1
+    reg["yoru"] = {"year": y,
+                   "Z1": any(q["to"] == "V0" and not q.get("end") for q in reg.get("demands", [])),
+                   "Z2": any("V0" in (w["att"], w["def"]) and w.get("done") is not None and lo <= w["done"] <= D and not w.get("called_off")
+                             for w in reg.get("wars", [])),
+                   "Z3": any("V0" in (t["payer"], t["payee"]) and t.get("end") is not None and lo <= t["end"] <= D for t in reg.get("ties", []))}
+
+
+def _paid_ties(state):
+    D = state["day"]
+    return [t for t in region.ties_on(_reg(state)) if t["paid"] and t["paid"][-1] > D - YEAR]
+
+
+def levels(state):
+    """決める段 (4.D.2) を、今の地域で数える (村の役の人は、取り立ての部分を入れるまで、まだいない)"""
+    return region.levels(_setts(state), _paid_ties(state), state["day"], officials={})
+
+
+def _levels_log(state):
+    reg = _reg(state)
+    lv = levels(state)
+    reg["log"].append({"day": state["day"], "kind": "段", "levels": [{k: g[k] for k in ("top", "D", "T", "office", "village", "B")} | {"n": len(g["members"])}
+                                                                    for g in lv if len(g["members"]) > 1 or g["top"] == "V0"]})
+
+
+def begin(state, village=None, councils=None):
+    """次の歩のはじめ (4.G.1。年の集まりの歩も、答えのない歩も同じ): 1 まわりの集落の集まりの答え → 2 待ち → 3 続く貢ぎの今年の分 → 4 村の答え (呼んだ側)。
+    1〜3 は夏の集まりの日 (年のはじめ) だけ。village: 川辺の村の、求めへの答え ({Q 番号: 手, "ally": 番号})"""
+    D = state["day"]
+    if not region_on(state) or (D + 1) % YEAR:
+        return None
+    reg = _reg(state)
+    if councils is not None:
+        apply_councils(state, councils)
+    setts, moves = _setts(state), {}
+    out = region.decide(reg, setts, D + 1, village=village or {}, make=_maker(state), out=[])
+    region.pay_ties(reg, setts, D + 1, pay_hook=_hook(state, moves), out=out)
+    _village_wars(state)
+    _region_after(state, setts, out, moves)
+    return out
+
+
+def _village_wars(state):
+    """村がかかわる戦の季節 (仕事「戦に出る」を選べる季節。4.F の 1)"""
+    g, reg = _g(state), _reg(state)
+    ws = sorted(w["day"] for w in reg.get("wars", []) if not w.get("done") and "V0" in (w["att"], w["def"]))
+    g["war_season"] = ws[0] // SEASON_DAYS * SEASON_DAYS if ws else None
+
+
+def region_day(state):
+    """戦の日 (era2._day の交換に行くのあと。4.B.5): 戦ごとの種 (G7|世界の種|戦|番号)。村が攻めるときは「戦に出る」の人、
+    守るときはその日キャンプにいる大人 (「守る」の人は 1、ほかの大人は 0.5) が戦う。死ぬ人は戦った人の名前の順に並べて引く"""
+    if not region_on(state):
+        return
+    reg, D = _reg(state), state["day"]
+    due = sorted((w for w in reg.get("wars", []) if not w.get("done") and w["day"] == D), key=lambda w: int(w["id"][1:]))
+    if not due:
+        return
+    setts, out = _setts(state), []
+    for w in due:
+        by = region._by(setts)
+        if w["att"] not in by or w["def"] not in by or by[w["att"]].get("gone") or by[w["def"]].get("gone"):
+            w.update(done=D, called_off=True)
+            continue
+        rng = region.war_rng(state["seed"], int(w["id"][1:]))
+        own, fighters = None, []
+        if "V0" in (w["att"], w["def"]):
+            ads = era2.adults(state)
+            if w["att"] == "V0":
+                fighters = [p for p in ads if (p.get("today") or {}).get("activity") == "戦に出る" and not era2._injured_today(p)]
+                if not fighters:
+                    w.update(done=D, called_off=True)
+                    q = next((x for x in reg["demands"] if x["id"] == w.get("demand")), None)
+                    if q:
+                        q.update(end=D, result="戦わなかった")
+                    region._ev(out, "求め", f"村から戦に出る人がいなかったので、{region._name(by[w['def']])} との戦 ([{w.get('demand')}]) はしなかった",
+                               ["V0", w["def"]], demand=w.get("demand"), war=w["id"])
+                    continue
+                for p in fighters:
+                    p["today"]["away"] = True
+                own = {"S": float(len(fighters)), "n": len(fighters)}
+            else:
+                fighters = [p for p in ads if not (p.get("today") or {}).get("away")]
+                own = {"S": sum(1.0 if (p.get("today") or {}).get("activity") == "守る" else 0.5 for p in fighters), "n": len(fighters)}
+        region.fight(reg, setts, w, rng, D, own=own, out=out)
+        if own is not None:
+            _war_village(state, w, fighters, rng, out)
+    _village_wars(state)
+    _region_after(state, setts, out)
+
+
+def _war_village(state, w, fighters, rng, out):
+    """村の戦のあと: 死んだ人 (戦った人の名前の順に並べて、戦の列で引く)・取られた物か、取った物"""
+    k = min(len(fighters), w["dead"].get("V0", 0))
+    names = rng.sample(sorted(p["name"] for p in fighters), k) if k else []
+    w["dead_names"] = names
+    for n in names:
+        p = next(q for q in state["people"] if q["name"] == n)
+        p["alive"] = False
+        log(state, "死", n, f"{n} ({p['age']} 歳) が戦で亡くなった", war=w["id"])
+        era2._inherit(state, p)
+    if names:
+        era2._check_leader(state)
+    lost = (w["def"] == "V0") == bool(w["att_win"])
+    other = w["att"] if w["def"] == "V0" else w["def"]
+    if lost:
+        share = w["loot"]["share"]
+        goods = {"草の種": int(era2._g6_have(state, "村", "草の種") * share), "ヤギ": int(era2._g6_have(state, "村", "ヤギ") * share)}
+        ids = []
+        took = era2._g6_take(state, "村", {k: n for k, n in goods.items() if n > 0}, ids)
+        o = next((x for x in _others(state) if x["id"] == other), None)
+        if o:
+            era2._node_add(o, took, 1)
+        w["village_loot"] = took
+        log(state, "戦", None, f"戦に負け、村の蓄えから {era2._gw(took)} を取られた", war=w["id"], moves=[era2._mv("村", -1, took, ids)])
+    else:
+        got = {k: n for k, n in (("草の種", w["loot"]["草の種"]), ("ヤギ", w["loot"]["ヤギ"])) if n > 0}
+        if got:
+            ids = []
+            era2._g6_put(state, "村", got, (), ids)
+            w["village_loot"] = got
+            log(state, "戦", None, f"戦に勝ち、{era2._gw(got)} を持ち帰った", war=w["id"], moves=[era2._mv("村", 1, got, ids)])
+
+
+# ---- 村の答え (4.B.5): 求めへの答え・村が求める・家ごとに出ていく ----
+
+def _vote_weights(state, real):
+    """答えた人ごとの票の重み: その人が答える大人 (自分と、自分で答えない家族) と、手本として受け持つ家の大人 (4.A.4 の 5 の数え方)"""
+    e2, g = state["era2"], _g(state)
+    if not e2.get("rep_mode"):
+        return {n: 1 for n in real}
+    reps = _rep_of(state)
+    n_ad = {}
+    for p in era2.adults(state):
+        n_ad[p.get("household")] = n_ad.get(p.get("household"), 0) + 1
+    out = {}
+    for n in real:
+        h = next((p.get("household") for p in era2.adults(state) if p["name"] == n), None)
+        if reps.get(h) == n:
+            own = n_ad.get(h, 0) - sum(1 for m in real if m != n and next((p.get("household") for p in era2.adults(state) if p["name"] == m), None) == h)
+            out[n] = own + sum(n_ad.get(x, 0) for x, d in (g.get("donor") or {}).items() if d == h and x not in g.get("sample", {}))
+        else:
+            out[n] = 1
+    return out
+
+
+def _tally(state, votes, weights):
+    """_g6_decide と同じ形: 広げた票で大人の半分をこえればその手、なければまとめ役の答え、それもなければいちばん多い手 (同じなら手の順)。votes: {名前: 手}"""
+    if not votes:
+        return None, ""
+    n = len(era2.adults(state))
+    t = {}
+    for who, v in votes.items():
+        t[v] = t.get(v, 0) + weights.get(who, 1)
+    lead = era2._leader(state)
+    best = min(t, key=lambda k: (-t[k], str(k)))
+    txt = "・".join(f"{k} {v}" for k, v in sorted(t.items(), key=lambda kv: -kv[1])) + f" / 大人 {n}"
+    if t[best] * 2 > n:
+        return best, txt
+    if lead in votes:
+        return votes[lead], txt + " (まとめ役の答え)"
+    return best, txt + " (いちばん多い手)"
+
+
+def _oid(v):
+    m = era2._num(v)
+    return f"N{m}" if m else None
+
+
+def village_answers(state, real):
+    """答えた人の求めへの答え (answer_demand・ally) を、広げた票で 1 つにする (4.B.5)。戻り値: region.decide の village"""
+    qs = [q for q in _reg(state).get("demands", []) if q["to"] == "V0" and not q.get("end")]
+    if not qs:
+        return {}
+    w = _vote_weights(state, real)
+    out = {}
+    for q in qs:
+        votes = {}
+        for n, a in real.items():
+            ad = a.get("answer_demand") if isinstance(a.get("answer_demand"), dict) else {}
+            v = next((str(x) for k, x in ad.items() if f"Q{era2._num(k)}" == q["id"]), None)
+            ch = next((c for c in region.CHOICES["求められた"] if v and c in v), None)
+            if ch:
+                votes[n] = ch
+        ch, txt = _tally(state, votes, w)
+        if ch:
+            out[q["id"]] = ch
+            q["votes"] = txt
+            if ch == "助けを頼む":
+                allies = {}
+                for n in votes:
+                    if votes[n] == ch and _oid(real[n].get("ally")):
+                        allies[_oid(real[n].get("ally"))] = allies.get(_oid(real[n].get("ally")), 0) + w.get(n, 1)
+                out["ally"] = min(allies, key=lambda k: (-allies[k], region.num(k))) if allies else None
+    return out
+
+
+def leave_households(state, real):
+    """家ごとに村を出る (4.B.5。leave: true。答えた家だけ (まねない)。出ていけるのは era2._can_leave のとき)。出た家は、次の季節の終わりに
+    「分かれた家」の集落になる (G6 の決まり)。G5 の「1 年に 1 家まで」は、もめごとで出るときの決まりなので当てない"""
+    if not _leave_on(state):
+        return []
+    why = "ほかの村の求め" if _demands_to_village(state) else "ほかの村への貢ぎ" if _village_pays(state) else "村の取り立て"
+    reps, out = _rep_of(state), []
+    for n, a in real.items():
+        p = next((q for q in era2.adults(state) if q["name"] == n), None)
+        h = p and p.get("household")
+        if not h or reps.get(h) != n or a.get("leave") is not True or not era2._can_leave(state, h):
+            continue
+        _leave(state, h, why)
+        out.append(h)
+    return out
+
+
+def _leave(state, h, why):
+    """家の人みんな (子も) で村を出る (era2._split の形。家のヤギと家の倉の食べ物は持って行き、家の畑は村のものになる)"""
+    e2, g5, day = state["era2"], era2._g5(state), state["day"]
+    ppl = sorted([q for q in state["people"] if q["alive"] and q.get("household") == h], key=lambda q: -q["age"])
+    names = {q["name"] for q in ppl}
+    ppl += [c for c in era2.children(state) if c.get("mother") in names and c["name"] not in names]
+    for q in ppl:
+        q["alive"], q["left"] = False, day
+    goats = [x for x in e2["goats"] if x.get("owner") == h]
+    e2["goats"] = [x for x in e2["goats"] if x.get("owner") != h]
+    st = era2._house(state, h)
+    kcal, food = sum(f["kcal"] for f in st["store"]), world.food_words(world.holdings({"food": st["store"]}))
+    st["store"] = []
+    fields = [f for f in e2["fields"] if f.get("owner") == h and f["state"] in ("育つ", "実った")]
+    for f in fields:
+        f["owner"] = None
+    for x in g5["disputes"]:
+        if x["status"] == era2.OPEN and h in (x["from"], x["against"]):
+            x.update(status="去った", end=day)
+    g5["fissions"].append({"day": day, "household": h, "people": [q["name"] for q in ppl], "goats": len(goats), "store": round(kcal),
+                           "fields": len(fields), "dispute": None, "why": why})
+    took = "・".join(x for x in (f"ヤギ {len(goats)} 頭" if goats else "", f"家の倉の {food}" if kcal else "") if x)
+    log(state, "分かれる", ppl[0]["name"], f"{why}から逃れて、{h}の " + "・".join(q["name"] + (" (子)" if q.get("child") else "") for q in ppl)
+        + " が、家の人みんなで村を出ていった" + (f"。{took} を持って行った" if took else "") + (f"。{h}の畑 {len(fields)} 枚は村のものになった" if fields else ""),
+        household=h, why=why)
+    era2._check_leader(state)
+
+
+def village_demand(state, real):
+    """村が求める (4.B.5): demand を書いた人の票を、相手ごとに広げた票で数える。大人の半分をこえるか、まとめ役が書けば求める。
+    相手の答えは、その年は決まり (8.)。断られて then が「戦う」なら、次の季節の 10 日目に戦 (乱数なし)"""
+    if not region_on(state):
+        return None
+    reg, D = _reg(state), state["day"]
+    w = _vote_weights(state, real)
+    votes, what = {}, {}
+    for n, a in real.items():
+        d = a.get("demand")
+        if not isinstance(d, dict):
+            continue
+        to = _oid(d.get("to"))
+        o = next((x for x in _others(state) if x["id"] == to and x.get("known") is not None), None)
+        goods = era2._g6_goods(d.get("what"))
+        amt = sum(era2.VALUE.get(k, 0) * v for k, v in goods.items())
+        if not o or amt <= 0:
+            continue
+        votes[n] = to
+        what.setdefault(to, (n, amt, "戦う" if "戦" in str(d.get("then") or "") else "やめる"))
+    to, txt = _tally(state, votes, w)
+    if not to:
+        return None
+    lead = era2._leader(state)
+    tot = sum(w.get(n, 1) for n, v in votes.items() if v == to)
+    if not (tot * 2 > len(era2.adults(state)) or votes.get(lead) == to):
+        return None
+    n0, amt, then = what[to] if votes.get(lead) != to else (lead, *what[to][1:])
+    if votes.get(lead) == to:
+        d = real[lead]["demand"]
+        amt = sum(era2.VALUE.get(k, 0) * v for k, v in era2._g6_goods(d.get("what")).items()) or amt
+        then = "戦う" if "戦" in str(d.get("then") or "") else "やめる"
+    setts = _setts(state)
+    by = region._by(setts)
+    out = []
+    t = by[to]
+    q = region.add_demand(reg, by["V0"], t, {"草の種": amt}, D, war_day=D + 1 + SEASON_DAYS + WAR_NEXT_DAY, then=then, out=out,
+                          who_text=f"村の集まりで、{region._name(t)} に毎年 草の種 {amt} つかみ を出すように求めることにした ({txt})")
+    q["votes"] = txt
+    c, ally, ref = region.costs(reg, setts, t, by["V0"], amt)
+    ch = region.pick(c)
+    if ch == "戦う" and then != "戦う":
+        q.update(answer="戦う", how="決まりで選んだ", end=D, result="やめた")
+        region._ev(out, "求め", f"{region._name(t)} は求め [{q['id']}] を断った。村は求めをやめた", ["V0", to], demand=q["id"])
+    else:
+        region.answer(reg, setts, q, ch, ally, D, "決まりで選んだ", out, _maker(state))
+    moves = {}
+    if ch == "払う":
+        tie = next(x for x in reg["ties"] if x.get("demand") == q["id"])
+        region.pay_ties(reg, setts, D, pay_hook=_hook(state, moves), out=out, only={tie["id"]})
+    _village_wars(state)
+    _region_after(state, setts, out, moves)
+    return q
+
+
+# ---- まわりの集落の集まり (4.B.6): 分かれ目の年だけ、集落ごとに 1 体 ----
+
+def council_prompt(state, sid):
+    """まわりの集落の集まりのお題 (見て分かることだけ。勝つ見込みや【シ】の数は出さない)"""
+    reg = _reg(state)
+    setts = _setts(state)
+    by = region._by(setts)
+    s = by[sid]
+    pts = (reg.get("councils") or {}).get("points", {}).get(sid, [])
+    rows = []
+    for x in sorted(region._live(setts), key=lambda x: (region.dist(region.cell_of(x), region.cell_of(s)), region.num(x["id"]))):
+        if x["id"] == sid or region.dist(region.cell_of(x), region.cell_of(s)) > region.REACH2:
+            continue
+        dd = region.days(region.cell_of(x), region.cell_of(s))
+        rows.append(f"- {region._name(x)}: 歩いて {dd} 日 (" + ("同じ日のうち" if dd == 0 else f"{region.direction(region.cell_of(x), region.cell_of(s))}") + f")。"
+                    f"約 {round(x['people'], -1) if x['people'] >= 20 else x['people']} 人" + ("・まわりに土の壁" if x.get("walls") is not None else "")
+                    + ("・長の下に、ほかの村から集める役がいる" if x.get("org", 0) >= 2 else "・長がいる" if x.get("org", 0) == 1 else ""))
+    hist = []
+    for t in reg.get("ties", []):
+        if sid in (t["payer"], t["payee"]):
+            other = by.get(t["payee"] if t["payer"] == sid else t["payer"])
+            nm = region._name(other) if other else "なくなった村"
+            hist.append(f"- [{t['id']}] " + (f"毎年 {nm} に {region._goods(t['goods'])} を出している" if t["payer"] == sid and t["status"] == "続く"
+                                            else f"毎年 {nm} から {region._goods(t['goods'])} を受けている" if t["status"] == "続く"
+                                            else f"{nm} とのあいだの貢ぎは、{t['end']} 日目に終わった"))
+    for w in reg.get("wars", []):
+        if sid in (w["att"], w["def"]) and w.get("done") is not None and not w.get("called_off"):
+            other = by.get(w["def"] if w["att"] == sid else w["att"])
+            win = (w["att"] == sid) == bool(w.get("att_win"))
+            hist.append(f"- {w['done']} 日目、{region._name(other) if other else 'なくなった村'} と戦い、{'勝った' if win else '負けた'}")
+    asks, form = [], {}
+    for pnt in pts:
+        if pnt["kind"] == "求められた":
+            q = next(x for x in reg["demands"] if x["id"] == pnt["demand"])
+            a = by.get(q["from"])
+            asks.append(f"- [{q['id']}] {region._name(a) if a else 'ほかの村'} が、毎年 {region._goods(q['what'])} を出すように求めてきた。"
+                        "払う / 戦う / 逃げる (村ごと、遠くの空いた土地へ移る) / 助けを頼む (ほかの村に。頼む村を ally に) のどれか")
+            form[q["id"]] = "払う か 戦う か 逃げる か 助けを頼む"
+        elif pnt["kind"] == "払い続けるか":
+            t = next(x for x in reg["ties"] if x["id"] == pnt["tie"])
+            a = by.get(t["payee"])
+            asks.append(f"- [{t['id']}] {region._name(a) if a else 'ほかの村'} に毎年 {region._goods(t['goods'])} を出している。払い続けるか、やめるか")
+            form[t["id"]] = "払い続ける か やめる"
+        else:
+            asks.append("- 村の人が多くなった。一部の人が近くの空いた土地に分かれて住むか、分かれずに、長の下に役を置いてまとめるか")
+            form["分かれるか"] = "分かれる か とどめて役を作る"
+    land_word = region.LAND[s["land"]]
+    choice = ", ".join(f'"{k}": "{v}"' for k, v in form.items())
+    return f"""あなたは {region._name(s)} の人たちの集まり (長と年寄りたち) です。{region._name(s)} は {land_word} の土地にある、約 {s['people']} 人の村です。
+戦える人は、人のおよそ 4 分の 1 です。{'まわりに土の壁があります。' if s.get('walls') is not None else ''}村の中のことは決まりで進みますが、今年は、次のことを村の集まりで決めます。
+
+## まわりの村 (歩いて 2 日まで)
+{chr(10).join(rows) or '- (近くに村はない)'}
+
+## これまでのこと
+{chr(10).join(hist) or '- (ほかの村とのあいだに、貢ぎも戦もない)'}
+
+## 今年決めること
+{chr(10).join(asks)}
+- これからの構え: ほかの村に求めることもあるか (求める) / 自分からは求めず守りを固めるか (守る) / どちらでもないか (ふつう)
+
+## 答えの形 (JSON)
+{{"choice": {{{choice}}}, "ally": null, "stance": "ふつう", "say": "集まりで出た言葉を一言", "why": "そう決めたわけを一言"}}
+"""
+
+
+def apply_councils(state, raw):
+    """まわりの集落の集まりの答えを読む (次の歩のはじめ。村の答えより先)。答えのない集落・形のおかしい答えは決まりの手 (「決まりで選んだ」)"""
+    reg = _reg(state)
+    c = reg.get("councils") or {}
+    ans = c.setdefault("answers", {})
+    for sid in c.get("ask", []):
+        a = characters.parse(raw.get(sid, "")) if raw.get(sid) else {}
+        got = {}
+        ch = a.get("choice") if isinstance(a.get("choice"), dict) else {}
+        for pnt in c.get("points", {}).get(sid, []):
+            key = pnt.get("demand") or pnt.get("tie") or "分かれるか"
+            v = str(next((x for k, x in ch.items() if str(k).strip("[] ") == key), "") or "")
+            opts = region.CHOICES[pnt["kind"]]
+            hit = [o for o in opts if o in v]
+            if len(hit) == 1 or (hit and pnt["kind"] == "払い続けるか" and v.startswith(hit[0])):
+                got[key] = hit[0] if len(hit) == 1 else max(hit, key=len)
+        if _oid(a.get("ally")):
+            got["ally"] = _oid(a.get("ally"))
+        o = next((x for x in _others(state) if x["id"] == sid), None)
+        st = next((x for x in STANCES if x in str(a.get("stance") or "")), None)
+        if o and st:
+            o["stance"] = st
+        ans[sid] = got
+        reg["log"].append({"day": state["day"], "kind": "集まり", "who": [sid], "answer": got, "stance": st, "rule": not got,
+                           "say": str(a.get("say") or "")[:200], "why": str(a.get("why") or "")[:200]})
+
+
+def region_text(state):
+    """お題の「## まわりの集落」(4.B.7): 村が知っている集落だけ (名前・方角と日数・約何人・城壁・村との貢ぎ・村への求め・村がかかわった戦と 1 日以内の戦)"""
+    if not region_on(state):
+        return ""
+    reg, D = _reg(state), state["day"]
+    known = [o for o in _others(state) if o.get("known") is not None]
+    if not known:
+        return ""
+    rows = []
+    for o in known:
+        ties = [t for t in reg.get("ties", []) if t["status"] == "続く" and "V0" in (t["payer"], t["payee"]) and o["id"] in (t["payer"], t["payee"])]
+        tie = "".join(f"。毎年 村が {region._goods(t['goods'])} を出している [{t['id']}]" if t["payer"] == "V0" else
+                      f"。毎年 村に {region._goods(t['goods'])} を出している [{t['id']}]" for t in ties)
+        rows.append(f"- {o['id']} {o['name']} ({o['way']}歩いて {o['days']} 日): 約 {round(o['people'], -1) if o['people'] >= 20 else o['people']} 人"
+                    + ("・まわりに土の壁" if o.get("walls") is not None else "") + tie)
+    for q in reg.get("demands", []):
+        if q["to"] == "V0" and not q.get("end"):
+            a = next((o for o in known if o["id"] == q["from"]), None)
+            rows.append(f"- 求め [{q['id']}]: {a['name'] if a else 'ほかの村'} が、毎年 {region._goods(q['what'])} を出すように村に求めている (answer_demand で答える)")
+    for w in reg.get("wars", []):
+        if w.get("done") is not None and w["done"] > D - 2 * YEAR and not w.get("called_off") and "V0" in (w["att"], w["def"]):
+            o = next((x for x in _others(state) if x["id"] in (w["att"], w["def"])), None)
+            win = (w["att"] == "V0") == bool(w.get("att_win"))
+            rows.append(f"- {w['done']} 日目、村は {o['name'] if o else 'ほかの村'} と戦い、{'勝った' if win else '負けた'}"
+                        + (f" (村で亡くなった人: {'・'.join(w.get('dead_names') or [])})" if w.get("dead_names") else ""))
+    return "\n## まわりの集落 (村が知っている村)\n" + "\n".join(rows) + "\n"

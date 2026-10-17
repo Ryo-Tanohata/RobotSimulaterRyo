@@ -388,6 +388,8 @@ def _day(state):
         g7.kids_day(state, sea, rng, milk)  # 直し 6: 12〜14 歳の子の手伝い (大人の半分の働き)
     if era_at_least(state, "G6"):
         _g6_trips_day(state)  # 交換に行く (出かけている人は、夕方に木から取らず、畑も刈らない)
+    if g7:
+        g7.region_day(state)  # G7: 戦の日なら戦 (戦ごとの種。docs/society_phase/G7_design.md 4.B.5)
     # 夕方、キャンプのそばの木から取る (季節のはじめに決めた量。world.evening の「取る」を使う)
     takes = []
     for p in adults(state):
@@ -2124,14 +2126,16 @@ def _g6_season_end(state, frac):
     # 4. ほかの村の 1 季節 (【仮定】人は 1 季節 0.5% ほど増える。夏のはじめに、その年が苦しい年か決まる。ヤギは春に増える。土器・鎌は少しずつ割れる)
     nxt = season(day + 1)
     wbad = _g7m().bad_set(state) if "g7" in e2 and nxt == "夏" else None  # G7 (直し 8): 苦しい年は地域の天気から (塩 41 は前と同じ回数引く)
+    reg = "g7" in e2 and _g7m().region_on(state)  # G7: 人の増減と麦の量は地域の決まり (region.py) が受けもつ。乱数は前と同じ回数引き、結果を使わない (4.B.3)
     for o in g["others"]:
-        if rng.random() < o["people"] * 0.005 * frac:
+        if rng.random() < o["people"] * 0.005 * frac and not reg:
             o["people"] += 1
         if nxt == "夏":
             o["bad"] = day if rng.random() < BAD_P else None
             if wbad is not None:
                 o["bad"] = day if o["id"] in wbad else None
-            o["grain"] = min(o["grain"], o["people"] * 20) if o["bad"] is not None else min(o["people"] * 300, o["grain"] + o["people"] * 100)
+            if not reg:
+                o["grain"] = min(o["grain"], o["people"] * 20) if o["bad"] is not None else min(o["people"] * 300, o["grain"] + o["people"] * 100)
         if nxt == "春":
             o["goats"] = min(max(o["people"], 2), round(o["goats"] * 1.3))
         if "pots_f" in o:  # G7: 端数を残す (切り捨てで 0 のままにならないように。4.B.3)。交換で増えた・減った分 (整数の数の差) も足す
@@ -2172,8 +2176,11 @@ def _g6_season_end(state, frac):
             txt = "、".join(f"{m['name']} ({m['sex']}、{m['age']} 歳)" for m in members)
             log(state, "訪れる", None, f"{_okey(o)} から {txt} がやって来て、「ここで暮らしたい」と言った", other=o["id"])
     # 7. 返されないまま 1 年たった貸し借り
+    #    G7 から: この季節の終わりに返しに来た申し出 (「返す」) がある貸し借りは、まだ「返されない」にしない (次の集まりで _g6_repay が受けとる)。
+    #    G6 までは、期日の季節に返しに来た分が、その季節の終わりに「返されない」になって消えていた (D4・D6)。G6 までの動きは変えない
+    back = {off.get("debt") for off in g["offers"] if off["kind"] == "返す"} if "g7" in e2 else set()
     for d in g["debts"]:
-        if d["status"] == "まだ" and day - d["due"] >= YEAR:
+        if d["status"] == "まだ" and day - d["due"] >= YEAR and d["id"] not in back:
             d.update(status="返されない", end=day)
             o = _other(state, d["other"])
             if o:
@@ -2918,7 +2925,9 @@ def hold_why(state):
 # ---------------- 季節の集まりの出来事 (読むだけ。docs/dashboard_records_spec.md 3.4) ----------------
 
 MEETING_EVENTS = ("話す", "掟", "もめごと", "収める", "裁き", "罰", "祭り", "まとめ役", "共同の仕事", "加わる", "去る", "ヤギを食べる", "年の名前",
-                  "印", "封", "よその村", "交換", "貸し借り", "確かめる", "覚え")  # 後ろの 7 つは G6 の集まりの出来事 (G6 の前は起きない)
+                  "印", "封", "よその村", "交換", "貸し借り", "確かめる", "覚え",  # 後ろの 7 つは G6 の集まりの出来事 (G6 の前は起きない)
+                  "求め", "逃げる", "貢ぎ", "同盟", "崩れ")  # G7 から (夏の集まりの日に決まった、まわりの集落とのこと。G6 までは起きない)
+G7_EVENTS = ("求め", "貢ぎ", "戦", "同盟", "崩れ", "集落", "逃げる")  # G7 の地域の出来事 (村がかかわるもの。step.py が見せる。G6 までは起きない)
 
 
 POLICY = "季節のはじめに、年の方針で"  # G7 の答えのない季節に、年の集まりの方針で決まったこと (集まりの出来事に数える。G6 までは出ない)
@@ -2940,6 +2949,8 @@ def _meeting_event(e):
         return "受け入れられず" in x  # 蓄えが尽きて出ていくのは、季節の途中
     if t == "まとめ役":
         return not x.endswith("村にまとめ役がいなくなった")  # 亡くなった・村を出たのは、季節の終わり
+    if t == "求め":
+        return "求めた [" not in x  # G7: 年の終わりに来た求め (集まりの前) と、集まりで答えた・村が決めた求めを分ける
     return True
 
 
@@ -2967,7 +2978,8 @@ YEAR_NAME_MAX = 20
 YEAR_EVENTS = ("フェーズ", "区切り", "段階", "分かれる", "死", "生まれる", "加わる", "去る", "まとめ役", "受けつぎ", "祭り", "住まい", "もめごと",
                "収める", "裁き", "罰", "大人になる", "ヤギ", "ヤギを食べる", "虫", "蓄えが尽きる", "家族",
                "町", "記録",  # お題に見せる出来事 (前のものほど先に残す)。町・記録は G6 から (記録は、道具が使えるようになったときだけ)
-               "年の集まり")  # G7 から (次の年が、1 年に 1 回の集まりか、季節ごとに集まるか。年の終わりに決まる)
+               "年の集まり",  # G7 から (次の年が、1 年に 1 回の集まりか、季節ごとに集まるか。年の終わりに決まる)
+               "戦", "崩れ", "貢ぎ", "求め", "同盟")  # G7 から (まわりの集落とのこと。docs/society_phase/G7_design.md 4.B.7)
 YEAR_DIGEST_MAX = 15
 STOP_WORDS = ("フェーズが", "Society 2.0 が終わった")  # ワークフローが止まる文と重なる名前は読まない (step.py が出来事を表示するため)
 

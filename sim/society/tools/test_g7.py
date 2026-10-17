@@ -1227,7 +1227,7 @@ import era2, world, test_g7
 st = json.loads(Path(real, "state.json").read_text(encoding="utf-8"))
 test_g7.part_end(st)
 if mode == "g7":  # 年 1 回の答え・直し・天気を止めた G7 (全部の家が見本で、毎季節寄る)
-    world.G7_PARTS.update(fix=False, weather=False, year=False)
+    world.G7_PARTS.update(fix=False, weather=False, year=False, region=False)
     import g7
     g7.enter(st, 0.0)
 else:  # 出来事の番号をそろえる (G7 に入った日の出来事と同じ数)
@@ -1347,6 +1347,255 @@ class G_Flow(unittest.TestCase):
         self.assertEqual(vil[d2 + 30]["answered"]["season"], 0, "答えのない季節")
         self.assertTrue(any(r["answered"] == "season" for r in rows if r["season_end_day"] == d2))
         self.assertTrue(any(r["decided_by"] == "年の答え (自分)" for r in rows if r["season_end_day"] == d2 + 30))
+
+
+# ---------------------------------------------------------------- C2
+class C2_ClosedByDecision(unittest.TestCase):
+    """G6 を本人の決めで閉じて G7 に入る (2026-10-17。町の条件がそろわないまま。止まっていない state から。step.py を写しで動かす)"""
+
+    @classmethod
+    def setUpClass(cls):
+        st = real_state()
+        if not is_g6(st) or st["phase"] != "season" or st.get("hold") or (st["era2"].get("g6") or {}).get("end"):
+            raise unittest.SkipTest("本物の state が、止まっていない G6 でない")
+        cls.tmp = tmpdir()
+        cls.data = cls.tmp / "data"
+        cls.data.mkdir()
+        cls.D = st["day"]
+        (cls.data / "state.json").write_text(real_text(), encoding="utf-8")
+        cls.env = dict(os.environ, SOC_DATA=str(cls.data), SOC_RECORDS="0", SOC_ARCHIVE="0", PYTHONUTF8="1", PYTHONIOENCODING="utf-8")
+
+    @classmethod
+    def tearDownClass(cls):
+        if getattr(cls, "tmp", None):
+            shutil.rmtree(cls.tmp, ignore_errors=True)
+
+    def step(self, *args):
+        return subprocess.run([sys.executable, str(SOC / "step.py"), *args], capture_output=True, text=True, env=self.env)
+
+    def test_closed(self):
+        before = sha((self.data / "state.json").read_bytes())
+        for args, word in ((("next_part",), "一時停止していない"), (("next_part", "--closed-by-decision", " "), "本人の言葉がない"),
+                           (("season", "--closed-by-decision", "x"), "next_part のときだけ")):
+            r = self.step(*args)
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn(word, r.stdout + r.stderr)
+        a = self.data / "answers" / f"day{self.D:03d}" / "season"
+        a.mkdir(parents=True)
+        (a / "だれか.json").write_text("{}", encoding="utf-8")
+        r = self.step("next_part", "--closed-by-decision", "町は生まれなかったとして G6 を閉じる")
+        self.assertEqual(r.returncode, 3)
+        self.assertIn("答えがもうある", r.stdout)
+        shutil.rmtree(self.data / "answers")
+        self.assertEqual(sha((self.data / "state.json").read_bytes()), before, "断ったときは何も変えない")
+        r = self.step("next_part", "--closed-by-decision", "町は生まれなかったとして G6 を閉じる", "--fill", "0.1")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("本人の決めで閉じた", r.stdout)
+        st = json.loads((self.data / "state.json").read_text(encoding="utf-8"))
+        c = st["era2"]["g6"]["closed"]
+        self.assertEqual((c["day"], c["by"], c["note"], c["town"]), (self.D, "本人の決め", "町は生まれなかったとして G6 を閉じる", None))
+        self.assertIsNone(st["era2"]["g6"]["end"], "町はそろっていないので、g6.end は書かない")
+        ev = [e for e in st["events"] if e["day"] == self.D and e["type"] == "フェーズ"]
+        self.assertEqual(len(ev), 2)
+        self.assertTrue(ev[0]["text"].startswith("第 4 部の終わり (G6): 町の条件はそろわないまま、ここで閉じた"))
+        self.assertNotIn("本人", ev[0]["text"], "村の人の年のまとめに出る文に、作る側のことばを入れない")
+        self.assertEqual((ev[0]["data"]["closed_by"], ev[0]["data"]["note"]), ("本人の決め", "町は生まれなかったとして G6 を閉じる"))
+        self.assertEqual(ev[1]["text"], "第 5 部「王と青銅」を始めた: フェーズ G7 (王と役所)")
+        self.assertLess(ev[0]["id"], ev[1]["id"])
+        e = st["era_log"][-1]
+        self.assertEqual((e["era"], e["how"], e["g6_closed"]), ("G7", "next_part", self.D))
+        self.assertEqual(st["era2"]["g7"]["region"]["fill"]["share"], 0.1)
+        r = self.step("next_part", "--closed-by-decision", "もう一度")
+        self.assertEqual(r.returncode, 3)
+        self.assertIn("G6 から G7 だけ", r.stdout)
+
+
+# ---------------------------------------------------------------- H
+def sett(sid, people, cell, org=0, grain=None, **kw):
+    s = {"id": sid, "name": sid, "people": people, "cell": list(cell), "land": region.land(cell), "org": org, "commit": {}, "stance": "ふつう",
+         "walls": None, "tech": 1, "grain": people * 100 if grain is None else grain, "goats": 0, "bad": None, "known": 0}
+    s.update(kw)
+    return s
+
+
+def tie(n, payer, payee, since=0, paid=(0,)):
+    return {"id": f"K{n}", "payer": payer, "payee": payee, "goods": {"草の種": 100}, "since": since, "paid": list(paid), "missed": 0,
+            "status": "続く", "end": None, "fixed": None}
+
+
+class H_Region(unittest.TestCase):
+    """まわりの集落の決まり (4.B.3) と決める段 (4.D.2)。region.py の関数だけ (state は使わない)"""
+
+    def test_levels(self):
+        lv = region.levels([sett("V0", 100, (5, 5)), sett("N1", 20, (5, 7)), sett("N2", 20, (5, 3))], [tie(1, "N1", "V0"), tie(2, "N2", "V0")], 0)
+        self.assertEqual([(g["top"], g["D"], g["village"]) for g in lv], [("V0", 1, "中心")], "星形は D 1")
+        lv = region.levels([sett(f"N{i}", 20, (i, 0)) for i in range(1, 5)], [tie(1, "N1", "N2"), tie(2, "N2", "N3"), tie(3, "N3", "N4")], 0)
+        self.assertEqual([(g["top"], g["D"], g["T"], g["village"]) for g in lv], [("N4", 3, 4, "外")], "集落 4 段の列は D 3 (村は外)")
+        lv = region.levels([sett("N1", 20, (1, 1)), sett("N2", 20, (2, 2))], [tie(1, "N1", "N2", 0), tie(2, "N2", "N1", 5)], 0)
+        self.assertEqual([(g["top"], g["D"]) for g in lv], [("N2", 1)], "輪になる矢印は新しいほうを数えない")
+        lv = region.levels([sett("N1", 70, (1, 1), org=2), sett("N2", 20, (2, 2)), sett("N3", 20, (3, 3))], [tie(1, "N2", "N1"), tie(2, "N3", "N1")], 0)
+        self.assertEqual([(g["top"], g["D"], g["T"], g["office"]) for g in lv], [("N1", 2, 2, 1)], "段 2 の集落は、長の下に集める役が 1 つ")
+        S = [sett("V0", 100, (5, 5)), sett("N1", 20, (5, 7)), sett("N2", 20, (5, 3)), sett("N4", 20, (5, 8)), sett("N5", 20, (4, 8))]
+        T = [tie(1, "N4", "N1"), tie(2, "N5", "N1"), tie(3, "N1", "V0"), tie(4, "N2", "V0")]
+        self.assertEqual(region.levels(S, T, 0)[0]["D"], 2)
+        lv = region.levels(S, T, 0, officials={"ソル": ["N1", "N2"], "ミナ": ["V0"]})
+        self.assertEqual([(g["top"], g["D"], g["T"], g["office"], g["village"]) for g in lv], [("V0", 3, 3, 1, "中心")], "設計 4.D.2 の D 3 の例")
+        lv = region.levels(S, T, 0, officials={"ミナ": ["V0"]})
+        self.assertEqual(lv[0]["D"], 2, "村の中の税だけの役は、段を足さない (下が村の葉 1 つ)")
+        lv = region.levels([sett("V0", 100, (5, 5)), sett("N1", 20, (5, 7))], [], 0)
+        self.assertTrue(all(g["D"] == 0 for g in lv), "この 1 年に払いがなければ数えない")
+
+    def test_demand_pay_and_fixed(self):
+        R = {"ties": [], "demands": [], "wars": [], "pending": [], "gone": [], "log": []}
+        S = [sett("V0", 150, (5, 5), village=True, kcap=10 ** 6), sett("N1", 80, (5, 7), org=1), sett("N2", 10, (6, 8), grain=3000)]
+        made = []
+        out = region.year_end(R, S, random.Random(1), 49, 5879, out=[])
+        qs = [q for q in R["demands"] if q["from"] == "N1"]
+        self.assertTrue(qs and qs[0]["to"] == "N2", "強い N1 は、届く範囲のいちばん弱い N2 に求める")
+        self.assertFalse(any(q["from"] == "V0" for q in R["demands"]), "本物の村の求めは、決まりでは出さない (答えから)")
+        self.assertTrue(5880 + 9 <= qs[0]["war_day"] <= 5880 + 49)
+        p = next(p for p in R["pending"] if p["kind"] == "求めへの答え")
+        self.assertIn(p["rule"], ("払う", "逃げる", "助けを頼む", "戦う"))
+        self.assertIn("N2", R["councils"]["ask"], "求められた集落は集まりで答える")
+        R["councils"]["answers"] = {"N2": {qs[0]["id"]: "払う"}}
+        region.decide(R, S, 5880, make=lambda *a: made.append(a), out=out)
+        self.assertEqual(qs[0]["answer"], "払う")
+        t = R["ties"][0]
+        g0 = S[2]["grain"]
+        region.pay_ties(R, S, 5880, out=out)
+        self.assertEqual((t["paid"], S[2]["grain"]), ([5880], g0 - t["goods"]["草の種"]))
+        self.assertIsNone(t["fixed"])
+        region.pay_ties(R, S, 6000, out=out)
+        self.assertEqual(t["fixed"], 6000, "期日に 2 回続けて払われたら「決まった」")
+        self.assertNotIn("N2", {q["to"] for q in region.open_demands(R)})
+        # 輪にならない: 貢いでいる N2 は、上の N1 に求めない
+        self.assertIsNone(region._demand_target(R, S, S[2], "求める"))
+        self.assertIn("N1", region.above(R, "N2"))
+
+    def test_refuge_and_flee(self):
+        a, t = sett("N1", 80, (5, 7)), sett("N2", 10, (5, 9))
+        S = [sett("V0", 150, (5, 5), village=True), a, t]
+        c = region.refuge(S, t, a)
+        self.assertGreater(region.dist(c, (5, 7)), region.reach(a))
+        full = S + [sett(f"N{i + 3}", 10, cc) for i, cc in enumerate(x for x in region.cells() if x not in {(5, 5), (5, 7), (5, 9)} and region.dist(x, (5, 7)) > 2)]
+        self.assertIsNone(region.refuge(full, t, a), "届く範囲の外が埋まっていれば、逃げ場はない (囲まれている)")
+        R = {"ties": [tie(1, "N2", "N1")], "demands": []}
+        self.assertTrue(region.flee(R, S, t, a, 100, []))
+        self.assertEqual(tuple(t["cell"]), c)
+        self.assertEqual(R["ties"][0]["status"], "切れた")
+
+    def test_war(self):
+        S = [sett("V0", 150, (5, 5), village=True), sett("N1", 80, (5, 7)), sett("N2", 40, (5, 9), grain=4000, goats=10)]
+        R = {"ties": [], "demands": [{"id": "Q1", "from": "N1", "to": "N2", "what": {"草の種": 100}, "end": None}], "wars": []}
+        w = {"id": "W1", "att": "N1", "def": "N2", "day": 5890, "demand": "Q1", "done": None}
+        R["wars"].append(w)
+        p0 = (S[1]["people"], S[2]["people"])
+        region.fight(R, S, w, region.war_rng(7, 1), 5890, out=[])
+        w2 = dict(w, done=None)
+        S2 = [dict(x, commit={}) for x in [sett("V0", 150, (5, 5), village=True), sett("N1", 80, (5, 7)), sett("N2", 40, (5, 9), grain=4000, goats=10)]]
+        R2 = {"ties": [], "demands": [{"id": "Q1", "from": "N1", "to": "N2", "what": {"草の種": 100}, "end": None}], "wars": [w2]}
+        region.fight(R2, S2, w2, region.war_rng(7, 1), 5890, out=[])
+        self.assertEqual((w["att_win"], w["dead"], w["loot"]), (w2["att_win"], w2["dead"], w2["loot"]), "同じ戦の種なら同じ")
+        win = w["att_win"]
+        lo, hi = (region.WIN_DEATH, region.LOSE_DEATH) if win else (region.LOSE_DEATH, region.WIN_DEATH)
+        self.assertTrue(round(20 * lo[0]) <= w["dead"]["N1"] <= round(20 * lo[1]) + 1)
+        self.assertEqual(S[1]["people"], p0[0] - w["dead"]["N1"])
+        self.assertEqual(bool(R["ties"]), win, "守る側が負ければ貢ぐ集落になる")
+        self.assertEqual(R["demands"][0]["end"], 5890)
+        # 川辺の村の人と物は、呼んだ側が当てる (own があるとき)
+        S3 = [sett("V0", 150, (5, 5), village=True), sett("N1", 80, (5, 7))]
+        w3 = {"id": "W2", "att": "N1", "def": "V0", "day": 1, "demand": None, "done": None}
+        region.fight({"ties": [], "demands": [], "wars": [w3]}, S3, w3, region.war_rng(7, 2), 1, own={"S": 30.0, "n": 40})
+        self.assertEqual((S3[0]["people"], S3[0]["grain"]), (150, 15000))
+        self.assertEqual(w3["fighters"]["V0"], 40)
+        self.assertGreater(region.p_win(3, 1), region.p_win(2, 1))
+        self.assertAlmostEqual(region.p_win(1, 1), 0.5)
+
+    def test_collapse_and_split(self):
+        S = [sett("V0", 150, (5, 5), village=True), sett("N1", 30, (5, 7)), sett("N2", 4, (5, 9)), sett("N3", 130, (4, 3))]
+        R = {"ties": [tie(1, "N2", "N1")], "demands": [], "gone": []}
+        out = []
+        region.collapse(R, S, 10, out)
+        self.assertEqual((S[2].get("gone"), S[1]["people"], R["ties"][0]["status"]), (10, 34, "切れた"), "5 人未満は、貢ぐ相手に移ってなくなる")
+        made = []
+
+        def make(parent, c, n, kind):
+            o = sett(f"N{9 + len(made)}", n, c)
+            made.append(o)
+            S.append(o)
+            return o
+        R["pending"] = [{"kind": "分かれる", "who": "N3", "u": 0.1, "share": 0.4}]
+        region.decide(R, S, 20, make=make, out=out)
+        self.assertEqual((S[3]["people"], made[0]["people"], made[0]["parent"]), (78, 52, "N3"))
+        self.assertLessEqual(region.dist(tuple(made[0]["cell"]), (4, 3)), 2)
+        self.assertEqual(made[0]["commit"]["N3"], 0.6)
+        R["pending"] = [{"kind": "分かれる", "who": "N3", "u": 0.1, "share": 0.4}]
+        R["councils"] = {"answers": {"N3": {"分かれるか": "とどめて役を作る"}}}
+        region.decide(R, S, 30, make=make, out=out)
+        self.assertEqual((S[3]["people"], S[3].get("org_boost")), (78, True), "集まりが「とどめて役を作る」と答えたら分かれない")
+
+    def test_sick(self):
+        s = sett("N1", 60, (5, 7))
+        self.assertAlmostEqual(region.sick(random.Random(1), s, 0, False)[1], 0.005)
+        self.assertAlmostEqual(region.sick(random.Random(1), dict(s, people=120), 1, False)[1], 0.02)
+        self.assertAlmostEqual(region.sick(random.Random(1), dict(s, people=60000), 1, False)[1], 0.15)
+
+    def test_sweep_same(self):
+        """掃き出しは、同じ引数なら同じ (PYTHONHASHSEED によらない)"""
+        sys.path.insert(0, str(HERE))
+        import region_sweep
+        base = {"day": 5849, "pop": 150, "grain": 20000, "goats": 30, "leader": False,
+                "others": [{"id": "N1", "name": "南の村", "dir": "南", "days": 1, "people": 17, "goats": 17, "grain": 5100, "known": 1}]}
+        args = (base, 0.3, False, region_sweep.POLICIES[4], 3, 12)
+        a = json.dumps(region_sweep.run(args), sort_keys=True)
+        self.assertEqual(a, json.dumps(region_sweep.run(args), sort_keys=True))
+        code = f"import sys,json;sys.path[:0]=[{str(SOC)!r},{str(HERE)!r}];import region_sweep as r;print(json.dumps(r.run({args!r}),sort_keys=True))"
+        for hs in ("1", "2"):
+            o = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=dict(os.environ, PYTHONHASHSEED=hs)).stdout.strip()
+            self.assertEqual(o, a)
+
+
+class I_Debt(unittest.TestCase):
+    """G6 の穴の直し (G7 からだけ): 期日の季節に返しに来た貸し借りが、その季節の終わりに「返されない」になって消えていた (D4・D6)"""
+
+    def setup(self, st):
+        g = st["era2"]["g6"]
+        D = st["day"]
+        o = next(x for x in g["others"] if x["id"] == "N2")
+        d = {"id": "D99", "other": "N2", "lender": "村", "goods": {"草の種": 100}, "day": D - 2 * era2.YEAR, "due": D - era2.YEAR, "proof": None,
+             "mem": {"village": 1.0, "other": 1.0}, "status": "まだ", "end": None}
+        g["debts"].append(d)
+        g["offers"].append({"kind": "返す", "debt": "D99", "give": {"草の種": 100}, "want": {}, "id": "T999", "other": "N2", "day": D, "goats_in": [], "mem": {}})
+        return d, o
+
+    def test_g6_unchanged(self):
+        st = real_state()
+        if not is_g6(st):
+            self.skipTest("本物の state が G6 でない")
+        d, _ = self.setup(st)
+        era2._g6_season_end(st, 1.0)
+        self.assertEqual(d["status"], "返されない", "G6 までは前のまま")
+
+    def test_g7_repaid(self):
+        if not is_g6(real_state()):
+            self.skipTest("本物の state が G6 でない")
+        st = g7_state()
+        d, o = self.setup(st)
+        era2._g6_season_end(st, 1.0)
+        self.assertEqual(d["status"], "まだ", "返しに来た申し出がある貸し借りは、その季節の終わりには消さない")
+        off = next(x for x in st["era2"]["g6"]["offers"] if x["id"] == "T999")
+        before = era2._g6_have(st, "村", "草の種")
+        era2._g6_repay(st, off, o)
+        self.assertEqual(d["status"], "返した")
+        self.assertGreater(era2._g6_have(st, "村", "草の種"), before)
+        st["era2"]["g6"]["offers"] = [x for x in st["era2"]["g6"]["offers"] if x["id"] != "T999"]
+        d2, _ = self.setup(st)
+        st["era2"]["g6"]["offers"] = [x for x in st["era2"]["g6"]["offers"] if x["id"] != "T999"]
+        st["day"] += 30
+        d2["due"] = st["day"] - era2.YEAR
+        era2._g6_season_end(st, 1.0)
+        if not any(x.get("debt") == "D99" for x in st["era2"]["g6"]["offers"]):
+            self.assertEqual(d2["status"], "返されない", "返しに来なければ、前のとおり 1 年で「返されない」")
 
 
 if __name__ == "__main__":
