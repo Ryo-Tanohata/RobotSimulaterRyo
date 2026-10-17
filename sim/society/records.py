@@ -210,10 +210,25 @@ def _g7_snap(state, g7):
     others = ((state.get("era2") or {}).get("g6") or {}).get("others", [])
     keys = ("start", "fix_from", "part", "ask", "answer_day", "zoom", "sample", "weights", "cells", "donor", "src", "step", "hold", "offered", "role_days",
             "kid_jobs")  # step: この季節の仕事を、だれの答えで決めたか (見本の家・手本・決まり。g7._apply)
+    h = g7.get("hints") or {}
+    D = state["day"]
     return {**{k: _copy(g7[k]) for k in keys if k in g7},
             "region": {"weather": _copy(reg.get("weather")), "fill": _copy(reg.get("fill")),
-                       "others": [{k: _copy(o.get(k)) for k in ("id", "cell", "land", "people", "known", "org", "bad", "cattle_f")} for o in others]},
-            "ledger": _copy((g7.get("ledger") or [None])[-1])}
+                       "others": [{k: _copy(o.get(k)) for k in ("id", "cell", "land", "people", "known", "org", "bad", "cattle_f", "walls", "gone")}
+                                  for o in others],
+                       "ties": [{k: _copy(t.get(k)) for k in ("id", "payer", "payee", "goods", "status", "fixed", "end", "paid")} for t in reg.get("ties", [])],
+                       "wars": [{k: _copy(w.get(k)) for k in ("id", "att", "def", "day", "done", "att_win", "called_off")} for w in reg.get("wars", [])
+                                if w.get("done") is None or w["done"] > D - 120]},
+            "ledger": _copy((g7.get("ledger") or [None])[-1]),
+            # 物差し (4.D。【シ】): 決める段・F に届いた日・取り立ての記録の年・役の割合・書いた掟で裁いた数・条件ごとの止まり
+            "measure": {"levels": _copy(g7.get("levels_now")), "reached": _copy(g7.get("reached") or {}), "tribute_years": _copy(g7.get("tribute_years") or []),
+                        "tribute2_day": g7.get("tribute2_day"), "coll": _copy((g7.get("coll_seasons") or [None])[-1]),
+                        "role": _copy((g7.get("role_log") or [None])[-1]), "f6_run": g7.get("f6_run"), "judged": len(g7.get("judged") or []),
+                        "stall": _copy(g7.get("stall") or {}), "walls": (state.get("era2") or {}).get("walls"),
+                        "cattle": len((state.get("era2") or {}).get("cattle") or []), "sick": _copy(g7.get("sick"))},
+            # よその便り (4.C。帳簿は【シ】): この季節までの数だけ (札の文と史実は入れない)
+            "hints": {"delivered": sum(1 for r in h.get("ledger", []) if r.get("to") == "V0" and r.get("status") in ("届いた", "忘れられた")),
+                      "planned": len(h.get("plan", [])), "tech": _copy(h.get("tech") or {}), "things": len(h.get("things") or [])} if h else None}
 
 
 def append_snapshot(data_dir, row):

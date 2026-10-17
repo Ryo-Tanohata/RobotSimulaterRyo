@@ -204,6 +204,8 @@ def apply_answers(state, answers, how="集まり"):
             knowledge.propose(state, p, prop["text"], prop.get("because"))
             if g5 and _g5(state)["stage"] >= 2:  # G5 の第 2 段から、掟に罰をつけられる
                 _penalty(state["laws"][-1], prop.get("penalty"))
+            if g7:  # G7: 掟の取り立て (tax) と換算 (rate) (docs/society_phase/G7_design.md 4.F の 2・3。G6 までは何もしない)
+                _g7m().law_extra(state, state["laws"][-1], prop)
         knowledge.vote(state, p, a.get("votes"))
         fam = family(state, name) if e2.get("rep_mode") else [p]  # 代表の答えは、家族の大人みんなの答え
         own = not (g5 and e2.get("rep_mode")) or name in reps  # G5: 家族の代表でないまとめ役は、自分の分だけ答える
@@ -231,6 +233,8 @@ def apply_answers(state, answers, how="集まり"):
             q["plan"] = {"activity": act, "place": place, "with": [w for w in with_ if isinstance(w, str) and w in alive and w != q["name"]]}
             if g6 and act in ACTS_G6 + [ACT_RECORD]:  # 行き先・持って行く物・残すもの (e2["jobs"] には入れない)
                 _g6_job(state, q, job, own)
+            if g7:  # G7: 試す (try)・壁 (build)・犂 (plough)・牛がほしい (want)・板に書く掟 (laws) (G6 までは何もしない)
+                _g7m().job(state, q, job)
             e2["jobs"][q["name"]] = {"sow": max(0, min(1000, _int(a.get("sow")))), "pick": max(0, min(40, _int(a.get("pick")))),
                                      "plant": max(0, min(5, _int(a.get("plant")))),
                                      "eat_goat": max(0, min(5, _int(a.get("eat_goat")))) if q is p and own else 0,
@@ -246,6 +250,8 @@ def apply_answers(state, answers, how="集まり"):
             _g5_collect(state, c5, p, a, fam)
         if g6:
             _g6_collect(state, c6, p, a, fam, own)
+        if g7:  # G7: 「貸して」に上乗せ (利子) をつけた答え (4.F の 4)
+            _g7m().collect_rate(state, c6, p, a, fam)
     for t in talk:  # 話は聞き手に届く
         for n, q in alive.items():
             if n != t["from"] and (t["to"] == "みんな" or t["to"] == n):
@@ -306,12 +312,15 @@ def _settle_visitors(state, accept, n_adults, how="集まり"):
                     e2["jobs"][q["name"]] = {"sow": 0, "pick": 0, "plant": 0, "eat_goat": 0, "harvest": 0}
             names = "・".join(member_names)
             o = _other(state, v.get("from")) if v.get("from") else None
-            log(state, "加わる", None, f"よそから来た {names} が、村に加わった ({o['name'] + 'から。' if o else ''}{pol}賛成 {yes} / {n_adults})")
+            log(state, "加わる", None, f"よそから来た {names} が、村に加わった ({o['name'] + 'から。' if o else ''}{pol}賛成 {yes} / {n_adults})",
+                **({"hint": v["hint"]} if v.get("hint") else {}))  # G7: よその便りの群れ (λ で数えない。G6 までは hint のある群れはない)
         else:
             o = _other(state, v.get("from")) if v.get("from") else None
             log(state, "去る", None, f"よそから来た {v['name']} たちは、受け入れられず{'、' + o['name'] + 'へ帰って' if o else '去って'}いった ({pol}賛成 {yes} / {n_adults})")
         if v.get("from"):
             _g6_settled(state, v, yes * 2 > n_adults)
+        if v.get("hint") and "g7" in e2:  # G7: よその便りの群れ (受け入れたら知っている人。「人」の札なら教える腕。docs/society_phase/G7_design.md 4.C.4)
+            _g7m().hint_settled(state, v, yes * 2 > n_adults)
     e2["visitors"] = []
 
 
@@ -373,7 +382,10 @@ def _day(state):
         elif act == "ヤギを捕まえる":
             _catch_goat(state, p, t, rng)
         elif act == "住まいを建てる" and era_at_least(state, "G3") and state["camp"].get("dwelling_day") is not None:
-            _build_house(state, p, t)
+            if g7 and g7.wall_job(state, p):  # G7: 村のまわりの壁 (build: "壁"。4.F の 6)
+                g7.wall_day(state, p, t)
+            else:
+                _build_house(state, p, t)
         elif act == ACT_RECORD and era_at_least(state, "G6"):
             _g6_keep_day(state, p, t)
         elif g7 and act in g7.ACTS7:  # G7 の役の仕事 (守る・取り立てる・戦に出る・試す)
@@ -500,6 +512,8 @@ def _field_work(state, p, t, job, sea, rng):
     if ripe:  # 刈る: 畑仕事の人は 1 日に 150 つかみまで【仮定】
         _harvest(state, p, int(150 * h / 6))
         return
+    if mine and "g7" in e2:  # G7: 犂 (牛 2 頭で耕すと 3 倍。4.F の 5)
+        h = _g7m().plough_work(state, p, h)
     for f in mine:  # 草取り・水やり
         f["work"] += h / max(1, len(mine))
 
@@ -524,7 +538,7 @@ def _craft(state, p, t, act):
         p["pot_work"] = p.get("pot_work", 0.0) + h / 6 * (0.4 + 0.8 * sk)  # 腕が上がると、1 日に作れる数が増える (専門化の得)
         n = int(p["pot_work"])
         p["pot_work"] -= n
-        p["skills"]["土器"] = round(min(1, sk + 0.02), 3)
+        p["skills"]["土器"] = round(min(1, sk + (_g7m().craft_step(state, p, act, 0.02) if "g7" in e2 else 0.02)), 3)  # G7: 教える人と同じ日は 2 倍
         if n:
             e2["pots"] = e2.get("pots", 0) + n
             log(state, "土器", p["name"], f"{p['name']} がキャンプで土器を {n} 個焼き上げた (村の土器 {e2['pots']} 個)", count=n)
@@ -535,7 +549,7 @@ def _craft(state, p, t, act):
         p["sickle_work"] = p.get("sickle_work", 0.0) + h / 6 * (0.3 + 0.7 * sk) / 2  # 石の刃を打ち欠き、木の柄にはめる (1 本に 2 日ほど)
         n = int(p["sickle_work"])
         p["sickle_work"] -= n
-        p["skills"]["道具"] = round(min(1, sk + 0.02), 3)
+        p["skills"]["道具"] = round(min(1, sk + (_g7m().craft_step(state, p, act, 0.02) if "g7" in e2 else 0.02)), 3)
         if n:
             e2["sickles"] = e2.get("sickles", 0) + n
             obs = _g6_obsidian_blades(state, n) if era_at_least(state, "G6") else 0
@@ -1200,9 +1214,13 @@ def _verdict(state, d, v, by, who, how="集まり"):
     law, paid, words = None, 0, ""
     if v == "つぐなう":
         law = next((l for l in reversed(state["laws"]) if l["status"] == "採用" and (l.get("penalty") or {}).get("for") == d["kind"]), None)
-        paid, words = _pay(state, d["against"], d["from"], (law["penalty"]["pay"] if law else min(d["harm"], MAX_PAY)) * GRAIN)
+        worth, rlaw = _g7m().goat_worth(state) if "g7" in state["era2"] else (GOAT_WORTH, None)  # G7: 板に書いた換算の掟 (4.F の 3)
+        info = {}
+        paid, words = _pay(state, d["against"], d["from"], (law["penalty"]["pay"] if law else min(d["harm"], MAX_PAY)) * GRAIN, worth, info)
         if round(paid / GRAIN) <= 0:  # 半つかみより少ないものは、払ったと数えない (2026-10-08 確認役の指摘)
             paid, words = 0, ""
+        if rlaw and info.get("goats") and paid and not law:  # G7: 払いに換算を使ったときは、換算の掟で裁いた
+            law = rlaw
     d.update(status="収まった", verdict=v, by=by, judge=who, paid=round(paid / GRAIN), law=law["id"] if law else None, end=state["day"])
     if by == "まとめ役":
         g["judged"] += 1
@@ -1215,33 +1233,38 @@ def _verdict(state, d, v, by, who, how="集まり"):
             head = {"まとめ役": f"季節のはじめに、まとめ役の {who} の年の方針で裁いた", "集まり": "季節のはじめに、年の方針で決まった",
                     "長老": f"季節のはじめに、長老 (もめごとの家の人でない大人でいちばん年上) の {who} の年の方針で決まった"}[by]
         res = (f"{d['from']}は{d['against']}をゆるした (払いはない)" if v == "ゆるす" else
-               f"{d['against']}が{d['from']}に {words} を払った" + (f" (掟 [{law['id']}] の罰)" if law else "") if paid
+               f"{d['against']}が{d['from']}に {words} を払った" + (f" (掟 [{law['id']}] の{'罰' if law.get('penalty') else '換算'})" if law else "") if paid
                else f"{d['against']}には、払えるものがなかった")
         log(state, "裁き" if by == "まとめ役" else "収める", who, f"もめごと [{d['id']}] ({d['what']}) は、{head}: 「{v}」。{res}", dispute=d["id"], by=by,
             **({"how": how} if how != "集まり" else {}))
-    if law and paid > 0:  # 罰は、実際に何か払われたときだけ数える
+    if "g7" in state["era2"]:  # G7: 書いた決まり (罰か換算) で裁き、実際に払わせた (4.D.4)
+        _g7m().judged(state, d, law, paid, by, how)
+    if law and law.get("penalty") and paid > 0:  # 罰は、実際に何か払われたときだけ数える (G6 までは law があればいつも罰の掟)
         g["penalties"] += 1
         log(state, "罰", None, f"{d['against']}が、掟 [{law['id']}] の罰として、{d['from']}に {words} を払った", dispute=d["id"], law=law["id"])
     if v == "つぐなう" and not law and era_at_least(state, "G6"):  # G6: 記録のない量を覚えで払った (払った家が多く払ったと思うと、覚え違いのもと。払ったと書いたあとに)
         _g6_after_pay(state, d, round(paid / GRAIN))
 
 
-def _pay(state, a, b, kcal):
+def _pay(state, a, b, kcal, worth=GOAT_WORTH, info=None):
     """a の家が b の家の倉に払う: a の家の倉の食べ物から。足りない分は、いちばん近い頭数のヤギで払う (1 頭 = GOAT_WORTH。足りない分がヤギ半頭分より
-    少なければヤギは渡さない)【仮定】。ヤギも食べ物もなければ払えない"""
+    少なければヤギは渡さない)【仮定】。ヤギも食べ物もなければ払えない。
+    (G7: worth は板に書いた換算の掟のヤギの値うち。info に {"goats": 渡した頭数} を書く。G6 までは GOAT_WORTH のまま)"""
     got = []
     by = _move_food(_house(state, a)["store"], got, None, kcal)
     _house(state, b)["store"].extend(got)
     paid, n = sum(by.values()), 0
     words = [food_words(by)] if food_words(by) != "なし" else []
     for x in [x for x in state["era2"]["goats"] if x.get("owner") == a]:
-        if kcal - paid < GOAT_WORTH / 2:
+        if kcal - paid < worth / 2:
             break
         x["owner"] = b
-        paid += GOAT_WORTH
+        paid += worth
         n += 1
     if n:
         words.append(f"ヤギ {n} 頭")
+    if info is not None:
+        info["goats"] = n
     return paid, "・".join(words)
 
 
@@ -1285,7 +1308,9 @@ RATE = {"数え札": 10, "封筒": 10, "板": 50}
 WHATS = ("蓄え", "交換", "刈る")  # G6 の記録の種類 (変えない。G7 から足すものは _whats)
 WHAT_WORDS = {"蓄え": "村の蓄えへの家ごとの出し入れ", "交換": "ほかの村との交換と貸し借り", "刈る": "よその家の畑で刈った量",
               # G7 から (粘土の板が使えるとき。史実のずれの直し 9.1。g7.py)
-              "配給": "村の蓄えから家ごとに出した食べ物", "働いた日": "人ごとの働いた日と、できた物", "家畜": "村と家ごとのヤギの数と、生まれた子"}
+              "配給": "村の蓄えから家ごとに出した食べ物", "働いた日": "人ごとの働いた日と、できた物", "家畜": "村と家ごとのヤギの数と、生まれた子",
+              # G7 から (取り立ては数え札でも。掟は粘土の板だけ。docs/society_phase/G7_design.md 4.D.3・4.F の 3)
+              "取り立て": "村の中の取り立てと、ほかの村との貢ぎの出入り", "掟": "採用された掟 (粘土の板に書く)"}
 TABLET_SEASONS, TABLET_TOKENS, KEEPER_DAYS = 4, 200, 20
 TOWN_POP, TOWN_RUN, TOWN_PARTNERS, CENTRE, NONFOOD = 50, 4, 2, 2, 0.10
 GOOD_WORDS = (("黒曜石", "黒曜石"), ("黒い石", "黒曜石"), ("干し肉", "干し肉"), ("肉", "干し肉"), ("土器", "土器"), ("つぼ", "土器"), ("壺", "土器"),
@@ -1330,7 +1355,7 @@ def _okey(o):
 
 def _gw(goods):
     """{"ヤギ": 2, "土器": 18} → 「ヤギ 2 頭・土器 18 個」"""
-    return "・".join(f"{k} {n} {UNIT[k]}" for k, n in goods.items() if n > 0) or "なし"
+    return "・".join(f"{k} {n} {UNIT.get(k, 'つ')}" for k, n in goods.items() if n > 0) or "なし"  # G7: よその便りの「もの」は「つ」
 
 
 def _mv(side, sign, goods, ids=()):
@@ -1503,8 +1528,9 @@ def _g6_offer_new(state, rng, o, first):
     bring = None
     if due:
         exact = due.get("proof") in ("封筒", "板")
-        bring = {k: min(n if exact else int(n * rng.uniform(1 - s, 1)), o[NODE_KEY[k]] if NODE_KEY.get(k) else n) for k, n in due["goods"].items()}
-        if sum(VALUE[k] * n for k, n in bring.items()) * 2 < sum(VALUE[k] * n for k, n in due["goods"].items()):
+        dg = _g7m().owed(due) if due.get("rate") else due["goods"]  # G7: 上乗せのある貸し借りは goods × (1 + rate) を返す (G6 までは rate がない)
+        bring = {k: min(n if exact else int(n * rng.uniform(1 - s, 1)), o[NODE_KEY[k]] if NODE_KEY.get(k) else n) for k, n in dg.items()}
+        if sum(VALUE[k] * n for k, n in bring.items()) * 2 < sum(VALUE[k] * n for k, n in dg.items()):
             bring = None  # 半分も返せないときは、まだ返しに来ない
     if o["bad"] is not None and o["grain"] < o["people"] * 60:
         n = min(3000, max(100, round(o["people"] * 120, -2)))
@@ -1658,6 +1684,9 @@ def _g6_decide(state, c, off, o, n, lead, how="集まり"):
     if off["kind"] == "返す":
         _g6_repay(state, off, o)
         return
+    if off.get("hint") and "g7" in state["era2"]:  # G7: よその便りの商人が「もの」を出す申し出 (G6 までは hint のある申し出はない)
+        _g7m().hint_offer(state, c, off, o, n, lead, how)
+        return
     tally = {k: len(v) for k, v in c["trade"].get(off["id"], {}).items()}
     if tally.get("村", 0) * 2 > n or (lead and c["trade_by"].get(off["id"], {}).get(lead) == "村"):
         side = "村"
@@ -1673,6 +1702,12 @@ def _g6_decide(state, c, off, o, n, lead, how="集まり"):
         log(state, "交換", None, f"{at}、{o['name']} の申し出 [{off['id']}] を{side}の物で受けようとしたが、{_gw(off['want'])} がなかった",
             other=o["id"], offer=off["id"])
         return
+    if off["kind"] == "貸して" and side == "村" and "g7" in state["era2"]:  # G7: 上乗せが多いと、ほかの村は借りない (決まり。4.F の 4)
+        rate = _g7m().loan_rate(state, c, off, lead)
+        if _g7m().loan_refused(o, rate):
+            log(state, "よその村", None, f"{at}、村は {o['name']} の申し出 [{off['id']}] に上乗せ {round(rate * 10, 1):g} 割をつけて答えたが、{o['name']} は借りなかった ({votes})",
+                other=o["id"], offer=off["id"], rate=rate)
+            return
     out_ids = []
     gave = _g6_take(state, side, off["want"], out_ids)
     _node_add(o, gave, 1)
@@ -1680,12 +1715,16 @@ def _g6_decide(state, c, off, o, n, lead, how="集まり"):
     if off["kind"] == "貸して":
         d = {"id": f"D{g['next_debt']}", "other": o["id"], "lender": side, "goods": gave, "day": state["day"], "due": state["day"] + YEAR,
              "proof": None, "mem": off["mem"], "status": "まだ", "end": None}
+        rate = _g7m().loan_rate(state, c, off, lead) if "g7" in state["era2"] and side == "村" else 0  # G7: 上乗せ (利子。4.F の 4)
+        if rate:
+            d["rate"] = rate
         g["next_debt"] += 1
         g["debts"].append(d)
         _g6_note(state, o, {}, (gave,))
         _g6_contact(state, o)
-        log(state, "貸し借り", None, f"{at}、{who} {o['name']} に {_gw(gave)} を貸した [{d['id']}] (1 年のうちに同じ量を返すと言った。{votes})",
-            other=o["id"], debt=d["id"], moves=[_mv(side, -1, gave, out_ids)])
+        back = f"1 年のうちに、上乗せ {round(rate * 10, 1):g} 割をつけて {_gw(_g7m().owed(d))} を返すと言った" if rate else "1 年のうちに同じ量を返すと言った"
+        log(state, "貸し借り", None, f"{at}、{who} {o['name']} に {_gw(gave)} を貸した [{d['id']}] ({back}。{votes})",
+            other=o["id"], debt=d["id"], moves=[_mv(side, -1, gave, out_ids)], **({"rate": rate} if rate else {}))
         return
     _node_add(o, off["give"], -1)
     in_ids = []
@@ -1710,7 +1749,7 @@ def _g6_repay(state, off, o):
     mv = [_mv(side, 1, bring, in_ids)]
     _g6_note(state, o, {}, (bring,))
     _g6_contact(state, o)
-    true = d["goods"]
+    true = _g7m().owed(d) if d.get("rate") else d["goods"]  # G7: 上乗せのある貸し借り (G6 までは rate がない)
     short = {k: n - bring.get(k, 0) for k, n in true.items() if n - bring.get(k, 0) > 0}
     to = "村" if d["lender"] == "村" else d["lender"]
     # 足りない分が草の種 50 つかみ分より少なければ、返さなくてよいことにする (交換に行ったときの「あとで返す」と同じ目安。2026-10-09 試し回し:
@@ -1720,6 +1759,7 @@ def _g6_repay(state, off, o):
         g["checked"][d["proof"]] += 1
         if short and not small:
             d["goods"] = short
+            d.pop("rate", None)  # G7: 足りない分は、上乗せをつけずに (G6 までは rate がない)
         else:
             d.update(status="返した", end=day)
         how = "封筒を割って" if d["proof"] == "封筒" else f"{d['proof']}の記録を見て"
@@ -1811,7 +1851,13 @@ def _g6_barter(state, p, t, tr, o):
         t.setdefault("events", []).append(log(state, "交換", p["name"], f"{p['name']} は {o['name']} で {_gw(tr['took'])} を見せたが、"
                                               "この季節はもう足りていると言われ、交換できなかった", other=o["id"], trip=tr["id"]))
         return
-    pay, left = _g6_pay(o, sum(VALUE[k] * n for k, n in took.items()), tr["want"], skip=set(took))
+    val = sum(VALUE[k] * n for k, n in took.items())
+    if "g7" in state["era2"] and _g7m().want_cattle(state, p["name"]) and int(o.get("cattle_f", 0)) >= _g7m().CATTLE_GIVE_AT \
+            and val >= _g7m().CATTLE_VALUE / 2:  # G7: 牛がほしい (ほかの村は牛が 3 頭以上あるときだけ出す。4.F の 5)
+        o["cattle_f"] -= 1
+        tr["cattle_in"] = 1
+        val = max(0, val - _g7m().CATTLE_VALUE)
+    pay, left = _g6_pay(o, val, tr["want"], skip=set(took))
     _node_add(o, took, 1)
     _node_add(o, pay, -1)
     r = _g6_r(state, 200 + int(tr["id"][1:]))
@@ -1834,7 +1880,7 @@ def _g6_barter(state, p, t, tr, o):
     _g6_note(state, o, took, (pay,))
     _g6_contact(state, o)
     t.setdefault("events", []).append(log(state, "交換", p["name"], f"{p['name']} は {o['name']} で、{_gw(took)} を渡し"
-                                          + (f"、{_gw(pay)} を受けとった" if pay else "た") + owe
+                                          + (f"、{_gw(pay)}{'・牛 1 頭' if tr.get('cattle_in') else ''} を受けとった" if pay or tr.get("cattle_in") else "た") + owe
                                           + (f" (受けとってもらえなかった {_gw(tr['back'])} は持ち帰る)" if tr["back"] else ""), other=o["id"], trip=tr["id"]))
 
 
@@ -1865,6 +1911,9 @@ def _g6_return(state, p, t, tr, o, j):
     ids = []
     side = _g6_put(state, tr["side"], got, tr["goats_in"], ids)
     _g6_put(state, tr["side"], tr["back"])
+    if tr.get("cattle_in"):  # G7: 交換で受けとった牛 (4.F の 5)
+        _g7m().cattle_in(state, tr)
+        lost += f"。牛 {tr['cattle_in']} 頭を連れて帰った"
     tr.update(state="帰った", end=state["day"], got=got)
     _g6(state)["trip_log"].append(dict(tr))
     _g6_then(p, j)
@@ -2006,6 +2055,8 @@ def _g6_records(state, frac):
     g["cover"] = {w: how[w] for w in full}
     if len(whats) > len(WHATS):
         _g7m().ledger(state, full, how, flow)  # G7 (直し 9.1): 全部残せた帳簿を【村】の帳簿に残す (お題に出す)
+    if "g7" in e2:  # G7: 記録をつける人が、掟を粘土の板に書く (1 日 1 本。4.F の 3)
+        _g7m().write_laws(state, keep)
     if "交換" in full:
         for d in g["debts"]:
             if d["day"] >= sd - 1 and not d.get("proof"):
@@ -2092,6 +2143,8 @@ def _g6_season_end(state, frac):
             if tr.get("bartered"):
                 side = _g6_put(state, tr["side"], tr["got"], tr["goats_in"], ids)
                 _g6_put(state, tr["side"], tr["back"])
+                if tr.get("cattle_in"):  # G7: 交換で受けとった牛
+                    _g7m().cattle_in(state, tr)
                 mv = [_mv(side, 1, tr["got"], ids), _mv(side, 1, tr["back"])]
                 brought = {k: tr["got"].get(k, 0) + tr["back"].get(k, 0) for k in list(tr["got"]) + [k for k in tr["back"] if k not in tr["got"]]}
             else:
@@ -2108,7 +2161,7 @@ def _g6_season_end(state, frac):
             _new_other(state, rng, "分かれた家", household=f["household"], people=len(f["people"]), goats=f["goats"], grain=round(f["store"] / GRAIN))
     # 2. この季節の終わりに来たよその群れの、来たところ (G6 に入る前に来た人の来たところは書かない)
     for v in e2["visitors"]:
-        if v.get("day") == day and "from" not in v:
+        if v.get("day") == day and "from" not in v and "hint" not in v:  # G7: よその便りの群れには、来たところをつけない (G6 までは hint のある群れはない)
             st = [o for o in g["others"] if o["kind"] == "よその村"]
             o = rng.choice(st) if st and (len(st) >= MAX_STRANGERS or rng.random() < 0.5) else _new_other(state, rng, "よその村")
             v["from"] = o["id"]
@@ -2439,6 +2492,8 @@ def _season_end(state, frac=1.0):
             e2["goats"].remove(g)
         if gone:
             log(state, "ヤギ", None, f"世話をする人が少なく、飼っていたヤギ {len(gone)} 頭がいなくなった")
+    if "g7" in e2:  # G7: 牛 (世話が足りないと逃げる: 塩 7 の列をヤギのあとで引く (牛がいるときだけ)。春に子牛。4.F の 5)
+        _g7m().cattle_season(state, rng, frac, sea)
     # 草が足りない (ヤギが K 頭より多い) と、やせていなくなる・子が少ない (2026-10-10 本人と決めた。上の PASTURE_PER_HA)。
     #   この乱数は草が足りないときだけ引く (K 頭以下の世界は、前と同じに進む)
     cap, prng = pasture_cap(state), _rng(state, PASTURE_SALT)
@@ -2474,8 +2529,9 @@ def _season_end(state, frac=1.0):
                 e2["births"] += 1
                 log(state, "生まれる", w["name"], f"{w['name']} に子が生まれた。名前は {c['name']} ({c['sex']})")
     # 子の死亡 (【文献】15 歳までに 4〜5 割。0 歳 1 季節 0.06、1〜4 歳 0.015、5〜14 歳 0.004 を仮定) と、飢え
+    sick = _g7m().sick_mult(state) if "g7" in e2 else 1  # G7: 村に病がはやった季節は 3 倍 (乱数を引く回数は同じ。4.F の 7)
     for c in [c for c in children(state) if c["born_day"] < e2.get("step_day", 0)]:  # この回に生まれた子は、次の回から
-        p_die = 0.06 if c["age"] < 1 else 0.015 if c["age"] < 5 else 0.004
+        p_die = (0.06 if c["age"] < 1 else 0.015 if c["age"] < 5 else 0.004) * sick
         if c["hunger"] >= 0.9:
             p_die = max(p_die, 0.3)
         if rng.random() < p_die * frac:
@@ -2489,7 +2545,7 @@ def _season_end(state, frac=1.0):
             p["alive"] = False
             log(state, "死", p["name"], f"{p['name']} ({p['age']} 歳) が年をとって亡くなった")
             _inherit(state, p)
-        elif era_at_least(state, "G4") and p["age"] < 55 and rng.random() < (0.0075 if p["age"] < 40 else 0.0125) * frac:
+        elif era_at_least(state, "G4") and p["age"] < 55 and rng.random() < (0.0075 if p["age"] < 40 else 0.0125) * frac * sick:
             p["alive"] = False
             log(state, "死", p["name"], f"{p['name']} ({p['age']} 歳) が病で亡くなった")
             _inherit(state, p)
@@ -2519,6 +2575,8 @@ def _season_end(state, frac=1.0):
     _sync_households(state)
     if _fix(state):  # G7 (直し A3): 生きている人がいない家 (村を出た家は除く) の倉・ヤギ・畑を、村のものにする
         _g7m().vacant(state)
+    if "g7" in e2:  # G7: 村の中の税を集める (記録の前。docs/society_phase/G7_design.md 4.G.1 の 4)
+        _g7m().collect_tax(state, frac)
     if era_at_least(state, "G6"):
         _g6_records(state, frac)  # この季節の記録 (G5 のもめごとを決める前に。どの量に記録があるかを決める)
     if era_at_least(state, "G5"):  # 家族を決めてから (この季節に生まれた子も母の家に入る)。村が分かれて大人が 12 人以下になれば、次の _note_mode で代表の方式が終わる
@@ -2979,7 +3037,8 @@ YEAR_EVENTS = ("フェーズ", "区切り", "段階", "分かれる", "死", "�
                "収める", "裁き", "罰", "大人になる", "ヤギ", "ヤギを食べる", "虫", "蓄えが尽きる", "家族",
                "町", "記録",  # お題に見せる出来事 (前のものほど先に残す)。町・記録は G6 から (記録は、道具が使えるようになったときだけ)
                "年の集まり",  # G7 から (次の年が、1 年に 1 回の集まりか、季節ごとに集まるか。年の終わりに決まる)
-               "戦", "崩れ", "貢ぎ", "求め", "同盟")  # G7 から (まわりの集落とのこと。docs/society_phase/G7_design.md 4.B.7)
+               "戦", "崩れ", "貢ぎ", "求め", "同盟",  # G7 から (まわりの集落とのこと。docs/society_phase/G7_design.md 4.B.7)
+               "よその便り", "きっかけ", "取り立て", "病", "試す")  # G7 から (4.C.8・4.F。どれも G6 までは起きない)
 YEAR_DIGEST_MAX = 15
 STOP_WORDS = ("フェーズが", "Society 2.0 が終わった")  # ワークフローが止まる文と重なる名前は読まない (step.py が出来事を表示するため)
 

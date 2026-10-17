@@ -17,9 +17,11 @@ from pathlib import Path
 
 import characters
 import era2
+import hints
 import knowledge  # noqa: F401  (年の集まりの掟と知識は era2.apply_answers のまま)
 import region
 import world
+import yardstick
 from world import UNITS, log, season
 
 SEASON_DAYS, YEAR = era2.SEASON_DAYS, era2.YEAR
@@ -114,6 +116,7 @@ def enter(state, fill=0.0):
         vacant(state)  # 直し A3: 今ある分は、この日に 1 回だけ移す
     choose(state, era2._rng(state, era2.SAMPLE_SALT))  # 見本の家 (塩 61。この日に 1 回だけ作る。4.A.3)
     donors(state)
+    hints.start(state)  # よその便り: 札の表のハッシュと、最初の年の便り (塩 47。この日に 1 回だけ作る。4.C)
     ind = era2.indicators(state)
     state["era_log"].append({"era": "G7", "day": D, "indicators": ind, "how": "next_part", "fix_from": D + 1})
     state["era_info"] = {"era": "G7", "name": era2.NAMES2["G7"], "next": era2.CRITERIA["G7"][0], "met": False, "since": 0, "indicators": ind}
@@ -274,15 +277,40 @@ def acts(state):
         on.add("取り立てる")
     if g.get("war_season"):
         on.add("戦に出る")
-    if any(t.get("open") and not t.get("done") for t in ((g.get("hints") or {}).get("tech") or {}).values()):
+    if g.get("hints") and hints.open_techs(state):
         on.add("試す")
     return [a for a in ACTS7 if a in on]
 
 
 def new_season(state):
-    """季節のはじめ (答えを当てはめる前): この季節の仕事の日数・子の手伝い・季節のはじめのヤギの数を空にする"""
+    """季節のはじめ (答えを当てはめる前): この季節の仕事の日数・子の手伝い・季節のはじめのヤギの数・G7 の仕事のくわしい答えを空にする"""
     g = _g(state)
-    g["season_days"], g["kid_jobs"], g["herd0"] = {}, {}, _herd(state)
+    g["season_days"], g["kid_jobs"], g["herd0"], g["jobs7"] = {}, {}, _herd(state), {}
+    sick_start(state)  # 4.F の 7: これからの季節が病の季節なら、出来事「病」
+
+
+def job(state, q, j):
+    """G7 の仕事のくわしい答え (era2.apply_answers から。e2["jobs"] には入れない): 試す (try。開いた札を知っている人だけ。ちがえば「休む」)・
+    住まいを建てる (build: "壁")・畑仕事 (plough: true)・交換に行く (want に「牛」)"""
+    g, act = _g(state), q["plan"]["activity"]
+    j = j if isinstance(j, dict) else {}
+    out = {}
+    if act == "試す":
+        card = str(j.get("try") or "").strip().upper()
+        if hints.can_try(state, q["name"], card):
+            out["try"] = card
+        else:
+            q["plan"]["activity"] = "休む"
+    elif act == "住まいを建てる" and "壁" in str(j.get("build") or ""):
+        out["build"] = "壁"
+    elif act == "畑仕事" and era2._yes(j.get("plough")) and _plough(state):
+        out["plough"] = True
+    elif act == "交換に行く" and "牛" in str(j.get("want") or ""):
+        out["want"] = "牛"
+    elif act == era2.ACT_RECORD and isinstance(j.get("laws"), list):
+        out["laws"] = [f"L{era2._num(x)}" for x in j["laws"] if era2._num(x) or str(x).strip() in ("L0", "0")][:20]
+    if out:
+        g.setdefault("jobs7", {})[q["name"]] = out
 
 
 def kid_age(c):
@@ -315,8 +343,23 @@ def count_day(state, name, act):
 
 
 def role_day(state, p, t, act):
-    """G7 の役の仕事の 1 日 (守るは見張るだけで、何も作らない。取り立てる・戦に出る・試すは、それぞれの仕組みの部分が働きを足す)"""
+    """G7 の役の仕事の 1 日 (守るは見張るだけで、何も作らない。取り立てるは季節の終わりに集める。戦に出るは戦の日に出かける。試すは hints.try_day)"""
+    if act == "試す":
+        hints.try_day(state, p, t)
+        return
     t.setdefault("events", []).append(log(state, act, p["name"], ROLE_TEXT[act].format(n=p["name"])))
+
+
+def hint_settled(state, v, accepted):
+    hints.settled(state, v, accepted)
+
+
+def hint_offer(state, c6, off, o, n, lead, how):
+    hints.thing_offer(state, c6, off, o, n, lead, how)
+
+
+def craft_step(state, p, act, base):
+    return hints.craft_step(state, p, act, base) if _g(state).get("hints") else base
 
 
 def milk_shares(state, sea):
@@ -443,19 +486,19 @@ def _bad_year(state, year):
 
 
 def pasture(state, cap):
-    """era2.pasture_cap から: 村が悪い年 (その日の年) は、草で養えるヤギの数 K を ×0.8 (10 頭単位)"""
-    if not (fix(state) and world.G7_PARTS["weather"]) or not _bad_year(state, state["day"] // YEAR):
-        return cap
-    return int(round(cap * PASTURE_BAD / 10)) * 10
+    """era2.pasture_cap から: 村が悪い年 (その日の年) は、草で養えるヤギの数 K を ×0.8 (10 頭単位)。牛 1 頭はヤギ 5 頭分の草を食べる (4.F の 5)"""
+    if fix(state) and world.G7_PARTS["weather"] and _bad_year(state, state["day"] // YEAR):
+        cap = int(round(cap * PASTURE_BAD / 10)) * 10
+    return max(0, cap - CATTLE_GOATS * len(state["era2"].get("cattle") or []))
 
 
 # ---------------- 記録 (直し 9.1: 配給・働いた日・家畜の帳簿) ----------------
 
 def whats(state):
-    """G7 で足す記録の種類 (粘土の板が使えるとき)"""
-    if fix(state) and ((state["era2"].get("g6") or {}).get("open") or {}).get("板"):
-        return ("配給", "働いた日", "家畜")
-    return ()
+    """G7 で足す記録の種類: 取り立て (村の中の税と貢ぎの出入り。4.D.3)、粘土の板が使えるとき 掟 (板に書く。4.F の 3) と 配給・働いた日・家畜 (直し 9.1)"""
+    board = bool(((state["era2"].get("g6") or {}).get("open") or {}).get("板"))
+    return (("取り立て",) if joints(state) else ()) + (("掟",) if joints(state) and board else ()) + \
+        (("配給", "働いた日", "家畜") if fix(state) and board else ())
 
 
 def _workdays(state):
@@ -466,6 +509,14 @@ def _workdays(state):
 def ledger_need(state, flow, ws):
     """帳簿に要る数え札の数 (era2.TOKEN と同じ数え方: 草の種 100 つかみ・働いた日 10 日・ヤギ 1 頭に 1 個)"""
     need = {}
+    if "取り立て" in ws:  # この季節の取り立て (税と貢ぎの出入り): 草の種 100 つかみに 1 個・ヤギ 1 頭に 1 個 (era2.TOKEN と同じ)
+        tot = {}
+        for c in _g(state).get("coll") or []:
+            for k, n in c["goods"].items():
+                tot[k] = tot.get(k, 0) + n
+        need["取り立て"] = sum(math.ceil(n / era2.TOKEN.get(k, 100)) for k, n in tot.items())
+    if "掟" in ws:
+        need["掟"] = 0  # 掟は数え札ではなく、記録をつけた日 1 日に 1 本 (write_laws)
     if "配給" in ws:
         need["配給"] = math.ceil(math.fsum(v[1] for v in flow.values()) / era2.GRAIN / era2.TOKEN["草の種"])
     if "働いた日" in ws:
@@ -575,7 +626,7 @@ def _offer(state):
 
 def text(state, p):
     """G7 のお題の節 (season_prompt の「ほかの村・印・記録」のあと): 板の帳簿・まわりの集落"""
-    return _ledger_text(state) + region_text(state)
+    return _ledger_text(state) + region_text(state) + hints.text(state, p)
 
 
 # 直しで変わった決まりの、お題の文の置きかえ (G7 に入ってから。前の文が見つからなければ何もしない)
@@ -624,7 +675,9 @@ def season_end(state, frac):
     if (D + 1) % YEAR == 0:
         region_year(state)  # 8. 地域の 1 年 (塩 59) → 9. 病 (塩 71)・寄る年の目印 region.yoru
         year_turn(state)  # 10. 寄るか → 見本の選び直し → 手本 (塩 61)
-    # 11. よその便り → 12. きっかけ (便りの部分)
+    hints.season_end(state)  # 11. よその便り (塩 47): 年の終わりなら次の年の分 → 捕らえた職人 → この季節に届く便り
+    hints.chance(state)  # 12. 年の終わりだけ: きっかけ (塩 67)
+    yardstick.season_end(state, frac)  # 13. 物差し (乱数なし)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
     _offer(state)
 
@@ -696,7 +749,7 @@ def indicators(state):
     sub = {x["f"]: x["day"] for x in state["era2"].get("substeps", []) if x["g"] == "G7"}
     return {"g7_on": True, "g7_f3_day": sub.get("F3"), "g7_tribute2_day": g.get("tribute2_day"), "g7_f4_day": sub.get("F4"),
             "g7_role_people": len(role_people(state)), "g7_others": len(_others(state)),
-            "g7_region_people": sum(o["people"] for o in _others(state))}
+            "g7_region_people": sum(o["people"] for o in _others(state)), **yardstick.indicators(state)}
 
 
 # ---------------- 年 1 回の答えと見本の家 (4.A) ----------------
@@ -958,7 +1011,8 @@ def _policy(a, now):
     when = _seasons_of(call.get("when"), now) if isinstance(call, dict) else []
     return {"feast": _seasons_of(a.get("feast"), now), "seal_store": _seasons_of(a.get("seal_store"), now),
             "judge_rule": era2._do(a.get("judge_rule")), "accept_rule": {k: _yes_no(ar.get(k)) for k in ("よその群れ", "ほかの村から")},
-            "trade_rule": {**side, "max": era2._num(tr.get("max")) or None, "not": sorted({f"N{era2._num(x)}" for x in nots if era2._num(x)})},
+            "trade_rule": {**side, "max": era2._num(tr.get("max")) or None, "not": sorted({f"N{era2._num(x)}" for x in nots if era2._num(x)}),
+                           **({"利子": _rate(tr.get("利子"))} if _rate(tr.get("利子")) else {})},  # 4.F の 4: 「貸して」に村がつける上乗せ
             "call": {"activity": str(act)[:20], "when": when[0] if when else None} if act else None}
 
 
@@ -997,15 +1051,15 @@ def _part(state, pl, sea, meet=None):
             continue
         if off["other"] in tr["not"] or (r == "村" and tr["max"] is not None and sum(era2.VALUE.get(k, 0) * n for k, n in off["want"].items()) > tr["max"]):
             r = False
-        trade[off["id"]] = r
+        trade[off["id"]] = {"side": "村", "利子": tr["利子"]} if r == "村" and off["kind"] == "貸して" and tr.get("利子") else r
     a["trade"] = trade
     a["accept"] = {v["name"]: r for v in e2.get("visitors", []) for r in [pol["accept_rule"]["ほかの村から" if v.get("from") else "よその群れ"]] if r is not None}
     return a
 
 
 def knows(state, name, card):
-    """よその便りを「知っている人」か (4.C.6。よその便りの部分が g7.hints.knowers に {札: [名前]} を作る。それまでは、だれも知らない)"""
-    return name in (((_g(state).get("hints") or {}).get("knowers") or {}).get(card) or [])
+    """よその便りを「知っている人」か (4.C.6。hints.py が g7.hints.knowers に {札: [名前]} を作る)"""
+    return bool(_g(state).get("hints")) and hints.knows(state, name, card)
 
 
 def _job(j):
@@ -1191,7 +1245,9 @@ def apply_year(state, answers, councils=None):
         leave_households(state, real)
         alive = {p["name"] for p in era2.adults(state)}
         real = {n: a for n, a in real.items() if n in alive}
-    begin(state, village_answers(state, real) if region_on(state) else None, councils)
+    begin(state, {**village_answers(state, real), **tribute_answers(state, real)} if region_on(state) else None, councils)
+    if joints(state):
+        captives_answer(state, real)  # 戦に勝ったとき、負けた村の職人を連れて帰るか (4.C.4。答えがなければ前の答えのまま、はじめは「連れて帰らない」)
     own, kinds = {}, {}
     if ask == "年":
         reps = set(_rep_of(state).values())
@@ -1307,7 +1363,7 @@ FACTS_ON = {  # 決まりの文を出すとき (4.F の 8)。tax・write・loan�
 FIELDS_ON = {  # 答えの欄を出すとき (4.A.5)
     "demand": lambda state: any(o.get("known") is not None for o in _others(state)),
     "answer_demand": lambda state: bool(_demands_to_village(state)), "ally": lambda state: bool(_demands_to_village(state)),
-    "leave": _leave_on, "captives": _war_on, "tax": lambda state: True, "rate": lambda state: True, "利子": lambda state: True,
+    "leave": _leave_on, "captives": _war_on, "tribute": _village_pays, "tax": lambda state: True, "rate": lambda state: True, "利子": lambda state: True,
     "try": _tech_open, "plough": _plough, "build": lambda state: True}
 
 
@@ -1337,6 +1393,9 @@ def _field_rows(state, solo, year):
         rows.append("   家ごとに村を出る: 家の人みんなで村を出るなら true、出ないなら false (leave。家の代表が決める)")
     if "captives" in on:
         rows.append('   戦に勝ったとき: 負けた村の職人を "連れて帰る" か "連れて帰らない" (captives)')
+    if "tribute" in on:
+        ids = "・".join(t["id"] for t in _reg(state).get("ties", []) if t["payer"] == "V0" and t["status"] == "続く")
+        rows.append(f'   貢ぎ: 村がほかの村に毎年出しているもの ({ids}) ごとに、"払い続ける" か "やめる" (tribute。書かなければ払い続ける)')
     rows.append('   掟の提案には、家ごとに 1 年に 1 回、村の蓄えへ出すもの (tax: {"what": "草の種" か "ヤギ", "share": 割合}) や、ヤギ 1 頭を草の種何つかみとみなすか '
                 '(rate: {"ヤギ": つかみ}) を、つけることも、つけない (null) こともできる')
     rows.append("   「貸して」の申し出には、上乗せ (利子、0 から 0.5) をつけて答えることも、つけない (0) こともできる ("
@@ -1352,7 +1411,8 @@ def _field_rows(state, solo, year):
 def fields_json(state, p, solo):
     on = set(fields_on(state))
     return ((' "demand": null,' if "demand" in on else "") + (' "answer_demand": {}, "ally": null,' if "answer_demand" in on else "")
-            + (' "leave": false,' if "leave" in on and not solo else "") + (' "captives": null,' if "captives" in on else ""))
+            + (' "leave": false,' if "leave" in on and not solo else "") + (' "captives": null,' if "captives" in on else "")
+            + (' "tribute": {},' if "tribute" in on else ""))
 
 
 def fields_prop(state):
@@ -1705,8 +1765,8 @@ def _paid_ties(state):
 
 
 def levels(state):
-    """決める段 (4.D.2) を、今の地域で数える (村の役の人は、取り立ての部分を入れるまで、まだいない)"""
-    return region.levels(_setts(state), _paid_ties(state), state["day"], officials={})
+    """決める段 (4.D.2) を、今の地域で数える (村の役の人は、取り立てた物を村の蓄えに入れた人。yardstick.officials)"""
+    return yardstick.levels(state)
 
 
 def _levels_log(state):
@@ -1728,9 +1788,21 @@ def begin(state, village=None, councils=None):
     setts, moves = _setts(state), {}
     out = region.decide(reg, setts, D + 1, village=village or {}, make=_maker(state), out=[])
     region.pay_ties(reg, setts, D + 1, pay_hook=_hook(state, moves), out=out)
+    _coll_ties(state, moves)
     _village_wars(state)
     _region_after(state, setts, out, moves)
     return out
+
+
+def _coll_ties(state, moves):
+    """村が出した・受けた貢ぎを、この季節の取り立て (g7.coll。記録をつける人が「取り立て」で残す。4.D.3) に足す"""
+    reg, g = _reg(state), _g(state)
+    for tid, mv in sorted(moves.items()):
+        t = next((x for x in reg.get("ties", []) if x["id"] == tid), None)
+        n = sum(m[2].get("草の種", 0) for m in mv)
+        if t and n:
+            g.setdefault("coll", []).append({"day": state["day"], "kind": "貢ぎ出す" if t["payer"] == "V0" else "貢ぎ受ける", "tie": tid,
+                                             "other": t["payee"] if t["payer"] == "V0" else t["payer"], "goods": {"草の種": n}})
 
 
 def _village_wars(state):
@@ -1983,6 +2055,7 @@ def village_demand(state, real):
     if ch == "払う":
         tie = next(x for x in reg["ties"] if x.get("demand") == q["id"])
         region.pay_ties(reg, setts, D, pay_hook=_hook(state, moves), out=out, only={tie["id"]})
+        _coll_ties(state, moves)
     _village_wars(state)
     _region_after(state, setts, out, moves)
     return q
@@ -2095,7 +2168,7 @@ def region_text(state):
         tie = "".join(f"。毎年 村が {region._goods(t['goods'])} を出している [{t['id']}]" if t["payer"] == "V0" else
                       f"。毎年 村に {region._goods(t['goods'])} を出している [{t['id']}]" for t in ties)
         rows.append(f"- {o['id']} {o['name']} ({o['way']}歩いて {o['days']} 日): 約 {round(o['people'], -1) if o['people'] >= 20 else o['people']} 人"
-                    + ("・まわりに土の壁" if o.get("walls") is not None else "") + tie)
+                    + ("・まわりに土の壁" if o.get("walls") is not None else "") + (f"・牛 {int(o['cattle_f'])} 頭ほど" if int(o.get("cattle_f", 0)) >= 1 else "") + tie)
     for q in reg.get("demands", []):
         if q["to"] == "V0" and not q.get("end"):
             a = next((o for o in known if o["id"] == q["from"]), None)
@@ -2107,3 +2180,337 @@ def region_text(state):
             rows.append(f"- {w['done']} 日目、村は {o['name'] if o else 'ほかの村'} と戦い、{'勝った' if win else '負けた'}"
                         + (f" (村で亡くなった人: {'・'.join(w.get('dead_names') or [])})" if w.get("dead_names") else ""))
     return "\n## まわりの集落 (村が知っている村)\n" + "\n".join(rows) + "\n"
+
+
+# ---------------- つなぎ目 (4.F。まとめ役が足した小さな形。数はみな【仮定】) ----------------
+# どれも「何度も別々に生まれた仕組み」なので、G7 に入った日から使える (牛と犂だけは、便りかきっかけのあと)。村の答えがなければ何も起きない。
+# 試しで止めるための切りかえ world.G7_PARTS["joints"] (いつもは True)
+TAX_MAX, LOAN_MAX, LOAN_EASY = 0.5, 0.5, 0.2  # 2: 税の割合は 5 割まで / 4: 上乗せは 5 割まで。ほかの村は、悪い年でなければ 2 割をこえる上乗せでは借りない
+WALL_DAYS = 1500  # 6: 村のまわりの壁は、合わせて 1,500 人日
+SICK_MULT = 3  # 7: 村に病がはやった季節は、子の死と大人の病の死の見込みが 3 倍
+CATTLE_VALUE, CATTLE_GIVE_AT, CATTLE_GOATS = 1125, 3, 5  # 5: 牛の値うち (ヤギ 3 頭分)・ほかの村が牛を出すのは 3 頭以上のとき・牛 1 頭はヤギ 5 頭分の草
+CATTLE_BREED_AGE, PLOUGH_AGE, PLOUGH_MULT = 3, 2, 3  # 5: 3 歳以上の母牛が 2 年に 1 頭・犂を引くのは 2 歳以上の牛 2 頭・犂の畑仕事は 3 倍
+CAPTIVES = ("連れて帰る", "連れて帰らない")
+TRIBUTE_CHOICES = ("払い続ける", "やめる")
+
+
+def joints(state):
+    return "g7" in state["era2"] and world.G7_PARTS.get("joints", True)
+
+
+# ---- 2・3. 掟の取り立て (tax) と換算 (rate) ----
+
+def _share_words(x):
+    return f"{round(x * 10, 1):g} 割"
+
+
+def law_extra(state, law, prop):
+    """掟の提案の tax・rate を読む (era2.apply_answers から。penalty (G5) と同じ形)。採用されると、文の後ろの書き添えがお題・アプリに出る"""
+    if not joints(state) or not isinstance(prop, dict):
+        return
+    tax = prop.get("tax")
+    if isinstance(tax, dict):
+        what = era2._g6_good(tax.get("what"))
+        try:
+            share = float(tax.get("share"))
+        except (TypeError, ValueError):
+            share = 0.0
+        if what in ("草の種", "ヤギ") and share > 0:
+            share = round(min(TAX_MAX, share), 3)
+            law["tax"] = {"what": what, "share": share}
+            law["text"] += f" (取り立て: 家の倉の{what}の {_share_words(share)}を、年に 1 回、村の蓄えへ)" if what == "草の種" else \
+                f" (取り立て: 家のヤギの {_share_words(share)}を、年に 1 回、村へ)"
+    rate = prop.get("rate")
+    if isinstance(rate, dict):
+        n = era2._num(next((v for k, v in rate.items() if "ヤギ" in str(k)), None))
+        if n > 0:
+            law["rate"] = {"ヤギ": min(n, 10 ** 4)}
+            law["text"] += f" (換算: もめごとの払いで、ヤギ 1 頭 = 草の種 {law['rate']['ヤギ']} つかみ)"
+
+
+def tax_law(state):
+    """今効いている取り立ての掟 (採用された掟のうち、いちばん新しいもの)"""
+    return next((l for l in reversed(state.get("laws", [])) if l.get("status") == "採用" and l.get("tax")), None)
+
+
+def collect_tax(state, frac):
+    """村の中の税を集める (era2._season_end から。家族を決めたあと、記録の前。4.G.1 の 4)。乱数なし。
+    仕事「取り立てる」の人が、今年まだ払っていない家から、1 人 1 日に 1 家 (家の名前の順)。自分の家からは集めず、自分の家は季節の終わりに自分で払う。
+    倉が 0 の家は払わない (罰はない)。年は夏から"""
+    if not joints(state):
+        return
+    g, D = _g(state), state["day"]
+    law = tax_law(state)
+    y = D // YEAR
+    paid = g.setdefault("tax_year", {"year": y, "homes": [], "visited": []})
+    if paid["year"] != y:
+        paid.update(year=y, homes=[], visited=[])
+    days = g.get("season_days") or {}
+    who = sorted(n for n, a in days.items() if a.get("取り立てる") and any(p["name"] == n for p in era2.adults(state)))
+    if not law or not who:
+        return
+    homes = sorted(era2._homes(state))
+    what, share = law["tax"]["what"], law["tax"]["share"]
+    for n in who:
+        p = next(q for q in era2.adults(state) if q["name"] == n)
+        mine = p.get("household")
+        todo = [h for h in homes if h != mine and h not in paid["visited"]][:days[n]["取り立てる"]]
+        if mine in homes and mine not in paid["visited"]:
+            todo.append(mine)
+        got_from, total, mv = [], 0, []
+        for h in todo:
+            paid["visited"].append(h)
+            k = math.floor(era2._g6_have(state, h, what) * share) if what == "草の種" else math.floor(sum(1 for x in state["era2"]["goats"] if x.get("owner") == h) * share)
+            if k <= 0:
+                continue
+            ids = []
+            if what == "草の種":
+                got = era2._g6_take(state, h, {what: k}, ids)
+                era2._g6_put(state, "村", got)
+            else:  # ヤギは持ち主を村にかえる (番号は変えない)
+                mine_g = sorted((x for x in state["era2"]["goats"] if x.get("owner") == h), key=lambda x: (x["sex"] != "オス", x["born"]))[:k]
+                for x in mine_g:
+                    x["owner"] = None
+                    ids.append([x["id"], x["sex"], x["born"]])
+                got = {what: len(mine_g)}
+            if got.get(what):
+                paid["homes"].append(h)
+                got_from.append(h)
+                total += got[what]
+                mv += [era2._mv(h, -1, got, ids), era2._mv("村", 1, got, ids)]
+        if got_from:
+            g.setdefault("coll", []).append({"day": D, "kind": "税", "law": law["id"], "by": n, "from": got_from, "goods": {what: total}})
+            log(state, "取り立て", n, f"[{law['id']}] にしたがい、{n} が {len(got_from)} 家から {era2._gw({what: total})} を集め、村の蓄えに入れた"
+                + (" (自分の家の分もふくむ)" if mine in got_from else ""), law=law["id"], homes=got_from, goods={what: total}, moves=mv)
+
+
+# ---- 3. 掟を板に書く ----
+
+def write_laws(state, keep):
+    """記録をつける人が、記録をつけた日 1 日につき 1 本、まだ書いていない採用ずみの掟を粘土の板に書く (era2._g6_records から。板のときだけ。4.F の 3)"""
+    if not joints(state):
+        return
+    g6, D = era2._g6(state), state["day"]
+    if not (g6.get("open") or {}).get("板"):
+        return
+    laws = {l["id"]: l for l in state.get("laws", [])}
+    for n, days in sorted(keep.items()):
+        j = g6["jobs"].get(n) or {}
+        j7 = (_g(state).get("jobs7") or {}).get(n) or {}
+        if j.get("how") != "板" or ("掟" not in j.get("what", []) and not j7.get("laws")):
+            continue
+        order = j7.get("laws") or sorted((l for l in laws if laws[l]["status"] == "採用"), key=lambda x: int(x[1:]))
+        left = days
+        for lid in order:
+            l = laws.get(lid)
+            if left <= 0:
+                break
+            if not l or l["status"] != "採用" or l.get("written"):
+                continue
+            l["written"] = {"day": D, "by": n, "how": "板"}
+            left -= 1
+            log(state, "記録", n, f"{n} が、掟 [{lid}] を粘土の板に書いた", law=lid, written=True)
+
+
+# ---- 3. 換算と、書いた決まりで裁く (F4) ----
+
+def goat_worth(state):
+    """もめごとの払いでヤギ 1 頭をいくらとみなすか (kcal) と、その換算の掟。採用され、板に書かれた換算の掟があれば、その数 (いちばん新しいもの)"""
+    if joints(state):
+        for l in reversed(state.get("laws", [])):
+            if l.get("status") == "採用" and l.get("rate") and l.get("written"):
+                return l["rate"]["ヤギ"] * era2.GRAIN, l
+    return era2.GOAT_WORTH, None
+
+
+def judged(state, d, law, paid, by, how):
+    """もめごとが収まったあと (era2._verdict から): 書いた決まり (罰か換算) で裁き、実際に払わせたら、記録に残す (4.D.4)。祭りは数えない"""
+    if not law or paid <= 0 or by == "祭り" or not law.get("written") or law["written"]["day"] > state["day"]:
+        return
+    _g(state).setdefault("judged", []).append({"day": state["day"], "dispute": d["id"], "law": law["id"], "paid": round(paid / era2.GRAIN),
+                                               "by": by, "how": how, "kind": "罰" if law.get("penalty") else "換算"})
+
+
+# ---- 4. 利子 ----
+
+def collect_rate(state, c6, p, a, fam):
+    """申し出の答えの上乗せ (trade の {"side": "村", "利子": 0.2})。era2.apply_answers の G6 の集まりの答えのあと"""
+    if not joints(state):
+        return
+    tr = a.get("trade")
+    for k, v in (tr.items() if isinstance(tr, dict) else []):
+        if isinstance(v, dict) and era2._g6_side(v) == "村":
+            r = _rate(v.get("利子"))
+            if r is not None:
+                c6.setdefault("rate", {}).setdefault(era2._tid(k), {})[p["name"]] = (r, len(fam))
+
+
+def _rate(v):
+    try:
+        x = float(v)
+    except (TypeError, ValueError):
+        return None
+    return round(max(0.0, min(LOAN_MAX, x)), 3)
+
+
+def loan_rate(state, c6, off, lead):
+    """貸すときの上乗せ: まとめ役が書いていればその数、なければ、大人の数でいちばん多い数 (同じなら小さいほう)"""
+    rs = (c6.get("rate") or {}).get(off["id"]) or {}
+    if lead in rs:
+        return rs[lead][0]
+    t = {}
+    for r, k in rs.values():
+        t[r] = t.get(r, 0) + k
+    return min(t, key=lambda r: (-t[r], r)) if t else 0.0
+
+
+def loan_refused(o, rate):
+    """ほかの村は、悪い年なら 5 割までの上乗せで借りる。悪い年でなければ、2 割をこえる上乗せでは借りない (決まり)"""
+    return rate > LOAN_EASY and o.get("bad") is None
+
+
+def owed(d):
+    """返す量 (上乗せのある貸し借りは goods × (1 + rate)。切り上げ)"""
+    r = d.get("rate") or 0
+    return {k: math.ceil(n * (1 + r) - 1e-9) for k, n in d["goods"].items()} if r else dict(d["goods"])
+
+
+# ---- 5. 牛と犂 ----
+
+def cattle_value():
+    return CATTLE_VALUE
+
+
+def want_cattle(state, name):
+    return joints(state) and ((_g(state).get("jobs7") or {}).get(name) or {}).get("want") == "牛"
+
+
+def cattle_in(state, tr):
+    """交換の旅で受けとった牛を村 (か家) に入れる (乱数なし。3 歳のメスとする【仮定】)"""
+    e2, D = state["era2"], state["day"]
+    side = tr["side"] if tr["side"] == "村" or tr["side"] in era2._homes(state) else "村"
+    herd = e2.setdefault("cattle", [])
+    for _ in range(tr.get("cattle_in", 0)):
+        herd.append({"id": e2.get("next_cattle", 1), "sex": "メス", "born": D - CATTLE_BREED_AGE * YEAR, "owner": None if side == "村" else side})
+        e2["next_cattle"] = e2.get("next_cattle", 1) + 1
+    return side
+
+
+def cattle_season(state, rng, frac, sea):
+    """牛の 1 季節 (era2._season_end のヤギのあと): 世話が足りないと逃げる (塩 7 の列を、ヤギのあとで引く)。春のはじめに、3 歳以上の母牛が 2 年に 1 頭 (乱数なし)"""
+    e2, day = state["era2"], state["day"]
+    herd = e2.get("cattle") or []
+    if not herd:
+        return
+    if e2.get("tended_run", 0) < 5 * frac:
+        gone = [c for c in herd if rng.random() < 0.15 * frac]
+        for c in gone:
+            herd.remove(c)
+        if gone:
+            log(state, "ヤギ", None, f"世話をする人が少なく、飼っていた牛 {len(gone)} 頭がいなくなった", cattle=len(gone))
+    if sea == "春" and e2.get("calf_year") != (day + 1) // YEAR:
+        e2["calf_year"] = (day + 1) // YEAR
+        y = (day + 1) // YEAR
+        born = 0
+        for c in sorted(herd, key=lambda c: c["id"]):
+            if c["sex"] == "メス" and day - c["born"] >= CATTLE_BREED_AGE * YEAR and (c["born"] // YEAR) % 2 == y % 2:
+                i = e2.get("next_cattle", 1)
+                herd.append({"id": i, "sex": "メス" if i % 2 == 0 else "オス", "born": day, "owner": c.get("owner")})
+                e2["next_cattle"] = i + 1
+                born += 1
+        if born:
+            log(state, "ヤギ", None, f"飼っている牛に、子牛が {born} 頭生まれた", calves=born)
+
+
+def plough_work(state, p, h):
+    """犂 (H7-06 ができたあと。2 歳以上の牛 2 頭で 1 人): 畑仕事の 1 時間を 3 時間分に数える。その季節に初めて犂を引いた日は出来事「畑」(data の plough)"""
+    g = _g(state)
+    if not ((g.get("jobs7") or {}).get(p["name"]) or {}).get("plough") or not _plough(state):
+        return h
+    D = state["day"]
+    used = g.setdefault("plough_day", {"day": None, "n": 0})
+    if used["day"] != D:
+        used.update(day=D, n=0)
+    pairs = sum(1 for c in state["era2"].get("cattle", []) if D - c["born"] >= PLOUGH_AGE * YEAR) // 2
+    if used["n"] >= pairs:
+        return h
+    used["n"] += 1
+    seen = g.setdefault("plough_seen", {})
+    if seen.get(p["name"]) != state["era2"].get("step_day"):
+        seen[p["name"]] = state["era2"].get("step_day")
+        log(state, "畑", p["name"], f"{p['name']} が、牛 2 頭に犂を引かせて畑を耕した", plough=True)
+    return h * PLOUGH_MULT
+
+
+# ---- 6. 壁 ----
+
+def wall_job(state, p):
+    return joints(state) and ((_g(state).get("jobs7") or {}).get(p["name"]) or {}).get("build") == "壁" and state["era2"].get("walls") is None
+
+
+def wall_day(state, p, t):
+    """住まいを建てる人が、村のまわりの壁を積む (1 日 = 1 人日。合わせて 1,500 人日でできる)"""
+    g = _g(state)
+    g["wall_work"] = g.get("wall_work", 0) + 1
+    if g["wall_work"] >= WALL_DAYS:
+        state["era2"]["walls"] = state["day"]
+        t.setdefault("events", []).append(log(state, "住まい", p["name"], f"{p['name']} たちの手で、村のまわりの土の壁ができた", wall=True))
+    else:
+        t.setdefault("events", []).append(log(state, "住まい", p["name"], f"{p['name']} が、村のまわりの土の壁を積んだ (でき具合 約 {max(1, g['wall_work'] * 10 // WALL_DAYS)} 割)",
+                                              wall=True))
+
+
+# ---- 7. 病 (村) ----
+
+def sick_now(state, day):
+    """day の季節が、村に病がはやる季節か (年の終わりに塩 71 で引いた g7.sick)"""
+    s = _g(state).get("sick")
+    return bool(s) and day // YEAR == s["year"] and season(day) == s["season"]
+
+
+def sick_mult(state):
+    """季節の終わり: この季節が病の季節なら 3 (子の死と大人の病の死。乱数を引く回数は同じ)"""
+    return SICK_MULT if joints(state) and sick_now(state, state["day"]) else 1
+
+
+def sick_start(state):
+    """季節のはじめ (答えを当てはめるとき): これからの季節が病の季節なら、出来事「病」(【村】)"""
+    D = state["day"]
+    s = _g(state).get("sick")
+    if joints(state) and sick_now(state, D + 1) and s.get("logged") != D + 1:
+        s["logged"] = D + 1
+        log(state, "病", None, "この季節、村に病がはやっている")
+
+
+# ---- 8. 戦に勝ったとき・貢ぎをやめる (村の答え) ----
+
+def captives_answer(state, real):
+    """captives (連れて帰る / 連れて帰らない) を広げた票で 1 つにする。答えがなければ「連れて帰らない」(7. の 8)"""
+    w = _vote_weights(state, real)
+    votes = {n: next((c for c in CAPTIVES if c == str(a.get("captives") or "").strip()), None) for n, a in real.items()}
+    votes = {n: v for n, v in votes.items() if v}
+    if not votes:
+        return
+    ch, txt = _tally(state, votes, w)
+    _g(state)["captives"] = {"day": state["day"], "choice": ch, "votes": txt}
+
+
+def tribute_answers(state, real):
+    """村が出している貢ぎを、払い続けるか、やめるか (tribute: {"K1": "やめる"})。広げた票で 1 つにする。答えのないつながりは払い続ける"""
+    out = {}
+    if not region_on(state):
+        return out
+    w = _vote_weights(state, real)
+    for t in [t for t in _reg(state).get("ties", []) if t["payer"] == "V0" and t["status"] == "続く"]:
+        votes = {}
+        for n, a in real.items():
+            tr = a.get("tribute") if isinstance(a.get("tribute"), dict) else {}
+            v = next((str(x) for k, x in tr.items() if f"K{era2._num(k)}" == t["id"]), None)
+            ch = next((c for c in TRIBUTE_CHOICES if v and c in v), None)
+            if ch:
+                votes[n] = ch
+        ch, txt = _tally(state, votes, w)
+        if ch:
+            out[t["id"]] = ch
+            t.setdefault("votes", []).append({"day": state["day"], "choice": ch, "votes": txt})
+    return out

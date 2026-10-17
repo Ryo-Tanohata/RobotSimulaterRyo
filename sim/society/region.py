@@ -565,6 +565,9 @@ def decide(R, setts, day, village=None, make=None, out=None):
         if ch == "やめる":
             end_tie(R, setts, t, day, "やめた", out, how="集まり" if a else "決まり")
             recheck(R, setts, t["payee"], day, out)
+    for t in sorted((t for t in ties_on(R) if t["payer"] == "V0"), key=lambda t: int(t["id"][1:])):  # 川辺の村が出している貢ぎ: 村の答えが「やめる」ならやめる
+        if village.get(t["id"]) == "やめる" and t["payee"] in _by(setts):
+            end_tie(R, setts, t, day, "やめた", out, how="村の答え")
     for p in sorted([p for p in pend if p["kind"] == "求めへの答え"], key=lambda p: (num(p["who"]), p["demand"])):
         q = next((x for x in R["demands"] if x["id"] == p["demand"] and not x.get("end")), None)
         by = _by(setts)

@@ -17,6 +17,7 @@
 import copy
 import hashlib
 import json
+import math
 import os
 import random
 import re
@@ -609,7 +610,7 @@ class D_Fixes(unittest.TestCase):
         e2, g = st["era2"], st["era2"]["g6"]
         if not g["open"].get("板"):
             self.skipTest("粘土の板が使えない")
-        self.assertEqual(era2._whats(st), era2.WHATS + ("配給", "働いた日", "家畜"))
+        self.assertEqual(era2._whats(st), era2.WHATS + ("取り立て", "掟", "配給", "働いた日", "家畜"))  # 取り立て・掟は 4.F (part B で足した)
         keeper = era2.adults(st)[0]["name"]
         self.g7.new_season(st)
         for p in era2.adults(st):
@@ -1227,7 +1228,7 @@ import era2, world, test_g7
 st = json.loads(Path(real, "state.json").read_text(encoding="utf-8"))
 test_g7.part_end(st)
 if mode == "g7":  # 年 1 回の答え・直し・天気を止めた G7 (全部の家が見本で、毎季節寄る)
-    world.G7_PARTS.update(fix=False, weather=False, year=False, region=False)
+    world.G7_PARTS.update(fix=False, weather=False, year=False, region=False, hints=False, joints=False)
     import g7
     g7.enter(st, 0.0)
 else:  # 出来事の番号をそろえる (G7 に入った日の出来事と同じ数)
@@ -1253,7 +1254,7 @@ for k in ("g7", "ahead", "cattle", "walls"):
 for o in st["era2"]["g6"]["others"]:  # G6 の鍵だけくらべる
     for k in ("cell", "land", "parent", "org", "commit", "stance", "walls", "tech", "head_age", "cattle_f", "pots_f", "sickles_f"):
         o.pop(k, None)
-st["events"] = [e for e in st["events"] if e["type"] != "年の集まり"]
+st["events"] = [e for e in st["events"] if e["type"] not in ("年の集まり", "目盛り")]
 Path(out_f).write_text(json.dumps(st, ensure_ascii=False, sort_keys=True), encoding="utf-8")
 '''
 
@@ -1746,6 +1747,274 @@ class J_Village(unittest.TestCase):
             q = next(x for x in reg["demands"] if x["id"] == key)
             self.assertEqual((q["answer"], q["how"]), (choice, "集まり"))
         self.assertIsInstance(out, list)
+
+
+# ---------------------------------------------------------------- K
+class K_Joints(unittest.TestCase):
+    """つなぎ目 (4.F): 税・板に書く掟・換算・利子・牛と犂・壁・病・戦に勝ったとき・貢ぎをやめる (メモリの中の写し)"""
+
+    @classmethod
+    def setUpClass(cls):
+        if not is_g6(real_state()):
+            raise unittest.SkipTest("本物の state が G6 でない")
+        import g7
+        cls.g7 = g7
+        cls.base = g7_state()
+
+    def st(self):
+        return copy.deepcopy(self.base)
+
+    def law(self, st, **kw):
+        l = add_law(st)
+        l["status"] = "採用"
+        self.g7.law_extra(st, l, kw)
+        return l
+
+    def test_law_extra(self):
+        st = self.st()
+        l = self.law(st, tax={"what": "草の種", "share": 0.9}, rate={"ヤギ": 300})
+        self.assertEqual(l["tax"], {"what": "草の種", "share": 0.5}, "割合は 5 割まで")
+        self.assertEqual(l["rate"], {"ヤギ": 300})
+        self.assertIn("取り立て: 家の倉の草の種の 5 割", l["text"])
+        l2 = self.law(st, tax=None, rate=None)
+        self.assertNotIn("tax", l2)
+        self.assertNotIn("rate", l2)
+
+    def test_tax(self):
+        g7, st = self.g7, self.st()
+        l = self.law(st, tax={"what": "草の種", "share": 0.1})
+        homes = sorted(era2._homes(st))
+        for h in homes:
+            era2._house(st, h)["store"].append({"kind": "草の種", "kcal": 1000 * era2.GRAIN, "day": st["day"]})
+        p = next(q for q in era2.adults(st) if q.get("household"))
+        st["era2"]["g7"]["season_days"] = {p["name"]: {"取り立てる": 3}}
+        v0 = era2._g6_have(st, "村", "草の種")
+        g7.collect_tax(st, 1.0)
+        e = st["events"][-1]
+        self.assertEqual(e["type"], "取り立て")
+        self.assertEqual(len(e["data"]["homes"]), 4, "1 日に 1 家 (3 日) と、自分の家")
+        self.assertIn(p["household"], e["data"]["homes"])
+        self.assertEqual(era2._g6_have(st, "村", "草の種") - v0, e["data"]["goods"]["草の種"])
+        self.assertGreater(e["data"]["goods"]["草の種"], 0)
+        self.assertEqual(st["era2"]["g7"]["coll"][-1]["kind"], "税")
+        g7.collect_tax(st, 1.0)
+        e2_ = st["events"][-1]
+        self.assertFalse(set(e2_["data"]["homes"]) & set(e["data"]["homes"]), "同じ年に同じ家からは 2 度集めない")
+        st["day"] += era2.YEAR  # 次の年はまた集める
+        g7.collect_tax(st, 1.0)
+        self.assertIn(p["household"], st["events"][-1]["data"]["homes"])
+        self.assertIn("取り立てる", g7.acts(st))
+        self.assertIn("取り立て", g7.whats(st))
+
+    def test_write_laws(self):
+        g7, st = self.g7, self.st()
+        ls = [self.law(st) for _ in range(3)]
+        g6 = era2._g6(st)
+        n = era2.adults(st)[0]["name"]
+        g6["open"]["板"] = True
+        g6["jobs"][n] = {"activity": "記録をつける", "what": ["掟"], "how": "板"}
+        st["era2"]["g7"]["jobs7"] = {n: {"laws": [ls[2]["id"], ls[0]["id"]]}}
+        g7.write_laws(st, {n: 1})
+        self.assertTrue(ls[2].get("written") and not ls[0].get("written"), "1 日に 1 本、laws の順")
+        g6["jobs"][n]["how"] = "数え札"
+        g7.write_laws(st, {n: 5})
+        self.assertFalse(ls[0].get("written"), "数え札では書けない")
+
+    def test_rate_and_judged(self):
+        g7, st = self.g7, self.st()
+        self.assertEqual(g7.goat_worth(st), (era2.GOAT_WORTH, None))
+        l = self.law(st, rate={"ヤギ": 100})
+        self.assertEqual(g7.goat_worth(st)[1], None, "板に書くまでは使わない")
+        l["written"] = {"day": st["day"], "by": "x", "how": "板"}
+        self.assertEqual(g7.goat_worth(st), (100 * era2.GRAIN, l))
+        a, b = sorted(era2._homes(st))[:2]
+        era2._house(st, a)["store"] = []
+        for x in [x for x in st["era2"]["goats"] if x.get("owner") == a]:
+            x["owner"] = None
+        for i, x in enumerate(st["era2"]["goats"][:3]):
+            x["owner"] = a
+        got = {}
+        paid, words = era2._pay(st, a, b, 250 * era2.GRAIN, 100 * era2.GRAIN, got)
+        self.assertEqual(got["goats"], 3, "1 頭 = 100 つかみで 250 つかみなら 3 頭 (半頭分からは渡す)")
+        d = {"id": "M1", "kind": "倉", "from": b, "against": a, "harm": 250, "what": "x", "status": era2.OPEN}
+        era2._g5(st)["disputes"].append(d)
+        for x in st["era2"]["goats"][3:6]:
+            x["owner"] = a
+        era2._verdict(st, d, "つぐなう", "集まり", None)
+        self.assertEqual(d["law"], l["id"])
+        self.assertEqual(st["era2"]["g7"]["judged"][-1]["law"], l["id"])
+        self.assertEqual(st["era2"]["g7"]["judged"][-1]["kind"], "換算")
+
+    def test_loan(self):
+        g7 = self.g7
+        d = {"goods": {"草の種": 1000}, "rate": 0.2}
+        self.assertEqual(g7.owed(d), {"草の種": 1200})
+        self.assertEqual(g7.owed({"goods": {"草の種": 7}, "rate": 0.25}), {"草の種": 9})
+        self.assertTrue(g7.loan_refused({"bad": None}, 0.3))
+        self.assertFalse(g7.loan_refused({"bad": 5}, 0.5))
+        self.assertFalse(g7.loan_refused({"bad": None}, 0.2))
+        c6 = {"rate": {"T1": {"a": (0.2, 3), "b": (0.1, 1)}}}
+        self.assertEqual(g7.loan_rate({}, c6, {"id": "T1"}, None), 0.2)
+        self.assertEqual(g7.loan_rate({}, c6, {"id": "T1"}, "b"), 0.1, "まとめ役が書いていればその数")
+
+    def test_cattle_and_plough(self):
+        g7, st = self.g7, self.st()
+        st["era2"]["cattle"] = [{"id": 1, "sex": "メス", "born": st["day"] - 3 * era2.YEAR + 1, "owner": None},
+                                {"id": 2, "sex": "メス", "born": st["day"] - 2 * era2.YEAR, "owner": None}]
+        cap0 = era2.pasture_cap(self.base)
+        self.assertEqual(era2.pasture_cap(st), max(0, cap0 - 10), "牛 1 頭はヤギ 5 頭分")
+        n = len(st["era2"]["cattle"])
+        st["day"] = (st["day"] // era2.YEAR + 1) * era2.YEAR - 1  # 春の終わり
+        st["era2"]["tended_run"] = 99
+        g7.cattle_season(st, random.Random(1), 1.0, "夏")
+        self.assertEqual(len(st["era2"]["cattle"]), n, "子牛は春のはじめだけ")
+        g7.cattle_season(st, random.Random(1), 1.0, "春")
+        born = len(st["era2"]["cattle"]) - n
+        self.assertIn(born, (0, 1, 2))
+        # 犂: H7-06 ができて、2 歳以上の牛が 2 頭
+        st["era2"]["g7"]["hints"]["tech"]["H7-06"] = {"open": 1, "done": 2, "source": "ヒント", "first": 1, "progress": 999, "last": 1, "wait": None}
+        p = era2.adults(st)[0]
+        st["era2"]["g7"]["jobs7"] = {p["name"]: {"plough": True}}
+        self.assertEqual(g7.plough_work(st, p, 4.0), 12.0)
+        self.assertTrue(st["events"][-1]["data"]["plough"])
+        q = era2.adults(st)[1]
+        st["era2"]["g7"]["jobs7"][q["name"]] = {"plough": True}
+        self.assertEqual(g7.plough_work(st, q, 4.0), 12.0 if sum(1 for c in st["era2"]["cattle"] if st["day"] - c["born"] >= 2 * era2.YEAR) >= 4 else 4.0,
+                         "牛 2 頭で 1 人")
+
+    def test_wall(self):
+        g7, st = self.g7, self.st()
+        p = era2.adults(st)[0]
+        st["era2"]["g7"]["jobs7"] = {p["name"]: {"build": "壁"}}
+        self.assertTrue(g7.wall_job(st, p))
+        st["era2"]["g7"]["wall_work"] = g7.WALL_DAYS - 1
+        g7.wall_day(st, p, {})
+        self.assertEqual(st["era2"]["walls"], st["day"])
+        self.assertFalse(g7.wall_job(st, p), "できたあとは住まいを建てる")
+        self.assertEqual(g7._v0(st)["walls"], st["day"])
+
+    def test_sick(self):
+        g7, st = self.g7, self.st()
+        sea = __import__("world").season(st["day"])
+        st["era2"]["g7"]["sick"] = {"year": st["day"] // era2.YEAR, "season": sea}
+        self.assertEqual(g7.sick_mult(st), 3)
+        st["era2"]["g7"]["sick"]["season"] = "冬" if sea != "冬" else "夏"
+        self.assertEqual(g7.sick_mult(st), 1)
+        # 病の季節も、塩 7 の列から引く数は同じ
+        counts = []
+        for s in (sea, "x"):
+            st2 = self.st()
+            st2["era2"]["g7"]["sick"] = {"year": st2["day"] // era2.YEAR, "season": s}
+            n = [0]
+            old = era2._rng
+
+            def spy(state, salt, n=n):
+                r = old(state, salt)
+                if salt == 7:
+                    f = r.random
+
+                    def rnd():
+                        n[0] += 1
+                        return f()
+                    r.random = rnd
+                return r
+            era2._rng = spy
+            try:
+                era2._season_end(st2, 1.0)
+            finally:
+                era2._rng = old
+            counts.append(n[0])
+        self.assertEqual(counts[0], counts[1])
+
+    def test_captives_and_tribute_answers(self):
+        g7, st = self.g7, self.st()
+        real = {n: {"captives": "連れて帰る", "tribute": {"K1": "やめる"}} for n in era2.answerers(st)}
+        g7.captives_answer(st, real)
+        self.assertEqual(st["era2"]["g7"]["captives"]["choice"], "連れて帰る")
+        reg = st["era2"]["g7"]["region"]
+        o = era2._g6(st)["others"][0]
+        reg["ties"] = [{"id": "K1", "payer": "V0", "payee": o["id"], "goods": {"草の種": 100}, "since": 1, "paid": [1], "missed": 0, "status": "続く",
+                        "end": None, "fixed": None}]
+        self.assertIn("tribute", g7.fields_on(st))
+        v = g7.tribute_answers(st, real)
+        self.assertEqual(v, {"K1": "やめる"})
+        __import__("region").decide(reg, g7._setts(st), st["day"] + 1, village=v, make=g7._maker(st), out=[])
+        self.assertEqual(reg["ties"][0]["status"], "切れた")
+        self.assertEqual(reg["ties"][0]["why"], "やめた")
+
+
+# ---------------------------------------------------------------- L
+class L_Yardstick(unittest.TestCase):
+    """物差し (4.D): 決める段 (税だけなら 0)・取り立ての年・F6・条件ごとの止まり・marks・目安 (メモリの中の写し。乱数は引かない)"""
+
+    @classmethod
+    def setUpClass(cls):
+        if not is_g6(real_state()):
+            raise unittest.SkipTest("本物の state が G6 でない")
+        import g7
+        import yardstick
+        cls.g7, cls.y = g7, yardstick
+        cls.base = g7_state()
+
+    def st(self):
+        return copy.deepcopy(self.base)
+
+    def test_tax_only_is_zero(self):
+        y, st = self.y, self.st()
+        a, b, c = sorted(era2._homes(st))[:3]
+        p = next(q for q in era2.adults(st) if q.get("household") == c)
+        world.log(st, "取り立て", p["name"], "試し", law="L1", homes=[a, b], goods={"草の種": 10}, moves=[["村", 1, {"草の種": 10}, []]])
+        self.assertEqual(y.officials(st), {p["name"]: ["V0"]})
+        vg = y.village_group(y.levels(st))
+        self.assertEqual(vg["D"] if vg else 0, 0, "村の中の税だけなら D 0")
+
+    def test_tribute_years(self):
+        y, st = self.y, self.st()
+        g = st["era2"]["g7"]
+        D0 = (st["day"] // era2.YEAR + 1) * era2.YEAR - 1
+        for k in (0, 1):
+            st["day"] = D0 + k * era2.YEAR
+            g["coll_seasons"] = g.get("coll_seasons", []) + [{"day": st["day"] - 10, "full": True, "how": "板", "n": 1}]
+            y._tribute_year(st)
+        self.assertEqual(g["tribute2_day"], st["day"])
+        self.assertEqual(g["marks"][-1]["what"], "条件 2")
+        st2 = self.st()
+        g2 = st2["era2"]["g7"]
+        for k, full in ((0, True), (1, False)):
+            st2["day"] = D0 + k * era2.YEAR
+            g2["coll_seasons"] = g2.get("coll_seasons", []) + [{"day": st2["day"] - 10, "full": full, "how": None, "n": 1}]
+            y._tribute_year(st2)
+        self.assertIsNone(g2.get("tribute2_day"), "全部残せなかった年があると数えない")
+
+    def test_season_end_and_f6(self):
+        y, st = self.y, self.st()
+        g = st["era2"]["g7"]
+        ads = era2.adults(st)
+        k = max(1, math.ceil(0.1 * len(ads)))
+        for _ in range(4):
+            g["season_days"] = {p["name"]: {"記録をつける": 20} for p in ads[:k]}
+            y.season_end(st, 1.0)
+        self.assertEqual(g["f6_run"], 4)
+        self.assertIn("F6", g["reached"])
+        self.assertTrue(any(m["what"] == "F6" for m in g["marks"]))
+        self.assertTrue(self.g7.reached(st, "F6"))
+        ind = era2.indicators(st)
+        for key in ("g7_levels", "g7_tiers", "g7_village", "g7_tribute2_day", "g7_written_laws", "g7_law_judged", "g7_interest", "g7_role_share"):
+            self.assertIn(key, ind)
+        r = era2.check_substeps(st) if hasattr(era2, "check_substeps") else None
+        self.assertTrue(any(x["g"] == "G7" and x["f"] == "F6" for x in st["era2"].get("substeps", [])) or r is None)
+
+    def test_stall(self):
+        y, st = self.y, self.st()
+        g = st["era2"]["g7"]
+        D0 = (st["day"] // era2.YEAR + 1) * era2.YEAR - 1
+        for k in range(9):
+            st["day"] = D0 + k * era2.YEAR
+            y._stall(st, [])
+        self.assertEqual(g["stall"]["c1"]["ask"], g["stall"]["c1"]["since"] + 8, "8 年進まなければ報告で相談")
+        st["day"] = D0 + 16 * era2.YEAR
+        y._stall(st, [])
+        self.assertEqual(self.g7.consult_why(st)["why"], "c1")
 
 
 if __name__ == "__main__":

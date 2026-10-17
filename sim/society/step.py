@@ -368,8 +368,8 @@ def export(state):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who"])
-    ap.add_argument("onoff", nargs="?", choices=["on", "off"], help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)")
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards"])
+    ap.add_argument("onoff", nargs="?", help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)。cards では、札の表を直したわけ (note)")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
     ap.add_argument("--closed-by-decision", dest="closed", default=None,
@@ -377,8 +377,10 @@ def main():
     ap.add_argument("--fill", type=float, default=None,
                     help="next_part で G7 に入るとき: 地域の人数 (村を除く) を、暮らせる人数 K の合計の何割にするか (0〜0.9。書かなければ 0 = 今のまま)")
     a = ap.parse_args()
-    if a.onoff and a.cmd != "ask_why":
+    if a.onoff and a.cmd not in ("ask_why", "cards"):
         sys.exit(f"on / off は ask_why のときだけ書く ({a.cmd} {a.onoff} とは書けない)")
+    if a.cmd == "ask_why" and a.onoff not in (None, "on", "off"):
+        sys.exit(f"ask_why には on か off を書く ({a.onoff} とは書けない)")
     if a.fill is not None and a.cmd != "next_part":
         sys.exit("--fill は next_part のときだけ書く")
     if a.closed is not None and a.cmd != "next_part":
@@ -485,6 +487,22 @@ def main():
                   if fl else f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめの集落は置かなかった。--fill なし = 今のまま)")
         print("次: 答えを集めて season")
         return
+    if a.cmd == "cards":  # G7: よその便りの札の表を足した・直したとき (docs/society_phase/G7_design.md 4.C.1)。出来事「区切り」と新しいハッシュを残す
+        if not (state.get("era2") or {}).get("g7"):
+            sys.exit("G7 に入っていないので、札の表のハッシュはまだない (G7 に入る日に残す)")
+        if not (a.onoff or "").strip():
+            sys.exit('札の表を直したわけを書く (step.py cards "<note>")')
+        import hints  # noqa: E402
+        if not hints.cards_changed(state):
+            print("札の表は変わっていない (何も変えない)")
+            return
+        why = hints.cards_note(state, a.onoff.strip())
+        if why:
+            sys.exit(why)
+        save(state)
+        export(state)
+        print(f"札の表のハッシュを新しくした ({state['era2']['g7']['hints']['cards_sha'][:12]}…)。出来事「区切り」に残した")
+        return
     if a.cmd == "ask_why":  # 2026-10-14 (本人が決めた。docs/humanity の D09 の段階 1): 季節のお題で、主な仕事にした理由を一言たずねる
         #   このコマンドは世界 (乱数・出来事・蓄え) を変えない。why は世界の計算には使わない (同じ答えなら同じ世界。お題が変わるので、村の人の答えは変わりうる)。
         #   まだだれも答えていなければ、今の季節のお題から
@@ -526,6 +544,12 @@ def main():
             print(f"一時停止中: {why}。進めない")
             print(f"HOLD {code}")  # ワークフローが読む機械用の 1 行 (行の頭から。4.E.2)
             sys.exit(3)
+        if (state.get("era2") or {}).get("g7"):  # G7: 札の表 (よその便り) が G7 に入った日 (か step.py cards の日) と同じか (docs/society_phase/G7_design.md 4.C.1)
+            import hints  # noqa: E402
+            why = hints.cards_changed(state)
+            if why:
+                print(f"{why}。直したなら、わけを書いて step.py cards \"<note>\" を動かしてから進める (何も変えない)")
+                sys.exit(5)
         before = state["next_event"]  # G5: 季節の集まりで起きたこと (収める・裁き・罰・祭り・まとめ役) は、30 日を進める前の出来事
         if hasattr(era2, "take_notes"):
             try:
@@ -593,7 +617,7 @@ def main():
         _records(snap)
         for e in state["events"]:
             if (e["id"] >= first and e["type"] in ("掟", "死", "生まれる", "加わる", "去る", "訪れる", "畑", "ヤギ", "大人になる", "フェーズ", "家族", "虫", "受けつぎ", "区切り",
-                                                   "年の集まり")) \
+                                                   "年の集まり", "よその便り", "きっかけ", "取り立て", "病")) \
                     or (e["id"] >= before and (e["type"] in era2.G5_EVENTS + era2.G6_EVENTS + era2.G7_EVENTS or e["type"] == "年の名前")):
                 print("*", e["text"][:120])
         harv = sum((e.get("data") or {}).get("amount", 0) for e in state["events"] if e["id"] >= first and e["type"] == "収穫")
@@ -616,6 +640,13 @@ def main():
                   f"条件: 決める段 3 {_yd(i['g7_f3_day']) if i['g7_f3_day'] is not None else 'まだ'} / "
                   f"取り立ての記録 2 年 {_yd(i['g7_tribute2_day']) if i['g7_tribute2_day'] is not None else 'まだ'} / "
                   f"書いた決まりで裁く {_yd(i['g7_f4_day']) if i['g7_f4_day'] is not None else 'まだ'}")
+            G = state["era2"]["g7"]
+            led = (G.get("hints") or {}).get("ledger", [])
+            ask = [k for k, v in sorted((G.get("stall") or {}).items()) if v.get("ask") and not v.get("done")]
+            print(f"G7 / 決める段 {i.get('g7_levels', 0)} (村は{i.get('g7_village', '外')}) / 取り立てを全部残せた年 {i.get('g7_tribute_years', 0)} / "
+                  f"板に書いた掟 {i.get('g7_written_laws', 0)} / F {'・'.join(sorted(G.get('reached') or {})) or 'まだ'} / "
+                  f"よその便り 届いた {sum(1 for r in led if r['to'] == 'V0' and r['status'] in ('届いた', '忘れられた'))}・待つ {len((G.get('hints') or {}).get('plan', []))}"
+                  + (f" / 8 年進まない条件 {'・'.join(ask)} (5 年ごとの報告で相談)" if ask else ""))
         if hold:
             print(f"HOLD {hold}")  # ワークフローが読む機械用の 1 行 (行の頭から。村の人の文 (出来事は「* 」で始まる) からは出ない。4.E.2)
         return
