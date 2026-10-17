@@ -614,6 +614,8 @@ def season_end(state, frac):
     """G7 の季節の終わり。順は 4.G.1 (8 地域の 1 年 → 9 病 → 10 見本の家 → 11 便り → 12 きっかけ → 13 物差しと次の歩の ask)。
     8・9・11・12 と 13 の物差しは、それぞれの部分を入れるときに、ここに足す"""
     g, D = _g(state), state["day"]
+    if region_on(state):
+        drop_gone(state)  # 戦の日になくなった集落で、交換に行く途中の人がいた分 (G6 の季節の終わりで帰った)
     homes = {p["name"]: p.get("household") for p in state["people"]}
     days = g.get("season_days") or {}
     g["past"] = [s for s in g.get("past", []) if s["day"] > D - YEAR] + [  # 前の 1 年 (120 日) の季節だけ (途中で区切った季節も 1 つ)
@@ -1326,7 +1328,8 @@ def _field_rows(state, solo, year):
     rows = []
     if "demand" in on:
         rows.append('   求める: 知っている村に、毎年決まったものを出すように求めるなら demand に {"to": 村の番号, "what": {物: 数}, "then": 断られたら "戦う" か "やめる"}、'
-                    "求めないなら null")
+                    "求めないなら null" + ("。断られて戦うときは、次の季節の 10 日目に、その季節の主な仕事を「戦に出る」にした人が出かける (year の次の季節の job に書ける)"
+                                         if year else ""))
     if "answer_demand" in on:
         ids = "・".join(d["id"] for d in _demands_to_village(state))
         rows.append(f"   求めへの答え: 村への求め ({ids}) ごとに、\"払う\" か \"戦う\" か \"逃げる\" か \"助けを頼む\" (answer_demand)。助けを頼むなら、頼む村の番号 (ally)")
@@ -1615,7 +1618,7 @@ def _partners(state):
 def _region_after(state, setts, out, moves=None):
     """地域の決まりのあと: 村の見た目を書きもどし、なくなった集落を g6.others から外し、出来事を書く。
     村がかかわる出来事 → その種類で。1 日 (2 ます) 以内か交換の相手の戦 → 「よその村」。ほかは g7.region.log だけ"""
-    reg, D, g6 = _reg(state), state["day"], era2._g6(state)
+    reg, D = _reg(state), state["day"]
     v0 = next(s for s in setts if s["id"] == "V0")
     reg["v0"]["conflict"] = v0.get("conflict")
     by = region._by(setts)
@@ -1633,9 +1636,18 @@ def _region_after(state, setts, out, moves=None):
             log(state, "よその村", None, ev["text"], region=True, **ev["data"])
         else:
             reg["log"].append({"day": D, "kind": ev["kind"], "text": ev["text"], "who": who, **ev["data"]})
-    gone = {s["id"] for s in setts if s.get("gone")}
-    if gone:
-        g6["others"] = [o for o in g6["others"] if o["id"] not in gone]
+    drop_gone(state)
+
+
+def drop_gone(state):
+    """なくなった集落を g6.others から外す (G6 のコードには見えなくなる。返されていない貸し借りは、1 年たつと今のまま「返されない」)。
+    交換に行く途中の人の行き先は、季節の終わり (G6 の季節の終わりの 0. で帰る) まで残す。そのあいだは、村が知らない集落として扱う (来ない・申し出もない)"""
+    g6 = era2._g6(state)
+    going = {tr.get("to") for tr in g6.get("trips", {}).values() if tr.get("state") == "行く"}
+    for o in g6["others"]:
+        if o.get("gone") and o["id"] in going:
+            o["known"] = None
+    g6["others"] = [o for o in g6["others"] if not o.get("gone") or o["id"] in going]
 
 
 def region_year(state):

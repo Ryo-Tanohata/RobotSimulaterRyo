@@ -1598,5 +1598,153 @@ class I_Debt(unittest.TestCase):
             self.assertEqual(d2["status"], "返されない", "返しに来なければ、前のとおり 1 年で「返されない」")
 
 
+class J_Village(unittest.TestCase):
+    """川辺の村が地域にかかわる (4.B.5): 求めへの答え (広げた票)・村が求める・戦の日・家ごとに出ていく・まわりの集落の集まりの答え (メモリの中の写し)"""
+
+    @classmethod
+    def setUpClass(cls):
+        if not is_g6(real_state()):
+            raise unittest.SkipTest("本物の state が G6 でない")
+        import g7
+        cls.g7 = g7
+        cls.base = g7_state(0.3)
+
+    def st(self):
+        return copy.deepcopy(self.base)
+
+    def test_answers_tally(self):
+        g7, st = self.g7, self.st()
+        reg = st["era2"]["g7"]["region"]
+        o = next(x for x in st["era2"]["g6"]["others"] if x["id"] == "N1")
+        q = region.add_demand(reg, g7._v0(st), o, {"草の種": 100}, st["day"])
+        q.update(**{"from": "N1", "to": "V0"})
+        reps = g7.answerers(st)
+        real = {n: {"answer_demand": {q["id"]: "戦う"}} for n in reps}
+        v = g7.village_answers(st, real)
+        self.assertEqual(v[q["id"]], "戦う", "見本の代表がみな同じ手なら、広げた票で大人の半分をこえる")
+        self.assertEqual(sum(g7._vote_weights(st, {n: {} for n in reps}).values()), len(era2.adults(st)), "広げた票の合計は大人の数")
+        real = {n: {"answer_demand": {q["id"]: "払う" if i == 0 else "わからない"}} for i, n in enumerate(reps)}
+        self.assertEqual(g7.village_answers(st, real)[q["id"]], "払う", "半分に届かなくても、まとめ役がいなければいちばん多い手")
+        self.assertEqual(g7.village_answers(st, {}), {})
+        self.assertTrue(g7._zoom.__doc__)
+        g7._yoru(st, (st["day"] + 1) // era2.YEAR)
+        self.assertTrue(reg["yoru"]["Z1"], "村への求めが来ていれば、次の年は寄る年 (Z1)")
+
+    def test_village_demand_and_war(self):
+        g7, st = self.g7, self.st()
+        reg = st["era2"]["g7"]["region"]
+        known = [o for o in st["era2"]["g6"]["others"] if o.get("known") is not None]
+        t = min(known, key=lambda o: o["people"])
+        t["cell"], t["land"] = [5, 3], region.land((5, 3))
+        reps = g7.answerers(st)
+        real = {n: {"demand": {"to": t["id"], "what": {"草の種": 50000}, "then": "戦う"}} for n in reps}
+        from unittest import mock
+        with mock.patch.object(region, "refuge", lambda *a: None):  # 逃げ場がない (囲まれている) ことにして、払う損を大きくする
+            q = g7.village_demand(st, real)
+        self.assertIsNotNone(q)
+        self.assertEqual((q["from"], q["to"], q["how"]), ("V0", t["id"], "決まりで選んだ"))
+        self.assertTrue(any(e["type"] == "求め" and "村の集まりで" in e["text"] for e in st["events"]))
+        w = next((w for w in reg["wars"] if w["demand"] == q["id"]), None)
+        if q["answer"] != "戦う":
+            self.skipTest(f"相手が戦わなかった ({q['answer']})")
+        self.assertEqual(w["day"], st["day"] + 1 + 30 + 9, "次の季節の 10 日目 (乱数なし)")
+        self.assertIn("戦に出る", g7.acts(st))
+        st["day"] = w["day"]
+        ads = era2.adults(st)
+        for p in ads:
+            p["today"] = {"activity": "採集"}
+        for p in ads[:6]:
+            p["today"] = {"activity": "戦に出る"}
+        pop0, n0 = sum(p["alive"] for p in st["people"]), st["next_event"]
+        g7.region_day(st)
+        self.assertIsNotNone(w["done"])
+        dead = w.get("dead_names") or []
+        self.assertLessEqual(set(dead), {p["name"] for p in ads[:6]}, "死ぬのは戦った人だけ")
+        self.assertEqual(sum(p["alive"] for p in st["people"]), pop0 - len(dead))
+        self.assertTrue(all(p["today"].get("away") for p in ads[:6]))
+        ev = [e for e in st["events"] if e["id"] >= n0]
+        self.assertTrue(any(e["type"] == "戦" for e in ev))
+        self.assertEqual(sum(1 for e in ev if e["type"] == "死"), len(dead))
+        st2 = self.st()
+        # 同じ戦の種なら同じ (戦ごとの文字の種)
+        self.assertEqual(region.war_rng(st["seed"], 1).random(), region.war_rng(st2["seed"], 1).random())
+
+    def test_no_fighters(self):
+        g7, st = self.g7, self.st()
+        reg = st["era2"]["g7"]["region"]
+        o = next(x for x in st["era2"]["g6"]["others"] if x["id"] == "N2")
+        q = region.add_demand(reg, g7._v0(st), o, {"草の種": 10}, st["day"])
+        reg["wars"].append({"id": "W1", "att": "V0", "def": "N2", "day": st["day"], "demand": q["id"], "done": None})
+        for p in era2.adults(st):
+            p["today"] = {"activity": "採集"}
+        g7.region_day(st)
+        self.assertTrue(reg["wars"][0]["called_off"])
+        self.assertTrue(any("戦に出る人がいなかった" in e["text"] for e in st["events"]))
+
+    def test_defend(self):
+        g7, st = self.g7, self.st()
+        reg = st["era2"]["g7"]["region"]
+        o = next(x for x in st["era2"]["g6"]["others"] if x["id"] == "N1")
+        reg["wars"].append({"id": "W1", "att": "N1", "def": "V0", "day": st["day"], "demand": None, "done": None})
+        for i, p in enumerate(era2.adults(st)):
+            p["today"] = {"activity": "守る" if i < 3 else "採集"}
+        p0 = o["people"]
+        g7.region_day(st)
+        w = reg["wars"][0]
+        n = len(era2.adults(self.base))
+        self.assertEqual(w["fighters"]["V0"], n, "守るときは、キャンプにいる大人みんな")
+        self.assertAlmostEqual(w["Sd"], 3 + 0.5 * (n - 3), places=3)  # 「守る」の人は 1、ほかの大人は 0.5 (村は川ぞい。壁はまだない)
+        self.assertEqual(o["people"], p0 - w["dead"]["N1"])
+
+    def test_leave(self):
+        g7, st = self.g7, self.st()
+        reg = st["era2"]["g7"]["region"]
+        o = next(x for x in st["era2"]["g6"]["others"] if x["id"] == "N1")
+        q = region.add_demand(reg, o, g7._v0(st), {"草の種": 100}, st["day"])
+        reps = g7._rep_of(st)
+        h, n = sorted(reps.items())[0]
+        ppl = [p["name"] for p in st["people"] if p["alive"] and p.get("household") == h]
+        out = g7.leave_households(st, {n: {"leave": True}, "だれか": {"leave": True}})
+        self.assertEqual(out, [h])
+        self.assertTrue(all(not p["alive"] and p.get("left") for p in st["people"] if p["name"] in ppl))
+        f = st["era2"]["g5"]["fissions"][-1]
+        self.assertEqual((f["household"], f["dispute"], f["why"]), (h, None, "ほかの村の求め"))
+        self.assertEqual(g7.leave_households(st, {reps[sorted(reps)[1]]: {"leave": False}}), [])
+        q["end"] = st["day"]
+        self.assertEqual(g7.leave_households(st, {reps[sorted(reps)[1]]: {"leave": True}}), [], "求めも貢ぎも税もなければ、出ていく欄はない")
+
+    def test_councils(self):
+        g7, st = self.g7, self.st()
+        reg = st["era2"]["g7"]["region"]
+        D = st["day"]
+        st["day"] = (D + 1) // era2.YEAR * era2.YEAR + era2.YEAR - 1  # 次の年の終わりの日 (写しの中だけ)
+        g7.region_year(st)
+        c = reg["councils"]
+        self.assertLessEqual(len(c["ask"]), region.COUNCIL_MAX)
+        if not c["ask"]:
+            self.skipTest("分かれ目がなかった")
+        sid = c["ask"][0]
+        txt = g7.council_prompt(st, sid)
+        self.assertIn("## 答えの形 (JSON)", txt)
+        for w in ("王", "国", "神", "銀", "お金", "見込み", "%"):
+            self.assertNotIn(w, txt)
+        pts = c["points"][sid]
+        key = pts[0].get("demand") or pts[0].get("tie") or "分かれるか"
+        choice = {"求められた": "戦う", "払い続けるか": "やめる", "分かれるか": "分かれる"}[pts[0]["kind"]]
+        raw = {sid: json.dumps({"choice": {key: choice}, "stance": "守る", "say": "", "why": ""}, ensure_ascii=False)}
+        g7.apply_councils(st, raw)
+        self.assertEqual(c["answers"][sid][key], choice)
+        self.assertEqual(next(o for o in st["era2"]["g6"]["others"] if o["id"] == sid)["stance"], "守る")
+        for other in c["ask"][1:]:
+            self.assertEqual(c["answers"][other], {}, "答えのない集落は決まりの手")
+        st["day"] += 0
+        out = g7.begin(st, {}, None)
+        self.assertEqual(reg["pending"], [], "待ちは夏の集まりの日に決まる")
+        if pts[0]["kind"] == "求められた":
+            q = next(x for x in reg["demands"] if x["id"] == key)
+            self.assertEqual((q["answer"], q["how"]), (choice, "集まり"))
+        self.assertIsInstance(out, list)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

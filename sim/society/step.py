@@ -448,7 +448,8 @@ def main():
         meet = season_ok and (not g7 or bool(g7.get("ask")))  # G7: 答える人がいるのは集まりの歩だけ
         print("NAMES " + (" ".join(era2.answerers(state)) if meet else ""))
         print("FEEL " + (" ".join(era2.feelers(state)) if meet else ""))
-        print("COUNCIL " + " ".join(sorted(((g7 or {}).get("region") or {}).get("councils", {}).get("ask", []))))
+        c = ((g7 or {}).get("region") or {}).get("councils") or {}  # G7: まわりの集落の集まり (分かれ目の年の、年の終わりの歩だけ)
+        print("COUNCIL " + (" ".join(sorted(c.get("ask", []), key=lambda x: int(x[1:]))) if meet and c.get("day") == state["day"] else ""))
         print(f"ASKLOG {'ask_why_log' in e2}")
         return
     if a.cmd == "next_part":  # 部の終わり (か次の G を待つ) から、次の部 (次の G) に入る (docs/society_phase/G7_design.md 4.E.1)
