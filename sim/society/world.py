@@ -285,7 +285,8 @@ def _walk_kcal(person, dist_m):
 
 
 def _near(items, x, y, r):
-    return [i for i in items if abs(i["x"] - x) <= r and abs(i["y"] - y) <= r]
+    # 2026-10-21: abs を呼ばない形にした (植えた木が 1 万 7 千本をこえて遅くなったため)。-r <= d <= r は abs(d) <= r と同じ (d は前と同じ引き算)
+    return [i for i in items if -r <= i["x"] - x <= r and -r <= i["y"] - y <= r]
 
 
 # Society 2.0 で足した仕事 (era2.py が働きを計算する。2026-10-07)
@@ -550,7 +551,9 @@ def simulate_day(state):
             continue
         skill = sum(p["skills"]["狩り"] + (0.3 if "槍" in p["items"] else 0) for p, _ in group)
         per_h = 0.015 * (1 + 2 * skill) * (2.5 if len(group) >= 2 else 1)
-        success = rng.random() < 1 - (1 - per_h) ** hours
+        # 2026-10-21 (G7 の煙の試しで見つけた): 大勢 (技の合計が約 13 をこえる) で狩ると per_h が 1 をこえ、負の数の小数乗で複素数になって止まった。
+        #   1 時間で必ずしとめる (1 - per_h を 0 で止める)。G6 までの季節では per_h が 1 をこえたことはない (こえると止まっていた) ので、前の世界は変わらない
+        success = rng.random() < 1 - max(0.0, 1 - per_h) ** hours
         for p, _ in group:
             p["skills"]["狩り"] = round(min(1, p["skills"]["狩り"] + 0.01 * hours), 3)
         if success:
@@ -574,16 +577,34 @@ def simulate_day(state):
 
 
 def _move_food(src, dst, kind, kcal):
-    """src の食べ物から kind を kcal 分、dst へ移す (古いものから)。戻り値: 移した量 {kind: kcal}"""
+    """src の食べ物から kind を kcal 分、dst へ移す (古いものから)。戻り値: 移した量 {kind: kcal}
+    2026-10-21: 速くした (村の蓄えが 1 万 2 千切れをこえ、季節ごとに全部を並べなおすのに 1 季節 約 90 秒かかっていたため)。
+    前の形 (sorted(src, key=_expires) の順に、kind のものを kcal に届くまで) と同じ順・同じ数で移す: 腐る日 (_expires と同じ式) ごとに、
+    src の中の順のまま束ね、腐る日の近い束から使う (sorted は同じ腐る日のものを src の順に並べるので、順は同じ)。届いたら止める (前は残りを飛ばしていた)"""
     moved, by = 0, {}
-    for f in sorted(src, key=_expires):  # 腐る日の近いものから
-        if (kind and f["kind"] != kind) or moved >= kcal:
-            continue
-        take = min(f["kcal"], kcal - moved)
-        f["kcal"] -= take
-        dst.append({"kind": f["kind"], "kcal": take, "day": f["day"], **{k: True for k in ("sown", "dry") if f.get(k)}})
-        moved += take
-        by[f["kind"]] = by.get(f["kind"], 0) + take
+    if moved < kcal:
+        groups = {}
+        for f in src:
+            k = f["kind"]
+            if kind and k != kind:
+                continue
+            e = f["day"] + (DRIED_DAYS[k] if f.get("dry") and k in DRIED_DAYS else SPOIL.get(k, 4))  # = _expires(f)
+            g = groups.get(e)
+            if g is None:
+                groups[e] = [f]
+            else:
+                g.append(f)
+        for e in sorted(groups):  # 腐る日の近いものから
+            for f in groups[e]:
+                if moved >= kcal:
+                    break
+                take = min(f["kcal"], kcal - moved)
+                f["kcal"] -= take
+                dst.append({"kind": f["kind"], "kcal": take, "day": f["day"], **{k: True for k in ("sown", "dry") if f.get(k)}})
+                moved += take
+                by[f["kind"]] = by.get(f["kind"], 0) + take
+            if moved >= kcal:
+                break
     src[:] = [f for f in src if f["kcal"] > 0]
     return by
 
