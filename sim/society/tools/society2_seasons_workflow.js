@@ -29,15 +29,15 @@ let years = 0
 for (let k = 0; k < STEPS; k++) {
   // 状態は step.py who で読む (読むだけ。DAY・PHASE・HOLD・MODE・MEET・NAMES・FEEL・COUNCIL・ASKLOG の行)
   const st = await agent(runner(`cd ${ROOT}/sim/society && PYTHONUTF8=1 PYTHONIOENCODING=utf-8 ${PY} step.py who`), { label: `step ${k} status`, model: 'haiku', phase: 'Seasons' })
-  const dm = (st || '').match(/DAY (\d+) (\w+) (\w+)/), nm = (st || '').match(/NAMES ([^\n`]*)/)
+  const dm = (st || '').match(/DAY (\d+) (\w+) (\w+)/), nm = (st || '').match(/NAMES[ \t]*([^\n`]*)/)  // 空の行 (集まりのない歩) は「NAMES」だけになることがある (行の終わりの空白が落ちても読む)
   if (!dm || dm[2] !== 'season' || dm[3] === 'True' || !nm) return { stopped: k, why: 'bad status', out: st, log: log_ }
-  const mm = (st || '').match(/MODE (\w+)/), me = (st || '').match(/MEET (\S+)/), cm = (st || '').match(/COUNCIL ([^\n`]*)/)
+  const mm = (st || '').match(/MODE (\w+)/), me = (st || '').match(/MEET (\S+)/), cm = (st || '').match(/COUNCIL[ \t]*([^\n`]*)/)
   if (!mm || mm[1] !== MODE) return { stopped: k, why: `mode: the world is in ${mm ? mm[1] : '?'} mode (run with mode ${mm ? mm[1] : '?'})`, out: st, log: log_ }
   const meet = MODE === 'season' || (me && me[1] !== 'none')  // year: 答えるのは集まりの歩だけ (MEET 年 / 寄る / 集まり直し)
   // 仕事の理由 (2026-10-14 本人が決めた: 次に村を進めるときから)。まだ一度も step.py ask_why を動かしていなければ、進めずに止まる (daily_run.md)
   if (!/ASKLOG True/.test(st)) return { stopped: k, why: 'ask_why not started: run step.py ask_why once, commit the prompts, then run again', out: st, log: log_ }
   const d = Number(dm[1]), names = nm[1].trim().split(/\s+/).filter(Boolean)
-  const fm = (st || '').match(/FEEL ([^\n`]*)/), feel = fm ? fm[1].trim().split(/\s+/).filter(Boolean) : []
+  const fm = (st || '').match(/FEEL[ \t]*([^\n`]*)/), feel = fm ? fm[1].trim().split(/\s+/).filter(Boolean) : []
   const council = cm ? cm[1].trim().split(/\s+/).filter(Boolean) : []
   if (meet && !names.length) return { stopped: d, why: 'no adults', log: log_ }
   if (meet) {  // 答える歩 (season は毎回。year は MEET のある歩だけ)
