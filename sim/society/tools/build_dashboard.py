@@ -1193,6 +1193,61 @@ def dump(out):
     return json.dumps(out, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
 
 
+# 季節の行を詰める (2026-10-21。300 KB の確かめに、G6 のままでも届きかけたため: 5849 日目で 296 KB、そのうち季節の行が 171 KB)。
+# 中身は 1 つも捨てない (画面は読みこんだあとに unpack と同じことをして、もとの行にもどす。dashboard.html の unpackSeasons)。
+#   - add: いつもの値 (0・[]・[0,0,0]) の鍵は書かない (None の「記録なし」は書く)
+#   - cum: 前の行と同じ値の鍵は書かない (どれも同じなら cum の鍵ごと書かない。cum の鍵の並びはどの行も同じ)
+#   - plants・pop・layer: 前の行と同じなら書かない (pop が null に変わったときは null と書く)
+# 詰めた JSON には "pack": {"v": 1, "add": いつもの値, "carry": 前の行から引きつぐ鍵} をつける (画面はこれを読んで戻す)。
+# 戻すと、詰める前とまったく同じになることを main で確かめる
+ADD_DEFAULT = {"ash": 0, "bins": [], "blades": 0, "bones": [0, 0, 0], "dung": 0, "ext": [], "feast_bones": 0, "footings": [],
+               "goat_bones": [], "graves": [], "houses": [], "hut": 0, "mice": 0, "sherds": 0}
+CARRY = ("plants", "pop", "layer")
+
+
+def _same(a, b):
+    return json.dumps(a, sort_keys=True) == json.dumps(b, sort_keys=True)  # 1 と 1.0・0 と False を同じとみない
+
+
+def pack(out):
+    rows, prev = [], None
+    for sz in out["seasons"]:
+        r = dict(sz)
+        r["add"] = {k: v for k, v in sz["add"].items() if not (k in ADD_DEFAULT and _same(v, ADD_DEFAULT[k]))}
+        if prev is not None:
+            pc, c = prev["cum"], sz["cum"]
+            assert sorted(pc) == sorted(c), "cum の鍵は、どの行も同じ"
+            r["cum"] = {k: v for k, v in c.items() if not _same(v, pc[k])}
+            if not r["cum"]:
+                del r["cum"]
+            for k in CARRY:
+                if k in sz and k in prev and _same(sz[k], prev[k]):
+                    del r[k]
+        rows.append(r)
+        prev = sz
+    return dict(out, seasons=rows, pack={"v": 1, "add": ADD_DEFAULT, "carry": list(CARRY)})
+
+
+def unpack(d):
+    if not d or not d.get("pack"):
+        return d
+    rows, prev = [], None
+    pk = d["pack"]
+    for r in d["seasons"]:
+        z = dict(r)
+        z["add"] = dict({k: json.loads(json.dumps(v)) for k, v in pk["add"].items()}, **r["add"])
+        if prev is not None:
+            z["cum"] = dict(prev["cum"], **r.get("cum", {}))
+            for k in pk["carry"]:
+                if k not in r and k in prev:
+                    z[k] = prev[k]
+        rows.append(z)
+        prev = z
+    out = dict(d, seasons=rows)
+    del out["pack"]
+    return out
+
+
 MARK_A, MARK_B = "<!--DASH-DATA-->", "<!--/DASH-DATA-->"
 
 
@@ -1236,11 +1291,13 @@ def main(argv=None):
     prev = None
     if a.out and os.path.exists(a.out):
         try:
-            prev = _read_json(a.out)
-        except (ValueError, OSError):
+            prev = unpack(_read_json(a.out))
+        except (ValueError, OSError, KeyError, TypeError):
             prev = None
     errs, warns = checks(out, st, rec, prev)
-    js = dump(out)
+    js = dump(pack(out))
+    if json.loads(dump(unpack(json.loads(js)))) != json.loads(dump(out)):
+        errs.append("詰めた季節の行を戻しても、詰める前と同じにならない (build_dashboard.py の pack・unpack)")
     size = len(js.encode("utf-8"))
     if size > 300 * 1024:
         errs.append("大きすぎる: %d バイト (300 KB まで)" % size)

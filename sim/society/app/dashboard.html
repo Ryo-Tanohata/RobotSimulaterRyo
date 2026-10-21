@@ -403,8 +403,25 @@ function layersUpTo(pred) {
 }
 
 /* ---------------------------------------------------------------- はじまり */
+/* 季節の行を戻す (build_dashboard.py の pack。2026-10-21): いつもの値の add の鍵・前の行と同じ cum の鍵・前の行と同じ plants / pop / layer は書いていない */
+function unpackSeasons(d) {
+  if (!d || !d.pack) return d;
+  let prev = null;
+  d.seasons = d.seasons.map((r) => {
+    const z = Object.assign({}, r);
+    z.add = Object.assign(JSON.parse(JSON.stringify(d.pack.add)), r.add);
+    if (prev) {
+      z.cum = Object.assign({}, prev.cum, r.cum || {});
+      for (const k of d.pack.carry) if (!(k in r) && (k in prev)) z[k] = prev[k];
+    }
+    prev = z;
+    return z;
+  });
+  delete d.pack;
+  return d;
+}
 function start(d) {
-  D = d; S = d.seasons; S.forEach((z, i) => IDX.set(z.d, i));
+  D = unpackSeasons(d); S = D.seasons; S.forEach((z, i) => IDX.set(z.d, i));
   st.si = S.length - 1;
   try { const t = localStorage.getItem("dash-tab"); if (t) st.tab = t; } catch (e) {}
   try { const th = localStorage.getItem("dash-theme"); if (th) document.documentElement.dataset.theme = th; } catch (e) {}
