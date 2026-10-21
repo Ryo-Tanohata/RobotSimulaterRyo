@@ -1198,6 +1198,7 @@ def dump(out):
 #   - add: いつもの値 (0・[]・[0,0,0]) の鍵は書かない (None の「記録なし」は書く)
 #   - cum: 前の行と同じ値の鍵は書かない (どれも同じなら cum の鍵ごと書かない。cum の鍵の並びはどの行も同じ)
 #   - plants・pop・layer: 前の行と同じなら書かない (pop が null に変わったときは null と書く)
+# くり返す文は "strs" の表にまとめる (intern。戻すのは unintern と dashboard.html の unpackSeasons のはじめ)。
 # 詰めた JSON には "pack": {"v": 1, "add": いつもの値, "carry": 前の行から引きつぐ鍵} をつける (画面はこれを読んで戻す)。
 # 戻すと、詰める前とまったく同じになることを main で確かめる
 ADD_DEFAULT = {"ash": 0, "bins": [], "blades": 0, "bones": [0, 0, 0], "dung": 0, "ext": [], "feast_bones": 0, "footings": [],
@@ -1228,7 +1229,59 @@ def pack(out):
     return dict(out, seasons=rows, pack={"v": 1, "add": ADD_DEFAULT, "carry": list(CARRY)})
 
 
+STR_MARK = "§"  # 同じ文の 2 回目からは「§番号」にして、文は "strs" に 1 回だけ書く (墓の骨の注・死因・季節の跡の文などがくり返すため)
+STR_MIN = 8  # 8 バイトより短い文はそのまま
+
+
+def intern(out):
+    """くり返す文 (値の文だけ。鍵はそのまま) を "strs" の表にまとめる。もとの文に STR_MARK で始まるものがあれば、まとめない"""
+    cnt = collections.Counter()
+
+    def count(o):
+        if isinstance(o, dict):
+            for v in o.values():
+                count(v)
+        elif isinstance(o, list):
+            for v in o:
+                count(v)
+        elif isinstance(o, str):
+            cnt[o] += 1
+    count(out)
+    if any(k.startswith(STR_MARK) for k in cnt):
+        return out
+    table = sorted((k for k, n in cnt.items() if n >= 2 and len(k.encode("utf-8")) >= STR_MIN), key=lambda k: (-cnt[k], k))
+    idx = {k: i for i, k in enumerate(table)}
+
+    def rep(o):
+        if isinstance(o, dict):
+            return {k: rep(v) for k, v in o.items()}
+        if isinstance(o, list):
+            return [rep(v) for v in o]
+        if isinstance(o, str) and o in idx:
+            return STR_MARK + format(idx[o], "x")
+        return o
+    return dict(rep(out), strs=table)
+
+
+def unintern(d):
+    if not d or "strs" not in d:
+        return d
+    table = d["strs"]
+
+    def rep(o):
+        if isinstance(o, dict):
+            return {k: rep(v) for k, v in o.items()}
+        if isinstance(o, list):
+            return [rep(v) for v in o]
+        if isinstance(o, str) and o.startswith(STR_MARK):
+            return table[int(o[len(STR_MARK):], 16)]
+        return o
+    out = rep({k: v for k, v in d.items() if k != "strs"})
+    return out
+
+
 def unpack(d):
+    d = unintern(d)
     if not d or not d.get("pack"):
         return d
     rows, prev = [], None
@@ -1295,7 +1348,7 @@ def main(argv=None):
         except (ValueError, OSError, KeyError, TypeError):
             prev = None
     errs, warns = checks(out, st, rec, prev)
-    js = dump(pack(out))
+    js = dump(intern(pack(out)))
     if json.loads(dump(unpack(json.loads(js)))) != json.loads(dump(out)):
         errs.append("詰めた季節の行を戻しても、詰める前と同じにならない (build_dashboard.py の pack・unpack)")
     size = len(js.encode("utf-8"))
