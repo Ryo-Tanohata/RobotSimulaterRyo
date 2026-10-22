@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "おなかがすいてつらい。北の川で魚と芋をさがしたい。ソル2、いっしょに二人で行かないか。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ソル2"], "why": "北の川には魚が泳いでいるので、二人で行って魚と芋を探したい。村の蓄えは空で、食べ物がないと困る。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M152": "ゆるす", "M153": "ゆるす", "M154": "ゆるす", "M155": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "前の季節、ひどく空腹だったので、カイ2の家の倉の封を割って食べ物を取って食べた", "because": [408818], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L172", "against": "", "agree": true, "reason": "自分も封を割って食べたので、名乗り出て取った量を言うのがよいと思う。"}, {"id": "L179", "against": "", "agree": true, "reason": "北丘は冬に何も見つからなかったので、北川で魚と芋を確かめるのがよい。"}],
+ "feeling": "おなかがすいて力が出ないが、北の川で何か見つけたい。"}

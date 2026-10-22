@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えが空になってしまったね。わたしは近くの南川12へ行って、食べられるものを探してくるよ。夕方までには戻るね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "南川12はキャンプから近く、一人で行ってもよい場所。今は村の蓄えがないので、まず手早く食べ物を見つけたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えが尽きたので、食べ物は採集や狩りで探して見つけるしかない。", "because": [408948], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L163", "against": "", "agree": true, "reason": "ヤギの数を毎晩数えれば、世話が足りているかすぐ分かるから。"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いので、世話をする人を決めて守るのは大事だから。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると、草の取り合いになるから。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "今は草が足りないので、野生のヤギを捕まえるのは少し待つほうがいいから。"}
+ ],
+ "feeling": "蓄えが空で不安だけど、まず近くで食べ物を探して、家の人と村の人を守りたい。"}
