@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "草が足りなくなってきた。ヤギも多すぎる。ヤギの数を草に合わせるために、みんなで話そう。畑の刈り入れは、だれも落とさないように毎夕手伝ってほしい。"}, {"to": "キサ2", "text": "夏は畑を一緒に刈ろう。秋の種まきも手伝ってくれ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["キサ2", "セヤ2"], "why": "実った畑を夏のうちに刈り切らないと、草の種が落ちてしまうから"}, "family": {"キサ2": {"activity": "畑仕事", "place": "camp", "why": "畑を一緒に刈るため"}, "セヤ2": {"activity": "畑仕事", "place": "camp", "why": "若いので刈り入れを手伝えるから"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "種まき", "place": "camp", "with": ["キサ2"], "why": "蓄えの草の種を畑にまけば、次の夏に実るから"}, "family": {"キサ2": {"activity": "種まき", "place": "camp", "why": "種まきを一緒にするため"}, "セヤ2": {"activity": "木の実取り", "place": "camp", "why": "木の実を集めて蓄えにするため"}}, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["キサ2"], "why": "冬は北川で魚と芋が取れるか確かめたいから"}, "family": {"キサ2": {"activity": "採集", "place": "北川12", "why": "一緒に北川を見て回るため"}, "セヤ2": {"activity": "採集", "place": "南川12", "why": "近い南川なら一人でも行けるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": ["キサ2"], "why": "夏の刈り入れの前に石の鎌を作っておきたいから"}, "family": {"キサ2": {"activity": "道具づくり", "place": "camp", "why": "鎌づくりを手伝うため"}, "セヤ2": {"activity": "道具づくり", "place": "camp", "why": "鎌の刃を作る手伝いをするため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M131": "ゆるす"}, "judge_rule": null, "feast": ["秋"], "leader": "なし",
+ "trade": {"T62": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "草で養えるヤギは約140頭だけで、今のヤギは多すぎる。草が足りないとヤギが減る", "because": [348184, 358935], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L175", "against": "", "agree": true, "reason": "草が足りないのに、野生のヤギを増やすのは良くないから"}, {"id": "L176", "against": "", "agree": true, "reason": "草の多い場所を見に行けば、草を増やすかヤギを減らすか決められるから"}, {"id": "L171", "against": "", "agree": true, "reason": "ほかの村からヤギを受けとると、草の取り合いになるから"}, {"id": "L169", "against": "", "agree": true, "reason": "草で養えないヤギを肉にして干せば、蓄えの食べ物になるから"}, {"id": "L191", "against": "", "agree": true, "reason": "多すぎるヤギを季節のはじめに肉にすれば、やせていなくなるのを防げるから"}],
+ "year_name": "草が足りなくなった年",
+ "feeling": "ヤギが多すぎて草が足りない。みんなで少しずつ手を分けて、この冬を乗り切りたい。"}

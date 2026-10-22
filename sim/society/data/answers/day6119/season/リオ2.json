@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "夏の畑は、石の鎌を使えば刈る量が倍になるよ。鎌をもっている人は、夏の刈り入れの初めから使おう。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから、刈り入れを進める"}, "family": {"リオ3": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れを手伝う"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "種まき", "place": "camp", "with": [], "why": "蓄えの草の種をまくと、冬と春をこえて次の夏に実るから"}, "family": {"リオ3": {"activity": "種まき", "place": "camp", "why": "秋の種まきを手伝う"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れに使う石の鎌を作っておくため"}, "family": {"リオ3": {"activity": "道具づくり", "place": "camp", "why": "石の鎌づくりを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "採集", "place": "北川12", "with": ["リオ3"], "why": "魚と芋が取れるか、二人組で確かめて報告するため"}, "family": {"リオ3": {"activity": "採集", "place": "北川12", "why": "二人組で北川12へ行く"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": true, "seal_store": ["冬"],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M131": "ゆるす"}, "judge_rule": null, "feast": ["秋"], "leader": "なし",
+ "trade": {"T62": false}, "trade_rule": {"交換": false, "貸して": false, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "石の鎌は、畑の刈り入れの量を倍にしてくれる。わたしが作った鎌が村にある", "because": [347756], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L175", "against": "なし", "agree": true, "reason": "草が足りないので、野生のヤギを捕まえるのは今はやめるべき"},
+  {"id": "L171", "against": "なし", "agree": true, "reason": "ヤギが増えると草の取り合いになり、子ヤギが減るから"},
+  {"id": "L190", "against": "なし", "agree": true, "reason": "草で養えないヤギを肉にして干せば、草の取り合いが減る"},
+  {"id": "L191", "against": "なし", "agree": true, "reason": "多すぎるヤギを季節のはじめに肉にするのは、やせていなくなるより良い"},
+  {"id": "L177", "against": "なし", "agree": true, "reason": "刈った草の種を土器に入れれば、虫やネズミに食べられにくい"},
+  {"id": "L161", "against": "なし", "agree": true, "reason": "刈り入れを毎夕 60 つかみまでにすれば、みんなが無理なく刈れる"},
+  {"id": "L183", "against": "なし", "agree": true, "reason": "前に借りた草の種が返されるまで貸すのをやめれば、貸し借りがこじれない"}
+ ],
+ "year_name": "子が生まれ、草が足りぬ年",
+ "feeling": "畑の実りはたくさんあるけど、ヤギが増えすぎて草が心配。石の鎌で夏の刈り入れを早く終わらせたい。"}
