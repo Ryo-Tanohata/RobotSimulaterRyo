@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "村の蓄えが空で、ひどく空腹の人がたくさんいるね。わたしは北川12へ、タユといっしょに魚と芋を探しに行くよ。取れた分は、その夜のうちに蓄えへ入れて、空腹の人から先に分けよう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["タユ"], "why": "蓄えが空で、ロワ7に食べ物を届けないといけない。北川12は冬に魚と芋が取れるかもしれないと聞いたので、二人組で確かめて夜に報告したい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": true, "demand": null,
+ "knowledge": [{"op": "add", "text": "冬の北川12は、二人組で行けば魚と芋が取れるかどうか確かめられる。今回確かめに行く", "because": [461423], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L172", "against": null, "agree": true, "reason": "封を割った人が名乗り出れば、取った量が分かって、もめごとが減るから"},
+   {"id": "L193", "against": null, "agree": true, "reason": "蓄えから取る量を、入れた量までにすれば、取り合いが減るから"},
+   {"id": "L195", "against": null, "agree": true, "reason": "取った食べ物は夜のうちに蓄えへ入れて、空腹の人から分けるのが急ぎだから"},
+   {"id": "L196", "against": null, "agree": true, "reason": "刈った草の種を半分は蓄えへ入れると、空腹の人が待たずに済むから"},
+   {"id": "L197", "against": null, "agree": true, "reason": "取った日の夜に半分を蓄えへ入れると、空腹の人に早く届くから"},
+   {"id": "L198", "against": null, "agree": true, "reason": "南の川の木の実と魚をその日のうちに蓄えへ入れると、空腹の人が先に分けてもらえるから"}],
+ "feeling": "おなかが空いてつらいけど、ロワ7のために北川12へ行ってくる。"}

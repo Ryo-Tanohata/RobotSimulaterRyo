@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えは空で、わたしの家にも食べ物がない。北川12を二人で見に行こう。ロワ、いっしょに来てくれる?"}],
+"job": {"activity": "採集", "place": "北川12", "with": ["ロワ"], "why": "北川12はまだ試していない。冬に二人で行けば、魚と芋があるか分かる。食べ物は採集で探すしかない。"},
+"pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+"feast": false, "leader": "なし", "seal_store": false, "demand": null,
+"knowledge": [{"op": "add", "text": "南川12はキャンプから近く、一人で採集に行ってもよい。林へ行くときは二人以上で行く", "because": [461402], "confidence": 0.6}],
+"proposal": null,
+"votes": [
+{"id": "L188", "against": null, "agree": true, "reason": "南川12は近いので、一人で行けるのは助かる。"},
+{"id": "L179", "against": null, "agree": true, "reason": "北丘12は冬に何も見つからなかった。先に北川12を二人で見るのがよい。"},
+{"id": "L195", "against": null, "agree": true, "reason": "取った食べ物を夜のうちに入れ、空腹の人から先に分けるのは正しい。"},
+{"id": "L197", "against": null, "agree": true, "reason": "半分を蓄えに入れ、空腹の人に先に分けるなら、みんな生きられる。"},
+{"id": "L196", "against": "刈った人の取り分が、畑を持つ家だけ減る。畑のない家には何も入らない。", "agree": false, "reason": "今は刈る草がない。取り分を決める前に、畑の持ち主の話を聞きたい。"}],
+"feeling": "おなかがひどく空いて、手が震える。でも北川12に行くしかない。"}

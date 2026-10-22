@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えが空になったから、冬の川で魚と芋を探しに行くよ。二人組で北川12へ行って、見つけた量と見つからなかったらその場所を夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ラニ2"], "why": "蓄えが空で、ひどく空腹の人も出ている。冬の林は木の実がないので、北川12で魚と芋が取れるか二人で確かめたい (L179、L194)"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L179", "against": "なし", "agree": true, "reason": "北丘12は冬に何も見つからなかったので、北川12を先に試すのがよい"},
+  {"id": "L194", "against": "なし", "agree": true, "reason": "蓄えが空のあいだは二人組で探しに行けば、途中で倒れる人が減る"},
+  {"id": "L195", "against": "なし", "agree": true, "reason": "取った食べ物を夜のうちに蓄えへ入れ、空腹の人から先に分ければ、みんなが助かる"},
+  {"id": "L197", "against": "なし", "agree": true, "reason": "半分を蓄えに入れれば、次の人の分も残る"},
+  {"id": "L159", "against": "なし", "agree": true, "reason": "魚は取った日のうちに食べるか燻して保存すれば、腐らせずに済む"},
+  {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りない今、ほかの村からヤギを受けとらないのは正しい"}
+ ],
+ "feeling": "蓄えが空で心配だけど、北川12で何か見つかるといいな。みんなで助け合おう。"}
