@@ -1,0 +1,32 @@
+{"say": [{"to": "みんな", "text": "蓄えが空になって、ひどくおなかがすいている人がいる。今夜から、刈った草の種は、その日のうちに土器へ入れよう。夏の畑は夕方に刈り切ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["リオ2"], "why": "実った畑は夏のうちに刈らないと落ちてしまうから。今いちばん食べ物になるのはこれ"}, "family": {"ソワ2": {"activity": "畑仕事", "place": "camp", "why": "川辺の家の畑を一緒に刈るため"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "南林12", "with": [], "why": "秋は木の実がなるので、南林12で木の実を集めて、冬の前に蓄えをつくる。林には一人で行かない"}, "family": {"ソワ2": {"activity": "採集", "place": "南林12", "why": "二人組で林へ行くため"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ラタ2"], "why": "冬は木の実も草の種も実らないので、北川12の魚と芋を二人組で確かめる"}, "family": {"ソワ2": {"activity": "採集", "place": "北川12", "why": "北川12で二人組になるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意なので、春から毎日少しずつ作り、草の種を虫やネズミから守る"}, "family": {"ソワ2": {"activity": "土器づくり", "place": "camp", "why": "土器づくりを手伝うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M156": "ゆるす", "M157": "ゆるす", "M158": "ゆるす", "M159": "ゆるす", "M160": "ゆるす", "M161": "ゆるす", "M162": "ゆるす", "M163": "ゆるす", "M164": "ゆるす", "M165": "ゆるす"},
+ "judge_rule": "ゆるす",
+ "feast": [],
+ "leader": "なし",
+ "trade_rule": {"交換": "村", "貸して": false, "max": 500, "not": [], "利子": 0},
+ "demand": null,
+ "knowledge": [
+  {"op": "add", "text": "村の蓄えが空になり、ひどく空腹の人が出た。畑の刈り入れと土器づくりが、食べ物を守る道になる。", "because": [409913], "confidence": 0.9},
+  {"op": "add", "text": "北川12で魚と芋が取れるかは、冬に二人組で確かめる必要がある。", "because": [409908], "confidence": 0.6}
+ ],
+ "proposal": {"text": "蓄えが空のあいだは、刈った草の種を半分ずつ、その日のうちに村の蓄えへ入れ、残りは刈った人が家の倉に入れずに持とう。", "because": [409909, 409922], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜に離れないのは、ザガから身を守るため"},
+  {"id": "L3", "against": "", "agree": true, "reason": "二人以上で行けば助け合える"},
+  {"id": "L143", "against": "", "agree": true, "reason": "林で一人になるとザガに襲われるかもしれない"},
+  {"id": "L172", "against": "", "agree": true, "reason": "名乗り出れば、封を割った人を責めずに済む"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの世話をする人がいないと、ヤギがいなくなるから"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると困る"},
+  {"id": "L193", "against": "", "agree": true, "reason": "蓄えから多く取る家が出ないように、入れた量を超えない決まりは大事"},
+  {"id": "L184", "against": "", "agree": true, "reason": "貸した草の種が返ってこないと、村の蓄えが減るから"}
+ ],
+ "year_name": "蓄えが空になった年",
+ "feeling": "蓄えが空になって、おなかをすかせた人を見るのはつらい。畑を刈って、土器に入れて、少しずつ食べ物を守りたい。"}
