@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えが尽きてしまったね。わたしは近くの南の川へ行って、食べられるものを探してくるよ。見つけた量は夜にちゃんと言うね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "南川12は近くて、一人で行ってよいと決まっている。今は食べ物がいちばん必要だから。"},
+ "pick": 0,
+ "plant": 0,
+ "harvest": 0,
+ "eat_goat": 0,
+ "keep": false,
+ "feast": false,
+ "leader": null,
+ "seal_store": false,
+ "demand": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えが尽きると、ひどく空腹の人が出て、集まりをやり直すことになる", "because": [407612], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L188", "against": "", "agree": true, "reason": "南川12は近いので、一人で採集に行ってよいのは助かる"},
+  {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草より多いと、世話も草も足りなくなるから"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると困るから"}
+ ],
+ "feeling": "おなかがすいて力が出ないけど、川でなにか見つけたい。"}

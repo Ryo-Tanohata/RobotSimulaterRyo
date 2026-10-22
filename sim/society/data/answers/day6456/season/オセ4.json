@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "おなかがすいた。春は木の実がないから、南の川へ採集に行こう。いっしょに行く人は声をかけて。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ホタ"], "why": "南の川では前の季節に木の実 40 つかみが見つかった。キャンプから近く、食べ物を取りに行ける"},
+ "pick": 0,
+ "plant": 0,
+ "harvest": 0,
+ "eat_goat": 0,
+ "family": {"ハソ4": {"activity": "採集", "place": "南川12", "why": "家族の食べ物を取りに行くため"}},
+ "keep": false,
+ "feast": false,
+ "leader": null,
+ "seal_store": false,
+ "demand": null,
+ "knowledge": [{"op": "add", "text": "春は、キャンプの木から木の実は取れない。木の実は夏と秋に実る", "because": [], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "夜はザガが出るので、夜は皆でキャンプにいたい"},
+  {"id": "L121", "against": null, "agree": true, "reason": "採集は二人以上で行けば、けがや事故のときに助け合える"},
+  {"id": "L170", "against": null, "agree": true, "reason": "草で養えない分のヤギを春のうちに肉にすれば、草の取り合いが減る"},
+  {"id": "L175", "against": null, "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを捕まえないほうがよい"}
+ ],
+ "feeling": "おなかがすいているけど、南の川へ行けば何か見つかるはず。"}

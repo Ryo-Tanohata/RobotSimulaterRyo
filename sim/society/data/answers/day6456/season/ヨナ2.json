@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "村の蓄えが尽きてしまった。春のあいだに、林で草の実や食べ物を探して、村に持って帰ろう。林へは二人で行こう。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ラタ2"], "why": "村の蓄えが尽きたので、食べ物を探して村に持ち帰りたい。私は採集が得意で、林は二人以上で行く決まりだから、ラタ2と組む。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えが尽き、ひどく空腹の人が出た。春の採集で食べ物を探す必要がある", "because": [407612], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るので、キャンプから離れないほうがよい"}, {"id": "L143", "against": "", "agree": true, "reason": "林は一人だと危ないので、二人以上で行くのがよい"}, {"id": "L193", "against": "", "agree": true, "reason": "蓄えから取る量を、入れた量までにするのは公平でよい"}],
+ "feeling": "蓄えが空っぽで、みんなの腹が心配だ。自分の得意な採集で、少しでも食べ物を見つけたい。"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "春のあいだは、育っている畑の草取りを手伝おう。夏に刈る分が増えるように、畑を見ていこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ラタ2", "アル2"], "why": "畑の草取りをしないと、夏の実りが減ってしまうから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラタ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを続けたいから"}, "アル2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝いたいから"}, "ムイ": {"activity": "畑仕事", "place": "camp", "why": "家族と同じ畑で働くから"}, "ソナ2": {"activity": "畑仕事", "place": "camp", "why": "子のキオ8のそばにいられるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "ヤギが今 196 頭いて、草で養えるのは約 140 頭なので、草が足りず、ヤギが減りやすい", "because": [407615], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると、草の取り合いになるから"}, {"id": "L175", "against": "", "agree": true, "reason": "ヤギが多すぎると草が足りず、ヤギがいなくなったりやせたりするから"}, {"id": "L176", "against": "", "agree": true, "reason": "草を増やすかヤギを減らすか、秋の集まりで決めるのがよいと思うから"}, {"id": "L193", "against": "", "agree": true, "reason": "村の蓄えから取る量を、入れた量までにすれば、もめごとが減ると思うから"}],
+ "feeling": "畑の草が気になる。ヤギが多すぎて心配だけど、みんなで決めれば大丈夫だと思う。"}

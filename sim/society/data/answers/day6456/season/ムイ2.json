@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "おなかがすいて、もう力が出ない。今日は近くの南の川へ一人で行って、魚か芋を探してくる。見つけたら夜に話すね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "おなかがひどく空いていて、食べ物を見つけないと危ない。南の川は近くて、一人で行ってもよいと決まっている。採集は得意だから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L188", "against": "", "agree": true, "reason": "南の川は近いので、一人で行ってよい。林へは二人で行く"},
+  {"id": "L124", "against": "", "agree": true, "reason": "一人での採集は、近くの川や草原だけにすればよい"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのだから、ほかの村からヤギを受けとらないのは正しい"},
+  {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを捕まえないほうがよい"}
+ ],
+ "feeling": "おなかが空いて不安。でも川へ行けば何か見つかるかもしれない"}
+</content>
