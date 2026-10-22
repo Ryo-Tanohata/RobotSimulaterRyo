@@ -1,0 +1,36 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑の草を刈り切ろう。刈り残すと夏の終わりに落ちてしまう。木の実も毎夕みんなで分けよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ハソ4", "ヒセ4", "ロワ4"], "why": "実った畑の草は夏のうちに刈らないと落ちるので、刈り入れを急ぎたい。"},
+         "family": {"ハソ4": {"activity": "畑仕事", "place": "camp", "why": "家族で一緒に刈り入れをする。"}},
+         "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "種まき", "place": "camp", "with": ["ハソ4", "ヒセ4"], "why": "秋にまいた草の種だけが次の夏に実るので、まき手を増やしたい。"},
+         "family": {"ハソ4": {"activity": "種まき", "place": "camp", "why": "家族で畑にまく。"}},
+         "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "石の鎌を作れば、次の夏の畑の刈り入れが2倍になる。"},
+         "family": {"ハソ4": {"activity": "道具づくり", "place": "camp", "why": "家族の鎌を作る。"}},
+         "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春はヤギの乳がとれ、世話がないとヤギがいなくなるため。"},
+         "family": {"ハソ4": {"activity": "ヤギの世話", "place": "camp", "why": "乳をとるため。"}},
+         "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5}},
+ "keep": true,
+ "seal_store": [],
+ "accept_rule": {"よその群れ": false, "ほかの村から": false},
+ "judge_rule": null,
+ "feast": ["秋"],
+ "leader": "なし",
+ "trade_rule": {"交換": false, "貸して": false, "max": null, "not": [], "利子": 0},
+ "demand": null,
+ "knowledge": [
+  {"op": "add", "text": "草が足りず、ヤギが草の数より多いと、やせていなくなる", "because": [376201], "confidence": 0.8},
+  {"op": "add", "text": "石の鎌で畑を刈ると、刈る量が2倍になる", "because": [], "confidence": 0.8}
+ ],
+ "proposal": {"text": "夏のうちに、実った畑の草をみんなで毎夕刈り切ろう。刈り残しは夏の終わりに落ちてしまう。", "because": [376182], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L190", "against": null, "agree": true, "reason": "草で養えない分のヤギを肉にして蓄えに入れれば、草の取り合いが減る。"},
+  {"id": "L191", "against": null, "agree": true, "reason": "草で養えるヤギより多い分を肉にすれば、ヤギがやせていなくなるのを防げる。"},
+  {"id": "L0", "against": null, "agree": true, "reason": "夜はザガが出るので、みんなで守るのがよい。"},
+  {"id": "L3", "against": null, "agree": true, "reason": "採集や狩りは複数人で行けば助け合える。"},
+  {"id": "L16", "against": null, "agree": true, "reason": "疲れたままだと、けがをしやすくなる。"}
+ ],
+ "year_name": "ヤギがやせた年",
+ "feeling": "草が足りず、ヤギが多いのが気がかり。畑を刈り切って、みんなで乗りこえたい。"}

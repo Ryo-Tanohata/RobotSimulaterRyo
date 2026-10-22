@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "畑の草の種がたくさん実った。夏のうちに手の空いた人は、毎夕 60 つかみまで刈ろう。草取りも交代で忘れずに。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈り切らないと落ちてしまうので、刈り入れと草取りをする"}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "種まき", "place": "camp", "with": [], "why": "秋にまいた草の種が次の夏に実るので、蓄えの種を畑にまく"}, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["クラ"], "why": "冬は北川12 で魚と芋が取れるかもしれないと聞いたので、二人組で確かめる"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "住まいを建てる", "place": "camp", "with": [], "why": "自分の家の住まいがまだ 8 割なので、仕上げて雨の夜に濡れないようにする"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "畑は、まいた草の種の数倍が実る。夏に毎夕 60 つかみずつ刈ると、残りも落とさず刈り切れる", "because": [376182], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L161", "against": "", "agree": true, "reason": "毎夕 60 つかみまで刈れば、畑の実りを落とさずに済む"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話の人を決めれば、世話が足りずに減ることを防げる"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに受けとれば、子ヤギが減るばかりになる"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草で養えない間は、ヤギを増やさない方がよい"},
+  {"id": "L177", "against": "", "agree": true, "reason": "刈った種をその日のうちに土器に入れれば、虫やネズミに食べられない"},
+  {"id": "L187", "against": "", "agree": true, "reason": "記録を毎季節二人が残せば、一人が休んでも途切れない"},
+  {"id": "L188", "against": "", "agree": true, "reason": "近い川へは一人でも行けるので、採集がはかどる"},
+  {"id": "L191", "against": "", "agree": true, "reason": "草で養えない分を肉にして干せば、草不足で消えずに済む"}
+ ],
+ "year_name": "畑の草の種がたくさん実った年",
+ "feeling": "畑がよく実ってほっとした。冬の北川が気になる。"}

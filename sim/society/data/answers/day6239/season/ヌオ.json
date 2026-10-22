@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "夏は畑の草を石の鎌で刈ろう。秋に草の種をまいて、冬は土器を作って種を守ろう。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ニイ", "マロ"], "why": "実った畑を夏のうちに刈らないと草が落ちてしまうから。石の鎌も使える。"}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "種まき", "place": "camp", "with": [], "why": "蓄えの草の種を秋にまくと、次の夏に実る。たくさんまいて畑を増やしたい。"}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れた草の種は虫やネズミに食べられない。冬から作りためて春の種を守りたいから。"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春は子ヤギが生まれ、世話をすると乳がとれる。世話をする人がいないヤギはいなくなるから。"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade_rule": {"交換": false, "貸して": false, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は石の鎌で刈ると、刈り残しが少なくなる。", "because": [376182], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+   {"id": "L191", "against": null, "agree": true, "reason": "草で養える数より多い分のヤギを肉にして干せば、草の取り合いが減るから。"},
+   {"id": "L190", "against": null, "agree": true, "reason": "秋の終わりまでに草で養えないヤギを肉にすれば、草が足りない冬を越せるから。"},
+   {"id": "L187", "against": null, "agree": true, "reason": "記録を続ける人が毎季節いれば、蓄えの出し入れがはっきりして、もめごとが減るから。"},
+   {"id": "L186", "against": null, "agree": true, "reason": "貸した種と返した種を板に残せば、数の覚えちがいがなくなるから。"},
+   {"id": "L175", "against": null, "agree": true, "reason": "ヤギが草で養える数より多いあいだは、ヤギを増やすと草が足りなくなるから。"},
+   {"id": "L171", "against": null, "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとらないのがよいから。"},
+   {"id": "L159", "against": null, "agree": true, "reason": "魚も肉と同じく、腐らないうちに食べるか燻すのがよいから。"},
+   {"id": "L177", "against": null, "agree": true, "reason": "刈った種を土器に入れれば、虫やネズミに食べられずに済むから。"}
+ ],
+ "year_name": "子が生まれ畑が実った年",
+ "feeling": "蓄えの草の種はたくさんあるけれど、ヤギの草が足りないのが気になる。夏の畑を刈るのが楽しみだ。"}
