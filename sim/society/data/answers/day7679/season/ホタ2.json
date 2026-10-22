@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はたっぷり実っている。みんなで毎夕刈って、落ちる前に土器へ入れよう。おれも毎日刈るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ユエ2", "アコ4"], "why": "実った畑を夏のうちに刈り切らないと落ちてしまうから"}, "family": {"ユエ2": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで刈れば早く刈り切れる"}, "アコ4": {"activity": "畑仕事", "place": "camp", "why": "鎌を使って刈り入れを手伝う"}}, "pick": 20, "plant": 5, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": ["ユエ2"], "why": "冬の前に木の実を集めて蓄えを増やすため"}, "family": {"ユエ2": {"activity": "採集", "place": "camp", "why": "採集が得意で食べ物をたくさん集められる"}, "アコ4": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}}, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ユエ2", "アコ4"], "why": "草取りをして夏の実りを増やすため"}, "family": {"ユエ2": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りが増える"}, "アコ4": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りが増える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、草の種を虫やネズミから守れるから"}, "family": {"ユエ2": {"activity": "畑仕事", "place": "camp", "why": "春も草取りを続けて実りを守る"}, "アコ4": {"activity": "畑仕事", "place": "camp", "why": "春も草取りを続けて実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"キサ11": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は実りが多く、鎌を使って毎夕刈れば刈り切れる。刈った種は土器に入れて守る。", "because": [531322], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば夏の実りが増えるから"}],
+ "year_name": "畑が大きく実った年",
+ "feeling": "蓄えも畑も豊かで安心している。みんなで協力して刈り入れを終えたい。"}
