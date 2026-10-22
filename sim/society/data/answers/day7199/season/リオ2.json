@@ -1,0 +1,31 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を毎夕みんなで刈り切ろう。木の実は夕方に一人 40 つかみまで取って、夜に蓄えへ入れよう。冬は北川で魚と芋をさがそう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ラキ5"], "why": "実った畑が夏の終わりに落ちないよう、毎夕刈り切りたい"},
+        "family": {"リオ3": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ラキ5": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "シエ5": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ユエ5": {"activity": "畑仕事", "place": "camp", "why": "子でも刈り入れを半分手伝える"}, "ナセ6": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギのそばで世話をしたい"}},
+        "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": ["リオ3"], "why": "刈った草の種を土器に入れて虫やネズミから守るため。わたしは土器づくりが得意"},
+        "family": {"リオ3": {"activity": "採集", "place": "camp", "why": "木の実を取って蓄えに入れる"}, "ラキ5": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを始めるため"}, "シエ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}, "ユエ5": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}, "ナセ6": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを半分手伝える"}},
+        "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ラキ5"], "why": "冬は木の実も草の種も実らないので、魚と芋を確かめて取る"},
+        "family": {"リオ3": {"activity": "採集", "place": "北川12", "why": "魚と芋を取る"}, "ラキ5": {"activity": "採集", "place": "北川12", "why": "魚と芋を取る"}, "シエ5": {"activity": "採集", "place": "北川12", "why": "魚と芋を取る"}, "ユエ5": {"activity": "ヤギの世話", "place": "camp", "why": "子でも村のヤギの世話を手伝える"}, "ナセ6": {"activity": "ヤギの世話", "place": "camp", "why": "子でも村のヤギの世話を手伝える"}},
+        "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": ["リオ3"], "why": "秋にまいた畑の草取りをして、夏の実りを増やすため"},
+        "family": {"リオ3": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ラキ5": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "シエ5": {"activity": "ヤギの世話", "place": "camp", "why": "春に生まれる子ヤギの世話をする"}, "ユエ5": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギの世話を手伝う"}, "ナセ6": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを半分手伝える"}},
+        "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal_store": ["秋"],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "木の実は夏と秋に実り、キャンプのそばの木から夕方に取れる。取り残しを埋めると木が増える", "because": [483041], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L158", "against": "", "agree": true, "reason": "蓄えの出し入れを板に残せば、もめごとが減るから"},
+  {"id": "L163", "against": "", "agree": true, "reason": "ヤギの数を毎晩数えれば、世話が足りているか分かるから"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの世話を一人ずつ決めて守れば、ヤギが減らないから"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りない今は、ほかの村からヤギを受けとると草の取り合いになるから"},
+  {"id": "L193", "against": "", "agree": true, "reason": "蓄えから取る量を入れた量までにすれば、もめごとにならないから"},
+  {"id": "L197", "against": "", "agree": true, "reason": "取った食べ物を半分入れれば、空腹の人が先に分けてもらえるから"}
+ ],
+ "year_name": "子が多く生まれた年",
+ "feeling": "蓄えが空でも、夏の実りが多いから、みんなで冬をこえられると思う。"}
