@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "おなかがすいて、もう力が入らない。空っぽの人を責めるより、いっしょに食べ物を探しに行こう。わたしは南の川へ行ってくるね。"}, {"to": "セキ", "text": "倉の封を割って食べ物を取ったのは、わたし (ホタ4) です。ごめんなさい。取った分は、見つけたら返すね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "村の蓄えも木の実も空っぽで、食べ物は採集でしか手に入らない。南川12は近くて、一人で行ってよいと決まっている。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M193": "ゆるす", "M194": "ゆるす", "M195": "ゆるす", "M196": "ゆるす", "M197": "ゆるす", "M198": "ゆるす", "M199": "ゆるす", "M200": "ゆるす", "M201": "ゆるす", "M202": "ゆるす", "M203": "ゆるす", "M204": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": true, "demand": null,
+ "knowledge": [{"op": "add", "text": "わたしはひどく空腹のときに、セキの家の倉の封を割って食べ物を取った", "because": [438344], "confidence": 0.9}, {"op": "add", "text": "南の川 (南川12) では、木の実や魚が見つかったという話がある。確かめてはいない", "because": [438482], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L194", "against": null, "agree": true, "reason": "空腹の人も、いっしょに探しに行けるから。"}, {"id": "L195", "against": null, "agree": true, "reason": "取った食べ物を先に空腹の人に分けるのは、だれも死なせないため。"}, {"id": "L197", "against": null, "agree": true, "reason": "半分を蓄えに入れ、空腹の人が先に食べられるなら、みんなが助かる。"}, {"id": "L172", "against": null, "agree": true, "reason": "封を割った人が名乗り出れば、責めずに済む。"}, {"id": "L188", "against": null, "agree": true, "reason": "近い南川12なら、一人でも行けて食べ物を探しやすい。"}, {"id": "L189", "against": null, "agree": true, "reason": "小さい子のそばに大人がいれば、ひとりで困らない。"}, {"id": "L171", "against": null, "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると、みんなが困るから。"}, {"id": "L178", "against": null, "agree": true, "reason": "交換に出た人が戻らなければ、すぐに探しに行けるから。"}, {"id": "L187", "against": null, "agree": true, "reason": "記録をだれかが残せば、蓄えの出し入れがはっきりするから。"}, {"id": "L158", "against": null, "agree": true, "reason": "覚えだけだと量がはっきりせず、もめごとのもとになるから。"}],
+ "feeling": "おなかがすいて頭がぼんやりするけど、南の川で何か見つけて、みんなに分けたい。"}
