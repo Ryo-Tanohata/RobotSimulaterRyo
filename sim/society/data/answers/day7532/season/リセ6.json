@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だ。ヤギが多すぎて草が足りないから、まず何頭かつぶして干し肉にしよう。おれは夏の実りのために畑の草取りをする。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のはじめに畑が実るので、草取りをして実りを減らさないため"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"ヒセ6": {"activity": "採集", "place": "南川12", "why": "キャンプに近い南の川で、魚や芋が見つかるか試すため"}},
+ "keep": false,
+ "judge": {"M316": "ゆるす", "M317": "ゆるす", "M318": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "春は木の実が取れず蓄えも空なので、ヤギを肉にして干し、夏の畑の実りまでしのぐ必要がある。", "because": [518672, 518673], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかがひどくすいている。夏の畑の実りまで、みんなで何とかもちこたえたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "土器はもう十分にあるから、今季は南川で食べ物を探すよ。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["シエ4"], "why": "村の蓄えが空で土器は足りているので、キャンプに近い南川で食べ物を探す"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ4": {"activity": "採集", "place": "南川12", "why": "二人組で近い川へ行き、魚や芋を探すため"}},
+ "keep": true,
+ "judge": {"M316": "ゆるす", "M317": "ゆるす", "M318": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "村の土器は10747個あり十分なので、春は土器づくりより食べ物探しを優先する。", "because": [518648], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "お腹をすかせた人が多くて心配だけれど、まず近くの川を確かめてみる。"}
