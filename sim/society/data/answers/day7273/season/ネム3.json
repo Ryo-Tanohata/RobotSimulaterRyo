@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬の蓄えは空っぽだから、ぼくはヌオ3と東林12へ行くよ。二人で行って、見つけた量は夜に言い合おう。"}],
+"job": {"activity": "採集", "place": "東林12", "with": ["ヌオ3"], "why": "蓄えが空で、東林12は前の季節に木の実が採れた場所だから。二人組で行けば、帰りに何か起きても助け合える。"},
+"pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+"family": {"ヌオ3": {"activity": "採集", "place": "東林12", "why": "ネム3と二人組で行くため。見つけた量を夜に言えば、同じ場所を無駄に試さずに済む。"}},
+"keep": false,
+"judge": {"M264": "ゆるす", "M265": "ゆるす"},
+"feast": false, "leader": null, "seal_store": false, "demand": null,
+"knowledge": [{"op": "add", "text": "北の川では、前に採集しても何も見つからなかった。", "because": [495268], "confidence": 0.7}],
+"proposal": null,
+"votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガがこわいから、キャンプの外には出ない方がいい。"}, {"id": "L194", "against": "", "agree": true, "reason": "蓄えが空のあいだは二人組で探しに行けば、見つけた量と場所を確かめられる。"}, {"id": "L195", "against": "", "agree": true, "reason": "蓄えが空の冬に、取った食べ物を先に空腹の人へ分けられる。"}],
+"feeling": "蓄えが空で腹がへってきた。ヌオ3と東林12で何か見つかるといいが。"}
