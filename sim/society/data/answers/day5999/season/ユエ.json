@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "土器はもう八千個以上あるのに、土器に入っていない草の種がまだ多い。夏のうちに土器に入れる人をふやそう。ヤギは草が足りないので、これ以上ふやさないでほしい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに畑を刈らないと実りが落ちるから。鎌ができるまでは手で刈る"}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは慣れているので、1日に多く作れる。草の種を土器に入れて守りたい"}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は木の実も草の種も実らないので、土器に入れて蓄えを守る"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "鋭い石があるので、夏の刈り入れに使う石の鎌を作っておく"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ナセ7": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M124": "ゆるす", "M126": "ゆるす", "M127": "つぐなう"}, "judge_rule": null, "feast": [], "leader": "なし",
+ "trade_rule": {"交換": false, "貸して": false, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [
+  {"op": "add", "text": "村の土器は八千個以上あるが、土器に入っていない草の種が多く、季節ごとに失われている", "because": [341382], "confidence": 0.7},
+  {"op": "add", "text": "ヤギは草で養える数より多く、草が足りない", "because": [341376], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると、もっと草が足りなくなるから"},
+  {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを増やすべきではないから"},
+  {"id": "L177", "against": "", "agree": true, "reason": "刈った草の種を土器に入れれば、虫やネズミに食べられずに済むから"},
+  {"id": "L182", "against": "", "agree": true, "reason": "夏のうちに木を増やせば、次の夏と秋に実りが増えるから"},
+  {"id": "L187", "against": "", "agree": true, "reason": "蓄えの出し入れを残す人が二人いれば、記録が途切れないから"},
+  {"id": "L190", "against": "", "agree": true, "reason": "草で養えない分のヤギを秋の終わりに肉にすれば、冬の草が足りる"}],
+ "year_name": "土器がたくさん焼けた年",
+ "feeling": "土器はたくさんあるのに、中に入れていない草の種が多くて落ち着かない。ヤギも増えすぎている。"}

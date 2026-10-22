@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "夏は畑の草をいっしょに刈ろう。木の実は夕方に少しだけ取って、夜は皆でそろって休もう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうので、毎夕刈り入れをする"}, "family": {"ヒセ4": {"activity": "畑仕事", "place": "camp", "why": "夏の畑を刈り切るため"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "種まき", "place": "camp", "with": [], "why": "蓄えの草の種を畑にまいて、次の夏に実らせるため"}, "family": {"ヒセ4": {"activity": "種まき", "place": "camp", "why": "畑にまく草の種を運ぶため"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ニイ"], "why": "北丘12では何も見つからなかったので、北川12で魚と芋が取れるか二人で確かめる"}, "family": {"ヒセ4": {"activity": "採集", "place": "北川12", "why": "北川12の魚と芋を二人組で確かめるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": ["サエ3"], "why": "土器に草の種を入れて虫やネズミから守るため、春から毎日少しずつ作る"}, "family": {"ヒセ4": {"activity": "土器づくり", "place": "camp", "why": "土器を作って草の種を守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal_store": [],
+ "accept": {"ナセ7": true}, "accept_rule": {"よその群れ": true, "ほかの村から": null},
+ "judge": {"M124": "ゆるす", "M126": "ゆるす", "M127": "つぐなう"}, "judge_rule": "ゆるす", "feast": [], "leader": "なし",
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "北川12では、魚が泳いでいるのを見た。割れると鋭くなる石もある", "because": [338201, 338370], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギが減りにくいから"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとらないのがよいから"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草で養えない数のヤギを増やさないため"}
+ ],
+ "year_name": "オセ7の家が村を出た年",
+ "feeling": "草が少なくなってきて不安だが、みんなで畑を刈れば何とかなると思う。"}

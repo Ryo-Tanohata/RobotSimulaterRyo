@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈り切りたい。石の鎌を先に作っておくから、刈るのを手伝える人は声をかけてね。"}],
+ "year": {
+  "夏": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れを鎌で一気に進めたい。鎌は二日ほどでできるので、先に作りためておく"}, "family": {"ミラ3": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈り切るため。手でも刈れる"}, "カイ3": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに畑を刈り切るため。鎌ができるまで手伝う"}, "ナセ": {"activity": "採集", "place": "camp", "why": "子のシエ7のそばにいられるから。キャンプの木の実を取る"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "種まき", "place": "camp", "with": [], "why": "蓄えの草の種を畑にまく。まいた分は数倍になって夏に実る"}, "family": {"ミラ3": {"activity": "採集", "place": "camp", "why": "キャンプの木の実を取り、子を見るナセのそばにいる"}, "カイ3": {"activity": "種まき", "place": "camp", "why": "畑にまく仕事を手伝う。秋の畑は草取りを交代で見る"}, "ナセ": {"activity": "採集", "place": "camp", "why": "子のシエ7のそばにいられるから"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えの草の種を土器に入れて守る。冬のうちから作りはじめる"}, "family": {"ミラ3": {"activity": "探索", "place": "北川12", "why": "冬に魚と芋が取れるか、二人組で確かめて夜に報告するため"}, "カイ3": {"activity": "探索", "place": "北川12", "why": "ミラ3と二人組で北川12を確かめるため"}, "ナセ": {"activity": "採集", "place": "camp", "why": "子のシエ7のそばにいられるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れに備えて、石の鎌を作りためる"}, "family": {"ミラ3": {"activity": "採集", "place": "南林12", "why": "春の木の実と草を取りに、二人組で行く"}, "カイ3": {"activity": "採集", "place": "南林12", "why": "ミラ3と二人組で行く。林は二人以上で行く決まり"}, "ナセ": {"activity": "採集", "place": "camp", "why": "子のシエ7のそばにいられるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": true, "seal_store": ["冬"],
+ "accept": {"ナセ7": true}, "accept_rule": {"よその群れ": true, "ほかの村から": true},
+ "judge": {"M124": "ゆるす", "M126": "ゆるす", "M127": "つぐなう"}, "judge_rule": null, "feast": [], "leader": "なし",
+ "trade_rule": {"交換": "村", "貸して": false, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "北川12 では冬に魚と芋が取れるかもしれない。二人組で確かめたい", "because": [341358], "confidence": 0.6}, {"op": "add", "text": "夏に刈り切らなかった畑の草の種は落ちてしまう。石の鎌を先に作れば、刈る量が増える", "because": [341358], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜のザガから皆を守るため"}, {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとらない"}, {"id": "L175", "against": "なし", "agree": true, "reason": "ヤギが草より多いあいだは、新しく捕まえない"}, {"id": "L169", "against": "なし", "agree": true, "reason": "草で養えない分は肉にして干す"}, {"id": "L182", "against": "なし", "agree": true, "reason": "夏に木の実を埋めて木を増やすのは良い"}, {"id": "L190", "against": "なし", "agree": true, "reason": "草で養えないヤギを秋のうちに肉にする"}],
+ "year_name": "畑が実って鎌が増えた年",
+ "feeling": "畑を夏のうちに刈り切れるか少し心配だけど、鎌があれば安心できる。"}

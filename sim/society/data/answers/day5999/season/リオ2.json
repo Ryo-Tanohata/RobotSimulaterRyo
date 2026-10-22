@@ -1,0 +1,27 @@
+{"say": [{"to": "みんな", "text": "夏のうちに石の鎌を作っておこう。刈り入れの初めから鎌を使えば、畑の刈り残しが減るから。鋭い石は、わたしが持っているぶんを分けるよ。"}, {"to": "ヒセ5", "text": "いっしょに鎌を作ろう。柄の木は、わたしが選ぶね。"}],
+ "year": {
+  "夏": {"job": {"activity": "道具づくり", "place": "camp", "with": ["ヒセ5"], "why": "夏の刈り入れの前に石の鎌を作りためて、畑を刈り切りたいから"}, "family": {"リオ3": {"activity": "採集", "place": "camp", "why": "木の実を取って、家の食べ物を増やすため"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "村の草の種を土器に入れて、虫やネズミから守るため"}, "family": {"リオ3": {"activity": "採集", "place": "camp", "why": "秋の木の実を集めて、冬の前に蓄えるため"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ヒセ5"], "why": "冬は北丘12より先に北川12を試すという決まりに従い、魚と芋を確かめたいから"}, "family": {"リオ3": {"activity": "採集", "place": "北川12", "why": "魚と芋を家に持ち帰るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "毎晩の集まりで決めた世話の当番を、わたしも続けるため"}, "family": {"リオ3": {"activity": "採集", "place": "camp", "why": "春の木の実を探すため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": true, "seal_store": ["冬"],
+ "accept": {"ナセ7": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M124": "ゆるす", "M126": "ゆるす", "M127": "つぐなう"}, "judge_rule": null, "feast": [], "leader": "なし",
+ "trade_rule": {"交換": "村", "貸して": false, "max": 1000, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "石の鎌は、刈り入れの初めから使うと刈り残しが減る。鎌を作る人は、畑が実る前に作っておくとよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを一つにまとめれば、毎夕だれが何をするか分かりやすいから"},
+  {"id": "L156", "against": "", "agree": true, "reason": "ヤギの世話をする人がいないと、ヤギがいなくなってしまうから"},
+  {"id": "L157", "against": "", "agree": true, "reason": "雨の夜に外で濡れると疲れがとれないから、住まいのない家は春に建てたい"},
+  {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりせず、もめごとのもとになるから"},
+  {"id": "L161", "against": "", "agree": true, "reason": "刈り入れは手の空いた大人が毎夕少しずつ刈るのがよいと思うから"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギ50頭ごとに一人なら、世話が足りているか分かりやすいから"},
+  {"id": "L171", "against": "", "agree": true, "reason": "ヤギが増えると草の取り合いになって、子ヤギが減るから"},
+  {"id": "L175", "against": "", "agree": true, "reason": "今はヤギが草より多いので、野生のヤギを捕まえるのは一度やめたほうがよい"},
+  {"id": "L184", "against": "", "agree": true, "reason": "前に貸した草の種が返されるまで新しく貸さなければ、村の蓄えが減りすぎないから"},
+  {"id": "L190", "against": "", "agree": true, "reason": "草で養えないヤギは、秋の終わりに肉にして干しておけば無駄にならないから"}
+ ],
+ "year_name": "オセ7の家が村を出た年",
+ "feeling": "畑の草の種はたくさんあるけど、ヤギと鎌のことが気がかり。家の子たちの冬が心配だけど、春にはヤギの世話をがんばる。"}

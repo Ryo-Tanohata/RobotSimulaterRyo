@@ -1,0 +1,33 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだ刈れる分が多く残っているよ。毎夕、手の空いた人は少しずつ刈ろう。夏のうちに刈らないと落ちてしまうから。"}, {"to": "ニイ2", "text": "冬は北川12 へいっしょに行こう。二人で魚と芋がとれるか確かめて、夜に報告し合おう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の畑を毎夕 60 つかみずつ刈り切るため。落ちる前に刈りたい。"}, "family": {"ヒセ3": {"activity": "畑仕事", "place": "camp", "why": "家族で畑を刈るため。"}}, "pick": 20, "plant": 1, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "石の鎌を作って、春と夏の畑刈りにそなえるため。道具づくりは得意。"}, "family": {"ヒセ3": {"activity": "道具づくり", "place": "camp", "why": "家族の鎌をそろえるため。"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ニイ2"], "why": "北川12 で魚と芋がとれるか、二人組で確かめるため。北丘12 は冬に何も見つからなかった。"}, "family": {"ヒセ3": {"activity": "採集", "place": "北川12", "why": "二人組で行って、見つけた量を夜に報告するため。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": ["ホミ"], "why": "土器に草の種を入れて虫やネズミから守るため。春から毎日少しずつ作る。"}, "family": {"ヒセ3": {"activity": "土器づくり", "place": "camp", "why": "家族の草の種を土器に入れて守るため。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false,
+ "seal_store": ["秋", "冬"],
+ "accept": {"ナセ7": true, "ホタ7": true},
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M124": "ゆるす", "M126": "ゆるす", "M127": "つぐなう"},
+ "judge_rule": null,
+ "feast": ["秋"],
+ "leader": "なし",
+ "trade_rule": {"交換": "村", "貸して": false, "max": 1000, "not": [], "利子": 0},
+ "demand": null,
+ "knowledge": [{"op": "add", "text": "土器に入れた草の種は、虫やネズミにほとんど食べられない。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜のザガから守るため、キャンプから離れないのは大事。"},
+  {"id": "L3", "against": "", "agree": true, "reason": "二人以上で助け合うのは安全のため。"},
+  {"id": "L30", "against": "肉を保存できないと決めているが、L159 や L170 では干し肉を蓄えに入れると決めており矛盾する。", "agree": false, "reason": "干し肉の保存を認める決まりにそろえたい。"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の仕事を一つにまとめるのは分かりやすい。"},
+  {"id": "L161", "against": "", "agree": true, "reason": "刈る量を毎夕 60 つかみまでにするのは、落とさず刈るため。"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めると、ヤギが減りにくい。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとらないのがよい。"},
+  {"id": "L172", "against": "", "agree": true, "reason": "封を割ったら名乗り出る決まりは、もめごとを減らす。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草で養える数より多いあいだは、野生のヤギを捕まえないほうがよい。"},
+  {"id": "L177", "against": "", "agree": true, "reason": "刈った草の種は、その日のうちに土器に入れたい。"}
+ ],
+ "year_name": "よそから二人が来た年",
+ "feeling": "ナセ7とホタ7が来てくれて、村が広がるのはうれしい。草が足りなくなる前に、みんなで畑と土器を守りたい。"}

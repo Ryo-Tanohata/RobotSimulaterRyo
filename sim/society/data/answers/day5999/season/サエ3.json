@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のあいだに畑の草を刈り切ろう。鎌は春のうちに作りためておくね。"}, {"to": "ワユ", "text": "いっしょに畑を刈ろう。ロワ2とセオ2も手伝ってね。"}],
+"year": {
+"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の畑は刈らないと落ちてしまう。鎌を使えば刈る量が2倍になるので、刈り切りたい"}, "family": {"ワユ": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れを手伝うため"}, "ロワ2": {"activity": "畑仕事", "place": "camp", "why": "14歳の手伝いで刈り入れを支えるため"}, "セオ2": {"activity": "畑仕事", "place": "camp", "why": "13歳の手伝いで刈り入れを支えるため"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+"秋": {"job": {"activity": "種まき", "place": "camp", "with": [], "why": "蓄えの草の種を畑にまくと、次の夏に実るから"}, "family": {"ワユ": {"activity": "採集", "place": "camp", "why": "秋の木の実を集めるため"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+"冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬でも草の種を土器に入れれば、虫やネズミから守れるから"}, "family": {"ワユ": {"activity": "採集", "place": "北川12", "why": "冬に北川12で魚と芋が取れるか確かめるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+"春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れの前に石の鎌を作りためておくため"}, "family": {"ワユ": {"activity": "ヤギの世話", "place": "camp", "why": "春に子ヤギが生まれるので、世話をして乳をとるため"}, "セオ2": {"activity": "ヤギの世話", "place": "camp", "why": "13歳でヤギの世話を手伝うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+"keep": true, "seal_store": [],
+"accept": {"ナセ7": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+"judge": {"M124": "つぐなう", "M126": "つぐなう", "M127": "つぐなう"}, "judge_rule": null, "feast": [], "leader": null,
+"trade_rule": {"交換": "村", "貸して": false, "max": 300, "not": [], "利子": 0}, "demand": null,
+"knowledge": [{"op": "add", "text": "鎌は石の刃を木の柄にはめて作れる。夏の刈り入れの前に作りためると、刈る量が2倍になる", "because": [341358], "confidence": 0.9}],
+"proposal": null,
+"votes": [{"id": "L3", "agree": true, "against": "", "reason": "複数人で行くと助け合えるから"}, {"id": "L16", "agree": true, "against": "", "reason": "疲れたままだと、次の日に働けなくなるから"}, {"id": "L167", "agree": true, "against": "", "reason": "世話が足りないとヤギが減るから"}, {"id": "L171", "agree": true, "against": "", "reason": "草が足りないので、ほかの村からヤギを受けとらない方がよいから"}, {"id": "L175", "agree": true, "against": "", "reason": "ヤギが草で養える数より多いので、今は捕まえない方がよいから"}, {"id": "L180", "agree": true, "against": "", "reason": "黒曜石の刃の鎌は割れにくいから"}, {"id": "L181", "agree": true, "against": "", "reason": "住まいが足りず、雨の夜に外で濡れる人をなくしたいから"}],
+"year_name": "ヤギが減り、家が村を出た年",
+"feeling": "畑の刈り残しが心配だけど、鎌と土器で守っていけそう。"}
