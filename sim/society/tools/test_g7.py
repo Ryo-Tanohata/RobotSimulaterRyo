@@ -954,9 +954,9 @@ class F_Year(unittest.TestCase):
         st, g7 = to_year_end(self.st()), self.g7
         e2, G = st["era2"], st["era2"]["g7"]
         ans = self.answers(st, list(g7.SEASONS), judge_rule="ゆるす", trade_rule={"交換": "村", "貸して": "村", "max": 5000, "not": ["N2"]},
-                           accept_rule={"よその群れ": True}, feast=["冬"], seal_store=["秋"])
+                           accept_rule={"よその群れ": True}, feast=["春"], seal_store=["冬"])
         g7.apply_year(st, ans)
-        st["day"] += 30  # 夏の終わり (秋のはじめは答えのない季節)
+        st["day"] += 60  # 秋の終わり (冬のはじめは答えのない季節。秋は毎年集まる)
         G["ask"] = g7.ask_next(st)
         self.assertIsNone(G["ask"])
         homes = era2._homes(st)
@@ -989,7 +989,7 @@ class F_Year(unittest.TestCase):
         for p in era2.adults(st):
             if p["name"] in feel:
                 self.assertEqual((p.get("feeling"), p.get("feeling_day")), feel[p["name"]], "答えのない季節は、気持ちを変えない")
-        self.assertEqual(e2["g6"]["store_sealed"], e2["step_day"], "封をする季節 (秋)")
+        self.assertEqual(e2["g6"]["store_sealed"], e2["step_day"], "封をする季節 (冬)")
         # 同じ state からは同じ結果 (乱数は今のまま)
         a, b = to_year_end(self.st()), to_year_end(self.st())
         for x in (a, b):
@@ -1034,7 +1034,12 @@ class F_Year(unittest.TestCase):
         st["day"] += 30
         self.assertEqual(g7.ask_next(st), "寄る", "寄る年は 4 季節とも")
         G["zoom"] = None
-        self.assertIsNone(g7.ask_next(st))
+        self.assertEqual(g7.ask_next(st), "秋", "寄らない年も、秋は集まる")
+        st["day"] += 30
+        self.assertIsNone(g7.ask_next(st), "冬は集まらない")
+        st["day"] += 30
+        self.assertIsNone(g7.ask_next(st), "春は集まらない")
+        st["day"] -= 60
         world.G7_PARTS["year"] = False
         try:
             self.assertEqual(g7.ask_next(st), "寄る")
@@ -1049,6 +1054,72 @@ class F_Year(unittest.TestCase):
         self.assertEqual(len(st["events"]), n + 1, "出来事は一度だけ")
         st["day"] = (st["day"] // era2.SEASON_DAYS + 1) * era2.SEASON_DAYS - 1
         self.assertEqual(g7.ask_next(st), "寄る", "その年の残りの季節も寄る")
+
+    def test_autumn(self):
+        """秋の集まり (2026-10-22 本人の決め): 秋は毎年、季節のお題で大人 (答える人) みんなに聞く。答えはその秋だけ。冬と春は年の予定で進む"""
+        st, g7 = to_year_end(self.st()), self.g7
+        G = st["era2"]["g7"]
+        G["zoom"] = None
+        y = {s: {"job": {"activity": "採集", "place": "camp"}, "pick": 0, "plant": 0, "harvest": 0} for s in g7.SEASONS}
+        y["秋"]["sow"] = 700
+        y["冬"]["job"] = {"activity": "ヤギの世話", "place": "camp"}
+        g7.apply_year(st, {n: json.dumps({"say": [], "year": y, "feeling": "試し"}, ensure_ascii=False) for n in era2.answerers(st)})
+        D0 = st["day"]
+        self.assertEqual(G["answer_day"], D0)
+        st["day"] += 30  # 夏の終わり: 次は秋
+        self.assertEqual(g7.ask_next(st), "秋")
+        who = era2.answerers(st)
+        self.assertEqual(set(who), set(g7.answerers(st)), "答える人は年の集まりと同じ (見本の家の代表とまとめ役)")
+        self.assertTrue(who)
+        p = next(q for q in era2.adults(st) if q["name"] == who[0])
+        t = era2.season_prompt(st, p, g7.since(st))
+        self.assertIn("秋は毎年、季節のはじめに集まって、畑と種を見てから、この秋の仕事とまく量を決め直す (冬と春は、年の集まりで決めた予定で進む)", t)
+        self.assertIn("\n- 実りと畑仕事: まいた畑の実りは、秋・冬・春の畑仕事 (草取り) で増える。", t)
+        self.assertIn("草取りがなければ実りは 3 割", t)
+        self.assertIn("残りはまく人の家の倉の草の種からまかれる", t)
+        self.assertIn("季節のはじめの集まり", g7.meeting_word(st))
+        self.assertIn('"sow": 0, ', t, "秋のお題は sow を書ける")
+        self.assertNotIn("今年は季節ごとに集まる", t)
+        D1 = st["day"]
+        sa = {"say": [], "job": {"activity": "畑仕事", "place": "camp"}, "sow": 100, "pick": 0, "plant": 0, "harvest": 0, "feeling": "秋の気持ち"}
+        g7.apply_year(st, {n: json.dumps(sa, ensure_ascii=False) for n in who})
+        self.assertEqual(set(G["plan"]), set(who), "秋の集まりは年の予定を消さない")
+        self.assertEqual((G["step"]["ask"], G["step"]["answer_day"], G["answer_day"]), ("秋", D1, D1))
+        self.assertEqual(G["src"][who[0]], "自分", "秋の仕事は秋の答えから")
+        self.assertEqual(p["plan"]["activity"], "畑仕事")
+        self.assertEqual(st["era2"]["jobs"][who[0]]["sow"], 100, "まく量は秋の答えから (年の予定の 700 ではない)")
+        self.assertEqual(g7.plan_day(st), D0)
+        st["day"] += 30  # 秋の終わり: 冬は集まらない (年の予定で進む)
+        self.assertIsNone(g7.ask_next(st))
+        G["ask"] = None
+        g7.apply_plan(st)
+        self.assertEqual((G["step"]["how"], G["step"]["answer_day"]), ("方針", D0), "冬の仕事を決めたのは夏の年の集まり")
+        self.assertEqual(G["src"][who[0]], "年の答え (自分)")
+        self.assertEqual(p["plan"]["activity"], "ヤギの世話")
+        st["day"] += 30
+        self.assertIsNone(g7.ask_next(st), "春も集まらない")
+        self.assertEqual(g7.digest_head(st), f"この前の集まり ({D1 + 1} 日目) からのこと", "お題の「この前の集まり」は秋の集まり")
+        st["day"] += 30
+        self.assertEqual(g7.ask_next(st), "年", "夏は年の集まり (季節のお題ではない)")
+        # 寄る年 (と、蓄えが尽きた年) の秋は、今までどおり寄る季節
+        st["day"] = D1
+        G["zoom"] = {"year": (D1 + 1) // era2.YEAR, "why": ["Z5"], "day": D1}
+        self.assertEqual(g7.ask_next(st), "寄る")
+        # 年の集まりのお題: 秋は秋のはじめにも集まると書く
+        y2 = to_year_end(self.st())
+        ty = g7.year_prompt(y2, next(q for q in era2.adults(y2) if q["name"] == p["name"]), g7.since(y2))
+        self.assertIn("秋は、秋のはじめにも集まって、畑と種を見てから、秋の仕事とまく量 (sow) を決め直す (year の秋は、そのときの見込み)。ほかの季節は集まらない。", ty)
+
+    def test_g6_autumn_unchanged(self):
+        """G6 の秋のお題には、秋の集まりの文は出ない (G6 は毎季節集まる。お題は前のまま)"""
+        st = real_state()
+        st["day"] = st["day"] // era2.YEAR * era2.YEAR + era2.SEASON_DAYS - 1  # 夏の終わり (次は秋)。お題の文だけ見る
+        p = next(q for q in era2.adults(st) if q["name"] in era2.answerers(st))
+        t = era2.season_prompt(st, p, st["era2"].get("last_first", 0))
+        self.assertIn(" 日目、秋。", t)
+        self.assertIn('"sow": 0, ', t)
+        self.assertNotIn("秋は毎年", t)
+        self.assertNotIn("草取りがなければ実りは 3 割", t)
 
     def test_zoom(self):
         st, g7 = self.st(), self.g7
@@ -1144,10 +1215,10 @@ class F_Year(unittest.TestCase):
 const fs = require('fs')
 const src = fs.readFileSync(process.argv[2], 'utf8').replace(/^export const meta/m, 'const meta')
 const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor
-const run = async (args, start, mode) => {
+const run = async (args, start, mode, autumn) => {
   let day = start
   const labels = []
-  const meetOf = (d) => ((d + 1) % 120 === 0 ? '年' : 'none')
+  const meetOf = (d) => ((d + 1) % 120 === 0 ? '年' : autumn && (d + 1) % 120 === 30 ? '秋' : 'none')
   const agent = async (prompt, opts) => {
     labels.push(opts.label)
     if (prompt.includes('step.py who')) {
@@ -1167,7 +1238,9 @@ const run = async (args, start, mode) => {
 ;(async () => {
   const a = await run({ mode: 'year', years: 1 }, 5519, 'year')
   const b = await run({ mode: 'season', steps: 3 }, 5519, 'year')
-  console.log(JSON.stringify({ a: { why: a.res.why, stopped: a.res.stopped, labels: a.labels }, b: { why: b.res.why } }))
+  const c = await run({ mode: 'year', years: 1 }, 5519, 'year', true)
+  console.log(JSON.stringify({ a: { why: a.res.why, stopped: a.res.stopped, labels: a.labels }, b: { why: b.res.why },
+                               c: { why: c.res.why, stopped: c.res.stopped, labels: c.labels } }))
 })()
 """
         f = Path(tmpdir()) / "h.js"
@@ -1184,6 +1257,11 @@ const run = async (args, start, mode) => {
         self.assertEqual({x.split()[0] for x in roles}, {"d5519"}, "役を演じる体を起こすのは集まりの歩だけ")
         self.assertEqual(sum(1 for x in a["labels"] if x.endswith("season step")), 4)
         self.assertTrue(out["b"]["why"].startswith("mode"), "G7 なのに season の形なら進めずに止まる")
+        c = out["c"]  # 秋の集まり (MEET 秋) の歩も、役を演じる体を起こす
+        self.assertEqual((c["why"], c["stopped"]), ("end", 5639))
+        roles = [x for x in c["labels"] if re.match(r"d\d+ (ソル|ミナ|カイ)", x)]
+        self.assertEqual({x.split()[0] for x in roles}, {"d5519", "d5549"}, "年の集まりと秋の集まり")
+        self.assertEqual(sum(1 for x in c["labels"] if x.endswith("season step")), 4)
 
     def test_pythons(self):
         """年の集まりと答えのない季節の当てはめ方は、python3.13 と python3 (3.11) で同じ (世界は進めない)"""
@@ -1328,20 +1406,39 @@ class G_Flow(unittest.TestCase):
         self.assertIn("1 年に 1 回の村の集まり。あなたが答えるのは", f)
         self.answer(d1, names, feel, seas)
         self.step("season")
+        # 秋の集まり (2026-10-22 本人の決め): 夏の終わりの歩は、季節のお題で答える (年の集まりと同じ人)
         d2, meet, names2, feel2 = self.who()
-        self.assertEqual((d2, meet, names2, feel2), (d1 + 30, "none", [], []))
-        self.assertFalse((self.data / "prompts" / f"day{d2:03d}").exists(), "集まりのない季節は、お題のフォルダを作らない")
+        self.assertEqual((d2, meet), (d1 + 30, "秋"))
+        self.assertTrue(names2 and len(set(names2) & set(names)) >= len(names) // 2, "答える人は年の集まりとほぼ同じ (見本の家の代表とまとめ役。代表は季節のあいだに変わりうる)")
+        z = (self.data / "prompts" / f"day{d2:03d}" / "season" / f"{names2[0]}.md").read_text(encoding="utf-8")
+        self.assertIn("秋は毎年、季節のはじめに集まって", z)
+        self.assertIn('"job": {"activity": "採集", "place": "camp"', z)
+        self.assertNotIn('"year": {', z)
+        a = self.data / "answers" / f"day{d2:03d}"
+        for kind, who in (("season", names2), ("feeling", feel2)):
+            (a / kind).mkdir(parents=True, exist_ok=True)
+            for n in who:
+                txt = ({"say": [], "job": {"activity": "畑仕事", "place": "camp"}, "sow": 10, "pick": 0, "plant": 0, "harvest": 0, "feeling": "秋"}
+                       if kind == "season" else {"feeling": "試し", "say": []})
+                (a / kind / f"{n}.json").write_text(json.dumps(txt, ensure_ascii=False), encoding="utf-8")
+        self.step("season")
+        st = json.loads((self.data / "state.json").read_text(encoding="utf-8"))
+        self.assertEqual((st["era2"]["g7"]["step"]["ask"], st["era2"]["g7"]["step"]["answer_day"]), ("秋", d2))
+        self.assertTrue(st["era2"]["g7"]["plan"], "秋の集まりのあとも年の予定は残る")
+        d3, meet, names3, feel3 = self.who()
+        self.assertEqual((d3, meet, names3, feel3), (d2 + 30, "none", [], []))
+        self.assertFalse((self.data / "prompts" / f"day{d3:03d}").exists(), "集まりのない季節は、お題のフォルダを作らない")
         out = self.step("season")
-        self.assertIn("この季節は集まらない", out)
+        self.assertIn(f"この季節は集まらない (年の集まり {d1} 日目の予定と方針で進む)", out)
         st = json.loads((self.data / "state.json").read_text(encoding="utf-8"))
         G = st["era2"]["g7"]
-        self.assertEqual((st["day"], G["step"]["how"], G["step"]["answer_day"]), (d2 + 30, "方針", d1))
+        self.assertEqual((st["day"], G["step"]["how"], G["step"]["answer_day"]), (d3 + 30, "方針", d1))
         self.assertIn("見本から広げた", G["src"].values())
         self.assertTrue(any(e["type"] == "年の名前" and "試しの年" in e["text"] for e in st["events"]))
         # 記録: 1 行 = 1 季節。G7 の季節は decided_by・is_sample・plan_answer_day
         rows = [json.loads(x) for x in (self.data / "records" / "season_person.jsonl").read_text(encoding="utf-8").splitlines()]
         vil = {r["season_end_day"]: r for r in (json.loads(x) for x in (self.data / "records" / "season_village.jsonl").read_text(encoding="utf-8").splitlines())}
-        for D, plan_day in ((d1, d0), (d2, d1), (d2 + 30, d1)):
+        for D, plan_day in ((d1, d0), (d2, d1), (d2 + 30, d2), (d3 + 30, d1)):
             rs = [r for r in rows if r["season_end_day"] == D]
             self.assertTrue(rs, D)
             self.assertEqual(len({r["person_id"] for r in rs}), len(rs), "1 人 1 季節に 1 行")
@@ -1351,9 +1448,10 @@ class G_Flow(unittest.TestCase):
             self.assertIn("見本から広げた", {r["decided_by"] for r in ad})
             self.assertEqual(vil[D]["answered"]["plan_answer_day"], plan_day)
             self.assertGreater(vil[D]["answered"]["sample_households"], 0)
-        self.assertEqual(vil[d2 + 30]["answered"]["season"], 0, "答えのない季節")
+        self.assertEqual(vil[d3 + 30]["answered"]["season"], 0, "答えのない季節")
         self.assertTrue(any(r["answered"] == "season" for r in rows if r["season_end_day"] == d2))
-        self.assertTrue(any(r["decided_by"] == "年の答え (自分)" for r in rows if r["season_end_day"] == d2 + 30))
+        self.assertTrue(any(r["decided_by"] == "自分" for r in rows if r["season_end_day"] == d2 + 30), "秋は秋の集まりの答え")
+        self.assertTrue(any(r["decided_by"] == "年の答え (自分)" for r in rows if r["season_end_day"] == d3 + 30), "冬は年の答え")
 
 
 # ---------------------------------------------------------------- C2

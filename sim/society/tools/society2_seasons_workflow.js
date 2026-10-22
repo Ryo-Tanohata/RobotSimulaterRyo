@@ -1,9 +1,9 @@
 export const meta = {
   name: 'society2-seasons',
-  description: 'Run Society 2.0 season by season (haiku role-play per adult + step runner) until a phase change, the end of a part (HOLD line), all deaths, or the step limit. From G7: mode year (answers only at the yearly meeting and zoom seasons)',
+  description: 'Run Society 2.0 season by season (haiku role-play per adult + step runner) until a phase change, the end of a part (HOLD line), all deaths, or the step limit. From G7: mode year (answers only at the yearly meeting, zoom seasons and the autumn meeting)',
   phases: [{ title: 'Seasons', detail: 'season answers per adult, then step.py season' }],
 }
-// args.mode: 'season' (G6 まで。1 回 = 1 季節、毎季節答える。args.steps 回) / 'year' (G7 から。1 回 = 1 季節のまま、答えるのは年の集まりと寄る季節だけ。
+// args.mode: 'season' (G6 まで。1 回 = 1 季節、毎季節答える。args.steps 回) / 'year' (G7 から。1 回 = 1 季節のまま、答えるのは年の集まりと寄る季節と毎年の秋の集まりだけ。
 //   args.years 回の年の終わりをすぎたら止まる)。G7 なのに 'season' で、G6 なのに 'year' で動かしたら、進めずに止まる (docs/society_phase/G7_design.md 4.E.5)
 const MODE = args.mode || 'season'
 // ROOT はリポジトリの場所。args.root で渡す (本人の PC では、その PC のリポジトリの場所。渡さなければクラウドの /home/user/RobotSimulaterRyo)
@@ -33,7 +33,7 @@ for (let k = 0; k < STEPS; k++) {
   if (!dm || dm[2] !== 'season' || dm[3] === 'True' || !nm) return { stopped: k, why: 'bad status', out: st, log: log_ }
   const mm = (st || '').match(/MODE (\w+)/), me = (st || '').match(/MEET (\S+)/), cm = (st || '').match(/COUNCIL[ \t]*([^\n`]*)/)
   if (!mm || mm[1] !== MODE) return { stopped: k, why: `mode: the world is in ${mm ? mm[1] : '?'} mode (run with mode ${mm ? mm[1] : '?'})`, out: st, log: log_ }
-  const meet = MODE === 'season' || (me && me[1] !== 'none')  // year: 答えるのは集まりの歩だけ (MEET 年 / 寄る / 集まり直し)
+  const meet = MODE === 'season' || (me && me[1] !== 'none')  // year: 答えるのは集まりの歩だけ (MEET 年 / 寄る / 集まり直し / 秋 (毎年の秋の集まり))
   // 仕事の理由 (2026-10-14 本人が決めた: 次に村を進めるときから)。まだ一度も step.py ask_why を動かしていなければ、進めずに止まる (daily_run.md)
   if (!/ASKLOG True/.test(st)) return { stopped: k, why: 'ask_why not started: run step.py ask_why once, commit the prompts, then run again', out: st, log: log_ }
   const d = Number(dm[1]), names = nm[1].trim().split(/\s+/).filter(Boolean)

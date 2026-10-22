@@ -753,7 +753,9 @@ def indicators(state):
 
 
 # ---------------- 年 1 回の答えと見本の家 (4.A) ----------------
-# 答えを集めるのは、年の集まり (年の最後の日の終わりにお題を書き、夏のはじめに集まる) と、前もって決めた「寄る」季節だけ。
+# 答えを集めるのは、年の集まり (年の最後の日の終わりにお題を書き、夏のはじめに集まる) と、前もって決めた「寄る」季節と、毎年の秋の集まりだけ。
+#   秋の集まり (2026-10-22 本人が決めた): 秋は毎年、季節のはじめに集まって、畑と種を見てから、秋の仕事とまく量 (sow) を決め直す。
+#   答えは寄る季節と同じ季節の形 (お題も同じ)。年の予定は消さないので、冬と春は年の集まりの予定と方針で進む
 #   ほかの季節は、年の答えの「その季節の予定」と「1 年の方針」を当てはめる (apply_plan)。世界の計算・歩・コミット・記録の行は 1 季節ずつのまま
 # 答えるのは見本の家の代表とまとめ役。見本でない家は、同じ組の手本の家の答えをまね、票はその家の大人の数で数える
 #   (だから多数決は今のまま「生きている大人みんなの半分をこえるか」)。見本であることは、お題に書かない (村の中の仕組みではないため)
@@ -769,6 +771,10 @@ NOT_COMMON = COPY_IF_DONE + ("試す",)  # 「いちばん多い仕事」には�
 DIGEST_MAX = 40  # 「前の 1 年のこと」の自分の行 (仕事の種類ごとに新しい 3 件まで。4.A.9)
 ZOOM_WHY = {"Z1": "ほかの村から求めが来ている", "Z2": "前の年に、村が戦をした", "Z3": "前の年に、貢いでいた村か、貢いでくる村が崩れた",
             "Z4": f"村の蓄えと家の倉を合わせても、{ZOOM_DAYS} 日分より少ない", "Z5": "村の蓄えが尽きて、集まり直した"}
+AUTUMN = "秋"  # 毎年、季節ごとに集まって決める季節 (秋の集まり。ask_next の "秋")
+WEED_NOTE = ("まいた畑の実りは、秋・冬・春の畑仕事 (草取り) で増える。畑 1 つに要る草取りは (まいた種 つかみ × 0.15 + 10) 時間で、"
+             "草取りがなければ実りは 3 割、した時間に合わせて増え、要る時間の分まですると 10 割 (それより多くしても増えない)。"
+             "畑仕事の時間は、育っている畑みんなで分ける")
 MEET_KEYS = ("say", "keep", "seal", "accept", "judge", "leader", "call", "trade", "knowledge", "proposal", "votes", "year_name", "feeling",
              "answer_demand", "ally", "demand", "leave", "captives")  # 年の集まりの季節に、その季節の答えに入れる欄 (G7 の欄は、それぞれの部分が読む)
 COPY_KEYS = ("pick", "plant", "harvest", "eat_goat", "sow", "keep", "seal", "seal_store", "feast", "accept", "judge", "leader", "answer_demand")  # 手本からまねる欄 (4.A.4 の 4・5)
@@ -946,7 +952,8 @@ def year_turn(state):
 
 
 def ask_next(state):
-    """次の歩で答えが要るか (季節の終わりの最後。4.A.2)。"年" (年の集まり) / "寄る" (寄る年の季節) / "集まり直し" (蓄えが尽きて区切った) / None"""
+    """次の歩で答えが要るか (季節の終わりの最後。4.A.2)。"年" (年の集まり) / "寄る" (寄る年の季節) / "集まり直し" (蓄えが尽きて区切った) /
+    "秋" (毎年の秋の集まり。寄る季節と同じ季節のお題で、その秋だけ決め直す。冬と春は年の予定のまま) / None"""
     g, D = _g(state), state["day"]
     y, z = (D + 1) // YEAR, g.get("zoom")
     if not era2.adults(state):
@@ -960,7 +967,7 @@ def ask_next(state):
     elif not world.G7_PARTS["year"] or (z and z["year"] == y):  # 寄る年 (G7_PARTS["year"] は試しで止めるためだけ。止めると毎季節寄る)
         g["ask"] = "寄る"
     else:
-        g["ask"] = "年" if (D + 1) % YEAR == 0 else None
+        g["ask"] = "年" if (D + 1) % YEAR == 0 else AUTUMN if season(D + 1) == AUTUMN else None
     return g["ask"]
 
 
@@ -1143,9 +1150,10 @@ def _fam_of(state, n, answers, rep_mode, reps):
     return [q for q in era2.family(state, n) if q is me or q["name"] not in answers]
 
 
-def _apply(state, own, kinds, real, how):
+def _apply(state, own, kinds, real, how, answer_day=None):
     """見本の答え (own: {答える人: 季節の形の答え}) に、見本でない家の答え (手本から)・決まり・加わった家を足し、era2.apply_answers を 1 回呼ぶ。
-    kinds: {答える人: "年" (年の答えから) | "季節" (寄る季節・集まり直しの答え)}。real: この歩で実際に答えた人 (気持ちを読む人)"""
+    kinds: {答える人: "年" (年の答えから) | "季節" (寄る季節・集まり直し・秋の集まりの答え)}。real: この歩で実際に答えた人 (気持ちを読む人)。
+    answer_day: この季節の仕事を決めた答えの日 (記録の plan_answer_day。答えのない季節は年の集まりの日。なければ、この前の集まりの日)"""
     g, e2, D = _g(state), state["era2"], state["day"]
     sea, rep_mode = season(D + 1), bool(e2.get("rep_mode"))
     reps_h = _rep_of(state)
@@ -1225,15 +1233,16 @@ def _apply(state, own, kinds, real, how):
     for p in era2.adults(state):
         src.setdefault(p["name"], "答えなし (前と同じ)")
     g["src"] = {k: src[k] for k in sorted(src)}
-    g["step"] = {"day": D, "season": sea, "ask": g.get("ask"), "how": how, "answer_day": g.get("answer_day"),
+    g["step"] = {"day": D, "season": sea, "ask": g.get("ask"), "how": how, "answer_day": g.get("answer_day") if answer_day is None else answer_day,
                  "sample": sorted(h for h in sample if h in set(era2._homes(state))), "donor": {h: used[h] for h in sorted(used)},
                  "rule": sorted(rule_h), "joined": sorted(joined_h), "answered": sorted(real)}
     g.setdefault("last_plans", {})[sea] = {p["name"]: {k: p["plan"][k] for k in ("activity", "place")} for p in era2.adults(state)}
 
 
 def apply_year(state, answers, councils=None):
-    """集まりの歩 (年の集まり・寄る季節・集まり直し) の答えを読む (step.py season。4.A.6)。
-    年の集まりは、年の答えを整えて g7.plan に残し、この季節の分を当てる。寄る季節・集まり直しは、季節の形の答えをそのまま当てる。
+    """集まりの歩 (年の集まり・寄る季節・集まり直し・秋の集まり) の答えを読む (step.py season。4.A.6)。
+    年の集まりは、年の答えを整えて g7.plan に残し、この季節の分を当てる。寄る季節・集まり直し・秋の集まりは、季節の形の答えをそのまま当てる
+    (秋の集まりは g7.plan を残す。冬と春は年の予定で進む)。
     順 (4.G.1・4.B.5): 家ごとに出ていく (leave) → まわりの集落の集まりの答え・待ち・続く貢ぎ (残った家で数えた、求めへの答えで) → 村の答え → 村が求める (demand)。
     councils: まわりの集落の集まりの答え {番号: 答えの文} (step.py が council/ から読む)"""
     g, e2, D = _g(state), state["era2"], state["day"]
@@ -1257,7 +1266,8 @@ def apply_year(state, answers, councils=None):
             pl = g["plan"][n] = {"household": h, "own": not e2.get("rep_mode") or n in reps, **_plan(a, D, now)}
             own[n], kinds[n] = _part(state, pl, now, a), "年"
     else:
-        g["plan"] = {}  # 寄る季節の答えは、その季節だけ
+        if ask != AUTUMN:
+            g["plan"] = {}  # 寄る季節の答えは、その季節だけ (その年の残りの季節も集まる)。秋の集まりは年の予定を残す (冬と春は年の予定で進む)
         for n, a in real.items():
             own[n], kinds[n] = dict(a), "季節"
     _apply(state, own, kinds, set(real), "集まり")
@@ -1277,7 +1287,13 @@ def apply_plan(state):
         who = reps_h.get(pl["household"]) if pl["own"] and rep_mode else n if n in alive and (pl["own"] or n == lead) else None
         if who and who in alive and who not in own:
             own[who] = _part(state, pl, sea)
-    _apply(state, own, {n: "年" for n in own}, set(), "方針")
+    _apply(state, own, {n: "年" for n in own}, set(), "方針", plan_day(state))
+
+
+def plan_day(state):
+    """年の予定を決めた集まりの日 (秋の集まりのあとも、年の集まりの日。予定がなければ、この前の集まりの日)"""
+    g = _g(state)
+    return min((pl["day"] for pl in (g.get("plan") or {}).values()), default=g.get("answer_day"))
 
 
 def since(state):
@@ -1312,9 +1328,12 @@ def since_word(state):
 
 
 def zoom_line(state):
-    """寄る季節・集まり直しのお題の 1 行 (わけだけ。4.A.9)"""
+    """寄る季節・集まり直しのお題の 1 行 (わけだけ。4.A.9)。秋の集まりは、冬と春は年の予定で進むことと、年の集まりのお題と同じ秋の見て分かること (まき方・実りと草取り)"""
     g = _g(state)
     z = g.get("zoom")
+    if g.get("ask") == AUTUMN:
+        return ("\n秋は毎年、季節のはじめに集まって、畑と種を見てから、この秋の仕事とまく量を決め直す (冬と春は、年の集まりで決めた予定で進む)。\n"
+                + _season_notes(state, [AUTUMN]))
     if g.get("ask") not in ("寄る", "集まり直し") or not z or not z.get("why"):
         return ""
     return f"\n今年は季節ごとに集まる (わけ: {'・'.join(ZOOM_WHY.get(k, k) for k in z['why'])})。"
@@ -1446,9 +1465,7 @@ def _season_notes(state, seas):
         else:
             out.append("- 春: 子ヤギが生まれる。春と夏は、世話をするとヤギの乳がとれる")
     if any(s != "夏" for s in seas):  # 実りと草取り (era2 の畑の実り: need・min(1, 0.3 + 0.7 × work / need))
-        out.append("- 実りと畑仕事: まいた畑の実りは、秋・冬・春の畑仕事 (草取り) で増える。畑 1 つに要る草取りは (まいた種 つかみ × 0.15 + 10) 時間で、"
-                   "草取りがなければ実りは 3 割、した時間に合わせて増え、要る時間の分まですると 10 割 (それより多くしても増えない)。"
-                   "畑仕事の時間は、育っている畑みんなで分ける")
+        out.append("- 実りと畑仕事: " + WEED_NOTE)
     return "\n".join(out)
 
 
@@ -1576,7 +1593,7 @@ def year_prompt(state, p, first):
 {characters._laws(state, with_pending=True, short=True)}
 {era2._year_names_text(state)}{era2._g5_text(state)}{era2._g6_text(state)}{text(state, p)}{vis}{era2._year_end_text(state)}
 ## いま
-{D + 1} 日目、{now}。1 年に 1 回の村の集まり。これから {nxt - D - 1} 日 ({'・'.join(seas)}) の、季節ごとの予定と、{'1 年' if len(seas) == 4 else '年の終わりまで'}の方針を決める (次の集まりは {nxt} 日目、夏のはじめ。途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。
+{D + 1} 日目、{now}。1 年に 1 回の村の集まり。これから {nxt - D - 1} 日 ({'・'.join(seas)}) の、季節ごとの予定と、{'1 年' if len(seas) == 4 else '年の終わりまで'}の方針を決める (次の年の集まりは {nxt} 日目、夏のはじめ。{'秋は、秋のはじめにも集まって、畑と種を見てから、秋の仕事とまく量 (sow) を決め直す (year の秋は、そのときの見込み)。ほかの季節は集まらない。' if AUTUMN in seas[1:] else ''}途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。
 季節ごとに見て分かること:
 {_season_notes(state, seas)}
 {asks}

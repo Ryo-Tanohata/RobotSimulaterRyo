@@ -423,7 +423,7 @@ def main():
             print(f"一時停止中: {_hold_text(state)[1]}")
         g7 = (state.get("era2") or {}).get("g7")
         if g7:  # G7 から: 次の答え (年 1 回の答え。docs/society_phase/G7_design.md 4.A.2) と、G7 の行
-            ask = {"年": "年の集まり", "寄る": "寄る季節", "集まり直し": "集まり直し"}.get(g7.get("ask"), "いらない")
+            ask = {"年": "年の集まり", "寄る": "寄る季節", "集まり直し": "集まり直し", "秋": "秋の集まり"}.get(g7.get("ask"), "いらない")
             fl = (g7.get("region") or {}).get("fill")
             print(f"次の答え: {ask} / G7 に入った日 {_yd(g7['start'])} / 史実のずれの直し {g7['fix_from']} 日目から / "
                   f"まわりの集落 {len(era2._g6(state)['others'])} (はじめに置いた集落 {len(fl['placed']) if fl else 0})")
@@ -570,9 +570,9 @@ def main():
             except Exception as ex:  # 記録の失敗で、世界を止めない
                 print(f"記録: 書きとめを空にできなかった ({type(ex).__name__}: {ex})")
         g7 = _g7(state)
-        met = not g7 or bool(state["era2"]["g7"].get("ask"))  # G7: 集まりの歩 (年の集まり・寄る季節・集まり直し) か
+        met = not g7 or bool(state["era2"]["g7"].get("ask"))  # G7: 集まりの歩 (年の集まり・寄る季節・集まり直し・秋の集まり) か
         if g7 and not met:  # G7 の答えのない季節: 年の答えの、この季節の予定と 1 年の方針で進む (docs/society_phase/G7_design.md 4.A.6)
-            print(f"この季節は集まらない (年の集まり {state['era2']['g7'].get('answer_day')} 日目の予定と方針で進む)")
+            print(f"この季節は集まらない (年の集まり {g7.plan_day(state)} 日目の予定と方針で進む)")
             g7.apply_plan(state)
         else:
             feels = read_feelings(state)  # 代表を決める前の顔ぶれで読む (集まりで、まとめ役が変わることがあるため)
