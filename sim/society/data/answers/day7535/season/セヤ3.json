@@ -1,0 +1,11 @@
+{"say": [{"to": "ナセ3", "text": "蓄えが空だから、今日は北の川に二人で行って、魚か芋を探してみよう。見つかったら夜に蓄えへ入れよう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ナセ3"], "why": "蓄えが空で春は木の実が取れない。南の川は何もなかったので、北の川で魚か芋を試す。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ3": {"activity": "採集", "place": "北川12", "why": "採集が得意で、二人組で北の川を探せば見つかる見込みが高い。"}},
+ "keep": false,
+ "judge": {"M318": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "春は蓄えが空で木の実も取れないので、南の川の次に北の川で魚か芋を二人組で試す。", "because": [518859], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかがすいて苦しいが、北の川で何か見つかるよう期待している。"}

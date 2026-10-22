@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、おれは北の川で魚と芋を探してくる。採れたぶんは夜に蓄えへ入れるよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ナセ5"], "why": "蓄えが空で春は木の実もないので、採集が得意なおれが川で魚と芋を探す"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ4": {"activity": "採集", "place": "北川12", "why": "二人組で川の食べ物を探すため"},
+  "オセ5": {"activity": "採集", "place": "南川12", "why": "キャンプに近い南の川も試してみるため"},
+  "ナセ5": {"activity": "採集", "place": "北川12", "why": "おれと二人組で北の川へ行くため"},
+  "セヤ6": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏のはじめの実りを増やすため"}
+ },
+ "keep": false,
+ "judge": {"M318": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "春は蓄えが空で木の実もないので、川で魚と芋を二人組で探すのがよい。", "because": [518898], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかは満ちているが蓄えが空で心配だ。まず川で食べ物を見つけたい。"}
