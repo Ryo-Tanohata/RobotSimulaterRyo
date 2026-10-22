@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "おれは土器を焼く。冬の前に、草の種をできるだけ器に入れておきたい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意で、器に入れた草の種は虫に食われにくい。冬に備えたい"},
+ "sow": 300, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ4": {"activity": "採集", "place": "camp", "why": "そばの木から木の実を集めて冬に備える"},
+  "オセ5": {"activity": "採集", "place": "camp", "why": "そばの木から木の実を集めて冬に備える"},
+  "ナセ5": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで夏の実りを増やす"},
+  "セヤ6": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで夏の実りを増やす"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が来る前に、器と木の実をしっかり用意しておきたい。"}

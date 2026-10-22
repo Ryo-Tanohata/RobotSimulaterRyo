@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "冬の前に畑へ種をたっぷりまこう。わたしは毎夕、木の実を取って蓄えに回すよ。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "冬は木の実が実らないので、蓄えを減らさないよう食べ物を集める"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ルタ5": {"activity": "採集", "place": "南川12", "why": "採集が得意なので、冬に備えて食べ物を集める"}, "ソワ5": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉や魚で蓄えを助ける"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋に畑へ草の種をまくと、次の夏に実る。冬と春は草取りが大事。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L199", "against": "", "agree": true, "reason": "木の実を蓄えに回せば冬と春の空腹を防げる"}, {"id": "L192", "against": "", "agree": true, "reason": "夏に刈り残すと落ちてしまうので大事"}],
+ "feeling": "満腹で体も軽い。冬に向けてしっかり働こう。"}

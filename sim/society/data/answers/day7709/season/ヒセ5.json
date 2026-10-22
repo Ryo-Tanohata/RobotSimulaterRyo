@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はまだたっぷりあるから、秋のうちに畑へ1000つかみずつまこう。冬と春の草取りを欠かさなければ、来年の夏もよく実るはず。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ヌオ5", "アコ5", "オネ5"], "why": "畑にまいた種は草取りの時間で実りが増えるので、家族みんなで毎日畑の世話をする"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るので、一緒に畑を見る"},
+  "アコ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るので、一緒に畑を見る"},
+  "オネ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るので、一緒に畑を見る"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を畑にまき、秋冬春に草取りをすると、次の夏に多く実る。蓄えの草の種は今たっぷりある。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "畑にまく種と草取りが夏の実りを決めるから"}],
+ "feeling": "蓄えが多くて心強い。畑と木の実の世話をして、冬に備えたい。"}

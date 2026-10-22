@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種を畑にまいて、冬と春は草取りを交代で続けよう。夏の実りを減らさないようにしたいんだ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが減るので、毎日草取りをして夏の実りを守る"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りをすると夏の実りが増える。畑仕事をする人が少ないと実りが減る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "畑にまいて草取りをすれば夏の実りが増え、蓄えが守れる"},
+           {"id": "L221", "against": "", "agree": true, "reason": "夏に畑を刈り切れば冬と春の蓄えが守れる"},
+           {"id": "L204", "against": "", "agree": true, "reason": "木の実を取って蓄えに入れれば、草の種を減らさずに冬を越せる"},
+           {"id": "L203", "against": "", "agree": true, "reason": "秋に木の実を取って蓄えに入れるのは冬への備えになる"}],
+ "feeling": "蓄えは多いけれど、冬に向けて畑と木の実をしっかり備えたい。みんなで協力できれば安心だ。"}

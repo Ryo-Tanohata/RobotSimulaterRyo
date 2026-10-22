@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、秋のうちに畑にまこう。冬と春は草取りを欠かさず、夏の実りを増やそうね。"}, {"to": "キオ4", "text": "いっしょに畑の草取りをして、夕方は木の実を少し取って分けようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キオ4"], "why": "まいた畑は草取りをするほど夏の実りが増え、来年の蓄えが満ちるから"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをすれば畑の実りが減らず、子どもたちの冬と春の食べ物が守れるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、草取りの時間を分け合えば、夏のはじめの実りが増える。", "because": [535221], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L221", "against": "", "agree": true, "reason": "夏にみんなで刈れば蓄えが満ち、冬と春の空腹を防げるから"}, {"id": "L220", "against": "", "agree": true, "reason": "秋にまいて草取りをすれば夏の実りが増えるから"}],
+ "feeling": "蓄えもあり、満ち足りた気持ちで、みんなと畑を育てるのが楽しみ。"}
