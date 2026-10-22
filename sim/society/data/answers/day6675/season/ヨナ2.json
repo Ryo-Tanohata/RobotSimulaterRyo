@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "村の蓄えは空になってしまった。冬のあいだは西林12を二人組で見てこよう。見つけた量は夜に板に刻んで言うよ。"}],
+ "job": {"activity": "採集", "place": "西林12", "with": ["セオ3"], "why": "冬の木の実は実らないが、まだ行っていない西林12なら何か見つかるかもしれない。二人組で行けば、ザガに襲われたときも助け合える。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M170": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "西林12はまだ行ったことがなく、何があるか分からない", "because": [435279], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": null, "agree": true, "reason": "夜のザガはこわいので、キャンプから離れないのは大事だ。"}, {"id": "L143", "against": null, "agree": true, "reason": "採集は二人以上で行けば、けがをしても助けられる。"}, {"id": "L179", "against": null, "agree": true, "reason": "北丘12は冬に何も見つからなかったので、北川12を先に試すのがよい。"}],
+ "feeling": "蓄えが空で、食べ物を探すしかない。西林12で何か見つかるよう祈っている。"}
