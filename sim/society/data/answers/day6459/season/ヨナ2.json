@@ -1,0 +1,9 @@
+{"say":[{"to":"みんな","text":"村の蓄えが尽きたね。春は木の実もならないから、東林12へ採集に行こう。二人以上で行って、見つけたものはみんなで分けよう。"}],
+"job":{"activity":"採集","place":"東林12","with":["ムイ"],"why":"蓄えが尽きて食べ物がない。春は採集で探すしかなく、採集は得意だから"},
+"pick":0,"plant":0,"harvest":0,"eat_goat":0,"keep":false,
+"judge":{"M142":"ゆるす","M143":"ゆるす"},
+"feast":false,"leader":null,"seal_store":false,"demand":null,
+"knowledge":[{"op":"add","text":"村の蓄えは空で、春のあいだは採集で食べ物を探すしかない","because":[407893],"confidence":0.9}],
+"proposal":null,
+"votes":[{"id":"L167","against":"","agree":true,"reason":"草が足りないので、世話をする人を決めて守るのがよい"},{"id":"L171","against":"","agree":true,"reason":"草が足りないので、ほかの村からヤギを受けとらないのがよい"},{"id":"L175","against":"","agree":true,"reason":"ヤギが多すぎると草が足りず、捕まえるのをやめるのがよい"},{"id":"L176","against":"","agree":true,"reason":"草の多い場所を見に行って、夏の終わりに決めるのがよい"},{"id":"L184","against":"","agree":true,"reason":"貸した種が返されるまで貸さないのは、蓄えを守るのに役立つ"}],
+"feeling":"おなかがすいた。みんなが無事に春を越せるように、できることをしたい。"}

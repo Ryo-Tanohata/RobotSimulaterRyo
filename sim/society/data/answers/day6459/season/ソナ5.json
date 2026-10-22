@@ -1,0 +1,23 @@
+{"say": [{"to": "ケナ5", "text": "おなかが限界だね。北川12 へ一緒に行こう。魚と芋があるか二人で確かめたい。"}, {"to": "みんな", "text": "南川12 は前の季節に何も見つからなかった。北川12 を試して、見つかったら夜に知らせるね。"}],
+"job": {"activity": "採集", "place": "北川12", "with": ["ケナ5"], "why": "蓄えが空で、ひどく空腹。南川12 は当てにできないので、まだ確かめていない北川12 で魚と芋を探す。"},
+"pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+"family": {"ケナ5": {"activity": "採集", "place": "北川12", "why": "家族で食べ物を探す。二人組なら安心だから。"}},
+"keep": false,
+"judge": {"M142": "ゆるす", "M143": "ゆるす", "M144": "ゆるす"},
+"feast": false, "leader": null, "seal_store": false, "demand": null,
+"knowledge": [{"op": "add", "text": "南川12 は前の季節に30日採集したが、何も見つからなかった。当てにできない", "because": [407878], "confidence": 0.8}, {"op": "add", "text": "蓄えが空になり、ひどく空腹の人が出ている。食べ物を探す人を増やす必要がある", "because": [407893], "confidence": 0.8}],
+"proposal": null,
+"votes": [
+{"id": "L188", "against": "", "agree": true, "reason": "南川12 は近く、一人でも行ってよいので助かる。"},
+{"id": "L143", "against": "", "agree": true, "reason": "近くても林は二人以上で行くのが安全。"},
+{"id": "L165", "against": "", "agree": true, "reason": "探索も二人以上で行けば、けがや迷子の心配が減る。"},
+{"id": "L160", "against": "", "agree": true, "reason": "何も見つからなかった場所も書けば、同じ所を何度も試さずに済む。"},
+{"id": "L179", "against": "", "agree": true, "reason": "北川12 で魚と芋が取れるか確かめるのは、今の私たちに必要なこと。"},
+{"id": "L110", "against": "", "agree": true, "reason": "夕方までに戻る時刻を決めれば、暗くなる前に帰れる。"},
+{"id": "L178", "against": "", "agree": true, "reason": "行き先と戻る日を伝えておけば、戻らないときにすぐ探しに行ける。"},
+{"id": "L158", "against": "", "agree": true, "reason": "蓄えへの出し入れを板に残せば、もめごとが減る。"},
+{"id": "L167", "against": "", "agree": true, "reason": "ヤギの世話を毎晩決めておけば、いなくなるヤギが減る。"},
+{"id": "L171", "against": "", "agree": true, "reason": "草が足りないのにヤギを増やすと、やせて減ってしまうから。"},
+{"id": "L175", "against": "", "agree": true, "reason": "草が足りないあいだは、野生のヤギを捕まえないほうがよい。"}
+],
+"feeling": "お腹が空いて力が入らない。でも、ラニ6にも食べさせたいから、がんばって探す。"}
