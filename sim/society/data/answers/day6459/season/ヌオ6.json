@@ -1,8 +1,0 @@
-{"say": [{"to": "みんな", "text": "おなかがぺこぺこで、力が入らないよ。南の川では何も見つからなかったから、まだ行ったことのない西の草原へ、ムイといっしょに行ってくるね。見つけたら、その夜に量を言うよ。"}],
- "job": {"activity": "採集", "place": "西草原12", "with": ["ムイ"], "why": "南の川では何も見つからなかった。まだ行ったことのない場所で、食べ物を探したい。二人で行けば安全だから。"},
- "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
- "judge": {}, "feast": false, "leader": null, "seal_store": false, "demand": null,
- "knowledge": [{"op": "add", "text": "南の川 (キャンプから約 100 m) では、春に採集しても食べ物が見つからなかった", "because": [407878], "confidence": 0.8}],
- "proposal": null,
- "votes": [{"id": "L194", "against": "", "agree": true, "reason": "蓄えが尽きたときに、見つけた人が家ごとに分ければ、ひどく空腹の人が減るから。"}, {"id": "L193", "against": "", "agree": true, "reason": "入れた量より多く取る家が出ないようにすれば、みんなが分け合えるから。"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのにヤギが増えると、子ヤギも減ってしまうから。"}],
- "feeling": "おなかがすいて、体に力が入らない。でも、知らない草原を見てみたい気持ちもある。"}

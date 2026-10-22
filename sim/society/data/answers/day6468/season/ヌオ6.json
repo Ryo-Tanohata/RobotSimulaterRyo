@@ -1,7 +1,0 @@
-{"say": [{"to": "みんな", "text": "わたしは前の季節、カイ2の家の倉の封を割って、食べ物を取って食べた。ひどく空腹だった。みんなの前で名乗り出る。ごめん。"}],
- "job": {"activity": "採集", "place": "北林12", "with": ["ソワ"], "why": "蓄えは空で、キャンプの木の実は春に実らない。北林12はまだ試していないので、二人で行って確かめる。一人では林に行かない。"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
- "judge": {"M150": "ゆるす", "M151": "ゆるす", "M152": "ゆるす", "M153": "ゆるす"}, "feast": false, "leader": null, "trade": {"T67": false}, "seal_store": false, "demand": null,
- "knowledge": [{"op": "add", "text": "村の蓄えが尽きてから、ひどく空腹の人が次々に村を出ていった", "because": [408711, 408712, 408713, 408714], "confidence": 0.9}],
- "proposal": null,
- "votes": [{"id": "L194", "against": null, "agree": true, "reason": "蓄えが尽きたときは、見つけた人が見つけた量を言い、家ごとに分けて食べるのがよい。"}, {"id": "L147", "against": null, "agree": true, "reason": "芋は蓄えに入れず、その夜に分けて食べれば、空腹の人がすぐ食べられる。"}, {"id": "L172", "against": null, "agree": true, "reason": "わたしは封を割ったので、名乗り出て取った量を言うべきだと思う。"}],
- "feeling": "おなかが空いて、力が出ない。封を割ったことは悪かった。今は北林12で食べ物を探したい。"}
