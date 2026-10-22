@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "南の川は空振りだったから、わたしは北の川へ行って魚と芋を探すね。見つけたら夜のうちに蓄えへ入れて、おなかのすいた子から分けよう。前の季節に倉の封を割ったことは忘れていないよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ソナ"], "why": "蓄えが空で春は木の実が取れないので、二人組で北の川へ行き魚と芋を探す"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M321": "ゆるす", "M322": "ゆるす", "M323": "ゆるす", "M324": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "春は蓄えが空で、わたしは北川12へ二人組で行って魚と芋を探す。見つけた分は夜に蓄えへ入れる。", "because": [519750], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L194", "against": "", "agree": true, "reason": "二人組で探せば安全で、見つけた量も分かる"}, {"id": "L195", "against": "", "agree": true, "reason": "空腹の人から先に分けるのは大事"}],
+ "feeling": "おなかがひどくすいている。北の川で何か見つかるといいな。"}
