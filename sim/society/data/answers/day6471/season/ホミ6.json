@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えが空で、おなかがすいて力が入らない。北川12へラタ2と二人で採集に行くよ。見つけた物は夜に全部言うから、みんなで分けよう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ラタ2"], "why": "蓄えが空で、ひどく空腹だから。西草原12と北の林は前に何も見つからなかったので、まだ試していない北川12で魚か芋を探す。二人で行く。"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M150": "ゆるす", "M151": "ゆるす", "M152": "ゆるす", "M153": "ゆるす", "M154": "ゆるす", "M155": "ゆるす", "M156": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが出るので、キャンプから離れないのは大事だから"},
+  {"id": "L3", "against": "なし", "agree": true, "reason": "採集や狩りは複数人で行けば助け合えるから"},
+  {"id": "L10", "against": "なし", "agree": true, "reason": "何を見つけたか話せば、みんなで分けられるから"},
+  {"id": "L16", "against": "なし", "agree": true, "reason": "疲れたままでは体が続かないから"},
+  {"id": "L25", "against": "なし", "agree": true, "reason": "蓄えから取るのは、その日に必要な分だけにしたいから"},
+  {"id": "L140", "against": "なし", "agree": true, "reason": "実った畑を刈り切るには、手のあいた大人が毎夕刈るのがいいから"},
+  {"id": "L159", "against": "なし", "agree": true, "reason": "魚も肉と同じく、腐らせずに保存すべきだから"},
+  {"id": "L161", "against": "なし", "agree": true, "reason": "刈り入れは毎夕60つかみまでなら、体も続けられるから"},
+  {"id": "L177", "against": "なし", "agree": true, "reason": "刈った草の種は、その日のうちに土器に入れて守りたいから"},
+  {"id": "L179", "against": "なし", "agree": true, "reason": "北丘12は冬に何も見つからなかったので、北川12を先に試したいから"},
+  {"id": "L188", "against": "なし", "agree": true, "reason": "南川12は近いので、一人で採集に行けると助かるから"},
+  {"id": "L190", "against": "なし", "agree": true, "reason": "養えないヤギを肉にして干せば、冬の蓄えになるから"},
+  {"id": "L193", "against": "なし", "agree": true, "reason": "蓄えから多く取った家が、次に多く入れて戻すのは公平だから"}
+ ],
+ "feeling": "おなかがすいて体が重いけど、ラタ2と北川12で何か見つけて、みんなで分けたい。"}

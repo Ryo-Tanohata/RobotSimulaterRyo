@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "おなかがすいて、体に力が入らない。村の蓄えも空だから、北の川で魚と芋が取れるか、ラタ2と二人で確かめに行く。見つけた物は、夜にすべて言うよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ラタ2"], "why": "蓄えが空で、ひどく空腹だから。北の川には魚がいると知っているので、二人で行って、魚と芋が取れるか確かめたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M150": "ゆるす", "M151": "ゆるす", "M152": "ゆるす", "M153": "ゆるす", "M154": "ゆるす", "M155": "ゆるす", "M156": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えが空っぽになり、食べ物を探しに行くしかなくなった", "because": [409061], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが出るので、夜は外に出ないほうがよい"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは二人以上で助け合えるほうがよい"},
+  {"id": "L121", "against": "", "agree": true, "reason": "近くでも一人だと危ない"},
+  {"id": "L143", "against": "", "agree": true, "reason": "林へ一人で行くとザガに襲われたことがある"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとると困る"},
+  {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いのに、さらに捕まえるのはよくない"},
+  {"id": "L178", "against": "", "agree": true, "reason": "戻る日を過ぎた人を、すぐ探しに行けるように"},
+  {"id": "L188", "against": "", "agree": true, "reason": "南川12は近く、一人で行っても平気だと覚えているから"}
+ ],
+ "feeling": "おなかが空いて、力が出ない。でも、北の川の魚を取りに行けば、少しは食べられるかもしれない。"}
