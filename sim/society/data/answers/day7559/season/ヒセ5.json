@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑がたくさん実っている。夏のうちに刈り切って、蓄えを満たそう。木の実も毎夕取って、半分は蓄えへ入れるよ。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑を夏のうちに刈らないと落ちてしまい、蓄えも空だから"},"family":{"ヌオ5":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やし、家族の空腹を満たすため"},"アコ5":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やすため"},"オネ5":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やすため"}},"pick":40,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"採集","place":"camp","with":[],"why":"秋の木の実を集めて冬に備えるため"},"family":{"ヌオ5":{"activity":"採集","place":"camp","why":"木の実を集めるため"},"アコ5":{"activity":"採集","place":"camp","why":"木の実を集めるため"},"オネ5":{"activity":"採集","place":"camp","why":"木の実を集めるため"}},"pick":40,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"育っている畑の草取りで実りを増やすため"},"family":{"ヌオ5":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"アコ5":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"オネ5":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の実りに向けて草取りを続けるため"},"family":{"ヌオ5":{"activity":"畑仕事","place":"camp","why":"草取りを続けるため"},"アコ5":{"activity":"畑仕事","place":"camp","why":"草取りを続けるため"},"オネ5":{"activity":"畑仕事","place":"camp","why":"草取りを続けるため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge":{},"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,
+"knowledge":[{"op":"add","text":"夏の今、畑がたくさん実っていて、村の蓄えは空。夏のうちに刈り切るのが先。","because":[520678],"confidence":0.8}],
+"proposal":null,
+"votes":[],
+"year_name":"実りの夏の年",
+"feeling":"おなかが空いているが、畑の実りを見て希望がある。"}
