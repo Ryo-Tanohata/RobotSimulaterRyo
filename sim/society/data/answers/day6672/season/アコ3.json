@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、わたしは北川12へ行って、魚と芋が取れるか確かめてくる。ホミ6、いっしょに行こう。夜に見つけた物と量を話すね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ホミ6"], "why": "北川12で魚と芋が取れるかを確かめたい。蓄えが空で、ひどく空腹の人も出そうだから、二人組で行くことにした。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "北川12は冬に行っても、わたしが採集したときは何も見つからなかった", "because": [434979], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L179", "against": "", "agree": true, "reason": "北丘12より先に北川12を試すのは、むだ足をへらせるから"},
+  {"id": "L194", "against": "", "agree": true, "reason": "蓄えが空のあいだは二人組で行けば、見つけた量も分かりやすく、迷う人も減る"},
+  {"id": "L172", "against": "", "agree": true, "reason": "封を割った人が名乗らないと、もめごとがふえて村がこわれるから"}
+ ],
+ "feeling": "蓄えが空で少し心配だけど、北川12で魚と芋が見つかれば、みんなの助けになれるかもしれない。"}
