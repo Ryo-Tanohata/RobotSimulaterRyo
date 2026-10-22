@@ -1,0 +1,12 @@
+{"say": [{"to": "ヌオ", "text": "冬の林は何も見つからなかったから、北川12へ魚と芋をさがしに行こう。二人で行って、見つけた量と見つからなかった場所を夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ヌオ"], "why": "蓄えは空で、林では何も見つからなかった。北川12で魚と芋が取れるか確かめたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M266": "ゆるす"}, "feast": false, "leader": "なし", "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "北川12で魚と芋が取れるかは、まだ確かめていない。冬の林では何も見つからなかった。", "because": [495540], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L195", "against": null, "agree": true, "reason": "取った食べ物を村の蓄えに入れ、空腹の人から先に分けるのは、今みんなが生きるために必要だから。"},
+  {"id": "L197", "against": null, "agree": true, "reason": "取った日の夜に半分を蓄えに入れれば、空腹の人が先に食べられる。"},
+  {"id": "L198", "against": null, "agree": true, "reason": "南の川の木の実と魚を蓄えに入れれば、空腹の人が少しでも食べられる。"}
+ ],
+ "feeling": "蓄えが空で、みんなおなかを空かせている。北川で何か見つけて、早く持ち帰りたい。"}
