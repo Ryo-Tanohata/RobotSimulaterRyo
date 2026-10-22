@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "夏は畑の刈り入れを毎夕手伝おう。実った畑が落ちないうちに刈り切りたい。木の実は一人 20 つかみずつ取って、残りは種にして埋めよう。"}, {"to": "ロワ3", "text": "冬は南川12へいっしょに行かない？ 木の実を探しに行こう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ソナ", "ケナ"], "why": "実った畑が夏のうちに落ちないように、刈り入れを進めたい"}, "family": {"リセ6": {"activity": "畑仕事", "place": "camp", "why": "家の人と畑の刈り入れを分けて手伝う"}, "ヒセ6": {"activity": "採集", "place": "南川12", "why": "南川12では木の実が見つかることが多い。近い川なので一人でも行ける"}}, "pick": 20, "plant": 5, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ソナ"], "why": "まいた畑の草取りをして、実りを増やしたい"}, "family": {"リセ6": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けて、畑の実りを守る"}, "ヒセ6": {"activity": "採集", "place": "南川12", "why": "木の実を探す。近い川なので一人でも行ける"}}, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "採集", "place": "南川12", "with": ["ロワ3"], "why": "冬も南川12では木の実が見つかることが多いと覚えている。二人で行く"}, "family": {"リセ6": {"activity": "採集", "place": "北川12", "why": "魚と芋があるかもしれない。二人組で確かめる"}, "ヒセ6": {"activity": "採集", "place": "北川12", "why": "リセ6と組んで、北川12を確かめる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": ["ホタ4"], "why": "ヤギの数に合わせて、毎日世話をする人を決めて守るため"}, "family": {"リセ6": {"activity": "ヤギの世話", "place": "camp", "why": "家の代表として世話を手伝う"}, "ヒセ6": {"activity": "畑仕事", "place": "camp", "why": "草取りをして、畑の実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false,
+ "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null,
+ "feast": [],
+ "leader": "なし",
+ "trade": {"T75": false},
+ "trade_rule": {"交換": false, "貸して": false, "max": null, "not": [], "利子": 0},
+ "demand": null,
+ "knowledge": [{"op": "add", "text": "夏の畑の刈り入れは、手の空いた大人が毎夕 60 つかみずつ刈れば、夏のうちに刈り切れる", "because": [452472], "confidence": 0.6}, {"op": "add", "text": "北川12は冬に二人組で試して、魚と芋があるか確かめる価値がある", "because": [], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L167", "against": "なし", "agree": true, "reason": "世話が足りないとヤギが減るので、ヤギの数に合わせて世話する人を決める"}, {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとらないのがよい"}, {"id": "L175", "against": "なし", "agree": true, "reason": "草で養える数より多いあいだは、野生のヤギを捕まえない"}, {"id": "L176", "against": "なし", "agree": true, "reason": "草の多い場所を見に行き、ヤギの数か草を決めるのは大事"}, {"id": "L186", "against": "なし", "agree": true, "reason": "貸した量と返す量を板に残せば、数が確かめられる"}, {"id": "L192", "against": "なし", "agree": true, "reason": "夏の刈り残しは落ちてしまうので、毎夕刈り切る"}, {"id": "L194", "against": "なし", "agree": true, "reason": "蓄えが空のあいだは二人組で探しに行くのが安心"}],
+ "year_name": "子が多く生まれた年",
+ "feeling": "畑が実って少し安心。ヤギが多くて草が心配。"}

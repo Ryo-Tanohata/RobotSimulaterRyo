@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "夏のうちに、実った畑を毎夕みんなで刈り切ろう。刈り残しは夏の終わりに落ちてしまうから。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈り切らないと落ちてしまうから。毎夕 60 つかみまで刈る"}, "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "いっしょに畑を刈るため"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "南川12", "with": [], "why": "近くて一人で行ってよい川で、食べ物を探すため。見つけた量は夜に言う"}, "family": {"キオ4": {"activity": "採集", "place": "南川12", "why": "ソワ3といっしょに食べ物を探すため"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 200},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ナセ3"], "why": "冬は木の実も草の種も実らないので、魚と芋がとれるか二人で確かめて夜に報告する"}, "family": {"キオ4": {"activity": "休む", "place": "camp", "why": "寒い冬にそなえて体を休めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをして、夏の実りを増やすため"}, "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "草取りをいっしょにするため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T75": false}, "trade_rule": {"交換": false, "貸して": false, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "畑の刈り入れは、手の空いた大人が毎夕 60 つかみまで刈れば、夏のうちに刈り切れる", "because": [452472], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L171", "against": "特になし", "agree": true, "reason": "草が足りないので、ほかの村のヤギを受けとらないのがよい"},
+  {"id": "L175", "against": "特になし", "agree": true, "reason": "ヤギが草で養える数より多いと、ヤギがやせていなくなるから"},
+  {"id": "L176", "against": "特になし", "agree": true, "reason": "草の多い場所を見に行けば、草を増やすかヤギを減らすか決めやすい"},
+  {"id": "L178", "against": "特になし", "agree": true, "reason": "交換に行った人が戻らないときに、すぐ探しに行けるから"},
+  {"id": "L187", "against": "特になし", "agree": true, "reason": "蓄えの記録が途切れないように、二人決めておくのがよい"},
+  {"id": "L190", "against": "特になし", "agree": true, "reason": "草で養えないヤギは、秋の終わりまでに肉にして蓄えに入れた方がよい"},
+  {"id": "L193", "against": "特になし", "agree": true, "reason": "蓄えを使いすぎる家を減らせるから"},
+  {"id": "L196", "against": "刈った人が家の倉に入れずに持つと、村の蓄えが少なくなり、空腹の人が増えてしまう", "agree": false, "reason": "村の蓄えを守るため、刈った草の種は村に入れる方がよい"},
+  {"id": "L198", "against": "特になし", "agree": true, "reason": "空腹の人が先に分けてもらえるのはよいと思う"}
+ ],
+ "year_name": "仲間が四人亡くなった年",
+ "feeling": "蓄えがほとんどなくなって、仲間が何人も亡くなった。みんなが飢えないように、食べ物をちゃんと分けたい。"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏は畑の刈り入れを毎夕手伝うよ。ユエ2といっしょに、実った畑を毎日刈ろう。秋には蓄えの草の種を畑にまくよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ユエ2"], "why": "実った畑が夏のうちに落ちないように、毎夕刈り切りたいから"}, "family": {"ユエ2": {"activity": "畑仕事", "place": "camp", "why": "いっしょに刈り入れをするため"}, "アコ4": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝えるように"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ユエ2"], "why": "まいた畑の草取りをして、実りを増やすため"}, "family": {"ユエ2": {"activity": "畑仕事", "place": "camp", "why": "草取りを二人で分けてするため"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 300},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ワユ"], "why": "冬に魚と芋が取れるか、二人組で確かめたいから"}, "family": {"ユエ2": {"activity": "採集", "place": "北川12", "why": "二人組で魚と芋を確かめるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": ["ユエ2"], "why": "子ヤギが生まれて乳がとれる季節だから、毎日世話をするため"}, "family": {"ユエ2": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を二人で分けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade": {"T75": "村"}, "trade_rule": {"交換": "村", "貸して": false, "max": 5000, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "夏に畑を毎夕刈り切ると、実りが落ちずに刈り入れられる", "because": [452474], "confidence": 0.7}, {"op": "add", "text": "畑は草取りをすると、実りが増える", "because": [452472], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L167", "against": "特になし", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギが減らないから"}, {"id": "L161", "against": "特になし", "agree": true, "reason": "刈り入れを手の空いた大人が毎夕進めれば、夏の畑が落ちないから"}, {"id": "L192", "against": "特になし", "agree": true, "reason": "刈り残しは夏の終わりに落ちてしまうから"}, {"id": "L171", "against": "特になし", "agree": true, "reason": "草が足りないあいだは、ほかの村からヤギを受けとらないほうがよいから"}, {"id": "L175", "against": "特になし", "agree": true, "reason": "草が足りないなら、野生のヤギを増やさないほうがよいから"}],
+ "year_name": "子が生まれて畑が実った年",
+ "feeling": "たくさん子が生まれてうれしい。畑の刈り入れを、みんなで早く終わらせたい。"}
