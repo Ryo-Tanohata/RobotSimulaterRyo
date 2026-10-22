@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えがからっぽだ。おれは南の川で毎日木の実と魚を探してくる。見つけた分は蓄えに入れるから、ひどく腹がすいた人は声をかけてくれ。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "前の季節も南の川で毎日食べ物が見つかった。近いし、蓄えが空だから採集がいちばん役に立つ。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "春のはじめ、村の蓄えは空で、南の川の採集が頼りになる。", "because": [519238, 519297], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L188", "against": "", "agree": true, "reason": "南の川は近いので一人で行ける。続けたい。"},
+  {"id": "L198", "against": "", "agree": true, "reason": "蓄えが空のあいだは南の川の食べ物を蓄えに入れるのが助けになる。"},
+  {"id": "L205", "against": "", "agree": true, "reason": "草で養えないヤギを干し肉にすれば空腹の人が助かる。"},
+  {"id": "L206", "against": "", "agree": true, "reason": "蓄えが空の春はヤギを肉にして干すのがよい。"},
+  {"id": "L207", "against": "", "agree": true, "reason": "小さな子とひどく空腹の人に先に分けるのはよい。"},
+  {"id": "L208", "against": "", "agree": true, "reason": "毎日少しずつ干し肉にすれば蓄えが続く。"}
+ ],
+ "feeling": "腹はふくれているが蓄えが空で落ち着かない。まず川へ行って手を動かそう。"}

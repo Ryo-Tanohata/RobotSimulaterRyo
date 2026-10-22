@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だ。おれは家族と北の川で魚を探してくる。見つけた分は夜に蓄えへ入れよう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ケナ4"], "why": "蓄えが空で、北の川には魚が泳いでいた。採集は得意なので食べ物を探す"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ4": {"activity": "採集", "place": "北川12", "why": "二人組で北の川の魚と芋を探す"},
+  "オセ5": {"activity": "採集", "place": "西草原12", "why": "近い草原で食べ物を探し、場所を分けて見つかる機会を増やす"},
+  "ナセ5": {"activity": "採集", "place": "南川12", "why": "キャンプに近い南の川で魚を探す"},
+  "セヤ6": {"activity": "採集", "place": "北川12", "why": "北の川へ行く二人組に加わり、魚と芋を探す"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "蓄えが空の春は、北川12で魚を探すのが頼りだ。家族みんなで行って結果を夜に話す。", "because": [519297], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかは満ちているが蓄えが空で心配だ。魚が見つかるといい。"}

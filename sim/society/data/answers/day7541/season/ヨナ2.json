@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "腹がぺこぺこだ。東の川で木の実と芋が少し取れたから、また行ってくる。取れた分は夜に蓄えへ入れるよ。"}],
+ "job": {"activity": "採集", "place": "東川28", "with": [], "why": "前の季節に東の川で毎日食べ物が見つかった。蓄えが空で、自分も腹がすいているので、見つかる場所へ行く"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "東の川では春も毎日木の実と芋が少し見つかった", "because": [519239], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "腹がへってつらいが、探しに行けば少しは見つかると思う。"}
