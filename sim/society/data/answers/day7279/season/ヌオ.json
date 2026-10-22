@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "北川12 で魚と芋が取れるか、二人で行って確かめてこよう。見つけたら、ひどく空腹の人から先に分けよう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ソナ"], "why": "冬の採集は北丘12より先に北川12を試そうという決まりがあり、蓄えも空で食べ物がいるから。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M267": "ゆるす", "M268": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "北丘12は冬に行っても何も見つからなかった。北川12は、まだ確かめていないが、魚と芋があるかもしれない。", "because": [495569], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L171", "against": null, "agree": true, "reason": "草が足りないのだから、ほかの村からヤギを受けとらないのがよい。"},
+  {"id": "L175", "against": null, "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを捕まえないのがよい。"},
+  {"id": "L179", "against": null, "agree": true, "reason": "北丘12は冬に何も見つからなかったので、北川12を先に試すのがよい。"},
+  {"id": "L193", "against": null, "agree": true, "reason": "取りすぎた家が次の季節に戻すという決まりは、もめごとを減らすのによい。"}
+ ],
+ "feeling": "おなかが空いてきた。北川で何か見つかるといいが、みんなで分け合えたら安心だ。"}
