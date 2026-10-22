@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "村の蓄えが空だから、わたしは今日から南川12へ採集に行くよ。まだ行ったことのない川だから、何があるか見てきて夜に話すね。"}],
+"job": {"activity": "採集", "place": "南川12", "with": [], "why": "蓄えが空で、食べ物は採集でしか手に入らない。南川12は近くて、一人で行ってよい場所だから"},
+"pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+"judge": {"M157": "ゆるす", "M158": "ゆるす", "M159": "ゆるす"},
+"feast": false, "leader": null, "seal_store": false, "demand": null,
+"knowledge": [],
+"proposal": null,
+"votes": [
+{"id": "L194", "against": "", "agree": true, "reason": "蓄えが尽きたときに、見つけた人が夜に量を言って分けるのは、みんなが生きのびるために必要だから"},
+{"id": "L171", "against": "", "agree": true, "reason": "草で養えない数のヤギを受けとると、草の取り合いになって子ヤギも減るから"},
+{"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを捕まえるのを控えるべきだから"}
+],
+"feeling": "蓄えが空で少し不安だけど、南川12を見に行くのが楽しみ。"}
