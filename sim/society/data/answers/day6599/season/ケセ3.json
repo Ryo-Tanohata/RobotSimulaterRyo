@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "ケセ3です。大人の仲間になったので、夏は西草原12で草の種や木の実を探します。冬は北丘12では何も見つからなかったと聞いたので、ヌオ5と二人で北川12の魚と芋を確かめに行きたいです。"}],
+ "year": {
+  "夏": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "夏は木の実がなるので、キャンプから近い草原でも食べ物を探して、蓄えに入れたい"}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "種まき", "place": "camp", "with": [], "why": "蓄えの草の種を畑にまけば、次の夏に実るので、畑まきを手伝いたい"}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ヌオ5"], "why": "冬は北丘12で何も見つからなかったので、北川12で魚と芋が取れるか二人で確かめたい"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春は子ヤギが生まれ、世話をすると乳がとれるので、ヤギの世話を手伝いたい"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": "なし",
+ "trade": {"T71": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "草で養えるヤギは約140頭で、今は多すぎて草が足りない。世話が足りないとヤギが減る", "because": [425373], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギ50頭ごとに一人の世話をすれば、世話が足りずヤギが減るのを防げるから"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りない今、ほかの村からヤギを受けとると草の取り合いになるから"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草で養える数より多いあいだは、野生のヤギを捕まえず、今の群れを守るべきだから"},
+  {"id": "L182", "against": "", "agree": true, "reason": "木を増やせば、夏と秋に実る木の実が増えるから"}
+ ],
+ "year_name": "大人の仲間が増えた年",
+ "feeling": "15歳になって大人の仲間に入れてうれしい。まだ狩りは苦手なので、採集と火の番で役に立ちたい。"}

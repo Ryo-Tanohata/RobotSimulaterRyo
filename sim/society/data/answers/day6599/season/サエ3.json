@@ -1,0 +1,27 @@
+{"say": [{"to": "みんな", "text": "ヤギが草より多くて、草が足りなくなっているよ。畑の草の種は秋にまいて、夏に刈ろう。わたしは土器と道具をつくって、蓄えの草の種を守るね。"}],
+ "year": {
+  "夏": {"job": {"activity": "記録をつける", "place": "camp", "with": ["ヌオ6"], "what": ["蓄え", "交換", "刈る"], "how": "板", "why": "村の蓄えの出し入れを板に残して、覚えのずれでもめごとが起きないようにしたい"}, "family": {"ワユ": {"activity": "採集", "place": "南川12", "why": "南川12は近くて安全で、魚や木の実が取れる"}, "ロワ2": {"activity": "採集", "place": "南川12", "why": "ワユと組んで、二人で採集する"}, "セオ2": {"activity": "採集", "place": "南川12", "why": "二人組で採集して食べ物を家に持ち帰る"}, "ロワ3": {"activity": "採集", "place": "camp", "why": "キャンプのそばの木の実を取る"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "種まき", "place": "camp", "with": [], "why": "蓄えの草の種を畑にまいて、冬と春をこえて夏に実らせたい"}, "family": {"ワユ": {"activity": "採集", "place": "南川12", "why": "二人組で採集して食べ物を集める"}, "ロワ2": {"activity": "採集", "place": "南川12", "why": "ワユと組んで採集する"}, "セオ2": {"activity": "採集", "place": "南川12", "why": "二人組で採集する"}, "ロワ3": {"activity": "採集", "place": "camp", "why": "キャンプのそばの木の実を取る"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬のうちから土器をつくり、草の種を虫やネズミから守りたい"}, "family": {"ワユ": {"activity": "採集", "place": "北川12", "why": "冬に試されていない北川12で魚と芋が取れるか、二人組で確かめる"}, "ロワ2": {"activity": "採集", "place": "北川12", "why": "ワユと組んで北川12を確かめる"}, "セオ2": {"activity": "採集", "place": "北川12", "why": "二人組で北川12を確かめる"}, "ロワ3": {"activity": "採集", "place": "camp", "why": "キャンプのまわりで食べ物を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れの前に石の鎌を作りためて、刈り残しを減らしたい"}, "family": {"ワユ": {"activity": "採集", "place": "南川12", "why": "二人組で採集して食べ物を集める"}, "ロワ2": {"activity": "採集", "place": "南川12", "why": "ワユと組んで採集する"}, "セオ2": {"activity": "採集", "place": "南川12", "why": "二人組で採集する"}, "ロワ3": {"activity": "採集", "place": "camp", "why": "キャンプのそばの木の実を取る"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": false, "ほかの村から": false},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade": {"T71": false},
+ "trade_rule": {"交換": "村", "貸して": false, "max": 500, "not": [], "利子": 0},
+ "demand": null,
+ "knowledge": [
+  {"op": "add", "text": "ヤギは草で養える数 (約140頭) より多く、今は149頭いて草が足りない。ヤギを増やす交換は草の取り合いを生む", "because": [425373], "confidence": 0.9},
+  {"op": "add", "text": "木の実と草の種は夏と秋に実る。冬は実らないので、冬は蓄えと土器で食べ物を守る", "because": [], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギがいなくなるのを防げる"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草で養える数より多いあいだは、野生のヤギを捕まえないほうがよい"},
+  {"id": "L176", "against": "", "agree": true, "reason": "草の多い場所を見に行けば、草を増やすかヤギを減らすかを決められる"},
+  {"id": "L187", "against": "", "agree": true, "reason": "記録を二人が残せば、一人が休んでも覚えのずれが減る"},
+  {"id": "L193", "against": "", "agree": true, "reason": "蓄えから取る量を入れた量までにすれば、もめごとが減る"}
+ ],
+ "year_name": "畑の草が実って子が生まれた年",
+ "feeling": "ヤギが多すぎて草が足りないのが気になるけど、秋にまいた草の種が夏に実るのが楽しみ。"}

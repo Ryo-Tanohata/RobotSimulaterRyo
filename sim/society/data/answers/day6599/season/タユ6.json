@@ -1,0 +1,24 @@
+{"say": [{"to": "みんな", "text": "土器に入れた草の種は、虫やネズミにほとんど食べられないよ。夏と秋は土器づくりを毎日少しずつ進めよう。"}],
+ "year": {"夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器を焼けば、蓄えの草の種を虫やネズミから守れる。わたしは土器づくりが一番得意だから"}, "family": {"リセ6": {"activity": "採集", "place": "南川12", "why": "南川12では、採集で木の実が見つかることが多いから"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "秋にまく草の種以外の蓄えを、土器に入れて守るため"}, "family": {"リセ6": {"activity": "採集", "place": "南川12", "why": "南川12では、採集で木の実が見つかることが多いから"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ホタ"], "why": "冬の食べ物を探すため。北川12で魚と芋が取れるか、二人組で確かめて夜に報告する (L179)"}, "family": {"リセ6": {"activity": "採集", "place": "北川12", "why": "北川12で魚と芋が取れるか確かめるため。二人組で行く"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "春のうちから土器を毎日少しずつ作り、草の種を守るため (L168)"}, "family": {"リセ6": {"activity": "採集", "place": "南川12", "why": "南川12では、採集で木の実が見つかることが多いから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade": {"T71": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [
+  {"op": "add", "text": "土器に入れた草の種は、虫やネズミにほとんど食べられない", "because": [425227], "confidence": 0.8},
+  {"op": "add", "text": "村のヤギは草で養える数 (約140頭) より多く、草が足りない", "because": [425373], "confidence": 0.8},
+  {"op": "add", "text": "南の村21は、ヤギ 3 頭と引きかえに土器・鎌・草の種をほしがっている", "because": [425380], "confidence": 0.6}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとらないほうがよい"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを捕まえないほうがよい"},
+  {"id": "L166", "against": "なし", "agree": true, "reason": "土器づくりの掟をまとめると、わかりやすく土器を続けられる"},
+  {"id": "L167", "against": "なし", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギが減りにくい"},
+  {"id": "L172", "against": "なし", "agree": true, "reason": "封を割った人が名乗り出れば、もめごとを減らせる"}
+ ],
+ "year_name": "草の種を土器に守った年",
+ "feeling": "土器がたくさん焼けて、草の種を守れるのがうれしい。冬の北川12が心配だけど、ホタと一緒に行けば安心できる。"}

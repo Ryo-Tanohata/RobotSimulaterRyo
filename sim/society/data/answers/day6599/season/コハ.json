@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は土器をつくって、蓄えの草の種を虫やネズミから守ろう。秋には草の種をまいて、次の夏に実らせよう。冬は北川12で魚と芋が取れるか、二人で確かめに行く。"}, {"to": "ホタ", "text": "冬はわたしと北川12へ行こう。二人で行けば、何かあったときも助け合える。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": ["ラキ2"], "why": "土器に入れた草の種は虫やネズミに食べられない。わたしの一番得意な仕事だから"}, "family": {"ホタ": {"activity": "採集", "place": "南林12", "why": "夏の木の実を探して、家の食べ物を増やすため"}, "ラキ2": {"activity": "土器づくり", "place": "camp", "why": "土器づくりを手伝って、草の種を早く守るため"}}, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "種まき", "place": "camp", "with": ["ラキ2"], "why": "蓄えの草の種を畑にまいて、次の夏に実らせるため"}, "family": {"ホタ": {"activity": "採集", "place": "南林12", "why": "秋の木の実を取って、冬の前に少しでも蓄えるため"}, "ラキ2": {"activity": "種まき", "place": "camp", "why": "畑まきを手伝って、草の種を無駄にしないため"}}, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ホタ"], "why": "冬は北川12で魚と芋が取れるか、二人組で確かめるため (掟 L179)"}, "family": {"ホタ": {"activity": "採集", "place": "北川12", "why": "二人組で北川12を調べて、夜に報告するため"}, "ラキ2": {"activity": "採集", "place": "北川12", "why": "二人組で北川12を調べて、夜に報告するため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": ["ラキ2"], "why": "ヤギが草で養える数より多いので、毎晩世話をする人が必要だから (掟 L167)"}, "family": {"ホタ": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をして、乳をとり、ヤギが減らないようにするため"}, "ラキ2": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をして、乳をとるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade": {"T71": false}, "trade_rule": {"交換": false, "貸して": false, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "土器に入れた草の種は、虫やネズミに食べられず、年に100分の3ほどしか傷まない", "because": [421238], "confidence": 0.9}, {"op": "add", "text": "北川12では冬に魚と芋が取れるかもしれないが、まだ確かではない", "because": [409950], "confidence": 0.4}],
+ "proposal": null,
+ "votes": [{"id": "L168", "against": "", "agree": true, "reason": "土器づくりを冬のうちから始めれば、草の種を早く守れるから"}, {"id": "L171", "against": "", "agree": true, "reason": "ヤギが増えると草の取り合いになり、多すぎる分がやせていなくなるから"}, {"id": "L175", "against": "", "agree": true, "reason": "草が足りないあいだは、野生のヤギを捕まえないほうがよい"}, {"id": "L177", "against": "", "agree": true, "reason": "刈った草の種はその日のうちに土器へ入れれば、虫やネズミから守れる"}, {"id": "L194", "against": "", "agree": true, "reason": "蓄えが空のあいだは二人組で探しに行けば、見つけた量も確かめられるから"}, {"id": "L195", "against": "", "agree": true, "reason": "わたしが出した案で、取った食べ物を空腹の人から先に分けられるから"}],
+ "year_name": "土器で草の種を守った年",
+ "feeling": "草が足りず、ヤギが減るかもしれないのが心配。土器で守れるものは、今のうちに守りたい。"}

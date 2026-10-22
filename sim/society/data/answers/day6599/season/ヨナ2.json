@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "夏のうちに、畑の草は毎夕刈り切ろう。刈った草の種は、その日のうちに土器に入れて守ろう。"}],
+ "year": {"夏": {"job": {"activity": "記録をつける", "place": "camp", "what": ["蓄え", "交換", "刈る"], "how": "板", "why": "村の蓄えの出し入れが覚えだけでははっきりせず、もめごとのもとになっているから、板に刻んで残したい。"}, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0},
+          "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは私の得意な仕事で、蓄えの草の種を虫やネズミから守るために、土器を増やしたい。"}, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 300},
+          "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ヌオ6"], "why": "冬は木の実も草の種も実らないので、北川12で魚と芋が取れるか二人で確かめたい。"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "採集", "place": "南川12", "with": [], "why": "春は木に実がならないので、近い南川12へ一人で行き、食べ物を探したい。"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": ["冬"],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade": {"T71": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える数より多く、草が足りないので、ほかの村からヤギを受けとると草がさらに足りなくなる", "because": [425373], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+   {"id": "L158", "against": "特になし", "agree": true, "reason": "蓄えの出し入れを板に残せば、もめごとの量がはっきりするから。"},
+   {"id": "L167", "against": "特になし", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギがいなくなるのを防げるから。"},
+   {"id": "L171", "against": "特になし", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとらないほうがよいから。"},
+   {"id": "L175", "against": "特になし", "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを増やさないほうがよいから。"},
+   {"id": "L186", "against": "特になし", "agree": true, "reason": "貸した量と返す量を板に残せば、返しに来たときに数を確かめられるから。"}
+ ],
+ "year_name": "ヤギが草を超えた年",
+ "feeling": "蓄えは多いが、ヤギが草より多くて先が心配だ。土器と板の記録で、村の暮らしを確かにしていきたい。"}
