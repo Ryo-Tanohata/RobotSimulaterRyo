@@ -2190,5 +2190,111 @@ class N_FieldText(unittest.TestCase):
         self.assertNotIn("実りと畑仕事", era2.season_prompt(y, p, g7.since(y)), "季節のお題 (G1〜G6 と同じ文) は変えない")
 
 
+class O_SowFromHouse(unittest.TestCase):
+    """2026-10-22: 秋の種まき (era2._sow)。G7 では、村の蓄えの草の種が sow の量に足りなければ、残りをまく人の家の倉から出す
+    (畑は今までどおりその家のもの)。帳簿 (build_records.ledger) は、家の倉から出た分を家の「まいた (畑)」に入れ、村の分から引く。G6 までは前のまま"""
+    U = era2.UNITS["草の種"][1]
+
+    def setup(self, g7_on):
+        st = real_state()
+        if "g7" not in (st.get("era2") or {}):
+            if not is_g6(st):
+                self.skipTest("本物の state が G6 でも G7 でもない")
+            st = g7_state()
+        if not g7_on:  # G6 のふるまい (_fix は "g7" があるかだけを見る)
+            del st["era2"]["g7"]
+        p = next(q for q in era2.adults(st) if q.get("household"))
+        h = p["household"]
+        st["store"] = [f for f in st["store"] if f["kind"] != "草の種"]  # 村の蓄えに草の種がない
+        house = era2._house(st, h)
+        house["store"] = [f for f in house["store"] if f["kind"] != "草の種"] + [{"kind": "草の種", "kcal": 50 * self.U, "day": st["day"]}]
+        return st, p, h
+
+    def sow(self, st, p, want):
+        import records
+        P = records.snapshot(st)
+        n0, e0 = len(st["era2"]["fields"]), st["next_event"]
+        era2._sow(st, p, want)
+        return P, records.snapshot(st), st["era2"]["fields"][n0:], [e for e in st["events"] if e["id"] >= e0]
+
+    def ledger(self, st, P, C, evs):
+        sys.path.insert(0, str(HERE))
+        import build_records
+        b = build_records.Builder.__new__(build_records.Builder)
+        b.H = lambda x: x
+        b.hname = {}
+        fv = {}
+        sown = [e for e in evs if e["type"] == "畑" and (e.get("data") or {}).get("seed") is not None]
+        for e in sown:  # build_records の出来事の読み方と同じ
+            d = e["data"]
+            build_records.add(fv.setdefault("まいた (畑)", {}), "草の種", d["seed"] * self.U - d.get("home_kcal", 0))
+        c = {"D": st["day"], "a": st["day"], "P": P, "C": C, "flows_v": fv, "sown_ev": sown, "eaten": {},
+             "harvest": {"to": {}, "by_household": {}}, "g5": {"feast": None, "payments": [], "fission": None},
+             "pests": {"amount": 0, "events": []}, "inherit": [], "pots": {"made": 0, "broken": 0}, "sick": {"made": 0, "broken": 0}, "g6": {"moves": []}, "goats": {"flows": {}, "known": False}}
+        return b.ledger(c)
+
+    def test_g7_from_house(self):
+        st, p, h = self.setup(True)
+        house0 = sum(f["kcal"] for f in era2._house(st, h)["store"] if f["kind"] == "草の種")
+        P, C, fields, evs = self.sow(st, p, 30)
+        self.assertEqual(len(fields), 1)
+        self.assertEqual((fields[0]["seed"], fields[0]["owner"], fields[0]["by"]), (30, h, p["name"]))
+        self.assertAlmostEqual(house0 - sum(f["kcal"] for f in era2._house(st, h)["store"] if f["kind"] == "草の種"), 30 * self.U)
+        e = next(e for e in evs if e["type"] == "畑")
+        self.assertIn(f"草の種 30 つかみ をまいた (家の倉から 30 つかみ)", e["text"])
+        self.assertEqual((e["data"]["seed"], e["data"]["household"], e["data"]["home_kcal"]), (30, h, 30 * self.U))
+        rows = self.ledger(st, P, C, evs)
+        diff = [r for r in rows if r["reason"] == "記録にない差" and r["item"] == "草の種" and r["holder"] in ("村", h)]
+        self.assertEqual(diff, [], "村と家の草の種の帳簿が合う")
+        sown = {r["holder"]: r["kcal"] for r in rows if r["reason"] == "まいた (畑)"}
+        self.assertEqual(sown, {h: -30 * self.U}, "家の倉の分は家の帳簿に、村の帳簿には出ない")
+        # 家の倉にも足りなければ、ある分だけ (50 つかみ のうち残り 20)
+        P, C, fields, evs = self.sow(st, p, 40)
+        self.assertEqual([f["seed"] for f in fields], [20])
+        # 家の倉もからなら、畑はできない
+        P, C, fields, evs = self.sow(st, p, 10)
+        self.assertEqual(fields, [])
+
+    def test_g7_village_then_house(self):
+        st, p, h = self.setup(True)
+        st["store"].append({"kind": "草の種", "kcal": 12 * self.U, "day": st["day"]})
+        P, C, fields, evs = self.sow(st, p, 20)
+        self.assertEqual([f["seed"] for f in fields], [20])
+        e = next(e for e in evs if e["type"] == "畑")
+        self.assertTrue(e["text"].endswith("草の種 20 つかみ をまいた (家の倉から 8 つかみ)"), e["text"])
+        rows = self.ledger(st, P, C, evs)
+        self.assertEqual([r for r in rows if r["reason"] == "記録にない差" and r["item"] == "草の種" and r["holder"] in ("村", h)], [])
+        sown = {r["holder"]: r["kcal"] for r in rows if r["reason"] == "まいた (畑)"}
+        self.assertEqual(sown, {"村": -12 * self.U, h: -8 * self.U})
+        # 村の蓄えで足りれば、家の倉は使わない (文も data も前と同じ)
+        st["store"].append({"kind": "草の種", "kcal": 5 * self.U, "day": st["day"]})
+        house0 = copy.deepcopy(era2._house(st, h)["store"])
+        P, C, fields, evs = self.sow(st, p, 5)
+        e = next(e for e in evs if e["type"] == "畑")
+        self.assertTrue(e["text"].endswith("草の種 5 つかみ をまいた"), e["text"])
+        self.assertEqual(e["data"], {"seed": 5})
+        self.assertEqual(era2._house(st, h)["store"], house0)
+
+    def test_g6_unchanged(self):
+        st, p, h = self.setup(False)
+        house0 = copy.deepcopy(era2._house(st, h)["store"])
+        P, C, fields, evs = self.sow(st, p, 30)
+        self.assertEqual(fields, [], "G6 までは村の蓄えからだけ (家の倉にあっても、まかない)")
+        self.assertEqual(era2._house(st, h)["store"], house0)
+        self.assertFalse([e for e in evs if e["type"] == "畑"])
+        st["store"].append({"kind": "草の種", "kcal": 12 * self.U, "day": st["day"]})
+        P, C, fields, evs = self.sow(st, p, 20)
+        self.assertEqual([f["seed"] for f in fields], [12])
+        e = next(e for e in evs if e["type"] == "畑")
+        self.assertTrue(e["text"].endswith("草の種 12 つかみ をまいた"), e["text"])
+        self.assertEqual(e["data"], {"seed": 12})
+        self.assertEqual(era2._house(st, h)["store"], house0)
+
+    def test_prompt(self):
+        import g7
+        t = g7._season_notes(g7_state() if is_g6(real_state()) else real_state(), ["秋"])
+        self.assertIn("村の蓄えの草の種が足りなければ、残りはまく人の家の倉の草の種からまかれる (家の倉にもなければ、ある分だけ)", t)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

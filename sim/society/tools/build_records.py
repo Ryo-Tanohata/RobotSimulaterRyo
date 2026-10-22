@@ -433,7 +433,7 @@ class Builder:
                 if who and d.get("seed") is not None:
                     o(who)["sown"] += d["seed"]
                     sown_ev.append(e)
-                    add(flows_v.setdefault("まいた (畑)", {}), "草の種", d["seed"] * UNIT["草の種"][1])
+                    add(flows_v.setdefault("まいた (畑)", {}), "草の種", d["seed"] * UNIT["草の種"][1] - d.get("home_kcal", 0))  # G7: 家の倉から出た分は家の帳簿へ
                 elif "実らなかった" in x:
                     fields_ev["failed"] += 1
                 elif "実った" in x:
@@ -761,6 +761,10 @@ class Builder:
         for h, n in c["harvest"]["to"].items():
             if h != "村":
                 fh.setdefault((h, "刈った (自分の家の畑)"), {})["草の種"] = n * UNIT["草の種"][1]
+        for e in c["sown_ev"]:  # G7: 村の蓄えで足りず、まく人の家の倉から出した草の種 (era2._sow の home_kcal)
+            d = e.get("data") or {}
+            if d.get("home_kcal"):
+                add(fh.setdefault((d.get("household") or "-", "まいた (畑)"), {}), "草の種", d["home_kcal"])
         for pm in c["g5"]["payments"]:
             for kk, v in pm["food"].items():
                 add(fh.setdefault((pm["to"], "罰・つぐないで受け取った"), {}), kk, v)
@@ -901,7 +905,7 @@ class Builder:
 
     def _left_over(self, h, s0, s1, fh):
         """家の倉が空になったとき、出ていった量 = はじめ + ほかの動き − 終わり (物ごと)"""
-        sign = {"罰・つぐないで払った": -1, "虫やネズミ": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1, OUT_G6: -1,
+        sign = {"罰・つぐないで払った": -1, "虫やネズミ": -1, "まいた (畑)": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1, OUT_G6: -1,
                 **{w[0]: -1 for w in MOVE7.values()}}
         out = {}
         for kk in FOODS:

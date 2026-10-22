@@ -2322,12 +2322,21 @@ def _sow(state, p, want):
     by = _move_food(state["store"], [], "草の種", want * UNITS["草の種"][1])
     if era_at_least(state, "G5") and _house(state, p.get("household"))["keep"]:  # G5: 家の倉を持つ家が、村の草の種を自分の畑にまいた
         _flow(state, p, 2, by.get("草の種", 0))
-    n = int(by.get("草の種", 0) // UNITS["草の種"][1])
+    home, h = 0, p.get("household")
+    short = want * UNITS["草の種"][1] - by.get("草の種", 0)
+    if _fix(state) and h and short > 0:  # G7: 村の蓄えで足りない分は、まく人の家の倉の草の種から (家の倉にもなければ、ある分だけ)
+        home = _move_food(_house(state, h)["store"], [], "草の種", short).get("草の種", 0)
+        if home:
+            _g6_opened(state, p, "倉")  # _feed と同じ: 印で封をした家の倉を開けた (封のかけら)
+    n = int((by.get("草の種", 0) + home) // UNITS["草の種"][1])
     if n:
         e2["fields"].append({"id": len(e2["fields"]), "day": state["day"], "seed": n, "work": 0.0, "state": "育つ", "by": p["name"], "harvested": 0,
                              "owner": p.get("household")})
         e2.setdefault("sown_years", []).append(state["day"] // YEAR)
-        log(state, "畑", p["name"], f"{p['name']} がキャンプのそばの畑に、草の種 {n} つかみ をまいた", seed=n)
+        # 帳簿 (tools/build_records.py): home_kcal は家の倉から出た量。村の食べ物の「まいた (畑)」は seed の分からこれを引き、家の倉の「まいた (畑)」に入れる
+        extra = {"household": h, "home_kcal": round(home, 2)} if home else {}
+        note = f" (家の倉から {round(home / UNITS['草の種'][1])} つかみ)" if home else ""
+        log(state, "畑", p["name"], f"{p['name']} がキャンプのそばの畑に、草の種 {n} つかみ をまいた{note}", seed=n, **extra)
 
 
 def _harvest(state, p, want):
