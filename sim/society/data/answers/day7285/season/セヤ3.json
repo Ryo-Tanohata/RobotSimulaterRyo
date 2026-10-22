@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "おなかがぺこぺこで、力が入らない。林の実は冬には取れないから、北川12で魚と芋をさがしてみる。二人で行って、見つけた物を夜にちゃんと言うよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ナセ3"], "why": "冬は林の実が取れない。北川12で魚と芋が取れるか、二人で確かめたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ3": {"activity": "採集", "place": "北川12", "why": "セヤ3といっしょに北川12へ行って、二人で確かめるため。"}},
+ "keep": false,
+ "judge": {"M271": "ゆるす", "M272": "ゆるす", "M273": "ゆるす", "M274": "ゆるす", "M275": "ゆるす"},
+ "feast": false, "leader": "なし", "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "冬は北川12で魚と芋が取れるかもしれない。二人組で行って確かめよう。", "because": [496268], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "夜のザガがこわいから、キャンプから離れないのがよい。"},
+  {"id": "L3", "against": null, "agree": true, "reason": "複数人で行けば助け合える。"},
+  {"id": "L121", "against": null, "agree": true, "reason": "近くでも夜でも、二人以上で行くのがよい。"},
+  {"id": "L165", "against": null, "agree": true, "reason": "探索も二人以上で行けば、危なくない。"},
+  {"id": "L172", "against": null, "agree": true, "reason": "封を割ったら名乗り出るのが、みんなのためになる。"},
+  {"id": "L179", "against": null, "agree": true, "reason": "北丘12は冬に何も見つからなかったので、北川12を先に試すのがよい。"}
+ ],
+ "feeling": "おなかが空いてつらい。それでも北川12で何か見つけて、みんなに分けたい。"}
