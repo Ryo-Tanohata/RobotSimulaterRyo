@@ -340,6 +340,7 @@ def simulate_day(state):
     sea = season(day)
     alive = [p for p in state["people"] if p["alive"] and not p.get("child")]  # 子 (Society 2.0) は era2.py が扱う
     camp = state["camp"]
+    picked = None  # 今日もう「木から採った記録」(harvests) のある木 (はじめて要るときに 1 回だけ数える。下の採集)
 
     # 動物の移動 (獲物は草原へ、捕食者はうろつく)
     for hd in state["herds"]:
@@ -434,8 +435,14 @@ def simulate_day(state):
                         item["sown"] = True
                         near_camp = math.hypot(q["x"] - camp["x"], q["y"] - camp["y"]) <= GATHER_RADIUS
                         h = state.setdefault("harvests", [])
-                        if near_camp and not any(r["day"] == day and r["plant"] == q["id"] for r in h):
-                            h.append({"day": day, "plant": q["id"], "who": p["name"]})
+                        # 2026-10-21: 今日の記録にこの木があるかを、記録 (3 年分で 8 万をこえる) を毎回全部読んで調べていたのを、今日の分の集まりで調べる
+                        #   (前の any(r["day"] == day and r["plant"] == q["id"] for r in h) と同じ答え。足すたびに集まりにも足す)
+                        if near_camp:
+                            if picked is None:
+                                picked = {r["plant"] for r in h if r["day"] == day}
+                            if q["id"] not in picked:
+                                h.append({"day": day, "plant": q["id"], "who": p["name"]})
+                                picked.add(q["id"])
                     p["food"].append(item)
                     got += kcal
                     by_kind[q["kind"]] = by_kind.get(q["kind"], 0) + kcal
@@ -682,18 +689,24 @@ def evening(state, gives, stores=(), takes=()):
             if by:
                 stored_acts += 1
                 log(state, "蓄える", p["name"], f"{p['name']} がキャンプの蓄えに {food_words(by)} を入れた", food=food_words(by))
+    trees, picked = None, None  # 2026-10-21: キャンプのそばの木と、今日もう記録のある木は、夕方に 1 回だけ数える (夕方のあいだ木はふえない。前と同じ答え)
     for g in [g for g in takes if g.get("tree")]:  # キャンプのそばの木から取る (2026-10-06 追加)
         p = people.get(g.get("who"))
         want = max(0, min(int(g.get("count", 0) or 0), 40))
         got = 0
-        for q in sorted(_camp_trees(state), key=lambda q: -q["amount"]):
+        if trees is None:
+            trees = _camp_trees(state)
+        for q in sorted(trees, key=lambda q: -q["amount"]):
             n = min(want - got, int(q["amount"]))
             if p and n > 0:
                 q["amount"] -= n
                 got += n
                 h = state.setdefault("harvests", [])
-                if not any(r["day"] == day and r["plant"] == q["id"] for r in h):
+                if picked is None:
+                    picked = {r["plant"] for r in h if r["day"] == day}  # = any(r["day"] == day and r["plant"] == q["id"] for r in h)
+                if q["id"] not in picked:
                     h.append({"day": day, "plant": q["id"], "who": p["name"]})
+                    picked.add(q["id"])
         if p and got:
             p["food"].append({"kind": "木の実", "kcal": got * FRUIT_KCAL, "day": day, "sown": True})
             log(state, "木から取る", p["name"], f"{p['name']} がキャンプのそばの木から 木の実 {got} つかみ を取った", food=f"木の実 {got} つかみ")
