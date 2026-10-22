@@ -355,7 +355,7 @@ def simulate_season(state):
         if (sum(f["kcal"] for f in state["store"]) < 1000 and any(p["hunger"] >= 0.6 for p in adults(state))
                 and state["day"] - start >= 3):
             log(state, "蓄えが尽きる", None, "村の蓄えが尽き、ひどく空腹の人が出たので、みんなで集まって決め直すことにした")
-            _famine_leave(state)
+            _famine_leave(state, state["day"] - start)
             break
     _season_end(state, (state["day"] - start) / SEASON_DAYS)
     return first
@@ -2449,13 +2449,16 @@ def _pasture_loss(state, cap, frac, rng):
         f"。草原と丘の草で養えるヤギは 約 {cap} 頭で、{n} 頭いた", cap=cap, herd=n, goat_ids=sorted(gone))
 
 
-def _famine_leave(state):
+def _famine_leave(state, days=SEASON_DAYS):
     """飢饉: よそから来た大人で、ひどく空腹の人は、見込み 4 割で村を出ていく (子は母といっしょに)。
     【文献】飢饉のとき、農耕の村でも人は親族やほかの集団のもとへ移って生きのびた (村の分裂・移住)。【仮定】割合は試作の値
-    (2026-10-07 追加。G1 の 2 回目の前の試しで、よそから人が次々に加わったあと、冬に村の全員が動けないまま飢えたため)"""
+    (2026-10-07 追加。G1 の 2 回目の前の試しで、よそから人が次々に加わったあと、冬に村の全員が動けないまま飢えたため)
+    days: この回に進んだ日数 (区切りまで)。G7 からは、見込みを 1 − 0.6^(days/30) にする (30 日あたり 4 割のまま。
+    2026-10-22: 3 日ごとの集まり直しのたびに 4 割を引いて、季節あたり ほぼ全員が出ていっていたため)。G6 までは 4 割のまま (乱数を引く回数も同じ)"""
     rng = _rng(state, 23)
+    pr = 1 - 0.6 ** (max(0, days) / SEASON_DAYS) if "g7" in state["era2"] else 0.4
     for p in [q for q in adults(state) if q.get("origin") == "よそから来た" and q["hunger"] >= 0.6]:
-        if rng.random() < 0.4:
+        if rng.random() < pr:
             p["alive"], p["left"] = False, state["day"]
             kids = [c for c in children(state) if c.get("mother") == p["name"]]
             for c in kids:

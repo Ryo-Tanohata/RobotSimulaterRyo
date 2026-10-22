@@ -49,6 +49,7 @@ except Exception as _ex:  # 記録の仕組みがこわれていても、季節�
 DATA = Path(os.environ["SOC_DATA"]) if os.environ.get("SOC_DATA") else Path(__file__).parent / "data"
 STATE = DATA / "state.json"
 RECORDS_ON = os.environ.get("SOC_RECORDS", "1") != "0"  # 0 なら記録を作らない (試し用)
+RECORDS_FAILED = []  # この歩で記録 (控え・作り直し) に失敗したわけ。歩の終わりに「RECORDS failed」の 1 行と終わりのコード 6 で知らせる (_records_exit)
 ARCHIVE_ON = os.environ.get("SOC_ARCHIVE", "1") != "0"  # 0 なら古い年をしまわない (試し用)
 
 
@@ -70,6 +71,7 @@ def _snap(state, before, first):
         return records.snapshot(state, meeting_first=before, event_first=first, notes=notes)
     except Exception as ex:  # 記録の失敗で、世界を止めない
         print(f"記録: 季節の終わりの控えを作れなかった ({type(ex).__name__}: {ex})")
+        RECORDS_FAILED.append("snapshot")
         return None
 
 
@@ -85,8 +87,18 @@ def _records(snap):
                            timeout=300)
         if r.returncode:
             print(f"記録: 記録を作れなかった (終わりのコード {r.returncode})。python3 sim/society/tools/build_records.py で作り直せる")
+            RECORDS_FAILED.append(f"build {r.returncode}")
     except Exception as ex:
         print(f"記録: 記録を作れなかった ({type(ex).__name__}: {ex})。python3 sim/society/tools/build_records.py で作り直せる")
+        RECORDS_FAILED.append(type(ex).__name__)
+
+
+def _records_exit():
+    """記録に失敗していたら、機械用の 1 行「RECORDS failed …」を行の頭から出して、終わりのコード 6 で終わる (世界は進んで保存したまま)。
+    2026-10-22: 前は表示だけで終わりのコードが 0 のままだったので、ワークフロー (tools/society2_seasons_workflow.js) が古い記録のままコミットして進んでいた"""
+    if RECORDS_FAILED:
+        print("RECORDS failed " + " ".join(x.replace(" ", "_") for x in RECORDS_FAILED))
+        sys.exit(6)
 
 
 def _archive(state):
@@ -486,6 +498,7 @@ def main():
             print(f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめに置いた集落 {len(fl['placed'])}・{fl['people']} 人。地域の人数を K の {fl['share']:.0%} に)"
                   if fl else f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめの集落は置かなかった。--fill なし = 今のまま)")
         print("次: 答えを集めて season")
+        _records_exit()
         return
     if a.cmd == "cards":  # G7: よその便りの札の表を足した・直したとき (docs/society_phase/G7_design.md 4.C.1)。出来事「区切り」と新しいハッシュを残す
         if not (state.get("era2") or {}).get("g7"):
@@ -651,6 +664,7 @@ def main():
                   + (f" / 8 年進まない条件 {'・'.join(ask)} (5 年ごとの報告で相談)" if ask else ""))
         if hold:
             print(f"HOLD {hold}")  # ワークフローが読む機械用の 1 行 (行の頭から。村の人の文 (出来事は「* 」で始まる) からは出ない。4.E.2)
+        _records_exit()
         return
     if a.cmd == "day" and not any(p["alive"] for p in state["people"]):
         print("生きている人がいないので、進めない")

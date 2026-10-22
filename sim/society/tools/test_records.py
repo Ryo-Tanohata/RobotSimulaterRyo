@@ -575,11 +575,13 @@ class G_StepSmoke(unittest.TestCase):
             self.assertEqual(meta["state_day"], st["day"])
             self.assertEqual(meta["snapshots"]["live"], live0 + 1)
             self.assertEqual(meta["ledger"]["exact_accounts_with_difference"], 0)
-            # 記録を作るのに失敗しても、季節は進み、控えは足される
+            # 記録を作るのに失敗しても、季節は進み、控えは足される。終わりのコードは 6 で、機械用の 1 行「RECORDS failed」を出す
+            # (2026-10-22: 前は 0 のままで、ワークフローが古い記録のまま進んでいた)
             (code / "tools" / "build_records.py").write_text("import sys\nsys.exit(2)\n", encoding="utf-8")
             r = self.run_step(code, d2)
-            self.assertEqual(r.returncode, 0)
+            self.assertEqual(r.returncode, 6)
             self.assertIn("記録: 記録を作れなかった", r.stdout)
+            self.assertRegex(r.stdout, r"(?m)^RECORDS failed build_2$")
             self.assertEqual(len((d2 / "records" / "snapshots.jsonl").read_text(encoding="utf-8").splitlines()), n0 + 1)
             self.assertEqual(json.loads((d2 / "state.json").read_text(encoding="utf-8"))["day"], st["day"])
             # 同じ世界: 記録があってもなくても、state.json は同じ

@@ -1259,14 +1259,19 @@ class Builder:
                                      "with": [self.P(w) for w in plan.get("with") or []], "decided_by": decided})
             why, why_by = None, None  # 仕事の理由 (段階 1。step.py ask_why のあとの、理由の欄があるお題の答えだけ読む)
             asked = self.why_asked(a)
+            # G7: 仕事を決めた答えは、季節の最初の集まりの日ではなく g7.step.answer_day の答え (寄る季節・集まり直しは季節の途中の日。g7_why と同じ)。
+            #   G6 までは g7src がないので、季節の最初の集まりの答えのまま
+            wsea = sea
+            if g7src is not None and g7step.get("answer_day") is not None:
+                wsea = (self.answers.get(g7step["answer_day"]) or {}).get("season") or {}
             if asked and decided in ("年の答え (自分)", "年の答え (代表が割り振った)"):  # G7: 年の答えの、この季節の分の理由
                 why, why_by = self.g7_why(n, h, g7step, decided)
-            elif asked and decided == "自分" and isinstance(sea[n].get("job"), dict):
-                why, why_by = sea[n]["job"].get("why"), "自分"
+            elif asked and decided == "自分" and isinstance((wsea.get(n) or {}).get("job"), dict):
+                why, why_by = wsea[n]["job"].get("why"), "自分"
             elif asked and decided == "代表が割り振った":  # 代表が family に書いた、その人の理由 (代表と同じ仕事の人には、理由をたずねていない)
-                rep = next((r for r in sea if r in reps and self.byname[r].get("household") == h and h), None)
+                rep = next((r for r in wsea if r in reps and self.byname[r].get("household") == h and h), None)
                 if rep:
-                    fam = sea[rep].get("family") if isinstance(sea[rep].get("family"), dict) else {}
+                    fam = wsea[rep].get("family") if isinstance(wsea[rep].get("family"), dict) else {}
                     src = fam.get(n)
                     why, why_by = (src.get("why"), "代表") if isinstance(src, dict) else (None, None)
             why = why.strip()[:120] if isinstance(why, str) and grounding.read_reason(why) else None

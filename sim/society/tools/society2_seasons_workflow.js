@@ -72,7 +72,9 @@ for (let k = 0; k < STEPS; k++) {
   const out = await agent(runner(`PY='${PY}' CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })
   // exit=4: 生きている人がいない / exit=5: G7 の札の表 (よその便り) が変わった (直したなら step.py cards "<note>" のあとで、また動かす)
-  if (!out || !/season exit=0/.test(out)) return { stopped: d, why: /exit=4/.test(out || '') ? 'all dead' : /exit=5/.test(out || '') ? 'cards changed' : 'season failed', out, log: log_ }
+  // exit=6 (行の頭の「RECORDS failed …」): 季節は進んだが記録 (records/) を作れなかった。直して build_records.py で作り直してから、また動かす (2026-10-22)
+  if (!out || !/season exit=0/.test(out)) return { stopped: d, why: /exit=4/.test(out || '') ? 'all dead' : /exit=5/.test(out || '') ? 'cards changed' : /exit=6/.test(out || '') || /^RECORDS failed/m.test(out || '') ? 'records failed' : 'season failed', out, log: log_ }
+  if (/^RECORDS failed/m.test(out)) return { stopped: d, why: 'records failed', out, log: log_ }
   // 止まる合図 (docs/society_phase/G7_design.md 4.E.2): step.py は一時停止したとき、機械用の 1 行「HOLD …」を行の頭から出す。
   // 村の人の文 (掟など。表示は「* 」で始まる) からは出ないので、これで止まる。G1〜G5 のフェーズが進んだ (phase)・G6 の第 4 部の終わり (part_end)・
   // G7 からの部の終わり・次の G を待つ (wait)・工業の入口 (entrance)・止めて相談する (consult)。why の 'end' は「回数を終えた」に使っている

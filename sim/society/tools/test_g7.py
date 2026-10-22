@@ -2023,5 +2023,149 @@ class L_Yardstick(unittest.TestCase):
         self.assertEqual(self.g7.consult_why(st)["why"], "c1")
 
 
+class M_Fixes1022(unittest.TestCase):
+    """2026-10-22 の 3 つの直し: 集まり直しの歩の記録 (理由を g7.step.answer_day の答えから・作れなかったら終わりのコード 6)・
+    飢饉で出ていく見込みを日数に合わせる (G7 から)・なくなった集落の申し出を外す (G7 から)。本物の data にはさわらない"""
+
+    def g7st(self):
+        st = real_state()
+        if "g7" in (st.get("era2") or {}):
+            return st
+        if is_g6(st):
+            return g7_state()
+        self.skipTest("本物の state が G6 でも G7 でもない")
+
+    # ---- 1. 記録: 集まり直し (kind が 年 でない歩) の「自分」の理由は、g7.step.answer_day の答えから
+    def builder(self, answers, C, why_on=True):
+        sys.path.insert(0, str(HERE))
+        import build_records
+        b = build_records.Builder.__new__(build_records.Builder)
+        b.answers, b.snaps, b.state = answers, {}, {"laws": [], "knowledge_log": []}
+        b.byname = {"X": {"household": "H1"}, "R": {"household": "H2"}, "Y": {"household": "H2"}}
+        b.t_out, b.t_in = {k: None for k in b.byname}, {k: 0 for k in b.byname}
+        b.reps_at = lambda a, P: {"R"}
+        b.leader_at = lambda a, P: None
+        b.alive_at = lambda n, d: True
+        b.is_adult = lambda n, d, P: True
+        b.age = lambda n, d: 30
+        b.why_asked = lambda d: why_on
+        b.P = b.H = lambda x: x
+        c = {"D": 6479, "a": 6450, "P": None, "C": C, "demo": {"joined": []}, "present": ["X", "Y"], "rds": [], "act": {}, "out": {},
+             "said": {}, "inj": {}, "rain_out": {}}
+        return {r["person_id"]: r for r in b.person_rows(c)}
+
+    def test_records_remeeting_why(self):
+        w1 = "蓄えが空で食べ物が足りないから。林で木の実や芋を見つけるのが得意なので、二人以上でいっしょに行って見つけた量を夜に報告する。"
+        w2 = "東の林には春でも芋が多いと聞いた。芋は一人 8 本で、いまは一番たしかな食べ物だから。"
+        ans = {6450: {"season": {}},  # 季節の最初の集まり (X も R も答えていない。前はここを sea[n] で読んで KeyError)
+               6477: {"season": {"X": {"job": {"activity": "採集", "place": "林", "why": w1}},
+                                 "R": {"job": {"activity": "採集"}, "family": {"Y": {"activity": "採集", "why": w2}}}}}}
+        C = {"g7": {"src": {"X": "自分", "Y": "代表が割り振った", "R": "自分"}, "step": {"answer_day": 6477, "sample": [], "donor": {}}}}
+        rows = self.builder(ans, C)
+        self.assertEqual((rows["X"]["decided_by"], rows["X"]["why"], rows["X"]["why_by"]), ("自分", w1, "自分"))
+        self.assertEqual((rows["Y"]["decided_by"], rows["Y"]["why"], rows["Y"]["why_by"]), ("代表が割り振った", w2, "代表"))
+        self.assertEqual(rows["X"]["plan_answer_day"], 6477)
+        # 答えが見つからなくても止まらない (理由なし)
+        rows = self.builder({6450: {"season": {}}}, C)
+        self.assertIsNone(rows["X"]["why"])
+        # G6 まで (g7 がない): 前と同じに、季節の最初の集まりの答えから
+        rows = self.builder({6450: {"season": {"X": {"job": {"activity": "採集", "why": w1}}}}}, None)
+        self.assertEqual((rows["X"]["decided_by"], rows["X"]["why"]), ("自分", w1))
+        self.assertNotIn("plan_answer_day", rows["X"])
+
+    def test_records_failure_exit(self):
+        import step
+        saved = (step.DATA, step.RECORDS_ON, list(step.RECORDS_FAILED))
+        d = tmpdir()
+        try:
+            step.DATA, step.RECORDS_ON = d / "nothing", True  # state.json がない → build_records.py が 0 でないコードで終わる
+            step.RECORDS_FAILED.clear()
+            step._records(None)
+            self.assertTrue(step.RECORDS_FAILED, "作れなかったことを覚える")
+            import io
+            import contextlib
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf), self.assertRaises(SystemExit) as cm:
+                step._records_exit()
+            self.assertEqual(cm.exception.code, 6)
+            self.assertRegex(buf.getvalue(), r"(?m)^RECORDS failed ")
+            step.RECORDS_FAILED.clear()
+            step._records_exit()  # 失敗がなければ何もしない
+        finally:
+            step.DATA, step.RECORDS_ON = saved[0], saved[1]
+            step.RECORDS_FAILED[:] = saved[2]
+            shutil.rmtree(d, ignore_errors=True)
+        js = (HERE / "society2_seasons_workflow.js").read_text(encoding="utf-8")
+        self.assertIn("'records failed'", js)
+        self.assertIn("/^RECORDS failed/m", js)
+
+    # ---- 2. 飢饉で出ていく: G7 からは 1 − 0.6^(日数/30)。G6 までは 4 割のまま (乱数を引く回数も同じ)
+    def famine(self, st, days, r):
+        st = copy.deepcopy(st)
+        for p in era2.adults(st)[:5]:
+            p["origin"], p["hunger"] = "よそから来た", 0.7
+        draws = []
+
+        class R:
+            def random(self):
+                draws.append(1)
+                return r
+        saved = era2._rng
+        era2._rng = lambda state, salt: R()
+        try:
+            n0 = sum(1 for p in st["people"] if p["alive"])
+            era2._famine_leave(st, days)
+        finally:
+            era2._rng = saved
+        return n0 - sum(1 for p in st["people"] if p["alive"]), len(draws)
+
+    def test_famine_scaled(self):
+        st = self.g7st()
+        self.assertAlmostEqual(1 - 0.6 ** (3 / 30), 0.0498, places=3)
+        gone, k = self.famine(st, 3, 0.1)
+        self.assertEqual((gone, k), (0, 5), "3 日の集まり直しでは 5% ほど (0.1 では出ていかない)")
+        gone, k = self.famine(st, 3, 0.04)
+        self.assertGreaterEqual(gone, 5)
+        gone, k = self.famine(st, 30, 0.39)
+        self.assertGreaterEqual(gone, 5, "30 日なら 4 割のまま")
+        gone, k = self.famine(st, 30, 0.41)
+        self.assertEqual(gone, 0)
+        # 10 回の 3 日 ≒ 30 日 1 回 (季節あたり 4 割)
+        self.assertAlmostEqual(1 - (0.6 ** (3 / 30)) ** 10, 0.4, places=9)
+        g6 = copy.deepcopy(st)
+        g6["era2"].pop("g7")
+        gone, k = self.famine(g6, 3, 0.39)
+        self.assertEqual(k, 5, "G6 まで: 引く回数は同じ")
+        self.assertGreaterEqual(gone, 5, "G6 まで: 日数によらず 4 割")
+
+    # ---- 3. なくなった集落の申し出を外す (お題の「ほかの村」の節が止まらない)
+    def test_drop_gone_offers(self):
+        import g7
+        st = copy.deepcopy(self.g7st())
+        g6 = st["era2"]["g6"]
+        o1, o2 = g6["others"][0], g6["others"][1]
+        g6["offers"] = [{"kind": "交換", "give": {"黒曜石": 5}, "want": {"土器": 1}, "id": "T900", "other": o1["id"], "day": st["day"]},
+                        {"kind": "交換", "give": {"黒曜石": 5}, "want": {"土器": 1}, "id": "T901", "other": o2["id"], "day": st["day"]}]
+        o1["gone"] = st["day"]
+        g6["trips"] = {k: v for k, v in g6.get("trips", {}).items() if v.get("to") != o1["id"]}
+        g7.drop_gone(st)
+        self.assertNotIn(o1["id"], [o["id"] for o in g6["others"]])
+        self.assertEqual([off["id"] for off in g6["offers"]], ["T901"], "なくなった集落の申し出だけ外す")
+        txt = era2._g6_text(st)  # 前はここで TypeError ('NoneType' object is not subscriptable)
+        self.assertIn("[T901]", txt)
+        self.assertNotIn("[T900]", txt)
+        # 交換に行く途中の人のために残した集落でも、なくなっていれば申し出はない
+        st2 = copy.deepcopy(self.g7st())
+        g6b = st2["era2"]["g6"]
+        o = g6b["others"][0]
+        o["gone"] = st2["day"]
+        g6b["offers"] = [{"kind": "交換", "give": {"黒曜石": 5}, "want": {"土器": 1}, "id": "T902", "other": o["id"], "day": st2["day"]}]
+        g6b["trips"] = {"X1": {"to": o["id"], "state": "行く"}}
+        g7.drop_gone(st2)
+        self.assertIn(o["id"], [x["id"] for x in g6b["others"]])
+        self.assertEqual(g6b["offers"], [])
+        era2._g6_text(st2)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

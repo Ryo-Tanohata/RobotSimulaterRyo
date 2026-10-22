@@ -1708,6 +1708,11 @@ def drop_gone(state):
         if o.get("gone") and o["id"] in going:
             o["known"] = None
     g6["others"] = [o for o in g6["others"] if not o.get("gone") or o["id"] in going]
+    # なくなった集落の、まだ決めていない申し出も外す (2026-10-22: 残すと、お題の「ほかの村」の節 (era2._g6_text) で集落が見つからず止まっていた)。
+    # 交換に行く途中の人のために残した集落も、なくなっていれば申し出はない (来ない・申し出もない)
+    live = {o["id"] for o in g6["others"] if not o.get("gone")}
+    if any(off.get("other") not in live for off in g6.get("offers", [])):
+        g6["offers"] = [off for off in g6["offers"] if off.get("other") in live]
 
 
 def region_year(state):

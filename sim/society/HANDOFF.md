@@ -44,7 +44,7 @@
    - 本人の PC: `{"mode": "year", "years": 2, "root": "C:/Users/Tan0Ry0/Desktop/26dev/RobotSimulaterRyo", "py": "py -3"}` (台本は LF の写しを scriptPath に渡す)
    - 集まりの歩でワークフローが集めるもの: `prompts/dayNNN/season/<名前>.md` (見本の家の代表とまとめ役。年の集まりは年のお題、寄る季節・集まり直しは季節のお題) → `answers/dayNNN/season/`、
      `prompts/dayNNN/feeling/` (見本の家の代表でない大人) → `answers/dayNNN/feeling/`、`prompts/dayNNN/council/<集落の番号>.md` (年の終わりの歩だけ) → `answers/dayNNN/council/`。集まりのない歩は何も集めない
-   - 止まるわけ: `end` (年の終わりを years 回すぎた)・`part end`・`wait`・`consult`・`phase`・`cards changed`・`all dead`・`season failed`・`mode` (G7 なのに season で動かした)
+   - 止まるわけ: `end` (年の終わりを years 回すぎた)・`part end`・`wait`・`consult`・`phase`・`cards changed`・`records failed` (記録を作れなかった。step.py の終わりのコード 6。2026-10-22)・`all dead`・`season failed`・`mode` (G7 なのに season で動かした)
 5. 終わったら、短い報告 (届いた便り・取り立て・求め・条件ごとの進み・トークンと時間 (ワークフローの記録から。設計 6.8 の知らせる線 465 万/年))。プッシュする
 
 ## 2026-10-18 ここで止めた (本人「G7 はせずに G6 が終わったら止めてください」)
