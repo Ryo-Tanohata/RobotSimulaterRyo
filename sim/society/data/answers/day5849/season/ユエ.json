@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "土器は春のうちから毎日少しずつ作るよ。作った数と割れた数は夜に言うね。木の実はまだ実らないから、今は草の種を土器に入れて虫やネズミから守ろう。"}],
+ "year": {"春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、慣れると一日に多く作れる。蓄えの草の種を土器に入れて守りたい"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケセ2": {"activity": "畑仕事", "place": "camp", "why": "12 歳なので、草取りの手伝いを割り振る"}}}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T54": false, "T55": "村"}, "trade_rule": {"交換": "村", "貸して": "村", "max": 1000, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "南の村はヤギを出して、土器・鎌・草の種を求めている。草が足りないので、ヤギは受けとらないほうがよい", "because": [321233], "confidence": 0.7}, {"op": "add", "text": "西の村は畑が実らず苦しく、草の種を借りたがっている", "because": [321234], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L171", "against": null, "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとらないのがよい"}, {"id": "L175", "against": null, "agree": true, "reason": "草で養える数より多いあいだは、野生のヤギを捕まえないほうがよい"}, {"id": "L177", "against": null, "agree": true, "reason": "刈った草の種をその日のうちに土器へ入れれば、虫やネズミから守れる"}, {"id": "L187", "against": null, "agree": true, "reason": "記録を残す人を二人ずつ決めれば、記録が途切れない"}],
+ "feeling": "土器をたくさん作って、草の種を守る仕事がやりがいがある。木の実が実る夏が待ち遠しい。"}

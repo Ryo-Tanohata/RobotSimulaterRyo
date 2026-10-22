@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "春は西草原12へ、ムイ4と二人で行くね。草の種か、食べられる物が見つかるか確かめたい。見つかったら、夕方に全部の量を言うよ。"}],
+ "year": {"春": {"job": {"activity": "採集", "place": "西草原12", "with": ["ムイ4"], "why": "キャンプから近くて、二人で行ける。まだ食べ物の見つからない場所を減らしたいから。"}, "family": {"ムイ4": {"activity": "採集", "place": "西草原12", "why": "ホタ4と組んで、二人で行くため。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T54": false, "T55": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L188", "against": "なし", "agree": true, "reason": "南川12 は近くて安全だから、一人で行ってもよいと思う。林へ行くときは二人にするのは守る。"}, {"id": "L190", "against": "なし", "agree": true, "reason": "草で養えない分のヤギは、干し肉にして蓄えに入れたほうが、ヤギも草も守れるから。"}],
+ "feeling": "ヤギが多くて草が足りないのが心配。みんなで決めたことは守って、いっしょに春を越えたい。"}

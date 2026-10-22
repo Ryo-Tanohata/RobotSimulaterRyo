@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "春は土器をつくって、蓄えの草の種を虫やネズミから守ろう。南の村のヤギは、草が足りないから受けとらないでおこう。"}],
+ "year": {"春": {"job": {"activity": "土器づくり", "place": "camp", "with": ["カイ3"], "why": "蓄えの草の種が虫やネズミに食べられているので、土器に入れて守りたい。道具づくりと土器づくりは得意"}, "family": {"ミラ3": {"activity": "採集", "place": "南川12", "why": "南川12は近くて、二人で組めば行ける。ナセと組んで採る"}, "カイ3": {"activity": "土器づくり", "place": "camp", "why": "スイ2と一緒に土器を作り、作った数と割れた数を夜に言う"}, "ナセ": {"activity": "採集", "place": "南川12", "why": "二人以上で行くきまり。ミラ3と組んで採る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": true, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T54": false, "T55": "村"}, "trade_rule": {"交換": false, "貸して": "村", "max": 2000, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "南の村が出すヤギは、草が足りない今は受けとれない (掟 L171)", "because": [321233], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L168", "against": null, "agree": true, "reason": "土器に入らない草の種は季節ごとに失われるから、冬のうちから土器を作るのがよい"},
+  {"id": "L170", "against": null, "agree": true, "reason": "草で養えないヤギは春のうちに肉にして干せば、蓄えの役に立つ"},
+  {"id": "L171", "against": null, "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると、子ヤギが減ってしまう"},
+  {"id": "L172", "against": null, "agree": true, "reason": "封を割った人が名乗り出れば、もめごとが減る"},
+  {"id": "L175", "against": null, "agree": true, "reason": "草で養えるヤギより多いあいだは、野生のヤギを捕まえないほうがよい"},
+  {"id": "L177", "against": null, "agree": true, "reason": "刈った草の種はその日のうちに土器へ入れれば、虫やネズミに食べられにくい"},
+  {"id": "L180", "against": null, "agree": true, "reason": "黒曜石の刃の鎌は割れにくく、鎌づくりに回せば畑の刈り入れが進む"},
+  {"id": "L184", "against": null, "agree": true, "reason": "前に貸した草の種が返されるまで新しく貸さなければ、貸し借りがこじれにくい"},
+  {"id": "L187", "against": null, "agree": true, "reason": "板に記録を残す人が二人いれば、一人が休んでも記録が途切れない"},
+  {"id": "L189", "against": null, "agree": true, "reason": "小さい子のそばには大人を一人つけたい"}
+ ],
+ "feeling": "土器をつくるのは得意だから、春は少しずつ作って草の種を守りたい。ミラ3とカイ3が一緒に働いてくれるのは心強い。"}

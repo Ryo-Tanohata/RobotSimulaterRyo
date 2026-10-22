@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "春は西草原12で草の実を集めるよ。夏の畑仕事は手が空いている人が手伝ってくれると助かる。"}],
+ "year": {"春": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "春は食べ物が少ないので、手元に残せるように草の実を集める"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+ "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏は畑が実るので、草取りと刈り入れを毎夕行う"}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+ "秋": {"job": {"activity": "採集", "place": "南林12", "with": [], "why": "木の実のなる秋は、林で採集して冬に備える"}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0},
+ "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は食べ物が少なく、土器に草の種を入れて虫やネズミから守ることが大事だから"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": true, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade": {"T54": false, "T55": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "西の村は畑が実らず苦しく、草の種 1700 つかみ を貸してほしいと言った", "because": [321234], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L168", "against": "", "agree": true, "reason": "土器は冬のうちから作り始めれば、草の種を守れるから"}, {"id": "L166", "against": "", "agree": true, "reason": "土器づくりの人が作った数や割れた数を夜に言えば、土器づくりの進みが分かるから"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに受けとれば、ヤギが増えて困るから"}, {"id": "L177", "against": "", "agree": true, "reason": "刈った草の種は虫やネズミに食べられる前に土器へ入れたいから"}],
+ "feeling": "春の草の実集めは大変だけど、土器で冬を守れると思うと少し安心する"}
