@@ -1,0 +1,19 @@
+{"say": [{"to": "ヒセ5", "text": "北川12へ、いっしょに行こう。魚と芋が取れるか、二人で確かめよう。見つけた量と見つからなかった所は、夜に言うね。"}],
+"job": {"activity": "採集", "place": "北川12", "with": ["ヒセ5"], "why": "蓄えが空で、わたしもヒセ6もひどく空腹だから。冬の北川12で魚と芋が取れるか、二人組で確かめたい"},
+"pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+"family": {"ヒセ6": {"activity": "採集", "place": "北川12", "why": "ひどく空腹なので、一人で行かず、わたしと二人組で行くため"}},
+"keep": false,
+"judge": {"M216": "ゆるす", "M217": "ゆるす", "M218": "ゆるす", "M219": "ゆるす"},
+"feast": false, "leader": "なし", "seal_store": false, "demand": null,
+"knowledge": [{"op": "add", "text": "冬の北川12で、魚と芋が取れるかはまだ分からない", "because": [461695], "confidence": 0.5}],
+"proposal": null,
+"votes": [
+{"id": "L172", "against": null, "agree": true, "reason": "封を割ったら名乗り出るのは、みんなの蓄えを守るために大事だから"},
+{"id": "L175", "against": null, "agree": true, "reason": "草で養えないほどヤギが多いあいだは、野生のヤギを捕まえないほうがよいから"},
+{"id": "L179", "against": null, "agree": true, "reason": "北丘12は冬に何も見つからなかったので、北川12を先に試したいから"},
+{"id": "L193", "against": null, "agree": true, "reason": "蓄えから取る量を、入れた量までにすれば、みんなの取り合いが減るから"},
+{"id": "L194", "against": null, "agree": true, "reason": "蓄えが空のあいだは二人組で探しに行けば、見つからなかったときも助け合えるから"},
+{"id": "L195", "against": null, "agree": true, "reason": "取れた食べ物を村の蓄えに入れて、空腹の人から先に分けるのがよいから"},
+{"id": "L197", "against": null, "agree": true, "reason": "取った日の夜に半分を蓄えに入れれば、空腹の人が先に食べられるから"}
+],
+"feeling": "おなかがへって力が出ないが、北川12で何か見つけたい。みんなが無事であってほしい"}
