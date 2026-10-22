@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに草の種をまいて、畑の草取りは私とキオ4でやるね。木の実は毎夕取って、半分は蓄えに入れるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キオ4"], "why": "畑に草の種をまくので、実りを増やすために草取りをする。"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば畑の実りが増えるから。"}},
+ "keep": false,
+ "judge": {"M329": "ゆるす", "M330": "ゆるす", "M331": "ゆるす", "M332": "ゆるす", "M333": "ゆるす", "M334": "ゆるす", "M335": "ゆるす", "M336": "ゆるす"},
+ "feast": true, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、草取りをすると、夏のはじめの実りが増える。", "because": [524691], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、みんなで助け合えば冬も大丈夫そうで、落ち着いている。"}

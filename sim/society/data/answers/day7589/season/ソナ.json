@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。今年の秋はたくさんまいて、草取りもみんなでやろう。わたしは毎夕、木の実も取るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑を実らせるには草取りが要る。蓄えが厚いうちに畑を育てておきたい"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ2": {"activity": "畑仕事", "place": "camp", "why": "家の畑の草取りで実りを増やすため"},
+  "ワユ2": {"activity": "畑仕事", "place": "camp", "why": "家の畑の草取りで実りを増やすため"},
+  "ラキ6": {"activity": "畑仕事", "place": "camp", "why": "家の畑の草取りで実りを増やすため"}
+ },
+ "keep": false,
+ "judge": {"M329": "ゆるす", "M330": "ゆるす", "M331": "ゆるす", "M332": "ゆるす", "M333": "ゆるす", "M334": "ゆるす", "M335": "ゆるす", "M336": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと、夏に実る。草取りをすると実りが増える", "because": [524667], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも木の実もあって落ち着いている。畑をしっかり育てたい"}

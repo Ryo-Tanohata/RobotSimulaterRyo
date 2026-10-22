@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に畑に種をまいて、草取りもみんなでやろう。木の実は毎夕取って、半分は蓄えに入れるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるから、冬と春をこえて夏の蓄えを太らせたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ルタ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やす"}, "ソワ5": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから、冬に向けて肉を持ち帰る"}},
+ "keep": false,
+ "judge": {"M329": "ゆるす", "M330": "ゆるす", "M331": "ゆるす", "M332": "ゆるす", "M333": "ゆるす", "M334": "ゆるす", "M335": "ゆるす", "M336": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬の前にやることが多いが、体は軽い。畑がうまく実るといい。"}

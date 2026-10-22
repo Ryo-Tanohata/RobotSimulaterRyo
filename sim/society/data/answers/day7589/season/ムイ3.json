@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "冬の前に、木の実を毎夕とって蓄えに入れよう。わたしは近くで採集を続けるよ。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "採集が得意なので、冬の前に近い南川で食べ物を集めて蓄えを増やすため"},
+ "sow": 300, "pick": 40, "plant": 2, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M329": "ゆるす", "M330": "ゆるす", "M331": "ゆるす", "M332": "ゆるす", "M333": "ゆるす", "M334": "ゆるす", "M335": "ゆるす", "M336": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のうちに木の実を毎夕とって蓄えに入れておけば、冬の空腹をやわらげられる", "because": [524739], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは79日分あるので少し安心。冬に向けて木の実を集めたい。"}

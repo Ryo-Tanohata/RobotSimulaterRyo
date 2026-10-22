@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬は実りがないから、秋のうちにみんなで木の実を毎夕とって蓄えよう。わたしたちの家は畑にも種をまくよ。"}],
+ "job": {"activity": "採集", "place": "camp", "with": ["ラキ3", "セオ3", "ヌオ4"], "why": "冬の前に木の実と食べ物を少しでも多く集めたいから"}, "sow": 600, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ラキ3": {"activity": "採集", "place": "camp", "why": "採集が得意だから、冬の前に木の実を集める"}, "セオ3": {"activity": "採集", "place": "camp", "why": "採集が得意だから、冬の前に木の実を集める"}, "ヌオ4": {"activity": "採集", "place": "camp", "why": "採集が得意だから、冬の前に木の実を集める"}}, "keep": false,
+ "judge": {"M329": "ゆるす", "M330": "ゆるす", "M331": "ゆるす", "M332": "ゆるす", "M333": "ゆるす", "M334": "ゆるす", "M335": "ゆるす", "M336": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のうちに毎夕木の実を40つかみ取って蓄えると、実りのない冬に備えられる。", "because": [524675], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるけれど、冬が近いので気を引きしめて木の実を集めたい。"}

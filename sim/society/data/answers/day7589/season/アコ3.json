@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "土器はもう十分あるから、わたしは今季は木の実を集めて冬にそなえるよ。みんなも毎夕、木の実を少しずつ蓄えに入れよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "冬は木の実が実らないので、キャンプのそばで木の実を集めて蓄えを増やしたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M329": "ゆるす", "M330": "つぐなう", "M331": "ゆるす", "M332": "ゆるす", "M333": "ゆるす", "M334": "ゆるす", "M335": "ゆるす", "M336": "ゆるす"}, "feast": true, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "冬は木の実が実らないので、秋のうちに木の実を毎夕取って蓄えに入れるのが大事だ", "because": [524690], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L204", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えたいから"}, {"id": "L203", "against": "", "agree": true, "reason": "冬は木の実が実らないから"}],
+ "feeling": "木がたくさん育って、冬を越せそうで少し安心している。"}
