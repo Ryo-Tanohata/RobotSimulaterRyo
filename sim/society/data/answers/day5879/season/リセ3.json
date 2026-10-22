@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "夏は畑の草を毎夕すこしずつ刈って、刈り残しが落ちないようにしよう。冬は北川12へ二人ずつ行って、魚と芋があるか確かめよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに実った畑を刈り切らないと、草の種が落ちてしまうから。"}, "family": {"ヒセ3": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝えば、夏のうちに草の種を取りこぼさないから。"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "種まき", "place": "camp", "with": [], "why": "秋のうちに草の種をまけば、次の夏に畑が実るから。"}, "family": {"ヒセ3": {"activity": "種まき", "place": "camp", "why": "まく作業を手伝えば、畑が早く整うから。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": ["ニイ"], "why": "冬は北丘12で何も見つからなかったので、北川12で魚と芋を二人で探すから。"}, "family": {"ヒセ3": {"activity": "採集", "place": "北川12", "why": "二人で行けば、見つけた量を夜にたしかめやすいから。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "北川12", "with": ["ヒセ4"], "why": "春は木の実がならないので、川で魚と草を探すから。"}, "family": {"ヒセ3": {"activity": "採集", "place": "北川12", "why": "川で魚を探す人が多いほど、見つかりやすいから。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal_store": [],
+ "accept": {"オセ7": true, "リセ7": true}, "accept_rule": {"よその群れ": true, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade_rule": {"交換": null, "貸して": false, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L190", "against": null, "agree": true, "reason": "草で養えない分のヤギは、秋の終わりに肉にして干しておけば、無駄にならず蓄えにも入るから。"},
+  {"id": "L30", "against": "肉は干して保存できるので、その日に全部食べなくてもよい。", "agree": false, "reason": "獲った肉を干して蓄えれば、冬にも食べられるから。"},
+  {"id": "L175", "against": null, "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを増やさないほうがよいから。"},
+  {"id": "L176", "against": null, "agree": true, "reason": "草が足りないので、草の多い場所を見に行き、ヤギの数を決めてから考えたいから。"},
+  {"id": "L167", "against": null, "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、いなくなるヤギが減るから。"},
+  {"id": "L177", "against": null, "agree": true, "reason": "刈った草の種を土器に入れれば、虫やネズミに食べられにくいから。"},
+  {"id": "L180", "against": null, "agree": true, "reason": "黒曜石の刃の鎌は割れにくいので、鎌を作る人に回せるから。"},
+  {"id": "L182", "against": null, "agree": true, "reason": "木の実を埋めておけば、夏と秋に実る木が増えるから。"},
+  {"id": "L184", "against": null, "agree": true, "reason": "前に貸した草の種が返されるまで新しく貸さなければ、蓄えが減りすぎないから。"}
+ ],
+ "year_name": "ホミ6が加わった年",
+ "feeling": "畑を刈り切れるか気がかりだけど、みんなで交代すれば大丈夫だと思う。"}
