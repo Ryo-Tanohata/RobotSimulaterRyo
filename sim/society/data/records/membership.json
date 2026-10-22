@@ -306,10 +306,12 @@
 {"person_id":"P305","household_id":"H50","from_day":6509,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[416780],"assigned_from_state_day":6509},
 {"person_id":"P306","household_id":"H07","from_day":6539,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[421234],"assigned_from_state_day":6539},
 {"person_id":"P307","household_id":"H21","from_day":6569,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[423304],"assigned_from_state_day":6569},
-{"person_id":"P308","household_id":"H40","from_day":6569,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[423305],"assigned_from_state_day":6569},
+{"person_id":"P308","household_id":"H40","from_day":6569,"to_day":6659,"why_in":"生まれた","why_out":"亡くなった","evidence":[423305,434050],"assigned_from_state_day":6569},
 {"person_id":"P309","household_id":"H23","from_day":6599,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[425374],"assigned_from_state_day":6599},
 {"person_id":"P310","household_id":"H45","from_day":6599,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[425375],"assigned_from_state_day":6599},
 {"person_id":"P311","household_id":"H21","from_day":6629,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[429655],"assigned_from_state_day":6629},
 {"person_id":"P312","household_id":"H28","from_day":6629,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[429656],"assigned_from_state_day":6629},
-{"person_id":"P313","household_id":"H50","from_day":6629,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[429657],"assigned_from_state_day":6629}
+{"person_id":"P313","household_id":"H50","from_day":6629,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[429657],"assigned_from_state_day":6629},
+{"person_id":"P314","household_id":"H17","from_day":6659,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[434048],"assigned_from_state_day":6659},
+{"person_id":"P315","household_id":"H17","from_day":6659,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[434049],"assigned_from_state_day":6659}
 ]
