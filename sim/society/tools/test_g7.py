@@ -2167,5 +2167,28 @@ class M_Fixes1022(unittest.TestCase):
         era2._g6_text(st2)
 
 
+class N_FieldText(unittest.TestCase):
+    """2026-10-22: 年の集まりのお題の、畑の文。草の種は sow の量でまかれる (仕事の「種まき」は持ち物の「種」を埋める)。
+    実りは秋・冬・春の畑仕事 (草取り) で増える (era2 の need = まいた種 × 0.15 + 10、min(1, 0.3 + 0.7 × work / need))。夏の畑仕事は刈り入れ"""
+
+    def test_year_prompt(self):
+        st = real_state()
+        if "g7" not in (st.get("era2") or {}):
+            if not is_g6(st):
+                self.skipTest("本物の state が G6 でも G7 でもない")
+            st = g7_state()
+        import g7
+        y = to_year_end(st)
+        p = next(q for q in era2.adults(y) if q["name"] in era2.answerers(y))
+        t = g7.year_prompt(y, p, g7.since(y))
+        self.assertNotIn("蓄えの草の種を畑にまく季節", t)
+        self.assertIn("- 秋: 秋のはじめに、sow に書いた量の蓄えの草の種が畑にまかれる (仕事の「種まき」はいらない。"
+                      "「種まき」は持ち物の「種」を埋めて木を育てる仕事)", t)
+        self.assertIn("- 実りと畑仕事: まいた畑の実りは、秋・冬・春の畑仕事 (草取り) で増える。"
+                      "畑 1 つに要る草取りは (まいた種 つかみ × 0.15 + 10) 時間で、草取りがなければ実りは 3 割", t)
+        self.assertIn("夏の畑仕事は刈り入れ", t)
+        self.assertNotIn("実りと畑仕事", era2.season_prompt(y, p, g7.since(y)), "季節のお題 (G1〜G6 と同じ文) は変えない")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
