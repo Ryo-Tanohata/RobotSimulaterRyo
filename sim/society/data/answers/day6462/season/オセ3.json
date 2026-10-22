@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "村の蓄えが空っぽで、ひどくおなかがすいている人がいるね。わたしは北川12へ行って、魚か芋が取れないか見てくるね。ホタ4と二人で行って、見つけた量は夜に言うよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ホタ4"], "why": "北川12で魚と芋が取れるか、まだ確かめていないから。採集は得意だし、二人で行けば安心"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M144": "ゆるす", "M145": "ゆるす"}, "feast": false, "leader": "なし", "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えが尽きて、ひどく空腹の人が出た。みんなで集まり直すことになった", "because": [408186], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "ザガが出る夜は、キャンプから離れると危ないから"},
+  {"id": "L3", "against": null, "agree": true, "reason": "二人以上で行けば、助け合えて安心だから"},
+  {"id": "L171", "against": null, "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとると困るから"},
+  {"id": "L175", "against": null, "agree": true, "reason": "ヤギが草で養える数より多いあいだは、野生のヤギを捕まえないほうがいいから"},
+  {"id": "L177", "against": null, "agree": true, "reason": "刈った草の種は、その日のうちに土器に入れて守りたいから"},
+  {"id": "L184", "against": null, "agree": true, "reason": "前に貸した分が返されるまで、新しく貸さないほうがいいから"},
+  {"id": "L189", "against": null, "agree": true, "reason": "小さい子のそばには、いつも大人がいたほうが安心だから"},
+  {"id": "L193", "against": null, "agree": true, "reason": "取る量を入れた量までにすれば、もめごとが減るから"}
+ ],
+ "feeling": "わたしはまだおなかがいっぱいだけど、村の蓄えが空なのが気がかり。早く食べ物を見つけたい。"}

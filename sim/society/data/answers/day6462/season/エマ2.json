@@ -1,0 +1,18 @@
+{"say": [{"to": "リオ2", "text": "わたしは西草原12へ採集に行くよ。一緒に行って、見つけた量を夜に言おうね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["リオ2"], "why": "村の蓄えがなくなり、春は木の実が取れない。まだ行ったことのない西草原12を二人で試したい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M144": "ゆるす", "M145": "ゆるす", "M146": "ゆるす", "M147": "ゆるす"},
+ "feast": false, "leader": "なし", "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "西草原12は、まだ行ったことのない場所。春に採集してみる価値がある。", "because": [], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、キャンプを離れないのは大事。"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集は複数人で行けば助け合える。"},
+  {"id": "L108", "against": "", "agree": true, "reason": "春の前に、行ったことのない西草原12などを試すのがよい。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "近くでも二人以上で行けば安心。"},
+  {"id": "L143", "against": "", "agree": true, "reason": "林でも採集は二人以上で行くのがよい。"},
+  {"id": "L167", "against": "", "agree": true, "reason": "世話が足りないとヤギが減るので、ヤギの数に合わせて世話をする人を決めるのがよい。"},
+  {"id": "L179", "against": "", "agree": true, "reason": "北丘12より先に北川12を試すのがよい。"},
+  {"id": "L188", "against": "", "agree": true, "reason": "南川12は近いので、一人で採集に行ってよい。"}
+ ],
+ "feeling": "おなかがすいて、少し不安。見つかるといいけど。"}
