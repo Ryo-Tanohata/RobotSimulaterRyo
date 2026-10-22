@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をたっぷりまこう。蓄えが11日分しかないんだ、私は畑の草取りをするよ。誰か一緒にどう？"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ルタ5", "ソワ5"], "why": "蓄えが少ないので、まいた畑の草取りで夏の実りを増やしたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ルタ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で手分けして実りを増やすため"}, "ソワ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で手分けして実りを増やすため"}}, "keep": false,
+ "judge": {"M313": "ゆるす", "M314": "ゆるす", "M315": "ゆるす"}, "feast": true, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋は木の実が毎夕取れる。冬の前に取って、蓄えの足しにする。", "because": [513261], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、減らすのは良い"}, {"id": "L196", "against": "刈った分を自分で持つのは、蓄えを減らす", "agree": false, "reason": "蓄えが少ないときは村に入れる方がよい"}, {"id": "L201", "against": "", "agree": true, "reason": "夏は皆で刈らないと落ちてしまう"}, {"id": "L202", "against": "", "agree": true, "reason": "刈り残しを出さないため"}],
+ "feeling": "木の実も腕もまだまだ元気。秋の畑に思い切り種をまいて、冬を乗り切りたい。"}

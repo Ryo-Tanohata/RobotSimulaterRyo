@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をまいて、冬と春は草取りをしよう。木の実も毎夕取って、半分は蓄えに入れるね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ラキ3"], "why": "秋にまいた畑は草取りで実りが増えるし、蓄えが11日分しかないので夏に備えたい"},
+ "sow": 300, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒に進めるため"}, "セオ3": {"activity": "採集", "place": "camp", "why": "冬の前に木の実を集めて蓄えを増やすため"}, "ヌオ4": {"activity": "採集", "place": "南川12", "why": "近い南の川で魚や芋を探して冬に備えるため"}},
+ "keep": false,
+ "judge": {"M313": "ゆるす", "M314": "ゆるす", "M315": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "木の実も多く、満腹で元気。冬の前にしっかり働きたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種を守るために、わたしは土器をこねて焼くよ。シエ4は木の実を集めてセオ10に分けてあげてね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の扱いが得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "sow": 300, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ4": {"activity": "採集", "place": "camp", "why": "木の実を集めて小さな子の分を確かめられるから"}},
+ "keep": true,
+ "judge": {"M313": "ゆるす", "M314": "ゆるす", "M315": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋は畑に草の種をまく季節で、まかないと次の夏に刈れない。土器は蓄えの種を守る。", "because": [513496], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L177", "against": "", "agree": true, "reason": "土器に入れれば草の種が傷みにくい"}, {"id": "L202", "against": "", "agree": true, "reason": "刈り残しを減らすのに役立つ"}],
+ "feeling": "蓄えが少なめで少し心配だけれど、土器づくりで村を支えたい。"}

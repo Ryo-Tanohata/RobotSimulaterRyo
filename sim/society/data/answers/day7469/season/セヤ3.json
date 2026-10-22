@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種を畑にまこう。まいたあとは草取りをする人が少ないと実りが減るから、私も畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ナセ3"], "why": "秋にまいた畑は草取りで実りが増える。いま畑がないので、まいた畑を育てて夏に備えたい"},
+ "sow": 1000, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ3": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば、畑の実りが減らずにすむ"}},
+ "keep": false,
+ "judge": {"M313": "ゆるす", "M314": "ゆるす", "M315": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、秋・冬・春の草取りで実りが増える。草取りが少ないと実りが減る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "木の実はたっぷりあるし、畑を育てるのが楽しみだ。"}

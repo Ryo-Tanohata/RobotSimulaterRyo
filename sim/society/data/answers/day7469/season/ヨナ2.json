@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種は土器に入れて守ろう。わしは秋のあいだ土器を焼く。刈りの小さなもめごとは、ゆるして先へ進もう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入れれば蓄えの草の種を虫やネズミから守れるから"}, "sow": 300, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M313": "ゆるす", "M314": "ゆるす", "M315": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L177", "against": "", "agree": true, "reason": "刈った草の種を土器に入れて守るのは大事だから"}, {"id": "L158", "against": "", "agree": true, "reason": "板に残せば量がはっきりして、もめごとが減るから"}],
+ "feeling": "満腹で体も軽い。土器をこねるのが楽しみだ。"}

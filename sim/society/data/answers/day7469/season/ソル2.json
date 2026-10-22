@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の前に、木の実を毎夕とって蓄えに回そう。私は採集が得意だから、キャンプのそばの木の実を集めるよ。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "蓄えが11日分しかなく冬は実らないので、得意な採集で食べ物を増やす"}, "sow": 300, "pick": 40, "plant": 1, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M313": "ゆるす", "M314": "ゆるす", "M315": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめ、村の蓄えは草の種24665つかみで約11日分。冬は木の実が実らないので、秋のうちに木の実を集めておく。", "because": [513496], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L196", "against": "", "agree": true, "reason": "蓄えが空のあいだ、刈った草の種を半分は蓄えに入れるのは公平だと思う"}],
+ "feeling": "冬が近いので、木の実をたくさん集めて備えたい。"}

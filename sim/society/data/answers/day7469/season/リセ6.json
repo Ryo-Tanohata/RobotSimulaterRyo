@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに草の種をまいて、畑の草取りをみんなで続けよう。夏にたくさん刈れれば、蓄えが安心するよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ヒセ6"], "why": "秋にまく畑は草取りをすると実りが増えるので、蓄えのために畑を育てる"},
+ "sow": 200, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ6": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを二人でして、夏の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M313": "ゆるす", "M314": "ゆるす", "M315": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが少ないのが気がかりだけれど、畑と木の実で冬をこえられるようにがんばる。"}

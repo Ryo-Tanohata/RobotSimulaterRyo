@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "この秋は木の実を毎夕取って、半分を蓄えに入れるね。冬のおなかの空いた子たちに先に分けよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": ["キオ4"], "why": "冬と春の蓄えを増やすため、採集が得意な私とキオ4で木の実を集める"},
+ "sow": 300, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ4": {"activity": "採集", "place": "camp", "why": "採集が得意なので、私と一緒に木の実を集めて蓄えを増やす"}},
+ "keep": false,
+ "judge": {"M313": "ゆるす", "M314": "ゆるす", "M315": "ゆるす"},
+ "feast": true, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋は木の実を毎夕40つかみまで取れる。取った木の実の半分を蓄えに入れれば、冬と春の空腹をやわらげられる。", "because": [513259], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L199", "against": "", "agree": true, "reason": "木の実を蓄えに入れれば冬に空腹の人を助けられるから"},
+           {"id": "L190", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので減らすのは良いと思う"},
+           {"id": "L201", "against": "", "agree": true, "reason": "蓄えを増やすために皆で刈るのは大事"}],
+ "feeling": "満腹で元気。みんなで冬をこせるように、木の実を集めたい。"}
