@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だ。おれは採集が得意だから、南の川へ行って木の実と魚を探してくる。見つけた分は村の蓄えに入れるよ。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "蓄えが空でひどく空腹の人が出ている。採集は得意で、南の川は近くて前に食べ物が見つかったから。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M319": "ゆるす", "M320": "ゆるす", "M321": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "春は南の川で採集して、食べ物が見つかった。蓄えが空のあいだは川で木の実と魚を探すのがよい。", "because": [519464], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかはいっぱいだが、蓄えが空なのが気がかりだ。しっかり採集して食べ物を持ち帰りたい。"}
