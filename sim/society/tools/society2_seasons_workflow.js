@@ -1,6 +1,6 @@
 export const meta = {
   name: 'society2-seasons',
-  description: 'Run Society 2.0 season by season (haiku role-play per adult + step runner) until a phase change, the end of a part (HOLD line), all deaths, or the step limit. From G7: mode year (answers only at the yearly meeting, zoom seasons and the autumn meeting)',
+  description: 'Run Society 2.0 season by season (role-play per adult: representatives sonnet/opus, feelings haiku; haiku step runner) until a phase change, the end of a part (HOLD line), all deaths, or the step limit. From G7: mode year (answers only at the yearly meeting, zoom seasons and the autumn meeting)',
   phases: [{ title: 'Seasons', detail: 'season answers per adult, then step.py season' }],
 }
 // args.mode: 'season' (G6 まで。1 回 = 1 季節、毎季節答える。args.steps 回) / 'year' (G7 から。1 回 = 1 季節のまま、答えるのは年の集まりと寄る季節と毎年の秋の集まりだけ。
@@ -11,6 +11,13 @@ const ROOT = args.root || '/home/user/RobotSimulaterRyo'
 // PY は使う Python。args.py で渡す (本人の PC は 'py -3' = Python 3.13。3.11 だと食べ物の数の最後の桁がずれる。渡さなければ python3)
 const PY = args.py || 'python3'
 const pad = (n) => String(n).padStart(3, '0')
+// 答えるモデル (2026-10-23 本人の決め「代表だけ sonnet/opus」)。季節の答え (家の代表とまとめ役) と、まわりの集落の集まりは sonnet、
+// そのうち名前から決まる約 8 人に 1 人は opus (乱数なし。同じ人はずっと同じモデル)。気持ちだけ答える人と、コマンドを動かす係は haiku。
+// args.models === 'haiku' で前と同じ (みな haiku)。使ったモデルは答えの置き場所の models.json に書く
+const ALL_HAIKU = args.models === 'haiku'
+function fnv(s) { let x = 2166136261; for (const ch of s) { x ^= ch.codePointAt(0); x = Math.imul(x, 16777619) >>> 0 } return x }
+const repModel = (n) => ALL_HAIKU ? 'haiku' : fnv(n) % 8 === 0 ? 'opus' : 'sonnet'
+const councilModel = () => ALL_HAIKU ? 'haiku' : 'sonnet'
 function rp(d, n) {
   return `Read \`${ROOT}/sim/society/data/prompts/day${pad(d)}/season/${n}.md\` and follow its instructions exactly: role-play that character and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/sim/society/data/answers/day${pad(d)}/season/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
 }
@@ -45,11 +52,11 @@ for (let k = 0; k < STEPS; k++) {
     const [preS, preF] = (pre || '').split('FEELING:')
     const todo = names.filter((n) => !(preS || '').includes(`${n}.json`))  // 再起動のあと: 答えのある人はとばす
     const todoF = feel.filter((n) => !(preF || '').includes(`${n}.json`))
-    await parallel([...todo.map((n) => () => agent(rp(d, n), { label: `d${d} ${n}`, model: 'haiku', phase: 'Seasons' })),
+    await parallel([...todo.map((n) => () => agent(rp(d, n), { label: `d${d} ${n} (${repModel(n)})`, model: repModel(n), phase: 'Seasons' })),
                     ...todoF.map((n) => () => agent(rpf(d, n), { label: `d${d} ${n} (気持ち)`, model: 'haiku', phase: 'Seasons' }))])
     const ls = await agent(runner(`ls ${ROOT}/sim/society/data/answers/day${pad(d)}/season/`), { label: `d${d} check`, model: 'haiku', phase: 'Seasons' })
     const miss = names.filter((n) => !(ls || '').includes(`${n}.json`))
-    if (miss.length) { log(`day ${d}: retry ${miss.join('、')}`); await parallel(miss.map((n) => () => agent(rp(d, n) + ' ', { label: `d${d} ${n} retry`, model: 'haiku', phase: 'Seasons' }))) }
+    if (miss.length) { log(`day ${d}: retry ${miss.join('、')}`); await parallel(miss.map((n) => () => agent(rp(d, n) + ' ', { label: `d${d} ${n} retry`, model: repModel(n), phase: 'Seasons' }))) }
     if (feel.length) {  // 気持ちの答えは、ない人がいても季節は進める (気持ちが前のまま)。1 回だけやり直す
       const lf = await agent(runner(`ls ${ROOT}/sim/society/data/answers/day${pad(d)}/feeling/`), { label: `d${d} check (気持ち)`, model: 'haiku', phase: 'Seasons' })
       const missF = feel.filter((n) => !(lf || '').includes(`${n}.json`))
@@ -63,11 +70,15 @@ for (let k = 0; k < STEPS; k++) {
       for (let t = 0; t < 2; t++) {
         const missC = await once()
         if (!missC.length) break
-        await parallel(missC.map((n) => () => agent(rc_(d, n) + (t ? ' ' : ''), { label: `d${d} 集まり ${n}${t ? ' retry' : ''}`, model: 'haiku', phase: 'Seasons' })))
+        await parallel(missC.map((n) => () => agent(rc_(d, n) + (t ? ' ' : ''), { label: `d${d} 集まり ${n}${t ? ' retry' : ''}`, model: councilModel(), phase: 'Seasons' })))
       }
     }
   } else {
     log(`day ${d}: no meeting (yearly plan)`)
+  }
+  if (meet) {  // 使ったモデルを残す (季節の答えの置き場所のとなり。step.py は読まない)
+    const mj = JSON.stringify({ season: Object.fromEntries(names.map((n) => [n, repModel(n)])), feeling: Object.fromEntries(feel.map((n) => [n, 'haiku'])), council: Object.fromEntries(council.map((n) => [n, councilModel()])) })
+    await agent(runner(`printf '%s\\n' '${mj}' > ${ROOT}/sim/society/data/answers/day${pad(d)}/models.json`), { label: `d${d} models`, model: 'haiku', phase: 'Seasons' })
   }
   const out = await agent(runner(`PY='${PY}' CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })

@@ -335,7 +335,7 @@ done
 
 
 - 自分の PC の Claude Code で、このリポジトリを開いて、たとえば「`sim/society/daily_run.md` と `sim/society/HANDOFF.md` に従って、Society 2.0 を続けて」と頼む
-- 季節を進めるワークフロー: `tools/society2_seasons_workflow.js`。**リポジトリの場所を `root` で渡す** (2026-10-09 から。渡さなければクラウドの `/home/user/RobotSimulaterRyo`)。Workflow で `{"steps": 5, "root": "<この PC のリポジトリの場所>", "py": "<Python>"}` を渡して動かす (本人の PC では `{"steps": 5, "root": "C:/Users/Tan0Ry0/Desktop/26dev/RobotSimulaterRyo", "py": "py -3"}`。**本人の PC の `python` は別のアプリ (hermes-agent) の 3.11 で、季節を進めると食べ物の数の最後の桁がずれるので使わない**。`python3` はない。`tools/season_step.sh` も `PY="py -3"` で動く) (家族の代表ごとに haiku が役を演じて答え、`tools/season_step.sh` で 1 季節進めてコミットする)
+- 季節を進めるワークフロー: `tools/society2_seasons_workflow.js`。**リポジトリの場所を `root` で渡す** (2026-10-09 から。渡さなければクラウドの `/home/user/RobotSimulaterRyo`)。Workflow で `{"steps": 5, "root": "<この PC のリポジトリの場所>", "py": "<Python>"}` を渡して動かす (本人の PC では `{"steps": 5, "root": "C:/Users/Tan0Ry0/Desktop/26dev/RobotSimulaterRyo", "py": "py -3"}`。**本人の PC の `python` は別のアプリ (hermes-agent) の 3.11 で、季節を進めると食べ物の数の最後の桁がずれるので使わない**。`python3` はない。`tools/season_step.sh` も `PY="py -3"` で動く) (家族の代表ごとに役を演じて答え (2026-10-23 本人の決め「代表だけ sonnet/opus」: 7439 日目から代表とまとめ役と集落の集まりは sonnet、名前から決まる約 8 人に 1 人は opus、気持ちは haiku。`answers/dayNNN/models.json`)、`tools/season_step.sh` で 1 季節進めてコミットする)
 - 手で 1 季節進めるとき: 答えを `data/answers/dayNNNN/season/<名前>.json` に置いて、`python3 sim/society/step.py season`。今の状態は `python3 sim/society/step.py status`
 - フェーズが進んだら止まる (一時停止)。報告・評価の下書き・動画のあと `python3 sim/society/step.py resume`
 - G6 で町と記録の両方に届くと「第 4 部の終わり (G6)」と `HOLD part_end` が出て止まる (一時停止。ワークフローは `why: 'part end'` で止まる。2026-10-17 から。前は「Society 2.0 が終わった」と `why: 'society2 end'`)。第 4 部のまとめ・通しの動画・次の相談をする (`daily_run.md`)

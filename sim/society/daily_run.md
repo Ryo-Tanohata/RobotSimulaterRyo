@@ -97,7 +97,7 @@ Cloudflare Pages の本人だけが見られるページ (README「結果を見�
 
 仕事の理由 (2026-10-14 本人が決めた。`HANDOFF.md`): state.json の `era2` に `ask_why_log` がなければ (まだ一度も始めていなければ。`step.py status` に「仕事の理由: まだ始めていない」と出る。`tools/society2_seasons_workflow.js` はそのとき進めずに止まる)、1. の前に 1 回 `python3.13 sim/society/step.py ask_why` (本人の PC は `py -3`) を動かし、作り直したお題といっしょにコミットする。`ask_why_log` があれば何もしない (やめているときも、そのまま)。
 
-1. `sim/society/data/prompts/dayNNN/season/` のお題を、大人 1 人に 1 体のサブエージェント (haiku) に渡し、答えを `answers/dayNNN/season/名前.json` に書かせる (子は答えない)
+1. `sim/society/data/prompts/dayNNN/season/` のお題を、大人 1 人に 1 体のサブエージェントに渡し (2026-10-23 から: 季節の答えの家の代表とまとめ役、まわりの集落の集まりは sonnet、そのうち名前から決まる約 8 人に 1 人は opus。気持ちだけの人は haiku。使ったモデルは `answers/dayNNN/models.json`。`{"models": "haiku"}` でみな haiku に戻せる)、答えを `answers/dayNNN/season/名前.json` に書かせる (子は答えない)
    - 家族の代表が答える形のときは、代表でない大人にも `prompts/dayNNN/feeling/` のお題 (気持ちと一言だけ) を渡し、答えを `answers/dayNNN/feeling/名前.json` に書かせる (2026-10-09 本人の希望)。気持ちの答えがない人がいても季節は進めてよい。`tools/society2_seasons_workflow.js` がこれをする
 2. そろったら `python3 sim/society/step.py season` (30 日進む。蓄えが尽きると途中で区切る)
 3. その回をコミット (push はしない): `社会シミュレーション: N 日目 (季節)`
