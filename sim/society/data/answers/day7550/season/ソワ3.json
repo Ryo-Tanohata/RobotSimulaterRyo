@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、わたしはキオ4と近い南の川で魚と芋を探すね。見つけた分は半分を蓄えに入れて、ひどく空腹の人と小さい子に先に分けよう。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["キオ4"], "why": "蓄えが空で、近い南の川なら二人で魚と芋を探せるから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ4": {"activity": "採集", "place": "南川12", "why": "採集がとくいで、わたしと二人で行けば安全だから"}},
+ "keep": false,
+ "judge": {"M323": "ゆるす", "M324": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "春で蓄えが空のときは、南の川へキオ4と二人で魚と芋を探しに行き、見つけた分の半分を蓄えに入れる。", "because": [519949], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかをすかせた子たちのために、何か見つかるといいな。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、わたしは狩りの上手なソワ5と東の林へ行って獲物をとってくる。取ったら小さい子から先に分けよう。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": ["ソワ5"], "why": "蓄えが空で春は木の実がないから、狩りの腕を生かして肉や獲物を持ち帰る"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ルタ5": {"activity": "採集", "place": "東林12", "why": "二人以上で行く掟を守り、狩りの二人と同じ林で食べ物を探す"}, "ソワ5": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので、わたしと組んで獲物をとる"}},
+ "keep": false,
+ "judge": {"M323": "ゆるす", "M324": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "春の蓄えが空のとき、東の林で狩りをして小さな獲物ピクがとれた。", "because": [519975], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L193", "against": "", "agree": true, "reason": "取りすぎを防ぐ決まりは大事だから"}, {"id": "L195", "against": "", "agree": true, "reason": "空腹の人を先に助けられるから"}],
+ "feeling": "おなかはいっぱいだが、蓄えが空なので、狩りで村の役に立ちたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "わたしは南の川へ採集に行きます。シエ4といっしょに行って、見つけた量は夜に言いますね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["シエ4"], "why": "村の蓄えが空なので、近い南の川で二人組で食べ物を探す"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ4": {"activity": "採集", "place": "南川12", "why": "わたしと二人組で行き、赤ちゃんの分の食べ物も探すため"}},
+ "keep": true,
+ "judge": {"M323": "ゆるす", "M324": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "春のはじめ、村の蓄えは空のまま。南川12へシエ4と二人組で採集に行き、見つけた量を夜に言う。", "because": [519927], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L194", "agree": true, "reason": "蓄えが空のあいだは二人組で探すのが安全で、見つけた量も分かるから"}],
+ "feeling": "蓄えが空で心配だけれど、二人で南の川を探してみる。"}
