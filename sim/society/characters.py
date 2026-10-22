@@ -113,10 +113,20 @@ def _knowledge(state, p):
     return "\n".join(f"- [{k['id']}] {k['text']} (確かさ {k['confidence']:.1f}{src(k)})" for k in p["knowledge"])
 
 
-def _laws(state, with_pending=False):
-    rows = [f"- [{l['id']}] {l['text']} ({l['status']}、{l['proposer']} が提案)" for l in state["laws"]
-            if l["status"] == "採用" or (with_pending and l["status"] == "提案")]
-    return "\n".join(rows) or "(まだない)"
+LAWS_FULL, LAWS_HEAD = 40, 30  # G7 のお題 (short): 採用された掟は新しい 40 本を全文、古いものは番号と頭の 30 字 (docs/society_phase/G7_design.md 4.A.9)
+
+
+def _laws(state, with_pending=False, short=False):
+    ls = [l for l in state["laws"] if l["status"] == "採用" or (with_pending and l["status"] == "提案")]
+    if not short:  # G6 までは、いつもこちら (前と同じ文)
+        rows = [f"- [{l['id']}] {l['text']} ({l['status']}、{l['proposer']} が提案)" for l in ls]
+        return "\n".join(rows) or "(まだない)"
+    old = {l["id"] for l in [l for l in ls if l["status"] == "採用"][:-LAWS_FULL]}
+    tab = {l["id"]: " (板に書いてある)" if l.get("written") else "" for l in ls}  # G7: 粘土の板に書いた掟 (4.F の 3)
+    rows = [f"- [{l['id']}] {l['text'][:LAWS_HEAD]}{'…' if len(l['text']) > LAWS_HEAD else ''}{tab[l['id']]}" if l["id"] in old
+            else f"- [{l['id']}] {l['text']}{tab[l['id']]} ({l['status']}、{l['proposer']} が提案)" for l in ls]
+    head = f"(採用された掟のうち、古い {len(old)} 本は、番号と頭の {LAWS_HEAD} 字だけ)\n" if old else ""
+    return head + ("\n".join(rows) or "(まだない)")
 
 
 def _today(state, p):

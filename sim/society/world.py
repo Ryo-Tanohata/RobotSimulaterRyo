@@ -285,11 +285,40 @@ def _walk_kcal(person, dist_m):
 
 
 def _near(items, x, y, r):
-    return [i for i in items if abs(i["x"] - x) <= r and abs(i["y"] - y) <= r]
+    # 2026-10-21: abs を呼ばない形にした (植えた木が 1 万 7 千本をこえて遅くなったため)。-r <= d <= r は abs(d) <= r と同じ (d は前と同じ引き算)
+    return [i for i in items if -r <= i["x"] - x <= r and -r <= i["y"] - y <= r]
 
 
 # Society 2.0 で足した仕事 (era2.py が働きを計算する。2026-10-07)
 ACTS2_EXTRA = ("畑仕事", "ヤギの世話", "ヤギを捕まえる", "土器づくり", "交換に行く", "記録をつける")  # 交換に行く・記録をつけるは G6 から (2026-10-09)
+# G7 (王と役所) から足した役の仕事 (era2.py・g7.py が働きを計算する。どれもキャンプから。2026-10-16 docs/society_phase/G7_design.md 4.F の 1)。
+#   G6 までは「休む」になる (前と同じ)
+ACTS7 = ("守る", "取り立てる", "戦に出る", "試す")
+# G7 の仕組みを試しで止めるための切りかえ (いつもは True。tools/test_g7.py だけが変える): fix = 史実のずれの直し、weather = 地域の天気、
+#   year = 年 1 回の答え (False なら、全部の家を見本にし、毎季節寄る。今の「季節ごと・代表みんな」と同じ答え方)
+G7_PARTS = {"fix": True, "weather": True, "year": True, "region": True, "hints": True}
+TREE_DAYS7 = 3 * 4 * SEASON_DAYS  # G7 に入ったあとに埋めた種が木になるまで (3 年。直し A1b。G6 までと、それより前に埋めた種は 20 日)
+
+
+def _g_at_least(state, era):
+    """Society 2.0 のフェーズ (G…) が era 以上か (G7 からも同じに働くように。2026-10-16。前は G3〜G6 を書き並べていた)。
+    era2 は world を読みこむので、関数の中で読みこむ。Society 1.0 (F…) では読みこまない"""
+    e = state.get("era") or ""
+    if not e.startswith("G"):
+        return False
+    import era2
+    return era2.era_at_least(state, era)
+
+
+def _g7_fix(state):
+    """G7 に入ったあとだけ効く史実のずれの直し (era2._fix と同じ)"""
+    return "g7" in (state.get("era2") or {}) and G7_PARTS["fix"]
+
+
+def _tree_days(state, sd):
+    """埋めた種が木になるまでの日数 (直し A1b: G7 に入った日より後に埋めた種は 3 年。今ある木と、それより前に埋めた種は 20 日のまま)"""
+    fx = ((state.get("era2") or {}).get("g7") or {}).get("fix_from")
+    return TREE_DAYS7 if fx is not None and sd["day"] >= fx and G7_PARTS["fix"] else 20
 ACT_EVENT = {"採集": "採集", "狩り": "狩り", "探索": "探索", "休む": "休む", "道具づくり": "道具", "火おこし": "火",
              "種まき": "種まき", "住まいを建てる": "住まい", "キャンプを移す": "移る"}
 
@@ -311,6 +340,7 @@ def simulate_day(state):
     sea = season(day)
     alive = [p for p in state["people"] if p["alive"] and not p.get("child")]  # 子 (Society 2.0) は era2.py が扱う
     camp = state["camp"]
+    picked = None  # 今日もう「木から採った記録」(harvests) のある木 (はじめて要るときに 1 回だけ数える。下の採集)
 
     # 動物の移動 (獲物は草原へ、捕食者はうろつく)
     for hd in state["herds"]:
@@ -352,7 +382,7 @@ def simulate_day(state):
             # 2026-10-06: F3 の 3 回目のあとで、秋の実りを 2 倍にした (秋の採集が食べる量とほぼ同じで、蓄えが増えなかったため。本人の了承)
             pl["amount"] = min(pl["max"], pl["amount"] + pl["regrow"] * {"冬": 0.3, "秋": AUTUMN_GROW}.get(sea, 1) * _depression(state, pl, day))
     for sd in list(state["planted"]):
-        if day - sd["day"] >= 20:
+        if day - sd["day"] >= _tree_days(state, sd):
             state["plants"].append({"id": len(state["plants"]), "kind": "木の実", "x": sd["x"], "y": sd["y"],
                                     "amount": 10, "max": 30, "seasons": ["夏", "秋"], "regrow": 1.5, "sown": True})
             state["planted"].remove(sd)
@@ -366,17 +396,17 @@ def simulate_day(state):
     for p in alive:
         plan = p["plan"] or {"activity": "休む", "place": "camp", "with": []}
         act = plan.get("activity", "休む")
-        if act not in ACTIVITIES and act not in ACTS2_EXTRA:
+        if act not in ACTIVITIES and act not in ACTS2_EXTRA and not (act in ACTS7 and _g_at_least(state, "G7")):
             act = "休む"
         pl = place_of(state, plan.get("place", "camp"))
-        if act in ("住まいを建てる", "交換に行く", "記録をつける"):  # 建てるのはキャンプ。材料は近くの林から運ぶ (G6: 交換に行く・記録をつけるも、出かける・数えるのはキャンプから)
+        if act in ("住まいを建てる", "交換に行く", "記録をつける") + ACTS7:  # 建てるのはキャンプ。材料は近くの林から運ぶ (G6: 交換に行く・記録をつけるも、出かける・数えるのはキャンプから。G7 の役の仕事も)
             pl = place_of(state, "camp")
         if p["injured"] > 0:
             act, pl = "休む", place_of(state, "camp")
             p["injured"] -= 1
         dist = math.hypot(pl["x"] - camp["x"], pl["y"] - camp["y"]) * CELL * 2  # 往復
         travel_h = dist / WALK_SPEED / 3600
-        work_h = max(0.0, (DAY_END - DAY_START) - travel_h - 1)
+        work_h = max(0.0, (DAY_END - DAY_START) - travel_h - 1 - p.pop("eve_h", 0))  # G7 (直し A1a): 前の夕方に木から取った・刈った時間を引く (G6 までは鍵がない)
         # 疲れていると働ける時間が減り、疲れや空腹で手際が落ちる (評価 F1 の指摘)
         work_h *= 1 - 0.6 * max(0.0, p["fatigue"] - 0.5)
         knack = (1 - 0.5 * max(0.0, p["fatigue"] - 0.4)) * (1 - 0.5 * max(0.0, p["hunger"] - 0.7))  # ある程度を超えてから効く
@@ -405,8 +435,14 @@ def simulate_day(state):
                         item["sown"] = True
                         near_camp = math.hypot(q["x"] - camp["x"], q["y"] - camp["y"]) <= GATHER_RADIUS
                         h = state.setdefault("harvests", [])
-                        if near_camp and not any(r["day"] == day and r["plant"] == q["id"] for r in h):
-                            h.append({"day": day, "plant": q["id"], "who": p["name"]})
+                        # 2026-10-21: 今日の記録にこの木があるかを、記録 (3 年分で 8 万をこえる) を毎回全部読んで調べていたのを、今日の分の集まりで調べる
+                        #   (前の any(r["day"] == day and r["plant"] == q["id"] for r in h) と同じ答え。足すたびに集まりにも足す)
+                        if near_camp:
+                            if picked is None:
+                                picked = {r["plant"] for r in h if r["day"] == day}
+                            if q["id"] not in picked:
+                                h.append({"day": day, "plant": q["id"], "who": p["name"]})
+                                picked.add(q["id"])
                     p["food"].append(item)
                     got += kcal
                     by_kind[q["kind"]] = by_kind.get(q["kind"], 0) + kcal
@@ -440,7 +476,7 @@ def simulate_day(state):
                 found.append("ピクという小さな獣が草むらを走るのを見た")
             res["got"] += found
             res["events"].append(log(state, "探索", p["name"], f"{p['name']} が {pl['label']} を探索した: " + ("、".join(found) or "特に何もなかった")))
-        elif act == "道具づくり" and state.get("era") in ("G3", "G4", "G5", "G6"):  # G3 からは era2.py が鎌を作る
+        elif act == "道具づくり" and _g_at_least(state, "G3"):  # G3 からは era2.py が鎌を作る
             pass
         elif act == "道具づくり":
             if "鋭い石" in p["items"] and rng.random() < 0.3 + 0.5 * p["skills"]["道具"]:
@@ -465,7 +501,7 @@ def simulate_day(state):
                 res["events"].append(log(state, "火", p["name"], f"{p['name']} は火をおこそうとしたが、できなかった"))
             p["skills"]["火"] = round(min(1, p["skills"]["火"] + 0.05), 3)
         elif act == "住まいを建てる":
-            if camp.get("dwelling_day") is not None and state.get("era") in ("G3", "G4", "G5", "G6"):
+            if camp.get("dwelling_day") is not None and _g_at_least(state, "G3"):
                 pass  # G3 からは、家族の住まいを建てる (era2.py が記録する)
             elif camp.get("dwelling_day") is not None:
                 res["events"].append(log(state, "住まい", p["name"], f"{p['name']} は住まいを手入れした"))
@@ -500,7 +536,7 @@ def simulate_day(state):
             res["events"].append(log(state, "ヤギの世話", p["name"], f"{p['name']} がヤギの世話をした"))
         elif act == "ヤギを捕まえる":
             res["events"].append(log(state, "ヤギを捕まえる", p["name"], f"{p['name']} が {pl['label']} でヤギを捕まえようとした"))
-        elif act in ("土器づくり", "交換に行く", "記録をつける"):  # era2.py が記録する
+        elif act in ("土器づくり", "交換に行く", "記録をつける") + ACTS7:  # era2.py が記録する (G7 の役の仕事は g7.py)
             pass
         else:
             res["events"].append(log(state, "休む", p["name"], f"{p['name']} はキャンプで休んだ"))
@@ -522,7 +558,9 @@ def simulate_day(state):
             continue
         skill = sum(p["skills"]["狩り"] + (0.3 if "槍" in p["items"] else 0) for p, _ in group)
         per_h = 0.015 * (1 + 2 * skill) * (2.5 if len(group) >= 2 else 1)
-        success = rng.random() < 1 - (1 - per_h) ** hours
+        # 2026-10-21 (G7 の煙の試しで見つけた): 大勢 (技の合計が約 13 をこえる) で狩ると per_h が 1 をこえ、負の数の小数乗で複素数になって止まった。
+        #   1 時間で必ずしとめる (1 - per_h を 0 で止める)。G6 までの季節では per_h が 1 をこえたことはない (こえると止まっていた) ので、前の世界は変わらない
+        success = rng.random() < 1 - max(0.0, 1 - per_h) ** hours
         for p, _ in group:
             p["skills"]["狩り"] = round(min(1, p["skills"]["狩り"] + 0.01 * hours), 3)
         if success:
@@ -546,16 +584,34 @@ def simulate_day(state):
 
 
 def _move_food(src, dst, kind, kcal):
-    """src の食べ物から kind を kcal 分、dst へ移す (古いものから)。戻り値: 移した量 {kind: kcal}"""
+    """src の食べ物から kind を kcal 分、dst へ移す (古いものから)。戻り値: 移した量 {kind: kcal}
+    2026-10-21: 速くした (村の蓄えが 1 万 2 千切れをこえ、季節ごとに全部を並べなおすのに 1 季節 約 90 秒かかっていたため)。
+    前の形 (sorted(src, key=_expires) の順に、kind のものを kcal に届くまで) と同じ順・同じ数で移す: 腐る日 (_expires と同じ式) ごとに、
+    src の中の順のまま束ね、腐る日の近い束から使う (sorted は同じ腐る日のものを src の順に並べるので、順は同じ)。届いたら止める (前は残りを飛ばしていた)"""
     moved, by = 0, {}
-    for f in sorted(src, key=_expires):  # 腐る日の近いものから
-        if (kind and f["kind"] != kind) or moved >= kcal:
-            continue
-        take = min(f["kcal"], kcal - moved)
-        f["kcal"] -= take
-        dst.append({"kind": f["kind"], "kcal": take, "day": f["day"], **{k: True for k in ("sown", "dry") if f.get(k)}})
-        moved += take
-        by[f["kind"]] = by.get(f["kind"], 0) + take
+    if moved < kcal:
+        groups = {}
+        for f in src:
+            k = f["kind"]
+            if kind and k != kind:
+                continue
+            e = f["day"] + (DRIED_DAYS[k] if f.get("dry") and k in DRIED_DAYS else SPOIL.get(k, 4))  # = _expires(f)
+            g = groups.get(e)
+            if g is None:
+                groups[e] = [f]
+            else:
+                g.append(f)
+        for e in sorted(groups):  # 腐る日の近いものから
+            for f in groups[e]:
+                if moved >= kcal:
+                    break
+                take = min(f["kcal"], kcal - moved)
+                f["kcal"] -= take
+                dst.append({"kind": f["kind"], "kcal": take, "day": f["day"], **{k: True for k in ("sown", "dry") if f.get(k)}})
+                moved += take
+                by[f["kind"]] = by.get(f["kind"], 0) + take
+            if moved >= kcal:
+                break
     src[:] = [f for f in src if f["kcal"] > 0]
     return by
 
@@ -633,21 +689,29 @@ def evening(state, gives, stores=(), takes=()):
             if by:
                 stored_acts += 1
                 log(state, "蓄える", p["name"], f"{p['name']} がキャンプの蓄えに {food_words(by)} を入れた", food=food_words(by))
+    trees, picked = None, None  # 2026-10-21: キャンプのそばの木と、今日もう記録のある木は、夕方に 1 回だけ数える (夕方のあいだ木はふえない。前と同じ答え)
     for g in [g for g in takes if g.get("tree")]:  # キャンプのそばの木から取る (2026-10-06 追加)
         p = people.get(g.get("who"))
         want = max(0, min(int(g.get("count", 0) or 0), 40))
         got = 0
-        for q in sorted(_camp_trees(state), key=lambda q: -q["amount"]):
+        if trees is None:
+            trees = _camp_trees(state)
+        for q in sorted(trees, key=lambda q: -q["amount"]):
             n = min(want - got, int(q["amount"]))
             if p and n > 0:
                 q["amount"] -= n
                 got += n
                 h = state.setdefault("harvests", [])
-                if not any(r["day"] == day and r["plant"] == q["id"] for r in h):
+                if picked is None:
+                    picked = {r["plant"] for r in h if r["day"] == day}  # = any(r["day"] == day and r["plant"] == q["id"] for r in h)
+                if q["id"] not in picked:
                     h.append({"day": day, "plant": q["id"], "who": p["name"]})
+                    picked.add(q["id"])
         if p and got:
             p["food"].append({"kind": "木の実", "kcal": got * FRUIT_KCAL, "day": day, "sown": True})
             log(state, "木から取る", p["name"], f"{p['name']} がキャンプのそばの木から 木の実 {got} つかみ を取った", food=f"木の実 {got} つかみ")
+            if _g7_fix(state) and p.get("today") is not None:  # G7 (直し A1a): 取った量 (時間に直して、次の日の働く時間から引く。g7.evening_cost)
+                p["today"]["tree_got"] = got
     takes = [g for g in takes if not g.get("tree") and not g.get("plant")]
     for g in takes:
         p = people.get(g.get("who"))
@@ -741,7 +805,7 @@ def evening(state, gives, stores=(), takes=()):
     wrng = random.Random(state["seed"] * 15485863 + day)
     rainy = wrng.random() < {"春": 0.2, "夏": 0.2, "秋": 0.3, "冬": 0.35}[season(day)]
     outside = []  # G3 から: 村の住まいに入りきらず、雨の夜に外で眠る大人 (家族の住まいのない人が DWELL_CAP 人をこえた分。あとから来た人から)
-    if rainy and alive and housed and state.get("era") in ("G3", "G4", "G5", "G6") and state.get("era2"):
+    if rainy and alive and housed and _g_at_least(state, "G3") and state.get("era2"):
         built = {h for h, v in state["era2"].get("homes", {}).items() if v.get("built") is not None}
         need = [q for q in state["people"] if q["alive"] and q.get("household") not in built]
         over = len(need) - DWELL_CAP

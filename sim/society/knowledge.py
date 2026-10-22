@@ -34,6 +34,8 @@ def init(state):
 def _label(state, because):
     ev = archive.Events(state)  # しまう前の {番号: 出来事} と同じ答え (archive.py)
     kinds = [ev.type(i) for i in because if i in ev]
+    if "よその便り" in kinds:  # G7: よその便り (史実のヒント) をもとにした知識 (創発より先に見る。G6 までは、この種類の出来事はない)
+        return "よその便り"
     if any(k != "話す" for k in kinds):
         return "創発"
     if kinds:

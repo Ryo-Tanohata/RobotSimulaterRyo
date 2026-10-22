@@ -42,9 +42,13 @@ PAY_RE = re.compile(r"。(\S+?)が(\S+?)に (.+?) を払った")
 GOATS_RE = re.compile(r"ヤギ (\d+) 頭")
 ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき",
                 "畑仕事": "畑仕事", "ヤギの世話": "ヤギの世話", "ヤギを捕まえる": "ヤギを捕まえる", "土器": "土器づくり", "住まい": "住まいを建てる",
-                "狩り": "狩り", "交換に行く": "交換に行く", "記録をつける": "記録をつける"}  # step.py の ACT_BY_EVENT と同じ (+ 狩り)
+                "狩り": "狩り", "交換に行く": "交換に行く", "記録をつける": "記録をつける",
+                "守る": "守る", "取り立てる": "取り立てる", "戦に出る": "戦に出る", "試す": "試す"}  # step.py の ACT_BY_EVENT と同じ (+ 狩り)
 G6_TYPES = getattr(era2, "G6_EVENTS", ())  # G6 の出来事 (G6 の前は起きない)
 OUT_G6, IN_G6 = "ほかの村へ出した", "ほかの村から入った"  # G6: 交換・貸した・返してもらった・交換に持って行った・持ち帰った (出来事の data の moves)
+# G7 から: 取り立て (村の中の税)・貢ぎ・戦の出し入れは、ほかの村との交換と分けて書く (G6 までは、この種類の出来事に moves はない)
+MOVE7 = {"取り立て": ("取り立てで出した", "取り立てで入った"), "貢ぎ": ("貢ぎで出した", "貢ぎで受けた"), "崩れ": ("貢ぎで出した", "貢ぎで受けた"),
+         "戦": ("戦で取られた", "戦で持ち帰った")}
 START, END, DIFF = "季節のはじめの残り", "季節の終わりの残り", "記録にない差"
 FLOWS = ("採った", "木から取った", "狩った", "乳をしぼった", "刈った (村の蓄えに入った)", "刈った (自分の家の畑)", "ヤギをつぶした",
          "家にだれもいなくなり、村のものになった", "家の倉から食べた", "家の倉から食べた (子)", "よその家の倉から取った",
@@ -383,7 +387,10 @@ class Builder:
             if t == "交換" and who and e["id"] not in meeting_ids:  # 向こうの村で交換した日も「交換に行く」(step.py の day_summaries と同じ)
                 mark(who, day, "交換に行く")
             for side, sg, goods, ids in d.get("moves") or []:  # G6: 物が村や家に出入りした (era2._mv)
-                g6["moves"].append((side, sg, goods))
+                if t in MOVE7:  # G7: 取り立て・貢ぎ・戦 (食べ物の帳簿のわけを分ける。ヤギの番号は下の G6 と同じに読む)
+                    g6.setdefault("moves7", []).append((side, sg, goods, MOVE7[t][0 if sg < 0 else 1]))
+                else:
+                    g6["moves"].append((side, sg, goods))
                 for gid, sex, born in ids:
                     (g6["in"] if sg > 0 else g6["out"])[gid] = side
                     if e["id"] in meeting_ids:  # 集まりで (ヤギをつぶす前に) 出入りしたヤギ
@@ -519,7 +526,7 @@ class Builder:
                 g5["fission"] = d.get("household")
             elif t == "受けつぎ":
                 m = re.search(r"が亡くなり、(.+?の家)(?:の|には)", x)
-                h = m.group(1) if m else None
+                h = m.group(1) if m else d.get("household")  # G7 (直し A3): 家にだれも暮らしていないので村のものになった (data に household)
                 to_v = "村のものになった" in x
                 rest = x.split("が亡くなり、", 1)[-1]
                 wm = re.search(r"ので、(.+)は村のものになった", rest) if to_v else re.search(r"の家の(.+)は、", rest)
@@ -793,6 +800,10 @@ class Builder:
                 if kk in UNIT:
                     tgt = fv.setdefault(IN_G6 if sg > 0 else OUT_G6, {}) if side == "村" else fh.setdefault((side, IN_G6 if sg > 0 else OUT_G6), {})
                     add(tgt, kk, n * UNIT[kk][1])
+        for side, sg, goods, why in c["g6"].get("moves7", []):  # G7: 取り立て・貢ぎ・戦
+            for kk, n in goods.items():
+                if kk in UNIT:
+                    add(fv.setdefault(why, {}) if side == "村" else fh.setdefault((side, why), {}), kk, n * UNIT[kk][1])
         fis = c["g5"]["fission"]
         if fis and known:
             for kk, v in self._left_over(fis, houses0.get(fis, {}), houses1.get(fis, {}), fh).items():
@@ -800,7 +811,8 @@ class Builder:
 
         sign = {"食べた": -1, "まいた (畑)": -1, "種として埋めた": -1, "腐った": -1, "虫やネズミ": -1, "祭り": -1, "雨で傷んだ": -1,
                 "亡くなった人の手元": -1, "村を出た人の手元": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1,
-                "だれもいなくなり、村のものになった": -1, "村を出て持っていった": -1, "罰・つぐないで払った": -1, "干した": 1, OUT_G6: -1}
+                "だれもいなくなり、村のものになった": -1, "村を出て持っていった": -1, "罰・つぐないで払った": -1, "干した": 1, OUT_G6: -1,
+                **{w[0]: -1 for w in MOVE7.values()}}
         src = {"刈った (村の蓄えに入った)": "replay", "刈った (自分の家の畑)": "replay", "食べた": "stats", "虫やネズミ": "snapshot",
                "亡くなった人の手元": "snapshot", "村を出た人の手元": "snapshot", "家の倉から食べた": "notes", "家の倉から食べた (子)": "notes",
                "よその家の倉から取った": "notes", "家の人が食べた": "notes", "子が食べた": "notes", "よその家の人に取られた": "notes",
@@ -889,7 +901,8 @@ class Builder:
 
     def _left_over(self, h, s0, s1, fh):
         """家の倉が空になったとき、出ていった量 = はじめ + ほかの動き − 終わり (物ごと)"""
-        sign = {"罰・つぐないで払った": -1, "虫やネズミ": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1, OUT_G6: -1}
+        sign = {"罰・つぐないで払った": -1, "虫やネズミ": -1, "家の人が食べた": -1, "子が食べた": -1, "よその家の人に取られた": -1, OUT_G6: -1,
+                **{w[0]: -1 for w in MOVE7.values()}}
         out = {}
         for kk in FOODS:
             v = s0.get(kk, 0) - s1.get(kk, 0)
@@ -1046,11 +1059,42 @@ class Builder:
                      "penalty_laws": ind.get("penalty_laws") if C else None},
             "g5": g5row,
             "answered": {"season": len(ans.get("season") or {}), "feeling": len(ans.get("feeling") or {}),
-                         "reps": len([n for n in (ans.get("season") or {}) if n in self.reps_at(a, P)])},
+                         "reps": len([n for n in (ans.get("season") or {}) if n in self.reps_at(a, P)])} | self.g7_answered(C, D),
             "year_named": c["year_named"],
             "criteria": crit,
             "snapshot": C is not None,
-        } | ({"g6": self.g6_row(c, ind)} if c["era"] == "G6" else {})
+        } | ({"g6": self.g6_row(c, ind)} if accounts.at_least(c["era"], "G6") else {}) \
+          | ({"g7": self.g7_row(C, ind)} if C and C.get("g7") else {})  # G6 から (G7 からも、ほかの村・記録は続く)。g7 は G7 から (【シ】)
+
+    @staticmethod
+    def g7_row(C, ind):
+        """村の行の G7 (【シ】。docs/society_phase/G7_design.md 4.D.9): 決める段・集落の段・役の段・中心・村の位置・まとまりの集落の数・続くつながり・
+        取り立ての記録・役の割合・書いた掟・掟で裁いた数・利子の貸し借り・F に届いた日・条件ごとの止まり・よその便りの数"""
+        G = C["g7"]
+        m = G.get("measure") or {}
+        lv = m.get("levels") or {}
+        reg = G.get("region") or {}
+        return {"levels": lv.get("D"), "tiers": lv.get("T"), "office_levels": lv.get("office"), "centre": lv.get("top"), "village": lv.get("village"),
+                "members": lv.get("members"), "region_max_levels": lv.get("region_max"),
+                "settlements": sum(1 for o in reg.get("others", []) if not o.get("gone")), "region_people": sum(o.get("people") or 0 for o in reg.get("others", [])),
+                "ties": sum(1 for t in reg.get("ties", []) if t.get("status") == "続く"),
+                "village_ties": [t["id"] for t in reg.get("ties", []) if t.get("status") == "続く" and "V0" in (t.get("payer"), t.get("payee"))],
+                "tribute_season": m.get("coll"), "tribute_years_ok": sum(1 for y in m.get("tribute_years", []) if y.get("ok")), "tribute2_day": m.get("tribute2_day"),
+                "role": m.get("role"), "f6_run": m.get("f6_run"), "written_laws": ind.get("g7_written_laws"), "law_judged": m.get("judged"),
+                "interest_debts": ind.get("g7_interest"), "reached": m.get("reached"), "stall": m.get("stall"), "walls": m.get("walls"),
+                "cattle": m.get("cattle"), "sick": m.get("sick"), "hints": (G.get("hints") or {}) and {k: G["hints"][k] for k in ("delivered", "planned", "things")}}
+
+    @staticmethod
+    def g7_answered(C, D):
+        """G7: 見本の家・見本から広げた家・年の答えの日・寄る年 (G6 までは何も足さない)"""
+        G = (C or {}).get("g7") or {}
+        st = G.get("step")
+        if not st:
+            return {}
+        z = G.get("zoom")
+        return {"sample_households": len(st.get("sample", [])), "expanded_households": len(st.get("donor", {})), "rule_households": len(st.get("rule", [])),
+                "plan_answer_day": st.get("answer_day"), "ask": st.get("ask"),
+                "zoom": z["why"] if z and z.get("year") == (D // YEAR) else None}
 
     def g6_row(self, c, ind):
         """村の行の G6 (ほかの村・交換・印と封・記録の道具・確かめた・町)。数の多くは控えの era_info の目安 (era2._g6_indicators)、この季節の数は出来事から"""
@@ -1176,6 +1220,8 @@ class Builder:
         ans = self.answers.get(a, {})
         sea, fee = ans.get("season") or {}, ans.get("feeling") or {}
         joined_here = set(c["demo"]["joined"])
+        G = (C or {}).get("g7") or {}  # G7 (年 1 回の答え。docs/society_phase/G7_design.md 4.A.10): だれの答えで仕事が決まったかは控えの g7.src から
+        g7src, g7step = G.get("src"), G.get("step") or {}
         out = []
         for n in c["present"]:
             p = self.byname[n]
@@ -1190,7 +1236,9 @@ class Builder:
             jobs, decided = [], None
             joined_adult = n in joined_here and (self.age(n, a) or 0) >= era2.ADULT  # 集まりで加わった大人 (子は仕事をしない)
             if adult_meeting or joined_adult:
-                if n in sea:
+                if g7src is not None and n in g7src:  # G7: 年の答え (自分・代表が割り振った・代表と同じ仕事)・見本から広げた・決まり・加わった季節 (寄る季節は今と同じ値)
+                    decided = g7src[n]
+                elif n in sea:
                     decided = "自分"
                 elif joined_adult:
                     decided = "加わった季節"
@@ -1205,13 +1253,15 @@ class Builder:
                     S = self.snaps.get(rd["end"])
                     plan = ((S or {}).get("people", {}).get(n) or {}).get("plan") if S else None
                     if plan is None:
-                        plan = self.plan_from_answers(n, h, sea, reps)
+                        plan = self.plan_from_answers(n, h, sea, reps, era2.season(rd["start"] + 1))
                     if plan:
                         jobs.append({"from_day": rd["start"] + 1, "activity": plan.get("activity"), "place": plan.get("place"),
                                      "with": [self.P(w) for w in plan.get("with") or []], "decided_by": decided})
             why, why_by = None, None  # 仕事の理由 (段階 1。step.py ask_why のあとの、理由の欄があるお題の答えだけ読む)
             asked = self.why_asked(a)
-            if asked and decided == "自分" and isinstance(sea[n].get("job"), dict):
+            if asked and decided in ("年の答え (自分)", "年の答え (代表が割り振った)"):  # G7: 年の答えの、この季節の分の理由
+                why, why_by = self.g7_why(n, h, g7step, decided)
+            elif asked and decided == "自分" and isinstance(sea[n].get("job"), dict):
                 why, why_by = sea[n]["job"].get("why"), "自分"
             elif asked and decided == "代表が割り振った":  # 代表が family に書いた、その人の理由 (代表と同じ仕事の人には、理由をたずねていない)
                 rep = next((r for r in sea if r in reps and self.byname[r].get("household") == h and h), None)
@@ -1256,7 +1306,8 @@ class Builder:
                 "items": (self.counts(sp1.get("items")) if alive1 else None),
                 "laws": lw if adult_meeting else {"proposed": lw["proposed"], "votes": None}, "knowledge_added": kn,
                 "snapshot": C is not None,
-            })
+            } | ({"is_sample": h in g7step.get("sample", []), "plan_answer_day": g7step.get("answer_day"),  # G7 から (G6 までは鍵がない)
+                  "donor_household_id": self.H(g7step["donor"][h]) if h in g7step.get("donor", {}) else None} if g7step else {}))
         return out
 
     @staticmethod
@@ -1267,19 +1318,36 @@ class Builder:
             add(out, x, 1)
         return {k: out[k] for k in sorted(out)}
 
-    def plan_from_answers(self, n, h, sea, reps):
+    def plan_from_answers(self, n, h, sea, reps, season=None):
+        def part(a_):  # G7 の年の答え: その季節の分 (G6 までの答えには year がない)
+            y = a_.get("year") if isinstance(a_.get("year"), dict) else None
+            return (y.get(season) if isinstance(y.get(season), dict) else {}) if y is not None and season else a_
         a_ = sea.get(n)
         if a_ is None:
             rep = next((r for r in sea if r in reps and self.byname[r].get("household") == h and h), None)
             if not rep:
                 return None
-            fam = sea[rep].get("family") if isinstance(sea[rep].get("family"), dict) else {}
-            job = fam.get(n) or sea[rep].get("job") or sea[rep].get("plan")
+            r_ = part(sea[rep])
+            fam = r_.get("family") if isinstance(r_.get("family"), dict) else {}
+            job = fam.get(n) or r_.get("job") or r_.get("plan")
         else:
+            a_ = part(a_)
             job = a_.get("job") or a_.get("plan")
         if isinstance(job, str):
             job = {"activity": job}
         return job if isinstance(job, dict) else None
+
+    def g7_why(self, n, h, step, decided):
+        """G7: 年の答えの、この季節の分の理由 (自分の job.why か、代表の family の why)。戻り値: (理由, 書いた人)"""
+        sea = (self.answers.get(step.get("answer_day")) or {}).get("season") or {}
+        sname = step.get("season")
+        who = n if decided == "年の答え (自分)" else next((r for r in step.get("answered", []) if r in sea and self.byname.get(r, {}).get("household") == h), None)
+        y = (sea.get(who) or {}).get("year") if who else None
+        sub = y.get(sname) if isinstance(y, dict) else None
+        if not isinstance(sub, dict):
+            return None, None
+        src = sub.get("job") if who == n else (sub.get("family") or {}).get(n) if isinstance(sub.get("family"), dict) else None
+        return (src.get("why"), "自分" if who == n else "代表") if isinstance(src, dict) else (None, None)
 
     def laws_by_person(self, n, a, sea, reps, h):
         proposed = [l["id"] for l in self.state.get("laws", []) if l.get("proposer") == n and l.get("day") == a]
@@ -1387,6 +1455,46 @@ class Builder:
             self.ledger_rows += lg
         self.build_disputes()
         self.build_year_names()
+        self.build_g7()
+
+    def build_g7(self):
+        """G7 から (G6 までは作らない): records/polity.jsonl (1 季節 1 行。集落・つながり・段。【シ】) と records/tribute.jsonl (取り立てと貢ぎの払い 1 回 1 行。
+        数え札か板に全部残せた季節の行は【村】、残らなかった行は【シ】。docs/society_phase/G7_design.md 4.D.9)"""
+        self.polity_rows, self.tribute_rows = [], []
+        G = self.e2.get("g7")
+        if not G:
+            return
+        for D in sorted(self.snaps):
+            C = self.snaps[D]
+            g = C.get("g7")
+            if not g:
+                continue
+            reg = g.get("region") or {}
+            self.polity_rows.append({"season_end_day": D, "settlements": reg.get("others"), "ties": reg.get("ties"), "wars": reg.get("wars"),
+                                     "levels": (g.get("measure") or {}).get("levels")})
+        rec = {}
+        for r in G.get("tribute_log", []):
+            rec[(r["day"], r["kind"], r.get("tie") or r.get("by"))] = r.get("recorded")
+        for e in self.ev:
+            d = e.get("data") or {}
+            if e["type"] == "取り立て":
+                key = (e["day"], "税", e.get("who"))
+                row = {"day": e["day"], "kind": "税", "law": d.get("law"), "by": e.get("who"), "from": d.get("homes"), "to": "村", "goods": d.get("goods")}
+            elif e["type"] == "貢ぎ" and d.get("tie") and d.get("amount"):
+                t = next((x for x in (G.get("region") or {}).get("ties", []) if x["id"] == d["tie"]), None)
+                if not t or "V0" not in (t["payer"], t["payee"]):
+                    continue
+                kind = "貢ぎ出す" if t["payer"] == "V0" else "貢ぎ受ける"
+                key = (e["day"], kind, d["tie"])
+                row = {"day": e["day"], "kind": kind, "tie": d["tie"], "by": None, "from": t["payer"], "to": t["payee"], "goods": {"草の種": d["amount"]}}
+            else:
+                continue
+            how = rec.get(key)
+            self.tribute_rows.append({**row, "season_end_day": self.season_of(e["day"]), "event": e["id"], "recorded": how, "tag": "村" if how else "シ"})
+
+    def season_of(self, day):
+        """その日をふくむ季節の終わりの日 (季節のはじめの集まりの日は、前の季節の最後の日なので、次の季節に数える)"""
+        return min((D for D in self.seasons if D >= day + (1 if (day + 1) % era2.SEASON_DAYS == 0 else 0)), default=None)
 
 
 # ---------------- 列の説明 ----------------
@@ -1594,6 +1702,20 @@ COLUMNS = [
     ("season_person", "laws", "掟の提案と投票", None, "シ", "state の laws と答え", True, 489, None),
     ("season_person", "knowledge_added", "新しく覚えたこと", "件", "シ", "knowledge_log", True, 489, None),
     ("season_person", "snapshot", "季節の終わりの値が控えから取れたか", None, "-", "", True, 489, None),
+    ("season_person", "is_sample", "見本の家か (G7 から。年 1 回の答えで答えた家)", None, "シ", "控え (g7.step)", True, None,
+     "G7 から。decided_by に、年の答え (自分)・年の答え (代表が割り振った)・年の答え (代表と同じ仕事)・見本から広げた・決まり (前の年と同じ) が加わる。"
+     "見本から広げた = 見本でない家が、同じ組の手本の家の答えをまねた (【シ】。村の人は知らない)"),
+    ("season_person", "plan_answer_day", "この季節の仕事を決めた集まりの日 (G7 から)", "日", "シ", "控え (g7.step)", True, None,
+     "年の集まりか、寄る季節の集まりの日"),
+    ("season_person", "donor_household_id", "手本の家 (G7 から。見本から広げた家だけ)", None, "シ", "控え (g7.step)", True, None, None),
+    ("season_village", "g7", "G7 の物差し (決める段 D・集落の段 T・役の段・いちばん上・村の位置 (中心 / 従う / 外)・まとまりの集落の数・地域のいちばん高い段・"
+     "集落の数と人数・続くつながり・村のつながり・この季節の取り立てと記録・取り立てを全部残せた年の数・条件 2 に届いた日・季節の役の人・F6 の続いた季節・"
+     "板に書いた掟・書いた掟で裁いた数・利子の貸し借り・F に届いた日・条件ごとの止まり・壁・牛・病・よその便りの数)", None, "シ", "控え (g7.measure・region・hints)",
+     True, None, "G7 から。お題にもダッシュボードにも出さない (docs/society_phase/G7_design.md 4.D.9)。決める段は 4.D.2 の数え方 (集落と役の両方、どの段も 2 つ以上を下に)"),
+    ("polity", "season_end_day", "季節の終わりの日 (1 季節 1 行。G7 から)", "日", "シ", "控え (g7.region)", True, None,
+     "settlements (集落: 番号・ます・土地・人数・村が知った日・役の段・悪い年・牛・壁・なくなった日)・ties (貢ぎのつながり)・wars (この 1 年の戦)・levels (村のいるまとまりの段)"),
+    ("tribute", "kind", "取り立ての種類 (税 = 村の中の取り立て / 貢ぎ出す / 貢ぎ受ける。払い 1 回 1 行。G7 から)", None, "村", "出来事「取り立て」「貢ぎ」",
+     True, None, "tag が「村」の行は、その季節の取り立てを、記録をつける人が数え札か板に全部残せたもの (recorded にどちらか)。「シ」の行は残らなかったもの (ダッシュボードには出さない)"),
     ("season_person", "why", "主な仕事にした理由の一言", None, "シ", "季節の答えの job.why と、代表の答えの family の why", True, None,
      "段階 1 (docs/humanity の D09)。step.py ask_why のあとのお題から。代表が割り振った人は代表が書いた理由。代表と同じ仕事の人は null (理由をたずねていない)"),
     ("season_person", "why_by", "理由を書いた人 (自分・代表)", None, "シ", "季節の答え", True, None,
@@ -1729,6 +1851,9 @@ def build(data_dir, quiet=False, check=False):
     write(out / "year_names.json", as_array(b.year_rows), written)
     write(out / "laws.json", as_array(b.laws_rows), written)
     write(out / "disputes.json", as_array(b.disputes_rows), written)
+    if b.e2.get("g7"):  # G7 から (G6 までは作らない)
+        write(out / "polity.jsonl", as_lines(b.polity_rows), written)
+        write(out / "tribute.jsonl", as_lines(b.tribute_rows), written)
     write(out / "columns.json", as_array(columns()), written)
     write(out / "meta.json", jdump(meta) + "\n", written)
     dt = time.time() - t0

@@ -55,6 +55,8 @@ LAYER_REAL = {
     "G6": ("テル・ブラク LC2 → ウルク期", "前4200〜3800年ごろ → 原楔形文字 前3350〜3200年"),
 }
 LAYER_IDS = ["F", "G1", "G2", "G3", "G4", "G5", "G6"]
+# G7 (王と役所) の層は、G7 に入ってからだけ足す (G6 までのダッシュボードは前と同じ)
+LAYER_REAL_G7 = ("初期王朝期 → アッカド → ウル第 3 王朝", "前2900〜2000年ごろ")
 
 # 跡を残した技と、本物 (西アジア) でいちばん古い例 (動かない表。docs/dashboard_design.md 2.5・K22・6.4)
 # 年代と場所は docs/research/archaeological_evidence.md と app/tech_tree_demo.html (どちらも出典つき) にそろえた
@@ -267,13 +269,15 @@ def load(data_dir, tries=3, wait=2.0):
                         rec["ledger_goats"].append(json.loads(l))
             sp = os.path.join(R, "season_person.jsonl")
             rec["work_days"] = {}
-            if any(r.get("era") == "G6" for r in rec["season_village"]):
+            if any(r.get("era") in ("G6", "G7") for r in rec["season_village"]):  # G6 以上 (G7 からも村の記録は続く)
                 for r in _read_jsonl(sp):
                     dba = r.get("days_by_activity") or {}
                     n = sum(v for k, v in dba.items() if k in G6_WORK)
                     if n:
                         key = (r["season_end_day"], r.get("household_id"))
                         rec["work_days"][key] = rec["work_days"].get(key, 0) + n
+            tp = os.path.join(R, "tribute.jsonl")  # G7 から: 取り立てと貢ぎの払い (【村】の行だけを使う)
+            rec["tribute"] = _read_jsonl(tp) if os.path.exists(tp) else []
             meta2 = _read_json(os.path.join(R, "meta.json"))
             if meta2 != meta:
                 raise GateError("読んでいるあいだに records/ が書きかわった")
@@ -299,7 +303,7 @@ def build(st, rec):
     # 層: フェーズが進んだ日の次の日から (F1〜F6 はまとめて F)
     adv = []
     for x in st.get("era_log", []):
-        if x["era"].startswith("G") and x["era"] in LAYER_IDS:
+        if x["era"].startswith("G") and (x["era"] in LAYER_IDS or (x["era"] == "G7" and e2.get("g7"))):
             adv.append((x["day"], x["era"]))
     adv.sort()
 
@@ -671,10 +675,12 @@ def build(st, rec):
 
     # ---- 層
     layers = []
-    for lid in LAYER_IDS:
+    g7_on = bool(e2.get("g7"))
+    ids = LAYER_IDS + (["G7"] if g7_on else [])
+    for lid in ids:
         idx = [i for i, L in enumerate(layer_of_row) if L == lid]
-        real, real_years = LAYER_REAL[lid]
-        ramp = 6 - LAYER_IDS.index(lid)
+        real, real_years = LAYER_REAL[lid] if lid in LAYER_REAL else LAYER_REAL_G7
+        ramp = 6 - ids.index(lid)
         if idx:
             f, l = rows[idx[0]]["s"], rows[idx[-1]]["d"]
             layers.append({"id": lid, "first": f, "last": l, "last_row": rows[idx[-1]]["d"], "first_date": dlab(f), "last_date": dlab(l),
@@ -765,6 +771,7 @@ def build(st, rec):
 
     # ---- G6 (村の記録)。G6 の前は空
     g6 = build_g6(st, rec, rows, seasons, layer_of_row, row_of_event, ev_by_type, adv)
+    g7 = build_g7(st, rec, rows, seasons, row_of_day) if e2.get("g7") else None  # G7 (王と役所) から。G6 までは鍵を足さない
 
     last = seasons[-1]
     lc = last["cum"]
@@ -855,6 +862,7 @@ def build(st, rec):
         "chronicle": chronicle,
         "how": how,
         "g6": g6,
+        **({"g7": g7} if g7 is not None else {}),
     }
     return out
 
@@ -952,7 +960,7 @@ def build_g6(st, rec, rows, seasons, layer_of_row, row_of_event, ev_by_type, adv
         sh_by[r["season_end_day"]].append(r)
     hh_name = {h["id"]: h["name"] for h in rec["households"]}
     for i, L in enumerate(layer_of_row):
-        if L != "G6":
+        if L not in ("G6", "G7"):  # G6 以上 (G7 からも村の記録は続く。G6 までは前と同じ)
             continue
         d = D[i]
         p = per.get(i) or {"sealings": collections.Counter(), "kinds": [], "checked": []}
@@ -998,6 +1006,54 @@ def build_g6(st, rec, rows, seasons, layer_of_row, row_of_event, ev_by_type, adv
             break
     _ = name2id
     return out
+
+
+G7_TOKEN = {"草の種": 100, "ヤギ": 1}
+G7_KEEP, G7_TEXT = {"tribute": 40, "written": 20, "loans": 20}, 80  # G7 の記録は新しいものからこの数まで (掟の文はこの字数まで)
+
+
+def build_g7(st, rec, rows, seasons, row_of_day):
+    """G7 の村の記録 (【村】だけ。docs/society_phase/G7_design.md 4.D.9): 取り立ての板 (記録をつける人が数え札か板に全部残せた取り立てと貢ぎ)・
+    書いた掟の板 (粘土の板に書いた掟。文・罰か換算・書いた日)・証文 (上乗せのある貸し借りで、記録の残ったもの)。
+    名前は出さない (掟の文の中の名前は「(名)」にする)。量は数え札の数で出す。【シ】(決める段・便りの帳簿など) は出さない"""
+    names = sorted({p["name"] for p in rec["people"]} | {h["name"] for h in rec["households"]}, key=len, reverse=True)
+
+    def mask(t):
+        for n in names:
+            t = t.replace(n, "(名)")
+        return t
+
+    def row_d(day):
+        i = row_of_day(day)
+        return (rows[i]["d"], seasons[i]["label"]) if i is not None else (None, None)
+
+    def tok(goods):
+        return {k: -(-int(n) // G7_TOKEN.get(k, 100)) for k, n in (goods or {}).items() if n}
+    trib = []
+    for r in rec.get("tribute", []):
+        if r.get("tag") != "村":
+            continue
+        d, lab = row_d(r["day"])
+        trib.append({"d": d, "label": lab, "kind": r["kind"], "tokens": tok(r.get("goods")), "homes": len(r.get("from") or []) if r["kind"] == "税" else None,
+                     "how": r.get("recorded")})
+    written = []
+    for l in st.get("laws", []):
+        w = l.get("written")
+        if not w:
+            continue
+        d, lab = row_d(w["day"])
+        written.append({"d": d, "label": lab, "text": mask(l["text"]), "kind": "罰" if l.get("penalty") else "換算" if l.get("rate") else "取り立て" if l.get("tax") else "決まり",
+                        "dropped": l.get("status") == "廃止"})
+    loans = []
+    for x in ((st.get("era2") or {}).get("g6") or {}).get("debts", []):
+        if (x.get("rate") or 0) > 0 and x.get("proof"):
+            d, lab = row_d(x["day"])
+            loans.append({"d": d, "label": lab, "tokens": tok(x.get("goods")), "rate": x["rate"], "how": x["proof"], "back": x.get("status") == "返した"})
+    # 大きさを抑える (ダッシュボードの JSON は 300 KB まで): 新しいものから、取り立て 40・掟 20 (文は 80 字まで)・証文 20
+    for w in written:
+        w["text"] = w["text"][:G7_TEXT] + ("…" if len(w["text"]) > G7_TEXT else "")
+    return {"entered": True, "tribute": trib[-G7_KEEP["tribute"]:], "written": written[-G7_KEEP["written"]:], "loans": loans[-G7_KEEP["loans"]:],
+            "counts": {"tribute": len(trib), "written": len(written), "loans": len(loans)}, "token_units": dict(G7_TOKEN)}
 
 
 def _seal_letter(k):
@@ -1137,6 +1193,114 @@ def dump(out):
     return json.dumps(out, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
 
 
+# 季節の行を詰める (2026-10-21。300 KB の確かめに、G6 のままでも届きかけたため: 5849 日目で 296 KB、そのうち季節の行が 171 KB)。
+# 中身は 1 つも捨てない (画面は読みこんだあとに unpack と同じことをして、もとの行にもどす。dashboard.html の unpackSeasons)。
+#   - add: いつもの値 (0・[]・[0,0,0]) の鍵は書かない (None の「記録なし」は書く)
+#   - cum: 前の行と同じ値の鍵は書かない (どれも同じなら cum の鍵ごと書かない。cum の鍵の並びはどの行も同じ)
+#   - plants・pop・layer: 前の行と同じなら書かない (pop が null に変わったときは null と書く)
+# くり返す文は "strs" の表にまとめる (intern。戻すのは unintern と dashboard.html の unpackSeasons のはじめ)。
+# 詰めた JSON には "pack": {"v": 1, "add": いつもの値, "carry": 前の行から引きつぐ鍵} をつける (画面はこれを読んで戻す)。
+# 戻すと、詰める前とまったく同じになることを main で確かめる
+ADD_DEFAULT = {"ash": 0, "bins": [], "blades": 0, "bones": [0, 0, 0], "dung": 0, "ext": [], "feast_bones": 0, "footings": [],
+               "goat_bones": [], "graves": [], "houses": [], "hut": 0, "mice": 0, "sherds": 0}
+CARRY = ("plants", "pop", "layer")
+
+
+def _same(a, b):
+    return json.dumps(a, sort_keys=True) == json.dumps(b, sort_keys=True)  # 1 と 1.0・0 と False を同じとみない
+
+
+def pack(out):
+    rows, prev = [], None
+    for sz in out["seasons"]:
+        r = dict(sz)
+        r["add"] = {k: v for k, v in sz["add"].items() if not (k in ADD_DEFAULT and _same(v, ADD_DEFAULT[k]))}
+        if prev is not None:
+            pc, c = prev["cum"], sz["cum"]
+            assert sorted(pc) == sorted(c), "cum の鍵は、どの行も同じ"
+            r["cum"] = {k: v for k, v in c.items() if not _same(v, pc[k])}
+            if not r["cum"]:
+                del r["cum"]
+            for k in CARRY:
+                if k in sz and k in prev and _same(sz[k], prev[k]):
+                    del r[k]
+        rows.append(r)
+        prev = sz
+    return dict(out, seasons=rows, pack={"v": 1, "add": ADD_DEFAULT, "carry": list(CARRY)})
+
+
+STR_MARK = "§"  # 同じ文の 2 回目からは「§番号」にして、文は "strs" に 1 回だけ書く (墓の骨の注・死因・季節の跡の文などがくり返すため)
+STR_MIN = 8  # 8 バイトより短い文はそのまま
+
+
+def intern(out):
+    """くり返す文 (値の文だけ。鍵はそのまま) を "strs" の表にまとめる。もとの文に STR_MARK で始まるものがあれば、まとめない"""
+    cnt = collections.Counter()
+
+    def count(o):
+        if isinstance(o, dict):
+            for v in o.values():
+                count(v)
+        elif isinstance(o, list):
+            for v in o:
+                count(v)
+        elif isinstance(o, str):
+            cnt[o] += 1
+    count(out)
+    if any(k.startswith(STR_MARK) for k in cnt):
+        return out
+    table = sorted((k for k, n in cnt.items() if n >= 2 and len(k.encode("utf-8")) >= STR_MIN), key=lambda k: (-cnt[k], k))
+    idx = {k: i for i, k in enumerate(table)}
+
+    def rep(o):
+        if isinstance(o, dict):
+            return {k: rep(v) for k, v in o.items()}
+        if isinstance(o, list):
+            return [rep(v) for v in o]
+        if isinstance(o, str) and o in idx:
+            return STR_MARK + format(idx[o], "x")
+        return o
+    return dict(rep(out), strs=table)
+
+
+def unintern(d):
+    if not d or "strs" not in d:
+        return d
+    table = d["strs"]
+
+    def rep(o):
+        if isinstance(o, dict):
+            return {k: rep(v) for k, v in o.items()}
+        if isinstance(o, list):
+            return [rep(v) for v in o]
+        if isinstance(o, str) and o.startswith(STR_MARK):
+            return table[int(o[len(STR_MARK):], 16)]
+        return o
+    out = rep({k: v for k, v in d.items() if k != "strs"})
+    return out
+
+
+def unpack(d):
+    d = unintern(d)
+    if not d or not d.get("pack"):
+        return d
+    rows, prev = [], None
+    pk = d["pack"]
+    for r in d["seasons"]:
+        z = dict(r)
+        z["add"] = dict({k: json.loads(json.dumps(v)) for k, v in pk["add"].items()}, **r["add"])
+        if prev is not None:
+            z["cum"] = dict(prev["cum"], **r.get("cum", {}))
+            for k in pk["carry"]:
+                if k not in r and k in prev:
+                    z[k] = prev[k]
+        rows.append(z)
+        prev = z
+    out = dict(d, seasons=rows)
+    del out["pack"]
+    return out
+
+
 MARK_A, MARK_B = "<!--DASH-DATA-->", "<!--/DASH-DATA-->"
 
 
@@ -1180,11 +1344,13 @@ def main(argv=None):
     prev = None
     if a.out and os.path.exists(a.out):
         try:
-            prev = _read_json(a.out)
-        except (ValueError, OSError):
+            prev = unpack(_read_json(a.out))
+        except (ValueError, OSError, KeyError, TypeError):
             prev = None
     errs, warns = checks(out, st, rec, prev)
-    js = dump(out)
+    js = dump(intern(pack(out)))
+    if json.loads(dump(unpack(json.loads(js)))) != json.loads(dump(out)):
+        errs.append("詰めた季節の行を戻しても、詰める前と同じにならない (build_dashboard.py の pack・unpack)")
     size = len(js.encode("utf-8"))
     if size > 300 * 1024:
         errs.append("大きすぎる: %d バイト (300 KB まで)" % size)

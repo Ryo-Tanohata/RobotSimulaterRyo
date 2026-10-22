@@ -37,6 +37,11 @@ def sha(p):
     return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
 
+def g6_or_later(era):
+    """G6 以上 (era2.ORDER2 の順。G7 からも G6 と同じに数える。2026-10-16)"""
+    return era in era2.ORDER2 and era2.ORDER2.index(era) >= era2.ORDER2.index("G6")
+
+
 def scratch(snapshots=True):
     """本物のデータの写し (state.json は写し、答えとお題は読むだけのリンク)。控えは本物の records/ から写すか、git から作る"""
     d = Path(tempfile.mkdtemp(prefix="rec_test_"))  # 写しはふつうの一時フォルダに (Linux は /tmp。Windows でも動くように)
@@ -735,7 +740,7 @@ class M_Accounts(Base):
         if x["item"] == "ヤギ":
             return x["amount"] * era2.GOAT_WORTH
         if x["item"] in ("土器", "鎌"):
-            return x["amount"] * era2.VALUE[x["item"]] * era2.GRAIN if self.V[D]["era"] == "G6" else 0
+            return x["amount"] * era2.VALUE[x["item"]] * era2.GRAIN if g6_or_later(self.V[D]["era"]) else 0
         return x["kcal"]
 
     def by_season(self):
@@ -779,7 +784,7 @@ class M_Accounts(Base):
             g = net - (-s["eat"] + s["ds"] + homes - s["nx"] - s["gone"] - s["res"])
             gap = max(gap, abs(g), abs(a["identity"]["gap"]))
             self.assertAlmostEqual(a["food_net"], a["food_gross"] - a["seed"] - a["food_loss"], delta=0.05, msg=D)
-            self.assertEqual(a["goods"] is None, self.V[D]["era"] != "G6", D)  # 土器・鎌の値うちは G6 の季節だけ (季節そのものの時期で決める)
+            self.assertEqual(a["goods"] is None, not g6_or_later(self.V[D]["era"]), D)  # 土器・鎌の値うちは G6 からの季節だけ (季節そのものの時期で決める)
         self.assertLess(gap, 1, f"恒等式のずれ いちばん大きい {gap:.2f} kcal")
         # 列の note と文書の日: goods は 3569 日目の季節から (3539 日目の季節は G5 で null。balance は 1 季節早く、3539 日目の季節の終わりから)
         self.assertEqual(min(D for D, v in self.V.items() if v["accounts"]["goods"] is not None), 3569)
@@ -910,7 +915,7 @@ class M_Accounts(Base):
             self.assertEqual(vb["goats"]["count"] + hb["goats"]["count"], v["goats"]["count"], D)
             self.assertEqual((vb["goats"]["kcal"], hb["goats"]["kcal"]), (vb["goats"]["count"] * era2.GOAT_WORTH, hb["goats"]["count"] * era2.GOAT_WORTH))
             self.assertEqual((vb["pots"]["count"], vb["sickles"]["count"]), (v["pots"], v["sickles"]), D)
-            valued = v["era_end"] == "G6"  # 土器・鎌の値うちは G6 の季節の終わり (3539 日目) から (accounts の goods より 1 季節早い)
+            valued = g6_or_later(v["era_end"])  # 土器・鎌の値うちは G6 の季節の終わり (3539 日目) から (accounts の goods より 1 季節早い)
             for key, item in (("pots", "土器"), ("sickles", "鎌")):
                 self.assertEqual(vb[key]["kcal"], vb[key]["count"] * era2.VALUE[item] * era2.GRAIN if valued else None, D)
             self.assertEqual((vb["dwellings"]["count"], vb["dwellings"]["kcal"]), (1, None))  # 村の住まいは 153 日目 (記録の前) にできた
@@ -1002,7 +1007,7 @@ class M_Accounts(Base):
                 else:
                     self.assertEqual((x["rate"], x["life_seasons"]), (None, None), (D, key))
             prev = v
-        g = [self.V[D]["balance"]["wear"] for D in self.V if self.V[D]["era"] == "G6"]
+        g = [self.V[D]["balance"]["wear"] for D in self.V if g6_or_later(self.V[D]["era"])]
         for key, rate in (("pots", era2.POT_BREAK), ("sickles", era2.SICKLE_BREAK)):
             self.assertAlmostEqual(sum(w[key]["broken"] for w in g) / sum(w[key]["start"] for w in g), rate, delta=0.01, msg=key)
 
@@ -1043,7 +1048,7 @@ class M_Accounts(Base):
             for n in names:
                 a, b = (old / n).read_bytes(), (new / n).read_bytes()
                 if n == "columns.json":  # 足した列のほかは同じ並び。4409 日目の区切りを書きそえた列は note だけちがう
-                    cs = [c for c in json.loads(b) if not (c["table"] == "season_village" and c["column"] in ACC_KEYS)]
+                    cs = [c for c in json.loads(b) if not (c["table"] == "season_village" and c["column"] in ACC_KEYS) and (c["table"], c["column"]) not in G7_COLS]
                     self.assertTrue(all("4409" in c["note"] for c in cs if (c["table"], c["column"]) in ACC_NOTES))
                     was, now = ([dict(c, note=None) if (c["table"], c["column"]) in ACC_NOTES else c for c in x] for x in (json.loads(a), cs))
                     self.assertEqual(now, was)
@@ -1058,6 +1063,8 @@ class M_Accounts(Base):
             shutil.rmtree(d2, ignore_errors=True)
 
 
+G7_COLS = {("season_person", "is_sample"), ("season_person", "plan_answer_day"), ("season_person", "donor_household_id"),  # G7 (年 1 回の答え) で足した列。G7 の行にだけある
+           ("season_village", "g7"), ("polity", "season_end_day"), ("tribute", "kind")}  # G7 の物差しと記録 (4.D.9)。g7 は G7 の行にだけ、polity・tribute は G7 に入ってからのファイル
 WHY_ADDED = ("   その仕事にした理由を一言で書く (why。続けている仕事なら、続ける理由を)\n",
              "\n- family に書いた人ごとに、その仕事にした理由も一言書く (family の why)", ', "why": "..."')  # ask_why でお題に足す文
 ASK_KEYS = ("ask_why", "ask_why_log")

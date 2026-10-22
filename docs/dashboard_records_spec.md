@@ -258,6 +258,8 @@ One row per season × person present at any time in the season (born, joined, di
 | `said` | `{"count": n, "to": ["みんな", "P002"]}` (no text) | E 「話す」 in the meeting slice | yes | シ |
 | `jobs` | `[{"from_day","activity","place","with":[ids],"decided_by"}]` — 1 entry per round | S `people[].plan` (fallback A) | yes | シ |
 | `decided_by` | `"自分"` (own answer) / `"代表が割り振った"` (name in rep's `family`) / `"代表と同じ仕事"` (rep answered, name not in `family`) / `"加わった季節"` (joined at that meeting: most common job) / `"答えなし (前と同じ)"` | A | yes | シ |
+| `decided_by` (G7 から) | 年 1 回の答え (docs/society_phase/G7_design.md 4.A.10)。控えの `g7.src` を先に読む: `"年の答え (自分)"` / `"年の答え (代表が割り振った)"` / `"年の答え (代表と同じ仕事)"` (年の集まりの答えの、その季節の分) / `"見本から広げた"` (見本でない家が、同じ組の手本の家の答えをまねた) / `"決まり (前の年と同じ)"` (答えも手本もない家: 前の年の同じ季節の予定) / `"加わった季節"` (年の途中で加わった家: その季節に村でいちばん多い仕事)。寄る季節・集まり直しは上の値のまま。`answered` が埋まるのは答えた季節の行だけ | S `g7.src` | yes | シ |
+| `is_sample` `plan_answer_day` `donor_household_id` (G7 から) | 見本の家か / この季節の仕事を決めた集まりの日 (年の集まりか寄る季節の集まり) / 手本の家 (見本から広げた家だけ)。G6 までの行には鍵がない。村の行の `answered` には `sample_households`・`expanded_households`・`rule_households`・`plan_answer_day`・`ask`・`zoom` が加わる。まわりの集落の集まりの答え (`answers/dayNNN/council/`) は記録に読まない (集まりの答えは `g7.region.councils` と出来事に残る) | S `g7.step` | yes | シ |
 | `job_amounts` | `{"sow","pick","plant","harvest","eat_goat"}` | S `season.jobs` (fallback A) | yes | シ |
 | `days_by_activity` | `{"採集": 28, "休む (けが)": 2, …}` | E: per day the person's first activity event (step.py `ACT_BY_EVENT`; 狩り by `data.hunters`); 休む while `plan.activity != 休む` → 「休む (けが)」 | yes | シ |
 | `outputs` | `{"gathered": {item: units}, "tree_picked": つかみ, "tree_pick_evenings": n, "hunted": {item: units}, "milk": 杯, "harvested": つかみ, "sown": つかみ, "planted": つかみ, "pots": n, "sickles": n, "goats_caught": n, "house_work_days": n}` | E | yes (gathered split rounded, §4.7) | シ (調 for pots/sickles) |
@@ -308,6 +310,19 @@ One row per year y from 4 (Society 2.0 began at 489 = 4年10日目) to the curre
 
 - `laws.json`: `{id, text, proposer_id, proposed_day, status, adopted_day, abolished_day, penalty, label}` — adoption/abolition days from 「掟」 events (`掟「{text}」が採用された` / `が廃止された`, matched to the law by exact text), so earlier changes are not lost when `changed` is overwritten.
 - `disputes.json`: `g5.disputes` with household ids, `season_end_day` of the start and of the end, event ids.
+
+### 1.11b G7 から (王と役所。2026-10-17。`docs/society_phase/G7_design.md` 4.D.9)
+
+G6 までの記録には、次の鍵もファイルも足さない (G1〜G6 の records は前と 1 バイトも変わらない。`/tmp/g7same/prove.sh` で確かめた)。
+
+- `season_village.jsonl` の **`g7`** (【シ】。お題にもダッシュボードにも出さない): `levels` (決める段 D。4.D.2 の数え方: 集落と役の両方、どの段も 2 つ以上を下に) / `tiers` (集落の段 T) / `office_levels` (役の人が足した段) / `centre` (村のいるまとまりのいちばん上) / `village` (中心 / 従う / 外) / `members` / `region_max_levels` / `settlements`・`region_people` / `ties`・`village_ties` / `tribute_season` (この季節の取り立てと、記録で全部残せたか) / `tribute_years_ok`・`tribute2_day` (条件 2) / `role` (季節の役の人と大人の数)・`f6_run` / `written_laws`・`law_judged` (書いた掟で裁いた数) / `interest_debts` / `reached` (F1〜F6 に届いた日) / `stall` (条件ごとの止まり) / `walls`・`cattle`・`sick` / `hints` (よその便りの数だけ。札の文と史実は入れない)。出どころは控え (`snapshots.jsonl`) の `g7.measure`・`g7.region`・`g7.hints` (控えの版 `v` は G7 から 2)
+- **`polity.jsonl`** (1 季節 1 行。【シ】): `season_end_day`・`settlements` (番号・ます・土地・人数・村が知った日・役の段・悪い年・牛・壁・なくなった日)・`ties` (貢ぎのつながり: 払う側・受ける側・量・続く / 切れた・決まった日・払った日)・`wars` (この 1 年の戦)・`levels`
+- **`tribute.jsonl`** (取り立てと貢ぎの払い 1 回 1 行): `day`・`season_end_day`・`kind` (税 = 村の中の取り立て / 貢ぎ出す / 貢ぎ受ける)・`law` か `tie`・`by` (集めた人。税だけ)・`from`・`to`・`goods`・`event`・`recorded` (その季節の「取り立て」を記録をつける人が全部残せたときの道具: 数え札 / 板。残せなければ null)・`tag` (`recorded` があれば 村、なければ シ)。**ダッシュボードに出すのは `tag` が 村 の行だけ**
+- 帳簿 (`ledger.jsonl`) の食べ物の出し入れのわけに、G7 の出来事のものを分けて足した: 「取り立てで出した / 取り立てで入った」「貢ぎで出した / 貢ぎで受けた」「戦で取られた / 戦で持ち帰った」(前は「ほかの村へ出した / ほかの村から入った」にまとまっていた。G6 までは、この種類の出来事に moves はない)。ヤギを取り立てたときのヤギの番号の帳簿は、まだ「ほかの村から入った / へ出した」と読む (直すのは G7 のあと。【未確認】)
+- ダッシュボード (`tools/build_dashboard.py`・`app/dashboard.html` の「記録」のタブ): G7 に入ったときだけ `g7` の鍵と G7 の層 (初期王朝期 → アッカド → ウル第 3 王朝、前2900〜2000年ごろ) を足す。出すのは【村】だけ: 取り立ての板 (`tribute.jsonl` の 村 の行。量は数え札の数)・粘土の板に書いた掟 (`written` のある掟。文の中の人と家の名前は「(名)」にする。やめになった掟も、板は残る)・上乗せのある貸し借りの記録 (記録の残った貸し借り)。決める段・便りの帳簿・F の日などの【シ】は出さない (`FORBIDDEN_KEYS` の確かめはそのまま)
+- よその便り (出来事「よその便り」) は【村】(村の人の経験)。出来事の文には話の中身を入れず、中身は data の `text` と、聞いた人の `heard` だけ。どの史実から来たか (`hint_cards.json` の `real`・`src`) は便りの帳簿 (`g7.hints.ledger`。【シ】) と報告だけ
+- 知識のラベルに「よその便り」が加わる (`knowledge._label`。便りの出来事をもとにした知識。知識に `card` を残す)。`archive.KEEP_TYPES` に「よその便り」「きっかけ」を足した (2 年しまったあとも、知識の札が「よその便り」のまま読める)
+- まだ作っていないもの (G7 の終わりまでに): 3D の地図の端のまわりの集落と貢ぎの矢印 (`app/replay3d.js`)・`tools/progress_chart.py` の G7 の 2 本の線・`tools/econ_report.py` の G7 の節・配給の表 (役の人の働いた日を「入れた」に数えた記録)
 
 ### 1.12 `columns.json`, `meta.json`
 

@@ -136,7 +136,7 @@ def village_reasons(person_rows, asked_why):
     if not asked_why:
         return None
     rows = [r for r in person_rows if not r.get("child")]
-    asked = [r for r in rows if r.get("decided_by") in ("自分", "代表が割り振った")]
+    asked = [r for r in rows if r.get("decided_by") in ("自分", "代表が割り振った", "年の答え (自分)", "年の答え (代表が割り振った)")]  # 後ろの 2 つは G7 (年 1 回の答え)
     read = [r["why_read"] for r in asked if r.get("why_read")]
     return {"asked": len(asked), "with_reason": len(read), "habit": sum(1 for x in read if x["habit"]),
-            "same_as_rep": sum(1 for r in rows if r.get("decided_by") == "代表と同じ仕事")}
+            "same_as_rep": sum(1 for r in rows if r.get("decided_by") in ("代表と同じ仕事", "年の答え (代表と同じ仕事)"))}

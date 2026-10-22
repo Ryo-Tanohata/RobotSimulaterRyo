@@ -22,16 +22,45 @@ def _joined_day(state, name):
     return next((e["day"] for e in state["events"] if e["type"] == "加わる" and name in e["text"]), state["day"])
 
 
+def _index(state, names):
+    """出来事を 1 回だけ読んで、人ごとに分ける (2026-10-21: 前は人ごとに全部の出来事を読みなおしていて、しまった年も読む書き出しで 1 回 1 分をこえたため。
+    中身と順は前と同じ: mine は「who がその人か、hunters にその人がいる」出来事を出来事の順に、death はその人の最初の「死」、
+    recv は data.to がその人の「分ける」の数、joins は「加わる」、rest は人ごとの年表で全部の出来事から拾う 3 種類 (分かれる・住まい・フェーズ))"""
+    mine, death, recv, joins, rest = defaultdict(list), {}, Counter(), [], []
+    want = set(names)
+    for e in state["events"]:
+        d = e.get("data") or {}
+        w = e.get("who")
+        hs = d.get("hunters", [])
+        if isinstance(hs, list):
+            got = [w] if w in want else []
+            got += [h for h in dict.fromkeys(hs) if h in want and h != w]
+        else:  # (前の形の「n in hunters」と同じに読む)
+            got = [m for m in want if m == w or m in hs]
+        for m in got:
+            mine[m].append(e)
+        t = e["type"]
+        if t == "死" and w not in death:
+            death[w] = e
+        elif t == "分ける":
+            recv[d.get("to")] += 1
+        elif t == "加わる":
+            joins.append(e)
+        if t in ("分かれる", "住まい", "フェーズ"):
+            rest.append(e)
+    return mine, death, recv, joins, rest
+
+
 def build(state):
-    ev = state["events"]
     eras = [(x["era"], x["day"]) for x in state.get("era_log", [])]
     names = [p["name"] for p in state["people"]]
+    by_who, deaths, recvs, joins, rest = _index(state, names)
     out = []
     for p in state["people"]:
         n = p["name"]
-        mine = [e for e in ev if e.get("who") == n or n in (e.get("data") or {}).get("hunters", [])]
+        mine = by_who.get(n, [])
         last_day = max([e["day"] for e in mine] + [0])
-        death = next((e for e in ev if e["type"] == "死" and e.get("who") == n), None)
+        death = deaths.get(n)
 
         # 職務経歴: 活動ごとの回数と成果
         gather = [e for e in mine if e["type"] == "採集"]
@@ -46,26 +75,27 @@ def build(state):
         counts = Counter(e["type"] for e in mine if e.get("who") == n)
         gave = [e for e in mine if e["type"] == "分ける" and e.get("who") == n]
         given = Counter((e.get("data") or {}).get("to") for e in gave)
-        recv = sum(1 for e in ev if e["type"] == "分ける" and (e.get("data") or {}).get("to") == n)
+        recv = recvs[n]
 
         # フェーズごとの仕事
         by_era = defaultdict(Counter)
         for e in mine:
             if e.get("who") == n or e["type"] == "狩り":
                 if e["type"] in ("採集", "狩り", "探索", "休む", "住まい", "種まき", "蓄える", "蓄えから取る", "木から取る", "分ける", "話す",
-                                 "交換に行く", "記録をつける"):  # 交換に行く・記録をつけるは G6 から
+                                 "交換に行く", "記録をつける", "守る", "取り立てる", "戦に出る", "試す"):  # 交換に行く・記録をつけるは G6 から、後ろの 4 つは G7 から
                     by_era[_era_of(e["day"], eras)][e["type"]] += 1
 
         # 経歴 (年表): 初めてのこと・大きな出来事
         if p.get("origin") == "よそから来た":
-            hist = [{"day": _joined_day(state, n), "text": "よその群れから来て、村に加わる"}]
+            hist = [{"day": next((e["day"] for e in joins if n in e["text"]), state["day"]), "text": "よその群れから来て、村に加わる"}]  # = _joined_day
         elif p.get("origin") == "生まれた":
             hist = [{"day": p.get("born_day", 0), "text": f"村で生まれる (母 {p.get('mother', '-')})"}]
         else:
             hist = [{"day": 0, "text": "川辺のキャンプで 5 人と暮らし始める"}]
         firsts = {"採集": "初めて採集に出る", "狩り": "初めて狩りに出る", "探索": "初めて探索に出る", "蓄える": "初めてキャンプの蓄えに食べ物を入れる",
                   "種まき": "種をまく", "住まい": "住まいを建てる",
-                  "交換に行く": "初めてほかの村へ交換に行く", "記録をつける": "初めて記録をつける", "印": "家の印を作る"}  # 後ろの 3 つは G6 から
+                  "交換に行く": "初めてほかの村へ交換に行く", "記録をつける": "初めて記録をつける", "印": "家の印を作る",  # 後ろの 3 つは G6 から
+                  "守る": "初めて見張りをする", "取り立てる": "初めて取り立てに回る", "戦に出る": "初めて戦に出る", "試す": "初めてよその便りを試す"}  # G7 から
         seen = set()
         for e in mine:
             t = e["type"]
@@ -78,7 +108,7 @@ def build(state):
                 hist.append({"day": e["day"], "text": "初めてルクをしとめる (" + e["text"] + ")"})
             if t in ("けが", "死", "去る", "分かれる") and e.get("who") == n:
                 hist.append({"day": e["day"], "text": e["text"]})
-        for e in ev:
+        for e in rest:  # 全部の出来事のうち、下の 3 つの種類だけ (前と同じ順)
             if (e["type"] == "分かれる" and e.get("who") != n and p.get("left") == e["day"]
                     and (e.get("data") or {}).get("household") == p.get("household")):  # 家の人みんなで村を出た (G5)
                 hist.append({"day": e["day"], "text": e["text"]})
