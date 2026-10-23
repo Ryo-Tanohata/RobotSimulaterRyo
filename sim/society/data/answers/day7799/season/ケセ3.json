@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "おれは土器を焼く。刈った種は土器に入れて守ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意で、刈った草の種を虫から守れる"}, "family": {"ケナ4": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈り切る"}, "オセ5": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈り切る"}, "ナセ5": {"activity": "畑仕事", "place": "camp", "why": "刈らないと落ちてしまう"}, "セヤ6": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "冬の前に木の実を集める。採集は得意"}, "family": {"ケナ4": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬に備える"}, "オセ5": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬に備える"}, "ナセ5": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬に備える"}, "セヤ6": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬に備える"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は食べ物が少ないので、種を守る土器を作る"}, "family": {"ケナ4": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "オセ5": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "ナセ5": {"activity": "採集", "place": "北川12", "why": "北川で魚と芋を探す"}, "セヤ6": {"activity": "採集", "place": "北川12", "why": "北川で魚と芋を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "続けて土器を作り、種を守る"}, "family": {"ケナ4": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "オセ5": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "ナセ5": {"activity": "採集", "place": "北川12", "why": "春は木の実がないので川で魚と芋を探す"}, "セヤ6": {"activity": "採集", "place": "北川12", "why": "二人組で川へ行く"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑が多く、刈った種をその日のうちに土器に入れると守れる", "because": [541720], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L221", "against": "", "agree": true, "reason": "夏に刈って土器に入れれば冬と春に蓄えが空にならない"}, {"id": "L222", "against": "", "agree": true, "reason": "ヤギの世話が足りないといなくなる"}],
+ "year_name": "ヤギがやせた年",
+ "feeling": "土器を焼いていれば落ち着く。静かに働きたい。"}

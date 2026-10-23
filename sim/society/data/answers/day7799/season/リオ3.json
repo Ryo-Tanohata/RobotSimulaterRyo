@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑がこんなに実っている。夏のうちに毎夕みんなで刈って、土器に入れてしまおう。わたしも毎日刈るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が山ほどあり、夏のうちに刈らないと落ちてしまうから"}, "family": {"ラキ5": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要るので、いっしょに刈る"}, "シエ5": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要るので、いっしょに刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りと、冬に向けた備えのため"}, "family": {"ラキ5": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬に備える"}, "シエ5": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬に備える"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして春の実りを減らさないため"}, "family": {"ラキ5": {"activity": "採集", "place": "北川12", "why": "冬も魚と芋を探して食べ物を増やす"}, "シエ5": {"activity": "採集", "place": "北川12", "why": "冬も魚と芋を探して食べ物を増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで夏の実りを守るため"}, "family": {"ラキ5": {"activity": "採集", "place": "camp", "why": "食べ物を集めて蓄えを支える"}, "シエ5": {"activity": "採集", "place": "camp", "why": "食べ物を集めて蓄えを支える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑がとても多い。毎夕刈って、その日のうちに土器に入れるのがよい", "because": [541695], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がたくさん実った年",
+ "feeling": "実った畑を見ると力がわく。みんなで刈り切って、冬も安心して過ごしたい。"}
