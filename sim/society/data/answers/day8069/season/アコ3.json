@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、今年も一人 1000 つかみずつ畑にまこうね。わたしは土器を焼いて、種を虫やネズミから守るよ。"}, {"to": "ハソ12", "text": "北の村から来たんだね。わたしたちの仲間に入ってほしい。分からないことがあったら声をかけてね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入らない草の種は虫やネズミに食べられるので、冬の前に土器を増やして蓄えを守りたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ハソ12": true}, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいた畑は夏に実るので、冬と春の草取りも含めてみんなで進めたい"}, {"id": "L191", "against": "", "agree": true, "reason": "草で養えない分のヤギを肉にして干せば、食べ物にもなり草も守れる"}],
+ "feeling": "蓄えが豊かで安心している。土器をつくって、この蓄えを長く守りたい。"}

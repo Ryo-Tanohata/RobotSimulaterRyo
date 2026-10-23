@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。みんな秋のうちに1000つかみずつまいて、冬と春は草取りを分け合おう。おれも畑で働くよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りの時間で夏の実りが増えるので、手を貸したい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ハソ12": true},
+ "family": {"ナセ3": {"activity": "畑仕事", "place": "camp", "why": "草取りを分け合えば夏の実りが増えるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、草取りの時間に合わせて夏の実りが増える。蓄えの草の種は多いので1000つかみまいてよい。", "because": [568352], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑の世話をしっかりやりたい。"}

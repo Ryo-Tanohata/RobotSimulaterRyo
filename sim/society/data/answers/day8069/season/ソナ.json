@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、この秋は草の種を一人1000つかみずつまこう。ヤギも草で養える数より多いから、少しつぶして干し肉にするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増える。草取りに慣れた手で畑を守る。"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 5,
+ "accept": {"ハソ12": true},
+ "family": {
+  "テナ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを人数でこなすため。"},
+  "ラキ6": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎてやせるので、世話を欠かさないため。"},
+  "テナ8": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので、キャンプで草取りを手伝う。"},
+  "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "子の分の草取りを手伝う。"},
+  "ユエ8": {"activity": "ヤギの世話", "place": "camp", "why": "子でもできるヤギの世話を手伝う。"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば夏の実りが増えるから。"}],
+ "feeling": "蓄えもたっぷりあって、落ち着いて秋を迎えられる。"}

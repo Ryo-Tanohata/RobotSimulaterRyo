@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "この秋は畑に草の種をまいて、冬と春は草取りを交代でやろう。夕方の木の実も忘れずに取るね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キオ4"], "why": "秋にまいた畑は草取りで実りが増えるので、家族で手分けして続ける"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ハソ12": true},
+ "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "草取りを二人で分けると畑の実りが減らない"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋に草の種をまき、毎日草取りをすると、夏のはじめの実りが増える。夕方の木の実は40つかみまで取れる。", "because": [568150], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にみんなで種をまき、草取りを分け合うのは夏の実りのために大事だから"},
+           {"id": "L204", "agree": true, "reason": "冬の前に木の実を取って蓄えを守れるから"}],
+ "feeling": "蓄えもあって落ち着いている。みんなと畑を育てるのが楽しみ。"}
