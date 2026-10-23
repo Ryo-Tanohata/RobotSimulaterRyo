@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種を1000つかみずつまこう。冬と春の草取りは、わたしも手伝うよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["セヤ11"], "why": "秋にまいた畑は冬と春の草取りで実りが増えるから、草取りを続けて夏の実りを守りたい。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セヤ11": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば畑の実りが減らず、冬と春の蓄えにつながるから。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、冬と春の草取りで夏の実りが増える。", "because": [557795], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L190", "against": "", "agree": true, "reason": "草で養えないヤギを減らせば、草が足りなくなるのを防げるから。"},
+  {"id": "L203", "against": "", "agree": true, "reason": "冬は木の実が実らないので、秋のうちに蓄えを守りたい。"},
+  {"id": "L204", "against": "", "agree": true, "reason": "毎夕の木の実が草の種を減らさずにすむ助けになる。"},
+  {"id": "L221", "against": "", "agree": true, "reason": "夏の刈り入れを毎夕すれば、冬と春に蓄えが空にならない。"},
+  {"id": "L222", "against": "", "agree": true, "reason": "ヤギの世話が足りないといなくなるので、世話の人を決めておきたい。"},
+  {"id": "L224", "against": "", "agree": true, "reason": "世話の人を家ごとの順番で決めれば、ヤギがいなくなるのを止められる。"}
+ ],
+ "feeling": "蓄えはまだ多いけれど、冬に向けて畑と木の実をしっかり守りたい。"}

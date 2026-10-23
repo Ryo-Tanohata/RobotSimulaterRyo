@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。冬の前に、みんなで畑の草取りの順番を決めておこう。おれは土器をつくって、草の種を虫から守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": ["アコ4"], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"アコ4": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで夏の実りを増やすため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を畑にまき、冬と春に草取りをすると、夏の実りが増える。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "畑にまいて草取りをすれば、夏に実りが増えるから"}, {"id": "L190", "agree": true, "reason": "草で養えない分のヤギを減らさないと草が足りなくなるから"}],
+ "feeling": "蓄えが多くて安心している。みんなと一緒に冬を迎えたい。"}

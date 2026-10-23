@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種は十分ある。掟どおり一人 1000 つかみずつ畑にまこう。冬と春の草取りも、みんなで順に出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["セオ2", "ロワ3"], "why": "秋にまいた畑は草取りをしないと実りが減る。夏の実りを守るため、家族みんなで畑に出る。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セオ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人が要るので、同じ仕事で手を貸す。"}, "ロワ3": {"activity": "畑仕事", "place": "camp", "why": "畑の実りを守るため、家族で草取りをする。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋に畑へ草の種をまき、冬と春に草取りをすると夏の実りが増える", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋に種をまかないと夏の畑が実らないから"}, {"id": "L204", "against": "", "agree": true, "reason": "冬の前に木の実を取って蓄えを守れるから"}],
+ "feeling": "蓄えは多く、満腹で心は落ち着いている。畑を守って冬と春を越したい。"}

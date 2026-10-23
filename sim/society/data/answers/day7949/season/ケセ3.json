@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。秋のうちに畑にまいて、冬は草取りを欠かさずやろう。おれは土器を作る。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の技が高く、蓄えの草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ4": {"activity": "畑仕事", "place": "camp", "why": "夏の実りを増やすため、畑の草取りをする"},
+  "オセ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守るため"},
+  "ナセ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守るため"},
+  "セヤ6": {"activity": "ヤギの世話", "place": "camp", "why": "世話が足りずヤギがいなくなるのを防ぐため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋に草の種を畑にまき、冬と春に草取りをすると、夏のはじめに多く実る。", "because": [557770], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L220", "against": "", "agree": true, "reason": "秋にまけば夏に実るから"},
+  {"id": "L224", "against": "", "agree": true, "reason": "世話が足りずにヤギがいなくなるのを止めたい"}
+ ],
+ "feeling": "蓄えは多く、落ち着いている。土器づくりに精を出したい。"}

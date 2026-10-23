@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりあるけれど、冬は木の実が実らないよ。秋のうちに畑に種をまいて、冬と春の草取りも順番に回していきましょう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、畑の世話を続けたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと、冬と春の草取りで夏の実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋に畑へ種をまくことは、夏の実りと来年の蓄えのために大事だから"}],
+ "feeling": "蓄えは多くて安心だけれど、畑と冬の備えをていねいに進めたい"}
