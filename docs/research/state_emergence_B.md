@@ -1,6 +1,6 @@
 # 実験 B: LLM のくせを、決まったお題で測る (結果)
 
-計画: `state_emergence_plan.md` 4.。お題と台本: `data/B_vignettes/`。答えの数: `data/B_answers.csv`。
+計画: `state_emergence_plan.md` 4.。お題と台本: `data/B_vignettes/`。答えの数: `data/B_answers.csv`。1 つずつの答え (選んだ手と理由): `data/B_answers_raw.jsonl`。
 
 ## 1. 何をしたか
 
