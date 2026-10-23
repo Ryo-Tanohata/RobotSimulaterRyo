@@ -515,7 +515,7 @@ FS = ("F1", "F2", "F3", "F4", "F5", "F6")
 COLS = ["world", "bundle", "seed", "years_run", "c1_year", "c2_year", "c3_year"] + [f"{f}_year" for f in FS] + \
     ["region3_year", "vD_max", "region_max", "pop_end", "adults_end", "homes_end", "kid_deaths", "adult_deaths", "births", "left_people", "fissions",
      "famine_seasons", "famine_events", "remeet", "wars", "demands_out", "demands_in", "ties_in_end", "ties_out_end", "tax_coll", "tax_seasons",
-     "tribute_ok_years", "judged", "laws_adopted", "laws_written", "leader_end", "role_share_max", "gini_end", "store_all_days_end", "all_dead", "secs"]
+     "tribute_ok_years", "judged", "laws_adopted", "laws_written", "leader_end", "role_share_max", "gini_end", "store_all_days_end", "all_dead", "truncated_from", "secs"]
 
 
 def row_of(res):
@@ -535,11 +535,13 @@ def row_of(res):
            "pop_end": last.get("pop"), "adults_end": last.get("adults"), "homes_end": last.get("homes"),
            **{k: last.get(k) for k in ("kid_deaths", "adult_deaths", "births", "left_people", "fissions", "famine_seasons", "famine_events", "remeet",
                                        "wars", "demands_in", "tax_coll")},
-           "demands_out": res["rt"].get("demands", 0), "tax_seasons": res["rt"].get("tax_seasons", 0),
+           # rt は回の合計 (年ごとでない)。30 年で回して 15 年に切った回 (truncated_from) は数えられないので空
+           "demands_out": res["rt"].get("demands", 0) if res.get("rt") is not None else None,
+           "tax_seasons": res["rt"].get("tax_seasons", 0) if res.get("rt") is not None else None,
            "ties_in_end": last.get("ties_in"), "ties_out_end": last.get("ties_out"), "tribute_ok_years": last.get("tribute_ok"), "judged": last.get("judged"),
            "laws_adopted": sum(1 for v in laws.values() if v["status"] == "採用"), "laws_written": sum(1 for v in laws.values() if v["written"]),
            "leader_end": bool(last.get("leader")), "role_share_max": round(max((r["role_share"] for r in rows), default=0), 3),
-           "gini_end": last.get("gini"), "store_all_days_end": last.get("store_all_days"), "all_dead": res["all_dead"], "secs": res["secs"]}
+           "gini_end": last.get("gini"), "store_all_days_end": last.get("store_all_days"), "all_dead": res["all_dead"], "truncated_from": res.get("truncated_from"), "secs": res["secs"]}
     for f in ("c1_year", "c2_year", "c3_year", "region3_year") + tuple(f"{f}_year" for f in FS):
         if out[f] is not None:
             out[f] = max(0, out[f])
@@ -558,6 +560,56 @@ def write_csv(out_dir, path):
     return rows
 
 
+def _wilson(k, n, z=1.96):
+    if n == 0:
+        return None, None
+    ph = k / n
+    d = 1 + z * z / n
+    c = (ph + z * z / (2 * n)) / d
+    h = z * math.sqrt(ph * (1 - ph) / n + z * z / (4 * n * n)) / d
+    return max(0.0, c - h), min(1.0, c + h)
+
+
+def _med(xs):
+    xs = sorted(x for x in xs if x is not None)
+    if not xs:
+        return None
+    m = len(xs) // 2
+    return xs[m] if len(xs) % 2 else (xs[m - 1] + xs[m]) / 2
+
+
+def summary(rows):
+    """組 (世界 × 束) ごとの表 (markdown)"""
+    keys = [("c1_year", "c1"), ("c2_year", "c2"), ("c3_year", "c3")] + [(f"{f}_year", f) for f in FS] + [("region3_year", "地域に段 3")]
+    out = []
+    groups = {}
+    for r in rows:
+        groups.setdefault((r["world"], r["bundle"]), []).append(r)
+    head = "| 世界 | 束 | 回 | " + " | ".join(lab for _, lab in keys) + " |"
+    out += ["### 届いた回 / 回 (届いた年の真ん中。1 年目 = G7 に入った短い年 (48年の春の 1 季節)。15 年目の終わり = 62年の終わり)", "", head, "|" + "---|" * (3 + len(keys))]
+    for (w, b), rs in sorted(groups.items()):
+        cells = []
+        for k, _ in keys:
+            hit = [r[k] for r in rs if r[k] not in (None, "")]
+            cells.append(f"{len(hit)}/{len(rs)}" + (f" ({_med([int(x) for x in hit]):g})" if hit else ""))
+        out.append(f"| {w} | {b} {BUNDLES[b]['name']} | {len(rs)} | " + " | ".join(cells) + " |")
+    out += ["", "### 続くか (15 年目の終わり。回の平均。[ ] は最小〜最大)", "",
+            "| 世界 | 束 | 人 | 大人 | 家 | 亡くなった子 | 亡くなった大人 | 生まれた | 村を出た家 | 蓄えが 1 日分を切った季節 | 蓄えが尽きた | 戦 | 村が受ける貢ぎ | 村が出す貢ぎ | 取り立て | 裁いて払わせた | 持ち物のジニ | 蓄え (家の倉もふくむ日数) |",
+            "|" + "---|" * 18]
+
+    def av(rs, k, nd=0):
+        xs = [float(r[k]) for r in rs if r[k] not in (None, "")]
+        if not xs:
+            return "-"
+        m = sum(xs) / len(xs)
+        return (f"{m:.{nd}f} [{min(xs):.{nd}f}〜{max(xs):.{nd}f}]")
+    for (w, b), rs in sorted(groups.items()):
+        out.append(f"| {w} | {b} | " + " | ".join(av(rs, k, 2 if k == "gini_end" else 0) for k in (
+            "pop_end", "adults_end", "homes_end", "kid_deaths", "adult_deaths", "births", "fissions", "famine_seasons", "famine_events", "wars",
+            "ties_in_end", "ties_out_end", "tax_coll", "judged", "gini_end", "store_all_days_end")) + " |")
+    return "\n".join(out)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=("run", "one", "csv"))
@@ -570,12 +622,13 @@ def main():
     ap.add_argument("--bundles", default=",".join(BUNDLES))
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--seeds", type=int, default=4)
-    ap.add_argument("--years", type=int, default=30)
+    ap.add_argument("--years", type=int, default=15)
     ap.add_argument("--procs", type=int, default=2)
     a = ap.parse_args()
     if a.cmd == "csv":
         rows = write_csv(a.out, a.csv)
         print(f"{len(rows)} 行 → {a.csv}")
+        print(summary(rows))
         return
     Path(a.out).mkdir(parents=True, exist_ok=True)
     if a.cmd == "one":
