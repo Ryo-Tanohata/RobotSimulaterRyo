@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりあるけれど、土器に入らない分は虫に食べられてしまう。この秋はわたしが土器をたくさん焼くよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケナ13": true},
+ "family": {
+  "ヌオ5": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで来年の夏の実りを増やすため"},
+  "アコ5": {"activity": "採集", "place": "camp", "why": "キャンプのそばの木の実を集めて冬の食べ物を足すため"},
+  "オネ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを減らさないため"}
+ },
+ "keep": false, "feast": false, "leader": null,
+ "trade": {"T100": "村"}, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を畑にまき、土器づくりで蓄えの草の種を虫から守るのがよい。蓄えは今たっぷりある。", "because": [590124], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。土器を焼いて冬に備えたい。"}

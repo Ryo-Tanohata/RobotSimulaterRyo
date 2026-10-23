@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけど、秋の畑まきを忘れずに。みんなで1000つかみずつまいて、冬の草取りも交代でやろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで来年の実りを増やしたいから"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケナ13": true},
+ "family": {"ラキ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなでして実りを増やす"}, "セオ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなでして実りを増やす"}, "ヌオ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなでして実りを増やす"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T100": "村"}, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。仲間と畑に出るのが楽しみ。"}

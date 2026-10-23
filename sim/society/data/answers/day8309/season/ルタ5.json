@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいておこう。ヤギが多すぎるから、私も世話をしながら何頭かつぶして干し肉にするよ。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "ヤギが215頭もいて世話の人手が足りず、やせていなくなるのを防ぎたいから"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"ケナ13": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T100": {"side": "村", "利子": 0.1}}, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、冬と春に草取りをすると、夏に実る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋に種をまいて草取りをすれば、夏の実りが増えるから"}, {"id": "L235", "agree": true, "reason": "ヤギが多すぎるので、食べ物にしたほうがよいから"}],
+ "feeling": "蓄えはたっぷりあって安心。ヤギと畑をしっかり見ていきたい。"}
