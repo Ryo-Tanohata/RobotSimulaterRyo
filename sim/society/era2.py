@@ -1384,7 +1384,7 @@ def _new_other(state, rng, kind, household=None, people=None, goats=0, grain=0):
     obs = USE_OBSIDIAN and kind == "よその村" and len(strangers) == 1  # 2 つ目のよその村 (歩いて 2 日) は黒曜石を持つ【仮定】
     days = 1 if kind == "分かれた家" or not strangers else 2 if obs else rng.choice([1, 2])
     name = (household[:-2] if household.endswith("の家") else household) + "の村" if kind == "分かれた家" else f"{d}の村"
-    if any(o["name"] == name for o in g["others"]):
+    if any(o["name"] == name for o in g["others"]) or ("g7" in state["era2"] and name == _g7m().V0_NAME):  # G7: 村 (川辺の村) と同じ名も避ける (2026-10-23)
         name = f"{name}{g['next_other']}"
     n = people if people is not None else rng.randint(10, 25)
     far = kind == "よその村"
@@ -2156,9 +2156,15 @@ def _g6_season_end(state, frac):
             log(state, "交換に行く", name, f"季節が途中で区切られたので、{name} は {o['name'] if o else 'ほかの村'} から帰ってきた ({_g6_home(brought)})",
                 other=tr["to"], trip=tr["id"], moves=mv)
     # 1. 村を出た家 (G5) は、まだだれも知らない「分かれた家の村」になる (G6 の前に出た家も。来たときに初めてお題に出る)
+    #    G7: 一度村にした家は、二度と作らない (2026-10-23: 前は、5 人未満でなくなった (g7 の年の終わり) 村を、次の季節の終わりに新しい番号で作り直していた)
+    made = _g7m().left_made(state) if "g7" in e2 else None
     for f in g5.get("fissions", []):
+        if made is not None and f["household"] in made:
+            continue
         if not any(o["household"] == f["household"] for o in g["others"]):
             _new_other(state, rng, "分かれた家", household=f["household"], people=len(f["people"]), goats=f["goats"], grain=round(f["store"] / GRAIN))
+        if made is not None:
+            made.append(f["household"])
     # 2. この季節の終わりに来たよその群れの、来たところ (G6 に入る前に来た人の来たところは書かない)
     for v in e2["visitors"]:
         if v.get("day") == day and "from" not in v and "hint" not in v:  # G7: よその便りの群れには、来たところをつけない (G6 までは hint のある群れはない)

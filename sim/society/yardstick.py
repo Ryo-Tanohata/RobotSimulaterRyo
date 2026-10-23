@@ -150,10 +150,11 @@ def _ahead(state):
 # ---------------- 条件ごとの止まり (4.E.2) ----------------
 
 def _progress(state, lv):
-    """条件ごとの進み (それまでのいちばん高い値で見る)"""
+    """条件ごとの進み (それまでのいちばん高い値で見る)。c1 は村のいるまとまりの決める段 D (村が外なら 0)。
+    2026-10-23: 前は地域のいちばん高い段も入れていたので、村の進みより大きく見えていた"""
     g = _g(state)
     vg = village_group(lv)
-    c1 = max([vg["D"] if vg else 0] + ([max(x["D"] for x in lv)] if lv else []))
+    c1 = vg["D"] if vg else 0
     c2 = 3 if g.get("tribute2_day") else 2 if any(y["ok"] for y in g.get("tribute_years", [])) else \
         1 if (g.get("tribute_log") or any(t.get("fixed") for t in (g.get("region") or {}).get("ties", []) if "V0" in (t["payer"], t["payee"]))) else 0
     laws = [l for l in state.get("laws", []) if l.get("penalty") or l.get("rate")]
@@ -167,6 +168,13 @@ def _stall(state, lv):
     y = (D + 1) // YEAR
     done = {"c1": bool((g.get("reached") or {}).get("F3")), "c2": bool(g.get("tribute2_day")), "c3": bool((g.get("reached") or {}).get("F4"))}
     st = g.setdefault("stall", {})
+    s1 = st.get("c1")
+    seen = (g.get("level_seen") or {}).get("village", 0)
+    if s1 and not s1.get("done") and s1["best"] > seen:
+        # 前の数え方 (地域のいちばん高い段) で残った best を、村の段 (level_seen.village = 村のいた段のいちばん高い値) に直す。
+        # 村が一度も段に届いていなければ、進んだ年は G7 の最初の年の終わり (止まりを数え始めた年) にする。届いていれば since はそのまま
+        y0 = -(-(g["start"] + 1) // YEAR)
+        s1.update(best=seen, since=y0 if seen == 0 else s1["since"], ask=None)
     for k, v in _progress(state, lv).items():
         s = st.setdefault(k, {"best": v, "since": y, "done": False, "ask": None})
         if done[k]:

@@ -2394,5 +2394,124 @@ class O_SowFromHouse(unittest.TestCase):
         self.assertIn("村の蓄えの草の種が足りなければ、残りはまく人の家の倉の草の種からまかれる (家の倉にもなければ、ある分だけ)", t)
 
 
+class P_Fixes1023(unittest.TestCase):
+    """2026-10-23 の 3 つの直し (G7 から。メモリの中の写しだけ):
+    1. 村を出た家の村は一度だけ作る (なくなっても、次の季節の終わりに新しい番号で作り直さない。g7.left_made)
+    2. 村を出た家の村の名を、村 (川辺の村) と同じにしない
+    3. 条件 1 の進み (止まり) は、村のいるまとまりの決める段 D で数える (地域のいちばん高い段ではない)。前の数え方の best は直す"""
+
+    def st(self):
+        st = real_state()
+        if "g7" in (st.get("era2") or {}):
+            return st
+        if is_g6(st):
+            return g7_state()
+        self.skipTest("本物の state が G6 でも G7 でもない")
+
+    @staticmethod
+    def season_end(st):
+        st["day"] += era2.SEASON_DAYS
+        era2._g6_season_end(st, 1.0)
+
+    @staticmethod
+    def left(st, h):
+        st["era2"]["g5"].setdefault("fissions", []).append({"day": st["day"] + era2.SEASON_DAYS, "household": h, "people": ["甲", "乙"],
+                                                            "goats": 0, "store": 0, "fields": 0, "dispute": None})
+
+    @staticmethod
+    def split_others(st):
+        return [o for o in st["era2"]["g6"]["others"] if o["kind"] == "分かれた家"]
+
+    def gone(self, st, o):
+        import g7
+        o["people"], o["gone"] = 0, st["day"]
+        g7.drop_gone(st)
+
+    def test_left_made_once(self):
+        import g7
+        st = self.st()
+        self.left(st, "テスト5の家")
+        n0 = st["era2"]["g6"]["next_other"]
+        self.season_end(st)
+        mine = [o for o in self.split_others(st) if o["household"] == "テスト5の家"]
+        self.assertEqual(len(mine), 1)
+        self.assertEqual(mine[0]["name"], "テスト5の村")
+        self.assertIn("テスト5の家", g7.left_made(st))
+        self.assertGreaterEqual(st["era2"]["g6"]["next_other"], n0 + 1)
+        for o in self.split_others(st):  # 村を出た家の村がみな、5 人未満でなくなった (年の終わり)
+            self.gone(st, o)
+        self.assertEqual(self.split_others(st), [])
+        for _ in range(2):
+            self.season_end(st)
+            self.assertEqual(self.split_others(st), [], "なくなった村を作り直さない")
+        self.assertEqual(sorted(g7.left_made(st)), sorted({f["household"] for f in st["era2"]["g5"]["fissions"]}))
+
+    def test_left_made_from_old_state(self):
+        """直しの前に G7 に入った state (g7.left_made がない): 前の季節の終わりまでに出た家は作らない。いまの季節に出た家は作る"""
+        import g7
+        st = self.st()
+        g6 = st["era2"]["g6"]
+        last = g6["log"][-1]["day"]  # 前の季節の終わり (この日に出た家も、その季節の終わりの G6 の 1. で村にした)
+        st["era2"]["g5"].setdefault("fissions", []).append({"day": last, "household": "テスト6の家", "people": ["甲"], "goats": 0, "store": 0})
+        for o in self.split_others(st):
+            self.gone(st, o)
+        self.left(st, "テスト7の家")
+        st["era2"]["g7"].pop("left_made", None)
+        self.season_end(st)
+        self.assertEqual([o["household"] for o in self.split_others(st)], ["テスト7の家"])
+        made = g7.left_made(st)
+        self.assertIn("テスト6の家", made)
+        self.assertIn("テスト7の家", made)
+
+    def test_name_not_village(self):
+        import g7
+        st = self.st()
+        g5 = st["era2"]["g5"]
+        g5["fissions"] = [f for f in g5.get("fissions", []) if f["household"] != "川辺の家"]  # 本物の state では、もう出た家 (この試しでは、いま出る)
+        st["era2"]["g7"].pop("left_made", None)
+        self.left(st, "川辺の家")
+        self.season_end(st)
+        o = next(o for o in self.split_others(st) if o["household"] == "川辺の家")
+        self.assertNotEqual(o["name"], g7.V0_NAME)
+        self.assertEqual(o["name"], f"{g7.V0_NAME}{o['id'][1:]}", "同じ名のときと同じに、番号をつける")
+        self.assertEqual(g7._v0(st)["name"], "川辺の村")
+        # G6 までは前のまま (村の名は見ない。乱数の引き方も同じ)
+        st6 = self.st()
+        del st6["era2"]["g7"]
+        st6["era2"]["g6"]["others"] = [x for x in st6["era2"]["g6"]["others"] if x["name"] != "川辺の村"]
+        o6 = era2._new_other(st6, random.Random(5), "分かれた家", household="川辺の家", people=3)
+        self.assertEqual(o6["name"], "川辺の村")
+
+    def test_stall_c1_village_level(self):
+        import g7
+        import yardstick as y
+        st = self.st()
+        g = st["era2"]["g7"]
+        y0 = -(-(g["start"] + 1) // era2.YEAR)
+        Y = y0 + 17
+        st["day"] = Y * era2.YEAR - 1  # 年の終わりの日
+        g.setdefault("level_seen", {"village": 0, "region3": None})["village"] = 0
+        g.pop("reached", None)
+        g.pop("tribute2_day", None)
+        region_only = [{"D": 2, "T": 2, "office": 0, "top": "N1", "village": "外", "members": ["N1", "N2"]}]
+        self.assertEqual(y._progress(st, region_only)["c1"], 0, "村が外なら、地域に段 2 のまとまりがあっても 0")
+        g["stall"] = {"c1": {"best": 2, "since": y0 + 4, "done": False, "ask": y0 + 12}}  # 前の数え方で残った best
+        y._stall(st, region_only)
+        s = g["stall"]["c1"]
+        self.assertEqual((s["best"], s["since"], s["ask"]), (0, y0, Y), "村の段で数え直す (村は一度も段に届いていない)")
+        g["consulted"] = [{"why": "years", "part": g.get("part", 5)}]
+        self.assertEqual((g7.consult_why(st) or {}).get("why"), "c1")
+        # 村が段 1 のまとまりに入れば、進んだ
+        st["day"] += era2.YEAR
+        g["level_seen"]["village"] = 1
+        y._stall(st, [{"D": 1, "T": 1, "office": 1, "top": "V0", "village": "中心", "members": ["V0"]}] + region_only)
+        self.assertEqual((g["stall"]["c1"]["best"], g["stall"]["c1"]["since"], g["stall"]["c1"]["ask"]), (1, Y + 1, None))
+        # 村が段に届いたことがあれば (level_seen.village)、best はその段に直し、since はそのまま
+        g["stall"]["c1"] = {"best": 2, "since": y0 + 4, "done": False, "ask": None}
+        st["day"] += era2.YEAR
+        y._stall(st, [])
+        self.assertEqual((g["stall"]["c1"]["best"], g["stall"]["c1"]["since"]), (1, y0 + 4))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

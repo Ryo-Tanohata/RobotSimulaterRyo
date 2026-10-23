@@ -179,6 +179,19 @@ def new_other(state, o):
         o["known"] = state["day"]
 
 
+def left_made(state):
+    """村にした、村を出た家 (g7.left_made。era2 の G6 の季節の終わりの 1. が足す。なくなっても作り直さない)。
+    この鍵がない state (2026-10-23 の直しの前に G7 に入った) では、前の G6 の季節の終わり (g6.log の最後の日) までに出た家は、
+    そのときもう村にしたので、それと、いま g6.others に村がある家を入れて始める"""
+    g, e2 = _g(state), state["era2"]
+    if "left_made" not in g:
+        g6 = era2._g6(state)
+        last = g6["log"][-1]["day"] if g6.get("log") else -1
+        have = {o.get("household") for o in g6["others"]}
+        g["left_made"] = [f["household"] for f in (e2.get("g5") or {}).get("fissions", []) if f["day"] <= last or f["household"] in have]
+    return g["left_made"]
+
+
 def _new_settlement(state, cell, n):
     """はじめの集落 (G6 の _new_other の形。種類「よその村」。方角は 8 方向、日数は ます数 ÷ 2 の切り上げ。2 ます以内なら村が知っている)"""
     g6, D = era2._g6(state), state["day"]
@@ -1619,6 +1632,7 @@ def year_prompt(state, p, first):
 # 川辺の村は「V0」として加わる。人数・蓄え・役の段は、毎回 state から数える (_v0)。まわりの集落は g6.others の同じ辞書 (G6 の鍵はそのまま)。
 # 年の終わり (4.G.1 の 8・9): 地域の 1 年 (塩 59) → 病 (塩 71) → 寄る年の目印。次の歩のはじめ (夏の集まりの日): 集まりの答え → 待ち → 続く貢ぎ。
 # 戦の日は era2._day から (交換に行くのあと)。村が知らない地域のこと (遠くの戦など) は出来事にせず、g7.region.log だけに書く【シ】
+V0_NAME = "川辺の村"  # 村 (V0) の名。村を出た家の村の名は、これと同じにしない (era2._new_other)
 V0_KCAP = 10 ** 6  # 村の暮らせる人数は地図の K でなく、世界の計算で決まる
 NEAR_WAR = 2  # 1 日 (2 ます) 以内の戦は、出来事「よその村」として村に届く (交換の相手の戦も)
 VILLAGE_KINDS = ("求め", "貢ぎ", "戦", "同盟", "崩れ", "集落", "逃げる")  # 村がかかわる地域の出来事の種類 (4.B.7。どれも G6 までは使っていない)
@@ -1650,7 +1664,7 @@ def _v0(state):
     w = reg.get("weather") or {}
     y = (state["day"] + 1) // YEAR
     bad = state["day"] if w.get("year") in (y, state["day"] // YEAR) and "V0" in w.get("bad", []) else None
-    return {"id": "V0", "name": "川辺の村", "village": True, "people": _pop(state), "cell": list(region.VILLAGE), "land": region.land(region.VILLAGE),
+    return {"id": "V0", "name": V0_NAME, "village": True, "people": _pop(state), "cell": list(region.VILLAGE), "land": region.land(region.VILLAGE),
             "kcap": V0_KCAP, "org": _v0_org(state), "grain": era2._g6_have(state, "村", "草の種"),
             "goats": sum(1 for x in e2["goats"] if x.get("owner") is None), "tech": 1, "walls": e2.get("walls"), "commit": vs["commit"],
             "stance": "ふつう", "known": 0, "bad": bad, "conflict": vs.get("conflict")}
