@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりあるけれど、冬は何も実らない。秋のうちに畑に種をまいて、冬と春の草取りをみんなで分けよう。ぼくは畑仕事に回るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑が夏に実るよう、草取りを続けて蓄えを守るため"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "trade": {"T87": {"side": "村", "利子": 0.1}}, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りをすると夏の実りが増える。蓄えの草の種は多いが、冬は木の実が実らない。", "because": [546806], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋の種まきと冬春の草取りは、夏の実りを守るために大事だから"},
+           {"id": "L193", "against": "", "agree": true, "reason": "入れた量に合わせて取るのが公平だから"}],
+ "feeling": "蓄えがたっぷりあって安心している。畑の世話をしっかりしたい。"}

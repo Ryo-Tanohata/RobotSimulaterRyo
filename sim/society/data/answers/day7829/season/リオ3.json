@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに木の実をたっぷり取って、冬の前に蓄えを厚くしよう。わたしは子どもたちを見ながら、近くで採集するよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ラキ5"], "why": "採集が得意なので、冬の前に食べ物を集めて蓄えを増やしたい。子が小さいので近場にする。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ5": {"activity": "採集", "place": "西草原12", "why": "採集も狩りも得意なので、わたしと一緒に近場で食べ物を集める。"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T87": "村"}, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋は毎夕キャンプのそばの木から木の実を取って、冬に備えるのがよい。", "because": [546292], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋に草の種をまけば夏に実り、蓄えが増えるから。"}],
+ "feeling": "子どもたちが元気で、冬の前にしっかり備えたい。"}

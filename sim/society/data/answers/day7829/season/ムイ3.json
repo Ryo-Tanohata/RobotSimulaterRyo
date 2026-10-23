@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬と春は草取りを欠かさずやろう。ぼくは毎夕、木の実も取っておくよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑は草取りをすると実りが増える。まいた畑を夏まで守りたいから。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "trade": {"T87": "村"}, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋は毎夕、木の実を40つかみ取れる。畑にまいた草の種は、草取りをすると夏の実りが増える。", "because": [546312, 546445], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "畑にまいて草取りをすれば、夏の実りが増えて蓄えが満ちるから。"}],
+ "feeling": "満腹で体も軽い。畑と木の実の仕事をがんばろう。"}

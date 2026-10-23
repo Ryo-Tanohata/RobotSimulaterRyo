@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに草の種を畑にまくよ。冬と春の草取りを、みんなで少しずつ分けてやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ナセ3"], "why": "秋にまく畑は草取りをするほど実りが増えるから、毎日草取りをする"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが守れるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T87": {"side": "村", "利子": 0}}, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、秋・冬・春の草取りで夏の実りが増える。蓄えの草の種は多いので、今年は安心してまける。", "because": [546799], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあるし、木の実もよく実っている。畑をまいて、のんびり草取りをするのが楽しみだ。"}

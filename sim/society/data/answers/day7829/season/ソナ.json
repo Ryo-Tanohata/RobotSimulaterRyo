@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はまだたっぷりある。秋のはじめに一人 1000 つかみずつ畑にまいて、冬と春は草取りを欠かさずやろう。わたしも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすると実りが増える。冬と春の蓄えを守るため、毎日畑に出る。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ2": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど実りが増えるから。"},
+  "ワユ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに手を貸して、夏の実りを増やすため。"},
+  "ラキ6": {"activity": "畑仕事", "place": "camp", "why": "若い力で畑の草取りを進めてほしいから。"},
+  "テナ8": {"activity": "畑仕事", "place": "camp", "why": "半人前の働きでも、草取りの助けになる。"},
+  "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "半人前の働きでも、草取りの助けになる。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T87": false}, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに一人 1000 つかみずつ草の種を畑にまき、冬と春に草取りをすれば、夏に実りが増える。蓄えの草の種は今は十分にある。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "畑の草取りは夏の実りを守るのに大事だから。"}],
+ "feeling": "蓄えに余裕があって落ち着いている。畑と木の実をしっかり守りたい。"}
