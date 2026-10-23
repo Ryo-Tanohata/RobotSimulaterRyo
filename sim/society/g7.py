@@ -335,6 +335,24 @@ def _kid(state, name):
     return next((c for c in era2.children(state) if c["name"] == name and kid_age(c)), None)
 
 
+def kin_houses(state, c):
+    """子が食べる親類の家の倉 (2026-10-23 の直し。docs/research/state_emergence_plan.md 6. の 1・9. の 2。era2._feed から。G7 だけ):
+    村の蓄えと自分の家の倉で足りないとき、母の家 → ほかの近い親類 (母の母・同じ母の兄弟姉妹・母の兄弟姉妹。人の「mother」でたどる) の家の、名前の順。
+    大人のいる家 (era2._homes) だけで、自分の家は入れない。乱数なし。
+    家は母から子へ受けつぐので (era2._sync_households)、5849 日目と 8519 日目の state では、どの子も親類の家が自分の家と同じ (この直しで動く子は 0)"""
+    own = c.get("household")
+    homes = set(era2._homes(state))
+    by = {p["name"]: p for p in state["people"]}
+    m = by.get(c.get("mother"))
+    if not m:
+        return []
+    gm = m.get("mother")
+    near = {q.get("household") for q in state["people"] if q is not c and q.get("mother") and (q["mother"] == m["name"] or (gm and q["mother"] == gm))}
+    near |= {(by.get(gm) or {}).get("household")}
+    first = [m.get("household")] if m.get("household") in homes and m.get("household") != own else []
+    return first + sorted(h for h in near if h and h in homes and h != own and h not in first)
+
+
 def kid_jobs(state, rep, fjobs):
     """直し 6: 家の代表が family で、12〜14 歳の子に「畑仕事」か「ヤギの世話」を割り振った (書かなかった子は働かない)"""
     if not fix(state):
@@ -1270,6 +1288,7 @@ def apply_year(state, answers, councils=None):
     begin(state, {**village_answers(state, real), **tribute_answers(state, real)} if region_on(state) else None, councils)
     if joints(state):
         captives_answer(state, real)  # 戦に勝ったとき、負けた村の職人を連れて帰るか (4.C.4。答えがなければ前の答えのまま、はじめは「連れて帰らない」)
+    apply_shares(state, real)  # 2026-10-23: 家の代表が、家の倉から村の蓄え・ほかの家へ分ける (share)
     own, kinds = {}, {}
     if ask == "年":
         reps = set(_rep_of(state).values())
@@ -1285,6 +1304,49 @@ def apply_year(state, answers, councils=None):
             own[n], kinds[n] = dict(a), "季節"
     _apply(state, own, kinds, set(real), "集まり")
     village_demand(state, real)
+
+
+def _share_goods(v):
+    """share の 1 つの行き先の物: {物: 数} (食べ物だけ。数は 0 より多い整数に切り下げ)。数だけなら草の種のつかみ"""
+    if isinstance(v, bool) or v is None:
+        return {}
+    if not isinstance(v, dict):
+        n = era2._num(v)
+        return {"草の種": int(n)} if n and n >= 1 else {}
+    out = {}
+    for k, n in v.items():
+        n = era2._num(n)
+        if k in era2.FOOD_KCAL and n and n >= 1:
+            out[k] = int(n)
+    return out
+
+
+def apply_shares(state, real):
+    """share の答え (集まりの歩。apply_year から): 家の代表 (_rep_of) が、家の倉の食べ物を村の蓄え (「村」) かほかの家 (大人のいる家) の倉へ出す。
+    家の倉にある分まで (era2._g6_take と _g6_put。取り立てと同じ移し方)。答えの順 (人の並び) と、書いた行き先の順に。乱数なし。
+    出来事「倉を分ける」の data の moves を記録 (tools/build_records.py の MOVE7) が読む"""
+    reps_h = _rep_of(state)
+    homes = set(era2._homes(state))
+    ads = {p["name"]: p for p in era2.adults(state)}
+    for n, a in real.items():
+        sh = a.get("share") if isinstance(a, dict) else None
+        p = ads.get(n)
+        if not sh or not p or not p.get("household") or reps_h.get(p["household"]) != n:
+            continue
+        h = p["household"]
+        rows = sh.items() if isinstance(sh, dict) else [("村", sh)]
+        for to, v in rows:
+            to = "村" if to in ("村", "村の蓄え", "V0") else to
+            if to != "村" and (to not in homes or to == h):
+                continue
+            got = era2._g6_take(state, h, _share_goods(v))
+            if not got:
+                continue
+            era2._g6_put(state, to, got)
+            where = "村の蓄え" if to == "村" else f"{to}の倉"
+            log(state, "倉を分ける", n, f"{h}の代表の {n} が、家の倉から {era2._gw(got)} を{where}に出した", household=h, to=to, goods=got,
+                moves=[era2._mv(h, -1, got), era2._mv(to, 1, got)])
+            _g(state).setdefault("shares", []).append({"day": state["day"], "from": h, "to": to, "by": n, "goods": got})
 
 
 def apply_plan(state):
@@ -1396,7 +1458,8 @@ FIELDS_ON = {  # 答えの欄を出すとき (4.A.5)
     "demand": lambda state: any(o.get("known") is not None for o in _others(state)),
     "answer_demand": lambda state: bool(_demands_to_village(state)), "ally": lambda state: bool(_demands_to_village(state)),
     "leave": _leave_on, "captives": _war_on, "tribute": _village_pays, "tax": lambda state: True, "rate": lambda state: True, "利子": lambda state: True,
-    "try": _tech_open, "plough": _plough, "build": lambda state: True}
+    "try": _tech_open, "plough": _plough, "build": lambda state: True,
+    "share": lambda state: True}  # 2026-10-23: 家の倉から分ける (計画 6. の 2)
 
 
 def fields_on(state):
@@ -1423,6 +1486,9 @@ def _field_rows(state, solo, year):
         rows.append(f"   求めへの答え: 村への求め ({ids}) ごとに、\"払う\" か \"戦う\" か \"逃げる\" か \"助けを頼む\" (answer_demand)。助けを頼むなら、頼む村の番号 (ally)")
     if "leave" in on and not solo:
         rows.append("   家ごとに村を出る: 家の人みんなで村を出るなら true、出ないなら false (leave。家の代表が決める)")
+    if "share" in on and not solo:
+        rows.append('   分ける: 家の倉の食べ物を、村の蓄えやほかの家の倉へ出すなら share に {"村": {物: 数}, "家の名": {物: 数}}、出さないなら null '
+                    '(家の代表が決める。集まりの日に、家の倉にある分まで移る)')
     if "captives" in on:
         rows.append('   戦に勝ったとき: 負けた村の職人を "連れて帰る" か "連れて帰らない" (captives)')
     if "tribute" in on:
@@ -1443,7 +1509,7 @@ def _field_rows(state, solo, year):
 def fields_json(state, p, solo):
     on = set(fields_on(state))
     return ((' "demand": null,' if "demand" in on else "") + (' "answer_demand": {}, "ally": null,' if "answer_demand" in on else "")
-            + (' "leave": false,' if "leave" in on and not solo else "") + (' "captives": null,' if "captives" in on else "")
+            + (' "leave": false,' if "leave" in on and not solo else "") + (' "share": null,' if "share" in on and not solo else "") + (' "captives": null,' if "captives" in on else "")
             + (' "tribute": {},' if "tribute" in on else ""))
 
 

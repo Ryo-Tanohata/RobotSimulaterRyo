@@ -2513,5 +2513,171 @@ class P_Fixes1023(unittest.TestCase):
         self.assertEqual((g["stall"]["c1"]["best"], g["stall"]["c1"]["since"]), (1, y0 + 4))
 
 
+class Q_KinShare(unittest.TestCase):
+    """2026-10-23 の 2 つの直し (計画 docs/research/state_emergence_plan.md 6. の 1・2、9. の 2。G7 から。メモリの中の写しだけ):
+    1. 子は、村の蓄えと自分の家の倉で足りなければ、母の家 → 近い親類の家の倉から食べる (g7.kin_houses。era2._feed)
+    2. 家の代表の答え share: 家の倉から村の蓄え・ほかの家の倉へ出す (g7.apply_shares。出来事「倉を分ける」の moves を記録が読む)"""
+    U = era2.UNITS["草の種"][1]
+
+    def st(self):
+        st = real_state()
+        if "g7" in (st.get("era2") or {}):
+            return st
+        if is_g6(st):
+            return g7_state()
+        self.skipTest("本物の state が G6 でも G7 でもない")
+
+    @staticmethod
+    def grain(store):
+        return sum(f["kcal"] for f in store if f["kind"] == "草の種")
+
+    def kin_case(self, st, sib=False):
+        """母を別の家 (大人のいる家) に移した子 (写しの中だけ)。sib: 同じ母の子がいる子。戻り値: 子・自分の家・母の家"""
+        import g7
+        homes = era2._homes(st)
+        by = {p["name"]: p for p in st["people"]}
+        c = next(c for c in era2.children(st) if by.get(c.get("mother")) and by[c["mother"]]["alive"] and not by[c["mother"]].get("child")
+                 and (not sib or any(q is not c and q.get("mother") == c["mother"] for q in st["people"])))
+        own = c["household"]
+        h2 = next(h for h in homes if h != own)
+        by[c["mother"]]["household"] = h2
+        self.assertEqual(g7.kin_houses(st, c)[0], h2, "母の家が先")
+        return c, own, h2
+
+    def feed(self, st, c, own, h2, food_kcal):
+        st["store"] = []
+        for h in era2._homes(st) + [own]:
+            era2._house(st, h)["store"] = []
+        era2._house(st, h2)["store"] = [{"kind": "草の種", "kcal": food_kcal, "day": st["day"]}]
+        for p in st["people"]:
+            p["hunger"] = 0.0
+            p["food"] = []  # 大人も手元にない (村の蓄えに入れない)
+        before = self.grain(era2._house(st, h2)["store"])
+        era2._feed(st, random.Random(1))
+        return before - self.grain(era2._house(st, h2)["store"]), c["hunger"]
+
+    def test_real_data_kin_is_own_house(self):
+        """家は母から子へ受けつぐので、本物の state では、どの子も親類の家は自分の家と同じ (この直しで動く子はいない)"""
+        import g7
+        st = self.st()
+        self.assertEqual([c["name"] for c in era2.children(st) if g7.kin_houses(st, c)], [])
+
+    def test_kin_feeds_child(self):
+        st = self.st()
+        c, own, h2 = self.kin_case(st)
+        took, hunger = self.feed(st, c, own, h2, 10 ** 6)
+        self.assertGreater(took, 0)
+        self.assertEqual(hunger, 0.0, "母の家の倉から食べた")
+        # 母の家の倉もからなら空腹になる
+        took, hunger = self.feed(st, c, own, h2, 0)
+        self.assertEqual(hunger, 0.15)
+
+    def test_g6_unchanged(self):
+        st = self.st()
+        c, own, h2 = self.kin_case(st)
+        del st["era2"]["g7"]  # G6 のふるまい
+        took, hunger = self.feed(st, c, own, h2, 10 ** 6)
+        self.assertEqual(hunger, 0.15, "G6 までは、自分の家の倉がからなら空腹になる (母の家の倉からは食べない)")
+
+    def test_kin_order(self):
+        import g7
+        st = self.st()
+        c, own, h2 = self.kin_case(st, sib=True)
+        by = {p["name"]: p for p in st["people"]}
+        sib = next(q for q in st["people"] if q is not c and q.get("mother") == c["mother"])
+        h3 = next(h for h in era2._homes(st) if h not in (own, h2))
+        sib["household"] = h3
+        self.assertEqual(g7.kin_houses(st, c), [h2, h3])
+        by[c["mother"]]["household"] = own  # 母が自分の家なら、兄弟姉妹の家だけ
+        self.assertEqual(g7.kin_houses(st, c), [h3])
+
+    def rep(self, st):
+        import g7
+        reps = g7._rep_of(st)
+        h = era2._homes(st)[0]
+        return reps[h], h
+
+    def test_share_to_village_and_house(self):
+        import g7
+        st = self.st()
+        n, h = self.rep(st)
+        other = next(x for x in era2._homes(st) if x != h)
+        era2._house(st, h)["store"] = [{"kind": "草の種", "kcal": 100 * self.U, "day": st["day"]}]
+        v0, o0 = self.grain(st["store"]), self.grain(era2._house(st, other)["store"])
+        e0 = st["next_event"]
+        g7.apply_shares(st, {n: {"share": {"村": {"草の種": 30}, other: {"草の種": 500}, "ない家": {"草の種": 5}}}})
+        self.assertAlmostEqual(self.grain(st["store"]) - v0, 30 * self.U)
+        self.assertAlmostEqual(self.grain(era2._house(st, other)["store"]) - o0, 70 * self.U, msg="家の倉にある分まで")
+        self.assertEqual(self.grain(era2._house(st, h)["store"]), 0)
+        evs = [e for e in st["events"] if e["id"] >= e0]
+        self.assertEqual([e["type"] for e in evs], ["倉を分ける", "倉を分ける"])
+        self.assertIn(f"{h}の代表の {n} が、家の倉から 草の種 30 つかみ を村の蓄えに出した", evs[0]["text"])
+        self.assertEqual(evs[1]["data"]["moves"], [[h, -1, {"草の種": 70}, []], [other, 1, {"草の種": 70}, []]])
+        self.assertEqual([x["to"] for x in st["era2"]["g7"]["shares"]], ["村", other])
+        # 代表でない人の share は読まない・数だけなら草の種のつかみ
+        era2._house(st, h)["store"] = [{"kind": "草の種", "kcal": 100 * self.U, "day": st["day"]}]
+        not_rep = next((p["name"] for p in era2.adults(st) if p.get("household") == h and p["name"] != n), None)
+        if not_rep:
+            g7.apply_shares(st, {not_rep: {"share": {"村": 10}}})
+            self.assertEqual(self.grain(era2._house(st, h)["store"]), 100 * self.U)
+        g7.apply_shares(st, {n: {"share": {"村": 10}}})
+        self.assertEqual(self.grain(era2._house(st, h)["store"]), 90 * self.U)
+        g7.apply_shares(st, {n: {"share": None}})
+        g7.apply_shares(st, {n: {"share": {"村": {"ヤギ": 2, "土器": 3}}}})  # 食べ物だけ
+        self.assertEqual(self.grain(era2._house(st, h)["store"]), 90 * self.U)
+
+    def test_share_ledger(self):
+        """記録の帳簿 (build_records.ledger): 村の蓄えと家の倉の草の種に「記録にない差」が出ない"""
+        import g7
+        import records
+        sys.path.insert(0, str(HERE))
+        import build_records
+        st = self.st()
+        n, h = self.rep(st)
+        era2._house(st, h)["store"] = [{"kind": "草の種", "kcal": 100 * self.U, "day": st["day"]}]
+        P = records.snapshot(st)
+        e0 = st["next_event"]
+        g7.apply_shares(st, {n: {"share": {"村": {"草の種": 40}}}})
+        C = records.snapshot(st)
+        moves7 = [(side, sg, goods, build_records.MOVE7[e["type"]][0 if sg < 0 else 1])
+                  for e in st["events"] if e["id"] >= e0 for side, sg, goods, ids in e["data"]["moves"]]
+        b = build_records.Builder.__new__(build_records.Builder)
+        b.H = lambda x: x
+        b.hname = {}
+        c = {"D": st["day"], "a": st["day"], "P": P, "C": C, "flows_v": {}, "sown_ev": [], "eaten": {},
+             "harvest": {"to": {}, "by_household": {}}, "g5": {"feast": None, "payments": [], "fission": None},
+             "pests": {"amount": 0, "events": []}, "inherit": [], "pots": {"made": 0, "broken": 0}, "sick": {"made": 0, "broken": 0},
+             "g6": {"moves": [], "moves7": moves7}, "goats": {"flows": {}, "known": False}}
+        rows = b.ledger(c)
+        self.assertEqual([r for r in rows if r["reason"] == "記録にない差" and r["item"] == "草の種" and r["holder"] in ("村", h)], [])
+        got = {(r["holder"], r["reason"]): r["kcal"] for r in rows if r["reason"] in ("分けて出した", "分けて受けた")}
+        self.assertEqual(got, {(h, "分けて出した"): -40 * self.U, ("村", "分けて受けた"): 40 * self.U})
+        import accounts
+        self.assertEqual((accounts.KIND["分けて出した"], accounts.KIND["分けて受けた"]), ("transfers", "transfers"))
+
+    def test_share_in_apply_year_and_prompt(self):
+        import g7
+        st = self.st()
+        if is_g6(real_state()):
+            st = to_year_end(st)
+        else:
+            st["era2"]["g7"]["ask"] = "年"
+        reps = set(g7._rep_of(st).values())
+        n = next(x for x in era2.answerers(st) if x in reps)
+        h = next(p for p in era2.adults(st) if p["name"] == n)["household"]
+        era2._house(st, h)["store"] = [{"kind": "草の種", "kcal": 50 * self.U, "day": st["day"]}]
+        ans = {x: year_answer(list(g7.SEASONS)) for x in era2.answerers(st)}
+        ans[n] = year_answer(list(g7.SEASONS), share={"村": {"草の種": 20}})
+        v0 = self.grain(st["store"])
+        g7.apply_year(st, ans)
+        e = next(e for e in reversed(st["events"]) if e["type"] == "倉を分ける")
+        self.assertEqual((e["who"], e["data"]["to"], e["data"]["goods"]), (n, "村", {"草の種": 20}))
+        self.assertGreaterEqual(self.grain(st["store"]) - v0, 20 * self.U - 1e-6)
+        rows = g7._field_rows(st, False, True)
+        self.assertIn("分ける: 家の倉の食べ物を、村の蓄えやほかの家の倉へ出すなら share", rows)
+        self.assertNotIn("分ける:", g7._field_rows(st, True, True), "代表でない人には出さない")
+        self.assertIn('"share": null,', g7.fields_json(st, None, False))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

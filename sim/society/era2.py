@@ -487,6 +487,7 @@ def _feed(state, rng):
                 if have + got < keep and p["hunger"] >= 0.6 and era_at_least(state, "G5"):  # G5: それでも足りず、ひどく空腹 (前からの 0.6) なら、よその家の倉から
                     _steal(state, p, keep - have - got)
     ate = {"total": 0, "sown": 0, "by": {}}
+    kin = _g7m().kin_houses if "g7" in state["era2"] and _fix(state) else None  # G7 (2026-10-23): 親類の家の倉 (G6 までは None)
     for c in children(state):
         need = next(k for a, k in CHILD_EAT if c["age"] < a)
         got_items = []
@@ -494,6 +495,11 @@ def _feed(state, rng):
         if sum(by.values()) < need and era_at_least(state, "G4"):
             for k, v in _move_food(_house(state, c.get("household"))["store"], got_items, None, need - sum(by.values())).items():
                 by[k] = by.get(k, 0) + v
+            for h in kin(state, c) if kin and sum(by.values()) < need else ():  # G7: それでも足りなければ、母の家・親類の家の倉から
+                for k, v in _move_food(_house(state, h)["store"], got_items, None, need - sum(by.values())).items():
+                    by[k] = by.get(k, 0) + v
+                if sum(by.values()) >= need:
+                    break
         got = sum(by.values())
         c["hunger"] = round(min(1.0, max(0.0, c["hunger"] + (0.15 if got < need * 0.5 else -0.2))), 2)
         ate["total"] += got
@@ -3056,7 +3062,7 @@ YEAR_EVENTS = ("フェーズ", "区切り", "段階", "分かれる", "死", "�
                "町", "記録",  # お題に見せる出来事 (前のものほど先に残す)。町・記録は G6 から (記録は、道具が使えるようになったときだけ)
                "年の集まり",  # G7 から (次の年が、1 年に 1 回の集まりか、季節ごとに集まるか。年の終わりに決まる)
                "戦", "崩れ", "貢ぎ", "求め", "同盟",  # G7 から (まわりの集落とのこと。docs/society_phase/G7_design.md 4.B.7)
-               "よその便り", "きっかけ", "取り立て", "病", "試す")  # G7 から (4.C.8・4.F。どれも G6 までは起きない)
+               "よその便り", "きっかけ", "取り立て", "病", "試す", "倉を分ける")  # G7 から (4.C.8・4.F・2026-10-23 の share。どれも G6 までは起きない)
 YEAR_DIGEST_MAX = 15
 STOP_WORDS = ("フェーズが", "Society 2.0 が終わった")  # ワークフローが止まる文と重なる名前は読まない (step.py が出来事を表示するため)
 

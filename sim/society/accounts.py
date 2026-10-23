@@ -50,6 +50,9 @@ KIND = {
     "持ち主がいなくなり村のものになった": "transfers", "家の倉から食べた": "transfers", "家の倉から食べた (子)": "transfers",
     "家の人が食べた": "transfers", "子が食べた": "transfers", "よその家の倉から取った": "transfers", "よその家の人に取られた": "transfers",
     "罰・つぐないで受け取った": "transfers", "罰・つぐないで払った": "transfers",
+    "分けて出した": "transfers", "分けて受けた": "transfers",  # G7 (2026-10-23): 家の代表が家の倉から村の蓄え・ほかの家へ分けた (share)
+    "取り立てで出した": "transfers", "取り立てで入った": "transfers",  # G7: 村の中の税 (2026-10-23 に帳簿の行にした)
+    "貢ぎで出した": "external", "貢ぎで受けた": "external", "戦で取られた": "external", "戦で持ち帰った": "external",
     "亡くなった人の手元": "transfers", "村を出た人の手元": "transfers", "村を出て持っていった": "transfers",
     "ほかの村へ出した": "external", "ほかの村から入った": "external",
     DIFF: "residual",
