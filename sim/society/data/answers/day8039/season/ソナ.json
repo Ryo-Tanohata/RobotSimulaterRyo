@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は残りがとても多い。手の空いた大人は毎夕刈って、その日のうちに土器に入れよう。落とさないようにしたい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちないよう、鎌を使って刈り切るため"}, "family": {"テナ2": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいちばん要る季節だから"}, "ワユ2": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "ラキ6": {"activity": "畑仕事", "place": "camp", "why": "若い力で刈り入れを進めるため"}, "テナ8": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも刈り入れの助けになる"}, "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも刈り入れの助けになる"}, "ユエ8": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話が足りないので手伝う"}}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りと、刈り残しの片付けをするため"}, "family": {"テナ2": {"activity": "畑仕事", "place": "camp", "why": "秋の畑を育てて来年の実りを増やすため"}, "ワユ2": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ラキ6": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減らないよう世話をするため"}, "テナ8": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ユエ8": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話の手伝い"}}, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで夏の実りが増えるから"}, "family": {"テナ2": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守るため"}, "ワユ2": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守るため"}, "ラキ6": {"activity": "ヤギの世話", "place": "camp", "why": "冬もヤギの世話が要る"}, "テナ8": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ユエ8": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話の手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の前の最後の草取りで実りを増やすため"}, "family": {"テナ2": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ワユ2": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ、乳もとれるから"}, "ラキ6": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "テナ8": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ラニ8": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギの世話の手伝い"}, "ユエ8": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギの世話の手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ソナ12": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T92": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は残りが約28万つかみもあり、毎夕みんなで刈らないと夏の終わりに落ちる。刈った種は土器に入れる。", "because": [564026], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がたくさん実った年",
+ "feeling": "蓄えは十分にある。夏の畑を落とさず刈り切って、ヤギの世話も続けたい。"}
