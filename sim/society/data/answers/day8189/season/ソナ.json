@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えは土器にたっぷりある。みんな秋のはじめに種を一人 1000 つかみずつまいて、冬と春の草取りを忘れずにやろう。ヤギは多すぎるから、少しずつ肉にしていこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。種まきの後の草取りが夏の蓄えを守る。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"シエ12": true, "ムイ12": true},
+ "family": {
+  "テナ2": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが 173 頭いて世話の人手が要る。慣れた人に任せたい。"},
+  "ラキ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守るため。"},
+  "テナ8": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので、畑の草取りで力をつける。"},
+  "ラニ8": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝い、テナ2から学ぶ。"},
+  "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"},
+  "ヒセ9": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに一人 1000 つかみずつ種をまき、秋と冬と春に草取りをすれば夏の実りが増える。蓄えは土器にたっぷりある。", "because": [578610], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまく量と草取りの決まりはこのまま守るのがよい。"}],
+ "feeling": "蓄えが豊かで安心している。畑とヤギをていねいに見守りたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬と春は草取りを欠かさないようにしましょう。わたしも毎日畑に出ます。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りで実りが増える。冬と春の蓄えのために畑を育てたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"シエ12": true, "ムイ12": true},
+ "family": {"ラキ3": {"activity": "畑仕事", "place": "camp", "why": "採集が上手でも、まず畑の草取りに人手が要る"}, "セオ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなで分けて進めるため"}, "ヌオ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなで分けて進めるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。畑を育てて冬にそなえたい。"}

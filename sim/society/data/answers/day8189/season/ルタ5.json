@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬の前に、木の実をたくさん取って蓄えに入れよう。わたしは南の川の近くで採集してくるよ。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "木の実も魚も近くで取れ、冬の前に蓄えを増やしたいから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"シエ12": true, "ムイ12": true}, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまいた種は夏に実り、冬と春の蓄えになるから"}],
+ "feeling": "蓄えはまだ多いけれど、冬に向けて手を動かしておきたい。"}
