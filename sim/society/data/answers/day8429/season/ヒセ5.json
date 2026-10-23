@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、畑にまく量をけちらないでいこう。わたしは土器を焼いて、種を虫から守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えの草の種を土器に入れて虫やネズミから守るため。わたしは土器が得意だから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ5": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで、次の夏の実りを増やすため"},
+  "アコ5": {"activity": "畑仕事", "place": "camp", "why": "草取りをすると実りが増えるから"},
+  "オネ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて進めるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめ、蓄えの草の種は 1120576 つかみあり、土器も 9000 個ほどある。種を畑に 1000 つかみずつまき、土器づくりを続けるのがよい。", "because": [600974], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にたっぷりまいて草取りをすれば夏の実りが増えるから"},
+           {"id": "L177", "against": "", "agree": true, "reason": "土器で草の種を守れるから"}],
+ "feeling": "蓄えが満ちていて安心している。土器を焼きながら、畑の実りを楽しみにしている。"}

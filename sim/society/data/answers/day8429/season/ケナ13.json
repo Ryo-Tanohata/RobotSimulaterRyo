@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "疲れがたまっている。この秋は近いところで静かに食べ物を集めるよ。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "キャンプに近くて疲れた体でも行ける。冬の前に魚や木の実を集めておきたい"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "雨の夜に村の住まいに入れず、外で濡れて疲れがとれないことが続いている", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L204", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えに回すのは大事だから"},
+           {"id": "L220", "against": "", "agree": true, "reason": "秋に種をまかないと夏に実らないから"}],
+ "feeling": "疲れていて、ゆっくり眠りたい。"}

@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋のあいだ、みんなで木の実を取って、草の種を減らさずに冬を迎えよう。畑まきも一緒にやろうね。"}, {"to": "ナセ12", "text": "畑の草取り、よかったら一緒にやらない？ 話しながらやると早いよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ナセ12", "ムイ12"], "why": "秋にまいた畑は草取りで実りが増える。みんなで分ければ疲れも少ない。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L204", "against": "", "agree": true, "reason": "冬の前に木の実を取って草の種を守るのは大事だから。"}, {"id": "L220", "against": "", "agree": true, "reason": "秋にまいた畑を草取りで育てれば夏に実るから。"}],
+ "feeling": "みんなと一緒に働けるのがうれしい。冬がこわいけれど、助け合えばだいじょうぶ。"}

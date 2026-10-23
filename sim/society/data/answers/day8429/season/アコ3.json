@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬の前に、そばの木の実を毎夕取って、少しずつ蓄えに足しておこうね。わたしは土器を焼いて、草の種を守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入らない草の種は虫やネズミに食べられるから、冬の前に土器を足しておきたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を1000つかみまくと、冬と春の草取りで夏の実りが増える。土器は多いほど蓄えが守られる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L236", "against": "", "agree": true, "reason": "ヤギが草で養える数をこえるとやせていなくなるので、食べ物にしたほうがよい"}],
+ "feeling": "蓄えは多く、冬を迎える気持ちは落ち着いている。土器を焼いて備えたい。"}

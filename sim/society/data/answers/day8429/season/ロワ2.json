@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "秋の畑にみんなで種をまこう。冬と春の草取りは私も毎日手伝うよ。ヤギの世話も忘れずにね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、続けて世話をしたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "セオ2": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く世話が足りないといなくなるので、狩りの得意なセオ2にも手伝ってほしい"},
+  "ロワ3": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして畑の実りを守るため"},
+  "オネ9": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも草取りの助けになる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "草で養えないヤギが増えるとやせていなくなるので、肉にして蓄えに入れたほうがよい"}],
+ "feeling": "蓄えは十分あるので落ち着いている。畑と木の実の世話を協力して続けたい。"}
