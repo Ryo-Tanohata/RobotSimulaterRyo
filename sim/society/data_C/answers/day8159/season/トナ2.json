@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "夏の畑は落ちる前に刈り切りたい。わたしの家は毎夕刈りに出るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ラニ2": {"activity": "畑仕事", "place": "camp", "why": "刈り手が多いほど畑を落とさずにすむ"}, "ワユ5": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が足りない"}, "アコ6": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が足りない"}, "セヤ8": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が足りない"}, "ケナ9": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで夏の実りを増やす"}, "family": {"ラニ2": {"activity": "畑仕事", "place": "camp", "why": "草取りをしないと実りが減る"}, "ワユ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手"}, "アコ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手"}, "セヤ8": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手"}, "ケナ9": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて実りを守る"}, "family": {"ラニ2": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ワユ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "アコ6": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "セヤ8": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ケナ9": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため春も草取りをする"}, "family": {"ラニ2": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ワユ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "アコ6": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "セヤ8": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ケナ9": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"セヤ14": true},
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T115": false, "T116": false, "T117": false},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り手が足りた年",
+ "feeling": "畑が落ちないか気がかりだけれど、みんなで刈れば大丈夫だと思う。"}
