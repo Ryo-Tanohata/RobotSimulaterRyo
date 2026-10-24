@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑は、冬と春の草取りで夏の実りが決まるよ。わたしの家は毎日畑に出るから、手が空いた人は声をかけて、いっしょにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りが足りないと夏の実りが減るので、畑仕事で村を支える"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ4": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして夏の実りを守るため"},
+  "ハソ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るため"},
+  "ロワ6": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るため"},
+  "オネ6": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"},
+  "ケナ7": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"},
+  "ネイ7": {"activity": "畑仕事", "place": "camp", "why": "子でも畑仕事なら半分の働きで手伝えるため"}
+ },
+ "keep": false,
+ "judge": {"M155": "ゆるす", "M156": "ゆるす", "M157": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋に畑の草の種をまき、冬と春に家族みんなで草取りをすれば、夏の実りが増える。", "because": [550647, 550763, 550879], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "ヤギが多すぎるとやせていなくなるので、肉にして蓄えに入れるのがよい"}],
+ "feeling": "畑の草取りを続けて、夏にたくさん実るのが楽しみだ。"}

@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えは土器にたっぷり守られている。秋は畑にしっかり種をまいて、冬と春の草取りを皆で分け合おう。おれも畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "土器は十分あるので、秋にまいた畑の草取りを手伝い、夏の実りを減らさないため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M155": "ゆるす", "M156": "ゆるす", "M157": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "ヤギが草に対して多すぎると皆が飢えるので、肉にして蓄えに回すのがよい"}],
+ "feeling": "満腹で気分がいい。畑で皆と働くのが楽しみだ。"}

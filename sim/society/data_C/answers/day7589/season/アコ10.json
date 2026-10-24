@@ -1,0 +1,7 @@
+{"say": [{"to": "ルタ10", "text": "この秋はうちの住まいを二人で建てよう。雨の夜に外で濡れるのは、もうやめにしたい。"}, {"to": "みんな", "text": "家のない家の仕事は、手の空いた人が手伝ってくれると助かる。道具づくりなら任せてくれ。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["ルタ10"], "why": "家族の住まいがまだなく、雨の夜に疲れがとれないから。掟 L219 にも従う"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ルタ10": {"activity": "住まいを建てる", "place": "camp", "why": "二人で働けば住まいが早くできるから"}}, "keep": false,
+ "judge": {"M155": "ゆるす", "M156": "ゆるす", "M157": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "家族の住まいは大人が長く働いて建てる。家がない家は雨の夜に疲れがとれないので、秋のうちに建てるのがよい", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L219", "against": "", "agree": true, "reason": "うちの家も住まいがなく、建てるのが先だと思うから"}, {"id": "L220", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして蓄えるのがよい"}],
+ "feeling": "まずは自分の家を建てるぞ。道具づくりの腕を活かして、手早く仕上げたい。"}

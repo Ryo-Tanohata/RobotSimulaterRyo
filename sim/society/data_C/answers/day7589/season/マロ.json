@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、冬と春は草取りをみんなで回そう。おれも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが足りないと実りが減る。蓄えは十分あるので、畑を育てるのがいちばん役に立つ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ユノ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして、夏の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M155": "ゆるす", "M156": "ゆるす", "M157": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く体も元気だ。落ち着いて畑を世話したい。"}

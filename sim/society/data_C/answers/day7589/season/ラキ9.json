@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑は、冬と春の草取りで夏の実りが決まる。私は毎日草取りに出るから、手の空いた人はいっしょに来てほしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りが足りないと夏の実りが3割に減るので、冬まで毎日草取りをする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M155": "ゆるす", "M156": "ゆるす", "M157": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまく草の種は一人1000つかみまで。まいたあと冬と春に草取りを続けると夏の実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "子どもたちと食べ物には困らないので落ち着いている。畑をしっかり育てたい。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑の草取りは、わたしも毎日やるよ。夏の実りを減らさないよう、手が空いた人はいっしょに来て。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りをすると次の夏の実りが増えるから"}, "sow": 600, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M155": "ゆるす", "M156": "ゆるす", "M157": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種をまき、秋のうちに草取りを続けると次の夏の実りが増える。草取りは毎日camp で行う", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L219", "against": "", "agree": true, "reason": "雨の夜に外で濡れる人が出ないよう、家を仕上げるのは大切だから"}, {"id": "L220", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして蓄えに入れるのがよいから"}],
+ "feeling": "畑も木の実も順調で、冬に向けて落ち着いた気持ち。"}

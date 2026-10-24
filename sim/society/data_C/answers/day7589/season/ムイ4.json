@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑は草取りで実りが増える。手の空いた人は畑に来てほしい。私も毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は草取りをする人が少ないと実りが減るので、毎日畑で草取りをする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るので、いっしょに働く"}, "キサ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るので、いっしょに働く"}, "ラニ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るので、いっしょに働く"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑がよく実るよう、みんなで草取りを続けたい。"}
