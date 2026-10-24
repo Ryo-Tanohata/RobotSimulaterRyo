@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだたくさん残っているよ。手が空いたら、いっしょに夕方まで刈ろう。落とさないようにしたいな。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["キオ4"], "why": "実った畑が夏のうちに刈らないと落ちてしまうから、刈り入れを手伝う"}, "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "いっしょに畑を刈れば早く終わるから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": ["キオ4"], "why": "まいた畑の草取りが足りないと実りが減るから"}, "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないので手伝ってほしい"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": ["キオ4"], "why": "冬も畑の草取りで実りを増やせるから"}, "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "草取りをいっしょにするため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": ["キオ4"], "why": "夏の実りに向けて草取りを続けるため"}, "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "草取りをいっしょにするため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": true, "ほかの村から": true},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T80": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "実った畑は夏のうちに、みんなで毎夕刈れば落とさずにすむ", "because": [440695], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L203", "against": "", "agree": true, "reason": "刈り残して落とすのはもったいないから"}, {"id": "L201", "against": "", "agree": true, "reason": "草取りが足りないと実りが減るから"}],
+ "year_name": "畑を刈りきった年",
+ "feeling": "みんなで協力して、畑の実りを大切にしたい。"}
