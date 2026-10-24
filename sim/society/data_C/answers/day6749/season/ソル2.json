@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。秋のうちにおれも畑に種をまいて、草取りに出るよ。ヤギはもう増やさなくていい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだ無いので、まいた草の種の草取りをして冬と春のあいだ実りを守る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ソワ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを増やすため"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T77": false, "T78": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種は約 439 日分あり、土器も十分ある。畑は今なく、秋にまかないと次の夏に実らない。", "because": [432000], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L171", "against": "", "agree": true, "reason": "草が足りないのでヤギを増やさないほうがよい"}, {"id": "L201", "against": "", "agree": true, "reason": "草取りが足りないと実りが減るから"}],
+ "feeling": "満腹で体も軽い。秋の畑に種をまくのが楽しみだ。"}

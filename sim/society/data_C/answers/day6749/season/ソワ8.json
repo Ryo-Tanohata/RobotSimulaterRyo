@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、冬のあいだはわたしが草取りに出るよ。手の空いた人は一緒に来て。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが足りないと実りが減るので、毎日草取りを続けるため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ネイ8": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば、畑の実りが多くなるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T77": false, "T78": false}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春の草取りの量で夏の実りが変わる", "because": [431950], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑仕事は体になじむ。冬に向けて、しっかり草取りをしたい。"}

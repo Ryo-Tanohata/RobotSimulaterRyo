@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "今年は畑がないから、秋のうちに草の種をたくさんまいて、冬のあいだ草取りを分けて受け持とう。ぼくもキャンプで畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが3割に減るので、まず手伝いたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "trade": {"T77": false, "T78": false}, "seal_store": false, "demand": null, "share": null,
+ "family": {"ナセ4": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら半分の働きができるので、畑を手伝ってもらう"}},
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りをすると実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑がまだないので、しっかり種をまいて夏の実りに備えたい。"}

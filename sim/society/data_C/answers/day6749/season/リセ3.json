@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "秋の畑は草取りの手が足りないと実りが3割になるよ。蓄えの種はたっぷりあるから、みんなでたくさんまいて、冬も交代で草取りに出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、毎日畑に出る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヒセ3": {"activity": "畑仕事", "place": "camp", "why": "草取りの時間を増やして夏の実りを守るため"},
+  "ケセ3": {"activity": "畑仕事", "place": "camp", "why": "採集の腕がまだ低いので、畑の草取りで役に立てる"},
+  "ケナ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やすため"},
+  "オセ5": {"activity": "畑仕事", "place": "camp", "why": "子でも半分の働きができるので草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T77": false, "T78": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りの時間を出さないと実りが3割になる。要る時間は まいた種×0.15+10 時間。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑がまだ一つもないので、種をまいて夏の実りに備えられるのが楽しみだ。"}
