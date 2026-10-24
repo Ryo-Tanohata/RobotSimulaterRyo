@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。畑にしっかり種をまいて、冬のあいだも草取りを欠かさないようにしよう。よその畑で刈るときは、先に持ち主と分け方を話しておこうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、家族みんなで手を入れたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ミラ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分担して実りを増やすため"}, "カイ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分担して実りを増やすため"}, "ナセ": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分担して実りを増やすため"}},
+ "keep": true,
+ "judge": {"M124": "ゆるす", "M125": "ゆるす", "M126": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるし、畑をまくのが楽しみ。みんなと穏やかに冬を迎えたい。"}

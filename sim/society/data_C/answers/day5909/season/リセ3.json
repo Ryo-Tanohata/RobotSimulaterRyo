@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りないよ。今季のうちに家ごとに少しずつ肉にして干そう。うちも2頭つぶすよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすると、夏の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ3": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば実りがしっかり増えるから"}},
+ "keep": false,
+ "judge": {"M124": "ゆるす", "M125": "ゆるす", "M126": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は草取りをすると実りが増える。草取りがないと実りは3割になる。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L194", "against": "", "agree": true, "reason": "ヤギが草で養える数より多く、肉にすればみんなの食べ物になるから"}],
+ "feeling": "畑の実りが楽しみだ。草取りをがんばろう。"}

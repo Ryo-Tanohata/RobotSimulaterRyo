@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をまいて、冬と春の草取りもみんなで分け合おう。ヤギも多すぎるから、少しずつ肉にして干そう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ネム3"], "why": "畑にまいた草の種が夏に実るよう、草取りを続けたいから"},
+ "sow": 500, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "family": {"ネム3": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをすれば畑の実りが増えるから"}, "ソワ": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人がいないとヤギがいなくなるから"}},
+ "keep": false,
+ "judge": {"M124": "ゆるす", "M125": "ゆるす", "M126": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあって安心だけれど、ヤギの数と畑の草取りが気がかりだ。"}

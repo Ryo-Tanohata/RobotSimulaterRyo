@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "土器づくりなら任せてくれ。冬の前に、草の種を入れる器をもっと焼いておく。虫やネズミに食べさせたくない。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意で、草の種を虫やネズミから守れる。冬の前に器を増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ4": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをして、夏の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M124": "ゆるす", "M125": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽い。土をこねて器を焼く日々が続くのは悪くない。"}

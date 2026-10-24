@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "わしは秋のうち道具づくりを続ける。割れた鎌の分を作りためて、夏の刈り入れで困らないようにしておく。畑にも草の種を思い切ってまくぞ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりが一番得意で、割れる鎌を夏の前に作りためておきたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ4": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをすると実りが増えるから"}},
+ "keep": true,
+ "judge": {"M124": "ゆるす", "M125": "ゆるす", "M126": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は元気だ。秋のうちに畑をまいて、冬のあいだも道具を作り続けるつもりだ。"}

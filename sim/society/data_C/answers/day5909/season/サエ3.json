@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "今年は畑に草の種をまいて、冬と春の草取りをみんなで少しずつ分けよう。わたしはキャンプのそばで木の実を集めて、食べきれない分は土に埋めるよ。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "キャンプのそばの木の実は取りやすく、採集が得意なので村の食べ物を増やせるから"}, "sow": 500, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ワユ": {"activity": "採集", "place": "camp", "why": "採集が得意で、キャンプのそばなら安全だから"}, "ロワ2": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを手伝えば、夏の実りが増えるから"}, "セオ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝えば、夏の実りが増えるから"}}, "keep": false,
+ "judge": {"M124": "ゆるす", "M125": "ゆるす", "M126": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を畑にまくと、冬と春の草取りで夏の実りが増える", "because": [329556], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L194", "against": "", "agree": true, "reason": "草が足りずヤギがやせていなくなるより、肉にして蓄えたほうがみんなの食べ物になるから"}, {"id": "L193", "against": "", "agree": true, "reason": "ヤギが多すぎるあいだは家ごとに少しずつ減らすのがよいから"}],
+ "feeling": "木の実を埋めて、いつか育つ木を思うと楽しみだ"}

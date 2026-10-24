@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "わたしは行ったことのない林の奥を見てくる。ヤギは多すぎるから、肉にして干そう。"}],
+ "job": {"activity": "探索", "place": "東林28", "with": [], "why": "まだ見ていない場所を歩いて、冬に食べ物が取れる所を探したいから"},
+ "sow": 300, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"ソナ": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"}, "シエ": {"activity": "採集", "place": "北川12", "why": "冬の前に魚と芋の場所を確かめるため"}},
+ "keep": false,
+ "judge": {"M124": "ゆるす", "M125": "ゆるす", "M126": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめ、蓄えの草の種は 833587 つかみあり、木の実の木にも実が多くついている", "because": [329562], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L194", "against": "", "agree": true, "reason": "ヤギが草で養える数より多く、やせていなくなるより肉にしたほうがよいから"}],
+ "feeling": "体は軽く、まだ知らない場所を歩くのが楽しみだ。"}

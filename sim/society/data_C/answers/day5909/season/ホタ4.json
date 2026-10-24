@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑をまいて、草取りもきちんとやろう。夏に刈れるように、わたしも手を動かすよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えを守るため、毎日草取りをする"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ムイ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要る。家族でいっしょに畑を育てる"}},
+ "keep": false,
+ "judge": {"M124": "ゆるす", "M125": "ゆるす", "M126": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、秋冬春に草取りをすれば、夏のはじめに実って刈れる", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑がうまく実るよう願っている。子どもたちを近くで見守りながら働きたい。"}
