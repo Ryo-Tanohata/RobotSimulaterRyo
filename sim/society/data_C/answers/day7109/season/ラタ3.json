@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまこう。冬と春の草取りを、みんなで順に受け持てば夏の実りが減らないよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りが足りないと夏の実りが減るので、村のために毎日草取りをする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3,
+ "family": {"ソワ": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして実りを守るため"}, "ヌオ3": {"activity": "畑仕事", "place": "camp", "why": "小さい子の世話をしながらキャンプで草取りができるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T91": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまく草の種は、冬と春の草取りで夏の実りが決まる。草取りの人手が大切だ。", "because": [477477], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で安心している。みんなで畑を守りたい。"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑に種をまいたら、冬のあいだの草取りはわたしが続けるよ。夏に実りが減らないようにしたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと夏の実りが3割に減るので、草取りを続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り人手を増やして実りを守るため"}, "ワユ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝わせる"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T91": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑がうまく育つか気になるけれど、静かに草を取る日々が楽しみ。"}

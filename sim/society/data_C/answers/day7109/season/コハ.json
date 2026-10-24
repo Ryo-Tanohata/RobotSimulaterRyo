@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑にまく草の種は、蓄えがたっぷりあるから多めにまこう。冬と春の草取りを忘れずに、みんなで交代しよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが足りないと実りが減る。蓄えは十分あるので、畑を育てて来年の夏に備えたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手がいるので、いっしょに働く"}, "セオ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑仕事を覚える"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T91": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春の草取りで実りが増える。草取りが少ないと夏の実りが減る", "because": [477698], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L171", "against": "", "agree": true, "reason": "草が足りないのでヤギを増やさないほうがよい"}, {"id": "L205", "against": "", "agree": true, "reason": "草取りが実りを左右するから"}],
+ "feeling": "蓄えが多くて心強い。畑をまいて、冬も春も落ち着いて過ごしたい。"}

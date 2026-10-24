@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまこう。冬と春の草取りは、手の空いた人で交代して続けようね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意だから。草の種を虫やネズミから守る器を、これからも作りたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラキ3": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで、夏の実りを増やすため。"},
+  "セオ3": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないと実りが減るので手伝う。"},
+  "ヌオ4": {"activity": "採集", "place": "南川12", "why": "キャンプに近い川で食べ物を集めて、蓄えを助けたい。"},
+  "リセ5": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、近い草原で食べ物を集める。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T91": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあって安心。土器をつくりながら、冬に備えたい。"}

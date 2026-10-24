@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑には草の種をたっぷりまくよ。冬と春の草取りは人手が要るから、手の空いた人は来てね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで夏の実りが増える。蓄えは十分あるので畑の世話に力を入れる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ4": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないと実りが減るので、わたしと一緒に畑を手伝う"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T91": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまく草の種は一人1000つかみまで。草取りの時間は、まいた量かける0.15に10時間を足した分で、そこまですれば実りが満ちる。", "because": [477472], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって落ち着いている。畑の草取りをこつこつ続けたい。"}
