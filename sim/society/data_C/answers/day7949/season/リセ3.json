@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑は、冬と春の草取りで実りが決まる。うちの家はみんなで畑に出るよ。手があいている人は、草取りに加わってほしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は冬と春の草取りで実りが変わるから、まず畑に人手を出す"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "オセ5": {"activity": "畑仕事", "place": "camp", "why": "採集が得意でも、畑の草取りに人手が要るから"},
+  "ナセ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの時間を増やして夏の実りを大きくするため"},
+  "セヤ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を多く出すため"},
+  "トナ7": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を多く出すため"},
+  "ワユ7": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を多く出すため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T111": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑に種をまいて、冬と春の草取りを続ければ夏が楽しみだ。"}

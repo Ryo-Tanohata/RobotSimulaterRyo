@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の畑にみんなで種をまこう。草取りは手分けすれば夏の実りが増えるよ。おれは畑仕事に回る。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["テナ12"], "why": "畑がまだないので、秋にまいた草の種の草取りを担って夏の実りを守りたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"テナ12": {"activity": "畑仕事", "place": "camp", "why": "草取りは人手が要るので、いっしょに畑を見てほしい"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T111": false}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、草取りをするほど夏の実りが増える", "because": [606295], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "疲れはあるが、村の蓄えはたっぷりあるので落ち着いている。畑がうまく実ってほしい。"}
