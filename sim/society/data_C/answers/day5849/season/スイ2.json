@@ -1,0 +1,10 @@
+{"say":[{"to":"みんな","text":"春は木の実も草の種も実らないから、わたしは鋭い石で石の鎌を作りためておくよ。夏の刈り入れが始まったら、みんなで早く刈り切れるようにね。"}],
+"year":{"春":{"job":{"activity":"道具づくり","place":"camp","with":[],"why":"鋭い石がたくさんあり、道具づくりが得意。夏の刈り入れの前に石の鎌を作りためるため"},"family":{"ミラ3":{"activity":"畑仕事","place":"camp","why":"育っている畑の草取りで実りが増える。春は採集しても見つからない"},"カイ3":{"activity":"畑仕事","place":"camp","why":"畑の草取りを手伝い、夏の実りを増やすため"},"ナセ":{"activity":"畑仕事","place":"camp","why":"畑の草取りを手伝い、夏の実りを増やすため"}},"pick":0,"plant":1,"harvest":0,"eat_goat":0}},
+"keep":true,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{"T54":false,"T55":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,
+"knowledge":[{"op":"add","text":"前の季節は30日採集しても食べ物が見つからなかった。春は採集より、道具づくりや畑の草取りに向いている。","because":[321158],"confidence":0.8}],
+"proposal":null,
+"votes":[{"id":"L190","against":"","agree":true,"reason":"草で養えないヤギが多く、肉にして干して蓄えに入れれば減らせるから"}],
+"feeling":"食べ物は蓄えにたっぷりあって安心。春のうちに鎌をたくさん作るのが楽しみだよ。"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "おれは春のあいだ、キャンプで土器を焼き続ける。草の種を土器に入れておけば、虫やネズミに食われずにすむからな。"}],
+ "year": {"春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが一番得意で、蓄えの草の種を虫やネズミから守れるから"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": true, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T54": false, "T55": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "土器は慣れるほど多く焼ける。春も毎日焼けば、蓄えの草の種を守れる。", "because": [321222], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "ヤギが草で養える数より多く、減らさないと草が足りないから"}],
+ "feeling": "いつもどおり土器を焼く。手が覚えているから落ち着く。"}

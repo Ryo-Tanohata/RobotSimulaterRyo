@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "どこへ採集に行っても何も見つからない。蓄えは草の種がたっぷりあるから、おれは春は畑の草取りをする。"}],
+ "year": {"春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "採集では何も見つからないので、育っている畑の草取りで実りを増やす"}, "family": {"ケナ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手がいるので、おれと一緒にやる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T54": false, "T55": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "前の季節、採集を三十日したが食べ物は一度も見つからなかった。蓄えの草の種で食べていけるので、畑仕事にまわる", "because": [321186], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして減らすのがよい"}],
+ "feeling": "採集は空振りが続くが、蓄えはあるので落ち着いている。畑の草取りをしよう。"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "春は木の実も実らないから、わたしは土器をこつこつ焼くよ。蓄えの草の種を土器に入れて、虫やネズミから守りたい。"}],
+ "year": {"春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、草の種を土器に入れて守れば蓄えが長持ちするし、春は採れる実もないから"}, "family": {"ワユ": {"activity": "畑仕事", "place": "camp", "why": "育っている畑の草取りで実りが増えるから"}, "ロワ2": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも草取りの手になるから"}, "セオ2": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギは世話をする人がいないといなくなるから"}}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T54": false, "T55": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "春は木の実が実らないので、春の仕事は土器づくりや畑の草取りがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "草で養えない分のヤギを減らさないと、草の取り合いでヤギがやせていなくなるから"}],
+ "feeling": "春はのんびり土器をこねて、村の蓄えを守りたい。"}

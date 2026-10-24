@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "春は北の川で魚をとってくるよ。ヤギが多すぎて草が足りないから、みんなも干し肉にして減らそうね。"}],
+ "year": {"春": {"job": {"activity": "狩り", "place": "北川12", "with": [], "why": "魚がとれる場所で、食べ物を安定して持ち帰れるから"}, "family": {"ソナ": {"activity": "採集", "place": "南林12", "why": "近くの林で木の実や芋を集めて家族の食べ物にする"}, "シエ": {"activity": "狩り", "place": "北川12", "why": "狩りが得意だから、川で魚をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T54": false, "T55": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "南東の村と北の村14という新しい村を知った。北の村14は人が約70人と多い。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽いし、また川で魚をとるのが楽しみだ。"}

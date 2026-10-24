@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "林では食べ物がなかなか見つからなかった。春は畑の草取りに回るよ。実りが増えれば、みんなの蓄えも楽になる。"}],
+ "year": {"春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春は林で食べ物が見つかりにくく、畑の草取りで夏の実りを増やせるから"}, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T54": false, "T55": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "春は南の林で採集しても食べ物がほとんど見つからなかった。春は畑の草取りのほうがよい。", "because": [321149], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "ヤギが草で養える数より多く、草が足りないので減らしたほうがよい"}],
+ "feeling": "蓄えは多いので落ち着いているが、ヤギが増えすぎているのが気がかりだ。"}

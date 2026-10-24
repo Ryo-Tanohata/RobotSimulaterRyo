@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "わしは春も手を動かす。石を割って鎌を作る。夏の刈り入れで鎌が足りんと困るのは、おまえたちだぞ。"}],
+ "year": {"春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりが一番得意で、割れて減る鎌を夏の刈り入れまでに作りためておくため"}, "family": {"ホミ4": {"activity": "採集", "place": "東林12", "why": "採集が上手で、家の食べ物と村の蓄えを助けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": true, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T54": false, "T55": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える数より多いので、ほかの村のヤギは受けとらない。鎌は春のうちに作りためる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "手を動かしていれば落ちつく。夏の刈り入れが楽しみだ。"}

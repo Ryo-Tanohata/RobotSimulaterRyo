@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "南の川も北の林も、この前は何も見つからなかった。春は畑の草取りに回るよ。夏に実りが多くなるように、いっしょにやろう。"}],
+ "year": {"春": {"job": {"activity": "畑仕事", "place": "camp", "with": ["リセ6"], "why": "採集では何も見つからない日が続いたので、育っている畑の草取りをして夏の実りを増やす"}, "family": {"リセ6": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは大勢でやるほど早く終わり、実りが増えるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T54": false, "T55": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "春に南の川や北の林で30日採集しても、食べ物は一度も見つからなかった。春は採集より畑の草取りのほうがよい。", "because": [321209], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "採集が実らない春が続いて少し心配だけれど、蓄えはたっぷりあるので、畑の世話をして落ち着いて過ごしたい。"}
