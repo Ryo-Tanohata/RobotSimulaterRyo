@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだたっぷり残っている。落ちる前に、鎌を持つ人はみんなで刈ろう。わたしも毎日出る。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が残っているので、落ちる前に刈り入れる"}, "family": {"セオ4": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ラキ5": {"activity": "畑仕事", "place": "camp", "why": "半人前でも刈り入れを手伝う"}, "シエ5": {"activity": "畑仕事", "place": "camp", "why": "半人前でも刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りが要る"}, "family": {"セオ4": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要る"}, "ラキ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "シエ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると夏の実りが増える"}, "family": {"セオ4": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要る"}, "ラキ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "シエ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため草取りを続ける"}, "family": {"セオ4": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要る"}, "ラキ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "シエ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T83": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は、夏のうちに刈らないと落ちてしまう", "because": [455795], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "mood": "やるべき畑仕事がはっきりしていて、落ち着いている。"
+}
