@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑がたくさん残っている。夏のうちに刈り切れるよう、手の空いた人はみんなで毎夕刈ろう。わたしも畑に出るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ネム3": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れに人手がいる"}, "ソワ": {"activity": "畑仕事", "place": "camp", "why": "若い力で刈り入れを手伝ってほしい"}}, "pick": 0, "plant": 5, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りと世話を続けるため"}, "family": {"ネム3": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やす"}, "ソワ": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えの草の種を虫やネズミから守る土器を作るため"}, "family": {"ネム3": {"activity": "畑仕事", "place": "camp", "why": "冬も畑の草取りが実りを増やす"}, "ソワ": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れの前に石の鎌を作りためておくため"}, "family": {"ネム3": {"activity": "畑仕事", "place": "camp", "why": "春も畑の草取りを続ける"}, "ソワ": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "今年も実った畑がたくさんあり、夏のうちに刈り切らないと落ちてしまう", "because": [352219], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がたくさん実った年",
+ "feeling": "蓄えは十分にある。みんなで助け合って畑を刈り、冬もおだやかに越したい。"}

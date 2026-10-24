@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに畑を刈らないと落ちてしまう。おれは毎夕60つかみ刈る。手の空いた者は鎌を持って来てくれ。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちる。鎌も十分にあるので刈り入れを進める"},"family":{"ヒセ4":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れは人手がいる。子の世話をしつつ camp で刈る"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器は得意で、草の種を虫やネズミから守れる"},"family":{"ヒセ4":{"activity":"畑仕事","place":"camp","why":"秋にまいた畑の草取りで実りが増える"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"冬は食べ物が実らないので、蓄えを守る土器を焼く"},"family":{"ヒセ4":{"activity":"畑仕事","place":"camp","why":"草取りをして来年の実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"道具づくり","place":"camp","with":[],"why":"鋭い石がたくさんあるので、夏の刈り入れに備えて鎌を作りためる"},"family":{"ヒセ4":{"activity":"畑仕事","place":"camp","why":"草取りで畑の実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,
+"knowledge":[{"op":"add","text":"夏の畑は実りが多い。今は刈れる畑が約434000つかみ残っていて、夏のうちに刈らないと落ちる。","because":[352219],"confidence":0.8}],
+"proposal":null,
+"votes":[],
+"year_name":"畑がたくさん実った年",
+"feeling":"畑がよく実った。落とさずに刈り切りたい。"}
