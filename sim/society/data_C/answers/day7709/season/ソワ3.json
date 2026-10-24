@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑は草取りが足りないと実りが減るから、手の空いた人は一緒に畑へ行こう。私も毎日行くよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りが足りないと夏の実りが減るので、毎日草取りをして実りを守りたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"}, "ソナ6": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人がいないとヤギがいなくなるので"}},
+ "keep": false,
+ "judge": {"M158": "ゆるす", "M159": "ゆるす", "M160": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T103": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春の草取りが多いほど夏の実りが増える", "because": [566383], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑がよく実るように、みんなと力を合わせて草取りをしたい。"}

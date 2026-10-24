@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑は草取りがものを言う。手の空いた人は一緒に畑に出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ4": {"activity": "畑仕事", "place": "camp", "why": "草取りは人手が多いほど実りが増えるから。"}, "キサ5": {"activity": "畑仕事", "place": "camp", "why": "みんなで草取りをして畑を実らせたい。"}, "ラニ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るから。"}},
+ "keep": false,
+ "judge": {"M158": "ゆるす", "M159": "ゆるす", "M160": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T103": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "穏やかな気持ちで、冬と春に実る畑を楽しみに草取りに励みたい。"}

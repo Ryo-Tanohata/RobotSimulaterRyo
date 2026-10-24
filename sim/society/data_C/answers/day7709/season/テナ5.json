@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまこう。冬と春の草取りに手を分ければ、夏はまた実る。私も毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。草取りの手が足りないと実りが減るので続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M158": "ゆるす", "M159": "ゆるす", "M160": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T103": {"side": "村", "利子": 0.1}},
+ "seal_store": false, "demand": null, "share": null,
+ "family": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種をまき、秋・冬・春に草取りを続けると、次の夏の実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "畑に種をまく秋は気持ちがいい。仲間と一緒に草取りをして、夏の実りを楽しみにしている"}

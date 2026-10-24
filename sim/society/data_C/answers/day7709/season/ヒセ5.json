@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "畑がひとつもないから、秋のうちにたっぷりまこう。冬と春の草取りに、手の空いた人は来てほしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がないので種をまき、冬と春の草取りで夏の実りを増やすため"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして夏の実りを守るため"}, "ルタ7": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ソワ7": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}},
+ "keep": false,
+ "judge": {"M158": "ゆるす", "M159": "ゆるす", "M160": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T103": {"side": "村", "利子": 0.1}}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめ、畑がなかったので草の種を多めにまいた。冬と春の草取りを続ける", "because": [566097], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑を育てるのが楽しみだ。蓄えは十分あるので落ち着いている。"}

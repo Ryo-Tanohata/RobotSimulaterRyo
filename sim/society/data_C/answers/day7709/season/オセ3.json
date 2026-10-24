@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑をまいたから、冬と春は草取りの手を切らさないようにしよう。私もキャンプの畑に通うよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えは十分あるので、畑の世話に手をかけたい"},
+ "sow": 1000, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから"},
+  "キサ6": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎて痩せるので、世話の手を切らさないため"},
+  "ソナ8": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも草取りの助けになる"}
+ },
+ "keep": false,
+ "judge": {"M158": "ゆるす", "M159": "ゆるす", "M160": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T103": {"side": "村", "利子": 0}},
+ "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと、次の夏に実る。冬と春は草取りが要る", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで落ち着いている。畑がよく実るよう、手を動かしたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋にまく草の種は蓄えがたっぷりあるから、畑をしっかりまこう。冬と春の草取りは、手の空いた人で分けて行こう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだ育っていないので、まず種をまき、草取りで来年の夏の実りを増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるので、一緒に働く"}},
+ "keep": false,
+ "judge": {"M158": "ゆるす", "M159": "ゆるす", "M160": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T103": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで安心している。畑をしっかり育てて、来年の夏に備えたい。"}

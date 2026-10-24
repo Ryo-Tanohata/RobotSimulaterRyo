@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは多い。秋のうちに畑へたっぷりまいて、冬と春は草取りに通おう。おれも畑に出る。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りの人手で実りが決まるので、まず畑に力を入れる"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M158": "ゆるす", "M159": "ゆるす", "M160": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T103": "村"},
+ "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を多くまき、冬と春に草取りに通うと、次の夏によく実る。", "because": [566383], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で心強い。畑を育てる秋になるのが楽しみだ。"}
