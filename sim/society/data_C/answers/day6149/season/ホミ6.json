@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまこう。草取りをみんなで分ければ、夏にまた実るよ。ぼくは毎日、畑で手伝う。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ホミ4", "リセ6"], "why": "秋にまいた畑は草取りで実りが増える。みんなの冬と春の食べ物のために手伝いたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M132": "ゆるす", "M133": "ゆるす", "M134": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T58": false}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、草取りをすると夏の実りが増える", "because": [358197], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L196", "against": "", "agree": true, "reason": "もめごとは早く収めて、みんなで仲よく暮らしたい"}, {"id": "L198", "against": "", "agree": true, "reason": "刈り残して落とすのはもったいない"}],
+ "feeling": "蓄えも木の実も十分あって安心。みんなで畑を守っていきたい。"}

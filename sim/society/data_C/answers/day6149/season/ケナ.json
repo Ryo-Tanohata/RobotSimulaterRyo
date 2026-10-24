@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、わたしは冬の前にまだ見ていない林の奥を歩いて、何が見つかるか確かめてくるよ。"}],
+ "job": {"activity": "探索", "place": "東林45", "with": [], "why": "蓄えは足りているので、まだ行ったことのない遠い林を見に行きたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソナ": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りが実りを増やすから"},
+  "シエ": {"activity": "採集", "place": "北川12", "why": "冬の前に魚や芋の場所を確かめておくため"},
+  "タユ2": {"activity": "畑仕事", "place": "camp", "why": "力仕事の草取りを手伝えるから"},
+  "テナ2": {"activity": "狩り", "place": "西草原12", "why": "狩りが得意で、西の草原にルクの群れがいるから"}
+ },
+ "keep": false,
+ "judge": {"M132": "ゆるす", "M133": "ゆるす", "M134": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T58": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種が約862000つかみあり、約245日分ある", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L171", "against": "", "agree": true, "reason": "ヤギが増えると草が足りなくなるから"},
+  {"id": "L198", "against": "", "agree": true, "reason": "刈り残して落とすのはもったいないから"},
+  {"id": "L196", "against": "", "agree": true, "reason": "もめごとは早く収めたほうがいいから"}
+ ],
+ "feeling": "蓄えがたっぷりあって安心。まだ見ぬ林を歩くのが楽しみだ。"}

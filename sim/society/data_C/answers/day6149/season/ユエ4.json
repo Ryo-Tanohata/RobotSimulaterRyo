@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "割れた鎌はわしが作り足す。夏の刈り入れで困らんようにしておくぞ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりが一番得意で、割れて減る鎌を夏の前に作りためておきたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ4": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをすると実りが増えるから"}},
+ "keep": true,
+ "judge": {"M132": "ゆるす", "M133": "ゆるす", "M134": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T58": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "鎌作りに打ち込めるのは悪くない。腕が鳴る。"}

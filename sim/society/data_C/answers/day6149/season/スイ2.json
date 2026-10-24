@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をしっかりまいて、冬と春は草取りを欠かさずやろう。蓄えはまだ十分あるから、あわてずにね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、草取りを続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ミラ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて実りを増やすため"}, "カイ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて実りを増やすため"}, "ナセ": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、小さい子のそばにも目が届くように"}},
+ "keep": true,
+ "judge": {"M132": "ゆるす", "M133": "ゆるす", "M134": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T58": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに畑へ草の種をまき、冬と春に草取りをすると、夏に多く実る。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも木の実も豊かで、落ち着いた気持ちで秋を迎えられる。"}

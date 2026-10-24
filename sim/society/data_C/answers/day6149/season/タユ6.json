@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のあいだ、私は木の実を集めるよ。冬の前に蓄えをふやそう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集が一番得意で、キャンプの木に実がついている秋のうちに木の実を集めて冬に備えたいから"},
+ "sow": 600, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"リセ6": {"activity": "採集", "place": "camp", "why": "採集が得意なので、一緒に木の実を集めて冬に備える"}},
+ "keep": false,
+ "judge": {"M132": "ゆるす", "M133": "ゆるす", "M134": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T58": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあって落ち着いている。体を動かして木の実を集めたい。"}

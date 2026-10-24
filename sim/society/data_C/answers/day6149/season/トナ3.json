@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "おれは秋のあいだ、粘土をこねて土器を焼く。草の種は器に入れておけば傷まない。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケナ3": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで、冬と春のあとの実りを増やすため"}},
+ "keep": false,
+ "judge": {"M132": "ゆるす", "M133": "ゆるす", "M134": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T58": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋は土器づくりをして、蓄えの草の種を土器に入れて守る", "because": [358232], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "ひとりで黙々と土器を作っていたい。"}
