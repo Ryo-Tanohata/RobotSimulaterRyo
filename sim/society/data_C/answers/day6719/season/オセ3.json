@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈り切ろう。落ちたら一粒ももったいないからね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"セヤ3": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が多いほど早く終わるから"}, "ナセ3": {"activity": "ヤギの世話", "place": "camp", "why": "乳がとれる季節で、子の世話とも合わせやすいから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れると草の種が傷みにくく、わたしは土器づくりが得意だから"}, "family": {"セヤ3": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りが増えるから"}, "ナセ3": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は外の実りがないので、蓄えを守る土器を作る"}, "family": {"セヤ3": {"activity": "畑仕事", "place": "camp", "why": "冬も草取りをすると来年の実りが増えるから"}, "ナセ3": {"activity": "畑仕事", "place": "camp", "why": "草取りの時間をみんなで分けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は割れるので、作り足して蓄えを守る"}, "family": {"セヤ3": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れ前の最後の草取りのため"}, "ナセ3": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれて乳もとれるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ロワ9": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T76": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を毎日刈らないと落ちてしまう。秋にまいた畑は冬と春の草取りで実りが増える", "because": [423653], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がたくさん実った年",
+ "feeling": "畑がよく実ってうれしい。今年も土器をたくさん焼いて、みんなの蓄えを守りたい。"}
