@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋はおれも畑に種をまいて、冬のあいだ草取りに通うよ。"}, {"to": "テナ12", "text": "いっしょに畑の草取りをしよう。夏の実りが増えるはずだ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["テナ12"], "why": "秋にまいた畑は草取りをするほど夏の実りが増えると覚えているから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"テナ12": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守るため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "食べ物に困らず落ち着いている。畑仕事をがんばろう。"}

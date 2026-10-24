@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "畑がないままだと夏に刈るものがない。蓄えの草の種をまいて、冬と春は草取りを欠かさずやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが3割に減る。まいた分を育てたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ2": {"activity": "畑仕事", "place": "camp", "why": "採集が得意なので、畑の草取りを手伝ってもらう"},
+  "ワユ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "アコ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "セヤ8": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑がまだないので、種をまいて夏に備えたい。草取りは地道だが、やってみよう。"}
