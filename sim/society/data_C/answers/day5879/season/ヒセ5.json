@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑がたくさん実っている。夏のうちに落とさず刈ろう。わたしは毎日刈るよ。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑を夏のうちに刈らないと落ちてしまうから"},"family":{"ロワ5":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やすため"},"ヌオ5":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"}},"pick":20,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"道具づくり","place":"camp","with":[],"why":"鋭い石がたくさんあり、鎌を作れば来年の刈り入れが早く進むから"},"family":{"ロワ5":{"activity":"畑仕事","place":"camp","why":"まいた畑の草取りで実りを増やす"},"ヌオ5":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"道具づくり","place":"camp","with":[],"why":"冬は実りがないので、キャンプで石の鎌を作りためる"},"family":{"ロワ5":{"activity":"畑仕事","place":"camp","why":"畑の草取りで実りを守る"},"ヌオ5":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の実りを増やすため草取りをする"},"family":{"ロワ5":{"activity":"畑仕事","place":"camp","why":"草取りの人手を増やす"},"ヌオ5":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":true,"seal_store":[],
+"accept":{"オセ7":true,"リセ7":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"畑が実りあふれた年",
+"feeling":"蓄えは十分で安心している。刈り入れと草取りをしっかりやりたい。"}
