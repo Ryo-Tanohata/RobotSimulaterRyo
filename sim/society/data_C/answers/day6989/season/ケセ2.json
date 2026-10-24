@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をまいたら、みんなで草取りに出よう。わたしも毎日行くよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ラキ3", "セオ3", "ヌオ4"], "why": "草取りが足りないと夏の実りが減るので、秋から手を貸す"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなで進めるため"}, "セオ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなで進めるため"}, "ヌオ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなで進めるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T84": false, "T85": false, "T86": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって安心。来年の夏の実りのために、しっかり働きたい。"}

@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "今年の秋はわたしも畑にまいて、冬と春の草取りに通うよ。夏に刈り残さないように、手の空いた人はいっしょに畑に出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると夏の実りが増えるので、季節の終わりまで畑に通う"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "セオ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるので手伝う"},
+  "ラキ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるので手伝う"},
+  "シエ5": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りで半分の働きができる"},
+  "ユエ5": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りで半分の働きができる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T84": false, "T85": false, "T86": false},
+ "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "畑の草取りは、まいた種の量に合わせた時間だけすれば実りが満たされる。人手を集めると早く済む", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L171", "agree": true, "reason": "ヤギが草で養える数を超えているので、これ以上増やさないほうがよい"},
+  {"id": "L201", "agree": true, "reason": "草取りが足りないと夏の実りが減るので、毎日交代で受け持つのがよい"},
+  {"id": "L204", "agree": true, "reason": "雨の夜に外で濡れる人を減らすため、みんなで住まいを建てるのはよい"}
+ ],
+ "feeling": "満腹で元気。畑をまいて草取りに通うのが楽しみだ。"}

@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑は草取りで実りが増えるよ。わたしは毎日畑の草取りに出るから、手のあいた人もいっしょにどうだい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると夏のはじめに多く実る。蓄えは十分あるので畑の世話に力を入れる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ4": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないと実りが減るので、いっしょに畑を世話する"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T84": false, "T85": false, "T86": false},
+ "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまき、秋冬春に草取りを続けると、夏のはじめに多く実る。草取りの人が少ないと実りが減る。", "because": [462781, 462878, 462975], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑の草取りは慣れた仕事で落ち着く。夏の実りが楽しみだ。"}

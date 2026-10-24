@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の畑にまく種は、蓄えがたっぷりあるから、わたしがまず1000つかみまいておくよ。冬と春の草取りは、手の空いた人もいっしょにお願い。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ラキ2"], "why": "秋にまく畑を夏に実らせるには草取りが要る。蓄えは十分あるので、畑を育てて来年に備えたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ラキ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから、いっしょに働いてもらう"}, "セオ5": {"activity": "畑仕事", "place": "camp", "why": "12歳なので半人前の働きで草取りを手伝ってもらう"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T84": false, "T85": false, "T86": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種が約448日分あり、土器も十分にある。今は食べ物より畑の草取りの人手が大切だ", "because": [463069], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。畑がよく実るよう、しっかり草取りをしたい。"}

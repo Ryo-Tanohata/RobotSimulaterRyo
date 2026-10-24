@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、冬のあいだの草取りも手を抜かずにやろう。わたしは畑に立つよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["シエ"], "why": "秋にまいた畑は草取りが足りないと実りが減るので、草取りを続けて夏の実りを増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手がいるので、いっしょに働く"},
+            "タユ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合って、実りを守る"},
+            "ワユ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合って、実りを守る"},
+            "ラニ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合って、実りを守る"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T84": false, "T85": false, "T86": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた草の種の畑は、草取りをしないと実りが3割まで減る。秋・冬・春の草取りが大事。", "because": [462981], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑の草取りに精を出して、夏にまた実りを迎えたい。"}
