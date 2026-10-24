@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑へ草の種をまいて、冬と春のあいだ草取りを欠かさずやろう。わたしも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ムイ4"], "why": "秋にまいた畑は草取りをすると実りが増える。人手が少ないと減るので、手の空いたわたしが続ける。"},
+ "sow": 1000, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ムイ4": {"activity": "畑仕事", "place": "camp", "why": "草取りは人が多いほど早く終わる。子たちの近くのキャンプで働ける。"}},
+ "keep": false,
+ "judge": {"M128": "ゆるす", "M129": "ゆるす", "M130": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、草取りをすれば夏に実りが増える。ホタ4の家は今季、草の種を1000つかみまいた。", "because": [344305], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L189", "against": "", "agree": true, "reason": "小さい子をひとりにしないことは大事だと思う。"},
+           {"id": "L196", "against": "", "agree": true, "reason": "もめごとは早く収めたほうが村のためになる。"},
+           {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのでヤギを増やさないほうがいい。"}],
+ "feeling": "木の実も蓄えもあって落ち着いている。冬に向けて畑をしっかり育てたい。"}

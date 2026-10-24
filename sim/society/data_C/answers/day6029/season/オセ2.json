@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋だ、畑に種をまく時だ。うちの家は三人とも畑に出て、冬と春の草取りまでしっかりやる。夏にたくさん刈れるよう、手の空いた者はいっしょに畑に来てくれ。"}, {"to": "ヒセ5", "text": "前の刈り入れのことは、もう水に流すよ。草の種も少しだったし、また畑でいっしょに働こう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キサ2", "セヤ2"], "why": "秋にまいた畑は草取りをするほど夏の実りが増えるから、続けて畑を見る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "family": {"キサ2": {"activity": "畑仕事", "place": "camp", "why": "まく量が多いので草取りの手がいる"}, "セヤ2": {"activity": "畑仕事", "place": "camp", "why": "前に畑の草の種を集めると言っていたし、草取りで実りを増やせる"}}, "keep": false,
+ "judge": {"M128": "ゆるす", "M129": "ゆるす", "M130": "ゆるす"}, "feast": true, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "前の季節、草が足りずヤギ19頭がやせていなくなった。今は177頭で、草で養えるのは約140頭", "because": [344538], "confidence": 0.9}, {"op": "add", "text": "ネム2 (51 歳) が病で亡くなった", "because": [344542], "confidence": 1.0}],
+ "proposal": {"text": "草で養えるヤギ (約140頭) より多いあいだは、季節のはじめに、草で養えない分を村で肉にして干し、村の蓄えに入れよう。やせていなくなるより、みんなの食べ物になる。", "because": [344538], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L188", "against": "", "agree": true, "reason": "南川12はすぐそばで、一人でも危なくない"},
+  {"id": "L191", "against": "", "agree": true, "reason": "ヤギがやせていなくなるのを止めたい"},
+  {"id": "L192", "against": "", "agree": true, "reason": "似た掟をまとめるのはよい"},
+  {"id": "L193", "against": "", "agree": true, "reason": "ヤギが多すぎるあいだは肉にしたほうがいい"},
+  {"id": "L194", "against": "", "agree": true, "reason": "やせていなくなるより食べ物になる"},
+  {"id": "L195", "against": "", "agree": true, "reason": "ヤギの掟を一つにまとめられる"},
+  {"id": "L196", "against": "", "agree": true, "reason": "もめごとで家が出ていくのは村の損だ"}],
+ "feeling": "畑に種をまいて、夏の実りが楽しみだ。もめごとは早く収めて、みんなで仲よくやりたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をまいたら、冬と春の草取りをみんなで分けよう。わたしも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、冬の前から手を入れておきたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが守れるから"}, "ヌオ5": {"activity": "畑仕事", "place": "camp", "why": "採集が苦手なので、キャンプで草取りを手伝う"}},
+ "keep": true,
+ "judge": {"M128": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春の草取りで夏の実りが増える。今年も秋のはじめに種をまいた", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "子も増えて賑やかになった。畑と木の実で冬を越せそうで、少し安心している。"}

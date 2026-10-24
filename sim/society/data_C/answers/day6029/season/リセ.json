@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "木の実も草の種もたっぷりある。もめごとは「ゆるす」で収めて、冬にそなえて畑に種をまこう。ヤギはこれ以上いらないよ。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集は得意で、キャンプのそばの木の実を集めれば冬の前の蓄えが増えるから"}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M128": "ゆるす", "M129": "ゆるす", "M130": "ゆるす"}, "feast": false, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種は約 898812 つかみあり、土器も 9546 個あるので、今は食べ物に困らない。", "because": [344544], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L196", "against": "", "agree": true, "reason": "収まらないまま家が村を出るより、ゆるして仲良く暮らすほうがいいから"}, {"id": "L171", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないから"}],
+ "feeling": "蓄えもたっぷりあって安心。みんなで冬を穏やかに越したい。"}

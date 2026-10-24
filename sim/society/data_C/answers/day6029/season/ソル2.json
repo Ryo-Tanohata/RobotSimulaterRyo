@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋の種まきをしたら、冬までのあいだ畑の草取りは俺がやる。手の空いた人は一緒に来てくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが3割になってしまう。採集が得意な手で草を取り、夏の実りを増やしたい。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "family": {"ソワ2": {"activity": "畑仕事", "place": "camp", "why": "12歳なので半分の働きで草取りを手伝う。"}},
+ "judge": {"M128": "ゆるす", "M129": "ゆるす", "M130": "ゆるす"}, "feast": false, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を1000つかみまいた。冬と春の草取りをしないと実りが減る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるし、畑の草取りを地道にやって夏の実りを楽しみにしたい。"}

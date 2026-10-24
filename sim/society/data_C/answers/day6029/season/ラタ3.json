@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をまいて、冬のあいだは草取りをしよう。もめごとはゆるして、みんなで祭りをして仲直りしたいな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすると実りが増える。みんなの食べ物のために続けたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ネム3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、いっしょに働いてほしい"}, "ソワ": {"activity": "畑仕事", "place": "camp", "why": "草取りを分けて、畑の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M128": "ゆるす", "M129": "ゆるす", "M130": "ゆるす"},
+ "feast": true, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめにまいた草の種は、冬と春の草取りで実りが増える", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L196", "against": "", "agree": true, "reason": "もめごとは早く収めたほうが村みんなのためになる"}],
+ "feeling": "畑がよく実って、みんなが穏やかに冬を越せるよう願っている"}

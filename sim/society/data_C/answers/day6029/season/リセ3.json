@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をまいて、冬と春のあいだ草取りをしよう。そうすれば夏にたくさん刈れるよ。"}, {"to": "ヒセ3", "text": "わたしと一緒に畑の草取りをしよう。子どもたちのためにも、夏の実りを増やしたいんだ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ヒセ3"], "why": "秋にまいた畑は草取りをすると実りが増えるので、草取りを続けて夏の刈り入れを大きくしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ3": {"activity": "畑仕事", "place": "camp", "why": "草取りを二人でやれば畑の実りが増え、家の子どもたちの食べ物も安心だから"}},
+ "keep": false,
+ "judge": {"M128": "ゆるす", "M129": "ゆるす", "M130": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまく草の種は、草取りの時間が足りないと実りが減る。畑仕事をする人を増やすのが大事だ。", "because": [344293], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L195", "against": "", "agree": true, "reason": "草が足りないので、ヤギを減らすのは村みんなのためになる"}, {"id": "L196", "against": "", "agree": true, "reason": "もめごとが長引くより、ゆるして収めるほうがよい"}],
+ "feeling": "畑の草取りを続けて、夏に大きな実りを迎えたい。"}

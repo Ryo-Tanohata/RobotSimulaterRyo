@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "土器はもう蓄えの何倍も入るほどある。この秋は畑に種をまいて、草取りに手を回したほうがいいと思う。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "土器は足りているので、まいた畑の草取りをして次の夏の実りを増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M128": "ゆるす", "M129": "ゆるす", "M130": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "村の土器は 9546 個あり、蓄えの草の種の何倍も入る。土器づくりより畑の手が要る。", "because": [344544], "confidence": 0.8},
+  {"op": "add", "text": "ヤギは草で養える数より多く、前の季節に 19 頭がやせていなくなった。", "because": [344538], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L188", "against": "", "agree": true, "reason": "南川12 はキャンプのすぐそばなので、一人でもあぶなくない"},
+  {"id": "L191", "against": "春まで待つと、その間にヤギがやせていなくなる", "agree": false, "reason": "L195 にまとめるほうがよい"},
+  {"id": "L192", "against": "L195 と同じことで、重なる", "agree": false, "reason": "一つにまとめたい"},
+  {"id": "L193", "against": "L195 と同じことで、重なる", "agree": false, "reason": "一つにまとめたい"},
+  {"id": "L194", "against": "夏はもう過ぎている", "agree": false, "reason": "L195 にまとめるほうがよい"},
+  {"id": "L195", "against": "", "agree": true, "reason": "毎季節やせていなくなるより、肉にして蓄えたほうが無駄がない"},
+  {"id": "L196", "against": "", "agree": true, "reason": "わずかな量のもめごとで家が出ていくのは損だから"}
+ ],
+ "feeling": "静かに畑の草を取っていたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "おれは秋のあいだ、手を動かして鎌を作る。割れた分はおれが埋めてやる。ヤギは増やすな、草が足りん。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりが一番得意で、鎌は割れて減るので作りためておけば夏の刈り入れが止まらない"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ4": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、近い草原で食べ物を集めてもらう"}},
+ "keep": true,
+ "judge": {"M128": "ゆるす", "M129": "ゆるす", "M130": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽い。手を動かしていれば機嫌がいい。"}

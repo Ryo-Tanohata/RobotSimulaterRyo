@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。この秋は畑にしっかりまいて、冬と春のあいだも草取りを欠かさずやろう。わたしも畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がなく、秋にまく草の種を実らせるには、育つあいだの草取りが大事だから"},
+ "sow": 1000, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ソナ": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手が要るから"},
+  "シエ": {"activity": "畑仕事", "place": "camp", "why": "若くて力があり、草取りが進むから"},
+  "タユ2": {"activity": "畑仕事", "place": "camp", "why": "採集や狩りは苦手なので、草取りを手伝ってもらう"},
+  "テナ2": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも草取りの助けになる"},
+  "ワユ2": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも草取りの助けになる"}
+ },
+ "keep": false,
+ "judge": {"M128": "ゆるす", "M129": "ゆるす", "M130": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋に草の種をまくと夏に実る。育つあいだの草取りが少ないと実りが減る。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L196", "agree": true, "reason": "もめごとは早くゆるして収めたほうが、村を出る家が出なくてすむ"},
+  {"id": "L195", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして蓄えに入れるのがよい"}
+ ],
+ "feeling": "蓄えは豊かで落ち着いている。畑がうまく実るといいな。"}

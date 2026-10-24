@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬と春は草取りを欠かさずやろう。刈り入れは夏の初めに鎌でそろえて進めたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすると実りが増える。冬と春の蓄えのために手をかけたい"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {"ミラ3": {"activity": "畑仕事", "place": "camp", "why": "草取りを分け合えば畑の実りが増える"}, "カイ3": {"activity": "畑仕事", "place": "camp", "why": "草取りを分け合えば畑の実りが増える"}, "ナセ": {"activity": "畑仕事", "place": "camp", "why": "子のそばで、キャンプで働ける仕事がよい"}},
+ "keep": true,
+ "judge": {"M128": "ゆるす", "M129": "ゆるす", "M130": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T56": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、冬と春に草取りをすると、夏のはじめに実る", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にある。畑を育てて、みんなで穏やかに冬を迎えたい"}
