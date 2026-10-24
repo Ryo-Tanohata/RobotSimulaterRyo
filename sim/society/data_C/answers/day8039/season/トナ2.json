@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑が落ちる前に、わたしも毎夕刈りに出る。見たことのない場所も、冬までに少し覗いてみたい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が山ほどあり、落とすのは惜しいので刈り入れに回る"}, "family": {"ラニ2": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "ワユ5": {"activity": "畑仕事", "place": "camp", "why": "刈り手が足りないので手伝う"}, "アコ6": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "セヤ8": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが要るので続ける"}, "family": {"ラニ2": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ワユ5": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "アコ6": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "セヤ8": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "探索", "place": "北川12", "with": [], "why": "冬は魚が取れる川を確かめ、まだ知らない場所を見てみたい"}, "family": {"ラニ2": {"activity": "畑仕事", "place": "camp", "why": "冬も草取りを続けるため"}, "ワユ5": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "アコ6": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "セヤ8": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りを守るため春も草取りをする"}, "family": {"ラニ2": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ワユ5": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "アコ6": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "セヤ8": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ホタ13": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T114": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏のはじめに実った畑は六十万つかみほどあり、刈り手が多くないと落ちる", "because": [617729], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えは十分あるので落ち着いている。刈り入れが終わったら、知らない場所を見に行きたい。"}
