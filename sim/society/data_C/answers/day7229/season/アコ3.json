@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をまいたら、冬と春の草取りに毎日通おう。手が空いたら声をかけてね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると夏の実りが増える。去年と同じく通って、実りを守りたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"リセ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要る。いっしょに通って実りを増やす"}, "ネイ5": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って、畑のやり方を覚える"}},
+ "keep": false,
+ "judge": {"M148": "ゆるす"}, "feast": false, "leader": null, "trade": {"T94": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまいた畑は、秋・冬・春の草取りで夏の実りが増える。今年も通う", "because": [496330], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L201", "against": "", "agree": true, "reason": "草取りが足りないと夏の実りが減るから"}, {"id": "L205", "against": "", "agree": true, "reason": "冬と春も草取りを続けたほうが実りが増えるから"}, {"id": "L196", "against": "", "agree": true, "reason": "もめごとは早く収めたほうが村のためになるから"}],
+ "feeling": "畑も木も育っていて安心。子どもたちと冬をこせるよう、こつこつ働きたい。"}

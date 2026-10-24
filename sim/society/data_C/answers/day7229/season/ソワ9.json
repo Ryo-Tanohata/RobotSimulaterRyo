@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑は草取りの手が足りないと実りが減る。冬のあいだも、手の空いた者は声をかけ合って、順に畑に出よう。俺も毎日出る。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。みんなのために毎日働く"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M148": "ゆるす"}, "feast": true, "leader": null, "trade": {"T94": false}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、草取りをする人が多いほど夏の実りが増える", "because": [496607], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L201", "against": "", "agree": true, "reason": "草取りが足りないと実りが減るから"},
+           {"id": "L205", "against": "", "agree": true, "reason": "冬も春も草取りを続けたいから"},
+           {"id": "L196", "against": "", "agree": true, "reason": "もめごとは早く収めて仲良く暮らしたい"}],
+ "feeling": "雨の夜は外で濡れて疲れているが、みんなで畑を守って冬をこえたい"}

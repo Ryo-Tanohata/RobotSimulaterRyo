@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "今年は畑がない。蓄えはたっぷりあるから、種をまいて来年の夏に備えよう。草取りは俺もやる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが減る。蓄えは足りているので、畑を育てる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケナ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って、実りを守るため"}},
+ "keep": false,
+ "judge": {"M148": "ゆるす"}, "feast": false, "leader": null, "trade": {"T94": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "疲れは残るが、蓄えは多く冬は越せそうだ。畑を育てるのに励む。"}

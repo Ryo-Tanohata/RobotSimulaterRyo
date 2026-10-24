@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑をまいたら、冬と春の草取りを分けてやろう。うちの家族は畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は冬と春の草取りで実りが決まる。蓄えは多いが、来年の夏の実りを守りたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "セオ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど早く済むから"},
+  "ラキ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど早く済むから"},
+  "シエ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど早く済むから"},
+  "ユエ5": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝えるから"},
+  "ナセ6": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝えるから"}
+ },
+ "keep": false,
+ "judge": {"M148": "ゆるす"}, "feast": false, "leader": null, "trade": {"T94": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりある。畑をしっかりまいて、家族みんなで冬を迎えたい。"}

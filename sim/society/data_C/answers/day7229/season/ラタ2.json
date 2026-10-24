@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋にまく草の種は一人千つかみずつにしよう。冬と春の草取りを手分けすれば、夏にまた刈り切れる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りの時間で夏の実りが増えるから、続けて草取りをする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを守る"}, "ソナ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを守る"}},
+ "keep": false,
+ "judge": {"M148": "ゆるす"}, "feast": false, "leader": null, "trade": {"T94": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を一人千つかみまで畑にまき、冬と春に草取りをすると夏の実りが増える。", "because": [496607], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "満腹で体は元気。畑を育てて、また夏に刈り切りたい。"}

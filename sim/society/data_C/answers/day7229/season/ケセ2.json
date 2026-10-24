@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、冬と春は交代で草取りに出よう。わたしも毎日出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが足りないと実りが減る。蓄えを守るために毎日草取りをする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラキ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やして、夏の実りを守るため"},
+  "セオ3": {"activity": "畑仕事", "place": "camp", "why": "狩りや採集が得意ではないので、畑の草取りで役に立つため"},
+  "ヌオ4": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚や肉を家族と村の食べ物にするため"},
+  "リセ5": {"activity": "採集", "place": "南川12", "why": "採集が得意で、近い川で食べ物を集められるため"}
+ },
+ "keep": false,
+ "judge": {"M148": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T94": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L201", "against": "", "agree": true, "reason": "草取りが足りないと実りが減るので賛成"},
+  {"id": "L205", "against": "", "agree": true, "reason": "冬と春も草取りを続けるべきだから賛成"},
+  {"id": "L196", "against": "", "agree": true, "reason": "もめごとは早く収めて、村を出る家を出したくない"}
+ ],
+ "feeling": "体は元気。畑に種をまいて、冬の前に仲間と力を合わせられるのが楽しみだ。"}

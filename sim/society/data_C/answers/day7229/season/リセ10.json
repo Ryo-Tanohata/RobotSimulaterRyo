@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ぼくの家はまだないので、この秋は自分の住まいを建てることにするよ。雨の夜に外で濡れるのはつらいから。手が空いた人がいたら、少し手伝ってもらえるとうれしい。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": [], "build": "家族の住まい", "why": "自分の家の住まいがなく、雨の夜に外で濡れて疲れがとれないので、まず住まいを建てる"}, "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M148": "ゆるす"}, "feast": false, "leader": null, "trade": {"T94": false}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "雨の夜に外で濡れると疲れがとれないので、自分の家の住まいを建てれば体を休められる", "because": [496632], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L204", "against": "", "agree": true, "reason": "住まいのない家が雨の夜に濡れないよう、みんなで手伝うのは良いことだから"}, {"id": "L211", "against": "", "agree": true, "reason": "建てかけの家を仕上げれば村の住まいの混みあいが減るから"}],
+ "feeling": "疲れているけれど、自分の住まいができれば雨の夜も休めるので、がんばって建てたい。"}
