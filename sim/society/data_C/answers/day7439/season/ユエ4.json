@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑が落ちる前に、わしは毎夕刈るぞ。鎌は千本をこえてある。ヤギも多すぎるから、手をあげた者から肉にして干そう。"}],
+"year": {
+"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちる。鎌は足りているので刈り入れに回る"}, "family": {"ホミ4": {"activity": "畑仕事", "place": "camp", "why": "畑を落とさないよう刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 100},
+"秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをして、夏の実りを増やす"}, "family": {"ホミ4": {"activity": "採集", "place": "西草原12", "why": "木の実や草の実を集めて冬に備える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+"冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬のあいだも草取りを続けて実りを守る"}, "family": {"ホミ4": {"activity": "採集", "place": "北川12", "why": "冬は魚と芋が頼りなので川で採る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+"春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れの前に、割れた鎌を作りためておく"}, "family": {"ホミ4": {"activity": "採集", "place": "西草原12", "why": "春の食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+"keep": false, "seal_store": [],
+"accept_rule": {"よその群れ": null, "ほかの村から": null},
+"judge_rule": "ゆるす", "feast": [], "leader": null,
+"trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+"knowledge": [],
+"proposal": null,
+"votes": [],
+"year_name": "畑を刈った年",
+"feeling": "刈り入れは腕の見せどころだ。鎌も土器も足りている。あとは畑を落とさず刈るだけだ。"}

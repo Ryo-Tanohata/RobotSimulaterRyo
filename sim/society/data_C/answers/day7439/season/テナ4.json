@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑が落ちる前に、手の空いた人はみんなで毎夕刈ろう。わたしも毎日畑に立つよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ラニ4"], "why": "実った畑を落とさず刈り切るため"}, "family": {"ラニ4": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れで畑を落とさないため"}, "ハソ5": {"activity": "畑仕事", "place": "camp", "why": "手が多いほど早く刈り切れる"}, "ロワ6": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手伝い"}, "オネ6": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝える"}, "ケナ7": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ラニ4"], "why": "秋にまいた畑の世話と刈り残しの片づけ"}, "family": {"ラニ4": {"activity": "畑仕事", "place": "camp", "why": "草取りで冬と春の実りを増やす"}, "ハソ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が要る"}, "ロワ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が要る"}, "オネ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ケナ7": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ラニ4"], "why": "草取りが足りないと夏の実りが減る"}, "family": {"ラニ4": {"activity": "畑仕事", "place": "camp", "why": "冬も草取りを続ける"}, "ハソ5": {"activity": "畑仕事", "place": "camp", "why": "冬も草取りを続ける"}, "ロワ6": {"activity": "畑仕事", "place": "camp", "why": "冬も草取りを続ける"}, "オネ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ケナ7": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ラニ4"], "why": "夏の実りのため草取りを続ける"}, "family": {"ラニ4": {"activity": "畑仕事", "place": "camp", "why": "春も草取りを続ける"}, "ハソ5": {"activity": "畑仕事", "place": "camp", "why": "春も草取りを続ける"}, "ロワ6": {"activity": "畑仕事", "place": "camp", "why": "春も草取りを続ける"}, "オネ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ケナ7": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は十万つかみをこえて実っている。毎夕みんなで刈らないと落ちてしまうので、わたしの家も畑仕事に回る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "畑がたっぷり実っていてありがたい。みんなで落とさず刈り切りたい。"}
