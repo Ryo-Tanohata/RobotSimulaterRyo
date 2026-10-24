@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "オセ7がいなくなって、この家はわたしが見る。小さい子が四人いるから、畑はしっかりまいて、草取りもわたしがやるよ。"}, {"to": "みんな", "text": "刈った分がうちの倉に入ったもめごとは、ほんの少しの量だ。ゆるして、早く収めてしまおう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど実りが増える。土器も鎌も村に十分あるから、畑に手をかけたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M139": "ゆるす", "M140": "ゆるす", "M141": "ゆるす"},
+ "feast": true, "leader": null, "trade": {"T66": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "オセ7が病で亡くなり、わたしがオセ7の家の代表になった。子が四人いる", "because": [386057], "confidence": 1.0}, {"op": "add", "text": "よその家の人がうちの畑で刈ると、うちの倉に入り、もめごとになる", "because": [386061, 386063], "confidence": 0.8}, {"op": "add", "text": "世話をする人が少ないと、ヤギは一度に何十頭もいなくなる", "because": [386049], "confidence": 0.9}],
+ "proposal": {"text": "秋にまいた畑の草取りを、毎日交代で三人ずつ受け持とう。草取りが足りないと、夏の実りが3割まで減ってしまうから。", "because": [386049], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L188", "against": "", "agree": true, "reason": "南川12はキャンプのすぐそばで、一人でも行ける"},
+  {"id": "L191", "against": "春まで待つと、その前にやせていなくなる", "agree": false, "reason": "L197のほうがよい"},
+  {"id": "L192", "against": "季節を決めずに、季節のはじめに肉にするほうがよい", "agree": false, "reason": "L197のほうがよい"},
+  {"id": "L193", "against": "家ごとに少しずつだと、減らす数がはっきりしない", "agree": false, "reason": "L197のほうがはっきりしている"},
+  {"id": "L194", "against": "もう夏は過ぎた", "agree": false, "reason": "季節が合わない"},
+  {"id": "L195", "against": "", "agree": true, "reason": "ヤギの多い家から肉にするのは筋が通る"},
+  {"id": "L196", "against": "", "agree": true, "reason": "少しの量で家が出ていくのは村の損だ"},
+  {"id": "L197", "against": "", "agree": true, "reason": "やせていなくなるより、肉にして食べたほうがよい"},
+  {"id": "L198", "against": "", "agree": true, "reason": "刈り残して落とすのはもったいない"},
+  {"id": "L199", "against": "", "agree": true, "reason": "世話が足りずに29頭もいなくなった"},
+  {"id": "L200", "against": "", "agree": true, "reason": "わたしが出した。土器はもう十分にある"}
+ ],
+ "feeling": "オセ7を亡くしてつらいが、子どもたちのために、わたしがこの家を引っぱっていく。"}

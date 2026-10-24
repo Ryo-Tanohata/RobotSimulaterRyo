@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬と春は草取りを手分けしよう。蓄えはたっぷりあるから、北の村14にも貸してあげたいな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、道具に慣れた手で毎日手伝う"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"トナ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから"}, "ラニ2": {"activity": "畑仕事", "place": "camp", "why": "狩りはまだ得意でないので、畑の草取りで村の役に立つ"}},
+ "keep": false,
+ "judge": {"M139": "ゆるす", "M140": "ゆるす", "M141": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T66": {"side": "村", "利子": 0}},
+ "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。みんなと畑を育てるのが楽しみだ。"}

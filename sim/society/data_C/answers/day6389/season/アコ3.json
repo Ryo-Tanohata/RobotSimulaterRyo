@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑にまく種はたっぷりあるよ。わたしは畑の草取りを毎日するから、手の空いた人は一緒にやろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は、草取りの時間で実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M139": "ゆるす", "M140": "ゆるす", "M141": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T66": {"side": "村", "利子": 0.1}},
+ "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた草の種の畑は、秋・冬・春の草取りで実りが増える。今年も草取りに通う", "because": [385990], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L200", "against": "", "agree": true, "reason": "夏に畑を落とさず刈り切るのは大事だから"}],
+ "feeling": "お腹はいっぱいで元気。畑の世話をして冬に備えたい。"}

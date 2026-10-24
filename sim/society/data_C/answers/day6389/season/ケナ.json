@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいておこう。草取りをする人が少ないと実りが減るから、わたしも畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えは十分あるが、まいた畑は草取りをしないと実りが減るので、手が空いているわたしが畑を見る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソナ": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りも上手だが、畑の草取り人手を増やすため"},
+  "シエ": {"activity": "狩り", "place": "北川12", "why": "狩りが得意で、魚や肉を取って食べ物を増やせる"},
+  "タユ2": {"activity": "畑仕事", "place": "camp", "why": "まだ慣れていないので、キャンプの畑で草取りを覚える"},
+  "テナ2": {"activity": "狩り", "place": "北川12", "why": "狩りの腕が確かで、シエと二人で川へ行ける"},
+  "ワユ2": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減らないよう、キャンプで世話をする"}},
+ "keep": false,
+ "judge": {"M139": "ゆるす", "M140": "ゆるす", "M141": "ゆるす"}, "feast": false, "leader": null, "trade": {"T66": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで落ち着いている。今年も畑がよく実るといい。"}
