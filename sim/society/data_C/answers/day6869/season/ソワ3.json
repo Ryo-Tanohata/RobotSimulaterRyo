@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたくさん種をまいて、冬のあいだも草取りを交代でやろうね。わたしも毎日畑に出るよ。"}, {"to": "キオ4", "text": "いっしょに畑の草取りをしよう。わからないところは教えるね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キオ4"], "why": "畑は草取りが足りないと実りが減る。蓄えは多いので、みんなの役に立てる畑仕事をする"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ネイ9": true}, "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "わたしといっしょに畑の草取りをして、夏の実りを増やすため"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T81": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "困っている村を助けられるし、みんなで畑を育てるのが楽しみ。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまくぞ。冬のあいだの草取りも、おれがやる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが3割に減る。鎌も土器も足りているので畑を守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ9": true},
+ "family": {"ホミ4": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど夏の実りが増えるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T81": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春の草取りで実りが増える。草取りが少ないと実りが減る", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にある。畑をしっかり育てて、夏にまた刈り切りたい。"}

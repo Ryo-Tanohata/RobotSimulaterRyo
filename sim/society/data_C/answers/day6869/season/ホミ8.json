@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑は冬と春の草取りで実りが決まる。おれは毎日畑に出る。手の空いた者は来てくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、毎日畑に出る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ9": true},
+ "family": {"ラキ9": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないと実りが減るので、いっしょに畑に出る"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T81": {"side": "村", "利子": 0.1}}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春の草取りの時間が足りないと実りが3割まで減る", "because": [446734], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にある。あとは畑を実らせるだけだ。"}
