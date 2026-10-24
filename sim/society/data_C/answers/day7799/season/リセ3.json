@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑は残りが多い。鎌を持って毎夕60つかみずつ刈ろう。秋にまいたら、冬と春は草取りの手を切らさずに出そう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":["オセ5"],"why":"実った畑は夏のうちに刈らないと落ちるので、毎夕刈る"},"family":{"オセ5":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やす"},"ナセ5":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やす"},"セヤ6":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やす"},"トナ7":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やす"},"ワユ7":{"activity":"畑仕事","place":"camp","why":"子も刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":["オセ5"],"why":"まいた畑の草取りと刈り入れを進める"},"family":{"オセ5":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ナセ5":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"セヤ6":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"トナ7":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ワユ7":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":5,"harvest":60,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":["オセ5"],"why":"草取りがないと実りが3割になるので続ける"},"family":{"オセ5":{"activity":"畑仕事","place":"camp","why":"草取りの人手を出す"},"ナセ5":{"activity":"畑仕事","place":"camp","why":"草取りの人手を出す"},"セヤ6":{"activity":"畑仕事","place":"camp","why":"草取りの人手を出す"},"トナ7":{"activity":"畑仕事","place":"camp","why":"草取りの人手を出す"},"ワユ7":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":["オセ5"],"why":"夏の実りのため草取りを続ける"},"family":{"オセ5":{"activity":"畑仕事","place":"camp","why":"草取りの人手を出す"},"ナセ5":{"activity":"畑仕事","place":"camp","why":"草取りの人手を出す"},"セヤ6":{"activity":"畑仕事","place":"camp","why":"草取りの人手を出す"},"トナ7":{"activity":"畑仕事","place":"camp","why":"草取りの人手を出す"},"ワユ7":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept":{"オネ12":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,
+"knowledge":[{"op":"add","text":"夏の畑は残りが非常に多く、鎌を持って毎夕60つかみずつ刈らないと落ちてしまう。秋にまいたら冬と春の草取りが要る。","because":[576863],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"実りの多い畑の年",
+"mood":"畑の実りが大きいので、手分けして刈り取れば安心できる。"}
