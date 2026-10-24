@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまくよ。冬と春の草取りは、みんなで少しずつ受け持とうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は草取りが足りないと実りが減るので、畑を守るため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"}, "ハソ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"}, "ロワ6": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"}, "オネ6": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも草取りを手伝う"}, "ケナ7": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも草取りを手伝う"}},
+ "keep": false,
+ "judge": {"M152": "ゆるす", "M153": "ゆるす", "M154": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T99": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので安心している。畑の実りを楽しみに、毎日草を取ろう。"}

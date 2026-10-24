@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "雨の夜に濡れる人が出ないよう、建てかけの家を仕上げる。手が空いたら手伝ってくれ。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": [], "why": "建てかけの家を仕上げて、雨の夜に外で濡れる人をなくしたい。道具の腕も活かせる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ネイ5": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りが足りないと実りが減るので、手伝ってもらう。"}},
+ "keep": false,
+ "judge": {"M152": "ゆるす", "M153": "ゆるす", "M154": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T99": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にある。みんなのために家を仕上げよう。"}

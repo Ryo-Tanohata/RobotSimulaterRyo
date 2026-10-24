@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "畑がまだ一つもないから、秋のうちに草の種をまこう。わたしも草取りをするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がなく、秋にまかないと夏の実りがないので、まいたあとの草取りで実りを守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M152": "ゆるす", "M153": "ゆるす", "M154": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T99": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるし、畑をまいて草取りをすれば安心して冬を迎えられそうだ。"}

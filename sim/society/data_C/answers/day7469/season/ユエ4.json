@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "今年の秋は畑の草取りをわしがやる。蓄えは十分あるから、手の空いたやつは冬に備えて動け。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は草取りが少ないと実りが3割に減る。鎌も土器も足りているので、畑を守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを二人でやれば実りが増える"}},
+ "keep": false,
+ "judge": {"M152": "ゆるす", "M153": "ゆるす", "M154": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T99": {"side": "村", "利子": 0.1}},
+ "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "食べ物は十分にある。大胆に畑を広げて、来年の夏も刈り切ってやる。"}

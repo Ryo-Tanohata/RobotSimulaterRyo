@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。今年の秋は思いきって多めにまいて、冬のあいだも草取りを欠かさず、夏にどっさり刈ろうじゃないか。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りの手が足りないと実りが減る。蓄えは十分あるので、畑を育てる側に回る。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ルタ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして畑の実りを守るため。"}, "ソワ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして畑の実りを守るため。"}},
+ "keep": false,
+ "judge": {"M152": "ゆるす", "M153": "ゆるす", "M154": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T99": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りをしないと夏の実りが減る。", "because": [532001], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L217", "agree": true, "reason": "草が足りずヤギがやせていなくなるより、肉にして蓄えたほうがよい。"}],
+ "feeling": "蓄えは山ほどある。畑をいっぱいにまいて、夏の実りが楽しみだ。"}

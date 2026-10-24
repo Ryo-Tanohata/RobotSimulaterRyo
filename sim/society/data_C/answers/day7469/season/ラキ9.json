@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。秋のうちにみんなでたくさんまいて、冬と春の草取りもさぼらずにやろう。わたしは畑に付くよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだないので、まず種をまき、育つあいだの草取りで夏の実りを増やしたいから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M152": "ゆるす", "M153": "ゆるす", "M154": "ゆるす"}, "feast": false, "leader": null, "trade": {"T99": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春の草取りをしっかりすると夏の実りが増える。まずまいて、あとで草取りを続けること", "because": [531835], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L217", "against": "", "agree": true, "reason": "ヤギが草より多くてやせていなくなるのはもったいない。肉にして干せばみんなの食べ物になる"}, {"id": "L205", "against": "", "agree": true, "reason": "草取りが足りないと夏の実りが減るから"}],
+ "feeling": "蓄えは多くて安心。大胆に畑をまいて、よく育てたい。"}
