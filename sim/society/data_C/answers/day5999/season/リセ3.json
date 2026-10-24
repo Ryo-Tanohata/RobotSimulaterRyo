@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切ろう。刈った草の種はその日のうちに土器に入れて、ネズミから守ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ヒセ3"], "why": "実った畑が夏のうちに刈らないと落ちてしまうから、毎夕刈る"}, "family": {"ヒセ3": {"activity": "畑仕事", "place": "camp", "why": "一緒に畑を刈って実りを守る"}}, "pick": 0, "plant": 5, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ヒセ3"], "why": "まいた畑の草取りで実りを増やすため"}, "family": {"ヒセ3": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守りたい"}, "family": {"ヒセ3": {"activity": "畑仕事", "place": "camp", "why": "育っている畑の草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が割れるので作り足して、草の種を守る"}, "family": {"ヒセ3": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けて実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種は土器に入れるとほとんど傷まない。土器づくりを続けるのが大事だ。", "because": [335519], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がたくさん実った年",
+ "feeling": "畑も蓄えも豊かで安心している。子どもたちと土器づくりを続けたい。"}

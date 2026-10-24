@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種が虫に食われるのは惜しい。わたしは土器を焼き続けるよ。ヤギも草に合わせて減らそう。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、草の種を虫やネズミから守れるから"}, "family": {"リオ3": {"activity": "採集", "place": "camp", "why": "木の実を集めて子らの食べ物を確保する"}}, "pick": 20, "plant": 5, "harvest": 60, "eat_goat": 3},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬の前に蓄えを土器に入れて守るため"}, "family": {"リオ3": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}}, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬も土器を作り続けて蓄えを守る"}, "family": {"リオ3": {"activity": "採集", "place": "北川12", "why": "冬は魚と芋を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れの前に鎌を作りためるため"}, "family": {"リオ3": {"activity": "採集", "place": "camp", "why": "春の食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "草で養えるヤギは約140頭なのに214頭いる。減らさないとやせていなくなる", "because": [338154], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L195", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして蓄えに入れるのがよい"}],
+ "year_name": "ヤギがやせた年",
+ "feeling": "蓄えは十分あるので落ち着いている。土器づくりを続けたい。"}
