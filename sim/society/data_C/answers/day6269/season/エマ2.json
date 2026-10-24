@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をまくよ。冬と春の草取りを、手の空いた人は少しずつ手伝ってね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、季節の終わりまで草取りを続ける"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ2": {"activity": "畑仕事", "place": "camp", "why": "私と一緒に草取りをして、畑の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M136": "ゆるす", "M137": "ゆるす", "M138": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、草取りをすると、夏のはじめに多く実る。", "because": [371191], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "木の実も蓄えも足りていて、落ち着いている。畑仕事をこつこつ続けたい。"}

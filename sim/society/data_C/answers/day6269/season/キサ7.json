@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "わたしは今年の秋も土器を焼くよ。畑の草の種を入れる器は、いくつあっても足りないからね。"}, {"to": "オセ7", "text": "雨の夜に子たちが濡れるのはもういやだ。この秋はうちの住まいを建てよう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりはわたしがいちばん得意で、草の種を虫やネズミから守れるから続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オセ7": {"activity": "住まいを建てる", "place": "camp", "why": "うちの家にはまだ住まいがなく、小さい子たちが雨の夜に濡れて疲れがとれないから"}},
+ "keep": false,
+ "judge": {"M136": "ゆるす", "M137": "ゆるす", "M138": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "世話をする人が少ないと、ヤギはまとめていなくなる", "because": [371434], "confidence": 0.8}, {"op": "add", "text": "わたしたちの家は住まいがないので、雨の夜はいつも外で濡れる", "because": [], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L188", "against": "", "agree": true, "reason": "南川12 はすぐ近くだから一人でも大丈夫"},
+  {"id": "L191", "against": "ヤギはもう 140 頭より少ないから、今は要らない", "agree": false, "reason": "いまは草が足りている"},
+  {"id": "L192", "against": "ヤギはもう 140 頭より少ない", "agree": false, "reason": "今は要らない決まり"},
+  {"id": "L193", "against": "", "agree": true, "reason": "多くなったときだけ減らすなら、いなくなるより食べ物になってよい"},
+  {"id": "L194", "against": "もう夏は過ぎたし、ヤギは減っている", "agree": false, "reason": "時期が合わない"},
+  {"id": "L195", "against": "", "agree": true, "reason": "似た掟を一つにまとめるのはよい"},
+  {"id": "L196", "against": "", "agree": true, "reason": "少しの量でもめて家が出ていくのは損だから"},
+  {"id": "L197", "against": "", "agree": true, "reason": "やせていなくなるより食べ物にしたほうがよい"},
+  {"id": "L198", "against": "", "agree": true, "reason": "刈り残して落とすのはもったいない"},
+  {"id": "L199", "against": "", "agree": true, "reason": "前の季節に 24 頭もいなくなったから、世話をする人を決めたい"}
+ ],
+ "feeling": "器を焼くのは楽しいけど、早くうちの屋根の下で眠りたい。"}

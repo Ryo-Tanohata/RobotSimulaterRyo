@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "畑はまだ何もまかれていない。秋のうちにまかないと、次の夏に刈るものがなくなる。私は畑の草取りをする。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。前の季節も畑で働いたので続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M136": "ゆるす", "M137": "ゆるす", "M138": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "前の季節、世話をする人が少なく、飼っていたヤギ 24 頭がいなくなった。ヤギの世話の手はまだ足りない。", "because": [371434], "confidence": 0.9},
+  {"op": "add", "text": "土器に入れていた草の種も、1 季節に 約 2 万つかみ 傷んだ。", "because": [371438], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L188", "against": "", "agree": true, "reason": "南川12 はキャンプのすぐそばなので一人でも危なくない"},
+  {"id": "L191", "against": "L197 と同じことなので一つでよい", "agree": false, "reason": "同じ掟が多すぎる"},
+  {"id": "L192", "against": "L197 と同じことなので一つでよい", "agree": false, "reason": "同じ掟が多すぎる"},
+  {"id": "L193", "against": "L197 と同じことなので一つでよい", "agree": false, "reason": "同じ掟が多すぎる"},
+  {"id": "L194", "against": "夏はもう過ぎた", "agree": false, "reason": "今は秋なので合わない"},
+  {"id": "L195", "against": "", "agree": true, "reason": "ヤギの掟をまとめられる"},
+  {"id": "L196", "against": "", "agree": true, "reason": "小さなもめごとで家が出ていくのは損だ"},
+  {"id": "L197", "against": "", "agree": true, "reason": "やせていなくなるより肉にしたほうがよい"},
+  {"id": "L198", "against": "", "agree": true, "reason": "刈り残しは無駄になる"},
+  {"id": "L199", "against": "", "agree": true, "reason": "世話が足りずヤギが減り続けている"}
+ ],
+ "feeling": "静かに畑の土をいじっていたい。"}

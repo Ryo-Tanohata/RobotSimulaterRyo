@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬の前に畑へ草の種をしっかりまこう。草取りは私がキャンプで受け持つよ。"}, {"to": "リセ3", "text": "あなたの畑で刈った分の話は、集まりで決めよう。次からは刈る前に量を決めようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増える。冬と春のために手を抜かない"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"マロ": {"activity": "畑仕事", "place": "camp", "why": "家の畑の草取りを一緒にして、実りを増やすため"}, "ユノ3": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして、まいた畑を守るため"}},
+ "keep": true,
+ "judge": {"M136": "ゆるす", "M137": "つぐなう", "M138": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋に畑へ草の種をまき、秋と冬と春に草取りをすると、夏のはじめの実りが増える", "because": [371181], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L146", "against": "", "agree": true, "reason": "刈る前に量を決めれば、損をする家が出ないから"}, {"id": "L199", "against": "", "agree": true, "reason": "ヤギがいなくなるのを防ぎたいから"}],
+ "feeling": "鋭い石はたくさんあるし、体も軽い。畑がよく実るのが楽しみだ。"}
