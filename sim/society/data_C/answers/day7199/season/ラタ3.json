@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑がたくさん実っているよ。落ちる前に、手の空いた人はいっしょに刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちる前に刈り切るため"}, "family": {"ソワ": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝うため"}, "ヌオ3": {"activity": "畑仕事", "place": "camp", "why": "子が小さいのでキャンプの近くの畑で刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やすため"}, "family": {"ソワ": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを守る"}, "ヌオ3": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りをして実りを増やすため"}, "family": {"ソワ": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ヌオ3": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れに向けて草取りをするため"}, "family": {"ソワ": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ヌオ3": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ルタ10": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏の畑がたくさん実っていて、夏のうちに刈り切らないと落ちてしまう", "because": [487409], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い年",
+ "feeling": "畑がよく実っていて安心している。みんなで刈り入れをがんばりたい。"}
