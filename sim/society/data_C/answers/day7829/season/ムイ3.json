@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種をまいておこう。おれはヤギの世話をするよ。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "世話をする人が足りないとヤギがいなくなるので、キャンプで毎日世話をする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソワ12": true},
+ "family": {"ナセ4": {"activity": "ヤギの世話", "place": "camp", "why": "一緒にヤギの世話をして、ヤギがいなくならないようにする"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T107": "村", "T108": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるので安心だ。ヤギの世話をしっかりやろう。"}

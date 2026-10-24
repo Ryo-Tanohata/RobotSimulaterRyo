@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をまいて、冬と春は草取りに通おう。おれは畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑が今はないので、まいた畑を冬の前から世話して夏の実りを増やしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソワ12": true},
+ "family": {"キオ": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして夏の実りを守るため"}, "ソナ2": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして夏の実りを守るため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T107": false, "T108": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を一人千つかみまいて、冬と春に草取りをすると夏に多く実る。", "because": [585917], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑に種をまけるので安心している。冬も草取りをがんばろう。"}

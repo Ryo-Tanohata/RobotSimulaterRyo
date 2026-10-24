@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をたっぷりまこう。草取りは手分けして、冬のあいだも欠かさず続けよう。"}, {"to": "テナ12", "text": "おれと一緒に畑の草取りをしよう。無理せず交代で休みながらやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["テナ12"], "why": "秋にまく畑の草取りが足りないと実りが減る。草の種は蓄えにたっぷりあるので、畑を育てて来年に備えたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ソワ12": true},
+ "family": {"テナ12": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを二人でやれば、実りを増やせる。"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T107": false, "T108": false}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L226", "agree": true, "reason": "ヤギが草で養える数より多く、やせていなくなるより干し肉にして皆の食べ物にしたほうがよい。"}, {"id": "L201", "agree": true, "reason": "草取りが足りないと夏の実りが減るので、交代で受け持つのがよい。"}],
+ "feeling": "蓄えはたっぷりあって安心。畑をしっかり育てて、みんなで冬と春を迎えたい。"}

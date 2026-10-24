@@ -1,0 +1,11 @@
+{"say": [{"to": "ヌオ8", "text": "うちはまだ家がない。この秋はふたりで家を建てよう。わたしが組み方を決めるから、材を運んでほしい。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["ヌオ8"], "why": "うちの家族はまだ住まいがなく、雨の夜に子どもが濡れるから。道具の腕を生かして冬の前に建てたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソワ12": true},
+ "family": {"ヌオ8": {"activity": "住まいを建てる", "place": "camp", "why": "家族の住まいを一緒に建てるため。"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T107": false, "T108": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "家ができれば子どもたちを雨から守れる。手を動かして形にするのが楽しみだ。"}

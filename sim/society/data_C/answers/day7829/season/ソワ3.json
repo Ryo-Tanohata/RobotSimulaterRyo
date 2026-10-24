@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑は冬と春の草取りで実りが決まるよ。土器も鎌もたっぷりあるから、私は畑仕事に回るね。手があいたら一緒に草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "土器も鎌も足りているので、まいた畑の草取りで来年の夏の実りを増やしたいから"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ソワ12": true}, "family": {"キオ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りが多いほど夏の実りが増えるから"}, "ソナ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守るため"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T107": false, "T108": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは約500日分あり、土器も鎌も足りている。今は畑の草取りに人手を回すのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。畑をみんなで世話して、来年の夏も刈り切りたい。"}

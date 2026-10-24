@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに種をまいたら、冬も草取りを交代で続けよう。夏に刈り残さないためにね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをするほど夏の実りが増えるので、毎日草取りをする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソワ12": true},
+ "family": {"ヌオ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手が多いほど実りが増えるから"}, "ルタ7": {"activity": "畑仕事", "place": "camp", "why": "草取りを覚えながら家族と畑を守るため"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T107": false, "T108": "村"},
+ "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "村には畑がなく、秋のはじめに草の種を1000つかみずつまいた。冬と春の草取りで夏の実りが増える", "because": [585970], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。畑を実らせて夏に備えたい。"}

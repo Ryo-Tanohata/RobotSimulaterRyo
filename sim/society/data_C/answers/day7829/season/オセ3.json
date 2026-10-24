@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋にまく草の種は、冬と春の草取りの手が足りるように、まく量を考えながら畑に出よう。わたしも畑で働くよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが少ないと実りが減る。前の季節も畑で働いたので続ける"},
+ "sow": 1000, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソワ12": true},
+ "family": {"ナセ3": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして実りを守るため"}, "キサ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして実りを守るため"}, "ソナ8": {"activity": "畑仕事", "place": "camp", "why": "半人前でも草取りを手伝える"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T107": false, "T108": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "木の実の木は種や実を埋めると育つ。秋のうちに5つかみ埋めておくと、あとで実が増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって心強い。畑と木の世話を続けて、冬を静かに迎えたい。"}
