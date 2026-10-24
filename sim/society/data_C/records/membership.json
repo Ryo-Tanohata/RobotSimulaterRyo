@@ -246,7 +246,7 @@
 {"person_id":"P245","household_id":"H12","from_day":5669,"to_day":6029,"why_in":"生まれた","why_out":"亡くなった","evidence":[296752,344541],"assigned_from_state_day":5669},
 {"person_id":"P246","household_id":"H12","from_day":5669,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[296753],"assigned_from_state_day":5669},
 {"person_id":"P247","household_id":"H23","from_day":5669,"to_day":5729,"why_in":"生まれた","why_out":"亡くなった","evidence":[296754,304333],"assigned_from_state_day":5669},
-{"person_id":"P248","household_id":"H41","from_day":5669,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[296755],"assigned_from_state_day":5669},
+{"person_id":"P248","household_id":"H41","from_day":5669,"to_day":6599,"why_in":"生まれた","why_out":"亡くなった","evidence":[296755,408597],"assigned_from_state_day":5669},
 {"person_id":"P249","household_id":"H43","from_day":5669,"to_day":5759,"why_in":"生まれた","why_out":"亡くなった","evidence":[296756,306716],"assigned_from_state_day":5669},
 {"person_id":"P250","household_id":"H55","from_day":5669,"to_day":null,"why_in":"よそから来た","why_out":null,"evidence":[296822],"assigned_from_state_day":5699},
 {"person_id":"P251","household_id":"H17","from_day":5699,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[301660],"assigned_from_state_day":5699},
@@ -303,5 +303,6 @@
 {"person_id":"P302","household_id":"H37","from_day":6479,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[394148],"assigned_from_state_day":6479},
 {"person_id":"P303","household_id":"H46","from_day":6509,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[401338],"assigned_from_state_day":6509},
 {"person_id":"P304","household_id":"H51","from_day":6509,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[401339],"assigned_from_state_day":6509},
-{"person_id":"P305","household_id":"H23","from_day":6569,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[406186],"assigned_from_state_day":6569}
+{"person_id":"P305","household_id":"H23","from_day":6569,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[406186],"assigned_from_state_day":6569},
+{"person_id":"P306","household_id":"H07","from_day":6599,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[408596],"assigned_from_state_day":6599}
 ]
