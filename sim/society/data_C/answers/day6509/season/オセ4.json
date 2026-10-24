@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるぞ。秋の畑にしっかり種をまいて、冬と春の草取りも手を抜かずにやろうじゃないか。わたしが先に畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが足りないと実りが減る。蓄えは十分なので、畑を育てる仕事に回る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、いっしょに畑で働く"}},
+ "keep": false,
+ "judge": {"M144": "ゆるす", "M145": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T69": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも木の実もたっぷりで気分がいい。体を動かして畑を育てるのが楽しみだ。"}

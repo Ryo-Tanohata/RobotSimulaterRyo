@@ -1,0 +1,11 @@
+{"say": [{"to": "ヌオ8", "text": "この秋は畑の草取りをやるよ。あなたも一緒にやってくれると助かる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ヌオ8"], "why": "秋にまく畑は草取りが足りないと実りが減る。蓄えは十分あるので、畑を育てる手伝いをする。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ8": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをすれば畑が早く育つ。"}},
+ "keep": false,
+ "judge": {"M144": "ゆるす", "M145": "ゆるす", "M146": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T69": false}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって落ち着いている。畑を静かに世話したい。"}

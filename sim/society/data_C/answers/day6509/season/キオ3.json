@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の畑に種をまいたら、草取りは手分けしよう。冬と春に草を抜いておかないと、夏に実らないからな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが減る。土器も鎌も十分あるので畑を優先する"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M144": "ゆるす", "M145": "ゆるす", "M146": "ゆるす"}, "feast": false, "leader": null, "trade": {"T69": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L201", "against": "", "agree": true, "reason": "草取りが足りないと夏の実りが減るので、交代で受け持つのがよい"}],
+ "feeling": "土器も鎌も足りているので、今季は畑の世話に力を入れたい。"}

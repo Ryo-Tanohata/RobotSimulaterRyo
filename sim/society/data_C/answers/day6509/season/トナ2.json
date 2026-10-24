@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたくさん種をまくよ。わたしは冬のあいだ草取りをして、夏の実りを守る。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが足りないと実りが減るので、冬から春の実りを守るため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、わたしと一緒に働いてもらう"}},
+ "keep": false,
+ "judge": {"M144": "ゆるす", "M145": "ゆるす", "M146": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T69": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、草取りをしないと夏の実りが3割まで減る", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "満腹で体は元気。畑をよく育てたい。"}

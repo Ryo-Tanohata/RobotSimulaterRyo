@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、今年も畑にしっかり種をまいて、冬と春の草取りを分けて進めましょう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると夏に多く実る。蓄えは多いので畑の世話に力を入れる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、いっしょに働く"}},
+ "keep": false,
+ "judge": {"M144": "ゆるす", "M145": "ゆるす", "M146": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T69": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "疲れはあるが、蓄えが多くて安心している。畑を育てるのが楽しみだ。"}

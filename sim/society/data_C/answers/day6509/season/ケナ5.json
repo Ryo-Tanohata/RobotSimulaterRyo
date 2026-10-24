@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をまいたら、冬のあいだも草取りを分けてやろう。実りが3割に減るのはもったいない。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすると実りが増える。蓄えは十分あるので、畑を育てる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"トナ5": {"activity": "畑仕事", "place": "camp", "why": "草取りは人手が多いほど実りが増える。camp で一緒に働ける"}},
+ "keep": false,
+ "judge": {"M144": "ゆるす", "M145": "ゆるす", "M146": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T69": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも木の実も十分あって落ち着いている。畑の草取りをていねいにやりたい。"}
