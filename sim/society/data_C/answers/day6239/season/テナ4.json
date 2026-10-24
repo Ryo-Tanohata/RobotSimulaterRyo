@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに実った畑を刈り切って、土器に入れて守ろう。手の空いた人は夕方に刈りに来てね。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるから"},"family":{"ラニ4":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ケセ4":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで実りを増やすため"},"family":{"ラニ4":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ケセ4":{"activity":"採集","place":"camp","why":"木の実を集めて冬に備える"}},"pick":40,"plant":5,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"草の種を虫から守る土器を作る"},"family":{"ラニ4":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ケセ4":{"activity":"畑仕事","place":"camp","why":"畑の草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"畑の草取りで夏の実りを増やす"},"family":{"ラニ4":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ケセ4":{"activity":"畑仕事","place":"camp","why":"畑の草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{"T60":false,"T61":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"畑がたくさん実った年",
+"feeling":"蓄えは十分。夏の刈り入れをみんなで終わらせたい。"}
