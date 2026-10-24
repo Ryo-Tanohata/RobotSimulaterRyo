@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、土器づくりを手伝ってくれる人はいないか。草の種を土器に入れておけば、虫やネズミに食べられずに春まで持つ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意だし、村の草の種を虫やネズミから守れるのは今いちばん大事なことだから。"}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M122": "ゆるす", "M123": "つぐなう"}, "feast": false, "leader": "なし", "trade": {"T53": false}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "土器に入れた草の種は、虫やネズミに食べられない。土器をつくる人が多いほど、村の蓄えを守れる。", "because": [313230], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出る夜は、キャンプから離れないのが安全だから。"}, {"id": "L98", "against": "", "agree": true, "reason": "同じ掟が何度も決まっていたので、ひとつにまとめるのは分かりやすい。"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑があるあいだに刈らないと、草の種が落ちてしまうから。"}, {"id": "L171", "against": "", "agree": true, "reason": "今はヤギが草の数より多い。ほかの村からヤギを受けとると、草の取り合いになる。"}, {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いうちは、野生のヤギを捕まえるのを待つべきだと思う。"}],
+ "feeling": "冬は長いけど、土器で草の種を守れば春まで持つ。少し安心した。"}

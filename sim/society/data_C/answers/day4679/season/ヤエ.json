@@ -1,0 +1,33 @@
+{
+ "say": [
+  {"to": "ソル2", "text": "北林12 へ行こう。ふたりで行けば、ザガが出ても安心だよ。"},
+  {"to": "みんな", "text": "川辺の家の畑は、夏のあいだ毎夕、私とソル2で刈るね。"}
+ ],
+ "job": {"activity": "採集", "place": "北林12", "with": []},
+ "pick": 40,
+ "plant": 0,
+ "harvest": 60,
+ "eat_goat": 0,
+ "accept": {"ハソ3": true},
+ "family": {"ソル2": {"activity": "採集", "place": "北林12"}},
+ "keep": true,
+ "judge": {"M80": "ゆるす"},
+ "feast": false,
+ "leader": "なし",
+ "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "夏の今、キャンプのそばの木には木の実がたくさんついていて、一人 40 つかみまで取れる", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "ハソ3 と オセ3 は西の村から来て、ここで暮らしたいと言っている", "because": [182303, 182299], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "ザガが夜に出るなら、夜はキャンプの中にいたほうが安全"},
+  {"id": "L98", "against": null, "agree": true, "reason": "採集した人が空腹では、次の採集もできない"},
+  {"id": "L106", "against": "取った木の実は、まず自分の分を食べたい。毎晩 40 つかみは多すぎる", "agree": false, "reason": "自分の分は取るが、蓄えに入れる量は自分で決めたい"},
+  {"id": "L121", "against": "近くの川や草原なら一人でも行ける", "agree": false, "reason": "決まったことなので、林へは二人で行く"},
+  {"id": "L140", "against": null, "agree": true, "reason": "刈れる畑があるうちは、毎夕刈らないと夏のうちに落ちてしまう"},
+  {"id": "L174", "against": null, "agree": true, "reason": "返さない村に草の種を貸し続けるのは損だ"}
+ ],
+ "year_name": "ハユとラタが亡くなった年",
+ "feeling": "夏はよく取れるから気分がいい。でも、ひとりで行けないのは少しめんどう。"
+}

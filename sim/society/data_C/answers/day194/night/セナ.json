@@ -1,0 +1,26 @@
+{"knowledge": [
+  {
+    "op": "add",
+    "text": "今日、西の林での採集に失敗した。何も見つけられなかった。西の林も毎日確実に食べ物が見つかる場所ではないのだ。",
+    "because": [3494],
+    "confidence": 1.0
+  },
+  {
+    "op": "update",
+    "id": "k1860",
+    "confidence": 0.6
+  },
+  {
+    "op": "update",
+    "id": "k1870",
+    "confidence": 0.6
+  }
+],
+"proposal": null,
+"votes": [],
+"plan": {
+  "activity": "採集",
+  "place": "西林12",
+  "with": ["ウィロ"]
+},
+"feeling": "明日も頑張ろう"}

@@ -1,0 +1,18 @@
+{"say": [{"to": "ネム3", "text": "ネム3、北川12へ芋と魚を取りに行こう。二人で行く決まりだから、いっしょに行こう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ネム3"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "前の季節、世話をする人が少なく、飼っていたヤギ 75 頭がいなくなった。世話がないとヤギは減る。", "because": [149007], "confidence": 0.9},
+  {"op": "add", "text": "前の季節、封をした倉や村の蓄えが何十回も開けられた。割れた封のかけらで、だれが開けたかは分かる。", "because": [149015], "confidence": 0.8},
+  {"op": "add", "text": "北の村の人は、前の季節に交換できる物がなく、そのまま帰っていった。", "because": [149014], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るから、キャンプから離れないのは当然だ。"},
+  {"id": "L79", "against": "", "agree": true, "reason": "火を焚けばザガが近づかない。火おこしは苦手だが、火の番には加わる。"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採ってきた人が空腹では、次の採集ができない。"},
+  {"id": "L117", "against": "", "agree": true, "reason": "木の実を埋めれば木が増える。5 つかみなら蓄えはほとんど減らない。"},
+  {"id": "L121", "against": "一人で採ったほうが早く、二人だと取った量の話が面倒になる。", "agree": false, "reason": "決まりなので今回はネム3と行くが、賛成はしない。"},
+  {"id": "L156", "against": "毎日二人ずつ世話をすると、採集に行く人が減る。ヤギを持つ家が決めればよい。", "agree": false, "reason": "世話の負担が大きすぎるから。"}
+ ],
+ "feeling": "春の食べ物は足りているが、人に合わせて動くのは気が重い。"}

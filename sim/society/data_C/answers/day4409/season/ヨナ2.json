@@ -1,0 +1,31 @@
+{"say": [{"to": "みんな", "text": "わたしの家には、まだ屋根がない。雨の夜は外で濡れて、次の日も体が重い。春のうちに住まいを建てたいので、手の空いている人は手伝いに来てほしい。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": []}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "木の実を種として埋めると、20 日ほどで木が育つ。前の季節は、キャンプのそばで種を埋めた所から 95 本育った", "because": [157989], "confidence": 0.9},
+  {"op": "add", "text": "北の川 (北川12) では、前の季節に 30 日採集したが、わたしは何も見つけられなかった", "because": [159428], "confidence": 0.9},
+  {"op": "add", "text": "草が足りないと、ヤギは多すぎる分の 3 分の 1 ほどがやせていなくなる。今は 557 頭いて、草で養えるのは約 140 頭", "because": [159453], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るので、キャンプから離れないのは大事"},
+  {"id": "L98", "against": "", "agree": true, "reason": "集めた人が空腹では次の仕事ができない"},
+  {"id": "L112", "against": "", "agree": true, "reason": "肉は腐りやすいので、その日のうちに食べるか保存処理をするのがよい"},
+  {"id": "L121", "against": "", "agree": true, "reason": "林ではザガに襲われた人がいる。二人いれば助け合える"},
+  {"id": "L122", "against": "", "agree": true, "reason": "夜の報告が一つにまとまれば、覚えやすい"},
+  {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りは、ザガから身を守るのに必要"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれない。順番に入るのは公平"},
+  {"id": "L137", "against": "", "agree": true, "reason": "小さい子は外で濡れると弱ってしまう"},
+  {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに刈り切れば、草の種を落とさずに済む"},
+  {"id": "L141", "against": "", "agree": true, "reason": "家ごとに書き残せば、あとのもめごとが減る"},
+  {"id": "L143", "against": "", "agree": true, "reason": "林での採集は、二人以上なら安全"},
+  {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈る前に決めておけば、もめごとにならない"},
+  {"id": "L157", "against": "", "agree": true, "reason": "わたしの家もまだ住まいがないので、建てる人を決めてほしい"},
+  {"id": "L158", "against": "", "agree": true, "reason": "粘土の板に書けば、覚えだけに頼らず量がはっきりする"},
+  {"id": "L163", "against": "", "agree": true, "reason": "毎晩数えれば、いなくなったヤギにすぐ気づける"},
+  {"id": "L164", "against": "", "agree": true, "reason": "刈る前に決めれば、倉に入って争いになることがない"},
+  {"id": "L166", "against": "", "agree": true, "reason": "土器づくりを一つにまとめるのは分かりやすい"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギを守るには、数に合わせて世話をする人が必要"},
+  {"id": "L168", "against": "", "agree": true, "reason": "冬の前から土器を作れば、草の種を虫やネズミから守れる"}
+ ],
+ "feeling": "屋根の下で眠れる日が待ち遠しい。"}

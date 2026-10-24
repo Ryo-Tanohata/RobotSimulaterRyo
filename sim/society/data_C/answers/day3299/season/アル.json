@@ -1,0 +1,7 @@
+{"say": [{"to": "ユノ2", "text": "北丘12へいっしょに採集に行こう。見つけた量と蓄えに入れた量は、夜に言うね。"}, {"to": "みんな", "text": "今季は北丘12で冬の食べ物があるかを確かめに行く。夜には見つけた量を、そのまま言うよ。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["ユノ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ケト3": true, "ハユ3": true}, "keep": true,
+ "judge": {"M36": "ゆるす"}, "feast": false, "leader": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火と見張りを置けば、ザガから身を守れる。"}, {"id": "L121", "against": "", "agree": true, "reason": "林や遠い場所へは二人以上で行けば、けがをしても助け合える。"}, {"id": "L125", "against": "", "agree": true, "reason": "北の林で何も見つからなかったので、南川から試すのは理にかなっている。"}, {"id": "L150", "against": "", "agree": true, "reason": "前の冬に南川で何も見つからなかったので、北丘を先に試すのがよい。"}, {"id": "L67", "against": "", "agree": true, "reason": "集めた人が空腹では、次の仕事の力が出ない。"}, {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めておけば、帰らない人を早く探せる。"}, {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り入れを毎夕行うことで、畑の草の種が落ちずに済む。"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると疲れがとれないので、順番に住まいで眠るのがよい。"}],
+ "feeling": "冬の食べ物が少ないのは心配だけど、北丘12を二人で見に行けるなら安心できる。"}

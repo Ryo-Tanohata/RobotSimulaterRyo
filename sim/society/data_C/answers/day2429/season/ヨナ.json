@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "秋の間、わたしは西草原12へクラといっしょに採集に行くね。見つけた量と蓄えに入れた量は、夜に分けて言うよ。畑にまく草の種は、まく前に集まりで量を決めて、家ごとに書き残そう。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["クラ"]}, "sow": 200, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"アル": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "judge": {"M12": "つぐなう", "M13": "つぐなう", "M14": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "ザガが出るので、夜は皆でキャンプにいるのが安全だから"},
+  {"id": "L3", "against": "なし", "agree": true, "reason": "採集や狩りは複数人で行けば、けがをしても助けられるから"},
+  {"id": "L10", "against": "なし", "agree": true, "reason": "何を見つけたか話せば、どこに食べ物があるか分かるから"},
+  {"id": "L99", "against": "なし", "agree": true, "reason": "畑の草取りは、夏の実りを守るために必要だから"},
+  {"id": "L102", "against": "なし", "agree": true, "reason": "刈らずに夏が終わると実りが落ちてしまうから"},
+  {"id": "L106", "against": "なし", "agree": true, "reason": "冬の前に木の実を蓄えへ入れるのは、冬を越える助けになるから"},
+  {"id": "L121", "against": "なし", "agree": true, "reason": "ザガは昼の林にも出るので、二人以上で行くのが安全だから"},
+  {"id": "L124", "against": "なし", "agree": true, "reason": "林へは二人以上で行くのが、ザガを避ける近道だから"},
+  {"id": "L134", "against": "なし", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれなくなるから"},
+  {"id": "L141", "against": "なし", "agree": true, "reason": "まく量を決めて書き残せば、家どうしのもめごとを防げるから"},
+  {"id": "L146", "against": "なし", "agree": true, "reason": "刈る前に量と分け方を決めないと、トワの家と川辺の家のようにもめごとになるから"},
+  {"id": "L148", "against": "なし", "agree": true, "reason": "住まいがない家は、雨の夜に濡れて疲れがとれないから"}
+ ],
+ "feeling": "秋の仕事がはじまって、少し安心している。畑の刈り残しとヤギが心配だけど、みんなで決めたことを守ろう。"}

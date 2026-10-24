@@ -1,0 +1,30 @@
+{"say": [{"to": "ラタ3", "text": "ラタ3、夕方に木の実を取りに行こう。キャンプから離れるなら、帰る時刻を先に決めよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": ["ラタ3"]},
+ "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ハソ": true},
+ "keep": true,
+ "judge": {"M44": "ゆるす", "M45": "ゆるす"},
+ "feast": true,
+ "leader": "なし",
+ "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "ハソは北の村から来て、ここで暮らしたいと言った。北の村は川にそって北へ歩いて2日の所にあるという", "because": [98440], "confidence": 0.6},
+  {"op": "add", "text": "キャンプのそばの木には、今たくさん木の実がついている。夏と秋に実るので、秋のうちに取って蓄えに入れておけば冬の助けになる", "because": [95672], "confidence": 0.7},
+  {"op": "add", "text": "夏のうちに刈らずに残した草の種は落ちてしまう。前の季節は約 2320〜10180 つかみが落ちた", "because": [98427, 98431], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "", "agree": true, "reason": "採集で蓄えに入れた人が、その日のうちに自分の分を食べられるのは助かる"},
+  {"id": "L143", "against": "", "agree": true, "reason": "ザガが出るから、一人で林へ行くのは危ない"},
+  {"id": "L126", "against": "", "agree": true, "reason": "夜にザガが出るから、火と見張りはいる"},
+  {"id": "L106", "against": "", "agree": true, "reason": "冬の前に木の実を取っておくのは大事。自分の分は残せる"},
+  {"id": "L107", "against": "", "agree": true, "reason": "埋めた木の実から木が育てば、夏と秋に実る"},
+  {"id": "L122", "against": "夜に毎日、取った量も入れた量も言うのは手間がかかる。覚えはあいまいになる", "agree": false, "reason": "報告の手間が大きい"},
+  {"id": "L146", "against": "", "agree": true, "reason": "前に刈り方でもめごとになった。刈る前に決めるのはいい"},
+  {"id": "L134", "against": "自分の家があるので、村の住まいに順番で入る必要はない", "agree": false, "reason": "家族の住まいで眠れるから"},
+  {"id": "L113", "against": "北川は前の季節に何も見つからなかった。二人で確かめに行くのは無駄になる", "agree": false, "reason": "北川12は当てにならない"},
+  {"id": "L150", "against": "北丘は前の季節に採集したが、何も見つからなかった", "agree": false, "reason": "北丘12を最初に試すのは当てにならない"},
+  {"id": "L111", "against": "", "agree": true, "reason": "ヤギは一人では囲めないし、ザガにも襲われやすい"},
+  {"id": "L101", "against": "", "agree": true, "reason": "世話がないと、ヤギはいなくなる"}
+ ],
+ "feeling": "冬が近いのに、やることが多いのは面倒だ。でも木の実を取るのは得意だから、取れるだけ取っておこう。"}

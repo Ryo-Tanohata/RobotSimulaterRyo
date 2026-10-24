@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "わたしとエマ2は西草原12へ行く。まだ行ったことがないから、草や実があるか確かめたい。二人で行くよ。見つけた量と蓄えに入れた量は、夜にそのまま言うね。"}],
+ "job": {"activity": "探索", "place": "西草原12", "with": ["クラ"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"エマ2": {"activity": "探索", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": "ケト",
+ "knowledge": [{"op": "add", "text": "夏の西草原12は、まだ行ったことがない場所で、草や実があるかどうかをこれから確かめる。", "because": [72745], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": null, "agree": true, "reason": "夜にキャンプから離れないことは、ザガから身を守るのに大事だから"}, {"id": "L1", "against": null, "agree": true, "reason": "行き先を皆に伝えれば、同じ場所を重ねて探さずにすむから"}, {"id": "L3", "against": null, "agree": true, "reason": "複数で行けば助け合えるから"}, {"id": "L16", "against": null, "agree": true, "reason": "疲れたまま働くと危ないから"}, {"id": "L18", "against": null, "agree": true, "reason": "空腹の人が出たら、みんなで気づいて食べさせたいから"}, {"id": "L98", "against": null, "agree": true, "reason": "採集した人が自分の分を食べられるのは、力を保つのに必要だから"}, {"id": "L110", "against": null, "agree": true, "reason": "夕方に戻らない人を早く探せるから"}, {"id": "L143", "against": null, "agree": true, "reason": "採集と狩りは二人以上で行くと安全だから"}],
+ "year_name": "セナが亡くなった年",
+ "feeling": "夏になった。西の草原に行けるのが楽しみ。"}

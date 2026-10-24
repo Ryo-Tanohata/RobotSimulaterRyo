@@ -1,0 +1,7 @@
+{"say": [{"to": "テナ5", "text": "北の村から来たんだね。長い道のりだったでしょう。ここの川や林のことは、わたしが知っている限り教えるね。"}, {"to": "みんな", "text": "冬のうちに北川12の魚と芋を確かめて、夜に見つけた量を言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ワユ3"], "why": "採集が一番得意な仕事で、冬に北川12の魚と芋が取れるか二人で確かめて、夜に知らせたいから。"}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"テナ5": true}, "keep": true,
+ "judge": {"M106": "つぐなう"}, "feast": true, "leader": "セキ", "trade": {"T40": false, "T41": false}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "テナ5 は北の村から来て、ここで暮らしたいと言っている (本人の話)", "because": [253577], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "ザガが夜に出るので、夜のキャンプ離れは危ない。"}, {"id": "L98", "against": "なし", "agree": true, "reason": "採集で苦労した人が空腹のままでは、次の仕事も落ちるから。"}, {"id": "L113", "against": "なし", "agree": true, "reason": "冬に魚と芋が取れる場所が分かれば、冬の食べ物が増える。"}, {"id": "L118", "against": "なし", "agree": true, "reason": "草取りを交代で続けないと、夏の実りが減る。"}, {"id": "L121", "against": "なし", "agree": true, "reason": "二人なら、ザガが出ても助け合える。"}, {"id": "L167", "against": "なし", "agree": true, "reason": "ヤギの世話が足りないと、ヤギがいなくなるから。"}, {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないのに、よそのヤギを受けとると草の取り合いになるから。"}, {"id": "L175", "against": "なし", "agree": true, "reason": "草で養える数より多いあいだは、野生のヤギを増やさない方がいい。"}, {"id": "L184", "against": "なし", "agree": true, "reason": "前に貸した草の種が返されないのに新しく貸すと、村の蓄えが減るだけだから。"}, {"id": "L186", "against": "なし", "agree": true, "reason": "貸した量と返す量を板に残せば、返しの数が確かめられる。"}],
+ "feeling": "知らない村の人が来るのは、少しわくわくする。"}

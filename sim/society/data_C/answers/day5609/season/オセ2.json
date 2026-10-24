@@ -1,0 +1,13 @@
+{"say": [{"to": "キサ2", "text": "春のあいだは、北の川で魚と芋をいっしょに探そう。木の実は夏まで待とう。"}, {"to": "みんな", "text": "冬に北の川で何も見つからなかったと聞いた。ほかの場所も、二人ずつで試してみよう。"}],
+"job": {"activity": "採集", "place": "北川12", "with": [], "why": "北の川では前に木の実が見つかったことがある。春は魚と芋の場所を確かめたい。"},
+"pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+"accept": {"ヌオ6": true},
+"family": {"キサ2": {"activity": "採集", "place": "北川12", "why": "オセ2と組めば、川の近くで二人ぶん確かめられる。"}},
+"keep": true,
+"feast": false,
+"leader": "なし",
+"seal_store": false,
+"knowledge": [{"op": "add", "text": "北の川では、前の季節に木の実を見つけたことがある。", "because": [288755], "confidence": 0.6}],
+"proposal": null,
+"votes": [{"id": "L98", "against": "", "agree": true, "reason": "同じ掟を一つにまとめるのは、わかりやすくていい。"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑があるあいだは、みんなで刈るのがいい。"}, {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草より多いあいだは、野生のヤギを捕まえないほうがいい。"}, {"id": "L185", "against": "", "agree": true, "reason": "前に貸した分が返されるまで、新しく貸さないほうがいい。"}],
+"feeling": "春になって少し安心したが、家のみんなが食べられるかが気がかりだ。"}

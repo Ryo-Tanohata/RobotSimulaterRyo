@@ -1,0 +1,42 @@
+{
+  "say": [
+    {"to": "みんな", "text": "北川12は前の季節、三十日さがしても何も見つからなかった。今季はルタと二人で北林12へ行く。見つけた量と、蓄えに入れた量は夜に話すよ。"}
+  ],
+  "job": {"activity": "採集", "place": "北林12", "with": ["ルタ"]},
+  "pick": 0,
+  "plant": 0,
+  "harvest": 0,
+  "eat_goat": 0,
+  "accept": {"キオ3": true},
+  "family": {"ルタ": {"activity": "採集", "place": "北林12"}},
+  "keep": false,
+  "feast": false,
+  "leader": "なし",
+  "trade": {"T25": false, "T26": false},
+  "seal_store": true,
+  "knowledge": [
+    {"op": "add", "text": "前の季節、北の川 (北川12) で 30 日採集したが、食べ物は一つも見つからなかった (自分で確かめた。前に聞いた話とはちがった)", "because": [191250], "confidence": 1.0},
+    {"op": "add", "text": "前の季節の夜、ザガがキャンプに来て アル が殺され、オセ2 がけがをした", "because": [190030, 191220], "confidence": 1.0},
+    {"op": "add", "text": "草が足りず、ヤギが 8 頭やせていなくなり、子ヤギも少ししか生まれなかった。草で養えるのは約 140 頭", "because": [191270, 191271], "confidence": 1.0},
+    {"op": "add", "text": "ハソ3 (19 歳) が病で亡くなった", "because": [191273], "confidence": 1.0},
+    {"op": "add", "text": "キオ3 (男、34 歳) は北の村から来て、ここで暮らしたいと言った", "because": [191274], "confidence": 1.0},
+    {"op": "add", "text": "前の季節、印で封をした倉や村の蓄えが多く開けられた。印のない封が 30 回ほど", "because": [191280], "confidence": 0.9},
+    {"op": "add", "text": "北の村は、前に借りた草の種をまだ返していない (覚えでは 2022 つかみほど)", "because": [191279], "confidence": 0.8}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L121", "against": "", "agree": true, "reason": "採集に行くとき、ルタと二人で行けるから。"},
+    {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ほかの村のヤギは受けとらないほうがいい。"},
+    {"id": "L174", "against": "", "agree": true, "reason": "北の村は前に貸した草の種をまだ返していない。"},
+    {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いので、野生のヤギは今は捕まえないほうがいい。"},
+    {"id": "L167", "against": "", "agree": true, "reason": "世話が足りないと、ヤギは減ってしまうから。"},
+    {"id": "L172", "against": "", "agree": true, "reason": "封を割った人が名乗り出れば、もめごとが減る。"},
+    {"id": "L98", "against": "", "agree": true, "reason": "蓄えに入れた日に自分の分を取れないと、働く力が落ちる。"},
+    {"id": "L138", "against": "", "agree": true, "reason": "空腹の人が出たら、すぐに食べさせたい。"},
+    {"id": "L137", "against": "", "agree": true, "reason": "雨の夜は、小さい子のいる家から先に入るのがいい。"},
+    {"id": "L105", "against": "", "agree": true, "reason": "キオ3は最初の十日ほど、村の人と組になって動くといい。"},
+    {"id": "L158", "against": "", "agree": true, "reason": "村の蓄えの出し入れを残せば、覚えだけに頼らずにすむ。"},
+    {"id": "L165", "against": "", "agree": true, "reason": "探索も二人以上なら、一人で迷うことがない。"}
+  ],
+  "feeling": "北川12で何も見つからなかったのが、まだ気がかり。北林12で何か見つかればいい。"
+}

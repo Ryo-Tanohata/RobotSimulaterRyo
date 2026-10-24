@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "夏のあいだは南川12へ行って、木の実と草を探すよ。近いから、ケト2と二人で行く。見つけた量と蓄えに入れた量は、夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ケト2"]}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "南川12はキャンプから近く、二人で行けば安心して採集できる", "because": [68538], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "", "agree": true, "reason": "採った人が自分の分をその日のうちに食べられるのは、空腹で働けなくなるのを防ぐから"},
+  {"id": "L106", "against": "", "agree": true, "reason": "木の実は夏と秋にしか実らないから、冬の前に蓄えておくのは大事だから"},
+  {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば、けがをしても助け合えるから"},
+  {"id": "L143", "against": "", "agree": true, "reason": "一人で林へ行くとザガに襲われやすいから"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、畑の実りを減らさずに済むから"}
+ ],
+ "year_name": "畑の草の種がみのった年",
+ "feeling": "畑がよく実ってくれて、冬を越せそうでほっとしている。夏は南川12で、また木の実を探そう。"}

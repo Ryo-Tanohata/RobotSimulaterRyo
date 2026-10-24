@@ -47,6 +47,11 @@ BAD_IN_GOOD = 0.05
 FILL_SHARE = (0.3, 0.6)
 FILL_NEAR, KNOWN_NEAR = 1, 2
 CATTLE_PER = 8  # 牛は人 8 人に 1 頭 (小数。4.F の 5)
+# 世界の選び (2026-10-24。実験 C のため。g7.sync_world が state の g7.world から入れる。どちらも False ならいつもと同じ):
+#   DESERT = 草原 (s) を砂地とみなす (K = 0。住めない。ますの一覧 cells からも除く)。NO_FLEE = 逃げ場がない (refuge がいつも None = 囲まれている)
+#   (実験 A1 の tools/lab_region.py の circ "desert"・"nofl" と同じ差しかえを、本物の道に入れたもの)
+DESERT = False
+NO_FLEE = False
 
 
 def map_hash():
@@ -59,11 +64,17 @@ def land(cell):
     return GRID[y][x]
 
 
+def _k(ld):
+    return 0 if DESERT and ld == "s" else K[ld]
+
+
 def cap(cell):
-    return K[land(cell)]
+    return _k(land(cell))
 
 
 def cells():
+    if DESERT:
+        return [(x, y) for y in range(SIZE) for x in range(SIZE) if GRID[y][x] != "s"]
     return [(x, y) for y in range(SIZE) for x in range(SIZE)]
 
 
@@ -103,11 +114,11 @@ def place_known(d, n_days, used):
     return min(free, key=lambda c: (dist(c, want), c[1], c[0])) if want in used or want == VILLAGE else want
 
 
-def fill_cells(used, people_now, share, rng):
+def fill_cells(used, people_now, share, rng, target=None):
     """はじめの集落を置く (塩 79 の列。G7 に入る日に 1 回だけ。4.B.1): 地域の人数 (村を除く) が「K の合計 (村のますを除く) × share」になるまで、
     空いたますを 1 つずつ K の重みで選び、そのますの K の 3〜6 割の人の集落を置く。村から 1 ます以内と、集落のあるますは選ばない。
     戻り値: [(ます, 人数)] (置いた順)。乱数は、集落ごとに ますを選ぶ 1 回・人数 1 回 (この順)"""
-    target = round(k_total() * share)
+    target = round(k_total() * share) if target is None else target  # target: 置く人数を外から (砂地の世界でも、今の地図の K の割合で置く)
     used = set(used)
     out = []
     total = people_now
@@ -190,7 +201,7 @@ def cell_of(s):
 
 def kcap(s):
     """暮らせる人数。川辺の村 (V0) は地図の K でなく、世界の計算で決まるので、kcap を大きくして持たせる (g7.py と掃き出し)"""
-    return s.get("kcap") or K[s["land"]]
+    return s.get("kcap") or _k(s["land"])
 
 
 def surplus_pp(s, bad=None):
@@ -271,7 +282,9 @@ def near_cell(setts, frm, within=SPLIT_NEAR):
 
 
 def refuge(setts, s, a):
-    """逃げ場 (8b): 求めた集落 a の届く範囲の外の空いたます (なければ None = 囲まれている)"""
+    """逃げ場 (8b): 求めた集落 a の届く範囲の外の空いたます (なければ None = 囲まれている)。NO_FLEE の世界では、いつも None"""
+    if NO_FLEE:
+        return None
     occ = occupied(setts)
     return best_cell([c for c in cells() if c not in occ and dist(c, cell_of(a)) > reach(a)], cell_of(s))
 
@@ -859,7 +872,9 @@ def levels(setts, ties, day, officials=None, village_rules=False):
     葉 = 集落ごとの家々 (川辺の村もまとめて 1 つ)。決める人 = 集落の長 (段 2 の集落は長の下に、貢いでくる集落すべてから集める役が 1 つ) と、村の役の人。
     officials: 川辺の村の役の人 {名前: [下 (「V0」= 村の葉、または貢いでくる集落の番号)]} (取り立てた物を村の蓄えに入れた人。村の蓄えはまとめ役に渡したとみなす)。
     段: 自分の葉だけ → 0 / 別々の下を 2 つ以上 → 下でいちばん高い段 + 1 / 下が 1 つ → 段を足さない。輪になる矢印は、新しいほうを数えない。
-    village_rules: 川辺の村も、ほかの集落と同じに役の段で数える (掃き出しだけ。本物の村の役の人は officials で渡す)。
+    village_rules: 川辺の村も、ほかの集落と同じに役の段で数える (掃き出しと、2026-10-24 からの g7 の数え方 "v2")。
+      村の役の段 (org) が 2 以上で貢いでくる集落があれば、村の長の下に、貢いでくる集落みなを下にもつ役 ("役", "V0") を置く (officials は使わない)。
+      貢いでくる集落がない・org が 2 より下なら、前のまま (officials があれば officials で数える)
     戻り値: いちばん上の人ごとの {"top", "D", "T" (集落だけで数えた段 + 1), "office" (役の人が足した段), "members", "village" (中心 / 従う / 外), "B"}"""
     live = {s["id"]: s for s in setts if not s.get("gone")}
     edges = []  # (払う側, 受ける側)
@@ -881,7 +896,7 @@ def levels(setts, ties, day, officials=None, village_rules=False):
     for sid, s in live.items():
         subs = [p for p, q in edges if q == sid]
         leaf = [("葉", sid)]
-        if sid == "V0" and officials:
+        if sid == "V0" and officials and not (village_rules and s.get("org", 0) >= 2 and subs):
             covered = set()
             for n, src in sorted(officials.items()):
                 kids[("村の役", n)] = [("葉", "V0") if x == "V0" else ("長", x) for x in sorted(set(src), key=num)]

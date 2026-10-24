@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "畑の草の種が実っているから、夏のあいだは毎夕だれかが刈ろう。わたしは今日から南林12へ採集に行く。セナ、一緒に来てくれる？ 見つけた量と蓄えに入れた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["セナ"]}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": false,
+ "judge": {"M18": "つぐなう"}, "feast": true, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": "特になし", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるのは大事なことだから。"}, {"id": "L121", "against": "特になし", "agree": true, "reason": "一人で行くと、ザガに襲われてけがをしてしまうから。"}, {"id": "L140", "against": "特になし", "agree": true, "reason": "夏のうちに畑を刈り切らないと、実りが落ちてしまうから。"}],
+ "year_name": "ヨナが殺された年",
+ "feeling": "畑の草の種が実って、ほっとしている。夏のうちに刈り切りたい。"}

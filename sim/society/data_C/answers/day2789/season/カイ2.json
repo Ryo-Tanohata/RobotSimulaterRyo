@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "わたしは東林12へ行って、木の実がまだ残っているかを確かめてくるね。ユノ2と二人で行って、夜に見つけた量を言うよ。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ユノ2"]}, "sow": 0, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ネム2": {"activity": "採集", "place": "東林12"}}, "keep": false,
+ "judge": {"M20": "ゆるす", "M21": "ゆるす", "M22": "ゆるす"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "東の林では、木の実が前の季節に見つかったことがある。今季も残っているか確かめたい。", "because": [63397], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出る夜は、キャンプから離れないのが安全だから。"}, {"id": "L143", "against": "", "agree": true, "reason": "一人で林に行くと、けがをしたときに助けを呼べないから。"}, {"id": "L121", "against": "", "agree": true, "reason": "近くでも二人以上で行けば、ザガが来ても守り合える。"}],
+ "feeling": "木の実の木がたくさんあって少し安心したけど、冬が近いから遠くの林も確かめておきたい。"}

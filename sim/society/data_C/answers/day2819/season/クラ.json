@@ -1,0 +1,7 @@
+{"say": [{"to": "ネム2", "text": "わたしは北丘12へ採集に行くつもり。ネム2もいっしょに来ない？ 二人で行けば、見つけた量を夜にちゃんと言えるよ。"}, {"to": "みんな", "text": "冬は木の実も草の種も実らないから、新しい場所を二人組で見て回ろう。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["ネム2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "冬の北の川で魚が取れるかは、まだ分からない", "because": [63430], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、キャンプから離れないのは大事だと思う"}, {"id": "L1", "against": "", "agree": true, "reason": "どこへ行くか伝えておけば、同じ場所を重ねて探さずに済む"}, {"id": "L143", "against": "", "agree": true, "reason": "採集も狩りも二人以上で行けば、ザガに襲われても助け合える"}, {"id": "L150", "against": "", "agree": true, "reason": "南川12は前の冬に何も見つからなかったから、北丘12を試すのに賛成"}, {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えに入れずに食べきるなら、腐らずにすむと思う"}],
+ "feeling": "冬は食べ物がなくて不安だけど、北の丘で何か見つけられたらいいな。"}

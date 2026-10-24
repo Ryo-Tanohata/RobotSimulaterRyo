@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "今日は北川12へ行って、魚と芋があるか確かめてくるよ。ノアと二人で行って、見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ノア"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "住まいを建てる", "place": "camp"}}, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "ケトの家の住まいは、あと少しで建つ", "because": [40406], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L129", "against": "", "agree": true, "reason": "石の鎌があれば、夏に畑を刈り切りやすい"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれないから"}, {"id": "L143", "against": "", "agree": true, "reason": "近くでも林でも二人以上なら、ザガが来ても安心だから"}, {"id": "L148", "against": "", "agree": true, "reason": "住まいがない家が、雨の夜に困らないように"}, {"id": "L150", "against": "北丘12で何が見つかるか、まだ覚えていない。先に確かめたい", "agree": false, "reason": "冬の前に、北川12の魚と芋を確かめたいから"}],
+ "feeling": "畑の草が育ってきて、ほっとする。北川で魚が見つかるといいな。"}

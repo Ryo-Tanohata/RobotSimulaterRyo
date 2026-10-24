@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、北川12 で魚と芋がまだ取れるかを確かめに行くよ。ハユ2 といっしょに二人で行く。見つけた量と蓄えに入れた量は、夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ハユ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ハユ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M8": "ゆるす", "M9": "つぐなう"}, "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "北川12 では、前の季節に魚と芋が見つかった (冬にも取れるかは、まだ確かめていない)", "because": [47330], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出るから、夜に離れないのは大事だ"}, {"id": "L121", "against": "", "agree": true, "reason": "二人以上で行けば、ザガに襲われても助け合える"}, {"id": "L150", "against": "", "agree": true, "reason": "前の冬に何も見つからなかった南川12 は後回しにして、北丘12 を試すのがいい"}],
+ "feeling": "蓄えは十分にあるけれど、冬の食べ物がどこにあるかを知っておきたい。ハユ2 といっしょなら安心だ。"}

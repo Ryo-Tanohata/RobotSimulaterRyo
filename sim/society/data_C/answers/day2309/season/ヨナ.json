@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "わたしとアルで西草原12へ採集に行くよ。夕方までに戻るから、見つけた量と蓄えに入れた量は夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["アル"]}, "sow": 150, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"アル": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "judge": {"M10": "つぐなう", "M11": "つぐなう"}, "feast": false, "leader": "ウィロ",
+ "knowledge": [{"op": "add", "text": "川辺の家の畑で刈った草の種が、刈った家の倉に入らず川辺の家の倉に入ると、もめごとになる。刈る前に量と分け方を決めることが大事だ", "because": [49689, 49690], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": "なし", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるようにするため"}, {"id": "L121", "against": "なし", "agree": true, "reason": "ザガが昼の林にも出て、ウィロがけがをしたから"}, {"id": "L143", "against": "なし", "agree": true, "reason": "一人での採集は危ないから"}, {"id": "L149", "against": "なし", "agree": true, "reason": "畑の掟をひとつにまとめると、守りやすいから"}, {"id": "L133", "against": "なし", "agree": true, "reason": "土器づくりの人を決めて、草の種を虫やネズミから守るため"}],
+ "feeling": "冬が近いのに食べ物の流れがまだ読めなくて、少し気がかり。でも西草原12へ行けるのはうれしい。"}

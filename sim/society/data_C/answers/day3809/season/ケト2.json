@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "ぼくはハユ2と北川12へ行って、魚と芋のある場所を見てくるね。夜に見つけた量と、蓄えに入れた量を分けて言うよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ハユ2"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ハユ2": {"activity": "採集", "place": "北川12"}, "リオ2": {"activity": "畑仕事", "place": "camp"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "北の川で魚を見たいと、ハユ2が言っていた。まだ見ていない。", "because": [109069], "confidence": 0.4}],
+ "proposal": null,
+ "votes": [
+  {"id": "L157", "against": "なし", "agree": true, "reason": "住まいのない家が雨の夜に外で濡れると、疲れがとれない。家ごとに決めて手伝えば早くできる。"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "一人で行くと、ザガに会ったときや道に迷ったときに助けが来ない。二人以上なら安心して採れる。"},
+  {"id": "L149", "against": "なし", "agree": true, "reason": "草取りと刈り入れを毎日一人ずつ交代にすれば、畑の実りが減らない。"},
+  {"id": "L117", "against": "なし", "agree": true, "reason": "春のうちに木の実を埋めると、夏と秋に実る木が増える。"}
+ ],
+ "feeling": "冬までに魚と芋の場所が分かると安心できる。ハユ2と一緒に行けるのは心強い。"}

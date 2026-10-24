@@ -1,0 +1,39 @@
+{
+ "say": [{"to": "みんな", "text": "畑の実りは夏のうちに刈らないと落ちる。おれは畑で刈り入れをする。鎌を持つ人は、刈り残しが出ないように、夕方の刈り入れに早めに来てほしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []},
+ "pick": 40,
+ "plant": 0,
+ "harvest": 60,
+ "eat_goat": 0,
+ "keep": false,
+ "feast": false,
+ "leader": "なし",
+ "knowledge": [
+  {"op": "add", "text": "季節のはじめに村の全員で祭りをすると、まだ収まっていないもめごとが仲直りして収まる", "because": [85254], "confidence": 0.7},
+  {"op": "add", "text": "ナギ3 (2 歳) が亡くなった", "because": [88242], "confidence": 1.0},
+  {"op": "add", "text": "ケト3 (34 歳) が病で亡くなった", "because": [89416], "confidence": 1.0},
+  {"op": "add", "text": "クラ に子が生まれ、ユノ3 と名づけられた (男)。ノア2 に子が生まれ、カイ3 と名づけられた (男)", "because": [89414, 89415], "confidence": 1.0},
+  {"op": "add", "text": "よそから来た トワ3 と サエ3 が、大人の半分をこえる賛成 (27 人中 24 人) で村に加わった", "because": [83286], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "なし", "agree": true, "reason": "蓄えに入れた人が、その日のうちに自分の分を取れなければ、明日の力が落ちる"},
+  {"id": "L118", "against": "なし", "agree": true, "reason": "夏のうちに畑を刈り切るには、毎日だれかが交代で刈るのがいい"},
+  {"id": "L121", "against": "一人のほうが、近い場所を早く回れて、見つけられる量が多い", "agree": false, "reason": "二人ずつだと行ける場所が半分になり、食べ物が足りなくなる"},
+  {"id": "L126", "against": "なし", "agree": true, "reason": "火と見張りがあれば、夜にザガが近づけない"},
+  {"id": "L140", "against": "なし", "agree": true, "reason": "手のあいた大人が毎夕刈れば、夏のうちに刈り切れる"},
+  {"id": "L143", "against": "採集と狩りを二人ずつにすると、動ける場所が減る", "agree": false, "reason": "一人で近い場所を見て回るほうが、食べ物を早く見つけられる"},
+  {"id": "L106", "against": "なし", "agree": true, "reason": "冬の前に木の実を蓄えに入れれば、冬の食べ物が増える"},
+  {"id": "L107", "against": "なし", "agree": true, "reason": "埋めた木の実が育てば、夏と秋に実がなって蓄えが増える"},
+  {"id": "L109", "against": "なし", "agree": true, "reason": "畑の刈り入れが終わってから、まく量を決めるのがいい"},
+  {"id": "L114", "against": "なし", "agree": true, "reason": "世話をする人がいないと、ヤギはいなくなってしまう"},
+  {"id": "L122", "against": "なし", "agree": true, "reason": "夜の報告が一つにまとまれば、わかりやすい"},
+  {"id": "L129", "against": "なし", "agree": true, "reason": "鎌を順番に貸せば、刈る量が増える。鎌づくりはおれが手伝える"},
+  {"id": "L133", "against": "なし", "agree": true, "reason": "土器に入れた草の種は、虫とネズミに食べられない"},
+  {"id": "L134", "against": "なし", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれない"},
+  {"id": "L145", "against": "なし", "agree": true, "reason": "フウの家は前の季節に多く取った。夏に多めに入れて返すべきだ"},
+  {"id": "L147", "against": "なし", "agree": true, "reason": "芋は蓄えに入れると傷むので、その夜に食べきるのがいい"}
+ ],
+ "year_name": "家がふえた年",
+ "feeling": "夏のうちに畑を刈り切る。おれが先頭に立つ。"
+}

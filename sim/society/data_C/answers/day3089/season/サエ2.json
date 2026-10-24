@@ -1,0 +1,7 @@
+{"say": [{"to": "ユノ2", "text": "春のうちに北川12へ行こう。魚と芋が取れるか、二人で確かめたい。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "北川12 へ春のうちに二人で行って、魚と芋が取れるかを確かめる予定", "because": [72018], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L150", "against": "", "agree": true, "reason": "北丘12 を試せば、冬の食べ物の場所が分かる"}, {"id": "L145", "against": "", "agree": true, "reason": "取った量と入れた量の差を小さくすれば、もめごとが減る"}, {"id": "L147", "against": "", "agree": true, "reason": "採ったあと蓄えを雨から守る場所に置けば、食べ物が傷まない"}],
+ "feeling": "北川で魚が取れたら、冬がずっと楽になる。ユノ2と行くのが少し楽しみだ。"}

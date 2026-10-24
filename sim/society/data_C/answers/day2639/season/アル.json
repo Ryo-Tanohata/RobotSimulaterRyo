@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "わたしは畑仕事をするよ。石の鎌を順番に借りて、夏のうちに刈り切るようにする。刈った量と畑に残った量は夜に言うね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": false,
+ "judge": {"M18": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "川辺の家のヤギが畑に入ると、畑の草の種が荒らされる", "because": [59113], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火を絶やさず、ザガから身を守れるから"}, {"id": "L3", "against": "", "agree": true, "reason": "二人以上なら、けがをしても助け合えるから"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたままでは、畑仕事も危ないから"}, {"id": "L98", "against": "", "agree": true, "reason": "採ってきた人が空腹にならないように"}, {"id": "L118", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを、交代で続けられるから"}, {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上の方が安全だから"}, {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに畑を刈り切らないと、実りが落ちてしまうから"}, {"id": "L143", "against": "", "agree": true, "reason": "林ではザガが出るので、二人以上で行くのがよいから"}],
+ "year_name": "ヨナとタヒを失った年",
+ "feeling": "夏のうちに畑を刈り切れるか少し心配だけど、やることがはっきりしてほっとしている。"}

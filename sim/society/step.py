@@ -388,7 +388,12 @@ def main():
                     help="next_part で、G6 を本人の決めで閉じて G7 に入るとき: 本人の言葉 (記録に残す)")
     ap.add_argument("--fill", type=float, default=None,
                     help="next_part で G7 に入るとき: 地域の人数 (村を除く) を、暮らせる人数 K の合計の何割にするか (0〜0.9。書かなければ 0 = 今のまま)")
+    ap.add_argument("--world", default=None,
+                    help="next_part で G7 に入るとき (2026-10-24。実験 C): 世界の選び。desert (草原を砂地に) と no_flee (逃げ場なし) をコンマでつなぐ")
+    ap.add_argument("--count", default=None, help="next_part で G7 に入るとき (2026-10-24。実験 C): 決める段の数え方 (v2 = 村もまわりの集落と同じに数える)")
     a = ap.parse_args()
+    if (a.world is not None or a.count is not None) and a.cmd != "next_part":
+        sys.exit("--world と --count は next_part のときだけ書く")
     if a.onoff and a.cmd not in ("ask_why", "cards"):
         sys.exit(f"on / off は ask_why のときだけ書く ({a.cmd} {a.onoff} とは書けない)")
     if a.cmd == "ask_why" and a.onoff not in (None, "on", "off"):
@@ -426,7 +431,8 @@ def main():
             ask = {"年": "年の集まり", "寄る": "寄る季節", "集まり直し": "集まり直し", "秋": "秋の集まり"}.get(g7.get("ask"), "いらない")
             fl = (g7.get("region") or {}).get("fill")
             print(f"次の答え: {ask} / G7 に入った日 {_yd(g7['start'])} / 史実のずれの直し {g7['fix_from']} 日目から / "
-                  f"まわりの集落 {len(era2._g6(state)['others'])} (はじめに置いた集落 {len(fl['placed']) if fl else 0})")
+                  f"まわりの集落 {len(era2._g6(state)['others'])} (はじめに置いた集落 {len(fl['placed']) if fl else 0})"
+                  + (f" / 世界の選び {'・'.join(sorted(g7['world']))}" if g7.get("world") else "") + (f" / 段の数え方 {g7['count']}" if g7.get("count") else ""))
         if state.get("era2"):  # 仕事の理由 (段階 1。2026-10-14 本人が決めた: 次に村を進めるときから。daily_run.md)
             log = state["era2"].get("ask_why_log")
             print(f"仕事の理由: {'たずねている' if state['era2'].get('ask_why') else 'たずねていない'} ({log[-1][0]} 日目のお題から)" if log
@@ -478,7 +484,11 @@ def main():
             print(f"* 第 4 部の終わり (G6): 町の条件はそろわないまま、本人の決めで閉じた ({_yd(c['day'])}。記録の条件 "
                   f"{_yd(c['record']) if c['record'] is not None else 'まだ'})")
         if nxt == "G7":
-            g = g7.enter(state, a.fill or 0.0)
+            wo = [x.strip() for x in (a.world or "").split(",") if x.strip()]
+            if set(wo) - set(g7.WORLD_KEYS) or (a.count is not None and a.count not in g7.COUNTS):
+                print(f"next_part はできない: --world は {'・'.join(g7.WORLD_KEYS)}、--count は {'・'.join(g7.COUNTS)} だけ (何も変えない)")
+                sys.exit(3)
+            g = g7.enter(state, a.fill or 0.0, {k: True for k in wo} or None, a.count)
             if a.closed is not None:
                 state["era_log"][-1]["g6_closed"] = state["day"]
         else:

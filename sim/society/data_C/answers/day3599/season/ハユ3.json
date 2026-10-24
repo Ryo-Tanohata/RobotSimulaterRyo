@@ -1,0 +1,26 @@
+{
+  "say": [{"to": "みんな", "text": "ケト3の家の畑は、おれが受けついだ。夏のあいだ、その畑は自分で刈る。よその家の畑には手を出さない。"}],
+  "job": {"activity": "畑仕事", "place": "camp", "with": []},
+  "pick": 40,
+  "plant": 0,
+  "harvest": 60,
+  "eat_goat": 0,
+  "accept": {"ソナ": false},
+  "keep": true,
+  "feast": false,
+  "leader": "なし",
+  "seal_store": true,
+  "knowledge": [{"op": "add", "text": "北の川は前の季節、何も見つからなかった。当てにはしない。", "because": [95606], "confidence": 0.8}],
+  "proposal": null,
+  "votes": [
+    {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るなら、キャンプから離れないのは当たり前だ。"},
+    {"id": "L98", "against": "", "agree": true, "reason": "取った分は自分で食べる。蓄えに頼るだけの人が出ないなら、それでいい。"},
+    {"id": "L121", "against": "採集に二人必要だと、腕のいい者ほど遅くなる。おれの採集は一人で十分だ。", "agree": false, "reason": "一人で動けるほうが効率がいい。"},
+    {"id": "L140", "against": "よその家の畑を毎夕みんなで刈ると、自分の家の畑の分が減る。刈るのは畑の持ち主の家の仕事にすればいい。", "agree": false, "reason": "自分の家の畑は自分の家で刈る。"},
+    {"id": "L143", "against": "林にも二人で行くのは手間が多すぎる。", "agree": false, "reason": "採集は一人で行ったほうが早い。"},
+    {"id": "L149", "against": "交代で人の畑の仕事を担当させられるのは、家ごとの畑を大事にしない決まりだ。", "agree": false, "reason": "畑の仕事は、畑を持つ家が自分でやる。"},
+    {"id": "L154", "against": "住まいを建てる手伝いは、その家の人が自分でやればいい。", "agree": false, "reason": "よその家の住まいのために、手は貸さない。"}
+  ],
+  "year_name": "ザガがシノを殺した年",
+  "feeling": "自分の畑と腕があれば、他人の世話はいらない。"
+}

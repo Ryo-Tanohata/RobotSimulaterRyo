@@ -1,0 +1,21 @@
+{"say": [{"to": "クラ", "text": "西林12、二人で見に行こう。見つけた量は夜に言うよ。"}],
+ "job": {"activity": "採集", "place": "西林12", "with": ["クラ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M27": "ゆるす"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "西林12 は話を聞いただけで、食べ物が見つかるかはまだ分からない", "because": [67901], "confidence": 0.3}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "夜に一人で動けないと不便", "agree": true, "reason": "ザガが出るから、夜は誰もキャンプから離れないのがいい"},
+  {"id": "L101", "against": "世話をする人が一人に偏る", "agree": true, "reason": "世話がないとヤギがいなくなるから"},
+  {"id": "L108", "against": "二人組だと見て回るのに時間がかかる", "agree": true, "reason": "まだ行っていない場所の食べ物が分かる"},
+  {"id": "L110", "against": "戻る時刻に縛られる", "agree": true, "reason": "帰らない人を早く探しに行ける"},
+  {"id": "L111", "against": "二人分の手が要る", "agree": true, "reason": "ヤギは群れでいて一人では囲めないし、ザガにも襲われやすい"},
+  {"id": "L119", "against": "冬の見回りで手が減る", "agree": true, "reason": "まだ見ていない林を知りたい"},
+  {"id": "L121", "against": "二人組だと一人の仕事が遅れる", "agree": true, "reason": "ザガが昼の林にも出るから、二人なら安心"},
+  {"id": "L134", "against": "雨の夜に入れない人が出る", "agree": true, "reason": "外で濡れて疲れがとれない人を減らせる"},
+  {"id": "L137", "against": "大人が後回しになる", "agree": true, "reason": "小さい子が外で濡れると弱ってしまうから"},
+  {"id": "L143", "against": "近い場所でも二人は手間", "agree": true, "reason": "採集と狩りは必ず二人以上が安心"},
+  {"id": "L148", "against": "住まいの手伝いで仕事が減る", "agree": true, "reason": "住まいがない家が雨で濡れないように"},
+  {"id": "L149", "against": "毎夕の担当決めが手間", "agree": true, "reason": "畑の草取りと刈り入れが途切れにくい"},
+  {"id": "L150", "against": "北丘12 は今まで何も見つかっていない", "agree": true, "reason": "冬の食べ物の場所を知るために試すのはいい"}
+ ],
+ "feeling": "春の仕事が始まる。西林12で何が見つかるか、少し楽しみ。"}

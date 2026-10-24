@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "冬のうちから土器を作ります。草の種を土器に入れて、虫やネズミに食べられないようにしたいです。作った数と割れた数は夜に言います。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意で、冬のうちに草の種を守っておけば、春と夏の種が減らないから"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ6": true},
+ "keep": false,
+ "judge": {"M115": "つぐなう"},
+ "feast": false,
+ "leader": null,
+ "seal_store": true,
+ "knowledge": [{"op": "add", "text": "村の蓄えの土器は封をして、取るときは封を割る決まりになった。割れた封のかけらで、だれが開けたかが分かる", "because": [281646], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に出るので、夜はキャンプの中にいたほうが安全だから"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採集で集めた人が、その日のうちに自分の分を食べられるのは大事だから"},
+  {"id": "L121", "against": "", "agree": true, "reason": "ウィロがザガにけがをさせられたので、二人以上で行くのがよいと思う"},
+  {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るなら、先に持ち主と量を決めれば争いが減るから"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると、ヤギが多くなりすぎるから"},
+  {"id": "L176", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いので、草の多い場所を見に行くのは必要だから"},
+  {"id": "L189", "against": "", "agree": true, "reason": "わたしの子ハソ6やセオ5のように小さい子をひとりにしないのは大事だから"}
+ ],
+ "feeling": "土器をたくさん作れるのがうれしい。冬の種を守れば、春が来たときに安心できる。"}

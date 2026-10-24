@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏の仕事は、西草原12へ行って草の種と木の実を探すことにしたよ。ヨナといっしょに行くね。見つけた量と蓄えに入れた量は、夜に分けて言うからね。"}, {"to": "タヒ", "text": "タヒも西草原12で採集してね。二人で行けば安心だよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ヨナ"]}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"タヒ": {"activity": "採集", "place": "西草原12"}}, "keep": true,
+ "feast": false, "leader": "セナ", "call": null,
+ "knowledge": [{"op": "add", "text": "西草原12は、キャンプから約300 m の所。夏に行ってみて、どれだけ見つかるかを確かめたい", "because": [51294], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は火と見張りでザガから守るのが大事だから"}, {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えに入れず、その夜に食べきれば腐らないから"}, {"id": "L150", "against": "", "agree": true, "reason": "冬に北丘12を試せば、食べ物の場所が増えるから"}],
+ "year_name": "まとめ役がかわった年",
+ "feeling": "まとめ役として、みんなが食べられるように見守りたい。少し緊張するけど、西草原12に行くのが楽しみ。"}

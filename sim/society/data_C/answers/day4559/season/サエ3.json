@@ -1,0 +1,42 @@
+{
+  "say": [{"to": "みんな", "text": "土器はもう十分あると言われそうだけど、割れた数と作った数を毎晩数えて、作る量を決めたい。畑の刈り入れは、毎夕 60 つかみずつ私もやるね。"}],
+  "job": {"activity": "土器づくり", "place": "camp", "with": []},
+  "pick": 20,
+  "plant": 0,
+  "harvest": 60,
+  "eat_goat": 0,
+  "keep": false,
+  "judge": {"M76": "ゆるす"},
+  "feast": false,
+  "leader": "なし",
+  "trade": {"T19": false},
+  "seal_store": true,
+  "knowledge": [
+    {"op": "add", "text": "南の村は、ヤギ 1 頭を土器 6 個・鎌 1 本・草の種 60 つかみと取り替えたいと、また言ってきた", "because": [171423], "confidence": 0.9},
+    {"op": "add", "text": "この季節、村の蓄えや倉の封は、家ごとに 30 回ほど割られた。割れた封のかけらは取ってある", "because": [171424], "confidence": 0.8}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L0", "against": "なし", "agree": true, "reason": "ザガが夜に出るので、夜はキャンプにいるのが安全。"},
+    {"id": "L1", "against": "なし", "agree": true, "reason": "行く場所を言っておけば、同じ場所を重ねて探さずに済む。"},
+    {"id": "L3", "against": "なし", "agree": true, "reason": "採集や狩りは二人以上の方が、けがをしたときに助けられる。"},
+    {"id": "L16", "against": "なし", "agree": true, "reason": "疲れたまま働くと、けがをしやすい。"},
+    {"id": "L18", "against": "なし", "agree": true, "reason": "空腹で弱る人を出さないのは、みんなのためになる。"},
+    {"id": "L98", "against": "なし", "agree": true, "reason": "食べ物を集めた人が、その日のうちに自分の分を食べられるのはよい。"},
+    {"id": "L112", "against": "なし", "agree": true, "reason": "肉を腐らせないために、保存の決まりを一つにまとめるのは分かりやすい。"},
+    {"id": "L126", "against": "なし", "agree": true, "reason": "火の番と見張りが一つにまとまっていれば、誰が番をするかが分かる。"},
+    {"id": "L137", "against": "なし", "agree": true, "reason": "うちの小さい子ロワ2とセオ2は、濡れると弱ってしまうから先に入れてほしい。"},
+    {"id": "L140", "against": "なし", "agree": true, "reason": "刈り残しが落ちるのを防ぐには、手のあいた大人が毎夕刈るのがよい。"},
+    {"id": "L142", "against": "なし", "agree": true, "reason": "割れた土器をすぐ作り直せば、草の種を守れる。"},
+    {"id": "L158", "against": "なし", "agree": true, "reason": "覚えだけでは量がはっきりしない。粘土の板に残せば、もめごとが減る。"},
+    {"id": "L161", "against": "なし", "agree": true, "reason": "刈り入れを手のあいた大人が毎夕 60 つかみまでにすれば、畑の実りを落とさない。"},
+    {"id": "L163", "against": "なし", "agree": true, "reason": "ヤギの数が分かれば、世話が足りているか見やすい。"},
+    {"id": "L164", "against": "なし", "agree": true, "reason": "畑の持ち主と決めてから刈れば、草の種の行き先でもめごとにならない。"},
+    {"id": "L166", "against": "なし", "agree": true, "reason": "自分が出した決まり。土器づくりを春から毎日続けて、数を夜に言う。"},
+    {"id": "L167", "against": "なし", "agree": true, "reason": "ヤギの数に合わせて世話の人を決めれば、いなくなるヤギを減らせる。"},
+    {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないのに、よその村のヤギを受けとると、草の取り合いになる。"},
+    {"id": "L172", "against": "なし", "agree": true, "reason": "封を割ったら名乗り出る。覚えで争うより、はっきりする。"}
+  ],
+  "year_name": "草の種が大きく実った年",
+  "feeling": "粘土をこねて形ができていく時間が好き。夏の終わりまでに、刈り残しが出ないといいな。"
+}

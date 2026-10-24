@@ -1,0 +1,7 @@
+{"say": [{"to": "タヒ", "text": "春のあいだは、北林12 へ二人で木の実と草の種を探しに行こう。夜に見つけた量と蓄えに入れた量を、そのまま言い合おうね。"}, {"to": "みんな", "text": "二人以上で林へ行くのは忘れずに。見つけた量は夜に分けて話そう。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["タヒ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"タヒ": {"activity": "採集", "place": "北林12"}, "ミラ": {"activity": "採集", "place": "北林12"}}, "keep": true,
+ "feast": false, "leader": "セナ", "call": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種を土器に入れておくと、虫やネズミに食べられずにすむ", "because": [54200], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るなら、キャンプを離れないのが一番安全だから"}, {"id": "L121", "against": "", "agree": true, "reason": "林は昼でも危ないと、ウィロがけがをして分かったから"}, {"id": "L126", "against": "", "agree": true, "reason": "火と見張りの決まりを一つにまとめると、夜に迷わず守れるから"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれないから"}, {"id": "L141", "against": "", "agree": true, "reason": "蓄えの草の種の出し入れが見えると、家ごとの差が分かりやすいから"}, {"id": "L145", "against": "", "agree": true, "reason": "前の季節に多く取った家が多めに入れれば、もめごとを防げるから"}],
+ "feeling": "祭りのあとで、みんな元気そうでうれしい。春は林へ行くのが楽しみだな。"}

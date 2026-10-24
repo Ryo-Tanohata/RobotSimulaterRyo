@@ -1,0 +1,7 @@
+{"say": [{"to": "ホノ", "text": "ホノ、今日は西草原12へ一緒に行こう。冬でも食べ物があるか、二人で確かめよう。"}, {"to": "みんな", "text": "冬の食べ物が見つかった場所は、夜に見つけた量と蓄えに入れた量を別々に言うよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}, "ルネ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "judge": {"M31": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "まとめ役のセナは、次の季節は採集をしようと呼びかけた", "because": [70578], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "ザガが出るから、夜に離れないのは大事だと思う"}, {"id": "L121", "against": "なし", "agree": true, "reason": "二人以上なら、けがをしても助けられる"}, {"id": "L125", "against": "なし", "agree": true, "reason": "北の林は何も見つからなかったから、まず南の川を試すのがいい"}, {"id": "L150", "against": "なし", "agree": true, "reason": "南川12は前の冬に何も見つからなかったから、北丘12を試したい"}],
+ "feeling": "冬の食べ物がどこにあるか分からないのは不安だけど、ホノと西草原12を確かめに行くのは楽しみだ。"}

@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "春のあいだは、西草原12へ草の種を取りに行くよ。まだ行ったことがないから、ノアと二人で組んで見てくる。草の様子と取れた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ノア"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "西草原12は、まだ誰も草の種を取りに行ったことがない。春に見て確かめたい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るのは本当だから、夜は離れないのがいい"},
+  {"id": "L1", "against": "", "agree": true, "reason": "行き先がかぶらなければ、一人の見つけた量が無駄にならない"},
+  {"id": "L3", "against": "", "agree": true, "reason": "二人なら、けがをしても助けてもらえる"},
+  {"id": "L6", "against": "", "agree": true, "reason": "場所を分けて取れば、取れる量が増えるはず"},
+  {"id": "L10", "against": "", "agree": true, "reason": "取れた量を話せば、どこに草があるか皆が分かる"},
+  {"id": "L122", "against": "", "agree": true, "reason": "夜の報告が一つにまとまれば、覚えやすい"},
+  {"id": "L126", "against": "", "agree": true, "reason": "火と見張りを毎晩決めれば、ザガから皆が守られる"},
+  {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り入れを毎夕続けないと、草の種が落ちてしまう"},
+  {"id": "L143", "against": "", "agree": true, "reason": "林に一人で行くと、けがをしたときに誰も気づけない"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れをまとめれば、担当が迷わない"}
+ ],
+ "feeling": "春になって体が軽い。西の草原は見たことがないから、少し楽しみだ。"}

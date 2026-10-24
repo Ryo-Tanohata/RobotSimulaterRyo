@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "春のあいだ、わたしはキャンプで石の鎌を作ります。夏に畑を刈るとき、鎌が多いほど早く刈り切れると思うから。鎌を使う人は、使いたい日に言ってね。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M27": "ゆるす"}, "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "なし", "agree": true, "reason": "食べ物を集めた人が、その日のうちに自分の分を食べられるのは大事だから"},
+  {"id": "L112", "against": "なし", "agree": true, "reason": "肉を腐らせないために、保存のしかたを一つにまとめるのがわかりやすいから"},
+  {"id": "L126", "against": "なし", "agree": true, "reason": "キャンプの火と見張りの決まりが一つにまとまると、夜に迷わずに済むから"},
+  {"id": "L140", "against": "なし", "agree": true, "reason": "夏の刈り入れを毎夕みんなでするのは、畑の草の種を落とさないために必要だから"},
+  {"id": "L149", "against": "なし", "agree": true, "reason": "畑の草取りと刈り入れを一つの決まりにすれば、担当が分かりやすいから"}
+ ],
+ "feeling": "鎌を作る仕事は好きだから、春が楽しみ。"}

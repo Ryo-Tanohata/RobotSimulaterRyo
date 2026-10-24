@@ -1,0 +1,8 @@
+{"say": [{"to": "ハユ2", "text": "夏のあいだに南川12へ一緒に行こう。近くて安心だから、冬の前に木の実や魚が取れるか確かめたい。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ハユ2"]}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "family": {"ハユ2": {"activity": "採集", "place": "南川12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "東林12 の木の実は、カイ2 が春に探しに行くと言っていた。まだ確かめていない。", "because": [72753], "confidence": 0.4}],
+ "proposal": null,
+ "votes": [{"id": "L125", "against": "", "agree": true, "reason": "南川12 は近くて二人で行けば安心。冬の採集の一番目にしたい"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを一つにまとめれば、守りやすい"}, {"id": "L98", "against": "", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるのは大事"}, {"id": "L124", "against": "", "agree": true, "reason": "林へ行くときは二人以上で行くのが安全"}, {"id": "L147", "against": "", "agree": true, "reason": "芋は保存できないので、採った夜に分けて食べきるのがよい"}],
+ "year_name": "セナが亡くなった年",
+ "feeling": "セナがいなくなって寂しいが、冬に向けて仲間と一緒に頑張ろう。"}

@@ -1,0 +1,51 @@
+{
+  "say": [
+    {"to": "ラタ3", "text": "西林12へ一緒に探索に行こう。まだ行ったことのない林だから、二人で何があるか確かめたい。夜に見つけた物と量を報告するね。"},
+    {"to": "みんな", "text": "ヤギが草で養える数より多いから、よそからヤギを受けとるのはやめよう。ヤギの数は毎晩数えて報告しよう。"}
+  ],
+  "job": {"activity": "探索", "place": "西林12", "with": ["ラタ3"]},
+  "pick": 0,
+  "plant": 5,
+  "harvest": 0,
+  "eat_goat": 0,
+  "accept": {"ネイ2": true},
+  "keep": false,
+  "feast": false,
+  "leader": "なし",
+  "trade": {"T18": false},
+  "seal_store": true,
+  "knowledge": [
+    {"op": "add", "text": "南の村は川にそって南へ1日歩いた所にある。ネイ2はそこから来た", "because": [167986], "confidence": 0.8},
+    {"op": "add", "text": "北の村は川にそって北へ2日歩いた所にある。ヤギ1頭を出して、土器・鎌・草の種をほしがっている", "because": [167987], "confidence": 0.7},
+    {"op": "add", "text": "草原と丘の草で養えるヤギは約140頭。それより多いと草が足りず、ヤギがやせていなくなる", "because": [167980], "confidence": 0.9},
+    {"op": "add", "text": "世話をする人が少ないと、ヤギはいなくなる", "because": [167979], "confidence": 0.9},
+    {"op": "add", "text": "印で封をした倉が、割られて開けられることがある。割れた封を見れば、開けられたことが分かる", "because": [167988], "confidence": 0.8}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、キャンプの中にいれば守り合える"},
+    {"id": "L98", "against": "", "agree": true, "reason": "採ってきた人が空腹のままでは、次の日の採集も落ちる"},
+    {"id": "L112", "against": "", "agree": true, "reason": "肉は腐りやすいので、保存処理が終わるまで蓄えに入れないのがよい"},
+    {"id": "L121", "against": "", "agree": true, "reason": "ザガがいる林で一人は危ない。二人なら助け合える"},
+    {"id": "L122", "against": "", "agree": true, "reason": "報告が一つにまとまれば、みんなが覚えやすい"},
+    {"id": "L126", "against": "", "agree": true, "reason": "火と見張りを一つにまとめれば、夜の決まりが分かりやすい"},
+    {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに畑を刈り切らないと、実りが落ちてしまう"},
+    {"id": "L141", "against": "", "agree": true, "reason": "蓄えから出した量と畑にまいた量を書き残せば、覚えのずれで争わずに済む"},
+    {"id": "L143", "against": "", "agree": true, "reason": "近い林でも一人で行くと危ないから"},
+    {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えに置くと腐りやすいので、その夜に食べきるのがよい"},
+    {"id": "L149", "against": "", "agree": true, "reason": "草取りと刈り入れを交代で分ければ、一人に負担が偏らない"},
+    {"id": "L157", "against": "", "agree": true, "reason": "住まいのない家が雨の夜に濡れないように、春に建てるのがよい"},
+    {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりせず、もめごとのもとになるから"},
+    {"id": "L159", "against": "", "agree": true, "reason": "魚も肉と同じで、その日に食べるか燻して保存するのがよい"},
+    {"id": "L160", "against": "", "agree": true, "reason": "何もなかった場所も残せば、同じ場所を何度も試さずに済む"},
+    {"id": "L163", "against": "", "agree": true, "reason": "ヤギの数を毎晩数えれば、いなくなるのにすぐ気づける"},
+    {"id": "L164", "against": "", "agree": true, "reason": "畑の持ち主と決めてから刈れば、刈った草の種の行き先で争わずに済む"},
+    {"id": "L165", "against": "", "agree": true, "reason": "探索も二人以上で行くのが安全"},
+    {"id": "L166", "against": "", "agree": true, "reason": "土器は春から少しずつ作れば、草の種を虫やネズミから守れる"},
+    {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話する人を置けば、いなくなるヤギが減る"},
+    {"id": "L169", "against": "", "agree": true, "reason": "草で養えない分のヤギは、肉にして干せば蓄えになる"},
+    {"id": "L170", "against": "", "agree": true, "reason": "草が足りないのだから、多すぎる分は春のうちに肉にするのがよい"},
+    {"id": "L171", "against": "", "agree": true, "reason": "ヤギが増えると草の取り合いになり、子ヤギが減るから"}
+  ],
+  "feeling": "ネイ2が来て村が広がるのはうれしい。冬だけど、仲間と林を見て回れるのが楽しみだ。"
+}

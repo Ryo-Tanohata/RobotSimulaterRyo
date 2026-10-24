@@ -1,0 +1,33 @@
+{"say": [{"to": "みんな", "text": "北の丘は前の冬に 30 日探して何も見つからなかった。まだ行ったことのない西草原12を、マロとネム3と三人で見てくるね。夕方までに戻る。"}],
+ "job": {"activity": "探索", "place": "西草原12", "with": ["マロ"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ネム3": {"activity": "探索", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": "なし", "trade": {"T21": "村"}, "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "北の村は、この年は畑が実らず苦しいと言い、草の種 1900 つかみ を貸してほしいと頼んできた", "because": [178636], "confidence": 0.9},
+  {"op": "add", "text": "ネイ2は、北丘12 は前の季節に 30 日探したが何も見つからなかったので、冬の前に行くのはやめたほうがいいと話していた", "because": [175456], "confidence": 0.7}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガは夜に出るので、夜はキャンプにいるべきだ"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは二人以上の方が安全で、助け合える"},
+  {"id": "L6", "against": "", "agree": true, "reason": "場所を分ければ、見つかる食べ物が増える"},
+  {"id": "L98", "against": "", "agree": true, "reason": "集めた人が空腹だと、明日の採集の力が落ちる"},
+  {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻らない人がいたら、すぐ探しに行ける"},
+  {"id": "L112", "against": "", "agree": true, "reason": "肉は腐りやすいので、その日のうちに処理する決まりが要る"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれない"},
+  {"id": "L139", "against": "", "agree": true, "reason": "病の人を一人にしないことが大事だ"},
+  {"id": "L143", "against": "", "agree": true, "reason": "二人以上なら、ザガや事故があっても助けを呼べる"},
+  {"id": "L147", "against": "", "agree": true, "reason": "芋は腐りやすく、蓄えに置いても減るだけだから"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の仕事を一つにまとめた方が分かりやすい"},
+  {"id": "L150", "against": "前の冬、北の丘では 30 日とも何も見つからなかった。ネイ2も同じことを話していた", "agree": false, "reason": "行ったことのない場所を先に試したい"},
+  {"id": "L158", "against": "", "agree": true, "reason": "覚えだけだと量がはっきりせず、もめごとのもとになる"},
+  {"id": "L159", "against": "", "agree": true, "reason": "魚も肉と同じく、腐りやすいから"},
+  {"id": "L160", "against": "", "agree": true, "reason": "何も見つからなかった場所も残せば、次の人が同じ所を試さずに済む"},
+  {"id": "L163", "against": "", "agree": true, "reason": "ヤギの数が分かれば、世話が足りているかすぐ分かる"},
+  {"id": "L165", "against": "", "agree": true, "reason": "わたしが出した決まり。探索も二人以上で行くべきだ"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギが多すぎるので、世話をする人を数に合わせて決めたい"},
+  {"id": "L168", "against": "", "agree": true, "reason": "土器を冬から作り始めれば、春の草の種も守れる"},
+  {"id": "L169", "against": "", "agree": true, "reason": "草で養えない分のヤギを肉にして干せば、ヤギを減らせる"},
+  {"id": "L171", "against": "", "agree": true, "reason": "ヤギが増えると草の取り合いになり、子ヤギが減ってしまう"},
+  {"id": "L173", "against": "", "agree": true, "reason": "ヤギの世話の決まりを一つにまとめた方が、みんなが覚えやすい"}
+ ],
+ "feeling": "冬の食べ物の場所はまだ分からないけど、知らない場所を見に行くのは少しわくわくする。"}

@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のあいだ、わたしは西草原12へホノと行って、食べ物を取ってくるよ。木の実は毎夕40つかみまで取って、冬の前に蓄えに入れよう。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": []}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "judge": {"M19": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "夏の畑は実ったら夏のうちに刈らないと落ちてしまう。毎夕だれかが刈ろう。", "because": [62345], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "特に反対する理由はない", "agree": true, "reason": "夜に火と見張りがあれば、ザガから身を守れる"}, {"id": "L98", "against": "特に反対する理由はない", "agree": true, "reason": "採ったものは、その日のうちに自分の分を食べられるのがよい"}, {"id": "L106", "against": "特に反対する理由はない", "agree": true, "reason": "冬の前に木の実を蓄えれば、冬の食べ物が増える"}, {"id": "L143", "against": "特に反対する理由はない", "agree": true, "reason": "林でも二人以上で行けば安心できる"}],
+ "year_name": "ヤギが畑を荒らした年",
+ "feeling": "夏のうちに木の実をたくさん取って、冬にそなえたい。"}

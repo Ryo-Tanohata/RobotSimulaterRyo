@@ -1,0 +1,26 @@
+{
+ "say": [{"to": "みんな", "text": "冬は木の実が実らない。おれは石の鎌を作りためておく。夏に刈る人は、早めに言ってくれ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []},
+ "pick": 0,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "keep": true,
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T15": "村"},
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "ソナの家に、女の子のテナ2が生まれた。", "because": [147382], "confidence": 0.9},
+  {"op": "add", "text": "リセ2 (0歳) が亡くなった。", "because": [147383], "confidence": 0.9},
+  {"op": "add", "text": "蓄えの草の種 約5443つかみが虫やネズミに食べられた。土器に入れた分は無事だった。", "because": [147384], "confidence": 0.9},
+  {"op": "add", "text": "北の村が、ヤギ1頭を出すので土器5個・鎌2本・草の種25つかみがほしいと言ってきた。", "because": [147387], "confidence": 0.9},
+  {"op": "add", "text": "封を割って開けられた倉が、スイの家で2回、ハソの家で1回あった。だれかが開けた。", "because": [147388], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L164", "against": "", "agree": true, "reason": "罰を払うより、刈る前に決めておけばいい。"},
+  {"id": "L165", "against": "近い林でも二人そろえると、探索が遅くなる。", "agree": false, "reason": "近い場所なら、一人で見てこられる。"}
+ ],
+ "feeling": "冬か。木の実は実らないが、蓄えはまだ十分ある。鎌を作って夏に備えよう。"
+}

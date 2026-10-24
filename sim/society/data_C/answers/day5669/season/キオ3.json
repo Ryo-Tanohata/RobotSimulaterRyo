@@ -1,0 +1,14 @@
+{"say": [{"to": "ユノ3", "text": "西草原12へ一緒に行こう。草と実の様子を見て、冬の前に食べ物のある場所をもう一つ増やしたいんだ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ユノ3"], "why": "採集は私の得意な仕事だし、西草原12はまだ見ていない場所が多い。冬の食べ物を探すのに役立つはず。"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ルタ6": true}, "keep": true,
+ "judge": {"M116": "ゆるす", "M117": "ゆるす"}, "feast": true, "leader": "なし", "trade": {"T50": false}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "秋にまいた草の種は、冬と春をこえて夏のはじめに実る。畑の草取りを続ければ実りが増える", "because": [296751], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "夜に誰もキャンプから離れなければ、ザガから身を守れる"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "採集は二人以上で行けば、ザガに襲われたときも助け合える"},
+  {"id": "L167", "against": "なし", "agree": true, "reason": "ヤギの世話を人ごとに決めれば、いなくなるヤギが減る"},
+  {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとるのは避けたい"},
+  {"id": "L175", "against": "なし", "agree": true, "reason": "草が足りないあいだは、野生のヤギを捕まえないほうがいい"}
+ ],
+ "feeling": "木の実がたくさんあって安心だけど、ヤギが減ったのは悲しい。"}

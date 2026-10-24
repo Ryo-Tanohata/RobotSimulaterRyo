@@ -1,0 +1,8 @@
+{"say": [{"to": "ユノ2", "text": "東林12 へいっしょに行こう。二人で行けば、けがをしてもすぐ助けられるし、見つけた量を夜に言い合えるよ。"}, {"to": "みんな", "text": "夏は木の実がなる。キャンプの木から毎夕 40 つかみまで取って、蓄えに入れるよ。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ユノ2"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "東林12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "夏はキャンプのそばの木に木の実がなり、毎夕 40 つかみまで取れる", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、夜はキャンプから離れないのがよい"}, {"id": "L98", "against": "", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べるのは大事"}, {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行くほうが安全。ウィロがけがをしたから"}, {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りを毎晩行うのは、ザガから身を守るため"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると疲れがとれないから、入れる人を決めるのがよい"}, {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに畑を刈り切れば、草の種が落ちない"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも、二人以上で行くのがよい"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で担当すれば、毎日回る"}, {"id": "L150", "against": "", "agree": true, "reason": "冬の採集は北丘12 を試すのがよい"}],
+ "year_name": "ソルとミラが亡くなった年",
+ "feeling": "まだ行ったことのない林を見るのが楽しみだ。ユノ2といっしょなら安心だな。"}

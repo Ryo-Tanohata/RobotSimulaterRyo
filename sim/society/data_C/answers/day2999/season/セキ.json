@@ -1,0 +1,8 @@
+{"say": [{"to": "ホノ", "text": "ホノ、今季は西草原12へ一緒に行って、草や実を見てこよう。夕方までに戻ろう。"}, {"to": "みんな", "text": "夏の畑が実っているから、刈り入れは毎夕だれかが忘れずにやろう。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}, "ルネ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "冬の木の実は少ないが、ホノが木の実の木の下を見てまわると言った。冬の食べ物を集める手がかりになるかもしれない", "because": [68546], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": null, "agree": true, "reason": "夜は外に出ないほうが安全だから"}, {"id": "L140", "against": null, "agree": true, "reason": "刈れる畑がある限り、手のあいた大人がみんなで刈れば、実りを落とさずに済む"}, {"id": "L102", "against": null, "agree": true, "reason": "夏のうちに刈らないと実りは落ちてしまうから"}],
+ "year_name": "ケトの家の畑が実った年",
+ "feeling": "夏の畑が実ってくれて、ほっとしている。西草原12で、冬の食べ物が見つかるといいな。"}

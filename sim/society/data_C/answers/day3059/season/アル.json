@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "西林12と東林28は、まだ見に行っていない場所だよね。冬に食べ物がどこにあるか知りたいから、二人ずつ組になって見に行こう。見つけたものは夜に言うよ。"}],
+ "job": {"activity": "探索", "place": "西林12", "with": ["ネム2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M31": "ゆるす"}, "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは怖い。キャンプから離れないほうがいい。"}, {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めておけば、帰らない人をすぐ探しに行ける。"}, {"id": "L119", "against": "", "agree": true, "reason": "まだ行ったことのない林を、二人で見に行くのがいい。"}, {"id": "L125", "against": "", "agree": true, "reason": "北の林は前に何も見つからなかったから、南の川から試すのがいい。"}, {"id": "L143", "against": "", "agree": true, "reason": "林に行くなら、必ず二人以上で行くのが安全だ。"}],
+ "feeling": "まだ行ったことのない林を見られるのは楽しみだ。ただ、冬の森は少し心配でもある。"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "夏の刈り入れに間に合うように、石の鎌をこの季節のうちに作りためるね。道具づくりを手伝ってくれる人は声をかけて。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れで鎌が2倍の働きをするから、春のうちに作りためておきたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ミラ3": {"activity": "畑仕事", "place": "camp", "why": "育っている畑の草取りが少ないと夏の実りが減るので、キャンプで草を抜く。"}, "カイ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを交代で受けもつ。キャンプの近くなので安全。"}, "ナセ": {"activity": "畑仕事", "place": "camp", "why": "小さい子のそばにいながら、キャンプの畑の草取りができる。"}},
+ "keep": true,
+ "judge": {"M119": "つぐなう"},
+ "feast": false,
+ "leader": null,
+ "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節、印で封をした倉や蓄えが何度も開けられた。割れた封のかけらで、開けた家が分かる。", "because": [304344], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にキャンプを離れないのは、ザガから身を守るために今も必要だから。"}, {"id": "L126", "against": "", "agree": true, "reason": "火と見張りの決まりを一つにまとめれば、守りやすくなるから。"}, {"id": "L143", "against": "", "agree": true, "reason": "一人で行くとけがをする。近くでも二人以上で行けば安全だから。"}, {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギが減りにくいから。"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのにヤギを増やすと、子ヤギが減って多すぎる分がやせてしまうから。"}],
+ "feeling": "夏の刈り入れが近いので、鎌づくりに少し気が引きしまる。"}

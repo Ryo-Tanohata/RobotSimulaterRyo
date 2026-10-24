@@ -1,0 +1,32 @@
+{
+ "say": [{"to": "みんな", "text": "夏のうちに畑を刈り切ろう。刈り残した草の種は、秋が来る前に落ちてしまう。わたしの家は、毎夕 60 つかみずつ刈る。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []},
+ "pick": 40,
+ "plant": 0,
+ "harvest": 60,
+ "eat_goat": 0,
+ "family": {
+   "ネム2": {"activity": "畑仕事", "place": "camp"},
+   "ラタ2": {"activity": "畑仕事", "place": "camp"},
+   "アル2": {"activity": "畑仕事", "place": "camp"}
+ },
+ "keep": true,
+ "judge": {"M84": "ゆるす"},
+ "feast": false,
+ "leader": "なし",
+ "seal_store": true,
+ "knowledge": [
+   {"op": "add", "text": "夜にザガがキャンプに来て、アルが殺された。夜は火と見張りを欠かさないこと。", "because": [190030], "confidence": 0.9},
+   {"op": "add", "text": "ハソ3 (19 歳) が病で亡くなった。", "because": [191273], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+   {"id": "L30", "against": "その日に食べきれない肉は捨てることになる。乾かして保存処理をした肉まで蓄えに入れられないのは損だ。", "agree": false, "reason": "食べ物を捨てるのは損だから。"},
+   {"id": "L98", "against": "", "agree": true, "reason": "蓄えに入れた人が自分の分を食べられないのは困るから。"},
+   {"id": "L126", "against": "", "agree": true, "reason": "キャンプの火と見張りは、ザガから身を守るために要るから。"},
+   {"id": "L140", "against": "", "agree": true, "reason": "畑の草の種は夏のうちに刈らないと落ちるから。"},
+   {"id": "L172", "against": "", "agree": true, "reason": "封を割られるのは困るから、名乗り出てほしい。"}
+ ],
+ "year_name": "草の種がたくさん実った年",
+ "feeling": "草の種が落ちるのは、もったいない。"
+}

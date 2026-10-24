@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "冬は木の実も草の種も取れない。前に北の林や南の川や西の草原を回ったけど、食べ物はほとんど見つからなかった。東川28はまだ誰も行っていないから、ユノ2といっしょに行って、見つけた量と場所を夜に言うね。"}],
+ "job": {"activity": "探索", "place": "東川28", "with": ["ユノ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ケト3": true}, "keep": false,
+ "judge": {"M36": "つぐなう"}, "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "東川28はまだ行ったことがない。冬に食べ物があるかは分からない", "because": [79792], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜のザガは本当に危ないから、夜は離れないのがいい"},
+  {"id": "L1", "against": "", "agree": true, "reason": "どこへ行くかを伝えれば、同じ場所を重ねずに済む"},
+  {"id": "L124", "against": "", "agree": true, "reason": "林は前に一人でザガに襲われた。二人以上で行くほうが安全"},
+  {"id": "L125", "against": "", "agree": true, "reason": "北の林は前の季節に何も見つからなかったので、今は避けるほうがいい"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れて疲れがとれない人を減らせる"},
+  {"id": "L137", "against": "", "agree": true, "reason": "小さい子は外で濡れると弱ってしまうから先に入れるべき"},
+  {"id": "L140", "against": "", "agree": true, "reason": "刈れるうちに刈らないと実りが落ちてしまう"},
+  {"id": "L141", "against": "", "agree": true, "reason": "まく量を家ごとに書き残せば、もめごとを防げる"},
+  {"id": "L145", "against": "", "agree": true, "reason": "多く取った家が入れて差を小さくすれば、もめごとが減る"},
+  {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るときは先に決めないと、持ち主の家が損をする"},
+  {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えに入れると腐りやすいから、その日に食べきるほうがいい"},
+  {"id": "L148", "against": "", "agree": true, "reason": "住まいがない家に住まいができれば、雨の夜も眠れる"},
+  {"id": "L150", "against": "", "agree": true, "reason": "前の冬に南の川は何も見つからなかったので、北の丘から試すのがいい"},
+  {"id": "L152", "against": "", "agree": true, "reason": "鎌を先に作っておけば、刈り残しが減る"}
+ ],
+ "feeling": "冬は食べ物を探すのがつらいけど、東川28を見てみたい。みんなが無事に帰ってくるといい。"}

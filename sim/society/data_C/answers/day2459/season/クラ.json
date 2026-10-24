@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは、北丘12 へヨナといっしょに行って、草の種や芋がないかを見てくるね。ひとりでは行かない。見つけた量と蓄えに入れた量は、夜に分けて言うよ。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["ヨナ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"カイ2": true, "ネム2": true}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "冬は木の実も草の種も実らず、キャンプのそばの木からも取れない", "because": [], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが出るので、キャンプから離れないほうがいい"},
+  {"id": "L98", "against": "なし", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるのは大事"},
+  {"id": "L110", "against": "なし", "agree": true, "reason": "夕方に戻らない人がいたら、すぐ探せる"},
+  {"id": "L121", "against": "なし", "agree": true, "reason": "ザガがいるので、採集や狩りは二人以上で行くほうがいい"},
+  {"id": "L122", "against": "なし", "agree": true, "reason": "夜の報告が一つにまとまると、覚えやすい"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "一人で林へ行くのは危ないから、二人以上がいい"},
+  {"id": "L147", "against": "なし", "agree": true, "reason": "芋は蓄えに入れずに、その夜に食べきったほうが無駄がない"},
+  {"id": "L149", "against": "なし", "agree": true, "reason": "畑の草取りと刈り入れを、毎夕だれか一人が交代で行うのは分かりやすい"},
+  {"id": "L150", "against": "なし", "agree": true, "reason": "南川12は前の冬に何も見つからなかったから、北丘12を試すのに賛成"}],
+ "feeling": "冬は食べ物が少なくて、ひとりで林や丘へ行くのはこわい。ヨナといっしょなら行ける。"}

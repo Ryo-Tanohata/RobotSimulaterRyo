@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の採集は北川12に行こう。ケトと二人で行って、見つけた量と蓄えに入れた量を夜に言うね。北林12は前に何も見つからなかったから避けたい。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ケト"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M5": "つぐなう"}, "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "冬は北林12で食べ物が見つからないことがあった。北川12で魚や芋が取れるかは、まだ確かめていない", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L150", "against": "", "agree": true, "reason": "南川12は冬に何も見つからなかったから、先に北丘12を試すのがよい"}, {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行けば、困ったときに助け合える"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れて疲れがとれない人を減らせる"}, {"id": "L98", "against": "", "agree": true, "reason": "採集した人が自分の分を食べられる決まりは大事だ"}],
+ "feeling": "冬の採集は見通しが立たないけど、川の魚と芋を見つけたい。"}

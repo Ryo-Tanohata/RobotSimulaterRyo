@@ -1,0 +1,7 @@
+{"say": [{"to": "ヨナ2", "text": "春のうちに西草原12へ行って、草や実がどれくらいあるかを確かめたい。二人で行こう。一緒に来てくれないか。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ヨナ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "春は西草原12へ行けば、草や実の様子が分かる。二人組で行って、見つけた量を夜に言う予定", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": null, "agree": true, "reason": "夜にザガが出るので、キャンプから離れないのは大事"}, {"id": "L6", "against": "林で一人ずつ別々に分かれると、二人以上の決まりと合わない", "agree": false, "reason": "一人で別れて探すと、ザガに襲われたときに助けられない"}, {"id": "L10", "against": null, "agree": true, "reason": "採集から帰ったら何を見つけたか話せば、みんなの役に立つ"}, {"id": "L143", "against": null, "agree": true, "reason": "採集と狩りは二人以上で行けば、ザガに襲われても安心"}, {"id": "L99", "against": null, "agree": true, "reason": "畑の草取りを交代ですれば、夏の実りが減らない"}, {"id": "L140", "against": null, "agree": true, "reason": "夏のうちに畑を刈り切るのは、草の種を落とさないために必要"}, {"id": "L147", "against": null, "agree": true, "reason": "食べ物を雨から守る場所に置くのは、蓄えを無駄にしないため"}, {"id": "L148", "against": null, "agree": true, "reason": "住まいがない家に、手の空いた大人が交代で手伝うのはよい"}],
+ "feeling": "春の始まりで、新しい場所を見られるのが少し楽しみだ。"}

@@ -1,0 +1,37 @@
+{
+  "say": [{"to": "エマ2", "text": "東川28へ行こう。二人で行って、夕方までに戻ろう。"}],
+  "job": {"activity": "採集", "place": "東川28", "with": []},
+  "pick": 0,
+  "plant": 5,
+  "harvest": 0,
+  "eat_goat": 0,
+  "family": {"エマ2": {"activity": "採集", "place": "東川28"}},
+  "keep": true,
+  "feast": false,
+  "leader": "なし",
+  "trade": {"T23": "村", "T24": false},
+  "seal_store": true,
+  "knowledge": [
+    {"op": "add", "text": "前の季節、キサ3 (0 歳) が亡くなった。", "because": [189523], "confidence": 0.9},
+    {"op": "add", "text": "前の季節、サエ3 に女の子 ロワ3 が生まれた。", "because": [189522], "confidence": 0.9},
+    {"op": "add", "text": "前の季節、草が足りず、飼っていたヤギ 12 頭がやせていなくなった。今ヤギは 163 頭。", "because": [189521], "confidence": 0.9},
+    {"op": "add", "text": "南の村 が、草の種 2200 つかみ を貸してほしい、1 年のうちに同じ量を返すと言ってきた。", "because": [189526], "confidence": 0.8},
+    {"op": "add", "text": "北の村 が、草の種 1700 つかみ を貸してほしいと言ってきた。前に借りた草の種は、まだ返されていないと聞いた。", "because": [189527], "confidence": 0.7},
+    {"op": "add", "text": "前の季節、川辺の家の印の封が 29 回割られた。", "because": [189528], "confidence": 0.6}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L30", "against": "獲れた肉を全部その日に食べきれないことがあり、保存処理をして蓄えに入れられるほうが無駄がない。", "agree": false, "reason": "保存処理をした肉は蓄えに入れてよいと、L112 で決まっているから。"},
+    {"id": "L98", "against": "", "agree": true, "reason": "採ったぶんは、その日のうちに自分の分を食べられるほうがいい。"},
+    {"id": "L112", "against": "", "agree": true, "reason": "肉を腐らせないために、その日に食べるか保存処理をするのがよい。"},
+    {"id": "L113", "against": "", "agree": true, "reason": "冬に魚が取れる場所を知っておけば、食べ物が増える。"},
+    {"id": "L121", "against": "", "agree": true, "reason": "ザガは昼の林にも出るので、二人以上で行くのがよい。"},
+    {"id": "L150", "against": "北丘12 は冬に行っても何も見つからなかった。", "agree": false, "reason": "北丘12 より、東川28 で食べ物が見つかった場所を先に行くほうがよい。"},
+    {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりしないので、記録があればもめごとを防げる。"},
+    {"id": "L167", "against": "", "agree": true, "reason": "世話をする人がいないと、ヤギはいなくなるから。"},
+    {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、今はほかの村からヤギを受けとらないほうがよい。"},
+    {"id": "L298", "against": "", "agree": true, "reason": "北の村は、前に借りた草の種をまだ返していないから。"},
+    {"id": "L299", "against": "", "agree": true, "reason": "ヤギは草で養える数をこえているので、今は野生のヤギを増やさないほうがよい。"}
+  ],
+  "feeling": "寒いけど、東川28に何か残っているか確かめたい。"
+}

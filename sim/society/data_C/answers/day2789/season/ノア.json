@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "わたしは北川12へ行って、魚と芋が冬にも取れるかを確かめてくるよ。ハユ2、一緒に行こう。見つけた量は夜に言うね。木の実は毎夕 40 つかみ取って、冬の前に蓄えに入れるよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ハユ2"]}, "sow": 0, "pick": 40, "plant": 4, "harvest": 0, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M20": "ゆるす", "M21": "ゆるす", "M22": "ゆるす"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "秋に木の実を毎夕 40 つかみずつ取って蓄えに入れておけば、冬の食べ物が増える", "because": [62374], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": null, "agree": true, "reason": "夜は誰もキャンプから離れないことで、ザガから身を守れる"}, {"id": "L121", "against": null, "agree": true, "reason": "採集も狩りも二人以上なら、けがをしても助け合える"}, {"id": "L126", "against": null, "agree": true, "reason": "夜の火と見張りの決まりを一つにまとめれば、覚えやすく守りやすい"}, {"id": "L140", "against": null, "agree": true, "reason": "夏の刈り入れを毎夕みんなでするのは、実りを落とさないために大事だ"}, {"id": "L149", "against": null, "agree": true, "reason": "畑の仕事を交代で一人ずつ担当すれば、負担が偏らない"}, {"id": "L44", "against": null, "agree": true, "reason": "屋根のある住まいがあれば、蓄えも人も雨から守れる"}],
+ "feeling": "ケト2とサエ2のもめごとは少し気がかりだけど、みんなで収めて冬に備えられるといいな。"}

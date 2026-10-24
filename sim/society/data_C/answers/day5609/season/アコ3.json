@@ -1,0 +1,19 @@
+{"say": [{"to": "ネム2", "text": "今季は西草原12へ採りに行こう。二人で行けば安心だし、草の場所も一緒に確かめられるよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ネム2"], "why": "採集は一番得意な仕事だし、掟で採集は二人以上で行くことになっている。西草原12はキャンプから近く、まだ確かめていない場所も見ておきたい。"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ヌオ6": true}, "keep": true,
+ "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [{"op": "add", "text": "北の村から来たヌオ6とキオ6が、ここで暮らしたいと言っている", "because": [288799, 288802], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "夜にザガが出るのは本当なので、夜は皆でキャンプにいるのがいい。"},
+  {"id": "L1", "against": null, "agree": true, "reason": "どこへ行くか伝えておけば、同じ場所を重ねて探さずに済む。"},
+  {"id": "L10", "against": null, "agree": true, "reason": "採集から帰ったら何を見つけたか話すのは、冬の食べ物の見通しを立てるのに役立つ。"},
+  {"id": "L121", "against": null, "agree": true, "reason": "近くても一人で行くとけがをしやすい。二人以上なら助け合える。"},
+  {"id": "L143", "against": null, "agree": true, "reason": "採集と狩りは必ず二人以上がいい。一人のときにけがをしたら、誰も気づけない。"},
+  {"id": "L149", "against": null, "agree": true, "reason": "草取りと刈り入れを交代で一人ずつ担当すれば、畑の実りが減らない。"},
+  {"id": "L171", "against": null, "agree": true, "reason": "草が足りないのにヤギが増えると、子ヤギが減ってしまう。今は受けとらないほうがいい。"},
+  {"id": "L175", "against": null, "agree": true, "reason": "ヤギが草で養える数より多いうちは、野生のヤギを捕まえないほうがいい。"},
+  {"id": "L176", "against": null, "agree": true, "reason": "草を増やすか、ヤギを減らすかを秋に決めるのはよい。草の多い場所も見ておきたい。"},
+  {"id": "L184", "against": null, "agree": true, "reason": "貸した草の種が返されないうちに、また貸すのは危ない。"}
+ ],
+ "feeling": "蓄えはまだたくさんあるけど、冬が近いと思うと少し落ち着かない。ネム2と一緒に行けると思うとほっとする。"}

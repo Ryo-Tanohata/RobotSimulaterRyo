@@ -1,0 +1,7 @@
+{"say": [{"to": "ユノ2", "text": "北川12へ行って、冬に魚と芋が取れるかを一緒に確かめよう。見つけた量と蓄えに入れた量は、夜に別々に言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M31": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "冬は木の実も草の種も実らない。冬の食べ物は、魚やけものが頼りになる", "because": [70583], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L150", "against": "", "agree": true, "reason": "冬の採集は北丘12から試すのがよい。前の冬に何も見つからなかった南川12は、後回しでいいと思う。"}],
+ "feeling": "冬は少し心配だけど、まだ知らない川を見に行けるのは楽しみだ。"}

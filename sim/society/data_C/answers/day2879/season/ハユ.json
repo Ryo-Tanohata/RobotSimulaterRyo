@@ -1,0 +1,8 @@
+{"say": [{"to": "ケト", "text": "夏のあいだに畑を刈り切ろう。ぼくは毎夕、畑仕事で六十つかみまで刈るよ。刈った量は夜に言うね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ケト": {"activity": "畑仕事", "place": "camp"}}, "keep": true,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "前の季節の祭りでは、村の蓄えから草の種 2276 つかみを使った。祭りのあとも畑の刈り入れは続けたい", "because": [65082], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L140", "against": "反対する理由はない", "agree": true, "reason": "夏の残りに畑を毎夕刈り切れば、草の種が落ちずに蓄えになるから"}, {"id": "L149", "against": "反対する理由はない", "agree": true, "reason": "畑の草取りと刈り入れを一つにまとめれば、守りやすいから"}, {"id": "L104", "against": "反対する理由はない", "agree": true, "reason": "刈り残しを出さないために、刈った量と残りを毎晩言うのは大事だから"}],
+ "year_name": "セナが祭りをひらいた年",
+ "feeling": "畑を刈り切れば冬の蓄えが増える。今年は落とさずに済ませたい。"}

@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のあいだは、ケトといっしょに東林12へ行って、木の実と草を探してくるよ。二人で行くから安心してね。夜に見つけた量と蓄えに入れた量を言うね。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ケト"]}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "東林12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "畑の草の種は、夏のうちに毎夕刈り切れば落ちずに蓄えになる。刈る人が多いほど、刈り残しが減る", "because": [42711, 42712], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、刈り残しが減って夏の実りを守れる"}, {"id": "L140", "against": "", "agree": true, "reason": "夏のあいだ、手のあいた大人が毎夕刈れば、草の種が落ちずに蓄えになる"}, {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈る前に分け方を決めれば、刈った人の家も損をしないで済む"}, {"id": "L143", "against": "", "agree": true, "reason": "林や遠くへ行くときは二人以上で行けば、ザガや迷ったときも安心できる"}, {"id": "L150", "against": "冬の採集は南川12を試してから北丘12を考えたい", "agree": false, "reason": "前の冬の場所の結果を見てから決めるほうが確かだと思う"}],
+ "year_name": "新しい仲間と畑の年",
+ "feeling": "蓄えは多いけど、夏のうちに畑を刈り切れるか少し心配だな。"}

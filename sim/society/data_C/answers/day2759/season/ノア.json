@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のあいだ、わたしは北川12へ採集に行くよ。スイと二人で行って、魚と芋が夏にどれくらいあるかを確かめてくる。見つけた量は夜に言うね。木の実は毎夕20つかみ取って、自分の分にするよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["スイ"]}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M19": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "前の季節に、川辺の家のヤギがケトの家の畑を荒らして、もめごとになった", "because": [62358], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "特になし", "agree": true, "reason": "ザガが出る夜は、キャンプの中にいたほうが安心できる"}, {"id": "L116", "against": "特になし", "agree": true, "reason": "火の番を二人ずつ決めれば、夜明けまで火が絶えず、ザガが近づきにくい"}, {"id": "L121", "against": "特になし", "agree": true, "reason": "二人以上で行けば、けがをしても助け合える"}, {"id": "L146", "against": "特になし", "agree": true, "reason": "畑を刈る前に分け方を決めれば、もめごとになりにくい"}],
+ "year_name": "ヤギがいなくなった年",
+ "feeling": "木の実はまだたくさんあるし、北川の魚と芋がわかれば冬にも役立つ。ちょっと楽しみだ。"}

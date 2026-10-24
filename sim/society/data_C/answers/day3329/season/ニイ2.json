@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "春のあいだに、まだ行ったことのない西草原12へ、エマ2と二人で行ってくるね。草や実があるか確かめて、夜にそのまま言うよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["エマ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"エマ2": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "西草原12には、まだ確かめていない草や実があるかもしれない。春に二人で見に行く。", "because": [82301, 81508], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "夜に火のそばから離れないのは、ザガから身を守るために大事だから"},
+  {"id": "L1", "against": null, "agree": true, "reason": "行き先を伝えておけば、同じ場所を重ねて探さずに済むから"},
+  {"id": "L3", "against": null, "agree": true, "reason": "二人以上で行けば、けがや迷ったときに助け合えるから"},
+  {"id": "L10", "against": null, "agree": true, "reason": "見つけたものを話し合えば、どこに食べ物があるかみんなが分かるから"},
+  {"id": "L98", "against": null, "agree": true, "reason": "採集した人が食べられないと、次の採集の力が落ちるから"},
+  {"id": "L121", "against": null, "agree": true, "reason": "ザガがけがをさせたのだから、昼でも二人以上で行くのがよいと思うから"},
+  {"id": "L124", "against": null, "agree": true, "reason": "近い川や草原だけなら一人でも行けると思うから"},
+  {"id": "L143", "against": "一人で行くのは、近い場所でもザガに襲われやすいかもしれない", "agree": false, "reason": "林へ行くときは二人以上にする必要があると思うから"},
+  {"id": "L147", "against": null, "agree": true, "reason": "芋は蓄えに入れると傷むから、その夜に食べきるのがよいと思うから"},
+  {"id": "L149", "against": null, "agree": true, "reason": "畑の草取りと刈り入れを交代で分けると、だれも無理をしないで済むから"},
+  {"id": "L134", "against": null, "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれなくなるから"},
+  {"id": "L137", "against": null, "agree": true, "reason": "小さい子は濡れると弱ってしまうから、先に入れるのがよいと思うから"},
+  {"id": "L148", "against": null, "agree": true, "reason": "住まいのない家が雨の夜に濡れないよう、手伝えるときは手伝いたいから"},
+  {"id": "L150", "against": null, "agree": true, "reason": "前に何も見つからなかった所は後回しにして、冬に確かめる場所を選ぶのがよいと思うから"}
+ ],
+ "feeling": "まだ行っていない西草原で、何が見つかるか楽しみ。エマ2と一緒なら安心して行ける。"}

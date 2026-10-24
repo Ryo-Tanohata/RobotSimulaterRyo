@@ -1,0 +1,43 @@
+{
+ "say": [
+  {"to": "ネム3", "text": "来てくれてうれしい。ここで暮らすなら、畑のことやザガの出る場所を、わたしが教えるよ。"},
+  {"to": "みんな", "text": "冬のあいだ、わたしは道具をつくる。夏の刈り入れまでに鎌をできるだけ作りためておく。鋭い石が余っている人は、少し分けてほしい。"}
+ ],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []},
+ "pick": 0,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "accept": {"ネム3": true},
+ "keep": false,
+ "feast": false,
+ "leader": "なし",
+ "seal": true,
+ "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "石の刃を木の柄にはめると鎌ができる。鋭い石があれば道具づくりで作れる", "because": [93234, 93290, 93346], "confidence": 0.95},
+  {"op": "add", "text": "木の実を種として埋めると、木が育ち、夏と秋に実がなる", "because": [91548], "confidence": 0.7},
+  {"op": "add", "text": "南の林 (キャンプから約 400 m) では、ザガに襲われてけがをする人が出る。一人で行くと危ない", "because": [92627], "confidence": 0.9},
+  {"op": "add", "text": "世話をする人がいないと、ヤギはいなくなる", "because": [93375], "confidence": 0.95},
+  {"op": "add", "text": "家の代表が亡くなると、その家の畑は次に年上の大人が受けつぐ", "because": [93377], "confidence": 0.9},
+  {"op": "add", "text": "よその群れから、ここで暮らしたいと人が来ることがある", "because": [93378], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "ザガは夜に出る。夜に一人でキャンプを離れると、けがをするかもしれない"},
+  {"id": "L38", "against": "なし", "agree": true, "reason": "火と見張りは、ザガから身を守るのに大事"},
+  {"id": "L98", "against": "なし", "agree": true, "reason": "採った人が空腹のままでは、次の日に働けない"},
+  {"id": "L111", "against": "なし", "agree": true, "reason": "野生のヤギは一人では囲めないし、ザガにも襲われやすい"},
+  {"id": "L121", "against": "なし", "agree": true, "reason": "ザガは昼の北の林にも出た。二人なら助け合える"},
+  {"id": "L133", "against": "なし", "agree": true, "reason": "土器は秋に作る人を決めて、草の種を虫とネズミから守る。よい決まり"},
+  {"id": "L134", "against": "なし", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれない"},
+  {"id": "L137", "against": "なし", "agree": true, "reason": "外で濡れると子どもは弱ってしまう。小さい子から入るのがいい"},
+  {"id": "L138", "against": "なし", "agree": true, "reason": "土器は春のうちから少しずつ作ると、守れる草の種が増える"},
+  {"id": "L141", "against": "なし", "agree": true, "reason": "蓄えから種を取るときは、量を決めて書き残すと、あとで分かる"},
+  {"id": "L149", "against": "なし", "agree": true, "reason": "畑の草取りと刈り入れは、交代で一人ずつ担当する。わたしも順番に入る"},
+  {"id": "L150", "against": "なし", "agree": true, "reason": "南川12は前の冬に何も見つからなかったと聞いた。北丘12から試すのがいい"},
+  {"id": "L152", "against": "なし", "agree": true, "reason": "石の鎌は、夏の刈り入れの前に道具づくりの人が作りためておく。わたしが作る"},
+  {"id": "L153", "against": "なし", "agree": true, "reason": "ヤギの世話をする人がいないと、ヤギはいなくなってしまう"}
+ ],
+ "feeling": "冬でも手を動かせるのは、少しうれしい。鎌がそろえば、夏の刈り入れがもっと楽しみになる。"
+}

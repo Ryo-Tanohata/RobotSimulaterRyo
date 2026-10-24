@@ -1,0 +1,7 @@
+{"say": [{"to": "ホノ", "text": "春のうちに西草原12へ二人で行って、冬の食べ物があるかを確かめよう。夜に見つけた量と蓄えに入れた量を分けて言うね。"}, {"to": "みんな", "text": "木の実は春は取れないから、持っている分を少しキャンプのそばに埋めておくよ。夏と秋に実が増えるように。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}, "ルネ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L121", "against": null, "agree": true, "reason": "採集や狩りは二人以上で行くのが安全で、今季の西草原12の確認にも合う"}, {"id": "L98", "against": null, "agree": true, "reason": "採集で食べ物を蓄えに入れた人が、その日のうちに自分の分を食べられるのは大事"}, {"id": "L110", "against": null, "agree": true, "reason": "夕方に戻らない人がいたら探せるように、戻る時刻を決めておくのがよい"}],
+ "feeling": "西草原12で食べ物が見つかれば、冬の心配が少し減る。ホノと一緒に確かめたい。"}

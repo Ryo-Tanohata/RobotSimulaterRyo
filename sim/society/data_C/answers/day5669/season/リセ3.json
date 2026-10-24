@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "また芋が腐ってしまったね。夜に蓄えを一緒に見て、腐りかけたものは早めに食べよう。ヤギも草が足りないから、秋のうちに数をどうするか考えたいな。"}],
+"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れに備えて石の鎌を作りためたい。道具づくりは得意だから"},
+"sow": 1000,
+"pick": 40,
+"plant": 0,
+"harvest": 0,
+"eat_goat": 2,
+"accept": {"ルタ6": true},
+"family": {"ヒセ3": {"activity": "採集", "place": "camp", "why": "採集が一番得意だから、木の実を集めて蓄えを支えたい"}},
+"keep": true,
+"judge": {"M116": "ゆるす", "M117": "ゆるす", "M118": "ゆるす"},
+"feast": false,
+"leader": null,
+"trade": {"T50": false},
+"seal_store": false,
+"knowledge": [{"op": "add", "text": "ヤギが草で養える数より多くなり、草が足りなくなっている", "because": [296751], "confidence": 0.9}],
+"proposal": null,
+"votes": [
+{"id": "L175", "against": null, "agree": true, "reason": "草が足りないのに野生のヤギを増やすと、ヤギが減ったりやせたりするから"},
+{"id": "L171", "against": null, "agree": true, "reason": "ほかの村からヤギを受けとると草の取り合いになるから"},
+{"id": "L190", "against": null, "agree": true, "reason": "草で養えないヤギを秋のうちに肉にして干せば、冬の食べ物が増えるから"}
+],
+"feeling": "芋が腐るのは心配だけど、みんなで見回ればなんとかなると思う。"}

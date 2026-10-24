@@ -1,0 +1,17 @@
+{"say": [{"to": "テナ", "text": "いっしょに西草原12へ行こう。まだ行ったことがないから、見たことのない草が見つかるかもしれない。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ラタ2"], "why": "採集が一番得意で、西草原12はまだ行ったことがない。食べ物が見つかるか自分の目で確かめたい"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"テナ": {"activity": "採集", "place": "西草原12", "why": "採集がうまく、いっしょに新しい場所を見てほしいから"}},
+ "keep": true,
+ "judge": {"M119": "つぐなう"},
+ "feast": false, "leader": null, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "南の川 (キャンプから約100m) では、前の季節に採集したが何も見つからなかった", "because": [304274], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、キャンプから離れないのは大事だ"},
+  {"id": "L98", "against": "", "agree": true, "reason": "同じ内容の掟をひとつにまとめると、分かりやすい"},
+  {"id": "L101", "against": "", "agree": true, "reason": "世話をする人がいないと、ヤギはいなくなってしまうから"},
+  {"id": "L175", "against": "", "agree": true, "reason": "今はヤギが草で養える数より多く、草が足りないから"},
+  {"id": "L176", "against": "", "agree": true, "reason": "草を増やすか、ヤギの数を減らすかを決めるために、草の多い場所を見に行こう"}
+ ],
+ "feeling": "春の草原を歩けると思うと、少し楽しみだ。"}

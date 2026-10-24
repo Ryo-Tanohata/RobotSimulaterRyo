@@ -1,0 +1,32 @@
+{"say": [{"to": "みんな", "text": "冬は林も草原も何も見つからなかった。北川12で魚と芋が取れるか、二人で確かめに行こう。夜に見つけた量を言うよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ニイ"], "why": "冬の食べ物を探したい。北丘12や林は何も見つからなかったから、北川12で魚と芋を確かめたい。一人では行かず二人で行く。"}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "trade": {"T51": false}, "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "冬は木の実も草の種も実らないので、冬の採集は見つかる場所がとても少ない", "because": [301566], "confidence": 0.7},
+  {"op": "add", "text": "北川12で魚と芋が取れるかもしれないと、みんなが言っている（まだ確かめていない）", "because": [], "confidence": 0.5}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが出るので、夜に誰もキャンプから離れないのは安全のため"},
+  {"id": "L3", "against": "", "agree": true, "reason": "複数人で行けば助け合える"},
+  {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くと採集の力が落ちる"},
+  {"id": "L42", "against": "", "agree": true, "reason": "見つけた物を話すと、どこに食べ物があるか分かる"},
+  {"id": "L44", "against": "", "agree": true, "reason": "蓄えを雨から守るには屋根のある住まいが要る"},
+  {"id": "L102", "against": "", "agree": true, "reason": "夏に刈らないと実りが落ちるので、刈る人が要る"},
+  {"id": "L101", "against": "", "agree": true, "reason": "ヤギは世話する人がいないといなくなる"},
+  {"id": "L118", "against": "", "agree": true, "reason": "草取りと刈り入れを交代で一人が担当すれば、畑が守れる"},
+  {"id": "L121", "against": "", "agree": true, "reason": "ザガが昼の林にも出るので、二人以上で行く"},
+  {"id": "L133", "against": "", "agree": true, "reason": "土器に入れた草の種は虫やネズミに食べられない"},
+  {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行くのが安全"},
+  {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりせず、もめごとのもとになる"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギが多すぎると草が足りず、世話が要る"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとるのは避けたい"},
+  {"id": "L172", "against": "", "agree": true, "reason": "封が割られたら、名乗り出てもらうのが公平"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草が足りないので、野生のヤギを増やすのは今はやめたい"},
+  {"id": "L186", "against": "", "agree": true, "reason": "貸した草の種は、板に残して返す数を確かめたい"},
+  {"id": "L187", "against": "", "agree": true, "reason": "記録する人が休んでも、記録が途切れないように"},
+  {"id": "L188", "against": "", "agree": true, "reason": "南川12は近いので一人でも行けるが、林は二人以上"},
+  {"id": "L189", "against": "", "agree": true, "reason": "小さい子のそばに大人が一人いれば安心"},
+  {"id": "L190", "against": "", "agree": true, "reason": "草で養えない分のヤギは、冬の前に肉にして蓄えるのがよい"}
+ ],
+ "feeling": "冬の食べ物が心配。北川12で何か見つかりますように。"}

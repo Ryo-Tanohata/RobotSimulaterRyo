@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏は遠くへ行くより、キャンプの畑を毎夕刈り切ろう。おれは刈りを手伝う。木の実も毎晩 40 つかみずつ取って、冬の前に蓄えへ入れよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "family": {"ケト": {"activity": "畑仕事", "place": "camp"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "夏の畑は毎夕刈り切らないと草の種が落ちる。手分けして刈れば、刈り残しが減る", "because": [51826, 51828], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L102", "against": "", "agree": true, "reason": "夏のうちに毎夕刈れば、草の種が落ちずに蓄えになるから"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑がある限り、手のあいた大人が毎夕刈るのがいちばん確かだから"}, {"id": "L149", "against": "", "agree": true, "reason": "草取りと刈り入れを一人ずつ交代にして、刈った量を夜に言えば、みんなが分かるから"}],
+ "year_name": "仲間と畑の年",
+ "feeling": "夏の畑を全部刈り切れるように、みんなで手を貸したい。"}

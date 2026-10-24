@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは、おれはキャンプで道具を作る。石の鎌や道具が割れていたら、夜に言ってくれ。すぐ作り直すから。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {}, "feast": false, "leader": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜に外へ出なければ、ザガにけがをさせられることが減るから"},
+  {"id": "L121", "against": "動ける人まで二人組にすると、一人で動ける人の分の仕事が止まってしまう", "agree": false, "reason": "近くの川や草原なら一人でも動けたほうが、食べ物の集まりは早い"}
+ ],
+ "feeling": "道具を作っているときが一番落ち着く。冬でも手は動かしていたい。"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "畑の実りを夏のうちに刈り切ろう。夕方に、刈った量と畑に残った量を言い合おう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏の終わりまでに刈り切らないと、草の種が落ちてしまう。石の鎌を使うのは得意だから、刈る役を引き受けたい。"},
+ "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": null, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "夏のうちに畑を刈らないと、実った草の種は落ちてしまう", "because": [291342], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが出るので、夜にキャンプから離れないのは安心できる。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "ザガは昼の林にも出るので、採集や狩りは二人以上で行くのがよい。"},
+  {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑が残るあいだは、毎夕みんなで刈るのが夏の実りを守る一番の方法だ。"},
+  {"id": "L143", "against": "", "agree": true, "reason": "林に一人で行くと危ない。近くでも二人以上で行くのがよい。"},
+  {"id": "L149", "against": "", "agree": true, "reason": "草取りと刈り入れを交代で一人ずつ担当するのは分かりやすい。"},
+  {"id": "L161", "against": "", "agree": true, "reason": "手の空いた大人が毎夕刈るのは、刈り残しを減らすのに役立つ。"}
+ ],
+ "year_name": "畑の草の種が実った年",
+ "feeling": "畑が大きく実って、刈り切れるか少し心配だけど、やれることはやりたい。"}

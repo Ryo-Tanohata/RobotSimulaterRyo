@@ -10,6 +10,9 @@ const MODE = args.mode || 'season'
 const ROOT = args.root || '/home/user/RobotSimulaterRyo'
 // PY は使う Python。args.py で渡す (本人の PC は 'py -3' = Python 3.13。3.11 だと食べ物の数の最後の桁がずれる。渡さなければ python3)
 const PY = args.py || 'python3'
+// DATA はデータの置き場所 (リポジトリからの道。2026-10-24。実験 C の試しの村は args.data = 'sim/society/data_C')。渡さなければ本物の村 'sim/society/data'
+const DATA = args.data || 'sim/society/data'
+const ENV = DATA === 'sim/society/data' ? '' : `SOC_DATA=${ROOT}/${DATA} SOC_DATA_REL=${DATA} `
 const pad = (n) => String(n).padStart(3, '0')
 // 答えるモデル (2026-10-23 本人の決め「代表だけ sonnet/opus」)。季節の答え (家の代表とまとめ役) と、まわりの集落の集まりは sonnet、
 // そのうち名前から決まる約 8 人に 1 人は opus (乱数なし。同じ人はずっと同じモデル)。気持ちだけ答える人と、コマンドを動かす係は haiku。
@@ -19,13 +22,13 @@ function fnv(s) { let x = 2166136261; for (const ch of s) { x ^= ch.codePointAt(
 const repModel = (n) => ALL_HAIKU ? 'haiku' : fnv(n) % 8 === 0 ? 'opus' : 'sonnet'
 const councilModel = () => ALL_HAIKU ? 'haiku' : 'sonnet'
 function rp(d, n) {
-  return `Read \`${ROOT}/sim/society/data/prompts/day${pad(d)}/season/${n}.md\` and follow its instructions exactly: role-play that character and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/sim/society/data/answers/day${pad(d)}/season/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
+  return `Read \`${ROOT}/${DATA}/prompts/day${pad(d)}/season/${n}.md\` and follow its instructions exactly: role-play that character and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/${DATA}/answers/day${pad(d)}/season/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
 }
 function rpf(d, n) {  // 代表でない大人: 気持ちと一言だけ (2026-10-09 本人の希望)
-  return `Read \`${ROOT}/sim/society/data/prompts/day${pad(d)}/feeling/${n}.md\` and follow its instructions exactly: role-play that character and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/sim/society/data/answers/day${pad(d)}/feeling/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
+  return `Read \`${ROOT}/${DATA}/prompts/day${pad(d)}/feeling/${n}.md\` and follow its instructions exactly: role-play that character and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/${DATA}/answers/day${pad(d)}/feeling/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
 }
 function rc_(d, n) {  // G7: まわりの集落の集まり (分かれ目の年だけ。答えがなければ step.py が決まりで選ぶ)
-  return `Read \`${ROOT}/sim/society/data/prompts/day${pad(d)}/council/${n}.md\` and follow its instructions exactly: role-play that settlement's council and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/sim/society/data/answers/day${pad(d)}/council/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
+  return `Read \`${ROOT}/${DATA}/prompts/day${pad(d)}/council/${n}.md\` and follow its instructions exactly: role-play that settlement's council and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/${DATA}/answers/day${pad(d)}/council/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
 }
 function runner(cmd) {
   return `Run exactly this one shell command with the Bash tool (timeout 600000 ms), and nothing else. Do not edit any files. Then reply with the command's complete output, verbatim.\n\n\`\`\`\n${cmd}\n\`\`\``
@@ -35,7 +38,7 @@ const STEPS = MODE === 'year' ? (args.years || 1) * 12 : args.steps  // year: 1 
 let years = 0
 for (let k = 0; k < STEPS; k++) {
   // 状態は step.py who で読む (読むだけ。DAY・PHASE・HOLD・MODE・MEET・NAMES・FEEL・COUNCIL・ASKLOG の行)
-  const st = await agent(runner(`cd ${ROOT}/sim/society && PYTHONUTF8=1 PYTHONIOENCODING=utf-8 ${PY} step.py who`), { label: `step ${k} status`, model: 'haiku', phase: 'Seasons' })
+  const st = await agent(runner(`cd ${ROOT}/sim/society && ${ENV}PYTHONUTF8=1 PYTHONIOENCODING=utf-8 ${PY} step.py who`), { label: `step ${k} status`, model: 'haiku', phase: 'Seasons' })
   const dm = (st || '').match(/DAY (\d+) (\w+) (\w+)/), nm = (st || '').match(/NAMES[ \t]*([^\n`]*)/)  // 空の行 (集まりのない歩) は「NAMES」だけになることがある (行の終わりの空白が落ちても読む)
   if (!dm || dm[2] !== 'season' || dm[3] === 'True' || !nm) return { stopped: k, why: 'bad status', out: st, log: log_ }
   const mm = (st || '').match(/MODE (\w+)/), me = (st || '').match(/MEET (\S+)/), cm = (st || '').match(/COUNCIL[ \t]*([^\n`]*)/)
@@ -48,23 +51,23 @@ for (let k = 0; k < STEPS; k++) {
   const council = cm ? cm[1].trim().split(/\s+/).filter(Boolean) : []
   if (meet && !names.length) return { stopped: d, why: 'no adults', log: log_ }
   if (meet) {  // 答える歩 (season は毎回。year は MEET のある歩だけ)
-    const pre = await agent(runner(`mkdir -p ${ROOT}/sim/society/data/answers/day${pad(d)}/season ${ROOT}/sim/society/data/answers/day${pad(d)}/feeling && ls ${ROOT}/sim/society/data/answers/day${pad(d)}/season/ && echo FEELING: && ls ${ROOT}/sim/society/data/answers/day${pad(d)}/feeling/`), { label: `d${d} have`, model: 'haiku', phase: 'Seasons' })
+    const pre = await agent(runner(`mkdir -p ${ROOT}/${DATA}/answers/day${pad(d)}/season ${ROOT}/${DATA}/answers/day${pad(d)}/feeling && ls ${ROOT}/${DATA}/answers/day${pad(d)}/season/ && echo FEELING: && ls ${ROOT}/${DATA}/answers/day${pad(d)}/feeling/`), { label: `d${d} have`, model: 'haiku', phase: 'Seasons' })
     const [preS, preF] = (pre || '').split('FEELING:')
     const todo = names.filter((n) => !(preS || '').includes(`${n}.json`))  // 再起動のあと: 答えのある人はとばす
     const todoF = feel.filter((n) => !(preF || '').includes(`${n}.json`))
     await parallel([...todo.map((n) => () => agent(rp(d, n), { label: `d${d} ${n} (${repModel(n)})`, model: repModel(n), phase: 'Seasons' })),
                     ...todoF.map((n) => () => agent(rpf(d, n), { label: `d${d} ${n} (気持ち)`, model: 'haiku', phase: 'Seasons' }))])
-    const ls = await agent(runner(`ls ${ROOT}/sim/society/data/answers/day${pad(d)}/season/`), { label: `d${d} check`, model: 'haiku', phase: 'Seasons' })
+    const ls = await agent(runner(`ls ${ROOT}/${DATA}/answers/day${pad(d)}/season/`), { label: `d${d} check`, model: 'haiku', phase: 'Seasons' })
     const miss = names.filter((n) => !(ls || '').includes(`${n}.json`))
     if (miss.length) { log(`day ${d}: retry ${miss.join('、')}`); await parallel(miss.map((n) => () => agent(rp(d, n) + ' ', { label: `d${d} ${n} retry`, model: repModel(n), phase: 'Seasons' }))) }
     if (feel.length) {  // 気持ちの答えは、ない人がいても季節は進める (気持ちが前のまま)。1 回だけやり直す
-      const lf = await agent(runner(`ls ${ROOT}/sim/society/data/answers/day${pad(d)}/feeling/`), { label: `d${d} check (気持ち)`, model: 'haiku', phase: 'Seasons' })
+      const lf = await agent(runner(`ls ${ROOT}/${DATA}/answers/day${pad(d)}/feeling/`), { label: `d${d} check (気持ち)`, model: 'haiku', phase: 'Seasons' })
       const missF = feel.filter((n) => !(lf || '').includes(`${n}.json`))
       if (missF.length) await parallel(missF.map((n) => () => agent(rpf(d, n) + ' ', { label: `d${d} ${n} (気持ち) retry`, model: 'haiku', phase: 'Seasons' })))
     }
     if (council.length) {  // G7: まわりの集落の集まり (1 回だけやり直す。なければ step.py が決まりで選ぶ)
       const once = async () => {
-        const lc = await agent(runner(`mkdir -p ${ROOT}/sim/society/data/answers/day${pad(d)}/council && ls ${ROOT}/sim/society/data/answers/day${pad(d)}/council/`), { label: `d${d} check (集まり)`, model: 'haiku', phase: 'Seasons' })
+        const lc = await agent(runner(`mkdir -p ${ROOT}/${DATA}/answers/day${pad(d)}/council && ls ${ROOT}/${DATA}/answers/day${pad(d)}/council/`), { label: `d${d} check (集まり)`, model: 'haiku', phase: 'Seasons' })
         return council.filter((n) => !(lc || '').includes(`${n}.json`))
       }
       for (let t = 0; t < 2; t++) {
@@ -78,9 +81,9 @@ for (let k = 0; k < STEPS; k++) {
   }
   if (meet) {  // 使ったモデルを残す (季節の答えの置き場所のとなり。step.py は読まない)
     const mj = JSON.stringify({ season: Object.fromEntries(names.map((n) => [n, repModel(n)])), feeling: Object.fromEntries(feel.map((n) => [n, 'haiku'])), council: Object.fromEntries(council.map((n) => [n, councilModel()])) })
-    await agent(runner(`printf '%s\\n' '${mj}' > ${ROOT}/sim/society/data/answers/day${pad(d)}/models.json`), { label: `d${d} models`, model: 'haiku', phase: 'Seasons' })
+    await agent(runner(`printf '%s\\n' '${mj}' > ${ROOT}/${DATA}/answers/day${pad(d)}/models.json`), { label: `d${d} models`, model: 'haiku', phase: 'Seasons' })
   }
-  const out = await agent(runner(`PY='${PY}' CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
+  const out = await agent(runner(`${ENV}PY='${PY}' CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })
   // exit=4: 生きている人がいない / exit=5: G7 の札の表 (よその便り) が変わった (直したなら step.py cards "<note>" のあとで、また動かす)
   // exit=6 (行の頭の「RECORDS failed …」): 季節は進んだが記録 (records/) を作れなかった。直して build_records.py で作り直してから、また動かす (2026-10-22)

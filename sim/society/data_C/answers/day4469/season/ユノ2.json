@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "おれは今季、土器を焼く。できた土器に蓄えの草の種を入れて、虫やネズミから守るつもりだ。割れた数は夜に言うよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": []}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M73": "ゆるす", "M74": "ゆるす"}, "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "西の草原の近くに、ルクの群れ (20 頭) がいるらしい。草むらにはピクという小さな獣もいる", "because": [161275], "confidence": 0.5}, {"op": "add", "text": "よその家の畑で、決めずに刈ると、畑の持ち主と言い合いになる", "because": [164897, 164898, 164899], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L30", "against": "肉を全部その日に食べると、乾かして蓄える道がなくなる", "agree": false, "reason": "肉は乾かして残す道も残しておきたい"}, {"id": "L170", "against": "", "agree": true, "reason": "草で養えない分のヤギが減れば、草の取り合いが減る"}, {"id": "L143", "against": "一人で採れる腕があるのに、林へ二人で行くと採集が遅れる", "agree": false, "reason": "近い場所なら一人でも採れる"}, {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに刈り切らないと草の種が落ちてしまう"}, {"id": "L171", "against": "", "agree": true, "reason": "ヤギが増えると草の取り合いになる"}],
+ "feeling": "冬までの仕事は決まった。土器を焼いていれば、時間はすぐ過ぎる。"}

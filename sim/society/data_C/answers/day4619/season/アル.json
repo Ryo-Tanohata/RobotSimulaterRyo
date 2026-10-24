@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "今日は西林12 へ、ミラ2 と二人で行ってくる。まだ一度も行ったことのない林だから、見てみたい。夕方までに戻るよ。"}],
+ "job": {"activity": "探索", "place": "西林12", "with": ["ミラ2"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"コハ": {"activity": "畑仕事", "place": "camp"}, "ミラ2": {"activity": "探索", "place": "西林12"}}, "keep": true,
+ "feast": false, "leader": "なし", "trade": {"T21": false}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "祭りで、もめごと (M79) は仲直りして収まった", "because": [175459], "confidence": 0.9}, {"op": "add", "text": "北の村の人たちは、この年は畑が実らず苦しいので、草の種 1900 つかみを貸してほしいと言った。1 年のうちに返すと言っている", "because": [178636], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L30", "against": "肉は太陽で乾かすか火で燻せば、蓄えに残せると決まっている (L112)。全部その日に食べると、獲った肉が無駄になることもある。", "agree": false, "reason": "L112 の保存の決まりと合わない"}, {"id": "L173", "against": "ヤギ 50 頭ごとに一人では、今の 179 頭で毎日 3〜4 人が世話に出ることになる。草が足りない今は、先にヤギを減らすべきだ。", "agree": false, "reason": "まとめ方は分かるが、世話の人が増えすぎる"}],
+ "feeling": "まだ行ったことのない林を見に行くのは、少し楽しみだ。"}

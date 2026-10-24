@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のあいだ、おれは西草原12へ行って草の種と木の実を集めるよ。ホノと二人で行って、見つけた量をはっきり夜に言うね。冬の前に、どこに食べ物があるかをもっと知りたいんだ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "sow": 100, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M10": "ゆるす", "M11": "ゆるす"}, "feast": false, "leader": "ウィロ",
+ "knowledge": [{"op": "add", "text": "西草原12では、ホノと二人で行けば見つけた量を夜にはっきり言い合える。", "because": [49665], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、夜は誰もキャンプから離れないほうがいい。"}, {"id": "L121", "against": "", "agree": true, "reason": "採集も狩りも二人以上で行けば、けがをしたときに助けられる。"}, {"id": "L98", "against": "", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるのはいいことだ。"}, {"id": "L126", "against": "", "agree": true, "reason": "火と見張りの決まりを一つにまとめれば、夜に守りやすい。"}, {"id": "L133", "against": "", "agree": true, "reason": "土器に草の種を入れれば、虫やネズミに食べられずに済む。"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを一つの決まりにすれば、交代で分かりやすい。"}, {"id": "L143", "against": "", "agree": true, "reason": "近くでも林でも二人以上で行けば、迷ったときに安心だ。"}],
+ "feeling": "秋は食べ物を集めるのにいい季節だ。ホノと行くのが楽しみだよ。"}

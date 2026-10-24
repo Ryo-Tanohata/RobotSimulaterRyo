@@ -1,0 +1,16 @@
+{"say": [{"to": "ネム2", "text": "東の林に行こう。前に木の実が採れた所だから、今年も残っているか見てみたい。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": []},
+ "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ネム2": {"activity": "採集", "place": "東林12"}},
+ "keep": true,
+ "feast": false, "leader": "なし", "trade": {"T2": "村"}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "東の林では、採集で木の実と芋が見つかる。", "because": [103297], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "なし", "agree": true, "reason": "自分の分は自分で食べるのが、いちばん分かりやすい。"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "林では二人で行けば、ザガが出ても助け合える。ネム2と行くから負担はない。"},
+  {"id": "L140", "against": "畑を持たない家が刈っても、草の種は持ち主の倉に入るだけで、刈った家には残らない。", "agree": false, "reason": "刈るなら、先に持ち主と分け方を決めてからにしてほしい。"},
+  {"id": "L146", "against": "なし", "agree": true, "reason": "よその畑で刈るなら、先に分け方を決めないと、もめごとになる。"}
+ ],
+ "year_name": "よそから人が多く来た年",
+ "feeling": "東の林の木の実が残っているといいな。林は当てにできないけど、行ってみる。"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "ケナ3", "text": "東林12 へ一緒に行こう。前の季節は、あそこで毎日食べ物が見つかった。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ケナ3"], "why": "前の季節、東の林で三十日とも食べ物が見つかった。冬も見つかるか、まず確かめたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ3": true},
+ "family": {}, "keep": false,
+ "judge": {"M88": "ゆるす"}, "feast": false, "leader": "なし", "trade": {"T29": false}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "北の草原は、ザガに襲われた人がいる場所 (キオ2 が二度、ハソ が一度) なので、一人では行かないほうがいい", "because": [198119, 198207, 199420], "confidence": 0.7}, {"op": "add", "text": "東の林 (東林12) は前の季節に三十日とも食べ物が見つかったが、冬に見つかるかはまだ分からない", "because": [200195], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、キャンプから離れないほうがいい。"}, {"id": "L98", "against": "", "agree": true, "reason": "採集で蓄えに入れた人が、その日のうちに自分の分を食べられるようにするため。"}, {"id": "L121", "against": "", "agree": true, "reason": "ザガは昼の北の林にも出た。二人以上なら助け合える。"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとると草の取り合いになる。"}, {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いので、野生のヤギを捕まえるのはやめたほうがいい。"}],
+ "feeling": "蓄えは十分にあるけれど、東の林で何も見つからなければ、この冬は長くなりそうだ。"}

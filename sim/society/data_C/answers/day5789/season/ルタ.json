@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "封が何度も割られていて、とても心配。蓄えを開けるなら、名乗ってから取ってほしいな。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "南川12はキャンプから近くて一人でも行ける。冬に向けて、少しでも食べ物を増やしたい。"},
+ "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M120": "つぐなう", "M121": "つぐなう"}, "feast": true, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節、村の蓄えの封が何十回も割られた。割れた封のかけらを見れば、どの家が何日開けたかが分かる。", "because": [313177], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが出るから、夜に離れないのは大事。"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採ってきた人が空腹では、みんなの力が落ちるから。"},
+  {"id": "L126", "against": "", "agree": true, "reason": "火と見張りは、けがを防ぐのに必要だから。"},
+  {"id": "L172", "against": "", "agree": true, "reason": "封を割ったら名乗るのは、もめごとを防ぐから。"}
+ ],
+ "feeling": "封が割られていたのは悲しいけど、みんなで守れば冬も越えられると思う。"}

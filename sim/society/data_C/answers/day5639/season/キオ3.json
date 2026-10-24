@@ -1,0 +1,25 @@
+{"say": [{"to": "みんな", "text": "畑の草の種が実っているから、夏のうちに毎夕、刈れるだけ刈ろう。刈った量と畑に残った量は夜に言うよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草の種は夏の終わりまでに刈らないと落ちてしまう。刈り入れは村の蓄えを守る一番の仕事だから。"},
+ "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "木の実を埋めた所から木が育ち、木が増えていく", "because": [288984], "confidence": 0.9},
+  {"op": "add", "text": "前の季節、印のついた封が何度も割られ、だれが蓄えを取ったのか分からない", "because": [291369], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、キャンプを離れないのは大事。"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採った人が自分の分を食べられるようにするのは大事。"},
+  {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑が残っているうちは、毎夕刈り切ったほうがいい。"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを一人ずつ担当するのは分かりやすい。"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの世話をする人がいないと、ヤギはいなくなるから。"},
+  {"id": "L169", "against": "", "agree": true, "reason": "草で養えない分のヤギは、肉にして干したほうがいい。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると困る。"},
+  {"id": "L172", "against": "", "agree": true, "reason": "封を割ったら名乗り出るべき。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いので、今は捕まえないほうがいい。"},
+  {"id": "L176", "against": "", "agree": true, "reason": "草を増やすか、ヤギを減らすか決めないといけない。"},
+  {"id": "L177", "against": "", "agree": true, "reason": "刈った種は土器に入れて、虫やネズミから守りたい。"},
+  {"id": "L190", "against": "", "agree": true, "reason": "草の足りないヤギを減らすのは必要だと思う。"}
+ ],
+ "year_name": "仲間を多く見送った年",
+ "feeling": "仲間が何人も亡くなって、さびしい。冬までに畑を刈り切って、みんなが食べられるようにしたい。"}

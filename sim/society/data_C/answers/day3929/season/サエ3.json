@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "春のあいだ、わたしはキャンプで石の鎌を作ります。夏の刈り入れの前に、たくさん用意しておくね。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": []}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"セオ": true}, "keep": false,
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "セオ・ルタ・アコの群れは西の村から来て、ここで暮らしたいと言った。西の村は西へ歩いて 2 日", "because": [118913, 118916], "confidence": 0.7},
+  {"op": "add", "text": "ハソの家は家の印を作った。これから倉の口を粘土でふさいで、印を押しておく", "because": [117549], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L30", "against": "肉は干すか燻すかすれば、その日に食べきれない分も蓄えに入れられる。全部その日に食べると、獲れすぎた日に肉が余ってしまう", "agree": false, "reason": "肉の保存は L112 で決まっていて、それで足りる"},
+  {"id": "L0", "against": null, "agree": true, "reason": "夜にザガが出るから、キャンプから離れないほうがよい"},
+  {"id": "L129", "against": null, "agree": true, "reason": "石の鎌は刈る量を 2 倍にする。わたしは道具づくりが得意だから作れる"},
+  {"id": "L133", "against": null, "agree": true, "reason": "土器に入れた草の種は虫やネズミに食べられない。わたしも土器づくりができる"},
+  {"id": "L158", "against": null, "agree": true, "reason": "覚えだけでは量がはっきりしない。書き残せばもめごとのもとが減る"},
+  {"id": "L134", "against": null, "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれないから"}],
+ "feeling": "道具を作るのはうれしい。でも、村には鎌も土器もたくさんあって、わたしの手が本当に必要なのか少し気になる。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "ケト", "text": "春のあいだ、北林12へ採集に行こう。二人で行けば、ザガが出ても安心だよ。"}, {"to": "みんな", "text": "春の仕事は北林12での採集にする。林へは二人以上で行こう。見つけた量と蓄えに入れた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["ケト"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "セナ", "call": null,
+ "knowledge": [{"op": "add", "text": "前の季節、北の丘で採集したが、何も見つからなかった。採集は場所を変えて試すほうがよい。", "because": [58528], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが出るので、キャンプから離れないことは大事だ。"}, {"id": "L3", "against": "なし", "agree": true, "reason": "採集や狩りは複数人で行けば助け合える。"}, {"id": "L10", "against": "なし", "agree": true, "reason": "何を見つけたか話せば、どこに食べ物があるか分かる。"}, {"id": "L16", "against": "なし", "agree": true, "reason": "疲れたままでは危ないし、仕事の力も落ちる。"}, {"id": "L110", "against": "なし", "agree": true, "reason": "戻る時刻を決めておけば、戻らない人をすぐ探せる。"}, {"id": "L121", "against": "なし", "agree": true, "reason": "ザガは昼の林にも出るので、二人以上で行くのがよい。"}, {"id": "L139", "against": "なし", "agree": true, "reason": "病の人を一人にしないことは、命を守るために大事だ。"}, {"id": "L143", "against": "なし", "agree": true, "reason": "林へは必ず二人以上で行くのが安全だ。"}],
+ "feeling": "春の採集を、ケトといっしょに北の林で確かめたい。腹ぺこの人を出さないように、しっかりやる。"}

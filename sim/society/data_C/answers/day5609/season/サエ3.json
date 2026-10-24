@@ -1,0 +1,8 @@
+{"say": [{"to": "ネイ3", "text": "北川12へいっしょに行こう。魚と芋がほんとうにあるか、ふたりで確かめたいの。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ネイ3"], "why": "前に北の川で木の実が採れたことがあるし、冬の食べ物になる魚と芋の場所を知りたいから。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヌオ6": true}, "keep": false,
+ "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [{"op": "add", "text": "ヌオ6 (男) とキオ6 (女) は北の村から来て、ここで暮らしたいと言っている", "because": [288799, 288802], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": null, "agree": true, "reason": "秋の終わりまでに草で養えないヤギを肉にして干せば、ヤギが減ってやせていなくなるのを防げるから。"}, {"id": "L188", "against": null, "agree": true, "reason": "南川12は近くて、二人で行くならひとりでも安心だから。"}, {"id": "L171", "against": null, "agree": true, "reason": "草が足りないのにヤギを増やすと、草の取り合いになってしまうから。"}],
+ "feeling": "北の川の先がどうなっているのか、早く見てみたい。"}

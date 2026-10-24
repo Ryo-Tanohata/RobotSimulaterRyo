@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "わたしは北川12へ行って、冬でも魚と芋が取れるかを確かめてくる。ハユ2と二人で行くよ。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ハユ2"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ハユ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "北川12 では、冬に魚と芋が取れたかもしれないと聞いた。まだ自分の目では確かめていない。", "because": [60216], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は皆でキャンプにいれば、ザガから守れるから。"}, {"id": "L3", "against": "", "agree": true, "reason": "二人で行けば助け合えて安心できるから。"}, {"id": "L10", "against": "", "agree": true, "reason": "見つけた物を話し合えば、どこに食べ物があるか分かるから。"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたままでは採集の力が落ちるから。"}, {"id": "L17", "against": "", "agree": true, "reason": "行き先と一緒に行く人を決めておけば混乱しないから。"}, {"id": "L98", "against": "", "agree": true, "reason": "採集した人が自分の分を食べるのは、力を保つのに大事だから。"}, {"id": "L102", "against": "", "agree": true, "reason": "夏の畑は刈らないと落ちてしまうから。"}, {"id": "L125", "against": "", "agree": true, "reason": "冬の採集は南川12から試すのが近くて安心だから。"}],
+ "feeling": "冬は食べ物を探すのが大事だと思う。北川12で何か見つかるといいな。"}

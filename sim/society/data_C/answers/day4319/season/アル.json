@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "畑の草は夏の終わりに落ちてしまうから、手の空いた人は夕方に刈ってほしい。私も毎夕 60 つかみずつ刈るつもりだ。"}, {"to": "シエ2", "text": "ここで暮らすなら、最初の十日ほどは誰かと組になって動こう。南の村の道や、そこで採れる物を夜に聞かせてほしい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": []}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "accept": {"シエ2": true}, "family": {"コハ": {"activity": "採集", "place": "北林12"}, "ミラ2": {"activity": "採集", "place": "北林12"}}, "keep": false,
+ "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [{"op": "add", "text": "世話をする人が少ないと、ヤギはいなくなる。前の季節は 103 頭がいなくなった", "because": [150743], "confidence": 0.9}, {"op": "add", "text": "土器に入れた草の種は虫やネズミに食べられず、入れていない分だけが食べられる", "because": [150745], "confidence": 0.9}, {"op": "add", "text": "よその家の畑で刈った草の種は、刈った人の家ではなく畑の持ち主の倉に入る。刈る前に分け方を決めておけば、もめごとを防げる", "because": [144382, 144383, 144384], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": "", "agree": true, "reason": "食べ物を集めた人が空腹では、次の日の働きが落ちる"}, {"id": "L106", "against": "", "agree": true, "reason": "冬には木の実がならないので、夏のうちに蓄えておきたい"}, {"id": "L140", "against": "", "agree": true, "reason": "刈り残すと草の種が落ちてしまう"}, {"id": "L143", "against": "", "agree": true, "reason": "ザガが出るので、二人いれば互いに守れる"}, {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりせず、もめごとのもとになる"}, {"id": "L166", "against": "", "agree": true, "reason": "土器づくりの掟が重なっていたので、まとめるのは良い"}],
+ "year_name": "畑が実り刈り合った年",
+ "feeling": "夏のうちに刈り切れるか気になるけど、土器を焼きながら手を動かして確かめたい。"}

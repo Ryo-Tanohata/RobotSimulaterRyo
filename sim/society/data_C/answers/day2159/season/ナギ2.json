@@ -1,0 +1,8 @@
+{"say": [{"to": "ハユ", "text": "夏の残り、南林12へいっしょに行かない？ 二人で行けば、見つけた量をはっきり言えるよ。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ハユ"]}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "西草原12は、前の季節に何も見つからないことがあった。場所によって、見つかる日と見つからない日がある。", "because": [44846], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に誰もキャンプから離れないのは、ザガから身を守るために大事だと思うから。"}, {"id": "L143", "against": "", "agree": true, "reason": "林や近い場所でも二人以上で行けば、見つけた量を確かめ合えて、けがの時も助け合えるから。"}],
+ "year_name": "新しい人が増えた年",
+ "feeling": "新しい人たちと、いっしょに夏を越えられるのがうれしい。林の食べ物も、もっと探してみたい。"}

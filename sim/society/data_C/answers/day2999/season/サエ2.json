@@ -1,0 +1,8 @@
+{"say": [{"to": "ユノ2", "text": "北川12へいっしょに行こう。魚と芋が取れるか、夏のうちに見ておきたい。"}, {"to": "みんな", "text": "夏のあいだは北川12を見てくる。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"]}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "ユノ2と北川12へ行って、魚と芋が夏に取れるかを確かめようと話した", "because": [68550], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L3", "against": "なし", "agree": true, "reason": "二人で行けば、けがをしたときも助け合える"}, {"id": "L16", "against": "なし", "agree": true, "reason": "疲れたままでは採集の力が落ちるから"}, {"id": "L106", "against": "なし", "agree": true, "reason": "夏の木の実は毎晩取って、冬の前に蓄えられる"}, {"id": "L143", "against": "なし", "agree": true, "reason": "林でも近くでも二人で行けば安心できる"}],
+ "year_name": "もめごとと祭りの年",
+ "feeling": "夏の畑が実って、少しほっとしている。北川で何が取れるか楽しみだ。"}

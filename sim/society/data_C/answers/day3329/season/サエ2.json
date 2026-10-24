@@ -1,0 +1,7 @@
+{"say": [{"to": "ユノ2", "text": "春のうちに北川12へ行って、魚と芋が取れるか一緒に確かめよう。見つけた量と蓄えに入れた量は、夜にそのまま言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": null, "agree": true, "reason": "採集した人が、その日のうちに自分の分を取って食べられる。空腹では採集の力が落ちるから。"}, {"id": "L113", "against": null, "agree": true, "reason": "冬の前に北川12の魚と芋の場所を確かめておけば、冬の食べ物が増える。"}, {"id": "L150", "against": null, "agree": true, "reason": "冬の採集は北丘12を試す。南川12は何も見つからなかったから、後回しでいい。"}],
+ "feeling": "ユノ2と北川12へ行けるのが楽しみだ。魚と芋が見つかれば、冬がずっと楽になる。"}

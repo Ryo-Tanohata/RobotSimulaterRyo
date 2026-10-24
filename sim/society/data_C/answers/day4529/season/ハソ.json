@@ -1,0 +1,18 @@
+{"say": [{"to": "ソナ", "text": "春の北の林は、前に行ったとき 30 日とも何か見つかったよ。いっしょに拾いに行こう。"}],
+ "job": {"activity": "採集", "place": "北林28", "with": ["ソナ"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "前の季節の冬、世話をする人が少なくて、飼っていたヤギ 37 頭がいなくなった。世話がないとヤギは減る", "because": [169627], "confidence": 0.9},
+  {"op": "add", "text": "前の季節、印のない封が 30 回割られた。割った人が分からないと、取り過ぎがもめごとのもとになる", "because": [169634], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L172", "against": "なし", "agree": true, "reason": "封を割った人が名乗れば、取った量が分かって、もめごとのもとが減る。"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "林で一人になると、ザガにけがをさせられやすい。"},
+  {"id": "L158", "against": "なし", "agree": true, "reason": "覚えだけでは量がはっきりしないので、毎晩書き残すのがよい。"},
+  {"id": "L171", "against": "なし", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると、草の取り合いになる。"},
+  {"id": "L117", "against": "なし", "agree": true, "reason": "春に木の実を埋めておけば、夏と秋に実のなる木が増える。"},
+  {"id": "L134", "against": "なし", "agree": true, "reason": "家がまだないので、雨の夜は村の住まいに入れてもらえると助かる。"},
+  {"id": "L166", "against": "なし", "agree": true, "reason": "土器に入れた草の種は虫やネズミに食べられないから、土器づくりをまとめて守るのがよい。"}
+ ],
+ "feeling": "春になって林に行けるのがうれしい。家がまだないのが少し気になる。"}

@@ -1,0 +1,37 @@
+{
+ "say": [
+  {"to": "ルネ", "text": "わたしは東川28のことを何も知らない。冬に食べ物があるか、一緒に見に行かない？"},
+  {"to": "みんな", "text": "ルタ2 に、西の村への道と、西の村で採れる物を話してもらいたい。"}
+ ],
+ "job": {"activity": "探索", "place": "東川28", "with": ["ルネ"]},
+ "pick": 0,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "accept": {"ルタ2": true},
+ "family": {"ソナ": {"activity": "道具づくり", "place": "camp"}},
+ "keep": true,
+ "judge": {"M72": "ゆるす"},
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T16": "村"},
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "ルタ2 は西の村 (西へ歩いて 2 日) から来たと言った", "because": [157874], "confidence": 0.7},
+  {"op": "add", "text": "前の季節、蓄えの草の種 約 1293 つかみ が虫やネズミに食べられた。土器に入れていた分は無事だった", "because": [157870], "confidence": 0.9},
+  {"op": "add", "text": "前の季節、封が割れていた蓄えがあった (印のない封 30 回、ケト2 の家の印 1 回、ラキ の家の印 2 回)", "because": [157876], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガは夜に来るから、夜はキャンプの中にいるのがいちばん安全。"},
+  {"id": "L126", "against": "", "agree": true, "reason": "火と見張りが二人ずつなら、夜の番が毎晩足りる。"},
+  {"id": "L143", "against": "", "agree": true, "reason": "林でザガに襲われた人がいる。二人なら助けに戻れる。"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採った人が自分の分を食べられるなら、採集の力が落ちない。"},
+  {"id": "L147", "against": "", "agree": true, "reason": "芋は腐りやすいから、蓄えに入れずに食べきるのがよい。"},
+  {"id": "L155", "against": "", "agree": true, "reason": "よその村の道と採れる物を知れば、探す場所が増える。"},
+  {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりしないので、板に刻んで残すのがよい。"},
+  {"id": "L140", "against": "刈りを毎夕みんなでやると、採集に行く人が減る。", "agree": false, "reason": "わたしは採集が得意だから、刈りより採集に回りたい。"},
+  {"id": "L167", "against": "", "agree": true, "reason": "世話が足りないとヤギは減るので、頭数に合わせて人を決めるのがよい。"}
+ ],
+ "feeling": "冬はつらいけど、まだ知らない川を見に行けるのは少し楽しみ。"
+}

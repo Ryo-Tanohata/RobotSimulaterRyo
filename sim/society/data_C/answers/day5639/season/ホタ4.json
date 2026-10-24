@@ -1,0 +1,31 @@
+{"say": [{"to": "みんな", "text": "林でも草原でも、採集と探索は必ず二人で行こう。ザガは昼の林にも出た。見つけた量と蓄えに入れた量は、夜に板に刻んで一緒に言おう。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ムイ4"], "why": "わたしは採集が得意だから。南林12は木の実や草がよく見つかる林で、二人で行けばザガにも備えられる。"},
+ "pick": 40,
+ "plant": 5,
+ "harvest": 60,
+ "eat_goat": 0,
+ "family": {"ムイ4": {"activity": "採集", "place": "南林12", "why": "採集が得意だから、わたしと一緒に二人で行く。"}},
+ "keep": false,
+ "feast": false,
+ "leader": "なし",
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "封を割って村の蓄えを開ける人が何度もいる。封のかけらで、どの家が開けたかは分かる", "because": [291369], "confidence": 0.8},
+  {"op": "add", "text": "林へ一人で行くと、ザガに襲われて、けがをすることがある", "because": [291369], "confidence": 0.7}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": null, "agree": true, "reason": "同じ掟をひとつにまとめれば、覚えやすく守りやすい。"},
+  {"id": "L143", "against": null, "agree": true, "reason": "採集と狩りは二人以上で行けば、けがをした人を助けられる。"},
+  {"id": "L149", "against": null, "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、畑の実りを減らさずに済む。"},
+  {"id": "L156", "against": null, "agree": true, "reason": "ヤギの世話を毎日決めた人がすれば、ヤギがいなくなりにくい。"},
+  {"id": "L167", "against": null, "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、世話が足りなくなることを防げる。"},
+  {"id": "L171", "against": null, "agree": true, "reason": "草が足りないのにヤギを増やせば、子ヤギが減ってしまう。"},
+  {"id": "L176", "against": null, "agree": true, "reason": "草の多い場所を見に行けば、草を増やすか、ヤギを減らすか決める役に立つ。"},
+  {"id": "L183", "against": null, "agree": true, "reason": "前に借りた草の種が返されるまで貸さなければ、貸し借りのもめごとを防げる。"},
+  {"id": "L186", "against": null, "agree": true, "reason": "貸した量と返す量を板に刻めば、覚えだけに頼らずに済む。"},
+  {"id": "L188", "against": "南川12でも、ザガが出ることがあるから、一人では行かないほうがよい。", "agree": false, "reason": "二人以上で行く決まりを守る。"},
+  {"id": "L190", "against": null, "agree": true, "reason": "草で養えないヤギを肉にして干せば、草の取り合いを減らせる。"}
+ ],
+ "year_name": "封が何度も割られた年",
+ "feeling": "蓄えの封がまた割られて、だれを信じればいいのか迷う。それでも、みんなで二人組になって守りたい。"}

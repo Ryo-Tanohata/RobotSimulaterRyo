@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "わたしは北川12へ行って、木の実と魚をさがすよ。夕方までに戻って、見つけた量と蓄えに入れた量を夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ハユ2"]}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": "ウィロ",
+ "knowledge": [{"op": "add", "text": "トワが病で亡くなり、トワの家の倉と畑は村のものになった", "because": [48546, 48547], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は誰もキャンプから離れないのは、ザガから身を守るために大事だから"}, {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りを一つにまとめれば、守りやすいから"}, {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに畑を刈り切れば、草の種が落ちずに済むから"}, {"id": "L143", "against": "", "agree": true, "reason": "林でも川でも二人以上で行けば、何かあったときに助け合えるから"}],
+ "year_name": "ヤギがいなくなった年",
+ "feeling": "トワが亡くなって寂しいけれど、みんなで食べ物をつないでいこう。"}

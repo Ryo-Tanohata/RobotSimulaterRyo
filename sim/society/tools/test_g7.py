@@ -2679,5 +2679,98 @@ class Q_KinShare(unittest.TestCase):
         self.assertIn('"share": null,', g7.fields_json(st, None, False))
 
 
+class R_CountV2World(unittest.TestCase):
+    """2026-10-24 (実験 C の準備): 決める段の数え方 "v2" (村もまわりの集落と同じに数える) と、世界の選び (砂地・逃げ場なし)。どちらも選ばなければ前のまま"""
+
+    @staticmethod
+    def vD(setts, ties, officials=None, rules=False):
+        lv = region.levels(setts, ties, 0, officials=officials, **({"village_rules": True} if rules else {}))
+        return next((x["D"] for x in lv if x["village"] != "外"), 0)
+
+    def graph(self, org, deep=False):
+        setts = [sett("V0", 100, (5, 5), org=org), sett("N1", 10, (3, 3)), sett("N2", 10, (7, 7))]
+        ties = [tie(1, "N1", "V0"), tie(2, "N2", "V0")]
+        if deep:
+            setts += [sett("N3", 5, (1, 1)), sett("N4", 5, (1, 3))]
+            ties += [tie(3, "N3", "N1"), tie(4, "N4", "N1")]
+        return setts, ties
+
+    def test_levels_v2(self):
+        off = {"甲": ["V0"], "乙": ["V0"]}  # 村の役の人 (下は村の葉だけ)
+        s, t = self.graph(2)
+        self.assertEqual(self.vD(s, t, off, rules=True), 2, "org 2 + 貢ぐ集落 2 → 段 2")
+        self.assertEqual(self.vD(s, t, off), 1, "前の数え方では 1")
+        s, t = self.graph(2, deep=True)
+        self.assertEqual(self.vD(s, t, off, rules=True), 3, "貢ぐ集落の 1 つが 2 つに貢がれていれば段 3")
+        self.assertEqual(self.vD(s, t, off), 2)
+        s, t = self.graph(1, deep=True)
+        self.assertEqual(self.vD(s, t, off, rules=True), self.vD(s, t, off), "org 1 は前のまま")
+        s = [sett("V0", 100, (5, 5), org=2)]
+        self.assertEqual(self.vD(s, [], off, rules=True), self.vD(s, [], off), "貢ぐ集落がなければ前のまま (役の人の数え方)")
+        for org in (0, 1, 2):
+            for deep in (False, True):
+                s, t = self.graph(org, deep)
+                a = region.levels(s, t, 0, officials=off)
+                self.assertEqual(region.levels(s, t, 0, officials=off, village_rules=False), a)
+
+    def test_yardstick_uses_v2(self):
+        import g7
+        import yardstick
+        st = real_state()
+        if not (is_g6(st) or "g7" in st["era2"]):
+            self.skipTest("G6 でも G7 でもない")
+        st = g7_state() if is_g6(st) else st
+        calls = []
+        orig = region.levels
+
+        def spy(*a, **kw):
+            calls.append(kw.get("village_rules", False))
+            return orig(*a, **kw)
+        region.levels = spy
+        try:
+            yardstick.levels(st)
+            st["era2"]["g7"]["count"] = "v2"
+            yardstick.levels(st)
+        finally:
+            region.levels = orig
+        self.assertEqual(calls, [False, True])
+
+    def test_world_flags(self):
+        import g7
+        st = real_state()
+        if not is_g6(st):
+            self.skipTest("本物の state が G6 でない")
+        a = g7_state(0.1)
+        self.assertNotIn("world", a["era2"]["g7"])
+        self.assertNotIn("count", a["era2"]["g7"])
+        self.assertFalse(region.DESERT or region.NO_FLEE)
+        b = part_end(real_state())
+        g7.enter(b, 0.1, {"desert": True, "no_flee": True}, "v2")
+        g = b["era2"]["g7"]
+        self.assertEqual((g["world"], g["count"]), ({"desert": True, "no_flee": True}, "v2"))
+        self.assertTrue(region.DESERT and region.NO_FLEE)
+        placed = [o for o in g7._others(b) if o["id"] in g["region"]["fill"]["placed"]]
+        self.assertTrue(placed and all(region.land(tuple(o["cell"])) != "s" for o in placed), "砂地には置かない")
+        pa = sum(o["people"] for o in g7._others(a) if o["id"] in a["era2"]["g7"]["region"]["fill"]["placed"])
+        self.assertAlmostEqual(g["region"]["fill"]["people"] / pa, 1, delta=0.2, msg="置く人数は今の地図の K の割合 (砂地でも)")
+        setts = g7._setts(b)
+        self.assertIsNone(region.refuge(setts, setts[1], setts[0]), "逃げ場がない")
+        self.assertEqual(region.cap((0, 0)) if region.land((0, 0)) == "s" else 0, 0)
+        b["era2"]["g7"]["region"]["demands"].append({"id": "Q99", "from": "N1", "to": "V0", "end": None})
+        self.assertFalse(g7._leave_on(b), "逃げ場のない世界では、家ごとに出ていく欄を出さない")
+        self.assertEqual(g7.leave_households(b, {}), [])
+        self.assertNotIn("家ごとに村を出る", g7._field_rows(b, False, True))
+        self.assertNotIn('"逃げる"', g7._field_rows(b, False, True))
+        self.assertIn("逃げる道はない", g7.facts(b))
+        rep = g7._rep_of(b)[era2._homes(b)[0]]
+        self.assertEqual(g7.village_answers(b, {rep: {"answer_demand": {"Q99": "逃げる"}}}), {}, "逃げるは選べない")
+        g7.sync_world(a)  # 選びのない state を回すと、region はいつもに戻る
+        self.assertFalse(region.DESERT or region.NO_FLEE)
+        a["era2"]["g7"]["region"]["demands"].append({"id": "Q99", "from": "N1", "to": "V0", "end": None})
+        self.assertTrue(g7._leave_on(a))
+        self.assertIn('"逃げる"', g7._field_rows(a, False, True))
+        self.assertNotIn("逃げる道はない", g7.facts(a))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

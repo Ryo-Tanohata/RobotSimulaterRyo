@@ -86,10 +86,11 @@ def can_enter(state):
     return None
 
 
-def enter(state, fill=0.0):
+def enter(state, fill=0.0, world_opts=None, count=None):
     """G7 に入る (step.py next_part から 1 回だけ。4.E.1 の 2〜5)。確かめるのは step.py と can_enter。
     乱数は、はじめの集落を置く塩 79 (fill > 0 のときだけ) と、この日が年の最後の日なら地域の天気の塩 53 を、この日に 1 回ずつ作る。
-    (見本の家の塩 61 と最初の年の便りの塩 47 は、それぞれの部分を入れるときに、ここに足す)"""
+    (見本の家の塩 61 と最初の年の便りの塩 47 は、それぞれの部分を入れるときに、ここに足す)。
+    world_opts: 世界の選び {"desert": True, "no_flee": True} (2026-10-24。なければ鍵を足さない)。count: 決める段の数え方 "v2" (なければ鍵を足さない)"""
     e2, D = state["era2"], state["day"]
     state["era"] = "G7"
     e2["g7"] = g = {
@@ -103,6 +104,14 @@ def enter(state, fill=0.0):
         "past": [], "role_days": {}, "prev": {},  # 前の 1 年の仕事の日数 (役の人・前の年の予定。4.A.3・4.F の 1)
         "season_days": {}, "kid_jobs": {}, "herd0": _herd(state), "ledger": [], "consulted": [],
     }
+    if world_opts:
+        bad = set(world_opts) - set(WORLD_KEYS)
+        assert not bad, f"知らない世界の選び: {bad}"
+        g["world"] = {k: bool(world_opts[k]) for k in WORLD_KEYS if world_opts.get(k)}
+    if count is not None:
+        assert count in COUNTS, f"知らない数え方: {count}"
+        g["count"] = count
+    sync_world(state)
     _region_start(state, fill)
     # この日が年の最後の日なら、地域の天気もこの日に引く (4.G.2)。村の夏の畑の比はもう決まっている (G6 の _field_season) ので、
     #   使うのは、まわりの悪い年と、草で養えるヤギの数 K の ×0.8 だけ
@@ -170,6 +179,7 @@ def _add_keys(o, cell):
 def new_other(state, o):
     """G7 に入ったあとに G6 の決まりでできた集落 (村を出た家の村など) に、地図のますと G7 の鍵を足す (era2._new_other から。乱数なし)。
     村から 2 ます以内なら、村が知っている (4.B.2)"""
+    sync_world(state)
     used = {tuple(x["cell"]) for x in _others(state) if x.get("cell")}
     c = region.place_known(o["dir"], o["days"], used)
     _add_keys(o, c)
@@ -222,7 +232,12 @@ def _region_start(state, fill):
         _add_keys(o, c)
     have = sum(o["people"] for o in _others(state))
     if fill > 0:
-        placed = [_new_settlement(state, c, n) for c, n in region.fill_cells(used, have, fill, era2._rng(state, era2.FILL_SALT))]
+        target = None
+        if region.DESERT:  # 砂地の世界でも、置く人数は今の地図の K の割合 (実験 A1 と同じ)
+            region.DESERT = False
+            target = round(region.k_total() * fill)
+            region.DESERT = True
+        placed = [_new_settlement(state, c, n) for c, n in region.fill_cells(used, have, fill, era2._rng(state, era2.FILL_SALT), **({"target": target} if target is not None else {}))]
         reg["fill"] = {"share": fill, "day": D, "placed": [o["id"] for o in placed], "people": sum(o["people"] for o in placed),
                        "known": [o["id"] for o in placed if o["known"] is not None]}
     reg["log"].append({"day": D, "kind": "はじめ", "k": region.k_total(), "people": sum(o["people"] for o in _others(state)), "village": _pop(state),
@@ -641,7 +656,14 @@ def _ledger_text(state):
 
 def facts(state):
     """お題の決まりの文のうち、今使えるもの (era2.FACTS_G7。4.F の 8)"""
-    return "".join(era2.FACTS_G7[k] for k in era2.FACTS_G7 if k in FACTS_ON and FACTS_ON[k](state))
+    out = "".join(era2.FACTS_G7[k] for k in era2.FACTS_G7 if k in FACTS_ON and FACTS_ON[k](state))
+    if no_flee(state):  # 逃げ場のない世界 (2026-10-24): 逃げる手はない (文を事実どおりに)
+        out = out.replace(NO_FLEE_TEXT[0], NO_FLEE_TEXT[1])
+    return out
+
+
+NO_FLEE_TEXT = ("払う・戦う・逃げる (家ごとに村を出る)・ほかの村に助けを頼む のどれかを選ぶ",
+                "払う・戦う・ほかの村に助けを頼む のどれかを選ぶ (まわりに空いた住める土地はなく、逃げる道はない)")
 
 
 def _offer(state):
@@ -1440,6 +1462,10 @@ def _plough(state):
 
 
 def _leave_on(state):
+    """家ごとに村を出る欄 (leave) を出すか。逃げ場のない世界 (g7.world.no_flee。2026-10-24) では出さず、leave_households も何もしない
+    (求め・貢ぎ・取り立てから逃れて家ごとに出ていく道がない。もめごとで村が分かれる G5 の決まりと、ききんでよそから来た人が去る決まりは、そのまま)"""
+    if no_flee(state):
+        return False
     return bool(_demands_to_village(state)) or _village_pays(state) or _tax_law(state)
 
 
@@ -1483,7 +1509,8 @@ def _field_rows(state, solo, year):
                                          if year else ""))
     if "answer_demand" in on:
         ids = "・".join(d["id"] for d in _demands_to_village(state))
-        rows.append(f"   求めへの答え: 村への求め ({ids}) ごとに、\"払う\" か \"戦う\" か \"逃げる\" か \"助けを頼む\" (answer_demand)。助けを頼むなら、頼む村の番号 (ally)")
+        rows.append(f"   求めへの答え: 村への求め ({ids}) ごとに、\"払う\" か \"戦う\" か " + ("" if no_flee(state) else "\"逃げる\" か ")
+                    + "\"助けを頼む\" (answer_demand)。助けを頼むなら、頼む村の番号 (ally)")
     if "leave" in on and not solo:
         rows.append("   家ごとに村を出る: 家の人みんなで村を出るなら true、出ないなら false (leave。家の代表が決める)")
     if "share" in on and not solo:
@@ -1711,8 +1738,31 @@ def _reg(state):
 
 
 def region_on(state):
-    """地域の決まりが働くか (G7 から。world.G7_PARTS["region"] は試しで止めるためだけの切りかえ)"""
-    return "g7" in state["era2"] and world.G7_PARTS["region"]
+    """地域の決まりが働くか (G7 から。world.G7_PARTS["region"] は試しで止めるためだけの切りかえ)。世界の選び (g7.world) も region に入れる"""
+    if "g7" not in state["era2"]:
+        return False
+    sync_world(state)
+    return world.G7_PARTS["region"]
+
+
+WORLD_KEYS = ("desert", "no_flee")  # 世界の選び (2026-10-24。実験 C。G7 に入る日に決め、1 回の走りの中では変えない。region.DESERT・NO_FLEE)
+COUNTS = ("v2",)  # 決める段の数え方 (2026-10-24): "v2" = 村もまわりの集落と同じに数える (region.levels の village_rules)。なければ前のまま
+
+
+def sync_world(state):
+    """state の g7.world (なければみな False) を region に入れる (region は 1 つのプロセスで 1 つの state を回す。鍵がなければいつもと同じ)"""
+    w = (state["era2"].get("g7") or {}).get("world") or {}
+    region.DESERT = bool(w.get("desert"))
+    region.NO_FLEE = bool(w.get("no_flee"))
+
+
+def no_flee(state):
+    return bool(((state["era2"].get("g7") or {}).get("world") or {}).get("no_flee"))
+
+
+def count_v2(state):
+    """決める段を、村もまわりの集落と同じに数えるか (g7.count が "v2")"""
+    return (state["era2"].get("g7") or {}).get("count") == "v2"
 
 
 def _v0_org(state):
@@ -2052,7 +2102,7 @@ def village_answers(state, real):
         for n, a in real.items():
             ad = a.get("answer_demand") if isinstance(a.get("answer_demand"), dict) else {}
             v = next((str(x) for k, x in ad.items() if f"Q{era2._num(k)}" == q["id"]), None)
-            ch = next((c for c in region.CHOICES["求められた"] if v and c in v), None)
+            ch = next((c for c in region.CHOICES["求められた"] if v and c in v and not (c == "逃げる" and no_flee(state))), None)
             if ch:
                 votes[n] = ch
         ch, txt = _tally(state, votes, w)

@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "北林12では、前の季節の 30 日、ぼくは何も見つけられなかった。だから今季は、まだ行っていない西草原12をオトと二人で見てくるよ。見つけた物と量は夜に言うね。"}, {"to": "オト", "text": "西草原12へ一緒に行こう。採集は二人で行く決まりだからね。木の実は夕方に取って、畑の刈り入れも手伝ってね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": []}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "accept": {"シエ2": true}, "family": {"オト": {"activity": "採集", "place": "西草原12"}}, "keep": true,
+ "feast": true, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節、北の林 (北林12) で私は 30 日採集したが、食べ物は一度も見つからなかった", "because": [150663], "confidence": 0.9}, {"op": "forget", "id": "k7551", "because": [150663]}],
+ "proposal": null,
+ "votes": [{"id": "L30", "against": "肉は干すか燻せば保存できるかもしれない。その日に全部食べる決まりは厳しすぎる", "agree": false, "reason": "肉の保存実験の結果を見てから決めたい"}, {"id": "L166", "against": "", "agree": true, "reason": "土器づくりの掟が何度も決められているので、まとめるのはよい"}, {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに刈り切らないと、草の種が落ちてしまうから"}, {"id": "L143", "against": "", "agree": true, "reason": "二人なら助け合えるし、一人で林に行くとザガにけがをさせられることがある"}, {"id": "L121", "against": "", "agree": true, "reason": "近くても一人は危ないから、二人以上がよい"}, {"id": "L106", "against": "", "agree": true, "reason": "今ついている木の実を毎晩 40 つかみ取って蓄えに入れれば、冬の食べ物が増える"}, {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻らない人を早く探せる"}, {"id": "L146", "against": "", "agree": true, "reason": "決めてから刈れば、刈った人も持ち主も損をしない"}],
+ "year_name": "刈りのもめごとを祭りで収めた年",
+ "feeling": "北林12で何も見つからなかったのは悔しい。今度は何か見つけたい。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬は北の林が何も見つからなかったから、わたしは北の丘へ行くね。ハユ2、いっしょに来て。夕方の前に戻って、見つけた数を夜に言うよ。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["ハユ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "セナ", "call": null,
+ "knowledge": [{"op": "add", "text": "冬の北の丘は、まだ試していない採集地。北の林は前の季節に何も見つからなかったから、丘を先に見る。", "because": [], "confidence": 0.6}, {"op": "add", "text": "もめごと M15 は、川辺の家がアルの家に草の種 50 つかみを払って収まった。", "because": [56797], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L150", "against": null, "agree": true, "reason": "南の川は前の冬に何も見つからなかったから、北の丘を先に試すのがいい。"}, {"id": "L121", "against": null, "agree": true, "reason": "ザガは昼の林にも出るから、林へは二人以上で行くのが安全。"}, {"id": "L102", "against": null, "agree": true, "reason": "夏の畑は刈り残すと実りが落ちるから、毎夕刈るのがいい。"}, {"id": "L149", "against": null, "agree": true, "reason": "畑の草取りと刈り入れを一つにまとめれば、夜の報告がわかりやすい。"}],
+ "feeling": "木の実は冬に取れないけど、草の種と丘の魚でなんとか春まで持たせたい。"}

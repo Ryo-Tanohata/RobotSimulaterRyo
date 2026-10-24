@@ -1,0 +1,20 @@
+{"say": [{"to": "ヨナ", "text": "わたしは南林12へ採集に行くよ。ヨナもいっしょに二人で行かない？夕方までに戻って、見つけた量と蓄えに入れた量を夜に言うね。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ヨナ"]}, "sow": 300, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M10": "つぐなう", "M11": "つぐなう"}, "feast": false, "leader": "ウィロ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが出るから、夜はキャンプを離れないほうがいい"},
+  {"id": "L1", "against": "", "agree": true, "reason": "どこへ行くか伝えておけば、同じ場所を重ねて探さずにすむ"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集は二人以上で行くと、助け合えて安心"},
+  {"id": "L6", "against": "", "agree": true, "reason": "違う場所に分かれれば、食べ物が見つかりやすい"},
+  {"id": "L10", "against": "", "agree": true, "reason": "採集から帰ったら、何を見つけたか話すのはいいこと"},
+  {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くと危ないから、休むのは大事"},
+  {"id": "L18", "against": "", "agree": true, "reason": "空腹の人に気づいて食べさせるのは、みんなのため"},
+  {"id": "L101", "against": "", "agree": true, "reason": "ヤギは世話がないといなくなるから、毎日だれかが世話をするべき"},
+  {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば、ザガに襲われても守り合える"},
+  {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りを毎晩決めておけば、けがを防げる"},
+  {"id": "L143", "against": "", "agree": true, "reason": "林へ一人で行くのは危ないから、二人以上で行くべき"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で決めれば、実りが減らない"}
+ ],
+ "feeling": "冬までにもっと食べ物を見つけたいな。ヨナといっしょだから、少し心強い。"}

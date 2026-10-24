@@ -1,0 +1,7 @@
+{"say": [{"to": "キサ", "text": "おれと北林12へ行こう。日が沈む前に戻ろう。木の実の多い枝の見分け方は、おれが教える。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["キサ"]}, "sow": 100, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ヌオ": true}, "keep": false,
+ "judge": {"M47": "ゆるす", "M48": "ゆるす"}, "feast": false, "leader": "なし", "trade": {"T3": "村"}, "seal": false, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "西の村の人が、ヤギ 3 頭と引きかえに、土器 4 個・鎌 2 本・草の種 815 つかみを欲しいと言って来た", "because": [106433], "confidence": 0.8}, {"op": "add", "text": "西の村から来たヌオが、ここで暮らしたいと言った", "because": [106434], "confidence": 0.8}, {"op": "add", "text": "北の林は木の実が多いと、オトが言っていた", "because": [103391], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが来るのは本当だから、夜は誰もキャンプから離れないほうがいい。"}, {"id": "L98", "against": "なし", "agree": true, "reason": "採ってきた者が、その日のうちに自分の分を食べられるのは当たり前だ。"}, {"id": "L110", "against": "なし", "agree": true, "reason": "戻る時刻を決めておけば、暗くなってから探しに出る人が減る。"}, {"id": "L143", "against": "なし", "agree": true, "reason": "林で一人だと、けがをしたときに助けを呼べない。二人以上なら安心だ。"}, {"id": "L146", "against": "なし", "agree": true, "reason": "畑の持ち主と分け方を先に決めれば、あとでもめごとにならない。"}, {"id": "L149", "against": "毎夕、畑の草取りと刈り入れを一人ずつ回すと、採集に出る時間がなくなる。", "agree": false, "reason": "畑は大事だが、毎日の当番まで全員に回すのは重すぎる。"}],
+ "feeling": "蓄えはまだ十分にあるが、決まりが増えるのは正直いやだ。北の林の実りを見てみたい気もする。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "西草原12 はまだ行ったことがないから、春のうちにエマ2と二人で見に行くね。草や実のようすは夜に言うよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["エマ2"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"エマ2": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "西草原12 は、まだ行ったことがない場所で、食べ物があるかどうかを確かめたい", "because": [72006], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、キャンプから離れないのは大事"}, {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めておけば、帰らない人をすぐ探せる"}, {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば安心"}, {"id": "L125", "against": "", "agree": true, "reason": "二人一組で行き、見つけた量を夜に言うのは分かりやすい"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行くのは安全"}],
+ "feeling": "一人では不安だけど、新しい場所を見に行けるのがうれしい。"}

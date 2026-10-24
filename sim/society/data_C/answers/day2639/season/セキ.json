@@ -1,0 +1,8 @@
+{"say": [{"to": "ホノ", "text": "夏のうちに西草原12へ行こう。二人で組んで、草と実の様子を見てこよう。見つけた量は夜に言うね。"}, {"to": "みんな", "text": "夏は毎夕、木の実を40つかみずつ取って、冬の前に蓄えを増やそう。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "judge": {"M18": "ゆるす"}, "feast": true, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "世話をする人が少ないと、ヤギが他の家の畑を荒らし、もめごとになる", "because": [59113], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は誰もキャンプから離れないのは、ザガから身を守るために大事だから"}, {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば、けがをしても助け合える"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば安心できる"}, {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り入れを手のあいた大人がみんなで行えば、実りを落とさずに済む"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で担当すれば、負担が分かれる"}, {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えに入れず、その夜に分けて食べきれば腐らない"}],
+ "year_name": "ヨナが殺された年",
+ "feeling": "夏の西草原で、ホノと一緒に冬の食べ物を確かめたい。少し気が引き締まる。"}

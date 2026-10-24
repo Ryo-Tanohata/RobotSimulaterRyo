@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "夏が終わる前に畑の草の種を刈り切ろう。ぼくは毎夕、畑の草取りと刈り入れに出るよ。手が空いている人は、いっしょに刈りに来てほしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": false,
+ "judge": {"M65": "ゆるす"}, "feast": false, "leader": "なし", "trade": {"T13": "村"}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "ケト2 が亡くなり、ケト2の家の倉と畑は、ハユ2 が受けついだ", "because": [140574], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "", "agree": true, "reason": "採集や狩りで蓄えに入れた人が、その日のうちに食べられれば、次の仕事の力が落ちない。"},
+  {"id": "L106", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えるのは大事で、毎晩40つかみまでなら無理がない。"},
+  {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑がある限り毎夕刈らないと、夏のうちに草の種が落ちてしまう。"},
+  {"id": "L149", "against": "", "agree": true, "reason": "草取りと刈り入れを一つにまとめれば、誰が何をするか分かりやすい。"},
+  {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりせず、もめごとのもとになるから、板に刻んで残すのがよい。"},
+  {"id": "L159", "against": "", "agree": true, "reason": "自分が出した提案。魚も肉と同じく腐るので、取った日のうちに処理すべきだ。"},
+  {"id": "L157", "against": "", "agree": true, "reason": "自分が出した提案。住まいがない家を春のうちに建てられる。"},
+  {"id": "L162", "against": "", "agree": true, "reason": "よその家の畑を勝手に刈るもめごとが続いているので、止める決まりが必要だ。"},
+  {"id": "L163", "against": "", "agree": true, "reason": "ヤギが501頭もいるので、いなくなった数にすぐ気づけるように毎晩数えたい。"}
+ ],
+ "year_name": "刈りのもめごとと祭りの年",
+ "feeling": "畑の草の種が落ちないか心配だけど、みんなで刈れば間に合うと思う。"}

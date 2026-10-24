@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏の終わりまで、南林12へ二人組で採集に行こう。見つけた量は夜に言うね。木の実は毎晩少しずつ取っておこう。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": ["ユノ2"]}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "南林12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "西の草原 (キャンプから約 300 m) では、前の季節に採集したが何も見つからなかった", "because": [51822], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、夜は誰もキャンプから離れないほうがいい"}, {"id": "L1", "against": "", "agree": true, "reason": "同じ場所を重ねて探さないために、行き先を伝えるのは役に立つ"}, {"id": "L3", "against": "", "agree": true, "reason": "複数人で行けば、けがをしたときに助けられる"}, {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行くのが安全だ"}, {"id": "L106", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えておくと、冬を越えやすい"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で担当するのは、実りを減らさないためにいい"}],
+ "year_name": "セナがまとめ役になった年",
+ "feeling": "夏のうちに少しでも食べ物が見つかるといい。"}

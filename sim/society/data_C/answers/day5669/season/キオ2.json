@@ -1,0 +1,16 @@
+{"say": [{"to": "ユノ2", "text": "いっしょに南川12へ採集に行こう。ふたりで行けば、ザガが出てもお互いを守れる。"}, {"to": "みんな", "text": "毎晩、木の実を40つかみずつ取って蓄えに入れよう。冬の前に、木も少し埋めて増やしておきたい。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ユノ2"], "why": "キャンプから近く、食べ物も見つけやすい。二人で行けば安心で、冬までに蓄えを増やせる。"},
+ "sow": 500, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ルタ6": true}, "keep": false,
+ "judge": {"M116": "つぐなう", "M117": "つぐなう", "M118": "つぐなう"}, "feast": false, "leader": "なし", "trade": {"T50": false}, "seal_store": false,
+ "knowledge": [{"op": "add", "text": "家にはまだ住まいがない。雨の夜は外で濡れて、疲れがとれない", "because": [], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "ザガが出るから、夜は離れないのが大事だ。"},
+  {"id": "L3", "against": "なし", "agree": true, "reason": "採集や狩りは、仲間と行けば助け合える。"},
+  {"id": "L16", "against": "なし", "agree": true, "reason": "疲れたまま働くと、危ないし力も出ない。"},
+  {"id": "L121", "against": "なし", "agree": true, "reason": "ザガは昼の林にも出た。ふたりで行くべきだ。"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "近くでも林でも、一人で行くと襲われてけがをすることがある。"},
+  {"id": "L188", "against": "近くでも一人では、ザガに襲われることがある。南川12でも二人で行きたい。", "agree": false, "reason": "一人で行ってけがをした話を覚えているから。"},
+  {"id": "L190", "against": "なし", "agree": true, "reason": "草で養えない分のヤギは、冬の前に干し肉にすれば無駄がない。"}
+ ],
+ "feeling": "冬が近いから少し不安だけど、みんなで力を合わせれば越せると思う。"}

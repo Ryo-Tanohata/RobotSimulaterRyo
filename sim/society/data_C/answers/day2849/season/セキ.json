@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春のうちに西草原12へホノと二人で行って、冬の食べ物があるかを確かめてくる。ヨナ2がここで暮らすのは、いいと思う。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ホノ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヨナ2": true}, "family": {"ホノ": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "judge": {"M23": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "春に西草原12をホノと二人で確かめれば、冬の食べ物がある場所かがわかる", "because": [64510], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L121", "against": "なし", "agree": true, "reason": "採集や狩りは二人以上で行けば、ザガに襲われたときも助け合える。"}, {"id": "L143", "against": "なし", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、けがをしたときに助けを呼べる。"}, {"id": "L102", "against": "なし", "agree": true, "reason": "夏に畑を刈らないと実りが落ちるので、毎夕刈り入れをするのはいい。"}, {"id": "L118", "against": "なし", "agree": true, "reason": "草取りと刈り入れを交代で一人ずつ担当すれば、畑の実りを減らさずにすむ。"}],
+ "feeling": "春の採集で西草原12の食べ物がはっきりすれば、冬をこす見通しが立つ。ホノと一緒に行くのは心強い。"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、北川12へ採集に行こう。前の季節に北の川で木の実が取れたから、まず見てみたい。一人では行かないから、いっしょに来られる人は声をかけて。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ケト"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "北の川では、前の季節に木の実が取れた", "because": [57956], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜にザガが出るから、キャンプから離れないのは大事だと思う"},
+ {"id": "L1", "against": "なし", "agree": true, "reason": "どこへ行くか伝えておけば、同じ場所を重ねて探さずにすむ"},
+ {"id": "L3", "against": "なし", "agree": true, "reason": "採集や狩りは二人以上で行けば、助け合えて安全だから"},
+ {"id": "L10", "against": "なし", "agree": true, "reason": "帰ったら何を見つけたか話せば、みんなが場所を知れるから"},
+ {"id": "L67", "against": "なし", "agree": true, "reason": "食べ物を集めた人が空腹では、採集の力が落ちるから"},
+ {"id": "L79", "against": "なし", "agree": true, "reason": "キャンプの周りに火を焚けば、ザガが近づきにくくなるから"},
+ {"id": "L143", "against": "なし", "agree": true, "reason": "採集と狩りは二人以上で行くのが、いちばん安全だと思う"}],
+ "feeling": "蓄えがあるから食べものは当分大丈夫だと思うが、冬は見つかる場所が少ない。北川の様子を早く確かめたい。"}

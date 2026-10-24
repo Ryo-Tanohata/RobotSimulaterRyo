@@ -1,0 +1,7 @@
+{"say": [{"to": "ケト2", "text": "北川12の食べ物を確かめに、いっしょに採集へ行こう。見つけた量と蓄えに入れた量は、夜にそのまま言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ケト2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "北川12で春に食べ物が見つかるかは、二人で行って量を夜に言い合えば確かめられる。", "because": [54198], "confidence": 0.4}],
+ "proposal": null,
+ "votes": [{"id": "L134", "against": "", "agree": true, "reason": "住まいに入りきらない雨の夜は、順番に入るのがいい。外で濡れて疲れがとれない人が減るから。"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、迷ったときや危ないときに助け合える。"}],
+ "feeling": "二人で北川12を確かめに行けると思うと、少しわくわくしている。"}

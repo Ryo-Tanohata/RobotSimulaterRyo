@@ -1,0 +1,19 @@
+{"say": [{"to": "セオ", "text": "セオ、西草原12 を見に行かない？ まだ行ったことがないから、草や実の様子を二人で見てこよう。夜に見たものを話すね。"}],
+ "job": {"activity": "探索", "place": "西草原12", "with": ["セオ"]},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケナ3": true},
+ "family": {"ルネ2": {"activity": "畑仕事", "place": "camp"}},
+ "keep": true,
+ "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [{"op": "add", "text": "ケナ3 (男、17 歳) と トナ3 (男、27 歳) が北の村から来て、ここで暮らしたいと言っている", "because": [180302], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜にキャンプへ来て、けがをした人がいたから、夜は離れないほうがよい"},
+  {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻らない人がいると、暗くなってから探すことになるから"},
+  {"id": "L111", "against": "", "agree": true, "reason": "ヤギは一人では囲めないし、ザガにも襲われやすいから"},
+  {"id": "L165", "against": "", "agree": true, "reason": "二人なら、道に迷っても見たものを確かめ合える"},
+  {"id": "L167", "against": "", "agree": true, "reason": "世話をする人が少ないと、ヤギがいなくなった季節があったから"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのにヤギが増えると、草の取り合いになって困るから"},
+  {"id": "L158", "against": "毎晩、粘土の板に刻むのは手間がかかる。採集や道具づくりの時間が減ってしまう", "agree": false, "reason": "量がはっきりしないのは困るけど、毎晩続けるのは無理だと思った"}
+ ],
+ "feeling": "知らない草原を見に行けるのは楽しみ。ただ、人と組むのは少し面倒に思う。"}

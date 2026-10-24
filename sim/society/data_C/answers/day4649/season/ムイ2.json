@@ -1,0 +1,7 @@
+{"say": [{"to": "ホノ", "text": "東林28の林は、まだ見たことがないんだ。いっしょに行かないか。木の実があるか、目で確かめよう。"}, {"to": "みんな", "text": "東林28の林に行くよ。見つけた物と量は夜に話す。"}],
+ "job": {"activity": "探索", "place": "東林28", "with": ["ホノ"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ケナ3": true}, "keep": false,
+ "feast": true, "leader": "なし", "seal_store": false,
+ "knowledge": [{"op": "add", "text": "木の実を 5 つかみ埋めた所から 157 本の木が育った", "because": [178780], "confidence": 0.9}, {"op": "add", "text": "ホノは、冬も木の実を見つけたら教えてほしいと言っていた", "because": [178689], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るなら、キャンプから離れないのが一番安全だと思う。"}, {"id": "L98", "against": "", "agree": true, "reason": "食べ物を入れた人が、その日のうちに自分の分を取れるのは当たり前だ。"}, {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは、近くでも林でも二人以上なら安心だ。"}, {"id": "L165", "against": "", "agree": true, "reason": "探索も二人以上で行けば、ザガが出ても助け合える。"}, {"id": "L110", "against": "", "agree": true, "reason": "夕方までに戻る時刻を決めておけば、帰らない人をすぐ探せる。"}, {"id": "L163", "against": "", "agree": true, "reason": "ヤギの数が毎晩分かれば、世話が足りているかすぐ分かる。"}, {"id": "L167", "against": "", "agree": true, "reason": "ヤギ 50 頭に一人の世話は、数に合わせていて分かりやすい。"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ほかの村からヤギを受けとると困る。"}, {"id": "L172", "against": "", "agree": true, "reason": "封を割った人が名乗れば、もめごとの元が減る。"}, {"id": "L140", "against": "毎夕の刈り入れを大人みんなで決めると、自分の好きな仕事 (探索など) の時間が取れなくなる。", "agree": false, "reason": "毎夕の刈り入れは一人ずつ交代でよいと思う。"}],
+ "feeling": "東林28の林は、まだ見たことがない。ホノと行けるのもうれしい。"}

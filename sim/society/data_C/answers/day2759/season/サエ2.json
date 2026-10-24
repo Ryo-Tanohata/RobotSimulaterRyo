@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏の畑が残り30日で落ちてしまうから、わたしは畑仕事をしてユノ2と一緒に毎夕刈るよ。木の実も夕方に40つかみ取るね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ユノ2"]}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ユノ2": {"activity": "畑仕事", "place": "camp"}}, "keep": false,
+ "judge": {"M19": "つぐなう"}, "feast": true, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "畑の草の種は、夏のうちに刈らないと落ちてしまう", "because": [62344], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L149", "against": null, "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当するのは、分かりやすくて夏の実りを守れると思う"}, {"id": "L140", "against": null, "agree": true, "reason": "刈れる畑がある限り毎夕刈るのは、夏のうちに刈り切るために必要だと思う"}, {"id": "L121", "against": null, "agree": true, "reason": "採集や狩りは二人以上で行けば、ザガが出ても安全だと思う"}, {"id": "L98", "against": null, "agree": true, "reason": "食べ物を蓄えに入れた人が、その日のうちに自分の分を食べるのは当たり前だと思う"}, {"id": "L134", "against": null, "agree": true, "reason": "雨の夜に村の住まいに入れない人が順番に入るのは、外で濡れて疲れがとれない人を減らせる"}],
+ "year_name": "ヤギがいなくなった年",
+ "feeling": "畑の刈り入れが夏の終わりまでに間に合うか少し心配だけど、ユノ2と一緒ならやれそうだ。"}

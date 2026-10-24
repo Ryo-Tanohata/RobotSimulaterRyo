@@ -42,6 +42,9 @@ WORLDS = {
     "W0": {"name": "G7 のまま", "fill": 0.1, "str": "base", "circ": "open", "dr": 0.2},
     "W1": {"name": "中間 (K の 30%・草原を砂地)", "fill": 0.3, "str": "base", "circ": "desert", "dr": 0.2},
     "W2": {"name": "国ができやすい (K の 30%・まわり 2 倍・砂地で逃げ場なし)", "fill": 0.3, "str": "x2", "circ": "nofl", "dr": 0.2},
+    # 実験 C の世界 (2026-10-24): 本物の道の選び (g7.world = 砂地・逃げ場なし) と段の数え方 v2 を g7.enter に渡す (region の差しかえはしない)
+    "WC": {"name": "C の世界 (G7 のまま + 草原を砂地 + 逃げ場なし。段は v2)", "fill": 0.1, "str": "base", "circ": "open", "dr": 0.2,
+           "real": {"desert": True, "no_flee": True}, "count": "v2"},
 }
 ORIG = {"K": dict(region.K), "WEATHER_BAD": region.WEATHER_BAD, "cells": region.cells, "refuge": region.refuge, "k_total": region.k_total}
 
@@ -72,6 +75,10 @@ def enter_g7(state, w):
     """G6 を閉じて G7 に入る (step.py next_part --closed-by-decision … --fill と同じ道)。まわり 2 倍は入ったあとに人と物を 2 倍"""
     k0 = ORIG["k_total"]()
     g7.close_g6(state, "町は生まれなかったとして G6 を閉じる")
+    if w.get("real") or w.get("count"):  # 本物の道 (step.py next_part --world … --count v2 と同じ)
+        g7.enter(state, w["fill"], w.get("real"), w.get("count"))
+        state["era_log"][-1]["g6_closed"] = state["day"]
+        return
     region.k_total = lambda skip=(region.VILLAGE,): k0 if skip == (region.VILLAGE,) else ORIG["k_total"](skip)  # 置く人数は今の地図の K で
     try:
         g7.enter(state, w["fill"])

@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "西草原12はまだ誰も行ったことがないから、春のうちにハユ3と二人で見て回るよ。草や実の様子は夜に報告する。北川12は前の季節に何も見つからなかったから、今回は避けるね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ハユ3"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ハユ3": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "北川12 (キャンプから約 300 m) で採集したが、前の季節は 30 日とも何も見つからなかった", "because": [82307], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": null, "agree": true, "reason": "夜にザガが出るのは本当に危ないから、夜はキャンプから離れないほうがいい"},
+  {"id": "L1", "against": null, "agree": true, "reason": "どこへ行くかを先に伝えておけば、同じ所を重ねて探さなくて済む"},
+  {"id": "L3", "against": null, "agree": true, "reason": "複数人で行けば助け合えて、けがをしても安心できる"},
+  {"id": "L15", "against": null, "agree": true, "reason": "得意な人が得意な仕事をすれば、全体で食べ物が集まりやすい"},
+  {"id": "L16", "against": null, "agree": true, "reason": "疲れたまま働くと危ないから、休むことは大事"},
+  {"id": "L18", "against": null, "agree": true, "reason": "空腹の人に早く気づいて食べさせるのは、みんなのためになる"},
+  {"id": "L98", "against": null, "agree": true, "reason": "採ったものは、その日のうちに食べるか、保存処理をするのがいい"},
+  {"id": "L110", "against": null, "agree": true, "reason": "戻る時刻を決めておけば、帰らない人にすぐ気づける"},
+  {"id": "L121", "against": null, "agree": true, "reason": "一人で林に行くと、ザガにやられることがあるから二人以上がいい"},
+  {"id": "L143", "against": null, "agree": true, "reason": "近くでも林でも二人以上なら、けがをしたときに助けられる"},
+  {"id": "L149", "against": null, "agree": true, "reason": "畑の草取りと刈り入れを交代ですれば、実りを減らさずに済む"},
+  {"id": "L152", "against": null, "agree": true, "reason": "刈り入れの初めから鎌を使えば、刈り残しが減って実りを守れる"}
+ ],
+ "feeling": "西草原12が見つかればいいなと思う。ハユ3と組んで行くのは、少し楽しみだ。"}

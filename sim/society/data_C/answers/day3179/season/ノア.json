@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、北川12へ二人で行って魚と芋が取れるかを見てくるよ。見つけた量と蓄えに入れた量は、夜にそのまま言う。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ユノ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"スイ2": true}, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "北川12では、前の季節に木の実を 38 つかみ採れた。冬にも何か取れるかを、これから二人で確かめに行く", "because": [74915], "confidence": 0.6}, {"op": "add", "text": "冬の採集は二人組で行けば、見つけた量と蓄えに入れた量を夜に言える", "because": [74918], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出るから、夜は皆でキャンプにいるのが安全だと思う"}, {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは二人以上で行けば、けがをしたときに助け合える"}, {"id": "L125", "against": "", "agree": true, "reason": "北林は前の季節に何も見つからなかったから、ほかの場所を試すのがいい"}, {"id": "L122", "against": "", "agree": true, "reason": "夜の報告が一つにまとまれば、みんなが蓄えの動きを分かりやすい"}],
+ "feeling": "冬は寒いけれど、北川で何か見つけられたらうれしい。ユノ2と一緒なら心強いよ。"}

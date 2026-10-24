@@ -1,0 +1,7 @@
+{"say": [{"to": "ユノ2", "text": "木の実の木が 159 本も育ったんだね。春のうちに、おれも 5 つかみ埋めておくよ。"}, {"to": "みんな", "text": "ロワが北の村から来たなら、夜に北の村のことを少し聞いてみたいな。"}],
+"job": {"activity": "採集", "place": "西草原12", "with": ["ユノ2"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ロワ": true}, "keep": true,
+"feast": false, "leader": "なし", "seal_store": false,
+"knowledge": [{"op": "add", "text": "前の季節、ノアとセヤが病で亡くなった。", "because": [101941, 101943], "confidence": 0.9}, {"op": "add", "text": "よその群れのロワは、北の村から来たと言った。本当かはまだ分からない。", "because": [101947], "confidence": 0.5}, {"op": "add", "text": "キャンプのそばの木は、埋めた木の実や殻から育つ。木の実の木が増えている。", "because": [100714], "confidence": 0.7}],
+"proposal": null,
+"votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に一人で林や草原へ出ると、ザガに襲われる。夜は皆でキャンプにいよう。"}, {"id": "L98", "against": "", "agree": true, "reason": "採集で集めた人が空腹では、次の採集の力が落ちる。その日のうちに自分の分を食べるのは当たり前だ。"}, {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めておけば、夕方に戻らない人を早く探しに行ける。"}, {"id": "L117", "against": "", "agree": true, "reason": "春に木の実を埋めれば、夏と秋に実る木が増える。"}, {"id": "L121", "against": "", "agree": true, "reason": "二人以上で行けば、けがをしても助けてもらえる。"}, {"id": "L129", "against": "", "agree": true, "reason": "石の鎌で刈る量が 2 倍になるなら、夏のうちに畑を刈り切れる。"}, {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈る前に分け方を決めないと、刈った人の家に草の種が残らない。"}, {"id": "L149", "against": "", "agree": true, "reason": "草取りと刈り入れを一つにまとめれば、守りやすい。"}, {"id": "L133", "against": "", "agree": true, "reason": "土器づくりを決めておけば、草の種を虫やネズミから守れる。道具づくりが得意なので手伝える。"}],
+"feeling": "おなかは満たされていて、今日は落ち着いている。草原へ行くのは少し楽しみだ。"}

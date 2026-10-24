@@ -1,0 +1,8 @@
+{"say": [{"to": "エマ2", "text": "北の川 (北川12) には、まだ一度も行ったことがないの。魚と芋があるか、いっしょに見にいこうよ。夕方には戻ろう。"}, {"to": "みんな", "text": "東の林と西の草原は、何度行っても何も見つからなかった。北の川がどうなっているか、わたしが確かめてくるね。"}],
+ "job": {"activity": "探索", "place": "北川12", "with": ["エマ2"]}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "family": {"エマ2": {"activity": "探索", "place": "北川12"}}, "keep": true,
+ "judge": {"M84": "ゆるす"}, "feast": true, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節、南の林 (南林28) で採集したが、木の実 1 つかみしか見つからなかった", "because": [192832], "confidence": 0.9}, {"op": "add", "text": "前の季節、封を割って倉や村の蓄えを開けたのは、みんなで 800 回をこえる (印のない封が 60 回)", "because": [192908], "confidence": 0.8}, {"op": "add", "text": "ソル2 は、北の川にまだ魚がいるはずだと言っていた。まだ確かめていない", "because": [191334], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に出るので、夜はキャンプの外に一人で出ないほうがいい。"}, {"id": "L98", "against": "", "agree": true, "reason": "採集で食べ物を集めた人が空腹のままでは、次の採集ができない。"}, {"id": "L121", "against": "", "agree": true, "reason": "一人だとけがをしても助けがいない。二人なら道具も運べる。"}, {"id": "L140", "against": "", "agree": true, "reason": "夏のうちに刈らないと実りが落ちてしまう。"}, {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えに置くとすぐ腐るので、その夜に食べきるのが確かだ。"}, {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりせず、もめごとのもとになるから。"}, {"id": "L167", "against": "", "agree": true, "reason": "世話が足りないとヤギが減るので、ヤギの数に合わせて世話の人を決めるのがいい。"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、よそのヤギを受けとると草の取り合いになる。"}, {"id": "L172", "against": "", "agree": true, "reason": "封を割った人が名乗れば、もめごとが小さいうちに収まる。"}, {"id": "L175", "against": "", "agree": true, "reason": "草で養えるヤギより多いあいだは、捕まえても世話が足りなくなる。"}],
+ "year_name": "ザガにアルが殺された年",
+ "feeling": "知らない川を見にいけるのが、楽しみでしかたない。"}

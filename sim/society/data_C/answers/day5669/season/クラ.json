@@ -1,0 +1,25 @@
+{"say": [{"to": "ユノ3", "text": "木の実がいっぱいついてるうちに、キャンプのそばでたくさん集めておこうよ。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "秋の今は木の実がいちばん実っていて、冬の前に蓄えを増やせるから"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ6": true},
+ "family": {},
+ "keep": true,
+ "judge": {"M116": "つぐなう", "M117": "つぐなう", "M118": "つぐなう"},
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T50": false},
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "世話をする人が少ないと、飼っているヤギがいなくなる", "because": [296750], "confidence": 0.9},
+  {"op": "add", "text": "ルタ6は西の村から来て、ここで暮らしたいと言っている", "because": [296763, 296757], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に出るので、夜はキャンプから離れないほうがよい"},
+  {"id": "L98", "against": "", "agree": true, "reason": "蓄えから自分の分を取り忘れると、採集の力が落ちるから"},
+  {"id": "L121", "against": "", "agree": true, "reason": "二人以上で行けば、ザガに襲われても助け合える"},
+  {"id": "L167", "against": "", "agree": true, "reason": "世話をする人がいないとヤギはいなくなるから"},
+  {"id": "L171", "against": "", "agree": true, "reason": "ほかの村からヤギを受けとると、草がもっと足りなくなるから"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草で養える数より多いヤギを増やすと、草が足りず、ヤギがやせていなくなるから"}
+ ],
+ "feeling": "ヤギが多すぎて草が足りないのが気がかり。木の実が実っているうちに、しっかり集めたい。"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切ろう。毎夕、刈った量と畑に残った量を言うよ。ナギ2 たちも、いっしょに刈ってくれたらうれしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "accept": {"ナギ2": true}, "family": {"トワ": {"activity": "畑仕事", "place": "camp"}}, "keep": true,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "モエが病で亡くなった。ナギ2 は、よその群れから村で暮らしたいと言ってやって来た", "because": [41546, 41548], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガは夜にほんとうに出るから、夜は離れないほうがいい"},
+  {"id": "L99", "against": "", "agree": true, "reason": "草取りを休むと、夏の実りが減ってしまう"},
+  {"id": "L102", "against": "", "agree": true, "reason": "刈らずに夏が終わると、草の種は落ちてしまう"},
+  {"id": "L124", "against": "一人で近くの川を見て回ると、見つけた量が少なくなる", "agree": false, "reason": "二人以上で行けば、ザガがきても安全だから"},
+  {"id": "L140", "against": "", "agree": true, "reason": "夏の残りに刈り切るには、手のあいた大人が毎夕そろって刈るのがいい"},
+  {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るときは、先に持ち主と分け方を決めないと、草の種がその家の倉に入ってしまう"},
+  {"id": "L150", "against": "", "agree": true, "reason": "南川は前の冬に 30 日とも何も見つからなかったから、北丘から試すほうがいい"}
+ ],
+ "year_name": "カイの去った年",
+ "feeling": "畑の刈り入れが間に合うか、少し気がかり。でも、新しい仲間が増えてうれしい。"}

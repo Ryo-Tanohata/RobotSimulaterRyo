@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のあいだは、遠くへ行かずにキャンプで畑を刈ろう。木の実も毎夕 40 つかみずつ取って、蓄えに入れよう。"}, {"to": "ケト", "text": "川辺の家のヤギの件は、つぐなってもらうのがいいと思う。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ケト": {"activity": "畑仕事", "place": "camp"}}, "keep": true,
+ "judge": {"M18": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "川辺の家のヤギが、ケトの家の畑を荒らした。世話をする人が少ない季節は、ヤギが畑を荒らすことがある", "because": [59112], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L140", "against": "", "agree": true, "reason": "夏の畑を毎夕みんなで刈れば、草の種が落ちずに蓄えになるから"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、だれかに負担が偏らないから"}, {"id": "L98", "against": "", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられると、みんなの力が保てるから"}],
+ "year_name": "ヨナが殺された年",
+ "feeling": "畑に実った草の種がたくさんあって、夏のうちに刈り切れるか少し気がかりだ。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "ケト", "text": "冬は木の実が取れないから、北の丘へ一緒に行こう。二人で見て回って、見つけた量を夜に言うよ。"}, {"to": "みんな", "text": "ケトの家は倉に蓄えを置いておくね。スイの家の不満は、長老として言い分を聞いて決めたいと思う。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["ケト"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "北丘12"}}, "keep": true,
+ "judge": {"M31": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "特になし", "agree": true, "reason": "夜にザガが出るから、キャンプを離れないのは大事"}, {"id": "L38", "against": "特になし", "agree": true, "reason": "火と見張りでザガから身を守れる"}, {"id": "L110", "against": "特になし", "agree": true, "reason": "戻る時刻を決めれば、帰らない人をすぐ探せる"}, {"id": "L121", "against": "特になし", "agree": true, "reason": "二人以上で行けば、けがをしたときも助け合える"}, {"id": "L149", "against": "特になし", "agree": true, "reason": "畑の草取りと刈り入れは毎日交代で続けたい"}],
+ "feeling": "冬は木の実が取れなくて少し心配だけど、蓄えはあるし、ケトと一緒なら安心して行ける。"}

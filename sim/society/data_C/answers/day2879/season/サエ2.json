@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "夏のあいだは東林12へ行くよ。ユノ2と二人で行って、見つけた量は夜に言うね。木の実も毎夕 40 つかみまで取って、蓄えに入れておくよ。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ユノ2"]}, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "東林12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "祭りのあと、村の蓄えの草の種は大きく減った。祭りはたくさん使うので、次は蓄えを見ながら決めたい", "because": [65082], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "ザガが出るので、夜に離れないのは大事だから"},
+  {"id": "L1", "against": "なし", "agree": true, "reason": "どこへ行くか伝えれば、同じ所を重ねずにすむから"},
+  {"id": "L3", "against": "なし", "agree": true, "reason": "複数で行けば、助け合えて安心だから"},
+  {"id": "L10", "against": "なし", "agree": true, "reason": "見つけた物を話せば、どこに食べ物があるか分かるから"},
+  {"id": "L16", "against": "なし", "agree": true, "reason": "疲れたまま働くと、効率が落ちて危ないから"},
+  {"id": "L17", "against": "なし", "agree": true, "reason": "行き先と一緒に行く人を決めれば、混乱しないから"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "近くでも林でも二人以上なら、ザガが出ても安全だから"},
+  {"id": "L145", "against": "なし", "agree": true, "reason": "前に多く取った家が多めに入れれば、もめごとを防げるから"},
+  {"id": "L146", "against": "なし", "agree": true, "reason": "よその畑で刈るときは、先に決めれば争いにならないから"},
+  {"id": "L149", "against": "なし", "agree": true, "reason": "畑の草取りと刈り入れを交代で分けるのは、分かりやすいから"},
+  {"id": "L139", "against": "なし", "agree": true, "reason": "具合の悪い人を一人にしないのは、大事なことだから"}
+ ],
+ "year_name": "土器と祭りの年",
+ "feeling": "夏の木の実で腹は持つけど、冬の食べ物がまだ心配だな。"}

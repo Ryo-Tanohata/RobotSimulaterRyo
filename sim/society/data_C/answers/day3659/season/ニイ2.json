@@ -1,0 +1,34 @@
+{
+ "say": [
+  {"to": "エマ2", "text": "北川12、一緒に行かない? 魚と芋がある話、わたしも確かめてみたいの。"},
+  {"to": "みんな", "text": "北丘12 は前の冬に何も見つからなかったから、今年は行かない。北川12 を先に見てくるね。二人以上で行くよ。"}
+ ],
+ "job": {"activity": "採集", "place": "北川12", "with": ["エマ2"]},
+ "pick": 0,
+ "plant": 0,
+ "harvest": 0,
+ "eat_goat": 0,
+ "accept": {"キサ": true},
+ "family": {"エマ2": {"activity": "採集", "place": "北川12"}},
+ "keep": true,
+ "feast": false,
+ "leader": "なし",
+ "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "北川12 には、冬に魚と芋がありそう。まだ見ていないので、確かめたい", "because": [], "confidence": 0.5},
+  {"op": "add", "text": "北丘12 は、冬に行っても何も見つからなかった", "because": [], "confidence": 1.0}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るのは本当だから、夜は外に出ないのがいい"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採集した人が、その日のうちに自分の分を食べられるのはいいこと"},
+  {"id": "L113", "against": "", "agree": true, "reason": "北川12 の魚と芋を二人組で確かめたい。今の仕事と同じ"},
+  {"id": "L119", "against": "東林28 は、前の季節に行って何も見つからなかった", "agree": false, "reason": "見込みのある北川12 を先に試したい"},
+  {"id": "L121", "against": "", "agree": true, "reason": "林や遠くへ一人で行くと、けがをしたとき助けがない。二人なら安心"},
+  {"id": "L126", "against": "", "agree": true, "reason": "夜の火と見張りは、ザガから守るのに必要"},
+  {"id": "L137", "against": "", "agree": true, "reason": "小さい子は、雨の夜に外にいると弱ってしまう"},
+  {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代でやれば、実りを減らさない"},
+  {"id": "L150", "against": "北丘12 は、前の冬に行って何も見つからなかった。最初に試す場所には向かない", "agree": false, "reason": "北川12 のほうが、魚と芋があるかもしれない"}
+ ],
+ "feeling": "冬の寒さはつらいけど、北川12 に行けるかもしれないのは楽しみ。魚が取れたら、みんなにも見せたい。"
+}

@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "秋の木の実は今がつきどきだ。東の林へ行って、夕方までに戻ろう。ソナ、いっしょに来てくれないか。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ソナ"], "why": "採集は得意だし、東の林では前の季節に木の実が取れた。冬の前に食べ物を増やしたい。"},
+ "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ4": {"activity": "採集", "place": "東林12", "why": "同じ林で木の実を探せば、二人で動けて安全だから。"}},
+ "keep": false,
+ "judge": {"M120": "ゆるす", "M121": "ゆるす", "M122": "ゆるす"},
+ "feast": false,
+ "leader": null,
+ "seal_store": true,
+ "knowledge": [{"op": "add", "text": "秋に畑へまいた草の種は、冬と春をこえて夏のはじめに実る", "because": [313062], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "夜はザガが出るから、皆がキャンプにいれば守り合える"},
+  {"id": "L110", "against": "なし", "agree": true, "reason": "戻る時刻を決めておけば、帰らない人をすぐ探せる"},
+  {"id": "L111", "against": "なし", "agree": true, "reason": "ヤギは一人では囲めないし、ザガにも襲われやすいから"},
+  {"id": "L140", "against": "なし", "agree": true, "reason": "刈れる畑があるあいだは、夏の実りを落とさないため"}
+ ],
+ "feeling": "木の実の林へ行けるのは少し気が楽だ。ヒセ4とユエ6が冬をこせるように、しっかり働こう。"}

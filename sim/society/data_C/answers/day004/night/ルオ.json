@@ -1,0 +1,1 @@
+{"knowledge": [{"op": "add", "text": "東の林には木の実がたくさんある", "because": [57], "confidence": 0.85}, {"op": "add", "text": "南の林では食べ物が採集できる", "because": [59], "confidence": 0.75}], "proposal": {"text": "採集に行く時は、違う場所に分かれて行こう。そうすればもっと食べ物が見つかるはずだ。", "because": [55, 57, 59]}, "plan": {"activity": "採集", "place": "東林12", "with": ["イサ"]}, "feeling": "友達が食べ物をくれて良かった。明日ももっと探そう。"}

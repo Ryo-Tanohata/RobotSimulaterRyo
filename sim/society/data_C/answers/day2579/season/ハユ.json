@@ -1,0 +1,7 @@
+{"say": [{"to": "サエ2", "text": "北丘12 、いっしょに行こう。二人で行って、見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["サエ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "北丘12"}}, "keep": true,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "冬の採集で、北丘12 はまだ試していない。サエ2 は北の丘を先に見たいと言っていた", "because": [56793], "confidence": 0.4}],
+ "proposal": null,
+ "votes": [{"id": "L121", "against": "", "agree": true, "reason": "二人以上で行けば、林や遠くでも安全に採集できる"}, {"id": "L150", "against": "", "agree": true, "reason": "冬は北丘12 を先に試したい。南川12 は前の冬に何も見つからなかった"}, {"id": "L122", "against": "", "agree": true, "reason": "夜の報告が一つにまとまれば、見つけた量と蓄えの出し入れが分かりやすい"}],
+ "feeling": "冬の採集は少ないけど、北丘12 を見てみるのが楽しみだ。"}

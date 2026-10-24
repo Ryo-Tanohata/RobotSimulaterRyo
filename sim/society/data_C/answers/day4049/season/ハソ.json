@@ -1,0 +1,7 @@
+{"say": [{"to": "ルネ2", "text": "東の林28へ、二人で採りに行かないか。前に30日とも食べ物が見つかったと覚えているから、そこを試したい。"}],
+ "job": {"activity": "採集", "place": "東林28", "with": ["ルネ2"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "trade": {"T7": false}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "冬に北の林 (北林28) で 30 日採集したら、食べ物が見つかったのは 8 日だけだった", "because": [128594], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L30", "against": "肉の保存の実験の結果がまだ出ていないのに、保存を禁じるのは早い。", "agree": false, "reason": "腐らせないために、実験の結果を見てから決めたい。"}],
+ "feeling": "冬は実りが少なかった。春は東の林へ、ルネ2と二人で行く。埋めた木の実が育つのを楽しみにしている。"}

@@ -1,0 +1,22 @@
+{"say": [{"to": "ケト", "text": "西草原12 へ採集に行かない? 二人で行けば、ひとりより安心だと思う。見つけた量と蓄えに入れた量は夜にそのまま言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ケト"]}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "西草原12 では、前の季節に芋が見つかった。夏も行ってみる価値がある", "because": [73446], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に出るから、夜は誰もキャンプから離れないほうがいい"},
+  {"id": "L1", "against": "", "agree": true, "reason": "行く場所を伝えておけば、同じ場所を重ねて探さずにすむ"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは複数人で行けば助け合える"},
+  {"id": "L10", "against": "", "agree": true, "reason": "帰ったら見つけたものを話すのは、みんなが分かって良い"},
+  {"id": "L16", "against": "", "agree": true, "reason": "疲れているときは休むのが、長く働くためにいい"},
+  {"id": "L17", "against": "", "agree": true, "reason": "行き先と一緒に行く人を決めておけば混乱しない"},
+  {"id": "L18", "against": "", "agree": true, "reason": "空腹の人が出たら気づいて食べさせるのは大事"},
+  {"id": "L98", "against": "", "agree": true, "reason": "採集で蓄えに入れた人は、その日のうちに自分の分を取って食べる。一番大事な決まり"},
+  {"id": "L106", "against": "", "agree": true, "reason": "冬の前に木の実を蓄えに入れておくのは、冬を越すのに必要"},
+  {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻らない人がいたら探しに行けるように、戻る時刻を決めるのは良い"},
+  {"id": "L121", "against": "", "agree": true, "reason": "採集や狩りは必ず二人以上で行くほうが安全"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近くでも林でも二人以上で行けば、けがをしても助けられる"},
+  {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るときは、先に持ち主と分け方を決めるのは公平"}
+ ],
+ "year_name": "セナが亡くなった年",
+ "feeling": "セナがいなくなって、まとめ役がいないのが少し心細い。でもケトと一緒に西草原へ行って、食べ物を見つけたい。"}

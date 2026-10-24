@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "今日はルタと北川12へ行って、魚と芋の場所を見てくるよ。木の実が取れたら持って帰る。夜に報告するね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ルタ"]}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ルタ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "judge": {"M65": "ゆるす"}, "feast": true, "leader": "なし", "trade": {"T13": "村"}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "ケト2 は病で亡くなり、ケト2の家の倉と畑 3 枚は、ハユ2 が受けついだ", "because": [140574], "confidence": 0.9}, {"op": "add", "text": "ケト2の家は、ルネ2の家が村の蓄えに入れた量より多く取ったと言っている。量は覚えによるもので、記録はない", "because": [140578], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L163", "against": "", "agree": true, "reason": "毎晩ヤギを数えれば、世話が足りているかすぐ分かるから"}, {"id": "L162", "against": "", "agree": true, "reason": "畑の持ち主の許しなく刈るのを防げるから"}, {"id": "L145", "against": "", "agree": true, "reason": "多く取った家が夏に入れ戻せば、季節の終わりのもめごとが減るから"}],
+ "year_name": "刈りのもめごとが三つ起きた年",
+ "feeling": "木の実も草の種もまだ十分あるけれど、わたしの家は村の蓄えから多く取っていたと思う。今季はたくさん入れて返したい。"}

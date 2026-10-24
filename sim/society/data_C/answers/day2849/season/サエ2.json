@@ -1,0 +1,7 @@
+{"say": [{"to": "ユノ2", "text": "西草原12へ一緒に行こう。まだ行ったことがないから、草や実の様子を見て、夜にみんなに話そう。"}, {"to": "みんな", "text": "春のうちに、まだ行っていない西草原12を二人で見て回ろう。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ユノ2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヨナ2": true}, "family": {"ユノ2": {"activity": "採集", "place": "西草原12"}}, "keep": false,
+ "judge": {"M23": "ゆるす"}, "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L126", "against": "", "agree": true, "reason": "夜に火と見張りの決まりを一つにまとめたので、守りやすくなる。"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れて疲れがとれない人が減るから。"}, {"id": "L137", "against": "", "agree": true, "reason": "小さい子が外で濡れないように、先に住まいに入れるのはよいことだから。"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、けがをした人や迷う人が減るから。"}, {"id": "L140", "against": "", "agree": true, "reason": "夏の刈り入れを毎夕みんなでするなら、草の種を落とさずに済むから。"}],
+ "feeling": "ユノ2と西草原12へ行けるのはうれしい。早く食べ物が見つかるといいな。"}

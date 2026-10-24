@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "わたしは冬のあいだ、スイといっしょに北川12へ行って、魚と芋が取れるかを確かめてくるよ。見つけた量と蓄えに入れた量は、夜にわけて言うね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["スイ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"カイ2": true, "ネム2": true}, "family": {"スイ": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "北川12で冬に魚と芋が取れるかは、まだ確かめられていない。ケト2とハユ2が確かめに行った結果を、わたしも聞きたい", "because": [53045], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L121", "against": "", "agree": true, "reason": "二人で行けば、ザガが出ても助け合える"}, {"id": "L124", "against": "", "agree": true, "reason": "林へ行くときは二人以上で行くのが安全だ"}, {"id": "L125", "against": "南川12は冬に何も見つからなかったと聞いた。北川12も試したい", "agree": false, "reason": "南川12より北川12を先に確かめたい"}, {"id": "L150", "against": "北丘12は前の季節に歩き回っても何も見つからなかった", "agree": false, "reason": "見つかっていない場所より、魚と芋の話がある北川12を先に試したい"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると、疲れがとれないから"}],
+ "feeling": "木の実がない冬は、魚と芋が頼りになる。北川12で見つかるといいが、少し不安もある。"}

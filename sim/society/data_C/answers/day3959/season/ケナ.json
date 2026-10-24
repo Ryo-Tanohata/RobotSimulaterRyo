@@ -1,0 +1,20 @@
+{"say": [{"to": "ハソ", "text": "東林28、いっしょに見に行こう。わたしは木の実と草の種を探すね。"}, {"to": "みんな", "text": "蓄えの木の実が少ないから、夕方に木の実を40つかみ取るね。食べる分をのぞいた半分は蓄えに入れるよ。"}],
+ "job": {"activity": "採集", "place": "東林28", "with": ["ハソ"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ソナ": {"activity": "採集", "place": "camp"}}, "keep": false,
+ "judge": {"M56": "ゆるす"}, "feast": false, "leader": "なし", "trade": {"T5": "村"}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "前の季節、東の林で採集したが、食べ物は見つからなかった", "because": [120589], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "", "agree": true, "reason": "採集で集めた人が、その日のうちに自分の分を食べられる。空腹では次の採集が続かない。"},
+  {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻が決まっていれば、戻らない人をすぐ探しに行ける。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "林では二人以上なら、ザガに襲われても助けられる。"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると疲れがとれない。順番に入るのがよい。"},
+  {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑があるうちに毎夕刈れば、草の種を落とさずに済む。"},
+  {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るなら、先に量と分け方を決めておけばもめごとにならない。"},
+  {"id": "L157", "against": "", "agree": true, "reason": "ソナの家もまだ建てかけなので、家ごとに人を決めて手伝うのがよい。"},
+  {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりしない。粘土の板に刻めば、みんなで確かめられる。"},
+  {"id": "L106", "against": "", "agree": true, "reason": "木の実は夏と秋にしか実らない。冬の前に少しずつ蓄えるのがよい。"},
+  {"id": "L122", "against": "", "agree": true, "reason": "夜の報告が一つにまとまれば、覚えやすくて間違いも減る。"},
+  {"id": "L107", "against": "", "agree": true, "reason": "木が育てば、夏と秋に実がなって蓄えが増える。"}
+ ],
+ "year_name": "よそから三人が加わった年",
+ "feeling": "林の奥を見に行けるのがうれしい。ハソがいれば少し安心だけど、食べ物が見つからないと困る。"}

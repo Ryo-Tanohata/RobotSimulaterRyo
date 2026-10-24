@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、南の川と北の林は何も見つからなかったと聞いた。だから北川12へ行ってみたい。川辺で魚と芋が取れるか、二人組で見てくるよ。"}, {"to": "ケト", "text": "いっしょに北川12へ行こう。二人で見て、夜に見つけた量を言おう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ケト"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケト": {"activity": "採集", "place": "北川12"}},
+ "keep": true,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "北川12 (キャンプから約 300 m) の川辺で、冬に魚が取れるかもしれない", "because": [], "confidence": 0.4}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "特になし", "agree": true, "reason": "夜は離れないのがいちばん安全だから"}, {"id": "L113", "against": "特になし", "agree": true, "reason": "冬の魚の場所を知っておけば、食べ物が増えるから"}, {"id": "L114", "against": "特になし", "agree": true, "reason": "ヤギは世話がないと減ってしまうから"}, {"id": "L126", "against": "特になし", "agree": true, "reason": "夜の火と見張りを一つにまとめれば、守りやすいから"}, {"id": "L143", "against": "特になし", "agree": true, "reason": "採集と狩りは二人以上がいちばん安全だから"}],
+ "feeling": "冬の食べ物が心配だけれど、北川の魚がまた取れるといいな。"}

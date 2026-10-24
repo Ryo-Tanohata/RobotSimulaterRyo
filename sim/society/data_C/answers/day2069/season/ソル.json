@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のあいだ、ぼくは西草原12へ行って草の種と木の実をさがすよ。ハユ、いっしょに行かないか。見つけた量と蓄えに入れた量は夜に言うね。木の実は今夜、一人 40 つかみ取って蓄えに入れるよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ハユ"]}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M3": "ゆるす", "M4": "つぐなう"}, "feast": false, "leader": "なし",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": null, "agree": true, "reason": "夜は誰もキャンプから離れないのは、ザガから身を守るために大事だから"}, {"id": "L1", "against": null, "agree": true, "reason": "どこへ行くか伝えれば、同じ場所を重ねて探さずにすむから"}, {"id": "L3", "against": null, "agree": true, "reason": "複数人で行けば助け合えるから"}, {"id": "L10", "against": null, "agree": true, "reason": "見つけたものを話せば、どこに食べ物があるかみんなに分かるから"}, {"id": "L16", "against": null, "agree": true, "reason": "疲れているときに休むのは、みんなの力を守るから"}, {"id": "L99", "against": null, "agree": true, "reason": "畑の草取りが少ないと夏の実りが減るから"}, {"id": "L102", "against": null, "agree": true, "reason": "夏のうちに刈らないと、草の種は落ちてしまうから"}, {"id": "L121", "against": null, "agree": true, "reason": "ザガは昼の林にも出るので、二人以上で行くのが安全だから"}],
+ "feeling": "秋の実りを見ると、冬までは安心していられそうだ。ただ、ぼくは西草原12でも、いつも何か見つかるとはかぎらないと思っている。"}

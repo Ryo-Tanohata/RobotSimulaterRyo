@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "二人以上で行くって決まりは守るよ。ユノ2、いっしょに西の草原へ行こう。帰ったら、見つけた量をちゃんと言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ユノ2"], "why": "採集は得意だから、草原でいちばん食べ物を集められると思う。二人で行けば決まりにもかなう。"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし", "seal_store": false,
+ "knowledge": [{"op": "add", "text": "この1年で、畑で刈った草の種は合わせて 316560 つかみだった", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "", "agree": true, "reason": "食べ物を集めた人が、その日のうちに自分の分を食べられる。空腹で採集に出るのはつらい。"},
+  {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑が残っているあいだに刈り切れば、草の種を落とさずに済む。"},
+  {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、ヤギがいなくなりにくい。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "草が足りないのに、野生のヤギを増やすのはよくない。"}
+ ],
+ "year_name": "畑の刈り入れが進んだ年",
+ "feeling": "畑の草の種がたくさん刈れて、少しほっとしている。西の草原へ行くのが楽しみだ。"}

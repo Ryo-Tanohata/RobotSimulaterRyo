@@ -1,0 +1,8 @@
+{"say": [{"to": "ユノ2", "text": "夏のあいだは、ぼくと一緒に北丘12へ行って、草と木の実の様子を見てこよう。見つけた量は夜に言うね。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["ユノ2"]}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ユノ2": {"activity": "採集", "place": "北丘12"}}, "keep": false,
+ "judge": {"M18": "つぐなう"}, "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが来るのは本当に危ない。夜は誰もキャンプから離れないのがいい。"}, {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行くと、けがをしても助け合える。"}, {"id": "L106", "against": "", "agree": true, "reason": "夏の木の実は冬の前にたくさん蓄えておきたい。毎晩40つかみまで取るのはよい。"}, {"id": "L102", "against": "", "agree": true, "reason": "畑の草の種は夏のうちに刈らないと落ちてしまうから、毎夕刈るのがよい。"}, {"id": "L124", "against": "", "agree": false, "reason": "一人での採集は、もう取りやめになった決まりなので、今は意味がない。"}],
+ "year_name": "畑の草の種が実った年",
+ "feeling": "夏の木の実と畑がたくさんあって、少しほっとしている。ユノ2と一緒に行けるのもうれしい。"}

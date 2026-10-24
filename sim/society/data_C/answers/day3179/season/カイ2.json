@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬は木の実も草の種も実らないから、北川12で魚と芋が取れるか見てくるね。ネム2といっしょに行く。見つけた量と蓄えに入れた量は、夜にそのまま言うよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ネム2"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"スイ2": true, "ノア2": true}, "family": {"ネム2": {"activity": "採集", "place": "北川12"}}, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "冬は木の実も草の種も実らない。北川12で魚と芋が取れるかどうかを、今季確かめに行く。", "because": [74915], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": null, "agree": true, "reason": "採ったら、その日のうちに自分の分を食べられるのは大事。"}, {"id": "L121", "against": null, "agree": true, "reason": "ザガが昼の林にも出るから、二人以上で行くのが安全。"}, {"id": "L125", "against": "南川12は前の冬に何も見つからなかったので、まず南川12を試すのには反対。", "agree": false, "reason": "北川12や北丘12も試したい。"}],
+ "feeling": "新しい場所で食べ物が見つかるか、少し不安だけど、ネム2と行けるのは心強い。"}

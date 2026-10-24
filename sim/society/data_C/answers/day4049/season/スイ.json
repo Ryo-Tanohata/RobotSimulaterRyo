@@ -1,0 +1,28 @@
+{
+ "say": [{"to": "ユエ", "text": "西草原12へ行くぞ。組むのは好きじゃないけど、ザガの出る所に一人は嫌だ。夕方には戻る。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ユエ"]},
+ "pick": 0,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "keep": true,
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T7": false},
+ "seal_store": false,
+ "knowledge": [
+  {"op": "add", "text": "前の冬、西草原12で30日採集したが、食べ物が見つかったのは2日だけだった。冬の西草原12は、ほとんど実らない", "because": [128571], "confidence": 0.8},
+  {"op": "add", "text": "自分の家は前の季節、村の蓄えに入れた量より多く取った。差が大きいと、もめごとになるかもしれない", "because": [], "confidence": 0.6}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L30", "agree": false, "against": "肉の保存は L112 で、実験の結果を見て決めることになっている。先に全部食べると決めるのは早い", "reason": "実験の結果がまだ出ていないから"},
+  {"id": "L98", "agree": true, "against": "", "reason": "自分も蓄えに入れる側だから、その日に自分の分を取れるのはいい"},
+  {"id": "L105", "agree": true, "against": "", "reason": "よそから来た人には、最初は村の人が付いて教えるのがいい"},
+  {"id": "L117", "agree": true, "against": "", "reason": "春に木の実を埋めれば、夏と秋に木が実って蓄えが増える"},
+  {"id": "L143", "agree": true, "against": "", "reason": "ザガが出るから、一人で行くとけがをしたとき助けがない"},
+  {"id": "L145", "agree": true, "against": "", "reason": "自分の家は前の季節に多く取ったので、夏に入れて差を減らすべきだ"},
+  {"id": "L146", "agree": true, "against": "", "reason": "刈る前に決めないと、刈った人の家に種が残らない"}
+ ],
+ "feeling": "蓄えは多いが、組んで歩くのは気が進まない。西草原12で芋が見つかればいい。"
+}

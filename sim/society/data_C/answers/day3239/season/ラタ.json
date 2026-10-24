@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏の終わりまで、西草原12へ行って草の種と芋を見てくる。ケトといっしょに行くよ。見つけた量と蓄えに入れた量は、夜にそのまま言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ケト"]}, "pick": 0, "plant": 0, "harvest": 20, "eat_goat": 0, "keep": true,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "前の季節に西の草原へ行ったときは、何も見つからなかった", "because": [78119], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L98", "against": "", "agree": true, "reason": "採集した分は、その日のうちに自分の分を取って食べられる。空腹では仕事ができないから"}, {"id": "L143", "against": "", "agree": true, "reason": "近くでも林でも二人以上で行けば安心して採集できる"}, {"id": "L118", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で続ければ、夏の実りを減らさずにすむ"}, {"id": "L140", "against": "", "agree": true, "reason": "刈れる畑がある限り、夏のうちに刈り切りたい"}, {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れると疲れがとれないから、順番に村の住まいに入るのがよい"}, {"id": "L133", "against": "", "agree": true, "reason": "土器に入れた草の種は虫やネズミに食べられないから、秋に土器をつくる人を決めたい"}],
+ "year_name": "草の種が多く実った年",
+ "feeling": "木の実と畑が増えてきて少し安心。でも冬のことを考えると、西草原12で食べ物が見つかるか気になる。"}

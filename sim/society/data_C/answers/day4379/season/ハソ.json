@@ -1,0 +1,20 @@
+{"say": [{"to": "ルネ", "text": "西林12を見に行こう。ルクの群れがいたから、冬でも何か取れるかもしれない。"}],
+ "job": {"activity": "探索", "place": "西林12", "with": ["ルネ"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ルタ2": true}, "keep": false,
+ "judge": {"M72": "ゆるす"}, "feast": false, "leader": "なし", "trade": {"T16": "村"}, "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "西の村から来たルタ2が、ここで暮らしたいと言っている", "because": [157869, 157874], "confidence": 0.8},
+  {"op": "add", "text": "西の村の人が、ヤギ1頭と引きかえに土器3個・鎌1本・草の種110つかみをほしがり、また村に来た", "because": [157875], "confidence": 0.8},
+  {"op": "add", "text": "ハユ3 (28歳) が病で亡くなった", "because": [157867], "confidence": 0.7}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが出る夜は、キャンプから離れないほうがいい"},
+  {"id": "L98", "against": "", "agree": true, "reason": "集めた人が食べられないと、次の採集の力が落ちる"},
+  {"id": "L112", "against": "", "agree": true, "reason": "肉はすぐ腐るから、その日に食べるか保存処理をするのがいい"},
+  {"id": "L119", "against": "", "agree": true, "reason": "冬に行ったことのない林を見れば、食べ物のある場所が分かる"},
+  {"id": "L121", "against": "", "agree": true, "reason": "林ではザガが昼にも出るから、二人以上で行くのがいい"},
+  {"id": "L147", "against": "", "agree": true, "reason": "芋は蓄えで傷みやすいから、その夜に食べきるのがいい"},
+  {"id": "L158", "against": "", "agree": true, "reason": "覚えだけでは量がはっきりしないから、板に刻むのがいい"},
+  {"id": "L167", "against": "", "agree": true, "reason": "世話が足りないとヤギが減るから、決めた人が世話をするのがいい"}
+ ],
+ "feeling": "蓄えは十分にあるけど、ヤギが減るのは気になる。西林12へ行くのは少し楽しみだ。"}

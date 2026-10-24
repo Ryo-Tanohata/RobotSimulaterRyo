@@ -1,0 +1,21 @@
+{"say": [{"to": "マロ", "text": "わたしは西林12へ採集に行く。前の季節は30日とも食べ物があった場所だ。来るなら来ればいい。"}],
+ "job": {"activity": "採集", "place": "西林12", "with": ["マロ"]},
+ "pick": 0,
+ "plant": 0,
+ "harvest": 0,
+ "eat_goat": 0,
+ "keep": false,
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T21": false},
+ "seal": false,
+ "seal_store": false,
+ "knowledge": [{"op": "add", "text": "西林12 は、前の季節に 30 日とも食べ物が見つかった (木の実・芋・草の種)。冬にも実りがあるかは、まだ分からない", "because": [178577], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L30", "against": "肉は乾かせば蓄えに入れられる。全部その日に食べ切るのは無理がある", "agree": false, "reason": "乾かす方法も残しておくべきだと思うから"},
+  {"id": "L98", "against": null, "agree": true, "reason": "採集した人が自分の分を取れないと、次の採集ができなくなる"},
+  {"id": "L143", "against": "近い林でも二人で動くと、見つけられる場所が減る", "agree": false, "reason": "一人の方が早く動けて、食べ物を見つけやすいから"},
+  {"id": "L173", "against": null, "agree": true, "reason": "ヤギの世話の決まりが一つになれば、わかりやすい"}
+ ],
+ "feeling": "蓄えは十分にあるが、芋が腐っていると聞くと落ち着かない。西林12で何か見つけたい。"}

@@ -47,7 +47,8 @@ def levels(state):
     import g7
     if not g7.region_on(state):
         return []
-    return region.levels(g7._setts(state), g7._paid_ties(state), state["day"], officials=officials(state))
+    return region.levels(g7._setts(state), g7._paid_ties(state), state["day"], officials=officials(state),
+                         **({"village_rules": True} if g7.count_v2(state) else {}))  # 2026-10-24: 数え方 "v2" は、村もまわりと同じに数える
 
 
 def village_group(lv):

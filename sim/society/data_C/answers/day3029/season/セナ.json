@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "この秋は西草原12へ採集に行くよ。二人ずつ組んで行こう。見つけた量と蓄えに入れた量は、夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ルネ"]}, "sow": 200, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ニイ2": true, "エマ2": true}, "family": {"ラタ": {"activity": "採集", "place": "西草原12"}}, "keep": true,
+ "judge": {"M28": "つぐなう", "M30": "つぐなう"}, "feast": false, "leader": "セナ", "call": "採集",
+ "knowledge": [{"op": "add", "text": "まとめ役が次の季節の仕事を呼びかけても、大人の半分には届きにくい", "because": [69169], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L146", "against": "", "agree": true, "reason": "刈る前に畑の持ち主と分け方を決めれば、もめごとが減るから"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の掟をひとつにまとめれば、みんなが守りやすいから"}, {"id": "L143", "against": "", "agree": true, "reason": "林や近い場所でも二人以上で行けば、ザガに襲われても助け合えるから"}, {"id": "L150", "against": "", "agree": true, "reason": "冬の採集を北丘12で試せば、食べ物の場所が増えるかもしれないから"}],
+ "feeling": "秋の採集で、みんなが食べられるように頑張りたい。もめごとが増えないか少し心配。"}

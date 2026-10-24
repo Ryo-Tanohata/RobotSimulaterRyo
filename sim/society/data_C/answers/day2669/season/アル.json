@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "わたしは北川12へ行って、冬のまえに魚と芋がどれくらいあるかを見てくる。夜に見つけた量を言うね。畑にも草の種をまいておこう。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["スイ"]}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "なし", "agree": true, "reason": "夜のザガはたしかに出るから、キャンプから離れないのが安全だ"},
+  {"id": "L1", "against": "なし", "agree": true, "reason": "行き先を言っておけば、同じ場所を重ねて探さずにすむ"},
+  {"id": "L3", "against": "なし", "agree": true, "reason": "二人以上で行けば、助け合えて安心だ"},
+  {"id": "L10", "against": "なし", "agree": true, "reason": "帰ったら見つけたものを話せば、みんなが食べ物の場所を知れる"},
+  {"id": "L16", "against": "なし", "agree": true, "reason": "疲れたままでは採集の力が落ちるから、休むのは大事だ"},
+  {"id": "L17", "against": "なし", "agree": true, "reason": "行き先と一緒に行く人を決めておけば、混乱しない"},
+  {"id": "L42", "against": "なし", "agree": true, "reason": "見つけたものを話し合えば、どこに食べ物があるかわかる"},
+  {"id": "L98", "against": "なし", "agree": true, "reason": "食べ物を集めた人が、その日のうちに自分の分を食べるのは当たり前だ"},
+  {"id": "L122", "against": "なし", "agree": true, "reason": "夜の報告が一つにまとまると、覚えやすくて守りやすい"},
+  {"id": "L149", "against": "なし", "agree": true, "reason": "草取りと刈り入れを交代で一人ずつ行えば、畑の実りが減らない"}
+ ],
+ "feeling": "北川12に何があるか見に行けるのが楽しみだ。冬の前に新しい食べ物の場所がわかるといい。"}

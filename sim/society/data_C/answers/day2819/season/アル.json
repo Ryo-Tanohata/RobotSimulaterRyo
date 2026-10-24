@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬の採集は北丘12へ行こうと思う。ハユと二人で行くよ。見つけた量と蓄えに入れた量は、夜に分けて言うね。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["ハユ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、火と見張りのために誰もキャンプを離れないのは必要だと思う。"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りを複数人で行けば、助け合えて安心だ。"},
+  {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻る時刻を決めておけば、戻らない人をすぐ探しに行ける。"},
+  {"id": "L111", "against": "", "agree": true, "reason": "ヤギは一人では囲めないし、ザガにも襲われやすいから二人以上で行くべきだ。"},
+  {"id": "L143", "against": "", "agree": true, "reason": "近くても林でも二人以上で行けば、けがをした時にも助けられる。"}
+ ],
+ "feeling": "冬は木の実も草の種も実らないから少し不安だけど、北丘12で何か見つかればいいなと思う。"}

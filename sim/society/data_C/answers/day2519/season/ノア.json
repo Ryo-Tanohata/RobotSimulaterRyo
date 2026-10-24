@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "わたしは北丘12へ行って、草の種と木の実がまだあるかを見てくる。夕方に見つけた量を言うね。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": []}, "pick": 10, "plant": 0, "harvest": 20, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "北丘12"}}, "keep": false,
+ "feast": false, "leader": "セナ",
+ "knowledge": [{"op": "add", "text": "まとめ役のセナが、ナギの家の畑で刈られたもめごとを裁いて、ナギの家が草の種を払った", "because": [53048], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るから、キャンプから離れないほうがいい"}, {"id": "L99", "against": "", "agree": true, "reason": "畑の草取りを交代ですると、夏の実りが減らない"}, {"id": "L102", "against": "", "agree": true, "reason": "夏のうちに刈らないと、草の種は落ちてしまう"}, {"id": "L146", "against": "", "agree": true, "reason": "よその畑で刈るときは、先に持ち主と分け方を決めるべきだ"}],
+ "year_name": "ネム2とカイ2が加わった年",
+ "feeling": "夏のうちに畑が刈り切れて、みんなの蓄えが増えるといい。"}

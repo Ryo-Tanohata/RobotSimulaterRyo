@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "春のあいだは、西草原12へ行ってみようと思う。前に食べ物が見つかった場所だから、春にも取れるか確かめたい。ひとりでは行かないから、一緒に行ける人がいたら声をかけてほしい。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ケト"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {}, "feast": false, "leader": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るなら、夜は誰もキャンプから離れないほうがいい。"},
+  {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは複数人で行けば、助け合えて安心だから。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "近くでも林でも二人以上で行けば、けがをした時に助けられるから。"},
+  {"id": "L67", "against": "", "agree": true, "reason": "採集で頑張った人が空腹のままでは、次の採集の力が出ないから。"},
+  {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で濡れて眠れない人を減らすのは、よいことだと思うから。"}
+ ],
+ "feeling": "春の採集は、西草原12でどれだけ取れるかが楽しみだ。ケトと一緒なら心強い。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "春は北川12 へ狩りに行くよ。ケナ5 と二人で行くね。魚やけものが取れたら、その日のうちに食べるか干すかして、蓄えに入れるね。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": ["ケナ5"], "why": "狩りは私の得意な仕事だし、北川12 では魚やけものが取れると聞いている。二人で行けば安全だと思う。"}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ヌオ6": true}, "keep": false,
+ "feast": false, "leader": "なし", "seal_store": true,
+ "knowledge": [{"op": "add", "text": "封が割られた家の印の数は、割れたかけらを数えれば分かる。封を取った人の家の印で閉じれば、だれが取ったかも分かる。", "because": [288803], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は誰もキャンプから離れないことで、ザガから身を守れる。"}, {"id": "L3", "against": "", "agree": true, "reason": "採集や狩りは複数人で行けば助け合える。"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたままでは危ないし、狩りも採集も効率が落ちる。"}, {"id": "L38", "against": "", "agree": true, "reason": "キャンプの周りに火を焚き、見張りを立てることは大事。"}, {"id": "L121", "against": "", "agree": true, "reason": "ザガが昼の林にも出たので、採集や狩りは二人以上で行くべき。"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ほかの村からヤギを受けとらない方がよい。"}, {"id": "L175", "against": "", "agree": true, "reason": "草で養える数より多いあいだは、野生のヤギを捕まえない方がよい。"}, {"id": "L187", "against": "", "agree": true, "reason": "記録が途切れないよう、板に残す人を二人ずつ決めるのがよい。"}],
+ "feeling": "春の狩りが楽しみ。みんなで食べ物を守って、冬を越えたい。"}

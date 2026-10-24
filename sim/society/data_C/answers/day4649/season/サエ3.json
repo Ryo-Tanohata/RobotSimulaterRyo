@@ -1,0 +1,29 @@
+{
+  "say": [{"to": "みんな", "text": "春のあいだ、わたしは土器を作る。粘土をこねる手が足りないので、手のあいた人は声をかけてね。"}],
+  "job": {"activity": "土器づくり", "place": "camp", "with": []},
+  "pick": 0,
+  "plant": 5,
+  "harvest": 0,
+  "eat_goat": 0,
+  "accept": {"ケナ3": true},
+  "keep": false,
+  "feast": false,
+  "leader": "なし",
+  "seal_store": true,
+  "knowledge": [
+    {"op": "add", "text": "ケナ3 (17 歳) とトナ3 (27 歳) が北の村から来て、ここで暮らしたいと言っている", "because": [180302], "confidence": 0.9},
+    {"op": "add", "text": "前の季節、封をした倉や村の蓄えは、どの家も 29 回ずつ開けられた。村の蓄えから取った量は家ごとに大きく違う", "because": [180303, 178686], "confidence": 0.8}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L30", "against": "肉は干すか燻すかすれば蓄えに入れられる (L112)。全部その日に食べると、狩った量が多い日に食べきれず無駄になる", "agree": false, "reason": "保存処理をした肉は冬に役立つので、その日に全部食べる決まりには反対"},
+    {"id": "L98", "against": "", "agree": true, "reason": "蓄えに入れた人が自分の分を取れると、働いた人が空腹にならない"},
+    {"id": "L112", "against": "", "agree": true, "reason": "肉を腐らせないための決まりが一つにまとまっている"},
+    {"id": "L126", "against": "", "agree": true, "reason": "火と見張りの決まりが一つにまとまり、分かりやすい"},
+    {"id": "L145", "against": "", "agree": true, "reason": "取った量と入れた量の差を小さくすると、もめごとが減る"},
+    {"id": "L166", "against": "", "agree": true, "reason": "わたしが提案した土器づくりの決まり。春から毎日少しずつ作る"},
+    {"id": "L167", "against": "", "agree": true, "reason": "ヤギの数に合わせて世話をする人を決めれば、世話が足りなくなりにくい"},
+    {"id": "L172", "against": "", "agree": true, "reason": "封を割った人が名乗り出れば、覚えのずれが減る"}
+  ],
+  "feeling": "春の土器づくりは手の感触がいちばん落ち着く。新しく来る人の話も聞いてみたい。"
+}

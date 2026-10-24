@@ -1,0 +1,7 @@
+{"say": [{"to": "スイ", "text": "冬は木の実がないから、北丘12へ一緒に行って、草の種と木の実がまだあるか見てみよう。"}],
+ "job": {"activity": "採集", "place": "北丘12", "with": ["スイ"]}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"スイ": {"activity": "採集", "place": "北丘12"}}, "keep": false,
+ "feast": false, "leader": null,
+ "knowledge": [{"op": "add", "text": "冬の採集は、北丘12を最初に試す場所として話し合われている。二人で行って、見つかった量を夜に言う", "because": [67865], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るから、キャンプを離れないのは大事だ"}, {"id": "L3", "against": "", "agree": true, "reason": "二人以上で行けば助け合えるから"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上なら安心できる"}],
+ "feeling": "木の実はないけど、蓄えはまだ十分にある。北丘で何か見つかるといいな。"}

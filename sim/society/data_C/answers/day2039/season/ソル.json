@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のあいだは、畑の刈り入れを毎夕ぼくたちでやろう。刈った量と畑に残った量は、夜にそのまま言うね。木の実は一人 40 つかみまで、夕方に取ろう。"}, {"to": "ナギ2", "text": "ナギ2、ここで暮らすなら、まずは村の人と組になって動こう。畑のことは、ぼくが一緒に教えるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["タヒ", "ハユ"]}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "accept": {"ナギ2": true}, "keep": true,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "ナギの家の畑 2 枚は、夏のうちに毎夕刈り切ると、実りが落ちずにすむ。石の鎌があると刈る量が 2 倍になる", "because": [41548], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に火を焚いて、キャンプから離れないことは、ザガから身を守るのに必要だから"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたままでは、採集も畑仕事も落ちてしまうから"}, {"id": "L99", "against": "", "agree": true, "reason": "畑の草取りを毎日だれかがすると、夏の実りが減らないから"}, {"id": "L102", "against": "", "agree": true, "reason": "夏のうちに刈らないと、実りは落ちてしまうから"}, {"id": "L110", "against": "", "agree": true, "reason": "夕方に戻らない人がいたら、すぐに探しに行けるから"}, {"id": "L121", "against": "", "agree": true, "reason": "二人以上で動けば、ザガがいても助け合えるから"}, {"id": "L126", "against": "", "agree": true, "reason": "火と見張りを二人ずつにすれば、夜の守りが確かになるから"}, {"id": "L140", "against": "", "agree": true, "reason": "夏の残りの刈り入れを、手のあいた大人がみんなでやれば、刈り残しが出ないから"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを一つにまとめれば、わかりやすく守れるから"}, {"id": "L146", "against": "", "agree": true, "reason": "よその家の畑で刈るときは、先に持ち主と分け方を決めるべきだから"}],
+ "year_name": "木の実と畑の年",
+ "feeling": "ナギの家の畑をまだ刈り切れていないから、夏のうちは気を抜かずにやりたい。"}

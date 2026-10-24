@@ -1,0 +1,36 @@
+{
+  "say": [{"to": "みんな", "text": "雨の夜に子どもが濡れるのはもう嫌だ。ルタ3の家の住まいを建てるから、手が空いた人は少しずつ手伝ってほしい。"}],
+  "job": {"activity": "住まいを建てる", "place": "camp", "with": ["アコ3"], "why": "家族の住まいがなく、雨の夜に子どもが外で濡れて疲れがとれないから。住まいができれば家の倉も持てる。"},
+  "pick": 40,
+  "plant": 0,
+  "harvest": 60,
+  "eat_goat": 0,
+  "family": {"アコ3": {"activity": "住まいを建てる", "place": "camp", "why": "ルタ3と一緒に、リセ4とネイ5が雨の夜に濡れないよう住まいを早く作るため"}},
+  "keep": false,
+  "judge": {"M111": "つぐなう"},
+  "feast": true,
+  "leader": "なし",
+  "trade": {"T48": false},
+  "seal_store": true,
+  "knowledge": [
+    {"op": "add", "text": "前の季節、リセ3の家は村の蓄えから草の種を約2159つかみ取り、入れたのはほぼなかった。ユエ4の家はそれを不満に思っている。", "because": [275274], "confidence": 0.7},
+    {"op": "add", "text": "前の季節、どの家の印の封も30回ずつ割られていた。だれが割ったかはまだ分からない。", "because": [275276], "confidence": 0.8}
+  ],
+  "proposal": null,
+  "votes": [
+    {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に来るので、夜はキャンプを離れないほうが安全だから"},
+    {"id": "L98", "against": "", "agree": true, "reason": "採った人が空腹では次の仕事もできないから"},
+    {"id": "L121", "against": "一人で採集したほうが早く、遠くまで行ける", "agree": false, "reason": "一人で動くほうが自分には合っているから"},
+    {"id": "L134", "against": "", "agree": true, "reason": "雨の夜に外で眠ると疲れがとれないから"},
+    {"id": "L137", "against": "", "agree": true, "reason": "子どもは外で濡れると弱ってしまうから"},
+    {"id": "L157", "against": "", "agree": true, "reason": "うちの家族も住まいがないから"},
+    {"id": "L161", "against": "", "agree": true, "reason": "刈り入れは手の空いた大人が毎夕、草取りは交代で一人ずつにするのがよいから"},
+    {"id": "L167", "against": "", "agree": true, "reason": "ヤギが減らないように世話をする人は必要だから"},
+    {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのに、ヤギを増やしてはいけないから"},
+    {"id": "L172", "against": "", "agree": true, "reason": "封を割るのを減らして、だれが開けたかを分かるようにするため"},
+    {"id": "L175", "against": "", "agree": true, "reason": "今はヤギが草の数より多いから"},
+    {"id": "L188", "against": "", "agree": true, "reason": "キャンプから近い南川12なら、一人でも危なくないから"}
+  ],
+  "year_name": "子が生まれ、病で人が亡くなった年",
+  "feeling": "雨の夜に子どもを濡らさずにすむ家を、今年こそ建てたい。"
+}

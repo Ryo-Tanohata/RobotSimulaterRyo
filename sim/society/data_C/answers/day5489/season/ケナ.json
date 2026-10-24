@@ -1,0 +1,22 @@
+{"say": [{"to": "ユノ2", "text": "北川へ一緒に狩りに行こう。魚か、ルクの肉がとれるか見てみたい。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": ["ユノ2"], "why": "北川12では魚もルクもとれた。狩りは私の得意な仕事だし、川は近い。二人で行く決まりにも合う。"},
+ "pick": 0,
+ "plant": 5,
+ "harvest": 0,
+ "eat_goat": 0,
+ "family": {"ソナ": {"activity": "畑仕事", "place": "camp", "why": "育っている畑の草取りを、毎日だれか一人が交代でする決まりがあるから。"}},
+ "keep": true,
+ "feast": false,
+ "leader": "なし",
+ "seal_store": true,
+ "knowledge": [
+  {"op": "add", "text": "北川12では、春も魚がとれそうだ", "because": [272496], "confidence": 0.7},
+  {"op": "add", "text": "前の季節、印で封をした倉と村の蓄えが何十回も開けられた。割れた封のかけらで、どの家が開けたか分かる", "because": [272516], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "ザガが夜に出るので、夜は外に出ないほうがよい。"},
+  {"id": "L121", "against": "狩りが上手な人は一人でも危なくないのに、二人を待つと狩りが遅れる。", "agree": false, "reason": "でも、いまは決まりどおり二人で行く。"},
+  {"id": "L188", "against": "", "agree": true, "reason": "近い南川12なら、一人でも危なくないから。"}
+ ],
+ "feeling": "春の風が気持ちいい。北川の魚やルクに会えるかと思うと、わくわくする。"}

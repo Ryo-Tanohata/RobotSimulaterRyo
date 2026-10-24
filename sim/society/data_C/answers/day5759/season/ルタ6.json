@@ -1,0 +1,21 @@
+{"say": [{"to": "ヌオ", "text": "西草原12はまだ見ていない場所だから、いっしょに行ってみないか。夕方までに戻ろう。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ヌオ"], "why": "採集が得意で、食べ物を蓄えに入れるのが自分の役目だから。まだ見ていない西草原12で、食べ物が見つかるか二人で確かめたい。"},
+ "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0,
+ "accept": {"ホミ6": true},
+ "keep": false,
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T52": false},
+ "seal": false,
+ "seal_store": false,
+ "knowledge": [{"op": "add", "text": "南の村は、ヤギを出すかわりに土器・鎌・草の種をほしがる", "because": [306723], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L98", "against": "", "agree": true, "reason": "同じ掟が何度も決まっていて、一つにまとめた方が守りやすいから。"},
+  {"id": "L118", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、夏の実りが減らないから。"},
+  {"id": "L121", "against": "", "agree": true, "reason": "林や草原で一人になると、ザガにけがをさせられることがあるから。"},
+  {"id": "L171", "against": "", "agree": true, "reason": "草が足りないのにヤギが増えると、子ヤギが減って、やせていなくなるから。"},
+  {"id": "L175", "against": "", "agree": true, "reason": "今はヤギが草で養える数より多いから、いまは捕まえるのをやめた方がよいから。"}
+ ],
+ "year_name": "畑の草の種がたくさん実った年",
+ "feeling": "畑がたくさん実って、みんなで食べ物を守れている。あとは夏を無事に刈り切りたい。"}

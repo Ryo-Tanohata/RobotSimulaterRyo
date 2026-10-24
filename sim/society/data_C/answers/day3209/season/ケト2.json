@@ -1,0 +1,7 @@
+{"say": [{"to": "ハユ2", "text": "春のあいだ、南川12へいっしょに行こう。近いから、二人で行けば安心して採集できる。夜に見つけた量と蓄えに入れた量を言うね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ハユ2"]}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ハユ2": {"activity": "採集", "place": "南川12"}, "リオ2": {"activity": "採集", "place": "南川12"}}, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "春のうちに南川12へ二人で行って、草や魚がどれくらい取れるかを自分の目で確かめる", "because": [76414], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にキャンプを離れる人がいると、ザガに襲われてけがをする人が出るから"}, {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行けば、けがや迷いを防げるから"}, {"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを交代で一人ずつ担当すれば、夏の実りを減らさずにすむから"}, {"id": "L146", "against": "", "agree": true, "reason": "採集や狩りのあと、見つけた量を話し合えば、蓄えがどれくらい減っているかわかるから"}, {"id": "L151", "against": "", "agree": true, "reason": "春のうちに土器づくりをする人を決めれば、草の種を虫やネズミから守れるから"}],
+ "feeling": "木の実が実らない春だけど、南川12で取れるものを見つけて、みんなの蓄えを減らさずにすみたい。"}

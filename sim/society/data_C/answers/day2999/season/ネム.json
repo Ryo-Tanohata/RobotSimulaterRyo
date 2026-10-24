@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切りたいの。わたしは毎夕キャンプで草を取って、刈り入れも手伝うね。刈った量と畑に残った量は夜に言うよ。"}],
+"job": {"activity": "畑仕事", "place": "camp", "with": []}, "pick": 40, "plant": 5, "harvest": 60, "eat_goat": 0, "keep": false,
+"feast": false, "leader": null,
+"knowledge": [{"op": "add", "text": "畑は、草取りと刈り入れを毎日だれかが交代でやると、実りが減らない", "because": [68544], "confidence": 0.6}],
+"proposal": null,
+"votes": [{"id": "L149", "against": "", "agree": true, "reason": "畑の草取りと刈り入れを毎夕交代でやれば、夏の実りを刈り残さずに済むから"}, {"id": "L143", "against": "", "agree": true, "reason": "近い場所でも林でも二人以上で行けば、ザガに襲われたときに助け合えるから"}, {"id": "L126", "against": "", "agree": true, "reason": "夜は火を焚いて見張りを立てれば、けがをする人が減るから"}, {"id": "L110", "against": "", "agree": true, "reason": "戻る時刻を決めておけば、夕方に戻らない人をすぐ探しに行けるから"}],
+"year_name": "もめごとが三つ起きた年",
+"feeling": "畑の実りが気になるけど、みんなと一緒にできることをやっていきたい。"}

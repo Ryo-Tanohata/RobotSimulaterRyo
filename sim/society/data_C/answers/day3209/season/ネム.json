@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "春のうちに土器をつくるね。作った土器に草の種を入れておけば、虫やネズミに食べられないから。割れた数と作った数は夜に言うよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": []}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "なし",
+ "knowledge": [{"op": "add", "text": "ネムが土器を焼き上げて、村の土器は 1335 個になった", "because": [77233], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "夜に火を絶やさず、ザガが近づかないようにしたい"},
+  {"id": "L98", "against": "なし", "agree": true, "reason": "採った人が、その日のうちに自分の分を食べられるのは大事だと思う"},
+  {"id": "L99", "against": "なし", "agree": true, "reason": "畑の草取りを毎日だれかがやらないと、夏の実りが減ってしまう"},
+  {"id": "L111", "against": "なし", "agree": true, "reason": "ヤギは一人では囲めないし、ザガに襲われやすいから二人以上で行きたい"},
+  {"id": "L134", "against": "なし", "agree": true, "reason": "雨の夜に外で濡れて、疲れがとれない人を減らしたい"},
+  {"id": "L143", "against": "なし", "agree": true, "reason": "採集と狩りは、近くでも林でも二人以上で行けば安心できる"}],
+ "feeling": "土器をつくれるのはうれしい。春のうちに草の種を守れるように、ていねいにつくりたい。"}

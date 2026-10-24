@@ -1,0 +1,24 @@
+{"say": [{"to": "コハ", "text": "北川12へ一緒に行こう。前の夏に木の実を取れた川だから、冬の魚と芋がないか見ておきたい。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["コハ"]}, "sow": 0, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"コハ": {"activity": "採集", "place": "北川12"}, "ミラ2": {"activity": "ヤギの世話", "place": "camp"}},
+ "keep": true,
+ "judge": {"M62": "つぐなう", "M63": "つぐなう"},
+ "feast": false,
+ "leader": "なし",
+ "trade": {"T8": false, "T9": "村"},
+ "seal_store": false,
+ "knowledge": [
+   {"op": "add", "text": "北の川 (キャンプから約 300 m) では、前の夏に木の実 46 つかみ が採れた", "because": [134134], "confidence": 0.8},
+   {"op": "add", "text": "この季節、印で封をした倉や村の蓄えが何度も開けられた。ラキの家の印は 5 回だった", "because": [134273], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+   {"id": "L0", "against": "", "agree": true, "reason": "ザガが出る夜に、みんながキャンプにいれば守り合える。"},
+   {"id": "L30", "against": "肉は干すか燻すかすれば保存できると、L31 などですでに決まっている。その日に全部食べるだけでは、余った肉が無駄になる。", "agree": false, "reason": "保存処理をすれば肉は残せるので、この掟には反対する。"},
+   {"id": "L106", "against": "", "agree": true, "reason": "木の実は冬には実らないので、毎晩取って蓄えに入れるのがいい。"},
+   {"id": "L111", "against": "", "agree": true, "reason": "野生のヤギは一人では囲めないので、二人以上で行く。"},
+   {"id": "L113", "against": "", "agree": true, "reason": "冬の前に北川12の魚と芋を確かめたい。二人組で行って夜に報告する。"},
+   {"id": "L143", "against": "", "agree": true, "reason": "採集と狩りは二人以上で行けば、ザガに襲われても助け合える。"},
+   {"id": "L161", "against": "", "agree": true, "reason": "刈り入れと草取りを分けると、一人ひとりの負担が軽くなる。"}
+ ],
+ "feeling": "冬の食べ物がまだ見えないのが少し気になるけれど、川を見に行くのは楽しみだ。"}

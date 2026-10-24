@@ -1,0 +1,7 @@
+{"say": [{"to": "ネム3", "text": "西林12 に行こう。ふたりで行けば、見つけた物をすぐ言い合えるね。"}, {"to": "みんな", "text": "冬は木の実も草の種も実らないけど、西林12 に食べ物があるかは、まだ確かめていないの。ふたりで見てくるね。"}],
+ "job": {"activity": "採集", "place": "西林12", "with": []}, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ネム3": {"activity": "採集", "place": "西林12"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T15": "村"}, "seal_store": true,
+ "knowledge": [{"op": "add", "text": "この季節、スイの家の印の封が2回、ハソの家の印の封が1回、割られて開けられた。割れた封のかけらが残っている", "because": [147388], "confidence": 0.8}, {"op": "add", "text": "北の村が、ヤギ1頭を出すので、土器5個・鎌2本・草の種25つかみがほしいと、また村に来て言った", "because": [147387], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "なし", "agree": true, "reason": "ザガが出るので、夜は離れないのがいい"}, {"id": "L164", "against": "なし", "agree": true, "reason": "罰で刈る人を減らすより、先に畑の持ち主と決めれば十分"}, {"id": "L165", "against": "なし", "agree": true, "reason": "探索も二人以上なら、けがをしても助け合える"}],
+ "feeling": "冬の食べ物が心配だけど、みんなで決めて動けるのは、少し安心する。"}
