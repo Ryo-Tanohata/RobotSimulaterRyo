@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "おれは土器と鎌をつくる。草の種は土器に入れて守るのがいちばんだ。"}],
+ "year": {"夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "草の種を虫やネズミから守るため、得意な土器を焼く"}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "鋭い石がたくさんあるので、鎌を作って刈り入れに備える"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬のうちから土器を作り、蓄えを守る"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は割れるので、毎日少しずつ作り足す"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ヌオ8": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T64": false, "T65": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える約140頭より多く、草が足りない。ほかの村からヤギを受けとらない方がよい。", "because": [379734], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がたくさん実った年"}

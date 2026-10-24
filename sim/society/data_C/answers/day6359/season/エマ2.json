@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈り切って、土器に入れて冬に備えましょう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れるため"}, "family": {"オネ2": {"activity": "畑仕事", "place": "camp", "why": "いっしょに刈って落ちる前に集めるため"}}, "pick": 20, "plant": 5, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やすため"}, "family": {"オネ2": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝い実りを増やすため"}}, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 800},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "草の種を虫やネズミから守る土器を増やすため"}, "family": {"オネ2": {"activity": "畑仕事", "place": "camp", "why": "冬の畑の草取りで実りを守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため草取りを続ける"}, "family": {"オネ2": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ヌオ8": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T64": false, "T65": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "北の川では何度採集しても何も見つからなかった。夏は畑の刈り入れのほうが確かな食べ物になる。", "because": [377166], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がまた実った年",
+ "feeling": "蓄えは十分にあるので、落ち着いて畑の仕事を続けたい。"}

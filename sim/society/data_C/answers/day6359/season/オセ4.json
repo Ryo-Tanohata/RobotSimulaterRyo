@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切るよ。私は毎日camp で刈る。落とすのはもったいない、手の空いた人は来てね。"}],
+"year": {
+"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が多く、夏のうちに刈らないと落ちるから"}, "family": {"ハソ4": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため一緒に刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+"秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意で、草の種を虫やネズミから守れるから"}, "family": {"ハソ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+"冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬のうちに土器を増やして蓄えを守る"}, "family": {"ハソ4": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+"春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れに備えて鎌を作りためる"}, "family": {"ハソ4": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+"keep": false, "seal_store": [],
+"accept": {"ヌオ8": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+"judge_rule": "ゆるす", "feast": [], "leader": null,
+"trade": {"T64": false, "T65": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+"knowledge": [], "proposal": null, "votes": [],
+"year_name": "畑の刈り入れの年",
+"feeling": "蓄えは十分あるし、まずは畑を刈り切って、それから土器と鎌をたくさん作りたい。"}
