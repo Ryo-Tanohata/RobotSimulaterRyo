@@ -351,8 +351,11 @@
 {"person_id":"P350","household_id":"H43","from_day":7109,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[477815],"assigned_from_state_day":7109},
 {"person_id":"P351","household_id":"H41","from_day":7109,"to_day":7169,"why_in":"生まれた","why_out":"亡くなった","evidence":[477816,484364],"assigned_from_state_day":7109},
 {"person_id":"P352","household_id":"H38","from_day":7109,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[477817],"assigned_from_state_day":7109},
-{"person_id":"P353","household_id":"H17","from_day":7139,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[481403],"assigned_from_state_day":7139},
-{"person_id":"P354","household_id":"H38","from_day":7139,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[481404],"assigned_from_state_day":7139},
+{"person_id":"P353","household_id":"H17","from_day":7139,"to_day":7199,"why_in":"生まれた","why_out":"亡くなった","evidence":[481403,487430],"assigned_from_state_day":7139},
+{"person_id":"P354","household_id":"H38","from_day":7139,"to_day":7199,"why_in":"生まれた","why_out":"亡くなった","evidence":[481404,487431],"assigned_from_state_day":7139},
 {"person_id":"P355","household_id":"H59","from_day":7139,"to_day":7169,"why_in":"生まれた","why_out":"亡くなった","evidence":[481405,484365],"assigned_from_state_day":7139},
-{"person_id":"P356","household_id":"H51","from_day":7169,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[484362],"assigned_from_state_day":7169}
+{"person_id":"P356","household_id":"H51","from_day":7169,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[484362],"assigned_from_state_day":7169},
+{"person_id":"P357","household_id":"H29","from_day":7199,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[487427],"assigned_from_state_day":7199},
+{"person_id":"P358","household_id":"H21","from_day":7199,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[487428],"assigned_from_state_day":7199},
+{"person_id":"P359","household_id":"H16","from_day":7199,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[487429],"assigned_from_state_day":7199}
 ]
