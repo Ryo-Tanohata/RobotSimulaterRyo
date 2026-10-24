@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いし、秋のうちに畑へ種をたっぷりまこう。まいたあとの草取りも、みんなで交代して手を貸してね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りをしないと夏の実りが減る。土器も鎌も十分あるので畑を優先する"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"セヤ11": true},
+ "family": {"ホタ2": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして夏の実りを守るため"}, "アコ4": {"activity": "畑仕事", "place": "camp", "why": "採集の腕は低いので、家族といっしょに草取りを手伝う"}},
+ "keep": false,
+ "judge": {"M149": "ゆるす", "M150": "ゆるす", "M151": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は草取りをしないと実りが3割に減る。冬と春も草取りが要る", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L214", "against": "", "agree": true, "reason": "ヤギの世話の手が足りず減り続けているので、人を増やすのはよいと思う"}],
+ "feeling": "蓄えが豊かで安心している。畑がよく実るように働こう。"}

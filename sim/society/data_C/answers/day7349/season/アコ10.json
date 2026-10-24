@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、冬と春のあいだ交代で草取りをしよう。おれも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ルタ10"], "why": "秋にまいた畑は草取りで実りが増えるので、手伝いたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"セヤ11": true},
+ "family": {"ルタ10": {"activity": "畑仕事", "place": "camp", "why": "いっしょに畑の草取りをして実りを増やすため"}},
+ "keep": false,
+ "judge": {"M149": "ゆるす", "M150": "ゆるす", "M151": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L205", "against": "", "agree": true, "reason": "草取りが足りないと夏の実りが減るから"},
+  {"id": "L214", "against": "", "agree": true, "reason": "ヤギの世話の手を増やし、多すぎる分は肉にして食べ物にできるから"},
+  {"id": "L196", "against": "", "agree": true, "reason": "もめごとは早く収めて、村を出る家が出ないようにしたいから"}
+ ],
+ "feeling": "蓄えもたっぷりあるし、畑仕事に精を出して冬を安心して迎えたい。"}
