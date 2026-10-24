@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "うちの家にはまだ住まいがなくて、雨の夜は子とずっと濡れてきたの。この秋は私が住まいを建てるから、手が空いた人は少し手伝ってくれるとうれしい。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": [], "build": "家族の住まい", "why": "家族の住まいがなく、雨の夜に2歳の子と外で濡れて疲れがとれないので、冬の前に建てたい"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ14": true}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "家族の住まいがないと、雨の夜に村の住まいへ入りきらず、疲れがとれない", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L204", "against": "", "agree": true, "reason": "住まいのない家を助け合うのは大事だから"}],
+ "feeling": "子のためにも、冬の前に屋根のある自分たちの住まいがほしい。"}

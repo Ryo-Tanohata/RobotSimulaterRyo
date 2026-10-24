@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑は草取りが大事だよ。私は畑に出るから、手の空いた人は来ておくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りをしないと実りが3割に減るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ロワ14": true},
+ "family": {"ワユ2": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギは世話する人がいないといなくなるし、小さい子の近くで動けるから"}, "ラニ3": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要るから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりある。畑をきちんと世話して、冬と春にそなえたい。"}

@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をたっぷりまこう。草取りの手が足りないと夏の実りが減るから、おれは畑仕事をつづけるよ。"}, {"to": "ロワ14", "text": "ようこそ。一緒に畑を見て、この村のやり方を覚えていこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが足りないと実りが減る。蓄えは多いので、冬と春の実りに備えて畑を育てたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ロワ14": true},
+ "family": {
+  "アコ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人が多いほど実りが守られるので、一緒に働く"},
+  "ロワ8": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを増やすため"},
+  "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える。半人前の働きでも畑の助けになる"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にある。畑を大切に育てて、仲間みんなで冬を越したい。"}

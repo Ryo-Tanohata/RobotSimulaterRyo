@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬と春は交代で草取りをしよう。私も毎日キャンプで草取りをするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がなく、秋にまかないと夏に実らない。まいた後の草取りで実りが増える"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ロワ14": true},
+ "family": {"ヌオ4": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを増やして夏の実りを守るため"}, "リセ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを増やして夏の実りを守るため"}, "テナ9": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だけれど、畑の世話を怠らないようにしたい。"}

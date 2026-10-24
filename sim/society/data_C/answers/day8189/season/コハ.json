@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、今年も畑にしっかりまこうね。冬と春の草取りを皆で分ければ、夏にまた実るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ラキ2"], "why": "秋にまく畑は草取りが足りないと実りが3割に減るので、草取りに回る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ14": true},
+ "family": {"ラキ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"}, "セオ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"}, "アコ7": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"}, "テナ8": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ワユ8": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、体も軽い。畑がよく実るよう、草取りをがんばろう。"}

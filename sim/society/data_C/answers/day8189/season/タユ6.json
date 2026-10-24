@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にあるから、秋にしっかり種をまいて、冬と春は草取りを欠かさずやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが足りないと実りが減る。蓄えは十分なので畑を育てるのが一番大事。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ロワ14": true},
+ "family": {"リセ6": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やして、夏の実りを守るため。"}, "ヒセ6": {"activity": "畑仕事", "place": "camp", "why": "小さい子もいるので、キャンプで畑の草取りをする。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種をまき、秋から草取りをすれば夏に実る。今の秋は畑がないので、まいた分の草取りが大事だ。", "because": [644167], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。畑をていねいに育てたい。"}
