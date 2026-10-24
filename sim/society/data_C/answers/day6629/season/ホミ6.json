@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋にまいた畑は草取りが足りないと夏に実らない。みんなで毎日少しずつ草を取ろう。おれも畑に出るよ。"}, {"to": "みんな", "text": "新しく来た人も仲間だ。いっしょに畑と木の実を分け合って暮らそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすると夏の実りが増える。採集が得意なので木の実も取りつつ畑を手伝う"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ホミ8": true, "ソナ9": true}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L201", "agree": true, "reason": "草取りが足りないと夏の実りが減るので、みんなで交代で受け持つのがよい"}, {"id": "L203", "agree": true, "reason": "夏に刈り残して種を落とすのはもったいない。みんなで刈ればよい"}],
+ "feeling": "畑の草取りをして、夏にたくさん実ることを楽しみにしている"}

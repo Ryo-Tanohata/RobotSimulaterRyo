@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "秋の畑は草取りが足りないと実りが3割になってしまう。今年は私の家も毎日畑に出るから、手の空いた人は草取りに来てほしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。草取りの手を増やすのが大事だから"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホミ8": true, "ソナ9": true},
+ "family": {
+  "ヒセ3": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、秋は草取りの人手が実りを左右するので一緒に畑に出てほしい"},
+  "ケセ3": {"activity": "畑仕事", "place": "camp", "why": "まだ狩りも採集も慣れていないので、畑の草取りで役に立ってほしい"},
+  "ケナ4": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りは手伝える。半分の働きでも畑の助けになる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のうちに畑をまき、草取りの人手を多く出すと、夏の実りが大きくなる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって安心している。畑をていねいに育てて、来年の夏も実らせたい。"}

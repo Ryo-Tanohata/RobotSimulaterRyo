@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑は、草取りをする人が少ないと夏の実りが減ります。今年は私も毎日畑に出ますから、手のあいた人は声をかけ合って来てください。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが足りないと実りが3割まで減る。蓄えは十分あるので、畑を育てる仕事に力を入れる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホミ8": true, "ソナ9": true},
+ "family": {"ホタ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手が要るので、私と一緒に畑で働く"}, "ユエ2": {"activity": "畑仕事", "place": "camp", "why": "小さい子の近くで、キャンプの畑の草取りをする"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが十分あって安心している。畑が来年の夏にしっかり実るよう、毎日草取りをしたい。"}
