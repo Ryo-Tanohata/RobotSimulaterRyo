@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。冬のうちは畑の草取りを欠かさず、土器も少しずつ増やしていこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が増えるほど蓄えの草の種が虫やネズミから守られ、手に慣れた仕事だから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ14": true},
+ "family": {
+  "テナ2": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで夏の実りを減らさないため"},
+  "ラキ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を確保するため"},
+  "テナ8": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をするため"},
+  "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝うため"},
+  "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝うため"},
+  "ヒセ9": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話の人手が要るため"},
+  "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝うため"},
+  "ロワ10": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M350": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬は蓄えが十分にあるので、畑の草取りと土器づくりに力を向けられる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "冬と春の草取りは夏の実りに必要だから"}],
+ "feeling": "蓄えが多くて心強い。静かな冬に土をこねられるのがありがたい。"}

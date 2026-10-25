@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、土器はいくらあっても草の種を守ってくれる。冬のあいだ、私は毎日キャンプで土器を焼くよ。"}, {"to": "セヤ11", "text": "今季は私といっしょに粘土をこねよう。小さな子たちの面倒も交代で見ようね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": ["セヤ11"], "why": "土器づくりが得意で、土器に入れた草の種は虫やネズミに食べられにくいから。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ14": true},
+ "family": {"セヤ11": {"activity": "土器づくり", "place": "camp", "why": "二人で作れば土器が増え、蓄えを守れるし、子のそばにもいられる。"}},
+ "keep": false,
+ "judge": {"M350": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬は木の実が実らないが、蓄えの草の種は十分あるので、冬は土器づくりで蓄えを守れる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。土器づくりに精を出したい。"}

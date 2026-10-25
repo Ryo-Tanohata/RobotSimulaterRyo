@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、畑の草取りは私が毎日やるよ。夏の実りが減らないように、手の空いた人は一緒にやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "育っている畑が多く、草取りをする人が少ないと夏の実りが減るから"},
+ "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0, "accept": {"タユ14": true}, "keep": false,
+ "judge": {"M350": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬は畑の草取りを毎日する人がいないと、夏の実りが減る。冬の仕事は畑仕事がよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "冬と春の草取りは夏の実りを守るために大切だから"}],
+ "feeling": "蓄えは十分にあって落ち着いている。畑をていねいに世話したい。"}
