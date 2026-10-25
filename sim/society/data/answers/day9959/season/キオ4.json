@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切って、土器に入れよう。ヤギも多すぎるから、少しずつ肉にして干そう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ムイ9": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "キオ10": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "シエ10": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ソワ10": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ムイ11": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "タユ12": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ホミ12": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "ヌオ13": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 100},
+  "秋": {"job": {"activity": "採集", "place": "南川12", "with": [], "why": "冬の前に食べ物を集める。得意な採集で蓄えを助ける"}, "family": {"ムイ9": {"activity": "狩り", "place": "東川28", "why": "狩りが得意だから"}, "キオ10": {"activity": "採集", "place": "南川12", "why": "採集が得意だから"}, "シエ10": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "ソワ10": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "ムイ11": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "タユ12": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "ホミ12": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}, "ヌオ13": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして夏の実りを守る"}, "family": {"ムイ9": {"activity": "狩り", "place": "北川12", "why": "冬も魚やけものはいるから"}, "キオ10": {"activity": "採集", "place": "南川12", "why": "川で魚や芋を探す"}, "シエ10": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ソワ10": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ムイ11": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "タユ12": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため草取りを続ける"}, "family": {"ムイ9": {"activity": "狩り", "place": "北川12", "why": "魚やけものを取る"}, "キオ10": {"activity": "採集", "place": "南川12", "why": "食べ物を探す"}, "シエ10": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ソワ10": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ムイ11": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "タユ12": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M371": "ゆるす"}, "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T138": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "畑がよく実っている。落とさず刈り切りたい。"}
