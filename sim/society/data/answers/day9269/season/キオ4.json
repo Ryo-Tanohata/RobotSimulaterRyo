@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "ヤギが草で養える数より多すぎるよ。今季は家ごとに少しずつつぶして干し肉にしよう。わたしも畑に種をまいて、冬と春の草取りに備えるね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "冬は木の実が実らないので、秋のうちに食べ物を集めて蓄えを守る。採集は得意だから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ムイ9": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚やけものをとって家の食べ物にする"},
+  "キオ10": {"activity": "採集", "place": "南川12", "why": "近い川なら安全に木の実や魚を集められる"},
+  "シエ10": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多くいなくなるので、キャンプで世話をして守る"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T124": false, "T125": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える数の約140頭より多く、209頭いる。つぶして干し肉にしないとやせていなくなる", "because": [681529], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので、蓄えと畑のことが気になるけれど、体は元気で張り切っている"}
