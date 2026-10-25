@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の種まきは一人 1000 つかみずつにしよう。冬と春の草取りを分けてやれば、夏にたっぷり刈れるよ。ヤギも草に合わせて少し減らそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の実りは草取りの時間で増えるので、季節の終わりまで草取りに力を入れる"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"トナ14": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど夏の実りが増えるので、一緒に畑を手伝う"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にみんなでまいて草取りを分ければ、夏の実りが増える"}, {"id": "L191", "agree": true, "reason": "草で養えない分のヤギは肉にして蓄えに入れるほうがよい"}],
+ "feeling": "蓄えは多いけれど、畑とヤギの草が心配だ。みんなで手を合わせてやっていきたい。"}

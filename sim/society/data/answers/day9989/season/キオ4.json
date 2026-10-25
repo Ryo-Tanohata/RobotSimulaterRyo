@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬の前にそばの木の実もたくさん集めよう。わたしは林で採集してくるよ。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["キオ10", "ムイ9"], "why": "冬は木の実が実らないので、秋のうちに食べ物を多く集めて蓄えたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ムイ9": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので魚やけものを取って冬に備える"},
+  "キオ10": {"activity": "採集", "place": "東林12", "why": "採集が得意なので一緒に林で木の実を集める"},
+  "シエ10": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで夏の実りを増やす"},
+  "ソワ10": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をする"},
+  "ムイ11": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "タユ12": {"activity": "採集", "place": "南川12", "why": "近い川で魚と芋を探す"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多いけれど、冬に向けて体を動かして働くのが気持ちいい。"}

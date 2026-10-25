@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに草の種を畑にまいて、冬と春の草取りもみんなで交代しようね。ヤギは草が足りないから、わたしの家ではつぶさずに世話の順番を守るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草の種をまいた畑は草取りで実りが増えるので、秋から続けて世話をしたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に畑へ草の種をまくと、夏のはじめに実る。草取りをする人が少ないと実りが減る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L250", "against": "", "agree": true, "reason": "ヤギが草で養える数より多いと、やせていなくなってしまうから"}],
+ "feeling": "蓄えがたっぷりあって安心。子のキサ17と冬を迎える前に、畑をしっかり育てたい。"}

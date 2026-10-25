@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種をまいて、冬と春は交代で草取りをしよう。ヤギも減らして草に合わせたいね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、この季節から畑の面倒を見る"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"キサ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて進めるため"}, "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて進めるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまくことで次の夏に畑が実るから"}],
+ "feeling": "蓄えは多いが、ヤギが草に合わず気がかり。畑をしっかり育てたい。"}
