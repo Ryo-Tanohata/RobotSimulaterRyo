@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種は十分あるから、秋のはじめにみんなで1000つかみずつ畑にまこう。冬と春の草取りも順番に頑張ろうね。"}, {"to": "キサ9", "text": "うちの家も畑に出て、一緒に草取りをしよう。小さい子たちのことは交代で見ようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キサ9", "ホタ9"], "why": "秋にまいた畑は冬と春の草取りで実りが増えるから、家族みんなで畑を見守る"}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 5, "family": {"キサ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"}, "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"}, "ラキ14": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑仕事を覚えるため"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T141": "村"}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに1000つかみずつ草の種をまき、秋から春まで草取りをして、夏にみんなで刈ると蓄えが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで、子どもたちも元気。落ち着いた気持ちで秋の畑仕事に向かえる。"}
