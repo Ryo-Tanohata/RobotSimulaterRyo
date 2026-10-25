@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだから、蓄えの草の種を畑にまいておこう。冬と春の草取りは、わたしも毎日行くよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるから、夏の実りを守るために続ける"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"キサ9": {"activity": "畑仕事", "place": "camp", "why": "草取りは人手が多いほど実りが守れるので、わたしと一緒に畑を見る"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T104": false, "T105": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに大人がみな草の種を1000つかみずつまき、冬と春に草取りを続けると、夏に畑が実る", "because": [611509], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば夏に実るので、守りたい"}],
+ "feeling": "疲れは少しあるけれど、畑と木の実で冬をのりきれそうで落ち着いている"}

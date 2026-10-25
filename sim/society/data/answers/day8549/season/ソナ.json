@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えは土器にたっぷりある。今年も草の種を一人1000つかみずつ畑にまいて、冬と春の草取りを忘れずにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをするほど夏の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るから"},
+  "ラキ6": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るから"},
+  "テナ8": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝ってほしいから"},
+  "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "キャンプのそばで無理なくできる仕事だから"},
+  "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "キャンプのそばで草取りを覚えてほしいから"},
+  "ヒセ9": {"activity": "畑仕事", "place": "camp", "why": "草取りを皆で分けると早く終わるから"},
+  "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも草取りの助けになるから"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T104": "村", "T105": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに一人1000つかみずつ種をまき、秋と冬と春に草取りをすれば、夏の実りが増える。蓄えは土器にたっぷりある。", "because": [611483], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも木の実の木も豊かで、落ち着いた気持ちで秋を迎えている。"}

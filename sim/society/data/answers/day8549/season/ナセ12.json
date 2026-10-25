@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるけれど、冬は木の実が実らないから、畑は今のうちにちゃんとまいて、草取りも順番にやろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["シエ12"], "why": "秋にまいた畑は草取りをしないと実りが3割になるので、冬と春のあいだ続けて世話をしたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"シエ12": {"activity": "畑仕事", "place": "camp", "why": "子どもたちのそばで、キャンプの畑の草取りを一緒にしてほしいから"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T104": false, "T105": false}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春の草取りをしないと実りが減る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして蓄えるのは良いと思う"}, {"id": "L196", "against": "", "agree": false, "reason": "蓄えは十分あり、半分を手元に持つのは混乱のもとになる"}, {"id": "L197", "against": "", "agree": true, "reason": "取った食べ物を分けるのは助け合いになる"}],
+ "feeling": "蓄えは安心だけれど、小さな子たちのために冬の畑仕事をしっかりやりたい"}

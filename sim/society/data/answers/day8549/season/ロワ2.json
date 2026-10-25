@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに一人ずつ草の種を1000つかみずつ畑にまこう。冬と春の草取りを皆で分ければ、夏にまた山ほど実るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["セオ2", "ロワ3"], "why": "秋にまいた畑は草取りをするほど夏の実りが増える。蓄えを守るために畑を育てる"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"セオ2": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手がいるので一緒に働く"}, "ロワ3": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなで分けて進める"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T104": false, "T105": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を一人1000つかみ畑にまき、冬と春に草取りをすると、夏の実りが増える", "because": [611486], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心だ。畑を育てて、みんなで冬を越したい。"}

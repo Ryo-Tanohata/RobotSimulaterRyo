@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに種を1000つかみずつまいたら、冬と春は畑の草取りを手分けしよう。わたしの家はまず草取りに回るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすると夏の実りが増える。蓄えはたっぷりあるので、来年の実りを確かにしたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守る"}, "アコ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守る"}, "オネ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守る"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T104": false, "T105": false}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめ、蓄えの草の種は1270750つかみあり、畑はまだない。種を1000つかみずつまき、秋冬春に草取りをすると次の夏に実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて草取りをするのは、夏の実りを増やすよい決まりだから"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りないので、ヤギをこれ以上増やさない方がよいから"}],
+ "feeling": "蓄えは満ちていて落ち着いている。今年も畑をていねいに世話したい。"}
