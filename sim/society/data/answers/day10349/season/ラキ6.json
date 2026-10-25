@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "秋のうちに種をまいておかないと夏に刈れない。わたしは畑の草取りを引き受ける。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えは十分あるので、まいた畑の実りを増やすため冬と春の草取りを受け持つ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ8": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "草取りは力がなくてもできるため"},
+  "ヒセ9": {"activity": "採集", "place": "camp", "why": "採集が得意で、木の実を集められるため"},
+  "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "採集や狩りは苦手なので畑を手伝う"},
+  "ロワ10": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分担するため"},
+  "トナ11": {"activity": "狩り", "place": "北川12", "why": "狩りが得意で、魚や肉を持ち帰れるため"},
+  "ロワ12": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分担するため"},
+  "オセ13": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分担するため"},
+  "アコ14": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝えるため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T151": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "満腹で体も軽い。畑に種をまいて、静かに働きたい。"}

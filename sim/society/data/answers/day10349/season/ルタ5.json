@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、秋のはじめに一人1000つかみずつ種をまいて、冬と春の草取りをみんなで分けよう。わたしは畑仕事をするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、畑の世話を続けたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キサ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて、実りを減らさないため"}, "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて、実りを減らさないため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T151": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば夏に実るから"}],
+ "feeling": "蓄えは多く、落ち着いている。畑と木の実を大事にして冬を迎えたい。"}

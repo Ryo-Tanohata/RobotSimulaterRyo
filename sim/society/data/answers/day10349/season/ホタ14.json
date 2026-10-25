@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の種まきをして、冬と春は交代で草取りをしよう。畑がないと来年の夏が心細いからね。"}, {"to": "ムイ14", "text": "今季は私と一緒に畑仕事をしよう。キオ15とケセ16のことも見ておいてね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ムイ14"], "why": "今は畑がないので、まいた種を育てる草取りで来年の夏の実りを守りたい"}, "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ムイ14": {"activity": "畑仕事", "place": "camp", "why": "畑は人手が多いほど実りが増えるので、一緒に草取りをする"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T151": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "畑がない年は、秋のはじめに蓄えの草の種をまかないと夏の実りがない。", "because": [794381], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑を育てるのは楽しみだ。みんなと話しながら冬を迎えたい。"}

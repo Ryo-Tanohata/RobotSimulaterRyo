@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えの種はまだたっぷりある。土器に入れて虫から守りながら、今年の畑にもしっかり種をまこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ9": {"activity": "畑仕事", "place": "camp", "why": "秋から冬の草取りで夏の実りを増やすため"},
+  "ホタ10": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを減らさないため"},
+  "ラキ11": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やすため"},
+  "ヌオ11": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話が足りずいなくなるのを防ぐため"},
+  "シエ11": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をして減るのを防ぐため"},
+  "ケセ14": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false, "feast": false, "leader": null, "trade": {"T151": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで、落ち着いて土器を作れそうだ。"}
