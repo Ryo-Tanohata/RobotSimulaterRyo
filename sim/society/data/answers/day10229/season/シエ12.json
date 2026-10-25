@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりあるけれど、ヤギが多すぎるね。今日から少しずつつぶして干し肉にしよう。わたしは土器を焼いて、種を守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守りたいから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"タユ18": true},
+ "family": {"ホタ12": {"activity": "採集", "place": "camp", "why": "採集が得意だから、冬に備えて木の実を集めてもらう"}, "ラキ13": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話が足りないといなくなるので手伝ってもらう"}},
+ "keep": false, "feast": false, "leader": null, "trade": {"T144": false, "T145": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だけれど、ヤギが減っていくのが気がかり。"}

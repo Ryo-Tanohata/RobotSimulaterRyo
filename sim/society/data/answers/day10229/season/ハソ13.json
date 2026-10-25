@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬と春は草取りを欠かさないようにしたいな。わたしは畑で働くよ。"}, {"to": "ラニ13", "text": "ラニ、あなたも畑の草取りを手伝ってくれる？いっしょにやれば早く終わるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬と春の草取りで夏の実りが増えるので、畑を育てたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"タユ18": true}, "keep": false,
+ "family": {"ラニ13": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝ってもらう"}},
+ "feast": false, "leader": null, "trade": {"T144": "村", "T145": "村"}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、冬と春の草取りで夏の実りが増える", "because": [781872], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして蓄えに入れるのはよいと思う"}, {"id": "L196", "against": "", "agree": false, "reason": "蓄えは十分あるので、今は決まりを増やさなくてよい"}, {"id": "L201", "against": "", "agree": false, "reason": "夏の決まりで、今は秋なので要らない"}],
+ "feeling": "蓄えもたっぷりあって安心。みんなと畑仕事をがんばりたい。"}

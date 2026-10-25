@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋の畑にまく種は、わたしも1000つかみまくよ。冬と春の草取りは、みんなで順に分けて続けよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをするほど夏の実りが増える。蓄えは十分あるので、畑を育てて来年に備える"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ18": true},
+ "family": {"ハソ11": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをすれば畑の実りが増えるから"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T144": false, "T145": "村"},
+ "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りをする人が多いほど夏の実りが増える", "because": [781830], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋に種をまいて草取りを続けることが、夏の実りと来年の蓄えを守るから"}],
+ "feeling": "蓄えは多く、落ち着いている。畑をていねいに育てたい。"}

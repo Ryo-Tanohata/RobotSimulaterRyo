@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種をまいて、冬のあいだは交代で草取りをしよう。わたしも畑を見るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、キャンプで畑を見る。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"タユ18": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T144": false, "T145": {"side": "村", "利子": 0.1}}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、冬と春の草取りで夏の実りが増える。", "because": [781900], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるので落ち着いている。畑がちゃんと実るよう、冬も草取りをがんばりたい。"}

@@ -27,7 +27,7 @@
 {"id":"H26","name":"ロワの家","origin":"よそから来た群れ","founder_ids":["P089"],"first_day":3689,"adults_last_day":null,"last_day":7439,"left_village_day":null,"fission":null,"home_built_day":5076,"home_start_day":4770},
 {"id":"H27","name":"ヌオの家","origin":"よそから来た群れ","founder_ids":["P090"],"first_day":3749,"adults_last_day":null,"last_day":7553,"left_village_day":null,"fission":null,"home_built_day":4056,"home_start_day":3930},
 {"id":"H28","name":"セオの家","origin":"よそから来た群れ","founder_ids":["P099","P100","P101"],"first_day":3929,"adults_last_day":null,"last_day":8279,"left_village_day":8279,"fission":{"day":8279,"people":["P127","P191","P303","P312"],"goats":0,"store_kcal":0,"fields":2,"dispute":"M342"},"home_built_day":4009,"home_start_day":3990},
-{"id":"H29","name":"ユエの家","origin":"よそから来た群れ","founder_ids":["P106","P107"],"first_day":3989,"adults_last_day":null,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":4068,"home_start_day":4050},
+{"id":"H29","name":"ユエの家","origin":"よそから来た群れ","founder_ids":["P106","P107"],"first_day":3989,"adults_last_day":10259,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":4068,"home_start_day":4050},
 {"id":"H30","name":"オセ2の家","origin":"よそから来た群れ","founder_ids":["P113","P114","P115"],"first_day":4139,"adults_last_day":null,"last_day":7979,"left_village_day":null,"fission":null,"home_built_day":4219,"home_start_day":4200},
 {"id":"H31","name":"キオ2の家","origin":"よそから来た群れ","founder_ids":["P121"],"first_day":4229,"adults_last_day":null,"last_day":5699,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":null},
 {"id":"H32","name":"シエ2の家","origin":"よそから来た群れ","founder_ids":["P125"],"first_day":4319,"adults_last_day":null,"last_day":4439,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":null},
@@ -70,9 +70,10 @@
 {"id":"H69","name":"ソナ14の家","origin":"よそから来た群れ","founder_ids":["P445","P446","P447"],"first_day":8669,"adults_last_day":null,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":8817,"home_start_day":8790},
 {"id":"H70","name":"タユ14の家","origin":"よそから来た群れ","founder_ids":["P453","P454"],"first_day":8699,"adults_last_day":null,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":8960,"home_start_day":8940},
 {"id":"H71","name":"ナセ14の家","origin":"よそから来た群れ","founder_ids":["P462","P463","P464"],"first_day":8759,"adults_last_day":null,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":9090},
-{"id":"H72","name":"セヤ16の家","origin":"よそから来た群れ","founder_ids":["P501","P502"],"first_day":9359,"adults_last_day":null,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":null},
+{"id":"H72","name":"セヤ16の家","origin":"よそから来た群れ","founder_ids":["P501","P502"],"first_day":9359,"adults_last_day":null,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":10230},
 {"id":"H73","name":"ヒセ16の家","origin":"よそから来た群れ","founder_ids":["P504"],"first_day":9389,"adults_last_day":null,"last_day":9599,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":null},
 {"id":"H74","name":"シエ16の家","origin":"よそから来た群れ","founder_ids":["P509"],"first_day":9479,"adults_last_day":null,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":null},
 {"id":"H75","name":"ホタ16の家","origin":"よそから来た群れ","founder_ids":["P511","P512"],"first_day":9509,"adults_last_day":null,"last_day":9759,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":null},
-{"id":"H76","name":"ハソ17の家","origin":"よそから来た群れ","founder_ids":["P526","P527","P528"],"first_day":9719,"adults_last_day":10049,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":null}
+{"id":"H76","name":"ハソ17の家","origin":"よそから来た群れ","founder_ids":["P526","P527","P528"],"first_day":9719,"adults_last_day":10049,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":null},
+{"id":"H77","name":"タユ18の家","origin":"よそから来た群れ","founder_ids":["P557","P558"],"first_day":10229,"adults_last_day":null,"last_day":null,"left_village_day":null,"fission":null,"home_built_day":null,"home_start_day":null}
 ]
