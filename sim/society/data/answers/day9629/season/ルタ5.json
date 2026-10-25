@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけど、秋のうちに草の種を畑にまいて、冬の草取りに備えよう。わたしは近くで木の実と草の実を集めるよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["キサ9", "ホタ9"], "why": "蓄えは十分だが、家族の食べ物を手元に確保し、冬に備えて余りを蓄えに入れるため"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キサ9": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、わたしと一緒に近くの草原で食べ物を集める"}, "ホタ9": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、子たちの食べ物を増やせるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T131": false, "T132": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに大人が1000つかみずつ草の種をまくと、冬と春の草取りを経て次の夏に実る。", "because": [718857], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば夏に実るから"}],
+ "feeling": "蓄えが多くて安心している。冬に向けて畑と家族の食べ物をしっかり整えたい。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の畑にまく種は、ひとり1000つかみずつにしよう。冬と春の草取りも、順番にやっていこうよ。"}, {"to": "セヤ16", "text": "ルタ16のそばにいてあげて。わたしは畑の草取りに回るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["セヤ16"], "why": "まいた畑は草取りで実りが増える。冬と春に蓄えをもたせたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "family": {"セヤ16": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして、実りを減らさないため"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T131": false, "T132": {"side": "村", "利子": 0.1}}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまいた畑は、冬と春に草取りをすると夏の実りが増える", "because": [718857], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多いけれど、ヤギが多すぎるのが気がかり。畑の世話をがんばろう。"}

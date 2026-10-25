@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに種をまくよ。冬と春は草取りを忘れずにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、冬にかけて世話をしたい"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "オセ11": {"activity": "採集", "place": "南川12", "why": "採集が得意なので、近い南の川で食べ物を探してもらう"},
+  "ナセ11": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして実りを増やすため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T131": false, "T132": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春の草取りで実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "畑の草取りは夏の実りのために大事だから"}],
+ "feeling": "満腹で体は元気。畑の世話をしながら、冬のうちに知らない場所も見てみたい。"}

@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "秋の種まきをして、冬と春の草取りをみんなで分けよう。わたしは畑の世話をするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすると実りが増えるので、夏の蓄えのために畑を守る"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ラキ6": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎるので、世話をして減らないようにする"},
+  "テナ8": {"activity": "畑仕事", "place": "camp", "why": "採集が得意なので、畑の草取りを手伝う"},
+  "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けて進める"},
+  "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けて進める"},
+  "ヒセ9": {"activity": "ヤギの世話", "place": "camp", "why": "小さい子もいるのでキャンプで世話をする"},
+  "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けて進める"},
+  "ロワ10": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けて進める"},
+  "オネ10": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの数を守るため"},
+  "トナ11": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けて進める"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T131": false, "T132": "村"}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に草の種をまいて、冬と春に草取りをすると、夏の実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑も木も育つのが楽しみだ。家の子たちと冬を越したい。"}

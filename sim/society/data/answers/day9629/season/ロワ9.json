@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋の畑にみんなで草の種をまこう。わたしは草取りに出るから、声をかけて。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすると、夏の実りが増えるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "feast": false, "leader": null, "trade": {"T131": false, "T132": {"side": "村", "利子": 0.2}}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に草の種をまいた畑は、草取りをすると夏の実りが増える", "because": [718857], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L249", "agree": true, "reason": "ヤギが多すぎて草が足りないので、つぶして干し肉にするのがよい"},
+           {"id": "L190", "agree": true, "reason": "草で養えない分のヤギを食べ物にするのは筋が通っている"}],
+ "feeling": "蓄えは十分あるので落ち着いている。体を動かして畑を育てたい"}
