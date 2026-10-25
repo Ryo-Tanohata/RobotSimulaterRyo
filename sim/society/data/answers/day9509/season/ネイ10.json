@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "まだ行ったことのない東の林の奥を見てくる。何があったか、帰ったら話すよ。"}],
+ "job": {"activity": "探索", "place": "東林45", "with": [], "why": "冬の前に、新しい木の実や魚の場所を見つけたいから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホタ16": true},
+ "family": {"オセ11": {"activity": "採集", "place": "東林12", "why": "近くの林で木の実を集めて、冬に備えるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "遠くの林が楽しみで、胸がわくわくしている"}
