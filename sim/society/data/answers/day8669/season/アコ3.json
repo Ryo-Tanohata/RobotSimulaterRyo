@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに草の種をまいておけば、冬と春の草取りで夏の実りが増えるよ。わたしは土器をつくって蓄えを守るね。"}, {"to": "ソナ", "text": "冬の前に、いっしょに木の実を分けながら体を休めようね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が多いほど蓄えの草の種を虫やネズミから守れるし、土器づくりは得意だから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソナ14": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T108": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を1000つかみまき、冬と春に草取りをすると、夏の実りが増える。ヤギは草が足りないので受けとらない。", "because": [622913, 622914], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあって安心している。冬の前に畑の準備をして、土器づくりに打ちこみたい。"}

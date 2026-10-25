@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。秋のうちに1000つかみずつまいて、冬と春は交代で草取りをしよう。おれは畑に付く。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで夏の実りが増えるので、毎日camp で草取りをする"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 5,
+ "accept": {"ソナ14": true},
+ "family": {"ナセ3": {"activity": "土器づくり", "place": "camp", "why": "草の種を土器で虫やネズミから守るため。土器の腕が確かだから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T108": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は500日分以上あり、秋に1000つかみまいても安心。草取りの人が少ないと実りが減る。", "because": [622921], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまいて草取りをすれば夏の実りが増えるから"},
+           {"id": "L191", "agree": true, "reason": "ヤギが草の量をこえているので肉にして蓄えたほうがよい"},
+           {"id": "L167", "agree": true, "reason": "世話が足りないとヤギがいなくなるから"}],
+ "feeling": "蓄えは豊かで落ち着いている。体を動かして畑を育てるのが楽しみだ。"}

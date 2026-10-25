@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだから、蓄えの草の種を畑にまこう。まいておけば、夏にまた刈れるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだないので、秋のうちに草の種をまいて、冬と春は草取りをして夏の実りを守りたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソナ14": true},
+ "family": {"ヒセ13": {"activity": "畑仕事", "place": "camp", "why": "同じ畑で一緒にまいて草取りをすれば、実りが減らない"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T108": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "草の種は秋にまかないと実らない。まいたあとは草取りをする人が要る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて草取りをすれば夏に実るから"}],
+ "feeling": "雨の夜に外で濡れるのはつらいが、畑をまいて蓄えを増やせると思うと落ち着く。"}

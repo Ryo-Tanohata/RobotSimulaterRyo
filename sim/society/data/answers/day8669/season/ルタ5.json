@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに、約束どおり草の種を畑にまくよ。冬と春は交代で草取りをしよう。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "冬の前に木の実や魚を集めて、蓄えの草の種を減らさないようにするため"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソナ14": true},
+ "family": {"キサ9": {"activity": "採集", "place": "南川12", "why": "ルタ5と一緒に川で食べ物を集めるため"}, "ホタ9": {"activity": "採集", "place": "南川12", "why": "子を連れてキャンプに近い川で無理なく集めるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T108": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が来る前に、畑をまけてほっとしている。"}

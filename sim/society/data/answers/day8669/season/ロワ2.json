@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。蓄えの草の種を一人1000つかみ、畑にまこう。冬と春の草取りも忘れずにやろう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れた草の種は虫に食べられにくい。冬の前に土器を増やして蓄えを守りたい。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"ソナ14": true},
+ "family": {
+  "セオ2": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが世話不足でいなくなるのを防ぐため。"},
+  "ロワ3": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多いので、二人で世話をして減らさないため。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T108": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば夏の実りが増えるから。"}],
+ "feeling": "蓄えは多く、落ち着いている。冬に向けて土器を焼き、畑を育てよう。"}
