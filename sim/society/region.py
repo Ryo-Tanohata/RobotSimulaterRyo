@@ -41,6 +41,7 @@ DIRS8 = {"北": ("川にそって北へ", (49, 0)), "北東": ("北東へ", (79,
 UNIT8 = {"北": (0, -1), "北東": (1, -1), "東": (1, 0), "南東": (1, 1), "南": (0, 1), "南西": (-1, 1), "西": (-1, 0), "北西": (-1, -1)}
 # 地域の天気 (4.B.3 の 1。直し 8): 地域が悪い年になる見込みと、そのときに集落も悪い年になる見込み (土地ごと)。よい年は 0.05
 WEATHER_BAD = 0.2
+WEATHER_BAD0 = WEATHER_BAD  # もとの値 (g7.sync_world が、世界の選び "bad" のない state で戻す。G8 は 0.35)
 BAD_IN_BAD = {"r": 0.5, "a": 0.9, "w": 0.9, "h": 1.0, "s": 1.0}
 BAD_IN_GOOD = 0.05
 # はじめの集落 (4.B.1): 1 つの集落の人数は、そのますの K の 3〜6 割 (等しく引く)。村から 1 ます以内には置かない。2 ます以内なら村が知っている
@@ -111,7 +112,7 @@ def place_known(d, n_days, used):
     ux, uy = UNIT8.get(d, (0, 0))
     want = (_clamp(VILLAGE[0] + ux * 2 * n_days), _clamp(VILLAGE[1] + uy * 2 * n_days))
     free = [c for c in cells() if c != VILLAGE and c not in used]
-    return min(free, key=lambda c: (dist(c, want), c[1], c[0])) if want in used or want == VILLAGE else want
+    return min(free, key=lambda c: (dist(c, want), c[1], c[0])) if want in used or want == VILLAGE or cap(want) == 0 else want  # cap 0: 砂地の世界だけ
 
 
 def fill_cells(used, people_now, share, rng, target=None):
@@ -363,7 +364,7 @@ def year_end(R, setts, rng, year, day, grow_village=False, village_demand=None, 
             continue
         n, k, bad = s["people"], kcap(s), s.get("bad") is not None
         b = BIRTH * (0.5 if bad else 1.0)
-        d = DEATH + (OVER_K_DEATH * (n / k - 1) if n > k else 0.0) + (HUNGRY_DEATH if bad and s.get("grain", 0) < HUNGRY_PP * n else 0.0)
+        d = DEATH + (OVER_K_DEATH * (n / max(1, k) - 1) if n > k else 0.0)  # max: 砂地 (K = 0) の世界の守り (K はふだん 20 以上なので同じ) + (HUNGRY_DEATH if bad and s.get("grain", 0) < HUNGRY_PP * n else 0.0)
         born = sum(1 for _ in range(n) if rng.random() < b)
         died = sum(1 for _ in range(n) if rng.random() < d)
         s["people"] = max(0, n + born - died)
@@ -399,11 +400,11 @@ def year_end(R, setts, rng, year, day, grow_village=False, village_demand=None, 
                 org -= 1
         else:
             s["head_age"] = s.get("head_age", 0) + 1
-        s["org"] = org
+        s["org"] = 2 if s.get("strong") else org  # G8 の強い集落は、いつも段 2 (長と集める役。乱数は同じに引く)
     # 5・5b. 分かれる・出ていく (乱数は今引いて待ちにする)
     pend = []
     for s in live:
-        if s.get("village"):  # 川辺の村は決まりで分かれない (家ごとに出ていくのは、村の人の答え。掃き出しでは村の動き方)
+        if s.get("village") or s.get("strong"):  # 川辺の村は決まりで分かれない (家ごとに出ていくのは、村の人の答え。掃き出しでは村の動き方)。G8 の強い集落も
             continue
         if s["people"] > SPLIT_AT * (1 + s.get("org", 0)):
             pend.append({"kind": "分かれる", "who": s["id"], "u": round(rng.random(), 6), "share": round(rng.uniform(*SPLIT_SHARE), 6)})
@@ -431,6 +432,7 @@ def year_end(R, setts, rng, year, day, grow_village=False, village_demand=None, 
     actors = actors[:round(ACT_SHARE * len(actors))]
     if village_demand == "いつも" and "V0" in by and not by["V0"].get("gone"):
         actors.append(by["V0"])
+    actors += [s for s in live if s.get("strong") and s not in actors]  # G8 の強い集落は毎年動く (2026-10-25。外からの押し)
     new = []
     for a in actors:
         q = _demand_target(R, setts, a, "求める" if a.get("village") else a.get("stance", "ふつう"), skip={x["to"] for x in new})
@@ -490,6 +492,13 @@ def _demand_target(R, setts, a, stance, skip=()):
              and (not a.get("village") or t.get("known") is not None)]
     if not cands:
         return None
+    if a.get("strong"):  # G8 の強い集落 (2026-10-25): 自分が 1.5 倍以上強い相手のうち、払える余り (求める量) がいちばん多い相手
+        Sa, k = strength(R, by, a), DEMAND_RATIO.get(stance, DEMAND_RATIO["ふつう"])
+        ok = [t for t in cands if Sa >= k * strength(R, by, t, defend=True)]
+        if not ok:
+            return None
+        t = max(ok, key=lambda t: (amount_of(t), -num(t["id"])))
+        return {"from": a["id"], "to": t["id"], "amount": amount_of(t)}
     t = min(cands, key=lambda t: (strength(R, by, t, defend=True), num(t["id"])))
     if strength(R, by, a) < DEMAND_RATIO.get(stance, DEMAND_RATIO["ふつう"]) * strength(R, by, t, defend=True):
         return None

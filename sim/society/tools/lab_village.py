@@ -45,6 +45,8 @@ WORLDS = {
     # 実験 C の世界 (2026-10-24): 本物の道の選び (g7.world = 砂地・逃げ場なし) と段の数え方 v2 を g7.enter に渡す (region の差しかえはしない)
     "WC": {"name": "C の世界 (G7 のまま + 草原を砂地 + 逃げ場なし。段は v2)", "fill": 0.1, "str": "base", "circ": "open", "dr": 0.2,
            "real": {"desert": True, "no_flee": True}, "count": "v2"},
+    # G8 の世界 (2026-10-25): 本物の村の 8519 日目 (G7 を閉じたところ) から、step.py next_part --closed-by-decision と同じ道で G8 に入る
+    "W8": {"name": "G8 (外からの押し: 強い集落・悪い年 0.35・砂地・逃げ場なし・段 v2)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g8": True},
 }
 ORIG = {"K": dict(region.K), "WEATHER_BAD": region.WEATHER_BAD, "cells": region.cells, "refuge": region.refuge, "k_total": region.k_total}
 
@@ -74,6 +76,11 @@ def apply_world(w):
 def enter_g7(state, w):
     """G6 を閉じて G7 に入る (step.py next_part --closed-by-decision … --fill と同じ道)。まわり 2 倍は入ったあとに人と物を 2 倍"""
     k0 = ORIG["k_total"]()
+    if w.get("g8"):
+        g7.close_g7(state, "G7 を閉じる (試し)")
+        g7.enter_next(state)
+        state["era_log"][-1]["g7_closed"] = state["day"]
+        return
     g7.close_g6(state, "町は生まれなかったとして G6 を閉じる")
     if w.get("real") or w.get("count"):  # 本物の道 (step.py next_part --world … --count v2 と同じ)
         g7.enter(state, w["fill"], w.get("real"), w.get("count"))
@@ -400,7 +407,20 @@ def _year_row(state, y0, acc):
             "f6_run": g.get("f6_run", 0), "laws": {k: {"status": l["status"], "written": bool(l.get("written"))} for k, l in laws.items()},
             "leader": (e2.get("g5") or {}).get("leader"), "ties_in": sum(1 for t in reg.get("ties", []) if t["payee"] == "V0" and t["status"] == "続く"),
             "ties_out": sum(1 for t in reg.get("ties", []) if t["payer"] == "V0" and t["status"] == "続く"),
-            "region3": (g.get("level_seen") or {}).get("region3"), **{k: acc[k] for k in sorted(acc)}}
+            "region3": (g.get("level_seen") or {}).get("region3"),
+            # 村に来た求めの答え (払う・戦う・助けを頼む・まだ) と、村がかかわった戦 (G8 の確かめ)
+            "dem_in_ans": _count(str(d.get("answer") or "まだ") + ("" if d.get("from") != g.get("strong") else "@強") for d in reg.get("demands", []) if d.get("to") == "V0"),
+            "dem_in_strong": sum(1 for d in reg.get("demands", []) if d.get("to") == "V0" and d.get("from") == g.get("strong")),
+            "wars_v0": sum(1 for x in reg.get("wars", []) if "V0" in (x.get("att"), x.get("def")) and x.get("done") is not None and not x.get("called_off")),
+            "strong_people": next((o["people"] for o in g7._others(state) if o["id"] == g.get("strong")), None),
+            **{k: acc[k] for k in sorted(acc)}}
+
+
+def _count(xs):
+    out = {}
+    for x in xs:
+        out[x] = out.get(x, 0) + 1
+    return out
 
 
 def _boot():

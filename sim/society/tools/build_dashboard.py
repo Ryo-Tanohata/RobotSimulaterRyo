@@ -269,7 +269,7 @@ def load(data_dir, tries=3, wait=2.0):
                         rec["ledger_goats"].append(json.loads(l))
             sp = os.path.join(R, "season_person.jsonl")
             rec["work_days"] = {}
-            if any(r.get("era") in ("G6", "G7") for r in rec["season_village"]):  # G6 以上 (G7 からも村の記録は続く)
+            if any(r.get("era") in ("G6", "G7", "G8") for r in rec["season_village"]):  # G6 以上 (G7 からも村の記録は続く)
                 for r in _read_jsonl(sp):
                     dba = r.get("days_by_activity") or {}
                     n = sum(v for k, v in dba.items() if k in G6_WORK)

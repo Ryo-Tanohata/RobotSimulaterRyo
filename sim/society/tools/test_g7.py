@@ -102,13 +102,15 @@ class A_Gate(unittest.TestCase):
         self.assertFalse(used & NEW_SALTS, "新しい塩は名前 (HINT_SALT など) で使う")
 
     def test_order(self):
-        self.assertEqual(era2.ORDER2[-1], "G7")
+        self.assertEqual(era2.ORDER2[-2:], ["G7", "G8"])  # 2026-10-25: G8 (外からの押し) を足した
         self.assertEqual(era2.NAMES2["G7"], "王と役所")
+        self.assertEqual(era2.NAMES2["G8"], "外からの押し")
         self.assertLessEqual(set(era2.CRITERIA), set(era2.ORDER2))
         self.assertTrue(era2.era_at_least({"era": "G7"}, "G6") and era2.era_at_least({"era": "G7"}, "G3"))
         self.assertFalse(era2.era_at_least({"era": "G6"}, "G7"))
         self.assertEqual(era2.PART_END["G6"], 4)
         self.assertNotIn("G7", era2.PART_END)
+        self.assertNotIn("G8", era2.PART_END)
         self.assertEqual([x[0] for x in era2.SUBSTEPS["G7"]], ["F1", "F2", "F3", "F4", "F5", "F6"])
 
     def test_world_g_at_least(self):
@@ -652,45 +654,30 @@ class E_Hold(unittest.TestCase):
         self.assertFalse(era2.check(st), "G6 の終わりは一度だけ")
 
     def test_wait_and_phase(self):
+        """2026-10-25: G8 (外からの押し) を足したので、G7 の条件がそろうと G8 に進む (G8 の世界になる)。G8 の条件がそろうと次の G (G9) を待つ"""
         import g7
         st = g7_state()
         g = st["era2"]["g7"]
         st["era2"].setdefault("substeps", []).extend({"g": "G7", "f": f, "name": f, "day": st["day"]} for f in ("F3", "F4"))
         g["tribute2_day"] = st["day"]
         g["reached"] = {"F3": st["day"], "F4": st["day"]}
-        self.assertEqual(era2.check(st), "wait")
+        self.assertIs(era2.check(st), True)
+        self.assertEqual(st["era"], "G8")
+        st["hold"] = True
+        self.assertEqual(era2.hold_why(st)[0], "phase")
+        self.assertEqual((g["world"], g["count"]), (g7.G8_WORLD, "v2"))
+        self.assertTrue(g.get("strong"))
+        self.assertEqual(g["before"]["G7"]["tribute2_day"], st["day"], "G7 の物差しの数は g7.before に移す")
+        self.assertNotIn("tribute2_day", g)
+        st["hold"] = False
+        self.assertFalse(era2.check(st), "G8 に入った日には、まだ届いていない (G8 の F で数え直す)")
+        st["era2"]["substeps"].extend({"g": "G8", "f": f, "name": f, "day": st["day"]} for f in ("F3", "F4"))
+        g["tribute2_day"] = st["day"]
+        self.assertEqual(era2.check(st), "wait", "G9 のコードがまだない")
         st["hold"] = True
         self.assertEqual(era2.hold_why(st)[0], "wait")
         self.assertFalse(era2.check(st), "待ちは一度だけ")
-        # 台本の G8 (条件だけの G) を足すと、フェーズが進む
-        saved = (list(era2.ORDER2), dict(era2.NAMES2), dict(era2.CRITERIA))
-        try:
-            era2.ORDER2.append("G8")
-            era2.NAMES2["G8"] = "試しの G8"
-            era2.CRITERIA["G8"] = ("試し", lambda i: True)
-            st2 = g7_state()
-            st2["era2"].setdefault("substeps", []).extend({"g": "G7", "f": f, "name": f, "day": st2["day"]} for f in ("F3", "F4"))
-            st2["era2"]["g7"]["tribute2_day"] = st2["day"]
-            st2["era2"]["g7"]["reached"] = {"F3": 1, "F4": 1}
-            self.assertIs(era2.check(st2), True)
-            self.assertEqual(st2["era"], "G8")
-            st2["hold"] = True
-            self.assertEqual(era2.hold_why(st2)[0], "phase")
-            st2["hold"] = False
-            self.assertEqual(era2.check(st2), "end", "G8 は第 5 部の終わり")
-            st2["hold"] = True
-            self.assertEqual(era2.hold_why(st2)[0], "part_end")
-            self.assertFalse(era2.check(st2), "部の終わりは一度だけ")
-            # 待ちから next_part で G8 に入る
-            self.assertEqual(g7.enter_next(st), "G8")
-            self.assertFalse(st["hold"])
-            self.assertEqual(st["events"][-1]["text"], "フェーズ G8 (試しの G8) を始めた")
-        finally:
-            era2.ORDER2[:] = saved[0]
-            era2.NAMES2.clear()
-            era2.NAMES2.update(saved[1])
-            era2.CRITERIA.clear()
-            era2.CRITERIA.update(saved[2])
+        self.assertEqual((era2.PART_END, era2.ENTRANCE), ({"G6": 4, "G9": 5, "G12": 6, "G14": 7, "G15": 8}, "G15"))
 
     def test_consult(self):
         st = g7_state()
@@ -1512,9 +1499,16 @@ class C2_ClosedByDecision(unittest.TestCase):
         e = st["era_log"][-1]
         self.assertEqual((e["era"], e["how"], e["g6_closed"]), ("G7", "next_part", self.D))
         self.assertEqual(st["era2"]["g7"]["region"]["fill"]["share"], 0.1)
+        # 2026-10-25: G7 も本人の決めで閉じて G8 (外からの押し) に入れる。2 回目は断る
         r = self.step("next_part", "--closed-by-decision", "もう一度")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("G7 (王と役所): 3 つの条件はそろわないまま、本人の決めで閉じた", r.stdout)
+        self.assertIn("強い集落", r.stdout)
+        st = json.loads((self.data / "state.json").read_text(encoding="utf-8"))
+        self.assertEqual((st["era"], st["era_log"][-1]["g7_closed"], st["era2"]["g7"]["closed"]["note"]), ("G8", self.D, "もう一度"))
+        r = self.step("next_part", "--closed-by-decision", "さらにもう一度")
         self.assertEqual(r.returncode, 3)
-        self.assertIn("G6 から G7 だけ", r.stdout)
+        self.assertIn("G6 から G7 と、G7 から G8 だけ", r.stdout)
 
 
 # ---------------------------------------------------------------- H
@@ -2770,6 +2764,73 @@ class R_CountV2World(unittest.TestCase):
         self.assertTrue(g7._leave_on(a))
         self.assertIn('"逃げる"', g7._field_rows(a, False, True))
         self.assertNotIn("逃げる道はない", g7.facts(a))
+
+
+class S_G8(unittest.TestCase):
+    """2026-10-25 G8「外からの押し」(docs/society_phase/G8_design.md): 強い集落の決まり・G8 に入る日・札の段"""
+
+    def R(self):
+        return {"ties": [], "demands": [], "wars": [], "pending": [], "gone": [], "log": [], "next_war": 1}
+
+    def test_strong_target(self):
+        R = self.R()
+        v0 = sett("V0", 100, (5, 5), village=True, kcap=10 ** 6, known=0)
+        big = sett("N9", 200, (5, 3), org=2, strong=True, kcap=10 ** 6)
+        small = sett("N1", 10, (6, 3))
+        q = region._demand_target(R, [v0, big, small], big, "ふつう")
+        self.assertEqual(q["to"], "V0", "余り (求める量) のいちばん多い村に求める (ふつうの集落なら、いちばん弱い N1)")
+        self.assertEqual(q["amount"], region.amount_of(v0))
+        self.assertEqual(region._demand_target(R, [v0, dict(big, strong=False), small], dict(big, strong=False), "ふつう")["to"], "N1")
+        v0w = dict(v0, people=150)  # 村が強すぎる (200 < 1.5 × 150): ほかの相手に
+        self.assertEqual(region._demand_target(R, [v0w, big, small], big, "ふつう")["to"], "N1")
+        v0w["walls"] = 1
+        self.assertIsNone(region._demand_target(R, [v0w, big], big, "ふつう"), "1.5 倍強い相手がいなければ求めない")
+
+    def test_strong_year(self):
+        R = self.R()
+        v0 = sett("V0", 100, (5, 5), village=True, kcap=10 ** 6, known=0)
+        big = sett("N9", 400, (5, 3), org=2, strong=True, kcap=10 ** 6)
+        others = [sett(f"N{i}", 30, (i, 9)) for i in range(1, 8)]
+        setts = [v0, big] + others
+        for y in range(3):
+            region.year_end(R, setts, random.Random(y), 70 + y, (70 + y) * 120 - 1, out=[])
+            self.assertEqual(big["org"], 2)
+            self.assertFalse([p for p in R["pending"] if p["who"] == "N9" and p["kind"] in ("分かれる", "出ていく")], "分かれない・出ていかない")
+            self.assertTrue(any(q["from"] == "N9" for q in R["demands"]), "毎年動く (求める相手がいれば)")
+
+    def real_g7(self):
+        st = real_state()
+        if st.get("era") != "G7":
+            self.skipTest("本物の state が G7 でない")
+        return st
+
+    def test_start_g8(self):
+        import g7
+        st = self.real_g7()
+        pop = g7._pop(st)
+        n0 = len(g7._others(st))
+        g7.close_g7(st, "試し")
+        self.assertEqual(g7.enter_next(st), "G8")
+        g = st["era2"]["g7"]
+        o = next(x for x in g7._others(st) if x["id"] == g["strong"])
+        self.assertEqual(len(g7._others(st)), n0 + 1)
+        self.assertEqual(o["people"], round(g7.STRONG_MUL * pop))
+        self.assertTrue(2 <= region.dist(tuple(o["cell"]), region.VILLAGE) <= 4 and region.land(tuple(o["cell"])) != "s")
+        self.assertEqual((o["org"], o["kcap"], o["known"], o["strong"]), (2, g7.STRONG_KCAP, st["day"], True))
+        self.assertEqual((g["world"], g["count"]), (g7.G8_WORLD, "v2"))
+        self.assertEqual(region.WEATHER_BAD, 0.35)
+        self.assertTrue(region.DESERT and region.NO_FLEE)
+        self.assertIn("G7", g["before"])
+        self.assertEqual(st["era_info"]["era"], "G8")
+        self.assertEqual(st["events"][-1]["text"], "フェーズ G8 (外からの押し) を始めた")
+        self.assertIn("ここで閉じた", next(e for e in reversed(st["events"]) if e["type"] == "フェーズ" and "G7" in e["text"])["text"])
+        self.assertIn("逃げる道はない", g7.facts(st))
+        g7.sync_world(self.real_g7())  # G7 の state では、もとに戻る
+        self.assertEqual((region.WEATHER_BAD, region.DESERT, region.NO_FLEE), (0.2, False, False))
+
+    def test_hint_stage(self):
+        import hints
+        self.assertEqual([hints._stage_now({"era": e}) for e in ("G6", "G7", "G8", "G9", "G15")], [0, 0, 0, 1, 7])
 
 
 if __name__ == "__main__":

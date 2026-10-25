@@ -149,6 +149,79 @@ def close_g6(state, note):
     return c
 
 
+# ---------------- G8 「外からの押し」(2026-10-25 本人が決めた。docs/society_phase/G8_design.md) ----------------
+MEASURED = ("G7", "G8")  # G7 の物差し (条件 3 つ・F 6 つ) で数える G
+G8_WORLD = {"desert": True, "no_flee": True, "bad": 0.35, "strong": True}  # G8 の世界 (G8 に入る日に g7.world に入れる。1 回の走りの中では変えない)
+G8_COUNT = "v2"
+STRONG_MUL = 1.75  # 強い集落の人 = 入る日の村の人 × 1.75 (本人の決め「1.5〜2 倍」のまん中。乱数は使わない)
+STRONG_DIST = (2, 4)  # 強い集落を置く所: 村から 2〜4 ます (段 2 の届く範囲 region.REACH2 = 4 の中)
+MEASURE_KEYS = ("reached", "tribute2_day", "tribute_years", "tribute_log", "coll_seasons", "judged", "f6_run", "role_log", "stall", "level_seen", "marks")
+
+
+def close_g7(state, note):
+    """G7 を本人の決めで閉じる (条件がそろわないまま。2026-10-23 本人「…4 年で区切る」で 8519 日目に閉じた)。step.py next_part --closed-by-decision から、
+    G8 に入る前に 1 回だけ。出来事「フェーズ」と g7.closed に残す。乱数は使わない"""
+    g, D = _g(state), state["day"]
+    ind = era2.indicators(state)
+    c = {"day": D, "by": "本人の決め", "note": note, "f3": ind.get("g7_f3_day"), "tribute2": ind.get("g7_tribute2_day"), "f4": ind.get("g7_f4_day")}
+    g["closed"] = c
+    log(state, "フェーズ", None, "G7 (王と役所): 3 つの条件はそろわないまま、ここで閉じた", closed_by="本人の決め", note=note)
+    return c
+
+
+def _strong_cell(state):
+    """強い集落のます: 村から 2〜4 ますの、空いた住めるます (K の大きい・近い所から。region.best_cell。乱数なし)"""
+    occ = region.occupied(_setts(state))
+    cands = [c for c in region.cells() if c not in occ and STRONG_DIST[0] <= region.dist(c, region.VILLAGE) <= STRONG_DIST[1] and region.cap(c) > 0]
+    return region.best_cell(cands, region.VILLAGE)
+
+
+def start_g8(state):
+    """G8 に入った日 (enter_next か、G7 の条件がそろって進んだ日): G7 の物差しの数を g7.before.G7 に移して数え直し、G8 の世界 (G8_WORLD・v2) にし、
+    強い集落を 1 つ置く (村から 2〜4 ます、人は村の 1.75 倍、段 2、分かれず K で縮まない。村が知っている)"""
+    g, D = _g(state), state["day"]
+    g.setdefault("before", {})["G7"] = {k: g.pop(k) for k in MEASURE_KEYS if k in g}
+    g["part_start8"] = D
+    g["world"] = dict(G8_WORLD)
+    g["count"] = G8_COUNT
+    sync_world(state)
+    _leave_desert(state)
+    c = _strong_cell(state)
+    n = max(1, round(STRONG_MUL * _pop(state)))
+    o = _new_settlement(state, c, n)
+    o.update(name=f"{region.direction(c)}の大きな村", strong=True, kcap=STRONG_KCAP, org=2, known=D, goats=round(n * 0.4), grain=n * 100)
+    if any(x is not o and x["name"] == o["name"] for x in _others(state)):
+        o["name"] = f"{o['name']}{o['id'][1:]}"
+    g["strong"] = o["id"]
+    _reg(state)["log"].append({"day": D, "kind": "強い集落", "id": o["id"], "cell": o["cell"], "people": n})
+    log(state, "集落", None, f"{o['name']} ({o['id']}) のことが村に知られた。{region.days(c)} 日ほどの所にある、村よりずっと人の多い村で、長の下に、まわりから物を集める役がいる",
+        other=o["id"], strong=True)
+    return o
+
+
+def _leave_desert(state):
+    """G8 に入る日: 草原 (砂地になった所) の集落は、いちばん近い空いた住めるますへ移る (同じ近さなら K の大きい所。乱数なし)。村が知っていれば出来事に"""
+    g6 = era2._g6(state)
+    for o in sorted(_others(state), key=lambda o: region.num(o["id"])):
+        if o.get("gone") or not o.get("cell") or region.land(tuple(o["cell"])) != "s":
+            continue
+        occ = region.occupied(_setts(state))
+        cands = [c for c in region.cells() if c not in occ and region.cap(c) > 0]
+        if not cands:
+            continue
+        frm = tuple(o["cell"])
+        c = min(cands, key=lambda c: (region.dist(c, frm), -region.cap(c), c[1], c[0]))
+        d = region.direction(c)
+        o.update(cell=list(c), land=region.land(c), dir=d, way=region.DIRS8[d][0], days=region.days(c), edge=list(region.DIRS8[d][1]))
+        _reg(state)["log"].append({"day": state["day"], "kind": "砂地から移る", "id": o["id"], "from": list(frm), "to": list(c)})
+        if o.get("known") is not None:
+            log(state, "集落", None, f"{o['name']} ({o['id']}) の人たちは、まわりの草地が干上がったので、{region.days(c)} 日ほどの所へ移った", other=o["id"])
+    return g6
+
+
+STRONG_KCAP = 10 ** 6  # 強い集落は地図の K で縮まない (実験 A1 の「大きい隣」と同じ)
+
+
 def enter_next(state):
     """次の G の待ち・部の終わりから、次の G に入る (G8 から。その G のコードを入れたあと)。G7 に入るのは enter"""
     e2, D, g = state["era2"], state["day"], _g(state)
@@ -160,6 +233,8 @@ def enter_next(state):
                          "indicators": ind}
     state["hold"] = False
     g["hold"] = None
+    if nxt == "G8":
+        start_g8(state)
     n = era2.PART_START.get(nxt)
     if n:
         g["part"], g["part_start"] = n, D
@@ -745,7 +820,7 @@ def check(state, met, ind):
         if era in era2.PART_END:
             if era in g["ends"]:
                 return False
-            code = "entrance" if era == "G14" else "part_end"
+            code = "entrance" if era == era2.ENTRANCE else "part_end"
             g["ends"][era] = {"day": D, "why": code}
             g["hold"] = {"why": code, "era": era, "day": D}
             return "entrance" if code == "entrance" else "end"
@@ -757,6 +832,8 @@ def check(state, met, ind):
             state["era_info"] = {"era": nxt, "name": era2.NAMES2[nxt], "next": era2.CRITERIA.get(nxt, ("(まだ作っていない)",))[0], "met": False,
                                  "since": 0, "indicators": ind}
             g["hold"] = {"why": "phase", "era": nxt, "day": D}
+            if nxt == "G8":  # G7 の条件がそろって G8 に進んだ: G8 の世界にする (next_part で閉じて入るときと同じ)
+                start_g8(state)
             return True
         if era in g["ends"]:
             return False
@@ -799,7 +876,8 @@ def reached(state, f):
 def indicators(state):
     """G7 の目安 (G7 に入ってから。条件の 3 つ (4.D.1) と、この部分で数えるもの)"""
     g = _g(state)
-    sub = {x["f"]: x["day"] for x in state["era2"].get("substeps", []) if x["g"] == "G7"}
+    era = state.get("era") if state.get("era") in MEASURED else "G7"  # G8 は、G8 に入ってから届いた F で数える (G7 と同じ物差し)
+    sub = {x["f"]: x["day"] for x in state["era2"].get("substeps", []) if x["g"] == era}
     return {"g7_on": True, "g7_f3_day": sub.get("F3"), "g7_tribute2_day": g.get("tribute2_day"), "g7_f4_day": sub.get("F4"),
             "g7_role_people": len(role_people(state)), "g7_others": len(_others(state)),
             "g7_region_people": sum(o["people"] for o in _others(state)), **yardstick.indicators(state)}
@@ -1745,7 +1823,7 @@ def region_on(state):
     return world.G7_PARTS["region"]
 
 
-WORLD_KEYS = ("desert", "no_flee")  # 世界の選び (2026-10-24。実験 C。G7 に入る日に決め、1 回の走りの中では変えない。region.DESERT・NO_FLEE)
+WORLD_KEYS = ("desert", "no_flee")  # step.py --world で選べるもの (G8 の世界 G8_WORLD は、ほかに bad・strong を持つ)  # 世界の選び (2026-10-24。実験 C。G7 に入る日に決め、1 回の走りの中では変えない。region.DESERT・NO_FLEE)
 COUNTS = ("v2",)  # 決める段の数え方 (2026-10-24): "v2" = 村もまわりの集落と同じに数える (region.levels の village_rules)。なければ前のまま
 
 
@@ -1754,6 +1832,7 @@ def sync_world(state):
     w = (state["era2"].get("g7") or {}).get("world") or {}
     region.DESERT = bool(w.get("desert"))
     region.NO_FLEE = bool(w.get("no_flee"))
+    region.WEATHER_BAD = float(w["bad"]) if "bad" in w else region.WEATHER_BAD0  # G8: 悪い年 0.35
 
 
 def no_flee(state):

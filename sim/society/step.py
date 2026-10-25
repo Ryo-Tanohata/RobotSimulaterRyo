@@ -129,12 +129,15 @@ def _next_part_refusal(state, fill, closed=None):
     if closed is not None:
         if not closed.strip():
             return "--closed-by-decision に本人の言葉がない"
-        if state.get("era") != "G6" or "g7" in state["era2"]:
-            return f"本人の決めで閉じて入れるのは G6 から G7 だけ (今は {state.get('era')})"
+        g7s = (state["era2"].get("g7") or {})
+        if not ((state.get("era") == "G6" and not g7s) or (state.get("era") == "G7" and g7s)):  # 2026-10-25: G7 から G8 も (G7 を本人の決めで閉じる)
+            return f"本人の決めで閉じて入れるのは G6 から G7 と、G7 から G8 だけ (今は {state.get('era')})"
         if state.get("hold"):
             return "一時停止している (部の終わりなら --closed-by-decision なしの next_part で入る)"
-        if (state["era2"].get("g6") or {}).get("end") or (state["era2"].get("g6") or {}).get("closed"):
+        if state["era"] == "G6" and ((state["era2"].get("g6") or {}).get("end") or (state["era2"].get("g6") or {}).get("closed")):
             return "G6 はもう閉じている"
+        if state["era"] == "G7" and (g7s.get("closed") or g7s.get("ends")):
+            return "G7 はもう閉じている"
     elif not state.get("hold"):
         return "一時停止していない"
     code, why = _hold_text(state)
@@ -157,6 +160,11 @@ def _next_part_refusal(state, fill, closed=None):
         import g7  # noqa: E402
         return g7.can_enter(state)
     return None
+
+
+def region_dist(o):
+    import region  # noqa: E402
+    return region.dist(tuple(o["cell"]), region.VILLAGE)
 
 
 def _yd(day):
@@ -479,7 +487,10 @@ def main():
             sys.exit(3)
         import g7  # noqa: E402  (G7 から働く仕組み。G6 までは読みこまない)
         nxt = era2.ORDER2[era2.ORDER2.index(state["era"]) + 1]
-        if a.closed is not None:  # G6 を本人の決めで閉じた (町の条件がそろわないまま。2026-10-17): 閉じたことを残してから G7 に入る
+        if a.closed is not None and state["era"] == "G7":  # G7 を本人の決めで閉じた (2026-10-23 本人の決め。8519 日目): 閉じたことを残してから G8 に入る
+            c = g7.close_g7(state, a.closed.strip())
+            print(f"* G7 (王と役所): 3 つの条件はそろわないまま、本人の決めで閉じた ({_yd(c['day'])})")
+        elif a.closed is not None:  # G6 を本人の決めで閉じた (町の条件がそろわないまま。2026-10-17): 閉じたことを残してから G7 に入る
             c = g7.close_g6(state, a.closed.strip())
             print(f"* 第 4 部の終わり (G6): 町の条件はそろわないまま、本人の決めで閉じた ({_yd(c['day'])}。記録の条件 "
                   f"{_yd(c['record']) if c['record'] is not None else 'まだ'})")
@@ -492,8 +503,13 @@ def main():
             if a.closed is not None:
                 state["era_log"][-1]["g6_closed"] = state["day"]
         else:
+            if a.world is not None or a.count is not None:
+                print("next_part はできない: --world と --count は G7 に入るときだけ (G8 の世界は決まっている。g7.G8_WORLD) (何も変えない)")
+                sys.exit(3)
             g7.enter_next(state)
             g = state["era2"]["g7"]
+            if a.closed is not None:
+                state["era_log"][-1]["g7_closed"] = state["day"]
         for kind in ("season", "feeling"):  # 前の部のお題 (もうコミットしてある) を消して、新しい部のお題を書く (ask_why の作り直しと同じ)
             d = pdir(state, kind, "prompts")
             if d.exists():
@@ -504,6 +520,9 @@ def main():
         _records(None)  # 記録を作り直す (控えの行は足さない。控えは季節の終わりだけ)
         fl = (g.get("region") or {}).get("fill")
         print(f"* フェーズ {state['era']} ({era2.NAMES2[state['era']]}) に入った ({_yd(state['day'])}。G7 の史実のずれの直しは {g['fix_from']} 日目から)")
+        if nxt == "G8":
+            so = next(o for o in era2._g6(state)["others"] if o["id"] == g["strong"])
+            print(f"* G8 の世界: 草原を砂地・逃げ場なし・悪い年 {g['world']['bad']}・段の数え方 {g['count']}。強い集落 {so['name']} ({so['id']}) {so['people']} 人 (ます {tuple(so['cell'])}。村から {region_dist(so)} ます)")
         if nxt == "G7":
             print(f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめに置いた集落 {len(fl['placed'])}・{fl['people']} 人。地域の人数を K の {fl['share']:.0%} に)"
                   if fl else f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめの集落は置かなかった。--fill なし = 今のまま)")
@@ -660,14 +679,14 @@ def main():
                   f"確かめた {i['g6_checked']} (板 {i['g6_checked_tablet']})・覚え違い {i['g6_misremember']} / 食べ物をとらない人 {i['g6_nonfood']} / "
                   f"町 {_yd(i['g6_town_day']) if i['g6_town_day'] is not None else 'まだ'} / 記録 {_yd(i['g6_record_day']) if i['g6_record_day'] is not None else 'まだ'}")
         if i.get("g7_on"):
-            print(f"G7 / 役の人 {i['g7_role_people']} / まわりの集落 {i['g7_others']} (人 約 {i['g7_region_people']}) / "
+            print(f"{state['era']} / 役の人 {i['g7_role_people']} / まわりの集落 {i['g7_others']} (人 約 {i['g7_region_people']}) / "
                   f"条件: 決める段 3 {_yd(i['g7_f3_day']) if i['g7_f3_day'] is not None else 'まだ'} / "
                   f"取り立ての記録 2 年 {_yd(i['g7_tribute2_day']) if i['g7_tribute2_day'] is not None else 'まだ'} / "
                   f"書いた決まりで裁く {_yd(i['g7_f4_day']) if i['g7_f4_day'] is not None else 'まだ'}")
             G = state["era2"]["g7"]
             led = (G.get("hints") or {}).get("ledger", [])
             ask = [k for k, v in sorted((G.get("stall") or {}).items()) if v.get("ask") and not v.get("done")]
-            print(f"G7 / 決める段 {i.get('g7_levels', 0)} (村は{i.get('g7_village', '外')}) / 取り立てを全部残せた年 {i.get('g7_tribute_years', 0)} / "
+            print(f"{state['era']} / 決める段 {i.get('g7_levels', 0)} (村は{i.get('g7_village', '外')}) / 取り立てを全部残せた年 {i.get('g7_tribute_years', 0)} / "
                   f"板に書いた掟 {i.get('g7_written_laws', 0)} / F {'・'.join(sorted(G.get('reached') or {})) or 'まだ'} / "
                   f"よその便り (村) 届いた {sum(1 for r in led if r['to'] == 'V0' and r['status'] in ('届いた', '忘れられた'))}・"
                   f"これから {sum(1 for r in led if r['to'] == 'V0' and r['status'] == '待つ')}"

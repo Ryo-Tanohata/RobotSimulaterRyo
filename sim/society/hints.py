@@ -161,7 +161,13 @@ def poisson(rng, lam):
 
 
 def _stage_now(state):
+    """今の段。札の段 (hint_cards.json の stage) は、もとの計画の G の番号のまま。2026-10-25 に G8 (外からの押し) を足して、もとの G8 から後が
+    1 つずつずれたので、G8 は G7 の札の段、G9 はもとの G8 の札の段 … と読む"""
     era = state.get("era")
+    if era in STAGES and STAGES.index(era) >= 1:
+        era = STAGES[STAGES.index(era) - 1]
+    elif era == "G15":
+        era = "G14"
     return STAGES.index(era) if era in STAGES else 0
 
 
