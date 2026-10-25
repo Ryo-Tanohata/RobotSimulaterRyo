@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋の種まきをして、冬と春の草取りで夏の実りを守ろう。わたしは毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キオ4"], "why": "秋にまいた草の種は草取りで実りが増えるので、畑を育てる"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ4": {"activity": "畑仕事", "place": "camp", "why": "草取りは人手が多いほど実りが増える"},
+  "ムイ9": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが世話不足でいなくなるのを防ぐ"},
+  "キオ10": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝う"},
+  "シエ10": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ソワ10": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を1人1000つかみ畑にまき、毎日草取りをすると、夏のはじめの実りが増える。夕方の木の実は40つかみまで取れる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L244", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして減らすのがよい"}],
+ "feeling": "蓄えは多く、落ち着いている。畑をまいて来年の夏に備えたい。"}

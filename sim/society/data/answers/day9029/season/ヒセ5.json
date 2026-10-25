@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに種を畑にまいて、冬と春は草取りを欠かさないようにしよう。わたしは土器を焼いて、蓄えの種を虫から守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入らない種は虫やネズミに食べられるので、手の慣れたわたしが土器を作って蓄えを守る"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ5": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで夏の実りを増やすため"}, "アコ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないと実りが減るので手伝う"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめ、蓄えの草の種は1837570つかみあり、土器は15482個ある。種を1000つかみずつまき、土器づくりを続けるのがよい。", "because": [659949], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって落ち着いている。土器を焼くのが楽しみだ。"}
