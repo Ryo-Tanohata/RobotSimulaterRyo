@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りない。今季は私が毎日ヤギの世話をして、5頭をつぶして干し肉にする。冬の前に畑の草取りも手を貸してほしい。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "ヤギが169頭で草が足りず、世話の人が少ないといなくなるから"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "テナ8": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで来年の実りを増やすため"},
+  "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないので手伝う"},
+  "ヒセ9": {"activity": "採集", "place": "南川12", "why": "採集が得意で、冬に備えて食べ物を集めるため"},
+  "ルタ9": {"activity": "ヤギの世話", "place": "camp", "why": "世話の人を増やしてヤギがいなくなるのを防ぐ"},
+  "ロワ10": {"activity": "畑仕事", "place": "camp", "why": "草取りを分け合うため"},
+  "トナ11": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚や肉で冬の食べ物を足す"},
+  "ロワ12": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を交代で行うため"},
+  "オセ13": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やすため"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "ヤギが減らないのが気がかりだが、冬に向けて落ち着いて働く。"}
