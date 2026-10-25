@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、土器をたくさん焼いておくよ。草の種を虫やネズミから守りたいんだ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を傷みから守れるから"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ16": true},
+ "family": {"ヒセ13": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で、冬と春の草取りで実りを増やせるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "土をこねて器を作る日々が落ち着く。冬の前に蓄えを守れるよう頑張りたい。"}
