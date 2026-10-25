@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "秋の種まき、わたしも1000つかみまくよ。冬と春の草取りは順番に分け合って、夏の実りを守ろうね。"}, {"to": "キオ4", "text": "うちの家族もいっしょに畑を見よう。夕方の木の実も忘れずに取ろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キオ4"], "why": "秋にまいた畑は草取りで実りが増えるので、まず畑を整える"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ4": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守るため"},
+  "ムイ9": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く世話が足りないとやせていなくなるため"},
+  "キオ10": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝い、畑のやり方を覚えるため"},
+  "シエ10": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T122": "村", "利子": 0}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を1人1000つかみ畑にまき、夕方に木の実を40つかみ取ると、夏の実りと冬の食べ物が増える。", "because": [671365], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L244", "against": "", "agree": true, "reason": "ヤギが草で養える数を超えると、やせていなくなるので、食べ物にして世話を足りさせたい"}, {"id": "L220", "against": "", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば、夏の実りが増える"}],
+ "feeling": "蓄えは満ちていて安心。みんなで畑と木の実を大事にしたい。"}

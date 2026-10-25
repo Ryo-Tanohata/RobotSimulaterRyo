@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、リセ3の村に草の種を貸してあげよう。わたしは土器を作りながら、秋の畑にもしっかり種をまくよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意だし、草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ3": {"activity": "採集", "place": "camp", "why": "採集が得意で、キャンプのそばなら安全に食べ物を集められるから"}, "ヌオ4": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで、夏の実りを増やしたいから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T122": "村"}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋は夕方に木の実を40つかみ取り、畑に種をまき、冬と夏の実りに備えるとよい。", "because": [671344], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて心強い。家族と村のために手を動かしたい。"}
