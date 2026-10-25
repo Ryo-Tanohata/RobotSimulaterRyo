@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実っているよ。落ちる前に、手の空いた人はみんなで毎夕刈ろう。刈った種は土器に入れて守ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["セヤ11", "トナ12", "キサ13"], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"セヤ11": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手がいるから"}, "トナ12": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手がいるから"}, "キサ13": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手がいるから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "刈った草の種を虫やネズミから守る土器を作る"}, "family": {"セヤ11": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の世話をするため"}, "トナ12": {"activity": "採集", "place": "camp", "why": "冬の前に木の実を集めるため"}, "キサ13": {"activity": "採集", "place": "camp", "why": "冬の前に木の実を集めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": ["セヤ11", "トナ12", "キサ13"], "why": "草取りをすると夏の実りが増えるから"}, "family": {"セヤ11": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "トナ12": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "キサ13": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": ["セヤ11", "トナ12", "キサ13"], "why": "春も草取りを続けて夏の実りを守るため"}, "family": {"セヤ11": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "トナ12": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "キサ13": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T158": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "夏の畑は毎夕みんなで刈り、刈った種は土器に入れて守る。秋にまいたら冬と春は草取りをする。", "because": [815977], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えは十分にある。みんなで畑を刈って、穏やかに一年を過ごしたい。"}
