@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑が実っている。夏のうちに鎌でみんなで刈って、落とさないようにしよう。ヤギも減らさないとね。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":["ヒセ13"],"why":"実った畑を夏のうちに刈らないと落ちてしまうから"},"family":{"ヒセ13":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が多いほど落とさずにすむ"}},"pick":40,"plant":0,"harvest":60,"eat_goat":8},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器が得意なので、蓄えの草の種を虫やネズミから守る土器を作る"},"family":{"ヒセ13":{"activity":"採集","place":"camp","why":"採集が得意なので、冬に備えて食べ物を集める"}},"pick":40,"plant":5,"harvest":0,"eat_goat":4,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで実りが増えるから"},"family":{"ヒセ13":{"activity":"畑仕事","place":"camp","why":"草取りの人手を増やして実りを守る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":4},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"春も草取りが要るから"},"family":{"ヒセ13":{"activity":"畑仕事","place":"camp","why":"草取りを続けて夏の実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge":{"M357":"ゆるす"},"judge_rule":null,"feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"tribute":{},
+"knowledge":[{"op":"add","text":"夏の畑は鎌で毎夕刈らないと落ちてしまう。ヤギは草で養える数より多いとやせていなくなる。","because":[677704],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"畑が大きく実った年",
+"feeling":"畑がたくさん実ったので、落とさず刈り切りたい。"}
