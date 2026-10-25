@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の種まきは忘れずにね。わたしは土器をつくり続けるよ。草の種を守る器は多いほどいい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが一番得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "family": {"ムイ14": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで夏の実りが増えるから、まず畑を整えてほしい"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、冬と春に草取りをすると夏に実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで落ち着いている。土器づくりに励めるのがうれしい。"}

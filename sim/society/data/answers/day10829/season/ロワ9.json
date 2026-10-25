@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋は土器を焼いて蓄えの草の種を守るよ。まだ土器に入らない種があるから、手があいたら粘土こねを手伝って。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意だし、土器に入れれば草の種が虫やネズミに食べられにくいから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと夏に実る。土器を多く焼くと蓄えが傷みにくい", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて草取りをすれば夏の実りが増えるから"},
+           {"id": "L252", "against": "", "agree": true, "reason": "ヤギが草で養える数をこえると草が足りなくなるから"}],
+ "feeling": "土器をこねるのは楽しい。今日も手を動かして蓄えを守りたい。"}

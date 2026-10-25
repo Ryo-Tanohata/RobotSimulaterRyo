@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "秋になったね。いつものように畑にまいて、冬と春の草取りはわたしの家でも手を出すよ。ヤギは草より少し多いから、5 頭は肉にして干しておこう。"}, {"to": "キオ10", "text": "キオ10、木の実取りはあなたに頼むね。夕方は少しずつでいいよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["タユ12"], "why": "まいたばかりの畑の草取りをして、夏の実りを減らさないため"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "キオ10": {"activity": "採集", "place": "camp", "why": "採集が上手なので、そばの木の実を集めて冬にそなえる"},
+  "シエ10": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やすため"},
+  "ソワ10": {"activity": "畑仕事", "place": "camp", "why": "キャンプで小さい子のそばにいながら草取りができる"},
+  "ムイ11": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプで草取りをする"},
+  "タユ12": {"activity": "採集", "place": "camp", "why": "採集が上手なので、木の実を取って蓄えに入れる"},
+  "ヌオ13": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話が足りないといなくなるので、手伝うと言っていた"},
+  "ヌオ14": {"activity": "畑仕事", "place": "camp", "why": "若いので、草取りをしながら畑を覚えてほしい"},
+  "ラニ15": {"activity": "畑仕事", "place": "camp", "why": "14 歳なので畑の手伝いを覚えさせる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える数 (約 140 頭) より多いと、季節ごとに少しずつやせていなくなる。前の季節も 3 頭いなくなった", "because": [846557], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L254", "against": "", "agree": true, "reason": "草で養えない分のヤギは、やせていなくなる前に干し肉にしたほうがよい"},
+  {"id": "L253", "against": "", "agree": true, "reason": "わたしが出した案で、ヤギを無駄にしないため"},
+  {"id": "L190", "against": "", "agree": true, "reason": "多すぎるヤギを肉にして、残りを世話するのは大事"},
+  {"id": "L250", "against": "", "agree": true, "reason": "多すぎる分のヤギを肉にして蓄えに入れるのはよい"},
+  {"id": "L238", "against": "", "agree": true, "reason": "世話が足りないとヤギがいなくなるから"},
+  {"id": "L209", "against": "今は村の蓄えがたくさんあるので、倉から出させるほどではない", "agree": false, "reason": "蓄えは十分ある"}
+ ],
+ "feeling": "蓄えも木の実もたくさんあって落ち着いている。この秋も畑をしっかり育てたい。"}
