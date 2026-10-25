@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑は、おれも草取りに毎日出る。草取りの人が少ないと実りが減るから、みんなも手の空いた日は畑に来てくれ。ヤギは草が足りないぶん、おれの家でも肉にして干すよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ナセ3"], "why": "秋にまく畑は冬と春の草取りで夏の実りが増える。草取りの人が少ないと減るので、続けて通う"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"ナセ3": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば畑の実りが増え、冬と春の蓄えが安心になる"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T118": false, "T119": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を1000つかみまき、冬と春に草取りの時間を多く入れると、夏の実りが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多いが、ヤギが草に対して多すぎる。畑と木の実を大事にして、冬を迎えたい。"}

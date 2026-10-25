@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をまいて、冬と春は交代で草取りをしよう。わたしは土器を焼いて、蓄えの種を虫やネズミから守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を傷みから守れるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セヤ11": {"activity": "採集", "place": "camp", "why": "採集が得意で、冬の前に食べ物を集められるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T118": false, "T119": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば夏の実りが増えるから"}],
+ "feeling": "蓄えは十分あるので落ち着いている。冬の前にやるべきことを丁寧に進めたい。"}
