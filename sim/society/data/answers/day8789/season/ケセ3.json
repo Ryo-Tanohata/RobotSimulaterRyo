@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種をまいて、おれは土器を焼く。冬の前に蓄えを守っておこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ4": {"activity": "畑仕事", "place": "camp", "why": "冬と春の実りを増やすため、草取りに力を入れる"},
+  "オセ5": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを守るため"},
+  "ナセ5": {"activity": "土器づくり", "place": "camp", "why": "土器を増やして蓄えを守るため"},
+  "セヤ6": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話が足りずいなくなるのを防ぐため"},
+  "セヤ10": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、家族で草取りをして、土器を焼いて蓄えを守る。", "because": [635872], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。土器を焼いて冬に備えたい。"}

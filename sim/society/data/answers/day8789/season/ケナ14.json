@@ -1,0 +1,10 @@
+{"say": [{"to": "ソナ14", "text": "雨の夜に外で濡れるのはもういやだ。この秋はおれたちの家を建てよう。子どもたちも屋根の下で眠れる。"}, {"to": "みんな", "text": "家のない人は、順番に手伝いあって建てよう。秋のうちに種もまいておこう。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["ソナ14"], "why": "家がなく、雨の夜に7回も外で濡れた。子のいる家族が屋根の下で眠れるようにしたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソナ14": {"activity": "住まいを建てる", "place": "camp", "why": "二人で建てれば早くできる。子のためにも家が要る"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "家ができるのが楽しみ。みんなで力を合わせれば冬も越せると思う"}

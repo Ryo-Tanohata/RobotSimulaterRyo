@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちは土器を焼き続けるよ。冬に草の種が虫に食われないよう、器に入れて守ろう。畑の草取りも手の空いた人で回してほしい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入らない草の種は虫やネズミに食われる。土器の腕には自信があるので、蓄えを守るために作る。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ3": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑は草取りの時間で夏の実りが増えるので、手伝ってもらう。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を1000つかみまき、冬と春に草取りをすると夏の実りが増える。土器に入れた草の種は虫に食われにくい。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だ。冬に向けて土器をたくさん焼きたい。"}

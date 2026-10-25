@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだから、約束どおり草の種を1000つかみずつ畑にまこう。冬と春の草取りも忘れずにね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入らない草の種は虫やネズミに食べられてしまうから。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キサ9": {"activity": "採集", "place": "北林12", "why": "採集が得意なので、冬の前に食べ物を集めてもらう。"}, "ホタ9": {"activity": "採集", "place": "北林12", "why": "採集が得意で、二人で行けば安全だから。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋に草の種をまいて冬と春に草取りをすれば、夏に実るから。"}],
+ "feeling": "蓄えは多いけれど、冬に向けて土器と畑をしっかり整えたい。"}
