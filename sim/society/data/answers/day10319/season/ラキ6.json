@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑が多い。夏のうちに刈り切ろう。私は刈る。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"トナ11": {"activity": "畑仕事", "place": "camp", "why": "力があるので刈り入れを手伝う"}, "テナ8": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ヒセ9": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "アコ14": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れた蓄えは虫に食べられにくい"}, "family": {"トナ11": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で肉を得られる"}, "テナ8": {"activity": "採集", "place": "西草原12", "why": "採集が得意"}, "ヒセ9": {"activity": "採集", "place": "西草原12", "why": "採集が得意"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬も土器を作り蓄えを守る"}, "family": {"トナ11": {"activity": "狩り", "place": "北丘12", "why": "冬も獣はいる"}, "テナ8": {"activity": "採集", "place": "北川12", "why": "魚や芋を探す"}, "ヒセ9": {"activity": "採集", "place": "北川12", "why": "魚や芋を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春は子ヤギが生まれ乳がとれる"}, "family": {"トナ11": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "テナ8": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T150": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実り多き刈り入れの年",
+ "feeling": "畑がよく実った。たくさん刈ってやる。"}

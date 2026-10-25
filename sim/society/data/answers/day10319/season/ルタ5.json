@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑がまだたくさん残っている。手の空いた人は毎夕刈って、その日のうちに土器に入れよう。ヤギも草より多いから、少しずつ肉にして干そう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈り切らないと落ちてしまうから"}, "family": {"キサ9": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要るから"}, "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要るから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 40},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "冬の前に木の実を集め、蓄えを守るため"}, "family": {"キサ9": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集めるため"}, "ホタ9": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが世話不足でいなくならないように"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 20, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りで夏の実りを増やすため"}, "family": {"キサ9": {"activity": "畑仕事", "place": "camp", "why": "草取りをするため"}, "ホタ9": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りを続けて夏の実りを減らさないため"}, "family": {"キサ9": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ホタ9": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギと乳の世話があるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M377": "ゆるす"}, "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T150": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えは十分あるので落ち着いている。畑とヤギをしっかり見ていきたい。"}
