@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切ろう。落ちた種がもったいないから、俺も毎日刈るよ。"}, {"to": "ヒセ13", "text": "うちの家はまだ住まいがないから、手が空いたら一緒に畑を刈ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ヒセ13"], "why": "実った畑がたくさんあり、夏のうちに刈らないと落ちてしまうから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "accept": {"ユエ13": true},
+ "family": {"ヒセ13": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れは人手が要るので、一緒に刈る"}},
+ "keep": false,
+ "judge": {"M349": "ゆるす"}, "feast": false, "leader": null, "trade": {"T107": false}, "seal": false, "seal_store": false, "demand": null, "answer_demand": {}, "ally": null, "share": null,
+ "knowledge": [{"op": "add", "text": "実った畑は夏のうちに刈らないと落ちてしまう。蓄えは土器に入れると傷みにくい。", "because": [618288], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L192", "against": "", "agree": true, "reason": "刈り残しが落ちるのはもったいないから"}, {"id": "L227", "against": "", "agree": true, "reason": "鎌で刈れば多く刈れて、春まで蓄えがもつから"}],
+ "year_name": "畑が大きく実った年",
+ "feeling": "蓄えは多いが雨の夜が心配だ。夏のあいだ、しっかり働こう。"}

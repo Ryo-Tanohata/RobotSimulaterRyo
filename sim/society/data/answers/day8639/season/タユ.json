@@ -1,0 +1,37 @@
+{"say": [{"to": "みんな", "text": "畑が四十九枚も実っている。夏が終わる前に、鎌を持って毎夕みんなで刈りに出よう。落ちた種は戻らないよ。"}, {"to": "ヒセ9", "text": "ヤギはまだ草で養える数よりずっと多い。やせていなくなる前に、少しずつつぶして干し肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["トナ2", "ラニ2"], "why": "実った畑を夏のうちに刈り切らないと、種が落ちてしまうから"},
+ "pick": 0, "plant": 5, "harvest": 60, "eat_goat": 5,
+ "accept": {"ユエ13": true},
+ "family": {
+  "トナ2": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手がいちばん要る季節だから"},
+  "ラニ2": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切って冬と春の蓄えにするため"},
+  "アコ6": {"activity": "畑仕事", "place": "camp", "why": "採集は苦手だが、刈り入れなら力になれるから"},
+  "テナ9": {"activity": "土器づくり", "place": "camp", "why": "刈った種を入れる土器を増やし、技も身につけてほしいから"},
+  "ケセ9": {"activity": "畑仕事", "place": "camp", "why": "大人になったばかりなので、みんなと刈り入れを覚えてほしいから"}
+ },
+ "keep": false,
+ "judge": {"M349": "ゆるす"},
+ "feast": false,
+ "leader": null,
+ "trade": {"T107": false},
+ "seal_store": false,
+ "demand": null,
+ "answer_demand": {"Q48": "払う"},
+ "ally": null,
+ "share": null,
+ "knowledge": [
+  {"op": "add", "text": "ヤギが 255 頭いて草で養える数 (約 140 頭) をこえると、ひと季節に 38 頭もやせていなくなる", "because": [618304], "confidence": 0.9},
+  {"op": "add", "text": "この夏は畑が 49 枚実り、一枚で約 7300 つかみ刈れる。村の蓄えは 408 日分ある", "because": [618288], "confidence": 0.8}
+ ],
+ "proposal": {"text": "この夏、手の空いた大人はみな毎夕鎌で 60 つかみずつ畑を刈り、刈った種はその日のうちに土器に入れよう。ヤギは草で養える数 (約 140 頭) まで、季節のはじめに家ごとに分けてつぶし、干し肉にして蓄えに入れよう。", "because": [618288, 618304], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L236", "agree": true, "against": "", "reason": "ヤギが多すぎてやせていなくなる前に、食べ物にしたほうがよいから"},
+  {"id": "L235", "agree": true, "against": "", "reason": "多すぎるヤギを干し肉にするのは村のためになるから"},
+  {"id": "L231", "agree": true, "against": "", "reason": "刈り入れとヤギの数を合わせて決められるから"},
+  {"id": "L227", "agree": true, "against": "", "reason": "夏のうちに畑を刈り切るため"},
+  {"id": "L228", "agree": true, "against": "", "reason": "やせていなくなるより肉にしたほうがよい"},
+  {"id": "L219", "agree": false, "against": "今は蓄えが 400 日分あり、倉から取り立てなくても足りる", "reason": "蓄えが十分あるので、取り立ては今はいらない"},
+  {"id": "L190", "agree": true, "against": "", "reason": "草で養えない分のヤギを干し肉にするのはよいことだから"}
+ ],
+ "year_name": "畑を刈り切った年",
+ "feeling": "畑がよく実って心強い。あとは落とさず刈り切るだけだ。"}

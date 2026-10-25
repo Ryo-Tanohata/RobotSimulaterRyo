@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "畑がまだ山ほど残っている。夏のうちに、手の空いた者はみんなで毎夕刈ろう。落とさずに土器へ入れよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑が実って刈れる。夏のうちに刈らないと落ちてしまうから。"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "accept": {"ユエ13": true},
+ "family": {
+  "セオ2": {"activity": "畑仕事", "place": "camp", "why": "刈り手が多いほど畑を刈り切れる。"},
+  "ロワ3": {"activity": "畑仕事", "place": "camp", "why": "刈り手が多いほど畑を刈り切れる。"},
+  "オネ9": {"activity": "畑仕事", "place": "camp", "why": "草取りや刈り入れを手伝えるから。"}
+ },
+ "keep": false,
+ "judge": {"M349": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T107": false}, "seal_store": false, "demand": null,
+ "answer_demand": {"Q48": "払う"}, "ally": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えは十分ある。夏の畑を落とさず刈り入れたい。"}

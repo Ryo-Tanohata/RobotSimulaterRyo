@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "畑が実っているうちに、みんなで刈ろう。おれは土器を焼いて、刈った種をしまえるようにしておくよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、刈った草の種を虫やネズミから守る器がもっと要るから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "accept": {"ユエ13": true}, "keep": false,
+ "judge": {"M349": "ゆるす"}, "feast": false, "leader": null, "trade": {"T107": false}, "seal_store": false, "demand": null, "answer_demand": {"Q48": "払う"}, "ally": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "土器を焼いた年",
+ "mood": "土を練って焼くのは落ち着く。今日も手を動かそう。"}

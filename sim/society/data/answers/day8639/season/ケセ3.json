@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "おれは土器を焼く。刈った草の種は、その日のうちに土器へ入れよう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕は一番だから、草の種を虫やネズミから守る土器を作り続ける"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "accept": {"ユエ13": true},
+ "family": {
+  "ケナ4": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに実った畑を刈り切るため"},
+  "オセ5": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに実った畑を刈り切るため"},
+  "ナセ5": {"activity": "畑仕事", "place": "camp", "why": "刈り残しは落ちてしまうので刈る"},
+  "セヤ6": {"activity": "畑仕事", "place": "camp", "why": "刈り残しは落ちてしまうので刈る"},
+  "ラキ10": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手伝い"},
+  "セヤ10": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手伝い"}
+ },
+ "keep": false,
+ "judge": {"M349": "ゆるす"}, "feast": false, "leader": null, "trade": {"T107": false}, "seal_store": false, "demand": null, "answer_demand": {"Q48": "払う"}, "ally": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑が多いので、刈った種はその日のうちに土器に入れて守る。土器づくりは慣れるほど多く作れる。", "because": [618118, 618288], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑が大きく実った年",
+ "feeling": "土器をこねるのが一番落ち着く。蓄えは十分あるので安心している。"}

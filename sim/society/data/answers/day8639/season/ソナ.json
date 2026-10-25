@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "畑がたくさん実っている。夏のうちに毎夕鎌で刈って、刈った種は土器に入れよう。落とさず冬と春をこえよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈り切らないと落ちてしまうから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "accept": {"ユエ13": true},
+ "family": {
+  "テナ2": {"activity": "畑仕事", "place": "camp", "why": "刈りの手は多いほどよい"},
+  "ラキ6": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"},
+  "テナ8": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"},
+  "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"},
+  "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"},
+  "ヒセ9": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"},
+  "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "子も刈りを手伝える"}
+ },
+ "keep": false,
+ "judge": {"M349": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T107": false}, "seal_store": false,
+ "demand": null, "answer_demand": {"Q48": "払う"}, "ally": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は毎夕刈らないと落ちる。刈った種は土器に入れて守る。", "because": [618288], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えは多く、あとは畑を刈り切るだけ。体も軽く、落ち着いている。"}
