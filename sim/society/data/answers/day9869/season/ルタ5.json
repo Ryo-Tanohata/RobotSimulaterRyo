@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに、ひとりずつ草の種を千つかみまこう。冬と春の草取りで、夏にしっかり実らせたいね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キサ9", "ホタ9"], "why": "秋にまいた畑は、草取りをするほど夏の実りが増えるから、まいたあとも畑を見ていたい。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キサ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手分けして、夏の実りを減らさないため。"}, "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手分けして、夏の実りを減らさないため。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心。小さな子たちと一緒に、静かな冬を迎えたい。"}

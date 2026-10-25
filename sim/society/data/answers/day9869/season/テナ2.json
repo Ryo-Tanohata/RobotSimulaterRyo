@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "秋の畑に種をまいたら、冬と春の草取りを忘れずにやろう。ヤギも減らさないと草が足りないよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りを続けると夏の実りが増えるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ラキ6": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く、世話が足りないといなくなるから"},
+  "テナ8": {"activity": "畑仕事", "place": "camp", "why": "採集が得意なので草取りを手伝ってもらう"},
+  "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "草取りは力仕事ではないので任せられる"},
+  "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ヒセ9": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ロワ10": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をする人を切らさないため"},
+  "トナ11": {"activity": "採集", "place": "camp", "why": "採集が得意なので冬に備えて木の実を集める"},
+  "キサ12": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら半分の働きができる"},
+  "ロワ12": {"activity": "ヤギの世話", "place": "camp", "why": "子でもヤギの世話なら半分の働きができる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "ヤギが草で養える数より多く、やせていなくなる前に肉にしたほうがよいから"}],
+ "feeling": "蓄えは多いけれど、ヤギの数と冬の草取りが気がかりだ。みんなで力を合わせたい。"}

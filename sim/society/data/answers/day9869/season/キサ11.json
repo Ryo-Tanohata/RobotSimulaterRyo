@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけれど、畑にまく分は忘れずにまこう。冬と春の草取りが、夏の実りを決めるからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れた草の種は虫やネズミに食べられにくい。土器の腕に自信があるので蓄えを守る。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "セヤ11": {"activity": "採集", "place": "camp", "why": "採集が得意なので、木の実を集めて冬に備える。"},
+  "トナ12": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので、キャンプで畑の世話を覚えながら手伝う。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば、夏の実りが増えるから。"}],
+ "feeling": "蓄えは多く落ち着いている。冬の前に土器をしっかり作っておきたい。"}
