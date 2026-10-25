@@ -45,7 +45,8 @@ for (let k = 0; k < STEPS; k++) {
   if (!mm || mm[1] !== MODE) return { stopped: k, why: `mode: the world is in ${mm ? mm[1] : '?'} mode (run with mode ${mm ? mm[1] : '?'})`, out: st, log: log_ }
   const meet = MODE === 'season' || (me && me[1] !== 'none')  // year: 答えるのは集まりの歩だけ (MEET 年 / 寄る / 集まり直し / 秋 (毎年の秋の集まり))
   // 仕事の理由 (2026-10-14 本人が決めた: 次に村を進めるときから)。まだ一度も step.py ask_why を動かしていなければ、進めずに止まる (daily_run.md)
-  if (!/ASKLOG True/.test(st)) return { stopped: k, why: 'ask_why not started: run step.py ask_why once, commit the prompts, then run again', out: st, log: log_ }
+  // 2026-10-25: 読む役 (haiku) が、空の COUNCIL の行とそのあとの ASKLOG の行を落として返すことがあった (8669 日目)。はっきり「ASKLOG False」のときだけ止まる
+  if (/ASKLOG False/.test(st)) return { stopped: k, why: 'ask_why not started: run step.py ask_why once, commit the prompts, then run again', out: st, log: log_ }
   const d = Number(dm[1]), names = nm[1].trim().split(/\s+/).filter(Boolean)
   const fm = (st || '').match(/FEEL[ \t]*([^\n`]*)/), feel = fm ? fm[1].trim().split(/\s+/).filter(Boolean) : []
   const council = cm ? cm[1].trim().split(/\s+/).filter(Boolean) : []
