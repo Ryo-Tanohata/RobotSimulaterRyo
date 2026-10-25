@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑がたくさん実っている。夏のうちに毎夕刈って、その日のうちに土器に入れよう。おれは土器も作る。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ケナ4": {"activity": "畑仕事", "place": "camp", "why": "刈り入れ人手が要る"}, "オセ5": {"activity": "畑仕事", "place": "camp", "why": "刈り入れ人手が要る"}, "ナセ5": {"activity": "畑仕事", "place": "camp", "why": "刈り入れ人手が要る"}, "セヤ6": {"activity": "畑仕事", "place": "camp", "why": "刈り入れ人手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意で、草の種を虫から守れる"}, "family": {"ケナ4": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}, "オセ5": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}, "ナセ5": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}, "セヤ6": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬のうちに土器を作りためる"}, "family": {"ケナ4": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "オセ5": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "ナセ5": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "セヤ6": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器を作り続け、夏の刈り入れに備える"}, "family": {"ケナ4": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "オセ5": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "ナセ5": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "セヤ6": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M346": "ゆるす", "M347": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑がとても多く、毎夕刈ってその日のうちに土器に入れると蓄えが守れる。", "because": [606887], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑が大きく実った年",
+ "feeling": "蓄えは十分ある。落ち着いて刈って、土器を焼こう。"}
