@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いけれど、夏のうちに畑を刈り切らないと落ちてしまう。手の空いた人は夕方の刈りを一緒にやろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、鎌で刈り入れる"}, "family": {"ラキ6": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "テナ8": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ヒセ9": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "刈った草の種を土器で守るため、土器を焼き続ける"}, "family": {"ラキ6": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}, "テナ8": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}, "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取り"}, "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取り"}, "ヒセ9": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取り"}, "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取り"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は冬も作れる。草の種を虫から守る"}, "family": {"ラキ6": {"activity": "狩り", "place": "北川12", "why": "冬も魚はいるので捕りに行く"}, "テナ8": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "ヒセ9": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "夏の刈り入れに向けて土器を増やす"}, "family": {"ラキ6": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれ、世話が足りないとヤギが減る"}, "テナ8": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "ヒセ9": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "夏の畑は刈らないと落ちる。刈った草の種は土器に入れると傷みにくい", "because": [655005], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑が大きく実った年",
+ "feeling": "蓄えは十分にある。夏のうちに畑を刈り切って、土器を焼き続けたい。"}
