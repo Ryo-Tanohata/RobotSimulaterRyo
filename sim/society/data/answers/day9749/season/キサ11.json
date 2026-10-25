@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にあるから、秋のうちにしっかり種をまいて、冬と春の草取りを分けあおう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで夏の実りが増えるので、続けて世話をしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セヤ11": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、いっしょに働く"}, "トナ12": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑仕事を覚える"}},
+ "keep": false,
+ "judge": {"M366": "ゆるす", "M367": "ゆるす", "M368": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T134": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑をていねいに世話して冬をこえたい。"}

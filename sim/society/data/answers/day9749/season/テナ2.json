@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "秋のうちに蓄えの種を畑にまいて、冬と春の草取りを忘れずにやろう。ヤギも増えすぎているから、少しつぶして干し肉にしよう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えの草の種を虫やネズミから守る土器を、慣れた手でもう少し増やしておきたいから"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ラキ6": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎてやせるので、世話の手が要る"},
+  "テナ8": {"activity": "採集", "place": "camp", "why": "冬の前に木の実や食べ物を集めておくため"},
+  "ラニ8": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで夏の実りを増やすため"},
+  "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで夏の実りを増やすため"},
+  "ヒセ9": {"activity": "採集", "place": "camp", "why": "冬の前に木の実を集めるため"},
+  "ルタ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やすため"},
+  "ロワ10": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを減らさないよう世話をするため"},
+  "トナ11": {"activity": "採集", "place": "camp", "why": "冬の前の食べ物集めのため"}
+ },
+ "keep": false,
+ "judge": {"M366": "ゆるす", "M367": "ゆるす", "M368": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T134": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの種を畑にまき、冬と春に草取りをすると、夏によく実る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて冬と春に草取りをするのは、夏の実りを増やす"}],
+ "feeling": "蓄えは豊かだけれど、ヤギが多すぎるのが気がかり。静かに土器をつくって冬に備えたい。"}

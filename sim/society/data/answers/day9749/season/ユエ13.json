@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種をまいて、冬と春は交代で草取りをしよう。わたしは畑の世話に回るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。冬と春の蓄えのために畑を育てたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M366": "ゆるす", "M367": "ゆるす", "M368": "ゆるす"}, "feast": false, "leader": null, "trade": {"T134": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまく種と冬春の草取りが、夏の実りを守るから"}],
+ "feeling": "蓄えは十分にある。畑をていねいに育てて、冬を落ち着いて迎えたい。"}

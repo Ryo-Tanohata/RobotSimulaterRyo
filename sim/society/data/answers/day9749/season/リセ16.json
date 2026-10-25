@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の木の実をみんなで毎夕とろう。冬は実らないから、いまのうちに蓄えをふやしておきたいな。"}, {"to": "セヤ16", "text": "今季はわたしも畑まわりで働くよ。ヤギを少しつぶして干し肉にするのも頼むね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["セヤ16"], "why": "秋にまいた畑は草取りで夏の実りが増える。採集が得意だが、まず畑を育てたい"}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 5, "family": {"セヤ16": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして、夏の実りを増やすため"}}, "keep": false,
+ "judge": {"M366": "ゆるす", "M367": "ゆるす", "M368": "ゆるす"}, "feast": false, "leader": null, "trade": {"T134": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を畑にまき、冬と春に草取りをすると夏の実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L250", "against": "", "agree": true, "reason": "ヤギが草で養える数をこえるとやせていなくなるので、食べ物にしたほうがよい"}, {"id": "L220", "against": "", "agree": true, "reason": "秋に種をまかないと夏に実らない"}],
+ "feeling": "木の実を取りながら畑を見るのが楽しみ。冬を無事にこえたい。"}
