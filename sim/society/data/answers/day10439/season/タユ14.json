@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "実った畑は夏のうちに刈り切ろう。落ちる前にみんなで毎夕刈って、すぐ土器に入れよう。"}, {"to": "ヒセ14", "text": "夏はいっしょに畑を刈ろう。秋からはあなたは木の実と魚を頼むね。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ヒセ14"], "why": "実った畑が夏のうちに刈らないと落ちてしまうから"}, "family": {"ヒセ14": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため、わたしといっしょに働く"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守れるから"}, "family": {"ヒセ14": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬に備えて木の実を集める"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬のうちも土器を作り、草の種を守る"}, "family": {"ヒセ14": {"activity": "採集", "place": "北川12", "why": "冬は北川で魚と芋を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "夏の刈り入れに向けて土器を増やす"}, "family": {"ヒセ14": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ソワ18": true, "ユエ18": false}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M379": "ゆるす"}, "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "tribute": {},
+ "knowledge": [], "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えは十分にある。みんなで仲よく、土器を作りながら過ごしたい。"}
