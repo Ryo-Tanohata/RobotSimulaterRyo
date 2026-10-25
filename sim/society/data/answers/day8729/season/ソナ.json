@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるし、土器も足りている。この春は畑の草取りに力を向けよう。夏の実りを減らしたくないからね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "土器は十分あるので、夏の実りを増やすために畑の草取りをする"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ2": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く、世話が足りないといなくなるため"},
+  "ラキ6": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守る"},
+  "テナ8": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守る"},
+  "ラニ8": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"},
+  "ユエ8": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ヒセ9": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ルタ9": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"},
+  "ロワ10": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で、落ち着いた気持ち。夏の畑がよく実るよう、手を動かしたい。"}

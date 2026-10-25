@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "春のうちに畑の草取りをしっかりやろう。夏の実りが減らないように、手の空いた人は声をかけてくれ。俺も毎日畑に出る。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬と春に草取りをする人が少ないと夏の実りが減る。村の蓄えのために畑を守りたい"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "セオ2": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やし、夏の実りを守るため"},
+  "ロワ3": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りをして実りを増やすため"},
+  "オネ9": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って大人の仕事を覚えるため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にある。みんなで畑を守って、夏の実りを楽しみにしている。"}

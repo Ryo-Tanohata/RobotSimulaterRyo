@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。おれは土器をどんどん焼いて、草の種を虫やネズミから守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意で、土器に入れると草の種が傷みにくいから続ける"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ3": {"activity": "採集", "place": "南川12", "why": "採集が得意なので、近い川で食べ物を探してもらう"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は約418日分あり、春は土器づくりに専念できる。", "because": [628043], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが十分で心強い。土器を焼くのが楽しみだ。"}

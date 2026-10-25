@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりある。おれは春のあいだ土器を焼きつづけて、草の種を虫から守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、草の種を土器に入れて守れるから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ4": {"activity": "畑仕事", "place": "camp", "why": "夏の実りを減らさないよう草取りをする"},
+  "オセ5": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして畑を守る"},
+  "ナセ5": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減らないよう世話をする"},
+  "セヤ6": {"activity": "採集", "place": "南川12", "why": "近い川で食べ物を探して蓄えを助ける"},
+  "セヤ10": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。土器を作るのは落ち着く。"}

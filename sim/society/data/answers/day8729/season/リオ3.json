@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "春のあいだ、わたしは畑の草取りを毎日やるよ。夏の刈り入れで実りが減らないようにしたい。一緒にやれる人は声をかけて。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がたくさん育っていて、草取りをする人が少ないと夏の実りが減るから"},
+ "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 5,
+ "family": {"アコ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手がいるので、わたしと一緒に夏の実りを守ってほしい"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "春は育っている畑の草取りを続けると、夏の実りが減らない。ヤギは草で養える数より多いので、少しずつ肉にしたほうがよい。", "because": [627854, 627915, 627976], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。畑の世話をして、夏の実りを楽しみに待ちたい。"}

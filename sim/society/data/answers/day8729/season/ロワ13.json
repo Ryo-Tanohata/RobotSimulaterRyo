@@ -1,0 +1,10 @@
+{"say": [{"to": "ヒセ13", "text": "うちの家にはまだ住まいがない。雨の夜にまた濡れるのはつらいから、いっしょに少しずつ建てよう。"}, {"to": "みんな", "text": "蓄えはたっぷりあるから、今の春は住まいのない家が順番に建てる時だと思う。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["ヒセ13"], "build": "家族の住まい", "why": "家に住まいがなく、雨の夜に外で濡れたので、まず自分の家の住まいを建てたい"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ13": {"activity": "住まいを建てる", "place": "camp", "build": "家族の住まい", "why": "二人で働けば住まいが早くできるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "家の住まいがないと、雨の夜に村の住まいに入りきらず外で濡れてしまう。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L239", "against": "", "agree": true, "reason": "住まいのない家が建てるのは自分の家にも大事なことだから"}],
+ "feeling": "蓄えがあって安心。早く自分の家の屋根の下で眠りたい。"}
