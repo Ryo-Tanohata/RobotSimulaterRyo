@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑をまいて、冬と春は草取りを欠かさずやろう。わたしは畑に立つよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、土器も十分あるいま畑を守るのがいちばん大事だから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"リセ11": {"activity": "畑仕事", "place": "camp", "why": "草取りは人手が多いほど実りが増えるから"}, "アコ13": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をする人が少なくていなくなるのを防ぐため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T159": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまく畑は夏の実りのもとになるから"}],
+ "feeling": "体は疲れ気味だが、畑のことを考えると気持ちが大きく動く。"}

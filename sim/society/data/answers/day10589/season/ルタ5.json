@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いけれど、冬と春の草取りが夏の実りを決める。畑に出る人を絶やさないようにしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、その世話を続けたい"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ9": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が少ないと実りが減るから"},
+  "ホタ9": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人が少ないとヤギがいなくなるから"},
+  "ラキ14": {"activity": "畑仕事", "place": "camp", "why": "採集がまだ苦手なので、畑の草取りで役に立てる"},
+  "ナセ15": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T159": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは十分で落ち着いている。冬と春の畑仕事に精を出したい。"}

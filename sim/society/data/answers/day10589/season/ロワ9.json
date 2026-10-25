@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋のうちにわたしは土器をどんどん焼くよ。草の種を土器に入れて、冬の前に蓄えを守ろう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意で、焼くほど上手になる。秋のうちに多く焼いて蓄えを虫やネズミから守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "trade": {"T159": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、夏のはじめに実る。土器を多く焼けば蓄えが傷みにくい", "because": [821839], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまけば夏に実りが増えるから"}],
+ "feeling": "体は疲れ気味だが、土器づくりなら任せてほしい。やる気は十分だ。"}
