@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、秋のはじめにみんなで種をまいて、冬と春の草取りを順番に続けよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キサ9", "ホタ9"], "why": "畑がなく、まいた種を冬と春に育てるため、まず秋の畑仕事に慣れておく"}, "sow": 1000, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"キサ9": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、畑の草取りの人手を増やして実りを守る"}, "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分担して、夏の実りを減らさないため"}, "ラキ14": {"activity": "畑仕事", "place": "camp", "why": "採集や狩りがまだ苦手なので、畑の草取りを手伝う"}, "ナセ15": {"activity": "畑仕事", "place": "camp", "why": "子でも半分の働きができるので畑を手伝う"}}, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L251", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして蓄えに入れるのがよい"}],
+ "feeling": "蓄えが多くて安心。秋にまく種が夏の実りになるのが楽しみ。"}

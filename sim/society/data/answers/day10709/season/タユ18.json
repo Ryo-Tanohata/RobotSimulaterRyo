@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、秋のうちに畑に種をまいて、冬と春は交代で草取りをしよう。ヤギも少し減らそうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ヒセ18"], "why": "まいた畑は草取りをすると実りが増える。蓄えはあるので、畑を大事に育てたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ヒセ18": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをして、畑の実りを増やすため"}}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りをすると夏の実りが増える", "because": [833314], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L251", "against": "", "agree": true, "reason": "草で養えるヤギは約110頭で、今は多すぎるので、減らして食べ物にしたほうがよい"}],
+ "feeling": "蓄えが多くて安心。畑仕事をがんばって、みんなで冬を越したい。"}

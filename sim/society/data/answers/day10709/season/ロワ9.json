@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "わたしは秋のあいだ、毎日土器を焼くよ。草の種は土器に入れてこそ守れるからね。みんなも畑の草取り、さぼらないで!"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器はわたしがいちばん得意で、草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を畑にまき、土器を多く焼いて残りの種を守るのがよい", "because": [833506], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "草で養えない分のヤギは食べ物にしたほうがよい"}, {"id": "L196", "against": "", "agree": false, "reason": "半分を手元に残すのはもめごとのもとになる"}, {"id": "L201", "against": "", "agree": true, "reason": "夏の刈り入れは大事だから"}],
+ "feeling": "土器を焼くのは楽しい。今季もたくさん作るぞ。"}

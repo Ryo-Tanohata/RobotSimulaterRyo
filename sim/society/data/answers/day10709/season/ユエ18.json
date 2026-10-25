@@ -1,0 +1,10 @@
+{"say": [{"to": "ホミ18", "text": "秋は北の丘でけものを追うぞ。俺とお前なら獲物は逃がさん。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": ["ホミ18"], "why": "狩りの腕が一番たしかなので、肉を村に入れて蓄えの草の種を減らさないため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ18": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、二人組なら安全に獲物を追えるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋に畑をまかないと夏に実らないから"}],
+ "feeling": "体は軽い。久しぶりに丘で獲物を追えるのが楽しみだ。"}

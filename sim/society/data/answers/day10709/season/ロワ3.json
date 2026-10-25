@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはまだたっぷりある。だが油断せず、畑をまいて草取りを欠かさずやろう。わたしは畑を見るよ。"}, {"to": "ホミ11", "text": "ホタが小さいうちは無理をせず、ヤギの世話をキャンプでたのむよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りをして、夏の実りを減らさないため"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "family": {"ホミ11": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く世話が足りないといなくなるので、キャンプで世話をする"}}, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋に種をまき、草取りをするのは夏の実りのために大事だから"}, {"id": "L251", "against": "", "agree": true, "reason": "ヤギが草で養える数をこえていて、やせていなくなる前に肉にしたほうがよいから"}],
+ "feeling": "蓄えは多いが、ヤギが多すぎるのが気がかり。体はよく動くので、畑とヤギをしっかり見たい。"}
