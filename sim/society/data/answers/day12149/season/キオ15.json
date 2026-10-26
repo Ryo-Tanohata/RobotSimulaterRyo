@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "ヤギは今 159 頭で、草で養えるのは 140 頭ほどだ。前の季節も 10 頭やせていなくなった。多い 19 頭ほどは、この秋のうちにつぶして干し肉にしたほうがいい。"}, {"to": "みんな", "text": "おれは畑の草取りをする。まいた種がちゃんと夏に実るように、手のあいた人も少しずつ来てくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをしておかないと、夏の実りが減るから"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {"K67": "払い続ける"},
+ "knowledge": [{"op": "add", "text": "ヤギが 169 頭いて草で養えるのが 140 頭ほどだと、季節ごとに 10 頭ほどやせていなくなる", "because": [998671], "confidence": 0.8}, {"op": "add", "text": "土器に入れた草の種も、1 季節に 100 分の 1 ほど傷む", "because": [998675], "confidence": 0.7}],
+ "proposal": {"text": "この秋のはじめに、草で養えるヤギ (約 140 頭) をこえる分 (いま 19 頭ほど) をつぶして干し肉にし、村の蓄えに入れよう。前の季節も 10 頭がやせていなくなったから。", "because": [998671], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L285", "against": "", "agree": true, "reason": "大人みなが 1000 つかみずつまけば、夏にたくさん刈れる。草取りも大事だ"},
+  {"id": "L294", "against": "", "agree": true, "reason": "多すぎるヤギはやせていなくなるので、食べ物にしたほうがよい"},
+  {"id": "L291", "against": "", "agree": true, "reason": "草で養えない分は干し肉にしたほうがよい"},
+  {"id": "L292", "against": "", "agree": true, "reason": "草で養えない分は干し肉にしたほうがよい"},
+  {"id": "L293", "against": "", "agree": true, "reason": "草で養えない分は干し肉にしたほうがよい"},
+  {"id": "L295", "against": "", "agree": true, "reason": "草で養えない分は干し肉にしたほうがよい"},
+  {"id": "L298", "against": "養えるのは 110 頭ではなく 140 頭ほどで、数がちがう", "agree": false, "reason": "今の草で養える数に合わせたほうがいい"},
+  {"id": "L300", "against": "いま多すぎるのは 100 頭ではなく 19 頭ほどだ", "agree": false, "reason": "つぶしすぎると乳がとれなくなる"},
+  {"id": "L297", "against": "養えるのは 110 頭ではなく 140 頭ほど", "agree": false, "reason": "数が今と合わない"},
+  {"id": "L299", "against": "養えるのは 110 頭ではなく 140 頭ほど", "agree": false, "reason": "数が今と合わない"},
+  {"id": "L286", "against": "", "agree": true, "reason": "刈り残しは落ちてしまうから"},
+  {"id": "L209", "against": "倉を持つ家から取ると、もめごとになりやすい", "agree": false, "reason": "今は蓄えが空ではない"},
+  {"id": "L196", "against": "今は蓄えが空ではない", "agree": false, "reason": "今の村には合わない"}
+ ],
+ "feeling": "蓄えは十分ある。あとは畑とヤギの数をちゃんと見ていけばいい。"}

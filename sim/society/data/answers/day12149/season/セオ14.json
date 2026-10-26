@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "今年は畑がないから、秋のうちに草の種をたくさんまこう。わたしも冬と春の草取りを続けるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるから、続けて世話をする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして、畑の実りを守るため"},
+  "ネイ16": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして、畑の実りを守るため"},
+  "ホタ17": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから、肉を村にもたらす"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、秋から春まで草取りをすると、夏に実りが増える", "because": [998461], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑がまだないので、種をまいて草取りをするのが楽しみ。"}
