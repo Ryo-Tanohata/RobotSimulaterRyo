@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "わたしは春のあいだも土器を焼き続けるよ。草の種を入れる器が増えれば、虫やネズミに食べられる分が減るからね。"}, {"to": "ラニ13", "text": "あなたは採集が上手だから、木の実や魚を探してきてね。子どもたちはわたしが見ているよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが一番得意で、慣れるほど多く作れる。蓄えの草の種を土器に入れて守りたいから続ける"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ13": {"activity": "採集", "place": "南川12", "why": "採集が一番得意で、キャンプに近い川なら安全に食べ物を見つけられる"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "土器づくりを毎日続けると、1日に焼ける数が増えていく", "because": [904452, 904524, 904597], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるから安心。土器づくりを続けて、子どもたちと穏やかに春を過ごしたい。"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "ラニ16", "text": "南の川では30日なにも見つからなかったから、今季は北の川へ一緒に行こう。魚か芋があるか確かめたいの。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ラニ16"], "why": "南の川では何も見つからなかったので、北の川で魚と芋を探してみたい。二人で行く掟も守れる。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ16": {"activity": "採集", "place": "北川12", "why": "採集が得意だから、わたしと二人で北の川へ行く。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "南の川は春の30日間、何も見つからなかった。別の場所を試すほうがよい。", "because": [904563], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "子どもたちのためにも、今度こそ食べ物を見つけたい。"}
