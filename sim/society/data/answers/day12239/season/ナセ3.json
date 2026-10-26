@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りない。夏のうちにつぶして干し肉にしよう。畑は落ちる前にみんなで刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"リセ11": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "アコ13": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "トナ18": {"activity": "畑仕事", "place": "camp", "why": "若い力で刈り入れを進める"}, "ケセ19": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話をして実りを守る"}, "family": {"リセ11": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "アコ13": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "トナ18": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ケセ19": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで夏の実りが増える"}, "family": {"リセ11": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "アコ13": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "トナ18": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケセ19": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで実りを守る"}, "family": {"リセ11": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "アコ13": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "トナ18": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケセ19": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギの減った年",
+ "feeling": "蓄えは多いが、ヤギが増えすぎたのが気がかりだ。体は元気で、畑に出るのが楽しみだ。"}
