@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだから、畑に草の種をまこう。冬と春の草取りも、順番に分けてやろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをして、夏の実りを減らさないため。小さな子もいるのでキャンプで働ける"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ16": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、いっしょにキャンプで働く"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、夏のはじめに実る。まいたあとは草取りを続ける", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "村の蓄えがたっぷりあって安心。畑がよく実りますように。"}

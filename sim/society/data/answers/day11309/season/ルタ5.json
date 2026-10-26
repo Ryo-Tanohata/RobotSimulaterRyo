@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えの草の種を一人1000つかみずつ畑にまいて、冬と春の草取りを分けて続けよう。木の実の取り残しは、キャンプのそばに埋めておこうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、まいたあとも続けて世話をする"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ9": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、畑の草取りが人手不足なので手伝う"},
+  "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "冬と春の実りのために畑の草取りに加わる"},
+  "ラキ14": {"activity": "ヤギの世話", "place": "camp", "why": "赤子のそばでキャンプにいられるので、ヤギの世話をする"},
+  "ナセ15": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、冬に向けて魚や肉を取ってくる"},
+  "ハソ16": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ワユ16": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"},
+  "ユエ16": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに一人1000つかみずつ草の種をまき、秋から春まで草取りを分けて続けると、次の夏に実る。", "because": [898194], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば夏に実るから"}],
+ "feeling": "蓄えは多いけれど、冬に向けて畑と木の実をしっかり世話しておきたい。"}

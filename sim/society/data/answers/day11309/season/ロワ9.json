@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちにわたしは土器をどんどん焼くよ。蓄えの種を虫やネズミに食べさせるのはもったいないからね。畑の種まきも忘れずにやろう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は焼くほど上手になる。土器に入らない種は虫やネズミに食べられるので、秋のうちに多く焼いて蓄えを守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ15": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑は草取りをすると夏の実りが増えるから"}, "ソワ15": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やすため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、土器を焼き続けるのが自分の役目。まいた畑は草取りで夏の実りが増える", "because": [898413], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋に種をまいて草取りをすれば夏の実りが増えるから"}, {"id": "L252", "against": "", "agree": true, "reason": "ヤギは草で養える数に合わせたほうがよいから"}],
+ "feeling": "蓄えはたっぷりあるけれど、土器を焼くのは楽しい。今季もしっかり働くよ。"}

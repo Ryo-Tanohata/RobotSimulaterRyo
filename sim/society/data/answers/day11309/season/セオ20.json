@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに、蓄えの草の種を畑にまこう。冬と春の草取りも忘れずにやろうな。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ルタ20"], "why": "キャンプに近い南川で、冬に備えて木の実や食べ物を集めるため"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ルタ20": {"activity": "採集", "place": "南川12", "why": "二人で一緒に行けば安全で、たくさん集められるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるが、冬に向けて体を動かして備えたい。"}
