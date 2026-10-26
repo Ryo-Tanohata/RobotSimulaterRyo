@@ -1,0 +1,33 @@
+{"say": [{"to": "みんな", "text": "畑は六十七枚も実っている。去年みたいに落とさないよう、夏のうちに鎌で毎夕刈りきろう。ヤギも草より百頭ほど多いから、やせて消える前に干し肉にしよう。"}, {"to": "シエ20", "text": "蓄えのことで言い出したけれど、責めたいわけじゃない。祭りでいっしょに食べて、もう水に流そう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["シエ10", "タユ12"], "why": "実った畑が多く、夏のうちに刈りきらないと草の種が落ちてしまうから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5,
+ "accept": {"トナ22": true},
+ "family": {
+  "シエ10": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手が要るから"},
+  "ムイ11": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く、世話が足りないといなくなるから"},
+  "タユ12": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手が要るから"},
+  "ヌオ14": {"activity": "畑仕事", "place": "camp", "why": "採集や狩りより、畑で刈るほうが村の役に立つから"},
+  "ソナ17": {"activity": "畑仕事", "place": "camp", "why": "若い力で刈り入れを手伝ってほしいから"},
+  "ラキ18": {"activity": "畑仕事", "place": "camp", "why": "大人といっしょに刈り入れを覚えてほしいから"},
+  "ハソ18": {"activity": "畑仕事", "place": "camp", "why": "大人といっしょに刈り入れを覚えてほしいから"}
+ },
+ "keep": false,
+ "judge": {"M398": "ゆるす", "M399": "ゆるす"},
+ "feast": true, "leader": null, "seal_store": false,
+ "demand": null, "answer_demand": {"Q102": "助けを頼む"}, "ally": "N19", "share": null,
+ "knowledge": [
+  {"op": "add", "text": "ヤギが草で養える数 (約 140 頭) の倍ほどいると、一つの季節に 50 頭ほどやせていなくなる", "because": [936895], "confidence": 0.9},
+  {"op": "add", "text": "この一年は病で亡くなる大人や子が多かった", "because": [932431, 932432, 934684, 934685, 934686], "confidence": 0.8}
+ ],
+ "proposal": {"text": "この夏のはじめに、草で養えるヤギ (約 140 頭) をこえる分 (いま 100 頭ほど) を、家ごとに分けてつぶし、干し肉にして村の蓄えに入れよう。前の季節に 51 頭もやせていなくなったから。", "because": [936895], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L257", "agree": true, "against": "", "reason": "やせて消えるより干し肉にしたほうがよい"},
+  {"id": "L258", "agree": true, "against": "", "reason": "ヤギが多すぎて草が足りないから"},
+  {"id": "L261", "agree": true, "against": "", "reason": "夏のはじめにヤギを減らすのは大事だから"},
+  {"id": "L262", "agree": true, "against": "", "reason": "家ごとに分ければ早く済むから"},
+  {"id": "L245", "agree": true, "against": "", "reason": "ヤギを干し肉にし、畑も刈りきれるから"},
+  {"id": "L227", "agree": true, "against": "", "reason": "刈り残しを落とさないため"},
+  {"id": "L196", "agree": false, "against": "蓄えは今たくさんあり、今は要らない", "reason": "今の村には合わない"}
+ ],
+ "year_name": "病で多く亡くなった年",
+ "feeling": "大事な仲間を病で失ってさびしいけれど、畑の実りを落とさずに守りたい。"}

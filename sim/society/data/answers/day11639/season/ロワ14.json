@@ -1,0 +1,25 @@
+{"say": [{"to": "みんな", "text": "畑が六十八も実っているよ。夏が終わる前に、鎌を持ってみんなで毎夕刈りきろう。落とした種はもう戻らないから。"}, {"to": "ワユ16", "text": "ケナ22 が生まれたね。小さい子のそばには、わたしたちも交代でついているよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ラキ14", "リセ14", "ケセ14"], "why": "実った畑がたくさんあり、夏のうちに刈りきらないと種が落ちてしまうから"},
+ "pick": 20, "plant": 5, "harvest": 60, "eat_goat": 5,
+ "accept": {"トナ22": true}, "keep": false,
+ "judge": {"M398": "ゆるす", "M399": "ゆるす"}, "feast": true, "leader": null, "seal_store": false, "demand": null,
+ "answer_demand": {"Q102": "助けを頼む"}, "ally": "N14", "share": null,
+ "trade": {"T175": {"side": "村", "利子": 0}},
+ "knowledge": [
+  {"op": "add", "text": "ヤギが草で養える数 (約140頭) をこえると、292 頭いた季節に 51 頭がやせていなくなった", "because": [936895], "confidence": 0.9},
+  {"op": "add", "text": "土器に入れていても、蓄えの草の種は 1 季節に約 16000 つかみ傷む", "because": [936898], "confidence": 0.8},
+  {"op": "add", "text": "この一年、病で亡くなる大人や赤子が多かった", "because": [932431, 932432, 934684, 934685, 934686, 934682], "confidence": 0.8}
+ ],
+ "proposal": {"text": "この夏のはじめに、草で養えるヤギ (約 140 頭) をこえる分 (いま 100 頭ほど) を、家ごとに分けてつぶし、干し肉にして村の蓄えに入れよう。前の季節に 51 頭もやせていなくなったから。", "because": [936895], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L269", "agree": true, "against": "", "reason": "やせていなくなる前に肉にしたほうがよい"},
+  {"id": "L270", "agree": true, "against": "", "reason": "ヤギが多すぎて毎季節いなくなっているから"},
+  {"id": "L261", "agree": true, "against": "", "reason": "多すぎるヤギは食べ物にしたほうがよい"},
+  {"id": "L262", "agree": true, "against": "", "reason": "家ごとに分ければ早くつぶせる"},
+  {"id": "L227", "agree": true, "against": "", "reason": "鎌で刈れば畑を刈りきれる"},
+  {"id": "L221", "agree": true, "against": "", "reason": "刈った種を土器に入れれば傷まない"},
+  {"id": "L196", "agree": false, "against": "蓄えは空ではなく、今は当てはまらない", "reason": "蓄えは十分にあるから"},
+  {"id": "L209", "agree": false, "against": "蓄えが十分あるので倉から出させる必要はない", "reason": "今は蓄えが 600 日分以上あるから"}
+ ],
+ "year_name": "病で多くを失った年",
+ "feeling": "子を亡くした悲しみはまだ残るけれど、残った二人の娘のためにも、みんなで畑を刈りきりたい。"}

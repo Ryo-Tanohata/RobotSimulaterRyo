@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "畑が実っている。夏のうちに刈り切らないと落ちてしまうよ。手の空いた人は夕方ごとに刈ろう。わたしも毎夕60つかみ刈る。"}, {"to": "ホミ11", "text": "いっしょに畑で働こう。草の種を落とさずに、冬の蓄えにしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ホミ11"], "why": "実った畑を夏のうちに刈り切って、蓄えを守るため"}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "accept": {"トナ22": true}, "family": {"ホミ11": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れに人手が要るから"}}, "keep": false,
+ "judge": {"M398": "ゆるす", "M399": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "answer_demand": {"Q102": "払う"}, "ally": null, "share": null,
+ "knowledge": [{"op": "add", "text": "畑は夏のうちに刈らないと落ちてしまう。毎夕刈るのがよい。", "because": [929107], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "畑がよく実っている。刈り入れで体を動かすのが楽しみだ。"}
