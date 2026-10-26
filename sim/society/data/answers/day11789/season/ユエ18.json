@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬は木の実がない。おれは北川で魚を狙う。蓄えの種を減らさずに済むようにな。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": [], "why": "狩りの腕には自信がある。冬の前に魚を取って蓄えの草の種を温存する"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬は木の実が実らないので、秋のうちに魚と木の実を集めておくとよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいておかないと夏に実らない"}],
+ "feeling": "体は動く。川で大物を狙うのが楽しみだ。"}

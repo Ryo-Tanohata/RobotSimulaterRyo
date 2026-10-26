@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "ヤギはいま 138 頭で、草で養える数の中に収まったね。この秋はつぶさずに、畑にまいて草取りをがんばろう。"}, {"to": "ムイ9", "text": "夏に刈り残した草の種がずいぶん落ちたね。次の夏は鎌をそろえて、みんなで早めに刈ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ムイ9", "セヤ11"], "why": "秋にまいた畑は草取りをするほど夏の実りが増えるから、続けて畑の草を取る"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "ヤギが 138 頭で草で養える数 (約140頭) の中に収まった。いまはつぶさなくてよい", "because": [], "confidence": 0.8}, {"op": "add", "text": "夏に刈り残した畑の草の種が、合わせて 3 万つかみほど落ちてしまった", "because": [957544, 957551, 957553, 957557], "confidence": 0.8}, {"op": "add", "text": "土器に入れていても、蓄えの草の種は 1 季節に約 13000 つかみ傷む", "because": [957562], "confidence": 0.8}],
+ "proposal": {"text": "次の夏は、刈り入れのはじめの日から手の空いた大人はみな鎌で毎夕刈り、刈り残しを夏の終わりまでに出さないようにしよう。落ちる草の種をなくすため。", "because": [957544, 957551, 957553, 957557], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L284", "agree": false, "against": "いまヤギは 138 頭で、草で養える数の中に収まっているから", "reason": "もうつぶす分がない"},
+  {"id": "L283", "agree": false, "against": "いまヤギは 138 頭で、草で養える数の中に収まっているから", "reason": "もうつぶす分がない"},
+  {"id": "L276", "agree": false, "against": "いまはヤギが多すぎないから", "reason": "今の数なら草が足りる"},
+  {"id": "L275", "agree": false, "against": "いまはヤギが多すぎないから", "reason": "今の数なら草が足りる"},
+  {"id": "L274", "agree": false, "against": "いまはヤギが多すぎないから", "reason": "今の数なら草が足りる"},
+  {"id": "L269", "agree": true, "against": "", "reason": "春に子が生まれて多すぎたら、やせる前に食べ物にするのはよいから"},
+  {"id": "L237", "agree": true, "against": "", "reason": "夏にみんなで鎌で刈れば、草の種が落ちずにすむ"},
+  {"id": "L227", "agree": true, "against": "", "reason": "刈り残しを減らせるから"},
+  {"id": "L226", "agree": true, "against": "", "reason": "世話が足りないとヤギがいなくなるから"},
+  {"id": "L219", "agree": false, "against": "いまは蓄えが十分にあり、倉から取り立てる必要はない", "reason": "蓄えは 490 日分ほどある"},
+  {"id": "L209", "agree": false, "against": "いまは蓄えが空ではない", "reason": "必要ない"}
+ ],
+ "feeling": "蓄えもたっぷりあって、ヤギも落ち着いた。子どもたちのために、畑を育てていこう。"}

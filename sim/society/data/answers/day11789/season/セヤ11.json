@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "ヤギはいま 138 頭で、草で養える数にちょうど収まっている。この秋はつぶさずに、畑にまいて草取りに手をかけよう。"}, {"to": "トナ2", "text": "秋の畑、いっしょに草取りしよう。去年も刈り残しが落ちたから、今年は実りを増やしたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["トナ2"], "why": "秋にまいた畑は草取りをするほど夏に多く実るから、続けて畑で働く"}, "sow": 1000, "pick": 20, "plant": 2, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "いまヤギは 138 頭で、草で養える約 140 頭に収まっている", "because": [], "confidence": 0.9}, {"op": "add", "text": "去年の夏も刈り残した草の種が何度も落ちた。刈る手が足りない", "because": [957544, 957551, 957553, 957557], "confidence": 0.8}],
+ "proposal": {"text": "この秋のはじめに、大人はみな蓄えの草の種を 1000 つかみずつ畑にまき、冬と春は毎日だれか二人が交代で草取りをしよう。ヤギは草で養える数 (約 140 頭) に収まっているので、この秋はつぶさずに残そう。", "because": [957562], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L269", "agree": true, "reason": "春に子ヤギが増えた分を夏のはじめにつぶすのは、やせていなくなるよりよい"},
+  {"id": "L283", "agree": false, "against": "草で養えるのは約 140 頭で、110 頭ではない", "reason": "数が古い"},
+  {"id": "L284", "agree": false, "against": "草で養えるのは約 140 頭で、110 頭ではない", "reason": "数が古い"},
+  {"id": "L274", "agree": false, "against": "いまヤギは 138 頭で、つぶす分はない", "reason": "今の数に合わない"},
+  {"id": "L275", "agree": false, "against": "いまヤギは 138 頭で、つぶす分はない", "reason": "今の数に合わない"},
+  {"id": "L276", "agree": false, "against": "いまヤギは 138 頭で、つぶす分はない", "reason": "今の数に合わない"},
+  {"id": "L238", "agree": true, "reason": "世話が足りないとヤギがいなくなるから"},
+  {"id": "L221", "agree": true, "reason": "刈り残しが落ちないように、夏はみなで刈りたい"},
+  {"id": "L239", "agree": true, "reason": "わたしの家にも住まいがなく、雨の夜に濡れたくない"}
+ ],
+ "feeling": "年をとって疲れはたまるが、畑と子どもたちのために、もうひと働きしよう。"}
