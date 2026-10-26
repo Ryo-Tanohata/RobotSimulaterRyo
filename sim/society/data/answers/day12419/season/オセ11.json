@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "冬は木の実がならないから、おれは畑の草取りをする。春をこえて夏に実るよう、畑を守っておく。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬は木の実が取れない。育っている畑の草取りをする人が少ないと実りが減るから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソナ24": true},
+ "family": {
+  "ナセ11": {"activity": "畑仕事", "place": "camp", "why": "冬は木の実がないので、畑の草取りで夏の実りを増やす"},
+  "ヌオ17": {"activity": "狩り", "place": "北丘12", "why": "狩りが上手で、冬もけものはいるから"},
+  "ユエ17": {"activity": "狩り", "place": "北丘12", "why": "狩りが上手なので、ヌオ17と二人で行けば安心だから"},
+  "リセ19": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので、キャンプの近くで畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M413": "ゆるす"},
+ "feast": false,
+ "leader": null,
+ "seal_store": false,
+ "demand": null,
+ "share": null,
+ "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬は木の実がならないので、畑の草取りや狩りで冬を越す", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L314", "against": "", "agree": true, "reason": "畑にまいて木の実を蓄えに入れるのは冬を越すのに役立つから"}],
+ "feeling": "静かに畑を見ていたい。冬を無事にこえられればいい。"}

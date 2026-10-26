@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは外が寒いから、わたしはキャンプで土器を焼くよ。草の種を虫から守れるからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、冬は実りがないので蓄えの草の種を守る土器を増やしたい"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソナ24": true},
+ "family": {
+  "ナセ16": {"activity": "土器づくり", "place": "camp", "why": "キャンプで一緒に土器を作れば、早く数がそろう"},
+  "キサ18": {"activity": "土器づくり", "place": "camp", "why": "寒い冬は火のそばの仕事が安全"},
+  "ソナ19": {"activity": "採集", "place": "南川12", "why": "採集が得意で、冬も川の魚や芋を探せる"},
+  "セヤ19": {"activity": "土器づくり", "place": "camp", "why": "採集が苦手なので、キャンプで土器を手伝う"}
+ },
+ "keep": false,
+ "judge": {"M413": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもあって落ち着いている。静かに土器を焼いて冬を越したい。"}

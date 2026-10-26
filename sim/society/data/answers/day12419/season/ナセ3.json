@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、わたしは土器を焼き続ける。草の種を守る器は、まだまだ足りないからね。"}, {"to": "トナ18", "text": "道具を直すのは上手になったね。春の前に鎌もいくつか見てやっておくれ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意で、冬は畑も木の実も動かないので、草の種を虫やネズミから守る器を増やすのがいちばん役に立つ。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソナ24": true},
+ "family": {"リセ11": {"activity": "土器づくり", "place": "camp", "why": "採集が上手でも冬は実がないので、土器づくりを手伝って器を増やす。"}, "アコ13": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで夏の実りが増えるので、畑の世話をする。"}, "トナ18": {"activity": "道具づくり", "place": "camp", "why": "道具を直すのが得意で、夏の刈り入れに向けて鎌を整えておく。"}},
+ "keep": false,
+ "judge": {"M413": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるし体も軽い。冬は土器をこつこつ焼いて過ごそう。"}
