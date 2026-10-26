@@ -221,6 +221,83 @@ def _leave_desert(state):
 
 STRONG_KCAP = 10 ** 6  # 強い集落は地図の K で縮まない (実験 A1 の「大きい隣」と同じ)
 
+# ---------------- G8 の続き「重い押し」(2026-10-25 本人が決めた。docs/society_phase/G8_heavy_design.md) ----------------
+# step.py heavy on で g7.heavy = {"day": D, "share": 0.2} を入れた日から働く (なければ何もしない。1 回の走りの中では消さない)。
+# 強い集落の、村への求めの量は「村の去年の刈り入れの 2 割」。村がもう払っていれば「増やせ」と新しく求める (region.raise_demand)。
+# 重い量で払う貢ぎ (tie.heavy) は、年の終わりごとに、その年の刈り入れで数え直す
+HEAVY_SHARE = 0.2  # 本人の決め (2026-10-25): 去年の刈り入れの 2 割
+
+
+def harvest_year(state, day=None):
+    """村の、その年の刈り入れ (草の種のつかみ): 前の年の秋にまいた畑 (era2.fields の day が前の年) から刈った量 (harvested) の合わせ。
+    畑は秋にまいて、次の年の夏に実り、夏と秋に刈る (era2._field_season) ので、年の終わりの日には、その年の刈り入れがみな数に入っている。
+    day: その年の日 (なければ今日)。家の畑も村の畑も合わせる"""
+    y = (state["day"] if day is None else day) // YEAR
+    lo, hi = (y - 1) * YEAR, y * YEAR
+    return sum(f.get("harvested", 0) for f in state["era2"]["fields"] if lo <= f["day"] < hi)
+
+
+def heavy_now(state):
+    """重い押しの、今の求め (region.year_end・raise_demand に渡す形 {"from", "to", "amount", "harvest"})。重い押しがなければ None。
+    年の終わりの日 (と、年の集まりの日の step.py heavy) に読む: その日に終わる年の刈り入れ (= 次の年から見て「去年の刈り入れ」) の 2 割"""
+    g = _g(state)
+    hv = g.get("heavy")
+    if not hv or not g.get("strong") or state["day"] < hv["day"]:
+        return None
+    h = harvest_year(state)
+    return {"from": g["strong"], "to": "V0", "amount": max(1, round(hv["share"] * h)), "harvest": h}
+
+
+def heavy_refusal(state):
+    """step.py heavy on ができないわけ (できるなら None)"""
+    if not state.get("era2") or "g7" not in state["era2"] or state.get("era") != "G8":
+        return f"重い押しは G8 のときだけ (今は {state.get('era')})"
+    if state["phase"] != "season":
+        return f"段階が season でない (今は {state['phase']})"
+    g = _g(state)
+    if not g.get("strong") or not any(o["id"] == g["strong"] and not o.get("gone") for o in _others(state)):
+        return "強い集落がいない"
+    return None
+
+
+def heavy_on(state, share=HEAVY_SHARE, answered=False):
+    """重い押しを入れる (step.py heavy on から 1 回だけ。乱数は使わない)。g7.heavy に残し、出来事「集落」(村が知る) を書く。
+    年の集まりの歩 (年の終わりの日。地域の 1 年はもう回って、村の答えを待っている) で、まだ答えがなければ (answered が False)、
+    その日に「増やせ」の求めを出す (この年の集まりで答える)。ほかの日なら、次の年の終わりに出す。戻り値: その日に出した求め (なければ None)"""
+    g, D = _g(state), state["day"]
+    g["heavy"] = {"day": D, "share": share}
+    o = next(x for x in _others(state) if x["id"] == g["strong"])
+    log(state, "集落", None, f"{o['name']} ({o['id']}) の長が、まわりの村から集める物を、ずっと多くすると言いだした。"
+        f"これからは、毎年その村の刈り入れの {round(share * 10)} 割を出させるという", other=o["id"], heavy=share)
+    if not region_on(state) or (D + 1) % YEAR or g.get("ask") != "年" or answered:
+        return None
+    reg, hv = _reg(state), heavy_now(state)
+    setts, out = _setts(state), []
+    q = region.raise_demand(reg, setts, hv, D, out, pending=True)
+    if q:
+        q["harvest"] = hv["harvest"]
+    _region_after(state, setts, out)
+    return q
+
+
+def heavy_year(state):
+    """年の終わり (region_year のはじめ): 重い量で払っている貢ぎ (tie.heavy) の量を、この年の刈り入れの 2 割に数え直す (出来事「貢ぎ」に残す)。
+    戻り値: region.year_end に渡す重い押し (なければ None)"""
+    hv = heavy_now(state)
+    if not hv:
+        return None
+    reg = _reg(state)
+    for t in region.ties_on(reg):
+        if t["payer"] == "V0" and t["payee"] == hv["from"] and t.get("heavy") and t["goods"].get("草の種") != hv["amount"]:
+            old = t["goods"].get("草の種", 0)
+            t["goods"] = {"草の種": hv["amount"]}
+            t.setdefault("recount", []).append([state["day"], old, hv["amount"], hv["harvest"]])
+            o = next((x for x in _others(state) if x["id"] == t["payee"]), None)
+            log(state, "貢ぎ", None, f"{o['name'] if o else 'ほかの村'} に出す貢ぎ [{t['id']}] は、この年の村の刈り入れ (草の種 {hv['harvest']} つかみ) の "
+                f"{round(_g(state)['heavy']['share'] * 10)} 割で、毎年 草の種 {hv['amount']} つかみ になった (前は {old} つかみ)",
+                region=True, tie=t["id"], amount=hv["amount"], old=old, harvest=hv["harvest"])
+    return hv
+
 
 def enter_next(state):
     """次の G の待ち・部の終わりから、次の G に入る (G8 から。その G のコードを入れたあと)。G7 に入るのは enter"""
@@ -1953,8 +2030,12 @@ def region_year(state):
         return
     reg, D = _reg(state), state["day"]
     y = (D + 1) // YEAR
+    hv = heavy_year(state) if _g(state).get("heavy") else None  # G8 の重い押し (2026-10-25。なければ前のまま)
     setts = _setts(state)
-    out = region.year_end(reg, setts, era2._rng(state, era2.REGION_SALT), y, D, out=[])
+    out = region.year_end(reg, setts, era2._rng(state, era2.REGION_SALT), y, D, out=[], **({"heavy": hv} if hv else {}))
+    for q in reg.get("demands", []) if hv else ():
+        if q.get("heavy") and q["day"] == D and "harvest" not in q:
+            q["harvest"] = hv["harvest"]
     _sick_year(state, setts, y, out)
     _region_after(state, setts, out)
     _yoru(state, y)
@@ -2402,14 +2483,20 @@ def region_text(state):
     rows = []
     for o in known:
         ties = [t for t in reg.get("ties", []) if t["status"] == "続く" and "V0" in (t["payer"], t["payee"]) and o["id"] in (t["payer"], t["payee"])]
-        tie = "".join(f"。毎年 村が {region._goods(t['goods'])} を出している [{t['id']}]" if t["payer"] == "V0" else
+        tie = "".join(f"。毎年 村が {region._goods(t['goods'])} を出している [{t['id']}]"
+                      + (f" (村の 1 年の刈り入れの {round(_g(state)['heavy']['share'] * 10)} 割。年の終わりごとに数え直す)" if t.get("heavy") else "")
+                      if t["payer"] == "V0" else
                       f"。毎年 村に {region._goods(t['goods'])} を出している [{t['id']}]" for t in ties)
         rows.append(f"- {o['id']} {o['name']} ({o['way']}歩いて {o['days']} 日): 約 {round(o['people'], -1) if o['people'] >= 20 else o['people']} 人"
                     + ("・まわりに土の壁" if o.get("walls") is not None else "") + (f"・牛 {int(o['cattle_f'])} 頭ほど" if int(o.get("cattle_f", 0)) >= 1 else "") + tie)
     for q in reg.get("demands", []):
         if q["to"] == "V0" and not q.get("end"):
             a = next((o for o in known if o["id"] == q["from"]), None)
-            rows.append(f"- 求め [{q['id']}]: {a['name'] if a else 'ほかの村'} が、毎年 {region._goods(q['what'])} を出すように村に求めている (answer_demand で答える)")
+            rows.append(f"- 求め [{q['id']}]: {a['name'] if a else 'ほかの村'} が、毎年 {region._goods(q['what'])} を出すように村に求めている"
+                        + (f" (いま出している {region._goods(q['old'])} [{q['raise']}] を、これに増やせという求め" if q.get("raise") else "")
+                        + (f"{'。' if q.get('raise') else ' ('}村のこの 1 年の刈り入れ 草の種 {q['harvest']} つかみ の {round(_g(state)['heavy']['share'] * 10)} 割)"
+                           if q.get("heavy") and q.get("harvest") is not None else (")" if q.get("raise") else ""))
+                        + " (answer_demand で答える)")
     for w in reg.get("wars", []):
         if w.get("done") is not None and w["done"] > D - 2 * YEAR and not w.get("called_off") and "V0" in (w["att"], w["def"]):
             o = next((x for x in _others(state) if x["id"] in (w["att"], w["def"])), None)

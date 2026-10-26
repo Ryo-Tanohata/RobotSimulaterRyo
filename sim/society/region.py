@@ -174,6 +174,7 @@ DEMAND_SHARE, YEARS_COST, UNIT_YEARS = 0.2, 5, 10  # 7・8: 量は相手の毎�
 FIGHT_SHARE, TRIB_TROOPS, WALL_DEF, HILL_DEF, WAR_EXP = 0.25, 0.5, 1.5, 1.2, 1.5  # 9: 戦える人 0.25 × 人・従う集落の兵 0.5 倍・城壁 ×1.5・丘 ×1.2・比の形の 1.5
 WIN_DEATH, LOSE_DEATH, LOOT = (0.02, 0.08), (0.10, 0.25), (0.3, 0.5)  # 9: 戦う人のうち死ぬ割合 (勝った側・負けた側。Keeley 1996【記憶】)・取られる蓄えとヤギ
 WAR_DAYS = (10, 50)  # 9: 戦の日は年の 10〜50 日目 (夏の 11 日目〜秋の 21 日目)
+RAISE_WAR_DAY = 30  # G8 の重い押し (2026-10-25): 「増やせ」の求めを断られたときの戦の日は、年の 30 日目 (WAR_DAYS のまん中。乱数は引かない。step.py heavy の日にも同じに決める)
 COMMIT_PAY, COMMIT_WITH, COMMIT_AGAINST, ALLY_AT = 0.1, 0.1, -0.2, 0.5  # 10: 結びつき (Axelrod【記憶】)。0.5 以上を同盟とよぶ
 GONE_AT = 5  # 11: 5 人未満でなくなる
 CATTLE_GROW, CATTLE_MAX_PER = 1.2, 4  # 4.F の 5: 牛は年に 2 割ふえ、人 4 人に 1 頭まで (小数)
@@ -349,11 +350,12 @@ def _name(s):
 
 # ---------------- 年の終わり (年の最後の日の季節の終わり。塩 59 の列。4.G.1 の 8) ----------------
 
-def year_end(R, setts, rng, year, day, grow_village=False, village_demand=None, out=None):
+def year_end(R, setts, rng, year, day, grow_village=False, village_demand=None, out=None, heavy=None):
     """地域の 1 年 (決まりの計算と乱数だけ。集まりが答えうる分かれ目は待ち R["pending"] にする)。
     引く順: 増減 (集落の番号の順。1 人ずつ 2 回) → 役の段 (長が代わるか) → 分かれる・出ていく → 動く順を混ぜる → 戦の日 (求めごと) → seed。
     grow_village: 川辺の村 (V0) も決まりで増減させる (掃き出しだけ。本物の村は era2 が 1 人ずつ計算する)。
-    village_demand: 掃き出しの村の動き方 ("いつも" = 毎年いちばん弱い相手に求める / None = 求めない (本物の村の求めは答えから))"""
+    village_demand: 掃き出しの村の動き方 ("いつも" = 毎年いちばん弱い相手に求める / None = 求めない (本物の村の求めは答えから))。
+    heavy: G8 の重い押し (2026-10-25) の {"from": 強い集落, "to": "V0", "amount": 重い量} (g7.heavy_now が作る)。None ならいつもと同じ"""
     out = [] if out is None else out
     by = _by(setts)
     live = _live(setts)
@@ -427,6 +429,8 @@ def year_end(R, setts, rng, year, day, grow_village=False, village_demand=None, 
             s["walls"] = day
             _ev(out, "城壁", f"{_name(s)} は、まわりに土の壁を積んだ", [s["id"]], who_id=s["id"])
     # 7. 求める (1 年に 3 割の集落が動く。動く順は乱数で混ぜる)
+    if heavy:  # G8 の重い押し (2026-10-25): もう払っている村に「増やせ」と求める (乱数は引かない。ほかの集落の求めより先に)
+        raise_demand(R, setts, heavy, day, out)
     actors = [s for s in live if not s.get("village")]
     rng.shuffle(actors)
     actors = actors[:round(ACT_SHARE * len(actors))]
@@ -435,23 +439,18 @@ def year_end(R, setts, rng, year, day, grow_village=False, village_demand=None, 
     actors += [s for s in live if s.get("strong") and s not in actors]  # G8 の強い集落は毎年動く (2026-10-25。外からの押し)
     new = []
     for a in actors:
-        q = _demand_target(R, setts, a, "求める" if a.get("village") else a.get("stance", "ふつう"), skip={x["to"] for x in new})
+        q = _demand_target(R, setts, a, "求める" if a.get("village") else a.get("stance", "ふつう"), skip={x["to"] for x in new}, heavy=heavy)
         if q:
             new.append(q)
     for q in new:  # 戦の日 (求めごと。これからの年の 10〜50 日目。年は day + 1 から)
         q["war_day"] = day + rng.randint(*WAR_DAYS)
-    for a_id, t_id, amt, war_day in [(q["from"], q["to"], q["amount"], q["war_day"]) for q in new]:
-        add_demand(R, by[a_id], by[t_id], {"草の種": amt}, day, war_day=war_day, then="戦う", out=out)
+    for a_id, t_id, amt, war_day, hv in [(q["from"], q["to"], q["amount"], q["war_day"], q.get("heavy")) for q in new]:
+        add_demand(R, by[a_id], by[t_id], {"草の種": amt}, day, war_day=war_day, then="戦う", out=out, **({"extra": {"heavy": True}} if hv else {}))
     # 8. 求めへの答え (待ち)
     for q in sorted(open_demands(R), key=lambda q: (num(q["to"]), int(q["id"][1:]))):
         if q.get("answer") or q["to"] not in by or q["from"] not in by:
             continue
-        c, ally, ref = costs(R, setts, by[q["to"]], by[q["from"]], q["what"]["草の種"])
-        allowed = None if not by[q["to"]].get("village") else ("払う", "助けを頼む", "戦う")  # 川辺の村は村ごとは逃げない (家ごとに出る。4.B.5)
-        rule = pick(c, allowed)
-        srt = sorted(v for k, v in c.items() if allowed is None or k in allowed)
-        pend.append({"kind": "求めへの答え", "demand": q["id"], "who": q["to"], "rule": rule, "ally": ally, "refuge": ref is not None,
-                     "costs": {k: round(v, 4) for k, v in c.items()}, "close": len(srt) > 1 and _close(srt[0], srt[1])})
+        pend.append(_answer_pending(R, setts, q))
     R["pending"] = pend
     # 集まりの分かれ目 (村がかかわるものを先に。6 体まで)
     R["councils"] = choose_councils(R, setts, day)
@@ -460,6 +459,46 @@ def year_end(R, setts, rng, year, day, grow_village=False, village_demand=None, 
 
 
 YEAR_DAYS = 120
+
+
+def _answer_pending(R, setts, q):
+    """求めへの答えの待ち (8。年の終わりと、step.py heavy の日の「増やせ」の求め): 決まりの手 (損のいちばん小さい手) と損"""
+    by = _by(setts)
+    c, ally, ref = costs(R, setts, by[q["to"]], by[q["from"]], q["what"]["草の種"])
+    allowed = None if not by[q["to"]].get("village") else ("払う", "助けを頼む", "戦う")  # 川辺の村は村ごとは逃げない (家ごとに出る。4.B.5)
+    rule = pick(c, allowed)
+    srt = sorted(v for k, v in c.items() if allowed is None or k in allowed)
+    return {"kind": "求めへの答え", "demand": q["id"], "who": q["to"], "rule": rule, "ally": ally, "refuge": ref is not None,
+            "costs": {k: round(v, 4) for k, v in c.items()}, "close": len(srt) > 1 and _close(srt[0], srt[1])}
+
+
+def heavy_tie(R, heavy):
+    """G8 の重い押し: 村 (heavy["to"]) が強い集落 (heavy["from"]) に出している、続く貢ぎ (なければ None。番号の若いもの)"""
+    return next((t for t in sorted(ties_on(R), key=lambda t: int(t["id"][1:])) if t["payer"] == heavy["to"] and t["payee"] == heavy["from"]), None)
+
+
+def raise_demand(R, setts, heavy, day, out, pending=False):
+    """G8 の重い押し (2026-10-25): 村がもう強い集落に貢いでいて、その貢ぎがまだ重い量でない (tie.heavy がない) なら、強い集落が「増やせ」と
+    新しく求める (量は heavy["amount"]。断られたら年の 30 日目に戦)。ふつうの求めと同じに、強い集落が村の 1.5 倍以上強いときだけ。
+    答えの済んでいない求めが村にあれば求めない。pending: 求めへの答えの待ちも、ここで足す (step.py heavy の日。年の終わりは 8. で足す)。
+    戻り値: 求め (なければ None)"""
+    by = _by(setts)
+    a, t = by.get(heavy["from"]), by.get(heavy["to"])
+    if not a or not t or a.get("gone") or t.get("gone") or a["people"] <= 0 or t["people"] <= 0:
+        return None
+    tie = heavy_tie(R, heavy)
+    if not tie or tie.get("heavy") or any(q["to"] == t["id"] for q in open_demands(R)):
+        return None
+    if strength(R, by, a) < DEMAND_RATIO["ふつう"] * strength(R, by, t, defend=True):
+        return None
+    qid = f"Q{R.get('next_demand', 1)}"
+    q = add_demand(R, a, t, {"草の種": heavy["amount"]}, day, war_day=(day + 1) // YEAR_DAYS * YEAR_DAYS + RAISE_WAR_DAY, then="戦う", out=out,
+                   who_text=f"{_name(a)} が {_name(t)} に、毎年出している {_goods(tie['goods'])} [{tie['id']}] を増やし、"
+                            f"毎年 {_goods({'草の種': heavy['amount']})} を出すように求めた [{qid}]",
+                   extra={"heavy": True, "raise": tie["id"], "old": dict(tie["goods"])})
+    if pending:
+        R.setdefault("pending", []).append(_answer_pending(R, setts, q))
+    return q
 
 
 def _stops(s, t, stop, pay):
@@ -478,10 +517,11 @@ def stop_costs(R, setts, t):
     return stop, pay
 
 
-def _demand_target(R, setts, a, stance, skip=()):
+def _demand_target(R, setts, a, stance, skip=(), heavy=None):
     """求める相手 (7): 届く範囲で、自分の上でなく、もう貢いでいない、いちばん弱い相手。自分がその 1.5 倍 (構えが「求める」なら 1.2 倍) 以上強いとき。
     【仮定】(設計になかったので足した): 答えの済んでいない求めがある相手と、この年にもう求められた相手 (skip) には求めない
-    (8 の損のくらべは、求めが 1 つのときの形なので。2026-10-17 の写しの試しで、いちばん弱い 1 つの村に 4 つの村が同じ年に求めた)"""
+    (8 の損のくらべは、求めが 1 つのときの形なので。2026-10-17 の写しの試しで、いちばん弱い 1 つの村に 4 つの村が同じ年に求めた)。
+    heavy: G8 の重い押し (2026-10-25)。強い集落 (heavy["from"]) が村 (heavy["to"]) に求める量は、重い量 (heavy["amount"]。相手えらびも、この量でくらべる)"""
     if stance == "守る" or a["people"] <= 0:
         return None
     by = _by(setts)
@@ -497,8 +537,12 @@ def _demand_target(R, setts, a, stance, skip=()):
         ok = [t for t in cands if Sa >= k * strength(R, by, t, defend=True)]
         if not ok:
             return None
-        t = max(ok, key=lambda t: (amount_of(t), -num(t["id"])))
-        return {"from": a["id"], "to": t["id"], "amount": amount_of(t)}
+        hv = heavy if heavy and heavy["from"] == a["id"] else None
+
+        def amt(t):
+            return heavy["amount"] if hv and t["id"] == hv["to"] else amount_of(t)
+        t = max(ok, key=lambda t: (amt(t), -num(t["id"])))
+        return {"from": a["id"], "to": t["id"], "amount": amt(t), **({"heavy": True} if hv and t["id"] == hv["to"] else {})}
     t = min(cands, key=lambda t: (strength(R, by, t, defend=True), num(t["id"])))
     if strength(R, by, a) < DEMAND_RATIO.get(stance, DEMAND_RATIO["ふつう"]) * strength(R, by, t, defend=True):
         return None
@@ -509,11 +553,11 @@ def open_demands(R):
     return [q for q in R.get("demands", []) if not q.get("end")]
 
 
-def add_demand(R, a, t, what, day, war_day=None, then="戦う", out=None, who_text=None):
-    """求めを足す (Q 番号)。war_day: 断られたら戦をする日"""
+def add_demand(R, a, t, what, day, war_day=None, then="戦う", out=None, who_text=None, extra=None):
+    """求めを足す (Q 番号)。war_day: 断られたら戦をする日。extra: 求めに足す鍵 (G8 の重い押しの heavy・raise・old)"""
     R["next_demand"] = R.get("next_demand", 1)
     q = {"id": f"Q{R['next_demand']}", "from": a["id"], "to": t["id"], "what": dict(what), "day": day, "then": then, "war_day": war_day,
-         "answer": None, "how": None, "end": None}
+         "answer": None, "how": None, "end": None, **(extra or {})}
     R["next_demand"] += 1
     R.setdefault("demands", []).append(q)
     for s in (a, t):
@@ -672,10 +716,16 @@ def answer(R, setts, q, ch, ally, day, how, out, make=None):
     by = _by(setts)
     a, t = by[q["from"]], by[q["to"]]
     q.update(answer=ch, how=how, answer_day=day)
-    if ch == "払う":
+    old = next((x for x in ties_on(R) if x["id"] == q["raise"]), None) if q.get("raise") else None
+    if ch == "払う" and old:  # G8 の重い押し (2026-10-25): 「増やせ」に払うと答えた: 今の貢ぎの量を、求めの量にする (新しいつながりは作らない)
+        old.update(goods=dict(q["what"]), heavy=True, raised=day, raise_demand=q["id"])
+        q["end"] = day
+        _ev(out, "貢ぎ", f"{_name(t)} は、{_name(a)} の求め [{q['id']}] に、毎年 {_goods(q['what'])} に増やして出すと答えた ({how}) [{old['id']}]",
+            [t["id"], a["id"]], demand=q["id"], tie=old["id"], how=how)
+    elif ch == "払う":
         R["next_tie"] = R.get("next_tie", 1)
         tie = {"id": f"K{R['next_tie']}", "payer": t["id"], "payee": a["id"], "goods": dict(q["what"]), "since": day, "due": "夏の集まりの日",
-               "paid": [], "missed": 0, "status": "続く", "end": None, "fixed": None, "demand": q["id"]}
+               "paid": [], "missed": 0, "status": "続く", "end": None, "fixed": None, "demand": q["id"], **({"heavy": True} if q.get("heavy") else {})}
         R["next_tie"] += 1
         R.setdefault("ties", []).append(tie)
         q["end"] = day
@@ -826,15 +876,21 @@ def fight(R, setts, w, rng, day, own=None, out=None):
              fighters={a["id"]: fa, d["id"]: fd})
     if q:
         q.update(end=day, result="勝った" if win else "負けた")
-    if win and q:  # 守る側が負ければ貢ぐ集落になる (今年の分は取られた物。払うのは次の夏から)
+    old = next((x for x in ties_on(R) if x["id"] == q["raise"]), None) if q and q.get("raise") else None
+    if win and q and old:  # G8 の重い押し (2026-10-25): 「増やせ」を断って負けた: 今の貢ぎの量を、求めの量にする (払うのは次の夏から)
+        old.update(goods=dict(q["what"]), heavy=True, raised=day, raise_demand=q["id"])
+        w["tie"] = old["id"]
+    elif win and q:  # 守る側が負ければ貢ぐ集落になる (今年の分は取られた物。払うのは次の夏から)
         R["next_tie"] = R.get("next_tie", 1)
         tie = {"id": f"K{R['next_tie']}", "payer": d["id"], "payee": a["id"], "goods": dict(q["what"]), "since": day, "due": "夏の集まりの日",
-               "paid": [], "missed": 0, "status": "続く", "end": None, "fixed": None, "demand": q["id"], "by_war": w["id"]}
+               "paid": [], "missed": 0, "status": "続く", "end": None, "fixed": None, "demand": q["id"], "by_war": w["id"], **({"heavy": True} if q.get("heavy") else {})}
         R["next_tie"] += 1
         R.setdefault("ties", []).append(tie)
         w["tie"] = tie["id"]
     _ev(out, "戦", f"{_name(a)} が {_name(d)} を攻め、{_name(winner)} が勝った (死んだ人 {_name(a)} {dead[a['id']]}・{_name(d)} {dead[d['id']]})",
         [a["id"], d["id"]] + list(allies), war=w["id"], att_win=win)
+    if not win and old:  # G8 の重い押し: 「増やせ」を断って勝った: 今の貢ぎもやめる
+        end_tie(R, setts, old, day, "戦に勝った", out)
     if not win:
         recheck(R, setts, a["id"], day, out)
     collapse(R, setts, day, out)

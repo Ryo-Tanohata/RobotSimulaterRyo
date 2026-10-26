@@ -12,6 +12,9 @@
   python sim/society/step.py next_part --closed-by-decision "<本人の言葉>" [--fill F]
                                                  G6 を、町の条件がそろわないまま本人の決めで閉じたとき (2026-10-17) に、G7 に入る。
                                                  閉じたことを出来事「フェーズ」と g6.closed に残してから入る (止まっていなくてよい。G6 のときだけ)
+  python sim/society/step.py heavy on             G8 の続き「重い押し」を入れる (2026-10-25 本人の決め。docs/society_phase/G8_heavy_design.md。G8 のときだけ。
+                                                 入れたら消さない)。強い集落の村への求めを「村の去年の刈り入れの 2 割」にする。年の集まりの歩で、
+                                                 まだ答えがなければ、その日に「増やせ」の求めを出して、お題を書き直す (ほかの日なら、次の年の終わりに出す)
   python sim/society/step.py who                 ワークフローのための、読むだけの状態の行 (DAY・PHASE・HOLD・MODE・MEET・NAMES・FEEL・COUNCIL・ASKLOG)
 
 お題は data/prompts/日/段階/名前.md、答えは data/answers/日/段階/名前.json に置く。
@@ -388,8 +391,8 @@ def export(state):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards"])
-    ap.add_argument("onoff", nargs="?", help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)。cards では、札の表を直したわけ (note)")
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards", "heavy"])
+    ap.add_argument("onoff", nargs="?", help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)。cards では、札の表を直したわけ (note)。heavy では on")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
     ap.add_argument("--closed-by-decision", dest="closed", default=None,
@@ -402,7 +405,7 @@ def main():
     a = ap.parse_args()
     if (a.world is not None or a.count is not None) and a.cmd != "next_part":
         sys.exit("--world と --count は next_part のときだけ書く")
-    if a.onoff and a.cmd not in ("ask_why", "cards"):
+    if a.onoff and a.cmd not in ("ask_why", "cards", "heavy"):
         sys.exit(f"on / off は ask_why のときだけ書く ({a.cmd} {a.onoff} とは書けない)")
     if a.cmd == "ask_why" and a.onoff not in (None, "on", "off"):
         sys.exit(f"ask_why には on か off を書く ({a.onoff} とは書けない)")
@@ -440,7 +443,8 @@ def main():
             fl = (g7.get("region") or {}).get("fill")
             print(f"次の答え: {ask} / G7 に入った日 {_yd(g7['start'])} / 史実のずれの直し {g7['fix_from']} 日目から / "
                   f"まわりの集落 {len(era2._g6(state)['others'])} (はじめに置いた集落 {len(fl['placed']) if fl else 0})"
-                  + (f" / 世界の選び {'・'.join(sorted(g7['world']))}" if g7.get("world") else "") + (f" / 段の数え方 {g7['count']}" if g7.get("count") else ""))
+                  + (f" / 世界の選び {'・'.join(sorted(g7['world']))}" if g7.get("world") else "") + (f" / 段の数え方 {g7['count']}" if g7.get("count") else "")
+                  + (f" / 重い押し {_yd(g7['heavy']['day'])}から (去年の刈り入れの {round(g7['heavy']['share'] * 10)} 割)" if g7.get("heavy") else ""))
         if state.get("era2"):  # 仕事の理由 (段階 1。2026-10-14 本人が決めた: 次に村を進めるときから。daily_run.md)
             log = state["era2"].get("ask_why_log")
             print(f"仕事の理由: {'たずねている' if state['era2'].get('ask_why') else 'たずねていない'} ({log[-1][0]} 日目のお題から)" if log
@@ -544,6 +548,30 @@ def main():
         save(state)
         export(state)
         print(f"札の表のハッシュを新しくした ({state['era2']['g7']['hints']['cards_sha'][:12]}…)。出来事「区切り」に残した")
+        return
+    if a.cmd == "heavy":  # 2026-10-25 (本人の決め): G8 の続き「重い押し」。g7.heavy に残し、出来事「集落」を書く。世界の乱数は引かない
+        import g7  # noqa: E402
+        if a.onoff != "on":
+            sys.exit("heavy には on を書く (step.py heavy on。重い押しは、入れたら 1 回の走りの中では消さない)")
+        why = g7.heavy_refusal(state)
+        if why:
+            print(f"heavy はできない: {why} (何も変えない)")
+            sys.exit(3)
+        if state["era2"]["g7"].get("heavy"):
+            print(f"重い押しは、もう入っている ({_yd(state['era2']['g7']['heavy']['day'])}から。何も変えない)")
+            return
+        answered = any(pdir(state, "season", "answers").glob("*.json")) or any(pdir(state, "feeling", "answers").glob("*.json"))
+        q = g7.heavy_on(state, g7.HEAVY_SHARE, answered)
+        save(state)
+        if not answered:
+            write_prompts(state, "season")  # 今の歩のお題を書き直す (重い押しの出来事と、「増やせ」の求め)
+        export(state)
+        _records(None)  # 記録を作り直す (控えの行は足さない)
+        print(f"* 重い押しを入れた ({_yd(state['day'])}): 強い集落の村への求めは、村の去年の刈り入れの {round(g7.HEAVY_SHARE * 10)} 割")
+        print(f"* {q['to']} への「増やせ」の求め [{q['id']}]: 毎年 草の種 {q['what']['草の種']} つかみ (いま [{q['raise']}] で {q['old']['草の種']} つかみ。"
+              f"この 1 年の刈り入れ {q['harvest']} つかみ)。この年の集まりで答える" if q else
+              "* 「増やせ」の求めは、次の年の終わりに出す (今は年の集まりの答えを待つ歩でないか、もう答えがある。か、村が払っていない・強さが足りない)")
+        _records_exit()
         return
     if a.cmd == "ask_why":  # 2026-10-14 (本人が決めた。docs/humanity の D09 の段階 1): 季節のお題で、主な仕事にした理由を一言たずねる
         #   このコマンドは世界 (乱数・出来事・蓄え) を変えない。why は世界の計算には使わない (同じ答えなら同じ世界。お題が変わるので、村の人の答えは変わりうる)。

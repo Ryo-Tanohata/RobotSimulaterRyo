@@ -2833,5 +2833,132 @@ class S_G8(unittest.TestCase):
         self.assertEqual([hints._stage_now({"era": e}) for e in ("G6", "G7", "G8", "G9", "G15")], [0, 0, 0, 1, 7])
 
 
+class T_G8Heavy(unittest.TestCase):
+    """2026-10-25 G8 の続き「重い押し」(docs/society_phase/G8_heavy_design.md): 去年の刈り入れの 2 割・「増やせ」の求め・毎年の数え直し。入れなければ前のまま"""
+
+    def world(self, paying=True):
+        R = {"ties": [], "demands": [], "wars": [], "pending": [], "gone": [], "log": [], "next_war": 1, "next_tie": 2, "next_demand": 5}
+        v0 = sett("V0", 100, (5, 5), village=True, kcap=10 ** 6, known=0, grain=10 ** 6)
+        big = sett("N9", 400, (5, 3), org=2, strong=True, kcap=10 ** 6)
+        others = [sett(f"N{i}", 30, (i, 9)) for i in range(1, 5)]
+        if paying:
+            R["ties"].append(dict(tie(1, "V0", "N9"), goods={"草の種": 2000}))
+        return R, [v0, big] + others
+
+    HV = {"from": "N9", "to": "V0", "amount": 90000}
+
+    def test_raise_year_end(self):
+        R, setts = self.world()
+        region.year_end(R, setts, random.Random(1), 91, 91 * 120 - 1, out=[], heavy=self.HV)
+        q = next(q for q in R["demands"] if q["to"] == "V0")
+        self.assertEqual((q["from"], q["what"], q["raise"], q["old"], q["heavy"]), ("N9", {"草の種": 90000}, "K1", {"草の種": 2000}, True))
+        self.assertEqual(q["war_day"], 91 * 120 + region.RAISE_WAR_DAY, "断られたら年の 30 日目に戦 (乱数なし)")
+        self.assertTrue(any(p["kind"] == "求めへの答え" and p["demand"] == q["id"] for p in R["pending"]))
+        R2, setts2 = self.world()
+        region.year_end(R2, setts2, random.Random(1), 91, 91 * 120 - 1, out=[])
+        self.assertFalse([q for q in R2["demands"] if q["to"] == "V0"], "重い押しがなければ、もう払っている村には求めない (前のまま)")
+        R3, setts3 = self.world()
+        R3["ties"][0]["heavy"] = True
+        region.year_end(R3, setts3, random.Random(1), 91, 91 * 120 - 1, out=[], heavy=self.HV)
+        self.assertFalse([q for q in R3["demands"] if q["to"] == "V0"], "もう重い量で払っていれば、増やせとは求めない (数え直しは g7.heavy_year)")
+
+    def test_same_without_heavy(self):
+        R1, s1 = self.world(False)
+        R2, s2 = self.world(False)
+        o1 = region.year_end(R1, s1, random.Random(3), 91, 91 * 120 - 1, out=[])
+        o2 = region.year_end(R2, s2, random.Random(3), 91, 91 * 120 - 1, out=[], heavy=None)
+        self.assertEqual((R1, s1, o1), (R2, s2, o2))
+
+    def test_not_paying_demand_heavy_amount(self):
+        R, setts = self.world(False)
+        q = region._demand_target(R, setts, setts[1], "ふつう", heavy=self.HV)
+        self.assertEqual((q["to"], q["amount"], q.get("heavy")), ("V0", 90000, True))
+        q0 = region._demand_target(R, setts, setts[1], "ふつう")
+        self.assertEqual((q0["amount"], q0.get("heavy")), (region.amount_of(setts[0]), None))
+        region.year_end(R, setts, random.Random(1), 91, 91 * 120 - 1, out=[], heavy=self.HV)
+        q = next(q for q in R["demands"] if q["to"] == "V0")
+        self.assertEqual((q["what"], q.get("heavy"), q.get("raise")), ({"草の種": 90000}, True, None))
+        region.answer(R, setts, q, "払う", None, 91 * 120, "決まり", [])
+        t = R["ties"][-1]
+        self.assertEqual((t["payer"], t["goods"], t.get("heavy")), ("V0", {"草の種": 90000}, True))
+
+    def test_answer_pay_raises_tie(self):
+        R, setts = self.world()
+        out = []
+        q = region.raise_demand(R, setts, self.HV, 91 * 120 - 1, out, pending=True)
+        self.assertIn("増やし", out[-1]["text"])
+        self.assertIn(q["id"], out[-1]["text"])
+        region.answer(R, setts, q, "払う", None, 91 * 120, "村の答え", out)
+        self.assertEqual(len(R["ties"]), 1, "新しいつながりは作らない")
+        t = R["ties"][0]
+        self.assertEqual((t["goods"], t["heavy"], t["status"], q["end"]), ({"草の種": 90000}, True, "続く", 91 * 120))
+        self.assertIsNone(region.raise_demand(R, setts, self.HV, 92 * 120 - 1, []), "もう重い量なら求めない")
+
+    def test_refuse_war(self):
+        for win in (True, False):
+            R, setts = self.world()
+            q = region.raise_demand(R, setts, self.HV, 91 * 120 - 1, [], pending=True)
+            region.answer(R, setts, q, "戦う", None, 91 * 120, "村の答え", [])
+            w = R["wars"][-1]
+
+            class Rng:
+                def random(self):
+                    return 0.0 if win else 0.999999
+
+                def uniform(self, a, b):
+                    return a
+            region.fight(R, setts, w, Rng(), w["day"], out=[])
+            t = R["ties"][0]
+            if win:
+                self.assertEqual((len(R["ties"]), t["goods"], t["heavy"], t["status"]), (1, {"草の種": 90000}, True, "続く"), "負けた: 今の貢ぎが重い量に")
+            else:
+                self.assertEqual((len(R["ties"]), t["status"], t["why"]), (1, "切れた", "戦に勝った"), "勝った: 今の貢ぎもやめる")
+
+    def real_g8(self):
+        st = real_state()
+        g = (st.get("era2") or {}).get("g7") or {}
+        if st.get("era") != "G8" or g.get("heavy") or g.get("ask") != "年" or (st["day"] + 1) % era2.YEAR:
+            self.skipTest("本物の state が、重い押しのない G8 の年の集まりの歩でない")
+        return st
+
+    def test_harvest_year(self):
+        import g7
+        st = real_state()
+        if "g7" not in (st.get("era2") or {}):
+            self.skipTest("G7 より前")
+        y = st["day"] // era2.YEAR
+        ev = sum(e["data"].get("amount", 0) for e in st["events"] if e["type"] == "収穫" and e["day"] // era2.YEAR == y)
+        if ev:
+            self.assertEqual(g7.harvest_year(st), ev, "前の年の秋にまいた畑の刈った量 = その年の出来事「収穫」の合わせ")
+
+    def test_heavy_on_real(self):
+        import g7
+        st = self.real_g8()
+        self.assertIsNone(g7.heavy_now(st))
+        self.assertIsNone(g7.heavy_refusal(st))
+        n_ev = st["next_event"]
+        q = g7.heavy_on(st)
+        g = st["era2"]["g7"]
+        self.assertEqual(g["heavy"], {"day": st["day"], "share": 0.2})
+        h = g7.harvest_year(st)
+        self.assertEqual((q["what"]["草の種"], q["harvest"], q["raise"], q["from"]), (round(0.2 * h), h, g7.region.heavy_tie(g["region"], g7.heavy_now(st))["id"], g["strong"]))
+        types = [e["type"] for e in st["events"] if e["id"] >= n_ev]
+        self.assertEqual(types, ["集落", "求め"])
+        self.assertTrue(any(p.get("demand") == q["id"] for p in g["region"]["pending"]))
+        txt = g7.region_text(st)
+        self.assertIn(f"毎年 草の種 {q['what']['草の種']} つかみ を出すように村に求めている (いま出している", txt)
+        self.assertIn(f"刈り入れ 草の種 {h} つかみ の 2 割) (answer_demand で答える)", txt)
+        self.assertIn(q["id"], g7._field_rows(st, False, True))
+        t = next(t for t in g["region"]["ties"] if t["id"] == q["raise"])
+        t["heavy"] = True
+        old = t["goods"]["草の種"]
+        g7.heavy_year(st)
+        self.assertEqual(t["goods"]["草の種"], round(0.2 * h))
+        self.assertEqual(t["recount"][-1], [st["day"], old, round(0.2 * h), h])
+        self.assertIn("割。年の終わりごとに数え直す", g7.region_text(st))
+        st["era"] = "G7"
+        self.assertIn("G8 のときだけ", g7.heavy_refusal(st))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
