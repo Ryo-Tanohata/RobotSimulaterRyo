@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギが草を食べつくす前に、多すぎる分はこの秋のうちにつぶして干し肉にしてしまおう。迷っていたら、また二十頭やせていなくなるよ。"}, {"to": "シエ20", "text": "うちはまだ住まいがない。わたしが建てはじめるから、あんたは畑の草取りで村の分を支えて。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": [], "why": "シエ20の家にはまだ住まいがなく、村の住まいも 14 人であふれている。冬の雨の夜に濡れないよう、自分の家を建てる"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"ソナ21": true},
+ "family": {"シエ20": {"activity": "畑仕事", "place": "camp", "why": "みんなが 1000 つかみずつまくので、草取りの手がいる。夏の実りを減らさないため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "ヤギは 140 頭ほどしか草で養えず、多すぎると季節ごとにやせていなくなる", "because": [886236], "confidence": 0.9}, {"op": "add", "text": "ヤギの世話をする人が少ないと、ヤギがいなくなる", "because": [886235], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L263", "against": "", "agree": true, "reason": "やせていなくなるより、干し肉にして蓄えたほうがいい"}, {"id": "L264", "against": "", "agree": true, "reason": "L263 と同じく、多すぎるヤギは秋のはじめに肉にするべき"}, {"id": "L190", "against": "", "agree": true, "reason": "草で養えない分を肉にするのは理にかなっている"}, {"id": "L226", "against": "", "agree": true, "reason": "世話が足りずにヤギが 33 頭もいなくなったから"}],
+ "feeling": "雨に濡れる夜はもうごめんだ。この秋で家の柱を立ててみせる。"}

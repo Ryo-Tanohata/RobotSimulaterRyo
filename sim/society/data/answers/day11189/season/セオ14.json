@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の前に、キャンプのそばの木の実をみんなで毎夕取ろうよ。わたしは採集で木の実を集めて、半分は蓄えに入れるね。"}, {"to": "ソナ21", "text": "南の村21から来たんだね。どんな場所で暮らしていたのか、あとで話を聞かせてほしいな。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集がいちばん得意で、冬に木の実が実らなくなる前に食べ物を集めておきたいから"}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ソナ21": true}, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "冬は木の実が実らないので、秋のうちに木の実を取って蓄えておく", "because": [886066], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "草が足りないので、ヤギを肉にして蓄えに入れるのはよいと思う"}, {"id": "L196", "against": "", "agree": true, "reason": "蓄えを守るために、みんなで分け合うのはよいと思う"}],
+ "feeling": "秋の木の実がたくさんあって心強い。冬に向けて、しっかり集めたい。"}

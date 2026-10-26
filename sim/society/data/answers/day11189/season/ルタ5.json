@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "秋の種まきは一人1000つかみずつ。冬と春の草取りも、家ごとに順番で欠かさずやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、続けて畑を守る"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソナ21": true},
+ "family": {
+  "キサ9": {"activity": "畑仕事", "place": "camp", "why": "採集が得意でも、畑の草取り人手を増やして実りを守る"},
+  "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて進める"},
+  "ラキ14": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りも得意ではないので、畑仕事を手伝う"},
+  "ナセ15": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚や肉を家族の食べ物にする"},
+  "ハソ16": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話が足りないといなくなるので手伝う"},
+  "ワユ16": {"activity": "畑仕事", "place": "camp", "why": "子の働きで草取りを手伝う"},
+  "ユエ16": {"activity": "ヤギの世話", "place": "camp", "why": "子の働きでヤギの世話を手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L220", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば夏に実るので、今年も守りたい"}
+ ],
+ "feeling": "蓄えは多いが、畑とヤギの世話をおろそかにせず、家族みんなで秋を乗り切りたい"}

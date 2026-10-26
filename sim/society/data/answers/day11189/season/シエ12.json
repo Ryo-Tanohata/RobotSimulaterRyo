@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、秋のうちにみんなで畑にまこう。冬と春の草取りも手分けして、夏の実りを減らさないようにしようね。"}, {"to": "ホタ12", "text": "一緒に畑の草取りを頼むよ。あなたの採集の腕はこの秋の木の実にも活きるから、夕方は木の実も取っておくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ホタ12"], "why": "秋にまいた畑は草取りをしないと実りが3割に減るので、畑を育てる"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソナ21": true},
+ "family": {"ホタ12": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を欠かさないため"}, "ラキ13": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑の実りを守るため"}, "ソワ13": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑の実りを守るため"}, "セヤ15": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが世話不足でいなくなるのを防ぐため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は多く、秋に一人1000つかみずつまいて、冬と春に草取りをするのがよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまいて草取りをすれば夏に実るから"}, {"id": "L190", "agree": true, "reason": "草で養えない分のヤギは肉にしたほうがよいから"}],
+ "feeling": "蓄えが豊かで安心している。畑を育てて、みんなと冬を越したい。"}
