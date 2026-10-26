@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、みんなで畑に種をまいて、草取りの順番を決めておこうね。木の実も毎夕少しずつ取って、蓄えに回そう。"}, {"to": "ヒセ14", "text": "うちの畑の草取り、いっしょにやろう。無理せず休みながらね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ヒセ14"], "why": "秋にまいた畑は草取りで実りが増える。夏の蓄えのために続ける"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"ナセ23": true}, "family": {"ヒセ14": {"activity": "畑仕事", "place": "camp", "why": "一緒に草取りをすれば畑の実りが減らない"}}, "keep": false,
+ "judge": {"M409": "ゆるす", "M410": "ゆるす", "M411": "ゆるす"}, "feast": false, "leader": null, "trade": {"T179": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種をまき、冬と春に草取りをすると夏に実りが増える", "because": [1009357], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L190", "agree": true, "reason": "ヤギが草で養える数を超えているので、肉にして蓄えに入れたほうがよい"}, {"id": "L196", "agree": false, "against": "蓄えは空ではなく、半分ずつに分ける必要はない", "reason": "今は蓄えがあるので不要"}],
+ "feeling": "蓄えは十分あって安心。冬の前に畑の世話をしっかりしたい。"}

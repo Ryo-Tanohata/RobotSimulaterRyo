@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種を畑にまいて、冬と春は草取りをさぼらずにやろう。夏にまた多く実るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるから、続けて世話をする"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ナセ23": true},
+ "family": {"リセ11": {"activity": "畑仕事", "place": "camp", "why": "採集の腕があり、畑の草取りに力を貸せる"}, "アコ13": {"activity": "畑仕事", "place": "camp", "why": "畑の実りを減らさないため草取りをする"}, "トナ18": {"activity": "休む", "place": "camp", "why": "けががあるので治るまで休む"}, "ケセ19": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りの手伝いはできる"}},
+ "keep": false,
+ "judge": {"M409": "ゆるす", "M410": "ゆるす", "M411": "ゆるす"}, "feast": false, "leader": null, "trade": {"T179": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまく種が夏の実りになるから"}],
+ "feeling": "蓄えは十分あるし、畑と木の実の木があるので落ち着いている。冬の草取りが楽しみだ。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、わたしは川ぞいで木の実と草の実をたくさん集めて、蓄えに入れるよ。小さい子たちのためにも、みんなで冬をこえよう。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ナセ18"], "why": "採集が得意で、冬の前に蓄えを増やしたい。川は近くて、二人なら安心。"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ナセ23": true}, "family": {"ナセ18": {"activity": "採集", "place": "南川12", "why": "わたしと二人で川へ行けば安全で、食べ物も増える。"}}, "keep": false,
+ "judge": {"M409": "ゆるす", "M410": "ゆるす", "M411": "ゆるす"}, "feast": false, "leader": null, "trade": {"T179": {"side": "村", "利子": 0.1}}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を畑にまくと、次の夏に実る。冬と春の草取りを忘れないこと。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので少し気が引きしまる。でも体は元気で、やる気がある。"}

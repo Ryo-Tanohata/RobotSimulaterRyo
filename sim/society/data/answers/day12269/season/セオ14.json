@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えの草の種を畑にまいて、冬と春は草取りを欠かさずにしよう。ヤギも草が足りないから、少しつぶして干し肉にしようよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りを続けると夏の実りが増えるから。"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"ナセ23": true}, "family": {"ラニ16": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、まず畑の草取りの人手を増やしたい。"}, "ホタ17": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが世話不足でいなくなるのを防ぐため。"}}, "keep": false,
+ "judge": {"M409": "つぐなう", "M410": "つぐなう"}, "feast": false, "leader": null, "trade": {"T179": "村"}, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋に畑をまいたら、冬と春は草取りの人手を確保すると夏の実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑も木の実も豊かで落ち着いているが、ヤギの数と冬の備えが少し気がかり。"}
