@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬が近いね。わたしは土器をつくって、草の種を虫やネズミから守るよ。みんなも畑の草取りを少しずつ手伝ってね。"}, {"to": "ヒセ14", "text": "ヒセ14、あなたは採集が上手だから、木の実や芋を集めて冬に備えてほしい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を守るのに土器がいるから"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ヒセ14": {"activity": "採集", "place": "camp", "why": "採集が得意で、冬の前に食べ物を増やせるから"}}, "keep": false,
+ "judge": {"M395": "ゆるす", "M396": "ゆるす", "M397": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと、夏のはじめに実る。草取りも大切だ", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬の前に土器をつくって、みんなの蓄えを守りたい。穏やかな気持ちだ。"}

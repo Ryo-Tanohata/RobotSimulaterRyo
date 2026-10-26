@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。みんなで草の種を千つかみずつまいて、冬と春の草取りも分けあって続けよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、続けて畑を見る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ9": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど次の夏の実りが増えるから"},
+  "ラキ14": {"activity": "ヤギの世話", "place": "camp", "why": "小さい子がいても、ヤギの世話は camp でできるから"},
+  "ナセ15": {"activity": "狩り", "place": "北草原28", "why": "狩りが得意なので、冬の前に肉を持ち帰ってほしい"},
+  "ハソ16": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けあうため"},
+  "ワユ16": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けあうため"},
+  "ユエ16": {"activity": "採集", "place": "南川12", "why": "近くの川で食べ物を探して家の食べ物を足す"},
+  "キオ17": {"activity": "畑仕事", "place": "camp", "why": "母といっしょに草取りを覚える"},
+  "ワユ17": {"activity": "畑仕事", "place": "camp", "why": "母といっしょに草取りを覚える"}
+ },
+ "keep": false,
+ "judge": {"M395": "ゆるす", "M396": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だけれど、冬と春の草取りを忘れないようにしたい。"}

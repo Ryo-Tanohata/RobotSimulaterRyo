@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はまだたっぷりある。この秋は一人 1000 つかみずつ畑にまいて、冬と春の草取りを皆で順番にやろう。畑の持ち主どうしのもめごとは、ゆるして収めたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りで夏の実りが増えるので、秋のうちから畑を見守りたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ18": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど夏の実りが減らないから"}},
+ "keep": false,
+ "judge": {"M395": "ゆるす", "M396": "ゆるす", "M397": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で、落ち着いている。冬と春の草取りを皆で分けあえれば、来年の夏も安心だと思う。"}
