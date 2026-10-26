@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "畑がどれも実っているから、落ちる前に毎夕刈ろう。わたしも鎌を使って刈るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈り切らないと落ちてしまうから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ラニ13": {"activity": "畑仕事", "place": "camp", "why": "畑がたくさん実っていて、刈る人手がいるから"},
+  "ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝って、草の種を落とさないため"},
+  "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "子でも畑で半分の働きができるから"}
+ },
+ "keep": false,
+ "judge": {"M412": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "answer_demand": {"Q113": "払う"},
+ "ally": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は、手の空いた人が毎夕鎌で刈り、種は土器に入れて守るのがよい", "because": [1017783], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がまた実った年",
+ "feeling": "畑がよく実ってうれしい。落とさずに刈り切りたい。"}

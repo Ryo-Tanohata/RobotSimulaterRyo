@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "畑は六十いくつも実っている。手の空いた者は鎌を持って、毎夕刈り切ろう。落としたら冬に泣くよ。"}, {"to": "みんな", "text": "北の大きな村は、刈った種をみんなよこせと言う。それでは子が食べられない。ほかの村と手を組んで、はっきり断ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと、実った草の種が落ちてしまうから"}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 5, "keep": false,
+ "judge": {"M412": "ゆるす"}, "feast": false, "leader": "なし", "seal": false, "seal_store": false, "demand": null, "answer_demand": {"Q113": "助けを頼む"}, "ally": "N19", "share": null,
+ "knowledge": [{"op": "add", "text": "ヤギが約110頭をこえると、季節ごとにやせていなくなる (186頭のとき25頭いなくなった)", "because": [1017800], "confidence": 0.9}, {"op": "add", "text": "この夏も畑が 66 枚実り、1 枚から約 3100 つかみ刈れる", "because": [1017783], "confidence": 0.8}],
+ "proposal": {"text": "この夏のはじめに、草で養えるヤギ (約 110 頭) をこえる分 (いま 50 頭ほど) をつぶして干し肉にし、村の蓄えに入れよう。手の空いた大人はみな毎夕鎌で畑を刈り切ろう。", "because": [1017800], "penalty": {"for": "蓄え", "pay": 0}, "tax": null, "rate": null},
+ "votes": [{"id": "L301", "against": "", "agree": true, "reason": "ヤギが多すぎてやせていなくなるし、畑も刈り切りたいから"}, {"id": "L310", "against": "", "agree": true, "reason": "多すぎるヤギは肉にした方が無駄にならないから"}, {"id": "L192", "against": "", "agree": true, "reason": "刈り残しは落ちてしまうから"}],
+ "year_name": "畑がまた実った年",
+ "feeling": "年はとったが、まだ鎌は握れる。種を落とさず刈り切りたい。"}

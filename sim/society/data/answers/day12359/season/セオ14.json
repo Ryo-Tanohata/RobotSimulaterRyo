@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "畑の草の種が実っているよ。落ちてしまう前に、みんなで毎夕刈って土器にしまおう。わたしは畑に出るね。"}, {"to": "ラニ16", "text": "今日から家族みんなで畑に出よう。子どもたちにも草取りを手伝ってもらうよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ラニ16", "ホタ17", "オネ17"], "why": "夏のうちに実った畑を刈り切らないと種が落ちてしまうから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、今は畑を刈り切ることが一番大事"},
+  "ホタ17": {"activity": "畑仕事", "place": "camp", "why": "刈り手を増やして落ちる種を減らすため"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れに人手が要るため"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りや刈りを手伝える"},
+  "ハソ20": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りや刈りを手伝える"}
+ },
+ "keep": false,
+ "judge": {"M412": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "answer_demand": {"Q113": "助けを頼む"}, "ally": "N14", "share": null,
+ "knowledge": [{"op": "add", "text": "夏は家族みんなで毎夕畑を刈り、刈った種を土器にしまうのが一番大事", "because": [1017783], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "畑が実っていてうれしい。みんなで刈り切りたい。北の大きな村の求めは重いけれど、蓄えを守りたい。"}

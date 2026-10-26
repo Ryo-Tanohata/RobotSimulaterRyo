@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "畑はもう実っている。落ちる前に、夕ごとにみんなで鎌を入れて刈り切ろう。おれは土器を焼いて、刈った種を入れる器を用意する。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番だから。刈った草の種を虫やネズミから守る器を焼きたい"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "オセ11": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに畑を刈り切るため、手を貸してほしい"},
+  "ナセ11": {"activity": "畑仕事", "place": "camp", "why": "実った畑を落ちる前に刈るため"},
+  "ヌオ17": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので、刈り入れを進めてほしい"},
+  "ユエ17": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため、みんなと畑に出てほしい"}
+ },
+ "keep": false,
+ "judge": {"M412": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "answer_demand": {"Q113": "払う"}, "ally": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏のはじめは畑が実っている。落ちる前に毎夕刈り、土器を焼いて種を入れる", "because": [1017783], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がよく実った年",
+ "feeling": "畑が実って満足している。あとは落ちる前に刈り切るだけだ。"}

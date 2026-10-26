@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切らないと落ちてしまう。手の空いた人は毎夕いっしょに鎌を持とう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り切って、冬と春の蓄えを守るため"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る人手が多いほど落ちる種が減るから"},
+  "キサ18": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る人手が多いほど落ちる種が減るから"},
+  "ソナ19": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る人手が多いほど落ちる種が減るから"},
+  "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る人手が多いほど落ちる種が減るから"}
+ },
+ "keep": false,
+ "judge": {"M412": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null,
+ "answer_demand": {"Q113": "助けを頼む"}, "ally": "N2", "share": null,
+ "knowledge": [{"op": "add", "text": "夏の実った畑は、毎夕鎌で刈らないと落ちてしまう。畑の仕事は夏のうちにやり切る", "because": [1017783], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がまた実った年",
+ "feeling": "畑がよく実っているので、落とさず刈り切りたい。北の大きな村の求めは重いが、みんなで考えたい。"}
