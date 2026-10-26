@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑は草取りの手が要るから、わたしは今季ずっとキャンプで畑仕事をするよ。手があいた人は夕方に木の実も取ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りの時間で夏の実りが増えるので、毎日畑の草取りをする"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L220", "against": "", "agree": true, "reason": "秋に大人みなが種をまき草取りをすれば、夏の実りが増えるから"},
+  {"id": "L285", "against": "", "agree": true, "reason": "ヤギは草で養える数に収まっているし、畑を育てるのは大事だから"}
+ ],
+ "feeling": "蓄えは多くて落ち着いている。今季も畑と木の実の仕事をこつこつ進めたい。"}
