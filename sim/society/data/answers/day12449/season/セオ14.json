@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、春のうちにヤギを少しずつ肉にして干そう。わたしは夏のために畑の草取りを続けるよ。"}, {"to": "ラニ16", "text": "草の多い所を見て、木の実か芋があったら教えてね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りを続けないと夏の実りが減る。蓄えが空なので夏の刈り入れが頼りだから"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"ラニ16": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、近い草原で食べ物を探せるから"}, "ホタ17": {"activity": "狩り", "place": "東川28", "why": "狩りが得意で、魚やけものを蓄えの足しにできるから"}, "オネ17": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守るため"}, "セオ19": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝えるから"}, "ハソ20": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く世話が足りないと減るから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "春は蓄えが空になりやすい。ヤギを肉にして干し、畑の草取りを続けて夏を待つのがよい", "because": [1028092], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかは満ちているけれど、蓄えが空なのが心配。夏の実りを楽しみに待ちたい。"}
