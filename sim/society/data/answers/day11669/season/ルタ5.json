@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はまだたっぷりある。秋のうちに一人1000つかみずつ畑にまいて、冬と春の草取りを分けて続けよう。ヤギも草より多いから、わたしの家で数頭つぶすよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋に畑へ種をまき、育つあいだ草取りを続ければ夏に大きく実るから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ9": {"activity": "畑仕事", "place": "camp", "why": "種まきと草取りを手伝い、夏の実りを増やすため"},
+  "ラキ14": {"activity": "ヤギの世話", "place": "camp", "why": "小さい子の多い家で、キャンプでヤギの世話をするため"},
+  "ナセ15": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、冬の前に魚や肉を獲るため"},
+  "ワユ16": {"activity": "畑仕事", "place": "camp", "why": "草取りを覚えて家族を手伝うため"},
+  "ユエ16": {"activity": "採集", "place": "camp", "why": "採集が得意なので、家族の食べ物を集めるため"},
+  "キオ17": {"activity": "畑仕事", "place": "camp", "why": "みんなと一緒に種まきと草取りをするため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、落ち着いている。冬と春の草取りに向けて、秋の種まきをしっかりやりたい。"}

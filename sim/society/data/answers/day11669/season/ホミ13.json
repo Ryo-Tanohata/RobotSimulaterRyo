@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、木の実もたくさん取っておこう。冬は何も実らないからね。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "冬の前に、キャンプのそばの木の実を集めて蓄えを厚くしたいから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソナ15": {"activity": "採集", "place": "camp", "why": "採集が得意なので、木の実を集めてもらう"}, "ナセ16": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを守る"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので、少し気が引き締まる。"}

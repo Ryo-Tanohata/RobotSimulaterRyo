@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "俺は北の川で獲物を追う。ルクの肉は、とれた日のうちに食べるか干すかして無駄にしない。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": ["ソナ13", "キオ15"], "why": "狩りと道具の腕が一番だから、前の季節にルクをしとめた北の川でまた肉をとる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "北の川ではルクがしとめられる。肉は腐りやすいので、その日のうちに食べるか干す", "because": [941411], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽い。大きな獲物を追うのが楽しみだ。"}

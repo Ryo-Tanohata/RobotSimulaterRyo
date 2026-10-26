@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに、草の種をみんなで畑にまこう。冬と春を越えて夏に実るよ。蓄えはまだあるけど、まいておけば安心だ。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ホミ11"], "why": "キャンプに近い川で魚や芋を採り、蓄えの草の種を減らさずに冬へ備えるため"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ11": {"activity": "採集", "place": "南川12", "why": "わたしと二人で行けば安全で、採集が上手だから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて落ち着いている。冬の前に体を動かして、畑も仕込めるのがうれしい。"}

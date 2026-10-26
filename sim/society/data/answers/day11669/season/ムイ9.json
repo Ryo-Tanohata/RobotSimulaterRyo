@@ -1,0 +1,32 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種を畑にまいておこう。冬と春の草取りを続ければ、来年の夏もまた刈り切れる。ヤギは草の分より 60 頭も多いから、早めに干し肉にしよう。"}, {"to": "シエ10", "text": "ヤギの世話をお願いね。数が多すぎるから、やせた子から先に教えて。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["シエ10", "タユ12"], "why": "まいた草の種を草取りで守って、来年の夏の実りを減らさないため"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "シエ10": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く、世話が足りないといなくなるから"},
+  "ムイ11": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを続けるため"},
+  "タユ12": {"activity": "畑仕事", "place": "camp", "why": "畑の実りを減らさないため"},
+  "ヌオ14": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りもまだ慣れないので、キャンプで畑を手伝ってもらう"},
+  "ソナ17": {"activity": "道具づくり", "place": "camp", "why": "鎌づくりが得意で、夏の刈り入れに鎌が要るから"},
+  "ラキ18": {"activity": "畑仕事", "place": "camp", "why": "大人のそばで畑の草取りを覚えるため"},
+  "ハソ18": {"activity": "ヤギの世話", "place": "camp", "why": "シエ10 といっしょにヤギの世話を覚えるため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {"K67": "払い続ける"},
+ "knowledge": [
+  {"op": "add", "text": "草原と丘の草で養えるヤギは今は約 110 頭。201 頭いた季節に 30 頭がやせていなくなった", "because": [941426], "confidence": 0.9},
+  {"op": "add", "text": "この一年も病で亡くなる大人と子がいた。トナ12 とハソ16 が病で亡くなった", "because": [941431, 941432], "confidence": 0.9},
+  {"op": "add", "text": "土器に入れた草の種も、一つの季節に 100 つかみのうち 1 つかみほど傷む", "because": [941433], "confidence": 0.8}
+ ],
+ "proposal": {"text": "この秋のはじめに、草で養えるヤギ (約 110 頭) をこえる分 (いま 60 頭ほど) を、家ごとに分けてつぶし、干し肉にして村の蓄えに入れよう。前の季節に 30 頭がやせていなくなったから。", "because": [941426], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L265", "agree": true, "against": "", "reason": "ヤギが草の分より多く、世話も要るから"},
+  {"id": "L266", "agree": true, "against": "", "reason": "やせていなくなる前に干し肉にしたほうがよい"},
+  {"id": "L267", "agree": true, "against": "", "reason": "子ヤギが生まれると、さらに草が足りなくなるから"},
+  {"id": "L270", "agree": true, "against": "", "reason": "多すぎる分をつぶし、残りを世話するのはよい"},
+  {"id": "L272", "agree": true, "against": "", "reason": "ヤギを減らし、畑も刈り切るのは大事"},
+  {"id": "L229", "agree": true, "against": "", "reason": "ヤギを食べ物に変えるのに賛成"},
+  {"id": "L225", "agree": true, "against": "", "reason": "世話が足りずヤギがいなくなるのを止めたい"},
+  {"id": "L209", "agree": false, "against": "今は村の蓄えが 500 日分以上あり、倉から出させる必要がない", "reason": "蓄えは足りている"},
+  {"id": "L196", "agree": false, "against": "蓄えは空ではない", "reason": "今の村には合わない"}
+ ],
+ "feeling": "蓄えはたっぷりある。あとはヤギを減らして、畑を守ることだけ。"}
