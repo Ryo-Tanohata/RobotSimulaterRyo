@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "冬の前に木の実をたくさん集めよう。わたしは東の林で探してくるよ。畑にまく種も、みんなで1000つかみずつまこうね。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ラニ16"], "why": "冬は木の実が実らないので、秋のうちに採集の得意なわたしが木の実を集めておきたい"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ユエ23": true},
+ "family": {
+  "ラニ16": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、わたしと一緒に木の実を集める"},
+  "ホタ17": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚を捕って冬に備える"},
+  "オネ17": {"activity": "採集", "place": "西草原12", "why": "別の場所で木の実や草の実を探して、食べ物を増やす"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って夏の実りを増やす"},
+  "ハソ20": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話が足りないといなくなるので手伝う"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに畑へ種をまき、冬と春に草取りを続けると夏に実りが増える", "because": [1021301], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので、木の実をしっかり集めて家族みんなで乗りこえたい"}

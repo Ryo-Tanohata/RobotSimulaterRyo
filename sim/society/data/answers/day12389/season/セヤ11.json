@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "前の季節は世話の手が足りず、ヤギが 22 頭もいなくなった。いまは 124 頭で草は足りているから、この秋はつぶさずに、わたしがキャンプでヤギを見るよ。ほかにも二人ほど手を貸しておくれ。"}, {"to": "みんな", "text": "秋のはじめに一人 1000 つかみずつ畑にまこう。冬の前に木の実も毎夕取って、蓄えを厚くしておこう。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": ["ロワ3", "ナセ3"], "why": "世話が足りずにヤギが 22 頭いなくなったので、残った 124 頭を守るため"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ユエ23": true}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "前の季節、世話をする人が少なく、ヤギが 22 頭いなくなった。いまは 124 頭で、草で養える約 140 頭に収まっている", "because": [1021511], "confidence": 0.9}, {"op": "add", "text": "土器に入れた草の種も、季節ごとに少し傷む (約 14 万 6 千つかみのうち約 1 千つかみ)", "because": [1021515], "confidence": 0.8}],
+ "proposal": {"text": "この秋から春まで、ヤギ 50 頭ごとに一人がかならずキャンプでヤギの世話をしよう。いまは 124 頭なので三人。ヤギは草で養える数に収まっているから、この秋はつぶさずに残そう。前の季節は世話が足りず 22 頭いなくなったから。", "because": [1021511], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L285", "agree": true, "against": "", "reason": "秋に畑にまけば夏に実る。ヤギも今は草で足りている"}, {"id": "L286", "agree": true, "against": "", "reason": "刈り残して落ちる草の種をなくしたい"}, {"id": "L238", "agree": true, "against": "", "reason": "世話が足りずにヤギがいなくなるのを止めたい"}, {"id": "L225", "agree": true, "against": "", "reason": "世話の手を増やせばヤギが残る"}, {"id": "L291", "agree": false, "against": "いまは 124 頭で草で養える数より少ないので、つぶす分はない", "reason": "数が古い"}, {"id": "L292", "agree": false, "against": "いまは 124 頭で草で足りている", "reason": "数が古い"}, {"id": "L293", "agree": false, "against": "いまは 124 頭で草で足りている", "reason": "数が古い"}, {"id": "L311", "agree": true, "against": "", "reason": "夏に鎌で刈り切るのは大事"}, {"id": "L312", "agree": true, "against": "", "reason": "夏のうちに刈り切りたい"}],
+ "feeling": "ヤギがこれ以上いなくならないよう、この秋はしっかり見ていたい。"}

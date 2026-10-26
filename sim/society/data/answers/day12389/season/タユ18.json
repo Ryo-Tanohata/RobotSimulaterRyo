@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "冬の前に、わたしは林で木の実をたくさん集めて蓄えに入れるよ。蓄えの草の種は35日分しかないから、みんなも夕方に木の実を取って分けよう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ヒセ18"], "why": "冬は木の実が実らないので、秋のうちに木の実を集めて蓄えを厚くする"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ユエ23": true},
+ "family": {"ヒセ18": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、わたしと一緒に木の実を集めて冬に備える"}},
+ "keep": false, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので少し心配だが、木の実がたくさんあるので、みんなで集めればきっと乗り切れる。"}

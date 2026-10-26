@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。畑に草の種をまいて、冬と春の草取りを忘れずにやろう。おれは土器を焼いて蓄えを守る。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入れると草の種が虫やネズミから守れるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ユエ23": true},
+ "family": {
+  "オセ11": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬の前に食べ物を集める"},
+  "ナセ11": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬の前に食べ物を集める"},
+  "ヌオ17": {"activity": "狩り", "place": "北川12", "why": "狩りが得意で、魚や肉を持ち帰れる"},
+  "ユエ17": {"activity": "狩り", "place": "北川12", "why": "狩りが得意で、二人で行けば安全"},
+  "リセ19": {"activity": "土器づくり", "place": "camp", "why": "土器づくりを手伝って覚える"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、冬と春に草取りをすると夏に実る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまいて冬と春に草取りをすれば夏に実るから"}],
+ "feeling": "土器をたくさん焼いて、冬に備えられるのが楽しみだ。"}
