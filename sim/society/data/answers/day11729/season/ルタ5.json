@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "春は畑の草取りが夏の実りを左右するよ。わたしも毎日畑に出るから、手の空いた人は一緒にやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キサ9", "ユエ16"], "why": "春の草取りを怠ると夏の実りが減るから、畑を守る"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ9": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守るため"},
+  "ラキ14": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、小さな子の近くにいられるため"},
+  "ナセ15": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚で食べ物を増やす"},
+  "ワユ16": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く、世話の手が足りないため"},
+  "ユエ16": {"activity": "畑仕事", "place": "camp", "why": "草取りが夏の実りにつながるから"},
+  "キオ17": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合うため"},
+  "ワユ17": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあるので落ち着いている。夏の畑の実りを楽しみに、草取りをがんばる。"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "前の季節は北の川で何も見つからなかった。今季は私は道具づくりで鎌を作るよ。夏の刈り入れまでに間に合わせたい。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "蓄えは十分あり、採集では何も見つからなかったので、夏の刈り入れに向けて得意の道具づくりで鎌を増やす"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ソナ15": {"activity": "畑仕事", "place": "camp", "why": "育っている畑の草取りが足りないと実りが減るので手伝う"}, "ナセ16": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれ、世話が足りないとヤギがいなくなるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "北の川で採集しても、前の季節は30日とも何も見つからなかった", "because": [947436], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるので落ち着いている。夏の刈り入れが楽しみだ。"}
