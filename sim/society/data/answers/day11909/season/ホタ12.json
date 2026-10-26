@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "ヤギがまた 20 頭やせて消えた。180 頭いて、草は 140 頭分しかない。この秋のはじめに 40 頭ほどつぶして干し肉にしておけば、冬の蓄えにもなる。"}, {"to": "みんな", "text": "夏に刈らずに落ちた草の種がずいぶんあった。どの畑が残りやすいのか、次の夏は見て回って確かめたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすれば、夏の実りが増えるから。"},
+ "sow": 1000, "pick": 20, "plant": 2, "harvest": 0, "eat_goat": 5,
+ "family": {"ラキ13": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やすため。"}, "セヤ15": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話が足りないといなくなるから。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "ヤギが 200 頭いて草が 140 頭分しかないと、一つの季節で 20 頭ほどやせていなくなる", "because": [972784], "confidence": 0.8}, {"op": "add", "text": "夏に刈り切れないと、畑の草の種がたくさん落ちてしまう", "because": [972766, 972773], "confidence": 0.8}],
+ "proposal": {"text": "この秋のはじめに、草で養えるヤギ (約 140 頭) をこえる分 (いま 40 頭ほど) を、家ごとに分けてつぶし、干し肉にして村の蓄えに入れよう。前の季節に 20 頭がやせていなくなったから。", "because": [972784], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L230", "against": "", "agree": true, "reason": "やせて消えるより干し肉にしたほうがよい。"}, {"id": "L232", "against": "", "agree": true, "reason": "草が足りない分はつぶすべきだから。"}, {"id": "L285", "against": "ヤギはいま 180 頭いて、140 頭に収まっていないから、つぶさずに残すのはよくない。", "agree": false, "reason": "種まきはよいが、ヤギの数の話が今と合わない。"}, {"id": "L286", "against": "", "agree": true, "reason": "前の夏も草の種がたくさん落ちたから。"}, {"id": "L190", "against": "", "agree": true, "reason": "草で養えない分を干し肉にするのはよい。"}],
+ "feeling": "畑の土をいじりながら、どうすれば落ちる種が減るのか考えていたい。"}

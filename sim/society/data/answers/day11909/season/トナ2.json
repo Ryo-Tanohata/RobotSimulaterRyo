@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えは多い。秋のうちに草の種をたっぷりまいて、冬のあいだは草取りを怠けずにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増えるので、毎日畑に出る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ9": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして畑の実りを守るため"},
+  "ホタ10": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合うため"},
+  "ラキ11": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎるので見回って面倒をみる"},
+  "ヌオ11": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "キサ16": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを進める"},
+  "セヤ17": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝い、畑仕事を覚える"},
+  "シエ18": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"},
+  "ホタ18": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話の手伝い"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心だが、年をとって体が重い。畑の草取りをこつこつ続けたい。"}

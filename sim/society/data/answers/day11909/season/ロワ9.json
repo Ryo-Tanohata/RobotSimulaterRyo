@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "わたしは今季も土器をどんどん焼くよ。蓄えの種を虫から守るのが得意なのはわたしだからね。みんな、秋の種まきを忘れずにね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は慣れるほど多く作れ、土器に入らない草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソワ15": {"activity": "採集", "place": "camp", "why": "採集が得意なので、家の食べ物を増やしてもらう"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を畑にまき、土器を焼いて残りの種を守るのが自分の役目", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "疲れは残っているが、粘土をこねるのは楽しい。今季もたくさん焼くつもりだ。"}

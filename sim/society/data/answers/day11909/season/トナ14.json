@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、秋のうちにみんなで1000つかみずつ畑にまこう。冬と春の草取りも、手分けしてやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをしないと実りが3割になる。夏の刈り入れを増やすため、冬の前から草取りを続ける。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"リセ14": {"activity": "畑仕事", "place": "camp", "why": "家の畑の草取りを手伝い、夏の実りを増やすため。"}, "リセ15": {"activity": "畑仕事", "place": "camp", "why": "小さな子を見ながら、キャンプで畑の草取りができるため。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L285", "against": "", "agree": true, "reason": "秋に畑へまくのは来年の夏の実りのもとになるから。"}],
+ "feeling": "蓄えが多くて安心している。畑をしっかり育てたい。"}
