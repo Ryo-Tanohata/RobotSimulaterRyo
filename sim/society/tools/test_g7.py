@@ -2939,22 +2939,23 @@ class T_G8Heavy(unittest.TestCase):
         n_ev = st["next_event"]
         q = g7.heavy_on(st)
         g = st["era2"]["g7"]
-        self.assertEqual(g["heavy"], {"day": st["day"], "share": 0.2})
+        self.assertEqual(g["heavy"], {"day": st["day"], "share": g7.HEAVY_SHARE})
         h = g7.harvest_year(st)
-        self.assertEqual((q["what"]["草の種"], q["harvest"], q["raise"], q["from"]), (round(0.2 * h), h, g7.region.heavy_tie(g["region"], g7.heavy_now(st))["id"], g["strong"]))
+        self.assertEqual((q["what"]["草の種"], q["harvest"], q["raise"], q["from"]), (round(g7.HEAVY_SHARE * h), h, g7.region.heavy_tie(g["region"], g7.heavy_now(st))["id"], g["strong"]))
         types = [e["type"] for e in st["events"] if e["id"] >= n_ev]
         self.assertEqual(types, ["集落", "求め"])
         self.assertTrue(any(p.get("demand") == q["id"] for p in g["region"]["pending"]))
         txt = g7.region_text(st)
         self.assertIn(f"毎年 草の種 {q['what']['草の種']} つかみ を出すように村に求めている (いま出している", txt)
-        self.assertIn(f"刈り入れ 草の種 {h} つかみ の 2 割) (answer_demand で答える)", txt)
+        self.assertEqual(g7.HEAVY_SHARE, 1.0, "本人の決め (2026-10-26): 10 割")
+        self.assertIn(f"刈り入れ 草の種 {h} つかみ の {round(g7.HEAVY_SHARE * 10)} 割) (answer_demand で答える)", txt)
         self.assertIn(q["id"], g7._field_rows(st, False, True))
         t = next(t for t in g["region"]["ties"] if t["id"] == q["raise"])
         t["heavy"] = True
         old = t["goods"]["草の種"]
         g7.heavy_year(st)
-        self.assertEqual(t["goods"]["草の種"], round(0.2 * h))
-        self.assertEqual(t["recount"][-1], [st["day"], old, round(0.2 * h), h])
+        self.assertEqual(t["goods"]["草の種"], round(g7.HEAVY_SHARE * h))
+        self.assertEqual(t["recount"][-1], [st["day"], old, round(g7.HEAVY_SHARE * h), h])
         self.assertIn("割。年の終わりごとに数え直す", g7.region_text(st))
         st["era"] = "G7"
         self.assertIn("G8 のときだけ", g7.heavy_refusal(st))

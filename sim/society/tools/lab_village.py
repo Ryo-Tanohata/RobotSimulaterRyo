@@ -52,6 +52,8 @@ WORLDS = {
     # W8H は step.py heavy on と同じ道 (g7.heavy_on) で重い押しを入れてから。W8R は入れない (くらべるため)
     "W8H": {"name": "G8 の重い押し (去年の刈り入れの 2 割。本物の 10919 日目から)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "from_g8": True,
             "heavy": 0.2},
+    "W8H10": {"name": "G8 の重い押し (去年の刈り入れの 10 割。本物の 10919 日目から。2026-10-26 本人の決め)", "fill": 0.0, "str": "base", "circ": "open",
+              "dr": 0.2, "from_g8": True, "heavy": 1.0},
     "W8R": {"name": "G8 のまま (本物の 10919 日目から。重い押しなし)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "from_g8": True},
 }
 ORIG = {"K": dict(region.K), "WEATHER_BAD": region.WEATHER_BAD, "cells": region.cells, "refuge": region.refuge, "k_total": region.k_total}
