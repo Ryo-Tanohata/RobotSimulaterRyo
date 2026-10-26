@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに土器をたくさん焼くよ。蓄えの草の種を虫やネズミから守ろう。みんなも畑に種をまいてね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は焼くほど上手になる。秋のうちに多く焼いて、土器に入らない草の種を守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ15": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをすると夏の実りが増えるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T163": false, "T164": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、土器を焼き続けるのが自分の役目。ヤギは草が足りず多すぎる", "because": [860459], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて草取りをすれば夏の実りが増えるから"}, {"id": "L177", "against": "", "agree": true, "reason": "土器に入れれば草の種が傷みにくいから"}],
+ "feeling": "土器を焼くのは楽しい。今日も粘土をこねて、蓄えを守るぞ。"}

@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはまだ山ほどある。畑の草取りを冬の間も欠かさず、ヤギは草に合わせて減らそう。わたしは土器を焼いて種を守る。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えの草の種が土器に入りきらず、毎季節虫やネズミに食べられるので、手が慣れたわたしが土器を増やす"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "テナ9": {"activity": "畑仕事", "place": "camp", "why": "秋冬の草取りが足りないと夏の実りが減るので"},
+  "ホタ10": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をする"},
+  "ラキ11": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ヌオ11": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので冬に備えて魚や肉を得る"},
+  "ケセ14": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りも上手だが、今は畑の草取りを優先する"},
+  "ホタ15": {"activity": "土器づくり", "place": "camp", "why": "わたしのそばで土器づくりを覚えさせる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T163": false, "T164": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分だが、ヤギと草のつり合いが気がかりで、土器を焼きながら静かに冬を待つ。"}

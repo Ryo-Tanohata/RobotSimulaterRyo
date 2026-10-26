@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、今年の秋は思い切って畑にまこう。冬と春の草取りも、わたしが先に動くよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えの種は多いので、畑を育てて来年の夏に備えたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セオ14": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、畑の草取りに人手がいるので一緒に働く"}, "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑の実りを増やす"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T163": false, "T164": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋に畑へ種をまき、冬と春に草取りをすれば夏の実りが増えるから"}],
+ "feeling": "満腹で体は動く。畑が実る夏が楽しみ。"}

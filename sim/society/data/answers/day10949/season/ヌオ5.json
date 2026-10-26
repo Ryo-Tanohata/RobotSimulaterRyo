@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "おれは土器を焼く。口数は要らん、蓄えを虫から守るだけだ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入らない草の種は虫やネズミに食われる。腕に自信があるので一人で焼く"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ホミ13": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを減らさないため"},
+  "ソナ15": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く、世話が足りないといなくなるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T163": false, "T164": false}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のうちに草の種を畑にまかないと、次の夏に実らない。土器に入れた種は虫に食われにくい。", "because": [860463], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "余計な口出しは好まない。黙って土を焼くだけだ。"}
