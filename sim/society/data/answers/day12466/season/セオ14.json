@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、わたしは北川で芋と魚を探してくる。見つけた分は夜に蓄えに入れるよ。"}, {"to": "ソナ19", "text": "北川に一緒に行かない？ 二人なら掟どおりだし、広く探せるよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ソナ19"], "why": "蓄えが空で夏まで13日あるので、北川で芋と魚を探して子どもたちの食べ物にする"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ラニ16": {"activity": "採集", "place": "北川12", "why": "採集が得意なので北川で芋を探す"},
+  "ホタ17": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので北川で魚をとる"},
+  "オネ17": {"activity": "採集", "place": "北川12", "why": "採集が得意なので北川で芋を探す"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "春で蓄えが空のときは、北川で芋と魚を探し、ヤギを少しつぶして干し肉にして夏を待つ", "because": [1029645], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "子どもたちのおなかが心配だけれど、北川で何か見つかると信じて行ってくる。"}

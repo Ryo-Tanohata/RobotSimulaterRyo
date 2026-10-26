@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、わたしは西の草原で芋を探す。見つけた分は子たちのために分けるよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ナセ16"], "why": "蓄えが空で、前に西の草原で芋が8本とれたから。夏まで子どもたちの食べ物をつなぎたい"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、子たちの食べ物がいる"},
+  "キサ18": {"activity": "採集", "place": "南川12", "why": "近い川で魚や芋を探して家の食べ物にする"},
+  "ソナ19": {"activity": "採集", "place": "西草原12", "why": "おなかがすいているので、姉たちと一緒に食べ物を探す"},
+  "セヤ19": {"activity": "採集", "place": "南川12", "why": "近くの川なら二人で行けて安全だから"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "西の草原では前の季節に芋が8本とれた日があった", "because": [1029561], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが空で子たちのおなかが心配だけれど、まず体を動かして食べ物を探したい"}

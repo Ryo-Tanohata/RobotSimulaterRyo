@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "北の川では何も見つからなかった。今度は東の林を見てくる。見つけたら、みんなに場所を伝えるよ。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "蓄えが空で、採集が得意な自分が、まだ試していない東の林で食べ物を探す"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "春の北の川では、採集しても何も見つからなかった", "because": [1029597], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが空でおなかが心配だが、採集には自信がある。食べ物を見つけたい。"}

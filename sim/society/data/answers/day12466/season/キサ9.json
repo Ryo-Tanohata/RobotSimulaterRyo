@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、春のうちは近い南の川で魚と芋を探すよ。見つけた分は小さな子から先に分けよう。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "採集が得意だし、春は木の実がないので、近い川で魚と芋を探して子らの食べ物にしたい"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ワユ16": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、川で魚をとって家の子らに食べさせてほしい"},
+  "キオ17": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、ワユと二人組で川へ行き魚をとってほしい"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "蓄えが空の春は、近い南の川で魚と芋を探すのがいちばん確かだ", "because": [1029645], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが空で子らが心配だけれど、川へ行って少しでも食べ物を持ち帰りたい。"}
