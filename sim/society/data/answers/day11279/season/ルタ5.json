@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "夏の畑が実っているよ。落ちる前に、みんなで毎夕刈って土器に入れよう。わたしも刈るからね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れて、土器に入れて蓄えを守るため"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "キサ9": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、夏は実った畑を刈るのが先だから"},
+  "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で刈り入れも早いので、畑を刈り切るため"},
+  "ラキ14": {"activity": "畑仕事", "place": "camp", "why": "赤子のそばで、キャンプの畑なら働きやすいから"},
+  "ナセ15": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚やけものをとって家の食べ物を増やすため"},
+  "ハソ16": {"activity": "畑仕事", "place": "camp", "why": "若い手で畑の刈り入れを手伝うため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T169": false}, "seal_store": false, "demand": null, "answer_demand": {"Q97": "払う"}, "ally": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えは十分あるので落ち着いている。夏の畑を落とさず刈り切りたい。"}

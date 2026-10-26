@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "畑はまだ 67 枚も実ったまま残ってる。鎌はわたしが割れた分を作り足すから、手の空いた人は夏のうちに刈り切ろう。"}, {"to": "シエ20", "text": "シエ20、夕方は一緒に畑を刈ろう。住まいも少しずつ広げていこうね。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりはわたしがいちばん得意。割れた鎌を作り足して、夏のうちに畑を刈り切るため"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"シエ20": {"activity": "畑仕事", "place": "camp", "why": "実った畑が多く残っていて、夏のうちに刈らないと落ちてしまうから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T169": false}, "seal": false, "seal_store": false, "demand": null,
+ "answer_demand": {"Q97": "戦う"}, "ally": null, "share": null,
+ "knowledge": [{"op": "add", "text": "ヤギが多すぎて、この季節も 53 頭がやせていなくなった", "because": [894596], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L264", "against": "", "agree": true, "reason": "やせていなくなるより、つぶして干し肉にした方が食べ物になる"}],
+ "year_name": "畑を刈り切った年",
+ "feeling": "鎌を打つ手が鳴る。北の大きな村に一年の実りを丸ごと渡すのは納得いかない。"}

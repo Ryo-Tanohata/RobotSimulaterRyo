@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "畑がみんな実っているよ。夏のうちに刈り切って、落とさないようにしよう。わたしは毎日畑に出るね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに刈らないと落ちてしまうので、刈り入れを手伝う"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"ラニ16": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り切るため、人手が要る"}, "ネイ16": {"activity": "畑仕事", "place": "camp", "why": "草刈りを手伝って畑を落とさないため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T169": false}, "seal_store": false, "demand": null, "answer_demand": {"Q97": "払う"}, "ally": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏のうちに実った畑を刈らないと、種は落ちてしまう", "because": [894576], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑が実った年",
+ "feeling": "畑がたくさん実っていて、赤ちゃんたちのためにも頑張りたい。"}

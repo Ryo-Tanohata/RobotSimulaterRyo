@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈り切ろう。落ちたらもったいない。おれも毎夕刈るよ。"}, {"to": "ルタ20", "text": "いっしょに畑へ行こう。疲れたら無理せず休んでな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ルタ20"], "why": "実った畑が多く、夏のうちに刈らないと落ちてしまうから"}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ルタ20": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため、いっしょに働く"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T169": false}, "seal": false, "seal_store": false, "demand": null, "answer_demand": {"Q97": "払う"}, "ally": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせた年",
+ "feeling": "畑がよく実っていて安心だ。刈り残さないようにがんばろう。"}

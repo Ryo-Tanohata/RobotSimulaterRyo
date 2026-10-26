@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "畑がどれも実って待っている。夏のうちに刈り切らないと落ちてしまうよ。手の空いた者は毎夕鎌を持って畑に出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちる前に、草取りと刈り入れを進めたいから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"リセ11": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り切るため、手を貸してほしいから"}, "アコ13": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り切るため、手を貸してほしいから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T169": false}, "seal_store": false, "demand": null, "answer_demand": {"Q97": "払う"}, "ally": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "畑はよく実った。落とさず刈り入れて、蓄えを守りたい。"}

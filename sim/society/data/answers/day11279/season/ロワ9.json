@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "夏の畑が実っている。落とす前に、わたしは毎夕しっかり刈るよ。北の大きな村の大きな求めには、そう簡単には頭を下げないからね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに毎日刈らないと落ちてしまう。蓄えを守るため刈り入れを続ける"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"ロワ15": {"activity": "畑仕事", "place": "camp", "why": "実った畑を一緒に毎日刈って落とさないため"}, "ソワ15": {"activity": "畑仕事", "place": "camp", "why": "実った畑を一緒に毎日刈って落とさないため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T169": false}, "seal_store": false, "demand": null, "answer_demand": {"Q97": "助けを頼む"}, "ally": "N14", "share": null,
+ "knowledge": [{"op": "add", "text": "夏は畑がたくさん実っていて、毎日60つかみ刈れば落とさず蓄えに入れられる。北の大きな村の求めは草の種の10割で重すぎる", "because": [894576], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "畑の実りは十分。刈って蓄えを守るぞ。"}

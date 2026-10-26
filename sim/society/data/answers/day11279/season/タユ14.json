@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "実った畑が六十八もあるよ。夏のうちに刈らないと落ちてしまうから、手の空いた人は夕方ごとに鎌で刈って、その日のうちに土器へ入れよう。"}, {"to": "ヒセ14", "text": "わたしと一緒に畑仕事をしよう。刈り残しを出さないようにね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ヒセ14"], "why": "夏のうちに刈らないと実った畑の草の種が落ちてしまうので、刈り入れを進める"}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5, "family": {"ヒセ14": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈り切るため、わたしと一緒に刈る"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T169": false}, "seal": false, "seal_store": false, "demand": null, "answer_demand": {}, "ally": null, "share": null,
+ "knowledge": [{"op": "add", "text": "夏のはじめは実った畑が多い。毎夕鎌で刈って土器に入れるのが大事", "because": [894576], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "刈る畑がたくさんあって忙しいが、みんなで力を合わせて蓄えを守りたい。"}
