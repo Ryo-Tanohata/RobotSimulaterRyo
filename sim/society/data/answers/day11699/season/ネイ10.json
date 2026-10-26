@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、おれは川の粘土で器を焼く。草の種はまだ山ほどあるが、土器に入らない分は虫に食われる。手の空いた者は器づくりを手伝ってくれ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入らない草の種は季節ごとに食われて減るから"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "オセ11": {"activity": "土器づくり", "place": "camp", "why": "採集は冬は実らないので、器づくりを手伝って草の種を守る"},
+  "ナセ11": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで夏の実りを増やすため"},
+  "ヌオ17": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りが冬の掟で、若い力が役に立つから"},
+  "ユエ17": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら半分の働きができるから"}
+ },
+ "keep": false,
+ "judge": {"M400": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬は土器づくりに向く。蓄えの草の種は土器に入れれば傷みにくい", "because": [945273], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。粘土をこねるのが楽しみだ。"}

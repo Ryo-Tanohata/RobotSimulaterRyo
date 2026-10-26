@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは畑の草取りを欠かさず続けよう。夏にまた大きく実るように、わたしも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ9": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守るため"},
+  "ラキ14": {"activity": "ヤギの世話", "place": "camp", "why": "小さい子の多い家で、ヤギの世話もしておきたい"},
+  "ナセ15": {"activity": "狩り", "place": "北川12", "why": "狩りが得意で、冬も魚やけものがいるから"},
+  "ワユ16": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑を守るため"},
+  "ユエ16": {"activity": "採集", "place": "南川12", "why": "採集が得意で、近い川なら冬も食べ物が見つかるから"},
+  "キオ17": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るから"},
+  "ワユ17": {"activity": "畑仕事", "place": "camp", "why": "母といっしょに草取りを覚えるため"}
+ },
+ "keep": false,
+ "judge": {"M400": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬は木の実が実らないが、畑の草取りを続ければ夏の実りが増える。魚やけものは冬もいる。", "because": [944901, 945026, 945150], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "冬と春の草取りは夏の実りのために大切だから"}],
+ "feeling": "蓄えは十分あって安心している。冬のあいだ、畑の草取りをこつこつ続けたい。"}

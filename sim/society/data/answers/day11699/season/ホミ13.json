@@ -1,0 +1,14 @@
+{"say": [{"to": "ソナ15", "text": "冬は木の実がないから、北川で魚と芋を探そう。二人で行けば安心だよ。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ソナ15"], "why": "冬は北川で魚と芋が取れるはず。木の実は手元に残っているので、蓄えを減らさないよう探しに行く"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソナ15": {"activity": "採集", "place": "北川12", "why": "採集が得意で、わたしと二人で川へ行けば掟も守れる"},
+  "ナセ16": {"activity": "畑仕事", "place": "camp", "why": "冬は畑の草取りが要るので、夏の実りを減らさないために働く"}
+ },
+ "keep": false,
+ "judge": {"M400": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬は静かだけれど、川で何か見つかるといい。体はまだ元気。"}

@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬は俺が北の川で魚をとってくる。蓄えは十分にあるが、肉と魚は多いほうがいい。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": [], "why": "狩りが得意で、冬も魚が取れる。蓄えの草の種を減らさずにすむ"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M400": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬でも北の川では魚がとれる。狩りの得意な者が行けば食べ物が見つかる", "because": [945205], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽い。川で魚を追うのが楽しみだ"}

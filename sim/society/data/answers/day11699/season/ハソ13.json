@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "冬のあいだも私は土器を焼くよ。割れる分もあるから、少しずつでも作り足しておきたいの。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意だし、割れた分を作り足して草の種を虫やネズミから守りたいから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ13": {"activity": "採集", "place": "北川12", "why": "採集が得意なので、冬でも取れる魚や芋を北川で探してもらう"}},
+ "keep": false,
+ "judge": {"M400": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬は木の実が実らないので、魚や芋を川で探すのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多いので落ち着いている。土器を焼いて静かに冬を越したい。"}

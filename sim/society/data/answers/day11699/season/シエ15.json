@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、わたしは土器を焼いて草の種を守るよ。畑の草取りも誰かお願いね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "道具も土器も得意だから。土器に入らない草の種は虫やネズミに食べられるので、冬のうちに焼いて備えたい"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ16": {"activity": "採集", "place": "北川12", "why": "採集が得意で、冬でも魚や芋が見つかる北川を試せるから"},
+  "ソワ16": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで夏の実りを減らさないため"}
+ },
+ "keep": false,
+ "judge": {"M400": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L168", "against": "", "agree": true, "reason": "土器に入れて草の種を守るのは大事だから"},
+  {"id": "L220", "against": "", "agree": true, "reason": "冬と春の草取りで夏の実りが増えるから"}
+ ],
+ "feeling": "蓄えは多いので落ち着いている。土器を焼いて春に備えたい。"}
