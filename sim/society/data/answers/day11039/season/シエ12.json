@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑をみんなで刈り切って、その日のうちに土器に入れよう。わたしは冬も春も土器をつくるよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ホタ12", "ラキ13"], "why": "実った畑が大量に残っていて、夏のうちに刈らないと落ちてしまうから"}, "family": {"ホタ12": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、まず畑の刈り入れを優先する"}, "ラキ13": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため手を貸す"}, "ソワ13": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が多いほどよい"}, "セヤ15": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、刈った草の種を土器に入れて守るため"}, "family": {"ホタ12": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}, "ラキ13": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の世話をする"}, "ソワ13": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに回る"}, "セヤ15": {"activity": "狩り", "place": "camp", "why": "狩りが得意なので魚やけものをとる"}}, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "草の種を傷ませないよう土器を作りためる"}, "family": {"ホタ12": {"activity": "採集", "place": "北川12", "why": "冬も魚や芋が取れる場所で食べ物を集める"}, "ラキ13": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "ソワ13": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "セヤ15": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいるので狩る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "夏の刈り入れに備えて土器を増やす"}, "family": {"ホタ12": {"activity": "採集", "place": "camp", "why": "春の食べ物を集める"}, "ラキ13": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを守る"}, "ソワ13": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを守る"}, "セヤ15": {"activity": "狩り", "place": "camp", "why": "狩りで食べ物を増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"シエ20": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M387": "ゆるす"}, "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "夏は畑を毎夕刈り、その日のうちに土器に入れると草の種が守られる。", "because": [867357], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えは多いので落ち着いている。夏のうちに畑を刈り切って、土器を増やしたい。"}
