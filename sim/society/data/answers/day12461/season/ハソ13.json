@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、ヤギを5頭つぶして干し肉にして皆で分けよう。草が足りなくてヤギは多すぎるし、ちょうどいいと思う。"}, {"to": "ラニ13", "text": "あなたは北の川で芋と魚を探してきて。わたしは畑の草取りをするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りを増やすには春の草取りが要る。蓄えが空なので、夏の収穫を確かなものにしたい"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "family": {"ラニ13": {"activity": "採集", "place": "北川12", "why": "採集が得意で、春は木の実がないので川で芋と魚を探す"}, "ヒセ19": {"activity": "採集", "place": "北川12", "why": "採集が得意なので、ラニ13と二人で北の川へ行き、魚と芋を探す"}, "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}}, "keep": false,
+ "judge": {"M414": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "ヤギが多すぎて草が足りない時は、つぶして干し肉にすれば蓄えの足しになり、ヤギも減る", "because": [1029093], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが空で心細いが、畑の草取りを続ければ夏には実ると信じている"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だ。わたしは北の川で魚をとってくる。ひどく空腹の子がいる家は、まず子に食べさせよう。"}, {"to": "ケセ19", "text": "あんたは無理せず、川の芋と魚を探しな。取れた分はまず自分が食べるんだよ。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": [], "why": "蓄えが空で家にひどく空腹の子がいる。狩りの腕が一番あるわたしが魚をとる。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "リセ11": {"activity": "採集", "place": "北川12", "why": "川で芋と魚を探して家の食べ物を集める"},
+  "アコ13": {"activity": "採集", "place": "北川12", "why": "川で芋と魚を探して家の食べ物を集める"},
+  "トナ18": {"activity": "採集", "place": "西草原12", "why": "近くの草原で食べ物を探し、手分けして見つける"},
+  "ケセ19": {"activity": "採集", "place": "南川12", "why": "近い南の川で無理なく魚と芋を探す"}
+ },
+ "keep": false,
+ "judge": {"M414": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "蓄えが空の春は、狩りと採集を川で急ぎ、草で養えない分のヤギをつぶして食べ物にする", "because": [1029092, 1029093], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L319", "against": "", "agree": true, "reason": "蓄えが空で、ヤギも草が足りないので食べ物にするのがよい"}, {"id": "L318", "against": "", "agree": true, "reason": "空腹の子を先に分けるのは正しい"}],
+ "feeling": "子らが飢えるのは見ていられない。腕の見せどころだ。"}

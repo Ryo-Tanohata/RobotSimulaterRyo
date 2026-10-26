@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "南川も北川も空だった。私は行ったことのない西の草原で、草の種や芋を探してみる。見つけた分は蓄えに入れるよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "蓄えが空で、近くの川では何も見つからなかった。採集が得意なので、まだ試していない西の草原で食べ物を探す。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "採集", "place": "東林12", "why": "採集が得意。場所を分けて、違う所で食べ物を探す。"},
+  "キサ18": {"activity": "採集", "place": "北草原28", "why": "採集が得意。場所を分けて、違う所で食べ物を探す。"},
+  "ソナ19": {"activity": "採集", "place": "西草原12", "why": "かなり空腹なので、近い場所で私と一緒に探す。"},
+  "セヤ19": {"activity": "採集", "place": "西草原12", "why": "かなり空腹なので、近い場所で私と一緒に探す。"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが空でみんな空腹だ。夏まであと少し、なんとか食べ物を見つけたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、わたしは北の川へ魚をとりに行くよ。とれた分は、まずちびたちとおなかをすかせた人のために蓄えに入れるさ。"}, {"to": "ホミ11", "text": "あんたは近い南の川で魚と芋を探しておいで。見つけた分は夜に教えておくれ。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": [], "why": "蓄えが空で、春は魚がいちばん確かな食べ物。狩りの腕に自信があるので魚をとって蓄えに入れる"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ11": {"activity": "採集", "place": "南川12", "why": "採集が得意で、近い南の川なら一人でも行ける。芋や魚を探して蓄えを助ける"}},
+ "keep": false,
+ "judge": {"M414": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが空で子らが気がかりだが、体は動く。魚をとって皆を食べさせたい。"}
