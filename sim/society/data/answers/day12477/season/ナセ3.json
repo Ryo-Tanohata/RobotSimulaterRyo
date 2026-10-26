@@ -1,0 +1,16 @@
+{"say": [{"to": "トナ18", "text": "北川で魚をとるよ。腕の立つあんたもついておいで。子らの腹を先に満たすんだ。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": ["トナ18"], "why": "蓄えが空で春は木の実がない。魚をとるのが一番早く腹を満たせる。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "トナ18": {"activity": "狩り", "place": "北川12", "why": "狩りの腕が確かなので、わたしと川で魚をとる。"},
+  "リセ11": {"activity": "採集", "place": "西草原12", "why": "近い草原で芋や食べられる物を探す。"},
+  "アコ13": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、リセと二人で草原で探す。"},
+  "ケセ19": {"activity": "採集", "place": "南川12", "why": "狩りは苦手だが採集は得意。近い南の川で探す。"}
+ },
+ "keep": false,
+ "judge": {"M416": "ゆるす", "M417": "ゆるす", "M418": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "蓄えが空の春は、北川12で魚をとるのが一番確かな食べ物になる。", "because": [1030735], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "腹をすかせた子らのために、魚をたっぷりとってきたい。"}

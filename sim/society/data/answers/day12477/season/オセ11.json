@@ -1,0 +1,32 @@
+{"say": [{"to": "みんな", "text": "夏まであと二日だ。ヤギの乳と川の魚は、まず小さな子とひどく空腹の者に回してくれ。刈った草の種は北の大きな村に渡さず、土器に入れて残そう。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春のあいだ乳をしぼり続けてきた。夏の刈り入れまで乳で子をつなぎたい"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ11": {"activity": "ヤギの世話", "place": "camp", "why": "乳を赤子のオセ24と小さな子に回すため"},
+  "ヌオ17": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので川で魚をとって蓄えに入れる"},
+  "ユエ17": {"activity": "狩り", "place": "東川28", "why": "狩りが得意なので東の川で魚をとる"},
+  "リセ19": {"activity": "狩り", "place": "南川12", "why": "ひどく空腹なので、近くの川でヌオ17と魚をとり、まず自分も食べる"}
+ },
+ "keep": false,
+ "judge": {"M416": "ゆるす", "M417": "ゆるす", "M418": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "tribute": {"K71": "やめる"},
+ "knowledge": [
+  {"op": "add", "text": "春に蓄えが尽きると、ひどく空腹の者がよその家の倉から食べて、もめごとが増える", "because": [1030589, 1030676, 1030763, 1030770], "confidence": 0.7},
+  {"op": "add", "text": "春に蓄えが尽きると、幼い子が亡くなる", "because": [1030764, 1030766], "confidence": 0.8}
+ ],
+ "proposal": {"text": "今年の夏に刈った草の種は、北の大きな村に全部渡すのをやめ、まず村の土器に入れて次の春まで残そう。春は乳と魚と干し肉を 0 から 10 歳の子から先に分けよう。", "because": [1030764, 1030766], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L320", "agree": true, "against": "", "reason": "北の大きな村に渡すのをやめ、子に食べさせたい"},
+  {"id": "L321", "agree": false, "against": "ヤギはもう 76 頭しかおらず、つぶすと乳が減る", "reason": "乳を残したい"},
+  {"id": "L322", "agree": false, "against": "ヤギを減らすと乳が減る", "reason": "草の種を残すのは賛成だが、ヤギはもう少ない"},
+  {"id": "L323", "agree": false, "against": "今はヤギが少ないのでつぶす分がない", "reason": "魚は賛成だがつぶすのは反対"},
+  {"id": "L324", "agree": true, "against": "", "reason": "わたしの出した案で、子と弱い者を守れる"},
+  {"id": "L325", "agree": true, "against": "", "reason": "ヤギをつぶさず乳を子に回し、草の種を村に残せる"},
+  {"id": "L326", "agree": true, "against": "", "reason": "魚を子に回し、乳の出るヤギを残せる"},
+  {"id": "L327", "agree": true, "against": "", "reason": "わたしのやっていることと同じで、春をしのげる"},
+  {"id": "L328", "agree": true, "against": "", "reason": "あと少しで夏だ、魚と乳でつなげる"},
+  {"id": "L318", "agree": false, "against": "ヤギは今 76 頭で、つぶす分はない", "reason": "乳を残したい"},
+  {"id": "L317", "agree": true, "against": "", "reason": "草で養える数をこえた分だけなら、つぶしてよい"}
+ ],
+ "feeling": "子がまた亡くなった。夏の刈り入れまで、なんとか乳でつなぎたい"}

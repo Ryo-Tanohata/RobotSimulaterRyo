@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えがからっぽだから、近い南の川で魚と芋をさがすよ。小さい子とおなかのすいた人に先に分けよう。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ヒセ18"], "why": "蓄えが空で、春は木の実がないので、近い南の川で魚や芋を集めて子どもに食べさせるため"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ18": {"activity": "採集", "place": "南川12", "why": "採集が得意なので、いっしょに南の川で食べ物を集める"}},
+ "keep": false,
+ "judge": {"M416": "ゆるす", "M417": "ゆるす", "M418": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかがすいて心細いけれど、子どもたちのために南の川で食べ物を見つけたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "北の川は前に何も見つからなかったから、今回はまだ行っていない東の川へ行ってみる。魚か芋が見つかったら、蓄えに入れるね。"}],
+ "job": {"activity": "採集", "place": "東川28", "with": ["ヒセ19"], "why": "蓄えが空で、近くの川は空振りだったので、まだ試していない東の川で魚や芋を探す"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ13": {"activity": "採集", "place": "東川28", "why": "同じ川で手分けして魚や芋を探すため"}, "ヒセ19": {"activity": "採集", "place": "東川28", "why": "採集が得意なので、いっしょに川で食べ物を探す"}},
+ "keep": false,
+ "judge": {"M416": "ゆるす", "M417": "ゆるす", "M418": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "北の川は春のはじめに何も見つからなかった。東の川も試す価値がある", "because": [1030688], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが空でおなかが心配。それでも新しい場所を歩くのは少し楽しみ。"}

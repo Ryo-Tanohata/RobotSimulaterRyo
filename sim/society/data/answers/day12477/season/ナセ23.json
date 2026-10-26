@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "まだ行っていない西の草原で、おれが採集の腕を試してくる。何か見つかったら夜に知らせるよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "東林・北川・南川では何も見つからなかった。まだ行っていない西の草原を、採集が得意なおれが確かめる。"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M416": "ゆるす", "M417": "ゆるす", "M418": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "西の林(西林12)でも春は採集しても何も見つからなかった", "because": [1030725], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかがすいているが、何か見つけたい。仲間の役に立ちたい。"}
