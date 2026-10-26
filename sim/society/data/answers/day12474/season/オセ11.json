@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だ。夏の刈り入れまであと 5 日。ヤギの乳と、川の魚と、狩りの肉で、子どもから先に食べさせてつなごう。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春はヤギの世話をすると乳がしぼれる。蓄えが空の今、乳がいちばん確かな食べ物だから続ける"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ11": {"activity": "採集", "place": "北川12", "why": "採集がうまいので、川べりで芋や草をさがしてもらう"},
+  "ヌオ17": {"activity": "狩り", "place": "北丘12", "why": "狩りがうまいので、肉を取ってきて子らに食べさせたい"},
+  "ユエ17": {"activity": "狩り", "place": "北丘12", "why": "ヌオ17 と二人で狩りに行けば安全で、肉も多く取れる"},
+  "リセ19": {"activity": "採集", "place": "北川12", "why": "採集がうまいので、ナセ11 と組んで川べりをさがす"}
+ },
+ "keep": false,
+ "judge": {"M415": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {"K71": "払い続ける"},
+ "knowledge": [{"op": "add", "text": "春に蓄えが空になると、病の人も持ちこたえられずに亡くなることがある", "because": [1030454, 1030455], "confidence": 0.5},
+  {"op": "add", "text": "春にヤギの世話をすると、わたし一人で毎日乳が 5 杯ほどしぼれた", "because": [1030260, 1030349, 1030439], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L166", "against": "", "agree": true, "reason": "土器に草の種を入れれば傷まない。わたしは土器づくりが得意だ"},
+  {"id": "L167", "against": "", "agree": true, "reason": "世話が足りないとヤギが減り、乳もとれなくなる"},
+  {"id": "L168", "against": "", "agree": true, "reason": "草の種を守るのは大事だ"},
+  {"id": "L169", "against": "", "agree": true, "reason": "ヤギが多すぎるとやせていなくなる"}],
+ "feeling": "おなかは満ちているが、蓄えが空なのが怖い。子らが無事に夏まで持てばいい。"}
