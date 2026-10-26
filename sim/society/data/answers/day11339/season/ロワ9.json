@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "冬のあいだはわたしが土器を焼き続ける。蓄えの草の種を土器に入れて守るのがわたしの腕の見せどころだよ。"}, {"to": "トワ3", "text": "95つかみの話は記録がなくて覚えちがいかもしれないよ。ゆるして、また笑って分けあおう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は焼くほど上手になり、土器に入らない草の種は虫やネズミに食べられるので、冬も焼き続けて蓄えを守る"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ15": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎてやせていなくなるので、世話をしてこれ以上減らさないため"}, "ソワ15": {"activity": "採集", "place": "南川12", "why": "冬でも魚と芋は取れるし、キャンプから近くて安全だから"}},
+ "keep": false,
+ "judge": {"M391": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬も土器を焼き続け、土器に入らない草の種を守るのが自分の役目。蓄えは草の種がたっぷりある", "because": [902415], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L265", "against": "", "agree": true, "reason": "ヤギが草で養える数を超えているので、家ごとに分けて減らすのがよい"}, {"id": "L168", "against": "", "agree": true, "reason": "冬のうちから土器を焼けば蓄えが守れる"}],
+ "feeling": "蓄えはたっぷりあって安心。冬は土器を焼いて、のんびり腕を磨くよ。"}

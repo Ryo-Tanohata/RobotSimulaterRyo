@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、畑の草取りに手が足りないと夏の実りが減る。わたしの家は畑に回るよ。手の空いた人は声をかけて。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬の草取りで夏の実りが増えるから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るから"},
+  "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るから"},
+  "ラキ14": {"activity": "畑仕事", "place": "camp", "why": "赤子がいるのでキャンプの近くで働ける畑仕事が合う"},
+  "ナセ15": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、冬も魚やけものはいるから"},
+  "ハソ16": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多いので世話の手を足したい"},
+  "ワユ16": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ユエ16": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M391": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "冬は畑の草取りに人手を出すと、夏の実りが増える。", "because": [902028], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって穏やか。冬のあいだ畑をしっかり世話したい。"}

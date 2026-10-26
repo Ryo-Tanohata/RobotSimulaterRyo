@@ -1,0 +1,11 @@
+{"say": [{"to": "ルタ20", "text": "冬は木の実がないから、南の川で魚や芋を探そう。おれは採集が得意だから、見つけた分は村の蓄えに入れる。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["ルタ20"], "why": "冬は実がならないが、近い南の川なら魚や芋が見つかる。採集が得意なので食べ物を集める。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ルタ20": {"activity": "採集", "place": "南川12", "why": "採集が得意なので、二人で南の川へ行って食べ物を探す。"}},
+ "keep": false,
+ "judge": {"M391": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬は厳しいが、蓄えは十分ある。川で採集して皆の役に立ちたい。"}
