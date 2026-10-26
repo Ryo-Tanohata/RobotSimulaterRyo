@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いが、冬と春の草取りが実りを決める。秋の種はみんなで1000つかみずつまこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、手を貸す"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"セオ20": true}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を1000つかみずつまき、冬と春に草取りをすれば夏に多く刈れる。", "because": [873000], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあって安心だ。畑をていねいに育てたい。"}

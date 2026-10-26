@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種を畑にまこう。冬と春の草取りを忘れずに、おれも畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["トナ14", "リセ14"], "why": "畑にまいた種の草取りで夏の実りを増やすため"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"セオ20": true},
+ "family": {"トナ14": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要るから"}, "リセ14": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、畑の草取りを手伝う"}, "リセ15": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話が足りないとヤギがいなくなるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心だ。畑と木の実の木を大事に育てたい。"}
