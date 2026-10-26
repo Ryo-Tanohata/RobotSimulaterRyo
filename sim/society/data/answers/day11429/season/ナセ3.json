@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の種まきは、わたしが先に1000つかみまく。冬のあいだの草取りも、手を抜かずにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増える。草の種が村の頼りだから、畑を守る。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"リセ11": {"activity": "畑仕事", "place": "camp", "why": "草取りの人が多いほど夏の実りが増えるから。"}, "アコ13": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒に進めるため。"}},
+ "keep": false,
+ "judge": {"M393": "ゆるす"}, "feast": false, "leader": null, "trade": {"T170": "村"}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、冬と春に草取りをすると、夏によく実る。", "because": [913325], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にみんなで種をまくのは、夏の実りのために大事だから。"}],
+ "feeling": "体は疲れているが、畑を育てるのは楽しみだ。"}

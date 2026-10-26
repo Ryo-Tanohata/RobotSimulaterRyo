@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに草の種を畑にまいたら、冬と春の草取りを手分けしよう。私もしばらく畑仕事をするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りの時間で夏の実りが増えるので、冬の前から手を入れたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M393": "ゆるす"}, "feast": false, "leader": null, "trade": {"T170": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、冬と春に草取りの時間をかけると、夏の実りが増える。", "because": [913350], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "agree": true, "reason": "秋にまく草の種は夏の実りのもとになる"}, {"id": "L267", "agree": true, "reason": "ヤギが草で養える数をこえると、やせていなくなってしまう"}],
+ "feeling": "蓄えは多いので落ち着いている。畑の草取りをこつこつ進めたい。"}

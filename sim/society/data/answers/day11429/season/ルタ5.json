@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、秋のうちに草の種を1000つかみずつまいて、冬と春はみんなで少しずつ草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増える。蓄えは多いが、来年の夏のために畑を育てたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ9": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りを分けて、実りを増やすため"},
+  "ホタ9": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りを分けて、実りを増やすため"},
+  "ラキ14": {"activity": "ヤギの世話", "place": "camp", "why": "小さい子の世話もあるので、キャンプでヤギを見てもらう"},
+  "ナセ15": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉や魚を持ち帰ってもらう"},
+  "ハソ16": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝ってもらう"},
+  "ワユ16": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ユエ16": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}
+ },
+ "keep": false,
+ "judge": {"M393": "ゆるす"}, "feast": false, "leader": null, "trade": {"T170": "村"}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。冬と春の草取りを忘れずにやろう。"}

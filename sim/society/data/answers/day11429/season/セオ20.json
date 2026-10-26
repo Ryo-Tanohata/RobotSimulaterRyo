@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "冬の前に、おれは木の実を集めて蓄えに回すよ。畑の種まきも忘れずにやろう。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["ルタ20"], "why": "採集が得意なので、冬に実らなくなる前に木の実をできるだけ集めたい"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ルタ20": {"activity": "採集", "place": "北林12", "why": "二人で行けば安全で、採集が得意なので木の実をたくさん集められる"}},
+ "keep": false,
+ "judge": {"M393": "ゆるす"}, "feast": false, "leader": null, "trade": {"T170": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるけれど、冬に備えて体を動かしておきたい。"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるし、土器もたくさんある。この秋は畑に種をまいて、冬と春の草取りに備えよう。わたしが先に動くよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "土器は十分にあるので、まいた畑の草取りで夏の実りを増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ15": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やすため"}, "ソワ15": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M393": "ゆるす"}, "feast": false, "leader": null, "trade": {"T170": {"side": "村", "利子": 0.2}}, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "村の土器は十分あり、蓄えの草の種は全部入る。秋は畑にまいて草取りをするのがよい", "because": [914060], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで気持ちが軽い。体は少し疲れているが、動きたい。"}
