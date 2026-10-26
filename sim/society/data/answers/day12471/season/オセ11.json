@@ -1,0 +1,33 @@
+{"say": [{"to": "みんな", "text": "蓄えが空で、小さな子が危ない。刈った草の種をみな北の大きな村に渡していては、春を越せない。今年は渡すのをやめて、村の子に食べさせたい。"}, {"to": "みんな", "text": "わたしはこの春もヤギの世話を続けて、乳をしぼる。乳はまず小さな子に回してほしい。家の若い者は川で魚をとる。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春はヤギの乳が毎日とれる。蓄えが空の今、乳で子をつなぎたいから続ける"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "family": {
+  "ナセ11": {"activity": "採集", "place": "南川12", "why": "採集が得意で、近くの南の川なら赤子のそばにも戻りやすい"},
+  "ヌオ17": {"activity": "狩り", "place": "北川12", "why": "狩りが得意。春は木の実がないので、北の川で魚をとってほしい"},
+  "ユエ17": {"activity": "狩り", "place": "東川28", "why": "狩りが得意。ヌオ17 と別の川で魚をとれば、取れる量が増える"},
+  "リセ19": {"activity": "採集", "place": "南川12", "why": "採集がうまい。ナセ11 と一緒に南の川で食べ物を探してほしい"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "tribute": {"K71": "やめる"},
+ "knowledge": [
+  {"op": "add", "text": "刈った草の種をみな北の大きな村に渡していると、春に村の蓄えが空になり、子が飢える", "because": [1030140], "confidence": 0.7},
+  {"op": "add", "text": "春にヤギの世話をすると、わたし一人で毎日乳が 8 杯ほどしぼれた", "because": [1029944, 1030034, 1030124], "confidence": 0.8}
+ ],
+ "proposal": {"text": "蓄えが空の春は、ヤギの乳と川の魚を、0 から 10 歳の子とひどく空腹の人から先に分けよう。今年の夏に刈った草の種は北の大きな村に渡さず、まず村の土器に入れて次の春まで残そう。", "because": [1030140], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L317", "agree": true, "against": "", "reason": "わたしが出した。ヤギで蓄えを足すため"},
+  {"id": "L318", "agree": false, "against": "いまヤギは 89 頭で草に収まっている。120 頭もつぶせない", "reason": "数が今に合わない"},
+  {"id": "L320", "agree": true, "against": "", "reason": "北の大きな村に渡すのをやめて、子に食べさせたい"},
+  {"id": "L321", "agree": true, "against": "", "reason": "子から先に分けるのに賛成"},
+  {"id": "L322", "agree": true, "against": "", "reason": "刈った種を村に残すのに賛成"},
+  {"id": "L323", "agree": true, "against": "", "reason": "魚をとって子から分けるのはよい"},
+  {"id": "L210", "agree": true, "against": "", "reason": "乳を子とひどく空腹の人から先に分けたい"},
+  {"id": "L212", "agree": true, "against": "", "reason": "倉のある家が少し出せば、子が助かる"},
+  {"id": "L217", "agree": false, "against": "20000 つかみより多い倉の家はいまない", "reason": "今は効かない"},
+  {"id": "L285", "agree": true, "against": "", "reason": "秋にまいて草取りをするのは、夏の実りに大事"},
+  {"id": "L286", "agree": true, "against": "", "reason": "刈り残しを出さないのはよい"},
+  {"id": "L315", "agree": true, "against": "", "reason": "ヤギの世話が足りないといなくなるから"},
+  {"id": "L316", "agree": true, "against": "", "reason": "冬に魚とけものを干して蓄えるのはよい"}
+ ],
+ "feeling": "子が飢えるのが怖い。乳をしぼって、なんとか夏までつなぎたい。"}

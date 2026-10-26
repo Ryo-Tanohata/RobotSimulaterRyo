@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "また蓄えが空になった。刈った草の種をぜんぶ北の大きな村に渡すから、春になると子が飢える。今年はもう渡さず、村の子に食べさせよう。"}, {"to": "みんな", "text": "ヤギはいま 89 頭で、草で養える数より少ない。つぶさずに残して、乳を毎日しぼって小さな子から先に飲ませよう。わたしは世話を続けるよ。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春は乳がとれる。蓄えが空なので、乳で小さな子を支えたい"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {"K71": "やめる"},
+ "knowledge": [{"op": "add", "text": "この春も村の蓄えが尽きた。ヤギはいま 89 頭で、草で養える数より少ない", "because": [1030140], "confidence": 0.9}, {"op": "add", "text": "ラキ11 が 40 歳で病で亡くなった", "because": [1030142], "confidence": 1.0}],
+ "proposal": {"text": "今年から、刈った草の種を北の大きな村に渡すのをやめ、村の蓄えに残そう。ヤギは 89 頭で草に収まっているのでこの春はつぶさず、春のあいだは毎日三人がヤギの世話をして、乳を 0 から 10 歳の子から先に分けよう。", "because": [1030140, 1030141], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L318", "against": "いまのヤギは 89 頭で、草で養える数をこえていない", "agree": false, "reason": "つぶす分がもうない"}, {"id": "L320", "against": "", "agree": true, "reason": "北の大きな村に渡すのをやめて子に食べさせたい"}, {"id": "L321", "against": "いまのヤギは草で養える数より少ない", "agree": false, "reason": "つぶすより乳をとり続けたほうがよい"}, {"id": "L322", "against": "", "agree": true, "reason": "刈った草の種を村に残すのが大事。乳の出ないヤギだけなら少しつぶしてもよい"}, {"id": "L323", "against": "", "agree": true, "reason": "魚をとって子に先に分けるのはよい"}],
+ "feeling": "毎年春に飢えるのはもう嫌だ。今年こそ刈ったものを村に残したい。"}
