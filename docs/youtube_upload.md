@@ -38,7 +38,7 @@
 | 27 | 27 川辺の五人 G6 F1 村どうしの交換 | `society_G6F1.mp4` | |
 | 28 | 28 川辺の五人 G6 F2 印で封をする | `society_G6F2.mp4` | |
 | 29 | 29 川辺の五人 G6 F4 物と数を分けて記す | `society_G6F4.mp4` | |
-| 30 | 30 川辺の五人 G7 王と役所 (48年90日目〜70年120日目) | `society_G7.mp4` | |
-| 31 | 31 川辺の五人 G8 外からの押し (70年120日目〜103年120日目) | `society_G8.mp4` | |
-| 32 | 32 川辺の五人 G8 F2 決まった取り立て | `society_G8F2.mp4` | |
-| 33 | 33 川辺の五人 G8 F3 決める段が3つ | `society_G8F3.mp4` | |
+| 30 | 30 川辺の五人 G7 王と役所 (48年90日目〜70年120日目) | `society_G7.mp4` | https://youtu.be/Fb7xB1q9uhE |
+| 31 | 31 川辺の五人 G8 外からの押し (70年120日目〜103年120日目) | `society_G8.mp4` | https://youtu.be/LEjy7RFWzo4 |
+| 32 | 32 川辺の五人 G8 F2 決まった取り立て | `society_G8F2.mp4` | https://youtu.be/4Mqkwf_qc9g |
+| 33 | 33 川辺の五人 G8 F3 決める段が3つ | `society_G8F3.mp4` | https://youtu.be/wCbKThIyV-M |
