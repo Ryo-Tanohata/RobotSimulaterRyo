@@ -44,6 +44,7 @@ V = [
     ("G8", "G8 外からの押し (70年120日目〜103年120日目)", "第 5 部の 2 本目。フェーズ G8「外からの押し」(70年120日目〜103年120日目)。", S2),
     ("G8F2", "G8 F2 決まった取り立て", "G8 の中の小さな区切り F2「決まった取り立て」。", S2),
     ("G8F3", "G8 F3 決める段が3つ", "G8 の中の小さな区切り F3「決める段が 3 つ」。", S2),
+    ("G8b", "G8 の続き 国の外へ (103年120日目〜104年120日目)", "第 5 部の 3 本目。フェーズ G8「外からの押し」の最後の 1 年 (103年120日目〜104年120日目) と、G8 を閉じたこと。", S2),
 ]
 N = len(V)
 SERIES = "川辺の五人"
@@ -71,7 +72,7 @@ def main():
     rows = []
     for i, (vid, t, what, part) in enumerate(V, 1):
         src = APP / f"society_{vid}.mp4"
-        if vid in ("G7", "G8", "G8F2", "G8F3") and not (REPO / f"sim/society/video/out/society_{vid}.final").exists():
+        if vid in ("G7", "G8", "G8F2", "G8F3", "G8b") and not (REPO / f"sim/society/video/out/society_{vid}.final").exists():
             src = APP / f"__not_yet_{vid}.mp4"  # 撮影中 (仕上げの途中のファイルを使わない)
         name = title(i, t) + ".mp4"
         assert len(title(i, t)) <= 100 and not any(c in name for c in '<>:"/\\|?*'), name
@@ -88,7 +89,7 @@ def main():
             missing.append(vid)
         rows.append((i, vid, title(i, t), desc(i, vid, what, part), src.exists()))
     txt = ["川辺の五人: YouTube に上げる一覧 (題はファイル名と同じ。説明文はそのまま貼る)",
-           "公開の設定: 非公開 (自分だけ)。子ども向け: いいえ。再生リスト: 「川辺の五人 (話の順)」に 01〜33 を順に入れる", ""]
+           "公開の設定: 非公開 (自分だけ)。子ども向け: いいえ。再生リスト: 「川辺の五人 (話の順)」に 01〜34 を順に入れる", ""]
     for i, vid, t, d, ok in rows:
         txt += ["=" * 60, f"[{i:02d}] 題: {t}" + ("" if ok else "  (まだ撮っていない)"), "説明文:", d, ""]
     (OUT / "00_題と説明文.txt").write_text("\n".join(txt), encoding="utf-8-sig")
@@ -96,7 +97,7 @@ def main():
           "2026-10-28 本人の希望 (動画を GitHub ではなくクラウドで見られるように)。YouTube に上げる。上げるのは本人 (ログインが要る)。",
           "", "- フォルダ: `C:\\Users\\Tan0Ry0\\Videos\\川辺の五人_YouTube` (アプリの動画へのハードリンク。ファイル名がそのまま題になる)",
           "- 説明文: フォルダの `00_題と説明文.txt` (下の表と同じ)。公開の設定は「非公開」、子ども向けは「いいえ」",
-          "- 再生リスト: 「川辺の五人 (話の順)」に 01〜33 を順に入れる (順はアプリの「動画」の一覧と同じ)",
+          "- 再生リスト: 「川辺の五人 (話の順)」に 01〜34 を順に入れる (順はアプリの「動画」の一覧と同じ)",
           "- 作り直し: `py -3 <この台本>` (できた動画だけ足す)。上げたら、下の表の URL の欄に書く", "",
           "| 番号 | 題 | 動画 | URL |", "|---|---|---|---|"]
     md += [f"| {i:02d} | {t} | `society_{vid}.mp4`{'' if ok else ' (まだ)'} | |" for i, vid, t, d, ok in rows]
