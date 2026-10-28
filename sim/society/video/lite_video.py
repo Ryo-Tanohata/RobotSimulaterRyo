@@ -75,6 +75,8 @@ def main():
     vdir = os.path.join(HERE, "voice", name)
     dur = json.load(open(os.path.join(vdir, "durations.json"), encoding="utf-8"))
     lo, hi = min(n["day"] for n in narr), max(n["day"] for n in narr)
+    if hi - lo < 3 * YEAR:  # 短い動画 (1〜2 年) は、前の 15 年も映して、どこから来たかを見せる
+        lo = hi - 15 * YEAR
     rows = series(lo, hi)
     tmp = tempfile.mkdtemp(prefix=f"lite_{name}_")
     lst, params, pcm = [], None, b""
