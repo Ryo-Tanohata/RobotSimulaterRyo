@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種は土器に入れておけば傷まない。わたしは春のあいだ、毎日キャンプで土器を焼くよ。割れた分も作り足すから、安心して。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入らない草の種は虫やネズミに食べられるから。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "畑仕事", "place": "camp", "why": "育っている畑の草取りをして、夏の実りを減らさないため。"},
+  "キサ18": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれるので、世話をして小さな子に分けるため。"},
+  "ソナ19": {"activity": "採集", "place": "南川12", "why": "近い南の川で魚や木の実を探して、蓄えを助けるため。"},
+  "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、夏の刈り入れに備えるため。"}
+ },
+ "keep": false,
+ "judge": {"M424": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはまだあるので落ち着いている。土器を焼いて、夏までしっかり守りたい。"}

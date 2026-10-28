@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはまだ43日分ある。わたしは春のあいだ土器を焼きつづけるよ。夏の刈り入れで取れる種を、ぜんぶ土器に入れて守りたいから。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは慣れているほど多く焼ける。夏に刈った草の種を虫やネズミから守る土器を増やしたいから。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ13": {"activity": "畑仕事", "place": "camp", "why": "春は木の実が取れない。畑の草取りをすると夏の実りが減らずにすむから。"},
+  "ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "春は木の実が取れない。草取りの人を増やして夏の実りを守りたいから。"},
+  "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りならできる。畑を守る手伝いをしてもらう。"}
+ },
+ "keep": false,
+ "judge": {"M424": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えに余裕があって落ち着いている。土器を焼いて夏にそなえよう。"}

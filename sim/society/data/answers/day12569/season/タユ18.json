@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "春は畑の草取りに手を貸してね。わたしはキャンプで土器を焼いて、蓄えの草の種を虫やネズミから守るよ。"}, {"to": "ヒセ18", "text": "うちは畑の草取りをお願い。夏の実りがふえるように、子どもたちにも手伝ってもらおう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を土器に入れて守れるから。"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ18": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで夏の実りがふえるから。"}, "タユ20": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って夏の実りをふやすため。"}, "ケセ20": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って夏の実りをふやすため。"}},
+ "keep": false,
+ "judge": {"M424": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "春は土器づくりと畑の草取りに力を使うと、夏の刈り入れと蓄えが守れる", "because": [1043145], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはまだあるので落ち着いている。土器を焼いて夏の刈り入れにそなえたい。"}

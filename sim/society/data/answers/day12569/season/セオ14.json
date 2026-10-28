@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはまだ四十日ほどある。わたしは毎日土器を焼いて、草の種を虫やネズミから守るよ。畑の草取りも、手の空いた人はお願いね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入らない草の種は虫やネズミに食べられるので、慣れた手で毎日焼いて蓄えを守る"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "春は木の実がないので、夏の実りを増やす草取りに回る"},
+  "ホタ17": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので、近い南の川で魚をとって家の食べ物を増やす"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "春は採集できるものが少なく、草取りが夏の刈り入れにつながる"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "狩りも採集も苦手なので、キャンプで草取りを手伝う"},
+  "ハソ20": {"activity": "畑仕事", "place": "camp", "why": "草取りで大人を手伝う"}
+ },
+ "keep": false,
+ "judge": {"M424": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "蓄えが四十日分ほどある春は、無理に食べ物を探さず、土器づくりと畑の草取りで夏に備えるのがよい", "because": [1043169], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えに余裕があって落ち着いている。粘土をこねながら夏の刈り入れを待つよ。"}

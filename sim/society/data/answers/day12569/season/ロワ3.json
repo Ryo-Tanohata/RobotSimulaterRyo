@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはまだ43日分ある。わたしは春のあいだ土器をこねて焼くよ。草の種を虫やネズミから守りたいからね。"}, {"to": "ホミ11", "text": "ホミ、あなたは南の川で魚と木の実を探してきておくれ。小さい子たちに食べさせたいからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、草の種を土器に入れておけば虫やネズミに食べられず、蓄えが長くもつから"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ11": {"activity": "採集", "place": "南川12", "why": "近い川で食べ物を探し、家の小さな子たちの食べ物を足すため"}},
+ "keep": false,
+ "judge": {"M424": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがあって心が落ち着く。手を動かして器を作るのが楽しみだ。"}
