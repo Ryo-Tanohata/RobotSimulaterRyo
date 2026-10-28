@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "畑がたわわに実っています。みんなで毎夕、鎌で刈って土器に入れましょう。わたしも木の実を取って、お腹をすかせた子たちに分けます。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑が実っていて蓄えが空なので、夏のうちに刈り入れて土器に入れ、子どもたちの食べ物にするため"},
+ "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"ヒセ18": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈って蓄えを満たすため。わたしと一緒に刈る"}},
+ "keep": false,
+ "judge": {"M418": "ゆるす", "M419": "ゆるす", "M420": "ゆるす", "M421": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "夏に実った畑は、手の空いた大人が毎夕鎌で刈って土器に入れないと、蓄えが空のまま子が飢える", "because": [1031036], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L330", "against": "", "agree": true, "reason": "刈った草の種を土器に入れて次の春まで残すのは、子どもたちを飢えから守るから"}],
+ "year_name": "畑が実り蓄えが空だった年",
+ "feeling": "お腹がすいてたまらないけれど、実った畑を刈ればみんなを養えると信じて働きます。"}

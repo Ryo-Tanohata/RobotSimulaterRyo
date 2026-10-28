@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "畑が実っている。落ちる前に、わたしは毎夕60つかみ刈るよ。刈った種は土器に入れて、冬と春に子が飢えないようにしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えが空で、夏のうちに刈らないと畑の種が落ちてしまうから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ラニ13": {"activity": "畑仕事", "place": "camp", "why": "実った畑を鎌で刈り、種を落とさず蓄えに入れるため"},
+  "ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに畑を刈り切るため、手の空いた人で刈る"},
+  "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "子でも刈り入れを手伝えるから"}
+ },
+ "keep": false,
+ "judge": {"M418": "ゆるす", "M419": "ゆるす", "M420": "ゆるす", "M421": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "夏のはじめに畑を毎夕鎌で刈り、種を土器に入れると、冬と春の蓄えがもつ", "because": [1031036], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がまた大きく実った年",
+ "feeling": "蓄えは空だけれど、畑がたくさん実っているので、みんなで刈れば子どもたちを飢えさせずにすむと思う。"}

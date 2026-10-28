@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えが空だから、夏のうちに畑を刈り切って、刈った種はすぐ土器に入れよう。わたしは毎日キャンプで畑仕事をするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えが空で、実った畑が落ちる前に刈り切らないと冬と春に子が飢えるから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"ワユ16": {"activity": "狩り", "place": "南川12", "why": "狩りが得意だから、近い南の川で魚をとって蓄えを助けてもらう"}, "キオ17": {"activity": "狩り", "place": "南川12", "why": "狩りが得意だから、ワユと二人組で魚をとってもらう"}},
+ "keep": false,
+ "judge": {"M418": "ゆるす", "M419": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えが空で心配だけれど、畑を刈り切れば冬と春をこえられると思う。"}

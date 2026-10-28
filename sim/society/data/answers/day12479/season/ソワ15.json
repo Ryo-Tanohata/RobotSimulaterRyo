@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "畑がいま実っている。夏のうちに刈り切らないと落ちてしまう。わたしは毎日畑に出て、夕方には60つかみずつ刈るよ。蓄えが空だから、刈った分は蓄えに入れよう。"}, {"to": "ナセ18", "text": "いっしょに畑を刈ろう。あなたも夕方に60つかみずつ刈ってね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ナセ18"], "why": "蓄えが空で、実った畑は夏のうちに刈らないと落ちるから。"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"ナセ18": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切って蓄えを満たすため。"}},
+ "keep": false,
+ "judge": {"M418": "ゆるす", "M419": "ゆるす", "M420": "ゆるす", "M421": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がまた実った年",
+ "feeling": "蓄えが空でこわいけれど、畑を刈ればなんとかなる。力いっぱいやるよ。"}

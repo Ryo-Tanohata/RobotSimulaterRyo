@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "畑がどれも実っているよ。落ちる前に、手の空いた人はみんな鎌で毎夕刈って、その日のうちに土器にしまおうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈り切らないと種が落ちてしまう。蓄えが空なので、刈った種を土器に入れて冬と春に備えたい"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、今は刈り入れが一番大事。みんなで刈れば早く終わる"},
+  "ホタ17": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り切るため、家族みんなで働く"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに刈らないと種が落ちるので手伝ってもらう"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "14歳なので半人前の働きで刈り入れを手伝う"},
+  "ハソ20": {"activity": "畑仕事", "place": "camp", "why": "13歳なので半人前の働きで刈り入れを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M418": "ゆるす", "M419": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "蓄えが空の夏は、家族みんなで毎夕鎌で畑を刈り、その日のうちに土器にしまうのが一番の仕事", "because": [1031036], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L330", "against": "", "agree": true, "reason": "刈った種を土器に入れて春まで残すのは、蓄えが空にならないために大事だから"}],
+ "year_name": "畑を刈り切った年",
+ "feeling": "畑がたくさん実っていて心強い。家族みんなで刈り切って、冬と春はお腹をすかせたくない。"}

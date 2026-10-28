@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "畑がどこも実っている。落ちる前に、わたしは毎日鎌で刈るよ。蓄えが空だから、刈った種はその日に土器へ入れよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑が実っていて蓄えが空だから、夏のうちに刈り切る"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈って家族の食べ物にする"},
+  "キサ18": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が多いほど落とさずにすむ"},
+  "ソナ19": {"activity": "畑仕事", "place": "camp", "why": "ひどく空腹なので、近いキャンプの畑で働く"},
+  "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "ひどく空腹なので、近いキャンプの畑で働く"}
+ },
+ "keep": false,
+ "judge": {"M418": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "tribute": {},
+ "knowledge": [{"op": "add", "text": "夏のはじめは畑が実っている。毎夕鎌で刈って土器に入れれば、蓄えの空は終わる", "because": [1031036], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "おなかはすいているが、実った畑を見ると力が出る。"}
