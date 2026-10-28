@@ -1,0 +1,3 @@
+# 2026-10-28 本人の決め: 新しく撮る動画は GitHub に入れず、YouTube に上げる (sim/society/tools/youtube/upload.py)。
+# すでにコミットしてある動画はそのまま (git は追跡しているファイルには .gitignore を使わない)
+*.mp4
