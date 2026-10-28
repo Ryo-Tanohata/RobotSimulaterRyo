@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えは春の終わりまでもたないよ。冬のうちは、畑の草取りとヤギの世話を欠かさずに、狩りの得意な人は川で魚をとって、少しでも蓄えを増やそう。"}, {"to": "シエ20", "text": "刈った草の種のことは、少しでいいから返してくれたら、それで水に流すよ。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": ["シエ20", "ソワ16"], "why": "ヤギは 67 頭しかいない。世話が足りずにいなくなるのを止めて、春の乳を子に回したいから続ける"},
+ "family": [{"name": "テナ20", "activity": "畑仕事", "place": "camp", "why": "冬は畑の草取りをする人が少ないと夏の実りが減るから"}],
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M422": "つぐなう", "M423": "つぐなう", "M424": "つぐなう"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "この冬のはじめの村の蓄えは、今の人数で約 67 日分しかない。畑は 69 枚育っている", "because": [], "confidence": 0.9}, {"op": "add", "text": "オセ11 が 40 歳で病で亡くなった", "because": [1040787], "confidence": 1.0}],
+ "proposal": {"text": "この冬と春のあいだ、毎日だれか三人が交代で畑の草取りをし、ヤギは 67 頭しかいないのでつぶさず二人が毎日世話をしよう。狩りの得意な大人は川で魚をとって干し、蓄えに入れよう。春は乳と魚を 0 から 10 歳の子から先に分けよう。", "because": [1040786, 1040787], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L335", "against": "", "agree": true, "reason": "畑にまいて木の実を蓄えるのは冬と春の食べ物になる"}, {"id": "L336", "against": "", "agree": true, "reason": "ヤギが少ないのでつぶさず世話をするのがよい"}, {"id": "L337", "against": "", "agree": true, "reason": "草取りと世話の人を決めておくのはよい"}, {"id": "L338", "against": "", "agree": true, "reason": "交代の草取りとヤギの世話は大事"}],
+ "feeling": "冬は長い。子らが春を越せるよう、ヤギを守っていく。"}

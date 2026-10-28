@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは畑の草取りを、手の空いた者で毎日つづけよう。夏の刈り入れが減ったら、春のあとが苦しくなる。おれも毎日畑に出るよ。"}, {"to": "シエ20", "text": "刈った草の種のことは、少しの量だ。おれはゆるすほうに入れる。次からは刈る前にひと声かけあおう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ホミ23"], "why": "冬は木の実がならない。夏の刈り入れを減らさないよう、育っている畑の草取りをする"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ23": {"activity": "狩り", "place": "南川12", "why": "冬でも川に魚はいる。蓄えは春の終わりまでぎりぎりなので、魚を足したい"}},
+ "keep": false,
+ "judge": {"M422": "ゆるす", "M423": "ゆるす", "M424": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "村の住まいに入りきらず、雨の夜に外で濡れると疲れがとれない。家族の住まいがあれば屋根の下で眠れる", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L338", "against": "", "agree": true, "reason": "畑の草取りを冬と春につづけるのは夏の実りのために大事だから"},
+  {"id": "L337", "against": "", "agree": true, "reason": "秋にまいて木の実を蓄えるのは、これまでうまくいってきたから"},
+  {"id": "L331", "against": "", "agree": true, "reason": "刈った種をよそに全部渡すと、子が飢える。村に残すべきだ"},
+  {"id": "L313", "against": "", "agree": true, "reason": "ヤギの世話をする人がいないとヤギがいなくなるから"},
+  {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るから"}
+ ],
+ "feeling": "雨の夜に外で寝るのはこたえるが、畑が育っているのを見ると夏が待ち遠しい。"}

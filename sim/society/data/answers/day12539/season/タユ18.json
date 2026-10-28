@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、わたしは土器をこねて焼くよ。草の種を土器に入れて、虫から守ろう。"}, {"to": "ヒセ18", "text": "あなたは畑の草取りをお願い。春の実りが増えるからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は採集できず、土器に入れない草の種は虫に食べられるので、得意な土器づくりで蓄えを守る"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ヒセ18": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで夏の実りが増えるから"}, "タユ20": {"activity": "畑仕事", "place": "camp", "why": "母を手伝って草取りをする"}, "ケセ20": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "keep": false,
+ "judge": {"M422": "ゆるす", "M423": "ゆるす", "M424": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "冬は木の実も草の種も実らないので、土器づくりと畑の草取りに力を使うのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L168", "against": "", "agree": true, "reason": "冬のうちから土器を作れば、草の種が虫に食べられるのを減らせる"}],
+ "feeling": "蓄えは十分あって安心。静かな冬に土器をじっくり作りたい。"}
