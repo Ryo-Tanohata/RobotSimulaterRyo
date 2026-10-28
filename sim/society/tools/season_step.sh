@@ -13,10 +13,10 @@ D=$($PY -c "import json;print(json.load(open('$DATA/state.json', encoding='utf-8
 # G7 から: コミットの文に、この歩が年の集まり・寄る季節・集まり直し・秋の集まりかをそえる (集まりのない季節と G6 までは「季節」のまま)
 K=$($PY -c "import json;g=(json.load(open('$DATA/state.json', encoding='utf-8')).get('era2') or {}).get('g7');print({'年': '年の集まり', '寄る': '寄る季節', '集まり直し': '集まり直し', '秋': '秋の集まり'}.get((g or {}).get('ask'), '季節'))")
 $PY sim/society/step.py season; rc=$?; echo "season exit=$rc"
-# 技術の木 (2026-10-28。docs/tech_tree.md): 季節のあとに、記録を読むだけでページを作り直す (別のプロセスなので state.json は変わらない。
+# テクノロジーツリー (2026-10-28。docs/tech_tree.md): 季節のあとに、記録を読むだけでページを作り直す (別のプロセスなので state.json は変わらない。
 #   写しで確かめた: 入れても入れなくても、季節のあとの data/ は 1 バイトも同じ)。本物の村のときだけ。作れなくても季節とコミットは止めない
 if [ "$DATA" = "sim/society/data" ]; then
-  $PY sim/society/tools/build_tech_tree.py --data "$DATA" --quiet || echo "技術の木: 作れなかった (季節は進んだ。あとで $PY sim/society/tools/build_tech_tree.py で作り直せる)"
+  $PY sim/society/tools/build_tech_tree.py --data "$DATA" --quiet || echo "テクノロジーツリー: 作れなかった (季節は進んだ。あとで $PY sim/society/tools/build_tech_tree.py で作り直せる)"
   git add sim/society/app/tech_tree.html
 fi
 git add "$DATA" && git -c user.name=Ryo-Tanohata -c user.email=39688846+Ryo-Tanohata@users.noreply.github.com commit -q -m "社会シミュレーション: ${TAG}${D} 日目から (${K:-季節})" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>${CLAUDE_SESSION_URL:+
