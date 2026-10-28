@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""技術の木のページ (sim/society/app/tech_tree.html) のデータを作る (読むだけ。標準ライブラリだけ。LLM は使わない)。
+"""テクノロジーツリーのページ (sim/society/app/tech_tree.html) のデータを作る (読むだけ。標準ライブラリだけ。LLM は使わない)。
 
 説明: docs/tech_tree.md。【シ】(シミュレーションだから分かること) の見え方なので、ダッシュボード (dashboard.html) には入れない。
 入力 (どれも読むだけ):
-  sim/society/techtree/plan.json     予定の木 (手で書く。フェーズ・技術・前提・本物の年代)
+  sim/society/techtree/plan.json     予定の木 (手で書く。時代・上の段 (テクノロジーと社会制度の 2 本の木)・要素・前提・本物の年代)
   sim/society/techtree/emerged.json  創発の一覧 (Claude がフェーズの区切りごとに選んで手で書く)
   <data>/state.json (しまった古い年の出来事 <data>/archive/ も戻して)
 出力: tech_tree.html の <!--TT-DATA--> と <!--/TT-DATA--> のあいだの JSON だけを書きかえる。--out を渡すと JSON も書く。
@@ -395,11 +395,69 @@ def build(data, quiet=False):
                            "who": law.get("proposer"), "label": law.get("label"), "text": _short(law.get("text"), 110), "phase": phase_of(law["day"])})
     firsts.sort(key=lambda r: (r["day"], r["cat"], r["name"]))
 
+    # ---- 上の段 (テクノロジーと社会制度。2026-10-28 本人の決め)
+    node_by = {n["id"]: n for n in nodes}
+    eras = plan.get("eras") or []
+    era_of_phase = {ph: e["id"] for e in eras for ph in e["phases"]}
+    tids = {x["id"] for x in plan.get("techs", [])}
+    parent = {}
+    techs = []
+    for x in plan.get("techs", []):
+        if x.get("tree") not in ("テクノロジー", "社会制度"):
+            errs.append("上の段 %s の tree がテクノロジーか社会制度でない" % x["id"])
+        for q in x.get("prereq", []) + x.get("xprereq", []):
+            if q not in tids:
+                errs.append("上の段 %s の前提 %s がない" % (x["id"], q))
+        for e in x["elements"]:
+            if e not in node_by:
+                errs.append("上の段 %s の要素 %s が nodes にない" % (x["id"], e))
+            elif e in parent:
+                errs.append("要素 %s が 2 つの上の段 (%s・%s) に入っている" % (e, parent[e], x["id"]))
+            else:
+                parent[e] = x["id"]
+        key = node_by.get(x.get("key"))
+        if not key or x["key"] not in x["elements"]:
+            errs.append("上の段 %s の決め手 %s が要素にない" % (x["id"], x.get("key")))
+            continue
+        kera = era_of_phase.get(key["phase"])
+        if kera != x.get("era"):
+            errs.append("上の段 %s の era %s が、決め手 %s の予定の G (%s) の時代 %s とちがう" % (x["id"], x.get("era"), key["id"], key["phase"], kera))
+        era_ids = [e["id"] for e in eras]
+        at_era = era_of_phase.get(key.get("at_phase")) if key.get("at_phase") else None
+        timing = None
+        if key["status"] == "届いた" and at_era and kera:
+            timing = "早い" if era_ids.index(at_era) < era_ids.index(kera) else ("遅い" if era_ids.index(at_era) > era_ids.index(kera) else "予定どおり")
+        els = [node_by[e] for e in x["elements"] if e in node_by]
+        got = [n for n in els if n["status"] == "届いた"]
+        out_x = dict(x, status=key["status"], key_name=key["name"], key_phase=key["phase"],
+                     progress=[len(got), len(els)], timing=timing, at_phase=key.get("at_phase"), at_era=at_era,
+                     first=key.get("first"), emerged=[], dependents=[y["id"] for y in plan["techs"] if x["id"] in y.get("prereq", [])],
+                     xdependents=[y["id"] for y in plan["techs"] if x["id"] in y.get("xprereq", [])],
+                     earliest=min((n["first"]["day"] for n in got), default=None))
+        techs.append(out_x)
+    for n in nodes:
+        if n["id"] not in parent:
+            errs.append("要素 %s がどの上の段にも入っていない" % n["id"])
+        n["tech"] = parent.get(n["id"])
+    tech_by = {x["id"]: x for x in techs}
+    for e in emerged:
+        tid = parent.get(e["node"]) if e.get("node") else e.get("tech")
+        if tid not in tech_by:
+            errs.append("創発 %s の上の段がない (node か tech を書く)" % e.get("id"))
+            continue
+        e["tech"] = tid
+        tech_by[tid]["emerged"].append(e["id"])
+
     # ---- まとめの数
     cnt = {s: sum(1 for n in nodes if n["status"] == s) for s in ("届いた", "届かなかった", "まだ", "予定")}
     cnt["早い"] = sum(1 for n in nodes if n.get("timing") == "早い")
     cnt["遅い"] = sum(1 for n in nodes if n.get("timing") == "遅い")
     cnt["nodes"] = len(nodes)
+    cnt["techs"] = len(techs)
+    cnt["techs_reached"] = sum(1 for x in techs if x["status"] == "届いた")
+    cnt["techs_by"] = {tr: {s: sum(1 for x in techs if x["tree"] == tr and x["status"] == s) for s in ("届いた", "届かなかった", "まだ", "予定")}
+                       for tr in ("テクノロジー", "社会制度")}
+    cnt["techs_emerged"] = sum(1 for x in techs if x["emerged"])
     cnt["emerged"] = len(emerged)
     cnt["emerged_by_kind"] = {k: sum(1 for x in emerged if x["kind"] == k) for k in EKINDS}
     cnt["firsts"] = len(firsts)
@@ -409,6 +467,12 @@ def build(data, quiet=False):
         "asof": {"day": now, "date": yd(now), "era": era, "era_name": (ph_by.get(era) or {}).get("name"),
                  "events": len(st["events"]), "people": len(alive)},
         "phases": phases,
+        "eras": [dict(e, start=min((ph_by[p]["start"] for p in e["phases"] if ph_by.get(p) and ph_by[p]["start"] is not None), default=None),
+                      end=max((ph_by[p]["end"] for p in e["phases"] if ph_by.get(p) and ph_by[p]["end"] is not None), default=None),
+                      state=("予定" if all((ph_by.get(p) or {}).get("state") == "予定" for p in e["phases"]) else
+                             ("済み" if all((ph_by.get(p) or {}).get("state") == "済み" for p in e["phases"]) else "途中")))
+                 for e in eras],
+        "techs": techs,
         "nodes": nodes,
         "emerged": emerged,
         "checked": checked,
@@ -447,7 +511,7 @@ def _under(path, root):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="技術の木のページのデータを作る (読むだけ)")
+    ap = argparse.ArgumentParser(description="テクノロジーツリーのページのデータを作る (読むだけ)")
     ap.add_argument("--data", default=DEFAULT_DATA)
     ap.add_argument("--embed", default=DEFAULT_EMBED)
     ap.add_argument("--out", default=None)
@@ -457,7 +521,7 @@ def main(argv=None):
     t0 = time.time()
     for p in (a.embed, a.out):
         if p and _under(p, PROTECTED):
-            print("止めた: %s は sim/society/data/ の下 (技術の木は data/ に書かない)" % p, file=sys.stderr)
+            print("止めた: %s は sim/society/data/ の下 (テクノロジーツリーは data/ に書かない)" % p, file=sys.stderr)
             return 2
     out, errs = build(a.data, quiet=a.quiet)
     for e in errs:
@@ -466,8 +530,8 @@ def main(argv=None):
         return 1
     js = dump(out)
     c = out["counts"]
-    summary = ("技術の木: %s (%s) | 予定の技術 %d (届いた %d・届かなかった %d・まだ %d・予定 %d、早い %d・遅い %d) | 創発 %d | 自動の初めて %d | %d バイト | %.1f 秒"
-               % (out["asof"]["date"], out["asof"]["era"], c["nodes"], c["届いた"], c["届かなかった"], c["まだ"], c["予定"], c["早い"], c["遅い"],
+    summary = ("テクノロジーツリー: %s (%s) | 上の段 %d (届いた %d) | 要素 %d (届いた %d・届かなかった %d・まだ %d・予定 %d、早い %d・遅い %d) | 創発 %d | 自動の初めて %d | %d バイト | %.1f 秒"
+               % (out["asof"]["date"], out["asof"]["era"], c["techs"], c["techs_reached"], c["nodes"], c["届いた"], c["届かなかった"], c["まだ"], c["予定"], c["早い"], c["遅い"],
                   c["emerged"], c["firsts"], len(js.encode("utf-8")), time.time() - t0))
     if a.check:
         with open(a.embed, encoding="utf-8", newline="") as f:
