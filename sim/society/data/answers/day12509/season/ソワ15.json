@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬が近いから、今のうちに木の実と芋をたくさん採って蓄えに入れよう。わたしは林へ行ってくる。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["ナセ18"], "why": "冬の前に蓄えを増やしたい。採集は得意だし、息子のナセ18といっしょなら安心。"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ナセ18": {"activity": "採集", "place": "北林12", "why": "採集と狩りが得意で、冬の前に食べ物を集められるから。"}}, "keep": false,
+ "judge": {"M420": "ゆるす", "M421": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまいた。冬と春の草取りを誰かがしないと実りが減る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が来る前に、やれることを大胆にやっておきたい。"}

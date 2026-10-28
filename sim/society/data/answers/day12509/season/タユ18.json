@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに木の実をたくさん取って、冬の蓄えにしよう。畑の種まきも忘れずにね。"}],
+ "job": {"activity": "採集", "place": "北川12", "with": ["ヒセ18"], "why": "冬の前に魚と芋と木の実を集め、蓄えを減らさないため"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ18": {"activity": "採集", "place": "北川12", "why": "二人組で川の食べ物を探し、冬に備えるため"}},
+ "keep": false,
+ "judge": {"M420": "ゆるす", "M421": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、冬と春に草取りをすると夏の実りが増える。秋は毎夕木の実も取って冬に備える", "because": [1036225], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので、少し心配だけれど、みんなで力を合わせれば大丈夫だと思う。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、おれは川で魚をとってくる。木の実も毎夕とって蓄えに入れよう。畑の種も秋のうちにまいておこう。"}],
+ "job": {"activity": "狩り", "place": "南川12", "with": [], "why": "狩りは得意で、近い南の川なら魚が安全にとれる。冬の前に蓄えの草の種を減らさないため。"}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M420": "ゆるす", "M421": "ゆるす", "M424": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、冬と春をこえて夏のはじめに実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L334", "against": "", "agree": true, "reason": "子と空腹の人のぶんを先に残すのはよいことだから。"}],
+ "feeling": "冬が近いので、魚と木の実をたくさん集めておきたい。"}
