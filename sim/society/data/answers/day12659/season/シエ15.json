@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "冬は木の実がなる木が静かだね。わたしはけがが治るまでキャンプで土器を焼くよ。草の種を守る器は多いほどいい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "けがをしているのでキャンプで動ける仕事がよく、土器は得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ16": {"activity": "採集", "place": "南川12", "why": "冬でも魚や芋は探せる。キャンプに近い南の川で食べ物を探してほしいから"},
+  "ソワ16": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬もいる獣を北の丘で狙ってもらうから"}
+ },
+ "keep": false,
+ "judge": {"M426": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "冬はけがをしたらキャンプで土器を焼くのがよい。木の実は手持ちの分で足りる。", "because": [1055896], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "けがは痛むが、蓄えは多くて落ち着いている。土器づくりに集中できそうだ。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、冬は私が土器を焼いて種を守るよ。寒いけど、みんなも無理せず休んでね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は蓄えが十分あるので、土器を作って草の種を虫やネズミから守る"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "土器づくり", "place": "camp", "why": "冬は食べ物が足りているので、土器づくりを手伝って蓄えを守る"},
+  "ホタ17": {"activity": "畑仕事", "place": "camp", "why": "育っている畑の草取りを続けて、夏の実りを増やす"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を確保して、夏の実りを増やす"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けて夏に備える"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "冬は蓄えが十分あるので、土器づくりと畑の草取りで春と夏に備えるのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。ゆっくり土器を作れるのが楽しみ。"}

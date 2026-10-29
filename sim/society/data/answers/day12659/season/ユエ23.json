@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "この冬は雨の夜に外で濡れて、疲れがとれなかった。おれの家も住まいを建てて、村の住まいを空けるよ。畑の草取りも、手分けして毎日続けよう。"}, {"to": "ヒセ5", "text": "シエ20の家のことは、量もはっきりしないし、前もゆるした。冬はみんなで支え合おう。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": [], "why": "雨の夜に 9 回も外で濡れて疲れがとれない。家族の住まいを建てれば、村の住まいも空く"},
+ "family": [{"name": "ラキ24", "activity": "畑仕事", "place": "camp", "why": "冬のあいだ草取りをすれば、夏の実りが減らないから"}],
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M426": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "家族の住まいがない家は、雨の夜に村の住まいに入りきらず、冬じゅう疲れがたまる", "because": [], "confidence": 0.8}],
+ "proposal": {"text": "この冬と春のあいだ、毎日だれか四人が交代で畑の草取りをしよう。住まいのない家 (セオ20・ソナ24・タユ18・トナ22・ナセ23・ユエ23 の家) は、家の大人が一人ずつ住まいを建てて、雨の夜に外で濡れる人をなくそう。", "because": [], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L349", "against": "", "agree": true, "reason": "畑の草取りとヤギの世話を続けるのは大事だから"}, {"id": "L350", "against": "", "agree": true, "reason": "草取りを四人で続ければ夏の実りが減らないから"}, {"id": "L351", "against": "", "agree": true, "reason": "おれが出した掟で、ヤギも畑も守れるから"}, {"id": "L341", "against": "", "agree": true, "reason": "冬の草取りと魚とりで子を飢えさせないため"}],
+ "feeling": "疲れているけど、家族の屋根を建てれば楽になるはずだ"}

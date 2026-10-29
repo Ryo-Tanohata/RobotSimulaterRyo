@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは家の中で土器を焼き続けるよ。蓄えはまだたっぷりあるから、あわてずにいこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は慣れるほど多く焼けるし、草の種を虫やネズミから守れるから続ける"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ13": {"activity": "採集", "place": "南川12", "why": "冬は木の実がないので、近い南の川で魚や芋を探す"},
+  "ヒセ19": {"activity": "採集", "place": "南川12", "why": "ラニ13と二人組で川の魚や芋を探す"},
+  "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "育っている畑の草取りで夏の実りを増やす"}
+ },
+ "keep": false,
+ "judge": {"M426": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもあって落ち着いている。冬は土器づくりに集中したい。"}
