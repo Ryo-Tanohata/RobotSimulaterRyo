@@ -49,7 +49,10 @@ class A_Cards(unittest.TestCase):
                 n[x] = n.get(x, 0) + 1
         self.assertEqual(n, {"旅人": 2, "商人": 4, "教えを説く人": 3, "よそから来た人": 2, "捕らえた職人": 1})
         for st in hints.STAGES[1:]:
-            self.assertTrue(1 <= sum(1 for c in cs.values() if c["stage"] == st) <= 4, st)
+            self.assertTrue(1 <= sum(1 for c in cs.values() if c["stage"] == st and not c.get("g9")) <= 4, st)
+        # 2026-10-29: G9 に入る日に足す札 2 枚 (hint_cards_g9.json。段はもとの計画の G8 = 今の G9 で読む段)
+        self.assertEqual(sorted(k for k, c in cs.items() if c.get("g9")), ["H8-04", "H8-05"])
+        self.assertEqual({cs[k]["stage"] for k in ("H8-04", "H8-05")}, {"G8"})
         self.assertEqual(cs["H7-06"]["needs"], {"牛": 2})
         self.assertEqual(cs["H7-10"]["teach"], "土器")
 

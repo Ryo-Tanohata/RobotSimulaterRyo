@@ -242,7 +242,7 @@ def heavy_now(state):
     年の終わりの日 (と、年の集まりの日の step.py heavy) に読む: その日に終わる年の刈り入れ (= 次の年から見て「去年の刈り入れ」) の 2 割"""
     g = _g(state)
     hv = g.get("heavy")
-    if not hv or not g.get("strong") or state["day"] < hv["day"]:
+    if not hv or not g.get("strong") or state["day"] < hv["day"] or hv.get("end") is not None:  # G9 に入った日に切った (2026-10-29 本人の決め)
         return None
     h = harvest_year(state)
     return {"from": g["strong"], "to": "V0", "amount": max(1, round(hv["share"] * h)), "harvest": h}
@@ -299,6 +299,53 @@ def heavy_year(state):
     return hv
 
 
+# ---------------- G9「遠くとの商い」(2026-10-29 本人が決めた。docs/society_phase/G9_design.md。仕組みは g9.py) ----------------
+
+def close_g8(state, note):
+    """G8 を本人の決めで閉じる (条件がそろわないまま。2026-10-28 本人の決め: 外からの押しを 104年120日目で閉じた)。step.py next_part --closed-by-decision から、
+    G9 に入る前に 1 回だけ。出来事「フェーズ」と g7.closed8 に残す (G7 を閉じた g7.closed はそのまま)。乱数は使わない"""
+    g, D = _g(state), state["day"]
+    sub = {x["f"]: x["day"] for x in state["era2"].get("substeps", []) if x["g"] == "G8"}
+    c = {"day": D, "by": "本人の決め", "note": note, "f3": sub.get("F3"), "tribute2": g.get("tribute2_day"), "f4": sub.get("F4")}
+    g["closed8"] = c
+    log(state, "フェーズ", None, "G8 (外からの押し): 3 つの条件はそろわないまま、ここで閉じた", closed_by="本人の決め", note=note)
+    return c
+
+
+def start_g9(state):
+    """G9 に入った日 (enter_next か、G8 の条件がそろって進んだ日): G8 の物差しの数を g7.before.G8 に移して数え直し (G7 の物差しは G9 でも、ならべて測る)、
+    重い押しを切り (g7.heavy に終わりの日を書く。消さない。北の大きな村の求めは、ふつうの量 (相手の毎年の余りの 2 割) にもどる)、
+    G9 の仕組み (g9.py) を入れる。世界 (砂地・逃げ場なし・悪い年 0.35・段 v2) と北の大きな村 (特別な決まり) はそのまま"""
+    import g9
+    g, D = _g(state), state["day"]
+    g.setdefault("before", {})["G8"] = {k: g.pop(k) for k in MEASURE_KEYS if k in g}
+    g["part_start9"] = D
+    hv = g.get("heavy")
+    if hv and hv.get("end") is None:
+        hv["end"] = D
+        o = next((x for x in _others(state) if x["id"] == g.get("strong")), None)
+        if o and not o.get("gone"):
+            log(state, "集落", None, f"{o['name']} ({o['id']}) の長が、まわりの村から集める物を、前の量にもどすと言った", other=o["id"], heavy_end=D)
+    g9.start(state)
+
+
+def g9_tools(state):
+    """era2._day の夕方の刈り入れで使う赤い金属の道具 (G9 で、村が「使う」と決めたとき。G8 までは空)"""
+    if "g9" not in _g(state):
+        return []
+    import g9
+    return g9.tools_for_day(state)
+
+
+def g9_reap(state, p, tool, n):
+    import g9
+    return g9.reap(state, p, tool, n)
+
+
+def _g9_on(state):
+    return "g9" in (state["era2"].get("g7") or {})
+
+
 def enter_next(state):
     """次の G の待ち・部の終わりから、次の G に入る (G8 から。その G のコードを入れたあと)。G7 に入るのは enter"""
     e2, D, g = state["era2"], state["day"], _g(state)
@@ -312,6 +359,8 @@ def enter_next(state):
     g["hold"] = None
     if nxt == "G8":
         start_g8(state)
+    elif nxt == "G9":
+        start_g9(state)
     n = era2.PART_START.get(nxt)
     if n:
         g["part"], g["part_start"] = n, D
@@ -809,6 +858,9 @@ def _ledger_text(state):
 def facts(state):
     """お題の決まりの文のうち、今使えるもの (era2.FACTS_G7。4.F の 8)"""
     out = "".join(era2.FACTS_G7[k] for k in era2.FACTS_G7 if k in FACTS_ON and FACTS_ON[k](state))
+    if _g9_on(state):  # G9: 遠くの町の運ぶ人・赤い金属の道具
+        import g9
+        out += g9.facts(state)
     if no_flee(state):  # 逃げ場のない世界 (2026-10-24): 逃げる手はない (文を事実どおりに)
         out = out.replace(NO_FLEE_TEXT[0], NO_FLEE_TEXT[1])
     return out
@@ -831,7 +883,11 @@ def _offer(state):
 
 def text(state, p):
     """G7 のお題の節 (season_prompt の「ほかの村・印・記録」のあと): 板の帳簿・まわりの集落"""
-    return _ledger_text(state) + region_text(state) + hints.text(state, p)
+    out = _ledger_text(state) + region_text(state) + hints.text(state, p)
+    if _g9_on(state):
+        import g9
+        out += g9.text(state, p)
+    return out
 
 
 # 直しで変わった決まりの、お題の文の置きかえ (G7 に入ってから。前の文が見つからなければ何もしない)
@@ -882,6 +938,9 @@ def season_end(state, frac):
         year_turn(state)  # 10. 寄るか → 見本の選び直し → 手本 (塩 61)
     hints.season_end(state)  # 11. よその便り (塩 47): 年の終わりなら次の年の分 → 捕らえた職人 → この季節に届く便り
     hints.chance(state)  # 12. 年の終わりだけ: きっかけ (塩 67)
+    if _g9_on(state):  # G9: 遠くの運ぶ人の約束の日・道具のすり減り・c1・c2 (乱数は約束を書かなかったときの覚えだけ)
+        import g9
+        g9.season_end(state)
     yardstick.season_end(state, frac)  # 13. 物差し (乱数なし)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
     _offer(state)
@@ -911,6 +970,8 @@ def check(state, met, ind):
             g["hold"] = {"why": "phase", "era": nxt, "day": D}
             if nxt == "G8":  # G7 の条件がそろって G8 に進んだ: G8 の世界にする (next_part で閉じて入るときと同じ)
                 start_g8(state)
+            elif nxt == "G9":  # G8 の条件がそろって G9 に進んだ (next_part で閉じて入るときと同じ)
+                start_g9(state)
             return True
         if era in g["ends"]:
             return False
@@ -955,9 +1016,13 @@ def indicators(state):
     g = _g(state)
     era = state.get("era") if state.get("era") in MEASURED else "G7"  # G8 は、G8 に入ってから届いた F で数える (G7 と同じ物差し)
     sub = {x["f"]: x["day"] for x in state["era2"].get("substeps", []) if x["g"] == era}
+    if "g9" in g:  # G9: G7 の物差しは「ならべて測る」(G9 に入ってから届いた日。g7.reached)
+        import g9
+        sub = {k: v for k, v in (g.get("reached") or {}).items() if k in ("F3", "F4")}
     return {"g7_on": True, "g7_f3_day": sub.get("F3"), "g7_tribute2_day": g.get("tribute2_day"), "g7_f4_day": sub.get("F4"),
             "g7_role_people": len(role_people(state)), "g7_others": len(_others(state)),
-            "g7_region_people": sum(o["people"] for o in _others(state)), **yardstick.indicators(state)}
+            "g7_region_people": sum(o["people"] for o in _others(state)), **yardstick.indicators(state),
+            **(g9.indicators(state) if "g9" in g else {})}
 
 
 # ---------------- 年 1 回の答えと見本の家 (4.A) ----------------
@@ -1466,6 +1531,9 @@ def apply_year(state, answers, councils=None):
     if joints(state):
         captives_answer(state, real)  # 戦に勝ったとき、負けた村の職人を連れて帰るか (4.C.4。答えがなければ前の答えのまま、はじめは「連れて帰らない」)
     apply_shares(state, real)  # 2026-10-23: 家の代表が、家の倉から村の蓄え・ほかの家へ分ける (share)
+    if _g9_on(state):  # G9: 赤い金属の道具を使うか・遠くの運ぶ人の申し出・約束を板に書くか
+        import g9
+        g9.apply_answers(state, real)
     own, kinds = {}, {}
     if ask == "年":
         reps = set(_rep_of(state).values())
@@ -1640,7 +1708,16 @@ FIELDS_ON = {  # 答えの欄を出すとき (4.A.5)
     "answer_demand": lambda state: bool(_demands_to_village(state)), "ally": lambda state: bool(_demands_to_village(state)),
     "leave": _leave_on, "captives": _war_on, "tribute": _village_pays, "tax": lambda state: True, "rate": lambda state: True, "利子": lambda state: True,
     "try": _tech_open, "plough": _plough, "build": lambda state: True,
-    "share": lambda state: True}  # 2026-10-23: 家の倉から分ける (計画 6. の 2)
+    "share": lambda state: True,  # 2026-10-23: 家の倉から分ける (計画 6. の 2)
+    # G9 (2026-10-29): 赤い金属の道具を使うか・遠くの町の運ぶ人の申し出・約束を板に書くか (G8 までは出ない)
+    "metal": lambda state: _g9_on(state) and bool(_g9m().tools(state)),
+    "far": lambda state: _g9_on(state) and bool(_g9m()._g(state)["offers"]),
+    "far_write": lambda state: _g9_on(state) and bool(_g9m()._g(state)["offers"]) and bool(((state["era2"].get("g6") or {}).get("open") or {}).get("板"))}
+
+
+def _g9m():
+    import g9
+    return g9
 
 
 def fields_on(state):
@@ -1685,6 +1762,8 @@ def _field_rows(state, solo, year):
     if "plough" in on:
         rows.append("   犂: 畑仕事の人は、牛に犂を引かせるなら job に plough: true を書ける")
     rows.append('   壁: 住まいを建てる人は、job に build: "壁" と書くと、村のまわりの壁を積む (書かなければ、家族の住まい)')
+    if _g9_on(state):
+        rows += _g9m().field_rows(state)
     return "\n".join(rows)
 
 
@@ -1692,7 +1771,7 @@ def fields_json(state, p, solo):
     on = set(fields_on(state))
     return ((' "demand": null,' if "demand" in on else "") + (' "answer_demand": {}, "ally": null,' if "answer_demand" in on else "")
             + (' "leave": false,' if "leave" in on and not solo else "") + (' "share": null,' if "share" in on and not solo else "") + (' "captives": null,' if "captives" in on else "")
-            + (' "tribute": {},' if "tribute" in on else ""))
+            + (' "tribute": {},' if "tribute" in on else "") + (_g9m().fields_json(state) if _g9_on(state) else ""))
 
 
 def fields_prop(state):
@@ -2003,6 +2082,9 @@ def _region_after(state, setts, out, moves=None):
         elif ev["kind"] == "戦" and any(x in by and by[x].get("known") is not None and
                                         (region.dist(region.cell_of(by[x]), region.VILLAGE) <= NEAR_WAR or x in part) for x in who):
             log(state, "よその村", None, ev["text"], region=True, **ev["data"])
+        elif ev["kind"] == "同盟" and _g9_on(state) and any(x in by and by[x].get("known") is not None for x in who):
+            # G9 (2026-10-29): まわりの集落どうしの同盟 (助けを頼む) は、村が知っている集落がかかわれば、出来事に残す (仕組みは足さない)
+            log(state, "よその村", None, ev["text"], region=True, alliance=True, **ev["data"])
         else:
             reg["log"].append({"day": D, "kind": ev["kind"], "text": ev["text"], "who": who, **ev["data"]})
     drop_gone(state)

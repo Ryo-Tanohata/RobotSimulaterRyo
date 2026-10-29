@@ -96,10 +96,17 @@ def _first_plough(state):
     return next((e["day"] for e in state["events"] if e["type"] == "畑" and (e.get("data") or {}).get("plough")), None)
 
 
+def _g9_since(state):
+    """G9 (2026-10-29): G7 の物差しを「ならべて測る」とき、G9 に入ってからのことだけを数える (G8 までは None = 前のまま)"""
+    g = _g(state)
+    return g["g9"]["start"] if "g9" in g else None
+
+
 def _f2_day(state):
     D = state["day"]
+    lo = _g9_since(state)
     for t in (_g(state).get("region") or {}).get("ties", []):
-        if "V0" in (t["payer"], t["payee"]) and t.get("fixed") is not None:
+        if "V0" in (t["payer"], t["payee"]) and t.get("fixed") is not None and (lo is None or t["fixed"] >= lo):
             return t["fixed"]
     ys = _tax_years(state)
     if any(b - a == 1 for a, b in zip(ys, ys[1:])):
@@ -108,8 +115,9 @@ def _f2_day(state):
 
 
 def _f5_day(state):
+    lo = _g9_since(state)
     for d in (state["era2"].get("g6") or {}).get("debts", []):
-        if (d.get("rate") or 0) > 0 and d.get("proof"):
+        if (d.get("rate") or 0) > 0 and d.get("proof") and (lo is None or d["day"] >= lo):
             return state["day"]
     return None
 
@@ -124,6 +132,9 @@ def _role_share(state, frac):
 
 def _reach(state, f, day, why):
     r = _g(state).setdefault("reached", {})
+    lo = _g9_since(state)
+    if lo is not None and day is not None and day < lo:  # G9: G9 に入る前のこと (前に届いた日) は、ならべて測る数に入れない
+        return
     if f not in r and day is not None:
         r[f] = day
         _mark(state, f, why)
@@ -134,6 +145,8 @@ def _reach(state, f, day, why):
 def _ahead(state):
     """G8 の F2「商人の家」: この 1 年に、家の人が交換に行った日が 1 年の半分をこえる家 (G6 の旅の記録で測る)"""
     e2, D = state["era2"], state["day"]
+    if "g9" in _g(state):  # G9 からは、商人の家は G9 の条件 2 (g9.py が数える)。先の目盛りではない
+        return
     if any(a["g"] == "G8" and a["f"] == "F2" for a in e2.get("ahead", [])):
         return
     days = {}
@@ -167,6 +180,10 @@ def _stall(state, lv):
     """年の終わり: 条件ごとに「進み」を見る。8 年進まなければ報告で相談 (ask)、16 年で止めて相談 (g7.consult_why が読む)"""
     g, D = _g(state), state["day"]
     y = (D + 1) // YEAR
+    if "g9" in g:  # G9 (2026-10-29): 条件ごとの止まりは、G9 の 3 つの条件で数える (G9 に入った日に、G8 の止まりは g7.before.G8 に移した)
+        import g9
+        _stall_rows(g.setdefault("stall", {}), g9.progress(state), g9.done(state), y)
+        return
     done = {"c1": bool((g.get("reached") or {}).get("F3")), "c2": bool(g.get("tribute2_day")), "c3": bool((g.get("reached") or {}).get("F4"))}
     st = g.setdefault("stall", {})
     s1 = st.get("c1")
@@ -177,6 +194,19 @@ def _stall(state, lv):
         y0 = -(-(g["start"] + 1) // YEAR)
         s1.update(best=seen, since=y0 if seen == 0 else s1["since"], ask=None)
     for k, v in _progress(state, lv).items():
+        s = st.setdefault(k, {"best": v, "since": y, "done": False, "ask": None})
+        if done[k]:
+            s["done"] = True
+            continue
+        if v > s["best"]:
+            s.update(best=v, since=y, ask=None)
+        elif y - s["since"] >= STALL_ASK and s.get("ask") is None:
+            s["ask"] = y
+
+
+def _stall_rows(st, prog, done, y):
+    """G9 の条件ごとの止まり (G7 と同じ決まり: 進んだ年を残し、8 年進まなければ ask)"""
+    for k, v in prog.items():
         s = st.setdefault(k, {"best": v, "since": y, "done": False, "ask": None})
         if done[k]:
             s["done"] = True

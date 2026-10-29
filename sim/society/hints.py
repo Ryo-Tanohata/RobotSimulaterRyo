@@ -21,13 +21,15 @@ import world
 from world import log, season
 
 CARDS = Path(__file__).parent / "hint_cards.json"
+CARDS_G9 = Path(__file__).parent / "hint_cards_g9.json"  # G9 (遠くとの商い) に入る日に足す札 (2026-10-29 本人の決め)。G9 に入るまでは引かない
+FAR = "遠く"  # 遠くの商人の「来た所」(G9 から。地図の外。集落の番号ではない)
 HINT_CAP = 3  # 1 年に届く便りは 3 通まで (捕らえた職人は数えない。4.C.3)
 HINT_REPEAT = 3  # 同じ札が来るのは、受けとる所ごとに 3 回まで (4.C.5)
 STAGE_MIX = (0.6, 0.3, 0.1)  # 段: 今の G 60%・次の G 30%・2 つ以上先 10% (先の段どうしは等しく。E5)
 STAGES = ("G7", "G8", "G9", "G10", "G11", "G12", "G13", "G14")
 CARRIERS = ("旅人", "商人", "教えを説く人", "よそから来た人", "捕らえた職人")  # 本人の E2「5 つの運び手」(夢は入れない)
 LAM_TRAVELLER, LAM_PREACHER, LAM_PREACHER_HARD = 0.2, 0.1, 0.2  # λ の項 (4.C.3): 旅人・教えを説く人 (前の年が悪い年か借りの年なら 0.2)
-LAM_MERCHANT, LAM_FAR, LAM_JOINED = 0.15, 0.1, 0.3  # 交換した集落ごと・遠くの商人 (G8 から。G7 は 0)・受け入れた組ごと
+LAM_MERCHANT, LAM_FAR, LAM_JOINED = 0.15, 0.1, 0.3  # 交換した集落ごと・遠くの商人 (G9 から。G8 までは 0。もとの計画の G8 = 今の G9)・受け入れた組ごと
 FIELD_POOR = 6  # 村の悪い年 (c): 夏の畑の比が 6 より小さい
 HEARD_YEARS, HEARD_MAX = 3, 3  # お題に出すのは 3 年以内・3 通まで。3 年だれも使わなければ「忘れられた」(4.C.9)
 TRY_SKILL0, TRY_STEP, TRY_TEACH_STEP, TEACH_AT = 0.1, 0.02, 0.04, 0.6  # 試す (4.C.10): 腕は 0.1 から 1 日 +0.02、教える人 (腕 0.6 以上) と同じ日なら +0.04
@@ -43,12 +45,26 @@ CARRIER_WORD = {"旅人": "遠くから来た旅の人", "商人": "{o} から�
                 "捕らえた職人": "連れて来られた職人"}
 CRAFT_ACT = {"土器": "土器づくり", "道具": "道具づくり"}  # 「人」の札の teach (腕の名前) → 仕事
 MERCHANT_MET = ("交換に行く",)
+FAR_WORD = "遠くの町から来た運ぶ人"  # G9: 遠くの商人 (地図の外から)
+
+
+def _g9m():
+    """G9 (遠くとの商い) の仕組み (g9.py)。G9 に入ってからだけ読みこむ"""
+    import g9
+    return g9
 
 
 # ---------------- 札の表 (4.C.1) ----------------
 
-def cards_sha():
-    """札の表のファイルのハッシュ (G7 に入る日に g7.hints.cards_sha に残す。ちがうまま season を動かすと止まる)"""
+def _g9_on(state):
+    return bool(state) and "g9" in ((state.get("era2") or {}).get("g7") or {})
+
+
+def cards_sha(state=None):
+    """札の表のファイルのハッシュ (G7 に入る日に g7.hints.cards_sha に残す。ちがうまま season を動かすと止まる)。
+    G9 に入ったあと (state に g7.g9 がある) は、hint_cards.json と hint_cards_g9.json をつないだもののハッシュ (G8 までは前のまま)"""
+    if _g9_on(state):
+        return hashlib.sha256(CARDS.read_bytes() + b"\n" + CARDS_G9.read_bytes()).hexdigest()
     return hashlib.sha256(CARDS.read_bytes()).hexdigest()
 
 
@@ -57,10 +73,11 @@ _CACHE = {}
 
 def cards():
     """札の表 {番号: 札} (ファイルが変われば読みなおす)"""
-    sha = cards_sha()
+    sha = cards_sha() + (hashlib.sha256(CARDS_G9.read_bytes()).hexdigest() if CARDS_G9.exists() else "")
     if _CACHE.get("sha") != sha:
         data = json.loads(CARDS.read_text(encoding="utf-8"))
-        _CACHE.update(sha=sha, cards={c["id"]: c for c in data["cards"]})
+        extra = json.loads(CARDS_G9.read_text(encoding="utf-8"))["cards"] if CARDS_G9.exists() else []  # G9 の札 (g9: true。G9 に入るまでは _cand で引かない)
+        _CACHE.update(sha=sha, cards={c["id"]: c for c in data["cards"] + extra})
     return _CACHE["cards"]
 
 
@@ -139,7 +156,9 @@ def terms(state, rid):
         for o in others:
             if any(lo <= c <= hi for c in o.get("contacts", [])):
                 out.append(("商人", LAM_MERCHANT, o["id"]))
-        # 遠くの商人 (LAM_FAR) は G8 から (G7 は 0)
+        # 遠くの商人 (LAM_FAR) は G9 から (G8 までは 0)。来るのは、前の年に村が交換をしたときだけ (計画 2.(h)。g9.traded)
+        if _g9_on(state) and _g9m().traded(state, lo, hi):
+            out.append(("商人", LAM_FAR, FAR))
         out += [("よそから来た人", LAM_JOINED, None)] * _joined_groups(state, lo, hi)
     else:
         o = next((x for x in others if x["id"] == rid), None)
@@ -184,7 +203,9 @@ def _pick_stage(rng, now):
 def _cand(state, rid, stage, carrier):
     h, cs = _h(state), cards()
     seen, used = (h["seen"].get(rid) or {}), set(h["used"].get(rid) or [])
-    return sorted(c for c, x in cs.items() if x["stage"] == STAGES[stage] and carrier in x["carrier"] and c not in used and seen.get(c, 0) < HINT_REPEAT)
+    g9 = _g9_on(state)  # G9 の札 (g9: true) は G9 に入ってから (G8 までは前と同じ札から引く)
+    return sorted(c for c, x in cs.items() if x["stage"] == STAGES[stage] and carrier in x["carrier"] and c not in used and seen.get(c, 0) < HINT_REPEAT
+                  and (g9 or not x.get("g9")))
 
 
 def _pick_card(state, rng, rid, stage, now, carrier):
@@ -258,13 +279,13 @@ def cards_changed(state):
     """札の表のハッシュが、G7 に入った日 (か step.py cards の日) のものとちがえば、その文 (step.py season が止まる。終わりのコード 5)"""
     if not on(state):
         return None
-    now = cards_sha()
+    now = cards_sha(state)
     return None if now == _h(state)["cards_sha"] else f"札の表 ({CARDS.name}) が変わった (残したハッシュ {_h(state)['cards_sha'][:12]}…・今 {now[:12]}…)"
 
 
 def cards_note(state, note):
     """札を足す・直したとき (step.py cards): 出来事「区切り」を残し、新しいハッシュを cards_log に足す"""
-    h, sha = _h(state), cards_sha()
+    h, sha = _h(state), cards_sha(state)
     bad = check_cards()
     if bad:
         return "札の表に直すところがある: " + "・".join(bad[:5])
@@ -546,16 +567,17 @@ def _deliver_v0(state, rng, r):
     """村に届く (季節の終わり)"""
     c, D, sea = cards()[r["card"]], state["day"], season(state["day"])
     e2, h = state["era2"], _h(state)
-    o = era2._other(state, r["from"]) if r["from"] else None
-    if r["carrier"] == "商人" and (not o or o.get("gone") or o.get("known") is None):
+    far = r["from"] == FAR  # G9: 遠くの商人 (地図の外から。集落はない)
+    o = era2._other(state, r["from"]) if r["from"] and not far else None
+    if r["carrier"] == "商人" and not far and (not o or o.get("gone") or o.get("known") is None):
         r.update(status="空振り", why="商人の集落がない", delivered=D)
         return
-    met = _met_merchant(state, r["from"]) if r["carrier"] == "商人" else []
+    met = _met_merchant(state, r["from"]) if r["carrier"] == "商人" and not far else []
     who = _listeners(state, rng, met)
     if not who:
         r.update(status="空振り", why="聞く人がいない", delivered=D)
         return
-    by = CARRIER_WORD[r["carrier"]].format(o=o["name"] if o else "")
+    by = FAR_WORD if far else CARRIER_WORD[r["carrier"]].format(o=o["name"] if o else "")
     group = None
     if r["carrier"] in ("よそから来た人", "教えを説く人"):
         k = rng.randint(1, 2)
@@ -567,7 +589,7 @@ def _deliver_v0(state, rng, r):
     else:
         text = f"{sea}の終わり、{by}が {' と '.join(who)} に話をしていった"
     eid = log(state, "よその便り", None, text, hint=r["y"], card=r["card"], carrier=r["carrier"], listeners=who,
-              **({"other": r["from"]} if r["from"] else {}), **({"group": group["name"]} if group else {}))
+              **({"other": r["from"]} if r["from"] and not far else {}), **({"group": group["name"]} if group else {}), **({"far": True} if far else {}))
     state["events"][-1]["data"]["text"] = c["text"]  # 話の中身は data だけに (出来事の文には入れない。4.C.8)
     for p in era2.adults(state):
         if p["name"] in who:
@@ -582,6 +604,8 @@ def _deliver_v0(state, rng, r):
                 _open(state, r["card"], "ヒント")
             else:
                 h["tech"][r["card"]] = {"open": None, "wait": D, "source": "ヒント", "first": None, "progress": 0.0, "done": None, "last": None}
+    if far:  # G9: 遠くの商人は、話のほかに、赤い金属の道具との取り替えを申し出る (次の集まりまで待つ。g9.far_arrive)
+        _g9m().far_arrive(state, r)
     elif c["kind"] == "もの" and r["carrier"] == "商人" and o:
         thing = (c.get("unlocks") or {}).get("thing") or c["name"]
         g6 = era2._g6(state)
@@ -789,8 +813,9 @@ def text(state, p):
     out = []
     for r in rows:
         c = cards()[r["card"]]
-        o = era2._other(state, r["from"]) if r.get("from") else None
-        out.append(f"- [出来事 {r['event']}] {r['delivered']} 日目、{CARRIER_WORD[r['carrier']].format(o=o['name'] if o else 'ほかの村')}から聞いた話 "
+        o = era2._other(state, r["from"]) if r.get("from") and r.get("from") != FAR else None
+        frm = FAR_WORD if r.get("from") == FAR else CARRIER_WORD[r['carrier']].format(o=o['name'] if o else 'ほかの村')
+        out.append(f"- [出来事 {r['event']}] {r['delivered']} 日目、{frm}から聞いた話 "
                    f"(便りの番号 {r['card']}): 「{c['text']}」")
         if can_try(state, p["name"], r["card"]):
             out.append(f"  この話のことは、村で試せる (仕事「試す」。job の try に \"{r['card']}\")")

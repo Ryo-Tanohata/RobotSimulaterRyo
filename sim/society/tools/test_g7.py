@@ -102,9 +102,12 @@ class A_Gate(unittest.TestCase):
         self.assertFalse(used & NEW_SALTS, "新しい塩は名前 (HINT_SALT など) で使う")
 
     def test_order(self):
-        self.assertEqual(era2.ORDER2[-2:], ["G7", "G8"])  # 2026-10-25: G8 (外からの押し) を足した
+        self.assertEqual(era2.ORDER2[-3:], ["G7", "G8", "G9"])  # 2026-10-25: G8 (外からの押し) を足した。2026-10-29: G9 (遠くとの商い)
         self.assertEqual(era2.NAMES2["G7"], "王と役所")
         self.assertEqual(era2.NAMES2["G8"], "外からの押し")
+        self.assertEqual(era2.NAMES2["G9"], "遠くとの商い")
+        self.assertEqual(era2.PART_END["G9"], 5)
+        self.assertEqual([x[0] for x in era2.SUBSTEPS["G9"]], ["F1", "F2", "F3", "F4"])
         self.assertLessEqual(set(era2.CRITERIA), set(era2.ORDER2))
         self.assertTrue(era2.era_at_least({"era": "G7"}, "G6") and era2.era_at_least({"era": "G7"}, "G3"))
         self.assertFalse(era2.era_at_least({"era": "G6"}, "G7"))
@@ -2959,6 +2962,227 @@ class T_G8Heavy(unittest.TestCase):
         self.assertIn("割。年の終わりごとに数え直す", g7.region_text(st))
         st["era"] = "G7"
         self.assertIn("G8 のときだけ", g7.heavy_refusal(st))
+
+
+class T_G9(unittest.TestCase):
+    """2026-10-29 G9「遠くとの商い」(docs/society_phase/G9_design.md): G8 を閉じて入る・重い押しを切る・遠くの運ぶ人・約束を板に書く・赤い金属の道具・
+    商人の家・条件と F・止まり・札の表 (G9 の札は G9 から)。G8 までは前のまま"""
+
+    NOTE = "本人の決め 2026-10-28: 外からの押しを 104年120日目で閉じた"
+
+    def g9_state(self):
+        import g7
+        st = real_state()
+        g = (st.get("era2") or {}).get("g7") or {}
+        if st.get("era") == "G9" and "g9" in g:
+            return st
+        if st.get("era") != "G8" or g.get("closed8"):
+            self.skipTest("本物の state が G8 (閉じる前) でも G9 でもない")
+        g7.close_g8(st, self.NOTE)
+        g7.enter_next(st)
+        st["era_log"][-1]["g8_closed"] = st["day"]
+        return st
+
+    def real_g8(self):
+        st = real_state()
+        if st.get("era") != "G8" or "g9" in ((st.get("era2") or {}).get("g7") or {}):
+            self.skipTest("本物の state が G8 でない")
+        return st
+
+    def answers(self, st, **a):
+        return {n: dict(a) for n in era2.answerers(st)}
+
+    def test_enter_from_g8(self):
+        import g7
+        import g9
+        import hints
+        import step
+        st = self.real_g8()
+        self.assertIsNone(step._next_part_refusal(st, None, self.NOTE))
+        n_ev = st["next_event"]
+        g = st["era2"]["g7"]
+        tools0 = [t for t in (g.get("hints") or {}).get("things", []) if t["thing"] in g9.BRONZE_THINGS]
+        g7.close_g8(st, self.NOTE)
+        self.assertEqual(step._next_part_refusal(st, None, self.NOTE), "G8 はもう閉じている")
+        g7.enter_next(st)
+        g = st["era2"]["g7"]
+        self.assertEqual((st["era"], st["era_info"]["name"], g["closed8"]["note"], g["closed8"]["day"]), ("G9", "遠くとの商い", self.NOTE, st["day"]))
+        self.assertIn("closed", g, "G7 を閉じた記録 (g7.closed) はそのまま")
+        self.assertEqual(g["heavy"]["end"], st["day"], "重い押しは G9 に入る日に切る (消さない)")
+        self.assertIsNone(g7.heavy_now(st))
+        self.assertEqual(sorted(g["before"]), ["G7", "G8"])
+        self.assertNotIn("reached", g, "G8 の物差しの数は before.G8 に移して数え直す")
+        self.assertEqual(g["world"], g7.G8_WORLD, "世界の旗は G8 のまま")
+        self.assertEqual(g["count"], "v2")
+        self.assertEqual(len(g["g9"]["tools"]), len(tools0), "67年の赤い金属の刃も道具の一覧に入る (新しく手に入れたものではない)")
+        self.assertFalse(g["g9"]["reached"])
+        self.assertEqual(g["hints"]["cards_sha"], hints.cards_sha(st))
+        self.assertNotEqual(hints.cards_sha(st), hints.cards_sha(), "G9 からは G9 の札もハッシュに入る")
+        self.assertIsNone(hints.cards_changed(st))
+        types = [e["type"] for e in st["events"] if e["id"] >= n_ev]
+        self.assertEqual(types, ["フェーズ", "集落", "区切り", "フェーズ"])
+        ind = era2.indicators(st)
+        self.assertEqual((ind["g9_c1_day"], ind["g9_c2_day"], ind["g9_c3_day"]), (None, None, None))
+        self.assertFalse(era2.CRITERIA["G9"][1](ind))
+        self.assertEqual(era2.PART_END["G9"], 5)
+        txt = g7.facts(st) + g7.text(st, era2.adults(st)[0]) + g7._field_rows(st, False, True)
+        self.assertIn("遠くの町の運ぶ人", txt)
+        self.assertIn("(metal)", txt)
+        self.assertNotIn("青銅", txt, "村の人に見せる文に「青銅」は書かない")
+
+    def test_g9_cards_only_from_g9(self):
+        import hints
+        st = self.real_g8()
+        self.assertEqual(hints.cards_sha(st), hints.cards_sha(), "G8 までは前のハッシュ (hint_cards.json だけ)")
+        self.assertIsNone(hints.cards_changed(st))
+        now = hints._stage_now(st)
+        self.assertNotIn("H8-04", hints._cand(st, 1, now and 1, "商人"), "G8 では G9 の札を引かない")
+        self.assertNotIn("H8-05", hints._cand(st, 1, 1, "旅人"))
+        self.assertFalse(any(t[2] == hints.FAR for t in hints.terms(st, "V0")), "遠くの商人は G9 から")
+        st9 = self.g9_state()
+        self.assertIn("H8-04", hints._cand(st9, 1, 1, "商人"))
+        self.assertIn("H8-05", hints._cand(st9, 1, 1, "旅人"))
+        self.assertEqual(hints.check_cards(), [])
+
+    def test_far_term_needs_trade(self):
+        import g9
+        import hints
+        st = self.g9_state()
+        lo, hi = hints._window(st)
+        traded = g9.traded(st, lo, hi)
+        self.assertEqual(any(t[2] == hints.FAR for t in hints.terms(st, "V0")), traded)
+        st["era2"]["g7"]["g9"]["deals"].append(st["day"])
+        self.assertIn(("商人", hints.LAM_FAR, hints.FAR), hints.terms(st, "V0"))
+
+    def test_far_promise_written_and_kept_twice(self):
+        import g9
+        st = self.g9_state()
+        g = st["era2"]["g7"]["g9"]
+        grain0 = era2._g6_have(st, "村", "草の種")
+        if grain0 < 4 * g9.FAR_TOOLS * g9.FAR_PRICE:
+            self.skipTest("村の蓄えの草の種が少ない")
+        off = g9.far_arrive(st)
+        self.assertTrue(any("(far)" in r for r in g9.field_rows(st)))
+        self.assertIn(off["id"], g9.fields_json(st))
+        g9.apply_answers(st, self.answers(st, far={off["id"]: "約束する"}, far_write="書く", metal="使う"))
+        self.assertEqual(g["offers"], [])
+        self.assertEqual(era2._g6_have(st, "村", "草の種"), grain0 - g9.FAR_TOOLS * g9.FAR_PRICE)
+        self.assertEqual(len(g9.tools(st)), 1 + g9.FAR_TOOLS)
+        pr = g["promises"][-1]
+        self.assertEqual((pr["written"], pr["status"], pr["due"]), (True, "待つ", st["day"] + era2.YEAR))
+        self.assertEqual(sorted(g["reached"]), ["F1", "F3"])
+        self.assertEqual(g["c"].get("c3"), st["day"])
+        self.assertEqual(g["use"]["choice"], "使う")
+        e = next(e for e in reversed(st["events"]) if e["type"] == "交換")
+        self.assertIn("粘土の板に書いて残した", e["text"])
+        self.assertTrue(e["text"].startswith("季節の集まりで"), "集まりの出来事")
+        st["day"] = pr["due"]
+        g9._due(st)
+        self.assertEqual((pr["status"], g["kept"]), ("守られた", 1))
+        self.assertEqual(len(g["offers"]), 1, "守り合ったら、また申し出る")
+        off2 = g["offers"][0]
+        g9.apply_answers(st, self.answers(st, far={off2["id"]: "約束する"}, far_write="書かない"))
+        pr2 = g["promises"][-1]
+        self.assertFalse(pr2["written"])
+        pr2["mem"] = {"village": 1.0, "merchant": 1.0}
+        st["day"] = pr2["due"]
+        g9._due(st)
+        self.assertEqual((pr2["status"], g["kept"]), ("守られた", 2))
+        self.assertEqual(g["reached"].get("F4"), st["day"])
+
+    def test_unwritten_memory_differs(self):
+        import g9
+        st = self.g9_state()
+        g = st["era2"]["g7"]["g9"]
+        off = g9.far_arrive(st)
+        g9.apply_answers(st, self.answers(st, far={off["id"]: "約束する"}))
+        if not g["promises"]:
+            self.skipTest("村の蓄えが足りない")
+        pr = g["promises"][-1]
+        self.assertFalse(pr["written"], "far_write がなければ書かない")
+        self.assertNotIn("c3", g["c"])
+        pr["mem"] = {"village": 0.7, "merchant": 1.3}
+        st["day"] = pr["due"]
+        g9._due(st)
+        self.assertEqual((pr["status"], g["kept"], g["offers"]), ("ちがっていた", 0, []))
+        self.assertEqual(st["events"][-1]["type"], "覚え")
+
+    def test_refuse_and_no_answer(self):
+        import g9
+        st = self.g9_state()
+        g = st["era2"]["g7"]["g9"]
+        a, b = g9.far_arrive(st), g9.far_arrive(st)
+        n0 = len(g9.tools(st))
+        g9.apply_answers(st, self.answers(st, far={a["id"]: "受けない"}))
+        self.assertEqual((g["offers"], len(g9.tools(st)), [o["end"][1] for o in g["offer_log"][-2:]]), ([], n0, ["受けない", "答えなし"]))
+        self.assertEqual(g["deals"], [])
+
+    def test_bronze_use_and_c1(self):
+        import g7
+        import g9
+        st = self.g9_state()
+        g = st["era2"]["g7"]["g9"]
+        self.assertEqual(g7.g9_tools(st), [], "しまっているあいだは使わない")
+        g9.apply_answers(st, self.answers(st, metal="使う"))
+        ts = g7.g9_tools(st)
+        self.assertEqual(len(ts), len(g9.tools(st)))
+        p = era2.adults(st)[0]
+        self.assertEqual(g7.g9_reap(st, p, ts[0], 60), 150, "刈る量は 2.5 倍")
+        y = str(st["day"] // era2.YEAR)
+        g["used"][y] = g9.C1_DAYS
+        g9.season_end(st)
+        self.assertEqual(g["c"].get("c1"), st["day"])
+        ts[0]["uses"] = g9.BRONZE_LIFE
+        g9._wear(st)
+        self.assertIsNotNone(ts[0]["gone"])
+
+    def test_merchant_household_c2(self):
+        import g9
+        st = self.g9_state()
+        g6 = st["era2"]["g6"]
+        h = era2.adults(st)[0]
+        D = st["day"]
+        for i in range(9):
+            g6["trip_log"].append({"id": f"RX{i}", "who": h["name"], "to": "N1", "start": D - 100 + i * 10, "end": D - 100 + i * 10 + 6})
+        g9.season_end(st)
+        g = st["era2"]["g7"]["g9"]
+        self.assertGreater(g["merchant"]["max"], g9.MERCHANT_DAYS)
+        self.assertEqual((g["reached"].get("F2"), g["c"].get("c2")), (D, D))
+        import yardstick
+        yardstick._ahead(st)
+        self.assertFalse(any(x["g"] == "G8" for x in st["era2"].get("ahead", []) if x["day"] == D), "G9 では先の目盛り (G8 の F2) を書かない")
+
+    def test_criteria_and_part_end(self):
+        import g7
+        st = self.g9_state()
+        g = st["era2"]["g7"]
+        g["g9"]["c"] = {"c1": st["day"], "c2": st["day"], "c3": st["day"]}
+        ind = era2.indicators(st)
+        self.assertTrue(era2.CRITERIA["G9"][1](ind))
+        self.assertEqual(g7.check(st, True, ind), "end")
+        self.assertEqual(g["hold"]["why"], "part_end")
+        self.assertEqual(era2.hold_why(dict(st, hold=True))[0], "part_end")
+
+    def test_g7_measures_side_by_side(self):
+        import yardstick
+        st = self.g9_state()
+        g = st["era2"]["g7"]
+        D0 = g["g9"]["start"]
+        yardstick._reach(st, "F2", yardstick._f2_day(st), "試し")
+        yardstick._reach(st, "F5", yardstick._f5_day(st), "試し")
+        self.assertTrue(all(d >= D0 for d in (g.get("reached") or {}).values()), "G9 に入る前の取り立て・貸し借りでは、ならべて測る F に入れない")
+        yardstick._reach(st, "F1", st["day"], "試し")
+        self.assertEqual(g["reached"]["F1"], st["day"])
+        self.assertEqual(era2.indicators(st)["g7_f3_day"], None)
+
+    def test_stall_counts_g9(self):
+        import yardstick
+        st = self.g9_state()
+        g = st["era2"]["g7"]
+        self.assertNotIn("stall", g)
+        yardstick._stall(st, [])
+        self.assertEqual(sorted(g["stall"]), ["c1", "c2", "c3"])
+        self.assertEqual(g["stall"]["c1"]["best"], 1, "道具はある (67年の刃)")
 
 
 if __name__ == "__main__":

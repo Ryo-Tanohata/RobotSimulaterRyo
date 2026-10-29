@@ -4,6 +4,8 @@
   PYTHONUTF8=1 python3.13 sim/society/tools/lab_village.py one --data /tmp/…/g6real --world W0 --bundle B0 --seed 1 --years 2   (1 回だけ。時間を見る)
   PYTHONUTF8=1 python3.13 sim/society/tools/lab_village.py csv --out /tmp/…/runs --csv docs/research/data/A2_runs.csv
   (G8 の重い押しの確かめ 2026-10-25: --data sim/society/data (本物の 10919 日目。読むだけ) --worlds W8H,W8R --years 10、csv に --years-csv で年ごとの行)
+  (G9 の確かめ 2026-10-29: --data sim/society/data (本物の 12599 日目。読むだけ) --worlds W9 --bundles B0,B1T --years 15。表は csv --g9-csv <runs.csv> --years-csv <years.csv>。
+   感度は --worlds W9F (遠くの商人の重み 0.5) --bundles B1T。docs/society_phase/G9_check.md)
 
 - はじめの state は G6 の 5849 日目 (e436dfc の 1 つ前のコミットの data の写し)。メモリの中で g7.close_g6 → g7.enter (G7 に入る。本物と同じ道) してから回す。
   写しの state.json は読むだけ。何も書かない (書くのは --out の結果のファイルだけ)
@@ -32,6 +34,7 @@ sys.path.insert(0, str(HERE.parent))
 import archive  # noqa: E402
 import era2  # noqa: E402
 import g7  # noqa: E402
+import hints  # noqa: E402
 import region  # noqa: E402
 import world  # noqa: E402
 
@@ -55,8 +58,14 @@ WORLDS = {
     "W8H10": {"name": "G8 の重い押し (去年の刈り入れの 10 割。本物の 10919 日目から。2026-10-26 本人の決め)", "fill": 0.0, "str": "base", "circ": "open",
               "dr": 0.2, "from_g8": True, "heavy": 1.0},
     "W8R": {"name": "G8 のまま (本物の 10919 日目から。重い押しなし)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "from_g8": True},
+    # G9 の世界 (2026-10-29 本人の決め): 本物の村の 12599 日目 (G8 を閉じたところ) から、step.py next_part --closed-by-decision と同じ道で G9 に入る
+    #   (g7.close_g8 → g7.enter_next → g7.start_g9: 重い押しを切る・G9 の仕組み。世界の旗と北の大きな村はそのまま)
+    "W9": {"name": "G9 (遠くとの商い。本物の 12599 日目から。G8 の世界のまま・重い押しは切る)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g9": True},
+    # G9 の感度 (2026-10-29。確かめのためだけ。本人の決めの重みは 0.1): 遠くの商人の重み hints.LAM_FAR を 0.5 にした世界
+    "W9F": {"name": "G9 + 遠くの商人の重み 0.5 (感度を見るためだけ。決めは 0.1)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g9": True, "lam_far": 0.5},
 }
-ORIG = {"K": dict(region.K), "WEATHER_BAD": region.WEATHER_BAD, "cells": region.cells, "refuge": region.refuge, "k_total": region.k_total}
+ORIG = {"K": dict(region.K), "WEATHER_BAD": region.WEATHER_BAD, "cells": region.cells, "refuge": region.refuge, "k_total": region.k_total,
+        "LAM_FAR": hints.LAM_FAR}
 
 
 def _cells_desert():
@@ -74,6 +83,7 @@ def apply_world(w):
     region.cells = ORIG["cells"]
     region.refuge = ORIG["refuge"]
     region.k_total = ORIG["k_total"]
+    hints.LAM_FAR = w.get("lam_far", ORIG["LAM_FAR"])  # G9 の感度 (W9F) のときだけ変える
     if w["circ"] in ("desert", "nofl"):
         region.K["s"] = 0
         region.cells = _cells_desert
@@ -88,6 +98,12 @@ def enter_g7(state, w):
         assert state.get("era") == "G8", state.get("era")
         if w.get("heavy"):
             g7.heavy_on(state, w["heavy"], answered=False)
+        return
+    if w.get("g9"):  # 本物の 12599 日目 (G8): G8 を閉じて G9 に入る (step.py next_part --closed-by-decision と同じ関数)
+        assert state.get("era") == "G8", state.get("era")
+        g7.close_g8(state, "本人の決め 2026-10-28: 外からの押しを 104年120日目で閉じた")
+        g7.enter_next(state)
+        state["era_log"][-1]["g8_closed"] = state["day"]
         return
     if w.get("g8"):
         g7.close_g7(state, "G7 を閉じる (試し)")
@@ -127,7 +143,11 @@ BUNDLES = {
     "B3": {"name": "罰 + つぐなう", **BASE, "rec": 1, "what": ["掟"], "judge": "つぐなう", "pen": True},
     "B4": {"name": "求める", **BASE, "dem": "always"},
     "B5": {"name": "まとめ役と役の人", **BASE, "lead": True},
+    # G9 の確かめ (2026-10-29): G9_check.md の「B1 (商いに寄せた)」。国の答え (税・罰・求める) はしない。B0 は G9 の欄に答えない (今の LLM に近い: 交換をしない)
+    "B1T": {"name": "商いに寄せた (G9 の B1)", **BASE, "trade": True},
 }
+TRADERS = 3  # B1T: 商人の家にする 1 つの家から、季節ごとに交換に行く大人の数
+TRADE_CARRY = {"草の種": 900}  # B1T: 1 人が持って行く物 (LOAD の上限)
 CKPT_YEARS = 3  # とちゅうの写しを書く間 (年)
 POTTERS = 3  # どの束も、季節ごとに 3 人が土器づくり (草の種を虫から守る土器。63〜70年の答えに多かった形)
 TAX_SHARE = {"famine": 0.1, "yearly": 0.05}
@@ -260,6 +280,15 @@ def _demand(state, pol):
     return {"to": int(t["id"][1:]), "what": {"草の種": amt}, "then": "戦う"}
 
 
+def _trade_jobs(state, fam):
+    """B1T: 家の代表でない大人 TRADERS 人が、知っている村のうち、いちばん遠い村 (同じなら番号の若い村) へ交換に行く"""
+    known = [o for o in g7._others(state) if o.get("known") is not None and not o.get("gone")]
+    if not known:
+        return {}
+    to = max(known, key=lambda o: (o["days"], -region.num(o["id"])))
+    return {m: _job("交換に行く", to=to["id"], carry=dict(TRADE_CARRY), want="ヤギ", then="畑仕事") for m in fam[1:TRADERS + 1]}
+
+
 def make_answers(state, pol, rt):
     """集まりの歩の、答える人みんなの決まりの答え ({名前: JSON の文})"""
     g = state["era2"]["g7"]
@@ -295,10 +324,22 @@ def make_answers(state, pol, rt):
         common["answer_demand"] = {q: "払う" for q in qs}
     if lead:
         common["leader"] = lead
+    trader = None
+    if pol.get("trade"):  # B1T: 交換の申し出は村で受け、赤い金属の道具は使い、遠くの運ぶ人とは約束して板に書く。1 つの家の大人 3 人が毎季節、遠くの村へ交換に行く
+        g9s = g.get("g9") or {}
+        common["trade_rule"] = dict(common["trade_rule"], 交換="村")
+        common["trade"] = {**{o["id"]: "村" for o in (e2.get("g6") or {}).get("offers", []) if o["kind"] == "交換"}, **common.get("trade", {})}
+        common["metal"] = "使う"
+        common["far"] = {o["id"]: "約束する" for o in g9s.get("offers", [])}
+        common["far_write"] = "書く"
+        trader = next((n for n in names if len(fams[n]) >= TRADERS + 1), None)
     out = {}
     if ask == "年":
         seas = SEASONS[SEASONS.index(now):]
         plans = {s: _assign(fams, _roles(state, pol, s, rt, ask)) for s in seas}
+        if trader:
+            for s in seas:
+                plans[s].update(_trade_jobs(state, fams[trader]))
         for i, n in enumerate(names):
             a = {"say": [], "year": {s: _season_part(state, pol, rt, n, fams[n], s, plans[s]) for s in seas}, **common}
             if i < len(to_propose):
@@ -309,6 +350,8 @@ def make_answers(state, pol, rt):
     else:
         famine = ask == "集まり直し"
         roles = _assign(fams, _roles(state, pol, now, rt, ask))
+        if trader:
+            roles.update(_trade_jobs(state, fams[trader]))
         for i, n in enumerate(names):
             a = {"say": [], **_season_part(state, pol, rt, n, fams[n], now, roles, famine), **common}
             if i < len(to_propose):
@@ -426,8 +469,26 @@ def _year_row(state, y0, acc):
             "dem_in_strong": sum(1 for d in reg.get("demands", []) if d.get("to") == "V0" and d.get("from") == g.get("strong")),
             "wars_v0": sum(1 for x in reg.get("wars", []) if "V0" in (x.get("att"), x.get("def")) and x.get("done") is not None and not x.get("called_off")),
             "strong_people": next((o["people"] for o in g7._others(state) if o["id"] == g.get("strong")), None),
-            **_heavy_cols(state),
+            **_heavy_cols(state), **_g9_cols(state),
             **{k: acc[k] for k in sorted(acc)}}
+
+
+def _g9_cols(state):
+    """G9 の確かめ (2026-10-29) の年ごとの列: 条件と F の日・道具・使った人日・遠くの運ぶ人・約束・交換に行った日・北の大きな村"""
+    g = state["era2"]["g7"]
+    if "g9" not in g:
+        return {}
+    import g9
+    s = g["g9"]
+    reg = g.get("region") or {}
+    return {"g9_c": dict(s["c"]), "g9_reached": dict(s["reached"]), "g9_tools": len(g9.tools(state)), "g9_tools_all": len(s["tools"]),
+            "g9_use": s["use"]["choice"], "g9_used": dict(s["used"]), "g9_visits": len(s["visits"]), "g9_offers_end": [o.get("end") for o in s.get("offer_log", [])], "g9_promises": [[p["id"], p["day"], p["written"], p["status"]] for p in s["promises"]], "g9_kept": s["kept"],
+            "g9_trip_max": (s.get("merchant") or {}).get("max", 0), "g9_deals": len(s["deals"]),
+            "g9_far_lam": [[x["day"], x["lam"]] for x in (g.get("hints") or {}).get("lam", []) if x["to"] == "V0" and any(t[2] == "遠く" for t in x["terms"])],
+            "contacts_year": sum(1 for o in g7._others(state) for c in o.get("contacts", []) if c > state["day"] - YEAR),
+            "strong_dem_amounts": [d["what"].get("草の種") for d in reg.get("demands", []) if d.get("to") == "V0" and d.get("from") == g.get("strong")],
+            "alliances_seen": sum(1 for e in state["events"] if e["type"] == "よその村" and (e.get("data") or {}).get("alliance")),
+            "g7_reached": dict(g.get("reached") or {})}
 
 
 def _heavy_cols(state):
@@ -637,6 +698,62 @@ def write_years_csv(out_dir, path):
     return out
 
 
+G9_COLS = ["world", "bundle", "seed", "years_run", "c1_year", "c2_year", "c3_year", "F1_year", "F2_year", "F3_year", "F4_year", "far_visits", "promises",
+           "promises_written", "promises_kept", "promise_status", "tools_end", "tools_all", "use_end", "used_max_year", "trip_max_end", "trip_max_max",
+           "deals", "far_lam_years", "contacts_year_mean", "alliances_seen", "g7_reached", "pop_end", "kid_deaths", "adult_deaths", "births", "famine_seasons",
+           "famine_all_seasons", "famine_events", "remeet", "store_all_days_min", "store_all_days_end", "strong_people_end", "strong_dem", "wars", "secs"]
+
+
+def g9_row(res):
+    """G9 の確かめ (2026-10-29) の 1 回 = 1 行"""
+    rows = res["rows"]
+    last = rows[-1] if rows else {}
+    y0 = res["y0"]
+
+    def yr(day):
+        return None if day is None else day // YEAR - y0 + 1
+    c, re_ = last.get("g9_c") or {}, last.get("g9_reached") or {}
+    pr = last.get("g9_promises") or []
+    return {"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], "years_run": len(rows),
+            **{f"{k}_year": yr(c.get(k)) for k in ("c1", "c2", "c3")}, **{f"{f}_year": yr(re_.get(f)) for f in ("F1", "F2", "F3", "F4")},
+            "far_visits": last.get("g9_visits"), "promises": len(pr), "promises_written": sum(1 for x in pr if x[2]), "promises_kept": last.get("g9_kept"),
+            "promise_status": ";".join(f"{x[0]}/{yr(x[1])}/{'書いた' if x[2] else '書かない'}/{x[3]}" for x in pr),
+            "tools_end": last.get("g9_tools"), "tools_all": last.get("g9_tools_all"), "use_end": last.get("g9_use"),
+            "used_max_year": max((last.get("g9_used") or {}).values(), default=0), "trip_max_end": last.get("g9_trip_max"),
+            "trip_max_max": max((r.get("g9_trip_max", 0) for r in rows), default=0), "deals": last.get("g9_deals"),
+            "far_lam_years": len(last.get("g9_far_lam") or []), "contacts_year_mean": round(sum(r.get("contacts_year", 0) for r in rows) / max(1, len(rows)), 2),
+            "alliances_seen": last.get("alliances_seen"), "g7_reached": ";".join(f"{k}/{yr(v)}" for k, v in sorted((last.get("g7_reached") or {}).items())),
+            **{k: last.get(k) for k in ("pop", "kid_deaths", "adult_deaths", "births", "famine_seasons", "famine_all_seasons", "famine_events", "remeet", "wars")},
+            "pop_end": last.get("pop"), "store_all_days_min": min((r["store_all_days"] for r in rows), default=None), "store_all_days_end": last.get("store_all_days"),
+            "strong_people_end": last.get("strong_people"), "strong_dem": ";".join("/".join(str(x) for x in q) for q in last.get("strong_dem", [])
+                                                                                     if q[1] >= res["y0"] * YEAR - 1), "secs": res["secs"]}
+
+
+def write_g9_csv(out_dir, path, years_path=None):
+    rows = [g9_row(json.loads(f.read_text(encoding="utf-8"))) for f in sorted(Path(out_dir).glob("*.json"))]
+    rows.sort(key=lambda r: (r["world"], r["bundle"], r["seed"]))
+    with open(path, "w", encoding="utf-8", newline="") as fh:
+        wr = csv.DictWriter(fh, fieldnames=G9_COLS, extrasaction="ignore")
+        wr.writeheader()
+        for r in rows:
+            wr.writerow(r)
+    if years_path:
+        cols = ["world", "bundle", "seed", "year", "pop", "store_all_days", "v_days", "h_days", "harvest", "g9_tools", "g9_use", "used_year", "g9_visits",
+                "g9_kept", "g9_trip_max", "contacts_year", "kid_deaths_year", "adult_deaths_year", "famine_seasons_year", "strong_people"]
+        with open(years_path, "w", encoding="utf-8", newline="") as fh:
+            wr = csv.DictWriter(fh, fieldnames=cols, extrasaction="ignore")
+            wr.writeheader()
+            for f in sorted(Path(out_dir).glob("*.json")):
+                res = json.loads(f.read_text(encoding="utf-8"))
+                prev = {}
+                for r in res["rows"]:
+                    d = {f"{k}_year": r.get(k, 0) - prev.get(k, 0) for k in ("kid_deaths", "adult_deaths", "famine_seasons")}
+                    prev = r
+                    y = str((r["day"]) // YEAR)
+                    wr.writerow({"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], **r, **d, "used_year": (r.get("g9_used") or {}).get(y, 0)})
+    return rows
+
+
 def write_csv(out_dir, path):
     rows = [row_of(json.loads(f.read_text(encoding="utf-8"))) for f in sorted(Path(out_dir).glob("*.json"))]
     rows.sort(key=lambda r: (r["world"], r["bundle"], r["seed"]))
@@ -706,6 +823,7 @@ def main():
     ap.add_argument("--out")
     ap.add_argument("--csv")
     ap.add_argument("--years-csv", dest="years_csv", help="csv で、年ごとの行も書く (重い押しの確かめ)")
+    ap.add_argument("--g9-csv", dest="g9_csv", help="csv で、G9 の確かめの表を書く (2026-10-29。--years-csv があれば G9 の年ごとの行も)")
     ap.add_argument("--world", default="W0")
     ap.add_argument("--bundle", default="B0")
     ap.add_argument("--worlds", default=",".join(WORLDS))
@@ -715,6 +833,10 @@ def main():
     ap.add_argument("--years", type=int, default=15)
     ap.add_argument("--procs", type=int, default=2)
     a = ap.parse_args()
+    if a.cmd == "csv" and a.g9_csv:
+        rows = write_g9_csv(a.out, a.g9_csv, a.years_csv)
+        print(f"{len(rows)} 行 → {a.g9_csv}")
+        return
     if a.cmd == "csv":
         rows = write_csv(a.out, a.csv)
         print(f"{len(rows)} 行 → {a.csv}")
