@@ -1,6 +1,7 @@
 """論文 2・実験 1: answers/*.json を読み、事前登録 (docs/research/humanity/paper2_exp1_prereg.md の 7.・8.) のとおりに数える。
 
     python3 analyze.py [--answers DIR] [--out DIR] [--boot 1000]
+    python3 analyze.py --experiment 2 [--answers DIR] [--out DIR] [--boot 1000]   # 実験 2 (analyze_exp2.py。answers_exp2/ → out_exp2/)
 
 書くもの (out/ 。図は英語と日本語の両方の見出し):
 - summary.md            仮説ごとの数と、決めた線で「支持 / 支持しない」
@@ -32,19 +33,23 @@ H1_PC1 = HUMAN_EIG[0] / P   # 0.268 (固有値から。印刷の 0.36 は参考)
 H2_MAE = 0.5       # H2: 規範との差 (絶対値) の平均がこれより小さければ「規範に近い」
 H4_D = -0.2        # H4: グレーゾーンの平均の差 (C2 − C1) がこれ以下で、CI の上が 0 未満
 H5_OVL = 3         # H5: 上位 5 問のうち 3 問以上が重なり、偶然の p < 0.05 なら「再現」
-COLORS = {"C0": "#2a78d6", "C1": "#eb6834", "C2": "#1baf7a", "C3": "#eda100", "C4": "#e87ba4", "pooled": "#6250d6"}
+COLORS = {"C0": "#2a78d6", "C1": "#eb6834", "C2": "#1baf7a", "C3": "#eda100", "C4": "#e87ba4", "pooled": "#6250d6",
+          "D1": "#2a78d6", "D2": "#1baf7a", "D3": "#e87ba4", "D1+D2": "#6250d6", "exp1_C1": "#eb6834"}
 INK, MUTED = "#0b0b0b", "#52514e"
 
 
 # ---------- 読む ----------
-def load(answers_dir):
-    data = {c: {"ids": [], "X": [], "honne": []} for c in CONDITIONS}
+def load(answers_dir, conditions=CONDITIONS):
+    data = {c: {"ids": [], "X": [], "honne": [], "reasons": []} for c in conditions}
     for fn in sorted(glob.glob(os.path.join(answers_dir, "*.json"))):
         r = json.load(open(fn, encoding="utf-8"))
         c = r["condition"]
+        if c not in data:
+            continue
         data[c]["ids"].append(r["id"])
         data[c]["X"].append([r["answers"][i] for i in IDS])
         data[c]["honne"].append(r.get("honne"))
+        data[c]["reasons"].append(r.get("reasons"))
     for c in data:
         data[c]["X"] = np.array(data[c]["X"], float).reshape(-1, P)
     return data
@@ -149,12 +154,13 @@ def setup_mpl():
     return plt
 
 
-def fig_items(plt, stats, conds, key, ylabel, title, out, norm=False):
+def fig_items(plt, stats, conds, key, ylabel, title, out, norm=False, meta=None):
+    meta = meta or CONDITIONS
     fig, ax = plt.subplots(figsize=(16, 4.8))
     x = np.arange(P)
     off = np.linspace(-0.3, 0.3, max(len(conds), 1))
     for k, c in enumerate(conds):
-        ax.plot(x + off[k], stats[c][key], "o", ms=4, color=COLORS[c], label=f"{c} ({CONDITIONS[c]['model']}, n={stats[c]['n']})")
+        ax.plot(x + off[k], stats[c][key], "o", ms=4, color=COLORS[c], label=f"{c} ({meta[c]['model']}, n={stats[c]['n']})")
     if norm:
         ax.plot(x, [NORM[i] for i in IDS], "_", ms=12, mew=2, color=MUTED, label="norm (thesis expected) / 規範 (論文の予想)")
         ax.set_ylim(0.8, 5.2)
@@ -170,11 +176,12 @@ def fig_items(plt, stats, conds, key, ylabel, title, out, norm=False):
     plt.close(fig)
 
 
-def fig_scree(plt, eig, noise84, out):
+def fig_scree(plt, eig, noise84, out, labels=None):
+    labels = labels or {}
     fig, ax = plt.subplots(figsize=(7, 4.5))
     K = 15
     for c, w in eig.items():
-        ax.plot(np.arange(1, min(K, len(w)) + 1), w[:K], "-o", ms=4, color=COLORS[c], label=f"LLM {c}")
+        ax.plot(np.arange(1, min(K, len(w)) + 1), w[:K], "-o", ms=4, color=COLORS[c], label=labels.get(c, f"LLM {c}"))
     ax.plot(np.arange(1, 6), HUMAN_EIG, "-s", ms=6, color=INK, label=f"human (thesis, n={HUMAN_N}) / 人間 (修士論文)")
     ax.plot(np.arange(1, K + 1), noise84[:K], "--", color=MUTED, lw=1.5, label="random answers, n=84 / でたらめな答え")
     ax.set_xlabel("component / 主成分")
@@ -395,11 +402,17 @@ def run(answers_dir, out_dir, B=1000, figures=True):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--answers", default=os.path.join(HERE, "answers"))
-    ap.add_argument("--out", default=os.path.join(HERE, "out"))
+    ap.add_argument("--experiment", type=int, default=1, choices=[1, 2])
+    ap.add_argument("--answers", default=None)
+    ap.add_argument("--out", default=None)
     ap.add_argument("--boot", type=int, default=1000)
     a = ap.parse_args()
-    print("\n".join(run(a.answers, a.out, a.boot)))
+    if a.experiment == 2:
+        import analyze_exp2
+        print("\n".join(analyze_exp2.run(a.answers or os.path.join(HERE, "answers_exp2"), a.out or os.path.join(HERE, "out_exp2"),
+                                          B=a.boot, exp1_answers=os.path.join(HERE, "answers"))))
+        return
+    print("\n".join(run(a.answers or os.path.join(HERE, "answers"), a.out or os.path.join(HERE, "out"), a.boot)))
 
 
 if __name__ == "__main__":

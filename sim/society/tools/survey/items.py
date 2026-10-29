@@ -113,3 +113,29 @@ CONDITIONS = {
 
 def respondent_ids(cond):
     return [f"{cond}_{k:03d}" for k in range(1, CONDITIONS[cond]["n"] + 1)]
+
+
+# ---------- 実験 2 (docs/research/humanity/paper2_exp2_prereg.md) ----------
+# 人格の言葉のかわりに、暮らし・立場・損得 (situations.py → situations.json) を持たせる。54 問・選択肢・順は実験 1 と同じ。
+# D1 と D2 と D3 は、同じ番号なら同じ暮らし S(k) を使う (D2_007・D1_007・D3_007 はみな S007)。
+# D2 だけ「最近のまわりの様子」(修士論文の「はみ出しやすい時」4 つ。人ごとにくじ) を足す。
+CONDITIONS_EXP2 = {
+    "D1": {"n": 100, "model": "sonnet", "situation": True, "surround": False, "reasons": True},
+    "D2": {"n": 100, "model": "sonnet", "situation": True, "surround": True, "reasons": True},
+    "D3": {"n": 30, "model": "opus", "situation": True, "surround": False, "reasons": True},
+}
+# 数をすべて書いたあとで、わけを一言書く 5 問 (インタビューで深く聞いた問い。紙の順)
+REASON_ITEMS = [i for i in IDS if i in INTERVIEW]
+# H9: ダウンロード・コピーの問い
+DOWNLOAD = ["A08", "A09", "A10", "A17", "A34"]
+# 修士論文の「はみ出しやすい時」(D2 の「最近のまわりの様子」で、人ごとに 1 = はみ出しやすい側 / 0 = 反対側)
+SURROUND = [("everyone", "みんながやっている"), ("no_arrest", "その行為で捕まった人を聞いたことがない"),
+            ("weak", "自分が弱い立場にいる"), ("easy", "技術的に簡単にできる")]
+
+
+def conditions_of(exp):
+    return CONDITIONS if int(exp) == 1 else CONDITIONS_EXP2
+
+
+def respondent_ids_exp2(cond):
+    return [f"{cond}_{k:03d}" for k in range(1, CONDITIONS_EXP2[cond]["n"] + 1)]

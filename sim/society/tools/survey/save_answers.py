@@ -1,6 +1,7 @@
 """論文 2・実験 1: Workflow (survey_workflow.js) の答えを answers/<ID>.json に分けて書く。
 
-    python3 save_answers.py [--dir answers_pilot] <file> [<file> ...]
+    python3 save_answers.py [--dir answers_pilot] <file> [<file> ...]              # 実験 1 (C0〜C4 → answers/)
+    python3 save_answers.py --exp 2 [--dir answers_exp2_pilot] <file> [<file> ...]  # 実験 2 (D1〜D3 → answers_exp2/)
 
 <file> は、Workflow の返した値を書いた JSON か、Workflow の記録 (journal.jsonl)。どちらでも、中をたどって
 {"respondent_id": "C1_001", "answers": {...}} の形のものを拾う (文字列の中の JSON も読む)。
@@ -11,10 +12,10 @@ import os
 import re
 import sys
 
-from items import CONDITIONS, IDS
+from items import CONDITIONS, IDS, REASON_ITEMS, conditions_of
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RID = re.compile(r"^(C\d)_(\d{3})$")
+RID = re.compile(r"^([A-Z]\d)_(\d{3})$")
 
 
 def walk(x, found):
@@ -35,14 +36,15 @@ def walk(x, found):
             walk(v, found)
 
 
-def normalize(obj):
-    """正しい形なら {"id","condition","model","answers":{A01:int},"honne":{...}|None} を、だめなら (None, わけ) を返す。"""
+def normalize(obj, conds=CONDITIONS):
+    """正しい形なら {"id","condition","model","answers":{A01:int},"honne":{...}|None} を、だめなら (None, わけ) を返す。
+    実験 2 (conds に "reasons" がある条件) は "honne" のかわりに "reasons": {A08: 文, …} (わけが欠けても数は使う。空として数える)。"""
     rid = obj["respondent_id"].strip()
     m = RID.match(rid)
-    if not m or m.group(1) not in CONDITIONS or int(m.group(2)) > CONDITIONS[m.group(1)]["n"]:
+    if not m or m.group(1) not in conds or int(m.group(2)) > conds[m.group(1)]["n"]:
         return None, f"bad id {rid!r}"
     cond = m.group(1)
-    honne_cond = CONDITIONS[cond]["honne"]
+    honne_cond = conds[cond].get("honne", False)
     a, h = {}, {}
     for i in IDS:
         v = obj["answers"].get(i)
@@ -54,11 +56,18 @@ def normalize(obj):
         if isinstance(v, bool) or not isinstance(v, (int, float)) or int(v) != v or not 1 <= v <= 5:
             return None, f"{rid}: {i} = {v!r}"
         a[i] = int(v)
-    return {"id": rid, "condition": cond, "model": obj.get("model") or CONDITIONS[cond]["model"],
+    if conds[cond].get("reasons"):
+        rs = obj.get("reasons") if isinstance(obj.get("reasons"), dict) else {}
+        return {"id": rid, "condition": cond, "model": obj.get("model") or conds[cond]["model"],
+                "answers": a, "reasons": {i: str(rs.get(i) or "") for i in REASON_ITEMS}}, None
+    return {"id": rid, "condition": cond, "model": obj.get("model") or conds[cond]["model"],
             "answers": a, "honne": h if honne_cond else None}, None
 
 
-def main(paths, sub="answers"):
+def main(paths, sub=None, exp=1):
+    conds = conditions_of(exp)
+    if sub is None:
+        sub = "answers" if int(exp) == 1 else "answers_exp2"
     found = []
     for p in paths:
         with open(p, encoding="utf-8") as f:
@@ -82,7 +91,7 @@ def main(paths, sub="answers"):
     wrote, kept, bad = 0, 0, []
     seen = set()
     for obj in found:
-        r, why = normalize(obj)
+        r, why = normalize(obj, conds)
         if r is None:
             bad.append(why)
             continue
@@ -97,11 +106,11 @@ def main(paths, sub="answers"):
             json.dump(r, f, ensure_ascii=False, indent=0)
         wrote += 1
     have = {fn[:-5] for fn in os.listdir(d) if fn.endswith(".json")}
-    missing = [f"{c}_{k:03d}" for c, v in CONDITIONS.items() for k in range(1, v["n"] + 1) if f"{c}_{k:03d}" not in have]
+    missing = [f"{c}_{k:03d}" for c, v in conds.items() for k in range(1, v["n"] + 1) if f"{c}_{k:03d}" not in have]
     print(f"found {len(found)} answer objects; wrote {wrote}; already there {kept}; invalid {len(bad)}")
     for b in sorted(set(bad))[:20]:
         print("  invalid:", b)
-    print(f"{sub}/ has {len(have)} of {sum(v['n'] for v in CONDITIONS.values())}; missing {len(missing)}")
+    print(f"{sub}/ has {len(have)} of {sum(v['n'] for v in conds.values())}; missing {len(missing)}")
     if missing:
         print("  missing:", " ".join(missing[:50]) + (" …" if len(missing) > 50 else ""))
 
@@ -110,7 +119,11 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         sys.exit(__doc__)
     argv = sys.argv[1:]
-    sub = "answers"
-    if argv[:1] == ["--dir"]:
-        sub, argv = argv[1], argv[2:]
-    main(argv, sub)
+    sub, exp = None, 1
+    while argv[:1] in (["--dir"], ["--exp"]):
+        if argv[0] == "--dir":
+            sub = argv[1]
+        else:
+            exp = int(argv[1])
+        argv = argv[2:]
+    main(argv, sub, exp)

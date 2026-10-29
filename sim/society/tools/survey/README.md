@@ -33,3 +33,30 @@ python3 test_survey.py                       # 試し
 4. **分析:** `python3 analyze.py` → `out/summary.md` ほか。答えと out/ をコミットする。
 
 台本は、答えがない・ID が違うときに 1 回だけ聞き直す。それでもだめな ID は返り値の `missing` に入る (prereg 9.)。
+
+# 論文 2・実験 2: 性格の言葉でなく「暮らし・立場・損得」を持たせる
+
+事前登録: [docs/research/humanity/paper2_exp2_prereg.md](../../../../docs/research/humanity/paper2_exp2_prereg.md)。54 問・選択肢・順は実験 1 と同じ。
+
+| ファイル | 中身 |
+|---|---|
+| `items.py` の `CONDITIONS_EXP2` | D1 (sonnet 100)・D2 (sonnet 100 + 最近のまわりの様子)・D3 (opus 30)。わけを書く 5 問・ダウンロードの 5 問・はみ出しやすい時 4 つ |
+| `situations.py` → `situations.json` | 暮らし 100 人 (種 20261029。分布は仮定)。D2 の 4 つの様子 (16 通りを同じ数ずつ) もここ |
+| `prompts_exp2.py` → `prompts_exp2/<ID>.md`・`respondents_exp2.json` | 1 人 1 枚 (230 枚)。D1_k・D2_k・D3_k は同じ暮らし S(k) |
+| `survey_workflow_exp2.js` | Workflow の台本 (実験 1 と同じ作り。数 → わけ の順のスキーマ) |
+| `save_answers.py --exp 2` | → `answers_exp2/<ID>.json` |
+| `analyze.py --experiment 2` (`analyze_exp2.py`) | `answers_exp2/` → `out_exp2/`。部品は analyze.py をそのまま使い、実験 1 の `answers/` (C1・C4) ともくらべる |
+
+```
+python3 situations.py && python3 prompts_exp2.py   # 作り直し (同じものができる)
+python3 test_survey.py                             # 試し (実験 1 と 2。人工の答えで仕込んだ効き目を見つけるか)
+```
+
+回し方 (メインのセッション。本人が費用を決めてから):
+
+1. **試しの回 (6 人):** Workflow に `scriptPath: sim/society/tools/survey/survey_workflow_exp2.js`、`args: {"root": "/home/user/RobotSimulaterRyo", "limit": 2}`。
+   `cd sim/society/tools/survey && python3 save_answers.py --exp 2 --dir answers_exp2_pilot <transcriptDir>/journal.jsonl`
+   1 人あたりのトークン × 230 が 1,500 万をこえる見込みなら、止めて本人に報告 (prereg 6.)。
+2. **本番:** `args: {"root": "/home/user/RobotSimulaterRyo"}` (230 人)。分けるなら `"conditions": ["D1"]` など。続きは `"done": [...]`。
+   `python3 save_answers.py --exp 2 <transcriptDir>/journal.jsonl` → `answers_exp2/`
+3. **分析:** `python3 analyze.py --experiment 2` → `out_exp2/summary.md` ほか。答えと out_exp2/ をコミットする。
