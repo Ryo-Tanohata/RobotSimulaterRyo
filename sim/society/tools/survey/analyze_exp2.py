@@ -373,7 +373,7 @@ def run(answers_dir, out_dir, B=1000, exp1_answers=None, figures=True, situation
 
 
 def fig_h8(plt, rows, out):
-    fig, ax = plt.subplots(figsize=(7.5, 4.2))
+    fig, ax = plt.subplots(figsize=(8.5, 4.8))
     keys = [("gray_paired", "gray-zone, paired / グレーゾーン (主)", "#2a78d6"), ("other_paired", "other 40 items / ほかの問い", "#c3c2b7"),
             ("download_paired", "download 5 items / ダウンロード", "#eb6834")]
     for j, (k, ja) in enumerate(SURROUND):
@@ -386,11 +386,11 @@ def fig_h8(plt, rows, out):
     ax.set_yticks(range(len(SURROUND)))
     ax.set_yticklabels([f"{k}\n{ja}" for k, ja in SURROUND], fontsize=8)
     ax.invert_yaxis()
-    ax.set_xlabel("effect on mean (D2 − D1), < 0 = less problematic / 平均の動き (負 = 問題でない側)")
+    ax.set_xlabel("effect on mean (D2 − D1), < 0 = less problematic / 平均の動き (負 = 問題でない側)", fontsize=9)
     ax.set_title("H8: 'easy to step outside the rules' conditions / はみ出しやすい時", fontsize=10, color=A.INK, loc="left")
-    ax.legend(fontsize=8, frameon=False, loc="lower right")
+    ax.legend(fontsize=8, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.16), ncol=3)
     fig.tight_layout()
-    fig.savefig(out, dpi=130)
+    fig.savefig(out, dpi=130, bbox_inches="tight")
     plt.close(fig)
 
 
