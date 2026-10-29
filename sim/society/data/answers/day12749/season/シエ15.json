@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のうちに土器をたくさん焼いておくよ。蓄えの種を虫から守りたいし、冬の前に木の実も毎夕取っておこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守れるから"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ラキ25": true}, "family": {"ソワ16": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので、冬の前に川で魚をとって食べ物を増やすため"}}, "keep": false,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす", "M429": "ゆるす"}, "feast": false, "leader": null, "trade": {"T180": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋は土器を焼き、木の実を毎夕取り、草の種をまいておくと、冬と春をしのぎやすい。", "because": [1066733], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だけれど、冬に備えてしっかり働きたい。"}
