@@ -502,7 +502,7 @@ def build(st, rec):
             info = None
             if gid is not None:
                 if goat_born is None:
-                    goat_born = _goat_index(os.path.join(rec.get("_dir", ""), "records", "snapshots.jsonl"))
+                    goat_born = _goat_index(os.path.join(rec.get("_dir", ""), "records"))
                 info = goat_born.get(gid)
             if info and info.get("born") is not None:
                 ga = (rows[i]["d"] - info["born"]) // YEAR
@@ -867,18 +867,28 @@ def build(st, rec):
     return out
 
 
-def _goat_index(path):
+def _snap_paths(rdir):
+    """控えのファイル (records.snap_files と同じ順): 前の 1 つのファイル snapshots.jsonl (あれば) → 年ごとのファイル snapshots/snapshots_NNNN.jsonl (2026-10-29 に分けた)"""
+    out = [os.path.join(rdir, "snapshots.jsonl")] if os.path.isfile(os.path.join(rdir, "snapshots.jsonl")) else []
+    d = os.path.join(rdir, "snapshots")
+    if os.path.isdir(d):
+        out += [os.path.join(d, f) for f in sorted(os.listdir(d)) if f.startswith("snapshots_") and f.endswith(".jsonl")]
+    return out
+
+
+def _goat_index(rdir):
     idx = {}
-    try:
-        with open(path, encoding="utf-8") as f:
-            for l in f:
-                if not l.strip():
-                    continue
-                for g in (json.loads(l).get("goats") or []):
-                    if isinstance(g, dict) and "id" in g:
-                        idx.setdefault(g["id"], {"born": g.get("born"), "sex": g.get("sex")})
-    except OSError:
-        pass
+    for path in _snap_paths(rdir):
+        try:
+            with open(path, encoding="utf-8") as f:
+                for l in f:
+                    if not l.strip():
+                        continue
+                    for g in (json.loads(l).get("goats") or []):
+                        if isinstance(g, dict) and "id" in g:
+                            idx.setdefault(g["id"], {"born": g.get("born"), "sex": g.get("sex")})
+        except OSError:
+            pass
     return idx
 
 

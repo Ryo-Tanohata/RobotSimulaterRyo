@@ -58,8 +58,11 @@ def scratch(snapshots=True):
         global _SNAPS
         src = REAL / "records" / "snapshots.jsonl"
         (d / "records").mkdir()
-        if src.exists():
-            shutil.copy(src, d / "records" / "snapshots.jsonl")
+        if src.exists() or (REAL / "records" / records.SNAP_DIR).is_dir():  # 2026-10-29: 控えは年ごとのファイル (前の 1 つのファイルも読む)
+            if src.exists():
+                shutil.copy(src, d / "records" / "snapshots.jsonl")
+            if (REAL / "records" / records.SNAP_DIR).is_dir():
+                shutil.copytree(REAL / "records" / records.SNAP_DIR, d / "records" / records.SNAP_DIR)
         elif _SNAPS:
             (d / "records" / "snapshots.jsonl").write_text(_SNAPS, encoding="utf-8")
         else:  # 本物にまだ控えがなければ、git から作る (1 回だけ)
@@ -74,6 +77,11 @@ _SNAPS = None
 
 def jl(p):
     return [json.loads(x) for x in Path(p).read_text(encoding="utf-8").splitlines() if x.strip()]
+
+
+def snap_lines(d):
+    """控えの行 (前の 1 つのファイルと、年ごとのファイル。2026-10-29)"""
+    return list(records.snap_lines(d))
 
 
 class Base(unittest.TestCase):
@@ -290,7 +298,7 @@ class D_Determinism(Base):
 
     def files(self, d):
         r = Path(d) / "records"
-        return {p.name: p.read_bytes() for p in sorted(r.iterdir()) if p.name != "snapshots.jsonl"}
+        return {p.name: p.read_bytes() for p in sorted(r.iterdir()) if p.name not in ("snapshots.jsonl", records.SNAP_DIR)}
 
     def test_rebuild_same(self):
         a = self.files(self.d)
@@ -300,7 +308,7 @@ class D_Determinism(Base):
     def test_shuffled_and_invalid(self):
         d2 = scratch(snapshots=False)
         try:
-            lines = (self.d / "records" / "snapshots.jsonl").read_text(encoding="utf-8").splitlines()
+            lines = snap_lines(self.d)
             random.Random(1).shuffle(lines)
             bad = json.loads(lines[0])
             bad["sig"] = "0" * 16  # 取りやめた回の控えのつもり
@@ -565,11 +573,11 @@ class G_StepSmoke(unittest.TestCase):
         code = self.copy_code()
         d1, d2, d3 = self.data(), self.data(), self.data()
         try:
-            n0 = len((d1 / "records" / "snapshots.jsonl").read_text(encoding="utf-8").splitlines())
-            live0 = sum(1 for x in jl(d1 / "records" / "snapshots.jsonl") if x.get("source") == "live")  # 本物の控えにも live がある (2026-10-10)
+            n0 = len(snap_lines(d1))
+            live0 = sum(1 for x in snap_lines(d1) if json.loads(x).get("source") == "live")  # 本物の控えにも live がある (2026-10-10)
             r = self.run_step(code, d1)
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
-            self.assertEqual(len((d1 / "records" / "snapshots.jsonl").read_text(encoding="utf-8").splitlines()), n0 + 1)
+            self.assertEqual(len(snap_lines(d1)), n0 + 1)
             meta = json.loads((d1 / "records" / "meta.json").read_text(encoding="utf-8"))
             st = json.loads((d1 / "state.json").read_text(encoding="utf-8"))
             self.assertEqual(meta["state_day"], st["day"])
@@ -582,7 +590,7 @@ class G_StepSmoke(unittest.TestCase):
             self.assertEqual(r.returncode, 6)
             self.assertIn("記録: 記録を作れなかった", r.stdout)
             self.assertRegex(r.stdout, r"(?m)^RECORDS failed build_2$")
-            self.assertEqual(len((d2 / "records" / "snapshots.jsonl").read_text(encoding="utf-8").splitlines()), n0 + 1)
+            self.assertEqual(len(snap_lines(d2)), n0 + 1)
             self.assertEqual(json.loads((d2 / "state.json").read_text(encoding="utf-8"))["day"], st["day"])
             # 同じ世界: 記録があってもなくても、state.json は同じ
             self.assertEqual(sha(d1 / "state.json"), sha(d2 / "state.json"))
@@ -604,10 +612,10 @@ class G_StepSmoke(unittest.TestCase):
             for p in st["people"]:
                 p["alive"] = False
             (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-            n0 = len((d / "records" / "snapshots.jsonl").read_text(encoding="utf-8").splitlines())
+            n0 = len(snap_lines(d))
             r = self.run_step(code, d)
             self.assertEqual(r.returncode, 4, r.stdout + r.stderr)
-            self.assertEqual(len((d / "records" / "snapshots.jsonl").read_text(encoding="utf-8").splitlines()), n0 + 1)
+            self.assertEqual(len(snap_lines(d)), n0 + 1)
         finally:
             shutil.rmtree(code, ignore_errors=True)
             shutil.rmtree(d, ignore_errors=True)
@@ -1381,6 +1389,40 @@ class L_AskWhy(unittest.TestCase):
 def tearDownModule():
     if hasattr(Base, "_d"):
         shutil.rmtree(Base._d, ignore_errors=True)
+
+
+class N_SnapSplit(unittest.TestCase):
+    """控えを年ごとのファイルに分ける (2026-10-29 本人の決め)。分けても、つなげば前と同じ・足す行は日の年のファイルに"""
+
+    def test_split_and_append(self):
+        d = Path(tempfile.mkdtemp(prefix="snap_split_"))
+        try:
+            (d / "records").mkdir()
+            rows = [{"day": 119, "event_end": 1, "v": "あ"}, {"day": 239, "event_end": 2}, {"day": 240, "event_end": 3}, {"day": 359, "event_end": 4}]
+            raw = "".join(json.dumps(r, ensure_ascii=False, separators=(",", ":")) + "\n" for r in rows)
+            (d / "records" / "snapshots.jsonl").write_text(raw, encoding="utf-8")
+            self.assertEqual(records.split_snapshots(d), (4, 3))
+            self.assertFalse((d / "records" / "snapshots.jsonl").exists())
+            fs = [f.name for f in records.snap_files(d)]
+            self.assertEqual(fs, ["snapshots_0000.jsonl", "snapshots_0001.jsonl", "snapshots_0002.jsonl"])
+            self.assertEqual("".join(f.read_text(encoding="utf-8") for f in records.snap_files(d)), raw)
+            records.append_snapshot(d, {"day": 479, "event_end": 5})
+            records.append_snapshot(d, {"day": 300, "event_end": 6})
+            self.assertEqual([json.loads(x)["event_end"] for x in records.snap_lines(d)], [1, 2, 3, 4, 6, 5])
+            self.assertEqual(records.snap_path(d, 479).name, "snapshots_0003.jsonl")
+            with self.assertRaises(RuntimeError):  # 2 回目は分けない (年のファイルがもうある)
+                (d / "records" / "snapshots.jsonl").write_text(raw, encoding="utf-8")
+                records.split_snapshots(d)
+            # 日の順でない控えは分けない
+            d2 = Path(tempfile.mkdtemp(prefix="snap_split_"))
+            (d2 / "records").mkdir()
+            (d2 / "records" / "snapshots.jsonl").write_text(raw.split("\n", 1)[1] + raw.split("\n", 1)[0] + "\n", encoding="utf-8")
+            with self.assertRaises(RuntimeError):
+                records.split_snapshots(d2)
+            self.assertTrue((d2 / "records" / "snapshots.jsonl").exists())
+            shutil.rmtree(d2)
+        finally:
+            shutil.rmtree(d)
 
 
 if __name__ == "__main__":

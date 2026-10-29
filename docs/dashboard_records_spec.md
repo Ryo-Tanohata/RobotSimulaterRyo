@@ -333,6 +333,11 @@ G6 までの記録には、次の鍵もファイルも足さない (G1〜G6 の 
 
 ## 2. Snapshots (`snapshots.jsonl`)
 
+2026-10-29 (本人の決め): 控えは年ごとのファイル `records/snapshots/snapshots_NNNN.jsonl` (NNNN = 控えの日の年) に分けた (1 つのファイルが 約 55 MB になったため。出来事の年ごとのファイルと同じ考え)。
+行の中身と順はそのまま (`records.split_snapshots`。つなげば前のファイルと 1 バイトも同じ)。足すのは行の日の年のファイル (`records.append_snapshot`)。
+読む所 (`records.load_snapshots`・`build_dashboard._goat_index`) は、前の 1 つのファイル `records/snapshots.jsonl` があればそれを先に、そのあと年のファイルを年の順に読む (試しの村 `data_C` は 1 つのファイルのまま)。
+分ける前と後で、記録 (`records/` の中)・ダッシュボードの JSON・テクノロジーツリーが 1 バイトも同じことを確かめた (`docs/society_phase/G9_check.md` 1.)。
+
 ### 2.1 What and when
 
 Values that exist only as current state are captured once per **round** (a `step.py season` run: normally a full season; after a famine break, part of one). step.py captures the snapshot right after `era2.check` (and the hold/フェーズ log), **before** `save`, appends it after `save`, i.e. the snapshot describes exactly the state that is saved and committed. The 「全員いない」 exit path captures one too.

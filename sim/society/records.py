@@ -17,7 +17,8 @@ import era2  # noqa: E402
 import world  # noqa: E402
 
 SNAP_V = 1
-SNAP_FILE = "snapshots.jsonl"
+SNAP_FILE = "snapshots.jsonl"  # 前の 1 つのファイル (records/snapshots.jsonl)。あれば読む (2026-10-29 に年ごとに分けた。試しの村 data_C はこのまま)
+SNAP_DIR = "snapshots"  # 2026-10-29 (本人の決め): 控えは年ごとのファイル records/snapshots/snapshots_NNNN.jsonl (NNNN = 控えの日の年)。出来事の年ごとのファイルと同じ考え
 
 # 【仮定】年齢の区分 (2026-10-09 本人と決めた。境目は仮)。正確な年齢は内側の記録にだけ持つ
 AGE_CLASSES = (("乳飲み子", 0, 2), ("子", 3, 11), ("手伝える子", 12, 14), ("大人", 15, 54), ("年寄り", 55, None))
@@ -232,25 +233,79 @@ def _g7_snap(state, g7):
                       "planned": len(h.get("plan", [])), "tech": _copy(h.get("tech") or {}), "things": len(h.get("things") or [])} if h else None}
 
 
+def snap_path(data_dir, day):
+    """控えの年ごとのファイル (例: records/snapshots/snapshots_0104.jsonl = 104年 (12480〜12599 日目) の季節の終わりの控え)"""
+    return Path(data_dir) / "records" / SNAP_DIR / f"snapshots_{day // era2.YEAR:04d}.jsonl"
+
+
+def snap_files(data_dir):
+    """控えのファイルを読む順に: 前の 1 つのファイル (あれば) → 年ごとのファイル (年の順)"""
+    r = Path(data_dir) / "records"
+    out = [r / SNAP_FILE] if (r / SNAP_FILE).exists() else []
+    d = r / SNAP_DIR
+    return out + (sorted(d.glob("snapshots_*.jsonl")) if d.is_dir() else [])
+
+
+def snap_lines(data_dir):
+    """控えの行を、ファイルの順・行の順に (読むだけ。行の終わりの改行は除く)"""
+    for f in snap_files(data_dir):
+        with open(f, encoding="utf-8") as fh:
+            for line in fh.read().splitlines():
+                yield line
+
+
 def append_snapshot(data_dir, row):
-    """控えを 1 行足す (書き足すだけ。書きかえない)"""
-    d = Path(data_dir) / "records"
+    """控えを 1 行足す (書き足すだけ。書きかえない)。行の日の年のファイルに足す (2026-10-29 から)"""
+    f = snap_path(data_dir, row["day"])
+    f.parent.mkdir(parents=True, exist_ok=True)
+    with open(f, "a", encoding="utf-8") as fh:
+        fh.write(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n")
+        fh.flush()
+
+
+def split_snapshots(data_dir):
+    """前の 1 つのファイル (records/snapshots.jsonl) を、年ごとのファイルに分ける (1 回だけ。2026-10-29)。行の中身と順はそのまま
+    (日の順に並んでいることを確かめてから。年のファイルがもうあれば何もしない)。戻り値: (行の数, 年の数)"""
+    r = Path(data_dir) / "records"
+    src = r / SNAP_FILE
+    if not src.exists():
+        return 0, 0
+    d = r / SNAP_DIR
+    if d.exists() and any(d.iterdir()):
+        raise RuntimeError(f"{d} にもう年のファイルがある (分けない)")
+    raw = src.read_bytes()
+    lines = raw.decode("utf-8").splitlines(keepends=True)
+    by, last = {}, None
+    for line in lines:
+        if not line.strip():
+            continue
+        day = json.loads(line)["day"]
+        if last is not None and day < last:
+            raise RuntimeError(f"控えが日の順に並んでいない ({last} → {day})。分けない")
+        last = day
+        by.setdefault(day // era2.YEAR, []).append(line if line.endswith("\n") else line + "\n")
     d.mkdir(parents=True, exist_ok=True)
-    with open(d / SNAP_FILE, "a", encoding="utf-8") as f:
-        f.write(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n")
-        f.flush()
+    for y, rows in sorted(by.items()):
+        tmp = d / f"snapshots_{y:04d}.jsonl.tmp"
+        tmp.write_bytes("".join(rows).encode("utf-8"))
+        tmp.replace(d / f"snapshots_{y:04d}.jsonl")
+    joined = b"".join((d / f"snapshots_{y:04d}.jsonl").read_bytes() for y in sorted(by))
+    want = "".join(x if x.endswith("\n") else x + "\n" for x in lines if x.strip()).encode("utf-8")
+    if joined != want:
+        raise RuntimeError("分けたファイルをつないでも、もとと同じにならない (前のファイルは消さない)")
+    src.unlink()
+    return sum(len(v) for v in by.values()), len(by)
 
 
 def load_snapshots(data_dir, state, warn=True):
     """控えを読む。今の出来事の記録とつながっているもの (valid) だけを、日ごとに 1 つ返す。
     同じ日に 2 つ以上あれば、live を git より先に。戻り値: ({日: 行}, 数のまとめ)"""
-    f = Path(data_dir) / "records" / SNAP_FILE
     stats = {"valid": 0, "invalid": 0, "malformed": 0, "live": 0, "git": 0}
     best = {}
-    if not f.exists():
+    if not snap_files(data_dir):
         return {}, stats
     nxt = state.get("next_event", len(state["events"]))
-    for i, line in enumerate(f.read_text(encoding="utf-8").splitlines()):
+    for i, line in enumerate(snap_lines(data_dir)):  # 2026-10-29: 前の 1 つのファイルと年ごとのファイルを、順に (選び方は行の並びによらない)
         if not line.strip():
             continue
         try:
