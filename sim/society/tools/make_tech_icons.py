@@ -71,7 +71,7 @@ I['s_manor'] = ('柵で囲った畑と鍬を持つ人', P("M4 34h40M4 46h40M8 28
 I['s_commerce'] = ('てんびんと袋と硬貨', P("M32 8v46M20 58h24M8 16h48") + C(32,8,3,True) + P("M8 16l-6 16h12zM56 16l-6 16h12z", w=2.5) + P("M2 32a6 6 0 0 0 12 0M50 32a6 6 0 0 0 12 0", w=2.5) + P("M5 26c-2-4 2-6 3-6s5 2 3 6z", True) + C(56,27,3.5,True))
 
 HEAD = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">'
-plan = json.load(open('/home/user/RobotSimulaterRyo/sim/society/techtree/plan.json'))
+plan = json.load(open(os.path.join(OUT, '..', 'plan.json'), encoding='utf-8'))
 techs = plan['techs']
 ids = [t['id'] for t in techs]
 missing = [i for i in ids if i not in I]
@@ -81,9 +81,9 @@ for t in techs:
     i = t['id']; desc, body = I[i]
     svg = HEAD + body + '</svg>\n'
     assert len(svg.encode()) < 2048, (i, len(svg))
-    open(f'{OUT}/{i}.svg', 'w').write(svg)
+    open(f'{OUT}/{i}.svg', 'w', encoding='utf-8', newline='\n').write(svg)
     index[i] = {'file': f'{i}.svg', 'name': t['name'], 'tree': t['tree'], 'desc': desc}
-json.dump(index, open(f'{OUT}/index.json', 'w'), ensure_ascii=False, indent=1)
+json.dump(index, open(f'{OUT}/index.json', 'w', encoding='utf-8', newline='\n'), ensure_ascii=False, indent=1)
 # preview
 cells = lambda: ''.join(f'<div class="c"><div class="i">{HEAD.replace("<svg ", "<svg width=56 height=56 ")}{I[t["id"]][1]}</svg></div><div class="n">{t["name"]}</div><div class="d">{t["id"]}</div></div>' for t in techs)
 html = f'''<!doctype html><meta charset="utf-8"><title>tech tree icons</title>
@@ -92,5 +92,5 @@ html = f'''<!doctype html><meta charset="utf-8"><title>tech tree icons</title>
 .light{{background:#fff;color:#2a2a2a}} .light .c{{background:#f2efe8}} .dark{{background:#16181d;color:#e8e4da}} .dark .c{{background:#23262e}}
 .light .c:nth-child(3n) .i{{color:#2f7d32}} .dark .c:nth-child(3n) .i{{color:#e0b84a}}</style>
 <div class="s light">{cells()}</div><div class="s dark">{cells()}</div>'''
-open(f'{OUT}/preview.html', 'w').write(html)
+open(f'{OUT}/preview.html', 'w', encoding='utf-8', newline='\n').write(html)
 print(len(ids), 'icons')

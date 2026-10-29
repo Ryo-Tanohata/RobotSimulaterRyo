@@ -5,6 +5,7 @@
 入力 (どれも読むだけ):
   sim/society/techtree/plan.json     予定の木 (手で書く。時代・上の段 (テクノロジーと社会制度の 2 本の木)・要素・前提・本物の年代)
   sim/society/techtree/emerged.json  創発の一覧 (Claude がフェーズの区切りごとに選んで手で書く)
+  sim/society/techtree/icons/<項目の id>.svg  上の段の項目のアイコン (sim/society/tools/make_tech_icons.py で作る。ない項目があればだめ)
   <data>/state.json (しまった古い年の出来事 <data>/archive/ も戻して)
 出力: tech_tree.html の <!--TT-DATA--> と <!--/TT-DATA--> のあいだの JSON だけを書きかえる。--out を渡すと JSON も書く。
 
@@ -28,6 +29,7 @@ import archive  # noqa: E402  (しまった古い年の出来事を戻す)
 
 DEFAULT_DATA = os.environ.get("SOC_DATA") or os.path.join(SOC, "data")
 TT = os.path.join(SOC, "techtree")
+ICONS = os.path.join(TT, "icons")
 DEFAULT_EMBED = os.path.join(SOC, "app", "tech_tree.html")
 PROTECTED = os.path.join(SOC, "data")
 YEAR = 120
@@ -143,6 +145,19 @@ class Scan:
 
     def adopt_event(self, law):
         return self.law_adopt.get((law.get("text") or "")[:30])
+
+
+def read_icon(tid):
+    """アイコンの SVG の中身 (外の <svg> を外したもの)。ページの側で同じ <svg> で包む。ないか形がちがえば None"""
+    p = os.path.join(ICONS, tid + ".svg")
+    if not os.path.isfile(p):
+        return None
+    with open(p, encoding="utf-8") as f:
+        t = f.read().strip()
+    m = re.fullmatch(r'<svg [^>]*viewBox="0 0 64 64"[^>]*>(.*)</svg>', t, re.S)
+    if not m or "<script" in t or "href" in t:
+        return None
+    return m.group(1).strip()
 
 
 def ev_ref(e):
@@ -402,7 +417,13 @@ def build(data, quiet=False):
     tids = {x["id"] for x in plan.get("techs", [])}
     parent = {}
     techs = []
+    icons = {}
     for x in plan.get("techs", []):
+        ic = read_icon(x["id"])
+        if ic is None:
+            errs.append("上の段 %s のアイコン sim/society/techtree/icons/%s.svg がない (make_tech_icons.py に描いて作り直す)" % (x["id"], x["id"]))
+        else:
+            icons[x["id"]] = ic
         if x.get("tree") not in ("テクノロジー", "社会制度"):
             errs.append("上の段 %s の tree がテクノロジーか社会制度でない" % x["id"])
         for q in x.get("prereq", []) + x.get("xprereq", []):
@@ -473,6 +494,7 @@ def build(data, quiet=False):
                              ("済み" if all((ph_by.get(p) or {}).get("state") == "済み" for p in e["phases"]) else "途中")))
                  for e in eras],
         "techs": techs,
+        "icons": icons,
         "nodes": nodes,
         "emerged": emerged,
         "checked": checked,
