@@ -1,0 +1,16 @@
+set,human_pc,name_ja,name_en,llm_pc,overlap,overlap_ci,sign_agree,p_null,null_mean_overlap,reproduced
+C1,pc1,権利意識,rights,1,3,"[1, 3]",1.0,0.0145,0.91,True
+C1,pc2,所有意識,ownership,2,2,"[0, 3]",1.0,0.17,0.91,False
+C1,pc3,情報意識,information,6,1,"[0, 2]",0.8,0.7215,0.91,False
+C1,pc4,プライバシー意識,privacy,1,0,"[0, 2]",0.8,1.0,0.91,False
+C1,pc5,自己責任意識,self-responsibility,10,1,"[0, 3]",0.8,0.7215,0.91,False
+C2,pc1,権利意識,rights,1,1,"[0, 2]",1.0,0.7275,0.91,False
+C2,pc2,所有意識,ownership,1,0,"[0, 2]",1.0,1.0,0.91,False
+C2,pc3,情報意識,information,8,2,"[0, 2]",0.6,0.169,0.91,False
+C2,pc4,プライバシー意識,privacy,1,2,"[0, 2]",0.8,0.169,0.91,False
+C2,pc5,自己責任意識,self-responsibility,7,1,"[0, 2]",0.6,0.7275,0.91,False
+pooled,pc1,権利意識,rights,1,3,"[1, 3]",1.0,0.0095,0.9,True
+pooled,pc2,所有意識,ownership,3,1,"[0, 3]",1.0,0.726,0.9,False
+pooled,pc3,情報意識,information,7,1,"[0, 2]",0.8,0.726,0.9,False
+pooled,pc4,プライバシー意識,privacy,1,1,"[0, 2]",0.8,0.726,0.9,False
+pooled,pc5,自己責任意識,self-responsibility,7,1,"[0, 3]",1.0,0.726,0.9,False

@@ -372,7 +372,8 @@ def run(answers_dir, out_dir, B=1000, figures=True):
               f"- 対の数 {len(both)}。グレーゾーン {len(GRAY)} 問: {' '.join(GRAY)}",
               f"- グレーゾーンの平均の差 {dg.mean():+.3f} {ci(cg)} / ほかの問い {dn.mean():+.3f} {ci(cn)} / 差の差 {(dg - dn).mean():+.3f} {ci(cd)}",
               "- **H4:** " + ("支持 (差 ≤ −0.2 で CI の上が 0 未満)" if sup else "支持しない")
-              + ("。グレーゾーンだけの動き (差の差の CI が 0 未満)" if cd[1] < 0 else "。グレーゾーンだけの動きとは言えない (差の差の CI が 0 をふくむ)"),
+              + ("。逆の向き: 本音を先に書くと、より「問題がある」へ動いた (差の CI の下が 0 より上)" if cg[0] > 0 else "")
+              + ("。グレーゾーンだけの動き (差の差の CI が 0 未満)" if cd[1] < 0 else "。差の差の CI が 0 より上 (グレーゾーンの方が、少しだけ大きく動いた)" if cd[0] > 0 else "。グレーゾーンだけの動きとは言えない (差の差の CI が 0 をふくむ)"),
               ]
         empty = sum(1 for h in data["C2"]["honne"] if h for v in h.values() if not str(v).strip())
         L += [f"- 本音が空の答え: {empty} / {len(data['C2']['honne']) * P}", ""]
