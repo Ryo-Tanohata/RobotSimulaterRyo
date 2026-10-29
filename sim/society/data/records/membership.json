@@ -733,7 +733,12 @@
 {"person_id":"P732","household_id":"H43","from_day":12659,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1055899],"assigned_from_state_day":12659},
 {"person_id":"P733","household_id":"H65","from_day":12659,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1055900],"assigned_from_state_day":12659},
 {"person_id":"P734","household_id":"H16","from_day":12689,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1058094],"assigned_from_state_day":12689},
-{"person_id":"P735","household_id":"H68","from_day":12689,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1058095],"assigned_from_state_day":12689},
+{"person_id":"P735","household_id":"H68","from_day":12689,"to_day":12719,"why_in":"生まれた","why_out":"亡くなった","evidence":[1058095,1060889],"assigned_from_state_day":12689},
 {"person_id":"P736","household_id":"H21","from_day":12689,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1058096],"assigned_from_state_day":12689},
-{"person_id":"P737","household_id":"H41","from_day":12689,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1058097],"assigned_from_state_day":12689}
+{"person_id":"P737","household_id":"H41","from_day":12689,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1058097],"assigned_from_state_day":12689},
+{"person_id":"P738","household_id":"H87","from_day":12689,"to_day":null,"why_in":"よそから来た","why_out":null,"evidence":[1058118],"assigned_from_state_day":12719},
+{"person_id":"P739","household_id":"H87","from_day":12689,"to_day":null,"why_in":"よそから来た","why_out":null,"evidence":[1058118],"assigned_from_state_day":12719},
+{"person_id":"P740","household_id":"H87","from_day":12689,"to_day":null,"why_in":"よそから来た","why_out":null,"evidence":[1058118],"assigned_from_state_day":12719},
+{"person_id":"P741","household_id":"H68","from_day":12719,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1060887],"assigned_from_state_day":12719},
+{"person_id":"P742","household_id":"H65","from_day":12719,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1060888],"assigned_from_state_day":12719}
 ]

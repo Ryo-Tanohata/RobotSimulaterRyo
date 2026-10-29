@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギが草で養える数よりずっと多い。やせて消える前に、少しずつつぶして干し肉にしよう。わたしは今年も土器を焼いて、草の種を守る器を増やすよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりはわたしがいちばん慣れた仕事で、蓄えの草の種を虫やネズミから守れるから続ける"},
+ "family": [{"name": "テナ20", "activity": "ヤギの世話", "place": "camp", "why": "世話する人が少なくてヤギがいなくなったから、子でも手伝わせる"}],
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"ルタ24": true}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "この春、ヤギは 227 頭で、草で養える約 140 頭をずっとこえている。世話が足りず 13 頭いなくなった", "because": [1058092, 1058093], "confidence": 0.9},
+  {"op": "add", "text": "この春のはじめの村の蓄えは草の種 約 35 万つかみで、今の人数で約 107 日分ある。畑は 71 枚育っている", "because": [], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "年はとったが、手はまだ土をこねられる。器が増えれば冬も春も安心だ"}

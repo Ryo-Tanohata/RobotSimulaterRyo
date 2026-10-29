@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "春のあいだも私は土器を焼いて、草の種を虫やネズミから守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を守れるから続ける"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ24": true},
+ "family": {
+  "ワユ16": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとってくる"},
+  "キオ17": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、ワユと二人で行けば安全"},
+  "ネイ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをして夏の実りを守る"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので、落ち着いて土器を焼いていられる。"}

@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは百日分以上あるから、私は今季も川の粘土で土器を焼いて、種を虫から守るよ。畑の草取りは手の空いた人でお願いね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ24": true},
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "夏の実りを増やすため草取りをする"},
+  "ホタ17": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれるので世話をする"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が必要だから"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "力仕事の草取りを手伝う"},
+  "ハソ20": {"activity": "ヤギの世話", "place": "camp", "why": "ホタ17と一緒に世話をして覚える"},
+  "ハソ21": {"activity": "畑仕事", "place": "camp", "why": "半人前でも草取りならできる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "蓄えが百日分以上ある春は、土器づくりと畑の草取りで夏に備える", "because": [1058099], "confidence": 0.6}],
+ "proposal": null,
+ "votes": []}
