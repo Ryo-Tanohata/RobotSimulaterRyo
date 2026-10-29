@@ -1,0 +1,254 @@
+{
+ "t_forage": {
+  "file": "t_forage.svg",
+  "name": "狩りと採集",
+  "tree": "テクノロジー",
+  "desc": "槍と木の葉"
+ },
+ "t_store": {
+  "file": "t_store.svg",
+  "name": "蓄え",
+  "tree": "テクノロジー",
+  "desc": "穀物の穂を盛ったかご"
+ },
+ "t_settle": {
+  "file": "t_settle.svg",
+  "name": "定住",
+  "tree": "テクノロジー",
+  "desc": "丸い草ぶき小屋"
+ },
+ "t_fire": {
+  "file": "t_fire.svg",
+  "name": "火",
+  "tree": "テクノロジー",
+  "desc": "炎とたき木"
+ },
+ "t_farm": {
+  "file": "t_farm.svg",
+  "name": "農耕",
+  "tree": "テクノロジー",
+  "desc": "畝から出た芽"
+ },
+ "t_herd": {
+  "file": "t_herd.svg",
+  "name": "牧畜",
+  "tree": "テクノロジー",
+  "desc": "ヤギの頭（角とあごひげ）"
+ },
+ "t_pot": {
+  "file": "t_pot.svg",
+  "name": "土器",
+  "tree": "テクノロジー",
+  "desc": "模様のついた土器のつぼ"
+ },
+ "t_sickle": {
+  "file": "t_sickle.svg",
+  "name": "鎌と刃",
+  "tree": "テクノロジー",
+  "desc": "鎌（三日月の刃と柄）"
+ },
+ "t_house": {
+  "file": "t_house.svg",
+  "name": "家づくり",
+  "tree": "テクノロジー",
+  "desc": "切妻屋根と煙突の家"
+ },
+ "t_weave": {
+  "file": "t_weave.svg",
+  "name": "織物",
+  "tree": "テクノロジー",
+  "desc": "機（はた）と織り目"
+ },
+ "t_irrig": {
+  "file": "t_irrig.svg",
+  "name": "灌漑",
+  "tree": "テクノロジー",
+  "desc": "水路の断面と両岸の芽"
+ },
+ "t_copper": {
+  "file": "t_copper.svg",
+  "name": "銅",
+  "tree": "テクノロジー",
+  "desc": "銅のしずくと牛皮形の延べ板"
+ },
+ "t_record": {
+  "file": "t_record.svg",
+  "name": "記録",
+  "tree": "テクノロジー",
+  "desc": "刻み目（数え線）の粘土板"
+ },
+ "t_plough": {
+  "file": "t_plough.svg",
+  "name": "犂",
+  "tree": "テクノロジー",
+  "desc": "犂（柄・はり・刃先）と畝"
+ },
+ "t_bronze": {
+  "file": "t_bronze.svg",
+  "name": "青銅器",
+  "tree": "テクノロジー",
+  "desc": "青銅の剣（木の葉形の刃とつば）"
+ },
+ "t_writing": {
+  "file": "t_writing.svg",
+  "name": "文字",
+  "tree": "テクノロジー",
+  "desc": "記号を書いた板と尖筆"
+ },
+ "t_iron": {
+  "file": "t_iron.svg",
+  "name": "鉄器",
+  "tree": "テクノロジー",
+  "desc": "金づちと金床"
+ },
+ "t_coin": {
+  "file": "t_coin.svg",
+  "name": "通貨",
+  "tree": "テクノロジー",
+  "desc": "積んだ硬貨と穴あき銭"
+ },
+ "t_sail": {
+  "file": "t_sail.svg",
+  "name": "航海",
+  "tree": "テクノロジー",
+  "desc": "帆かけ舟と波"
+ },
+ "t_mill": {
+  "file": "t_mill.svg",
+  "name": "水車",
+  "tree": "テクノロジー",
+  "desc": "水車（羽根つきの輪）と流れ"
+ },
+ "t_paper": {
+  "file": "t_paper.svg",
+  "name": "紙",
+  "tree": "テクノロジー",
+  "desc": "巻物（上下の軸と文字列）"
+ },
+ "t_print": {
+  "file": "t_print.svg",
+  "name": "印刷",
+  "tree": "テクノロジー",
+  "desc": "ねじ式の印刷機"
+ },
+ "t_steam": {
+  "file": "t_steam.svg",
+  "name": "石炭と蒸気機関",
+  "tree": "テクノロジー",
+  "desc": "蒸気機関車（煙突と煙）"
+ },
+ "s_share": {
+  "file": "s_share.svg",
+  "name": "分かち合い",
+  "tree": "社会制度",
+  "desc": "二人が食べ物を半分ずつ分ける"
+ },
+ "s_law": {
+  "file": "s_law.svg",
+  "name": "集まりと掟",
+  "tree": "社会制度",
+  "desc": "輪になった人々と中央の掟の石"
+ },
+ "s_join": {
+  "file": "s_join.svg",
+  "name": "迎え入れと代表",
+  "tree": "社会制度",
+  "desc": "開いた戸口へ入る人と矢印"
+ },
+ "s_home": {
+  "file": "s_home.svg",
+  "name": "家と受けつぎ",
+  "tree": "社会制度",
+  "desc": "家とかぎ"
+ },
+ "s_craft": {
+  "file": "s_craft.svg",
+  "name": "分業",
+  "tree": "社会制度",
+  "desc": "交差したのこぎりと金づち（別々の道具）"
+ },
+ "s_elder": {
+  "file": "s_elder.svg",
+  "name": "長老と祭り",
+  "tree": "社会制度",
+  "desc": "杖をつく長老と祭りの火"
+ },
+ "s_leader": {
+  "file": "s_leader.svg",
+  "name": "まとめ役",
+  "tree": "社会制度",
+  "desc": "羽根飾りのまとめ役と従う人々"
+ },
+ "s_penal": {
+  "file": "s_penal.svg",
+  "name": "罰のある掟",
+  "tree": "社会制度",
+  "desc": "手かせと鎖と重い鉄球"
+ },
+ "s_trade": {
+  "file": "s_trade.svg",
+  "name": "交易",
+  "tree": "社会制度",
+  "desc": "逆向きに行き交う二本の矢印と品物"
+ },
+ "s_credit": {
+  "file": "s_credit.svg",
+  "name": "貸し借り",
+  "tree": "社会制度",
+  "desc": "袋と、出て行って戻る矢印"
+ },
+ "s_town": {
+  "file": "s_town.svg",
+  "name": "町",
+  "tree": "社会制度",
+  "desc": "城壁（狭間つき）と家並み"
+ },
+ "s_tribute": {
+  "file": "s_tribute.svg",
+  "name": "貢ぎ",
+  "tree": "社会制度",
+  "desc": "穀物を盛ったかごをささげ上げる手"
+ },
+ "s_state": {
+  "file": "s_state.svg",
+  "name": "王と役所",
+  "tree": "社会制度",
+  "desc": "王冠と印章"
+ },
+ "s_wlaw": {
+  "file": "s_wlaw.svg",
+  "name": "書いた法",
+  "tree": "社会制度",
+  "desc": "上が丸い石碑（法の条文と印）"
+ },
+ "s_empire": {
+  "file": "s_empire.svg",
+  "name": "帝国",
+  "tree": "社会制度",
+  "desc": "月桂冠に囲まれた地球"
+ },
+ "s_market": {
+  "file": "s_market.svg",
+  "name": "市場",
+  "tree": "社会制度",
+  "desc": "しま模様の日よけの屋台と品物"
+ },
+ "s_teach": {
+  "file": "s_teach.svg",
+  "name": "教え",
+  "tree": "社会制度",
+  "desc": "開いた本と光"
+ },
+ "s_manor": {
+  "file": "s_manor.svg",
+  "name": "土地と義務",
+  "tree": "社会制度",
+  "desc": "柵で囲った畑と鍬を持つ人"
+ },
+ "s_commerce": {
+  "file": "s_commerce.svg",
+  "name": "商業",
+  "tree": "社会制度",
+  "desc": "てんびんと袋と硬貨"
+ }
+}
