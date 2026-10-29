@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋のうちに蓄えの草の種を畑にたっぷりまいて、冬と春は草取りをして、来年の夏に備えましょう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意なので、草の種を虫やネズミから守る器を作り続ける"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ラニ13": {"activity": "道具づくり", "place": "camp", "why": "割れた鎌を補うため"}, "ヒセ19": {"activity": "土器づくり", "place": "camp", "why": "私と一緒に土器を作る"}, "ワユ19": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬に備える"}}, "keep": false,
+ "judge": {"M436": "ゆるす", "M437": "ゆるす", "M438": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を多めに畑にまき、冬と春に草取りをすると次の夏に実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "trade": {},
+ "mood": "落ち着いている。冬の前に、土器と畑の支度をしっかりしたい。"}

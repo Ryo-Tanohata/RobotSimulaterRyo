@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるが、冬は木の実が実らない。秋のうちに木の実を集めて、冬に備えよう。おれは林と草原で新しい場所を見てくる。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "冬の前に木の実や草の種の取れる場所を確かめ、食べ物を蓄えに足したいから"}, "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "family": {"ソナ24": {"activity": "採集", "place": "南川12", "why": "採集が得意で、近い川で魚や芋を探して蓄えを増やせるから"}}, "keep": false,
+ "judge": {"M436": "ゆるす", "M437": "ゆるす", "M438": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋のうちに蓄えの草の種を畑にまくと、次の夏に実る。冬の前に木の実を集めておくと安心できる。", "because": [1095417], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはまだ多く、気持ちは落ち着いている。冬の前に新しい場所を見て回るのが楽しみだ。"}

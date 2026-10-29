@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種をまいておけば、夏にまた実る。私は土器を焼いて、蓄えの種を虫やネズミから守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意なので、蓄えの草の種を守るために焼き続ける"}, "sow": 500, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ソワ16": {"activity": "採集", "place": "camp", "why": "採集が得意なので、キャンプのそばで木の実を集めて家族の食べ物を支える"}}, "keep": false,
+ "judge": {"M436": "ゆるす", "M437": "ゆるす", "M438": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋は土器を焼き、木の実を少し取り、草の種を畑にまいておくと、冬と春をしのぎやすい。", "because": [1095210], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、体も軽い。落ち着いて土器を焼ける秋になりそうだ。"}
