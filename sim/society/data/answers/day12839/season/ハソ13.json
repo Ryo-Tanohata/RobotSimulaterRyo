@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑がまだたくさん残っているよ。落ちる前に、毎夕みんなで鎌を持って刈ろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が夏のうちに落ちる前に刈り切りたいから"},"family":{"ラニ13":{"activity":"畑仕事","place":"camp","why":"刈り入れに人手が要る"},"ヒセ19":{"activity":"畑仕事","place":"camp","why":"刈り入れに人手が要る"},"ワユ19":{"activity":"畑仕事","place":"camp","why":"刈り入れに人手が要る"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"刈った種を守る土器を増やすため。得意だから"},"family":{"ラニ13":{"activity":"採集","place":"東林12","why":"冬にそなえて木の実を集める"},"ヒセ19":{"activity":"採集","place":"東林12","why":"冬にそなえて木の実を集める"},"ワユ19":{"activity":"採集","place":"東林12","why":"冬にそなえて木の実を集める"}},"pick":40,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"冬は家の中で土器づくりを続ける"},"family":{"ラニ13":{"activity":"採集","place":"南川12","why":"川で魚や芋を探す"},"ヒセ19":{"activity":"採集","place":"南川12","why":"川で魚や芋を探す"},"ワユ19":{"activity":"畑仕事","place":"camp","why":"草取りで来年の実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで夏の実りを増やす"},"family":{"ラニ13":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ヒセ19":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ワユ19":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,
+"knowledge":[{"op":"add","text":"夏は実った畑を毎夕刈り、秋に種をまき、冬と春に草取りをするとまた実る","because":[1076133],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"畑を刈り切った年",
+"feeling":"蓄えは多く、落ち着いて夏の刈り入れに向かえそうだ。"}
