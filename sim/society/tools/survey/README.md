@@ -60,3 +60,8 @@ python3 test_survey.py                             # 試し (実験 1 と 2。�
 2. **本番:** `args: {"root": "/home/user/RobotSimulaterRyo"}` (230 人)。分けるなら `"conditions": ["D1"]` など。続きは `"done": [...]`。
    `python3 save_answers.py --exp 2 <transcriptDir>/journal.jsonl` → `answers_exp2/`
 3. **分析:** `python3 analyze.py --experiment 2` → `out_exp2/summary.md` ほか。答えと out_exp2/ をコミットする。
+
+## 実験 2 のわけの分け方 (探索)
+
+`reasons_codebook.py`: `out_exp2/reasons.csv` (1,150 件) を、修士論文の 7 つの考え方 + 決まりに従う側のわけ 4 つで、正規表現の辞書だけで分ける (LLM は使わない)。
+→ `out_exp2/reasons_coded.csv`・`reasons_summary.md`・`fig_reasons.png`。確かめの記録は `reasons_validation.md`。`--sample 60 --seed N` で確かめ用のくじ。
