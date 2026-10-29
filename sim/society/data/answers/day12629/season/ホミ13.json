@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "冬の前に、木の実を少しずつ取って蓄えておこう。わたしは土器を焼いて、草の種を守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は木の実が実らないので、キャンプで土器を作り草の種を虫やネズミから守りたい。慣れていて速く作れる"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "採集", "place": "camp", "why": "冬の前に食べ物を集めたい。採集が得意"},
+  "キサ18": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬の蓄えを増やす"},
+  "ソナ19": {"activity": "採集", "place": "camp", "why": "採集が得意で、近くで木の実を集められる"},
+  "セヤ19": {"activity": "採集", "place": "camp", "why": "採集が得意で、冬に備える"}
+ },
+ "keep": false,
+ "judge": {"M425": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋のうちに草の種をまき、木の実を取っておけば、冬と春の食べ物に困りにくい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはまだ多いので落ち着いている。冬に向けて土器をしっかり作ろう。"}

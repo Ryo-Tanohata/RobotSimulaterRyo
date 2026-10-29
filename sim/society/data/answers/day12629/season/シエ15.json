@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑へ草の種をまいて、毎夕キャンプの木の実も取っておこう。わたしは土器を焼いて、冬の蓄えを虫やネズミから守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、土器に入れた草の種は傷みにくく、冬と春の蓄えを守れるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ16": {"activity": "採集", "place": "camp", "why": "採集が得意なので、キャンプのそばで木の実を集めて冬の食べ物にする"},
+  "ソワ16": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで夏の実りを増やすため"}
+ },
+ "keep": false,
+ "judge": {"M425": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋は土器を焼き、木の実を毎夕取り、草の種を畑にまいておくと、冬と春をしのぎやすい", "because": [1052363], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので、土器と木の実で蓄えを守りたい。"}
