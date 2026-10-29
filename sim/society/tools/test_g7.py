@@ -3044,15 +3044,56 @@ class T_G9(unittest.TestCase):
         self.assertIn("H8-05", hints._cand(st9, 1, 1, "旅人"))
         self.assertEqual(hints.check_cards(), [])
 
-    def test_far_term_needs_trade(self):
+    def test_far_term_without_trade(self):
+        """2026-10-29 本人の決め「交換しなくても来る」: 前の年に交換をしなくても、遠くの運ぶ人の項がある (重みは 0.1 のまま)"""
         import g9
         import hints
         st = self.g9_state()
         lo, hi = hints._window(st)
-        traded = g9.traded(st, lo, hi)
-        self.assertEqual(any(t[2] == hints.FAR for t in hints.terms(st, "V0")), traded)
-        st["era2"]["g7"]["g9"]["deals"].append(st["day"])
+        self.assertFalse(g9.traded(st, lo, hi), "本物の村は 12599 日目の前の年に交換をしていない")
         self.assertIn(("商人", hints.LAM_FAR, hints.FAR), hints.terms(st, "V0"))
+        self.assertEqual(hints.LAM_FAR, 0.1)
+        self.assertEqual(sum(1 for t in hints.terms(st, "V0") if t[2] == hints.FAR), 1)
+        self.assertIn("交換をしていなくても来る", g9.facts(st))
+
+    def test_one_flow_only(self):
+        """2026-10-29 本人の決め: 約束の流れは 1 つだけ。流れが続くあいだの別の運ぶ人とは、その場で替えるだけ (once)"""
+        import g9
+        st = self.g9_state()
+        g = st["era2"]["g7"]["g9"]
+        if era2._g6_have(st, "村", "草の種") < 6 * g9.FAR_TOOLS * g9.FAR_PRICE:
+            self.skipTest("村の蓄えの草の種が少ない")
+        a, b = g9.far_arrive(st), g9.far_arrive(st)
+        self.assertFalse(a.get("once") or b.get("once"), "流れがないときは、どちらも約束できる申し出")
+        g9.apply_answers(st, self.answers(st, far={a["id"]: "約束する", b["id"]: "約束する"}, far_write="書く"))
+        self.assertEqual(len(g["promises"]), 1, "同じ集まりで 2 人と約束しない")
+        pid = g["promises"][0]["id"]
+        self.assertEqual(g9.flow(st), pid)
+        self.assertEqual([o["end"][1] for o in g["offer_log"][-2:]], ["約束する", "受ける"])
+        self.assertIn("約束しなかった", next(e for e in reversed(st["events"]) if e["type"] == "交換")["text"])
+        self.assertEqual(len(g9.tools(st)), 1 + 2 * g9.FAR_TOOLS, "2 人目とも、その場で替えた")
+        c = g9.far_arrive(st)
+        self.assertEqual(c["once"], pid, "流れが続くあいだに来た運ぶ人は once")
+        self.assertIn("約束できない", g9.text(st, era2.adults(st)[0]))
+        self.assertIn("約束をしているので", st["events"][-1]["text"])
+        g9.apply_answers(st, self.answers(st, far={c["id"]: "受けない"}))
+        self.assertEqual(g["offer_log"][-1]["end"][1], "受けない")
+        pr = g["promises"][0]
+        st["day"] = pr["due"]
+        g9._due(st)
+        self.assertEqual(pr["status"], "守られた")
+        nxt = g["offers"][-1]
+        self.assertEqual((nxt["after"], nxt.get("once")), (pid, None), "守り合ったあとの次の申し出は、同じ流れ (約束できる)")
+        self.assertEqual(g9.flow(st), pid)
+        d = g9.far_arrive(st)
+        self.assertEqual(d["once"], pid)
+        g9.apply_answers(st, self.answers(st, far={nxt["id"]: "約束する", d["id"]: "約束する"}, far_write="書く"))
+        self.assertEqual([p["status"] for p in g["promises"]], ["守られた", "待つ"])
+        self.assertEqual(g["promises"][1]["offer"], nxt["id"], "流れを続けるのは、前の運ぶ人")
+        self.assertEqual(g["offer_log"][-1]["end"][1], "受ける")
+        g["promises"][1]["status"] = "守られた"
+        self.assertIsNone(g9.flow(st), "流れが終われば、次の運ぶ人とまた約束できる")
+        self.assertIsNone(g9.far_arrive(st).get("once"))
 
     def test_far_promise_written_and_kept_twice(self):
         import g9
@@ -3062,7 +3103,7 @@ class T_G9(unittest.TestCase):
         if grain0 < 4 * g9.FAR_TOOLS * g9.FAR_PRICE:
             self.skipTest("村の蓄えの草の種が少ない")
         off = g9.far_arrive(st)
-        self.assertTrue(any("(far)" in r for r in g9.field_rows(st)))
+        self.assertTrue(any("(far" in r for r in g9.field_rows(st)))
         self.assertIn(off["id"], g9.fields_json(st))
         g9.apply_answers(st, self.answers(st, far={off["id"]: "約束する"}, far_write="書く", metal="使う"))
         self.assertEqual(g["offers"], [])

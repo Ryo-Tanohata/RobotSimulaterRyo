@@ -482,7 +482,7 @@ def _g9_cols(state):
     s = g["g9"]
     reg = g.get("region") or {}
     return {"g9_c": dict(s["c"]), "g9_reached": dict(s["reached"]), "g9_tools": len(g9.tools(state)), "g9_tools_all": len(s["tools"]),
-            "g9_use": s["use"]["choice"], "g9_used": dict(s["used"]), "g9_visits": len(s["visits"]), "g9_offers_end": [o.get("end") for o in s.get("offer_log", [])], "g9_promises": [[p["id"], p["day"], p["written"], p["status"]] for p in s["promises"]], "g9_kept": s["kept"],
+            "g9_use": s["use"]["choice"], "g9_used": dict(s["used"]), "g9_visits": len(s["visits"]), "g9_once": sum(1 for v in s["visits"] if v.get("once")), "g9_offers_end": [o.get("end") for o in s.get("offer_log", [])], "g9_promises": [[p["id"], p["day"], p["written"], p["status"]] for p in s["promises"]], "g9_kept": s["kept"],
             "g9_trip_max": (s.get("merchant") or {}).get("max", 0), "g9_deals": len(s["deals"]),
             "g9_far_lam": [[x["day"], x["lam"]] for x in (g.get("hints") or {}).get("lam", []) if x["to"] == "V0" and any(t[2] == "遠く" for t in x["terms"])],
             "contacts_year": sum(1 for o in g7._others(state) for c in o.get("contacts", []) if c > state["day"] - YEAR),
@@ -699,7 +699,7 @@ def write_years_csv(out_dir, path):
 
 
 G9_COLS = ["world", "bundle", "seed", "years_run", "c1_year", "c2_year", "c3_year", "F1_year", "F2_year", "F3_year", "F4_year", "far_visits", "promises",
-           "promises_written", "promises_kept", "promise_status", "tools_end", "tools_all", "use_end", "used_max_year", "trip_max_end", "trip_max_max",
+           "promises_written", "promises_kept", "promises_broken", "promise_status", "far_once", "offers_end", "tools_end", "tools_all", "use_end", "used_max_year", "trip_max_end", "trip_max_max",
            "deals", "far_lam_years", "contacts_year_mean", "alliances_seen", "g7_reached", "pop_end", "kid_deaths", "adult_deaths", "births", "famine_seasons",
            "famine_all_seasons", "famine_events", "remeet", "store_all_days_min", "store_all_days_end", "strong_people_end", "strong_dem", "wars", "secs"]
 
@@ -717,6 +717,8 @@ def g9_row(res):
     return {"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], "years_run": len(rows),
             **{f"{k}_year": yr(c.get(k)) for k in ("c1", "c2", "c3")}, **{f"{f}_year": yr(re_.get(f)) for f in ("F1", "F2", "F3", "F4")},
             "far_visits": last.get("g9_visits"), "promises": len(pr), "promises_written": sum(1 for x in pr if x[2]), "promises_kept": last.get("g9_kept"),
+            "promises_broken": sum(1 for x in pr if x[3] not in ("待つ", "守られた")), "far_once": last.get("g9_once"),
+            "offers_end": ";".join(f"{k}:{n}" for k, n in sorted(__import__("collections").Counter((e or [None, "待つ"])[1] for e in last.get("g9_offers_end") or []).items())),
             "promise_status": ";".join(f"{x[0]}/{yr(x[1])}/{'書いた' if x[2] else '書かない'}/{x[3]}" for x in pr),
             "tools_end": last.get("g9_tools"), "tools_all": last.get("g9_tools_all"), "use_end": last.get("g9_use"),
             "used_max_year": max((last.get("g9_used") or {}).values(), default=0), "trip_max_end": last.get("g9_trip_max"),

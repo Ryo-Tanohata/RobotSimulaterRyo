@@ -8,7 +8,8 @@
   c3 遠くとの約束を書く: 遠くの町の運ぶ人との約束 (いつ・何を・どれだけ替える) を、粘土の板に書いて残した
 - F: F1 赤い金属の道具を新しく手に入れる / F2 商人の家 (= c2) / F3 遠くとの約束を書く (= c3) / F4 遠くの相手と、2 回目の約束を守り合う
 - G7 の国の物差し (条件 3 つ・F1〜F6) は「ならべて測る」: yardstick がいつもどおり数えて g7.reached・出来事「目盛り」に残すが、G9 は進めない
-- 足した仕組み (小さく 4 つ): 遠くの町の運ぶ人 (hints.LAM_FAR。前の年に村が交換をしたときだけ来る)・赤い金属の道具の使い道 (刈り入れ)・
+- 足した仕組み (小さく 4 つ): 遠くの町の運ぶ人 (hints.LAM_FAR = 0.1。2026-10-29 本人の決め「交換しなくても来る」: 前の年に村が交換をしなくても来る。
+  約束の流れは 1 つだけ: 約束が続いているあいだに来た別の運ぶ人とは、その場で替えるか替えないかだけ (once))・赤い金属の道具の使い道 (刈り入れ)・
   約束を粘土の板に書く・まわりの集落の同盟を、村が知っていれば出来事に残す (g7._region_after)
 - 乱数: 約束を書かなかったときの覚えのずれだけ。ほかの列 (塩) にはさわらない (約束ごとに seed から作る)
 - 数はみな【仮定】。村の人に見せる文には「青銅」を書かない (hints.FORBIDDEN)。村の中の呼び名は「赤い金属」
@@ -115,23 +116,36 @@ def reap(state, p, tool, n):
 # ---------------- 遠くの町の運ぶ人 (hints._deliver_v0 から) ----------------
 
 def traded(state, lo, hi):
-    """前の年 [lo, hi] に、村が交換をしたか (ほかの村との交換・貸し借り・返す (G6 の contacts) と、遠くの町の運ぶ人との取り替え)"""
+    """前の年 [lo, hi] に、村が交換をしたか (2026-10-29 本人の決め「交換しなくても来る」からは、遠くの運ぶ人が来るかには使わない。試しと記録のため残す) (ほかの村との交換・貸し借り・返す (G6 の contacts) と、遠くの町の運ぶ人との取り替え)"""
     for o in (state["era2"].get("g6") or {}).get("others", []):
         if any(lo <= c <= hi for c in o.get("contacts", [])):
             return True
     return any(lo <= d <= hi for d in _g(state)["deals"])
 
 
+def flow(state, skip=None):
+    """いま続いている約束の流れ (2026-10-29 本人の決め: 流れは 1 つだけ)。待っている約束の番号か、守り合ったあとの次の申し出 (まだ答えていないもの) が
+    約束した番号。なければ None。skip: 集まりでいま答えている申し出 (それ自身は数えない)"""
+    g = _g(state)
+    p = next((pr["id"] for pr in g["promises"] if pr["status"] == "待つ"), None)
+    return p or next((o["after"] for o in g["offers"] if o.get("after") and o is not skip and "end" not in o), None)
+
+
 def far_arrive(state, r=None, promise=None):
-    """遠くの町の運ぶ人が、赤い金属の鎌との取り替えを申し出る (次の村の集まりまで待つ)。r: よその便りの帳簿の行、promise: 約束どおり来たとき"""
+    """遠くの町の運ぶ人が、赤い金属の鎌との取り替えを申し出る (次の村の集まりまで待つ)。r: よその便りの帳簿の行、promise: 約束どおり来たとき。
+    約束の流れが続いているあいだに来た別の運ぶ人 (promise なし) は、その場で替えるだけ (once。約束はできない。2026-10-29 本人の決め)"""
     g, D = _g(state), state["day"]
+    once = flow(state) if promise is None else None
     oid = f"M{g['next_offer']}"
     g["next_offer"] += 1
     off = {"id": oid, "day": D, "give": {TOOL: FAR_TOOLS}, "want": {"草の種": FAR_TOOLS * FAR_PRICE}, "hint": (r or {}).get("y"), "after": promise}
+    if once:
+        off["once"] = once
     g["offers"].append(off)
-    g["visits"].append({"day": D, "offer": oid, "hint": off["hint"], "promise": promise})
+    g["visits"].append({"day": D, "offer": oid, "hint": off["hint"], "promise": promise, **({"once": once} if once else {})})
     log(state, "よその村", None, f"{FAR_WORD}は、{_gw(off['give'])} を出すので、{_gw(off['want'])} がほしいと言った。"
-        f"次の村の集まりまで待つという [{oid}]", far=True, offer=oid, **({"hint": off["hint"]} if off["hint"] else {}))
+        f"次の村の集まりまで待つという [{oid}]" + ("。村はもう、遠くの町の別の運ぶ人と約束をしているので、この運ぶ人とは、その場で替えるか替えないかだけを決める" if once else ""),
+        far=True, offer=oid, **({"hint": off["hint"]} if off["hint"] else {}), **({"once": once} if once else {}))
     return off
 
 
@@ -181,6 +195,9 @@ def apply_answers(state, real):
                 far=True, offer=off["id"])
             off["end"] = [D, "物がない"]
             continue
+        once = ""
+        if ch == "約束する" and (off.get("once") or flow(state, skip=off)):  # 約束の流れは 1 つだけ (2026-10-29 本人の決め): その場で替えるだけにする
+            ch, once = "受ける", "。この運ぶ人とは約束しなかった (村はもう、遠くの町の別の運ぶ人と約束をしている)。その場で替えるだけにした"
         write = None
         if ch == "約束する":
             wc, wtxt = _votes(state, real, "far_write", WRITE_CHOICES)
@@ -189,7 +206,7 @@ def apply_answers(state, real):
         gave = era2._g6_take(state, "村", off["want"], ids)
         tids = [_add_tool(state, TOOL, D, FAR, "村", True) for _ in range(off["give"][TOOL])]
         g["deals"].append(D)
-        extra = ""
+        extra = once
         pid = None
         if ch == "約束する":
             pid = _promise(state, off, write)
@@ -329,7 +346,7 @@ def indicators(state):
     g = _g(state)
     return {"g9_c1_day": g["c"].get("c1"), "g9_c2_day": g["c"].get("c2"), "g9_c3_day": g["c"].get("c3"), "g9_tools": len(tools(state)),
             "g9_use": g["use"]["choice"], "g9_used_year": g["used"].get(str(state["day"] // YEAR), 0), "g9_far_visits": len(g["visits"]),
-            "g9_promises": len(g["promises"]), "g9_written": sum(1 for p in g["promises"] if p["written"]), "g9_kept": g["kept"],
+            "g9_promises": len(g["promises"]), "g9_flow": flow(state), "g9_written": sum(1 for p in g["promises"] if p["written"]), "g9_kept": g["kept"],
             "g9_trip_days_max": (g.get("merchant") or {}).get("max", 0)}
 
 
@@ -338,9 +355,10 @@ def indicators(state):
 def facts(state):
     """お題の決まりの文 (G9 から)"""
     tab = bool(((state["era2"].get("g6") or {}).get("open") or {}).get("板"))
-    return ("遠くの町の運ぶ人: 村がほかの村と交換をした次の年には、ときどき、地図の外の遠くの町から運ぶ人が来る。赤い金属の鎌を出して草の種と替えたいと言い、"
+    return ("遠くの町の運ぶ人: ときどき、地図の外の遠くの町から運ぶ人が来る (村がほかの村と交換をしていなくても来る)。赤い金属の鎌を出して草の種と替えたいと言い、"
             "次の村の集まりまで待つ。集まりで、受ける・受けない・約束する (いま替えて、1 年あとに、また同じように替える) を決める。約束すると、運ぶ人は 1 年あとに"
-            "また来て、集まりで決めずに約束どおり替える。そのとき村の蓄えに草の種がなければ、約束は守れない"
+            "また来て、集まりで決めずに約束どおり替える。そのとき村の蓄えに草の種がなければ、約束は守れない。約束できるのは、1 人の運ぶ人とだけ。"
+            "約束が続いているあいだに別の運ぶ人が来たら、その運ぶ人とは、その場で替えるか替えないかだけを決める"
             + ("。約束を粘土の板に書いておけば、来たときに板を読み合わせられる。書かなければ、覚えで比べる (覚えは、人によってずれる)" if tab else "") + "\n"
             "赤い金属の道具: 赤い金属の刃や鎌で畑を刈ると、刈る量が 2.5 倍になる (石の鎌は 2 倍)。石の鎌より、ずっとすり減りにくい。"
             "村の集まりで「使う」と決めると、夕方に畑を刈る人が使う (道具の数の人まで)。「しまう」と決めると使わない\n")
@@ -352,7 +370,8 @@ def text(state, p):
     rows = []
     for off in g["offers"]:
         rows.append(f"- 申し出 [{off['id']}] ({off['day']} 日目に来た): {_gw(off['give'])} を出すので、{_gw(off['want'])} がほしい"
-                    + (f" (約束 [{off['after']}] を守り合ったあとの、次の申し出)" if off.get("after") else ""))
+                    + (f" (約束 [{off['after']}] を守り合ったあとの、次の申し出)" if off.get("after") else "")
+                    + (" (村はもう別の運ぶ人と約束をしているので、この運ぶ人とは約束できない。受けるか受けないかだけ)" if off.get("once") else ""))
     for pr in g["promises"]:
         if pr["status"] == "待つ":
             rows.append(f"- 約束 [{pr['id']}] ({pr['day']} 日目): {pr['due']} 日目 ({season(pr['due'] + 1)}のはじめ) ごろに運ぶ人がまた来て、"
@@ -377,7 +396,7 @@ def field_rows(state):
     g = _g(state)
     if g["offers"]:
         ids = "・".join(o["id"] for o in g["offers"])
-        rows.append(f'   遠くの町の運ぶ人の申し出 ({ids}) ごとに、"受ける" か "約束する" か "受けない" (far)')
+        rows.append(f'   遠くの町の運ぶ人の申し出 ({ids}) ごとに、"受ける" か "約束する" か "受けない" (far。約束できるのは 1 人の運ぶ人とだけ)')
         if ((state["era2"].get("g6") or {}).get("open") or {}).get("板"):
             rows.append('   約束するとき、約束を粘土の板に "書く" か "書かない" か (far_write)')
     return rows

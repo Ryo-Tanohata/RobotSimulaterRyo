@@ -156,8 +156,9 @@ def terms(state, rid):
         for o in others:
             if any(lo <= c <= hi for c in o.get("contacts", [])):
                 out.append(("商人", LAM_MERCHANT, o["id"]))
-        # 遠くの商人 (LAM_FAR) は G9 から (G8 までは 0)。来るのは、前の年に村が交換をしたときだけ (計画 2.(h)。g9.traded)
-        if _g9_on(state) and _g9m().traded(state, lo, hi):
+        # 遠くの商人 (LAM_FAR) は G9 から (G8 までは 0)。2026-10-29 本人の決め「交換しなくても来る」: 前の年に村が交換をしなくても来る
+        # (前は計画 2.(h) のとおり、交換した次の年だけ (g9.traded) だった。重みは 0.1 のまま)
+        if _g9_on(state):
             out.append(("商人", LAM_FAR, FAR))
         out += [("よそから来た人", LAM_JOINED, None)] * _joined_groups(state, lo, hi)
     else:
