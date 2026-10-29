@@ -1,0 +1,25 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種を畑にまいて、冬と春は交代で草取りをしよう。ヤギは140頭より多いから、家ごとに少しつぶして干し肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすると実りが増える。冬の前に手を入れておきたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "family": {
+  "ヌオ14": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ソナ17": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多いので世話をしていなくならないようにする"},
+  "ラキ18": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ハソ18": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "オセ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "テナ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ラニ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ムイ19": {"activity": "ヤギの世話", "place": "camp", "why": "幼い子のいる身でキャンプにいられるヤギの世話が合う"},
+  "セヤ20": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "リセ20": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ヒセ20": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "セヤ21": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える"},
+  "リセ21": {"activity": "ヤギの世話", "place": "camp", "why": "子でもヤギの世話なら手伝える"}
+ },
+ "keep": false,
+ "judge": {"M431": "ゆるす", "M432": "ゆるす", "M433": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "冬に向けて蓄えは十分にある。畑をしっかりまいて、落ち着いて冬を迎えたい。"
+}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬の前に、おれは土器をもっと焼いて、草の種を虫から守るよ。みんなも畑の草取りを忘れずにな。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意なので、冬の前に草の種を入れる器を増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {"セヤ15": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬に備えて食べ物を集めてほしい"}, "ホミ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを守るため"}},
+ "keep": false,
+ "judge": {"M431": "ゆるす", "M432": "ゆるす", "M433": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "落ち着いている。冬の前に手を動かして備えたい"}

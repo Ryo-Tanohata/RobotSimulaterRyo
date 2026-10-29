@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種を1000つかみずつまいて、冬と春は交代で草取りをしよう。わたしはこの秋、畑の草取りに回るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、続けて世話をしたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケセ18": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、家族みんなで受け持つ"},
+  "アコ18": {"activity": "畑仕事", "place": "camp", "why": "草取りの時間が増えるほど夏の実りが増えるから"},
+  "ラキ20": {"activity": "ヤギの世話", "place": "camp", "why": "力仕事は苦手だが、キャンプでヤギの世話ならできる"},
+  "ワユ20": {"activity": "畑仕事", "place": "camp", "why": "14歳なので大人の半分の働きで草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M431": "ゆるす", "M432": "ゆるす", "M433": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種をまき、冬と春に草取りの時間をかけると、夏の実りが増える。", "because": [1082523, 1082761, 1082978], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L220", "against": "", "agree": true, "reason": "秋にまいて草取りをすれば夏の実りが増えるから"},
+  {"id": "L204", "against": "", "agree": true, "reason": "木の実を取って蓄えに入れれば冬の食べ物が増えるから"},
+  {"id": "L193", "against": "", "agree": true, "reason": "取りすぎるともめごとになるので守りたい"}
+ ],
+ "feeling": "蓄えは十分あるので落ち着いている。畑の草取りを続けて、夏の実りに備えたい。"}

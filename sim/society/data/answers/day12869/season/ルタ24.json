@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "まだ行ったことのない東林45のほうを見てくる。何があったか、帰ったら話すよ。"}],
+ "job": {"activity": "探索", "place": "東林45", "with": [], "why": "蓄えは十分あるので、冬の前にまだ知らない場所で木の実や芋を探してみたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"アコ24": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、近くで食べ物を集めてもらう"}},
+ "keep": false,
+ "judge": {"M431": "ゆるす", "M432": "ゆるす", "M433": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって落ち着いている。知らない場所を歩くのが楽しみ。"}

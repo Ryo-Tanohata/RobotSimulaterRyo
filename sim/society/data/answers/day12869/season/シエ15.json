@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りない。うちの家でも何頭かつぶして干し肉にするよ。わたしは秋のあいだ土器を焼いて、草の種を守る。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の技能が高く、土器に入れた草の種は虫やネズミから守れるから"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソワ16": {"activity": "畑仕事", "place": "camp", "why": "秋にまく畑の草取りで、夏の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M431": "ゆるす", "M432": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える数を超えているので、肉にして干して蓄えに入れるのがよい。土器づくりで草の種を守れる。", "because": [1083050], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だが、ヤギの数が気がかり。土器づくりに打ちこむつもり。"}

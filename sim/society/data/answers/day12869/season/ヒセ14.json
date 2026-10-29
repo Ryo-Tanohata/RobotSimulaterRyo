@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のあいだ、わたしは畑の草取りに毎日出るよ。冬と春も畑に人がいるよう、みんなで順番に出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑は草取りが少ないと実りが減る。畑にまいた分を実らせるため、毎日畑に出る"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M431": "ゆるす", "M432": "ゆるす", "M433": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、草取りをした時間に合わせて実りが増える。まく量を抑えれば草取りの時間も少なくてすむ。", "because": [1082528], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあって安心している。畑の世話をしっかりして、冬を穏やかに迎えたい。"}
