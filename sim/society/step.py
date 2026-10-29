@@ -16,6 +16,9 @@
   python sim/society/step.py heavy on             G8 の続き「重い押し」を入れる (2026-10-25 本人の決め。docs/society_phase/G8_heavy_design.md。G8 のときだけ。
                                                  入れたら消さない)。強い集落の村への求めを「村の去年の刈り入れの 2 割」にする。年の集まりの歩で、
                                                  まだ答えがなければ、その日に「増やせ」の求めを出して、お題を書き直す (ほかの日なら、次の年の終わりに出す)
+  python sim/society/step.py far_rate 0.5         G9 の遠くの町の運ぶ人の 1 年の見込み (重み。はじめ 0.1) を、今日から 0.5 にする (2026-10-29 本人の決め「来る見込みを 5 割に」。
+                                                 G9 のときだけ。同じ重みなら何も変えない)。g7.g9.far_rate と出来事「目盛り」(村は見ない) に残す。年の終わりの日に
+                                                 次の年の便りをもう引いていれば、差の分だけ遠くの商人を引き足す (別の乱数の列)。お題は変わらない
   python sim/society/step.py who                 ワークフローのための、読むだけの状態の行 (DAY・PHASE・HOLD・MODE・MEET・NAMES・FEEL・COUNCIL・ASKLOG)
 
 お題は data/prompts/日/段階/名前.md、答えは data/answers/日/段階/名前.json に置く。
@@ -392,10 +395,13 @@ def export(state):
     print("アプリ用のデータ:", (DATA / "app_data.json").relative_to(DATA.parent))
 
 
+FAR_RATE_NOTE = "本人の決め 2026-10-29: 来る見込みを 5 割に"  # step.py far_rate の記録の言葉
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards", "heavy"])
-    ap.add_argument("onoff", nargs="?", help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)。cards では、札の表を直したわけ (note)。heavy では on")
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards", "heavy", "far_rate"])
+    ap.add_argument("onoff", nargs="?", help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)。cards では、札の表を直したわけ (note)。heavy では on。far_rate では重み (0.5 など)")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
     ap.add_argument("--closed-by-decision", dest="closed", default=None,
@@ -408,7 +414,7 @@ def main():
     a = ap.parse_args()
     if (a.world is not None or a.count is not None) and a.cmd != "next_part":
         sys.exit("--world と --count は next_part のときだけ書く")
-    if a.onoff and a.cmd not in ("ask_why", "cards", "heavy"):
+    if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate"):
         sys.exit(f"on / off は ask_why のときだけ書く ({a.cmd} {a.onoff} とは書けない)")
     if a.cmd == "ask_why" and a.onoff not in (None, "on", "off"):
         sys.exit(f"ask_why には on か off を書く ({a.onoff} とは書けない)")
@@ -449,6 +455,9 @@ def main():
                   + (f" / 世界の選び {'・'.join(sorted(g7['world']))}" if g7.get("world") else "") + (f" / 段の数え方 {g7['count']}" if g7.get("count") else "")
                   + (f" / 重い押し {_yd(g7['heavy']['day'])}から (去年の刈り入れの {round(g7['heavy']['share'] * 10)} 割)"
                      + (f"、{_yd(g7['heavy']['end'])}に切った" if g7["heavy"].get("end") is not None else "") if g7.get("heavy") else ""))
+        fr = ((g7 or {}).get("g9") or {}).get("far_rate")
+        if fr:  # G9: 遠くの町の運ぶ人の重みを切り替えた (2026-10-29 本人の決め。step.py far_rate)
+            print(f"遠くの町の運ぶ人の重み: {fr[-1]['rate']} ({_yd(fr[-1]['day'])}から。前は {fr[-1]['was']})")
         if state.get("era2"):  # 仕事の理由 (段階 1。2026-10-14 本人が決めた: 次に村を進めるときから。daily_run.md)
             log = state["era2"].get("ask_why_log")
             print(f"仕事の理由: {'たずねている' if state['era2'].get('ask_why') else 'たずねていない'} ({log[-1][0]} 日目のお題から)" if log
@@ -586,6 +595,34 @@ def main():
         print(f"* {q['to']} への「増やせ」の求め [{q['id']}]: 毎年 草の種 {q['what']['草の種']} つかみ (いま [{q['raise']}] で {q['old']['草の種']} つかみ。"
               f"この 1 年の刈り入れ {q['harvest']} つかみ)。この年の集まりで答える" if q else
               "* 「増やせ」の求めは、次の年の終わりに出す (今は年の集まりの答えを待つ歩でないか、もう答えがある。か、村が払っていない・強さが足りない)")
+        _records_exit()
+        return
+    if a.cmd == "far_rate":  # 2026-10-29 (本人の決め「来る見込みを 5 割に」): 遠くの町の運ぶ人の重み。g7.g9.far_rate に残し、出来事「目盛り」(村は見ない) を書く
+        #   世界の乱数の列にはさわらない。お題は変わらない (お題の文は「ときどき来る」のまま。便りは次の季節の終わりから届く) ので書き直さない
+        try:
+            rate = float(a.onoff)
+        except (TypeError, ValueError):
+            sys.exit("far_rate には重みを書く (step.py far_rate 0.5)")
+        if not (state.get("era2") or {}).get("g7") or "g9" not in state["era2"]["g7"]:
+            print(f"far_rate はできない: 遠くの町の運ぶ人の見込みは G9 のときだけ (今は {state.get('era')}) (何も変えない)")
+            sys.exit(3)
+        import g9  # noqa: E402
+        why = g9.far_rate_refusal(state, rate)
+        if why:
+            print(f"far_rate はできない: {why} (何も変えない)")
+            sys.exit(3)
+        row = g9.set_far_rate(state, rate, FAR_RATE_NOTE)
+        if row is None:
+            print(f"遠くの町の運ぶ人の重みは、もう {rate} (何も変えない)")
+            return
+        save(state)
+        export(state)
+        _records(None)  # 記録を作り直す (控えの行は足さない)
+        t = row.get("topup")
+        print(f"* 遠くの町の運ぶ人の 1 年の見込み (重み) を {row['was']} から {rate} にした ({_yd(state['day'])}から)")
+        print(f"* この日に引いた次の年の便りに、差 {t['lam']} で遠くの商人を引き足した: {t['n']} 人" + (f" ({'・'.join(t['rows'])})" if t["rows"] else "")
+              if t else "* 次の年の便りは、次の年の終わりに新しい重みで引く")
+        print("お題は書き直していない (変わらない)")
         _records_exit()
         return
     if a.cmd == "ask_why":  # 2026-10-14 (本人が決めた。docs/humanity の D09 の段階 1): 季節のお題で、主な仕事にした理由を一言たずねる

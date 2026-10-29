@@ -3225,6 +3225,101 @@ class T_G9(unittest.TestCase):
         self.assertEqual(sorted(g["stall"]), ["c1", "c2", "c3"])
         self.assertEqual(g["stall"]["c1"]["best"], 1, "道具はある (67年の刃)")
 
+    def test_far_rate_switch(self):
+        """本人の決め 2026-10-29「来る見込みを 5 割に」(step.py far_rate): state に残す切り替え。はじめは 0.1・切り替えた日から新しい重み・
+        同じ重みなら何も変えない・出来事「目盛り」(村は見ない)・年の終わりの日に、もう引いた次の年の分には差だけ引き足す (3 通まで)"""
+        import copy
+        import g9
+        import hints
+        st = self.g9_state()
+        g = st["era2"]["g7"]["g9"]
+        self.assertNotIn("far_rate", g, "切り替える前の state には鍵がない (前と 1 バイトも同じ)")
+        self.assertEqual(hints.far_weight(st), hints.LAM_FAR)
+        self.assertEqual(hints.LAM_FAR, 0.1, "決めのはじめの重みは 0.1 のまま (定数は変えない)")
+        if (st["day"] + 1) % era2.YEAR or st["phase"] != "season":
+            self.skipTest("本物の state が年の終わりの season でない")
+        st0 = copy.deepcopy(st)
+        self.assertIsNone(g9.far_rate_refusal(st, 0.5))
+        self.assertIn("0 より大きく", g9.far_rate_refusal(st, 0))
+        self.assertIn("0 より大きく", g9.far_rate_refusal(st, 1.5))
+        n_ev, h = st["next_event"], st["era2"]["g7"]["hints"]
+        n_led = len(h["ledger"])
+        row = g9.set_far_rate(st, 0.5, "本人の決め 2026-10-29: 来る見込みを 5 割に")
+        self.assertEqual((row["day"], row["rate"], row["was"]), (st["day"], 0.5, 0.1))
+        self.assertEqual(g["far_rate"], [row])
+        self.assertEqual(hints.far_weight(st), 0.5)
+        self.assertIn(("商人", 0.5, hints.FAR), hints.terms(st, "V0"))
+        self.assertEqual(row["topup"]["lam"], 0.4, "今日もう引いた次の年の分 (0.1) との差")
+        new = h["ledger"][n_led:]
+        self.assertEqual(len(new), row["topup"]["n"])
+        self.assertTrue(all(r["from"] == hints.FAR and r["carrier"] == "商人" and r.get("far_rate") for r in new))
+        self.assertLessEqual(sum(x["n"] for x in h["lam"] if x["day"] == st["day"] and x["to"] == "V0"), hints.HINT_CAP)
+        ev = [e for e in st["events"] if e["id"] >= n_ev]
+        self.assertEqual([e["type"] for e in ev], ["目盛り"])
+        self.assertNotIn("目盛り", era2.YEAR_EVENTS + era2.MEETING_EVENTS + era2.G7_EVENTS, "村の人には見せない")
+        self.assertIsNone(g9.set_far_rate(st, 0.5, "x"), "同じ重みなら何も変えない")
+        self.assertEqual(len(g["far_rate"]), 1)
+        self.assertNotIn("0.5", g9.facts(st), "お題の文は変わらない")
+        self.assertEqual(g9.facts(st), g9.facts(st0))
+        st1 = copy.deepcopy(st0)  # 同じ state から同じ引き足し (乱数は日と種から。世界の塩の列にはさわらない)
+        g9.set_far_rate(st1, 0.5, "本人の決め 2026-10-29: 来る見込みを 5 割に")
+        self.assertEqual(st1["era2"]["g7"]["hints"], h)
+        g9.set_far_rate(st, 0.7, "x")  # 同じ日にもう一度上げても、足すのは引いた重みとの差 (0.2) だけ
+        self.assertEqual(g["far_rate"][-1]["topup"]["lam"], 0.2)
+        g9.set_far_rate(st, 0.3, "x")  # 下げるときは引き足さない
+        self.assertNotIn("topup", g["far_rate"][-1])
+        self.assertEqual(hints.far_weight(st), 0.3)
+
+    def test_far_rate_topup_rows_and_mid_year(self):
+        """引き足した行は、ふつうの遠くの商人の行と同じに届く (g9.far_arrive の申し出)。年の終わりの日でなければ引き足さない (次の年の終わりから)"""
+        import copy
+        import g9
+        import hints
+        st = self.g9_state()
+        if (st["day"] + 1) % era2.YEAR or st["phase"] != "season":
+            self.skipTest("本物の state が年の終わりの season でない")
+        mid = copy.deepcopy(st)
+        h = mid["era2"]["g7"]["hints"]
+        h["lam"] = [x for x in h["lam"] if x["day"] != mid["day"]]  # 年の途中の日 (今日はまだ引いていない) のかわり
+        row = g9.set_far_rate(mid, 0.5, "x")
+        self.assertNotIn("topup", row)
+        self.assertEqual(hints.far_weight(mid), 0.5)
+        orig = hints.poisson
+        hints.poisson = lambda rng, lam: 5
+        try:
+            have = sum(x["n"] for x in st["era2"]["g7"]["hints"]["lam"] if x["day"] == st["day"] and x["to"] == "V0")
+            row = g9.set_far_rate(st, 0.5, "x")
+        finally:
+            hints.poisson = orig
+        h = st["era2"]["g7"]["hints"]
+        self.assertEqual(row["topup"]["n"], hints.HINT_CAP - have, "村の便りは 1 年に 3 通まで")
+        rows = [r for r in h["ledger"] if r.get("far_rate")]
+        self.assertEqual([r["y"] for r in rows], row["topup"]["rows"])
+        self.assertTrue(all(st["day"] < r["due"] <= st["day"] + era2.YEAR for r in rows))
+        got = [r for r in rows if r["status"] == "待つ"]
+        if not got:
+            self.skipTest("商人の札が引けなかった")
+        self.assertTrue(all(r["y"] in h["plan"] for r in got))
+        n_off = len(st["era2"]["g7"]["g9"]["offers"])
+        st["day"] = got[0]["due"]
+        hints._deliver_v0(st, era2._rng(st, era2.HINT_SALT), got[0])
+        if got[0]["status"] == "空振り":
+            self.skipTest("聞く人がいない")
+        self.assertEqual(len(st["era2"]["g7"]["g9"]["offers"]), n_off + 1, "遠くの町の運ぶ人の申し出")
+
+    def test_far_rate_refused_outside_g9(self):
+        import g9
+        st = real_state()
+        if st.get("era") != "G9":
+            self.skipTest("本物の state が G9 でない")
+        st["phase"] = "night"
+        self.assertIn("season", g9.far_rate_refusal(st, 0.5))
+        st["phase"] = "season"
+        st["era"] = "G8"
+        self.assertIn("G9 のときだけ", g9.far_rate_refusal(st, 0.5))
+        del st["era2"]["g7"]["g9"]
+        self.assertIn("G9 のときだけ", g9.far_rate_refusal(st, 0.5))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

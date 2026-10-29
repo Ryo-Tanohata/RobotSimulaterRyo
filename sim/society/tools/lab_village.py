@@ -6,6 +6,7 @@
   (G8 の重い押しの確かめ 2026-10-25: --data sim/society/data (本物の 10919 日目。読むだけ) --worlds W8H,W8R --years 10、csv に --years-csv で年ごとの行)
   (G9 の確かめ 2026-10-29: --data sim/society/data (本物の 12599 日目。読むだけ) --worlds W9 --bundles B0,B1T --years 15。表は csv --g9-csv <runs.csv> --years-csv <years.csv>。
    感度は --worlds W9F (遠くの商人の重み 0.5) --bundles B1T。docs/society_phase/G9_check.md)
+  (G9 の「来る見込みを 5 割に」2026-10-29: --data sim/society/data (本物の 13079 日目。読むだけ) --worlds W9R --bundles B0 --seeds 2 --years 5)
 
 - はじめの state は G6 の 5849 日目 (e436dfc の 1 つ前のコミットの data の写し)。メモリの中で g7.close_g6 → g7.enter (G7 に入る。本物と同じ道) してから回す。
   写しの state.json は読むだけ。何も書かない (書くのは --out の結果のファイルだけ)
@@ -63,6 +64,9 @@ WORLDS = {
     "W9": {"name": "G9 (遠くとの商い。本物の 12599 日目から。G8 の世界のまま・重い押しは切る)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g9": True},
     # G9 の感度 (2026-10-29。確かめのためだけ。本人の決めの重みは 0.1): 遠くの商人の重み hints.LAM_FAR を 0.5 にした世界
     "W9F": {"name": "G9 + 遠くの商人の重み 0.5 (感度を見るためだけ。決めは 0.1)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g9": True, "lam_far": 0.5},
+    # 2026-10-29 本人の決め「来る見込みを 5 割に」の確かめ: 本物の村の今 (もう G9。108年120日目) から、step.py far_rate 0.5 と同じ関数 (g9.set_far_rate) で切り替える
+    "W9R": {"name": "G9 の今から (本物の 13079 日目。遠くの商人の重みを step.py far_rate で 0.5 に)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2,
+            "from_g9": True, "far_rate": 0.5},
 }
 ORIG = {"K": dict(region.K), "WEATHER_BAD": region.WEATHER_BAD, "cells": region.cells, "refuge": region.refuge, "k_total": region.k_total,
         "LAM_FAR": hints.LAM_FAR}
@@ -98,6 +102,12 @@ def enter_g7(state, w):
         assert state.get("era") == "G8", state.get("era")
         if w.get("heavy"):
             g7.heavy_on(state, w["heavy"], answered=False)
+        return
+    if w.get("from_g9"):  # もう G9 にいる state (本物の 13079 日目): 入りなおさない。重みは step.py far_rate と同じ関数で
+        assert state.get("era") == "G9", state.get("era")
+        if w.get("far_rate"):
+            import g9
+            g9.set_far_rate(state, w["far_rate"], "本人の決め 2026-10-29: 来る見込みを 5 割に")
         return
     if w.get("g9"):  # 本物の 12599 日目 (G8): G8 を閉じて G9 に入る (step.py next_part --closed-by-decision と同じ関数)
         assert state.get("era") == "G8", state.get("era")
@@ -624,7 +634,7 @@ def run_one(job):
                     pickle.dump((state, rows, acc, rt, seen_events, fis0, y0, end_day, time.time() - t0), f, protocol=pickle.HIGHEST_PROTOCOL)
                 os.replace(tmp, ck)
     res = {"world": wid, "bundle": bid, "seed": seed, "years": years, "secs": round(time.time() - t0, 1), "rt": rt, "y0": y0, "start": g["start"],
-           "full_first": bool(w.get("from_g8")),  # 1 行目から まる 1 年 (入った短い年がない)
+           "full_first": bool(w.get("from_g8") or w.get("from_g9")),  # 1 行目から まる 1 年 (入った短い年がない)
            "rows": rows, "end_day": state["day"], "all_dead": not any(p["alive"] for p in state["people"])}
     tmp = dst.with_suffix(".tmp")
     tmp.write_text(json.dumps(res, ensure_ascii=False), encoding="utf-8")

@@ -145,6 +145,43 @@ def _debt_year(state, lo, hi):
     return False
 
 
+def far_weight(state):
+    """遠くの商人の重み (G9 から)。step.py far_rate で残した重み (g7.g9.far_rate の最後の行。本人の決め 2026-10-29「来る見込みを 5 割に」) があればそれ、
+    なければ LAM_FAR (0.1)。切り替えは state に残すので、切り替えの前の日は、前と 1 バイトも同じに進む"""
+    fr = state["era2"]["g7"]["g9"].get("far_rate")
+    return fr[-1]["rate"] if fr else LAM_FAR
+
+
+def far_topup(state, extra):
+    """step.py far_rate を、次の年の便りをもう引いた日 (年の終わりの日) に入れたとき: 引いた年の分に、遠くの商人だけを、重みの差 extra で引き足す
+    (ポワソンの和: 0.1 で引いた数 + 差で引いた数 = 新しい重みで引いた数。村の便りは 1 年に 3 通まで (HINT_CAP) のまま)。
+    乱数は、日と種からつくる別の列 (塩 47 の列にはさわらない)。戻り値: λ の行 (足した行がなければ n = 0)"""
+    h, D = _h(state), state["day"]
+    rng = random.Random(f"G9|{state['seed']}|far_rate|{D}")
+    have = sum(x["n"] for x in h["lam"] if x["day"] == D and x["to"] == "V0")
+    n_raw = poisson(rng, extra)
+    n = max(0, min(HINT_CAP - have, n_raw))
+    row = {"day": D, "to": "V0", "lam": round(extra, 6), "n": n, "terms": [["商人", round(extra, 6), FAR]], "far_rate": True}
+    h["lam"].append(row)
+    dues, now = _seasons_left(D), _stage_now(state)
+    for _ in range(n):
+        si = rng.randrange(len(dues))
+        stage, us = _pick_stage(rng, now)
+        card, got = _pick_card(state, rng, "V0", stage, now, "商人")
+        y = f"Y{h['next']}"
+        h["next"] += 1
+        r = {"y": y, "card": card, "carrier": "商人", "to": "V0", "from": FAR, "drawn": D, "due": dues[si], "stage": STAGES[stage],
+             "stage_got": STAGES[got] if got is not None else None, "u": [None, round(us, 6)], "status": "待つ" if card else "空振り",
+             "delivered": None, "listeners": [], "outcome": [], "far_rate": True}
+        if not card:
+            r["why"] = "引いた段と運び手の札がない"
+        else:
+            h["seen"].setdefault("V0", {})[card] = h["seen"].get("V0", {}).get(card, 0) + 1
+            h["plan"].append(y)
+        h["ledger"].append(r)
+    return row
+
+
 def terms(state, rid):
     """λ の項の並び [(運び手, 重み, 商人の来た所)] (受けとる所 rid: "V0" か集落の番号)。前の年 [day+1−120, day] の数で決める"""
     lo, hi = _window(state)
@@ -158,8 +195,9 @@ def terms(state, rid):
                 out.append(("商人", LAM_MERCHANT, o["id"]))
         # 遠くの商人 (LAM_FAR) は G9 から (G8 までは 0)。2026-10-29 本人の決め「交換しなくても来る」: 前の年に村が交換をしなくても来る
         # (前は計画 2.(h) のとおり、交換した次の年だけ (g9.traded) だった。重みは 0.1 のまま)
+        # 重みは、本人の決め 2026-10-29「来る見込みを 5 割に」から、step.py far_rate で state に残した重み (g7.g9.far_rate。なければ LAM_FAR = 0.1)
         if _g9_on(state):
-            out.append(("商人", LAM_FAR, FAR))
+            out.append(("商人", far_weight(state), FAR))
         out += [("よそから来た人", LAM_JOINED, None)] * _joined_groups(state, lo, hi)
     else:
         o = next((x for x in others if x["id"] == rid), None)

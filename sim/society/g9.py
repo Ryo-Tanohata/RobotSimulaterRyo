@@ -96,6 +96,47 @@ def tools(state):
     return [t for t in _g(state)["tools"] if t["gone"] is None]
 
 
+# ---------------- 遠くの町の運ぶ人の来る見込み (本人の決め 2026-10-29「来る見込みを 5 割に」。step.py far_rate) ----------------
+
+FAR_RATE_MAX = 1.0  # step.py far_rate で書ける重みの上 (0 より大きく、これ以下)
+
+
+def far_rate_refusal(state, rate):
+    """step.py far_rate ができないわけ (できるなら None)"""
+    if not on(state) or state.get("era") != "G9":
+        return f"遠くの町の運ぶ人の見込みは G9 のときだけ (今は {state.get('era')})"
+    if state["phase"] != "season":
+        return f"段階が season でない (今は {state['phase']})"
+    if not (0 < rate <= FAR_RATE_MAX):
+        return f"重みは 0 より大きく {FAR_RATE_MAX} 以下 ({rate} とは書けない)"
+    return None
+
+
+def set_far_rate(state, rate, note):
+    """遠くの町の運ぶ人の重み (1 年の見込み) を、今日から rate にする (step.py far_rate から。乱数は世界の列にはさわらない)。
+    g7.g9.far_rate に {日・重み・前の重み・本人の決め} を残し、出来事「目盛り」(【シ】。村の人には見せない) を書く。
+    次の年の便りは年の終わりの日に引く (hints._year_plan)。今日がその日で、村の分をもう前の重みで引いていれば、重みの差だけ遠くの商人を引き足す
+    (hints.far_topup)。ほかの日なら、次の年の終わりに引くときから新しい重み。戻り値: 残した行 (同じ重みなら None = 何も変えない)"""
+    g, D = _g(state), state["day"]
+    was = hints.far_weight(state)
+    if rate == was:
+        return None
+    row = {"day": D, "rate": rate, "was": was, "by": "本人の決め", "note": note}
+    lam = [x for x in state["era2"]["g7"]["hints"]["lam"] if x["day"] == D and x["to"] == "V0"]
+    base = [w for x in lam if not x.get("far_rate") for c, w, f in x["terms"] if f == FAR]
+    if base:  # 今日、次の年の村の分をもう引いた: 引いた遠くの商人の重み (前に引き足した分もふくむ) との差だけ引き足す (下げるときは引き足さない)
+        extra = round(rate - base[0] - sum(x["lam"] for x in lam if x.get("far_rate")), 6)
+        if extra > 0:
+            t = hints.far_topup(state, extra)
+            ys = [r["y"] for r in state["era2"]["g7"]["hints"]["ledger"] if r.get("far_rate") and r["drawn"] == D]
+            row["topup"] = {"lam": t["lam"], "n": t["n"], "rows": ys[len(ys) - t["n"]:]}
+    g.setdefault("far_rate", []).append(row)
+    log(state, "目盛り", None, f"作る側: 遠くの町の運ぶ人の 1 年の見込み (重み) を {was} から {rate} にした ({note})"
+        + (f"。この日に引いた次の年の分に、差 {row['topup']['lam']} で遠くの商人を引き足した ({row['topup']['n']} 人)" if row.get("topup") else ""),
+        far_rate=rate, was=was)
+    return row
+
+
 # ---------------- 赤い金属の道具を使う (era2._day の夕方の刈り入れ) ----------------
 
 def tools_for_day(state):
