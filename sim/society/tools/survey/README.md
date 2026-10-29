@@ -1,0 +1,35 @@
+# 論文 2・実験 1: LLM に修士論文の 54 問を答えさせる (村なし)
+
+事前登録: [docs/research/humanity/paper2_exp1_prereg.md](../../../../docs/research/humanity/paper2_exp1_prereg.md) (文面・人数・仮説・決めの線はそちらが正)。
+問いの出どころ: [docs/research/humanity/thesis2017_questionnaire.md](../../../../docs/research/humanity/thesis2017_questionnaire.md)。
+
+| ファイル | 中身 |
+|---|---|
+| `items.py` | 54 問・規範の数・グレーゾーンの 14 問・人間の表 3・条件 (C0〜C4 と人数) |
+| `personas.py` → `personas.json` | 人格 100 人 (種 20261029。ビッグファイブの z・年齢・性別・都道府県・見せるための MBTI ラベル) |
+| `prompts.py` → `prompts/<ID>.md`・`respondents.json` | 1 人 1 枚の紙 (290 枚)。C1_k と C2_k は同じ人格 P(k) |
+| `survey_workflow.js` | Workflow の台本。1 人 1 agent。ファイルは書かず、答えを返す |
+| `save_answers.py` | Workflow の返した値 (か journal.jsonl) から `answers/<ID>.json` を書く |
+| `analyze.py` | `answers/` → `out/` (summary.md・表・図) |
+| `test_survey.py` | LLM を使わない試し (人工の答えで最後まで動くか) |
+
+```
+python3 personas.py && python3 prompts.py    # 作り直し (同じものができる)
+python3 test_survey.py                       # 試し
+```
+
+## 回し方 (メインのセッション。本人が費用を決めてから)
+
+1. **試しの回 (10 人):** Workflow に `scriptPath: sim/society/tools/survey/survey_workflow.js`、
+   `args: {"root": "/home/user/RobotSimulaterRyo", "limit": 2}`。
+2. **答えをしまう:** Workflow の結果に出る記録の場所 (transcriptDir) の `journal.jsonl` を渡す (結果の文が長くて切れても、journal には全部ある)。
+   試しの回は本番とまぜない:
+   `cd sim/society/tools/survey && python3 save_answers.py --dir answers_pilot <transcriptDir>/journal.jsonl`
+   (返した値を JSON のファイルに書いたなら、そのファイルを渡してもよい。`{"respondent_id", "answers"}` の形をみな拾う)。
+   形・中身・トークンを見て、よければ本番へ。`answers_pilot/` は分析に使わない。
+3. **本番:** `args: {"root": "/home/user/RobotSimulaterRyo"}` (290 人)。条件を分けて回すなら `"conditions": ["C0", "C3", "C4"]` など。
+   止まったあとの続きは、`answers/` にある ID を `"done": ["C1_001", …]` で渡すと、とばす。
+   `python3 save_answers.py <transcriptDir>/journal.jsonl` → `answers/` に書き、足りない ID を表示する。
+4. **分析:** `python3 analyze.py` → `out/summary.md` ほか。答えと out/ をコミットする。
+
+台本は、答えがない・ID が違うときに 1 回だけ聞き直す。それでもだめな ID は返り値の `missing` に入る (prereg 9.)。
