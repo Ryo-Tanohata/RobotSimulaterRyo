@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "畑が実っているから、夏のうちに毎夕かならず刈り切ろう。わたしは土器を焼いて、蓄えの草の種を守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意だし、刈った草の種を虫やネズミから守れるから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈り切るため"},
+  "キサ18": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈り切るため"},
+  "ソナ19": {"activity": "畑仕事", "place": "camp", "why": "落ちる前に刈り入れを手伝うため"},
+  "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "落ちる前に刈り入れを手伝うため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れ多き年",
+ "feeling": "畑は実り蓄えもあって安心。あとは落とさず刈り切るだけ。"}

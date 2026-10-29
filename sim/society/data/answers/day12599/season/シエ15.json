@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "畑が実っている間に、みんな毎夕ひと刈りずつ頼むよ。わたしは昼は土器を焼いて、刈った種を入れる器を切らさないようにする。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "刈った草の種を虫やネズミから守る土器を、手の慣れたわたしが作り続けたいから"},
+ "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ヌオ16": {"activity": "採集", "place": "camp", "why": "採集が得意で、キャンプの木の実を集めて家族の食べ物を確かにできるから"},
+  "ソワ16": {"activity": "採集", "place": "camp", "why": "採集が得意で、キャンプの木の実を集めて蓄えを増やせるから"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は昼に土器を作り、夕に畑を刈って土器に入れると、蓄えが守られる。", "because": [1045781], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L192", "against": "", "agree": true, "reason": "刈り残しは落ちてしまうので、夏のうちに刈り切るのは大事だから"},
+  {"id": "L177", "against": "", "agree": true, "reason": "刈った種を土器に入れて守るのは、土器づくりの自分も賛成だから"},
+  {"id": "L332", "against": "", "agree": true, "reason": "毎夕刈って土器に入れるのは、次の春の蓄えを守るのに役立つから"}
+ ],
+ "year_name": "畑を刈り切った年",
+ "feeling": "畑が実っていて安心している。土器をたくさん焼いて、蓄えをしっかり守りたい。"}

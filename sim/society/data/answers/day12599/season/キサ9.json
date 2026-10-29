@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "畑がみのっている。夕方には手のあいた人みんなで刈って、落ちる前に土器へ入れよう。わたしは毎日土器を焼くよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意だし、刈った草の種を虫やネズミから守るのに土器がいるから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ワユ16": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので、近い南の川で魚をとって家と村の食べ物にする"},
+  "キオ17": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので、ワユ16と二人で南の川へ行き魚をとる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏のうちに畑を刈り切って土器に入れないと、草の種は落ちるか虫やネズミに食べられる", "because": [1045781], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの畑の年",
+ "feeling": "畑がよく実って心強い。土器を焼きながら、みんなで刈り入れをやりとげたい。"}

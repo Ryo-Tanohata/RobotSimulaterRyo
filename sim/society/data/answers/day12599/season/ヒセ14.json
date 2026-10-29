@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切らないと落ちてしまう。手のあいた人は、夕方にいっしょに刈ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまう。蓄えを増やして皆で冬を越すため。"}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "実った畑は夏のうちに刈らないと落ちる。刈り入れは皆で進めるのがよい。", "because": [1045781], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "満腹で体も軽い。皆で畑を刈って蓄えを増やしたい。"}
