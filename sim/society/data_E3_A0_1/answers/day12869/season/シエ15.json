@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑へ草の種をまくよ。冬と春の草取りで夏の実りが増えるから、みんなも手伝ってね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると夏の実りが増えるので、続けて畑に出る"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ16": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守るため"}, "ソワ16": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守るため"}, "ナセ21": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}},
+ "keep": false,
+ "judge": {"M431": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に大人みなで蓄えの草の種を1000つかみずつ畑にまき、冬と春に草取りをすると夏の実りが増える。", "because": [1080873], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいて草取りをすれば夏に増えるから"}],
+ "feeling": "蓄えは十分あるので落ち着いている。畑と木の実の仕事をこつこつ続けたい。"}
