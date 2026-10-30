@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑は夏のうちに毎夕刈ろう。落ちる前に、みんなで草の種を土器にしまおうね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意だから、刈った草の種を虫やネズミから守る器を作り続ける"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈って蓄えを増やすため"},
+  "ホタ17": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに畑を刈り切るため"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "刈り残すと種が落ちてしまうため"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "力は弱いが畑の手伝いならできる"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は土器づくりをしつつ、毎夕畑を刈って種を土器にしまうのがよい", "because": [1045781], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの畑の年",
+ "mood": "畑が実って安心した。土器をたくさん焼いて蓄えを守りたい。"}

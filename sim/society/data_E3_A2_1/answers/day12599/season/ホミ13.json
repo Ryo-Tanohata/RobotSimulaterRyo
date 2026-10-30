@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "わたしは土器を焼き続ける。畑は夕方に刈り切ろう。落ちたら惜しいよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が草の種を虫やネズミから守る。わたしは慣れているので多く作れる"}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈る人手がいる"},
+  "キサ18": {"activity": "畑仕事", "place": "camp", "why": "刈り残すと落ちるので手伝う"},
+  "ソナ19": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを進める"},
+  "セヤ19": {"activity": "採集", "place": "camp", "why": "家の食べ物を足すため近くで木の実を探す"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は畑を毎夕刈り、土器で草の種を守るのがよい", "because": [1045781], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "土器と実りの年",
+ "feeling": "畑が実っていて安心。土器づくりに集中できる。"}

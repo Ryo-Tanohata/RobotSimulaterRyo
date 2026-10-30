@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈らないと落ちてしまう。みんなで少しずつ刈ろう。わたしは土器を焼いて、蓄えの草の種を守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れると草の種が虫やネズミに食べられにくい。得意なので続ける"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ワユ16": {"activity": "畑仕事", "place": "camp", "why": "実った畑は夏のうちに刈らないと落ちてしまうから"},
+  "キオ17": {"activity": "畑仕事", "place": "camp", "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えは多いし、家の者もみな満腹で、落ち着いた気持ちだ。"}

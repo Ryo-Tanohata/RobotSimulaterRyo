@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "畑がたくさん実っているのに、蓄えは二十日ちょっとしかない。この夏は手のあいた者みんなで毎夕刈って、落とす前に土器へ入れよう。おれも毎日畑に出る。"}, {"to": "シエ20", "text": "前に草取りを手伝うと言ってくれたな。この夏は刈り入れもいっしょにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["シエ20"], "why": "実った畑が多く、夏のうちに刈り切らないと草の種が落ちてしまうから"},
+ "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "夏に実った畑を毎夕みんなで刈れば、一年分の草の種が蓄えにたまる", "because": [1045781], "confidence": 0.7}, {"op": "add", "text": "ヤギが草で養える数をこえると、季節ごとにやせていなくなる", "because": [1045799], "confidence": 0.8}],
+ "proposal": {"text": "この夏は、手のあいた大人はみな毎夕鎌と赤い金属の刃で畑を刈り、刈った草の種はその日のうちに村の土器に入れよう。草で養えるヤギ (約 110 頭) をこえる分 (いま 17 頭ほど) は季節のはじめにつぶして干し肉にし、蓄えに入れよう。", "because": [1045781, 1045799], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L342", "against": "", "agree": true, "reason": "多すぎるヤギを減らし、子に先に食べさせるのはよい"}, {"id": "L343", "against": "", "agree": true, "reason": "ヤギが草をこえていなくなるより、干し肉にした方がよい"}, {"id": "L344", "against": "", "agree": true, "reason": "乳の出ないオスからつぶすのは理にかなう"}, {"id": "L345", "against": "", "agree": true, "reason": "おれが出した考えで、蓄えを助けるため"}],
+ "year_name": "病で多く亡くなった年",
+ "feeling": "畑は実っているが、亡くなった人が多くて胸が重い。この夏はしっかり刈りたい。"}
