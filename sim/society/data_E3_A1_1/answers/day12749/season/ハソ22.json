@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をたっぷりまくよ。草取りの手が足りないと実りが減るから、手のあいた人は来てほしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増える。蓄えは十分あるので、畑を育てるのがいちばん役に立つ。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソワ24": true},
+ "family": {"トナ22": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人数が多いほど早く終わり、実りが増えるから。"}, "オセ22": {"activity": "畑仕事", "place": "camp", "why": "若い手も草取りに加わって、畑を守るため。"}},
+ "keep": false,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす", "M429": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、草取りをした分だけ次の夏の実りが増える。", "because": [1065699], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって落ち着いている。畑がよく実るのが楽しみだ。"}

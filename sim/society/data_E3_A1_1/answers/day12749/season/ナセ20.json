@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "畑がひとつもない。この秋のはじめに、みんな草の種を 1000 つかみずつまこう。まかなければ次の夏は何も刈れない。"}, {"to": "ケト2", "text": "うちの畑で刈った分は、ほんの少しだ。いちいち言い出すより、自分の家の畑をまいて刈ればいい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは誰より上手い。草の種を傷ませない器を増やす"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ソワ24": false}, "family": {"シエ20": {"activity": "採集", "place": "camp", "why": "秋の木の実がたくさんついているうちに取っておく"}}, "keep": true,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす", "M429": "ゆるす"}, "feast": false, "leader": null, "trade": {"T181": false}, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ケト2・シエ12・タユ14の家が、わたしの家の畑で刈った草の種のことで言い出した (どれも40つかみより少ない)", "because": [1065908, 1065909, 1065910], "confidence": 0.9}, {"op": "add", "text": "いま村に畑がない。秋にまかないと次の夏に刈るものがない", "because": [], "confidence": 0.9}],
+ "proposal": {"text": "この秋のはじめに、大人はみな蓄えの草の種を 1000 つかみずつ畑にまこう。冬と春は毎日だれか四人が交代で草取りをし、ヤギは 129 頭で草に収まっているのでつぶさず、二人が毎日キャンプで世話をしよう。", "because": [], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L355", "against": "", "agree": true, "reason": "多すぎるヤギはつぶすほうがいい"}, {"id": "L356", "against": "", "agree": true, "reason": "わたしが出した案"}, {"id": "L357", "against": "", "agree": true, "reason": "草が足りなくなるのを防げる"}, {"id": "L358", "against": "", "agree": true, "reason": "わたしが出した案。秋に畑をまくことも入っている"}],
+ "feeling": "畑がないのは落ち着かない。まいて、器を焼いて、冬にそなえる。"}

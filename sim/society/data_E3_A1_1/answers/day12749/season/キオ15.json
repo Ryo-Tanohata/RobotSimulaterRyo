@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "畑がひとつもないから、この秋はみんなで 1000 つかみずつまいておこう。草取りはおれもキャンプでやる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをすれば、次の夏の実りが増えるから"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ソワ24": true}, "keep": false,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす", "M429": "ゆるす"}, "feast": false, "leader": null, "trade": {"T181": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギが 129 頭で草で養えるのが 140 頭ほどなら、草は足りている", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L349", "against": "", "agree": true, "reason": "畑がないので、みんなでまいて草取りをするのがいい"},
+  {"id": "L350", "against": "", "agree": true, "reason": "まかないと次の夏に刈るものがない"},
+  {"id": "L351", "against": "", "agree": true, "reason": "まいて草取りをすれば実りが増える"},
+  {"id": "L352", "against": "", "agree": true, "reason": "草取りとヤギの世話はどちらも要る"},
+  {"id": "L353", "against": "", "agree": true, "reason": "草取りと魚とりで冬をしのげる"},
+  {"id": "L354", "against": "", "agree": true, "reason": "住まいに入りきらない人がいるから"},
+  {"id": "L355", "against": "いまヤギは 129 頭で草に収まっている", "agree": false, "reason": "つぶす分がない"},
+  {"id": "L356", "against": "いまヤギは 140 頭をこえていない", "agree": false, "reason": "春の話で、いまは要らない"},
+  {"id": "L357", "against": "いまヤギは草に収まっている", "agree": false, "reason": "つぶす分がない"},
+  {"id": "L358", "against": "", "agree": true, "reason": "秋にみんなで 1000 つかみずつまくのはいい"}
+ ],
+ "feeling": "蓄えは土器に守られているし、畑をまいておけば次の夏も安心だ。"}
