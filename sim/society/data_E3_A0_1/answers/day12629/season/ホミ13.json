@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "土器はもう十分あるから、わたしは冬に向けて木の実と魚を集めに行くよ。蓄えの種は畑にまくのを忘れないでね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "土器は足りているので、冬の前に近い川で木の実や魚を集めて蓄えを厚くする"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "採集", "place": "南川12", "why": "採集が得意で、冬に備えて食べ物を集めるため"},
+  "キサ18": {"activity": "採集", "place": "南川12", "why": "採集が得意で、近い川なら安全に集められるため"},
+  "ソナ19": {"activity": "採集", "place": "南川12", "why": "採集が得意で、家族の食べ物を増やすため"},
+  "セヤ19": {"activity": "採集", "place": "南川12", "why": "採集が得意で、冬に備えるため"}
+ },
+ "keep": false,
+ "judge": {"M425": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので、子どもたちのためにしっかり食べ物を集めたい。"}

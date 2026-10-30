@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑はいま一つもない。秋のうちに大人はみな草の種を 1000 つかみずつまいておかないと、次の夏に刈るものがなくなるぞ。"}, {"to": "みんな", "text": "雨の夜に五回も外で濡れた。うちの家の住まいをこの秋に建てて、村の住まいを少しでも空けたい。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": [], "why": "家族の住まいがなく、雨の夜に外で濡れて疲れがとれないから"},
+ "family": {"ラキ24": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギ 82 頭の世話をする人が足りないといなくなるから"}},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M425": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "雨の夜に村の住まいに入りきらず外で眠る人が多い。家族の住まいを建てるのが大事だ", "because": [], "confidence": 0.7}],
+ "proposal": {"text": "この秋のはじめに、大人はみな蓄えの草の種を 1000 つかみずつ畑にまき、冬と春は毎日四人ほどが交代で畑の草取りをしよう。ヤギは 82 頭なので、毎日二人がキャンプで世話をしよう。", "because": [], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L335", "against": "", "agree": true, "reason": "畑がないので秋にまかないと夏の刈り入れがなくなる"},
+  {"id": "L336", "against": "", "agree": true, "reason": "種をまくことと、ヤギの世話を続けることに賛成"},
+  {"id": "L337", "against": "", "agree": true, "reason": "冬と春の草取りで実りを減らさないため"},
+  {"id": "L338", "against": "", "agree": true, "reason": "前にわたしが出した考えで、今も同じ思いだ"},
+  {"id": "L347", "against": "いまは秋で、ヤギも 82 頭しかいないのでつぶす必要がない", "agree": false, "reason": "夏の話で今には合わない"}
+ ],
+ "feeling": "蓄えは十分あるが、畑がないのが気がかりだ。今年こそ屋根の下で眠りたい。"}
