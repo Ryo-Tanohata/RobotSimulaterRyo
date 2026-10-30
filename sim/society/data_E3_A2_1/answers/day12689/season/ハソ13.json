@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "わたしはこの春も土器を焼き続けるよ。蓄えの草の種を入れる器が、夏の刈り入れのあとも足りるようにしておきたいから。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意で、慣れるほど多く焼ける。草の種を土器に入れて虫やネズミから守りたい。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"セオ24": true},
+ "family": {
+  "ラニ13": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをして、夏の実りを増やしたい。"},
+  "ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が少ないと実りが減るので手伝う。"},
+  "ワユ19": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人が少なくてヤギがいなくなったので、キャンプで世話をする。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "子が増えてにぎやかな春。土器を焼く手を止めずに、夏の刈り入れにそなえたい。"}

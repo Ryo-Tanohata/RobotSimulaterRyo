@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはまだ十分あるから、わたしは土器をたくさん焼いて草の種を守るよ。畑の草取りも手を貸してね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えが百日分以上あるので、土器を焼いて草の種を虫やネズミから守りたい"},
+ "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "accept": {"セオ24": true},
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "夏の実りを増やすため草取りをする"},
+  "ホタ17": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないので手伝う"},
+  "オネ17": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人が少なくヤギがいなくなるのを防ぐ"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守る"},
+  "ハソ20": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれるので世話をする"},
+  "ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えが百日分以上ある春は、土器づくりで草の種を守り、家族は畑の草取りとヤギの世話に分かれるとよい", "because": [1057760], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えに余裕があって落ち着いている。土器を焼くのが楽しみ。"}

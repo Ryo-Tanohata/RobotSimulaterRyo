@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "採集はこの季節どこも空振りだった。俺は畑の草取りに回る。夏に刈れるよう、いっしょにやってくれる人がいたら頼む。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の採集は木の実も芋も見つからないので、夏の実りを減らさないよう畑の草取りに回る"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"セオ24": true}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "春は南の川・北の川・東の林・西の林のどこでも採集で何も見つからなかった。春の食べ物は蓄えの草の種にたよるしかない", "because": [1057864], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "採集が得意なのに春は何も見つからず歯がゆい。それでも畑を守って夏の実りにつなげたい。"}
