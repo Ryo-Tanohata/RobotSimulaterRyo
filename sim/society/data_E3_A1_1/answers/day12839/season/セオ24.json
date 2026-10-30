@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈り切って、刈った種はすぐ土器に入れよう。土器は私がまた焼くよ。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が大きく、夏のうちに刈らないと落ちてしまうから"}, "family": {"ルタ24": {"activity": "畑仕事", "place": "camp", "why": "二人で刈れば刈り残しが減るから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、草の種を虫やネズミから守れるから"}, "family": {"ルタ24": {"activity": "採集", "place": "camp", "why": "冬の前に木の実を集めて蓄えを増やすため"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬も土器を作り続けて、蓄えの草の種を守るため"}, "family": {"ルタ24": {"activity": "住まいを建てる", "place": "camp", "why": "雨の夜に外で濡れないよう、家族の住まいを建てはじめるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "住まいを建てる", "place": "camp", "with": [], "why": "家族の住まいがまだないので、建てて子を雨から守りたい"}, "family": {"ルタ24": {"activity": "住まいを建てる", "place": "camp", "why": "二人で建てれば早くできるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う", "far": {"M1": "受ける"}, "far_write": null,
+ "knowledge": [], "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "土器をたくさん焼いて、みんなの蓄えを守りたい。家族の住まいも早く建てたい。"}

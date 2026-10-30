@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏の畑は落ちる前に、毎夕みんなで刈ろう。秋にはまた種をまいて、冬と春は草取りをしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ラニ13", "ヒセ19", "ワユ19"], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ラニ13": {"activity": "畑仕事", "place": "camp", "why": "畑を刈って冬と春の蓄えにするため"}, "ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "畑を刈って冬と春の蓄えにするため"}, "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "畑を刈って冬と春の蓄えにするため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "キャンプのそばの木の実を取って冬にそなえる"}, "family": {"ラニ13": {"activity": "採集", "place": "camp", "why": "木の実を集めて蓄えを増やすため"}, "ヒセ19": {"activity": "採集", "place": "camp", "why": "木の実を集めて蓄えを増やすため"}, "ワユ19": {"activity": "採集", "place": "camp", "why": "木の実を集めて蓄えを増やすため"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると次の夏の実りが増えるから"}, "family": {"ラニ13": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守るため"}, "ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守るため"}, "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて夏の実りを守るから"}, "family": {"ラニ13": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守るため"}, "ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守るため"}, "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う", "far": {"M1": "受ける"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は毎夕刈り、秋にまき、冬と春に草取りをすると、次の夏にまた実る", "because": [1074320], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がよく実った年",
+ "mood": "蓄えは十分にあるので、落ち着いて畑仕事に励みたい"
+}

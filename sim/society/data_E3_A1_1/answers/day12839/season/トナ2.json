@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈りきろう。落ちたら無駄になる。秋には草の種をまき、冬と春は草取りを忘れずに。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"テナ9": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ヌオ11": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "キサ16": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "シエ18": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ホタ18": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "アコ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで次の夏の実りを増やす"}, "family": {"テナ9": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ11": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "キサ16": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "シエ18": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ホタ18": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "アコ19": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けると実りが増える"}, "family": {"テナ9": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ11": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "キサ16": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "シエ18": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ホタ18": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "アコ19": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて夏の実りに備える"}, "family": {"テナ9": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ11": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "キサ16": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "シエ18": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ホタ18": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "アコ19": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": "なし",
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う", "far": {"M1": "受ける"}, "far_write": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い刈り入れの年",
+ "feeling": "蓄えは多く、あとは畑を刈りきるだけ。年寄りの身にも張り合いがある。"}
