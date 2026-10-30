@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、わたしは土器をこねて焼くよ。草の種を虫から守る器が、もっと要るからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えは十分あるので、土器づくりが得意なわたしが草の種を守る器を増やす"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"セオ24": true},
+ "family": {
+  "ラニ16": {"activity": "採集", "place": "北川12", "why": "採集が得意なので、川で芋と魚を探して食べ物を足す"},
+  "ホタ17": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬もいる獣を狙う"},
+  "オネ17": {"activity": "採集", "place": "南川12", "why": "採集が得意なので、近い川で芋と魚を探す"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを続けて夏の実りを増やす"}
+ },
+ "keep": false, "judge": {"M426": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えが百日分以上ある冬は、土器づくりで草の種を守るのがよい", "because": [1055424], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えに余裕があって落ち着いている。粘土をこねるのが楽しみだ。"}

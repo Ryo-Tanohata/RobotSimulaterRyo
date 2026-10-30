@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "冬は木の実がならないから、畑の草取りをみんなで交代でしっかりやろう。夏に刈る草の種が、春までの子の食べ物になる。"}, {"to": "セオ24", "text": "北の村13から来たんだな。ここは畑と土器で暮らす村だ。いっしょに草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑が多いので、冬のあいだ草取りをして夏の実りを減らさないため"},
+ "family": {"ラキ24": {"activity": "畑仕事", "place": "camp", "why": "12歳になったので、父といっしょに畑の草取りを覚えさせたい"}},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"セオ24": true}, "keep": false,
+ "judge": {"M426": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "村の住まいに入りきらない人が多く、冬の雨の夜に外で濡れることが続いている。家族の住まいを建てないと疲れがとれない", "because": [], "confidence": 0.7}],
+ "proposal": {"text": "この冬と春のあいだ、毎日四人ほどが交代でキャンプのそばの畑の草取りをしよう。ヤギは 83 頭しかいないのでつぶさず、毎日三人がキャンプで世話をしよう。村の住まいに入りきらない家は、手の空いた日に家族の住まいを建てよう。", "because": [], "penalty": {"for": "蓄え", "pay": 0}, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L349", "against": "", "agree": true, "reason": "草取りとヤギの世話を続けるのは大事だから"},
+  {"id": "L350", "against": "", "agree": true, "reason": "畑の草取りを毎日続けるため"},
+  {"id": "L351", "against": "", "agree": true, "reason": "自分が出した案で、草取りとヤギの世話の両方を守れるから"},
+  {"id": "L341", "against": "", "agree": true, "reason": "冬の草取りと魚とりで春の子を守れるから"}
+ ],
+ "feeling": "雨の夜に外で寝るのはつらいが、畑が実れば春は越せる。息子と草取りをがんばろう。"}

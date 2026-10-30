@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬のあいだは畑の草取りを怠けないこと。わたしは土器を焼きつづけて、夏に刈る種の入れ物を今から用意しておくよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは手慣れている。夏の刈り入れで増える種を虫やネズミから守る器を増やしておきたい"},
+ "family": [{"name": "テナ20", "activity": "畑仕事", "place": "camp", "why": "冬のあいだ畑の草取りの手が要るから、子でも手伝わせる"}],
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"セオ24": true}, "keep": false,
+ "judge": {"M426": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "この冬のはじめの村の蓄えは約 122 日分で、畑は 72 枚ほど育っている", "because": [1055424], "confidence": 0.9}],
+ "proposal": {"text": "この冬と春のあいだ、毎日だれか四人が交代で畑の草取りをし、ヤギは 83 頭しかいないのでつぶさず、三人が毎日キャンプで世話をしよう。前の季節に世話が足りずヤギが減ったから。", "because": [1055424], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L349", "against": "", "agree": true, "reason": "畑の草取りとヤギの世話をつづけたい"},
+           {"id": "L350", "against": "", "agree": true, "reason": "草取りとヤギの世話は大事だから"},
+           {"id": "L351", "against": "", "agree": true, "reason": "草取りを多くの人でやれば実りが増える"}],
+ "feeling": "蓄えはまだあるが、春まで気をゆるめずに器を焼いていく。"}
