@@ -58,3 +58,4 @@ sentence "as quoted in the thesis" with a footnote saying this.
 8. **English item glosses** (Appendix Table 3) are Claude's translations, not validated; check them.
 9. **Reasons coding** (Section 4.3) is exploratory and single-coder (Claude). A second human coder on a sample would strengthen it.
 10. Remove red `[TODO]` macros before submission; choose arXiv category (e.g. `cs.CL` or `cs.CY`).
+11. **Interview-derived passages (本人が目で確かめる)**: these use findings that came from the 2016 interviews (not raw quotes): Section 1 and 4.3 / Fig. reasons (the thesis's "seven ways of thinking"), Section 5 H9 paragraph ("students cited money"), Section 6 paragraph on "weak position" and "ease". Rule (2026-10-30): nothing interview-derived is used without the author's visual check.
