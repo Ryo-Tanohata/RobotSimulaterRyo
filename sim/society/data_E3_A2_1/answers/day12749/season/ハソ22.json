@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "冬の前に、私は木の実をたくさん集めておくよ。蓄えは足りてるから、あわてないで。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集が得意なので、冬に備えて木の実を集める"},
+ "sow": 300, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"オネ24": true},
+ "family": {"トナ22": {"activity": "採集", "place": "camp", "why": "採集が得意で、冬に向けて食べ物を集められるから"}},
+ "keep": false,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T180": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって落ち着いている。いつも通り働くだけ。"}

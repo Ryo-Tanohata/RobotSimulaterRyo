@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけど、秋のうちに畑に草の種をまいておこう。冬と春に草取りをすれば、夏の実りがぐっと増えるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りで、夏の実りを増やすため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"オネ24": true},
+ "family": {"ヌオ16": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで草取りをすれば、実りが増える"}, "ソワ16": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど夏の実りが増える"}},
+ "keep": false,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T180": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑をまいて、夏の実りが楽しみだ。"}

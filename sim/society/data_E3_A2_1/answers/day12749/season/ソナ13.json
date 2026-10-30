@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋の畑にまく種は、蓄えがたっぷりあるから惜しまずにまこう。冬と春の草取りも、みんなで少しずつ受け持とうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りの人が少ないと実りが減るので、手の空いた者として畑を見る"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"オネ24": true},
+ "family": {
+  "アコ18": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手がいるので、家族みんなで畑を守る"},
+  "ラキ20": {"activity": "ヤギの世話", "place": "camp", "why": "狩りが得意でも今は畑とヤギの手が足りないので、ヤギの世話に回る"},
+  "ワユ20": {"activity": "畑仕事", "place": "camp", "why": "子の手でも草取りは助けになる"}
+ },
+ "keep": false,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T180": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと次の夏に実る。冬と春の草取りの時間で実りが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で穏やか。畑をしっかり育てて、家族と冬を越したい。"}

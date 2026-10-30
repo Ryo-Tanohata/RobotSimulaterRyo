@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "北の山の男の話、気になる。赤い土を炭と焼くと硬い刃になるなら、試してみたい。おれは火の近くで試してみる。"}],
+ "job": {"activity": "火おこし", "place": "camp", "with": [], "why": "赤い土と炭を強い火で焼く話が気になるので、火を試したい"}, "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"オネ24": true}, "keep": false,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす"}, "feast": false, "leader": null, "trade": {"T180": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "北の山から来た男の話では、赤い土や石を炭と強い火で焼き、熱してたたくと硬い刃になるという", "because": [1066613], "confidence": 0.4}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "新しい火の使い方を試せそうで、わくわくしている"}
