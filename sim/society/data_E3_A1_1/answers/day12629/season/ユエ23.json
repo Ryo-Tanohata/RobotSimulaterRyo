@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "今年は畑がない。秋のはじめに、大人はみんな蓄えの草の種を 1000 つかみずつまこう。まかなければ次の夏に刈るものがなくなるぞ。"}, {"to": "みんな", "text": "おれは土器をたくさん焼いて、蓄えの草の種を虫やネズミから守る。手のあいた人は毎夕、木の実も取って蓄えに入れよう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意だから、蓄えの草の種を土器に入れて冬と春まで守りたい"},
+ "family": [{"name": "ラキ24", "activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを手伝って、仕事を覚えてほしいから"}],
+ "sow": 1000, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ラニ24": true}, "keep": false,
+ "judge": {"M425": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋に畑にまかないと、次の夏の刈り入れがなくなるので、秋のはじめにみんなでまくのが大事", "because": [1051502], "confidence": 0.8}, {"op": "add", "text": "ヤギの世話をする人が足りないと、秋でもヤギがいなくなる", "because": [1051522], "confidence": 0.8}],
+ "proposal": {"text": "この秋のはじめに、大人はみな蓄えの草の種を 1000 つかみずつ畑にまき、冬と春は毎日四人ほどが交代で草取りをしよう。ヤギは 83 頭しかいないのでつぶさず、毎日三人がキャンプで世話をしよう。前の季節に世話が足りず 9 頭いなくなったから。", "because": [1051522], "penalty": {"for": "ヤギ", "pay": 0}, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L335", "against": "", "agree": true, "reason": "秋にまいて木の実も蓄えれば、冬と春をこせる"},
+  {"id": "L336", "against": "", "agree": true, "reason": "ヤギを減らさず世話をするのは大事だ"},
+  {"id": "L337", "against": "", "agree": true, "reason": "まくことと草取りとヤギの世話がそろっている"},
+  {"id": "L338", "against": "", "agree": true, "reason": "おれが出した案で、みんなでまいて草取りをしたい"},
+  {"id": "L339", "against": "", "agree": true, "reason": "子から先に食べさせるのは正しい"}
+ ],
+ "feeling": "疲れているが、土器を焼いて蓄えを守れば冬も安心できる"}
