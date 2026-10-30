@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは95日分ほどあるから、わたしは春のあいだ土器を焼きつづけるよ。夏に刈った種をしまう器をたくさん用意しておこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えに余裕があるので、夏の刈り入れで草の種を虫やネズミから守る土器を増やしたい"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "育っている畑の草取りで夏の実りを増やすため"},
+  "ホタ17": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれるので、ヤギの世話をして子の食べ物にする"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を確保して夏の実りを守るため"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って夏の実りを増やす"},
+  "ハソ20": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝い、乳を家と村に回す"},
+  "ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T180": false}, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "蓄えが九十日分ほどある春は、土器づくりと畑の草取りで夏の刈り入れに備えるのがよい", "because": [1057689], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "土器を焼くのは落ち着く。夏の実りが楽しみだ。"}

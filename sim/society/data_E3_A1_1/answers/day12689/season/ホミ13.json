@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "春のあいだ、わたしはキャンプで土器を焼くよ。割れた分を足しておけば、草の種が守れるからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、割れた土器を補って蓄えの草の種を守れるから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "採集", "place": "南川12", "why": "近い川で魚や芋を探して家の食べ物を足す"},
+  "ソナ19": {"activity": "採集", "place": "南川12", "why": "採集が得意なので、ナセ16と一緒に川で探す"},
+  "セヤ19": {"activity": "採集", "place": "西草原12", "why": "近い草原で芋を探し、二人以上で行く掟も守れる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T180": false}, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "春のうちはキャンプで土器を焼き、草の種を土器に入れて守るのがよい", "because": [1057687], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "落ち着いている。手を動かして土器を作るのが好きだ。"}

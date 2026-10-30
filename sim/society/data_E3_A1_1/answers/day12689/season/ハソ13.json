@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "土器はもう十分あるから、この春はわたしも畑の草取りに回るよ。草取りの人が少ないと夏の実りが減るから、手の空いた人は交代で来てね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "土器は村に十分あり、育っている畑の草取りが少ないと夏の実りが減るため"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ13": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やし、夏の実りを守るため"}, "ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やし、夏の実りを守るため"}, "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やし、夏の実りを守るため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T180": false}, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "土器が十分にある春は、土器づくりより畑の草取りに人を回すと夏の実りを守れる", "because": [1057686], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも土器も足りていて落ち着いている。夏の実りが楽しみだ。"}

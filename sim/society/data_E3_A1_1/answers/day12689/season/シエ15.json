@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "畑の草取りを欠かさないで。わたしは土器を焼いて、蓄えの種を虫から守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意だし、蓄えの草の種を虫やネズミから守れるから続ける"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ16": {"activity": "畑仕事", "place": "camp", "why": "育っている畑の草取りで夏の実りを増やすため"},
+  "ソワ16": {"activity": "畑仕事", "place": "camp", "why": "草取りをする人が少ないと実りが減るので手伝う"},
+  "ネイ20": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら半分の働きができる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T180": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。畑がよく育つよう、家の者みんなで草取りに励みたい。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "子ヤギが生まれてヤギは202頭、草で養えるのは140頭ほどだよ。やせていなくなる前に、多い分をこの春のうちにつぶして干し肉にしよう。わたしは土器を焼きつづける。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが一番得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "family": [{"name": "テナ20", "activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く、世話が足りないといなくなるから"}],
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "feast": false, "leader": null, "trade": {"T180": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "この春、子ヤギが 119 頭生まれ、ヤギは 202 頭になった。草で養えるのは約 140 頭で、草が足りない", "because": [1057870], "confidence": 0.9}],
+ "proposal": {"text": "この春のうちに、草で養えるヤギ (約 140 頭) をこえる分 (いま 60 頭ほど) を、乳の出ないオスから家ごとに分けてつぶし、干し肉にして村の蓄えに入れよう。残ったヤギは 50 頭ごとに一人が毎日キャンプで世話をしよう。", "because": [1057870], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L352", "against": "", "agree": true, "reason": "畑の草取りとヤギの世話はどちらも欠かせない"},
+  {"id": "L353", "against": "", "agree": true, "reason": "草取りと魚とりで春をしのげる"},
+  {"id": "L354", "against": "", "agree": true, "reason": "住まいに入りきらない人がいるので家を建てるのはよい"},
+  {"id": "L344", "against": "", "agree": true, "reason": "ヤギが草で養える数をこえているので、オスからつぶすのがよい"},
+  {"id": "L345", "against": "", "agree": true, "reason": "多すぎるヤギは干し肉にした方がむだがない"}
+ ],
+ "feeling": "ヤギが増えすぎて落ち着かないが、土器を焼いて蓄えを守るよ"}
