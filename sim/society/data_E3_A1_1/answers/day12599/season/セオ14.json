@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "夏のあいだ、実った畑は毎夕わたしたちで刈ろう。刈った種は、その日のうちに土器へしまっておこうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏は実った畑を毎夕刈らないと種が落ちてしまう。わが家は倉も蓄えも空なので、刈り入れを一番にする"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れに人手がいるので、いっしょに畑を刈る"},
+  "ホタ17": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れに人手がいるので、いっしょに畑を刈る"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れに人手がいるので、いっしょに畑を刈る"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りも苦手なので、畑の草取りと刈り入れを手伝う"},
+  "ハソ20": {"activity": "畑仕事", "place": "camp", "why": "子でも畑仕事なら半分の働きができる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は家族みんなで毎夕畑を刈り、刈った種をその日のうちに土器へしまうのがいちばん大事", "because": [1045781], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑が実った年",
+ "feeling": "畑がたくさん実ったので、うれしい。みんなで刈り入れをがんばりたい。"}

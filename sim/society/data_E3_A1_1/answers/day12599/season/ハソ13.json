@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "畑が実っている。夏のうちに刈らないと落ちてしまうから、わたしの家は毎夕60つかみずつ刈るよ。みんなも手があいたら刈ってね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちる。刈った種は冬と春の蓄えになるから。"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"ラニ13": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈り切るため。"}, "ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、今は畑が落ちる前に刈るのが大事だから。"}, "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れと草の世話を手伝うため。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は家族みんなで畑仕事をして、毎夕60つかみずつ刈ると、冬と春の蓄えになる", "because": [1045781], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "畑がよく実っていて心強い。落とさずに刈り切りたい。"}
