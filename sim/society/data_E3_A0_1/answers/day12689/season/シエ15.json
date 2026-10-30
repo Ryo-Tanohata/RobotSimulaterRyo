@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "夏の実りを増やすために、春のうちは畑の草取りを欠かさずやろう。私も毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の畑の実りが増えるから。蓄えはあるが、畑を育てておけば来年も困らない。"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ16": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど夏の実りが減らないから。"},
+  "ソワ16": {"activity": "畑仕事", "place": "camp", "why": "畑が多いので、家族みんなで草取りをして実りを守るため。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "春の畑の草取りは人が少ないと夏の実りが減るので、手の空いた大人が畑に出るのがよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって落ち着いている。畑の草を取りながら夏を待つのが楽しみだ。"}

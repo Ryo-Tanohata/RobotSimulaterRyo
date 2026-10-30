@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはまだ百日以上あるけれど、畑の実りが夏のはじめの頼りだから、春のあいだは草取りの手を切らさずに続けよう。わたしも毎日畑に入るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ラニ16", "オネ17"], "why": "夏に実る畑の草取りを続ければ、刈れる量が増えるから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど夏の実りが減らないから"},
+  "ホタ17": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ乳がとれるので、世話をする人が要るから"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "草取りを家族で分けて続けるため"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "力は小さくても、草取りなら手伝えるから"},
+  "ハソ20": {"activity": "ヤギの世話", "place": "camp", "why": "ホタ17と一緒に乳しぼりと世話をするため"},
+  "ハソ21": {"activity": "畑仕事", "place": "camp", "why": "子の半分の働きでも草取りの助けになるから"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "蓄えが百日分以上ある春は、無理に食べ物を探さず、家族みんなで畑の草取りを続けて夏の実りに備える", "because": [1058173], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えに余裕があって落ち着いている。畑の草取りをしながら、夏の実りを楽しみに待つよ。"}

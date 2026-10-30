@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "春のうちは土器を焼く。蓄えの草の種を虫から守るのが、いちばん確かな仕事だと思う。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、草の種を守れるから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "採集", "place": "南川12", "why": "採集が得意で、川は近くて安全だから"},
+  "キサ18": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、家族の食べ物を足したいから"},
+  "ソナ19": {"activity": "土器づくり", "place": "camp", "why": "土器を多く作れば草の種を守れるから"},
+  "セヤ19": {"activity": "土器づくり", "place": "camp", "why": "土器を多く作れば草の種を守れるから"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種が多く、土器に入らない分は季節ごとに食べられるので、春も土器づくりを続けるのがよい", "because": [1058007], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって落ち着いている。手を動かして土器を焼きたい。"}
