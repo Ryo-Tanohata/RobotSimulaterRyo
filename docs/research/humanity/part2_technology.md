@@ -5,6 +5,9 @@
 材料: `sim/society/data/records/season_village.jsonl` (季節ごと 420 行。489〜13079 日目)・`disputes.json`・`laws.json`、`archive.load_state('data')` で戻した出来事 (110 万件)、`sim/society/techtree/plan.json`・`emerged.json` (届いた日は `tools/build_tech_tree.py --out` で作り直して読んだ)、`docs/tech_tree_design_draft.md` の 1.3 (コードで技術がどう開くか)、`docs/society_phase/society1_overview.md`・`G6.md`・`G7.md`・`G8.md`・`G8_heavy.md`、`sim/society/g9.py`、`docs/research/economic_lenses.md`。
 
 **印**: 【文献】調べの文書が文献から引いたこと / 【記憶】Claude の記憶だけで確かめていない / 【仮定】Claude の読み / 【シ】このシミュレーションの記録から数えた数。
+
+**出典**: 外から持ってきた研究 (本人の修士論文・論文や本・ゲーム・道具・AI) の書誌と、確かめたかどうかは [`docs/research/references.md`](../references.md) にまとめた (2026-10-30)。ここで【記憶】とした文献のうち、のちに書誌を確かめたもの (Kohler ほか 2017・Henrich ほか 2005 など) は、一覧の「確かめ」に書いた。この文書の中身は変えていない。
+
 **読み方**: この世界の 1 年は 120 日。長さではなく、順番と「何が変わったか」をくらべる。1 回の走りで見たことで、一般の決まりではない。
 
 ## 0. まとめ (先に)

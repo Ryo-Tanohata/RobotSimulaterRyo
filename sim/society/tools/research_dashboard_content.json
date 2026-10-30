@@ -2,8 +2,9 @@
   "_about": "研究ダッシュボード (sim/society/app/research.html) の手で書いた文。数はみな src の文書にあるものだけ。build_research_dashboard.py --check で、文の中の数が src にあるかを確かめる。作り直し: python3.13 sim/society/tools/build_research_dashboard.py",
   "asof": "2026-10-30",
   "title": "研究ダッシュボード: 川辺の村と人間らしさ",
+  "cite_note": "外から持ってきた研究には〔 〕の印をつけた。くわしくは下の出典の欄。",
   "purpose": {
-    "text": "人間らしさをシミュレートしたい。そのために、川辺の村 (LLM の村) が人類史と何が同じで何が違うのかを調べている。",
+    "text": "人間らしさをシミュレートしたい。そのために、川辺の村 (LLM の村〔Claude (村人と答え手)〕) が人類史と何が同じで何が違うのかを調べている。",
     "src": ["docs/research/humanity/README.md"]
   },
 
@@ -16,7 +17,7 @@
     "decide": [
       {"text": "実験 4 をするか: 村人が「取る」を選べる世界にする (写しの村だけ)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
       {"text": "本物の村 (G9) を続けるか: 続けるなら 1 年ずつ回す。", "src": ["sim/society/HANDOFF.md"]},
-      {"text": "修士論文の元データ (問いごとの数) が見つかるか: あれば、問いごとの平均とばらつきを人と直接くらべられる。", "src": ["docs/research/humanity/paper2_exp1_results.md"]}
+      {"text": "修士論文〔田之畑 2017 (修士論文)〕の元データ (問いごとの数) が見つかるか: あれば、問いごとの平均とばらつきを人と直接くらべられる。", "src": ["docs/research/humanity/paper2_exp1_results.md"]}
     ],
     "paper1_todo": {
       "src": ["paper/paper1/README.md"],
@@ -36,8 +37,8 @@
       "src": ["paper/paper2/README.md"],
       "items": [
         "表紙のメールアドレス",
-        "Sacks の言葉の出どころ (修士論文はどこから引いたか)",
-        "修士論文の書誌 (題の英訳・学校の名前)",
+        "Sacks の言葉〔Sacks の言葉とされる文〕の出どころ (修士論文〔田之畑 2017 (修士論文)〕はどこから引いたか)",
+        "修士論文〔田之畑 2017 (修士論文)〕の書誌 (題の英訳・学校の名前)",
         "使ったモデルの版",
         "2016 年の同意の文と、集計を出してよいか",
         "Zenodo などで、コミットの控えと DOI",
@@ -78,22 +79,30 @@
   ],
 
   "findings": [
-    {"title": "人類史と同じ・違う", "src": ["docs/research/humanity/README.md"], "items": [
+    {"title": "人類史と同じ・違う", "src": ["docs/research/humanity/README.md", "docs/research/humanity/part1_same_and_different.md", "docs/research/humanity/part2_technology.md"], "items": [
       "暮らしのテクノロジーは、人類史の順にほぼ合った。社会のしくみは、途中で止まった。",
       "同じ: 定住 → 植物を育てる → 畑 → ヤギ → 鎌 → 土器 → 受けつぎ・家の倉 (西アジアの順)。",
-      "違う: 土器が家の倉より先。火がとても遅い (6年)。持ち物の差 (ジニ 0.7〜0.95) が本物 (0.4〜0.5 ほど【記憶】) よりずっと大きい。",
+      "違う: 土器が家の倉より先。火がとても遅い (6年)。持ち物の差 (ジニ 0.7〜0.95) が本物 (0.4〜0.5 ほど【記憶】〔Borgerhoff Mulder ほか 2009〕) よりずっと大きい。",
       "起きなかった: 税・守らせた書いた法・役所・王・戦・壁・神殿・町・言葉を書く文字。",
+      "家の倉のあとに差が開いたのは、史実と同じ向き〔Flannery 2002〕。ただ史実の大きな差は、犂や大きな家畜とともに来た〔Kohler ほか 2017〕〔Bogaard ほか 2019〕。この村は倉だけで差が開いた。",
+      "ききんには「出ていく」で答えた (G7 で 62 人が村を出た)。逃げ場があると従わない、という説と合う〔Carneiro 1970〕〔Hirschman 1970〕。",
       "決まりの村なら税と記録に 12 回のうち 12 回届くのに、LLM の代表は選ばなかった。"
     ]},
-    {"title": "テクノロジーの役割", "src": ["docs/research/humanity/README.md"], "items": [
+    {"title": "テクノロジーの役割", "src": ["docs/research/humanity/README.md", "docs/research/humanity/part2_technology.md"], "items": [
       "テクノロジーは「社会を動かす力」ではなく「できることの床」だった。",
       "土器で虫とネズミの害が 0 になり、蓄えは 200 日分ほどから 300 日分台へ。",
       "家の倉が開いた季節に、持ち物のジニは 0 から 0.84 へ。最後は 0.95 (27 家のうち 23 家が何も持たない)。",
       "赤い金属の刃は 37 年しまわれていた。",
-      "大きな苦しみ (G7 のききん・G8 の重い貢ぎ) は、テクノロジーの足りなさから来なかった。"
+      "大きな苦しみ (G7 のききん・G8 の重い貢ぎ) は、テクノロジーの足りなさから来なかった。",
+      "前提がそろえば発明は起きる〔Ogburn & Thomas 1922〕は、この村ではほぼ当たらない。足りないのは思いつきではなく、使う理由と、続けて使う人だった。",
+      "人が増えたのは蓄えが増えたあと。人の多さで食べ物が足りなくなる動き〔Malthus 1798〕でも、人が増えて作り方を変える動き〔Boserup 1965〕でもなかった。",
+      "記録は帳簿として生まれた。史実でも、いちばん古い粘土板の約 85% は帳簿〔Englund 2011〕。",
+      "見えて量れてためられる穀物は、取り立てやすい〔Scott 2017〕。この村は穀物・倉・封・板がみなそろったのに、税は出なかった。"
     ]},
-    {"title": "人間らしさ", "src": ["docs/research/humanity/README.md", "docs/research/humanity/paper2_exp2_results.md", "docs/research/humanity/paper2_exp3_results.md"], "items": [
+    {"title": "人間らしさ", "src": ["docs/research/humanity/README.md", "docs/research/humanity/paper2_exp2_results.md", "docs/research/humanity/paper2_exp3_results.md", "docs/research/humanity/part3_humanness.md"], "items": [
       "いちばん大きな違い (争わない・罰しない・上に立とうとしない) は、人間よりも LLM のくせに近い。",
+      "人は損をしても不公平な人を罰する (15 の社会のどこにもいた〔Henrich ほか 2006〕)。村は 50 年から「つぐなう」が 0。",
+      "国より前の社会でも争いで亡くなる人は多かった、という説がある〔Keeley 1996〕【議論あり】。村では殺しと戦が 0。",
       "人間らしい: 祭りで仲直りする。苦しい年によそ者を断る。子のために貢ぎをやめる。",
       "LLM らしい: 50 年からは「つぐなう」が 0。悲しみ 66 のうち 43 が、同じ文で「みんなで刈ろう」になる。",
       "アンケートでは、人間らしさは性格の言葉では出ず、暮らし・立場・まわりの様子から出てくる (実験 2)。",
@@ -102,20 +111,20 @@
   ],
 
   "experiments": [
-    {"id": "exp1", "title": "論文 2・実験 1: LLM 290 人が 54 問に答えた (人格の言葉)", "src": ["docs/research/humanity/paper2_exp1_results.md"],
+    {"id": "exp1", "title": "論文 2・実験 1: LLM 290 人が修士論文〔田之畑 2017 (修士論文)〕の 54 問に答えた (人格の言葉)", "src": ["docs/research/humanity/paper2_exp1_results.md"],
      "rows": [
       {"h": "H1a", "q": "人格なしだと答えがそろいすぎる", "r": "SD の平均 sonnet 0.18・haiku 0.37・opus 0.14", "s": "yes"},
-      {"h": "H1b", "q": "主成分の形が人と違う", "r": "第 1 主成分 39% (人間 27%)", "s": "yes"},
-      {"h": "H2", "q": "人格なしの答えは「常識的な回答」に近い", "r": "差の平均 1.0〜1.2。近くない", "s": "no"},
+      {"h": "H1b", "q": "主成分の形が人と違う", "r": "第 1 主成分 39% (人間 27%〔田之畑 2017 (修士論文)〕)", "s": "yes"},
+      {"h": "H2", "q": "人格なしの答えは、修士論文の「常識的な回答」〔田之畑 2017 (修士論文)〕に近い", "r": "差の平均 1.0〜1.2。近くない", "s": "no"},
       {"h": "H3", "q": "人格を持たせると、ばらつきが増える", "r": "SD の平均 0.18 → 0.41", "s": "yes"},
       {"h": "H4", "q": "本音を先に書くと「問題でない」へ動く", "r": "逆。グレーゾーンで +0.25、より「問題がある」へ", "s": "rev"},
-      {"h": "H5", "q": "人間の 5 つの意識が LLM でも出る", "r": "出たのは「権利意識」の 1 つだけ", "s": "no"}
+      {"h": "H5", "q": "修士論文の人間の 5 つの意識〔田之畑 2017 (修士論文)〕が LLM でも出る", "r": "出たのは「権利意識」の 1 つだけ", "s": "no"}
      ]},
     {"id": "exp2", "title": "論文 2・実験 2: 暮らし・立場・まわりの様子を持たせた 230 人", "src": ["docs/research/humanity/paper2_exp2_results.md"],
      "rows": [
-      {"h": "H6", "q": "第 1 主成分の割合が実験 1 (0.392) より下がる", "r": "D1 0.228 [0.195, 0.312]。人間の 0.268 が CI の中", "s": "yes"},
-      {"h": "H7", "q": "人間の 5 つの意識のうち 2 つ以上が出る", "r": "出たのは 1 つ (実験 1 と同じ)", "s": "no"},
-      {"h": "H8", "q": "はみ出しやすい時 4 つが、グレーゾーンをゆるくする", "r": "「みんながやっている」−0.21・「捕まった人を聞いたことがない」−0.09 は効いた。ほかの 2 つは効かない", "s": "part"},
+      {"h": "H6", "q": "第 1 主成分の割合が実験 1 (0.392) より下がる", "r": "D1 0.228 [0.195, 0.312]。人間の 0.268〔田之畑 2017 (修士論文)〕が CI の中", "s": "yes"},
+      {"h": "H7", "q": "修士論文の人間の 5 つの意識〔田之畑 2017 (修士論文)〕のうち 2 つ以上が出る", "r": "出たのは 1 つ (実験 1 と同じ)", "s": "no"},
+      {"h": "H8", "q": "修士論文のはみ出しやすい時 4 つ〔田之畑 2017 (修士論文)〕が、グレーゾーンをゆるくする", "r": "「みんながやっている」−0.21・「捕まった人を聞いたことがない」−0.09 は効いた。ほかの 2 つは効かない", "s": "part"},
       {"h": "H9", "q": "学生・暮らしが苦しい人は、ダウンロードにゆるい", "r": "弱い側 3.44、働いてゆとり側 3.81", "s": "yes"},
       {"h": "H10", "q": "1 本の「厳しさ」の軸にまとまらない", "r": "厳しさの割合 0.223 (実験 1 は 0.391)", "s": "yes"},
       {"h": "H11", "q": "暮らしを持たせると opus もばらける", "r": "SD の平均 0.137 → 0.324", "s": "yes"}
@@ -133,6 +142,7 @@
 
   "state_experiments": {
     "src_note": "国の研究 (国はどんな条件で生まれるか)",
+    "basis": {"text":  "国の研究の仮説は、文献の説から作った: 逃げ場がないと従う〔Carneiro 1970〕・戦が大きなまとまりを作る〔Turchin ほか 2013〕・決める組が 6 をこえると上の段ができる〔Johnson 1982〕・穀物は取り立てやすい〔Scott 2017〕・余りがあっても王を作らない〔Graeber & Wengrow 2021〕〔Boehm 1999〕・出ていける人は出ていく〔Hirschman 1970〕。", "src":  ["docs/research/state_emergence_plan.md"]},
     "rows": [
       {"name": "A1 決まりの村 (地域だけ)", "size": "86,400 回 × 60 年。トークン 0", "r": "条件 1 は「村が自分から求めるか」で決まる: 求めない 20.4%・同じ決まりで求める 89.7%・いつも求める 97.6%。戦は 86,400 回で 16 回だけ。", "src": ["docs/research/state_emergence_A1.md"]},
       {"name": "A2 決まりの村 (村ごと)", "size": "72 回 × 15 年", "r": "全部を国に寄せた束 (B1) は c2 に 12 回のうち 12 回。c1 は 72 回のうち 0 回。", "src": ["docs/research/state_emergence_A2.md"]},
@@ -172,15 +182,17 @@
     {"name": "実験 4: 村人が「取る」を選べる世界", "text": "よその倉・村の蓄えから取るかを、村人の答えで決める。写しの村だけで働くようにする。", "cost": "見積もりは、まだ文書にない", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
     {"name": "論文 2 に実験 3 を入れる", "text": "「紙の上の調整 (実験 2) は、行いの選び (実験 3) にはつながらなかった」と正直に書く。", "cost": "記録なし", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
     {"name": "G9 を続ける (1 年ずつ)", "text": "遠くの運ぶ人の来る見込み 0.5 で、109年から。1 年 1,500 万トークンをこえたら止める。10 年か合わせて 1 億で相談。", "cost": "1 年 約 600〜800 万トークン (見込み)", "src": ["docs/society_phase/G9_design.md", "docs/society_phase/G9_design_draft.md"]},
-    {"name": "人とくらべる", "text": "本物の人 20〜30 人に同じ場面を答えてもらう。「LLM は人より協力的でやさしい」かを初めて確かめられる。", "cost": "トークンはほとんど要らない", "src": ["docs/research/humanity/README.md"]},
+    {"name": "人とくらべる", "text": "本物の人 20〜30 人に同じ場面を答えてもらう。「LLM は人より協力的でやさしい」かを初めて確かめられる。小さな社会の経済ゲームの人のデータ〔Henrich ほか 2005〕も物差しになる。", "cost": "トークンはほとんど要らない", "src": ["docs/research/humanity/README.md"]},
     {"name": "お題のかたよりを外す", "text": "空欄のときの手を逆にする・前の例を消す・裁く側と裁かれる側を入れ替える。", "cost": "約 1,450 万トークン", "src": ["docs/research/humanity/README.md"]},
     {"name": "モデルをくらべる", "text": "53 年の写しから 5 年、haiku だけ・sonnet だけ・opus だけ・今の混ぜ方。", "cost": "約 1.2 億トークン", "src": ["docs/research/humanity/README.md"]}
   ],
 
   "papers": [
-    {"id": "paper1", "title_en": "Does an LLM Village Retrace Human History?", "title_ja": "LLM の村は人類の歴史をたどるか? — 決めておいた先史から国への順に進めた LLM の村の 108 年の観察", "state": "下書き (英語 LaTeX)", "pdf": "../../../paper/paper1/main.pdf", "summary": "../../../paper/paper1/要約_ja.md", "readme": "paper/paper1/README.md", "src": ["paper/paper1/README.md", "paper/paper1/要約_ja.md"]},
-    {"id": "paper2", "title_en": "Personality Words or Life Circumstances?", "title_ja": "性格の言葉か、暮らしの事情か — 2016 年の『他人の権利』アンケートで、LLM の答え手が人のように決まりからはみ出すかを調べる", "state": "下書き (英語 LaTeX)。実験 3 はまだ入っていない", "pdf": "../../../paper/paper2/main.pdf", "summary": "../../../paper/paper2/要約_ja.md", "readme": "paper/paper2/README.md", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md", "docs/research/humanity/paper2_exp3_results.md"]}
+    {"id": "paper1", "title_en": "Does an LLM Village Retrace Human History?", "title_ja": "LLM の村は人類の歴史をたどるか? — 決めておいた先史から国への順に進めた LLM の村の 108 年の観察", "state": "下書き (英語 LaTeX)", "pdf": "../../../paper/paper1/main.pdf", "summary": "../../../paper/paper1/要約_ja.md", "readme": "paper/paper1/README.md", "basis": {"text":  "LLM の村の先行研究〔Park ほか 2023〕〔Altera.AL ほか 2024〕〔Piatti ほか 2024〕とくらべ、人類史の物差しは考古学・人類学の本と論文 (下の出典の欄) から取った。", "src":  ["paper/paper1/main.tex", "paper/paper1/refs.bib"]}, "src": ["paper/paper1/README.md", "paper/paper1/要約_ja.md"]},
+    {"id": "paper2", "title_en": "Personality Words or Life Circumstances?", "title_ja": "性格の言葉か、暮らしの事情か — 2016 年の『他人の権利』アンケートで、LLM の答え手が人のように決まりからはみ出すかを調べる", "state": "下書き (英語 LaTeX)。実験 3 はまだ入っていない", "pdf": "../../../paper/paper2/main.pdf", "summary": "../../../paper/paper2/要約_ja.md", "readme": "paper/paper2/README.md", "basis": {"text":  "もとは本人の修士論文〔田之畑 2017 (修士論文)〕。そのモデルは欲求の段〔Maslow 1943〕と心の 3 つの部分〔Freud 1923〕を合わせたもの。始めの言葉は、修士論文が Sacks の言葉として引いた文〔Sacks の言葉とされる文〕。Sacks の文章には見つからず、ほぼ同じ文が el Kaliouby の言葉として出てくる〔el Kaliouby 2020〕。", "src":  ["paper/paper2/main.tex", "paper/paper2/README.md"]}, "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md", "docs/research/humanity/paper2_exp3_results.md"]}
   ],
+
+  "other_cite": "テクノロジーツリーの考え方 (2 本の木と前提の矢印) は、ゲームから借りた〔Civilization (ゲーム)〕。絵やデータは写していない。",
 
   "figures": [
     {"file": "docs/research/humanity/fig_tech_population.png", "cap": "人の数とテクノロジーが開いた日"},

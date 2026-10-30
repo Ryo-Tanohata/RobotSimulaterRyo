@@ -12,6 +12,8 @@
     sim/society/tools/survey/out/summary.md・out_exp2/summary.md (第 1 主成分・H8)、
     docs/research/humanity/data/exp3/summary.md (実験 3 の組ごとの数)、
     paper/paper*/README.md (ページ数・本人の TODO の数)、docs/youtube_upload.md (上げた動画)
+  - 出典の一覧: sim/society/tools/references.json (build_references.py が作る。人が読む形は docs/research/references.md)。
+    手で書いた文の〔名前〕は、この一覧の label につなぐ。--check は、文に出てくる外の研究の名前がみな一覧にあり、〔 〕の印がついているかも確かめる
 ダッシュボード (dashboard.html) のデータには入れない (【シ】の決まり)。
 """
 import html
@@ -22,6 +24,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 CONTENT = Path(__file__).with_name("research_dashboard_content.json")
+REFS = Path(__file__).with_name("references.json")
+SRC_REFS = "sim/society/tools/references.json"
+MD_REFS = "docs/research/references.md"
 OUT = ROOT / "sim/society/app/research.html"
 
 SRC_SEASON = "sim/society/data/records/season_village.jsonl"
@@ -223,6 +228,31 @@ def chip(s):
     return '<span class="chip %s"><span aria-hidden="true">%s</span> %s</span>' % (cl, ic, lb)
 
 
+# ---------------------------------------------------------------- 出典の印〔 〕
+
+CITE = re.compile(r"〔([^〕]+)〕")
+_REG = {}
+
+
+def load_refs():
+    if not _REG:
+        _REG.update(json.loads(REFS.read_text(encoding="utf-8")))
+        _REG["by_label"] = {e["label"]: e for e in _REG["entries"]}
+    return _REG
+
+
+def T(s):
+    """手で書いた文を HTML にする。〔label〕は出典の欄へのリンクにする。"""
+    reg = load_refs()
+
+    def link(m):
+        e = reg["by_label"].get(html.unescape(m.group(1)))
+        if e is None:
+            return m.group(0)
+        return '<a class="cite" href="#ref-%s" title="%s">〔%s〕</a>' % (e["id"], esc(e["citation"][:160]), m.group(1))
+    return CITE.sub(link, esc(s))
+
+
 def srcline(srcs):
     if isinstance(srcs, str):
         srcs = [srcs]
@@ -233,6 +263,63 @@ def card(title, body, srcs, cls="", hid=None):
     hid = hid or "h-" + str(abs(hash(title)) % 10**8)
     return '<section class="box %s" aria-labelledby="%s"><h2 id="%s">%s</h2>%s%s</section>' % (
         cls, hid, hid, esc(title), body, srcline(srcs))
+
+
+RCHIP = {"ok": ("✓", "確かめた", "r-ok"), "no": ("✗", "確かめていない", "r-no"), "warn": ("⚠", "食い違い", "r-warn")}
+
+
+def rchip(st):
+    ic, lb, cl = RCHIP[st]
+    return '<span class="chip %s"><span aria-hidden="true">%s</span> %s</span>' % (cl, ic, lb)
+
+
+def ref_item(e, big=False):
+    links = []
+    if e.get("doi"):
+        links.append('<a href="https://doi.org/%s">DOI %s</a>' % (esc(e["doi"]), esc(e["doi"])))
+    if e.get("url"):
+        links.append('<a href="%s">ページ</a>' % esc(e["url"]))
+    more = ['<dt>どう入ったか</dt><dd>%s</dd>' % esc(e["entered"]),
+            '<dt>確かめ</dt><dd>%s</dd>' % esc(e["checked"])]
+    if e.get("note"):
+        more.append('<dt>注</dt><dd>%s</dd>' % esc(e["note"]))
+    more.append('<dt>使った所</dt><dd>%s</dd>' % "・".join("<code>%s</code>" % esc(u) for u in e["used_in"]))
+    body = ['<div class="rhead">%s <b class="rlab">〔%s〕</b> <span class="rtype">%s</span></div>' % (rchip(e["status"]), esc(e["label"]), esc(e["type"])),
+            '<p class="rcit">%s%s</p>' % (esc(e["citation"]), (" " + " ".join(links)) if links else ""),
+            '<p class="ruse"><b>何に使ったか:</b> %s</p>' % esc(e["used_for"])]
+    if big:
+        body.append('<p class="ruse"><b>使っていないもの:</b> %s</p>' % esc(e["not_used"]))
+        body.append('<p class="consent"><b>2016 年の約束:</b> %s</p>' % esc(e["consent"]))
+    body.append('<details><summary>くわしく (どう入ったか・確かめ・使った所)</summary><dl class="rdl">%s</dl></details>' % "".join(more))
+    tag = "div" if big else "li"
+    return '<%s class="ref%s" id="ref-%s">%s</%s>' % (tag, " ref-self" if big else "", esc(e["id"]), "".join(body), tag)
+
+
+def refs_section():
+    reg = load_refs()
+    E = reg["entries"]
+    c = reg["counts"]
+    gname = {g["id"]: g["name"] for g in reg["groups"]}
+    b = ['<p>このページと論文が外から持ってきたもの (本人の修士論文・人の論文や本・ゲーム・道具・声・AI) です。'
+         '文の中の〔 〕は、ここへのリンクです。</p>',
+         '<p class="note">しるし: %s %s %s (色だけでなく、形と言葉で分けた)。'
+         '✓ は書誌を本や雑誌の記録・DOI・目録と照らしたもの。【記憶】は Claude の記憶だけで書いたもの (確かめていない)。</p>' % (rchip("ok"), rchip("no"), rchip("warn")),
+         '<div class="tw"><table class="num rtab"><thead><tr><th>まとまり</th><th>件数</th><th>✓ 確かめた</th><th>✗ 確かめていない</th><th>⚠ 食い違い</th></tr></thead><tbody>'
+         + "".join('<tr><td>%s</td><td>%d</td><td>%d</td><td>%d</td><td>%d</td></tr>' % (esc(gname[g]), sum(v.values()), v["ok"], v["no"], v["warn"]) for g, v in
+                   ((g, c["by_group"].get(g, {"ok": 0, "no": 0, "warn": 0})) for g in ("self", "works", "tools", "ai")))
+         + '<tr class="sum"><td><b>合計</b></td><td><b>%d</b></td><td><b>%d</b></td><td><b>%d</b></td><td><b>%d</b></td></tr></tbody></table></div>' % (c["entries"], c["ok"], c["no"], c["warn"])]
+    for gid in ("self", "works", "tools", "ai"):
+        items = [e for e in E if e["group"] == gid]
+        b.append('<h3>%s (%d)</h3>' % (esc(gname[gid]), len(items)))
+        if gid == "self":
+            b += [ref_item(e, big=True) for e in items]
+        else:
+            b.append('<ul class="refs">%s</ul>' % "".join(ref_item(e) for e in items))
+    b.append('<h3>研究ノートの文献 (%d)</h3><p>研究ノート (<code>docs/research/</code>・<code>docs/society_phase/</code> など) の文献の欄にある %d 件は、'
+             '<a href="../../../docs/research/references.md">docs/research/references.md</a> にまとめた。ノートを書いたときに要旨や紹介で読んだものが多いが、'
+             'この一覧を作るときには確かめなおしていない (%s)。うち【未確認】の印 %d・【記憶】の印 %d・名前と年だけ %d。</p>'
+             % (c["notes"], c["notes"], rchip("no"), c["notes_unconfirmed"], c["notes_memory"], c["notes_name_only"]))
+    return card("参考にした研究と出典", "".join(b), [SRC_REFS, MD_REFS], "refsbox", "h-refs")
 
 
 # ---------------------------------------------------------------- ページ
@@ -285,8 +372,9 @@ def build():
       '<nav class="links" aria-label="ほかのページ"><a href="index.html">アプリへ</a>'
       '<a href="tech_tree.html">テクノロジーツリー</a><a href="dashboard.html">村の跡と記録</a></nav>'
       '<div class="datebox">まとめた日: <b>%s</b>。村の記録は <b class="d">%s</b> (%s 日目) まで。%s</div></header>'
-      % (esc(C["title"]), esc(C["purpose"]["text"]), esc(C["asof"]), esc(asof["date"]), asof["day"],
+      % (esc(C["title"]), T(C["purpose"]["text"]), esc(C["asof"]), esc(asof["date"]), asof["day"],
          srcline([C["purpose"]["src"][0], SRC_TT])))
+    A('<p class="citenote">%s <a href="#h-refs">出典の欄へ</a></p>' % esc(C["cite_note"]))
 
     # 2. 数のタイル
     tiles = [
@@ -309,14 +397,14 @@ def build():
     # 3. いまの状態と、本人に決めてほしいこと
     st = C["status"]
     b = ['<div class="cols2"><div><h3>いま</h3><ul class="plain">']
-    b += ['<li>%s <span class="src">(%s)</span></li>' % (esc(i["text"]), esc("・".join(i["src"]))) for i in st["running"]]
+    b += ['<li>%s <span class="src">(%s)</span></li>' % (T(i["text"]), esc("・".join(i["src"]))) for i in st["running"]]
     b.append('</ul><h3>研究で決めてほしいこと</h3><ul class="checks">')
-    b += ['<li><span class="box-ic" aria-hidden="true">☐</span><span>%s <span class="src">(%s)</span></span></li>' % (esc(i["text"]), esc("・".join(i["src"]))) for i in st["decide"]]
+    b += ['<li><span class="box-ic" aria-hidden="true">☐</span><span>%s <span class="src">(%s)</span></span></li>' % (T(i["text"]), esc("・".join(i["src"]))) for i in st["decide"]]
     b.append('</ul></div><div>')
     for key, name in (("paper1_todo", "論文 1"), ("paper2_todo", "論文 2")):
         t = st[key]
         b.append('<h3>%s で本人がすること (%d)</h3><ul class="checks">' % (name, len(t["items"])))
-        b += ['<li><span class="box-ic" aria-hidden="true">☐</span>%s</li>' % esc(x) for x in t["items"]]
+        b += ['<li><span class="box-ic" aria-hidden="true">☐</span><span>%s</span></li>' % T(x) for x in t["items"]]
         b.append('</ul><p class="src">出どころ: <code>%s</code> の「TODO for the author」</p>' % esc(t["src"][0]))
     b.append('</div></div>')
     A(card("いまの状態と、ご本人に決めてほしいこと", "".join(b), [SRC_HANDOFF], "status", "h-status"))
@@ -342,20 +430,21 @@ def build():
     b = ['<div class="cols3">']
     for f in C["findings"]:
         b.append('<div class="fcol"><h3>%s</h3><ul class="plain">%s</ul>%s</div>' % (
-            esc(f["title"]), "".join("<li>%s</li>" % esc(x) for x in f["items"]), srcline(f["src"])))
+            esc(f["title"]), "".join("<li>%s</li>" % T(x) for x in f["items"]), srcline(f["src"])))
     b.append('</div>')
     A(card("わかったこと", "".join(b), ["docs/research/humanity/part1_same_and_different.md・part2_technology.md・part3_humanness.md (くわしく)"], "", "h-find"))
 
     # 6. 実験の結果表
     b = ['<p class="note">しるし: %s %s %s %s (色だけでなく、形と言葉で分けた)</p>' % (chip("yes"), chip("part"), chip("no"), chip("rev"))]
     for e in C["experiments"]:
-        b.append('<h3>%s</h3><div class="tw"><table class="res"><thead><tr><th>仮説</th><th>見たこと</th><th>結果</th><th>判定</th></tr></thead><tbody>' % esc(e["title"]))
+        b.append('<h3>%s</h3><div class="tw"><table class="res"><thead><tr><th>仮説</th><th>見たこと</th><th>結果</th><th>判定</th></tr></thead><tbody>' % T(e["title"]))
         for r in e["rows"]:
             b.append('<tr><td data-l="仮説"><b>%s</b></td><td data-l="見たこと">%s</td><td data-l="結果">%s</td><td data-l="判定">%s</td></tr>' % (
-                esc(r["h"]), esc(r["q"]), esc(r["r"]), chip(r["s"])))
+                esc(r["h"]), T(r["q"]), T(r["r"]), chip(r["s"])))
         b.append('</tbody></table></div>' + srcline(e["src"]))
     se = C["state_experiments"]
-    b.append('<h3>%s</h3><div class="tw"><table class="res"><thead><tr><th>実験</th><th>大きさ</th><th>おもな結果</th></tr></thead><tbody>' % esc(se["src_note"]))
+    b.append('<h3>%s</h3><p>%s</p>%s' % (esc(se["src_note"]), T(se["basis"]["text"]), srcline(se["basis"]["src"])))
+    b.append('<div class="tw"><table class="res"><thead><tr><th>実験</th><th>大きさ</th><th>おもな結果</th></tr></thead><tbody>')
     for r in se["rows"]:
         b.append('<tr><td data-l="実験"><b>%s</b></td><td data-l="大きさ">%s</td><td data-l="おもな結果">%s<div class="src">%s</div></td></tr>' % (
             esc(r["name"]), esc(r["size"]), esc(r["r"]), esc("・".join(r["src"]))))
@@ -379,7 +468,7 @@ def build():
         v = pc1[k]
         rows.append(("%s (%d 人)" % (lab, v[3]), v[0], v[1], v[2], cls, "dot", "%s: %.3f [%.3f, %.3f]" % (lab, v[0], v[1], v[2])))
     b += ['<h3>ばらつきの形: 第 1 主成分の割合 (点と 95% 区間)</h3>',
-          '<p class="note">1 本の軸 (全体に厳しいか、ゆるいか) にまとまるほど大きい。点線が人間の 0.268。</p>',
+          '<p class="note">1 本の軸 (全体に厳しいか、ゆるいか) にまとまるほど大きい。点線が人間の 0.268 (修士論文の表 3 %s)。</p>' % T("〔田之畑 2017 (修士論文)〕"),
           '<ul class="legend"><li><span class="lg s-h">◆</span>人間</li><li><span class="lg s-1">●</span>実験 1 (人格の言葉)</li>'
           '<li><span class="lg s-2">●</span>実験 2 (暮らし・立場)</li></ul>',
           ci_chart(rows, 0.15, 0.5, [0.2, 0.3, 0.4, 0.5], ref=pc1["human"], ref_label="人間 %.3f" % pc1["human"],
@@ -419,10 +508,12 @@ def build():
     # 8. 論文
     b = ['<div class="cols2">']
     for p, pages, ntodo in ((C["papers"][0], p1_pages, p1_todo), (C["papers"][1], p2_pages, p2_todo)):
-        b.append('<div class="paper"><h3>%s</h3><p class="en">%s</p><p>%s</p><ul class="plain"><li>いま: %s</li><li>%d ページ</li><li>本人の TODO: %d</li></ul>'
+        nbib = len(re.findall(r"^@\w+\{", rd("paper/%s/refs.bib" % p["id"]), re.M))
+        b.append('<div class="paper"><h3>%s</h3><p class="en">%s</p><p>%s</p><ul class="plain"><li>いま: %s</li><li>%d ページ</li><li>本人の TODO: %d</li>'
+                 '<li>引いた文献: %d (<code>refs.bib</code>。みな書誌を確かめた)</li></ul><p class="note">%s</p>'
                  '<p class="plinks"><a href="%s">PDF を開く</a><a href="%s">日本語の要約</a></p>%s</div>' % (
                      "論文 1" if p["id"] == "paper1" else "論文 2", esc(p["title_en"]), esc(p["title_ja"]), esc(p["state"]),
-                     pages, ntodo, esc(p["pdf"]), esc(p["summary"]), srcline(p["src"])))
+                     pages, ntodo, nbib, T(p["basis"]["text"]), esc(p["pdf"]), esc(p["summary"]), srcline(list(dict.fromkeys(p["src"] + p["basis"]["src"])))))
     b.append('</div>')
     A(card("論文", "".join(b), ["paper/paper1/・paper/paper2/"], "", "h-paper"))
 
@@ -430,7 +521,7 @@ def build():
     b = ['<div class="tw"><table class="res"><thead><tr><th>案</th><th>中身</th><th>費用</th></tr></thead><tbody>']
     for n in C["next"]:
         b.append('<tr><td data-l="案"><b>%s</b></td><td data-l="中身">%s<div class="src">%s</div></td><td data-l="費用">%s</td></tr>' % (
-            esc(n["name"]), esc(n["text"]), esc("・".join(n["src"])), esc(n["cost"])))
+            esc(n["name"]), T(n["text"]), esc("・".join(n["src"])), esc(n["cost"])))
     b.append('</tbody></table></div><p class="note">どれをするかは、ご本人が決めます。</p>')
     A(card("次の一手 (案と費用)", "".join(b), ["各行の文書"], "", "h-next"))
 
@@ -446,10 +537,14 @@ def build():
     # ほかの数
     tc = tt["counts"]
     b = ['<ul class="plain"><li>テクノロジーツリー: 項目 %d のうち届いた %d、要素 %d、創発 %d</li>' % (tc["techs"], tc["techs_reached"], tc["nodes"], tc["emerged"]),
-         '<li>YouTube: 一覧 %d 本のうち、URL があるもの %d 本</li></ul>' % (yt_all, yt_up)]
+         '<li>YouTube: 一覧 %d 本のうち、URL があるもの %d 本</li></ul>' % (yt_all, yt_up),
+         '<p class="note">%s</p>' % T(C["other_cite"])]
     A(card("ほかの数", "".join(b), [SRC_TT, SRC_YT], "", "h-other"))
 
-    # 10. 足もと
+    # 10. 参考にした研究と出典
+    A(refs_section())
+
+    # 11. 足もと
     A('<footer class="box"><h2>出どころと作り直し方</h2><ul class="plain">'
       '<li>まとめ: <code>docs/research/humanity/README.md</code> (くわしくは part1〜3)</li>'
       '<li>論文 2 の実験: <code>docs/research/humanity/paper2_exp1〜3_*.md</code>・<code>sim/society/tools/survey/out*/summary.md</code>・<code>docs/research/humanity/data/exp3/summary.md</code></li>'
@@ -458,6 +553,7 @@ def build():
       '<li>村の数: <code>sim/society/data/records/season_village.jsonl</code>・テクノロジーツリー <code>sim/society/app/tech_tree.html</code></li>'
       '<li>論文: <code>paper/paper1/</code>・<code>paper/paper2/</code>。動画: <code>docs/youtube_upload.md</code></li>'
       '<li>手で書いた文: <code>sim/society/tools/research_dashboard_content.json</code></li>'
+      '<li>出典の一覧: <code>sim/society/tools/references.json</code>・<code>docs/research/references.md</code> (作り直し: <code>python3.13 sim/society/tools/build_references.py</code>)</li>'
       '<li>作り直し: <code>python3.13 sim/society/tools/build_research_dashboard.py</code> (LLM なし・読むだけ)。'
       '数の確かめ: <code>--check</code></li></ul>'
       '<p class="note">このページは【シ】/研究の見え方です。村の跡のダッシュボード (dashboard.html) のデータには入れていません。</p></footer>')
@@ -493,7 +589,7 @@ def check(C):
     def one(text, srcs, where):
         nonlocal bad, total
         st = srctext(srcs)
-        for n in NUM.findall(text):
+        for n in NUM.findall(CITE.sub("", text)):
             total += 1
             if n not in st:
                 bad += 1
@@ -522,6 +618,57 @@ def check(C):
     for p in C["papers"]:
         one(p["title_ja"], p["src"], p["id"])
     print("確かめた数 %d、見つからない %d" % (total, bad))
+    return bad + check_refs(C)
+
+
+NAME_YEAR = re.compile(r"[A-Z][A-Za-zà-ÿ'\-]+(?: (?:&|and) [A-Z][A-Za-zà-ÿ'\-]+)?(?: (?:ほか|et al\.?))? (?:1[5-9]|20)\d\d")
+
+
+def check_refs(C):
+    """外の研究の名前: 〔label〕が一覧にあるか。名前が出る文に、その印があるか。「名前 年」がみな一覧にあるか。"""
+    reg = load_refs()
+    by_label = reg["by_label"]
+    names = []
+    for e in reg["entries"]:
+        for nm in e.get("names", []):
+            names.append((nm, e))
+    known = set()
+    for e in reg["entries"]:
+        for a, y in e.get("keys", []):
+            known.add("%s %s" % (a, y))
+    bad = 0
+    n_cite = 0
+    skip = {"src", "file", "pdf", "summary", "readme", "id", "h", "s", "_about", "asof", "date", "range", "src_note"}
+
+    def walk(x, path):
+        nonlocal bad, n_cite
+        if isinstance(x, dict):
+            for k, v in x.items():
+                if k not in skip:
+                    walk(v, path + "." + k)
+        elif isinstance(x, list):
+            for i, v in enumerate(x):
+                walk(v, "%s[%d]" % (path, i))
+        elif isinstance(x, str):
+            labs = CITE.findall(x)
+            n_cite += len(labs)
+            for lab in labs:
+                if lab.strip() and lab not in by_label:
+                    bad += 1
+                    print("  一覧にない印: 〔%s〕 (%s)" % (lab, path))
+            plain = CITE.sub("", x)
+            for nm, e in names:
+                pat = r"(?<![A-Za-z])%s(?![A-Za-z])" % re.escape(nm) if nm.isascii() else re.escape(nm)
+                if re.search(pat, plain) and e["label"] not in labs:
+                    bad += 1
+                    print("  印がない: 「%s」→〔%s〕がいる (%s: %s)" % (nm, e["label"], path, x[:50]))
+            for m in NAME_YEAR.finditer(plain):
+                a = m.group(0).split(" ")[0]
+                if not any(k.startswith(a + " ") for k in known):
+                    bad += 1
+                    print("  一覧にない名前: %s (%s)" % (m.group(0), path))
+    walk(C, "content")
+    print("出典の印 %d (一覧の手で書いた %d 件)。名前と印の食い違い %d" % (n_cite, len(reg["entries"]), bad))
     return bad
 
 
@@ -642,6 +789,31 @@ ul.legend{display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;padding:0;mar
 .figs img{width:100%;height:auto;border:1px solid var(--border);border-radius:8px;background:#fff}
 .figs figcaption{font-size:12.5px;color:var(--ink2)}
 .paper .en{font-style:italic;margin:2px 0;font-size:14px}
+a.cite{font-size:.86em;text-decoration:none;white-space:nowrap;border-bottom:1px dotted var(--s2)}
+a.cite:hover,a.cite:focus-visible{text-decoration:underline}
+.citenote{font-size:13.5px;margin:4px 0 0;color:var(--ink2)}
+.refsbox{border-left:4px solid var(--s2)}
+ul.refs{list-style:none;margin:6px 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr));column-gap:28px}
+table.rtab{max-width:620px}
+.ref{border-top:1px solid var(--grid);padding:8px 0 6px;scroll-margin-top:12px}
+.ref:target{background:var(--band);outline:2px solid var(--s2);outline-offset:2px;border-radius:6px}
+.ref-self{border:2px solid var(--ink2);border-radius:10px;padding:10px 12px;margin:6px 0}
+.rhead{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.rlab{font-size:15px}
+.rtype{font-size:12px;color:var(--ink2)}
+.rcit{margin:4px 0;font-size:13.5px;overflow-wrap:anywhere}
+.rcit a{margin-left:6px;font-size:12.5px}
+.ruse{margin:2px 0;font-size:13.5px}
+.consent{margin:6px 0;font-size:13.5px;background:var(--band);border-radius:6px;padding:6px 8px}
+.rcount{font-size:13.5px}
+details{font-size:12.5px;color:var(--ink2);margin:2px 0}
+details summary{cursor:pointer;color:var(--s2)}
+dl.rdl{margin:4px 0;display:grid;grid-template-columns:7.5em 1fr;gap:2px 8px}
+dl.rdl dt{color:var(--ink2);font-weight:700}
+dl.rdl dd{margin:0;overflow-wrap:anywhere}
+.r-ok{border-color:var(--good)}
+.r-no{border-color:var(--neutral);border-style:dashed}
+.r-warn{border-color:var(--crit);border-style:double;border-width:3px}
 .plinks{display:flex;gap:16px;flex-wrap:wrap}
 @media (max-width:640px){
  table.res thead{display:none}
@@ -652,6 +824,7 @@ ul.legend{display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;padding:0;mar
  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
  .tile .v{font-size:20px}
  .only-desk{display:none !important}
+ dl.rdl{grid-template-columns:1fr} dl.rdl dd{margin-bottom:4px}
 }
 @media (min-width:641px){
  .only-phone{display:none !important}
