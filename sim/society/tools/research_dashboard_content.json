@@ -1,0 +1,193 @@
+{
+  "_about": "研究ダッシュボード (sim/society/app/research.html) の手で書いた文。数はみな src の文書にあるものだけ。build_research_dashboard.py --check で、文の中の数が src にあるかを確かめる。作り直し: python3.13 sim/society/tools/build_research_dashboard.py",
+  "asof": "2026-10-30",
+  "title": "研究ダッシュボード: 川辺の村と人間らしさ",
+  "purpose": {
+    "text": "人間らしさをシミュレートしたい。そのために、川辺の村 (LLM の村) が人類史と何が同じで何が違うのかを調べている。",
+    "src": ["docs/research/humanity/README.md"]
+  },
+
+  "status": {
+    "running": [
+      {"text": "いま回っているものはない。本物の村は 108年120日目 (13079 日目) で止まっている。", "src": ["sim/society/HANDOFF.md"]},
+      {"text": "G9 の 4 年で、遠くの町の運ぶ人は 1 回も来なかった。来る見込みを 0.1 から 0.5 にした (本人の決め 2026-10-29)。", "src": ["sim/society/HANDOFF.md"]},
+      {"text": "実験 3 の写しの村 3 つは、3 年を回し終えた (12599 → 12959)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]}
+    ],
+    "decide": [
+      {"text": "実験 4 をするか: 村人が「取る」を選べる世界にする (写しの村だけ)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
+      {"text": "本物の村 (G9) を続けるか: 続けるなら 1 年ずつ回す。", "src": ["sim/society/HANDOFF.md"]},
+      {"text": "修士論文の元データ (問いごとの数) が見つかるか: あれば、問いごとの平均とばらつきを人と直接くらべられる。", "src": ["docs/research/humanity/paper2_exp1_results.md"]}
+    ],
+    "paper1_todo": {
+      "src": ["paper/paper1/README.md"],
+      "items": [
+        "表紙のメールアドレス",
+        "arXiv の分野と推薦 (endorsement)",
+        "使ったモデルの版 (haiku・sonnet・opus)",
+        "トークンの合計 (Society 1.0・G1〜G6・G9 は記録にまとまっていない)",
+        "Zenodo などで、調べたコミットの控えと DOI",
+        "数の確かめ (表 2・表 5・G8 の数)",
+        "題を決める",
+        "止めた日 (13079 日目) のままにするか",
+        "赤い [TODO] を消す"
+      ]
+    },
+    "paper2_todo": {
+      "src": ["paper/paper2/README.md"],
+      "items": [
+        "表紙のメールアドレス",
+        "Sacks の言葉の出どころ (修士論文はどこから引いたか)",
+        "修士論文の書誌 (題の英訳・学校の名前)",
+        "使ったモデルの版",
+        "2016 年の同意の文と、集計を出してよいか",
+        "Zenodo などで、コミットの控えと DOI",
+        "題 (2016 年の調査 / 2017 年の論文)",
+        "54 問の英訳の確かめ",
+        "わけの分け方を、人がもう 1 人で確かめる",
+        "赤い [TODO] を消し、arXiv の分野を決める"
+      ]
+    }
+  },
+
+  "timeline_village": [
+    {"id": "S1", "range": "0年1日目〜4年10日目", "name": "Society 1.0 (F1〜F6) 最初の 5 人", "text": "採集・蓄える・住まい (153 日目)・木の実を育てる。", "src": ["docs/research/humanity/part1_same_and_different.md"]},
+    {"id": "G1", "text": "畑に草の種をまく (4年31日目)。1 回目は 694 日目までに全員が飢えで亡くなり、やり直した。", "src": ["docs/research/humanity/part1_same_and_different.md", "docs/society_phase/G1.md"]},
+    {"id": "G2", "text": "タヒとウィロが北の丘で子ヤギを 4 頭捕まえた。", "src": ["docs/society_phase/G2.md"]},
+    {"id": "G3", "text": "鎌 (13年1日目)・土器 (13年32日目)。土器で虫とネズミの害が 0 になった。", "src": ["docs/research/humanity/part1_same_and_different.md", "docs/research/humanity/README.md"]},
+    {"id": "G4", "text": "家の倉と受けつぎ。持ち物のジニは 0 から 0.84 へ。", "src": ["docs/research/humanity/README.md"]},
+    {"id": "G5", "text": "祭り (15年30日目)・まとめ役 (18年120日目)。「つぐなう」が 32 対 9 で多かった。", "src": ["docs/research/humanity/part1_same_and_different.md", "docs/research/humanity/README.md"]},
+    {"id": "G6", "text": "ほかの村との交換 (29年90日目)・印と封・板 (44年30日目)。町は届かなかった。", "src": ["docs/research/humanity/part1_same_and_different.md"]},
+    {"id": "G7", "text": "53年冬〜62年春にききん (15 季節)。条件 3 つと F1〜F6 は一度も届かず、本人の決めで閉じた。67年120日目に赤い金属の刃。", "src": ["docs/society_phase/G7.md"]},
+    {"id": "G8", "range": "70年120日目〜90年120日目", "name": "G8 外からの押し (20 年)", "text": "北の大きな村に毎年 2,340 つかみを払った。10 年目に条件 1 (段 3) がそろった。村は従う側。", "src": ["docs/society_phase/G8.md"]},
+    {"id": "G8h", "range": "90年120日目〜100年120日目", "name": "G8 重い押し (10 年)", "text": "求めは刈り入れの 10 割。10 年で 8 回払い、2 回やめた。村の蓄えは 304 万 → 26.7 万。", "src": ["docs/society_phase/G8_heavy.md"]},
+    {"id": "G8c", "range": "100年120日目〜104年120日目", "name": "G8 の続き (4 年)", "text": "103年の春に村の蓄えが尽き、103年に 16 人が亡くなった (子 12)。貢ぎをやめ、村は国の外にもどった。", "src": ["docs/society_phase/G8_heavy.md"]},
+    {"id": "G9", "text": "赤い金属の刃を「使う」と決めた (蓄え約 23 日分)。4 年で遠くの運ぶ人は来なかった。", "src": ["docs/research/humanity/part2_technology.md", "sim/society/HANDOFF.md"]}
+  ],
+
+  "timeline_research": [
+    {"date": "2026-10-23", "name": "国の研究 A1 (決まりの村)", "text": "86,400 回 × 60 年。条件 1 は「村が自分から求めるか」でほとんど決まる。", "src": ["docs/research/state_emergence_A1.md"]},
+    {"date": "2026-10-23", "name": "国の研究 A2 (決まりの村)", "text": "国に寄せた束は、税の記録 (c2) に 12 回のうち 12 回。条件 1 は 72 回のうち 0 回。", "src": ["docs/research/state_emergence_A2.md"]},
+    {"date": "日付の記録なし", "name": "国の研究 B (決まったお題)", "text": "360 回。モデルで選び方が分かれる。戦と逃げるは 0。", "src": ["docs/research/state_emergence_B.md"]},
+    {"date": "2026-10-24", "name": "国の研究 C (LLM の村 20 年)", "text": "条件 3 つと F1〜F6 はどれも届かなかった。税と罰の案は 0。", "src": ["docs/research/state_emergence_C.md"]},
+    {"date": "2026-10-29", "name": "まとめ: 村と人類史", "text": "同じ・違う・テクノロジー・人間らしさ (3 つの部分と図 4 枚)。", "src": ["docs/research/humanity/README.md"]},
+    {"date": "2026-10-29", "name": "論文 1 の下書き", "text": "LLM の村は人類史をたどるか (英語、20 ページ)。", "src": ["paper/paper1/README.md", "paper/paper1/要約_ja.md"]},
+    {"date": "2026-10-29", "name": "論文 2・実験 1 (アンケート)", "text": "LLM 290 人。人格の言葉だと、ばらつきが 1 本の「厳しさ」の軸になる。", "src": ["docs/research/humanity/paper2_exp1_results.md"]},
+    {"date": "2026-10-29", "name": "論文 2・実験 2 (アンケート)", "text": "暮らし・立場を持たせた 230 人。ばらつきの形が人間の範囲に入った。", "src": ["docs/research/humanity/paper2_exp2_results.md"]},
+    {"date": "2026-10-30", "name": "論文 2 の下書き", "text": "性格の言葉か、暮らしの事情か (英語、15 ページ)。", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md"]},
+    {"date": "2026-10-30", "name": "論文 2・実験 3 (写しの村)", "text": "村の中では、暮らしやまわりの様子を足しても選びは変わらなかった (6 つとも支持しない)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]}
+  ],
+
+  "findings": [
+    {"title": "人類史と同じ・違う", "src": ["docs/research/humanity/README.md"], "items": [
+      "暮らしのテクノロジーは、人類史の順にほぼ合った。社会のしくみは、途中で止まった。",
+      "同じ: 定住 → 植物を育てる → 畑 → ヤギ → 鎌 → 土器 → 受けつぎ・家の倉 (西アジアの順)。",
+      "違う: 土器が家の倉より先。火がとても遅い (6年)。持ち物の差 (ジニ 0.7〜0.95) が本物 (0.4〜0.5 ほど【記憶】) よりずっと大きい。",
+      "起きなかった: 税・守らせた書いた法・役所・王・戦・壁・神殿・町・言葉を書く文字。",
+      "決まりの村なら税と記録に 12 回のうち 12 回届くのに、LLM の代表は選ばなかった。"
+    ]},
+    {"title": "テクノロジーの役割", "src": ["docs/research/humanity/README.md"], "items": [
+      "テクノロジーは「社会を動かす力」ではなく「できることの床」だった。",
+      "土器で虫とネズミの害が 0 になり、蓄えは 200 日分ほどから 300 日分台へ。",
+      "家の倉が開いた季節に、持ち物のジニは 0 から 0.84 へ。最後は 0.95 (27 家のうち 23 家が何も持たない)。",
+      "赤い金属の刃は 37 年しまわれていた。",
+      "大きな苦しみ (G7 のききん・G8 の重い貢ぎ) は、テクノロジーの足りなさから来なかった。"
+    ]},
+    {"title": "人間らしさ", "src": ["docs/research/humanity/README.md", "docs/research/humanity/paper2_exp2_results.md", "docs/research/humanity/paper2_exp3_results.md"], "items": [
+      "いちばん大きな違い (争わない・罰しない・上に立とうとしない) は、人間よりも LLM のくせに近い。",
+      "人間らしい: 祭りで仲直りする。苦しい年によそ者を断る。子のために貢ぎをやめる。",
+      "LLM らしい: 50 年からは「つぐなう」が 0。悲しみ 66 のうち 43 が、同じ文で「みんなで刈ろう」になる。",
+      "アンケートでは、人間らしさは性格の言葉では出ず、暮らし・立場・まわりの様子から出てくる (実験 2)。",
+      "村の中の選びは、暮らしやまわりの様子をお題に足しても、3 年でほとんど変わらなかった (実験 3)。"
+    ]}
+  ],
+
+  "experiments": [
+    {"id": "exp1", "title": "論文 2・実験 1: LLM 290 人が 54 問に答えた (人格の言葉)", "src": ["docs/research/humanity/paper2_exp1_results.md"],
+     "rows": [
+      {"h": "H1a", "q": "人格なしだと答えがそろいすぎる", "r": "SD の平均 sonnet 0.18・haiku 0.37・opus 0.14", "s": "yes"},
+      {"h": "H1b", "q": "主成分の形が人と違う", "r": "第 1 主成分 39% (人間 27%)", "s": "yes"},
+      {"h": "H2", "q": "人格なしの答えは「常識的な回答」に近い", "r": "差の平均 1.0〜1.2。近くない", "s": "no"},
+      {"h": "H3", "q": "人格を持たせると、ばらつきが増える", "r": "SD の平均 0.18 → 0.41", "s": "yes"},
+      {"h": "H4", "q": "本音を先に書くと「問題でない」へ動く", "r": "逆。グレーゾーンで +0.25、より「問題がある」へ", "s": "rev"},
+      {"h": "H5", "q": "人間の 5 つの意識が LLM でも出る", "r": "出たのは「権利意識」の 1 つだけ", "s": "no"}
+     ]},
+    {"id": "exp2", "title": "論文 2・実験 2: 暮らし・立場・まわりの様子を持たせた 230 人", "src": ["docs/research/humanity/paper2_exp2_results.md"],
+     "rows": [
+      {"h": "H6", "q": "第 1 主成分の割合が実験 1 (0.392) より下がる", "r": "D1 0.228 [0.195, 0.312]。人間の 0.268 が CI の中", "s": "yes"},
+      {"h": "H7", "q": "人間の 5 つの意識のうち 2 つ以上が出る", "r": "出たのは 1 つ (実験 1 と同じ)", "s": "no"},
+      {"h": "H8", "q": "はみ出しやすい時 4 つが、グレーゾーンをゆるくする", "r": "「みんながやっている」−0.21・「捕まった人を聞いたことがない」−0.09 は効いた。ほかの 2 つは効かない", "s": "part"},
+      {"h": "H9", "q": "学生・暮らしが苦しい人は、ダウンロードにゆるい", "r": "弱い側 3.44、働いてゆとり側 3.81", "s": "yes"},
+      {"h": "H10", "q": "1 本の「厳しさ」の軸にまとまらない", "r": "厳しさの割合 0.223 (実験 1 は 0.391)", "s": "yes"},
+      {"h": "H11", "q": "暮らしを持たせると opus もばらける", "r": "SD の平均 0.137 → 0.324", "s": "yes"}
+     ]},
+    {"id": "exp3", "title": "論文 2・実験 3: 写しの村で、お題に暮らし・まわりの様子を足した (3 年)", "src": ["docs/research/humanity/paper2_exp3_results.md"],
+     "rows": [
+      {"h": "H1", "q": "言い出した家ほど「つぐなう」", "r": "+0.14 [−0.24, +0.50]。数が少ない", "s": "no"},
+      {"h": "H2", "q": "まわりの様子で、家の倉を持つ答えが増える", "r": "0 (どちらも 0.083)", "s": "no"},
+      {"h": "H2b", "q": "罰か税の案が変わる", "r": "どちらも 0", "s": "no"},
+      {"h": "H3", "q": "持ち物のある家とない家の差が開く", "r": "0 (どの組も 0.333 と 0)", "s": "no"},
+      {"h": "H4", "q": "答えのそろいが下がる", "r": "+0.006 [−0.06, +0.05]", "s": "no"},
+      {"h": "H5", "q": "蓄えが少ないときに変わる", "r": "0", "s": "no"}
+     ]}
+  ],
+
+  "state_experiments": {
+    "src_note": "国の研究 (国はどんな条件で生まれるか)",
+    "rows": [
+      {"name": "A1 決まりの村 (地域だけ)", "size": "86,400 回 × 60 年。トークン 0", "r": "条件 1 は「村が自分から求めるか」で決まる: 求めない 20.4%・同じ決まりで求める 89.7%・いつも求める 97.6%。戦は 86,400 回で 16 回だけ。", "src": ["docs/research/state_emergence_A1.md"]},
+      {"name": "A2 決まりの村 (村ごと)", "size": "72 回 × 15 年", "r": "全部を国に寄せた束 (B1) は c2 に 12 回のうち 12 回。c1 は 72 回のうち 0 回。", "src": ["docs/research/state_emergence_A2.md"]},
+      {"name": "B 決まったお題で LLM のくせ", "size": "360 回。約 1,450 万トークン", "r": "opus は償わせ (v1 19/20)、sonnet はゆるす (v1 20/20)。戦と逃げるは、どのモデルでも 0。", "src": ["docs/research/state_emergence_B.md"]},
+      {"name": "C LLM の村を 20 年", "size": "約 1 億 2,000 万トークン", "r": "c1・c2・c3 と F1〜F6 はどれも届かなかった。役の人は 20 年で 0 人。", "src": ["docs/research/state_emergence_C.md"]}
+    ],
+    "c_predictions": {
+      "src": ["docs/research/state_emergence_C.md"],
+      "rows": [
+        {"q": "1. c1 には届かない (20 年)", "s": "hit"},
+        {"q": "2. c2 は届くかもしれないが半分より低い", "s": "miss", "note": "届かなかった (税の案 0)"},
+        {"q": "3. c3 はほぼ届かない", "s": "hit"},
+        {"q": "4. ききんは起きにくい", "s": "hit"}
+      ]
+    }
+  },
+
+  "tokens": [
+    {"label": "G7 (22 年)", "man": 21170, "text": "約 2 億 1,170 万", "src": "docs/society_phase/G7.md"},
+    {"label": "G7 の 64年 (上に入っていない 1 年)", "man": 520, "text": "約 520 万", "src": "sim/society/data/run_log.md"},
+    {"label": "G8 の 20 年", "man": 10300, "text": "約 1 億 300 万", "src": "docs/society_phase/G8.md"},
+    {"label": "G8 重い押し 10 年", "man": 6060, "text": "約 6,060 万", "src": "docs/society_phase/G8_heavy.md"},
+    {"label": "G8 続きの 3 年", "man": 3100, "text": "約 3,100 万", "src": "docs/society_phase/G8_heavy.md"},
+    {"label": "G8 の 104年", "man": 1040, "text": "約 1,040 万", "src": "docs/society_phase/G8_heavy.md"},
+    {"label": "国の研究 A1・A2 (決まりの村)", "man": 0, "text": "0", "src": "docs/research/state_emergence_plan.md"},
+    {"label": "国の研究 B", "man": 1450, "text": "約 1,450 万", "src": "docs/research/state_emergence_B.md"},
+    {"label": "国の研究 C", "man": 12000, "text": "約 1 億 2,000 万", "src": "docs/research/state_emergence_C.md"},
+    {"label": "論文 2・実験 1 (試し 44 万は別)", "man": 1280, "text": "約 1,280 万", "src": "docs/research/humanity/paper2_exp1_results.md"},
+    {"label": "論文 2・実験 2 (試し 26 万は別)", "man": 1010, "text": "約 1,010 万", "src": "docs/research/humanity/paper2_exp2_results.md"},
+    {"label": "実験 2 のわけの分け方 (LLM なし)", "man": 0, "text": "0", "src": "docs/research/humanity/paper2_exp2_results.md"},
+    {"label": "論文 2・実験 3", "man": 6580, "text": "約 6,580 万", "src": "docs/research/humanity/paper2_exp3_results.md"},
+    {"label": "Society 1.0・G1〜G6", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"},
+    {"label": "G9 の 4 年 (105〜108年)", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"}
+  ],
+
+  "next": [
+    {"name": "実験 4: 村人が「取る」を選べる世界", "text": "よその倉・村の蓄えから取るかを、村人の答えで決める。写しの村だけで働くようにする。", "cost": "見積もりは、まだ文書にない", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
+    {"name": "論文 2 に実験 3 を入れる", "text": "「紙の上の調整 (実験 2) は、行いの選び (実験 3) にはつながらなかった」と正直に書く。", "cost": "記録なし", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
+    {"name": "G9 を続ける (1 年ずつ)", "text": "遠くの運ぶ人の来る見込み 0.5 で、109年から。1 年 1,500 万トークンをこえたら止める。10 年か合わせて 1 億で相談。", "cost": "1 年 約 600〜800 万トークン (見込み)", "src": ["docs/society_phase/G9_design.md", "docs/society_phase/G9_design_draft.md"]},
+    {"name": "人とくらべる", "text": "本物の人 20〜30 人に同じ場面を答えてもらう。「LLM は人より協力的でやさしい」かを初めて確かめられる。", "cost": "トークンはほとんど要らない", "src": ["docs/research/humanity/README.md"]},
+    {"name": "お題のかたよりを外す", "text": "空欄のときの手を逆にする・前の例を消す・裁く側と裁かれる側を入れ替える。", "cost": "約 1,450 万トークン", "src": ["docs/research/humanity/README.md"]},
+    {"name": "モデルをくらべる", "text": "53 年の写しから 5 年、haiku だけ・sonnet だけ・opus だけ・今の混ぜ方。", "cost": "約 1.2 億トークン", "src": ["docs/research/humanity/README.md"]}
+  ],
+
+  "papers": [
+    {"id": "paper1", "title_en": "Does an LLM Village Retrace Human History?", "title_ja": "LLM の村は人類の歴史をたどるか? — 決めておいた先史から国への順に進めた LLM の村の 108 年の観察", "state": "下書き (英語 LaTeX)", "pdf": "../../../paper/paper1/main.pdf", "summary": "../../../paper/paper1/要約_ja.md", "readme": "paper/paper1/README.md", "src": ["paper/paper1/README.md", "paper/paper1/要約_ja.md"]},
+    {"id": "paper2", "title_en": "Personality Words or Life Circumstances?", "title_ja": "性格の言葉か、暮らしの事情か — 2016 年の『他人の権利』アンケートで、LLM の答え手が人のように決まりからはみ出すかを調べる", "state": "下書き (英語 LaTeX)。実験 3 はまだ入っていない", "pdf": "../../../paper/paper2/main.pdf", "summary": "../../../paper/paper2/要約_ja.md", "readme": "paper/paper2/README.md", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md", "docs/research/humanity/paper2_exp3_results.md"]}
+  ],
+
+  "figures": [
+    {"file": "docs/research/humanity/fig_tech_population.png", "cap": "人の数とテクノロジーが開いた日"},
+    {"file": "docs/research/humanity/fig_tech_store.png", "cap": "蓄え (日分)"},
+    {"file": "docs/research/humanity/fig_tech_inequality.png", "cap": "家ごとの差 (ジニ)"},
+    {"file": "docs/research/humanity/fig_tech_diet.png", "cap": "食べ物の内わけ"},
+    {"file": "sim/society/tools/survey/out_exp2/fig_h8_coef.png", "cap": "実験 2 の H8 (はみ出しやすい時 4 つ)"},
+    {"file": "sim/society/tools/survey/out_exp2/fig_reasons.png", "cap": "実験 2 のわけの分け方"}
+  ]
+}
