@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "今年も種をまいたら、冬の草取りは順番に回そうね。私は土器を焼いて蓄えを守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は慣れるほど多く作れるし、土器に入れた草の種は虫に食べられにくいから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"オネ24": true},
+ "family": {"ラニ13": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、冬にそなえて食べ物を集めたい"}, "ヒセ19": {"activity": "採集", "place": "西草原12", "why": "ラニ13と二人で行けば安全で、食べ物も増える"}, "ワユ19": {"activity": "道具づくり", "place": "camp", "why": "鎌が割れたときのために、作りためておきたい"}},
+ "keep": false,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす", "M429": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を畑にまき、木の実を毎夕とって冬にそなえ、土器づくりを続けるのがよい", "because": [1066116], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが十分にあって安心している。土器づくりに集中できそう。"}

@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "土器なら俺の手がいちばん慣れている。この秋は粘土をこねて、蓄えの草の種を守る器を増やすよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の技能が高く、草の種を虫やネズミから守る器がまだ要るから"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"オネ24": true},
+ "family": {"ソナ24": {"activity": "採集", "place": "camp", "why": "木の実をとって家の食べ物を足すため"}},
+ "keep": false,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす", "M429": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にある。落ち着いて手を動かせる秋だ。"}

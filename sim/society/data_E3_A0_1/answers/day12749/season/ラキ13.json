@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、おれは土器を焼く。蓄えを虫から守るぞ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。草の種を虫やネズミから守りたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"オネ24": true},
+ "family": {"セヤ15": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"}, "ホミ19": {"activity": "採集", "place": "camp", "why": "キャンプのそばで木の実を集めて手伝う"}},
+ "keep": false,
+ "judge": {"M427": "ゆるす", "M428": "ゆるす", "M429": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと、次の夏に実る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって落ち着いている。土器をひねるのが楽しみだ。"}
