@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに畑をみんなで刈り切ろう。落ちる前に、家の分も村の分も集めたいね。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":["タユ12","ヌオ14"],"why":"実った畑は夏のうちに刈らないと落ちるので、刈り入れに力を出す"},"family":{"タユ12":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ヌオ14":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ソナ17":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ラキ18":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"オセ19":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ロワ19":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"テナ19":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ラニ19":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ムイ19":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ホミ20":{"activity":"畑仕事","place":"camp","why":"子も半分の働きで手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"秋にまいた畑の世話と刈り取りの準備をする"},"family":{"タユ12":{"activity":"採集","place":"camp","why":"木の実を集めて食べ物を増やす"},"ヌオ14":{"activity":"採集","place":"camp","why":"木の実を集めて食べ物を増やす"},"ソナ17":{"activity":"狩り","place":"北丘12","why":"肉を得る"},"ラキ18":{"activity":"狩り","place":"北丘12","why":"肉を得る"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りをすると春からの実りが増える"},"family":{"タユ12":{"activity":"狩り","place":"北丘12","why":"冬も魚やけものはいるので肉を得る"},"ヌオ14":{"activity":"狩り","place":"北丘12","why":"冬も肉を得る"},"ソナ17":{"activity":"土器づくり","place":"camp","why":"蓄えを守る土器を作る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"ヤギの世話","place":"camp","with":[],"why":"春は乳がとれ、子ヤギも育つ"},"family":{"タユ12":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ヌオ14":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept":{"ラキ25":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge":{"M429":"ゆるす"},"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":"使う",
+"knowledge":[{"op":"add","text":"実った畑は夏のうちに刈らないと落ちる","because":[1076233],"confidence":0.8}],
+"proposal":null,
+"votes":[],
+"year_name":"畑を刈り切った年",
+"feeling":"蓄えは多い。みんなで働いて来年も食べていきたい。"}
