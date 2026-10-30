@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいておこう。わたしは土器を焼いて、冬の蓄えを虫から守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意だから。割れた分を補い、蓄えの草の種を守る"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、家の食べ物を増やせるから"},
+  "キサ18": {"activity": "採集", "place": "南川12", "why": "近い川で魚や木の実を探して冬に備えるため"},
+  "ソナ19": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、小さな子の食べ物を集めるため"},
+  "セヤ19": {"activity": "採集", "place": "南川12", "why": "採集が得意で、家の食べ物を増やすため"}
+ },
+ "keep": false,
+ "judge": {"M425": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので、土器を焼いて畑にも種をまき、静かに備えたい。"}
