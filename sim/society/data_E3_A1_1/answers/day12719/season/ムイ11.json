@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑がまだたっぷり残っている。夏のうちに毎夕みんなで刈り切って、土器に入れて冬と春にそなえよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が多く、夏のうちに刈らないと落ちてしまうから"}, "family": {"タユ12": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "ヌオ14": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "ソナ17": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "ラニ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "ラキ18": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "ハソ18": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "オセ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "ロワ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "テナ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "ムイ19": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの乳をしぼって子に分けるため"}, "セヤ20": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "リセ20": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "ヒセ20": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "ホミ20": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "セヤ21": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りと、刈り残しの世話のため", "with": []}, "family": {"ムイ19": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減らないように世話をするため"}}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると来年の実りが増えるから"}, "family": {"ラニ19": {"activity": "狩り", "place": "北川12", "why": "冬は魚が取れるので蓄えを足すため"}, "ソナ17": {"activity": "狩り", "place": "北川12", "why": "冬は魚が取れるので蓄えを足すため"}, "ムイ19": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで夏の実りを守るため"}, "family": {"ラニ19": {"activity": "狩り", "place": "北川12", "why": "蓄えが減る春に魚を足すため"}, "ソナ17": {"activity": "狩り", "place": "北川12", "why": "蓄えが減る春に魚を足すため"}, "ムイ19": {"activity": "ヤギの世話", "place": "camp", "why": "乳をしぼって子に分けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "夏に畑を刈り切って土器に入れておけば、冬と春の蓄えがもつ", "because": [1060833], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がまた大きく実った年",
+ "feeling": "畑は実っている。みんなで刈って、冬も春も子を飢えさせたくない。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑をしっかり刈ろう。落ちる前に、わたしも毎日出る。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに刈らないと落ちるから"}, "family": {"トナ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいるから"}, "オセ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、蓄えの草の種を虫から守れるから"}, "family": {"トナ22": {"activity": "採集", "place": "camp", "why": "木の実を集めて蓄えを助ける"}, "オセ22": {"activity": "採集", "place": "camp", "why": "木の実を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕が高く、鎌を増やせるから"}, "family": {"トナ22": {"activity": "採集", "place": "camp", "why": "冬も食べ物を探す"}, "オセ22": {"activity": "採集", "place": "camp", "why": "冬も食べ物を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで夏の実りを増やすため"}, "family": {"トナ22": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手"}, "オセ22": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "蓄えは多い。夏の畑を刈りきりたい。"}
