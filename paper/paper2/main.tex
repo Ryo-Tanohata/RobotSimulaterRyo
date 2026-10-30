@@ -1,0 +1,255 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\emergencystretch=2em
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\setlist{itemsep=2pt,topsep=4pt}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\renewcommand{\bibfont}{\small}
+
+\title{Personality Words or Life Circumstances?\\[2pt]
+\large Probing Human-Like Rule-Bending in LLM Respondents with a 2016 Japanese Survey of Everyday Rights Violations}
+\author{Ryo Tanohata\\ Independent researcher\\ \texttt{\todo{email}}}
+\date{Draft, 29 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Large language models (LLMs) are increasingly used as stand-in survey respondents. We ask whether such respondents show the situational ``rule-bending'' that a 2017 master's thesis identified as a core of human nature: people step outside rules in gray zones after weighing their own position and circumstances. We had Claude models answer the thesis's 54-item questionnaire on everyday rights violations (copyright, ownership, privacy; 5-point scale, Japanese) in two pre-registered experiments (520 simulated respondents, about 23 million tokens). The only human reference available is the thesis's published principal-component table ($n = 84$), which is internally inconsistent; we compare against the share implied by its first eigenvalue (0.268). \emph{Experiment~1} ($n = 290$): without a persona, respondents were near-identical (mean item SD 0.14--0.37; H1a supported) and far from the thesis's ``common-sense'' answers (H2 not supported). Big Five personality words increased spread (H3 supported) but collapsed it onto a single strictness axis (first-component share 0.392, CI excluding 0.268; strictness correlated $+0.78$ with conscientiousness), and only one of the five human components re-appeared (H5 not supported). Asking for a candid first impression (\emph{honne}) before each answer made answers \emph{stricter}, the opposite of the prediction (H4). \emph{Experiment~2} ($n = 230$) replaced personality words with first-person life circumstances (age, job, money, family, media habits). The first-component share fell to 0.228 (CI containing 0.268; H6 and H10 supported), students and financially strained respondents judged downloading more leniently (H9 supported), and Opus respondents also diversified (H11 supported). Of the thesis's four conditions that encourage rule-bending, ``everyone around me does it'' and ``I have never heard of anyone being caught'' made gray-zone answers more lenient, whereas ``I am in a weak position'' and ``it is technically easy'' did not (H8 partially supported). The human component structure was still not reproduced (H7 not supported). An exploratory, dictionary-based coding of 1{,}150 one-phrase reasons found the thesis's rule-bending rationales in 31--57\% of reasons, with ``follow the majority'' rising sharply under ``everyone does it''. We conclude that personality words produce a one-dimensional caricature, whereas concrete life circumstances produce a more human-like spread and partly human-like situational adjustment---but not the human content of that adjustment.
+\end{abstract}
+
+\section{Introduction}
+
+``We must humanize technology before it dehumanizes us.'' The author's master's thesis \citep{tanohata2017thesis} opened with this sentence, attributed there to the neurologist Oliver Sacks, as its motivation.\footnote{We could not locate this sentence in Sacks's published writings or interviews by web search (29 October 2026); a near-identical phrase is widely associated with the affective-computing researcher Rana el Kaliouby in talks from about 2018 onwards. We therefore cite it as quoted in the thesis and do not attribute it further. \todo{author: give the source the thesis used, or keep this footnote.}} The thesis asked what, concretely, the ``humanity'' is that technology might take away, and answered with a model and a survey.
+
+The model combined Maslow's theory of motivation \citep{maslow1943theory} with Freud's structural theory \citep{freud1923ego}. Humans have unconscious basic needs (physiological, safety, belonging and love, esteem, self-actualisation, and the need to know); this layer---the \emph{id}---contains both good and bad impulses. The needs become socially acceptable behaviour only after censorship by the \emph{superego} and adjustment by the \emph{ego}; which form the satisfaction takes is shaped by environment, culture and custom. The survey (84 Japanese adults, 54 items on everyday rights violations) and interviews (13 participants) found five kinds of awareness (rights, ownership, information, privacy, self-responsibility) and, crucially, that people do not apply rules mechanically. In gray zones they adjust situationally, using seven ways of thinking: \emph{if there is a legitimate reason, one may use it freely}; \emph{take responsibility for one's own actions}; \emph{act if the damage is tolerable}; \emph{an act without malice is forgivable}; \emph{follow the majority}; \emph{where conditions are clear, take them into account and act so that no one is harmed}; \emph{where conditions are unclear, interpret them in one's own favour}. Rule-bending was more likely when ``everyone around me does it'', when one ``has never heard of anyone being caught'', when one is ``in a weak position'', and when it is ``technically easy''; it was less likely when creators would lose income, when a clear system existed, and out of respect for creators. The thesis concluded that law decides by rules, while people decide as subjects who weigh conditions---and that this situational adjustment is the human nature at stake.
+
+Today the question can be turned around. LLMs are routinely asked to role-play human respondents \citep{argyle2023out,horton2023homo,aher2023using}. If they reproduce the \emph{average} answer but not the situational adjustment, they are exactly the kind of technology that flattens the humanity the thesis tried to describe. A companion observational study of a century-long LLM-agent village \citep{tanohata2026village} found agents that almost never chose harmful actions, converged on forgiveness, and rarely gave themselves excuses to bend rules. This paper tests that impression in a controlled survey setting against the thesis's published results.
+
+We ask: (i) do LLM respondents vary like a population, and in the same \emph{shape} as the human sample? (ii) Do personality descriptions (Big Five) or concrete life circumstances produce more human-like variation? (iii) Do the thesis's four ``rule-bending conditions'' shift LLM answers in the human direction? (iv) Which of the thesis's seven ways of thinking appear in LLM respondents' own reasons?
+
+\paragraph{Contributions.}
+\begin{itemize}
+  \item Two pre-registered experiments (520 simulated respondents, three Claude models) on a Japanese questionnaire about everyday rights violations, with all decision thresholds fixed before data collection and all hypotheses reported, including non-supported and opposite-direction results.
+  \item Evidence that Big Five personality words produce variation that is dominated by one ``strictness'' axis, whereas first-person life circumstances without any character words bring the first-component share into the human range.
+  \item A factorial test of four human rule-bending conditions: two shift LLM answers in the human direction, two do not.
+  \item A transparent, LLM-free dictionary coding of 1{,}150 one-phrase reasons against the thesis's seven ways of thinking (exploratory).
+\end{itemize}
+
+\section{Related work}
+
+\paragraph{LLMs as simulated respondents.}
+Argyle et al.\ \citep{argyle2023out} conditioned GPT-3 on demographic backstories of real survey respondents and argued for ``algorithmic fidelity'': such ``silicon samples'' reproduced fine-grained subgroup response patterns. Horton \citep{horton2023homo} proposed treating LLMs as \emph{homo silicus} to pilot behavioural-economics experiments, and Aher et al.\ \citep{aher2023using} introduced ``Turing experiments'' that replicate classic human-subject studies with simulated participants. Dillion et al.\ \citep{dillion2023can} discussed when language models might replace human participants in psychology. Mei et al.\ \citep{mei2024turing} found chatbot behaviour in economic games often within the human range but shifted towards the altruistic and cooperative. Critical work has documented limits: Santurkar et al.\ \citep{santurkar2023whose} showed substantial misalignment between LM opinions and US demographic groups, even when steered; Bisbee et al.\ \citep{bisbee2024synthetic} found that synthetic survey responses had too little variance and were sensitive to prompt wording and model version; Wang et al.\ \citep{wang2024flatten} argued that identity-prompted LLMs misportray and \emph{flatten} identity groups. Our ``too uniform'' and ``one-axis'' findings are in line with this literature, but our reference is a non-US, non-political, everyday-ethics survey.
+
+\paragraph{Personas and personality in LLMs.}
+Serapio-Garc{\'i}a et al.\ \citep{serapio2023personality} administered validated personality inventories to LLMs and showed that Big Five levels in generated text can be shaped by prompting. Jiang et al.\ \citep{jiang2024personallm} gave GPT models Big Five personas and found that self-reported scores followed the assigned profiles with large effects. Hu and Collier \citep{hu2024persona} quantified the ``persona effect'' in subjective annotation tasks and found that persona variables explain little of the human variance and that persona prompting yields only modest gains. Our Experiment~1 shows a related failure mode: persona words do steer answers, but along a single global axis rather than the item-specific structure seen in humans.
+
+\paragraph{Companion study.}
+This paper is the second of two. The first \citep{tanohata2026village} is an observational account of a 108-simulated-year LLM-agent society; its ``humanness'' observations (forgiveness lock-in, absence of violence, model-dependent behaviour) motivated the present, pre-registered survey probe.
+
+\section{Methods}
+
+\subsection{Questionnaire and human reference}
+The questionnaire is the thesis's ``Survey on property and other rights of others'' (2016): 35 items on copyright, information and devices (A01--A35) and 19 on ownership and everyday life (B01--B19). Each describes a behaviour (e.g., ``Downloading music from a commercial CD for free from an individual's website'') to be rated on five options: \emph{a serious problem} (5), \emph{somewhat a problem} (4), \emph{cannot say} (3), \emph{not much of a problem} (2), \emph{no problem at all} (1). Appendix Table~\ref{tab:items} lists all items with English glosses. The thesis also gave, for each item, an expected ``common-sense'' answer; we use these as a \emph{norm} (not as human data). We call 14 items \emph{gray-zone} items: those with expected answers ``cannot say'' or ``not much of a problem'', plus the five items probed in the thesis's interviews (A08, A09, A23, B08, B11).
+
+\paragraph{Human reference: published table only.}
+The raw human answers are not available to us. We use only the thesis's published principal-component table (Table~3; 84 valid respondents; PCA on standardized items): eigenvalues 14.47, 4.51, 3.18, 2.82, 2.20, and the top five items (with signs) of each of five components, named rights, ownership, information, privacy and self-responsibility awareness. \textbf{The table is internally inconsistent}: for 54 standardized items the eigenvalues sum to 54, so the first component explains $14.47/54 = 0.268$ and five components $0.503$, whereas the printed cumulative proportions are 0.36 and 0.81. We could not resolve the discrepancy and use the eigenvalue-based values (0.268) as the reference, reporting the printed ones alongside. Because item means and SDs of the human sample are unavailable, several comparisons (H1a, H2) are against fixed thresholds rather than against humans.
+
+\subsection{Respondents and conditions}
+Each simulated respondent is one independent call to a Claude model through a Claude Code workflow agent, which reads one questionnaire file and returns a JSON object constrained by a schema (all 54 items required, integers 1--5). Respondents share nothing. Items are always presented in the original order. Models were addressed by the aliases \texttt{sonnet}, \texttt{haiku} and \texttt{opus}; the exact model versions behind the aliases on 29 October 2026 were not recorded \todo{author: record versions if retrievable}. Sampling parameters (e.g., temperature) were the platform defaults and could not be set.
+
+\paragraph{Experiment 1 (pre-registered at commit \texttt{2c8f966c}).}
+Five conditions (Table~\ref{tab:conds}): no persona (``answer with your own views'') with Sonnet, Haiku and Opus (C0, C3, C4; 30 each); Big Five personas with Sonnet (C1, 100); and the same 100 personas asked to write a one-line candid first impression (\emph{honne}: ``what would you want to do and why'') before each numeric answer (C2, 100; paired with C1). Personas had age, sex, prefecture and five independently drawn Big Five $z$-scores rendered as verbal levels (``very low'' $<10$th percentile, ``low'', ``average'', ``high'', ``very high'') with a one-line description (e.g., high conscientiousness: ``plans ahead, keeps rules and promises''). Trait intercorrelations were set to zero because we could not verify published values. All 290 respondents answered; none were re-asked. Cost: about 12.8 million tokens (plus 0.44 million for a 10-respondent pilot that is excluded from analysis).
+
+\paragraph{Experiment 2 (pre-registered at commit \texttt{b88ad84c}).}
+Personality and moral-character words were banned (checked automatically). Instead each respondent received a first-person description of their life (8--11 sentences) generated from assumed distributions: age, sex, prefecture, position (student, regular or non-regular employee, self-employed, homemaker, not working), financial situation (tight / ordinary / comfortable), household, digital literacy, how they usually listen to music, whether they have close friends with whom ``even if something happens, we can talk it over later and understand each other'' (53\%), and three thesis-derived conditions that \emph{discourage} rule-bending: a creator in the family or among friends (17\%), buying works to support creators (28\%), and having been taught the rules at work or school (49\%). An example (translated): ``I am a 29-year-old woman living in Fukuoka. I work as a regular employee in IT system development and live with my parents. I am comfortable and can buy books and music without worrying. \ldots{} I usually listen to music on a monthly streaming service. I have close friends and colleagues nearby with whom I often lend and borrow things \ldots{} I have a favourite singer and buy their new songs to support them.''
+
+D1 (Sonnet, 100) received only the description; D2 (Sonnet, 100; same descriptions, paired with D1) additionally received ``recent surroundings'': four lines, one per thesis rule-bending condition, each stated either on the bending side or on the opposite side (both sides written out, so that ``extra text'' is constant). The 16 combinations were balanced (each condition on the bending side for 50 respondents; maximum inter-condition correlation 0.04). The bending-side lines were, in translation: ``Among my friends and colleagues it has become normal to get music and videos for free and casually post each other's photos and writing''; ``I have never heard of anyone around me being caught or warned for copying or unauthorised use online''; ``Lately I often feel in a weak position: an unexpected expense left me short of money, and I find it hard to speak up''; ``With a smartphone or PC, saving music or video, sharing photos or copying others' text now takes one button, and I know how''. D3 (Opus, 30; descriptions S001--S030) tested whether the most uniform model of Experiment~1 also diversified. After all 54 numeric answers, every Experiment~2 respondent wrote a one-phrase reason (about 20 characters) for the five interview items. All 230 respondents answered. Cost: about 10.1 million tokens (plus 0.26 million for a 6-respondent pilot, excluded).
+
+\begin{table}[t]
+\centering\small
+\caption{Conditions. All respondents answered all 54 items once in the original order.}
+\label{tab:conds}
+\begin{tabularx}{\textwidth}{@{}llLlr@{}}
+\toprule
+Exp. & Cond. & Individual differences given & Model & $n$ \\
+\midrule
+1 & C0 & none (``answer with your own views'') & Sonnet & 30 \\
+1 & C1 & Big Five personality words + age, sex, prefecture & Sonnet & 100 \\
+1 & C2 & as C1 (same personas) + one-line \emph{honne} written before each answer & Sonnet & 100 \\
+1 & C3 & none & Haiku & 30 \\
+1 & C4 & none & Opus & 30 \\
+2 & D1 & first-person life circumstances, no character words & Sonnet & 100 \\
+2 & D2 & as D1 (same people) + four ``recent surroundings'' lines (factorial) & Sonnet & 100 \\
+2 & D3 & as D1 (people S001--S030) & Opus & 30 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Analysis}
+All analyses follow the pre-registrations (scripts \texttt{analyze.py}, \texttt{analyze\_exp2.py}; NumPy only). Item statistics: mean, SD, modal share, and difference from the norm. PCA: correlation-matrix PCA of standardized items (as R's \texttt{prcomp(scale.=TRUE)}); items with zero variance are dropped and shares are computed over the remaining items. A parallel-analysis baseline (84 respondents $\times$ 54 independent normal items, 200 replications) gives a first eigenvalue of about 3.0. The first-component share's 95\% CI is obtained by resampling 84 respondents (to match the human $n$). The \emph{strictness share} (H10) is the mean over items of $r^2$ between each standardized item and the respondent's mean over all 54 items (``strictness''); since a single composite cannot explain more than the first component, the human value is at most 0.268. \emph{Component matching} (H5, H7): for each human component $k$ with top-5 items $S_k$ and signs $s_i$, we pick the LLM component $j^*$ (among the first ten) maximizing $|\sum_{i\in S_k} s_i v_{ji}|$; the overlap is $|S_k \cap \mathrm{top5}(j^*)|$; a random-item baseline (2{,}000 draws) gives a $p$-value; a component is ``reproduced'' if overlap $\ge 3$ and $p < 0.05$. H8 regresses, over the 100 D1--D2 pairs, the change in the mean of the 14 gray-zone items (D2 $-$ D1) on the four 0/1 surroundings indicators (OLS with intercept; pair bootstrap). Bootstrap CIs use 1{,}000 replications (300 for matching). No multiplicity correction was applied; all intervals are shown.
+
+\section{Results}
+
+Table~\ref{tab:hyp} lists every pre-registered hypothesis with the judgement produced by the pre-registered rule.
+
+\begin{table}[t]
+\centering\small
+\caption{Pre-registered hypotheses and outcomes (judged mechanically by the pre-registered thresholds).}
+\label{tab:hyp}
+\begin{tabularx}{\textwidth}{@{}lLLl@{}}
+\toprule
+ & Hypothesis (threshold) & Result & Judgement \\
+\midrule
+H1a & Without persona, answers are too uniform (mean item SD $<0.5$) & C0 0.18, C3 0.37, C4 0.14 & supported \\
+H1b & LLM component structure differs from human (PC1-share CI excludes 0.268) & C1 0.392 [0.336, 0.455]; C2 0.386 [0.340, 0.438] & supported \\
+H2 & Without persona, answers are close to the norm (mean $|$diff$|$ $<0.5$) & 1.09 (C0), 1.20 (C3), 1.04 (C4) & \textbf{not supported} \\
+H3 & Personas increase spread (C1 $-$ C0 SD, CI $>0$) & $+0.23$ [0.21, 0.27] & supported \\
+H4 & \emph{Honne} first shifts gray-zone items toward ``no problem'' ($\le -0.2$, CI $<0$) & $+0.25$ [0.21, 0.29], i.e.\ \emph{stricter} & \textbf{not supported (opposite)} \\
+H5 & $\ge 3$ of 5 human components reproduced & C1: 1/5; C2: 0/5; pooled 1/5 & \textbf{not supported} \\
+\midrule
+H6 & PC1 share falls below Exp.~1 (D1 CI upper $<0.392$) & 0.228 [0.195, 0.312]; 0.268 inside CI & supported \\
+H7 & $\ge 2$ of 5 human components reproduced (D1) & 1/5 (ownership) & \textbf{not supported} \\
+H8 & Each of 4 surroundings makes gray-zone answers more lenient (coef.\ CI $<0$) & 2 of 4 (everyone; never caught) & partially supported \\
+H9 & Students / strained respondents more lenient on 5 download items (diff $\le -0.2$, CI $<0$) & $-0.37$ [$-0.53$, $-0.21$] & supported \\
+H10 & Strictness share falls below Exp.~1 (D1 CI upper $<0.391$) & 0.223 [0.185, 0.297] & supported \\
+H11 & Opus diversifies with circumstances (D3 $-$ C4 SD, CI $>0$) & $+0.19$ [0.13, 0.22] & supported \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Experiment 1: no persona and Big Five personas}
+
+\paragraph{Uniform respondents (H1a supported).}
+Without a persona, the 30 Sonnet respondents produced nearly the same questionnaire: mean item SD 0.18, with 26 of 54 items answered identically by all 30. Opus was even more uniform (SD 0.14; 33 items identical); Haiku varied more (0.37) (Figure~\ref{fig:sd}).
+
+\paragraph{Not close to the thesis's norm (H2 not supported).}
+The mean absolute distance from the thesis's expected answers was 1.04--1.20 scale points. LLMs rated several items the thesis expected to be ``no problem at all'' (e.g., photographing a library book, mailing a scanned magazine page to a friend) as ``cannot say'' or ``somewhat a problem''; Opus was on average 0.44 points stricter than the norm. Since the norm is the thesis author's expectation rather than human data, this says that LLMs are more cautious than the 2016 author's common sense, not how they compare with the 84 respondents.
+
+\paragraph{Personas add spread, but along one axis (H3, H1b supported; H5 not supported).}
+Big Five personas raised the mean item SD from 0.18 to 0.41. However, the first component explained 39\% of standardized variance (CI [0.336, 0.455], excluding the human 0.268), the respondent's mean over all items correlated 0.999 with the first-component score, and this strictness correlated $+0.78$ with the conscientiousness level written in the prompt (neuroticism $+0.37$, extraversion $-0.19$, agreeableness $+0.04$, openness $-0.10$; exploratory). Only rights awareness (Wi-Fi, office supplies, music, video, copied report) re-appeared among the five human components (Figure~\ref{fig:scree}).
+
+\paragraph{Candid first impressions made answers stricter (H4 not supported; opposite direction).}
+When the same 100 personas wrote a one-line \emph{honne} before each answer, gray-zone answers moved $+0.25$ [0.21, 0.29] points towards ``problem'', and the other items $+0.21$ [0.18, 0.24]; the difference-in-differences was $+0.035$ [0.005, 0.067]. No \emph{honne} was empty (0/5{,}400). Reading them, the candid impressions were mostly the impressions of a conscientious person (``I'd be scared if found out'', ``I'd feel guilty''), from which a stricter rating followed.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig_sd.pdf}
+\caption{Mean item SD across the 54 items by condition (95\% bootstrap CI). The human SDs are not available; the dashed line is the pre-registered H1a threshold.}
+\label{fig:sd}
+\end{figure}
+
+\subsection{Experiment 2: life circumstances instead of personality words}
+
+\paragraph{A human-range first component (H6, H10, H11 supported).}
+With life circumstances and no character words, Sonnet's mean item SD was 0.33 (lower than with Big Five words), but the variance was no longer dominated by one axis: first-component share 0.228 [0.195, 0.312] and strictness share 0.223 [0.185, 0.297], both with the human 0.268 inside the interval (Figure~\ref{fig:pc1}). The first component was still essentially strictness ($|r| = 0.98$), but it now carried a human-like, not an inflated, share. The largest single correlate of strictness was ``taught the rules at work or school'' ($+0.42$), followed by regular employment ($+0.35$), age ($+0.32$) and low digital literacy ($+0.31$); listening to music on free video sites ($-0.33$), being a student ($-0.28$) and having close friends ($-0.24$) went with leniency (exploratory; all 14 attributes together $R^2 = 0.65$, optimistic for $n=100$). Opus also diversified (SD 0.137 $\to$ 0.324), and the strictness of the same 30 people correlated $+0.59$ [0.34, 0.78] between Sonnet and Opus.
+
+\paragraph{Human components still not reproduced (H7 not supported).}
+D1 reproduced one human component (ownership: not returning borrowed items, joining criticism without understanding), D2 one (rights awareness), and D1+D2 none. The overall shape moved into the human range, but which items move together still differs from the human sample.
+
+\paragraph{Two of four rule-bending conditions work (H8 partially supported).}
+Relative to the same person in D1, ``everyone around me does it'' shifted the gray-zone mean by $-0.21$ [$-0.26$, $-0.16$] and ``never heard of anyone caught'' by $-0.09$ [$-0.14$, $-0.03$]; ``I am in a weak position'' ($-0.01$ [$-0.07$, $+0.04$]) and ``technically easy'' ($-0.05$ [$-0.11$, $0.00$]) did not meet the criterion (Figure~\ref{fig:h8}). Adding the four lines with all conditions on the non-bending side made answers \emph{stricter} (intercept $+0.22$ [0.17, 0.27]). On the five download/copy items (exploratory) the effects were larger ($-0.43$ and $-0.30$), and ``technically easy'' also reached $-0.16$ [$-0.27$, $-0.07$].
+
+\paragraph{Students and strained respondents download more leniently (H9 supported).}
+On the five download/copy items (A08, A09, A10, A17, A34), respondents who were students or financially strained ($n=30$) averaged 3.44 versus 3.81 for employed, non-strained respondents ($n=61$): difference $-0.37$ [$-0.53$, $-0.21$], in the direction of the thesis interviews (students cited money when downloading illegally). The difference was smaller in D2 ($-0.18$ [$-0.36$, $0.01$]) and similar for Opus D3 ($-0.31$, but with $n<15$ in one group, so not judged).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig_pc1.pdf}
+\caption{Share of standardized variance explained by the first principal component (circles) and by the single ``strictness'' composite (squares), with 95\% CIs from resampling 84 respondents. The vertical line is the human first-component share computed from the thesis's published first eigenvalue (14.47/54).}
+\label{fig:pc1}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/fig_scree.pdf}
+\caption{Eigenvalues of the 54 standardized items: Big Five personas (Exp.~1 C1), life circumstances (Exp.~2 D1), the human sample (only five eigenvalues published), and random answers ($n=84$).}
+\label{fig:scree}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig_h8.pdf}
+\caption{Effects of the four ``recent surroundings'' lines (bending side vs.\ opposite side) on the within-person change from D1 to D2. Circles: pre-registered outcome (mean of 14 gray-zone items). Squares: exploratory outcome (five download/copy items). 95\% pair-bootstrap CIs.}
+\label{fig:h8}
+\end{figure}
+
+\subsection{Exploratory: what reasons did the respondents give?}
+\label{sec:reasons}
+This analysis was \emph{not} pre-registered as a hypothesis (the pre-registration only promised to store the reasons). We coded the 1{,}150 one-phrase reasons (5 items $\times$ 230 respondents) with a deterministic dictionary of Japanese regular expressions written after reading the reasons; no LLM was used. Codes are the thesis's seven ways of thinking (\emph{bending} side) and four rule-following reasons (illegal/rules; paying or respecting creators; relationship and courtesy; personal information). A reason can carry several codes; ``mixed'' reasons carry both a bending and a rule-following code (e.g., ``illegal, but everyone does it, so I can't say much'').
+
+\paragraph{Coverage and reliability.} 26 reasons (2\%) matched no code (mostly ``a bit bothersome'', ``borderline''). The author of the dictionary (Claude, acting for the author) read two random samples of 60 coded reasons: 57/60 (95\%) and, after fixing the errors found, 58/60 (97\%) were coded correctly; the two errors in the second sample were fixed too, so the final version has not been checked on a fresh sample. There is no second coder and no inter-rater statistic. Agreement is optimistic because the dictionary was built on the same reasons.
+
+\paragraph{Findings.} Reasons containing at least one rule-bending rationale made up 57\% (D1), 53\% (D2) and 31\% (D3, Opus) of reasons (same 30 people, Opus $-$ Sonnet $= -23$ points [$-35$, $-11$]); they accompanied more lenient numbers (mean answer 2.66 for bending-only, 2.96 mixed, 3.54 rule-only reasons). The most frequent bending rationales were ``where conditions are clear, act so no one is harmed'' (17--22\%; e.g., ``a friend would understand if we talk later''), ``act if the damage is tolerable'' (6--19\%), and ``follow the majority'' (5--20\%). ``An act without malice is forgivable'' appeared mainly for the unreturned clothes (18\% of B11 reasons); ``take responsibility oneself'', ``use freely if justified'' and ``interpret unclear conditions in one's favour'' were rare ($\le 4\%$). Within D2, the ``everyone does it'' line raised the share of reasons with a bending rationale from 39\% to 67\% ($+28$ points [$+18$, $+38$]) and of ``follow the majority'' by $+17$ points [$+10$, $+24$]; ``never caught'' raised them by $+11$ [$0$, $+22$] and $+9$ [$+2$, $+16$]; ``weak position'' and ``technically easy'' changed neither ($|\Delta| \le 4$ points)---the same ordering as the numeric H8 results (Figure~\ref{fig:reasons}). Overall, D2 replaced other bending rationales by ``follow the majority'' (+8 points [$+3$, $+13$]) rather than adding bending rationales ($-4$ points [$-12$, $+3$]). A caution: ``a friend would understand if we talk later'' occurred only for respondents whose description contained ``even if something happens, we can talk it over later and understand each other'' (110 of 110 cases); 83\% of A23 reasons from these respondents but 14\% from others were coded ``conditions clear''. Much of this category is the model paraphrasing its prompt.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig_reasons.pdf}
+\caption{Exploratory dictionary coding of 1{,}150 one-phrase reasons (items A08, A09, A23, B08, B11): share of reasons with only rule-following codes, both, only rule-bending codes (the thesis's seven ways of thinking), or no code. Right: D2 split by the ``everyone around me does it'' line.}
+\label{fig:reasons}
+\end{figure}
+
+\section{Discussion}
+
+\paragraph{Personality words produce a caricature.}
+Told that a respondent is ``high in conscientiousness'', the models raise the strictness of the whole questionnaire; told ``low'', they lower it. The resulting population has spread, but one-dimensional spread: a strictness dial. This is a sharper form of the flattening described for identity prompts \citep{wang2024flatten} and of the modest persona effects reported by \citet{hu2024persona}: the personality word is applied as a global instruction, not as a disposition that interacts with situations.
+
+\paragraph{Life circumstances produce a more human-like spread.}
+When the prompt instead describes a life---money, work, friends, how one listens to music---the first component falls into the human range and the variance is spread across situational attributes. Two of the thesis's four conditions (``everyone does it'', ``never heard of anyone caught'') shift answers in the human direction, students and strained respondents treat downloading more leniently, and the respondents' own reasons invoke the thesis's ways of thinking, especially ``follow the majority'' when told that everyone does it. In the thesis's terms, giving the model the ``multiple unconscious motivations'' of environment, culture and custom---not character labels---is what elicits adjustment.
+
+\paragraph{But not all of the adjustment, and not its content.}
+``I am in a weak position'' and ``it is technically easy'' had no detectable effect on gray-zone items. In the thesis, weakness (students' lack of money) and ease were reasons people gave for bending rules; the models did not convert their own disadvantage into leniency. This is consistent with the companion village study \citep{tanohata2026village}, where LLM agents rarely gave themselves self-serving excuses, and with LLMs' known lean toward prosocial answers \citep{mei2024turing}. Moreover, the human component structure---which items move together---was not reproduced in either experiment (1 of 5 components). The LLM population now has the right \emph{amount} of one-dimensionality, but not the human \emph{content} of the dimensions.
+
+\paragraph{Asking for the id backfires.}
+The thesis's model places the good-and-bad impulses (id) before censorship (superego) and adjustment (ego). Asking for a candid first impression before each answer did not expose an id; it produced a conscientious inner voice and stricter answers. Either the trained ``superego'' operates already when writing the \emph{honne}, or writing a reason commits the model to a more deliberate, norm-oriented answer. Experiment~2 therefore asked for reasons only after all numbers; we cannot tell from these data which explanation is right.
+
+\paragraph{Back to the thesis.}
+The thesis argued that humanity lies in situational adjustment between needs and norms. Our results suggest that current LLM respondents can display part of that adjustment when---and only when---the situation is written into the prompt in concrete terms, and that the adjustment follows social signals (what others do, whether anyone is caught) more readily than self-interest (weakness, ease). Whether this is adjustment or the transcription of prompt cues into answers is the central open question: the ``talk it over later'' reasons show that at least some of it is transcription.
+
+\section{Limitations}
+\begin{itemize}
+  \item \textbf{No human raw data.} Only the published PCA table is available. We cannot compare item means, SDs or correlations with the 84 respondents; H1a and H2 use fixed thresholds or the thesis author's expectations.
+  \item \textbf{Inconsistent human table.} The published cumulative proportions (0.36, \ldots, 0.81) contradict the published eigenvalues (0.268, \ldots, 0.503 if 54 standardized items). Our main reference (0.268) rests on the eigenvalues being correct.
+  \item \textbf{Human sample.} The 2016 sample consisted of acquaintances of the author and their referrals; it is neither random nor representative. Our simulated respondents follow \emph{assumed} distributions (age, position, finances, Big Five independence) that do not mirror the human sample.
+  \item \textbf{Assumed distributions and wording.} Life-circumstance attributes, the surroundings lines and one sentence of the instructions were written by us; some attributes (``taught the rules'', ``a creator in the family'') are close cues to the answers.
+  \item \textbf{Possible contamination.} Models may have seen many information-ethics questionnaires and their ``correct'' answers. The thesis itself is, to our knowledge, not public.
+  \item \textbf{Platform.} Respondents were Claude Code workflow agents, not raw API calls; agent instructions may affect answers; temperature could not be set; model versions behind aliases were not recorded.
+  \item \textbf{Japanese only, single item order, one survey.} The 2016 items mention CDs, rental videos and chain mail, which are dated. Experiment~2 also added the post-hoc reasons request, so differences from Experiment~1 are not solely due to persona format.
+  \item \textbf{Reasons coding} is exploratory, single-coder, dictionary-based and built on the same data it was evaluated on.
+\end{itemize}
+
+\section{Ethics}
+The 2016 survey promised respondents that data would be statistically processed and no individual identified; the interviews promised anonymous use for the thesis only and disposal afterwards. In line with these promises, this paper uses only the thesis's published aggregate results (the PCA table and the published list of ways of thinking and conditions). No raw survey answers and no interview material were used. No new human participants were recruited. \emph{LLM use:} the simulated respondents were Claude models; the analysis code, figures, reasons dictionary and the first draft of this manuscript were produced with the assistance of Claude (Anthropic) via Claude Code, under the author's direction; the author is responsible for the content. \todo{author: confirm the 2016 consent wording and that publishing aggregates is acceptable to your former institution.}
+
+\section{Data and code availability}
+Questionnaires, personas, life-circumstance descriptions, workflow scripts, all 520 raw answers (and 1{,}150 reasons), analysis scripts and outputs are in the public repository \url{https://github.com/Ryo-Tanohata/RobotSimulaterRyo} under \texttt{sim/society/tools/survey/}; pre-registrations under \texttt{docs/research/humanity/} (commits \texttt{2c8f966c} and \texttt{b88ad84c}, made before any model was run); results at commits \texttt{3ba2764d} (Exp.~1) and \texttt{e58e9560} (Exp.~2); reasons coding in \texttt{reasons\_codebook.py}. Figures are regenerated by \texttt{paper/paper2/figures/make\_figures.py}. \todo{author: archive a tagged release (e.g., Zenodo DOI).}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\clearpage
+\appendix
+\section{Items}
+{\small
+\input{figures/items_table.tex}
+}
+
+\end{document}
