@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "畑は実っている。毎夕かならず鎌で刈ろう。わたしは昼のあいだ土器をつくって、種を守る。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入れれば蓄えの草の種が虫に食われない。夕方は畑を刈る。"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "土器づくり", "place": "camp", "why": "採集が得意だが、今は土器を増やして草の種を守りたい。夕方は畑を刈る。"},
+  "キサ18": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに実った畑を刈り切るため。"},
+  "ソナ19": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに実った畑を刈り切るため。"},
+  "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに実った畑を刈り切るため。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は昼に土器をつくり、毎夕鎌で畑を60つかみずつ刈るのがよい", "because": [1045781], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "mood": "畑は実り、蓄えも多い。落ち着いて土器をつくれそうだ。"}

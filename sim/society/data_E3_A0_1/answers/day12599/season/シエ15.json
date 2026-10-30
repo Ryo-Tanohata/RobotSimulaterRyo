@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "畑が実っている。夏のうちに毎夕みんなで鎌を持って刈ろう。落ちたらもったいないよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに毎夕刈らないと落ちてしまうから、刈り入れを手伝う"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"ヌオ16": {"activity": "畑仕事", "place": "camp", "why": "畑が実っているので、家族みんなで刈り入れに回る"}, "ソワ16": {"activity": "畑仕事", "place": "camp", "why": "畑が実っているので、家族みんなで刈り入れに回る"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏のはじめは畑が実っているので、家族みんなで毎夕刈れば蓄えが増える。", "because": [1045781], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年",
+ "feeling": "蓄えは多くて安心している。夏の刈り入れをしっかりやりたい。"}

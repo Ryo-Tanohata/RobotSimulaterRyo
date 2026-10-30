@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "畑は七十枚も実っている。夏のうちに刈らなければ落ちてしまうよ。鎌を持って、みんなで毎日刈ろう。"}, {"to": "テナ20", "text": "テナ20、わたしと畑に出よう。刈り方を見せてあげる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑がたくさんあり、夏のうちに刈り入れないと落ちてしまうから"},
+ "family": [{"name": "テナ20", "activity": "畑仕事", "place": "camp", "why": "刈り入れの手が足りないので、わたしと一緒に畑で働いて覚えてほしい"}],
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "この夏、1000 つかみまいた畑から約 9942 つかみ刈れる。畑は約 70 枚実っている", "because": [1045781], "confidence": 0.9},
+  {"op": "add", "text": "草で養えるヤギは約 110 頭で、136 頭いたときに 9 頭がやせていなくなった", "because": [1045799], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "病で人を多く失った年",
+ "feeling": "体はまだ動く。この夏の刈り入れを最後までやりとげたい"}
