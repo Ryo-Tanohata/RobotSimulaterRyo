@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "冬のあいだ、畑の草取りをわたしが続けるよ。夏の刈り入れで種を落とさないように、手の空いた人はいっしょに草を取ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑が育っている。冬と春の草取りで夏の実りが増えるので、続ける。"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど夏の実りが減らない。"},
+  "ホタ17": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので、冬も取れる魚を探して蓄えを助ける。"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを守る。"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "ほかの仕事は得意でないので、草取りで手伝う。"}
+ },
+ "keep": false,
+ "judge": {"M426": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えが十分ある冬は、畑の草取りを続けて夏の実りに備える", "because": [1055666], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって落ち着いている。畑の草取りをこつこつ続けたい。"}

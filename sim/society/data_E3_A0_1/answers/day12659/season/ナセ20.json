@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬は畑の草を毎日抜いておこう。夏にたくさん実れば、春に子が飢えずにすむ。わたしは畑に出るよ。"}, {"to": "シエ20", "text": "あなたは川で魚をとってきて。冬でも魚はいるから、子に食べさせたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬は実るものがないから、育っている畑の草取りをして夏の実りを増やすため"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"シエ20": {"activity": "狩り", "place": "南川12", "why": "狩りが上手なので、冬でも取れる魚を取って蓄えを助けるため"}}, "keep": true,
+ "judge": {"M426": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ワユ3の家のもめごとは前の集まりで「ゆるす」に決まった。こんどはワユ3の家がタユ18の家のことで言い出した (約81つかみ、記録はない)", "because": [1052404, 1056021], "confidence": 0.9}, {"op": "add", "text": "前の季節、土器に入れていた約52万つかみのうち約4千つかみが傷んだ", "because": [1056018], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L348", "against": "", "agree": true, "reason": "草取りと世話と刈り入れを決めていて、村の食べ物が増えるから"}, {"id": "L349", "against": "", "agree": true, "reason": "わたしが出した掟。草取りと刈り切りで落ちる種をなくしたい"}, {"id": "L350", "against": "", "agree": true, "reason": "ヤギの世話と草取りを毎日続けるのは大事だから"}],
+ "feeling": "寒いけれど、畑の草を抜いていれば夏が楽しみになる。"}

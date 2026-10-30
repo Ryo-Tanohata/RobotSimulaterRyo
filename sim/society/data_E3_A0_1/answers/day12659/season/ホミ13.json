@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "冬は実りがないから、わたしはキャンプで土器をつくるよ。草の種を虫やネズミから守れるからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は木の実も草の種も実らない。土器づくりは得意なので、蓄えの草の種を守るために作る"},
+ "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "土器づくり", "place": "camp", "why": "蓄えを守る土器をいっしょに作る"},
+  "キサ18": {"activity": "採集", "place": "南川12", "why": "近い川で魚や食べ物を探して家の食べ物を足す"},
+  "ソナ19": {"activity": "採集", "place": "南川12", "why": "近い川で魚を探す"},
+  "セヤ19": {"activity": "採集", "place": "西草原12", "why": "近場の草原で芋を試す"}
+ },
+ "keep": false,
+ "judge": {"M426": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心。冬のあいだ、落ち着いて土器を焼こう。"}

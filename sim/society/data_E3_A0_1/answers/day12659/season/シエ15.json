@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "夜にザガに襲われてけがをした。治るまでは無理をせず、よくなったら土器を焼いて蓄えの種を守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えの草の種を虫やネズミから守る土器を、土器づくりが得意な私が作る。けがの間は休む。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ16": {"activity": "狩り", "place": "北川12", "why": "冬も魚はいるので、狩りの腕を生かして魚をとる。"},
+  "ソワ16": {"activity": "狩り", "place": "北川12", "why": "二人組で川の魚をとるほうが安全でよい。"}},
+ "keep": false,
+ "judge": {"M426": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夜にザガがキャンプに来るとけがをすることがある。けがの間は無理せず休む。", "because": [1056009], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "けがが少し心配だが、蓄えは多いので落ち着いている。"}
