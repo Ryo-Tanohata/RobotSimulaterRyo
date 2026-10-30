@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬の前に木の実をたっぷり集めておこう。おれは採集が得意だから、川と林を回ってくる。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": [], "why": "採集が得意で、冬は木の実が実らないので、今のうちに食べ物を集めて蓄えを厚くするため"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソナ24": {"activity": "採集", "place": "南川12", "why": "採集が得意なので、冬に備えて食べ物を集めてもらう"}},
+ "keep": false,
+ "judge": {"M430": "ゆるす", "M431": "ゆるす", "M432": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので、少し気が引き締まる。まずは体を動かして食べ物を集めたい。"}

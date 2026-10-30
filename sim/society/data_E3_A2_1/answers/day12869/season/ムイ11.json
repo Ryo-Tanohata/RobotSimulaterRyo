@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種をまいて、冬と春は交代で草取りをしよう。ヤギは草に収まっているから、つぶさずに世話をしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りをして、夏の実りを増やすため"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"タユ12": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを守るため"}, "ヌオ14": {"activity": "狩り", "place": "北川12", "why": "冬に向けて魚やけものをとるため"}, "ソナ17": {"activity": "狩り", "place": "南川12", "why": "川で魚をとって食べ物を増やすため"}, "ラキ18": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をするため"}, "オセ19": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やすため"}, "ロワ19": {"activity": "狩り", "place": "北川12", "why": "魚をとって蓄えを助けるため"}, "テナ19": {"activity": "ヤギの世話", "place": "camp", "why": "小さな子を育てながらキャンプでヤギの世話をするため"}, "ラニ19": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"}, "ムイ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}, "セヤ20": {"activity": "ヤギの世話", "place": "camp", "why": "乳のしぼり方を覚えながら世話をするため"}, "リセ20": {"activity": "畑仕事", "place": "camp", "why": "子のそばで草取りをするため"}, "ヒセ20": {"activity": "畑仕事", "place": "camp", "why": "草取りを覚えるため"}, "ホミ20": {"activity": "畑仕事", "place": "camp", "why": "半分の働きで草取りを手伝うため"}},
+ "keep": false,
+ "judge": {"M430": "ゆるす", "M431": "ゆるす", "M432": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるので安心している。冬と春の草取りで夏の実りを増やしたい。"}
