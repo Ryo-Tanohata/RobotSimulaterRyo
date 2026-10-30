@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "冬は実がないから、わたしは家の中で土器をこつこつ焼くよ。川で魚や芋が見つかったら教えてね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は木の実が取れないので、家の中で土器づくりを続けて蓄えの種を守る"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ13": {"activity": "採集", "place": "南川12", "why": "近い南の川で魚や芋を探して家の食べ物の足しにする"}, "ヒセ19": {"activity": "採集", "place": "南川12", "why": "ラニ13と二人組で川の魚や芋を探す"}, "ワユ19": {"activity": "土器づくり", "place": "camp", "why": "家の中で土器づくりを覚えて続ける"}},
+ "keep": false,
+ "judge": {"M426": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "冬は木の実も草の種も実らないので、土器づくりを家の中で続け、川で魚や芋を探すのがよい", "because": [1055745], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。静かな冬を土器づくりで過ごしたい。"}

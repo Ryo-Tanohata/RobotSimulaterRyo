@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "この冬は木の実がならないから、畑の草取りを交代でしっかりやろう。夏にたくさん刈れれば、子どもたちも腹いっぱい食べられる。"}, {"to": "シエ20", "text": "蓄えの話はいろいろあるけど、冬は助け合いだ。春までいっしょに畑を見ていこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["セオ20", "トナ22", "ナセ23", "ソナ24"], "why": "冬は木の実がならないので、秋にまいた畑の草取りをして夏の実りを増やしたい"},
+ "family": [{"name": "ラキ24", "activity": "畑仕事", "place": "camp", "why": "12 歳になったので、わたしと畑の草取りを覚えてほしい"}],
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M426": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "冬に畑の草取りをする人が多いと、夏の刈り入れが増える", "because": [1055512, 1055621, 1055731], "confidence": 0.6}],
+ "proposal": {"text": "この冬のあいだ、毎日だれか四人が交代でキャンプのそばの畑の草取りをし、ヤギは 99 頭いるので毎日三人がキャンプで世話をしよう。雨の夜に濡れる人が多いので、手の空いた家は家族の住まいを建てよう。", "because": [1055797], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガはこわいから"}, {"id": "L351", "against": "", "agree": true, "reason": "畑の草取りとヤギの世話は冬も欠かせないから"}],
+ "feeling": "寒くて木の実もないが、畑が育っているのを見ると夏が楽しみだ"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "冬の畑は草取りが肝心だよ。七十を超える畑が育っているんだから、手の空いた者は畑に出ておくれ。夏に刈る種が春の命綱になる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "土器は蓄えの分より十分あるから、冬のあいだは畑の草取りをして夏の実りを増やしたい"},
+ "family": [{"name": "テナ20", "activity": "畑仕事", "why": "子でも草取りなら手伝える。畑の世話を覚えてほしい"}],
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M426": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "この冬のはじめ、村の蓄えは今の人数で約 140 日分あり、畑は 72 枚育っている。土器は 15607 個あり、蓄えはみな土器に入る", "because": [1055797], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L99", "against": "", "agree": true, "reason": "冬の畑は草取りが少ないと実りが減るから"},
+           {"id": "L177", "against": "", "agree": true, "reason": "土器は十分あるので、種は土器に入れて守るのがよい"}],
+ "feeling": "蓄えはまだあるが、春までの道は長い。畑を守って夏を待とう"}
