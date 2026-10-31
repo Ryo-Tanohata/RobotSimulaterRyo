@@ -12,12 +12,12 @@
     "running": [
       {"text": "いま回っているものはない。本物の村は 108年120日目 (13079 日目) で止まっている。", "src": ["sim/society/HANDOFF.md"]},
       {"text": "G9 の 4 年で、遠くの町の運ぶ人は 1 回も来なかった。来る見込みを 0.1 から 0.5 にした (本人の決め 2026-10-29)。", "src": ["sim/society/HANDOFF.md"]},
+      {"text": "修士論文〔田之畑 2017 (修士論文)〕の元データは、もうない (本人 2026-10-31)。人間とのくらべは、論文に載った主成分の表 3 だけでする。", "src": ["docs/research/humanity/thesis2017_questionnaire.md"]},
       {"text": "実験 3 の写しの村 3 つは、3 年を回し終えた (12599 → 12959)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]}
     ],
     "decide": [
       {"text": "実験 4 をするか: 村人が「取る」を選べる世界にする (写しの村だけ)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
-      {"text": "本物の村 (G9) を続けるか: 続けるなら 1 年ずつ回す。", "src": ["sim/society/HANDOFF.md"]},
-      {"text": "修士論文〔田之畑 2017 (修士論文)〕の元データ (問いごとの数) が見つかるか: あれば、問いごとの平均とばらつきを人と直接くらべられる。", "src": ["docs/research/humanity/paper2_exp1_results.md"]}
+      {"text": "本物の村 (G9) を続けるか: 続けるなら 1 年ずつ回す。", "src": ["sim/society/HANDOFF.md"]}
     ],
     "paper1_todo": {
       "src": ["paper/paper1/README.md"],
@@ -208,7 +208,7 @@
 
   "papers": [
     {"id": "paper1", "title_en": "Does an LLM Village Retrace Human History?", "title_ja": "LLM の村は人類の歴史をたどるか? — 決めておいた先史から国への順に進めた LLM の村の 108 年の観察", "state": "下書き (英語 LaTeX)", "pdf": "../../../paper/paper1/main.pdf", "summary": "../../../paper/paper1/要約_ja.md", "readme": "paper/paper1/README.md", "basis": {"text":  "LLM の村の先行研究〔Park ほか 2023〕〔Altera.AL ほか 2024〕〔Piatti ほか 2024〕とくらべ、人類史の物差しは考古学・人類学の本と論文 (下の出典の欄) から取った。", "src":  ["paper/paper1/main.tex", "paper/paper1/refs.bib"]}, "src": ["paper/paper1/README.md", "paper/paper1/要約_ja.md"]},
-    {"id": "paper2", "title_en": "Personality Words or Life Circumstances?", "title_ja": "性格の言葉か、暮らしの事情か — 2016 年の『他人の権利』アンケートで、LLM の答え手が人のように決まりからはみ出すかを調べる", "state": "下書き (英語 LaTeX)。実験 3 はまだ入っていない", "pdf": "../../../paper/paper2/main.pdf", "summary": "../../../paper/paper2/要約_ja.md", "readme": "paper/paper2/README.md", "basis": {"text":  "もとは本人の修士論文〔田之畑 2017 (修士論文)〕。そのモデルは欲求の段〔Maslow 1943〕と心の 3 つの部分〔Freud 1923〕を合わせたもの。始めの言葉は、修士論文が Sacks の言葉として引いた文〔Sacks の言葉とされる文〕。Sacks の文章には見つからず、ほぼ同じ文が el Kaliouby の言葉として出てくる〔el Kaliouby 2020〕。", "src":  ["paper/paper2/main.tex", "paper/paper2/README.md"]}, "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md", "docs/research/humanity/paper2_exp3_results.md"]}
+    {"id": "paper2", "title_en": "A Strictness Dial and Content-Matched Shifts", "title_ja": "厳しさのつまみと、中身に合わせた動き — 2016 年の『他人の権利』アンケートに答える LLM の、2 つの層のばらつき", "state": "下書き (英語 LaTeX)。実験 1・2・2b・2c・3 が入っている。arXiv にはまだ出さない (本人 2026-10-31)", "pdf": "../../../paper/paper2/main.pdf", "summary": "../../../paper/paper2/要約_ja.md", "readme": "paper/paper2/README.md", "basis": {"text":  "もとは本人の修士論文〔田之畑 2017 (修士論文)〕。そのモデルは欲求の段〔Maslow 1943〕と心の 3 つの部分〔Freud 1923〕を合わせたもの。始めの言葉は、修士論文が Sacks の言葉として引いた文〔Sacks の言葉とされる文〕。Sacks の文章には見つからず、ほぼ同じ文が el Kaliouby の言葉として出てくる〔el Kaliouby 2020〕。", "src":  ["paper/paper2/main.tex", "paper/paper2/README.md"]}, "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md", "docs/research/humanity/paper2_exp3_results.md"]}
   ],
 
   "other_cite": "テクノロジーツリーの考え方 (2 本の木と前提の矢印) は、ゲームから借りた〔Civilization (ゲーム)〕。絵やデータは写していない。",
