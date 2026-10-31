@@ -2,6 +2,7 @@
 
     sim/society/tools/survey/out/          (experiment 1: items.csv, eigen.csv, summary.md)
     sim/society/tools/survey/out_exp2/     (experiment 2: items.csv, eigen.csv, h8_coef.csv, reasons_coded.csv, summary.md)
+    sim/society/tools/survey/out_exp2b/, out_exp2c/ (follow-ups 2b and 2c: summary.md values copied for fig_layers)
 
     python3 paper/paper2/figures/make_figures.py          # English figures (used in main.tex)
     python3 paper/paper2/figures/make_figures.py --ja     # Japanese figures (PNG) -> paper/paper2/figures_ja/
@@ -55,6 +56,16 @@ SD_CI = {"C0": (0.148, 0.183), "C3": (0.331, 0.377), "C4": (0.109, 0.145), "C1":
 # out/summary.md and out_exp2/summary.md, PCA tables ("第 1 の割合 (95% CI, n=84 に引き直し)", "厳しさの割合")
 PC1 = {"C1": (0.392, 0.336, 0.455), "C2": (0.386, 0.340, 0.438), "D1": (0.228, 0.195, 0.312), "D2": (0.250, 0.216, 0.311)}
 STRICT = {"C1": (0.391, 0.342, 0.447), "D1": (0.223, 0.185, 0.297), "D2": (0.243, 0.207, 0.298)}
+# fig_layers (added 2026-10-31). Each condition's values are copied from the summary of the experiment that ran it:
+# C1, C2: out/summary.md (PCA table); D1, D2: out_exp2/summary.md (same values as PC1/STRICT above);
+# E1, D2r: out_exp2b/summary.md (PCA table); F1, F2: out_exp2c/summary.md (PCA table). C2's strictness share was not computed.
+PC1_ALL = dict(PC1, **{"D2r": (0.257, 0.208, 0.327), "E1": (0.235, 0.198, 0.291), "F1": (0.170, 0.142, 0.229), "F2": (0.182, 0.155, 0.234)})
+STRICT_ALL = dict(STRICT, **{"D2r": (0.251, 0.196, 0.311), "E1": (0.231, 0.195, 0.281), "F1": (0.166, 0.138, 0.219), "F2": (0.177, 0.149, 0.217)})
+# out_exp2c/summary.md, "探索: 第 1 主成分の向きのそろい方 (固有ベクトルの |cos|)"
+COS_ORDER = ["D1", "D2", "D2r", "E1", "F1", "F2"]
+COS = {("F1", "F2"): 0.92, ("F1", "D1"): 0.91, ("F1", "D2"): 0.86, ("F1", "E1"): 0.94, ("F1", "D2r"): 0.91,
+       ("F2", "D1"): 0.87, ("F2", "D2"): 0.88, ("F2", "E1"): 0.95, ("F2", "D2r"): 0.89,
+       ("D1", "D2"): 0.92, ("D1", "E1"): 0.92, ("D1", "D2r"): 0.93, ("D2", "E1"): 0.90, ("D2", "D2r"): 0.95, ("E1", "D2r"): 0.94}
 
 
 def fig_sd():
@@ -193,10 +204,69 @@ def fig_reasons():
     save(fig, "fig_reasons")
 
 
+def fig_layers():
+    """(a) PC1 share and strictness share in every condition; (b) |cos| between PC1 loading vectors."""
+    from matplotlib.colors import LinearSegmentedColormap
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(6.8, 3.3), gridspec_kw={"width_ratios": [1.35, 1]})
+    items = [("C1", t("Exp 1 C1: Big Five words", "実験1 C1: ビッグファイブ")),
+             ("C2", t("Exp 1 C2: Big Five + honne", "実験1 C2: ビッグファイブ + 本音")),
+             ("D1", t("Exp 2 D1: life circumstances", "実験2 D1: 暮らし")),
+             ("D2", t("Exp 2 D2: + download surroundings", "実験2 D2: + ダウンロードの様子")),
+             ("D2r", t("Exp 2b D2r: repeat of D2", "実験2b D2r: D2 のくり返し")),
+             ("E1", t("Exp 2b E1: + borrowing surroundings", "実験2b E1: + 借りた物の様子")),
+             ("F1", t("Exp 2c F1: + 3 past events", "実験2c F1: + 出来事 3 つ")),
+             ("F2", t("Exp 2c F2: + 6 past events", "実験2c F2: + 出来事 6 つ"))]
+    for k, (c, lab) in enumerate(items):
+        y = len(items) - 1 - k
+        p, lo, hi = PC1_ALL[c]
+        ax.plot([lo, hi], [y + 0.14, y + 0.14], color=BLUE, lw=2)
+        ax.plot(p, y + 0.14, "o", ms=5.5, color=BLUE, mec="white", mew=1.2, label=t("PC1 share", "第1主成分の割合") if k == 0 else None)
+        if c in STRICT_ALL:
+            p2, lo2, hi2 = STRICT_ALL[c]
+            ax.plot([lo2, hi2], [y - 0.14, y - 0.14], color=ORANGE, lw=2)
+            ax.plot(p2, y - 0.14, "s", ms=5, color=ORANGE, mec="white", mew=1.2,
+                    label=t("strictness share", "「厳しさ」1本の割合") if c == "D1" else None)
+    ax.axvline(0.268, color=INK, lw=1.1)
+    ax.text(0.272, len(items) - 0.55, t("human 0.268", "人間 0.268"), fontsize=7, color=INK, va="bottom")
+    ax.set_yticks(range(len(items)))
+    ax.set_yticklabels([lab for _, lab in items][::-1], fontsize=7.5)
+    ax.set_xlim(0.12, 0.48)
+    ax.set_ylim(-0.6, len(items) + 0.1)
+    ax.set_xlabel(t("share of variance (95% CI, n = 84)", "説明できる割合 (95% 信頼区間、84 人)"), fontsize=8)
+    ax.grid(axis="y", visible=False)
+    ax.legend(fontsize=7, frameon=False, loc="lower right")
+    ax.set_title(t("(a) size of the first component", "(a) 第1主成分の大きさ"), fontsize=8.5, loc="left", color=INK)
+
+    rows_, cols_ = COS_ORDER[1:], COS_ORDER[:-1]
+    n = len(rows_)
+    cmap = LinearSegmentedColormap.from_list("blues", ["#eef4fb", "#174a87"])
+    bx.grid(False)
+    for i, a in enumerate(rows_):
+        for j, b in enumerate(cols_):
+            if j > i:
+                continue
+            v = COS.get((a, b), COS.get((b, a)))
+            bx.add_patch(plt.Rectangle((j - 0.5, n - 1 - i - 0.5), 1, 1, facecolor=cmap((v - 0.84) / 0.12), edgecolor="white", lw=2))
+            bx.text(j, n - 1 - i, f"{v:.2f}", ha="center", va="center", fontsize=7.5, color="white" if v >= 0.91 else INK)
+    bx.set_xlim(-0.5, n - 0.5)
+    bx.set_ylim(-0.5, n - 0.5)
+    bx.set_xticks(range(n))
+    bx.set_xticklabels(cols_, fontsize=7.5)
+    bx.set_yticks(range(n))
+    bx.set_yticklabels(rows_[::-1], fontsize=7.5)
+    bx.set_aspect("equal")
+    for sp in ("left", "bottom"):
+        bx.spines[sp].set_visible(False)
+    bx.tick_params(length=0)
+    bx.set_title(t("(b) same direction? |cos| of PC1", "(b) 第1主成分の向き (|cos|)"), fontsize=8.5, loc="left", color=INK)
+    save(fig, "fig_layers")
+
+
 if __name__ == "__main__":
     fig_sd()
     fig_pc1()
     fig_scree()
     fig_h8()
     fig_reasons()
+    fig_layers()
     print("ok")

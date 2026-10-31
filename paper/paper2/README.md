@@ -1,8 +1,24 @@
-# Paper 2 (draft): Personality Words or Life Circumstances?
+# Paper 2 (draft): A Strictness Dial and Content-Matched Shifts
 
-Probing human-like rule-bending in LLM respondents with the 2016 survey of the author's 2017 master's thesis
-(54 items on everyday rights violations). Three pre-registered experiments (Exp. 1: commit `2c8f966c`, Exp. 2: `b88ad84c`, Exp. 3 in the village: `b1c1ae8a`),
-520 simulated respondents (Claude Sonnet / Haiku / Opus), plus an exploratory dictionary coding of 1,150 reasons, and a village transfer test (3 arms × 3 simulated years, null result).
+**Title (new, 2026-10-31):** "A Strictness Dial and Content-Matched Shifts: Two Layers of Variation in LLM Respondents to a 2016 Japanese Survey of Everyday Rights Violations".
+**Alternative (old title):** "Personality Words or Life Circumstances? Probing Human-Like Rule-Bending in LLM Respondents with a 2016 Japanese Survey of Everyday Rights Violations".
+
+The 54 items on everyday rights violations from the 2016 survey of the author's 2017 master's thesis, answered by 920 simulated respondents
+(Claude Sonnet / Haiku / Opus) in four pre-registered survey experiments (Exp. 1: commit `2c8f966c`, Exp. 2: `b88ad84c`,
+follow-up 2b: `2b8ffb0b`, follow-up 2c: `154ae7f0`), plus an exploratory dictionary coding of 1,150 reasons, and a pre-registered village
+transfer test (Exp. 3: `b1c1ae8a`; 3 arms × 3 simulated years, null result).
+
+**Organizing claim:** LLM respondent variation has two layers. (1) A model-level *strictness dial*: the first principal component is,
+in every condition, nearly the respondent's mean answer (|r| ≥ 0.98) and points in nearly the same direction across all six
+life-circumstance conditions (|cos| 0.86–0.95). Personality words inflate it (0.39); life circumstances bring it into the human range
+(0.23–0.26); surroundings content and personal histories do not reshape it. (2) *Local, content-matched shifts*: each input moves
+exactly the matching items and appears as a clean single-domain later component, unlike the human components, which mix domains.
+Open question: is the human first component also general strictness? (The thesis raw data are not available, so it cannot be checked.)
+
+Structure: 1 Introduction · 2 Related work · 3 Methods (conditions table incl. E1, D2r, F1, F2) · 4 Results (4.1 Exp 1, 4.2 Exp 2 +
+reasons, 4.3 Follow-up 2b, 4.4 Follow-up 2c, 4.5 Exp 3 village; one hypothesis table each; village hypotheses labelled V-H1–V-H5, V-H2b)
+· 5 Discussion (5.1 Two layers: Fig. 5 and Table 7 "what moved the first component vs only matching items"; consequences; open question)
+· 6 Limitations · 7 Ethics · 8 Data and code availability.
 
 ## Files
 
@@ -10,14 +26,16 @@ Probing human-like rule-bending in LLM respondents with the 2016 survey of the a
 |---|---|
 | `main.tex` | The paper (`article`, natbib + `plainnat`, same style as paper 1) |
 | `refs.bib` | Bibliography (every entry checked by web search on 2026-10-29/30; see below) |
-| `figures/make_figures.py` | Regenerates the 5 English figures from `sim/society/tools/survey/out/` and `out_exp2/` (read-only) |
+| `figures/make_figures.py` | Regenerates the 6 English figures from `sim/society/tools/survey/out/`, `out_exp2/` (read-only); `fig_layers` uses values copied from `out/`, `out_exp2/`, `out_exp2b/`, `out_exp2c/` summaries. `--ja` writes the Japanese PNGs to `figures_ja/` |
 | `figures/make_tables.py` | Writes `figures/items_table.tex` (Appendix: 54 items, English gloss, norm, LLM means) |
 | `figures/fig_*.pdf` / `.png` | Figures used by `main.tex` (PDF) and previews (PNG) |
-| `main.pdf` | Built draft (18 pages) |
+| `main.pdf` | Built draft (22 pages) |
 | `要約_ja.md` | Short Japanese summary for the author |
 
-Sources of the numbers: `docs/research/humanity/paper2_exp1_results.md`, `paper2_exp2_results.md`,
-`sim/society/tools/survey/out/summary.md`, `out_exp2/summary.md`, `out_exp2/reasons_summary.md`.
+Sources of the numbers: `docs/research/humanity/paper2_exp1_results.md`, `paper2_exp2_results.md`, `paper2_exp2b_results.md`,
+`paper2_exp2c_results.md`, `paper2_exp3_results.md`; `sim/society/tools/survey/out/summary.md`, `out_exp2/summary.md`,
+`out_exp2/reasons_summary.md`, `out_exp2b/summary.md`, `out_exp2c/summary.md`; `docs/research/humanity/data/exp3/summary.md`.
+`fig_pc1` is no longer used in `main.tex` (its content is panel (a) of `fig_layers`); the file is kept unchanged.
 
 ## Build
 
@@ -53,11 +71,14 @@ sentence "as quoted in the thesis" with a footnote saying this.
 2. **Sacks quote**: which source did the thesis use? Keep the footnote, or replace it with the real source (or drop the attribution).
 3. **Thesis reference**: check the romanised title / English translation and the exact school name in `refs.bib` (`tanohata2017thesis`).
 4. **Model versions** behind the `sonnet` / `haiku` / `opus` aliases on 2026-10-29 (Section 3.2).
-5. **Consent / ethics**: confirm the 2016 survey wording and that publishing aggregates (Table 3 values) is fine (Section 7).
+5. **Consent / ethics**: confirm the 2016 survey wording and that publishing aggregates (the thesis's Table 3 values) is fine (Section 7).
 6. **Archive**: tagged release / Zenodo DOI of the repository at the analysed commits.
-7. **Title**: current title says "2016 survey" (the survey was run in 2016; the thesis is 2017). Alternative suggested in the brief:
+7. **Title**: choose between the new title ("A Strictness Dial and Content-Matched Shifts: …") and the old one ("Personality Words or
+   Life Circumstances? …"; see top). Both say "2016 survey" (the survey was run in 2016; the thesis is 2017); alternative:
    "… with a 2017 survey of everyday rights violations".
-8. **English item glosses** (Appendix Table 3) are Claude's translations, not validated; check them.
-9. **Reasons coding** (Section 4.3) is exploratory and single-coder (Claude). A second human coder on a sample would strengthen it.
+8. **English item glosses** (Appendix Table 8) are Claude's translations, not validated; check them.
+9. **Reasons coding** (Section 4.2, last paragraph) is exploratory and single-coder (Claude). A second human coder on a sample would strengthen it.
 10. Remove red `[TODO]` macros before submission; choose arXiv category (e.g. `cs.CL` or `cs.CY`).
-11. ~~**Interview-derived passages (本人が目で確かめる)**~~ **Checked by the author 2026-10-31 (see `docs/research/humanity/thesis2017_interview_check.md`); re-check if changed.**: these use findings that came from the 2016 interviews (not raw quotes): Section 1 and 4.3 / Fig. reasons (the thesis's "seven ways of thinking"), Section 5 H9 paragraph ("students cited money"), Section 6 paragraph on "weak position" and "ease". Rule (2026-10-30): nothing interview-derived is used without the author's visual check.
+11. ~~**Interview-derived passages (本人が目で確かめる)**~~ **Checked by the author 2026-10-31 (see `docs/research/humanity/thesis2017_interview_check.md`); re-check if changed.**: these use findings that came from the 2016 interviews (not raw quotes): Section 1 and 4.2 reasons paragraphs / Fig. reasons (the thesis's "seven ways of thinking"), Section 4.2 H9 paragraph ("students cited money"), Section 5.1 "Consequence (b)" paragraph on "weak position" and "ease" (moved there from the old Discussion on 2026-10-31; meaning unchanged, one exploratory sentence on ease/weakness from Exp 2b added in parentheses — not interview-derived). Rule (2026-10-30): nothing interview-derived is used without the author's visual check.
+
+**Human raw data:** the raw data of the thesis survey are not available (the author confirmed on 2026-10-31). This is not a TODO; the paper states it as the main limitation and an open question (Section 5.1, Section 6).
