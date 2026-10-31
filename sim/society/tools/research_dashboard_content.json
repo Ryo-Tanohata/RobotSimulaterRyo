@@ -45,7 +45,8 @@
         "題 (2016 年の調査 / 2017 年の論文)",
         "54 問の英訳の確かめ",
         "わけの分け方を、人がもう 1 人で確かめる",
-        "赤い [TODO] を消し、arXiv の分野を決める"
+        "赤い [TODO] を消し、arXiv の分野を決める",
+        "修士論文〔田之畑 2017 (修士論文)〕のインタビューから出た所を本人が確かめる (2026-10-31 に確かめ済み)"
       ]
     }
   },
@@ -74,7 +75,7 @@
     {"date": "2026-10-29", "name": "論文 1 の下書き", "text": "LLM の村は人類史をたどるか (英語、20 ページ)。", "src": ["paper/paper1/README.md", "paper/paper1/要約_ja.md"]},
     {"date": "2026-10-29", "name": "論文 2・実験 1 (アンケート)", "text": "LLM 290 人。人格の言葉だと、ばらつきが 1 本の「厳しさ」の軸になる。", "src": ["docs/research/humanity/paper2_exp1_results.md"]},
     {"date": "2026-10-29", "name": "論文 2・実験 2 (アンケート)", "text": "暮らし・立場を持たせた 230 人。ばらつきの形が人間の範囲に入った。", "src": ["docs/research/humanity/paper2_exp2_results.md"]},
-    {"date": "2026-10-30", "name": "論文 2 の下書き", "text": "性格の言葉か、暮らしの事情か (英語、15 ページ)。", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md"]},
+    {"date": "2026-10-30", "name": "論文 2 の下書き", "text": "性格の言葉か、暮らしの事情か (英語。2026-10-31 に実験 3 を入れて 17 ページ)。", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md"]},
     {"date": "2026-10-30", "name": "論文 2・実験 3 (写しの村)", "text": "村の中では、暮らしやまわりの様子を足しても選びは変わらなかった (6 つとも支持しない)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]}
   ],
 
@@ -180,7 +181,6 @@
 
   "next": [
     {"name": "実験 4: 村人が「取る」を選べる世界", "text": "よその倉・村の蓄えから取るかを、村人の答えで決める。写しの村だけで働くようにする。", "cost": "見積もりは、まだ文書にない", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
-    {"name": "論文 2 に実験 3 を入れる", "text": "「紙の上の調整 (実験 2) は、行いの選び (実験 3) にはつながらなかった」と正直に書く。", "cost": "記録なし", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
     {"name": "G9 を続ける (1 年ずつ)", "text": "遠くの運ぶ人の来る見込み 0.5 で、109年から。1 年 1,500 万トークンをこえたら止める。10 年か合わせて 1 億で相談。", "cost": "1 年 約 600〜800 万トークン (見込み)", "src": ["docs/society_phase/G9_design.md", "docs/society_phase/G9_design_draft.md"]},
     {"name": "人とくらべる", "text": "本物の人 20〜30 人に同じ場面を答えてもらう。「LLM は人より協力的でやさしい」かを初めて確かめられる。小さな社会の経済ゲームの人のデータ〔Henrich ほか 2005〕も物差しになる。", "cost": "トークンはほとんど要らない", "src": ["docs/research/humanity/README.md"]},
     {"name": "お題のかたよりを外す", "text": "空欄のときの手を逆にする・前の例を消す・裁く側と裁かれる側を入れ替える。", "cost": "約 1,450 万トークン", "src": ["docs/research/humanity/README.md"]},
