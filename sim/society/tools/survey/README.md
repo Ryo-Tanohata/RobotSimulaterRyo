@@ -93,3 +93,31 @@ python3 test_survey.py       # 試し (実験 1・2・2b)
 2. **本番:** `args: {"root": "/home/user/RobotSimulaterRyo"}` (200 人。試しの 4 人も聞き直す)。分けるなら `"conditions": ["E1"]` など。続きは `"done": [...]`。
    `python3 save_answers.py --exp 2b <transcriptDir>/journal.jsonl` → `answers_exp2b/`
 3. **分析:** `python3 analyze_exp2b.py` → `out_exp2b/summary.md` ほか。答えと out_exp2b/ をコミットする。
+
+# 論文 2・実験 2c: 一人ずつ違う「これまでにあったこと」(F1 出来事 3 つ・F2 出来事 6 つ)
+
+事前登録: [docs/research/humanity/paper2_exp2c_prereg.md](../../../../docs/research/humanity/paper2_exp2c_prereg.md)。暮らし (S001〜S100)・54 問・選択肢・順・答え方 (わけ 5 問) は実験 2 の D1 と同じ。
+
+| ファイル | 中身 |
+|---|---|
+| `items.py` の `CONDITIONS_EXP2C`・`DOMAIN_ITEMS`・`DOMAIN_REST` | F1 (sonnet 100・出来事 3)・F2 (sonnet 100・出来事 6)。5 つの領域ごとの問い (効き目の確かめに使う) |
+| `experiences.py` → `experiences_exp2c.json` | 出来事 20 個 (5 領域 × 2 向き × 2 言い方) と、S001〜S100 への割り当て (種つき)。`situations.json` は変えない |
+| `prompts_exp2c.py` → `prompts_exp2c/F1_<k>.md`・`F2_<k>.md`・`respondents_exp2c.json` | 紙 200 枚。D1_k の紙に「## これまでにあったこと」の節を入れただけ (ID のほかは 1 字も同じ) |
+| `survey_workflow_exp2c.js` | Workflow の台本 (実験 2b と同じ作り。agent への指示の文も同じ) |
+| `save_answers.py --exp 2c` | → `answers_exp2c/<ID>.json` |
+| `analyze_exp2c.py` | `answers_exp2c/` と実験 2 の `answers_exp2/` (D1・D2)・実験 2b の `answers_exp2b/` (E1・D2r) → `out_exp2c/` |
+
+```
+python3 experiences.py && python3 prompts_exp2c.py   # 作り直し (同じものができる)
+python3 test_survey.py                               # 試し (実験 1・2・2b・2c)
+```
+
+回し方 (メインのセッション。本人が費用を決めてから):
+
+1. **試しの回 (4 人: F1_001・F1_002・F2_001・F2_002):** Workflow に `scriptPath: sim/society/tools/survey/survey_workflow_exp2c.js`、
+   `args: {"root": "/home/user/RobotSimulaterRyo", "limit": 2}`。
+   `cd sim/society/tools/survey && python3 save_answers.py --exp 2c --dir answers_exp2c_pilot <transcriptDir>/journal.jsonl`
+   1 人あたりのトークン × 200 が 1,300 万をこえる見込みなら、止めて本人に報告 (prereg 6.)。`answers_exp2c_pilot/` は分析に使わない。
+2. **本番:** `args: {"root": "/home/user/RobotSimulaterRyo"}` (200 人。試しの 4 人も聞き直す)。分けるなら `"conditions": ["F1"]` など。続きは `"done": [...]`。
+   `python3 save_answers.py --exp 2c <transcriptDir>/journal.jsonl` → `answers_exp2c/`
+3. **分析:** `python3 analyze_exp2c.py` → `out_exp2c/summary.md` ほか。答えと out_exp2c/ をコミットする。

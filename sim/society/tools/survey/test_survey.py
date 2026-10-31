@@ -9,6 +9,10 @@
 5. 実験 2b: E1 の様子の行に性格・人柄の言葉とネット・ダウンロードの言葉がないか、E1 の 0/1 の組が D2 と同じか、
    E1 の紙は D2 の紙と様子の 3 行 (と ID) だけが違うか、D2r の紙・agent への指示が D2 と 1 バイトも同じか、
    人工の答え (E1 に所有意識の形と借りた物の効き目、D2r に権利意識の形を仕込む) で H12〜H15 を見つけるか
+6. 実験 2c: 出来事 20 個に性格・人柄の言葉・まわりの様子の言葉がないか、54 問の文を写していないか (同じ 8 字以上の続きがない)、
+   長さ (25〜60 字)、割り当ての釣り合い (領域 60 人・向き 30 / 30)、F2 ⊃ F1、食い違う組がないか、
+   F1・F2 の紙は D1 の紙と ID と「これまでにあったこと」の節だけが違うか、agent への指示が実験 2 と同じか、
+   人工の答え (D1 は 1 本の厳しさ、F2 は人間の形 + 領域の効き目) で H16〜H19・効き目の確かめを見つけるか
 """
 import json
 import os
@@ -27,9 +31,13 @@ import analyze_exp2  # noqa: E402
 import prompts_exp2  # noqa: E402
 import analyze_exp2b  # noqa: E402
 import prompts_exp2b  # noqa: E402
+import analyze_exp2c  # noqa: E402
+import experiences  # noqa: E402
+import prompts_exp2c  # noqa: E402
 import save_answers  # noqa: E402
 import situations  # noqa: E402
-from items import BORROW, CONDITIONS, CONDITIONS_EXP2, CONDITIONS_EXP2B, DOWNLOAD, GRAY, HUMAN_PCS, IDS, ITEMS, NORM, REASON_ITEMS, SURROUND  # noqa: E402
+from items import (BORROW, CONDITIONS, CONDITIONS_EXP2, CONDITIONS_EXP2B, CONDITIONS_EXP2C, DOMAIN_ITEMS, DOMAIN_REST, DOWNLOAD,  # noqa: E402
+                   GRAY, HUMAN_PCS, IDS, ITEMS, NORM, REASON_ITEMS, SURROUND, TEXT)
 
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 
@@ -355,6 +363,190 @@ def test_pipeline_exp2b():
     print("\n".join(L[:12]))
 
 
+# 実験 2c の出来事に出てはいけない言葉: まわりの様子 (実験 2・2b で変えたもの) と、答えの物差しの言葉
+BANNED_HISTORY = ["みんな", "皆", "ふつう", "誰もが", "だれもが", "まわり", "周り", "問題", "違法", "犯罪"]
+
+
+def longest_common(a, b):
+    best = 0
+    for i in range(len(a)):
+        for j in range(i + best + 1, len(a) + 1):
+            if a[i:j] in b:
+                best = j - i
+            else:
+                break
+    return best
+
+
+def test_exp2c_experiences():
+    pool = experiences.pool()
+    assert len(pool) == 20 and len({e["id"] for e in pool}) == 20 and len({e["text"] for e in pool}) == 20
+    for d, _ in experiences.DOMAINS:
+        for r, _ in experiences.DIRECTIONS:
+            assert sum(e["domain"] == d and e["direction"] == r for e in pool) == 2
+    for e in pool:
+        t = e["text"]
+        assert 25 <= len(t) <= 60, (e["id"], len(t))
+        assert t.endswith("。") and t.count("。") == 1, e["id"]          # 1 文
+        assert t.startswith("前に" if e["variant"] == 0 else "以前"), e["id"]   # 言い出しは向きによらない
+        for w in BANNED + BANNED_HISTORY:
+            assert w not in t, (e["id"], w)
+        for i in IDS:   # 54 問の文を写さない
+            assert longest_common(t, TEXT[i]) < 8, (e["id"], i)
+    a, b = experiences.make(), experiences.make()
+    assert a == b and len(a) == 100
+    on_disk = json.load(open(os.path.join(HERE, "experiences_exp2c.json"), encoding="utf-8"))
+    assert on_disk["assignments"] == json.loads(json.dumps(a, ensure_ascii=False)), "experiences_exp2c.json is stale: run experiences.py"
+    assert on_disk["pool"] == json.loads(json.dumps(pool, ensure_ascii=False))
+    D = experiences.DKEYS
+    dom = lambda x: x.split("_")[0]
+    for k, x in enumerate(a):
+        assert x["situation_id"] == f"S{k + 1:03d}"
+        f1, f2 = x["F1"], x["F2"]
+        assert len(f1) == 3 and len({dom(e) for e in f1}) == 3                      # 3 つの違う領域
+        assert len(f2) == 6 and len(set(f2)) == 6 and set(f1) <= set(f2)            # F2 ⊃ F1
+        assert {dom(e) for e in f2} == set(D)                                        # F2 は 5 つの領域すべて
+        for d in D:
+            ex = [e for e in f2 if dom(e) == d]
+            assert len(ex) <= 2 and len({e.split("_")[1] for e in ex}) == 1, (k, ex)   # 2 つなら同じ向き (食い違わない)
+        assert x["code_F1"] == experiences.codes(f1) and x["code_F2"] == experiences.codes(f2)
+    C1 = np.array([[x["code_F1"][d] for d in D] for x in a])
+    C2 = np.array([[x["code_F2"][d] for d in D] for x in a])
+    assert list((C1 != 0).sum(0)) == [60] * 5 and list((C1 == 1).sum(0)) == [30] * 5 and list((C1 == -1).sum(0)) == [30] * 5
+    assert list((np.abs(C2) == 2).sum(0)) == [20] * 5 and list((C2 == 2).sum(0)) == [10] * 5 and list((C2 > 0).sum(0)) == [50] * 5
+    assert np.max(np.abs(np.corrcoef(C1.T) - np.eye(5))) < 0.15 and np.max(np.abs(np.corrcoef(C2.T) - np.eye(5))) < 0.15
+    from collections import Counter
+    assert set(Counter(e for x in a for e in x["F1"]).values()) == {15}   # どの出来事も F1 で 15 人
+    # 領域の問い: 重ならず、37 + 17 = 54
+    allv = sum(DOMAIN_ITEMS.values(), [])
+    assert len(allv) == len(set(allv)) == 37 and len(DOMAIN_REST) == 17 and set(allv) | set(DOMAIN_REST) == set(IDS)
+
+
+def test_exp2c_prompts():
+    ss = situations.make()
+    asg = experiences.make()
+    allp = prompts_exp2c.all_prompts(ss, asg)
+    assert len(allp) == sum(c["n"] for c in CONDITIONS_EXP2C.values()) == 200
+    idx = json.load(open(os.path.join(HERE, "respondents_exp2c.json"), encoding="utf-8"))
+    assert [r["id"] for r in idx] == list(allp) and all(r["experiences"] == allp[r["id"]][2] for r in idx)
+    d1 = {rid: v for rid, v in prompts_exp2.all_prompts(ss).items() if v[0] == "D1"}
+    for rid, (cond, sid, exps, text) in allp.items():
+        k = rid.split("_")[1]
+        assert sid == f"S{int(k):03d}"
+        on_disk = open(os.path.join(HERE, "prompts_exp2c", f"{rid}.md"), encoding="utf-8").read()
+        assert on_disk == text, f"prompts_exp2c/{rid}.md is stale: run prompts_exp2c.py"
+        head = text.split("## お願い")[0]
+        for w in BANNED:
+            assert w not in head, (rid, w)
+        assert "## 最近のまわりの様子" not in text and "## これまでにあったこと" in text
+        # D1_k との違いは、ID と「これまでにあったこと」の節だけ (D1 の紙は 1 バイトも変わっていない)
+        d1text = open(os.path.join(HERE, "prompts_exp2", f"D1_{k}.md"), encoding="utf-8").read()
+        assert d1text == d1[f"D1_{k}"][2]
+        sec = prompts_exp2c.HISTORY.format(lines="\n".join(f"- {x}" for x in experiences.lines(exps)))
+        assert text.count(sec) == 1
+        assert text.replace(sec, "").replace(rid, "ID") == d1text.replace(f"D1_{k}", "ID"), rid
+        assert len(exps) == CONDITIONS_EXP2C[cond]["history"]
+        assert exps == asg[int(k) - 1][cond]
+    # agent への指示の文: 実験 2 と同じ (紙のディレクトリだけが違う)。スキーマ・聞き直しの部分は実験 2b と同じ
+    js2 = open(os.path.join(HERE, "survey_workflow_exp2.js"), encoding="utf-8").read()
+    js2b = open(os.path.join(HERE, "survey_workflow_exp2b.js"), encoding="utf-8").read()
+    js2c = open(os.path.join(HERE, "survey_workflow_exp2c.js"), encoding="utf-8").read()
+    body = lambda js: js.split("function prompt(")[1].split("\n}\n")[0].split("{", 1)[1]
+    assert body(js2c).replace("${DIR}/${dir}/${id}.md", "${DIR}/prompts_exp2/${id}.md") == body(js2)
+    assert "F1: { n: 100, model: 'sonnet', file: 'prompts_exp2c', src: 'F1' }" in js2c
+    assert "F2: { n: 100, model: 'sonnet', file: 'prompts_exp2c', src: 'F2' }" in js2c
+    assert js2b.split("const ITEMS = []")[1].split("\nfunction prompt(")[0].split("\n// ")[0] == \
+        js2c.split("const ITEMS = []")[1].split("\nfunction prompt(")[0].split("\n// ")[0]
+    assert js2b.split("\nfunction prompt(")[1] == js2c.split("\nfunction prompt(")[1]
+
+
+def synthetic_exp2c(rng, asg):
+    """人工の答え。D1: 54 問がみな同じ重さの 1 本の厳しさ (強く) + 人間の形 (弱く)。
+    F1: 厳しさを少し弱め、人間の形を中くらい + 領域の効き目 (出来事 1 つで、その領域の問いを 0.5)。
+    F2: 厳しさを弱く、人間の形を強く + 同じ効き目。だから H16〜H19 と効き目の確かめは、みな見つかるはず。"""
+    load = np.zeros((54, 5))
+    for k, (_, _, _, top) in enumerate(HUMAN_PCS):
+        for i, v in top:
+            load[IDS.index(i), k] = np.sign(v) * 1.0
+    norm = np.array([NORM[i] for i in IDS])
+    D = experiences.DKEYS
+    dmask = {d: np.array([i in DOMAIN_ITEMS[d] for i in IDS], float) for d in D}
+    out = []
+    for cond, g_amp, h_amp in (("D1", 0.9, 0.2), ("F1", 0.6, 0.8), ("F2", 0.25, 1.4)):
+        for k in range(100):
+            f = np.random.default_rng(4000 + k).standard_normal(6)
+            x = norm + g_amp * f[0] + h_amp * (load @ f[1:]) + 0.5 * rng.standard_normal(54)
+            if cond != "D1":
+                x += sum(0.5 * asg[k][f"code_{cond}"][d] * dmask[d] for d in D)
+            x = np.clip(np.rint(x), 1, 5).astype(int)
+            out.append({"respondent_id": f"{cond}_{k + 1:03d}", "answers": {i: int(v) for i, v in zip(IDS, x)},
+                        "reasons": {i: "前に困ったので" for i in REASON_ITEMS}})
+    return out
+
+
+def test_pipeline_exp2c():
+    rng = np.random.default_rng(3)
+    asg = experiences.make()
+    objs = synthetic_exp2c(rng, asg)
+    d1 = [o for o in objs if o["respondent_id"].startswith("D1_")]
+    rest = [o for o in objs if not o["respondent_id"].startswith("D1_")]
+    with tempfile.TemporaryDirectory() as td:
+        old = save_answers.HERE
+        save_answers.HERE = td
+        try:
+            p1 = os.path.join(td, "d1.json")
+            json.dump({"results": [{"id": o["respondent_id"], "result": json.dumps(o, ensure_ascii=False)} for o in d1]},
+                      open(p1, "w", encoding="utf-8"), ensure_ascii=False)
+            save_answers.main([p1], exp=2)
+            # 実験 2c: 台本が包んだ形 (id = respondent_id) と、はねられた生の答え (ID 違い) が journal にまざる
+            p2 = os.path.join(td, "journal.jsonl")
+            with open(p2, "w", encoding="utf-8") as f:
+                f.write(json.dumps({"agent_result": dict(rest[0], respondent_id="F1_999")}, ensure_ascii=False) + "\n")
+                wrapped = [dict(o, id=o["respondent_id"], prompt_id=o["respondent_id"], ok=True, condition=o["respondent_id"].split("_")[0])
+                           for o in rest]
+                f.write(json.dumps({"return": {"results": wrapped + [{"respondent_id": "D1_001", "answers": {}}]}}, ensure_ascii=False) + "\n")
+            save_answers.main([p2], exp="2c")
+        finally:
+            save_answers.HERE = old
+        d = os.path.join(td, "answers_exp2c")
+        assert sorted(os.listdir(d)) == sorted(f"{o['respondent_id']}.json" for o in rest), len(os.listdir(d))
+        r = json.load(open(os.path.join(d, "F2_005.json"), encoding="utf-8"))
+        assert r["condition"] == "F2" and set(r["reasons"]) == set(REASON_ITEMS)
+        L = analyze_exp2c.run(d, os.path.join(td, "out"), B=200, exp2_answers=os.path.join(td, "answers_exp2"),
+                              exp2b_answers=os.path.join(td, "none"))
+        text = "\n".join(L)
+        for f in ["summary.md", "items.csv", "eigen.csv", "match.csv", "share_diff.csv", "manip_coef.csv", "reasons.csv",
+                  "reasons_coded.csv", "loadings_F1.csv", "loadings_F2.csv", "loadings_D1.csv", "fig_scree.png", "fig_pc1_share.png",
+                  "fig_manip_coef.png"]:
+            assert os.path.exists(os.path.join(td, "out", f)), f
+        assert re.search(r"\*\*H16 \(主\):\*\*[^\n]*→ 支持", text), text
+        assert re.search(r"\*\*H17:\*\*[^\n]*→ 支持", text), text
+        assert re.search(r"\*\*H18 \(F2\):\*\* 再現 [2345]/5[^\n]*→ 支持", text), text
+        assert re.search(r"\*\*H19:\*\*[^\n]*→ 支持", text), text
+        assert re.search(r"\*\*効き目の確かめ \(F1 − D1\):\*\*[^\n]*[345]/5[^\n]*→ 効いた", text), text
+        assert "- H16 (主。F2 の第 1 主成分の割合が D1 より下がる): 支持" in text
+    # 仕込まないとき (F1・F2 も D1 と同じ形・効き目なし) は、H16・H17・効き目の確かめを支持しない
+    flat = [dict(o) for o in d1] + [dict(o, respondent_id=c + o["respondent_id"][2:]) for o in synthetic_exp2c(np.random.default_rng(4), asg)
+                                    if o["respondent_id"].startswith("D1_") for c in ("F1", "F2")]
+    with tempfile.TemporaryDirectory() as td:
+        old = save_answers.HERE
+        save_answers.HERE = td
+        try:
+            p = os.path.join(td, "all.json")
+            json.dump(flat, open(p, "w", encoding="utf-8"), ensure_ascii=False)
+            save_answers.main([p], exp=2)
+            save_answers.main([p], exp="2c")
+        finally:
+            save_answers.HERE = old
+        L2 = analyze_exp2c.run(os.path.join(td, "answers_exp2c"), os.path.join(td, "out"), B=200,
+                               exp2_answers=os.path.join(td, "answers_exp2"), figures=False)
+        t2 = "\n".join(L2)
+        assert re.search(r"\*\*H16 \(主\):\*\*[^\n]*→ 支持しない", t2), t2
+        assert re.search(r"\*\*H17:\*\*[^\n]*→ 支持しない", t2), t2
+        assert re.search(r"\*\*効き目の確かめ \(F1 − D1\):\*\*[^\n]*→ 効いたとは言えない", t2), t2
+    print("\n".join(L[:14]))
+
+
 if __name__ == "__main__":
     test_items_match_md()
     test_personas_prompts()
@@ -363,4 +555,7 @@ if __name__ == "__main__":
     test_pipeline_exp2()
     test_exp2b_prompts()
     test_pipeline_exp2b()
+    test_exp2c_experiences()
+    test_exp2c_prompts()
+    test_pipeline_exp2c()
     print("ok")

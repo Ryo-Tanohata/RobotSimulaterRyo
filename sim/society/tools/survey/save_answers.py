@@ -3,6 +3,7 @@
     python3 save_answers.py [--dir answers_pilot] <file> [<file> ...]              # 実験 1 (C0〜C4 → answers/)
     python3 save_answers.py --exp 2 [--dir answers_exp2_pilot] <file> [<file> ...]  # 実験 2 (D1〜D3 → answers_exp2/)
     python3 save_answers.py --exp 2b [--dir answers_exp2b_pilot] <file> [<file> ...]  # 実験 2b (E1・D2r → answers_exp2b/)
+    python3 save_answers.py --exp 2c [--dir answers_exp2c_pilot] <file> [<file> ...]  # 実験 2c (F1・F2 → answers_exp2c/)
 
 <file> は、Workflow の返した値を書いた JSON か、Workflow の記録 (journal.jsonl)。どちらでも、中をたどって
 {"respondent_id": "C1_001", "answers": {...}} の形のものを拾う (文字列の中の JSON も読む)。
@@ -70,7 +71,8 @@ def main(paths, sub=None, exp=1):
     conds = conditions_of(exp)
     is2b = str(exp).lower() == "2b"
     if sub is None:
-        sub = "answers_exp2b" if is2b else "answers" if int(exp) == 1 else "answers_exp2"
+        sub = ("answers_exp2b" if is2b else "answers_exp2c" if str(exp).lower() == "2c"
+               else "answers" if int(exp) == 1 else "answers_exp2")
     found = []
     for p in paths:
         with open(p, encoding="utf-8") as f:
@@ -134,6 +136,6 @@ if __name__ == "__main__":
         if argv[0] == "--dir":
             sub = argv[1]
         else:
-            exp = argv[1] if argv[1].lower() == "2b" else int(argv[1])
+            exp = argv[1].lower() if argv[1].lower() in ("2b", "2c") else int(argv[1])
         argv = argv[2:]
     main(argv, sub, exp)

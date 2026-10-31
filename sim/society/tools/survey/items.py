@@ -152,6 +152,8 @@ BORROW = ["B03", "B10", "B11", "B18", "B19"]
 def conditions_of(exp):
     if str(exp).lower() == "2b":
         return CONDITIONS_EXP2B
+    if str(exp).lower() == "2c":
+        return CONDITIONS_EXP2C
     return CONDITIONS if int(exp) == 1 else CONDITIONS_EXP2
 
 
@@ -164,3 +166,26 @@ def prompt_id_exp2b(rid):
     cond, k = rid.split("_")
     src = CONDITIONS_EXP2B[cond].get("prompt_of")
     return f"{src}_{k}" if src else rid
+
+
+# ---------- 実験 2c (docs/research/humanity/paper2_exp2c_prereg.md) ----------
+# D1 と同じ暮らし S(k) に、「これまでにあったこと」(本人の過去の出来事。experiences.py → experiences_exp2c.json) を足す。
+# F1: 3 つ (3 つの違う領域)。F2: F1 の 3 つ + 3 つ (5 つの領域すべて。1 つの領域だけ同じ向きで 2 つ)。54 問・答え方は D1 と同じ。
+CONDITIONS_EXP2C = {
+    "F1": {"n": 100, "model": "sonnet", "situation": True, "history": 3, "reasons": True},
+    "F2": {"n": 100, "model": "sonnet", "situation": True, "history": 6, "reasons": True},
+}
+# 出来事の 5 つの領域ごとに、その領域の中身にじかに当たる問い (prereg 4.。中身で決めた。人間の主成分の上位 5 問からは決めていない)。
+# 重ならない (37 問)。どの領域にも入らない問いは 17 問 (DOMAIN_REST)
+DOMAIN_ITEMS = {
+    "rights": ["A01", "A02", "A07", "A08", "A09", "A10", "A17", "A19", "A22", "A34"],   # ダウンロード・コピー・人のネットにつなぐ
+    "own": ["B03", "B09", "B10", "B11", "B13", "B18", "B19"],                          # 借りた物・人の物
+    "info": ["A04", "A05", "A16", "A25", "A26", "A29", "B01", "B12"],                  # 人のアカウント・レポート・話を伝える
+    "privacy": ["A03", "A06", "A15", "A20", "A23", "A24", "B04"],                      # 人の個人の情報・写真
+    "self": ["A21", "A27", "A30", "B07", "B08"],                                       # 自分の書類・パスワード・アプリの不注意
+}
+DOMAIN_REST = [i for i in IDS if not any(i in v for v in DOMAIN_ITEMS.values())]
+
+
+def respondent_ids_exp2c(cond):
+    return [f"{cond}_{k:03d}" for k in range(1, CONDITIONS_EXP2C[cond]["n"] + 1)]

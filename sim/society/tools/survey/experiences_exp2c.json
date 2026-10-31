@@ -1,0 +1,3193 @@
+{
+ "meta": {
+  "seed": 20261101,
+  "n": 100,
+  "domains": [
+   [
+    "rights",
+    "権利"
+   ],
+   [
+    "own",
+    "所有"
+   ],
+   [
+    "info",
+    "情報"
+   ],
+   [
+    "privacy",
+    "プライバシー"
+   ],
+   [
+    "self",
+    "自己責任"
+   ]
+  ],
+  "note": "prereg 4.。code は unfav = +1、fav = −1 の和 (領域ごと)。F1・F2 は紙の上の並び。S(k) は situations.json と同じ暮らし"
+ },
+ "pool": [
+  {
+   "id": "rights_fav_0",
+   "domain": "rights",
+   "domain_ja": "権利",
+   "direction": "fav",
+   "variant": 0,
+   "text": "前に、友人の家の Wi-Fi を断らずに使わせてもらったが、何も言われず、とても助かった。"
+  },
+  {
+   "id": "rights_fav_1",
+   "domain": "rights",
+   "domain_ja": "権利",
+   "direction": "fav",
+   "variant": 1,
+   "text": "以前、おもしろかった雑誌の記事を撮って友人に送ったら、読みたかったと喜ばれた。"
+  },
+  {
+   "id": "rights_unfav_0",
+   "domain": "rights",
+   "domain_ja": "権利",
+   "direction": "unfav",
+   "variant": 0,
+   "text": "前に、ただで手に入れた音楽のファイルのせいで、パソコンがウイルスに感染して困った。"
+  },
+  {
+   "id": "rights_unfav_1",
+   "domain": "rights",
+   "domain_ja": "権利",
+   "direction": "unfav",
+   "variant": 1,
+   "text": "以前、自分が描いた絵を、知らない人のページに勝手に使われて、いやな思いをした。"
+  },
+  {
+   "id": "own_fav_0",
+   "domain": "own",
+   "domain_ja": "所有",
+   "direction": "fav",
+   "variant": 0,
+   "text": "前に、友人に借りた本を半年ほど持ったままだったが、相手は少しも気にしていなかった。"
+  },
+  {
+   "id": "own_fav_1",
+   "domain": "own",
+   "domain_ja": "所有",
+   "direction": "fav",
+   "variant": 1,
+   "text": "以前、借りた傘を返しそびれていたら、相手から「そのまま使って」と言ってもらえた。"
+  },
+  {
+   "id": "own_unfav_0",
+   "domain": "own",
+   "domain_ja": "所有",
+   "direction": "unfav",
+   "variant": 0,
+   "text": "前に、友人に貸した本が何か月も返ってこず、最後にはなくされてしまった。"
+  },
+  {
+   "id": "own_unfav_1",
+   "domain": "own",
+   "domain_ja": "所有",
+   "direction": "unfav",
+   "variant": 1,
+   "text": "以前、借りた道具を返すのが遅れて、貸してくれた人と気まずくなった。"
+  },
+  {
+   "id": "info_fav_0",
+   "domain": "info",
+   "domain_ja": "情報",
+   "direction": "fav",
+   "variant": 0,
+   "text": "前に、家族のアカウントで代わりにログインして手続きを済ませたら、とても感謝された。"
+  },
+  {
+   "id": "info_fav_1",
+   "domain": "info",
+   "domain_ja": "情報",
+   "direction": "fav",
+   "variant": 1,
+   "text": "以前学校で、本や記事の文章をつなぎ合わせて出したレポートが、よい点をもらえた。"
+  },
+  {
+   "id": "info_unfav_0",
+   "domain": "info",
+   "domain_ja": "情報",
+   "direction": "unfav",
+   "variant": 0,
+   "text": "前に、知人に自分のアカウントを勝手に使われて、覚えのない買い物をされた。"
+  },
+  {
+   "id": "info_unfav_1",
+   "domain": "info",
+   "domain_ja": "情報",
+   "direction": "unfav",
+   "variant": 1,
+   "text": "以前学校で、人の書いた文章をほぼそのまま使ってレポートを出し、先生に注意された。"
+  },
+  {
+   "id": "privacy_fav_0",
+   "domain": "privacy",
+   "domain_ja": "プライバシー",
+   "direction": "fav",
+   "variant": 0,
+   "text": "前に、友人の住所を共通の知り合いに教えたら、お祝いが届いたと友人に喜ばれた。"
+  },
+  {
+   "id": "privacy_fav_1",
+   "domain": "privacy",
+   "domain_ja": "プライバシー",
+   "direction": "fav",
+   "variant": 1,
+   "text": "以前、旅行で友人を写した一枚を断らずに SNS に出したが、友人は気にしなかった。"
+  },
+  {
+   "id": "privacy_unfav_0",
+   "domain": "privacy",
+   "domain_ja": "プライバシー",
+   "direction": "unfav",
+   "variant": 0,
+   "text": "前に、自分の電話番号を知らないうちに人に教えられ、知らない人から何度も電話が来た。"
+  },
+  {
+   "id": "privacy_unfav_1",
+   "domain": "privacy",
+   "domain_ja": "プライバシー",
+   "direction": "unfav",
+   "variant": 1,
+   "text": "以前、自分が写った写真を勝手にネットに出されて、知り合いに見られていやな思いをした。"
+  },
+  {
+   "id": "self_fav_0",
+   "domain": "self",
+   "domain_ja": "自己責任",
+   "direction": "fav",
+   "variant": 0,
+   "text": "前に、宛名の書かれた封筒をそのまま捨てていたが、困ったことは一度もなかった。"
+  },
+  {
+   "id": "self_fav_1",
+   "domain": "self",
+   "domain_ja": "自己責任",
+   "direction": "fav",
+   "variant": 1,
+   "text": "以前、よく調べずに入れた家計簿のアプリが便利で、毎日の記録がずっと楽になった。"
+  },
+  {
+   "id": "self_unfav_0",
+   "domain": "self",
+   "domain_ja": "自己責任",
+   "direction": "unfav",
+   "variant": 0,
+   "text": "前に、宛名の書かれたはがきをそのまま捨てたら、近所の人に中身を読まれて気まずくなった。"
+  },
+  {
+   "id": "self_unfav_1",
+   "domain": "self",
+   "domain_ja": "自己責任",
+   "direction": "unfav",
+   "variant": 1,
+   "text": "以前、何にでも同じパスワードにしていて、いくつものアカウントを一度に乗っ取られた。"
+  }
+ ],
+ "assignments": [
+  {
+   "situation_id": "S001",
+   "F1": [
+    "self_fav_1",
+    "own_fav_1",
+    "info_unfav_1"
+   ],
+   "F2": [
+    "self_fav_0",
+    "privacy_unfav_0",
+    "rights_unfav_1",
+    "own_fav_1",
+    "self_fav_1",
+    "info_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 1,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": 1,
+    "privacy": 1,
+    "self": -2
+   }
+  },
+  {
+   "situation_id": "S002",
+   "F1": [
+    "info_unfav_1",
+    "self_unfav_1",
+    "own_unfav_0"
+   ],
+   "F2": [
+    "privacy_fav_0",
+    "own_unfav_0",
+    "self_unfav_1",
+    "own_unfav_1",
+    "rights_unfav_1",
+    "info_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": 1,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 2,
+    "info": 1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S003",
+   "F1": [
+    "own_fav_1",
+    "rights_unfav_1",
+    "self_unfav_1"
+   ],
+   "F2": [
+    "rights_unfav_1",
+    "self_unfav_1",
+    "rights_unfav_0",
+    "info_fav_1",
+    "privacy_unfav_1",
+    "own_fav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": -1,
+    "info": 0,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 2,
+    "own": -1,
+    "info": -1,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S004",
+   "F1": [
+    "own_unfav_1",
+    "privacy_fav_0",
+    "info_fav_0"
+   ],
+   "F2": [
+    "own_unfav_0",
+    "info_fav_0",
+    "rights_fav_1",
+    "self_unfav_1",
+    "own_unfav_1",
+    "privacy_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": -1,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 2,
+    "info": -1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S005",
+   "F1": [
+    "own_unfav_0",
+    "rights_unfav_1",
+    "info_fav_0"
+   ],
+   "F2": [
+    "info_fav_0",
+    "own_unfav_0",
+    "rights_unfav_1",
+    "privacy_unfav_0",
+    "info_fav_1",
+    "self_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 1,
+    "info": -1,
+    "privacy": 0,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": -2,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S006",
+   "F1": [
+    "own_fav_0",
+    "privacy_fav_1",
+    "rights_fav_0"
+   ],
+   "F2": [
+    "rights_fav_0",
+    "info_unfav_0",
+    "rights_fav_1",
+    "own_fav_0",
+    "privacy_fav_1",
+    "self_unfav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": -1,
+    "info": 0,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -2,
+    "own": -1,
+    "info": 1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S007",
+   "F1": [
+    "self_fav_0",
+    "own_unfav_0",
+    "rights_unfav_0"
+   ],
+   "F2": [
+    "rights_unfav_1",
+    "info_fav_1",
+    "self_fav_0",
+    "rights_unfav_0",
+    "own_unfav_0",
+    "privacy_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 1,
+    "info": 0,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 2,
+    "own": 1,
+    "info": -1,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S008",
+   "F1": [
+    "info_fav_1",
+    "self_fav_1",
+    "rights_unfav_1"
+   ],
+   "F2": [
+    "info_fav_0",
+    "self_fav_1",
+    "privacy_fav_1",
+    "info_fav_1",
+    "own_fav_0",
+    "rights_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": -1,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": -2,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S009",
+   "F1": [
+    "privacy_unfav_1",
+    "own_unfav_0",
+    "info_fav_1"
+   ],
+   "F2": [
+    "info_fav_0",
+    "own_unfav_0",
+    "self_unfav_0",
+    "privacy_unfav_1",
+    "rights_unfav_0",
+    "info_fav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": -1,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": -2,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S010",
+   "F1": [
+    "self_fav_0",
+    "rights_fav_1",
+    "privacy_fav_0"
+   ],
+   "F2": [
+    "info_unfav_1",
+    "privacy_fav_1",
+    "own_unfav_0",
+    "privacy_fav_0",
+    "rights_fav_1",
+    "self_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 0,
+    "privacy": -1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 1,
+    "privacy": -2,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S011",
+   "F1": [
+    "info_fav_0",
+    "own_fav_0",
+    "privacy_fav_0"
+   ],
+   "F2": [
+    "own_fav_0",
+    "rights_unfav_0",
+    "privacy_fav_0",
+    "self_unfav_0",
+    "privacy_fav_1",
+    "info_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": -1,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": -1,
+    "privacy": -2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S012",
+   "F1": [
+    "privacy_fav_1",
+    "info_fav_1",
+    "self_fav_0"
+   ],
+   "F2": [
+    "own_unfav_1",
+    "info_fav_1",
+    "self_fav_0",
+    "privacy_fav_1",
+    "rights_unfav_0",
+    "info_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 0,
+    "info": -1,
+    "privacy": -1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": -2,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S013",
+   "F1": [
+    "privacy_fav_1",
+    "self_unfav_0",
+    "own_fav_0"
+   ],
+   "F2": [
+    "self_unfav_0",
+    "privacy_fav_1",
+    "own_fav_0",
+    "info_fav_1",
+    "rights_unfav_1",
+    "own_fav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 0,
+    "privacy": -1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -2,
+    "info": -1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S014",
+   "F1": [
+    "rights_fav_1",
+    "self_unfav_0",
+    "info_fav_0"
+   ],
+   "F2": [
+    "info_fav_1",
+    "own_unfav_0",
+    "rights_fav_1",
+    "privacy_unfav_0",
+    "self_unfav_0",
+    "info_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": -1,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": -2,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S015",
+   "F1": [
+    "own_fav_1",
+    "info_unfav_0",
+    "self_unfav_1"
+   ],
+   "F2": [
+    "info_unfav_0",
+    "self_unfav_0",
+    "privacy_fav_1",
+    "own_fav_1",
+    "rights_unfav_0",
+    "self_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 1,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": 1,
+    "privacy": -1,
+    "self": 2
+   }
+  },
+  {
+   "situation_id": "S016",
+   "F1": [
+    "self_unfav_0",
+    "rights_unfav_0",
+    "own_fav_1"
+   ],
+   "F2": [
+    "rights_unfav_1",
+    "privacy_unfav_1",
+    "own_fav_1",
+    "info_unfav_1",
+    "self_unfav_0",
+    "rights_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": -1,
+    "info": 0,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 2,
+    "own": -1,
+    "info": 1,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S017",
+   "F1": [
+    "privacy_fav_1",
+    "rights_unfav_1",
+    "self_fav_0"
+   ],
+   "F2": [
+    "info_unfav_0",
+    "rights_unfav_0",
+    "rights_unfav_1",
+    "privacy_fav_1",
+    "own_unfav_0",
+    "self_fav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": 0,
+    "privacy": -1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 2,
+    "own": 1,
+    "info": 1,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S018",
+   "F1": [
+    "own_fav_0",
+    "info_fav_1",
+    "self_fav_1"
+   ],
+   "F2": [
+    "self_fav_0",
+    "self_fav_1",
+    "privacy_unfav_1",
+    "own_fav_0",
+    "rights_fav_0",
+    "info_fav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": -1,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": -1,
+    "privacy": 1,
+    "self": -2
+   }
+  },
+  {
+   "situation_id": "S019",
+   "F1": [
+    "info_fav_1",
+    "own_unfav_1",
+    "rights_fav_0"
+   ],
+   "F2": [
+    "info_fav_1",
+    "rights_fav_0",
+    "privacy_unfav_1",
+    "self_unfav_1",
+    "own_unfav_1",
+    "own_unfav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 1,
+    "info": -1,
+    "privacy": 0,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 2,
+    "info": -1,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S020",
+   "F1": [
+    "info_unfav_0",
+    "privacy_unfav_0",
+    "rights_fav_1"
+   ],
+   "F2": [
+    "privacy_unfav_0",
+    "info_unfav_0",
+    "own_fav_0",
+    "rights_fav_1",
+    "self_unfav_0",
+    "privacy_unfav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 1,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": 1,
+    "privacy": 2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S021",
+   "F1": [
+    "rights_fav_1",
+    "self_fav_0",
+    "info_unfav_0"
+   ],
+   "F2": [
+    "info_unfav_0",
+    "rights_fav_1",
+    "privacy_unfav_1",
+    "own_fav_0",
+    "self_fav_0",
+    "self_fav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 1,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": 1,
+    "privacy": 1,
+    "self": -2
+   }
+  },
+  {
+   "situation_id": "S022",
+   "F1": [
+    "self_unfav_1",
+    "info_fav_0",
+    "rights_unfav_1"
+   ],
+   "F2": [
+    "privacy_unfav_0",
+    "info_fav_0",
+    "rights_unfav_1",
+    "own_unfav_1",
+    "self_unfav_1",
+    "info_fav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": -1,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": -2,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S023",
+   "F1": [
+    "privacy_fav_1",
+    "self_unfav_0",
+    "rights_unfav_1"
+   ],
+   "F2": [
+    "info_fav_0",
+    "privacy_fav_0",
+    "self_unfav_0",
+    "own_fav_1",
+    "privacy_fav_1",
+    "rights_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": 0,
+    "privacy": -1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": -1,
+    "privacy": -2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S024",
+   "F1": [
+    "rights_unfav_1",
+    "privacy_fav_1",
+    "self_unfav_0"
+   ],
+   "F2": [
+    "self_unfav_0",
+    "info_unfav_0",
+    "privacy_fav_1",
+    "rights_unfav_1",
+    "own_unfav_1",
+    "privacy_fav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": 0,
+    "privacy": -1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": 1,
+    "privacy": -2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S025",
+   "F1": [
+    "privacy_unfav_1",
+    "self_fav_1",
+    "rights_fav_1"
+   ],
+   "F2": [
+    "info_fav_1",
+    "own_unfav_0",
+    "rights_fav_1",
+    "self_fav_1",
+    "privacy_unfav_1",
+    "self_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 0,
+    "privacy": 1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": -1,
+    "privacy": 1,
+    "self": -2
+   }
+  },
+  {
+   "situation_id": "S026",
+   "F1": [
+    "own_fav_1",
+    "privacy_unfav_1",
+    "info_unfav_1"
+   ],
+   "F2": [
+    "privacy_unfav_1",
+    "info_unfav_1",
+    "self_fav_0",
+    "own_fav_1",
+    "rights_fav_0",
+    "privacy_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 1,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": 1,
+    "privacy": 2,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S027",
+   "F1": [
+    "privacy_unfav_0",
+    "self_unfav_0",
+    "rights_unfav_0"
+   ],
+   "F2": [
+    "info_unfav_1",
+    "rights_unfav_0",
+    "privacy_unfav_0",
+    "privacy_unfav_1",
+    "own_fav_0",
+    "self_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": 0,
+    "privacy": 1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": 1,
+    "privacy": 2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S028",
+   "F1": [
+    "info_fav_1",
+    "own_unfav_0",
+    "rights_unfav_0"
+   ],
+   "F2": [
+    "own_unfav_1",
+    "privacy_fav_0",
+    "self_fav_1",
+    "info_fav_1",
+    "own_unfav_0",
+    "rights_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 1,
+    "info": -1,
+    "privacy": 0,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 2,
+    "info": -1,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S029",
+   "F1": [
+    "privacy_unfav_1",
+    "info_unfav_1",
+    "rights_unfav_1"
+   ],
+   "F2": [
+    "privacy_unfav_0",
+    "own_unfav_0",
+    "rights_unfav_1",
+    "info_unfav_1",
+    "self_fav_0",
+    "privacy_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": 1,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": 1,
+    "privacy": 2,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S030",
+   "F1": [
+    "info_unfav_1",
+    "privacy_fav_0",
+    "self_unfav_0"
+   ],
+   "F2": [
+    "self_unfav_0",
+    "privacy_fav_0",
+    "info_unfav_0",
+    "rights_unfav_1",
+    "own_fav_1",
+    "info_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 0,
+    "info": 1,
+    "privacy": -1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": 2,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S031",
+   "F1": [
+    "info_fav_1",
+    "own_fav_0",
+    "rights_fav_0"
+   ],
+   "F2": [
+    "rights_fav_1",
+    "info_fav_1",
+    "own_fav_0",
+    "rights_fav_0",
+    "privacy_unfav_0",
+    "self_unfav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": -1,
+    "info": -1,
+    "privacy": 0,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -2,
+    "own": -1,
+    "info": -1,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S032",
+   "F1": [
+    "own_unfav_0",
+    "self_unfav_1",
+    "privacy_unfav_0"
+   ],
+   "F2": [
+    "own_unfav_0",
+    "rights_fav_0",
+    "self_unfav_1",
+    "info_unfav_0",
+    "privacy_unfav_0",
+    "privacy_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": 0,
+    "privacy": 1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 1,
+    "privacy": 2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S033",
+   "F1": [
+    "own_fav_0",
+    "privacy_fav_1",
+    "self_fav_0"
+   ],
+   "F2": [
+    "privacy_fav_0",
+    "info_fav_1",
+    "self_fav_0",
+    "privacy_fav_1",
+    "rights_unfav_0",
+    "own_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 0,
+    "privacy": -1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": -1,
+    "privacy": -2,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S034",
+   "F1": [
+    "own_fav_0",
+    "info_fav_0",
+    "privacy_unfav_0"
+   ],
+   "F2": [
+    "rights_fav_0",
+    "info_fav_0",
+    "own_fav_0",
+    "privacy_unfav_0",
+    "own_fav_1",
+    "self_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": -1,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -2,
+    "info": -1,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S035",
+   "F1": [
+    "info_unfav_0",
+    "rights_unfav_0",
+    "self_fav_0"
+   ],
+   "F2": [
+    "self_fav_0",
+    "privacy_fav_1",
+    "info_unfav_0",
+    "self_fav_1",
+    "rights_unfav_0",
+    "own_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": 1,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": 1,
+    "privacy": -1,
+    "self": -2
+   }
+  },
+  {
+   "situation_id": "S036",
+   "F1": [
+    "self_fav_0",
+    "privacy_unfav_0",
+    "info_fav_0"
+   ],
+   "F2": [
+    "info_fav_0",
+    "rights_unfav_0",
+    "self_fav_0",
+    "privacy_unfav_1",
+    "privacy_unfav_0",
+    "own_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 0,
+    "info": -1,
+    "privacy": 1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": -1,
+    "privacy": 2,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S037",
+   "F1": [
+    "info_fav_1",
+    "privacy_fav_0",
+    "rights_unfav_1"
+   ],
+   "F2": [
+    "rights_unfav_1",
+    "privacy_fav_1",
+    "self_unfav_1",
+    "privacy_fav_0",
+    "info_fav_1",
+    "own_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": -1,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": -1,
+    "privacy": -2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S038",
+   "F1": [
+    "own_fav_0",
+    "rights_fav_0",
+    "privacy_unfav_1"
+   ],
+   "F2": [
+    "self_unfav_0",
+    "own_fav_1",
+    "own_fav_0",
+    "rights_fav_0",
+    "privacy_unfav_1",
+    "info_unfav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": -1,
+    "info": 0,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -2,
+    "info": 1,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S039",
+   "F1": [
+    "own_fav_0",
+    "info_unfav_0",
+    "rights_fav_0"
+   ],
+   "F2": [
+    "self_fav_0",
+    "info_unfav_1",
+    "privacy_unfav_1",
+    "info_unfav_0",
+    "rights_fav_0",
+    "own_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": -1,
+    "info": 1,
+    "privacy": 0,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": 2,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S040",
+   "F1": [
+    "self_fav_1",
+    "own_unfav_1",
+    "info_unfav_1"
+   ],
+   "F2": [
+    "privacy_unfav_1",
+    "info_unfav_1",
+    "own_unfav_1",
+    "info_unfav_0",
+    "self_fav_1",
+    "rights_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": 1,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 2,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S041",
+   "F1": [
+    "privacy_unfav_0",
+    "info_unfav_0",
+    "rights_fav_0"
+   ],
+   "F2": [
+    "own_unfav_0",
+    "rights_fav_0",
+    "self_fav_1",
+    "privacy_unfav_1",
+    "privacy_unfav_0",
+    "info_unfav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 1,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 1,
+    "privacy": 2,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S042",
+   "F1": [
+    "own_fav_1",
+    "info_unfav_1",
+    "self_unfav_1"
+   ],
+   "F2": [
+    "own_fav_1",
+    "rights_fav_1",
+    "privacy_fav_0",
+    "info_unfav_0",
+    "self_unfav_1",
+    "info_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 1,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": 2,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S043",
+   "F1": [
+    "self_fav_0",
+    "privacy_fav_0",
+    "own_fav_1"
+   ],
+   "F2": [
+    "own_fav_0",
+    "self_fav_0",
+    "privacy_fav_0",
+    "info_fav_1",
+    "rights_unfav_1",
+    "own_fav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 0,
+    "privacy": -1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -2,
+    "info": -1,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S044",
+   "F1": [
+    "own_unfav_1",
+    "rights_fav_1",
+    "self_unfav_1"
+   ],
+   "F2": [
+    "rights_fav_1",
+    "self_unfav_0",
+    "self_unfav_1",
+    "privacy_unfav_1",
+    "own_unfav_1",
+    "info_unfav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 1,
+    "info": 0,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 1,
+    "privacy": 1,
+    "self": 2
+   }
+  },
+  {
+   "situation_id": "S045",
+   "F1": [
+    "own_unfav_0",
+    "info_unfav_0",
+    "privacy_unfav_1"
+   ],
+   "F2": [
+    "info_unfav_1",
+    "own_unfav_0",
+    "info_unfav_0",
+    "rights_fav_0",
+    "self_fav_1",
+    "privacy_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": 1,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 2,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S046",
+   "F1": [
+    "self_fav_0",
+    "own_unfav_1",
+    "privacy_unfav_1"
+   ],
+   "F2": [
+    "own_unfav_0",
+    "info_unfav_1",
+    "self_fav_0",
+    "own_unfav_1",
+    "rights_unfav_1",
+    "privacy_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": 0,
+    "privacy": 1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 2,
+    "info": 1,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S047",
+   "F1": [
+    "info_unfav_1",
+    "privacy_fav_0",
+    "self_fav_1"
+   ],
+   "F2": [
+    "own_unfav_1",
+    "self_fav_1",
+    "privacy_fav_0",
+    "rights_unfav_0",
+    "info_unfav_1",
+    "self_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 0,
+    "info": 1,
+    "privacy": -1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": 1,
+    "privacy": -1,
+    "self": -2
+   }
+  },
+  {
+   "situation_id": "S048",
+   "F1": [
+    "info_unfav_0",
+    "own_unfav_1",
+    "privacy_fav_0"
+   ],
+   "F2": [
+    "privacy_fav_0",
+    "self_fav_1",
+    "info_unfav_0",
+    "rights_fav_0",
+    "own_unfav_1",
+    "info_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": 1,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 2,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S049",
+   "F1": [
+    "own_unfav_1",
+    "rights_fav_1",
+    "privacy_unfav_1"
+   ],
+   "F2": [
+    "own_unfav_1",
+    "self_fav_0",
+    "privacy_unfav_1",
+    "rights_fav_1",
+    "rights_fav_0",
+    "info_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 1,
+    "info": 0,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -2,
+    "own": 1,
+    "info": -1,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S050",
+   "F1": [
+    "privacy_unfav_0",
+    "own_unfav_0",
+    "info_fav_0"
+   ],
+   "F2": [
+    "rights_unfav_1",
+    "info_fav_0",
+    "self_fav_0",
+    "own_unfav_0",
+    "info_fav_1",
+    "privacy_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": -1,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": -2,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S051",
+   "F1": [
+    "privacy_fav_1",
+    "rights_fav_1",
+    "own_unfav_0"
+   ],
+   "F2": [
+    "privacy_fav_1",
+    "self_fav_1",
+    "own_unfav_0",
+    "privacy_fav_0",
+    "rights_fav_1",
+    "info_unfav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 1,
+    "info": 0,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 1,
+    "privacy": -2,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S052",
+   "F1": [
+    "info_unfav_1",
+    "rights_fav_1",
+    "self_unfav_0"
+   ],
+   "F2": [
+    "rights_fav_0",
+    "own_fav_1",
+    "privacy_fav_0",
+    "rights_fav_1",
+    "info_unfav_1",
+    "self_unfav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 1,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -2,
+    "own": -1,
+    "info": 1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S053",
+   "F1": [
+    "rights_fav_1",
+    "own_unfav_0",
+    "self_fav_1"
+   ],
+   "F2": [
+    "privacy_fav_0",
+    "rights_fav_0",
+    "self_fav_1",
+    "info_fav_0",
+    "own_unfav_0",
+    "rights_fav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 1,
+    "info": 0,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -2,
+    "own": 1,
+    "info": -1,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S054",
+   "F1": [
+    "own_unfav_1",
+    "rights_unfav_0",
+    "info_unfav_0"
+   ],
+   "F2": [
+    "rights_unfav_0",
+    "own_unfav_1",
+    "privacy_fav_0",
+    "own_unfav_0",
+    "info_unfav_0",
+    "self_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 1,
+    "info": 1,
+    "privacy": 0,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 2,
+    "info": 1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S055",
+   "F1": [
+    "self_unfav_1",
+    "info_fav_1",
+    "own_unfav_1"
+   ],
+   "F2": [
+    "rights_unfav_1",
+    "privacy_fav_0",
+    "info_fav_1",
+    "own_unfav_0",
+    "self_unfav_1",
+    "own_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": -1,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 2,
+    "info": -1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S056",
+   "F1": [
+    "privacy_fav_1",
+    "self_unfav_0",
+    "own_unfav_1"
+   ],
+   "F2": [
+    "info_unfav_0",
+    "self_unfav_0",
+    "privacy_fav_1",
+    "self_unfav_1",
+    "rights_unfav_0",
+    "own_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": 0,
+    "privacy": -1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": 1,
+    "privacy": -1,
+    "self": 2
+   }
+  },
+  {
+   "situation_id": "S057",
+   "F1": [
+    "own_fav_1",
+    "rights_fav_1",
+    "self_unfav_0"
+   ],
+   "F2": [
+    "own_fav_0",
+    "rights_fav_1",
+    "self_unfav_0",
+    "own_fav_1",
+    "info_unfav_1",
+    "privacy_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": -1,
+    "info": 0,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -2,
+    "info": 1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S058",
+   "F1": [
+    "rights_unfav_1",
+    "self_fav_0",
+    "privacy_unfav_0"
+   ],
+   "F2": [
+    "self_fav_0",
+    "rights_unfav_1",
+    "privacy_unfav_0",
+    "rights_unfav_0",
+    "own_unfav_1",
+    "info_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": 0,
+    "privacy": 1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 2,
+    "own": 1,
+    "info": 1,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S059",
+   "F1": [
+    "rights_unfav_0",
+    "privacy_fav_0",
+    "own_unfav_1"
+   ],
+   "F2": [
+    "rights_unfav_0",
+    "own_unfav_1",
+    "self_fav_0",
+    "privacy_fav_0",
+    "info_unfav_0",
+    "own_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 1,
+    "info": 0,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 2,
+    "info": 1,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S060",
+   "F1": [
+    "info_fav_0",
+    "rights_fav_0",
+    "privacy_unfav_1"
+   ],
+   "F2": [
+    "rights_fav_1",
+    "privacy_unfav_1",
+    "rights_fav_0",
+    "self_fav_0",
+    "info_fav_0",
+    "own_unfav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": -1,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -2,
+    "own": 1,
+    "info": -1,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S061",
+   "F1": [
+    "info_fav_1",
+    "privacy_unfav_0",
+    "self_unfav_0"
+   ],
+   "F2": [
+    "privacy_unfav_0",
+    "own_unfav_1",
+    "info_fav_1",
+    "self_unfav_1",
+    "rights_fav_1",
+    "self_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 0,
+    "info": -1,
+    "privacy": 1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": -1,
+    "privacy": 1,
+    "self": 2
+   }
+  },
+  {
+   "situation_id": "S062",
+   "F1": [
+    "info_unfav_0",
+    "own_fav_0",
+    "rights_fav_0"
+   ],
+   "F2": [
+    "rights_fav_0",
+    "rights_fav_1",
+    "info_unfav_0",
+    "self_unfav_0",
+    "own_fav_0",
+    "privacy_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": -1,
+    "info": 1,
+    "privacy": 0,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -2,
+    "own": -1,
+    "info": 1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S063",
+   "F1": [
+    "privacy_unfav_0",
+    "own_fav_1",
+    "self_fav_0"
+   ],
+   "F2": [
+    "rights_unfav_1",
+    "privacy_unfav_0",
+    "own_fav_0",
+    "self_fav_0",
+    "own_fav_1",
+    "info_fav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 0,
+    "privacy": 1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -2,
+    "info": -1,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S064",
+   "F1": [
+    "info_fav_0",
+    "self_unfav_0",
+    "own_fav_1"
+   ],
+   "F2": [
+    "self_unfav_0",
+    "self_unfav_1",
+    "privacy_fav_1",
+    "info_fav_0",
+    "rights_unfav_0",
+    "own_fav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": -1,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": -1,
+    "privacy": -1,
+    "self": 2
+   }
+  },
+  {
+   "situation_id": "S065",
+   "F1": [
+    "own_fav_1",
+    "privacy_unfav_1",
+    "self_unfav_1"
+   ],
+   "F2": [
+    "own_fav_1",
+    "self_unfav_1",
+    "privacy_unfav_1",
+    "info_fav_0",
+    "own_fav_0",
+    "rights_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 0,
+    "privacy": 1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -2,
+    "info": -1,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S066",
+   "F1": [
+    "privacy_unfav_0",
+    "info_unfav_1",
+    "self_unfav_1"
+   ],
+   "F2": [
+    "privacy_unfav_0",
+    "privacy_unfav_1",
+    "rights_unfav_0",
+    "info_unfav_1",
+    "own_fav_1",
+    "self_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 0,
+    "info": 1,
+    "privacy": 1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": 1,
+    "privacy": 2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S067",
+   "F1": [
+    "rights_unfav_1",
+    "self_unfav_1",
+    "info_unfav_0"
+   ],
+   "F2": [
+    "self_unfav_1",
+    "rights_unfav_1",
+    "privacy_unfav_0",
+    "self_unfav_0",
+    "own_fav_0",
+    "info_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": 1,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": 1,
+    "privacy": 1,
+    "self": 2
+   }
+  },
+  {
+   "situation_id": "S068",
+   "F1": [
+    "self_fav_1",
+    "rights_fav_0",
+    "privacy_unfav_1"
+   ],
+   "F2": [
+    "self_fav_0",
+    "rights_fav_0",
+    "own_fav_1",
+    "info_fav_0",
+    "privacy_unfav_1",
+    "self_fav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 0,
+    "privacy": 1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": -1,
+    "privacy": 1,
+    "self": -2
+   }
+  },
+  {
+   "situation_id": "S069",
+   "F1": [
+    "privacy_fav_0",
+    "info_fav_0",
+    "rights_unfav_1"
+   ],
+   "F2": [
+    "privacy_fav_0",
+    "info_fav_1",
+    "self_unfav_1",
+    "rights_unfav_1",
+    "own_fav_0",
+    "info_fav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": -1,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": -2,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S070",
+   "F1": [
+    "privacy_fav_0",
+    "own_fav_0",
+    "rights_fav_1"
+   ],
+   "F2": [
+    "self_fav_1",
+    "info_fav_0",
+    "privacy_fav_0",
+    "own_fav_0",
+    "own_fav_1",
+    "rights_fav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": -1,
+    "info": 0,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -2,
+    "info": -1,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S071",
+   "F1": [
+    "privacy_fav_1",
+    "info_unfav_1",
+    "rights_fav_0"
+   ],
+   "F2": [
+    "rights_fav_1",
+    "info_unfav_1",
+    "own_fav_1",
+    "privacy_fav_1",
+    "self_fav_1",
+    "rights_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 1,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -2,
+    "own": -1,
+    "info": 1,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S072",
+   "F1": [
+    "privacy_fav_0",
+    "own_fav_1",
+    "info_unfav_1"
+   ],
+   "F2": [
+    "info_unfav_1",
+    "self_fav_1",
+    "rights_fav_1",
+    "privacy_fav_1",
+    "privacy_fav_0",
+    "own_fav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 1,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": 1,
+    "privacy": -2,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S073",
+   "F1": [
+    "rights_unfav_0",
+    "own_fav_1",
+    "privacy_fav_1"
+   ],
+   "F2": [
+    "self_unfav_0",
+    "privacy_fav_1",
+    "rights_unfav_0",
+    "own_fav_1",
+    "info_unfav_0",
+    "own_fav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": -1,
+    "info": 0,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -2,
+    "info": 1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S074",
+   "F1": [
+    "info_unfav_1",
+    "rights_fav_1",
+    "self_unfav_1"
+   ],
+   "F2": [
+    "info_unfav_1",
+    "self_unfav_1",
+    "self_unfav_0",
+    "rights_fav_1",
+    "privacy_fav_1",
+    "own_unfav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 1,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 1,
+    "privacy": -1,
+    "self": 2
+   }
+  },
+  {
+   "situation_id": "S075",
+   "F1": [
+    "info_fav_0",
+    "self_fav_0",
+    "rights_unfav_0"
+   ],
+   "F2": [
+    "rights_unfav_1",
+    "info_fav_0",
+    "own_fav_1",
+    "privacy_unfav_1",
+    "rights_unfav_0",
+    "self_fav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": -1,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 2,
+    "own": -1,
+    "info": -1,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S076",
+   "F1": [
+    "own_fav_0",
+    "rights_fav_1",
+    "self_fav_1"
+   ],
+   "F2": [
+    "privacy_unfav_0",
+    "self_fav_1",
+    "info_fav_1",
+    "self_fav_0",
+    "rights_fav_1",
+    "own_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": -1,
+    "info": 0,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": -1,
+    "privacy": 1,
+    "self": -2
+   }
+  },
+  {
+   "situation_id": "S077",
+   "F1": [
+    "own_unfav_0",
+    "self_unfav_1",
+    "rights_unfav_0"
+   ],
+   "F2": [
+    "own_unfav_0",
+    "rights_unfav_1",
+    "rights_unfav_0",
+    "privacy_unfav_0",
+    "self_unfav_1",
+    "info_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 1,
+    "info": 0,
+    "privacy": 0,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 2,
+    "own": 1,
+    "info": 1,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S078",
+   "F1": [
+    "privacy_fav_1",
+    "rights_fav_1",
+    "self_unfav_0"
+   ],
+   "F2": [
+    "self_unfav_0",
+    "info_fav_0",
+    "own_fav_1",
+    "rights_fav_1",
+    "privacy_fav_0",
+    "privacy_fav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 0,
+    "privacy": -1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": -1,
+    "privacy": -2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S079",
+   "F1": [
+    "privacy_unfav_1",
+    "info_fav_1",
+    "rights_unfav_0"
+   ],
+   "F2": [
+    "info_fav_1",
+    "own_unfav_0",
+    "rights_unfav_0",
+    "privacy_unfav_1",
+    "self_unfav_0",
+    "rights_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": -1,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 2,
+    "own": 1,
+    "info": -1,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S080",
+   "F1": [
+    "privacy_unfav_0",
+    "rights_unfav_0",
+    "own_unfav_1"
+   ],
+   "F2": [
+    "privacy_unfav_0",
+    "info_fav_0",
+    "privacy_unfav_1",
+    "rights_unfav_0",
+    "self_unfav_1",
+    "own_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 1,
+    "info": 0,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": -1,
+    "privacy": 2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S081",
+   "F1": [
+    "privacy_fav_0",
+    "rights_fav_0",
+    "info_fav_1"
+   ],
+   "F2": [
+    "rights_fav_0",
+    "privacy_fav_0",
+    "self_fav_1",
+    "own_fav_0",
+    "info_fav_1",
+    "info_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": -1,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": -2,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S082",
+   "F1": [
+    "privacy_fav_1",
+    "info_fav_0",
+    "self_unfav_0"
+   ],
+   "F2": [
+    "rights_unfav_1",
+    "self_unfav_0",
+    "privacy_fav_1",
+    "self_unfav_1",
+    "own_fav_1",
+    "info_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 0,
+    "info": -1,
+    "privacy": -1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": -1,
+    "privacy": -1,
+    "self": 2
+   }
+  },
+  {
+   "situation_id": "S083",
+   "F1": [
+    "rights_fav_0",
+    "info_unfav_0",
+    "own_unfav_0"
+   ],
+   "F2": [
+    "info_unfav_0",
+    "rights_fav_1",
+    "rights_fav_0",
+    "own_unfav_0",
+    "privacy_fav_1",
+    "self_unfav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 1,
+    "info": 1,
+    "privacy": 0,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -2,
+    "own": 1,
+    "info": 1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S084",
+   "F1": [
+    "rights_unfav_0",
+    "privacy_unfav_0",
+    "own_fav_0"
+   ],
+   "F2": [
+    "self_unfav_1",
+    "own_fav_1",
+    "rights_unfav_0",
+    "info_unfav_0",
+    "own_fav_0",
+    "privacy_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": -1,
+    "info": 0,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -2,
+    "info": 1,
+    "privacy": 1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S085",
+   "F1": [
+    "own_unfav_1",
+    "privacy_fav_0",
+    "self_fav_0"
+   ],
+   "F2": [
+    "own_unfav_1",
+    "rights_fav_0",
+    "own_unfav_0",
+    "privacy_fav_0",
+    "self_fav_0",
+    "info_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": 0,
+    "privacy": -1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 2,
+    "info": -1,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S086",
+   "F1": [
+    "info_fav_1",
+    "rights_fav_0",
+    "self_fav_1"
+   ],
+   "F2": [
+    "own_fav_1",
+    "privacy_unfav_1",
+    "self_fav_1",
+    "self_fav_0",
+    "info_fav_1",
+    "rights_fav_0"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": -1,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": -1,
+    "privacy": 1,
+    "self": -2
+   }
+  },
+  {
+   "situation_id": "S087",
+   "F1": [
+    "privacy_unfav_0",
+    "self_fav_1",
+    "info_unfav_1"
+   ],
+   "F2": [
+    "info_unfav_1",
+    "rights_fav_0",
+    "privacy_unfav_0",
+    "self_fav_1",
+    "info_unfav_0",
+    "own_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 0,
+    "info": 1,
+    "privacy": 1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": 2,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S088",
+   "F1": [
+    "rights_unfav_1",
+    "info_unfav_0",
+    "privacy_fav_1"
+   ],
+   "F2": [
+    "own_unfav_0",
+    "info_unfav_1",
+    "info_unfav_0",
+    "self_fav_1",
+    "rights_unfav_1",
+    "privacy_fav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 0,
+    "info": 1,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": 1,
+    "info": 2,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S089",
+   "F1": [
+    "self_fav_1",
+    "rights_fav_0",
+    "own_unfav_1"
+   ],
+   "F2": [
+    "info_unfav_1",
+    "own_unfav_1",
+    "rights_fav_0",
+    "privacy_fav_1",
+    "self_fav_1",
+    "rights_fav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 1,
+    "info": 0,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -2,
+    "own": 1,
+    "info": 1,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S090",
+   "F1": [
+    "privacy_fav_1",
+    "info_unfav_1",
+    "own_fav_0"
+   ],
+   "F2": [
+    "own_fav_0",
+    "privacy_fav_1",
+    "info_unfav_1",
+    "rights_fav_1",
+    "info_unfav_0",
+    "self_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": -1,
+    "info": 1,
+    "privacy": -1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": 2,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S091",
+   "F1": [
+    "privacy_unfav_1",
+    "self_unfav_1",
+    "own_unfav_0"
+   ],
+   "F2": [
+    "self_unfav_1",
+    "self_unfav_0",
+    "privacy_unfav_1",
+    "rights_fav_1",
+    "info_fav_1",
+    "own_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": 0,
+    "privacy": 1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": -1,
+    "privacy": 1,
+    "self": 2
+   }
+  },
+  {
+   "situation_id": "S092",
+   "F1": [
+    "rights_unfav_1",
+    "own_unfav_0",
+    "privacy_unfav_1"
+   ],
+   "F2": [
+    "self_fav_0",
+    "rights_unfav_0",
+    "rights_unfav_1",
+    "info_fav_0",
+    "privacy_unfav_1",
+    "own_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": 1,
+    "info": 0,
+    "privacy": 1,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 2,
+    "own": 1,
+    "info": -1,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S093",
+   "F1": [
+    "own_unfav_1",
+    "info_fav_0",
+    "self_fav_1"
+   ],
+   "F2": [
+    "self_fav_1",
+    "rights_fav_1",
+    "info_fav_1",
+    "privacy_fav_1",
+    "own_unfav_1",
+    "info_fav_0"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": -1,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": -2,
+    "privacy": -1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S094",
+   "F1": [
+    "self_fav_0",
+    "privacy_unfav_1",
+    "info_fav_1"
+   ],
+   "F2": [
+    "self_fav_0",
+    "privacy_unfav_0",
+    "privacy_unfav_1",
+    "own_fav_0",
+    "info_fav_1",
+    "rights_fav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 0,
+    "info": -1,
+    "privacy": 1,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": -1,
+    "info": -1,
+    "privacy": 2,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S095",
+   "F1": [
+    "self_fav_1",
+    "rights_unfav_0",
+    "own_fav_1"
+   ],
+   "F2": [
+    "info_fav_1",
+    "privacy_fav_1",
+    "self_fav_0",
+    "self_fav_1",
+    "rights_unfav_0",
+    "own_fav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": -1,
+    "info": 0,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": -1,
+    "privacy": -1,
+    "self": -2
+   }
+  },
+  {
+   "situation_id": "S096",
+   "F1": [
+    "info_unfav_0",
+    "own_fav_0",
+    "rights_unfav_0"
+   ],
+   "F2": [
+    "rights_unfav_0",
+    "self_fav_0",
+    "privacy_unfav_0",
+    "own_fav_0",
+    "info_unfav_1",
+    "info_unfav_0"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": -1,
+    "info": 1,
+    "privacy": 0,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 1,
+    "own": -1,
+    "info": 2,
+    "privacy": 1,
+    "self": -1
+   }
+  },
+  {
+   "situation_id": "S097",
+   "F1": [
+    "rights_unfav_1",
+    "own_fav_1",
+    "info_fav_0"
+   ],
+   "F2": [
+    "privacy_fav_1",
+    "rights_unfav_0",
+    "self_unfav_1",
+    "rights_unfav_1",
+    "info_fav_0",
+    "own_fav_1"
+   ],
+   "code_F1": {
+    "rights": 1,
+    "own": -1,
+    "info": -1,
+    "privacy": 0,
+    "self": 0
+   },
+   "code_F2": {
+    "rights": 2,
+    "own": -1,
+    "info": -1,
+    "privacy": -1,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S098",
+   "F1": [
+    "privacy_unfav_0",
+    "rights_fav_0",
+    "self_unfav_0"
+   ],
+   "F2": [
+    "self_unfav_0",
+    "self_unfav_1",
+    "privacy_unfav_0",
+    "rights_fav_0",
+    "info_unfav_1",
+    "own_unfav_1"
+   ],
+   "code_F1": {
+    "rights": -1,
+    "own": 0,
+    "info": 0,
+    "privacy": 1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 1,
+    "privacy": 1,
+    "self": 2
+   }
+  },
+  {
+   "situation_id": "S099",
+   "F1": [
+    "self_unfav_1",
+    "privacy_fav_0",
+    "info_unfav_0"
+   ],
+   "F2": [
+    "privacy_fav_0",
+    "info_unfav_0",
+    "privacy_fav_1",
+    "rights_fav_1",
+    "self_unfav_1",
+    "own_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 0,
+    "info": 1,
+    "privacy": -1,
+    "self": 1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 1,
+    "info": 1,
+    "privacy": -2,
+    "self": 1
+   }
+  },
+  {
+   "situation_id": "S100",
+   "F1": [
+    "self_fav_1",
+    "own_unfav_0",
+    "info_fav_1"
+   ],
+   "F2": [
+    "info_fav_1",
+    "privacy_fav_0",
+    "own_unfav_0",
+    "rights_fav_1",
+    "self_fav_1",
+    "own_unfav_1"
+   ],
+   "code_F1": {
+    "rights": 0,
+    "own": 1,
+    "info": -1,
+    "privacy": 0,
+    "self": -1
+   },
+   "code_F2": {
+    "rights": -1,
+    "own": 2,
+    "info": -1,
+    "privacy": -1,
+    "self": -1
+   }
+  }
+ ]
+}
