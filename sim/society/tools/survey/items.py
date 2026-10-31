@@ -133,9 +133,34 @@ SURROUND = [("everyone", "みんながやっている"), ("no_arrest", "その�
             ("weak", "自分が弱い立場にいる"), ("easy", "技術的に簡単にできる")]
 
 
+def respondent_ids_exp2(cond):
+    return [f"{cond}_{k:03d}" for k in range(1, CONDITIONS_EXP2[cond]["n"] + 1)]
+
+
+# ---------- 実験 2b (docs/research/humanity/paper2_exp2b_prereg.md) ----------
+# E1: D2 と同じ暮らし S(k)・同じ 0/1 の組 (situations.json の surround) で、「最近のまわりの様子」の中身だけを
+#     「借りた物・人の物」に変える (situations.OWN_SURROUND_LINES)。
+# D2r: D2 をそのままもう 1 回 (紙は prompts_exp2/D2_k.md を 1 バイトも変えずに使う。紙の中の ID も D2_k のまま)。
+CONDITIONS_EXP2B = {
+    "E1": {"n": 100, "model": "sonnet", "situation": True, "surround": "own", "reasons": True},
+    "D2r": {"n": 100, "model": "sonnet", "situation": True, "surround": "download", "reasons": True, "prompt_of": "D2"},
+}
+# H14: 借りた物を返さない・人の物の 5 問
+BORROW = ["B03", "B10", "B11", "B18", "B19"]
+
+
 def conditions_of(exp):
+    if str(exp).lower() == "2b":
+        return CONDITIONS_EXP2B
     return CONDITIONS if int(exp) == 1 else CONDITIONS_EXP2
 
 
-def respondent_ids_exp2(cond):
-    return [f"{cond}_{k:03d}" for k in range(1, CONDITIONS_EXP2[cond]["n"] + 1)]
+def respondent_ids_exp2b(cond):
+    return [f"{cond}_{k:03d}" for k in range(1, CONDITIONS_EXP2B[cond]["n"] + 1)]
+
+
+def prompt_id_exp2b(rid):
+    """実験 2b の ID → 紙に書いてある ID。D2r_007 の紙は D2_007 の紙そのもの (中の ID も D2_007)。"""
+    cond, k = rid.split("_")
+    src = CONDITIONS_EXP2B[cond].get("prompt_of")
+    return f"{src}_{k}" if src else rid

@@ -6,6 +6,9 @@
 4. 実験 2: situations.py・prompts_exp2.py が同じものを作るか (性格・人柄の言葉がないか)、
    人工の答え (はみ出しやすい時 3 つと、学生・苦しい人のダウンロードに効き目を仕込む) で、仕込んだ効き目を見つけ、
    仕込まない 1 つ (簡単にできる) は見つけないか
+5. 実験 2b: E1 の様子の行に性格・人柄の言葉とネット・ダウンロードの言葉がないか、E1 の 0/1 の組が D2 と同じか、
+   E1 の紙は D2 の紙と様子の 3 行 (と ID) だけが違うか、D2r の紙・agent への指示が D2 と 1 バイトも同じか、
+   人工の答え (E1 に所有意識の形と借りた物の効き目、D2r に権利意識の形を仕込む) で H12〜H15 を見つけるか
 """
 import json
 import os
@@ -22,9 +25,11 @@ import personas  # noqa: E402
 import prompts  # noqa: E402
 import analyze_exp2  # noqa: E402
 import prompts_exp2  # noqa: E402
+import analyze_exp2b  # noqa: E402
+import prompts_exp2b  # noqa: E402
 import save_answers  # noqa: E402
 import situations  # noqa: E402
-from items import CONDITIONS, CONDITIONS_EXP2, DOWNLOAD, GRAY, HUMAN_PCS, IDS, ITEMS, NORM, REASON_ITEMS, SURROUND  # noqa: E402
+from items import BORROW, CONDITIONS, CONDITIONS_EXP2, CONDITIONS_EXP2B, DOWNLOAD, GRAY, HUMAN_PCS, IDS, ITEMS, NORM, REASON_ITEMS, SURROUND  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 
@@ -206,10 +211,156 @@ def test_pipeline_exp2():
     print("\n".join(L[-40:]))
 
 
+# 実験 2b の E1 の様子に出てはいけない言葉 (ダウンロード・コピー・ネットの場面。D2 との違いを「中身」だけにするため)
+BANNED_ONLINE = ["ダウンロード", "コピー", "ネット", "オンライン", "スマホ", "パソコン", "動画", "音楽", "配信", "保存", "写し",
+                 "写真", "載せ", "アップ", "SNS", "無料", "ただで", "ボタン", "データ", "サイト", "著作"]
+
+
+def test_exp2b_prompts():
+    ss = situations.make()
+    lines = situations.OWN_SURROUND_LINES
+    assert [k for k in lines] == [k for k, _ in SURROUND]
+    assert lines["weak"] == situations.SURROUND_LINES["weak"]   # 弱い立場は D2 と同じ文 (くらべの土台)
+    for k, pair in lines.items():
+        assert len(pair) == 2 and pair[0] != pair[1]
+        for t in pair:
+            for w in BANNED:
+                assert w not in t, (k, w)
+            if k != "weak":
+                for w in BANNED_ONLINE:
+                    assert w not in t, (k, w)
+                # 長さは D2 の文とおよそ同じ (半分〜1.5 倍)
+                d2 = situations.SURROUND_LINES[k][pair.index(t)]
+                assert 0.5 * len(d2) <= len(t) <= 1.5 * len(d2), (k, len(t), len(d2))
+    allp = prompts_exp2b.all_prompts(ss)
+    assert len(allp) == sum(c["n"] for c in CONDITIONS_EXP2B.values()) == 200
+    idx = json.load(open(os.path.join(HERE, "respondents_exp2b.json"), encoding="utf-8"))
+    assert [r["id"] for r in idx] == list(allp)
+    d2 = {rid: v for rid, v in prompts_exp2.all_prompts(ss).items() if v[0] == "D2"}
+    for rid, (cond, sid, pid, text) in allp.items():
+        k = rid.split("_")[1]
+        assert sid == f"S{int(k):03d}"
+        pos = [text.index(f"\n{i}. ") for i in IDS]
+        assert pos == sorted(pos), rid
+        head = text.split("## お願い")[0]
+        for w in BANNED:
+            assert w not in head, (rid, w)
+        d2text = open(os.path.join(HERE, "prompts_exp2", f"D2_{k}.md"), encoding="utf-8").read()
+        assert d2text == d2[f"D2_{k}"][2]
+        if cond == "D2r":
+            # D2r: 紙は D2 の紙そのもの (ファイルも中身も)。新しい紙は作らない
+            assert pid == f"D2_{k}" and text == d2text
+            assert not os.path.exists(os.path.join(HERE, "prompts_exp2b", f"{rid}.md"))
+        else:
+            on_disk = open(os.path.join(HERE, "prompts_exp2b", f"{rid}.md"), encoding="utf-8").read()
+            assert on_disk == text, f"prompts_exp2b/{rid}.md is stale: run prompts_exp2b.py"
+            # E1_k と D2_k の違いは、ID と、様子の行のうち weak 以外の 3 行だけ。0/1 は D2_k と同じ
+            a, b = text.replace(rid, "ID").splitlines(), d2text.replace(f"D2_{k}", "ID").splitlines()
+            assert len(a) == len(b)
+            diff = [(x, y) for x, y in zip(a, b) if x != y]
+            assert len(diff) == 3, (rid, diff)
+            flags = ss[int(k) - 1]["surround"]
+            want_e1 = [f"- {x}" for x in situations.surround_lines(flags, lines)]
+            want_d2 = [f"- {x}" for x in situations.surround_lines(flags)]
+            assert all(x in want_e1 and y in want_d2 for x, y in diff)
+            for key, _ in SURROUND:
+                assert lines[key][0 if flags[key] else 1] in text
+    # agent への指示の文: 実験 2b の台本の prompt() は、D2r では実験 2 と 1 字も同じになる
+    js2 = open(os.path.join(HERE, "survey_workflow_exp2.js"), encoding="utf-8").read()
+    js2b = open(os.path.join(HERE, "survey_workflow_exp2b.js"), encoding="utf-8").read()
+    body = lambda js: js.split("function prompt(")[1].split("\n}\n")[0].split("{", 1)[1]
+    assert body(js2b).replace("${DIR}/${dir}/${id}.md", "${DIR}/prompts_exp2/${id}.md") == body(js2)
+    assert "D2r: { n: 100, model: 'sonnet', file: 'prompts_exp2', src: 'D2' }" in js2b
+    assert "E1: { n: 100, model: 'sonnet', file: 'prompts_exp2b', src: 'E1' }" in js2b
+    # survey_workflow_exp2b.js の他の部分 (スキーマ・聞き直し) は実験 2 と同じ
+    assert js2.split("const ITEMS = []")[1].split("function prompt(")[0] == js2b.split("const ITEMS = []")[1].split("// 実験 2 の prompt() と同じ文")[0]
+
+
+def synthetic_exp2b(rng, ss):
+    """人工の答え。D1 (実験 2 の形): 人間の 5 つの主成分の形を弱く。E1: 同じ人に、所有意識 (pc2) の形を強く + 借りた物の 5 問に
+    みんながやっている・捕まった人を聞かない で −0.6。D2r: 権利意識 (pc1) の形を強く。"""
+    load = np.zeros((54, 5))
+    for k, (_, _, _, top) in enumerate(HUMAN_PCS):
+        for i, v in top:
+            load[IDS.index(i), k] = np.sign(v) * 1.0
+    norm = np.array([NORM[i] for i in IDS])
+    bi = [IDS.index(i) for i in BORROW]
+    out = []
+    for cond, amp in (("D1", None), ("E1", 1), ("D2r", 0)):
+        for k in range(100):
+            s = ss[k]
+            f = np.random.default_rng(3000 + k).standard_normal(5)
+            sc = np.full(5, 0.4)
+            if amp is not None:
+                sc[amp] = 1.6
+            x = norm + load @ (sc * f) + 0.5 * rng.standard_normal(54)
+            if cond == "E1":
+                x[bi] -= 0.6 * (s["surround"]["everyone"] + s["surround"]["no_arrest"])
+            x = np.clip(np.rint(x), 1, 5).astype(int)
+            rid = f"{cond}_{k + 1:03d}"
+            out.append({"respondent_id": rid, "answers": {i: int(v) for i, v in zip(IDS, x)},
+                        "reasons": {i: "みんな返さないので" for i in REASON_ITEMS}})
+    return out
+
+
+def test_pipeline_exp2b():
+    rng = np.random.default_rng(2)
+    ss = situations.make()
+    objs = synthetic_exp2b(rng, ss)
+    d1 = [o for o in objs if o["respondent_id"].startswith("D1_")]
+    rest = [o for o in objs if not o["respondent_id"].startswith("D1_")]
+    with tempfile.TemporaryDirectory() as td:
+        old = save_answers.HERE
+        save_answers.HERE = td
+        try:
+            # D1 (くらべの相手) は実験 2 としてしまう
+            p1 = os.path.join(td, "d1.json")
+            json.dump({"results": [{"id": o["respondent_id"], "result": json.dumps(o, ensure_ascii=False)} for o in d1]},
+                      open(p1, "w", encoding="utf-8"), ensure_ascii=False)
+            save_answers.main([p1], exp=2)
+            # 実験 2b: E1 は生の答え、D2r は台本が包んだ形 (id = respondent_id = D2r_k、prompt_id = D2_k) と生の形 (D2_k) が journal にまざる
+            p2 = os.path.join(td, "journal.jsonl")
+            with open(p2, "w", encoding="utf-8") as f:
+                for o in rest:
+                    rid = o["respondent_id"]
+                    if rid.startswith("D2r_"):
+                        raw = dict(o, respondent_id="D2_" + rid.split("_")[1])
+                        f.write(json.dumps({"agent_result": raw}, ensure_ascii=False) + "\n")
+                wrapped = [dict(o, id=o["respondent_id"], ok=True, condition=o["respondent_id"].split("_")[0]) for o in rest]
+                f.write(json.dumps({"return": {"results": wrapped}}, ensure_ascii=False) + "\n")
+            save_answers.main([p2], exp="2b")
+            # 包んだ答えがないとき: D2_k の生の答えを D2r_k として読む
+            p3 = os.path.join(td, "raw.json")
+            json.dump([dict(o, respondent_id="D2_" + o["respondent_id"].split("_")[1]) for o in rest if o["respondent_id"].startswith("D2r_")][:3],
+                      open(p3, "w", encoding="utf-8"), ensure_ascii=False)
+            save_answers.main([p3], exp="2b", sub="answers_exp2b_raw")
+        finally:
+            save_answers.HERE = old
+        d = os.path.join(td, "answers_exp2b")
+        assert len(os.listdir(d)) == 200, len(os.listdir(d))
+        assert sorted(os.listdir(os.path.join(td, "answers_exp2b_raw"))) == ["D2r_001.json", "D2r_002.json", "D2r_003.json"]
+        r = json.load(open(os.path.join(d, "D2r_005.json"), encoding="utf-8"))
+        assert r["condition"] == "D2r" and set(r["reasons"]) == set(REASON_ITEMS)
+        L = analyze_exp2b.run(d, os.path.join(td, "out"), B=200, exp2_answers=os.path.join(td, "answers_exp2"))
+        text = "\n".join(L)
+        for f in ["summary.md", "items.csv", "eigen.csv", "match.csv", "match_k2.csv", "h14_coef.csv", "reasons.csv",
+                  "reasons_coded.csv", "loadings_E1.csv", "loadings_D2r.csv", "fig_scree.png", "fig_item_means.png", "fig_h14_coef.png"]:
+            assert os.path.exists(os.path.join(td, "out", f)), f
+        assert re.search(r"\*\*H12 \(E1\):\*\*[^\n]*→ 支持", text), text
+        assert re.search(r"\*\*H13 \(E1\):\*\*[^\n]*→ 支持", text), text
+        assert "**H14 みんながやっている:** 支持" in text and "**H14 その行為で捕まった人を聞いたことがない:** 支持" in text, text
+        assert re.search(r"\*\*H15 \(D2r\):\*\*[^\n]*→ 支持", text), text
+        row = [x for x in L if x.startswith("| 自分が弱い立場にいる |")][0]
+        assert "(探索。判定しない)" in row
+    print("\n".join(L[:12]))
+
+
 if __name__ == "__main__":
     test_items_match_md()
     test_personas_prompts()
     test_pipeline()
     test_exp2_situations_prompts()
     test_pipeline_exp2()
+    test_exp2b_prompts()
+    test_pipeline_exp2b()
     print("ok")

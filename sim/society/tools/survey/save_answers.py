@@ -2,10 +2,12 @@
 
     python3 save_answers.py [--dir answers_pilot] <file> [<file> ...]              # 実験 1 (C0〜C4 → answers/)
     python3 save_answers.py --exp 2 [--dir answers_exp2_pilot] <file> [<file> ...]  # 実験 2 (D1〜D3 → answers_exp2/)
+    python3 save_answers.py --exp 2b [--dir answers_exp2b_pilot] <file> [<file> ...]  # 実験 2b (E1・D2r → answers_exp2b/)
 
 <file> は、Workflow の返した値を書いた JSON か、Workflow の記録 (journal.jsonl)。どちらでも、中をたどって
 {"respondent_id": "C1_001", "answers": {...}} の形のものを拾う (文字列の中の JSON も読む)。
 台本が確かめて包んだ答え (ok: true) があれば、それだけを使う。形の合わないもの (問いが足りない・1〜5 でない・ID が違う) は書かずに数える。すでに answers/ にある ID は上書きしない。
+実験 2b の D2r は、D2 の紙をそのまま読むので、agent の生の答えの ID は D2_k。包んだ答えがないときだけ、D2_k を D2r_k として読む。
 """
 import json
 import os
@@ -15,7 +17,7 @@ import sys
 from items import CONDITIONS, IDS, REASON_ITEMS, conditions_of
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RID = re.compile(r"^([A-Z]\d)_(\d{3})$")
+RID = re.compile(r"^([A-Z]\d[a-z]?)_(\d{3})$")
 
 
 def walk(x, found):
@@ -66,8 +68,9 @@ def normalize(obj, conds=CONDITIONS):
 
 def main(paths, sub=None, exp=1):
     conds = conditions_of(exp)
+    is2b = str(exp).lower() == "2b"
     if sub is None:
-        sub = "answers" if int(exp) == 1 else "answers_exp2"
+        sub = "answers_exp2b" if is2b else "answers" if int(exp) == 1 else "answers_exp2"
     found = []
     for p in paths:
         with open(p, encoding="utf-8") as f:
@@ -86,6 +89,13 @@ def main(paths, sub=None, exp=1):
     wrapped = [o for o in found if o.get("ok") is True and o.get("id") == o.get("respondent_id")]
     if wrapped:
         found = wrapped
+    elif is2b:
+        # 包んだ答えがない: D2r の生の答え (紙の ID D2_k) を D2r_k にする (実験 2b に D2 の条件はないので、まざらない)
+        alias = {v["prompt_of"]: c for c, v in conds.items() if v.get("prompt_of")}
+        for o in found:
+            m = RID.match(str(o["respondent_id"]).strip())
+            if m and m.group(1) in alias:
+                o["respondent_id"] = f"{alias[m.group(1)]}_{m.group(2)}"
     d = os.path.join(HERE, sub)
     os.makedirs(d, exist_ok=True)
     wrote, kept, bad = 0, 0, []
@@ -124,6 +134,6 @@ if __name__ == "__main__":
         if argv[0] == "--dir":
             sub = argv[1]
         else:
-            exp = int(argv[1])
+            exp = argv[1] if argv[1].lower() == "2b" else int(argv[1])
         argv = argv[2:]
     main(argv, sub, exp)

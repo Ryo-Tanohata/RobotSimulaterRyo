@@ -34,7 +34,8 @@ H2_MAE = 0.5       # H2: 規範との差 (絶対値) の平均がこれより小
 H4_D = -0.2        # H4: グレーゾーンの平均の差 (C2 − C1) がこれ以下で、CI の上が 0 未満
 H5_OVL = 3         # H5: 上位 5 問のうち 3 問以上が重なり、偶然の p < 0.05 なら「再現」
 COLORS = {"C0": "#2a78d6", "C1": "#eb6834", "C2": "#1baf7a", "C3": "#eda100", "C4": "#e87ba4", "pooled": "#6250d6",
-          "D1": "#2a78d6", "D2": "#1baf7a", "D3": "#e87ba4", "D1+D2": "#6250d6", "exp1_C1": "#eb6834"}
+          "D1": "#2a78d6", "D2": "#1baf7a", "D3": "#e87ba4", "D1+D2": "#6250d6", "exp1_C1": "#eb6834",
+          "E1": "#eda100", "D2r": "#0f8a5f"}
 INK, MUTED = "#0b0b0b", "#52514e"
 
 
@@ -109,15 +110,16 @@ def match_one(V, items, signs, kmax=KMAX):
     return j + 1, ovl, agree
 
 
-def match_all(V, rng, n_null=2000):
+def match_all(V, rng, n_null=2000, kmax=KMAX):
+    """kmax: LLM の主成分 1〜kmax から探す (既定 10 = 実験 1 の H5・実験 2 の H7。実験 2b の H12 は 2)。偶然の基準も同じ kmax で作る。"""
     rows = []
     null = []
     for _ in range(n_null):  # 偶然の基準: でたらめな 5 問・でたらめな符号で同じ手順
         items = list(rng.choice(IDS, 5, replace=False))
-        null.append(match_one(V, items, rng.choice([-1, 1], 5))[1])
+        null.append(match_one(V, items, rng.choice([-1, 1], 5), kmax)[1])
     null = np.array(null)
     for pc, ja, en, top in HUMAN_PCS:
-        j, ovl, agree = match_one(V, [i for i, _ in top], [np.sign(v) for _, v in top])
+        j, ovl, agree = match_one(V, [i for i, _ in top], [np.sign(v) for _, v in top], kmax)
         p = float(np.mean(null >= ovl))
         rows.append({"human_pc": pc, "name_ja": ja, "name_en": en, "llm_pc": j, "overlap": ovl, "sign_agree": round(agree, 2),
                      "p_null": round(p, 4), "reproduced": bool(ovl >= H5_OVL and p < 0.05)})

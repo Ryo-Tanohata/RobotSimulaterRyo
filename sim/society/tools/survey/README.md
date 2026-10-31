@@ -65,3 +65,31 @@ python3 test_survey.py                             # 試し (実験 1 と 2。�
 
 `reasons_codebook.py`: `out_exp2/reasons.csv` (1,150 件) を、修士論文の 7 つの考え方 + 決まりに従う側のわけ 4 つで、正規表現の辞書だけで分ける (LLM は使わない)。
 → `out_exp2/reasons_coded.csv`・`reasons_summary.md`・`fig_reasons.png`。確かめの記録は `reasons_validation.md`。`--sample 60 --seed N` で確かめ用のくじ。
+
+# 論文 2・実験 2b: まわりの様子の「中身」を変える (E1) と、D2 のくり返し (D2r)
+
+事前登録: [docs/research/humanity/paper2_exp2b_prereg.md](../../../../docs/research/humanity/paper2_exp2b_prereg.md)。54 問・選択肢・順・答え方 (わけ 5 問) は実験 2 と同じ。
+
+| ファイル | 中身 |
+|---|---|
+| `items.py` の `CONDITIONS_EXP2B` | E1 (sonnet 100・借りた物の様子)・D2r (sonnet 100・D2 そのまま)。借りた物の 5 問 `BORROW` |
+| `situations.py` の `OWN_SURROUND_LINES` | E1 の様子の 4 行 (両方の側)。弱い立場は D2 と同じ文。`situations.json` は変えない (0/1 の組も D2 と同じものを使う) |
+| `prompts_exp2b.py` → `prompts_exp2b/E1_<k>.md`・`respondents_exp2b.json` | E1 の紙 100 枚。D2r は紙を作らず `prompts_exp2/D2_<k>.md` をそのまま使う (作り直して 1 バイトも同じかを確かめる) |
+| `survey_workflow_exp2b.js` | Workflow の台本 (実験 2 と同じ作り。D2r は D2 と同じ紙・同じ指示の文で聞き、D2r_k として返す) |
+| `save_answers.py --exp 2b` | → `answers_exp2b/<ID>.json` |
+| `analyze_exp2b.py` | `answers_exp2b/` と実験 2 の `answers_exp2/` (D1・D2) → `out_exp2b/` |
+
+```
+python3 prompts_exp2b.py     # 作り直し (同じものができる。D2 の紙が変わっていたら止まる)
+python3 test_survey.py       # 試し (実験 1・2・2b)
+```
+
+回し方 (メインのセッション。本人が費用を決めてから):
+
+1. **試しの回 (4 人: E1_001・E1_002・D2r_001・D2r_002):** Workflow に `scriptPath: sim/society/tools/survey/survey_workflow_exp2b.js`、
+   `args: {"root": "/home/user/RobotSimulaterRyo", "limit": 2}`。
+   `cd sim/society/tools/survey && python3 save_answers.py --exp 2b --dir answers_exp2b_pilot <transcriptDir>/journal.jsonl`
+   1 人あたりのトークン × 200 が 1,300 万をこえる見込みなら、止めて本人に報告 (prereg 6.)。`answers_exp2b_pilot/` は分析に使わない。
+2. **本番:** `args: {"root": "/home/user/RobotSimulaterRyo"}` (200 人。試しの 4 人も聞き直す)。分けるなら `"conditions": ["E1"]` など。続きは `"done": [...]`。
+   `python3 save_answers.py --exp 2b <transcriptDir>/journal.jsonl` → `answers_exp2b/`
+3. **分析:** `python3 analyze_exp2b.py` → `out_exp2b/summary.md` ほか。答えと out_exp2b/ をコミットする。

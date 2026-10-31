@@ -84,6 +84,19 @@ SURROUND_LINES = {
              "音楽や動画の保存や写真の共有などは、やり方がよく分からず、手間がかかると感じている。"),
 }
 
+# 実験 2b の E1 の「最近のまわりの様子」(docs/research/humanity/paper2_exp2b_prereg.md の 4.)。並び・0/1 は D2 と同じ。
+# 中身だけを、ダウンロード・コピーから「借りた物・人の物」に変えた。weak は D2 と 1 字も同じ (くらべの土台)。
+# ネット・ダウンロード・コピーの言葉は使わない (test_survey.py が確かめる)。
+OWN_SURROUND_LINES = {
+    "everyone": ("友人や同僚の間では、借りた本や服、道具や CD を返さずにいたり、共用の場所の小さな物を持ち帰ったりするのが、ふつうになっている。",
+                 "友人や同僚の多くは、借りた物はすぐに返し、共用の場所の物は持ち帰らずに、元の場所にもどしている。"),
+    "no_arrest": ("借りた物を返さずにいて、返すように言われたり責められたりした人の話は、まわりで聞いたことがない。",
+                  "最近、借りた物を返さずにいて、相手と仲が悪くなったり、職場や学校に知らされたりした人の話を、身近で聞いた。"),
+    "weak": SURROUND_LINES["weak"],
+    "easy": ("借りた物や、まわりに置きっぱなしの物は、そのまま持っていても、だれにも気づかれない。だれが何を貸したかを覚えている人もいない。",
+             "職場や友人の間では、だれに何を貸したかを書きとめていて、借りた物を持ったままだと、すぐに分かるようになっている。"),
+}
+
 
 def _pick(rng, options, w):
     w = np.array(w, float)
@@ -136,8 +149,10 @@ def describe(s):
     return "".join(out)
 
 
-def surround_lines(flags):
-    return [SURROUND_LINES[k][0 if flags[k] else 1] for k, _ in SURROUND]
+def surround_lines(flags, lines=None):
+    """lines: 既定は D2 の SURROUND_LINES。実験 2b の E1 は OWN_SURROUND_LINES。"""
+    lines = lines or SURROUND_LINES
+    return [lines[k][0 if flags[k] else 1] for k, _ in SURROUND]
 
 
 def make(n=N_SITUATIONS, seed=SEED):
