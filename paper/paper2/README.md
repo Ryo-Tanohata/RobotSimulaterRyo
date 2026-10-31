@@ -1,8 +1,8 @@
 # Paper 2 (draft): Personality Words or Life Circumstances?
 
 Probing human-like rule-bending in LLM respondents with the 2016 survey of the author's 2017 master's thesis
-(54 items on everyday rights violations). Two pre-registered experiments (Exp. 1: commit `2c8f966c`, Exp. 2: `b88ad84c`),
-520 simulated respondents (Claude Sonnet / Haiku / Opus), plus an exploratory dictionary coding of 1,150 reasons.
+(54 items on everyday rights violations). Three pre-registered experiments (Exp. 1: commit `2c8f966c`, Exp. 2: `b88ad84c`, Exp. 3 in the village: `b1c1ae8a`),
+520 simulated respondents (Claude Sonnet / Haiku / Opus), plus an exploratory dictionary coding of 1,150 reasons, and a village transfer test (3 arms × 3 simulated years, null result).
 
 ## Files
 
@@ -13,7 +13,7 @@ Probing human-like rule-bending in LLM respondents with the 2016 survey of the a
 | `figures/make_figures.py` | Regenerates the 5 English figures from `sim/society/tools/survey/out/` and `out_exp2/` (read-only) |
 | `figures/make_tables.py` | Writes `figures/items_table.tex` (Appendix: 54 items, English gloss, norm, LLM means) |
 | `figures/fig_*.pdf` / `.png` | Figures used by `main.tex` (PDF) and previews (PNG) |
-| `main.pdf` | Built draft (15 pages) |
+| `main.pdf` | Built draft (17 pages) |
 | `要約_ja.md` | Short Japanese summary for the author |
 
 Sources of the numbers: `docs/research/humanity/paper2_exp1_results.md`, `paper2_exp2_results.md`,
@@ -44,6 +44,8 @@ in prompts), Henrich et al. 2005 (no economic games here).
 **Sacks quote:** "We must humanize technology before it dehumanizes us" could NOT be found in Oliver Sacks's writings or interviews by
 web search. A near-identical sentence is widely attributed to Rana el Kaliouby (Affectiva) in talks from ~2018. The paper cites the
 sentence "as quoted in the thesis" with a footnote saying this.
+
+**Status (2026-10-31):** not to be submitted to arXiv yet (author's decision); kept submission-ready.
 
 ## TODO for the author (本人)
 
