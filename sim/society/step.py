@@ -23,6 +23,10 @@
                                                  季節の集まりのお題に「あなたの家の暮らし」(A1・A2) と「村のまわりの様子」(A2) の節を足す組を残す
                                                  (g7.exp3。A0 はくらべる組で、お題は今のまま)。本物の村では断る。世界・乱数・出来事は変えない。
                                                  まだ答えがなければ、今の歩のお題を書き直す。1 回の走りの中では組を変えない
+  python sim/society/step.py exp4 B0 [--note "<わけ>"]  論文 2・実験 4 (2026-10-31。docs/research/humanity/paper2_exp4_prereg.md): 写しの村 (SOC_DATA=…) だけで、
+                                                 ひどく空腹の人がよその家の倉から自動で取る決まりを止め、家の倉が 30 日分より少ない家の大人に、取るか
+                                                 (取らない / 村の蓄え / よその家の倉) を答えで選ばせる組を残す (g7.exp4。B1 は実験 3 の A1 の暮らしの節も足す)。
+                                                 本物の村と実験 3 の写しでは断る。まだ答えがなければ、今の歩のお題を書き直す。1 回の走りの中では組を変えない
   python sim/society/step.py who                 ワークフローのための、読むだけの状態の行 (DAY・PHASE・HOLD・MODE・MEET・NAMES・FEEL・COUNCIL・ASKLOG)
 
 お題は data/prompts/日/段階/名前.md、答えは data/answers/日/段階/名前.json に置く。
@@ -42,6 +46,7 @@ import archive  # noqa: E402
 import characters  # noqa: E402
 import era2  # noqa: E402
 import exp3  # noqa: E402
+import exp4  # noqa: E402
 import knowledge  # noqa: E402
 import phase  # noqa: E402
 import resume  # noqa: E402
@@ -216,6 +221,7 @@ def write_prompts(state, phase):
             text = (g7.year_prompt(state, p, first) if g7 and state["era2"]["g7"]["ask"] == "年"  # G7 の年の集まり (寄る季節は季節のお題)
                     else era2.season_prompt(state, p, first))
             text = exp3.apply(state, p, text)  # 論文 2・実験 3 (写しの村だけ。組がない・A0 なら、そのまま返す)
+            text = exp4.apply(state, p, text)  # 論文 2・実験 4 (写しの村だけ。組がなければ、そのまま返す)
         elif phase == "evening":
             text = characters.evening_prompt(state, p)
         else:
@@ -240,7 +246,7 @@ def write_prompts(state, phase):
         fa.mkdir(parents=True, exist_ok=True)
         for n in era2.feelers(state):
             p = next(q for q in state["people"] if q["name"] == n)
-            (fd / f"{n}.md").write_text(era2.feeling_prompt(state, p, first), encoding="utf-8")
+            (fd / f"{n}.md").write_text(exp4.apply_feeling(state, p, era2.feeling_prompt(state, p, first)), encoding="utf-8")  # 実験 4 (組がなければ、そのまま)
         print(f"気持ちのお題: {fd.relative_to(DATA.parent)}  →  答えの置き場所: {fa.relative_to(DATA.parent)}/<名前>.json")
 
 
@@ -403,13 +409,14 @@ def export(state):
 
 FAR_RATE_NOTE = "本人の決め 2026-10-29: 来る見込みを 5 割に"  # step.py far_rate の記録の言葉
 EXP3_NOTE = "論文 2・実験 3 (docs/research/humanity/paper2_exp3_prereg.md)"  # step.py exp3 の記録の言葉 (--note がないとき)
+EXP4_NOTE = "論文 2・実験 4 (docs/research/humanity/paper2_exp4_prereg.md)"  # step.py exp4 の記録の言葉 (--note がないとき)
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards", "heavy", "far_rate", "exp3"])
-    ap.add_argument("onoff", nargs="?", help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)。cards では、札の表を直したわけ (note)。heavy では on。far_rate では重み (0.5 など)。exp3 では組 (A0・A1・A2)")
-    ap.add_argument("--note", default=None, help="exp3 で、組を入れたわけ (記録に残す)")
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards", "heavy", "far_rate", "exp3", "exp4"])
+    ap.add_argument("onoff", nargs="?", help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)。cards では、札の表を直したわけ (note)。heavy では on。far_rate では重み (0.5 など)。exp3 では組 (A0・A1・A2)。exp4 では組 (B0・B1)")
+    ap.add_argument("--note", default=None, help="exp3・exp4 で、組を入れたわけ (記録に残す)")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
     ap.add_argument("--closed-by-decision", dest="closed", default=None,
@@ -422,9 +429,9 @@ def main():
     a = ap.parse_args()
     if (a.world is not None or a.count is not None) and a.cmd != "next_part":
         sys.exit("--world と --count は next_part のときだけ書く")
-    if a.note is not None and a.cmd != "exp3":
-        sys.exit("--note は exp3 のときだけ書く")
-    if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate", "exp3"):
+    if a.note is not None and a.cmd not in ("exp3", "exp4"):
+        sys.exit("--note は exp3・exp4 のときだけ書く")
+    if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate", "exp3", "exp4"):
         sys.exit(f"on / off は ask_why のときだけ書く ({a.cmd} {a.onoff} とは書けない)")
     if a.cmd == "ask_why" and a.onoff not in (None, "on", "off"):
         sys.exit(f"ask_why には on か off を書く ({a.onoff} とは書けない)")
@@ -471,6 +478,10 @@ def main():
         x3 = (g7 or {}).get("exp3")
         if x3:  # 論文 2・実験 3 の写しの村 (step.py exp3)
             print(f"実験 3 の組: {x3['arm']} ({exp3.ARM_WORDS.get(x3['arm'], '?')}。{_yd(x3['day'])}から)")
+        x4 = (g7 or {}).get("exp4")
+        if x4:  # 論文 2・実験 4 の写しの村 (step.py exp4)
+            print(f"実験 4 の組: {x4['arm']} ({exp4.ARM_WORDS.get(x4['arm'], '?')}。{_yd(x4['day'])}から)。いまの選び: "
+                  + ("、".join(f"{n} {c['take']}" for n, c in sorted(x4['choice'].items()) if c['take'] != exp4.NONE) or "みな取らない"))
         if state.get("era2"):  # 仕事の理由 (段階 1。2026-10-14 本人が決めた: 次に村を進めるときから。daily_run.md)
             log = state["era2"].get("ask_why_log")
             print(f"仕事の理由: {'たずねている' if state['era2'].get('ask_why') else 'たずねていない'} ({log[-1][0]} 日目のお題から)" if log
@@ -638,8 +649,26 @@ def main():
         print("お題は書き直していない (変わらない)")
         _records_exit()
         return
+    if a.cmd == "exp4":  # 2026-10-31 論文 2・実験 4: 写しの村だけ。取るかを選ぶ組を g7.exp4 に残す (乱数・出来事にはさわらない)
+        why = exp4.refusal(state, a.onoff, DATA, Path(__file__).parent / "data")
+        if why:
+            print(f"exp4 はできない: {why} (何も変えない)")
+            sys.exit(3)
+        row = exp4.set_arm(state, a.onoff, a.note or EXP4_NOTE)
+        if row is None:
+            print(f"組は、もう {a.onoff} (何も変えない)")
+            return
+        save(state)
+        answered = any(pdir(state, "season", "answers").glob("*.json"))
+        if not answered:
+            write_prompts(state, "season")  # 今の歩のお題を書き直す (足りない家の人に、選びの節と欄を足す)
+        print(f"* 実験 4 の組を {a.onoff} ({exp4.ARM_WORDS[a.onoff]}) にした ({_yd(state['day'])}から)。"
+              + ("今の歩のお題を書き直した" if not answered else "今の歩はもう答えがあるので、お題は次の歩から"))
+        return
     if a.cmd == "exp3":  # 2026-10-30 論文 2・実験 3: 写しの村だけ。お題の節の組を g7.exp3 に残す (世界・乱数・出来事にはさわらない)
         why = exp3.refusal(state, a.onoff, DATA, Path(__file__).parent / "data")
+        if not why and exp4.on(state):  # 2026-10-31: 実験 4 の写しには、実験 3 の組を入れない
+            why = f"実験 4 の組 {exp4.arm(state)} の写しには入れない"
         if why:
             print(f"exp3 はできない: {why} (何も変えない)")
             sys.exit(3)
@@ -715,7 +744,10 @@ def main():
         else:
             feels = read_feelings(state)  # 代表を決める前の顔ぶれで読む (集まりで、まとめ役が変わることがあるため)
             if g7:  # G7 の集まりの歩: 見本の家の答えを、見本でない家に広げる (まわりの集落の集まりの答えも、ここで先に読む)
-                g7.apply_year(state, read_answers(state, "season"), read_councils(state))
+                ans = read_answers(state, "season")
+                exp4.read_choices(state, ans, feels)  # 実験 4: お題に欄があった人の選び (組がなければ何もしない)
+                g7.apply_year(state, ans, read_councils(state))
+                exp4.spread(state)  # 実験 4: 見本でない家の大人に、手本の家の代表の選びを広げる (組がなければ何もしない)
             else:
                 era2.apply_answers(state, read_answers(state, "season"))
             era2.apply_feelings(state, feels)
@@ -723,6 +755,7 @@ def main():
         state["era2"]["last_first"] = first
         if g7:
             g7.after_season(state, first, met)
+        exp4.season_end(state)  # 実験 4: この歩で取った量を残す (組がなければ何もしない)
         if not any(p["alive"] for p in state["people"]):
             snap = _snap(state, before, first)
             _archive(state)

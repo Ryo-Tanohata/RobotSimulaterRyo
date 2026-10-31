@@ -450,6 +450,12 @@ def _day(state):
     _field_season(state, rng)
 
 
+def _exp4m():
+    """論文 2・実験 4 (exp4.py)。写しの村で組があるときだけ読みこむ"""
+    import exp4  # noqa: E402
+    return exp4
+
+
 def _injured_today(p):
     """けがで休んだ日 (予定は休むではないのに、今日は休んだ)"""
     return (p.get("today") or {}).get("activity") == "休む" and (p.get("plan") or {}).get("activity") != "休む"
@@ -480,21 +486,28 @@ def _keep(p):
 
 def _feed(state, rng):
     """大人: 手元に食べる分を残して残りを蓄えへ、足りなければ蓄えから取る。子: 蓄えから食べる (足りないと空腹になる)"""
+    x4 = _exp4m() if "g7" in state["era2"] and "exp4" in state["era2"]["g7"] else None  # 論文 2・実験 4 の写しの村だけ (組がなければ None。前と同じに進む)
     for p in adults(state):
         keep = _keep(p)
         have = sum(f["kcal"] for f in p["food"])
         if have > keep:
             _flow(state, p, 0, sum(_move_food(p["food"], state["store"], None, have - keep).values()))
+            if x4:
+                x4.take_day(state, p)
         elif have < keep:
             got = sum(_move_food(state["store"], p["food"], None, keep - have).values())
             _flow(state, p, 1, got)
+            if x4:  # 実験 4: 選んだ人は、足りない家の日に、村の蓄えか印のないよその家の倉から、1 日分を家の倉に入れる (その日に家の倉から食べられる)
+                x4.take_day(state, p)
             if have + got < keep and era_at_least(state, "G4"):  # 村の蓄えが足りないときは、家の倉から
                 took = sum(_move_food(_house(state, p.get("household"))["store"], p["food"], None, keep - have - got).values())
                 got += took
                 if took and era_at_least(state, "G6"):  # G6: 印で封をした家の倉を開けた (封のかけら)
                     _g6_opened(state, p, "倉")
-                if have + got < keep and p["hunger"] >= 0.6 and era_at_least(state, "G5"):  # G5: それでも足りず、ひどく空腹 (前からの 0.6) なら、よその家の倉から
-                    _steal(state, p, keep - have - got)
+                if have + got < keep and p["hunger"] >= 0.6 and era_at_least(state, "G5") and not x4:  # G5: それでも足りず、ひどく空腹 (前からの 0.6) なら、よその家の倉から
+                    _steal(state, p, keep - have - got)  # (実験 4 の写しでは、自動では取らない。取るのは選んだ人だけ)
+        elif x4:
+            x4.take_day(state, p)
     ate = {"total": 0, "sown": 0, "by": {}}
     kin = _g7m().kin_houses if "g7" in state["era2"] and _fix(state) else None  # G7 (2026-10-23): 親類の家の倉 (G6 までは None)
     for c in children(state):
