@@ -76,7 +76,8 @@
     {"date": "2026-10-29", "name": "論文 2・実験 1 (アンケート)", "text": "LLM 290 人。人格の言葉だと、ばらつきが 1 本の「厳しさ」の軸になる。", "src": ["docs/research/humanity/paper2_exp1_results.md"]},
     {"date": "2026-10-29", "name": "論文 2・実験 2 (アンケート)", "text": "暮らし・立場を持たせた 230 人。ばらつきの形が人間の範囲に入った。", "src": ["docs/research/humanity/paper2_exp2_results.md"]},
     {"date": "2026-10-30", "name": "論文 2 の下書き", "text": "性格の言葉か、暮らしの事情か (英語。2026-10-31 に実験 3 を入れて 17 ページ)。", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md"]},
-    {"date": "2026-10-30", "name": "論文 2・実験 3 (写しの村)", "text": "村の中では、暮らしやまわりの様子を足しても選びは変わらなかった (6 つとも支持しない)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]}
+    {"date": "2026-10-30", "name": "論文 2・実験 3 (写しの村)", "text": "村の中では、暮らしやまわりの様子を足しても選びは変わらなかった (6 つとも支持しない)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
+    {"date": "2026-10-31", "name": "論文 2・実験 2b (アンケート)", "text": "様子の中身を借りた物に変えると、答えは動いたが、第 1 主成分 (厳しさの軸) は動かなかった。D2 の権利意識との一致は、くり返しても出た。", "src": ["docs/research/humanity/paper2_exp2b_results.md"]}
   ],
 
   "findings": [
@@ -130,6 +131,14 @@
       {"h": "H10", "q": "1 本の「厳しさ」の軸にまとまらない", "r": "厳しさの割合 0.223 (実験 1 は 0.391)", "s": "yes"},
       {"h": "H11", "q": "暮らしを持たせると opus もばらける", "r": "SD の平均 0.137 → 0.324", "s": "yes"}
      ]},
+    {"id": "exp2b", "title": "論文 2・実験 2b: まわりの様子の中身を「借りた物」に変える (E1)・D2 をくり返す (D2r)。各 100 人", "src": ["docs/research/humanity/paper2_exp2b_results.md"],
+     "rows": [
+      {"h": "H12", "q": "E1 の主成分 1〜2 に、人間の所有意識〔田之畑 2017 (修士論文)〕が出る", "r": "重なり 2、偶然の p 0.084", "s": "no"},
+      {"h": "H13", "q": "E1 の第 1 主成分が、人間の権利意識から離れる", "r": "重なり 3 (B09・A09・A08)。軸は動かなかった", "s": "no"},
+      {"h": "H14", "q": "借りた物の「みんながやっている」で、借りた物の問いがゆるくなる", "r": "−0.72 [−0.85, −0.58]", "s": "yes"},
+      {"h": "H14", "q": "借りた物の「とがめられた人を聞かない」で、借りた物の問いがゆるくなる", "r": "−0.42 [−0.54, −0.29]", "s": "yes"},
+      {"h": "H15", "q": "D2 をくり返しても、第 1 主成分が権利意識と合う", "r": "重なり 3、p 0.0095", "s": "yes"}
+     ]},
     {"id": "exp3", "title": "論文 2・実験 3: 写しの村で、お題に暮らし・まわりの様子を足した (3 年)", "src": ["docs/research/humanity/paper2_exp3_results.md"],
      "rows": [
       {"h": "H1", "q": "言い出した家ほど「つぐなう」", "r": "+0.14 [−0.24, +0.50]。数が少ない", "s": "no"},
@@ -174,6 +183,7 @@
     {"label": "論文 2・実験 1 (試し 44 万は別)", "man": 1280, "text": "約 1,280 万", "src": "docs/research/humanity/paper2_exp1_results.md"},
     {"label": "論文 2・実験 2 (試し 26 万は別)", "man": 1010, "text": "約 1,010 万", "src": "docs/research/humanity/paper2_exp2_results.md"},
     {"label": "実験 2 のわけの分け方 (LLM なし)", "man": 0, "text": "0", "src": "docs/research/humanity/paper2_exp2_results.md"},
+    {"label": "論文 2・実験 2b (試し 18 万は別)", "man": 883, "text": "約 883 万", "src": "docs/research/humanity/paper2_exp2b_results.md"},
     {"label": "論文 2・実験 3", "man": 6580, "text": "約 6,580 万", "src": "docs/research/humanity/paper2_exp3_results.md"},
     {"label": "Society 1.0・G1〜G6", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"},
     {"label": "G9 の 4 年 (105〜108年)", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"}
