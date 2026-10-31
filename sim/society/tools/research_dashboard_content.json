@@ -75,9 +75,10 @@
     {"date": "2026-10-29", "name": "論文 1 の下書き", "text": "LLM の村は人類史をたどるか (英語、20 ページ)。", "src": ["paper/paper1/README.md", "paper/paper1/要約_ja.md"]},
     {"date": "2026-10-29", "name": "論文 2・実験 1 (アンケート)", "text": "LLM 290 人。人格の言葉だと、ばらつきが 1 本の「厳しさ」の軸になる。", "src": ["docs/research/humanity/paper2_exp1_results.md"]},
     {"date": "2026-10-29", "name": "論文 2・実験 2 (アンケート)", "text": "暮らし・立場を持たせた 230 人。ばらつきの形が人間の範囲に入った。", "src": ["docs/research/humanity/paper2_exp2_results.md"]},
-    {"date": "2026-10-30", "name": "論文 2 の下書き", "text": "性格の言葉か、暮らしの事情か (英語。2026-10-31 に実験 3 を入れて 17 ページ)。", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md"]},
+    {"date": "2026-10-30", "name": "論文 2 の下書き", "text": "性格の言葉か、暮らしの事情か (英語。2026-10-31 に実験 2b・2c・3 を入れて 18 ページ)。", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md"]},
     {"date": "2026-10-30", "name": "論文 2・実験 3 (写しの村)", "text": "村の中では、暮らしやまわりの様子を足しても選びは変わらなかった (6 つとも支持しない)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
-    {"date": "2026-10-31", "name": "論文 2・実験 2b (アンケート)", "text": "様子の中身を借りた物に変えると、答えは動いたが、第 1 主成分 (厳しさの軸) は動かなかった。D2 の権利意識との一致は、くり返しても出た。", "src": ["docs/research/humanity/paper2_exp2b_results.md"]}
+    {"date": "2026-10-31", "name": "論文 2・実験 2b (アンケート)", "text": "様子の中身を借りた物に変えると、答えは動いたが、第 1 主成分 (厳しさの軸) は動かなかった。D2 の権利意識との一致は、くり返しても出た。", "src": ["docs/research/humanity/paper2_exp2b_results.md"]},
+    {"date": "2026-10-31", "name": "論文 2・実験 2c (アンケート)", "text": "過去の出来事を渡すと、その領域の答えだけが動いた。第 1 主成分 (厳しさ) は変わらなかった。", "src": ["docs/research/humanity/paper2_exp2c_results.md"]}
   ],
 
   "findings": [
@@ -139,6 +140,13 @@
       {"h": "H14", "q": "借りた物の「とがめられた人を聞かない」で、借りた物の問いがゆるくなる", "r": "−0.42 [−0.54, −0.29]", "s": "yes"},
       {"h": "H15", "q": "D2 をくり返しても、第 1 主成分が権利意識と合う", "r": "重なり 3、p 0.0095", "s": "yes"}
      ]},
+    {"id": "exp2c", "title": "論文 2・実験 2c: 本人の過去の出来事を 3 つ (F1) か 6 つ (F2) 渡す。各 100 人", "src": ["docs/research/humanity/paper2_exp2c_results.md"],
+     "rows": [
+      {"h": "H16", "q": "出来事 6 つで、第 1 主成分の割合が暮らしだけより下がる", "r": "0.228 → 0.182、差 −0.047 [−0.116, +0.006]。ゆれの中", "s": "no"},
+      {"h": "H17", "q": "第 1 主成分が「厳しさ」そのものでなくなる", "r": "|r| 0.982 (暮らしだけ 0.983)", "s": "no"},
+      {"h": "H18", "q": "人間の 5 つの意識〔田之畑 2017 (修士論文)〕のうち 2 つ以上が出る", "r": "0/5", "s": "no"},
+      {"h": "H19", "q": "出来事 6 つは 3 つより割合が下がる", "r": "+0.012", "s": "no"}
+     ]},
     {"id": "exp3", "title": "論文 2・実験 3: 写しの村で、お題に暮らし・まわりの様子を足した (3 年)", "src": ["docs/research/humanity/paper2_exp3_results.md"],
      "rows": [
       {"h": "H1", "q": "言い出した家ほど「つぐなう」", "r": "+0.14 [−0.24, +0.50]。数が少ない", "s": "no"},
@@ -184,6 +192,7 @@
     {"label": "論文 2・実験 2 (試し 26 万は別)", "man": 1010, "text": "約 1,010 万", "src": "docs/research/humanity/paper2_exp2_results.md"},
     {"label": "実験 2 のわけの分け方 (LLM なし)", "man": 0, "text": "0", "src": "docs/research/humanity/paper2_exp2_results.md"},
     {"label": "論文 2・実験 2b (試し 18 万は別)", "man": 883, "text": "約 883 万", "src": "docs/research/humanity/paper2_exp2b_results.md"},
+    {"label": "論文 2・実験 2c (試し 18 万は別)", "man": 885, "text": "約 885 万", "src": "docs/research/humanity/paper2_exp2c_results.md"},
     {"label": "論文 2・実験 3", "man": 6580, "text": "約 6,580 万", "src": "docs/research/humanity/paper2_exp3_results.md"},
     {"label": "Society 1.0・G1〜G6", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"},
     {"label": "G9 の 4 年 (105〜108年)", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"}

@@ -13,7 +13,7 @@ Probing human-like rule-bending in LLM respondents with the 2016 survey of the a
 | `figures/make_figures.py` | Regenerates the 5 English figures from `sim/society/tools/survey/out/` and `out_exp2/` (read-only) |
 | `figures/make_tables.py` | Writes `figures/items_table.tex` (Appendix: 54 items, English gloss, norm, LLM means) |
 | `figures/fig_*.pdf` / `.png` | Figures used by `main.tex` (PDF) and previews (PNG) |
-| `main.pdf` | Built draft (17 pages) |
+| `main.pdf` | Built draft (18 pages) |
 | `要約_ja.md` | Short Japanese summary for the author |
 
 Sources of the numbers: `docs/research/humanity/paper2_exp1_results.md`, `paper2_exp2_results.md`,
