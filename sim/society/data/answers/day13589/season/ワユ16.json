@@ -1,0 +1,5 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、この秋は畑にしっかり種をまいて、草取りも手分けしてやろう。冬を越えて夏にまた実るようにしたいね。"}, {"to": "キオ17", "text": "狩りの腕は頼りになるけど、今季は畑の草取りをいっしょに頑張ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キオ17", "ネイ19"], "why": "蓄えは十分あるので、まいた畑の草取りをして来年の実りを増やしたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"キオ17": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、みんなで時間を分けて実りを増やす"}, "ネイ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに加わって、夏の実りを守る"}, "ムイ21": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝ってほしい"}}, "keep": false,
+ "judge": {"M454": "ゆるす", "M455": "ゆるす", "M456": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う", "far": {"M4": "受ける"}, "far_write": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "feeling": "蓄えが多くて安心している。みんなで畑を育てて、穏やかに冬を迎えたい。"}

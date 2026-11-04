@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "土器を作るのは俺の仕事だ。冬の前にもっと焼いて、草の種を傷ませないようにするよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意で、蓄えの草の種を虫やネズミから守れるから続ける"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M454": "ゆるす", "M455": "ゆるす", "M456": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "far": {"M4": "受ける"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "秋に草の種を畑にまくと次の夏に実る。まく量は多めにして、土器づくりも続けるとよい。", "because": [1174578], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "土器をたくさん焼けるのが楽しい。冬もみんなで無事にこえたい。"}

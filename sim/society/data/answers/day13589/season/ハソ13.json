@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、この秋は一人1000つかみずつ畑にまこう。冬と春の草取りを欠かさなければ、来年の夏も実るよ。"}, {"to": "ナセ20", "text": "夕方には木の実も少しずつ取って、冬にそなえておこうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをするほど実りが増えるので、秋のうちから手をかけておきたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが守れるので、一緒に働いてもらう"}, "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが守れるので、一緒に働いてもらう"}, "ナセ22": {"activity": "畑仕事", "place": "camp", "why": "14歳になったので、半人前だが草取りを手伝わせる"}}, "keep": false,
+ "judge": {"M454": "ゆるす", "M455": "ゆるす", "M456": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う", "far": {"M4": "受ける"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を1000つかみずつ畑にまき、夕方に木の実を取って冬にそなえ、冬と春に草取りをするのがよい", "because": [1174578], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だけれど、畑の草取りを怠らないようにしたい"}
