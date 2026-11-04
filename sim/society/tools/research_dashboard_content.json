@@ -201,7 +201,7 @@
 
   "next": [
     {"name": "実験 4: 村人が「取る」を選べる世界", "text": "よその倉・村の蓄えから取るかを、村人の答えで決める。写しの村だけで働くようにする。", "cost": "B0 3 年 約 2,260 万・B0 と B1 で約 4,600 万トークン (見積もり)", "src": ["docs/research/humanity/paper2_exp4_prereg.md"]},
-    {"name": "G9 を続ける (1 年ずつ)", "text": "遠くの運ぶ人の来る見込み 0.5 で、109年から。1 年 1,500 万トークンをこえたら止める。10 年か合わせて 1 億で相談。", "cost": "1 年 約 600〜800 万トークン (見込み。109年は約 431 万)", "src": ["docs/society_phase/G9_design.md", "docs/society_phase/G9_design_draft.md"]},
+    {"name": "G9 を続ける (1 年ずつ)", "text": "遠くの運ぶ人の来る見込み 0.5 で、109年から。1 年 1,500 万トークンをこえたら止める。10 年か合わせて 1 億で相談。", "cost": "1 年 約 600〜800 万トークン (見込み。109年は約 431 万)", "src": ["docs/society_phase/G9_design.md", "docs/society_phase/G9_design_draft.md", "sim/society/HANDOFF.md"]},
     {"name": "人とくらべる", "text": "本物の人 20〜30 人に同じ場面を答えてもらう。「LLM は人より協力的でやさしい」かを初めて確かめられる。小さな社会の経済ゲームの人のデータ〔Henrich ほか 2005〕も物差しになる。", "cost": "トークンはほとんど要らない", "src": ["docs/research/humanity/README.md"]},
     {"name": "お題のかたよりを外す", "text": "空欄のときの手を逆にする・前の例を消す・裁く側と裁かれる側を入れ替える。", "cost": "約 1,450 万トークン", "src": ["docs/research/humanity/README.md"]},
     {"name": "モデルをくらべる", "text": "53 年の写しから 5 年、haiku だけ・sonnet だけ・opus だけ・今の混ぜ方。", "cost": "約 1.2 億トークン", "src": ["docs/research/humanity/README.md"]}
