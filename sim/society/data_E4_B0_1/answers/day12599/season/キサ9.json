@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑の草の種を刈っておこう。私は土器を焼いて、蓄えの草の種を虫から守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が草の種を虫やネズミから守るので、得意な土器づくりを続ける"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ワユ16": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚をとって家の食べ物を増やす"},
+  "キオ17": {"activity": "狩り", "place": "北川12", "why": "狩りが得意で、ワユ16と二人で行けば安全"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を毎夕刈り、昼は土器づくりで蓄えを守るのがよい", "because": [1045781], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がまた実った年",
+ "take": "取らない", "take_why": "村の蓄えは23日分あるので、今までどおり必要な分だけ取る",
+ "feeling": "蓄えも畑も実りがあり、落ち着いて土器を作れそうだ。"}

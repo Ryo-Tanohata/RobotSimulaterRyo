@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "畑がいっぱい実っているよ。夕方は手の空いた人みんなで刈って、その日のうちに土器にしまおう。わたしは昼のあいだ土器を焼いて、入れ物を足しておくね。"}, {"to": "ラニ16", "text": "あなたたちは畑で草取りと刈り入れをお願い。落ちる前に刈り切りたいの。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "刈った草の種を虫やネズミから守る土器を、いちばん多く作れるのがわたしだから"},
+ "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに実った畑を刈り切るため"},
+  "ホタ17": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手を増やすため"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "刈り残すと種が落ちてしまうから"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝うため"},
+  "ハソ20": {"activity": "畑仕事", "place": "camp", "why": "子でも畑なら半人前に働けるから"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏のはじめは畑がたくさん実っている。土器づくりの人と刈る人に分かれ、刈った種はその日のうちに土器にしまう", "because": [1045781], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がまた実った年",
+ "take": "取らない", "take_why": "夏は刈り入れで蓄えが増える。取り合いは避けたい",
+ "feeling": "畑が黄色く実っていてうれしい。今年も土器を焼いて種を守りたい。"}

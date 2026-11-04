@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "畑がどれも実っている。夏のうちに刈らないと落ちてしまうから、手の空いた人は夕方ごとに一緒に刈ろう。わたしも畑に出るよ。"}, {"to": "ヌオ14", "text": "家の仲間と順番に草の種を刈って、倉に入る分も数えておこうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["タユ12", "ヌオ14"], "why": "実った畑が夏のうちに落ちる前に刈り入れを進めたいから"}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {"セヤ20": {"activity": "畑仕事", "place": "camp", "why": "子でも畑の手伝いなら半分の働きができる"}, "リセ20": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝ってもらう"}, "ヒセ20": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を家の子に任せる"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は実っているうちに刈らないと落ちる。毎夕刈るのがよい。", "because": [1045781], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実り多き畑の年",
+ "take": "取らない", "take_why": "村の蓄えは今の人数で約23日分あり、まず刈り入れを進める",
+ "feeling": "畑が実っていて心強い。みんなで刈り入れをやり遂げたい。"}
