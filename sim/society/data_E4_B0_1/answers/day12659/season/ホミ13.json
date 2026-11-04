@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "冬は実がないから、私はキャンプで土器を焼き続ける。草の種を土器に入れておけば、虫やネズミから守れるよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は木の実も草の種も実らない。土器づくりが得意なので、蓄えの草の種を守るために焼き続ける"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "採集", "place": "南川12", "why": "採集の腕が高い。近い川で魚や食べ物を探して家の倉を増やす"},
+  "キサ18": {"activity": "採集", "place": "南川12", "why": "採集が得意。ナセ16と一緒に近い川で食べ物を探す"},
+  "ソナ19": {"activity": "採集", "place": "南川12", "why": "採集が得意。近い川で二人以上で食べ物を探す"},
+  "セヤ19": {"activity": "土器づくり", "place": "camp", "why": "冬は土器を作って蓄えの草の種を守るのがよい"}
+ },
+ "keep": true,
+ "judge": {"M426": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "冬は実がないので、キャンプで土器づくりを続けて蓄えの草の種を守る", "because": [1055130], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "家の倉に約25日分あり、蓄えも129日分ある",
+ "feeling": "冬は静かに土器を焼いて、春を待つ。"}

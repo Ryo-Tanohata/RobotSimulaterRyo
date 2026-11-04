@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "ザガにやられて足がまだ痛いから、私はしばらくキャンプで休むよ。治ったら南の川へ魚と芋を探しに行く。"}],
+ "job": {"activity": "休む", "place": "camp", "with": [], "why": "夜にザガにけがをさせられたので、治るまで休む"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ16": {"activity": "狩り", "place": "南川12", "why": "冬は木の実がないので、狩りが得意な二人で近い南の川へ魚をとりに行く"}, "ソワ16": {"activity": "狩り", "place": "南川12", "why": "ヌオ16と二人組で魚をとり、家の食べ物を増やす"}},
+ "keep": false,
+ "judge": {"M426": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "村の蓄えは多く、揉めごとを増やしたくない",
+ "feeling": "けがが痛むが、村の蓄えは十分で、子どもたちと静かに冬をすごせそうだ。"}

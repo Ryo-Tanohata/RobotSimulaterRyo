@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "冬は木の実が実らないから、私は家の中で土器をつくって蓄えの草の種を守るよ。川へ行く人は二人で行って、見つけたものは夜に教えてね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは私がいちばん慣れていて、冬は木の実が取れないので、蓄えの草の種を土器に入れて虫やネズミから守りたいから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ13": {"activity": "探索", "place": "北川12", "why": "冬は木の実がないので、川で魚や芋を探して家の食べ物の足しにするため"},
+  "ヒセ19": {"activity": "探索", "place": "北川12", "with": ["ラニ13"], "why": "ラニ13と二人組で川へ行き、魚や芋を探すため"},
+  "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで夏の実りを減らさないようにするため"}
+ },
+ "keep": false,
+ "judge": {"M426": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "蓄えが約129日分あり、今は足りているから",
+ "feeling": "寒い季節だけど、蓄えは十分ある。土器づくりに集中して、春に向けて準備したい。"}

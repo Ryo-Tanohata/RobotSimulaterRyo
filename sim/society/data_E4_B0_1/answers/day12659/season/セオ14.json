@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "冬は蓄えが百日分以上あるから、土器をもっと焼いて草の種を虫から守るよ。畑の草取りも誰か続けてね。"}, {"to": "ラニ16", "text": "うちの家は畑の草取りをお願い。夏の実りが増えるから、わたしは粘土をこねてくる。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えが十分ある冬は、土器づくりが得意なので土器を増やして草の種を守る"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで夏の実りが増えるから"},
+  "ホタ17": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り人手を確保して実りを守るため"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "草取りを続け、夏の刈り入れに備える"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝いで畑を守る"},
+  "ハソ20": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える"}
+ },
+ "keep": false,
+ "judge": {"M426": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "蓄えが百日分以上ある冬は、土器づくりを続けて草の種を守り、家族は畑の草取りに回るのがよい", "because": [1055133, 1055239], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "家の倉に約27日分あり、村の蓄えも十分あるため",
+ "feeling": "蓄えに余裕があって安心している。土器を作りながら静かに春を待ちたい。"}
