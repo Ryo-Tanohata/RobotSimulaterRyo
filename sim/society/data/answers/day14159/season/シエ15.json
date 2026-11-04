@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は落ちる前に毎夕刈ろう。秋には種をまいて、冬と春は草取りをして次の夏に備えよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手を増やすため"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手を増やすため"}, "オネ23": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手を増やすため"}, "ハソ24": {"activity": "畑仕事", "place": "camp", "why": "子も畑を手伝える"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "子も畑を手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れると草の種が虫やネズミから守られる"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "畑の世話を進めるため"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "畑の世話を進めるため"}, "オネ23": {"activity": "畑仕事", "place": "camp", "why": "畑の世話を進めるため"}, "ハソ24": {"activity": "畑仕事", "place": "camp", "why": "子も畑を手伝える"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "子も畑を手伝える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると次の夏の実りが増えるから"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "オネ23": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ハソ24": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝える"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると次の夏の実りが増えるから"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "オネ23": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ハソ24": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝える"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ソワ29": true, "ホミ29": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "far": {"M9": "受けない"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を毎夕刈り、秋に種をまき、冬と春に草取りをすると次の夏の実りが増える。蓄えは十分ある。", "because": [1248771], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑の実りの年",
+ "feeling": "蓄えは十分あるので、落ち着いて畑を刈ろう。"}
