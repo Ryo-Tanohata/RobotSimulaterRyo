@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、秋のはじめに畑へ1000つかみずつまいて、冬と春の草取りを分けて回そう。わたしも畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだなく、蓄えは十分なので、種をまいて育つ畑の草取りに力を入れ、次の夏の実りを増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ21": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りが実りを増やすので、家族みんなで畑に出る"},
+  "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "小さな子の世話の合間に、キャンプのそばで畑の草取りを手伝う"},
+  "オネ23": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って、次の夏の実りを増やす"},
+  "ハソ24": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える"}
+ },
+ "keep": true,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、家族みんなで草取りをすると、次の夏の実りが増える。蓄えは十分ある。", "because": [1257070], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えが多くて心強い。畑を育てるのが楽しみだ。"}
