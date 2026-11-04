@@ -99,6 +99,8 @@ def _first_plough(state):
 def _g9_since(state):
     """G9 (2026-10-29): G7 の物差しを「ならべて測る」とき、G9 に入ってからのことだけを数える (G8 までは None = 前のまま)"""
     g = _g(state)
+    if "g10" in g:  # G10 (2026-11-04): G10 に入ってからのことだけを数える (G10 に入った日に、G9 のときの数は g7.before.G9 に移した)
+        return g["g10"]["start"]
     return g["g9"]["start"] if "g9" in g else None
 
 
@@ -180,6 +182,10 @@ def _stall(state, lv):
     """年の終わり: 条件ごとに「進み」を見る。8 年進まなければ報告で相談 (ask)、16 年で止めて相談 (g7.consult_why が読む)"""
     g, D = _g(state), state["day"]
     y = (D + 1) // YEAR
+    if "g10" in g:  # G10 (2026-11-04): 条件ごとの止まりは、G10 の 3 つの条件で数える (G10 に入った日に、G9 の止まりは g7.before.G9 に移した)
+        import g10
+        _stall_rows(g.setdefault("stall", {}), g10.progress(state), g10.done(state), y)
+        return
     if "g9" in g:  # G9 (2026-10-29): 条件ごとの止まりは、G9 の 3 つの条件で数える (G9 に入った日に、G8 の止まりは g7.before.G8 に移した)
         import g9
         _stall_rows(g.setdefault("stall", {}), g9.progress(state), g9.done(state), y)

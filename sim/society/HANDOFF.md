@@ -3,6 +3,30 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-04 G10「鉄と広い国」を作った (本人の決め「お任せします」。ブランチ g10-impl。本物の村はまだ G9 のまま)
+
+- 下書き `docs/society_phase/G10_design_draft.md` のおすすめをみな決めにした: `docs/society_phase/G10_design.md`。確かめ: `docs/society_phase/G10_check.md`。
+- 作り: `g10.py` (新)・`hint_cards_g10.json` (札 H9-03)・`g7.py` (`close_g9`・`start_g10`・仕事「黒い金属を作る」「字を習う」・道の見張り)・`g9.py` (黒い金属は G9 の数に入れない・字で書いた約束)・
+  `era2.py` (G10 の段・条件・F・刈る人日・字で比べる貸し借りともめごと)・`hints.py` (G10 の前提と札)・`yardstick.py`・`world.py` (ACTS7)・`step.py` (G9 → G10 の next_part・status の行)・
+  `techtree/plan.json` (要素 96)・`tools/lab_village.py` (W10・G10B0・G10B1)・`tools/lab_region.py` (`g10`)・`tools/test_g7.py` (`T_G10`)。どれも `g7.g10` があるときだけ働く (G9 までは 1 バイトも同じ)。
+- **G10 に入る手順 (本物の村。本人が本物の村を年の集まりの日で止めたとき。115年120日目 = 13919 日目か、そのあと)**:
+  1. g10-impl を本物の村のブランチに入れる (年の集まりのお題が出て、まだだれも答えていないところで止めてから)。
+  2. `python3.13 sim/society/step.py who` → `DAY <D> season False`・`HOLD none`・`MEET 年` で、(D + 1) が 120 で割り切れること。答え (`data/answers/day<D>/`) がまだないこと (あれば next_part は断る)。
+  3. `python3.13 sim/society/step.py status` で「G9 / 条件」の行を見て、閉じる文の年と届いた条件を合わせる。
+  4. 閉じて入る (例は 115年120日目 = 13919 日目に止めたとき。G9 は 105〜115年の 11 年):
+     ```bash
+     python3.13 sim/society/step.py next_part --closed-by-decision "本人の決め 2026-11-04 (お任せ): 遠くとの商いを 115年120日目で閉じた。c1 は届き、c2・c3 は 11 年届かなかった"
+     ```
+     出る文: 「* G9 (遠くとの商い): 3 つの条件はそろわないまま、本人の決めで閉じた (…。第 5 部もここで終わった。…)」「* フェーズ G10 (鉄と広い国) に入った …」
+     「* G10 の世界: G9 のまま (…・遠くの町の運ぶ人の重み 0.5)。…入る日に開いた札: H9-01・H9-02」。その日のお題 (答えはない) は消えて書き直る。
+  5. `python3.13 sim/society/step.py who` で `MEET 年` と答える人が出ること。`python3.13 sim/society/tools/build_tech_tree.py --quiet` (テクノロジーツリーを作り直す)。
+     `techtree/plan.json` の `closures.G9.day` に閉じた日を書く。
+  6. コミットしてプッシュ (`git add sim/society/data sim/society/app/tech_tree.html sim/society/techtree/plan.json`。文は「社会シミュレーション: G10 に入った (<Y>年120日目。G9 を本人の決め (お任せ) で閉じ、第 5 部を終えた)」)。
+  7. ワークフロー `tools/society2_seasons_workflow.js` を 1 年ずつ (`{"mode": "year", "years": 1, "py": "python3.13", "session": "<URL>"}`)。1 年ごとに、トークン・村のようす・
+     道の見張り (`step.py` の季節の表示の「G10 / 道の見張り」の行) を本人に報告する。
+  8. 止める: 1 年 1,500 万トークン / 10 年か合わせて 1 億 / 条件 1・2 の道が 2 年つづけてお題に出ない (コードが `HOLD consult` で止める) / 3 つがそろう (`HOLD wait`) / 仕組みのまちがい / 本人。
+- 回す前に用意するもの (下書き 6.): G9 の評価 `G9.md`・第 5 部のまとめ `part5.md`・G9 の動画。
+
 
 
 

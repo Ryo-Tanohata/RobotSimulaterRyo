@@ -49,6 +49,16 @@ def _g9m():
     return g9
 
 
+def _g10m():
+    """G10 (鉄と広い国) の仕組み (g10.py)。呼ぶのは G10 の F を見るときと、state に g7.g10 があるときだけ (G9 までは読みこみもしない)"""
+    import g10
+    return g10
+
+
+def _g10_on(state):
+    return "g10" in (state["era2"].get("g7") or {})
+
+
 def _g7m():
     """G7 (王と役所) から働く仕組み (g7.py。docs/society_phase/G7_design.md)。g7.py が era2 を読みこむので、関数の中で読みこむ。
     呼ぶのは state["era2"] に "g7" があるとき (G7 に入ったあと) だけ。だから G6 までは読みこみもしない"""
@@ -425,10 +435,13 @@ def _day(state):
     # 夕方、実った畑を、決めた量だけ刈る (季節の仕事とは別。2026-10-07 追加)
     sickles = e2.get("sickles", 0)
     bronze = g7.g9_tools(state) if g7 else []  # G9: 村が「使う」と決めた赤い金属の道具 (G8 までは空。前と同じに進む)
+    g10row = _g10m().reap_row(state) if g7 and _g10_on(state) else None  # G10: 夕方の刈り入れの人日を数える (c1。G9 までは None)
     reaped = {}  # G7 (直し A1a): 夕方に刈った量
     for p in adults(state):
         n = e2["jobs"].get(p["name"], {}).get("harvest", 0)
         if n and not _injured_today(p) and not (p.get("today") or {}).get("away"):
+            if g10row is not None and any(f["state"] == "実った" for f in e2["fields"]):  # G10: 道具があってもなくても、刈った人日のすべて
+                g10row["all"] += 1
             if bronze and any(f["state"] == "実った" for f in e2["fields"]):  # G9: 赤い金属の道具で刈ると 2.5 倍 (1 人 1 つ。道具の数の人まで)
                 n = g7.g9_reap(state, p, bronze.pop(0), n)
             elif sickles > 0 and any(f["state"] == "実った" for f in e2["fields"]):  # 鎌を使うと 2 倍刈れる (村の鎌の数の人まで)
@@ -1783,17 +1796,21 @@ def _g6_repay(state, off, o):
     # 足りない分が草の種 50 つかみ分より少なければ、返さなくてよいことにする (交換に行ったときの「あとで返す」と同じ目安。2026-10-09 試し回し:
     #   数え札の記録では、向こうは覚えで持って来るので、草の種 1 つかみのような残りが季節ごとに続き、最後は「返されないまま」になっていた)
     small = bool(short) and sum(VALUE[k] * n for k, n in short.items()) < 50
-    if d.get("proof") in ("封筒", "板", "数え札"):
-        g["checked"][d["proof"]] += 1
+    proof = d.get("proof")
+    if proof not in ("封筒", "板", "数え札") and "g7" in state["era2"] and _g10_on(state) and _g10m().letters(state, d["lender"]):
+        proof = "字"  # G10 (2026-11-04): 貸した家 (村なら村) に読み書きできる大人がいれば、貸した量を字で書いておいた (G9 までは通らない)
+        _g10m().letters_used(state)
+    if proof in ("封筒", "板", "数え札", "字"):
+        g["checked"][proof] = g["checked"].get(proof, 0) + 1
         if short and not small:
             d["goods"] = short
             d.pop("rate", None)  # G7: 足りない分は、上乗せをつけずに (G6 までは rate がない)
         else:
             d.update(status="返した", end=day)
-        how = "封筒を割って" if d["proof"] == "封筒" else f"{d['proof']}の記録を見て"
+        how = "封筒を割って" if proof == "封筒" else "字で書いておいた量を読み合わせて" if proof == "字" else f"{proof}の記録を見て"
         log(state, "確かめる", None, f"{o['name']} の人が [{d['id']}] を返しに来た。{how}、貸した数 ({_gw(true)}) を確かめ、{to}は {_gw(bring)} を受けとった"
             + (f"。足りない {_gw(short)} は、わずかなので、返さなくてよいことになった" if small
-               else f"。足りない {_gw(short)} は、あとで返すことになった" if short else ""), other=o["id"], debt=d["id"], how=d["proof"], moves=mv)
+               else f"。足りない {_gw(short)} は、あとで返すことになった" if short else ""), other=o["id"], debt=d["id"], how=proof, moves=mv)
         return
     g["unchecked"] += 1  # 記録のない量を、覚えで決めた
     d.update(status="返した", end=day)
@@ -1997,6 +2014,9 @@ def _g6_claim(state, d):
         return f"。{how}の記録がある"
     if d["kind"] not in ("蓄え", "刈る", "倉", "覚え"):
         return ""  # ヤギに荒らされた畑は、見ればわかる
+    if "g7" in state["era2"] and _g10_on(state) and _g10m().letters(state, d["from"]):  # G10 (2026-11-04): 言い出した家に読み書きできる大人がいれば、量を字で書いておいた
+        _g10m().letters_used(state)
+        return "。言い出した家は、量を字で書いておいた"
     r, s = _g6_r(state, 1000 + int(d["id"][1:])), _g6_spread(state)
     d["harm_true"], d["mem"] = d["harm"], round(r.uniform(1 - s, 1), 3)
     d["harm"] = max(1, round(d["harm"] * r.uniform(1, 1 + s)))
@@ -2919,9 +2939,15 @@ CRITERIA["G8"] = CRITERIA["G7"]
 CRITERIA["G9"] = ("赤い金属 (青銅) の道具で仕事をした日が 1 年に 30 人日以上 と、交換に行った日が 1 年に 60 日をこえる家 (商人の家) と、"
                   "遠くの相手 (遠くの町の運ぶ人) との約束を粘土の板に書いて残した、の 3 つに、一度でも届く (どれが先でもよい)",
                   lambda i: bool(i.get("g9_c1_day")) and bool(i.get("g9_c2_day")) and bool(i.get("g9_c3_day")))
-ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9"]
+# G10 (2026-11-04 本人の決め「お任せします」。docs/society_phase/G10_design.md): 「鉄と広い国」(第 6 部のはじめ)。c1・c2 は【村が決めた】、c3 は【地域で生まれた】。
+#   届いた日は g10.py の物差しが残す。G9 の物差しと G7 の国の物差しは「ならべて測る」(数えて記録するが、G10 は進めない)
+CRITERIA["G10"] = ("暦の 1 年に、夕方の刈り入れの人日の半分以上 (少なくとも 100 人日) を村で作った黒い金属の道具で刈った と、"
+                   "記録をつける家の外に、字を読み書きできる大人が 2 人以上 と、決める段 4 以上で地域の集落の半分以上のまとまり (中心は村でもよその集落でもよい)、"
+                   "の 3 つに、一度でも届く (どれが先でもよい)",
+                   lambda i: bool(i.get("g10_c1_day")) and bool(i.get("g10_c2_day")) and bool(i.get("g10_c3_day")))
+ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10"]
 NAMES2 = {"G1": "村ができる", "G2": "畑と家畜", "G3": "余りと分業", "G4": "持ち物と差", "G5": "リーダーと決まり", "G6": "交易・町・記録",
-          "G7": "王と役所", "G8": "外からの押し", "G9": "遠くとの商い"}
+          "G7": "王と役所", "G8": "外からの押し", "G9": "遠くとの商い", "G10": "鉄と広い国"}
 assert set(CRITERIA) <= set(ORDER2) and set(NAMES2) == set(ORDER2), "CRITERIA・NAMES2 の G は ORDER2 に入れる (入れないと era_at_least が黙って False になる)"
 # 部の終わりの G (第 N 部)。G6 の終わりは第 4 部の終わり。いちばん後の G の終わりは工業の入口 (止めて相談する。next_part は受けつけない)。G7・G8 は部の終わりではない
 #   2026-10-25: G8 に「外からの押し」を入れたので、もとの計画の G8〜G14 を 1 つずつずらした (G9 = 遠くとの商い … G15 = 工業の入口の前)
@@ -2963,6 +2989,11 @@ SUBSTEPS["G9"] = [("F1", "赤い金属の道具を新しく手に入れる", lam
                   ("F2", "商人の家", lambda s: _g9m().reached(s, "F2")),
                   ("F3", "遠くとの約束を書く", lambda s: _g9m().reached(s, "F3")),
                   ("F4", "遠くの相手と、2 回目の約束を守り合う", lambda s: _g9m().reached(s, "F4"))]
+# G10 の F (2026-11-04 本人の決め。届いたかは g10.py の物差しが決める。G10 に入ってから見る)
+SUBSTEPS["G10"] = [("F1", "黒い金属を村で作った", lambda s: _g10m().reached(s, "F1")),
+                   ("F2", "音の字ができた", lambda s: _g10m().reached(s, "F2")),
+                   ("F3", "広いまとまり", lambda s: _g10m().reached(s, "F3")),
+                   ("F4", "黒い金属の道具が 1 年に 30 人日", lambda s: _g10m().reached(s, "F4"))]
 # G1・G2 の F は、この仕組みを作る前に終わっていたので、記録 (出来事) から日を決めた (2026-10-08。G1_notes.md・G2_notes.md)
 RETRO_SUBSTEPS = [
     {"g": "G1", "f": "F1", "name": "畑を始める", "day": 510, "why": "セナとウィロが初めて畑に草の種をまいた"},

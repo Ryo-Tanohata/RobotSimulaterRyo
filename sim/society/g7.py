@@ -39,12 +39,13 @@ POT_NORM, SICKLE_NORM = 2, 0.5  # 9.1: 働いた日の帳簿の目安 (1 日に�
 LEDGER_KEEP = 8  # 9.1: 帳簿は新しい 8 季節分を state に残す (記録は data/records/ に)
 LEDGER_ROWS = 15  # 9.1: お題に出す帳簿の行 (1 つの帳簿に 15 行まで。のこりは数だけ)
 # 止まるわけ (4.E.2)
-PART_YEARS = {5: 60}  # 部の年数の「止めて相談する目安」(計画 2.(c)。第 5 部は 60 年)
+PART_YEARS = {5: 60, 6: 50}  # 部の年数の「止めて相談する目安」(計画 2.(c)。第 5 部は 60 年、第 6 部は 50 年 (2026-11-04 G10 の決め。G10 に入る日から数える))
 STALL_ASK, STALL_STOP = 8, 16  # 条件ごとの止まり: 8 年進まなければ報告で相談、16 年で止めて相談 (g7.stall は物差しの部分が数える)
 # 出来事 → その日の仕事 (step.py・tools/build_records.py の ACT_BY_EVENT と同じ読み方。G7 の役の仕事も)
 ACT_OF_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき",
                 "畑仕事": "畑仕事", "ヤギの世話": "ヤギの世話", "ヤギを捕まえる": "ヤギを捕まえる", "土器": "土器づくり", "住まい": "住まいを建てる",
-                "交換に行く": "交換に行く", "記録をつける": "記録をつける", "守る": "守る", "取り立てる": "取り立てる", "戦に出る": "戦に出る", "試す": "試す"}
+                "交換に行く": "交換に行く", "記録をつける": "記録をつける", "守る": "守る", "取り立てる": "取り立てる", "戦に出る": "戦に出る", "試す": "試す",
+                "黒い金属を作る": "黒い金属を作る", "字を習う": "字を習う"}  # 後ろの 2 つは G10 から (2026-11-04)
 ROLE_TEXT = {"守る": "{n} がキャンプで見張りをした", "取り立てる": "{n} が、取り立てに回る支度をした",
              "戦に出る": "{n} がキャンプで戦の支度をした", "試す": "{n} がキャンプで、よその便りで聞いたことを試した"}
 # お題に出す決まりの文 (era2.FACTS_G7) を出すとき (4.F の 8 の「出すとき」)。下の FACTS_ON (年 1 回の答えの節) で決める
@@ -346,6 +347,52 @@ def _g9_on(state):
     return "g9" in (state["era2"].get("g7") or {})
 
 
+# ---------------- G10「鉄と広い国」(2026-11-04 本人の決め「お任せします」。docs/society_phase/G10_design.md。仕組みは g10.py) ----------------
+ACTS10 = ("黒い金属を作る", "字を習う")  # G10 の仕事 (world.ACTS7 に足した。g10.acts が選べるときだけ出す)
+
+
+def close_g9(state, note):
+    """G9 を本人の決めで閉じる (条件がそろわないまま。2026-11-04 本人の決め (お任せ))。step.py next_part --closed-by-decision から、G10 に入る前に 1 回だけ。
+    G9 は第 5 部の最後の G なので、第 5 部もここで終わる。出来事「フェーズ」と g7.closed9 に残す (G7・G8 を閉じた記録はそのまま)。乱数は使わない"""
+    g, D = _g(state), state["day"]
+    s = g["g9"]
+    c = {"day": D, "by": "本人の決め", "note": note, "part_end": 5, "c": dict(s["c"]), "reached": dict(s["reached"]),
+         "c1": s["c"].get("c1"), "f1": s["reached"].get("F1"), "merchant_max": (s.get("merchant") or {}).get("max", 0),
+         "visits": len(s["visits"]), "deals": len(s["deals"]), "promises": len(s["promises"]), "tools": len([t for t in s["tools"] if t["gone"] is None]),
+         "used": dict(s["used"]), "use": s["use"]["choice"], "far_rate": hints.far_weight(state)}
+    g["closed9"] = c
+    log(state, "フェーズ", None, "G9 (遠くとの商い): 3 つの条件はそろわないまま、ここで閉じた。第 5 部「王と青銅」も、ここで終わった",
+        closed_by="本人の決め", note=note, part_end=5)
+    return c
+
+
+def start_g10(state):
+    """G10 に入った日 (enter_next か、G9 の条件がそろって第 5 部の終わりから next_part で入った日): G9 のときの G7 の物差しの数を g7.before.G9 に移して数え直し
+    (G7 の国の物差しは G10 でも、ならべて測る)、G10 の仕組み (g10.py) を入れる。世界の旗・北の大きな村 (特別な決まり)・遠くの町の運ぶ人 (重みと約束)・
+    赤い金属の道具と「使う」の決めは、そのまま持ちこす"""
+    import g10
+    g, D = _g(state), state["day"]
+    g.setdefault("before", {})["G9"] = {k: g.pop(k) for k in MEASURE_KEYS if k in g}
+    g["part_start10"] = D
+    g10.start(state)
+
+
+def _g10m():
+    import g10
+    return g10
+
+
+def _g10_on(state):
+    return "g10" in (state["era2"].get("g7") or {})
+
+
+def _g10_ok(state, name, act, with_):
+    """G10 の仕事を、その人が選べるか (g10.can_make・can_learn)。G9 までは選べない"""
+    if not _g10_on(state):
+        return False
+    return _g10m().can_make(state, name, with_) if act == "黒い金属を作る" else _g10m().can_learn(state, name)
+
+
 def enter_next(state):
     """次の G の待ち・部の終わりから、次の G に入る (G8 から。その G のコードを入れたあと)。G7 に入るのは enter"""
     e2, D, g = state["era2"], state["day"], _g(state)
@@ -361,6 +408,8 @@ def enter_next(state):
         start_g8(state)
     elif nxt == "G9":
         start_g9(state)
+    elif nxt == "G10":
+        start_g10(state)
     n = era2.PART_START.get(nxt)
     if n:
         g["part"], g["part_start"] = n, D
@@ -508,6 +557,8 @@ def acts(state):
         on.add("戦に出る")
     if g.get("hints") and hints.open_techs(state):
         on.add("試す")
+    if "g10" in g:  # G10 (2026-11-04): 黒い金属を作る・字を習う (使えるときだけ)
+        on.update(_g10m().acts(state))
     return [a for a in ACTS7 if a in on]
 
 
@@ -529,6 +580,9 @@ def job(state, q, j):
         if hints.can_try(state, q["name"], card, (q.get("plan") or {}).get("with")):
             out["try"] = card
         else:
+            q["plan"]["activity"] = "休む"
+    elif act in ACTS10:  # G10 (2026-11-04): 黒い金属を作る (作り方を知る人か、その人と一緒に) / 字を習う (読み書きできない人)。ちがえば「休む」
+        if not _g10_ok(state, q["name"], act, (q.get("plan") or {}).get("with")):
             q["plan"]["activity"] = "休む"
     elif act == "住まいを建てる" and "壁" in str(j.get("build") or ""):
         out["build"] = "壁"
@@ -593,6 +647,12 @@ def role_day(state, p, t, act):
     """G7 の役の仕事の 1 日 (守るは見張るだけで、何も作らない。取り立てるは季節の終わりに集める。戦に出るは戦の日に出かける。試すは hints.try_day)"""
     if act == "試す":
         hints.try_day(state, p, t)
+        return
+    if act == "黒い金属を作る":  # G10 (2026-11-04)
+        _g10m().make_day(state, p, t)
+        return
+    if act == "字を習う":
+        _g10m().learn_day(state, p, t)
         return
     t.setdefault("events", []).append(log(state, act, p["name"], ROLE_TEXT[act].format(n=p["name"])))
 
@@ -861,6 +921,8 @@ def facts(state):
     if _g9_on(state):  # G9: 遠くの町の運ぶ人・赤い金属の道具
         import g9
         out += g9.facts(state)
+    if _g10_on(state):  # G10: 黒い金属・音の字
+        out += _g10m().facts(state)
     if no_flee(state):  # 逃げ場のない世界 (2026-10-24): 逃げる手はない (文を事実どおりに)
         out = out.replace(NO_FLEE_TEXT[0], NO_FLEE_TEXT[1])
     return out
@@ -887,6 +949,8 @@ def text(state, p):
     if _g9_on(state):
         import g9
         out += g9.text(state, p)
+    if _g10_on(state):
+        out += _g10m().text(state, p)
     return out
 
 
@@ -941,6 +1005,8 @@ def season_end(state, frac):
     if _g9_on(state):  # G9: 遠くの運ぶ人の約束の日・道具のすり減り・c1・c2 (乱数は約束を書かなかったときの覚えだけ)
         import g9
         g9.season_end(state)
+    if _g10_on(state):  # G10: 腕・読み書き・c1〜c3・燃料と力の帳簿 (乱数なし)
+        _g10m().season_end(state)
     yardstick.season_end(state, frac)  # 13. 物差し (乱数なし)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
     _offer(state)
@@ -972,6 +1038,8 @@ def check(state, met, ind):
                 start_g8(state)
             elif nxt == "G9":  # G8 の条件がそろって G9 に進んだ (next_part で閉じて入るときと同じ)
                 start_g9(state)
+            elif nxt == "G10":  # (G9 は部の終わりなので、ここには来ない。来ても next_part で閉じて入るときと同じ)
+                start_g10(state)
             return True
         if era in g["ends"]:
             return False
@@ -1003,6 +1071,8 @@ def consult_why(state):
             continue
         if not any(c["why"] == k and c.get("since") == s["since"] for c in done):
             return {"why": k, "since": s["since"], "day": D, "text": f"条件 {k[1:]} が {y - s['since']} 年進んでいない"}
+    if "g10" in g:  # G10 (2026-11-04): 道の見張り (条件 1・2 の道が 2 年つづけてお題に出ない → 仕組みのまちがいとして止めて相談)
+        return _g10m().path_consult(state, done)
     return None
 
 
@@ -1022,7 +1092,7 @@ def indicators(state):
     return {"g7_on": True, "g7_f3_day": sub.get("F3"), "g7_tribute2_day": g.get("tribute2_day"), "g7_f4_day": sub.get("F4"),
             "g7_role_people": len(role_people(state)), "g7_others": len(_others(state)),
             "g7_region_people": sum(o["people"] for o in _others(state)), **yardstick.indicators(state),
-            **(g9.indicators(state) if "g9" in g else {})}
+            **(g9.indicators(state) if "g9" in g else {}), **(_g10m().indicators(state) if "g10" in g else {})}
 
 
 # ---------------- 年 1 回の答えと見本の家 (4.A) ----------------
@@ -1040,7 +1110,7 @@ WORK = (("集める", ("採集", "狩り", "探索", "休む", "火おこし", "
         ("作る", ("土器づくり", "道具づくり", "記録をつける", "交換に行く") + ACTS7))  # 仕事の組 (作る・記録・交換・役)
 WORK_TIE = ("作る", "畑", "集める")  # 日数が同じで、代表の仕事でも決まらないとき (まれな立場を先に)
 COPY_IF_DONE = ("交換に行く", "記録をつける", "取り立てる", "守る", "戦に出る")  # 前の年の同じ季節に、その家がしていたときだけまねる (4.A.4 の 2)
-NOT_COMMON = COPY_IF_DONE + ("試す",)  # 「いちばん多い仕事」には数えない (行き先・残すもの・札のない仕事。era2._settle_visitors と同じ考え)
+NOT_COMMON = COPY_IF_DONE + ("試す", "黒い金属を作る", "字を習う")  # 後ろの 2 つは G10 から (2026-11-04。G9 までは選べない)  # 「いちばん多い仕事」には数えない (行き先・残すもの・札のない仕事。era2._settle_visitors と同じ考え)
 DIGEST_MAX = 40  # 「前の 1 年のこと」の自分の行 (仕事の種類ごとに新しい 3 件まで。4.A.9)
 ZOOM_WHY = {"Z1": "ほかの村から求めが来ている", "Z2": "前の年に、村が戦をした", "Z3": "前の年に、貢いでいた村か、貢いでくる村が崩れた",
             "Z4": f"村の蓄えと家の倉を合わせても、{ZOOM_DAYS} 日分より少ない", "Z5": "村の蓄えが尽きて、集まり直した"}
@@ -1356,6 +1426,8 @@ def _fit(state, h, name, j, sea, common):
         return {"activity": then, "place": "camp", "with": []} if act == "交換に行く" and then in era2.acts2(state) and then not in NOT_COMMON else dict(common)
     if act == "試す" and not knows(state, name, j.get("try")):
         return dict(common)
+    if act in ACTS10 and not _g10_ok(state, name, act, ()):  # G10: 作り方を知らない人・もう読める人は、手本の「黒い金属を作る」「字を習う」をまねない
+        return dict(common)
     return j
 
 
@@ -1534,6 +1606,8 @@ def apply_year(state, answers, councils=None):
     if _g9_on(state):  # G9: 赤い金属の道具を使うか・遠くの運ぶ人の申し出・約束を板に書くか
         import g9
         g9.apply_answers(state, real)
+    if _g10_on(state):  # G10: 道の見張り (この集まりのお題に、条件 1・2 の道が出ていたか)
+        _g10m().count_paths(state)
     own, kinds = {}, {}
     if ask == "年":
         reps = set(_rep_of(state).values())
@@ -1764,6 +1838,8 @@ def _field_rows(state, solo, year):
     rows.append('   壁: 住まいを建てる人は、job に build: "壁" と書くと、村のまわりの壁を積む (書かなければ、家族の住まい)')
     if _g9_on(state):
         rows += _g9m().field_rows(state)
+    if _g10_on(state):
+        rows += _g10m().field_rows(state)
     return "\n".join(rows)
 
 
