@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は畑に種をしっかりまいて、冬と春の草取りを忘れずにやろう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意だし、蓄えの草の種を虫やネズミから守れるので、秋は土器を焼く。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで、次の夏の実りを増やすため。"}},
+ "keep": true,
+ "judge": {"M458": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "far": {"M6": "受ける"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を畑にまき、土器を焼いておくと、冬と春をしのぎやすい。", "because": [1190212], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えが豊かで落ち着いている。今日も土器を焼こう。"}

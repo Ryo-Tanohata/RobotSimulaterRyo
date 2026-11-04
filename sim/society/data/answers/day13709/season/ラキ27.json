@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけど、秋にまいた畑は冬と春の草取りで実りが変わる。みんなで畑を見てやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、毎日畑を見る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ26": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りをして実りを増やすため"}},
+ "keep": false,
+ "judge": {"M458": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "far": {"M6": "受けない"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめにまいた畑は、秋・冬・春の草取りをすれば夏のはじめに多く実る。", "because": [1189516], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑仕事をがんばろう。"}

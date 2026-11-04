@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "わたしの家の畑は、わたしが自分の手で草を取る。31 つかみぐらいで騒ぐより、自分の畑を見ていなさいな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすれば、夏の実りがぐっと増えて、家の倉が満ちるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M458": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う", "far": {"M6": "受ける"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "ワユ3の家が、畑仕事をしていたわたしの家が蓄えから多く取ったと言い出した (約31つかみ、記録はない)。ヒセ5の家のもめごとは「ゆるす」で収まった", "because": [1190215, 1182946], "confidence": 0.9},
+  {"op": "add", "text": "前の季節、世話が足りずヤギ26頭、草が足りず6頭がいなくなった。いまは153頭で、草で養える約140頭より多い", "because": [1190205, 1190206], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L393", "against": "", "agree": true, "reason": "多すぎるヤギはやせて消えるだけ。先に干し肉にしたほうが得だ"},
+  {"id": "L391", "against": "", "agree": true, "reason": "草で養えない分をつぶすのは理にかなう"},
+  {"id": "L389", "against": "", "agree": true, "reason": "1000 つかみずつまけば夏の実りが大きい"}],
+ "feeling": "疲れてはいるけど、自分の畑はわたしが守る。"}

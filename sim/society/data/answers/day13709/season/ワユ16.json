@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "冬の前に、わたしは狩りに出て肉を持ち帰るよ。みんなで分けて食べようね。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": ["キオ17"], "why": "狩りの腕が一番だから、冬の前に肉を獲ってみんなの食べ物を増やしたい"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ17": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、わたしと二人で組んで北の丘へ行く"},
+  "ネイ19": {"activity": "採集", "place": "北川12", "why": "採集が得意なので、川のそばで食べ物を集めてほしい"},
+  "ムイ21": {"activity": "採集", "place": "西草原12", "why": "近い草原で、無理せず採集をして家の食べ物を足す"}
+ },
+ "keep": false,
+ "judge": {"M458": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "far": {"M6": "受けない"}, "far_write": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で安心している。狩りで体を動かして、冬に向けてみんなと過ごしたい。"}
