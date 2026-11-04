@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "秋のうちに北の丘で肉をとってくるよ。冬に向けて、みんなで分けよう。"}, {"to": "ナセ27", "text": "ようこそ。わからないことがあったら、いつでも声をかけてね。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": ["キオ17"], "why": "狩りの腕がいちばん得意だから。二人で行けば安全で、冬の前に肉を確保できる"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ナセ27": true},
+ "family": {
+  "キオ17": {"activity": "狩り", "place": "北丘12", "why": "狩りが上手なので、わたしと二人で組んで狩りに行く"},
+  "ネイ19": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、近くの草原なら安全に食べ物を集められる"},
+  "ムイ21": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので、キャンプのそばで草取りを手伝ってもらう"},
+  "ケナ22": {"activity": "畑仕事", "place": "camp", "why": "キャンプのそばで草取りをして、畑の実りを守る"}
+ },
+ "keep": false,
+ "judge": {"M452": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "far": {"M3": "受けない"}, "far_write": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあって安心している。冬の前に狩りで役に立ちたい。"}

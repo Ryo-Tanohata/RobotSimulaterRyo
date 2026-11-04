@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいておこう。わたしは冬のあいだ、まいた畑の草取りにまわるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑に種をまいても草取りをする人が少ないと実りが減るので、冬までの草取りを引き受ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ナセ27": true},
+ "family": {
+  "ナセ16": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手がいるので一緒に働く"},
+  "キサ18": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やす"},
+  "ソナ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ラキ22": {"activity": "畑仕事", "place": "camp", "why": "力は小さいが草取りならできる"},
+  "タユ22": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを半分手伝える"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "far": {"M3": "受けない"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "秋に草の種をまき、冬のあいだ草取りをすると、夏のはじめの実りが増える", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあるので落ち着いている。秋のうちに畑の用意をしておきたい。"}

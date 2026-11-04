@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "この秋は草の種を1000つかみずつまいて、冬と春の草取りに備えよう。わたしも畑で働くよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は草取りをすると実りが増える。蓄えは十分あるので、畑を育てて来年の夏に備えたい"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {"ナセ27": true},
+ "family": {"ホミ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして実りを増やすため"}},
+ "keep": false,
+ "judge": {"M452": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "far": {"M3": "受ける"}, "far_write": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心している。畑を育てて、冬を穏やかに過ごしたい。"}

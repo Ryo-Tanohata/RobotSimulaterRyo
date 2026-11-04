@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋の畑はわたしも草取りに出るよ。まいた種が夏に増えるように、手の空いた人は声をかけてね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで夏の実りが増える。蓄えは多いので、今季は畑仕事を優先する。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ナセ27": true},
+ "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして、夏の実りを増やすため。"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑を育てるため。"}},
+ "keep": false,
+ "judge": {"M452": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "far": {"M3": "受ける"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、冬と春に草取りをすると、夏の実りが増える。蓄えが多い年は畑仕事を優先できる。", "because": [1158308], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。畑をしっかり育てて、次の夏に備えたい。"}
