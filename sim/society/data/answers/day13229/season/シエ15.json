@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに土器を焼いて、蓄えの草の種を虫から守るよ。畑にもたっぷりまいて、夏の実りに備えよう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意だから、焼いて草の種を虫やネズミから守りたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで夏の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M443": "ゆるす", "M444": "ゆるす", "M445": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋は土器を焼き、草の種を畑にまき、家族に草取りをしてもらうと、夏の実りが増える。", "because": [1124345, 1124456, 1124567], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心。土器づくりに打ち込める秋になりそうだ。"}

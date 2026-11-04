@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "前の季節は世話が足りずにヤギが 30 頭もいなくなった。この秋はおれがキャンプでヤギを見る。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "世話が足りずにヤギが 30 頭いなくなったから、ヤギを守りたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M443": "ゆるす", "M444": "ゆるす", "M445": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギの世話をする人が少ないと、1 季節に 30 頭ほどいなくなることがある", "because": [1124610], "confidence": 0.9},
+  {"op": "add", "text": "ヤギが 162 頭いて草で養えるのが 140 頭ほどだと、季節ごとに 7 頭ほどやせていなくなる", "because": [1124611], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L371", "against": "", "agree": true, "reason": "畑にまいて草取りをすれば夏にたくさん刈れるから"},
+  {"id": "L379", "against": "", "agree": true, "reason": "世話が足りないとヤギがいなくなるから"}],
+ "feeling": "ヤギがこれ以上減らないよう、しっかり見ていたい"}

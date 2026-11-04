@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種をまいて、冬と春の草取りをみんなで分けよう。わたしは土器の仕事も続けたいけど、まずは畑を見ておくよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで次の夏の実りが増えるので、畑を見守りたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど実りが増えるので一緒に働く"}, "ワユ19": {"activity": "採集", "place": "camp", "why": "キャンプのそばの木の実を取って冬にそなえる"}},
+ "keep": false,
+ "judge": {"M443": "ゆるす", "M444": "ゆるす", "M445": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を畑にまき、毎夕木の実を取って冬にそなえ、冬と春に草取りをするのがよい", "because": [1124280], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。畑をしっかり育てたい。"}
