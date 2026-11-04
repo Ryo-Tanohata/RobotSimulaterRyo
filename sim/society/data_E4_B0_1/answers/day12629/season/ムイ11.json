@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはまだ十分あるけれど、冬は木の実が実らないから、秋のうちに畑に草の種をまいて、夕方に木の実も少しずつ取っておこうね。"}],
+ "job": {"activity": "採集", "place": "南川12", "with": ["タユ12", "ヌオ14"], "why": "川は近くて魚や芋が取れ、冬に向けて食べ物を増やせるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"タユ12": {"activity": "採集", "place": "南川12", "why": "採集が得意で、私と二人組で川へ行けるから"}, "ヌオ14": {"activity": "採集", "place": "南川12", "why": "採集が得意で、二人以上で行く掟を守れるから"}},
+ "keep": false,
+ "judge": {"M425": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "村の蓄えは157日分あり、今は足りているから",
+ "feeling": "蓄えに余裕があって安心。冬に向けて畑と木の実をしっかり備えたい。"}

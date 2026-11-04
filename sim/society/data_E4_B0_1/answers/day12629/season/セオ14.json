@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はまだたっぷりあるけれど、虫やネズミに食べられる分がもったいないから、わたしは土器を焼き続けるよ。秋のはじめには、みんなも畑に種をまいてね。"}, {"to": "ヒセ5", "text": "ユエ13の家の倉の件、集まりで落ち着いて話そう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の技は一番上手で、草の種を土器に入れると虫やネズミから守れるから続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "採集", "place": "camp", "why": "採集が得意なので、木の実を集めて家の食べ物を増やす"},
+  "ホタ17": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚を取って冬に備える"},
+  "オネ17": {"activity": "採集", "place": "camp", "why": "採集が得意なので、木の実を集めて冬に備える"},
+  "セオ19": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで夏の実りを増やす"}
+ },
+ "keep": false,
+ "judge": {"M425": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えが十分あるときは、土器づくりを続けて草の種を守るのがよい", "because": [1051536], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "村の蓄えは十分あるので取らない",
+ "feeling": "蓄えが多くて安心。土器を焼いて、冬も春も無事に越したい。"}

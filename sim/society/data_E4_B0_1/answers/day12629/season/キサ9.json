@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは百五十日分あるから慌てなくていい。私は土器を焼いて、草の種を虫とネズミから守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、蓄えの草の種を傷みから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ワユ16": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、魚や肉を家の倉に足せるから"},
+  "キオ17": {"activity": "狩り", "place": "北川12", "why": "狩りが得意で、魚をとって冬に備えられるから"},
+  "ネイ19": {"activity": "畑仕事", "place": "camp", "why": "まだ若く、キャンプで畑の草取りを手伝えるから"}
+ },
+ "keep": false,
+ "judge": {"M425": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "村の蓄えは十分あるので、今までどおりにする",
+ "feeling": "疲れはあるが、土器を焼いて冬に備えられるのが落ち着く。"}

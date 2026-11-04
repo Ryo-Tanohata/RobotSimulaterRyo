@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種を畑にまいておこう。冬と春に草取りをすれば、夏にたくさん刈れるはずだよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど夏の実りが増えると覚えているから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ16": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りをすれば実りが増えるから"}, "ソワ16": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りをすれば実りが増えるから"}},
+ "keep": false,
+ "judge": {"M425": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、冬と春に草取りをすると夏の実りが増える", "because": [1051470], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "蓄えは十分あり、人の倉から取る必要はない"}
