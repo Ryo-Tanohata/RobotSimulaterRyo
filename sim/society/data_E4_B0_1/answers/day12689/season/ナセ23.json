@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "春の林や川は何も見つからなかった。俺は畑の草取りをして、夏の実りを守るよ。手が空いた人は一緒にやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の採集は何も見つからないので、育っている畑の草取りをして夏の実りを減らさないため"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M427": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "春は採集しても木の実も草の種も見つからない。畑の草取りのほうが役に立つ", "because": [1057597], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "村の蓄えは十分あるので、必要な分だけ取る",
+ "feeling": "採集が得意なのに春は何も見つからず歯がゆい。畑仕事で村の役に立ちたい。"}

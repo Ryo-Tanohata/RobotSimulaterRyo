@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "ヤギが 236 頭もいて、草で養える 140 頭をずっとこえている。乳の出ないオスから、この春のうちに家ごとにつぶして干し肉にしよう。やせていなくなるのを待つのはもったいない。"}, {"to": "ヒセ14", "text": "ヒセ5の家の人がユエ13の家の倉から取った分は、ちゃんと返してほしい。黙って取るのは村の決まりを崩す。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春は子ヤギが生まれて乳がとれる。世話が足りないとヤギがいなくなるので続ける"},
+ "family": [{"name": "テナ20", "activity": "ヤギの世話", "why": "子でもヤギの世話なら手伝えて、乳の分け前も得られるから"}],
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "judge": {"M427": "つぐなう"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "この春、子ヤギが 139 頭生まれ、ヤギは 236 頭になった。草で養えるのは約 140 頭で、草が足りない", "because": [1057631], "confidence": 0.9}],
+ "proposal": {"text": "この春のうちに、草で養えるヤギ (約 140 頭) をこえる分 (いま 96 頭ほど) を、乳の出ないオスから家ごとに分けてつぶし、干し肉にして村の蓄えに入れよう。母ヤギは残して、50 頭ごとに一人が毎日キャンプで世話をしよう。", "because": [1057631], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L353", "against": "", "agree": true, "reason": "冬の草取りと魚とりは春の蓄えを守るのに役立った"},
+  {"id": "L352", "against": "", "agree": true, "reason": "乳を小さな子から分けるのはよい"},
+  {"id": "L351", "against": "", "agree": true, "reason": "住まいのない家が雨に濡れないようにしたい"},
+  {"id": "L350", "against": "", "agree": true, "reason": "刈り残しを落とさないのは大事"},
+  {"id": "L349", "against": "", "agree": true, "reason": "畑にまいて刈り切るやり方で村は食べてきた"},
+  {"id": "L345", "against": "", "agree": true, "reason": "多すぎるヤギは春のうちにつぶすほうがよい"},
+  {"id": "L344", "against": "", "agree": true, "reason": "乳の出ないオスからつぶすのは理にかなう"}
+ ],
+ "take": "取らない", "take_why": "村の蓄えはまだあり、よそから取ればもめごとになる",
+ "feeling": "ヤギが増えすぎて草が足りない。早く手を打ちたい"}

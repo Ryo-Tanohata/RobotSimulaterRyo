@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えは百日分ほどあるから、この春は慌てず、私は土器を焼いて草の種を守るよ。畑の草取りは家族で回すね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えは十分あり、土器を作って草の種を虫やネズミから守るのが一番役に立つから"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ16": {"activity": "畑仕事", "place": "camp", "why": "夏の実りを増やすため草取りをする"},
+  "ホタ17": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を確保するため"},
+  "オネ17": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを守るため"},
+  "セオ19": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが増えすぎず元気でいるよう世話をする"},
+  "ハソ20": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を足すため"},
+  "ハソ21": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝えるから"}
+ },
+ "keep": false,
+ "judge": {"M427": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "村の蓄えは百日分あり、足りている",
+ "feeling": "蓄えに余裕があって落ち着いている。夏の実りが楽しみ。"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは百日分ほどあるから、春のあいだは畑の草取りに人を回そう。夏に実りが減らないようにしたいね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬と春に草取りをすると夏の実りが増える。土器は村にたくさんあるので、今は畑に手をかける"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ13": {"activity": "畑仕事", "place": "camp", "why": "草取りの人が多いほど夏の実りが減らないから"},
+  "ヒセ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って夏の実りを守るため"},
+  "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って夏の実りを守るため"}
+ },
+ "keep": false,
+ "judge": {"M427": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えが百日分ほどある春は、土器づくりより畑の草取りに人を回して、夏の実りを守るのがよい", "because": [], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "家の倉は約29日分でほぼ足りている。蓄えは皆のものだから",
+ "feeling": "蓄えに余裕があって落ち着いている。夏の実りが楽しみだ。"}

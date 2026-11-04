@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "春のうちは私が粘土をこねて土器を焼く。草の種を土器に入れておけば、虫にもネズミにも食べられにくいからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守れるから。"},
+ "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ16": {"activity": "土器づくり", "place": "camp", "why": "土器が割れる分を作り足し、蓄えを守るため。"},
+  "キサ18": {"activity": "道具づくり", "place": "camp", "why": "夏の刈り入れに備えて石の鎌を作りためるため。"},
+  "ソナ19": {"activity": "採集", "place": "南川12", "why": "近い川で食べ物を探し、家の倉を減らさないため。"},
+  "セヤ19": {"activity": "採集", "place": "西草原12", "why": "近い草原で食べ物を探し、家の食べ物を増やすため。"}
+ },
+ "keep": true,
+ "judge": {"M427": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "春は蓄えの草の種が十分あるので、土器づくりを続けて草の種を守るのがよい", "because": [1057615], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "take": "取らない", "take_why": "家の倉に29日分あるので、今までどおり必要な分だけ取る。",
+ "feeling": "蓄えは十分あって落ち着いている。土器を焼いて春を過ごしたい。"}
