@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬の前に、おれは家の住まいを仕上げるよ。雨の夜に家族が濡れないようにしたいんだ。手が空いたら木の実もみんなで取ろう。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["オセ22"], "why": "家の住まいが8割できているので、冬の前に仕上げて家族が雨の夜に濡れないようにする", "build": "家族の住まい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オセ22": {"activity": "住まいを建てる", "place": "camp", "why": "二人で働けば住まいが早くできあがるから"}},
+ "keep": false,
+ "judge": {"M440": "ゆるす", "M441": "ゆるす", "M442": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと、次の夏に実る。冬と春は草取りが要る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあって落ち着いている。住まいを仕上げて冬を迎えたい。"}

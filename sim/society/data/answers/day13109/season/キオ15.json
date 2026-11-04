@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "今年もまず畑だ。おれは 1000 つかみまいて、冬まで草取りを続ける。ヤギは 122 頭で草に足りているから、いまはつぶさなくていい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすれば夏の実りが何倍にもなる。去年もそれで刈り切れた"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M440": "ゆるす", "M441": "ゆるす", "M442": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギの世話をする人が少ないと、草が足りていても 1 季節に 15 頭ほどいなくなる", "because": [1109761], "confidence": 0.8},
+               {"op": "add", "text": "土器に入れた草の種も、1 季節に 100 分の 1 ほど傷む", "because": [1109767], "confidence": 0.85}],
+ "proposal": {"text": "この秋から春まで、ヤギ 40 頭ごとに一人がかならずキャンプでヤギの世話をしよう。いまは 122 頭なので三人。草で養える数に収まっているのでつぶさず、世話が足りずにいなくなるのを防ごう。前の季節は世話が足りず 15 頭いなくなったから。", "because": [1109761], "penalty": {"for": "ヤギ", "pay": 0}, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L361", "against": "", "agree": true, "reason": "秋にまけば夏に何倍にもなる。ヤギも草に収まっている"},
+  {"id": "L362", "against": "", "agree": true, "reason": "まいて草取りをするのが一番実りが多い"},
+  {"id": "L363", "against": "", "agree": true, "reason": "まくことと草取りの両方が決まっていてよい"},
+  {"id": "L367", "against": "いまヤギは 122 頭で、140 頭をこえていない", "agree": false, "reason": "つぶす分がない"},
+  {"id": "L372", "against": "いまヤギは 122 頭で、草で養える数に収まっている", "agree": false, "reason": "つぶす必要がない"},
+  {"id": "L376", "against": "夏の話で、いまは秋。ヤギも多すぎない", "agree": false, "reason": "いまには合わない"}
+ ],
+ "feeling": "畑に種をまいて、静かに草を取っていれば、来年もなんとかなるだろう。"}

@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "前の季節はヤギの世話が手薄で、15 頭も逃げた。この秋は俺がヤギを見る。あと二人、手を貸してくれ。"}, {"to": "キサ16", "text": "畑はアコ19と二人で草を取ってくれ。まいた種を無駄にしたくない。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "前の季節は世話をする人が少なく、ヤギが 15 頭いなくなったから"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ16": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをして、夏の実りを増やすため"},
+  "アコ19": {"activity": "畑仕事", "place": "camp", "why": "若くて体が動くので、畑の草取りを続けてもらう"},
+  "ホタ21": {"activity": "ヤギの世話", "place": "camp", "why": "わしと一緒にヤギを見て、世話を覚えてもらう"}
+ },
+ "keep": false,
+ "judge": {"M440": "ゆるす", "M441": "ゆるす", "M442": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える数より少なくても、世話をする人が足りないと、季節の終わりにヤギがいなくなる", "because": [1109761], "confidence": 0.9}],
+ "proposal": {"text": "この秋から春まで、ヤギ 40 頭ごとに一人がかならずキャンプでヤギの世話をしよう。いまは 122 頭なので三人。ヤギは草に収まっているのでつぶさない。前の季節は世話が足りず 15 頭いなくなったから。", "because": [1109761], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L313", "against": "", "agree": true, "reason": "ヤギの世話をする人を決めておかないと、またヤギがいなくなる"},
+  {"id": "L315", "against": "", "agree": true, "reason": "世話の人を毎晩決めるのはよい"},
+  {"id": "L361", "against": "", "agree": true, "reason": "種をまき、ヤギはつぶさず世話をする。今の村に合っている"},
+  {"id": "L362", "against": "", "agree": true, "reason": "まいた畑には草取りが要る"},
+  {"id": "L363", "against": "", "agree": true, "reason": "種まきと草取りとヤギの世話、どれも要る"},
+  {"id": "L366", "against": "ヤギはいま 122 頭で、草の 140 頭に収まっている。47 頭も多くない", "agree": false, "reason": "数が今と合わない"},
+  {"id": "L367", "against": "いまはヤギが草に収まっているのに、つぶすことはない", "agree": false, "reason": "数が今と合わない"},
+  {"id": "L370", "against": "草で養えるのは 140 頭ほど。110 頭に減らすのはやりすぎ", "agree": false, "reason": "ヤギを減らしすぎる"},
+  {"id": "L371", "against": "ヤギを 110 頭まで減らすのはやりすぎ", "agree": false, "reason": "草取りはよいが、ヤギをつぶすところに反対"},
+  {"id": "L372", "against": "いまのヤギは草に収まっている", "agree": false, "reason": "つぶす理由がない"}
+ ],
+ "feeling": "ヤギがこれ以上逃げぬよう、この秋はしっかり見張ってやる。"}
