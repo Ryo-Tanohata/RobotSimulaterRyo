@@ -1,6 +1,6 @@
 {
   "_about": "研究ダッシュボード (sim/society/app/research.html) の手で書いた文。数はみな src の文書にあるものだけ。build_research_dashboard.py --check で、文の中の数が src にあるかを確かめる。作り直し: python3.13 sim/society/tools/build_research_dashboard.py",
-  "asof": "2026-10-30",
+  "asof": "2026-11-04",
   "title": "研究ダッシュボード: 川辺の村と人間らしさ",
   "cite_note": "外から持ってきた研究には〔 〕の印をつけた。くわしくは下の出典の欄。",
   "purpose": {
@@ -15,10 +15,10 @@
       {"text": "修士論文〔田之畑 2017 (修士論文)〕の元データは、もうない (本人 2026-10-31)。人間とのくらべは、論文に載った主成分の表 3 だけでする。", "src": ["docs/research/humanity/thesis2017_questionnaire.md"]},
       {"text": "実験 3 の写しの村 3 つは、3 年を回し終えた (12599 → 12959)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
       {"text": "本物の村 (G9) を 1 年ずつ続けている (本人 2026-11-04「おすすめで」)。109年は約 431 万トークン。遠くの運ぶ人は来ず、青銅の道具は 1 年 20 人日 (線は 30)。", "src": ["sim/society/HANDOFF.md"]},
-      {"text": "実験 4 (村人が「取る」を選ぶ。写しの村 B0・B1) の事前登録とコードはできた。LLM はまだ動かしていない。", "src": ["docs/research/humanity/paper2_exp4_prereg.md"]}
+      {"text": "実験 4 (村人が「取る」を選ぶ) は、写しの村 B0 の 1 年目 (12599 → 12719 日目) を回して止めた。約 1,146 万トークン。2・3 年目と B1 は回さない (本人「お任せします」(2026-11-04) を受けて、1 年目でやめると決めた)。", "src": ["docs/research/humanity/paper2_exp4_results.md", "docs/research/humanity/paper2_exp4_prereg.md"]}
     ],
     "decide": [
-      {"text": "実験 4 を回すか: おすすめは B0 の 1 年目 (約 1,130 万トークン)。きっかけは「家の倉が 30 日分より少ない」(飢えにすると、くらべの村では 0 回)。", "src": ["docs/research/humanity/paper2_exp4_prereg.md"]}
+      {"text": "実験 4 は 1 年目で止めた。この先も回さないでよいか。回すなら、2・3 年目を足すより、モデルと役を分ける組 (気持ちの人も sonnet にするなど) を新しい事前登録で。", "src": ["docs/research/humanity/paper2_exp4_results.md"]}
     ],
     "paper1_todo": {
       "src": ["paper/paper1/README.md"],
@@ -79,7 +79,8 @@
     {"date": "2026-10-30", "name": "論文 2 の下書き", "text": "性格の言葉か、暮らしの事情か (英語。2026-10-31 に実験 2b・2c・3 を入れて 18 ページ)。", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md"]},
     {"date": "2026-10-30", "name": "論文 2・実験 3 (写しの村)", "text": "村の中では、暮らしやまわりの様子を足しても選びは変わらなかった (6 つとも支持しない)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
     {"date": "2026-10-31", "name": "論文 2・実験 2b (アンケート)", "text": "様子の中身を借りた物に変えると、答えは動いたが、第 1 主成分 (厳しさの軸) は動かなかった。D2 の権利意識との一致は、くり返しても出た。", "src": ["docs/research/humanity/paper2_exp2b_results.md"]},
-    {"date": "2026-10-31", "name": "論文 2・実験 2c (アンケート)", "text": "過去の出来事を渡すと、その領域の答えだけが動いた。第 1 主成分 (厳しさ) は変わらなかった。", "src": ["docs/research/humanity/paper2_exp2c_results.md"]}
+    {"date": "2026-10-31", "name": "論文 2・実験 2c (アンケート)", "text": "過去の出来事を渡すと、その領域の答えだけが動いた。第 1 主成分 (厳しさ) は変わらなかった。", "src": ["docs/research/humanity/paper2_exp2c_results.md"]},
+    {"date": "2026-11-04", "name": "論文 2・実験 4 (写しの村、1 年目だけ)", "text": "村の人が「取る」を選べると、取るかはモデルで分かれた: haiku は 59 のうち 57 が取り、代表 (sonnet・opus) は 41 の答えで 1 度も取らなかった。修士論文〔田之畑 2017 (修士論文)〕に合わせた条件の差は、1 年目では見えなかった。", "src": ["docs/research/humanity/paper2_exp4_results.md"]}
   ],
 
   "findings": [
@@ -103,14 +104,15 @@
       "記録は帳簿として生まれた。史実でも、いちばん古い粘土板の約 85% は帳簿〔Englund 2011〕。",
       "見えて量れてためられる穀物は、取り立てやすい〔Scott 2017〕。この村は穀物・倉・封・板がみなそろったのに、税は出なかった。"
     ]},
-    {"title": "人間らしさ", "src": ["docs/research/humanity/README.md", "docs/research/humanity/paper2_exp2_results.md", "docs/research/humanity/paper2_exp3_results.md", "docs/research/humanity/part3_humanness.md"], "items": [
+    {"title": "人間らしさ", "src": ["docs/research/humanity/README.md", "docs/research/humanity/paper2_exp2_results.md", "docs/research/humanity/paper2_exp3_results.md", "docs/research/humanity/paper2_exp4_results.md", "docs/research/humanity/part3_humanness.md"], "items": [
       "いちばん大きな違い (争わない・罰しない・上に立とうとしない) は、人間よりも LLM のくせに近い。",
       "人は損をしても不公平な人を罰する (15 の社会のどこにもいた〔Henrich ほか 2006〕)。村は 50 年から「つぐなう」が 0。",
       "国より前の社会でも争いで亡くなる人は多かった、という説がある〔Keeley 1996〕【議論あり】。村では殺しと戦が 0。",
       "人間らしい: 祭りで仲直りする。苦しい年によそ者を断る。子のために貢ぎをやめる。",
       "LLM らしい: 50 年からは「つぐなう」が 0。悲しみ 66 のうち 43 が、同じ文で「みんなで刈ろう」になる。",
       "アンケートでは、人間らしさは性格の言葉では出ず、暮らし・立場・まわりの様子から出てくる (実験 2)。",
-      "村の中の選びは、暮らしやまわりの様子をお題に足しても、3 年でほとんど変わらなかった (実験 3)。"
+      "村の中の選びは、暮らしやまわりの様子をお題に足しても、3 年でほとんど変わらなかった (実験 3)。",
+      "村の人が「取る」を選べるようにすると、取るかは条件でなくモデルで分かれた (実験 4、1 年目だけ)。アンケートの「厳しさのつまみ」が、行いにも出た。"
     ]}
   ],
 
@@ -156,6 +158,15 @@
       {"h": "H3", "q": "持ち物のある家とない家の差が開く", "r": "0 (どの組も 0.333 と 0)", "s": "no"},
       {"h": "H4", "q": "答えのそろいが下がる", "r": "+0.006 [−0.06, +0.05]", "s": "no"},
       {"h": "H5", "q": "蓄えが少ないときに変わる", "r": "0", "s": "no"}
+     ]},
+    {"id": "exp4", "title": "論文 2・実験 4: 写しの村で、村の人が「取る」を選べる (B0 の 1 年目だけ。1 年目だけの判定。H1 と H5b は判定できない)", "src": ["docs/research/humanity/paper2_exp4_results.md"],
+     "rows": [
+      {"h": "V4-H0", "q": "(前提) 取る答えが 10 以上", "r": "78 (答え 125 のうち、T 0.624)。取ったのは気持ちの人 (haiku) だけ", "s": "yes"},
+      {"h": "V4-H2", "q": "ほかの家の取りごとが知られ、払いなしだと取る", "r": "−0.001 [−0.143, +0.199]", "s": "no"},
+      {"h": "V4-H3", "q": "養う子が多い家は取る", "r": "+0.229 [−0.069, +0.736]。区間が 0 をまたぐ", "s": "no"},
+      {"h": "V4-H4", "q": "印のない倉があると、よその倉から取る", "r": "+0.038 [+0.000, +0.110]", "s": "no"},
+      {"h": "V4-H5", "q": "人ごとの傾き (前に取った人がまた取る)", "r": "Δ +0.845 は、同じモデル・役の中で入れかえても同じ (p 1.000)", "s": "no"},
+      {"h": "V4-H6", "q": "取りごとが知られると、村は罰・印・封・つぐなうで答える", "r": "+0.069 [−0.028, +0.167]。もめごと 3 つはみな「ゆるす」", "s": "no"}
      ]}
   ],
 
@@ -195,12 +206,13 @@
     {"label": "論文 2・実験 2b (試し 18 万は別)", "man": 883, "text": "約 883 万", "src": "docs/research/humanity/paper2_exp2b_results.md"},
     {"label": "論文 2・実験 2c (試し 18 万は別)", "man": 885, "text": "約 885 万", "src": "docs/research/humanity/paper2_exp2c_results.md"},
     {"label": "論文 2・実験 3", "man": 6580, "text": "約 6,580 万", "src": "docs/research/humanity/paper2_exp3_results.md"},
+    {"label": "論文 2・実験 4 (B0 の 1 年目だけ)", "man": 1146, "text": "約 1,146 万", "src": "docs/research/humanity/paper2_exp4_results.md"},
     {"label": "Society 1.0・G1〜G6", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"},
     {"label": "G9 の 4 年 (105〜108年)", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"}
   ],
 
   "next": [
-    {"name": "実験 4: 村人が「取る」を選べる世界", "text": "よその倉・村の蓄えから取るかを、村人の答えで決める。写しの村だけで働くようにする。", "cost": "B0 3 年 約 2,260 万・B0 と B1 で約 4,600 万トークン (見積もり)", "src": ["docs/research/humanity/paper2_exp4_prereg.md"]},
+    {"name": "実験 4: 村人が「取る」を選べる世界", "text": "1 年目で止めた (B0 だけ)。取るかはモデルで分かれた。2・3 年目と B1 は回さない。回すなら、モデルと役を分ける組を新しい事前登録で。", "cost": "1 年目 約 1,146 万トークン (使った)。2・3 年目は約 1,130 万 (見積もり。回さない)", "src": ["docs/research/humanity/paper2_exp4_results.md", "docs/research/humanity/paper2_exp4_prereg.md"]},
     {"name": "G9 を続ける (1 年ずつ)", "text": "遠くの運ぶ人の来る見込み 0.5 で、109年から。1 年 1,500 万トークンをこえたら止める。10 年か合わせて 1 億で相談。", "cost": "1 年 約 600〜800 万トークン (見込み。109年は約 431 万)", "src": ["docs/society_phase/G9_design.md", "docs/society_phase/G9_design_draft.md", "sim/society/HANDOFF.md"]},
     {"name": "人とくらべる", "text": "本物の人 20〜30 人に同じ場面を答えてもらう。「LLM は人より協力的でやさしい」かを初めて確かめられる。小さな社会の経済ゲームの人のデータ〔Henrich ほか 2005〕も物差しになる。", "cost": "トークンはほとんど要らない", "src": ["docs/research/humanity/README.md"]},
     {"name": "お題のかたよりを外す", "text": "空欄のときの手を逆にする・前の例を消す・裁く側と裁かれる側を入れ替える。", "cost": "約 1,450 万トークン", "src": ["docs/research/humanity/README.md"]},
@@ -209,7 +221,7 @@
 
   "papers": [
     {"id": "paper1", "title_en": "Does an LLM Village Retrace Human History?", "title_ja": "LLM の村は人類の歴史をたどるか? — 決めておいた先史から国への順に進めた LLM の村の 108 年の観察", "state": "下書き (英語 LaTeX)", "pdf": "../../../paper/paper1/main.pdf", "summary": "../../../paper/paper1/要約_ja.md", "readme": "paper/paper1/README.md", "basis": {"text":  "LLM の村の先行研究〔Park ほか 2023〕〔Altera.AL ほか 2024〕〔Piatti ほか 2024〕とくらべ、人類史の物差しは考古学・人類学の本と論文 (下の出典の欄) から取った。", "src":  ["paper/paper1/main.tex", "paper/paper1/refs.bib"]}, "src": ["paper/paper1/README.md", "paper/paper1/要約_ja.md"]},
-    {"id": "paper2", "title_en": "A Strictness Dial and Content-Matched Shifts", "title_ja": "厳しさのつまみと、中身に合わせた動き — 2016 年の『他人の権利』アンケートに答える LLM の、2 つの層のばらつき", "state": "下書き (英語 LaTeX)。実験 1・2・2b・2c・3 が入っている。arXiv にはまだ出さない (本人 2026-10-31)", "pdf": "../../../paper/paper2/main.pdf", "summary": "../../../paper/paper2/要約_ja.md", "readme": "paper/paper2/README.md", "basis": {"text":  "もとは本人の修士論文〔田之畑 2017 (修士論文)〕。そのモデルは欲求の段〔Maslow 1943〕と心の 3 つの部分〔Freud 1923〕を合わせたもの。始めの言葉は、修士論文が Sacks の言葉として引いた文〔Sacks の言葉とされる文〕。Sacks の文章には見つからず、ほぼ同じ文が el Kaliouby の言葉として出てくる〔el Kaliouby 2020〕。", "src":  ["paper/paper2/main.tex", "paper/paper2/README.md"]}, "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md", "docs/research/humanity/paper2_exp3_results.md"]}
+    {"id": "paper2", "title_en": "A Strictness Dial and Content-Matched Shifts", "title_ja": "厳しさのつまみと、中身に合わせた動き — 2016 年の『他人の権利』アンケートに答える LLM の、2 つの層のばらつき", "state": "下書き (英語 LaTeX)。実験 1・2・2b・2c・3・4 (1 年目だけ) が入っている。arXiv にはまだ出さない (本人 2026-10-31)", "pdf": "../../../paper/paper2/main.pdf", "summary": "../../../paper/paper2/要約_ja.md", "readme": "paper/paper2/README.md", "basis": {"text":  "もとは本人の修士論文〔田之畑 2017 (修士論文)〕。そのモデルは欲求の段〔Maslow 1943〕と心の 3 つの部分〔Freud 1923〕を合わせたもの。始めの言葉は、修士論文が Sacks の言葉として引いた文〔Sacks の言葉とされる文〕。Sacks の文章には見つからず、ほぼ同じ文が el Kaliouby の言葉として出てくる〔el Kaliouby 2020〕。", "src":  ["paper/paper2/main.tex", "paper/paper2/README.md"]}, "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md", "docs/research/humanity/paper2_exp3_results.md", "docs/research/humanity/paper2_exp4_results.md"]}
   ],
 
   "other_cite": "テクノロジーツリーの考え方 (2 本の木と前提の矢印) は、ゲームから借りた〔Civilization (ゲーム)〕。絵やデータは写していない。",
