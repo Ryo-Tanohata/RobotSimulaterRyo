@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "ヤギが 164 頭で草に余る。世話も足りずに 21 頭いなくなった。おれはこの秋、ヤギのそばにいる。多い分はオスからつぶして干し肉にしよう。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "前の季節に世話が足りず 21 頭いなくなったから、ヤギを守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"ホミ26": true}, "keep": false,
+ "judge": {"M448": "ゆるす", "M449": "ゆるす", "M450": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "metal": "使う", "far": {"M2": "受ける"}, "far_write": null,
+ "knowledge": [
+  {"op": "add", "text": "ヤギが 176 頭いて草で養えるのが 140 頭ほどだと、季節ごとに 12 頭ほどやせていなくなる", "because": [1141376], "confidence": 0.8},
+  {"op": "add", "text": "ヤギの世話をする人が少ないと、1 季節に 20 頭ほどいなくなる", "because": [1141375], "confidence": 0.8}
+ ],
+ "proposal": {"text": "この秋のはじめに、草で養えるヤギ (約 140 頭) をこえる分 (いま 24 頭ほど) を、乳の出ないオスから先につぶして干し肉にし、村の蓄えに入れよう。残ったヤギは 40 頭ごとに一人が毎日キャンプで世話をしよう。前の季節は世話が足りず 21 頭、草が足りず 12 頭いなくなったから。", "because": [1141375, 1141376], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L383", "against": "", "agree": true, "reason": "畑にまき、余るヤギを肉にし、世話もする。いまに合っている"},
+  {"id": "L384", "against": "", "agree": true, "reason": "草取りと世話の人数を決めるのはよい"},
+  {"id": "L385", "against": "", "agree": true, "reason": "世話が足りずにヤギが消えるのを防げる"},
+  {"id": "L386", "against": "", "agree": true, "reason": "夏に余るヤギを肉にして刈り切るのはよい"}
+ ],
+ "feeling": "疲れているが、ヤギがこれ以上消えるのは見たくない。"}
