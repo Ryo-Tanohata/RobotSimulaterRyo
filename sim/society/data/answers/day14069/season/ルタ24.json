@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種は土器に入れておくと傷まない。私は今季も粘土をこねて土器を焼くよ。冬の前に、入れ物を増やしておきたい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは私の一番の得意で、草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホタ29": true},
+ "family": {"アコ24": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を持ち帰って家族の食べ物を増やしてもらう"}, "オネ24": {"activity": "採集", "place": "camp", "why": "小さな子がいるので、キャンプのそばで木の実を集めてもらう"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は土器に入れておけば傷みが少ない。土器づくりは冬の前にも続けたい。", "because": [1238837], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかも満ちて穏やか。粘土に向かう日が楽しみだ。"}
