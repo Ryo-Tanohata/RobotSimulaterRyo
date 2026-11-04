@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏の畑は落ちる前に、毎夕みんなで刈り切ろう。秋のはじめには種をしっかりまいて、冬と春は草取りを続けよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ケセ18": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "アコ18": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ラキ20": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "キサ24": {"activity": "畑仕事", "place": "camp", "why": "子でも刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の世話を始め、実りを増やすため"}, "family": {"ケセ18": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "アコ18": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "ラキ20": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やす"}, "キサ24": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りが次の夏の実りを増やすから"}, "family": {"ケセ18": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "アコ18": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ラキ20": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "キサ24": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため、最後の草取りをする"}, "family": {"ケセ18": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "アコ18": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ラキ20": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "キサ24": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"テナ29": true},
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う", "far": {"M8": "受けない"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は、家族みんなで毎夕刈ると落ちる前に刈り切れる。", "because": [1231555], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がたくさん実った年",
+ "feeling": "蓄えは多く、畑も実った。落ち着いて暮らせそうだ。"}
