@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えの種を畑にまいて、冬と春は交代で草取りをしよう。私も畑に立つよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで夏の実りが増えるから、畑仕事を続ける"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケセ18": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守るため"}, "アコ18": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを守るため"}, "ラキ20": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}},
+ "keep": false,
+ "judge": {"M462": "ゆるす"}, "feast": false, "leader": null, "trade": {"T185": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "秋のはじめに家族みんなで種をまき、冬と春に草取りの時間をかけると、夏の実りが増える。", "because": [1222066], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L399", "against": "", "agree": true, "reason": "やせていなくなる前に肉にして蓄えに入れるのはよいと思う"}],
+ "feeling": "冬に向けて蓄えは十分。畑の世話をこつこつ続けよう。"}

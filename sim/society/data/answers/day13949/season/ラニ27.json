@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "うちの家にはまだ住まいがなくて、雨の夜は外で濡れてしまう。この秋は赤ん坊のために住まいを建てるよ。手が空いた人は手伝ってね。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["ケセ27"], "why": "家族の住まいがなく、雨の夜に外で濡れるので、赤ん坊と子のために建てたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケセ27": {"activity": "住まいを建てる", "place": "camp", "why": "二人で建てれば早くできるから"}},
+ "keep": false,
+ "judge": {"M462": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T185": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "赤ん坊が生まれたばかりで少し疲れているけれど、屋根のある家を建てられると思うと心強い。"}

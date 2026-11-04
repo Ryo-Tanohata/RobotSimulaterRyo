@@ -1,0 +1,6 @@
+{"say": [{"to": "みんな", "text": "冬の前に、おれは土器をもう少し焼いておくよ。草の種を入れる器は多いほうがいい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意だし、蓄えの草の種を虫やネズミから守れるから続ける"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M462": "ゆるす"}, "feast": false, "leader": null, "trade": {"T185": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、夏のはじめに実る。冬のあいだも草取りが要る。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": []}
