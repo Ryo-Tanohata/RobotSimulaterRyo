@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "この秋は草の種をたっぷりまいて、冬のあいだも畑の草取りをみんなで続けよう。私も手伝うよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ケセ27"], "why": "秋にまく畑は、草取りをすると実りが増える。蓄えは十分あるので、畑を育てて来年の夏に備えたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケセ27": {"activity": "畑仕事", "place": "camp", "why": "ラニ27といっしょに畑の草取りをして、実りを増やすため"}},
+ "keep": false,
+ "judge": {"M459": "ゆるす", "M460": "ゆるす", "M461": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。みんなで仲よく冬をこしたい。"}

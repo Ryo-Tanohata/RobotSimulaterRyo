@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "冬の前に、土器をもう少し焼いておくよ。蓄えの種を虫から守りたいからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番あるので、蓄えの草の種を守る器を作り足し、割れた分を補う"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "アコ24": {"activity": "採集", "place": "北丘12", "why": "採集の腕が高く、秋の芋が多い北丘で食べ物を集められる"},
+  "オネ24": {"activity": "畑仕事", "place": "camp", "why": "小さな子がいるのでキャンプの近くで畑の草取りをする"}
+ },
+ "keep": false,
+ "judge": {"M459": "ゆるす", "M460": "ゆるす", "M461": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので、土をこねて器を作っているほうが落ち着く。"}

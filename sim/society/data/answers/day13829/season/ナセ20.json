@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "わたしの畑で刈ったなら、それはわたしの家の分。刈る前に、どこの畑かよく見てから刈ってちょうだい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをしないと実りが減る。自分の畑は自分で守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M459": "ゆるす", "M460": "ゆるす", "M461": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "キサ11・ケト2の家が、わたしの家の畑で刈った草の種のことで言い出した (14 つかみと 54 つかみほど、記録はない)。ラニ16が病で亡くなった", "because": [1205674, 1205675, 1205670], "confidence": 0.9},
+               {"op": "add", "text": "草で養えるヤギは約140頭なのに149頭いて、3頭がやせていなくなった。いまは146頭で、まだ少し多い", "because": [1205668], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L393", "against": "", "agree": true, "reason": "ヤギが草より多いのは困る。多い分はつぶして干し肉にすればよい"},
+           {"id": "L387", "against": "", "agree": true, "reason": "秋に畑にまけば、夏に実る"}],
+ "feeling": "家はわたしとヒセ24だけ。それでも自分の畑と倉は、自分の手で守ってみせる"}
