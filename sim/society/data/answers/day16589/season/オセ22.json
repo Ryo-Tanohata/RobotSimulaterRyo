@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種をまいておけば、来年の夏にまた実る。私は畑の世話にまわるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑が冬と春に草取りされないと実りが減るので、畑の世話をして来年の夏に備える"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ40": true},
+ "family": {"ムイ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、来年の実りを増やすため"}, "ヌオ29": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、来年の実りを増やすため"}, "ケセ30": {"activity": "畑仕事", "place": "camp", "why": "狩りが苦手なので、キャンプで畑の草取りをする"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "畑がないときは、秋のはじめに蓄えの草の種を1000つかみずつまき、冬と春に草取りをすると翌夏に実る。", "because": [1623914], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で安心だが、畑がなくなっているので、しっかりまいて来年に備えたい。"}

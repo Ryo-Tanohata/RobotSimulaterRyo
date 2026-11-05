@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋は畑に種をまいて、私は黒い金属の鎌を作りためるよ。来年の夏は刈り切ろう。"}],
+ "job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "夏の畑を刈り切るために、黒い金属の鎌を作りためたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"テナ40": true},
+ "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "why": "作り方を知っているので、一緒に鎌を作る"}, "セオ25": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を持ち帰る"}, "タユ26": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を持ち帰る"}, "タユ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T230": false, "T231": {"side": "村", "利子": 0.2}}, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "この秋も畑に草の種をまき、黒い金属の鎌を作りためて来年の夏に刈り切る。", "because": [1624390], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で、落ち着いている。鎌作りに集中したい。"}

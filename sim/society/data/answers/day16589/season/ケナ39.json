@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "道具づくりが得意だから、この秋は石の鎌と道具を作って村を支えるよ。冬の前にみんなで体を休めようね。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の技能が一番高いので、鎌や道具を作って村の役に立てる"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ40": true},
+ "family": {"トナ39": {"activity": "道具づくり", "place": "camp", "why": "私と一緒に作れば早く進むし、手伝いながら覚えられる"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T230": "村", "T231": {"side": "村", "利子": 0}},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるし、落ち着いて道具を作れるのがうれしい"}

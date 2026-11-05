@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "赤ん坊のキオ40を連れて、畑の草取りに出るよ。秋にまいた種が冬を越して実るように、手の空いた人は一緒にやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑が育つには草取りが要る。キャンプのそばなら子の様子も見られる"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"テナ40": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T230": false, "T231": {"side": "村", "利子": 0.1}}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に畑に種をまき、冬のあいだに草取りをすると、夏のはじめに多く実る", "because": [1624382], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "子が生まれて忙しいけれど、穏やかな気持ち"}

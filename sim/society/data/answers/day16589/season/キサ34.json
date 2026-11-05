@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "前の季節はヤギの番が少なくて、20 頭も逃げてしまった。この秋はおれがキャンプでヤギを見ているよ。手の空く人は一緒に来てくれ。"}, {"to": "みんな", "text": "ワユ3の村はまだ前の草の種を返していない。返してもらうまでは、新しく貸すのは待とう。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "前の季節は世話をする人が少なくてヤギが 20 頭もいなくなったから、見張る人を増やしたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"テナ40": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T230": false, "T231": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギの世話をする人が少ない季節は、20 頭ほどのヤギがいなくなる", "because": [1624380], "confidence": 0.8}, {"op": "add", "text": "ワユ3の村は、前に借りた草の種を返さないうちに、また借りに来る", "because": [1624391], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L444", "against": "", "agree": true, "reason": "草が足りずにやせて消えるより、干し肉にして蓄えに入れたほうがいい"}, {"id": "L446", "against": "", "agree": true, "reason": "覚えちがいで少なく返されることがあるから、板に残すのがいい"}, {"id": "L447", "against": "", "agree": true, "reason": "ワユ3の村の返す分がはっきりしないから"}],
+ "feeling": "ヤギがこれ以上減らないように、この秋はしっかり見ていたい。"}
