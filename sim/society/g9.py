@@ -356,7 +356,8 @@ def _reach(state, f, day, why):
     if f in g["reached"] or day is None:
         return
     g["reached"][f] = day
-    log(state, "目盛り", None, f"目盛り: G9 の {f}「{FS[f]}」に届いた ({why})", g="G9", f=f)
+    if not _closed(state):
+        log(state, "目盛り", None, f"目盛り: G9 の {f}「{FS[f]}」に届いた ({why})", g="G9", f=f)
     for c, ff in (("c2", "F2"), ("c3", "F3")):
         if f == ff:
             _cond(state, c, day, why)
@@ -366,7 +367,13 @@ def _cond(state, c, day, why):
     g = _g(state)
     if c not in g["c"]:
         g["c"][c] = day
-        log(state, "目盛り", None, f"目盛り: G9 の条件 {c[1:]}「{CS[c]}」に届いた ({why})", g="G9", c=c)
+        if not _closed(state):
+            log(state, "目盛り", None, f"目盛り: G9 の条件 {c[1:]}「{CS[c]}」に届いた ({why})", g="G9", c=c)
+
+
+def _closed(state):
+    """G9 を閉じたあと (g7.closed9。G10 に入って G9 の数を数え直すとき) は、G9 の目盛りの出来事を出さない (2026-11-05。119年30日目に、閉じた G9 の条件 1 が出来事に出たため)"""
+    return bool(state["era2"]["g7"].get("closed9"))
 
 
 def season_end(state):
