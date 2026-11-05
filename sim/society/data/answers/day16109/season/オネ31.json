@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギが草の量より多すぎる。やせて消える前に、オスからつぶして干し肉にしたほうがいいと思う。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど実りが増えるから、キャンプで畑の世話を続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホタ37": true},
+ "family": {"ネイ31": {"activity": "畑仕事", "place": "camp", "why": "大人になったばかりなので、わたしのそばで畑の草取りを覚えてほしい"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T215": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギが 225 頭いて、養える約 140 頭をこえ、28 頭がやせていなくなった。世話が足りず 25 頭もいなくなった", "because": [1537102, 1537103], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L438", "against": "", "agree": true, "reason": "やせて消えるより、干し肉にして蓄えに入れたほうがむだがない"}],
+ "feeling": "疲れているが、畑の世話を静かに続けたい。"}

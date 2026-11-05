@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは六百日分以上ある。今年も一人 1000 つかみずつ畑にまいて、冬と春の草取りを交代で続けよう。"}, {"to": "ハソ21", "text": "今季はわたしと一緒に畑の草取りをしよう。まいた畑を守れば夏の実りが増えるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えが十分あるので、秋にまいた畑の草取りを続けて夏の実りを増やす"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホタ37": true},
+ "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やすため"}, "キオ23": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を確保するため"}, "ソワ25": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで草取りをして実りを増やすため"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "採集は苦手なので、キャンプで畑の草取りを手伝う"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T215": {"side": "村", "利子": 0.1}}, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えが六百日分以上ある秋は、種を1000つかみずつ畑にまき、家族みんなで草取りを続けるのがよい", "because": [1537110], "confidence": 0.7}],
+ "proposal": null,
+ "votes": []}

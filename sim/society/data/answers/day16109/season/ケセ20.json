@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いが、土器が割れることもある。わたしは土器づくりに回る。秋のうちに種をまいておこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕に自信があり、土器に入れれば草の種が虫やネズミから守れるから"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホタ37": true},
+ "family": {
+  "ユエ22": {"activity": "採集", "place": "camp", "why": "採集が得意なので、木の実を集めて冬に備える"},
+  "ケセ23": {"activity": "採集", "place": "camp", "why": "採集が得意なので、木の実を集めて冬に備える"},
+  "ロワ28": {"activity": "採集", "place": "camp", "why": "採集が得意で、冬に備えて食べ物を増やす"},
+  "ヒセ30": {"activity": "採集", "place": "camp", "why": "採集が得意で、木の実を集める"},
+  "テナ26": {"activity": "狩り", "place": "北川12", "with": ["ラキ28"], "why": "狩りが得意で、魚を取って蓄えを増やす"},
+  "ラキ28": {"activity": "狩り", "place": "北川12", "with": ["テナ26"], "why": "二人で魚を取る"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。冬に向けて土器をしっかり作ろう。"}
