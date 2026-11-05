@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を毎夕刈り切ろう。秋は種をまいて、黒い金属の鎌をまた作りためるよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が膨大に残っていて、夏のうちに刈らないと落ちるから"}, "family": {"タユ25": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "セオ25": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "タユ30": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "来年の夏に刈り切るため、黒い金属の鎌を作りためる"}, "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "作れる人として鎌を一緒に作る"}, "セオ25": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で食べ物を増やす"}, "タユ26": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で食べ物を増やす"}, "タユ30": {"activity": "採集", "place": "西草原12", "why": "採集が得意で冬に備える"}, "キサ31": {"activity": "採集", "place": "西草原12", "why": "採集が得意で冬に備える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "鎌を作りためて来年の夏に備える"}, "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "作れる人として鎌を一緒に作る"}, "セオ25": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいるから"}, "タユ26": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいるから"}, "タユ30": {"activity": "採集", "place": "北川12", "why": "川で魚や芋を探す"}, "キサ31": {"activity": "採集", "place": "北川12", "why": "川で魚や芋を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "鎌を作りためて来年の夏に備える"}, "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "作れる人として鎌を一緒に作る"}, "セオ25": {"activity": "狩り", "place": "北丘12", "why": "食べ物を増やす"}, "タユ26": {"activity": "狩り", "place": "北丘12", "why": "食べ物を増やす"}, "タユ30": {"activity": "採集", "place": "西草原12", "why": "採集が得意だから"}, "キサ31": {"activity": "採集", "place": "西草原12", "why": "採集が得意だから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ホミ40": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T234": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "夏の畑は膨大に残っている。毎夕刈り、秋と冬と春は黒い金属の鎌を作りためて来年の夏に刈り切る。", "because": [1637543], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "黒い鎌の実りの年"}

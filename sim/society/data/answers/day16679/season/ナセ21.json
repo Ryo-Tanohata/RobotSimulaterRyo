@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは550日分もある。土器を焼いて、虫やネズミから種を守り続けよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えを守れる"}, "family": {"ワユ22": {"activity": "採集", "place": "camp", "why": "家の食べ物を集める"}, "ワユ24": {"activity": "採集", "place": "camp", "why": "採集が一番得意"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れを手伝う"}, "セヤ29": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ソナ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ルタ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "セオ32": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手伝い"}, "キサ33": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手伝い"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器を増やして種を守る"}, "family": {"ワユ22": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ワユ24": {"activity": "採集", "place": "camp", "why": "採集が一番得意"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "セヤ29": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ソナ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ルタ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬も土器を作り続ける"}, "family": {"ワユ22": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "冬は実らないので畑の世話"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "セヤ29": {"activity": "狩り", "place": "北丘12", "why": "冬も獣はいる"}, "ソナ31": {"activity": "狩り", "place": "北丘12", "why": "冬も獣はいる"}, "ルタ31": {"activity": "狩り", "place": "北丘12", "why": "冬も獣はいる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりを続ける"}, "family": {"ワユ22": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれる"}, "ワユ24": {"activity": "採集", "place": "camp", "why": "採集が一番得意"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "セヤ29": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ソナ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ルタ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ホミ40": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "土器の夏",
+ "feeling": "蓄えは十分で安心だ。今年も土器を焼いて過ごしたい。"}
