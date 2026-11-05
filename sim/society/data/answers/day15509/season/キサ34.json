@@ -1,0 +1,13 @@
+{"say": [{"to": "セヤ34", "text": "前の季節は雨の夜に十一回も外で濡れた。この秋は二人で家の住まいを建てよう。"}, {"to": "みんな", "text": "秋のはじめに畑にまくのを忘れずに。冬と春の草取りも手分けしよう。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["セヤ34"], "why": "家族の住まいがなく、雨の夜に外で濡れて疲れがとれないから"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セヤ34": {"activity": "住まいを建てる", "place": "camp", "why": "二人で建てれば冬の雨の前に住まいが早くできるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギの世話をする人が少ないと、飼っているヤギが多くいなくなる", "because": [1443716], "confidence": 0.8}, {"op": "add", "text": "秋に畑にまいた草の種は、次の夏に何倍にもなって刈れる", "because": [1443465], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L423", "against": "", "agree": true, "reason": "畑にまくのも、多すぎるヤギを減らすのも、世話の人を決めるのも、前の季節の損を見れば要ることだから"},
+           {"id": "L424", "against": "", "agree": true, "reason": "草が足りずヤギがやせていなくなるより、肉にして蓄えに入れたほうがよいから"},
+           {"id": "L427", "against": "", "agree": true, "reason": "世話が足りずに 29 頭もいなくなったので、世話の人をかならず置きたいから"},
+           {"id": "L428", "against": "いまは秋で、夏のはじめの話は合わない", "agree": false, "reason": "季節が合わないので、秋の L423 のほうに賛成する"}],
+ "feeling": "今年こそ屋根の下で眠れるようにしたい。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "雨の夜に外でぬれてばかりだから、この秋はわたしの家の住まいを建てるよ。手が空いた人は手伝ってね。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["キサ34", "セヤ34"], "why": "家の住まいがなく、雨の夜に11回も外でぬれて疲れがとれないので、冬の前に建てたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "雨の夜に村の住まいに入りきらないと、疲れがとれない。家の住まいを建てれば眠れる。", "because": [1443715], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L220", "against": "", "agree": true, "reason": "秋にまいた畑が夏の蓄えになるから"}, {"id": "L204", "against": "", "agree": true, "reason": "木の実を冬の前に蓄えに入れると助かるから"}],
+ "mood": "雨でぬれるのはもう嫌だ。みんなと力を合わせて家を建てたい。"}

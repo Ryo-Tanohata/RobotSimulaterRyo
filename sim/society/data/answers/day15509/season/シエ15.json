@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。蓄えの種を千つかみずつ畑にまいて、冬と春の草取りをみんなで続けよう。わたしは土器を焼いて蓄えを守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入れると蓄えを虫やネズミから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ21": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで次の夏の実りを増やすため"},
+  "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで次の夏の実りを増やすため"},
+  "オネ23": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を確保するため"},
+  "ハソ24": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人が少ないとヤギがいなくなるから"},
+  "ワユ24": {"activity": "土器づくり", "place": "camp", "why": "採集も土器も得意なので、土器を焼いて蓄えを守る"},
+  "オセ28": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を千つかみずつまき、土器を焼いて蓄えを守る。冬と春は家族で草取りをする。", "because": [1443470], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。土器を焼いて、来る冬に備えたい。"}

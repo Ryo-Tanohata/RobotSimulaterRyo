@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋のうちに種をまいておこう。わたしは土器を作って、蓄えの草の種を守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入れた草の種は虫やネズミから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "次の夏の実りを増やすため草取りをする"},
+  "セヤ24": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ムイ24": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減らないよう世話をする"},
+  "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ホタ27": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えはたっぷりあって落ち着いている。冬の前に仕事をきちんと終えたい。"
+}
