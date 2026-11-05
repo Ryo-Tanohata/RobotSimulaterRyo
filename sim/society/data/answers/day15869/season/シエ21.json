@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、秋の畑にしっかり種をまいて、冬と春の草取りも手を抜かずにやろうよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、家族で畑を育てる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケナ36": true},
+ "family": {"ヌオ24": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"}, "ムイ25": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"}, "ムイ26": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"}, "ソワ26": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T207": "村", "T208": "村"},
+ "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑がうまく実るのが楽しみ。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギが 141 頭で、草で養えるのは 110 頭ほどだ。前の季節も 15 頭やせていなくなった。多すぎる分はオスから先につぶして干し肉にしよう。畑にもみな 1000 つかみずつまいて、草取りを続けよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすれば夏に何倍にも実る。続けて草取りをする。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"ケナ36": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T207": false, "T208": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギが 156 頭いて草で養えるのが 110 頭ほどだと、季節ごとに 15 頭ほどやせていなくなる", "because": [1495152], "confidence": 0.8}],
+ "proposal": {"text": "この秋のはじめに、草で養える約 110 頭をこえるヤギ (いま 31 頭ほど) を、乳の出ないものから先につぶして干し肉にし、村の蓄えに入れよう。大人はみな蓄えの草の種を 1000 つかみずつ畑にまき、秋と冬と春は毎日だれか四人が交代で草取りをしよう。前の季節も草が足りず 15 頭がやせていなくなったから。", "because": [1495152], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L423", "against": "", "agree": true, "reason": "ヤギを減らして畑にまくのは、いまの村に合っている"},
+           {"id": "L429", "against": "", "agree": true, "reason": "草で養える数をこえる分をつぶし、世話をする人を決めるのはよい"},
+           {"id": "L431", "against": "", "agree": true, "reason": "畑にまいて草取りを続ければ夏に多く刈れる"}],
+ "feeling": "蓄えは十分ある。あとは畑とヤギの数を整えるだけだ。"}

@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、秋のうちに畑に種をまいて、冬のあいだ草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、畑を育てる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケナ36": true},
+ "family": {
+  "ソワ23": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合うため"},
+  "タユ24": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合うため"},
+  "シエ25": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合うため"},
+  "ユエ25": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが痩せないよう見守るため"},
+  "ルタ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合うため"},
+  "キサ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合うため"},
+  "ルタ29": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"},
+  "ラキ30": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T207": "村", "T208": "村"}, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは十分で落ち着いている。冬に向けて畑をしっかり育てたい。"}

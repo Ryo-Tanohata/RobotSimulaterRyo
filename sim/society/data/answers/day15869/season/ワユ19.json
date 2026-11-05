@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をしっかりまいて、冬のあいだも草取りを欠かさずに、来年の夏の実りを増やそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをするほど実りが増える。蓄えは十分あるので畑を育てる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケナ36": true},
+ "family": {"セヤ24": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて実りを増やすため"}, "ムイ24": {"activity": "畑仕事", "place": "camp", "why": "採集が得意でないので、畑の草取りを手伝う"}, "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて実りを増やすため"}, "ホタ27": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを守る"}, "ルタ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて実りを増やすため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは十分にあって落ち着いている。畑の実りが楽しみだ。"}
