@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えの種を今のうちに畑にまこう。冬と春に草取りをすれば、来年の夏はきっと豊かに実るよ。うちの家族も手伝うから。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。土器は十分あるので畑を優先する"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ21": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど実りが増えるから"},
+  "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "小さな子の世話をしながらでも、キャンプの畑なら手伝える"},
+  "オネ23": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを覚えて、次の夏の実りを増やすため"},
+  "ハソ24": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを守るため"}
+ },
+ "keep": true,
+ "judge": {"M463": "ゆるす", "M464": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに畑がないときは、蓄えの草の種を1000つかみまいて、家族みんなで草取りをする。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるので安心している。来年の夏の畑が楽しみだ。"}

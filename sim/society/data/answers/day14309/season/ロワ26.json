@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、この秋は土器を焼いて草の種を守るよ。冬の畑の草取りもみんなで順番に頼むね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、草の種を虫やネズミから守り、割れた土器の穴を埋めたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ26": {"activity": "狩り", "place": "南川12", "why": "狩りの腕がよく、冬に向けて魚を取って家族の食べ物を増やせるから"}},
+ "keep": false,
+ "judge": {"M463": "ゆるす", "M464": "ゆるす", "M465": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は約603日分あり、秋にまいた畑は冬と春の草取りで実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心。土器づくりに打ち込める。"}

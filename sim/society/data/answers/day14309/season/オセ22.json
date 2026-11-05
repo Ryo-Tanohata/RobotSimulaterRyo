@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬と春は草取りをしよう。私も手伝うよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるから、続けて畑の世話をする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M463": "ゆるす", "M464": "ゆるす", "M465": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に畑へ草の種をまき、冬と春に草取りをすると、翌夏に実る。", "because": [1275579], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "子どもたちと冬をこせるよう、畑をしっかり世話したい。"}
