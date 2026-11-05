@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はたっぷり実っている。落ちる前に、みんなで毎日刈ろう。私も草の種を刈るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ムイ28": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る人手がいるから"}, "ヌオ29": {"activity": "畑仕事", "place": "camp", "why": "13歳でも刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑が翌夏に実るように世話をするため"}, "family": {"ムイ28": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手がいるから"}, "ヌオ29": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると翌夏の実りが増えるから"}, "family": {"ムイ28": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヌオ29": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実る前の最後の草取りで実りを守るため"}, "family": {"ムイ28": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヌオ29": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ケナ35": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を毎夕刈り、秋にまき、冬と春は草取りをする。これを毎年くり返す。", "because": [1454074], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がよく実った年",
+ "mood": "蓄えは十分で、落ち着いている。畑仕事をしっかりやろう。"}

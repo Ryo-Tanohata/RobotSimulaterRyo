@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は毎夕刈ろう。落ちる前に土器へ入れれば蓄えが守れるよ。秋にはまた種をまいて、冬と春の草取りもみんなでやろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に毎夕刈るのがいちばん大事だから"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "刈り手を増やして畑を落とさないため"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "ハソ24": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "採集が得意でも、いまは刈り入れが先だから"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "若い手で刈り入れを助けるため"}, "セヤ29": {"activity": "畑仕事", "place": "camp", "why": "子でも半分の働きで畑を手伝えるから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話と、秋の実りの手入れのため"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"}, "ハソ24": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"}, "セヤ29": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで夏の実りが増えるから"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ハソ24": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "セヤ29": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りを守るため"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ハソ24": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "セヤ29": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ケナ35": true, "トナ35": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えは十分ある。夏は毎夕畑を刈り、秋に種を1000つかみまき、冬と春は家族で草取りをする。", "because": [1454074], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの畑の年",
+ "feeling": "蓄えは十分で安心している。今年も畑をしっかり守りたい。"}
