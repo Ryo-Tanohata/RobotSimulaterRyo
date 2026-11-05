@@ -1,0 +1,11 @@
+{"say": [{"to": "セオ34", "text": "雨の夜に8回も外で濡れた。この秋は二人で、うちの家を建てよう。"}, {"to": "みんな", "text": "秋のうちに草の種を畑にまいて、冬と春の草取りも忘れずにやろう。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["セオ34"], "why": "うちの家がなくて雨の夜に外で濡れ続けたので、冬の前に家を建てたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セオ34": {"activity": "住まいを建てる", "place": "camp", "why": "二人で働けば家が早くできて、冬の雨をしのげる"}},
+ "keep": false,
+ "judge": {"M474": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T203": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまくと、夏のはじめに実る。冬と春の草取りで実りが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "家のない雨の夜はつらかった。この秋こそ家を建てて、冬を迎えたい。"}

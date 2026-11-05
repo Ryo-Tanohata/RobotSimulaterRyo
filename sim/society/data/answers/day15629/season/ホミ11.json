@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、私は畑の草取りを毎日やるよ。来年の夏にしっかり実るようにね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど夏の実りが増えるから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソワ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど早く済み、夏の実りが増えるから。"}},
+ "keep": false,
+ "judge": {"M474": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかも満ちて穏やか。畑の世話をのんびりするつもり。"}
