@@ -35,6 +35,12 @@ PATH_YEARS = 2  # 道の見張り: 条件の道が 2 年つづけてお題に出
 WORDS = ("鉄", "国", "帝国", "アルファベット") + hints.FORBIDDEN  # 村の人に見せる G10 の文に書かない言葉
 FS = {"F1": "黒い金属を村で作った", "F2": "音の字ができた", "F3": "広いまとまり", "F4": "黒い金属の道具が 1 年に 30 人日"}
 CS = {"c1": "黒い金属の道具を使う", "c2": "字を読み書きできる人", "c3": "広いまとまり"}
+# 2026-11-05 本人の決め「直して 5 年続ける」(docs/society_phase/G10_stall.md 7.): この日 (134年の年の集まり) からの直し 4 つ。前の日は 1 バイトも同じ
+#   ① お題: 便りを知っている人に「あなたは試せる (try に番号)」、作れる人に「あなたは作れる」を出し、節に知っている人・作れる人の名前と一緒に覚える道を書く
+#   ② 試す・黒い金属を作る・字を習うが選べず「休む」にしたとき、わけを出来事に残す (g7.job → g7.count_day。お題の自分のことに出る)
+#   ③ 作れる人・試している人の家を、ふつうの見本の家に足す (g7.choose・g7.g10_sample_add)
+#   ④ 道の見張りは、お題に答える人 (代表) が選べる道だけを数える (paths)
+G10_FIX_FROM = 16079
 
 
 def on(state):
@@ -55,6 +61,69 @@ def _tech(state, card):
 
 def _alive_adults(state):
     return era2.adults(state)
+
+
+def fixed(state):
+    """2026-11-05 の直し が効くか: G10_FIX_FROM より後の日はいつも。G10_FIX_FROM の日 (お題はもう出ていた) は、
+    step.py refresh_prompts が g7.g10.fix を書いたあとだけ (だから、その日までの歩をやり直しても、state もお題も前と 1 バイトも同じ)"""
+    return on(state) and (state["day"] > G10_FIX_FROM or (state["day"] == G10_FIX_FROM and "fix" in _g(state)))
+
+
+def mark_fix(state, why):
+    """refresh_prompts から: G10_FIX_FROM の日に、直しを今の歩から入れたことを g7.g10.fix に残す (その日より前なら何もしない)"""
+    if on(state) and state["day"] >= G10_FIX_FROM and "fix" not in _g(state):
+        _g(state)["fix"] = {"day": state["day"], "why": why}
+
+
+def tryable(state):
+    """いま試せる G10 の札 (開いていて、まだできていない) の並び"""
+    return [c for c in (CARD_IRON, CARD_ALPHA) if _tech(state, c).get("open") is not None and not _tech(state, c).get("done")]
+
+
+def knowers(state, card):
+    """札を知っている (hints の knowers に入っている)、生きている大人 (名前の順)。便りが 3 年より前でも「忘れられた」でも、知っている人のまま"""
+    return sorted(p["name"] for p in era2.adults(state) if hints.knows(state, p["name"], card))
+
+
+def smiths_now(state):
+    """黒い金属を作れる、生きている大人 (名前の順。札ができていなければ空)"""
+    return sorted(p["name"] for p in era2.adults(state) if smith(state, p["name"])) if iron_ready(state) else []
+
+
+def key_houses(state):
+    """③ 見本の家に必ず足す家: 黒い金属を作れる人 (と、札 H9-01 がまだ試せるならそれを知っている人) と、
+    試せる G10 の札をもう試しはじめている人 (試すの腕が 0 より大きい) のいる家 (名前の順)"""
+    names = set(smiths_now(state))
+    if CARD_IRON in tryable(state):
+        names |= set(knowers(state, CARD_IRON))
+    for card in tryable(state):
+        if _tech(state, card).get("first") is not None:
+            names |= {p["name"] for p in era2.adults(state) if p["skills"].get(f"試す:{card}", 0) > 0}
+    return sorted({p.get("household") for p in era2.adults(state) if p["name"] in names and p.get("household")})
+
+
+def rest_why(state, name, act, j, with_):
+    """② 試す・黒い金属を作る・字を習うを「休む」に変えたわけ (村の人に見せる短い文)。G10_FIX_FROM より前は None"""
+    if not fixed(state):
+        return None
+    if act == "試す":
+        card = str((j or {}).get("try") or "").strip().upper()
+        cs = hints.cards()
+        if card not in cs:
+            return f"{name} は、試す便りの番号 (try) が分からず、休んだ"
+        nm = f"「{cs[card]['name']}」[{card}]"
+        if card not in hints.open_techs(state):
+            return f"{name} は、{nm} を試そうとしたが、いまは村で試せないので、休んだ"
+        return f"{name} は、{nm} の便りを知らないので、試せず、休んだ (知っている人と一緒に試すなら、with にその人の名前を書く)"
+    if act == ACT_MAKE:
+        if not iron_ready(state):
+            return f"{name} は、村でまだ黒い金属が作れないので、休んだ"
+        return f"{name} は、黒い金属の作り方を知らないので、休んだ (作れる人と一緒に作るなら、with にその人の名前を書く)"
+    if act == ACT_LEARN:
+        if name in _g(state)["readers"]:
+            return f"{name} は、もう字を読み書きできるので、字を習わず、休んだ"
+        return f"{name} は、村に字を教えられる人がいないので、字を習えず、休んだ"
+    return None
 
 
 # ---------------- G10 に入る (g7.start_g10 から) ----------------
@@ -324,8 +393,15 @@ def progress(state):
 # ---------------- 道の見張り (G10_design.md 2.4。集まりの答えのとき数え、年の終わりに見る) ----------------
 
 def paths(state):
-    """いまのお題に、条件 1・2 の道 (試せる札・作る仕事・習う仕事) が出ているか"""
+    """いまのお題に、条件 1・2 の道 (試せる札・作る仕事・習う仕事) が出ているか。
+    ④ G10_FIX_FROM から: お題に答える人 (代表) のだれかが、その道を自分で選べるときだけ数える
+    (条件 1: 札 H9-01 を知っている人か、黒い金属を作れる人が答える人にいる。条件 2: 札 H9-02 を知っている人か、字を習える人が答える人にいる)"""
     ti, ta = _tech(state, CARD_IRON), _tech(state, CARD_ALPHA)
+    if fixed(state):
+        ans = era2.answerers(state)
+        c1 = (CARD_IRON in tryable(state) and any(hints.knows(state, n, CARD_IRON) for n in ans)) or any(n in smiths_now(state) for n in ans)
+        c2 = (CARD_ALPHA in tryable(state) and any(hints.knows(state, n, CARD_ALPHA) for n in ans)) or any(can_learn(state, n) for n in ans)
+        return {"c1": bool(c1), "c2": bool(c2)}
     c1 = (ti.get("open") is not None and not ti.get("done")) or (iron_ready(state) and any(smith(state, p["name"]) for p in era2.adults(state)))
     c2 = (ta.get("open") is not None and not ta.get("done")) or (alpha_ready(state) and bool(readers(state)) and len(readers(state)) < len(era2.adults(state)))
     return {"c1": bool(c1), "c2": bool(c2)}
@@ -400,8 +476,15 @@ def text(state, p):
             rows.append(f"- 「{name}」[{card}]: 村でできるようになった ({t['done']} 日目)")
         elif t.get("first") is not None:
             rows.append(f"- 「{name}」[{card}]: 試している ({t['first']} 日目から。試した人 {'・'.join(who[:8])}{' ほか' if len(who) > 8 else ''})。まだできていない")
+        elif fixed(state):  # ① 2026-11-05: 知っている人の名前と、試し方
+            kn = knowers(state, card)
+            rows.append(f"- 「{name}」[{card}]: 試せる (まだだれも試していない)。試せるのは、この便りを知っている人 ({'・'.join(kn) or 'いない'}) と、"
+                        f"その人と同じ季節に「試す」をして with にその人の名前を書く人 (job の try に \"{card}\")")
         else:
             rows.append(f"- 「{name}」[{card}]: 試せる (まだだれも試していない。試せるのは、この便りを知っている人と、その人と一緒に試す人)")
+        if fixed(state) and t.get("first") is not None and not t.get("done"):
+            kn = knowers(state, card)
+            rows.append(f"  この便りを知っている人: {'・'.join(kn) or 'いない'} (知らない人は、知っている人と同じ季節に「試す」をして with にその人の名前を書けば一緒に試せる)")
     if g["made"] or iron_ready(state):
         it = iron_tools(state)
         gone = sum(1 for t in _g9(state)["tools"] if t.get("iron") and t["gone"] is not None)
@@ -409,6 +492,9 @@ def text(state, p):
         sm = sorted(q["name"] for q in era2.adults(state) if smith(state, q["name"]))
         rows.append(f"- 黒い金属の鎌: 村で作ったのは {len(g['made'])} 本 (いま使えるのは {len(it)} 本" + (f"、すり減ったのは {gone} 本" if gone else "") + ")。"
                     f"この年に黒い金属の鎌で刈った日は のべ {row['iron']} 日。作れる人: {'・'.join(sm[:10])}{' ほか' if len(sm) > 10 else ''}")
+        if fixed(state) and sm:  # ① 2026-11-05: 作り方を覚える道
+            rows.append(f"  作り方を知らない人も、作れる人 ({'・'.join(sm[:10])}) と同じ季節に「{ACT_MAKE}」をして、with にその人の名前を書けば、"
+                        "一緒に作って、次の季節から作れる")
     if g["readers"] or alpha_ready(state):
         rd = readers(state)
         ln = sorted(n for n in g["learn"] if n not in g["readers"] and any(q["name"] == n for q in era2.adults(state)))
@@ -416,7 +502,45 @@ def text(state, p):
                     + (f"。字で書いて量を比べたのは {g['letters']} 回" if g["letters"] else ""))
     if not rows:
         return ""
+    rows += _mine(state, p)
     return "\n## 黒い金属と音の字\n" + "\n".join(rows) + "\n"
+
+
+def _mine(state, p):
+    """① お題の人ごとの行 (G10_FIX_FROM から): あなたが知っている試せる札・あなたが作れること・あなたの家で知っている人と作れる人"""
+    if not fixed(state) or not p:
+        return []
+    out, cs = [], hints.cards()
+    for card in tryable(state):
+        if hints.knows(state, p["name"], card):
+            out.append(f"- あなた ({p['name']}) は、便り「{cs[card]['name']}」[{card}] を知っている。あなたは、主な仕事を「試す」にして、"
+                       f"job の try に \"{card}\" と書けば試せる。知らない人も、あなたと同じ季節に「試す」をして with にあなたの名前を書けば、一緒に試せる")
+    if p["name"] in smiths_now(state):
+        out.append(f"- あなた ({p['name']}) は、黒い金属の作り方を知っている。あなたは、主な仕事を「{ACT_MAKE}」にできる。"
+                   f"ほかの人も、あなたと同じ季節に「{ACT_MAKE}」をして with にあなたの名前を書けば、一緒に作って作り方を覚えられる")
+    h = p.get("household")
+    fam = [q["name"] for q in era2.adults(state) if h and q.get("household") == h and q is not p]
+    for card in tryable(state):
+        kn = [n for n in fam if hints.knows(state, n, card)]
+        if kn:
+            out.append(f"- あなたの家で、便り [{card}] を知っている人: {'・'.join(kn)} (家族の仕事 family で「試す」・try に \"{card}\" にできる)")
+    sm = [n for n in fam if n in smiths_now(state)]
+    if sm:
+        out.append(f"- あなたの家で、黒い金属を作れる人: {'・'.join(sm)} (家族の仕事 family で「{ACT_MAKE}」にできる)")
+    return out
+
+
+def feel_note(state, p):
+    """① 気持ちだけのお題の行 (G10_FIX_FROM から。代表でない人は仕事を決めないので、代表に伝えられることだけ)"""
+    if not fixed(state):
+        return ""
+    cs, out = hints.cards(), []
+    for card in tryable(state):
+        if hints.knows(state, p["name"], card):
+            out.append(f"- あなたは、便り「{cs[card]['name']}」[{card}] を知っている。家の代表が、あなたの仕事を「試す」(try に \"{card}\") にすれば、あなたは試せる")
+    if p["name"] in smiths_now(state):
+        out.append(f"- あなたは、黒い金属の作り方を知っている。家の代表が、あなたの仕事を「{ACT_MAKE}」にすれば、あなたは作れる")
+    return ("\n" + "\n".join(out)) if out else ""
 
 
 def field_rows(state):

@@ -3633,5 +3633,241 @@ class T_G10(unittest.TestCase):
         self.assertNotIn("F2", g.get("reached") or {}, "G10 に入る前のことは、ならべて測る数に入れない")
 
 
+class T_G10FIX(unittest.TestCase):
+    """2026-11-05 本人の決め「直して 5 年続ける」(docs/society_phase/G10_stall.md 7.): g10.G10_FIX_FROM の日からの直し 4 つ。
+    ① 便りを知る人・作れる人にお題で知らせる ② 休んだわけを出来事に残す ③ 作れる人・試している人の家を答える家に足す ④ 道の見張りは答える人で数える。
+    本物の state (G10) の写しに、作る側で場面を組んで確かめる (本物の data は読むだけ。refresh_prompts は写しのフォルダで動かす)"""
+
+    _st = None
+
+    @classmethod
+    def base(cls):
+        if cls._st is None:
+            st = real_state()
+            cls._st = st if "g10" in ((st.get("era2") or {}).get("g7") or {}) else False
+        if cls._st is False:
+            raise unittest.SkipTest("本物の state が G10 でない")
+        return copy.deepcopy(cls._st)
+
+    def scene(self, day=None, mark=True):
+        """場面: 札 H9-01 はでき、H9-02 は試せる (だれも試していない)。3 つの家の代表 A (作れる人)・B (H9-02 を知っている)・C (どちらでもない)。
+        ほかに作れる人・知っている人はいない。見本の家は A・B・C の家のどれでもない (答える家は、ほかの家)"""
+        import g7
+        import g10
+        st = self.base()
+        st["day"] = g10.G10_FIX_FROM if day is None else day
+        g = st["era2"]["g7"]
+        h = g["hints"]
+        ti, ta = h["tech"]["H9-01"], h["tech"]["H9-02"]
+        ti.update(open=ti.get("open") or 14279, done=ti.get("done") or 15209)
+        ta.update(open=14279, first=None, progress=0.0, done=None, last=None)
+        for p in st["people"]:
+            p["skills"] = {k: v for k, v in p["skills"].items() if not k.startswith("試す:H9-0")}
+        g["g10"].update(smiths=[], pending_smiths=[], readers={}, learn={})
+        g["g10"].pop("fix", None)
+        if mark:
+            g10.mark_fix(st, "試し")  # 直しの日なら refresh_prompts と同じ印 (前の日なら何もしない)
+        era2._sync_households(st)
+        reps = g7._rep_of(st)
+        hs = sorted(h_ for h_ in reps if sum(1 for q in era2.adults(st) if q.get("household") == h_) >= 2)
+        self.assertGreaterEqual(len(hs), 4)
+        ha, hb, hc = hs[0], hs[1], hs[2]
+        A, B, C = (next(q for q in st["people"] if q["name"] == reps[x]) for x in (ha, hb, hc))
+        A["skills"]["試す:H9-01"] = 1.0
+        h["knowers"]["H9-01"] = [A["name"]]
+        h["knowers"]["H9-02"] = [B["name"]]
+        h.setdefault("pending_knowers", {}).pop("H9-02", None)
+        sample = {x: v for x, v in g["sample"].items() if x not in (ha, hb, hc)}
+        if hc not in g["sample"]:
+            sample[hc] = {"since": st["day"], "cell": g["cells"].get(hc), "must": False}
+        g["sample"] = dict(sorted(sample.items()))
+        return st, A, B, C
+
+    def test_prompt_knower(self):
+        """① 知っている本人に「あなたは試せる (try に番号)」、節に知っている人・作れる人の名前と一緒に覚える道。直しの日より前は前の文のまま"""
+        import g10
+        import hints
+        st, A, B, C = self.scene()
+        for r in hints._h(st)["ledger"]:
+            if r.get("card") == "H9-02" and r.get("to") == "V0":
+                r["status"] = "忘れられた"  # 便りは「忘れられた」(3 年の枠の外) でも、知っている人のまま
+        self.assertNotIn('try に "H9-02"', hints.text(st, B))
+        tb, tc, ta = g10.text(st, B), g10.text(st, C), g10.text(st, A)
+        self.assertIn(f'あなた ({B["name"]}) は、便り「音 1 つに字 1 つ」[H9-02] を知っている。あなたは、主な仕事を「試す」にして、job の try に "H9-02" と書けば試せる', tb)
+        self.assertIn(f"この便りを知っている人 ({B['name']}) と、その人と同じ季節に「試す」をして with にその人の名前を書く人", tc)
+        self.assertNotIn(f"あなた ({C['name']})", tc)
+        self.assertIn(f"作れる人: {A['name']}", tc)
+        self.assertIn(f"作り方を知らない人も、作れる人 ({A['name']}) と同じ季節に「黒い金属を作る」をして、with にその人の名前を書けば", tc)
+        self.assertIn(f"あなた ({A['name']}) は、黒い金属の作り方を知っている。あなたは、主な仕事を「黒い金属を作る」にできる", ta)
+        for t in (ta, tb, tc, g10.feel_note(st, B), g10.feel_note(st, A)):
+            self.assertEqual(g10.bad_words(t), [], t)
+            self.assertNotIn("【", t)
+        self.assertIn('[H9-02] を知っている。家の代表が、あなたの仕事を「試す」(try に "H9-02") にすれば', g10.feel_note(st, B))
+        self.assertEqual(g10.feel_note(st, C), "")
+        fam = next(q for q in era2.adults(st) if q.get("household") == B.get("household") and q is not B)
+        self.assertIn(f"あなたの家で、便り [H9-02] を知っている人: {B['name']}", g10.text(st, fam))
+        st0, A0, B0, C0 = self.scene(mark=False)
+        self.assertFalse(g10.fixed(st0), "直しの日でも、refresh_prompts の印がなければ前のまま (その日までの歩のやり直しは同じ)")
+        self.assertIn("試せる (まだだれも試していない。試せるのは、この便りを知っている人と、その人と一緒に試す人)", g10.text(st0, B0))
+        self.assertTrue(g10.fixed(self.scene(day=g10.G10_FIX_FROM + 1, mark=False)[0]), "直しの日より後は、印がなくても直す")
+        st2, A2, B2, C2 = self.scene(day=g10.G10_FIX_FROM - 30)
+        t2 = g10.text(st2, B2)
+        self.assertIn("試せる (まだだれも試していない。試せるのは、この便りを知っている人と、その人と一緒に試す人)", t2, "直しの日より前は前の文")
+        self.assertNotIn("あなた (", t2)
+        self.assertNotIn("作り方を知らない人も", t2)
+        self.assertEqual(g10.feel_note(st2, B2), "")
+
+    def test_rest_reason(self):
+        """② 試す・黒い金属を作る・字を習うを「休む」に変えたら、わけをその季節のはじめの日の出来事「休む」に残し、お題の自分のことに出す"""
+        import g7
+        import g10
+        st, A, B, C = self.scene()
+        n0 = st["next_event"]
+        g7.new_season(st)
+        cases = [({"activity": "試す", "try": "H9-02"}, "試す", f"{C['name']} は、「音 1 つに字 1 つ」[H9-02] の便りを知らないので、試せず、休んだ"),
+                 ({"activity": "黒い金属を作る"}, "黒い金属を作る", f"{C['name']} は、黒い金属の作り方を知らないので、休んだ"),
+                 ({"activity": "字を習う"}, "休む", f"{C['name']} は、村に字を教えられる人がいないので、字を習えず、休んだ")]  # 字を習うは仕事の並びにない (era2 が先に休むにする)
+        for j, act, want in cases:
+            g7.new_season(st)
+            C["plan"] = {"activity": act, "place": "camp", "with": []}
+            g7.job(st, C, j)
+            self.assertEqual(C["plan"]["activity"], "休む")
+            self.assertTrue(st["era2"]["g7"]["rest_why"][C["name"]]["text"].startswith(want), st["era2"]["g7"]["rest_why"][C["name"]]["text"])
+            self.assertEqual(st["next_event"], n0, "答えのときは出来事を書かない (季節のはじめの日に書く)")
+        first = st["next_event"]
+        for _ in range(6):
+            world.log(st, "休む", C["name"], f"{C['name']} はキャンプで休んだ")
+            g7.count_day(st, C["name"], "休む")
+        ev = [e for e in st["events"] if e["id"] >= first and (e.get("data") or {}).get("rest_why")]
+        self.assertEqual(len(ev), 1, "1 回だけ")
+        self.assertEqual((ev[0]["type"], ev[0]["who"], ev[0]["text"][:len(cases[-1][2])]), ("休む", C["name"], cases[-1][2]))
+        self.assertNotIn("rest_why", st["era2"]["g7"])
+        self.assertIn(cases[-1][2], era2._season_digest(st, C, first), "休んだ日が 3 日より多くても、わけはお題に出る")
+        g7.new_season(st)  # 知っている人・作れる人・一緒にする人は、休まない
+        B["plan"] = {"activity": "試す", "place": "camp", "with": []}
+        g7.job(st, B, {"activity": "試す", "try": "H9-02"})
+        C["plan"] = {"activity": "黒い金属を作る", "place": "camp", "with": [A["name"]]}
+        g7.job(st, C, {"activity": "黒い金属を作る"})
+        self.assertEqual((B["plan"]["activity"], C["plan"]["activity"]), ("試す", "黒い金属を作る"))
+        self.assertNotIn("rest_why", st["era2"]["g7"])
+        st2, A2, B2, C2 = self.scene(day=g10.G10_FIX_FROM - 30)  # 直しの日より前: 休むにするだけ (わけは残さない)
+        g7.new_season(st2)
+        C2["plan"] = {"activity": "試す", "place": "camp", "with": []}
+        g7.job(st2, C2, {"activity": "試す", "try": "H9-02"})
+        self.assertEqual(C2["plan"]["activity"], "休む")
+        self.assertNotIn("rest_why", st2["era2"]["g7"])
+
+    def test_sample_add(self):
+        """③ 作れる人・試している人の家を、ふつうの見本の家に足す (ふつうの選びは変えない)。直しの日の年の選びより前は、何も足さない"""
+        import g7
+        import g10
+        import random
+        st, A, B, C = self.scene()
+        ha, hb = A["household"], B["household"]
+        self.assertEqual(g10.key_houses(st), [ha])
+        self.assertNotIn(A["name"], era2.answerers(st))
+        added = g7.g10_sample_add(st)
+        self.assertEqual(added, [ha])
+        self.assertEqual({k: v for k, v in st["era2"]["g7"]["sample"][ha].items() if k != "cell"}, {"since": st["day"], "must": True, "g10": True})
+        self.assertIn(A["name"], era2.answerers(st))
+        self.assertEqual(g7.g10_sample_add(st), [], "2 度は足さない")
+        st["era2"]["g7"]["hints"]["tech"]["H9-02"]["first"] = st["day"]  # 試している人 (腕が 0 より大きい) の家も
+        B["skills"]["試す:H9-02"] = 0.2
+        self.assertEqual(g10.key_houses(st), sorted([ha, hb]))
+
+        def pick(day, keys):
+            s2, *_ = self.scene(day=day)
+            s2["people"] = st["people"]  # 同じ人 (A を作れる人に)
+            real = g10.key_houses
+            g10.key_houses = (lambda s: keys) if keys is not None else real
+            try:
+                return g7.choose(s2, random.Random(7))
+            finally:
+                g10.key_houses = real
+
+        y = g10.G10_FIX_FROM + era2.YEAR  # 次の年の終わり
+        plain, more = pick(y, []), pick(y, [ha])
+        self.assertEqual({h: v for h, v in more.items() if not v.get("g10")}, plain, "ふつうの選びは同じ (足すだけ)")
+        self.assertTrue(ha in plain or more[ha].get("g10"))
+        before, before2 = pick(g10.G10_FIX_FROM, []), pick(g10.G10_FIX_FROM, [ha])
+        self.assertEqual(before, before2, "直しの日 (と前) の年の選びは前のまま (その日は refresh_prompts が足す)")
+
+    def test_paths_answerers(self):
+        """④ 道の見張りは、お題に答える人 (代表) がその道を選べるときだけ数える。2 年つづけて 0 なら止めて相談 (前のまま)"""
+        import g7
+        import g10
+        st, A, B, C = self.scene()
+        self.assertEqual(g10.paths(st), {"c1": False, "c2": False}, "作れる人も知っている人も答えない")
+        old, *_ = self.scene(day=g10.G10_FIX_FROM - 30)
+        self.assertEqual(g10.paths(old), {"c1": True, "c2": True}, "直しの日より前は、前の数え方 (札と作れる人があれば出ていた)")
+        g = st["era2"]["g7"]
+        g["sample"][B["household"]] = {"since": st["day"], "cell": g["cells"].get(B["household"]), "must": False}
+        self.assertEqual(g10.paths(st), {"c1": False, "c2": True})
+        g7.g10_sample_add(st)
+        self.assertEqual(g10.paths(st), {"c1": True, "c2": True})
+        G = g["g10"]
+        y = (st["day"] + 1) // era2.YEAR
+        G["path"].pop(str(y), None)
+        g10.count_paths(st)
+        self.assertEqual({k: G["path"][str(y)][k] for k in ("c1", "c2")}, {"c1": 1, "c2": 1})
+        st["day"] = st["day"] + 2 * era2.YEAR  # 2 年あと (y・y+1 が終わった) の年の終わり
+        G["c"].pop("c1", None)
+        G["path"][str(y)] = {"meetings": 2, "c1": 0, "c2": 1}
+        G["path"][str(y + 1)] = {"meetings": 2, "c1": 0, "c2": 2}
+        c = g10.path_consult(st, [])
+        self.assertEqual((c["why"], c["year"]), ("path_c1", y + 1), "2 年つづけて 0 なら止めて相談")
+        G["path"][str(y)]["c1"] = 1
+        self.assertIsNone(g10.path_consult(st, []), "1 年だけ 0 なら止めない")
+
+    def test_refresh_prompts(self):
+        """refresh_prompts: 答えのない集まりの歩のお題を書き直す (日は進めない・区切り (村の人には見せない)・作れる人の家を答える家に)。答えがあれば断る"""
+        import g10
+        import step
+        st, A, B, C = self.scene(mark=False)
+        st["day"] = self.base()["day"]
+        d = tmpdir()
+        try:
+            self.assertIn("--why", step._refresh_refusal(st, " "))
+            if not st["era2"]["g7"].get("ask"):
+                self.assertEqual(step._refresh_refusal(st, "試し"), "この歩は集まらない (お題がない)")
+                return
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
+            r = run("refresh_prompts")
+            self.assertNotEqual(r.returncode, 0)
+            r = run("refresh_prompts", "--why", "試しのわけ")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            new = json.loads((d / "state.json").read_text(encoding="utf-8"))
+            self.assertEqual((new["day"], new["phase"]), (st["day"], st["phase"]), "日は進めない")
+            ev = new["events"][-1]
+            self.assertEqual((ev["type"], ev["text"], ev["data"]["refresh"]), ("区切り", "お題を書き直した (試しのわけ)", True))
+            fx = g10.fixed(new)
+            self.assertEqual(fx, st["day"] >= g10.G10_FIX_FROM)
+            if st["day"] == g10.G10_FIX_FROM:
+                self.assertEqual(new["era2"]["g7"]["g10"]["fix"], {"day": st["day"], "why": "試しのわけ"})
+            if fx:
+                self.assertEqual(ev["data"]["added"], [A["household"]])
+            pd = d / "prompts" / f"day{st['day']:03d}"
+            names = {f.stem for f in (pd / "season").glob("*.md")}
+            self.assertEqual(names, set(era2.answerers(new)))
+            if fx:
+                self.assertIn(A["name"], names)
+                self.assertIn(f"あなた ({A['name']}) は、黒い金属の作り方を知っている", (pd / "season" / f"{A['name']}.md").read_text(encoding="utf-8"))
+            for f in pd.rglob("*.md"):
+                t = f.read_text(encoding="utf-8")
+                self.assertNotIn("試しのわけ", t, f"{f.name}: 区切りのわけは村の人に見せない")
+                self.assertNotIn("お題を書き直した", t)
+            ad = d / "answers" / f"day{st['day']:03d}" / "season"
+            ad.mkdir(parents=True, exist_ok=True)
+            (ad / f"{A['name']}.json").write_text("{}", encoding="utf-8")
+            r = run("refresh_prompts", "--why", "もう一度")
+            self.assertEqual(r.returncode, 3)
+            self.assertIn("答えがもうある", r.stdout)
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

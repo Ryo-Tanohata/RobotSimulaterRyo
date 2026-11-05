@@ -29,6 +29,10 @@
                                                  ひどく空腹の人がよその家の倉から自動で取る決まりを止め、家の倉が 30 日分より少ない家の大人に、取るか
                                                  (取らない / 村の蓄え / よその家の倉) を答えで選ばせる組を残す (g7.exp4。B1 は実験 3 の A1 の暮らしの節も足す)。
                                                  本物の村と実験 3 の写しでは断る。まだ答えがなければ、今の歩のお題を書き直す。1 回の走りの中では組を変えない
+  python sim/society/step.py refresh_prompts --why "<わけ>"  2026-11-05 (G10 の直し。docs/society_phase/G10_stall.md 7.): 集まりの歩で、まだだれも答えていないときだけ、
+                                                 その日のお題 (季節・気持ち・まわりの集落) を今のコードで書き直す。日は進めない。出来事「区切り」(村の人には見せない) にわけを残し、
+                                                 G10 の直しの日 (g10.G10_FIX_FROM) からは、黒い金属を作れる人・札を試している人の家を答える家に足す (g7.g10_sample_add)。
+                                                 アプリのデータと記録も作り直す
   python sim/society/step.py who                 ワークフローのための、読むだけの状態の行 (DAY・PHASE・HOLD・MODE・MEET・NAMES・FEEL・COUNCIL・ASKLOG)
 
 お題は data/prompts/日/段階/名前.md、答えは data/answers/日/段階/名前.json に置く。
@@ -182,6 +186,22 @@ def _next_part_refusal(state, fill, closed=None):
     if nxt == "G7":
         import g7  # noqa: E402
         return g7.can_enter(state)
+    return None
+
+
+def _refresh_refusal(state, why):
+    """refresh_prompts ができないわけ (できるなら None): わけがある・G7 からの集まりの歩・止まっていない・その日の答えがまだない"""
+    if not (why or "").strip():
+        return '--why "<わけ>" がない'
+    if not state.get("era2") or state["phase"] != "season" or "g7" not in state["era2"]:
+        return "G7 からの季節の段階でない"
+    if not state["era2"]["g7"].get("ask"):
+        return "この歩は集まらない (お題がない)"
+    if state.get("hold"):
+        return "一時停止している"
+    have = [f.name for kind in ("season", "feeling", "council") for f in sorted(pdir(state, kind, "answers").glob("*.json"))]
+    if have:
+        return f"{state['day']} 日目の答えがもうある ({len(have)} 通)"
     return None
 
 
@@ -419,9 +439,10 @@ EXP4_NOTE = "論文 2・実験 4 (docs/research/humanity/paper2_exp4_prereg.md)"
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards", "heavy", "far_rate", "exp3", "exp4"])
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards", "heavy", "far_rate", "exp3", "exp4", "refresh_prompts"])
     ap.add_argument("onoff", nargs="?", help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)。cards では、札の表を直したわけ (note)。heavy では on。far_rate では重み (0.5 など)。exp3 では組 (A0・A1・A2)。exp4 では組 (B0・B1)")
     ap.add_argument("--note", default=None, help="exp3・exp4 で、組を入れたわけ (記録に残す)")
+    ap.add_argument("--why", default=None, help="refresh_prompts で、お題を書き直すわけ (出来事「区切り」に残す)")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
     ap.add_argument("--closed-by-decision", dest="closed", default=None,
@@ -434,6 +455,8 @@ def main():
     a = ap.parse_args()
     if (a.world is not None or a.count is not None) and a.cmd != "next_part":
         sys.exit("--world と --count は next_part のときだけ書く")
+    if a.why is not None and a.cmd != "refresh_prompts":
+        sys.exit("--why は refresh_prompts のときだけ書く")
     if a.note is not None and a.cmd not in ("exp3", "exp4"):
         sys.exit("--note は exp3・exp4 のときだけ書く")
     if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate", "exp3", "exp4"):
@@ -597,6 +620,30 @@ def main():
             print(f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめに置いた集落 {len(fl['placed'])}・{fl['people']} 人。地域の人数を K の {fl['share']:.0%} に)"
                   if fl else f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめの集落は置かなかった。--fill なし = 今のまま)")
         print("次: 答えを集めて season")
+        _records_exit()
+        return
+    if a.cmd == "refresh_prompts":  # 2026-11-05 (本人の決め「直して 5 年続ける」): 答えのない集まりの歩のお題を、今のコードで書き直す (日は進めない)
+        why = _refresh_refusal(state, a.why)
+        if why:
+            print(f"refresh_prompts はできない: {why} (何も変えない)")
+            sys.exit(3)
+        import g7  # noqa: E402
+        import g10  # noqa: E402
+        if g10.on(state):
+            g10.mark_fix(state, a.why.strip())  # 直しの日 (g10.G10_FIX_FROM) なら、この歩から直しを入れる (g7.g10.fix)
+        added = g7.g10_sample_add(state) if g10.fixed(state) else []  # ③ 作れる人・試している人の家を、答える家に足す (年の終わりの見本の選びのあとと同じ)
+        if added:
+            g7.donors(state)
+        world.log(state, "区切り", None, f"お題を書き直した ({a.why.strip()})", refresh=True, why=a.why.strip(), added=added)
+        for kind in ("season", "feeling"):  # 前のお題 (答えはない) を消して書き直す (next_part と同じ)
+            d = pdir(state, kind, "prompts")
+            if d.exists():
+                shutil.rmtree(d)
+        save(state)
+        write_prompts(state, "season")
+        export(state)
+        _records(None)  # 記録を作り直す (控えの行は足さない)
+        print(f"* {_yd(state['day'])}のお題を書き直した ({a.why.strip()})" + (f"。答える家に足した: {'・'.join(added)}" if added else ""))
         _records_exit()
         return
     if a.cmd == "cards":  # G7: よその便りの札の表を足した・直したとき (docs/society_phase/G7_design.md 4.C.1)。出来事「区切り」と新しいハッシュを残す

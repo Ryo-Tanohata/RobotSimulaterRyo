@@ -566,6 +566,7 @@ def new_season(state):
     """季節のはじめ (答えを当てはめる前): この季節の仕事の日数・子の手伝い・季節のはじめのヤギの数・G7 の仕事のくわしい答えを空にする"""
     g = _g(state)
     g["season_days"], g["kid_jobs"], g["herd0"], g["jobs7"] = {}, {}, _herd(state), {}
+    g.pop("rest_why", None)  # G10 の直し ② (2026-11-05): 前の季節の、まだ出来事にしていない休んだわけ (ふつうは残らない)
     sick_start(state)  # 4.F の 7: これからの季節が病の季節なら、出来事「病」
 
 
@@ -575,15 +576,19 @@ def job(state, q, j):
     g, act = _g(state), q["plan"]["activity"]
     j = j if isinstance(j, dict) else {}
     out = {}
+    if act == "休む" and j.get("activity") in ("試す",) + ACTS10:  # G10 の直し ② (2026-11-05): 選べない仕事だったので「休む」になった (era2.apply_answers)
+        _rest_note(state, q, j.get("activity"), j)
     if act == "試す":
         card = str(j.get("try") or "").strip().upper()
         if hints.can_try(state, q["name"], card, (q.get("plan") or {}).get("with")):
             out["try"] = card
         else:
             q["plan"]["activity"] = "休む"
+            _rest_note(state, q, act, j)
     elif act in ACTS10:  # G10 (2026-11-04): 黒い金属を作る (作り方を知る人か、その人と一緒に) / 字を習う (読み書きできない人)。ちがえば「休む」
         if not _g10_ok(state, q["name"], act, (q.get("plan") or {}).get("with")):
             q["plan"]["activity"] = "休む"
+            _rest_note(state, q, act, j)
     elif act == "住まいを建てる" and "壁" in str(j.get("build") or ""):
         out["build"] = "壁"
     elif act == "畑仕事" and era2._yes(j.get("plough")) and _plough(state):
@@ -594,6 +599,16 @@ def job(state, q, j):
         out["laws"] = [f"L{era2._num(x)}" for x in j["laws"] if era2._num(x) or str(x).strip() in ("L0", "0")][:20]
     if out:
         g.setdefault("jobs7", {})[q["name"]] = out
+
+
+def _rest_note(state, q, act, j):
+    """G10 の直し ② (2026-11-05。g10.G10_FIX_FROM から): 試す・黒い金属を作る・字を習うを「休む」に変えたわけを覚えておき、
+    その季節のはじめの日に、その人の出来事「休む」に残す (count_day。お題の「前の季節のこと」に出る。data の rest_why)"""
+    if not _g10_on(state):
+        return
+    w = _g10m().rest_why(state, q["name"], act, j, (q.get("plan") or {}).get("with"))
+    if w:
+        _g(state).setdefault("rest_why", {})[q["name"]] = {"act": act, "text": w}
 
 
 def kid_age(c):
@@ -641,6 +656,12 @@ def count_day(state, name, act):
     """人ごとの、この季節の仕事の日数 (役の人・前の年の予定・働いた日の帳簿)"""
     d = _g(state).setdefault("season_days", {}).setdefault(name, {})
     d[act] = d.get(act, 0) + 1
+    rw = _g(state).get("rest_why")
+    if rw and name in rw:  # G10 の直し ② (2026-11-05): 休んだわけを、その人の出来事に残す (季節のはじめの日に 1 回)
+        r = rw.pop(name)
+        log(state, "休む", name, r["text"], rest_why=r["act"])
+        if not rw:
+            _g(state).pop("rest_why")
 
 
 def role_day(state, p, t, act):
@@ -1197,7 +1218,9 @@ def choose(state, rng):
     cells = _cells(state)
     H = len(homes)
     n = sample_size(H) if world.G7_PARTS["year"] else H  # 年 1 回の答えを止めた試しでは、全部の家
-    old, hist = g.get("sample") or {}, g.setdefault("sample_hist", {})
+    old_all, hist = g.get("sample") or {}, g.setdefault("sample_hist", {})
+    g10fix = _g10_on(state) and D > _g10m().G10_FIX_FROM  # G10 の直し ③ (2026-11-05): 足した家は、ふつうの選びの外 (そのあとで足す。G10_FIX_FROM の日は step.py refresh_prompts が足す)
+    old = {h: v for h, v in old_all.items() if not v.get("g10")} if g10fix else old_all
     keep = {h: v for h, v in old.items() if h in homes and D + 1 - v["since"] < SAMPLE_YEARS * YEAR}
     lead = era2._leader(state)
     by = {}
@@ -1238,7 +1261,26 @@ def choose(state, rng):
     g["sample"] = {h: new[h] for h in sorted(new)}
     g["cells"] = cells
     g["weights"] = {c: round(len(hs) / k, 3) for c, hs in rest.items() for k in [sum(1 for h in hs if h in new)] if hs and k}
+    if g10fix:
+        g10_sample_add(state, old_all)
+        for h in old_all:
+            if h not in g["sample"]:
+                hist[h] = D
     return g["sample"]
+
+
+def g10_sample_add(state, old=None):
+    """G10 の直し ③ (2026-11-05。本人の決め「直して 5 年続ける」): 黒い金属を作れる人・試せる札を試している人の家 (g10.key_houses) を、
+    ふつうの見本の家に足す (must。g10: true)。ふつうの見本の数・組の重みは変えない。足した家の名前の並びを返す。乱数なし"""
+    g, D = _g(state), state["day"]
+    homes, cells, old = set(era2._homes(state)), g.get("cells") or {}, old or {}
+    added = []
+    for h in _g10m().key_houses(state):
+        if h in homes and h not in g["sample"]:
+            g["sample"][h] = {"since": old[h]["since"] if h in old else D, "cell": cells.get(h), "must": True, "g10": True}
+            added.append(h)
+    g["sample"] = {h: g["sample"][h] for h in sorted(g["sample"])}
+    return added
 
 
 def donors(state):

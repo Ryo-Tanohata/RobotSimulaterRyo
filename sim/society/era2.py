@@ -2776,7 +2776,7 @@ def _feeling_prompt(state, p, first):
 
 ## あなたの家族 ({p.get('household')})
 村の大人が {REP_FROM} 人をこえたので、季節の集まりでは家族ごとに、いちばん年上の大人が代表して答える。{f'{p.get("household")} の代表は {rep}。' if rep else ''}代表が、家族の大人の仕事・掟の投票・よそから来た人の受け入れを決める。あなたは代表ではないので、仕事は決めない。
-{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}
+{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}{_g10m().feel_note(state, p) if g7 and _g10_on(state) else ""}
 
 ## いま
 {state["day"] + 1} 日目、{sea}。{g7.meeting_word(state) if g7 else "季節のはじめの集まり"}。あなたが答えるのは次の 2 つだけ。
@@ -3162,7 +3162,8 @@ def _year_digest(state):
     ev = archive.events_from(state, meeting_first(state, y * YEAR - 1))  # この年の最初の季節の集まりから (古い年をしまうと、id は並びの番号でなくなる。2026-10-10)
     big = [e for e in ev if e["type"] in YEAR_EVENTS and not (e["type"] == "住まい" and "size" not in (e.get("data") or {}))
            and not (e["type"] == "ヤギ" and e.get("who"))  # 建てた日ごとの記録と、1 頭ずつ捕まえたのは入れない (下で数でまとめる)
-           and not (e["type"] == "記録" and "tool" not in (e.get("data") or {}))]  # G6: 季節ごとの記録は入れない (道具が使えるようになったときだけ)
+           and not (e["type"] == "記録" and "tool" not in (e.get("data") or {}))  # G6: 季節ごとの記録は入れない (道具が使えるようになったときだけ)
+           and not (e.get("data") or {}).get("refresh")]  # 2026-11-05: お題を書き直した区切り (step.py refresh_prompts。作る側のこと) は村の人に見せない
     if len(big) > YEAR_DIGEST_MAX:
         big = sorted(sorted(big, key=lambda e: (YEAR_EVENTS.index(e["type"]), e["id"]))[:YEAR_DIGEST_MAX], key=lambda e: e["id"])
     rows = [f"- [出来事 {e['id']}] {e['text']}" for e in big]
@@ -3234,7 +3235,8 @@ def _season_digest(state, p, first):
             ok = [e for e in es if (e.get("data") or {}).get("kcal", 0) > 0 or "とった" in e["text"] or "しとめた" in e["text"]]
             rows.append(f"- {t} {len(es)} 日 (食べ物が見つかった日 {len(ok)})。例: [出来事 {es[-1]['id']}] {es[-1]['text']}")
         else:
-            for e in es[-3:]:
+            why = [e for e in es[:-3] if (e.get("data") or {}).get("rest_why")]  # G10 の直し ② (2026-11-05): 休んだわけは、新しい 3 件より前でも出す (それより前の日にはない)
+            for e in why[-2:] + es[-3:]:
                 rows.append(f"- [出来事 {e['id']}] {e['text']}")
     harv = {}
     for e in ev:
@@ -3255,7 +3257,8 @@ def _season_digest(state, p, first):
     if build:
         rows.append("- 家族の住まいを建てた (人と日の数): " + "、".join(f"{h} {n}" for h, n in build.items()))
     village = [e for e in ev if e["type"] in ("生まれる", "死", "加わる", "去る", "訪れる", "畑", "ヤギ", "ヤギを食べる", "大人になる", "けが", "掟", "住まい", "フェーズ", "蓄えが尽きる", "家族", "虫", "区切り")
-               and not (e["type"] == "住まい" and (e.get("data") or {}).get("household") and "size" not in (e.get("data") or {}))]
+               and not (e["type"] == "住まい" and (e.get("data") or {}).get("household") and "size" not in (e.get("data") or {}))
+               and not (e.get("data") or {}).get("refresh")]  # 2026-11-05: お題を書き直した区切り (step.py refresh_prompts) は村の人に見せない
     rows += [f"- [出来事 {e['id']}] {e['text']}" for e in village[-25:] if e.get("who") != p["name"]]
     rains = [e for e in ev if e["type"] == "雨"]
     if rains:
