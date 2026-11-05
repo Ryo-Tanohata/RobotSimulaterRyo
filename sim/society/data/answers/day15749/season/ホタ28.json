@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬の前に、木の実を取りにみんなで北の林へ行こうよ。わたしは赤ちゃんを連れて近場を回るね。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["キサ29"], "why": "冬に備えて木の実を集めたいし、近い林なら子を連れていても安心だから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ムイ35": true},
+ "family": {"キサ29": {"activity": "採集", "place": "北林12", "why": "一緒に行けば助け合えるから"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T204": "村", "T205": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるから安心。冬の前にのんびり働こう。"}

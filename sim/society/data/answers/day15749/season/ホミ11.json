@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のうちに畑へ種をまいて、冬と春の草取りを欠かさなければ、夏の実りはきっと増える。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑は草取りをするほど次の夏の実りが増える。蓄えは十分なので、まいた畑を育てるのが一番ためになる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ムイ35": true},
+ "family": {"ソワ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして、夏の実りを増やすため。"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T204": {"side": "村", "利子": 0}, "T205": {"side": "村", "利子": 0}},
+ "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は二百八十万つかみをこえていて、今の人数で六百日以上もつ。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが満ちていて落ち着いている。畑がまた実るのが楽しみだ。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるが、ヤギが多すぎる。冬の前に肉にして減らそう。わたしは北の丘で狩りに行くよ。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕には自信があるので、冬に向けて肉を確保する"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"ムイ35": true},
+ "family": {"ヒセ26": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を集める"}, "ラニ28": {"activity": "畑仕事", "place": "camp", "why": "狩りも採集も苦手なので、畑の草取りで役に立つ"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えは600日分以上あり、ヤギは草で養える数より多いので秋のうちに肉にして減らす", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。体も元気なので、狩りで村の役に立ちたい。"}

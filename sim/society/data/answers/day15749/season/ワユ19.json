@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にある。冬の前に畑に種をまいて、木の実もたくさん集めておこう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集が得意なので、冬に備えて木の実を集める"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ムイ35": true},
+ "family": {
+  "セヤ24": {"activity": "採集", "place": "東林12", "why": "木の実集めを手伝う"},
+  "ムイ24": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"},
+  "ネイ25": {"activity": "採集", "place": "東林12", "why": "木の実集めを手伝う"},
+  "ホタ27": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"},
+  "ルタ28": {"activity": "採集", "place": "東林12", "why": "木の実集めを手伝う"}
+ },
+ "keep": false, "feast": false, "leader": null,
+ "trade": {"T204": "村", "T205": "村"},
+ "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。冬に向けて落ち着いて働きたい。"}

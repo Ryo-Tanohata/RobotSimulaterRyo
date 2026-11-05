@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、秋のうちに畑に種をまいて、冬と春の草取りをだれかが続けよう。わたしは畑をやる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだないので、秋にまいて冬と春に草取りをすれば、夏に実りが増える。静かに一人で続けられる仕事だから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ムイ35": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T204": false, "T205": false}, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "この秋は畑がないので、蓄えの草の種をまいて、冬と春に草取りをする人が要る。", "because": [1479104], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて落ち着いている。人づきあいは少なめに、自分の畑仕事をこつこつやりたい。"}

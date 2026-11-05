@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。南の村とワユ3の村には草の種を貸してやろう。新しい仲間も迎えよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをして、来年の夏の実りを増やしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ムイ35": true},
+ "family": {"トナ35": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手がいるので、一緒に働いてもらう"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T204": "村", "T205": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。困っている村を助けられるのがうれしい。"}
