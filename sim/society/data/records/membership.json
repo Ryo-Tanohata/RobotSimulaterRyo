@@ -645,7 +645,7 @@
 {"person_id":"P644","household_id":"H17","from_day":11429,"to_day":11939,"why_in":"生まれた","why_out":"亡くなった","evidence":[914056,976124],"assigned_from_state_day":11429},
 {"person_id":"P645","household_id":"H29","from_day":11429,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[914057],"assigned_from_state_day":11429},
 {"person_id":"P646","household_id":"H68","from_day":11429,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[914058],"assigned_from_state_day":11429},
-{"person_id":"P647","household_id":"H17","from_day":11429,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[914059],"assigned_from_state_day":11429},
+{"person_id":"P647","household_id":"H17","from_day":11429,"to_day":15059,"why_in":"生まれた","why_out":"亡くなった","evidence":[914059,1383613],"assigned_from_state_day":11429},
 {"person_id":"P648","household_id":"H43","from_day":11459,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[917497],"assigned_from_state_day":11459},
 {"person_id":"P649","household_id":"H18","from_day":11459,"to_day":11579,"why_in":"生まれた","why_out":"亡くなった","evidence":[917498,932428],"assigned_from_state_day":11459},
 {"person_id":"P650","household_id":"H16","from_day":11489,"to_day":13379,"why_in":"生まれた","why_out":"亡くなった","evidence":[919771,1145657],"assigned_from_state_day":11489},
@@ -940,12 +940,15 @@
 {"person_id":"P939","household_id":"H80","from_day":14969,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1369683],"assigned_from_state_day":14969},
 {"person_id":"P940","household_id":"H21","from_day":14969,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1369684],"assigned_from_state_day":14969},
 {"person_id":"P941","household_id":"H100","from_day":14969,"to_day":15029,"why_in":"生まれた","why_out":"亡くなった","evidence":[1369685,1380697],"assigned_from_state_day":14969},
-{"person_id":"P942","household_id":"H50","from_day":14999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1373005],"assigned_from_state_day":14999},
+{"person_id":"P942","household_id":"H50","from_day":14999,"to_day":15059,"why_in":"生まれた","why_out":"亡くなった","evidence":[1373005,1383611],"assigned_from_state_day":14999},
 {"person_id":"P943","household_id":"H50","from_day":14999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1373006],"assigned_from_state_day":14999},
 {"person_id":"P944","household_id":"H65","from_day":14999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1373007],"assigned_from_state_day":14999},
-{"person_id":"P945","household_id":"H29","from_day":14999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1373008],"assigned_from_state_day":14999},
+{"person_id":"P945","household_id":"H29","from_day":14999,"to_day":15059,"why_in":"生まれた","why_out":"亡くなった","evidence":[1373008,1383612],"assigned_from_state_day":14999},
 {"person_id":"P946","household_id":"H41","from_day":14999,"to_day":14999,"why_in":"生まれた","why_out":"家ごと村を出た","evidence":[1373009,1373016],"assigned_from_state_day":14999},
 {"person_id":"P947","household_id":"H65","from_day":15029,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1380694],"assigned_from_state_day":15029},
 {"person_id":"P948","household_id":"H17","from_day":15029,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1380695],"assigned_from_state_day":15029},
-{"person_id":"P949","household_id":"H92","from_day":15029,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1380696],"assigned_from_state_day":15029}
+{"person_id":"P949","household_id":"H92","from_day":15029,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1380696],"assigned_from_state_day":15029},
+{"person_id":"P950","household_id":"H104","from_day":15029,"to_day":null,"why_in":"よそから来た","why_out":null,"evidence":[1380719],"assigned_from_state_day":15059},
+{"person_id":"P951","household_id":"H69","from_day":15059,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1383609],"assigned_from_state_day":15059},
+{"person_id":"P952","household_id":"H102","from_day":15059,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[1383610],"assigned_from_state_day":15059}
 ]

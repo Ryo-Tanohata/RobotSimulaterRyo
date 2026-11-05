@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、秋のうちにしっかり種をまいて、冬と春は草取りを欠かさず、また夏に実らせようね。"}, {"to": "ワユ19", "text": "うちの家族もみんなで畑に出よう。わたしもいっしょに草を取るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ワユ19"], "why": "蓄えは多いが、畑がまだ無い。種をまいて育てる草取りを続けると次の夏に実りが増えると覚えているから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"トナ33": true},
+ "family": {
+  "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "採集の腕が良いので、草取りも手早い。家族で畑を守る。"},
+  "セヤ24": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝ってもらう。"},
+  "ムイ24": {"activity": "畑仕事", "place": "camp", "why": "赤ん坊が小さいので、キャンプで畑仕事をする。"},
+  "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを覚えてもらう。"},
+  "ホタ27": {"activity": "畑仕事", "place": "camp", "why": "子どもでも草取りは手伝える。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を1000つかみずつ畑にまき、家族みんなで冬と春に草取りをすると、次の夏にまた実る", "because": [1380677], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで落ち着いている。畑を絶やさないよう、また冬と春に草取りをがんばろう。"}

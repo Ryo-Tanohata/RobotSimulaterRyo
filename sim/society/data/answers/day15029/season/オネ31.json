@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋だ。畑に種をまいたら、草取りはおれもやる。ヤギは多すぎるから、少しつぶして干し肉にしたほうがいい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすれば、夏の実りが増えるから続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"トナ33": true}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギが165頭いて、養える約140頭をこえ、前の季節に12頭がやせていなくなった", "because": [1380693], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "疲れているが、畑のことは静かにやっておきたい。"}
