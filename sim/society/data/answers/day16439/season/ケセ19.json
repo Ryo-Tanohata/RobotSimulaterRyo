@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだ山ほど残っている。落ちる前に、みんなで毎日刈り切ろう。秋と冬は私が黒い金属の鎌を作りためる。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実りが落ちるので、刈り入れを優先する"}, "family": {"タユ25": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "セオ25": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "タユ30": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "畑を刈り切るため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "来年の夏に刈り切れるよう黒い金属の鎌を作りためる"}, "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "作れる人として鎌を一緒に作る"}, "セオ25": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りと刈り入れ"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをして実りを増やす"}, "タユ30": {"activity": "採集", "place": "camp", "why": "木の実を集めて食べ物を足す"}, "キサ31": {"activity": "採集", "place": "camp", "why": "木の実を集めて食べ物を足す"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "冬のあいだも鎌を作りためる"}, "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "鎌を一緒に作る"}, "セオ25": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "タユ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "夏の刈り入れに備えて鎌を仕上げる"}, "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "鎌を一緒に作る"}, "セオ25": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "タユ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T224": false, "T225": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "far": {"M16": "受けない"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は大量に残っており、毎日刈り切る。秋に種をまき、秋と冬と春は黒い金属の鎌を作りためる。", "because": [1595194], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出るので夜は離れない方がよい"}],
+ "year_name": "畑が山ほど実った年",
+ "mood": "刈るものが多く、気が引き締まる"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑をみんなで刈り切ろう。ヤギは草に対して多すぎるから、少しずつ減らそうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"アコ19": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れは人手が多いほどよい"}, "リセ25": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れは人手が多いほどよい"}, "オネ30": {"activity": "畑仕事", "place": "camp", "why": "若い手も刈り入れを手伝う"}, "ホタ31": {"activity": "畑仕事", "place": "camp", "why": "若い手も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 10},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑を世話し、実りを増やすため"}, "family": {"アコ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りが増える"}, "リセ25": {"activity": "採集", "place": "camp", "why": "冬に備えて食べ物を集める"}, "オネ30": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ホタ31": {"activity": "採集", "place": "camp", "why": "木の実を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、草の種を虫やネズミから守れる"}, "family": {"アコ19": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで夏の実りが増える"}, "リセ25": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで夏の実りが増える"}, "オネ30": {"activity": "休む", "place": "camp", "why": "冬は無理をせず体を休める"}, "ホタ31": {"activity": "休む", "place": "camp", "why": "冬は無理をせず体を休める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りを増やすため"}, "family": {"アコ19": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "リセ25": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "オネ30": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ホタ31": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T224": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "far": {"M16": "受ける"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種はとても多く、約590日分ある。ヤギは草で養える数の倍ほどいるので減らしたほうがよい。", "because": [1595207], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせた年",
+ "feeling": "蓄えは十分で安心している。畑を刈り切り、ヤギを減らしたい。"}
