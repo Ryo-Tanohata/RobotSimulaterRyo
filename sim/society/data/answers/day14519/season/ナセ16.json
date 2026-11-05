@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑が夏のうちに落ちないよう、手の空いた人は毎夕刈ろう。蓄えは十分あるけれど、土器も絶やさずに作っていきたい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに刈らないと落ちてしまうから"}, "family": {"キサ18": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ソナ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ラキ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "タユ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "キサ23": {"activity": "畑仕事", "place": "camp", "why": "若いが刈り入れを手伝える"}, "ヒセ23": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ソワ23": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "リセ24": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "タユ24": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "シエ25": {"activity": "畑仕事", "place": "camp", "why": "子でも刈り入れを手伝える"}, "ユエ25": {"activity": "畑仕事", "place": "camp", "why": "子でも刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "刈った草の種を虫やネズミから守る土器がもっと要る"}, "family": {"キサ18": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の世話をする"}, "ソナ19": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ラキ22": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "タユ22": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は実りがないので、土器づくりを進める"}, "family": {"キサ18": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ソナ19": {"activity": "採集", "place": "北川12", "why": "冬は魚と芋を探す"}, "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ラキ22": {"activity": "採集", "place": "北川12", "why": "冬は魚と芋を探す"}, "タユ22": {"activity": "採集", "place": "北川12", "why": "冬は魚と芋を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れの前に石の鎌を作りためる"}, "family": {"キサ18": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ソナ19": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ラキ22": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "タユ22": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"リセ31": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏のうちに実った畑を刈らないと、種は落ちてしまう", "because": [1304374], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギが減った年",
+ "feeling": "蓄えは十分あるので落ち着いている。刈り入れと土器づくりに精を出したい。"}

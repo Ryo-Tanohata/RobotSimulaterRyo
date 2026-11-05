@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実っているから、落とさないように毎夕みんなで刈って土器に入れましょう。秋にはたっぷりまいて、冬と春は草取りをしましょうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れに力を使う"}, "family": {"ケセ20": {"activity": "畑仕事", "place": "camp", "why": "狩りも採集も得意だが、まず実った畑を刈って蓄えを守る"}, "ユエ22": {"activity": "畑仕事", "place": "camp", "why": "手の空いた大人は畑の刈り入れを手伝う"}, "ケセ23": {"activity": "畑仕事", "place": "camp", "why": "若い力で畑の刈り入れを手伝う"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は慣れているので、蓄えを守る器をたくさん作る"}, "family": {"ケセ20": {"activity": "採集", "place": "西林12", "why": "西の林は木の実が多いので、冬に備えて集める"}, "ユエ22": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の世話を始める"}, "ケセ23": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の世話を手伝う"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで次の夏の実りが増える"}, "family": {"ケセ20": {"activity": "狩り", "place": "北丘12", "why": "冬も獣はいるので、肉をとって食べ物を足す"}, "ユエ22": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ケセ23": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りが多いほど夏の刈り入れが増える"}, "family": {"ケセ20": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守る"}, "ユエ22": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守る"}, "ケセ23": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"リセ31": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は毎夕畑を刈り、秋にたっぷりまいて、冬と春は草取りをすると蓄えが守れる", "because": [1304374], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑が実った年",
+ "mood": "蓄えは十分あるので安心している。ヤギの草が足りないのが気がかりだ。"}
