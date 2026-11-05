@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑は実りが多い。落ちる前に、みんなで毎夕刈ろう。秋には種を1000つかみずつまこうね。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が夏のうちに落ちる前に刈るため"},"family":{"ワユ19":{"activity":"畑仕事","place":"camp","why":"畑を刈る手を増やすため"},"セヤ24":{"activity":"畑仕事","place":"camp","why":"畑を刈る手を増やすため"},"ムイ24":{"activity":"畑仕事","place":"camp","why":"畑を刈る手を増やすため"},"ネイ25":{"activity":"畑仕事","place":"camp","why":"畑を刈る手を増やすため"},"ホタ27":{"activity":"畑仕事","place":"camp","why":"畑を刈る手を増やすため"},"ルタ28":{"activity":"畑仕事","place":"camp","why":"子も半分の働きで刈りを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで次の夏の実りを増やすため"},"family":{"ワユ19":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"セヤ24":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ムイ24":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ネイ25":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ホタ27":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ルタ28":{"activity":"畑仕事","place":"camp","why":"子も草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"冬の草取りで次の夏の実りを守るため"},"family":{"ワユ19":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"セヤ24":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ムイ24":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ネイ25":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ホタ27":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ルタ28":{"activity":"畑仕事","place":"camp","why":"子も草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"春の草取りで夏の実りを増やすため"},"family":{"ワユ19":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"セヤ24":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ムイ24":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ネイ25":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ホタ27":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ルタ28":{"activity":"畑仕事","place":"camp","why":"子も草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept":{"キサ34":true,"セヤ34":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,
+"knowledge":[{"op":"add","text":"夏は実った畑を毎夕刈り、秋に1000つかみずつ種をまき、冬と春に草取りをするとまた実る","because":[1421854],"confidence":0.8}],
+"proposal":null,
+"votes":[],
+"year_name":"畑の実り多き年",
+"feeling":"今年も畑が実って安心した。落とさず刈り入れたい。"}

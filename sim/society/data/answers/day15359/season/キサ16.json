@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑が山ほど残っている。夏のうちに落とす前に、みんなで刈り切ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["アコ19"], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"アコ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が多いほどよいから"}, "トナ24": {"activity": "畑仕事", "place": "camp", "why": "採集や狩りが苦手なので刈り入れを手伝う"}, "リセ25": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れを急ぐため"}, "キオ28": {"activity": "畑仕事", "why": "刈り入れの手伝い", "place": "camp"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を守る器をふやしたいから"}, "family": {"アコ19": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをするため"}, "トナ24": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りをふやすため"}, "リセ25": {"activity": "土器づくり", "place": "camp", "why": "土器づくりが得意だから"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬のあいだの草取りで次の夏の実りをふやすため"}, "family": {"アコ19": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいるので肉を得る"}, "トナ24": {"activity": "畑仕事", "place": "camp", "why": "草取りをするため"}, "リセ25": {"activity": "畑仕事", "place": "camp", "why": "草取りをするため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春は乳がとれるので、ヤギを世話して数を整える"}, "family": {"アコ19": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れ前の草取り"}, "トナ24": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をする人が足りないから"}, "リセ25": {"activity": "土器づくり", "place": "camp", "why": "土器をふやすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"キサ34": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは約630日分あり、夏のうちに畑を刈り切ればさらに増える。ヤギは草に対して多すぎる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの山の年",
+ "mood": "畑は豊かで蓄えも多く、落ち着いている。手を動かして刈りたい。"}
