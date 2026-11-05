@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑がたくさん実っている。夏のうちに刈り入れを急ごう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ソワ23": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "タユ24": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "シエ25": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ユエ25": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ルタ26": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "キサ28": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ルタ29": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ラキ30": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "オセ31": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集が得意で、冬に備えて木の実を集めたい"}, "family": {"タユ24": {"activity": "採集", "place": "東林12", "why": "採集が得意"}, "ルタ26": {"activity": "採集", "place": "東林12", "why": "採集が得意"}, "キサ28": {"activity": "採集", "place": "東林12", "why": "採集が得意"}, "ソワ23": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "シエ25": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ユエ25": {"activity": "ヤギの世話", "place": "camp", "why": "小さな子がいるので近くで働く"}, "ルタ29": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も魚やけものはいるので、肉を得る"}, "family": {"ソワ23": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "タユ24": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "シエ25": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ルタ26": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "キサ28": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ユエ25": {"activity": "休む", "place": "camp", "why": "冬は小さな子のそばで体を休める"}, "ルタ29": {"activity": "休む", "place": "camp", "why": "冬は無理をしない"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "春の草や芋を集める"}, "family": {"ソワ23": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "タユ24": {"activity": "採集", "place": "西草原12", "why": "採集が得意"}, "シエ25": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ルタ26": {"activity": "採集", "place": "西草原12", "why": "採集が得意"}, "キサ28": {"activity": "採集", "place": "西草原12", "why": "採集が得意"}, "ユエ25": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれる"}, "ルタ29": {"activity": "ヤギの世話", "place": "camp", "why": "乳をとる手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"シエ36": true, "ムイ36": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "夏は実った畑を刈らないと落ちてしまう", "because": [1505565], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせた年",
+ "mood": "畑が実って安心している。みんなで無理なく刈り入れをしたい。"}
