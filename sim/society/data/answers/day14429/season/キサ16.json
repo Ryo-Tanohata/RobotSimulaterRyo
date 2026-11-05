@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけど、冬が来る前にまだ歩いていない林を見てくるよ。何か見つけたら夜に話すね。"}],
+ "job": {"activity": "探索", "place": "西林12", "with": [], "why": "まだ行ったことのない林を見て、冬に使える木の実や魚の場所を探したい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"アコ19": {"activity": "採集", "place": "北川12", "why": "採集が得意で、冬の前に川の芋や魚の場所を確かめられる"}, "ホタ21": {"activity": "狩り", "place": "北丘12", "why": "狩りも得意なので、肉を持ち帰って家族の食べ物にする"}, "トナ24": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを手伝い、来年の実りを増やす"}},
+ "keep": false,
+ "judge": {"M466": "ゆるす", "M467": "ゆるす", "M468": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種はたくさんあり、約625日分ある。ヤギは草に対して多すぎる", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは安心だけど、知らない場所を歩くのが楽しみ"}
