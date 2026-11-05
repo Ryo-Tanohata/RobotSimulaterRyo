@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、冬のあいだも草取りに来よう。夏に実りを刈るのが楽しみだ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをするほど夏の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"オネ31": true},
+ "family": {"ソワ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やすため"}, "ラニ23": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やすため"}},
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって落ち着いている。畑の世話を続けたい。"}

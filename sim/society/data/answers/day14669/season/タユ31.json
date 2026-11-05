@@ -1,0 +1,11 @@
+{"say": [{"to": "リセ31", "text": "雨の夜に外でぬれるのは、もうたくさん。この秋は二人でうちの住まいを建てて、ラニ31を屋根の下で寝かせよう。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["リセ31"], "why": "前の季節は雨の夜 6 回とも外でぬれた。冬の前に家の住まいがほしい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"オネ31": true},
+ "family": {"リセ31": {"activity": "住まいを建てる", "place": "camp", "why": "二人で働けば冬の前に住まいができあがるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "村の住まいは 12 人までで、入りきらない人は雨の夜に外でぬれる。家の住まいを建てれば、そこで眠れる", "because": [1327302], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L422", "against": "", "agree": true, "reason": "ヤギが草より多すぎて、やせていなくなるより、つぶして干し肉にしたほうがいい"}],
+ "feeling": "今年こそ自分の屋根の下で冬をこしたい。"}

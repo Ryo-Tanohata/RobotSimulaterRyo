@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。畑にたっぷり種をまいて、冬と春の草取りを分けて続けよう。夕方は木の実も取って冬に備えよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りで実りが増え、冬と春の蓄えを守れるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"オネ31": true},
+ "family": {
+  "ケセ20": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが133頭で、世話が足りないといなくなるため"},
+  "ユエ22": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを人数でこなして実りを増やすため"},
+  "ケセ23": {"activity": "土器づくり", "place": "camp", "why": "蓄えの草の種を虫やネズミから守る土器を増やすため"},
+  "テナ26": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝いをするため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多いが、冬に備えて畑と木の実をしっかりやろうと思う。"}
