@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "道具づくりが得意だから、この秋は石の鎌をたくさん作るよ。刈り入れのときに役に立つはずだ。みんなで話しながら進めよう。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりは一番得意で、鎌が増えれば畑の刈り入れが楽になるから"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソワ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする人が増えると、来年の実りが増えるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種はたっぷりあるので、秋に畑にまけば次の夏に実る", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "みんなと話しながら手を動かせて、気分がいい"}

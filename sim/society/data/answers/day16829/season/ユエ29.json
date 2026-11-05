@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はまだたっぷりある。わたしは秋のあいだ土器づくりをして、種を虫から守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を土器に入れて傷みから守れるから。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "シエ30": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚やけものを取って冬に備える。"},
+  "トナ31": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、シエ30と一緒に魚を取る。"},
+  "テナ31": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、冬の前に食べ物を集める。"},
+  "ヒセ32": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、テナ31と一緒に食べ物を集める。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えが多くて安心している。冬に向けて落ち着いて働きたい。"}

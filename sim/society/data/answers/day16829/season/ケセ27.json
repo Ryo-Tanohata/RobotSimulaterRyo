@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "この秋もたっぷり種をまくよ。冬と春の草取りを忘れずに、みんなで畑を守ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。得意な手でしっかり世話をしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ハソ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして実りを増やすため"},
+  "オセ29": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして実りを増やすため"},
+  "タユ29": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして実りを増やすため"},
+  "ムイ29": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして実りを増やすため"},
+  "ラキ34": {"activity": "畑仕事", "place": "camp", "why": "母と一緒に畑を手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りをすると実りが増える", "because": [1668139], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑の世話は性に合っている。冬までにやることをやって、のんびり構えたい。"}
