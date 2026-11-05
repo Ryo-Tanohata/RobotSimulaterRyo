@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑をみんなで刈り切って、種は土器に入れよう。わたしは土器をたくさん作るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意なので、刈った種を入れる器を増やして虫から守る"}, "family": {"ワユ19": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り入れて種を落とさないため"}, "ナセ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手が多いほど種が守れる"}, "セヤ24": {"activity": "畑仕事", "place": "camp", "why": "夏は畑を刈るのが一番大事"}, "ムイ24": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを手伝う"}, "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "子でも刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器を増やして蓄えを守る"}, "family": {"ワユ19": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬にそなえる"}, "ナセ22": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"}, "セヤ24": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やす"}, "ムイ24": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は木の実がないので、家で土器を作る"}, "family": {"ワユ19": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを守る"}, "ナセ22": {"activity": "畑仕事", "place": "camp", "why": "冬の草取り"}, "セヤ24": {"activity": "畑仕事", "place": "camp", "why": "冬の草取り"}, "ムイ24": {"activity": "畑仕事", "place": "camp", "why": "冬の草取り"}, "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "夏の刈り入れにそなえて土器を増やす"}, "family": {"ワユ19": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで次の夏の実りを増やす"}, "ナセ22": {"activity": "畑仕事", "place": "camp", "why": "春の草取り"}, "セヤ24": {"activity": "畑仕事", "place": "camp", "why": "春の草取り"}, "ムイ24": {"activity": "畑仕事", "place": "camp", "why": "春の草取り"}, "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T191": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "夏は実った畑をみんなで毎夕刈り、種は土器に入れて守る。秋にまき、冬と春に草取りをするとまた実る", "because": [1321210], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑のたくさん実った年",
+ "feeling": "蓄えは十分あるので落ち着いている。土器を作って、夏の畑を刈り切りたい。"}

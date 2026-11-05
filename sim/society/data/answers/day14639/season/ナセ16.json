@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈ってしまおう。落ちる前に、みんなで手分けしてね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"キサ18": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "ソナ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "ラキ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "タユ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話と来年の実りのため"}, "family": {"キサ18": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ソナ19": {"activity": "採集", "place": "camp", "why": "食べ物を足す"}, "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えを虫から守る土器を増やす"}, "family": {"キサ18": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "ソナ19": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいる"}, "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで夏の実りを増やす"}, "family": {"キサ18": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ソナ19": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギと乳"}, "セヤ19": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T191": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "蓄えは土器に入れておくと虫に食べられにくい", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い年",
+ "feeling": "蓄えは十分にある。夏の刈り入れを落とさずにやりとげたい。"}
