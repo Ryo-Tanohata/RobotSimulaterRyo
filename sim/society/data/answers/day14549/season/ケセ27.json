@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "冬の前に、わたしは東の林で木の実をたっぷり集めてくるよ。ヤギは草が足りないから、減らしたほうがいいと思う。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集が得意で、冬に向けて木の実を集めたい。村の蓄えは十分あるが、子どもたちのために手を動かしておきたい"},
+ "family": {"ラニ27": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りが実りを増やすから"}},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "feast": false, "leader": null, "trade": {"T190": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "草が足りず、ヤギは減らさないとやせていなくなる", "because": [1311804], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽いし、冬の前に思いきり動けるのが楽しみだ。"}
