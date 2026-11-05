@@ -59,6 +59,16 @@ def _g10_on(state):
     return "g10" in (state["era2"].get("g7") or {})
 
 
+def _g11m():
+    """G11 (お金と市場) の仕組み (g11.py)。呼ぶのは G11 の F を見るときと、state に g7.g11 があるときだけ (G10 までは読みこみもしない)"""
+    import g11
+    return g11
+
+
+def _g11_on(state):
+    return "g11" in (state["era2"].get("g7") or {})
+
+
 def _g7m():
     """G7 (王と役所) から働く仕組み (g7.py。docs/society_phase/G7_design.md)。g7.py が era2 を読みこむので、関数の中で読みこむ。
     呼ぶのは state["era2"] に "g7" があるとき (G7 に入ったあと) だけ。だから G6 までは読みこみもしない"""
@@ -1746,6 +1756,11 @@ def _g6_decide(state, c, off, o, n, lead, how="集まり"):
         o["trust"] = max(0.0, round(o["trust"] - 0.1, 2))
         log(state, "よその村", None, f"{at}、{o['name']} の申し出 [{off['id']}] は受けなかった ({votes})", other=o["id"], offer=off["id"])
         return
+    if side == "村" and "g7" in state["era2"] and _g11_on(state):  # G11 (2026-11-05): 村が「印で払う」と決めていれば、印のかたまりで受ける (G10 までは通らない)
+        n_coin = _g11m().pay_coins(state, off, o, at)
+        if n_coin:
+            _g11m().decide_with_coins(state, c, off, o, n_coin, lead, at, votes)
+            return
     if any(_g6_have(state, side, k) < m for k, m in off["want"].items()):
         log(state, "交換", None, f"{at}、{o['name']} の申し出 [{off['id']}] を{side}の物で受けようとしたが、{_gw(off['want'])} がなかった",
             other=o["id"], offer=off["id"])
@@ -1773,6 +1788,8 @@ def _g6_decide(state, c, off, o, n, lead, how="集まり"):
         back = f"1 年のうちに、上乗せ {round(rate * 10, 1):g} 割をつけて {_gw(_g7m().owed(d))} を返すと言った" if rate else "1 年のうちに同じ量を返すと言った"
         log(state, "貸し借り", None, f"{at}、{who} {o['name']} に {_gw(gave)} を貸した [{d['id']}] ({back}。{votes})",
             other=o["id"], debt=d["id"], moves=[_mv(side, -1, gave, out_ids)], **({"rate": rate} if rate else {}))
+        if "g7" in state["era2"] and _g11_on(state):  # G11: 出し入れを数える (c1。G10 までは数えない)
+            _g11m().flow(state, o, "貸し")
         return
     _node_add(o, off["give"], -1)
     in_ids = []
@@ -1782,6 +1799,8 @@ def _g6_decide(state, c, off, o, n, lead, how="集まり"):
     sx = (" (" + "・".join(f"{x['sex']} {x['age']} 歳" for x in off["goats_in"]) + ")") if off["goats_in"] else ""
     log(state, "交換", None, f"{at}、{who} {o['name']} の申し出 [{off['id']}] を受け、{_gw(gave)} を {_gw(off['give'])}{sx} と取り替えた ({votes})",
         other=o["id"], offer=off["id"], moves=[_mv(side, -1, gave, out_ids), _mv(to, 1, off["give"], in_ids)], **({"household": side} if side != "村" else {}))
+    if "g7" in state["era2"] and _g11_on(state):  # G11: 出し入れを数える (c1。G10 までは数えない)
+        _g11m().flow(state, o, "交換")
 
 
 def _g6_repay(state, off, o):
@@ -1791,6 +1810,11 @@ def _g6_repay(state, off, o):
     if not d:
         return
     bring = {k: min(n, o[NODE_KEY[k]]) if NODE_KEY.get(k) else n for k, n in off["give"].items()}
+    coin_eq, cx = {}, ""
+    if "g7" in state["era2"] and _g11_on(state):  # G11 (2026-11-05): 村の印のかたまりを持っていれば、それで先に返す (G10 までは通らない)
+        bring, coin_eq = _g11m().repay_coins(state, o, d, bring)
+        cx = f" と印のかたまり ({_gw(coin_eq)} 分)" if coin_eq else ""
+        _g11m().repay_flow(state, o)
     _node_add(o, bring, -1)
     in_ids = []
     side = _g6_put(state, d["lender"], bring, (), in_ids)
@@ -1798,7 +1822,7 @@ def _g6_repay(state, off, o):
     _g6_note(state, o, {}, (bring,))
     _g6_contact(state, o)
     true = _g7m().owed(d) if d.get("rate") else d["goods"]  # G7: 上乗せのある貸し借り (G6 までは rate がない)
-    short = {k: n - bring.get(k, 0) for k, n in true.items() if n - bring.get(k, 0) > 0}
+    short = {k: n - bring.get(k, 0) - coin_eq.get(k, 0) for k, n in true.items() if n - bring.get(k, 0) - coin_eq.get(k, 0) > 0}
     to = "村" if d["lender"] == "村" else d["lender"]
     # 足りない分が草の種 50 つかみ分より少なければ、返さなくてよいことにする (交換に行ったときの「あとで返す」と同じ目安。2026-10-09 試し回し:
     #   数え札の記録では、向こうは覚えで持って来るので、草の種 1 つかみのような残りが季節ごとに続き、最後は「返されないまま」になっていた)
@@ -1815,13 +1839,15 @@ def _g6_repay(state, off, o):
         else:
             d.update(status="返した", end=day)
         how = "封筒を割って" if proof == "封筒" else "字で書いておいた量を読み合わせて" if proof == "字" else f"{proof}の記録を見て"
-        log(state, "確かめる", None, f"{o['name']} の人が [{d['id']}] を返しに来た。{how}、貸した数 ({_gw(true)}) を確かめ、{to}は {_gw(bring)} を受けとった"
+        log(state, "確かめる", None, f"{o['name']} の人が [{d['id']}] を返しに来た。{how}、貸した数 ({_gw(true)}) を確かめ、{to}は {_gw(bring)}{cx} を受けとった"
             + (f"。足りない {_gw(short)} は、わずかなので、返さなくてよいことになった" if small
                else f"。足りない {_gw(short)} は、あとで返すことになった" if short else ""), other=o["id"], debt=d["id"], how=proof, moves=mv)
         return
     g["unchecked"] += 1  # 記録のない量を、覚えで決めた
     d.update(status="返した", end=day)
     mem = {k: math.ceil(n * d["mem"]["village"]) for k, n in true.items()}
+    if coin_eq:  # G11: 印で返した分は、その量の草の種を受けとったものとして、覚えとくらべる
+        bring = {k: bring.get(k, 0) + coin_eq.get(k, 0) for k in sorted(set(bring) | set(coin_eq))}
     if any(mem[k] > bring.get(k, 0) * BLAME for k in mem):
         g["misremember"] += 1
         o["trust"] = max(0.0, round(o["trust"] - 0.2, 2))
@@ -1931,6 +1957,8 @@ def _g6_barter(state, p, t, tr, o):
                else f"。{o['name']} は、いま払える物がなく、{_gw(d['goods'])} をあとで返すと言った [{d['id']}]")
     _g6_note(state, o, took, (pay,))
     _g6_contact(state, o)
+    if "g7" in state["era2"] and _g11_on(state):  # G11: 交換に行った先での交換も、出し入れに数える (c1。G10 までは数えない)
+        _g11m().flow(state, o, "交換に行く")
     t.setdefault("events", []).append(log(state, "交換", p["name"], f"{p['name']} は {o['name']} で、{_gw(took)} を渡し"
                                           + (f"、{_gw(pay)}{'・牛 1 頭' if tr.get('cattle_in') else ''} を受けとった" if pay or tr.get("cattle_in") else "た") + owe
                                           + (f" (受けとってもらえなかった {_gw(tr['back'])} は持ち帰る)" if tr["back"] else ""), other=o["id"], trip=tr["id"]))
@@ -2776,7 +2804,7 @@ def _feeling_prompt(state, p, first):
 
 ## あなたの家族 ({p.get('household')})
 村の大人が {REP_FROM} 人をこえたので、季節の集まりでは家族ごとに、いちばん年上の大人が代表して答える。{f'{p.get("household")} の代表は {rep}。' if rep else ''}代表が、家族の大人の仕事・掟の投票・よそから来た人の受け入れを決める。あなたは代表ではないので、仕事は決めない。
-{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}{_g10m().feel_note(state, p) if g7 and _g10_on(state) else ""}
+{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}{_g10m().feel_note(state, p) if g7 and _g10_on(state) else ""}{_g11m().feel_note(state, p) if g7 and _g11_on(state) else ""}
 
 ## いま
 {state["day"] + 1} 日目、{sea}。{g7.meeting_word(state) if g7 else "季節のはじめの集まり"}。あなたが答えるのは次の 2 つだけ。
@@ -2952,9 +2980,14 @@ CRITERIA["G10"] = ("暦の 1 年に、夕方の刈り入れの人日の半分以
                    "記録をつける家の外に、字を読み書きできる大人が 2 人以上 と、決める段 4 以上で地域の集落の半分以上のまとまり (中心は村でもよその集落でもよい)、"
                    "の 3 つに、一度でも届く (どれが先でもよい)",
                    lambda i: bool(i.get("g10_c1_day")) and bool(i.get("g10_c2_day")) and bool(i.get("g10_c3_day")))
-ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10"]
+# G11 (2026-11-05 本人の決め「お任せします」。docs/society_phase/G11_design.md): 「お金と市場」(第 6 部のまん中)。3 つとも【村が決めた】。
+#   届いた日は g11.py の物差しが残す。G10 の物差しは「ならべて測る」(数えて記録するが、G11 は進めない)
+CRITERIA["G11"] = ("暦の 1 年に、よその集落との出し入れの半分以上 (少なくとも 4 回) を印のかたまりで払うか受ける と、掟で決めた市の日に、よその集落の人が来て替えた市が "
+                   "1 年 2 回以上を 2 年つづける と、よその村への貸し・返しを印のかたまりでして、その量を字で書いた年が 2 年つづく、の 3 つに、一度でも届く (どれが先でもよい)",
+                   lambda i: bool(i.get("g11_c1_day")) and bool(i.get("g11_c2_day")) and bool(i.get("g11_c3_day")))
+ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11"]
 NAMES2 = {"G1": "村ができる", "G2": "畑と家畜", "G3": "余りと分業", "G4": "持ち物と差", "G5": "リーダーと決まり", "G6": "交易・町・記録",
-          "G7": "王と役所", "G8": "外からの押し", "G9": "遠くとの商い", "G10": "鉄と広い国"}
+          "G7": "王と役所", "G8": "外からの押し", "G9": "遠くとの商い", "G10": "鉄と広い国", "G11": "お金と市場"}
 assert set(CRITERIA) <= set(ORDER2) and set(NAMES2) == set(ORDER2), "CRITERIA・NAMES2 の G は ORDER2 に入れる (入れないと era_at_least が黙って False になる)"
 # 部の終わりの G (第 N 部)。G6 の終わりは第 4 部の終わり。いちばん後の G の終わりは工業の入口 (止めて相談する。next_part は受けつけない)。G7・G8 は部の終わりではない
 #   2026-10-25: G8 に「外からの押し」を入れたので、もとの計画の G8〜G14 を 1 つずつずらした (G9 = 遠くとの商い … G15 = 工業の入口の前)
@@ -3001,6 +3034,11 @@ SUBSTEPS["G10"] = [("F1", "黒い金属を村で作った", lambda s: _g10m().re
                    ("F2", "音の字ができた", lambda s: _g10m().reached(s, "F2")),
                    ("F3", "広いまとまり", lambda s: _g10m().reached(s, "F3")),
                    ("F4", "黒い金属の道具が 1 年に 30 人日", lambda s: _g10m().reached(s, "F4"))]
+# G11 の F (2026-11-05 本人の決め。届いたかは g11.py の物差しが決める。G11 に入ってから見る)
+SUBSTEPS["G11"] = [("F1", "印のかたまりができた", lambda s: _g11m().reached(s, "F1")),
+                   ("F2", "市が立った", lambda s: _g11m().reached(s, "F2")),
+                   ("F3", "印のかたまりで払った", lambda s: _g11m().reached(s, "F3")),
+                   ("F4", "印のかたまりの貸しを字で書いた", lambda s: _g11m().reached(s, "F4"))]
 # G1・G2 の F は、この仕組みを作る前に終わっていたので、記録 (出来事) から日を決めた (2026-10-08。G1_notes.md・G2_notes.md)
 RETRO_SUBSTEPS = [
     {"g": "G1", "f": "F1", "name": "畑を始める", "day": 510, "why": "セナとウィロが初めて畑に草の種をまいた"},
@@ -3138,7 +3176,8 @@ YEAR_EVENTS = ("フェーズ", "区切り", "段階", "分かれる", "死", "�
                "町", "記録",  # お題に見せる出来事 (前のものほど先に残す)。町・記録は G6 から (記録は、道具が使えるようになったときだけ)
                "年の集まり",  # G7 から (次の年が、1 年に 1 回の集まりか、季節ごとに集まるか。年の終わりに決まる)
                "戦", "崩れ", "貢ぎ", "求め", "同盟",  # G7 から (まわりの集落とのこと。docs/society_phase/G7_design.md 4.B.7)
-               "よその便り", "きっかけ", "取り立て", "病", "試す", "倉を分ける")  # G7 から (4.C.8・4.F・2026-10-23 の share。どれも G6 までは起きない)
+               "よその便り", "きっかけ", "取り立て", "病", "試す", "倉を分ける",
+               "市")  # G11 から (2026-11-05。市の日。G10 までは起きない)  # G7 から (4.C.8・4.F・2026-10-23 の share。どれも G6 までは起きない)
 YEAR_DIGEST_MAX = 15
 STOP_WORDS = ("フェーズが", "Society 2.0 が終わった")  # ワークフローが止まる文と重なる名前は読まない (step.py が出来事を表示するため)
 

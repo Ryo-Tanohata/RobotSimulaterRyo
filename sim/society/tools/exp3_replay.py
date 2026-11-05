@@ -9,6 +9,7 @@
   state は「g7.exp3 の 1 つの鍵のほかは同じ」か、季節のお題は「足した節 (exp3.strip) を除けば同じ」かを見る (気持ち・集まりのお題は同じはず)。
   A0 は、お題も同じはず (組を残すだけ)。
 - 戻り値: みな同じなら 0、どこかがちがえば 1。表を出す。
+- --data (2026-11-05。G11 の確かめ): 本物の村でない写しの村 (例 sim/society/data_E4_B0_1) の歩をやり直すときの、リポジトリの根からの道 (いつもは sim/society/data)
 """
 import argparse
 import hashlib
@@ -116,7 +117,10 @@ def main():
     ap.add_argument("--commits", required=True, help="歩のコミット (コンマでつなぐ)")
     ap.add_argument("--arm", default=None, choices=[None, "A0", "A1", "A2", "A3"])
     ap.add_argument("--work", default="/tmp/exp3_replay")
+    ap.add_argument("--data", default="sim/society/data", help="歩のデータの場所 (リポジトリの根から。写しの村の歩なら sim/society/data_E4_B0_1 など)")
     a = ap.parse_args()
+    global D
+    D = a.data.rstrip("/")
     bad = 0
     print("| コミット | 歩の日 | 組 | state | sha256 (本物) | app_data | archive | 次のお題 | 結果 |")
     print("|---|---|---|---|---|---|---|---|---|")
