@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑は毎夕刈らないと落ちる。みんなで刈って、秋にはまた種をまこう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が落ちる前に毎夕刈るため"},"family":{"ナセ21":{"activity":"畑仕事","place":"camp","why":"畑を刈る人手が要る"},"ワユ22":{"activity":"畑仕事","place":"camp","why":"畑を刈る人手が要る"},"ハソ24":{"activity":"畑仕事","place":"camp","why":"畑を刈る人手が要る"},"ワユ24":{"activity":"採集","place":"camp","why":"採集が得意で木の実を集める"},"オセ28":{"activity":"畑仕事","place":"camp","why":"畑を刈る人手が要る"},"セヤ29":{"activity":"畑仕事","place":"camp","why":"半分の働きでも刈り入れを助ける"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器で蓄えを守る。得意な仕事"},"family":{"ナセ21":{"activity":"採集","place":"camp","why":"木の実を集める"},"ワユ22":{"activity":"採集","place":"camp","why":"木の実を集める"},"ハソ24":{"activity":"採集","place":"camp","why":"木の実を集める"},"ワユ24":{"activity":"採集","place":"camp","why":"採集が得意"},"オセ28":{"activity":"採集","place":"camp","why":"木の実を集める"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで次の夏の実りを増やす"},"family":{"ナセ21":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ワユ22":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ハソ24":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ワユ24":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"オセ28":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"セヤ29":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで次の夏の実りを増やす"},"family":{"ナセ21":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ワユ22":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ハソ24":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ワユ24":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"オセ28":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"セヤ29":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"ラニ35":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":"使う","far":{"M11":"受けない"},"far_write":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"畑たっぷり実る年",
+"feeling":"蓄えは十分。今年も畑を刈って土器を焼き、落ち着いて過ごしたい。"}

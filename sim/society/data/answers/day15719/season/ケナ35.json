@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑の草の種を刈ってしまおう。落ちる前にみんなで手分けしたい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"トナ35": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要るから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑を守り、草取りで実りを増やしたい"}, "family": {"トナ35": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで来年の実りが増える"}, "family": {"トナ35": {"activity": "畑仕事", "place": "camp", "why": "草取りを分けて進めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れに向けて草取りを続ける"}, "family": {"トナ35": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラニ35": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "far": {"M11": "受けない"}, "far_write": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "草の種が実った年",
+ "feeling": "蓄えは十分あるので、落ち着いて畑を手入れしたい。"}
