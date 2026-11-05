@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、畑に草の種をまいて、みんなで草取りもしよう。わたしは採集で木の実を集めるよ。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": ["アコ32", "ルタ28"], "why": "採集が得意で、冬の前に食べ物を集めて蓄えたいから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ42": true},
+ "family": {"ホタ27": {"activity": "ヤギを捕まえる", "place": "北丘12", "why": "狩りが得意なので、野生のヤギを連れ帰ってもらう"}, "ルタ28": {"activity": "採集", "place": "北林12", "why": "採集が得意で、冬への蓄えを増やせるから"}, "アコ32": {"activity": "採集", "place": "北林12", "why": "採集が得意で、いっしょに行けば安心だから"}, "タユ33": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りも苦手なので、畑の草取りを手伝う"}, "アコ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やす"}, "ケナ34": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減ったので世話をして守る"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、草取りをすると、夏に多く実る", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬の前に、家族みんなで食べ物を集められそうで、落ち着いた気持ちだよ。"}
