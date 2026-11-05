@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ワユ3の村は、前の草の種をまだ返していない。返してもらってから、また貸すかを考えたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋のはじめに種をまくので、草取りをして夏の実りを増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケナ39": true, "ハソ39": true},
+ "family": {"ネイ31": {"activity": "畑仕事", "place": "camp", "why": "畑が育つように、いっしょに草取りをしてほしい"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T222": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギが 207 頭いて、養える約 110 頭をこえ、32 頭がやせていなくなった", "because": [1582505], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L443", "against": "", "agree": true, "reason": "やせていなくなるより、肉にして蓄えに入れたほうがいい"}],
+ "feeling": "蓄えは多いが、借りた分を返さない村があるのが気にかかる。"}

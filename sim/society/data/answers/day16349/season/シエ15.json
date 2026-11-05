@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。わたしは土器を焼き続けるよ。みんなは秋の畑に種をまいて、冬と春の草取りをしっかり頼むね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入れると蓄えを虫やネズミから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケナ39": true, "ハソ39": true},
+ "family": {
+  "ナセ21": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで夏の実りを増やすため"},
+  "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けるため"},
+  "ワユ24": {"activity": "採集", "place": "camp", "why": "採集が得意なので、木の実を集めて冬に備える"},
+  "オセ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"},
+  "セヤ29": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をする人が要るから"},
+  "ワユ30": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので草取りを任せる"},
+  "ソナ31": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝い、畑のことを覚えてもらう"},
+  "ルタ31": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える"}
+ },
+ "keep": false, "feast": false, "leader": null,
+ "trade": {"T222": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えがたっぷりあるので、秋は千つかみをまき、土器を焼いて蓄えを守り、家族で草取りをする。", "because": [1582515], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。今日も粘土をこねて土器を焼こう。"}
