@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏は実った畑を毎夕刈って、その日のうちに土器へしまおう。秋にはまた種をまくよ。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑を刈らないと落ちてしまうから"},"family":{"オネ17":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ハソ21":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"セヤ22":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"キオ23":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ソワ25":{"activity":"畑仕事","place":"camp","why":"子も刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで実りを増やすため"},"family":{"オネ17":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ハソ21":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"セヤ22":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"キオ23":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ソワ25":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器づくりが得意で、草の種を守れるから"},"family":{"オネ17":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ハソ21":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"セヤ22":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"キオ23":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ソワ25":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器で草の種を虫から守るため"},"family":{"オネ17":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ハソ21":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"セヤ22":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"キオ23":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ソワ25":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"畑が実り続けた年",
+"mood":"蓄えは十分で、落ち着いた気持ち。"}
