@@ -105,7 +105,7 @@ Path is `DATA / "records"` (`DATA` from step.py, so `SOC_DATA` copies get their 
 | `membership.json` | 1 per person × household stay (35) | builder | derived |
 | `season_village.jsonl` | 1 per season end (51) | builder | derived |
 | `season_household.jsonl` | 1 per season × household with a living member (~330) | builder | derived |
-| `season_person.jsonl` | 1 per season × person present (~750) | builder | derived |
+| `season_person/season_person_NNNN.jsonl` (until 2026-11-05 one file `season_person.jsonl`) | 1 per season × person present (~750); one file per year NNNN = season_end_day // 120, read with `records.person_rows` | builder | derived |
 | `ledger.jsonl` | season × holder × item × reason (~5,000) | builder | derived |
 | `year_names.json` | 1 per year since year 4 | builder | derived |
 | `laws.json`, `disputes.json` | 151 / 3 (extras, §1.11) | builder | derived |
@@ -247,6 +247,7 @@ One row per season × household that had a living member at any time in the seas
 ### 1.8 `season_person.jsonl` (②)
 
 One row per season × person present at any time in the season (born, joined, died or left during it included).
+2026-11-05 (docs/society_phase/data_size_plan.md 案 C): 年ごとのファイル `records/season_person/season_person_NNNN.jsonl` (NNNN = season_end_day // 120) に分けた。年の順につなげると前の 1 つのファイルと 1 バイトも同じ。
 
 | key | content | source | exact | tag |
 |---|---|---|---|---|

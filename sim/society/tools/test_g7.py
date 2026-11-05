@@ -1430,7 +1430,8 @@ class G_Flow(unittest.TestCase):
         self.assertIn("見本から広げた", G["src"].values())
         self.assertTrue(any(e["type"] == "年の名前" and "試しの年" in e["text"] for e in st["events"]))
         # 記録: 1 行 = 1 季節。G7 の季節は decided_by・is_sample・plan_answer_day
-        rows = [json.loads(x) for x in (self.data / "records" / "season_person.jsonl").read_text(encoding="utf-8").splitlines()]
+        import records  # noqa: E402
+        rows = records.person_rows(self.data)  # 年ごとのファイル records/season_person/ (2026-11-05)
         vil = {r["season_end_day"]: r for r in (json.loads(x) for x in (self.data / "records" / "season_village.jsonl").read_text(encoding="utf-8").splitlines())}
         for D, plan_day in ((d1, d0), (d2, d1), (d2 + 30, d2), (d3 + 30, d1)):
             rs = [r for r in rows if r["season_end_day"] == D]
@@ -3868,6 +3869,64 @@ class T_G10FIX(unittest.TestCase):
         finally:
             shutil.rmtree(d, ignore_errors=True)
 
+
+
+class T_AppSlim(unittest.TestCase):
+    """2026-11-05 (docs/society_phase/data_size_plan.md 案 A): step.APP_SLIM_FROM から app_data.json の信頼の表の 0 を外す。
+    その日は step.py slim_app の印 (state["app_slim"]) があるときだけ (だから、その日を作った歩のやり直しは前と 1 バイトも同じ)。
+    本物の state の写しで、写しのフォルダに export する (本物の data は読むだけ)"""
+
+    def test_gate(self):
+        import step
+        st = real_state()
+        st.pop("app_slim", None)
+        D = step.APP_SLIM_FROM
+        for day, mark, want in ((D - 30, False, False), (D, False, False), (D, True, True), (D + 30, False, True)):
+            x = dict(st, day=day) | ({"app_slim": {"day": D, "why": "試し"}} if mark else {})
+            self.assertEqual(step.app_slim(x), want, (day, mark))
+        self.assertIn("--why", step._slim_refusal(dict(st, day=D), " "))
+        self.assertIn("APP_SLIM_FROM", step._slim_refusal(dict(st, day=D - 30), "試し"))
+        self.assertIn("APP_SLIM_FROM", step._slim_refusal(dict(st, day=D + 30), "試し"))
+
+    def test_slim_app(self):
+        """印のない APP_SLIM_FROM の日は前の形。slim_app のあとは people[] に trust がなく、resumes[].trust は 0 でないものだけ。ほかは同じ。
+        答えがあれば断る。日・お題は変えない"""
+        import step
+        st = real_state()
+        st.pop("app_slim", None)
+        st["day"], st["hold"] = step.APP_SLIM_FROM, None
+        d = tmpdir()
+        try:
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
+            r = run("export")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            old = json.loads((d / "app_data.json").read_text(encoding="utf-8"))
+            self.assertTrue(all("trust" in p for p in old["people"]), "印がなければ前の形")
+            self.assertNotEqual(run("slim_app").returncode, 0, "わけがなければ断る")
+            r = run("slim_app", "--why", "試しのわけ")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            new_st = json.loads((d / "state.json").read_text(encoding="utf-8"))
+            self.assertEqual(new_st.pop("app_slim"), {"day": step.APP_SLIM_FROM, "why": "試しのわけ"})
+            self.assertEqual(new_st, st, "印のほかは state を変えない")
+            self.assertFalse((d / "prompts").exists(), "お題は書かない")
+            new = json.loads((d / "app_data.json").read_text(encoding="utf-8"))
+            self.assertEqual({k: v for k, v in new.items() if k not in ("people", "resumes")},
+                             {k: v for k, v in old.items() if k not in ("people", "resumes")})
+            self.assertEqual(new["people"], [{k: v for k, v in p.items() if k != "trust"} for p in old["people"]])
+            self.assertEqual(new["resumes"], [r_ | {"trust": {k: v for k, v in r_["trust"].items() if v}} for r_ in old["resumes"]])
+            self.assertFalse(any(0 in r_["trust"].values() for r_ in new["resumes"]))
+            self.assertEqual(run("slim_app", "--why", "もう一度").returncode, 0, "印がもうあれば何もしない")
+            ad = d / "answers" / f"day{st['day']:03d}" / "season"
+            ad.mkdir(parents=True, exist_ok=True)
+            (ad / "だれか.json").write_text("{}", encoding="utf-8")
+            r = run("slim_app", "--why", "答えのあと")
+            self.assertEqual(r.returncode, 3)
+            self.assertIn("答えがもうある", r.stdout)
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

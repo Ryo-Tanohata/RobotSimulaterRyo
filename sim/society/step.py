@@ -33,6 +33,9 @@
                                                  その日のお題 (季節・気持ち・まわりの集落) を今のコードで書き直す。日は進めない。出来事「区切り」(村の人には見せない) にわけを残し、
                                                  G10 の直しの日 (g10.G10_FIX_FROM) からは、黒い金属を作れる人・札を試している人の家を答える家に足す (g7.g10_sample_add)。
                                                  アプリのデータと記録も作り直す
+  python sim/society/step.py slim_app --why "<わけ>"  2026-11-05 (docs/society_phase/data_size_plan.md 案 A): APP_SLIM_FROM の日の歩で、まだだれも答えていないときだけ、
+                                                 app_data.json を軽い形 (信頼の表の 0 を外す) で今から書き直す。印 (state の app_slim) を残し、アプリのデータと記録を作り直す。
+                                                 お題・日・世界は変えない (APP_SLIM_FROM より後の日は、印がなくてもいつも軽い形)
   python sim/society/step.py who                 ワークフローのための、読むだけの状態の行 (DAY・PHASE・HOLD・MODE・MEET・NAMES・FEEL・COUNCIL・ASKLOG)
 
 お題は data/prompts/日/段階/名前.md、答えは data/answers/日/段階/名前.json に置く。
@@ -388,6 +391,32 @@ def _export_archive(whole, extra, upto):
             "keep": keep}
 
 
+APP_SLIM_FROM = 17039  # 2026-11-05 (docs/society_phase/data_size_plan.md 案 A。142年の年の集まり): この日より後の export は app_data.json を軽くする
+# (people[] に trust を入れない (だれも読まない)・resumes[].trust は 0 でないものだけ)。この日は、step.py slim_app が印 (state["app_slim"]) を書いたあとだけ。
+# だから、この日を作った歩 (17009 日目から) までのやり直しは、app_data.json も前と 1 バイトも同じ (g10.G10_FIX_FROM と g7.g10.fix と同じ考え)。
+# もどすときも、この日は消さない (この日より後の歩のやり直しが合わなくなるので)
+
+
+def app_slim(state):
+    """app_data.json を軽い形で書くか: APP_SLIM_FROM より後の日はいつも。APP_SLIM_FROM の日は、slim_app の印があるときだけ"""
+    return state["day"] > APP_SLIM_FROM or (state["day"] == APP_SLIM_FROM and "app_slim" in state)
+
+
+def _slim_refusal(state, why):
+    """slim_app ができないわけ (できるなら None): わけがある・APP_SLIM_FROM の日・止まっていない・その日の答えがまだない"""
+    if not (why or "").strip():
+        return '--why "<わけ>" がない'
+    if state["day"] != APP_SLIM_FROM:
+        return (f"{APP_SLIM_FROM} 日目 (APP_SLIM_FROM) の歩でない (今 {state['day']} 日目。"
+                + ("この日より後は、印がなくてもいつも軽い形)" if state["day"] > APP_SLIM_FROM else "この日より前は前の形のまま)"))
+    if state.get("hold"):
+        return "一時停止している"
+    have = [f"{kind}/{f.name}" for kind in ("season", "feeling", "council", "evening", "night") for f in sorted(pdir(state, kind, "answers").glob("*.json"))]
+    if have:
+        return f"{state['day']} 日目の答えがもうある ({len(have)} 通)"
+    return None
+
+
 def export(state):
     """アプリ (Web ページ) 用のデータ。古い年をしまったあと (2026-10-10) は、しまっていない年の出来事と再生の行だけを入れ、
     しまった年の分は、アプリがその年を見るときに data/archive/ の年ごとのファイル (events_YYYY.jsonl・days_YYYY.json) を読む"""
@@ -397,6 +426,14 @@ def export(state):
     ev_recent = [e for e in whole["events"] if e["day"] >= since]  # しまっていない年のすべての日 (過去の日の 3D 再生と動画のため)
     extra = era2.g6_places(state)  # G6: 知っているほかの村の、地図の端の場所 (G6 の前は空)
     left = {f["household"]: f["day"] for f in ((state.get("era2") or {}).get("g5") or {}).get("fissions", [])}  # 村を出た家 (3D でその日から描かない)
+    slim = app_slim(state)  # 2026-11-05 (APP_SLIM_FROM): 信頼の表の 0 を外す (人の数の 2 乗で増え、app_data.json の 3 分の 2 が 0 だった)
+    pkeys = tuple(k for k in ("name", "alive", "age", "sex", "mass", "personality", "skills", "hunger", "fatigue",
+                              "injured", "items", "trust", "plan", "feeling", "feeling_day", "child", "mother", "origin", "left", "household", "born_day")
+                  if not (slim and k == "trust"))  # 軽い形では people[] に trust を入れない (アプリ・動画はどこも読まない。履歴書の trust を読む)
+    resumes = resume.build(whole)
+    if slim:
+        for r in resumes:
+            r["trust"] = {k: v for k, v in r["trust"].items() if v}
     data = {
         "day": state["day"], "season": world.season(max(1, state["day"])), "phase": state["phase"],
         "map": {"w": world.W, "h": world.H, "cell": world.CELL, "terrain": state["terrain"], "legend": world.TERRAIN},
@@ -404,8 +441,7 @@ def export(state):
         "plants": [{"x": q["x"], "y": q["y"], "kind": q["kind"], "amount": round(q["amount"], 1), "sown": q.get("sown", False)}
                    for q in state["plants"]],
         "herds": state["herds"], "predators": state["predators"], "planted": state["planted"],
-        "people": [{k: p.get(k) for k in ("name", "alive", "age", "sex", "mass", "personality", "skills", "hunger", "fatigue",
-                                          "injured", "items", "trust", "plan", "feeling", "feeling_day", "child", "mother", "origin", "left", "household", "born_day")}
+        "people": [{k: p.get(k) for k in pkeys}
                    | {"since": p.get("born_day", 0) if p.get("origin") == "生まれた" else resume._joined_day(whole, p["name"]) if p.get("origin") == "よそから来た" else 0}
                    | {"food": sum(f["kcal"] for f in p["food"]), "food_words": world.food_words(world.holdings(p)), "today": p.get("today"),
                       "knowledge": p.get("knowledge", [])} for p in state["people"]],
@@ -415,7 +451,7 @@ def export(state):
         "days": day_summaries(whole, extra, range(max(1, since), state["day"] + 1)),
         "era": state.get("era_info") or {"era": "F1", "name": phase.ERAS["F1"]}, "era_log": state.get("era_log", []),
         "hold": bool(state.get("hold")), "store": world.food_words(phase._store_kinds(state)),
-        "resumes": resume.build(whole),
+        "resumes": resumes,
         # G の中の小さな区切り F (G1・G2 は記録から決めた日、G3 からは見つけた日)
         "substeps": era2.RETRO_SUBSTEPS + (state.get("era2") or {}).get("substeps", []),
         # 家族の住まい (G3 から): 3D の再生で、家族ごとの家を描く
@@ -439,10 +475,10 @@ EXP4_NOTE = "論文 2・実験 4 (docs/research/humanity/paper2_exp4_prereg.md)"
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards", "heavy", "far_rate", "exp3", "exp4", "refresh_prompts"])
+    ap.add_argument("cmd", choices=["init", "status", "day", "evening", "night", "export", "resume", "start2", "season", "ask_why", "next_part", "who", "cards", "heavy", "far_rate", "exp3", "exp4", "refresh_prompts", "slim_app"])
     ap.add_argument("onoff", nargs="?", help="ask_why で、たずねる (on。書かなければ on) か、やめる (off)。cards では、札の表を直したわけ (note)。heavy では on。far_rate では重み (0.5 など)。exp3 では組 (A0・A1・A2)。exp4 では組 (B0・B1)")
     ap.add_argument("--note", default=None, help="exp3・exp4 で、組を入れたわけ (記録に残す)")
-    ap.add_argument("--why", default=None, help="refresh_prompts で、お題を書き直すわけ (出来事「区切り」に残す)")
+    ap.add_argument("--why", default=None, help="refresh_prompts で、お題を書き直すわけ (出来事「区切り」に残す)。slim_app で、軽い形にするわけ (state の app_slim に残す)")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--force", action="store_true", help="init で既存の世界を上書きする")
     ap.add_argument("--closed-by-decision", dest="closed", default=None,
@@ -455,8 +491,8 @@ def main():
     a = ap.parse_args()
     if (a.world is not None or a.count is not None) and a.cmd != "next_part":
         sys.exit("--world と --count は next_part のときだけ書く")
-    if a.why is not None and a.cmd != "refresh_prompts":
-        sys.exit("--why は refresh_prompts のときだけ書く")
+    if a.why is not None and a.cmd not in ("refresh_prompts", "slim_app"):
+        sys.exit("--why は refresh_prompts・slim_app のときだけ書く")
     if a.note is not None and a.cmd not in ("exp3", "exp4"):
         sys.exit("--note は exp3・exp4 のときだけ書く")
     if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate", "exp3", "exp4"):
@@ -644,6 +680,21 @@ def main():
         export(state)
         _records(None)  # 記録を作り直す (控えの行は足さない)
         print(f"* {_yd(state['day'])}のお題を書き直した ({a.why.strip()})" + (f"。答える家に足した: {'・'.join(added)}" if added else ""))
+        _records_exit()
+        return
+    if a.cmd == "slim_app":  # 2026-11-05 (docs/society_phase/data_size_plan.md 案 A): APP_SLIM_FROM の日に、app_data.json を今から軽い形にする (日・お題・世界は変えない)
+        why = _slim_refusal(state, a.why)
+        if why:
+            print(f"slim_app はできない: {why} (何も変えない)")
+            sys.exit(3)
+        if "app_slim" in state:
+            print(f"app_data.json は、もう軽い形 ({state['app_slim']['day']} 日目から。何も変えない)")
+            return
+        state["app_slim"] = {"day": state["day"], "why": a.why.strip()}  # 印だけ。世界の進み方・お題は読まない (export だけが読む)
+        save(state)
+        export(state)
+        _records(None)  # 記録を作り直す (控えの行は足さない。人の季節の行は年ごとのファイルになる)
+        print(f"* {_yd(state['day'])}から app_data.json を軽い形にした ({a.why.strip()})")
         _records_exit()
         return
     if a.cmd == "cards":  # G7: よその便りの札の表を足した・直したとき (docs/society_phase/G7_design.md 4.C.1)。出来事「区切り」と新しいハッシュを残す

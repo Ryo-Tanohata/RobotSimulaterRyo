@@ -3,6 +3,14 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-05 大きくなるファイルを小さくした (docs/society_phase/data_size_plan.md の案 A・C。17039 日目。コミットはまだ)
+
+- 案 A: `step.py` の `APP_SLIM_FROM = 17039`。この日より後 (この日は印 `state["app_slim"]` があるときだけ) の app_data.json は、`people[]` に trust を入れず、`resumes[].trust` は 0 でないものだけ。
+  新しいコマンド `step.py slim_app --why "<わけ>"` (この日の答えがないときだけ。印を書いて app_data と記録を作り直す。お題・世界は変えない)。本物の村で動かした: app_data.json 66.4 MB → 23.8 MB。
+- 案 C: 人の季節の行は年ごとのファイル `records/season_person/season_person_NNNN.jsonl` (1 つ 約 0.9 MB。読むのは `records.person_rows`)。つなげると前の season_person.jsonl と 1 バイトも同じ。
+- やり直し (8dcf9d30・e3e72933・e3e9c684) は同じ。試し `test_g7.py T_AppSlim`。わけと数はその文書の 7.。
+- **次**: 本人が見てコミット (`records/season_person.jsonl` の消しも)。そのあと 142年の年の集まり (17039 日目) に答えて続ける。
+
 ## 2026-11-05 G10 の止まりを直した (本人の決め「直して 5 年続ける」。16079 日目から。コミットはまだ)
 
 - わけ: `docs/society_phase/G10_stall.md` (字の道は便りを知る人に知らされず、知らない人の試しは黙って休みに。鉄の道はただ一人の作り手ケセ19 の家が答える家から外れた)。直したことは同じ文書の 7.。

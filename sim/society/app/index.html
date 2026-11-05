@@ -439,7 +439,7 @@ function renderCV() {
       ${row("性格", Object.entries(r.personality).map(([k, v]) => `${esc(k)} ${v.toFixed(2)}`).join(" ・ "))}
       ${row("技能", Object.entries(r.skills).map(([k, v]) => `${esc(k)} ${Number(v).toFixed(2)}`).join(" ・ "))}
       ${row("持ち物", r.items.length ? r.items.map(esc).join("・") : "なし")}
-      ${row("信頼している人", Object.entries(r.trust).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${esc(k)} ${v.toFixed(2)}`).join(" ・ ") || "―")}
+      ${row("信頼している人", Object.entries(r.trust || {}).filter(([, v]) => v).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${esc(k)} ${v.toFixed(2)}`).join(" ・ ") || "―")}
       ${r.feeling ? row("最後の気持ち", esc(r.feeling)) : ""}
     </table></section>
     <section><h3>経歴</h3><table>

@@ -4,7 +4,7 @@
 
 state.json (しまった古い年の記録 data/archive/ も戻して)・答え・お題・records/snapshots.jsonl (季節の終わりの控え) を読むだけで、records/ の中の記録を作り直す:
 人 (people.json)・家 (households.json)・だれがどの家にいたか (membership.json)・季節ごとの行 (season_village / season_household /
-season_person .jsonl)・出し入れの帳簿 (ledger.jsonl)・年の名前 (year_names.json)・掟 (laws.json)・もめごと (disputes.json)・
+season_person .jsonl。人の行は 2026-11-05 から年ごとのファイル records/season_person/season_person_NNNN.jsonl)・出し入れの帳簿 (ledger.jsonl)・年の名前 (year_names.json)・掟 (laws.json)・もめごと (disputes.json)・
 列の説明 (columns.json)・まとめ (meta.json)。
 世界の進み方には使わない (state を変えない・乱数を使わない)。時刻を入れないので、何度作っても同じバイト列になる。
 --data: データの置き場所 (ふだんは $SOC_DATA か sim/society/data)
@@ -1684,7 +1684,7 @@ COLUMNS = [
     ("season_household", "jobs", "大人の仕事ののべ日数", "人・日", "シ", "出来事", True, 489, None),
     ("season_household", "rain_outside_person_nights", "雨の夜に外で寝た、のべの夜", "人・夜", "シ", "出来事「雨」", True, 1529, None),
     ("season_household", "snapshot", "季節の終わりの値が控えから取れたか", None, "-", "", True, 489, None),
-    ("season_person", "season_end_day", "季節の終わりの日", "日", "-", "", True, 489, "1 行 = 1 季節 × 1 人"),
+    ("season_person", "season_end_day", "季節の終わりの日", "日", "-", "", True, 489, "1 行 = 1 季節 × 1 人。年ごとのファイル records/season_person/season_person_NNNN.jsonl (NNNN = season_end_day // 120。2026-11-05 から)"),
     ("season_person", "person_id", "人", None, "-", "", True, 489, None),
     ("season_person", "household_id", "家", None, "調", "membership", True, 489, None),
     ("season_person", "present_from", "この季節にいたはじめの日", "日", "-", "membership", True, 489, None),
@@ -1818,6 +1818,33 @@ def as_lines(rows):
     return "".join(jdump(r) + "\n" for r in rows)
 
 
+def write_person(data, rows, written):
+    """人の季節の行を、年ごとのファイル records/season_person/season_person_NNNN.jsonl に書く (2026-11-05。docs/society_phase/data_size_plan.md 案 C。
+    控え (records/snapshots/) と同じ数え方: NNNN = season_end_day // 120)。行の中身と順は前の 1 つのファイルと同じで、年のファイルを年の順につなげると
+    前の season_person.jsonl と 1 バイトも同じ。中身が同じ年のファイルは書かない (季節ごとに書きかわるのは今の年のファイルだけ)。
+    もう作らない年のファイル (村を前のコミットに戻したとき) と、前の 1 つのファイルは消す"""
+    by = {}
+    last = None
+    for r in rows:
+        d = r["season_end_day"]
+        if last is not None and d < last:  # 年ごとに分けると順が変わってしまう (起きないはず)。分けずに止める
+            raise RuntimeError(f"人の季節の行が日の順に並んでいない ({last} → {d})")
+        last = d
+        by.setdefault(records.person_path(data, d), []).append(r)
+    pdir = data / "records" / records.PERSON_DIR
+    pdir.mkdir(parents=True, exist_ok=True)
+    for f, rs in by.items():
+        write(f, as_lines(rs), written)
+    for f in sorted(pdir.glob("season_person_*.jsonl")):
+        if f not in by:
+            f.unlink()
+            written.append(f.name + " (消した)")
+    old = data / "records" / records.PERSON_FILE
+    if old.exists():
+        old.unlink()
+        written.append(old.name + " (消した。年ごとのファイルに分けた)")
+
+
 def build(data_dir, quiet=False, check=False):
     """記録を作り直す。戻り値: まとめ (試しと --check が使う)"""
     t0 = time.time()
@@ -1857,7 +1884,7 @@ def build(data_dir, quiet=False, check=False):
     write(out / "membership.json", as_array(b.membership), written)
     write(out / "season_village.jsonl", as_lines(b.village), written)
     write(out / "season_household.jsonl", as_lines(b.house_rows), written)
-    write(out / "season_person.jsonl", as_lines(b.person_rows_all), written)
+    write_person(data, b.person_rows_all, written)  # 2026-11-05: 年ごとのファイル records/season_person/season_person_NNNN.jsonl (案 C)
     write(out / "ledger.jsonl", as_lines(b.ledger_rows), written)
     write(out / "year_names.json", as_array(b.year_rows), written)
     write(out / "laws.json", as_array(b.laws_rows), written)

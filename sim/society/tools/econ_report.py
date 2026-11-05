@@ -7,7 +7,7 @@
 本人の言う KKT はこの科目のこと。2026-10-14 の調べは、KKT をカルーシュ・キューン・タッカー条件 (制約つき最適化の決まり。これも略すと KKT) と
 取りちがえて調べた。カルーシュ・キューン・タッカー条件は、経済の中の道具の 1 つとして、6. の限りの表にだけ使う。
 調べは 2026-10-14 の経済の調べ (アクチュアリーの方法・MMT と貸し借り・制約つき最適化の点検表と、その批評)。批評が直したところは批評に従った。
-読むもの (3 つとも要る): records/ の people.json・season_village.jsonl・season_household.jsonl・season_person.jsonl・ledger.jsonl、
+読むもの (3 つとも要る): records/ の people.json・season_village.jsonl・season_household.jsonl・season_person/ (年ごとのファイル。前の season_person.jsonl も読む)・ledger.jsonl、
 state.json (era2.g6 の貸し借りと記録の道具・era2.fields の畑)、しまった出来事 data/archive/events_*.jsonl (貸し借り・覚え・交換・畑の実りの倍率)。
 死・生まれる・よそから来るの見込みは era2._season_end の文から、畑の実りの決まりは era2._field_season の文から読む (数を写さない)。
 節: 1. 生命表 2. 記録と決めごとの死亡率 3. 子の生まれ方 4. 蓄えが尽きる見込み 5. 貸しの帳簿 6. 限りの表 7. 村の会計
@@ -33,6 +33,7 @@ sys.path.insert(0, str(HERE.parent))
 import accounts  # noqa: E402
 import archive  # noqa: E402
 import era2  # noqa: E402
+import records  # noqa: E402
 import world  # noqa: E402
 
 YEAR, SD, ADULT = era2.YEAR, world.SEASON_DAYS, era2.ADULT
@@ -744,7 +745,7 @@ def report(data):
     people = json.loads((rec / "people.json").read_text(encoding="utf-8"))
     village = jsonl(rec / "season_village.jsonl")
     hhs = jsonl(rec / "season_household.jsonl")
-    persons = jsonl(rec / "season_person.jsonl")
+    persons = records.person_rows(data)  # 年ごとのファイル records/season_person/ (2026-11-05。前の 1 つのファイルも読む)
     ledger = jsonl(rec / "ledger.jsonl")
     state = archive.load_state(data)
     R = code_rates()
