@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑はわたしも手伝うよ。冬の前に草の種をしっかりまいておこうね。"}, {"to": "キオ17", "text": "今季もいっしょに畑で働こう。子どもたちの面倒もよろしくね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キオ17", "ムイ21"], "why": "蓄えは十分あるが、まいた畑は草取りで実りが増えるので、畑仕事を続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホタ32": true},
+ "family": {"キオ17": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"}, "ムイ21": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T198": "村"}, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で、落ち着いた気持ち。冬の前に畑をしっかり整えたい。"}
