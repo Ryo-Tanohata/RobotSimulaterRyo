@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "畑がひとつもないままじゃ来年の夏が心配だ。おれは種をまいて、草取りもやるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが3割に減るので、冬のあいだ畑を守る"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ34": true},
+ "family": {"キオ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りが足りないと実りが減るので、一緒に畑を守る"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "畑は秋にまいて、冬と春に草取りをしないと実りが3割に減ってしまう", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかはいっぱいで体も軽い。冬の前に畑と木の実をしっかり準備したい。"}

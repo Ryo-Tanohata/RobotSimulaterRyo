@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "この秋もみんなで畑にまいたら、草取りの手がたくさん要るよ。わたしもキャンプで草を抜くね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "みんなが畑にまくと草取りの時間が足りなくなるから、実りを減らさないように草取りをする"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"タユ34": true}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "わたしの家の住まいは広さ 約 20 m² でできあがった。もう雨の夜も屋根の下で眠れる", "because": [1428214], "confidence": 0.8},
+  {"op": "add", "text": "世話をする人が少ないと、ヤギはまた何十頭もいなくなる。前の季節は 29 頭がいなくなった", "because": [1428231], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L426", "against": "", "agree": true, "reason": "ヤギが多すぎるとやせていなくなるし、世話がないと消えてしまうから"}],
+ "feeling": "家ができてほっとした。こんどは畑の草をていねいに抜いて、夏の実りを見てみたい"}
