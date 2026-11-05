@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈りきろう。蓄えは十分あるけど、落ちてしまうのはもったいない。私は毎日刈るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["ネイ27"], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ネイ27": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手を増やすため"}, "ヌオ30": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手を増やすため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意で、草の種を虫やネズミから守れるから"}, "family": {"ネイ27": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で肉を蓄えに足せるから"}, "ヌオ30": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": ["ネイ27"], "why": "冬は実りがないが、けものは冬もいるので肉をとれる"}, "family": {"ネイ27": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから"}, "ヌオ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "鎌が割れるので新しく作って刈る量を保つため"}, "family": {"ネイ27": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから"}, "ヌオ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T221": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "far": {"M14": "受けない", "M15": "受けない"}, "far_write": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れ豊かな年",
+ "mood": "蓄えは多く、落ち着いている。体を動かして刈るのが楽しみだ。"}
