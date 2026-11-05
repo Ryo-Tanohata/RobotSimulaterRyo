@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏は毎夕の刈り入れを欠かさず、刈った種は土器にしまおう。ヤギも草に比べて多すぎるから、少しつぶして干し肉にしよう。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちる前に毎夕刈る"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "畑を毎夕刈る"}, "キオ23": {"activity": "畑仕事", "place": "camp", "why": "畑を毎夕刈る"}, "ソワ25": {"activity": "畑仕事", "place": "camp", "why": "畑を毎夕刈る"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "畑を毎夕刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 8},
+          "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで来年の実りを増やす"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "キオ23": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ソワ25": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで夏の実りが増える"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "キオ23": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ソワ25": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りに備える"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "キオ23": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ソワ25": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ロワ37": true, "キオ37": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M476": "ゆるす", "M477": "ゆるす"}, "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [], "proposal": null, "votes": [],
+ "year_name": "蓄え豊かな年",
+ "feeling": "蓄えは十分で落ち着いている。ヤギを減らして草を守りたい。"}
