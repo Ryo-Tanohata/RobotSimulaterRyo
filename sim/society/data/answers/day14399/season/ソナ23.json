@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑をしっかり刈ろう。落ちる前に、手分けして終わらせたい。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"テナ23": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいるので一緒にやる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やすため"}, "family": {"テナ23": {"activity": "畑仕事", "place": "camp", "why": "草取りを手分けする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで夏の実りが増えると覚えているから"}, "family": {"テナ23": {"activity": "畑仕事", "place": "camp", "why": "草取りを手分けする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りも夏の実りのため"}, "family": {"テナ23": {"activity": "畑仕事", "place": "camp", "why": "草取りを手分けする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "蓄えの多かった年"}

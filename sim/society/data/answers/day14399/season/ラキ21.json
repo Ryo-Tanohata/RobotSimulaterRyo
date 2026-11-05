@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに実った畑をみんなで刈ってしまおう。落ちたらもったいないからね。秋はまた種をまこう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちてしまうから"},"family":{"シエ21":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ヌオ24":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで実りを増やす"},"family":{"シエ21":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ヌオ24":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器は蓄えを虫やネズミから守る。得意だから続ける"},"family":{"シエ21":{"activity":"畑仕事","place":"camp","why":"冬も草取りをして実りを守る"},"ヌオ24":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の実りに向けて草取りを続ける"},"family":{"シエ21":{"activity":"畑仕事","place":"camp","why":"草取り"},"ヌオ24":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":"使う",
+"knowledge":[{"op":"add","text":"草が足りず、ヤギは養える数をこえるとやせていなくなる","because":[1285142],"confidence":0.8}],
+"proposal":null,
+"votes":[],
+"year_name":"ヤギがやせた年",
+"feeling":"畑がたくさん実って安心。子も増えて、にぎやかな年だった。"}
