@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "去年の夏は刈りきれずに落ちた草の種が山ほどあった。この秋はみんなでまいて、冬と春の草取りの手をもっと増やそう。"}, {"to": "タユ42", "text": "疲れがたまっているから、今季はキャンプの畑で一緒に草取りをしよう。ヒセ42 のそばにもいられる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["タユ42"], "why": "まく畑が多いので、草取りの手が足りないと実りが減るから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"タユ42": {"activity": "畑仕事", "place": "camp", "why": "キャンプにいれば子のそばにいられて、畑の実りも増やせるから"}}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "夏に刈る手が足りないと、実った草の種がたくさん落ちてしまう", "because": [1736888, 1736890, 1736891], "confidence": 0.9}, {"op": "add", "text": "飼っているヤギは今 63 頭で、草で養える数より少ない", "because": [], "confidence": 0.8}],
+ "proposal": {"text": "この秋から春まで、畑の草取りをする人を毎日十人ほどに増やそう。まく畑が多く、四人では草取りが足りず実りが減るから。夏の刈り入れでは、手の空いた大人はみな毎夕鎌で刈り切ろう。", "because": [1736888, 1736890], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L449", "against": "", "agree": true, "reason": "みんなでまいて、毎日草取りをするのはよいことだから"}, {"id": "L446", "against": "", "agree": true, "reason": "板に記せば覚えちがいがなくなるから"}, {"id": "L447", "against": "", "agree": true, "reason": "向こうの村とも同じ数が分かるから"}, {"id": "L453", "against": "", "agree": true, "reason": "夏のうちに刈り切れば落ちる草の種が減るから"}, {"id": "L451", "against": "いまヤギは 63 頭で、草で養える数をこえていない", "agree": false, "reason": "ヤギがもう少ないので、つぶす必要はないから"}],
+ "feeling": "疲れているが、畑がよく実るように手を貸したい。"}
