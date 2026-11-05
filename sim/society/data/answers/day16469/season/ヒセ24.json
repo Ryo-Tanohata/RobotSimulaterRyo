@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "この秋も蓄えの草の種をまくよ。冬と春の草取りは、わたしもやる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、続けて畑仕事をする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ39": true, "ユエ39": true},
+ "family": {"ネイ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、いっしょに働く"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "この秋も蓄えの草の種を畑にまき、冬と春に草取りをして夏のはじめに刈る。", "because": [1604669], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。畑の仕事をこつこつ続けたい。"}

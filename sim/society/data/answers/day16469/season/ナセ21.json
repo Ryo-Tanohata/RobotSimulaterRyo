@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えは700日分以上ある。冬の前に土器をもう少し焼いて、草の種を虫から守ろう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は私がいちばん得意で、土器に入れた草の種は傷みにくいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ39": true, "ユエ39": true},
+ "family": {
+  "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "秋と冬の草取りで夏の実りを守るため"},
+  "ワユ24": {"activity": "採集", "place": "南川12", "why": "採集が得意で、川は近くて安全だから"},
+  "オセ28": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やすため"},
+  "セヤ29": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないように世話をする人が要るから"},
+  "ワユ30": {"activity": "採集", "place": "南川12", "why": "採集が上手なので、川で食べ物を集める"},
+  "ソナ31": {"activity": "狩り", "place": "北川12", "why": "狩りの腕があり、魚を獲れるから"},
+  "ルタ31": {"activity": "狩り", "place": "北川12", "why": "狩りが得意で、ソナと二人で行ける"},
+  "セオ32": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}
+ },
+ "keep": false, "feast": false, "leader": null, "trade": {"T226": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは十分で落ち着いている。土器を焼くのが楽しみだ。"
+}

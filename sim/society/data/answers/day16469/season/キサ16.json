@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。ワユ3の村の人が困っているなら、草の種を貸してやろう。ヤギは草に対して多すぎるから、少しつぶして減らそうよ。"}],
+ "job": {"activity": "試す", "try": "H9-02", "place": "camp", "with": [], "why": "音の字の便りを知っているのは私たち数人だけ。好奇心がうずくので、この秋はこれを試して字を使えるようにしたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"ネイ39": true, "ユエ39": true},
+ "family": {"アコ19": {"activity": "試す", "try": "H9-02", "place": "camp", "why": "音の字の便りを知っているので、私と一緒に試して早く読み書きできるようにする。"}, "リセ25": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑は草取りで実りが増えるので、手の確かな者に任せる。"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T226": {"side": "村", "利子": 0.1}}, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "ワユ3の村は畑が実らず苦しい。蓄えは十分にあるので、草の種を貸せる。", "because": [1604796], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで落ち着いている。新しい字を知るのが楽しみだ。"}
