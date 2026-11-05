@@ -102,7 +102,10 @@ class A_Gate(unittest.TestCase):
         self.assertFalse(used & NEW_SALTS, "新しい塩は名前 (HINT_SALT など) で使う")
 
     def test_order(self):
-        self.assertEqual(era2.ORDER2[-4:], ["G7", "G8", "G9", "G10"])  # 2026-10-25: G8 (外からの押し) を足した。2026-10-29: G9 (遠くとの商い)。2026-11-04: G10 (鉄と広い国)
+        self.assertEqual(era2.ORDER2[-5:], ["G7", "G8", "G9", "G10", "G11"])  # 2026-10-25: G8 (外からの押し) を足した。2026-10-29: G9 (遠くとの商い)。2026-11-04: G10 (鉄と広い国)。2026-11-05: G11 (お金と市場)
+        self.assertEqual(era2.NAMES2["G11"], "お金と市場")
+        self.assertNotIn("G11", era2.PART_END)
+        self.assertEqual([x[0] for x in era2.SUBSTEPS["G11"]], ["F1", "F2", "F3", "F4"])
         self.assertEqual(era2.NAMES2["G10"], "鉄と広い国")
         self.assertNotIn("G10", era2.PART_END)
         self.assertEqual(era2.PART_START["G10"], 6)
@@ -4311,8 +4314,7 @@ class T_G11(unittest.TestCase):
                     for f in (pd / "season").glob("*.md"):
                         t = f.read_text(encoding="utf-8")
                         i = t.index("## 印のかたまりと市")
-                        j = t.find("
-## ", i + 5)
+                        j = t.find("\n## ", i + 5)
                         self.assertEqual(g11.bad_words(t[i:j if j > 0 else None]), [], "節に書かない言葉 (年の出来事の「フェーズ」の文は G10 と同じく前からの形)")
                     r = run("next_part", "--closed-by-decision", note)
                     self.assertEqual(r.returncode, 3, "2 回目は断る")

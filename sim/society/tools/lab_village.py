@@ -1023,6 +1023,76 @@ def write_g10_csv(out_dir, path, years_path=None):
     return rows
 
 
+G11_COLS = ["world", "bundle", "seed", "years_run", "c1_year", "c2_year", "c3_year", "all3_year", "F1_year", "F2_year", "F3_year", "F4_year", "mark_year",
+             "market_day_year", "made", "smiths_end", "coins_village_end", "coins_others_end", "flows_all_sum", "flows_coin_sum", "coin_share_best", "markets_deal_sum",
+             "markets_came", "credit_written_years", "fails_sum", "refused", "path_zero_c1", "path_zero_c3", "path_consults", "key_answer_years", "key_years",
+             "readers_end", "pop_end", "famine_seasons", "store_all_days_end", "store_all_days_min", "strong_people_end", "g10_c_now", "secs"]
+
+
+def g11_row(res):
+    """G11 の確かめ (2026-11-05) の 1 回 = 1 行。年目は 1 年目 = 142年 (G11 に入った日の次の歩から)"""
+    rows = res["rows"]
+    last = rows[-1] if rows else {}
+    y0 = res["y0"]
+
+    def yr(day):
+        return None if day is None else day // YEAR - y0 + 1
+    c, re_ = last.get("g11_c") or {}, last.get("g11_reached") or {}
+    flows = [r.get("g11_flows") or {} for r in rows]
+    shares = [f["coin"] / f["all"] for f in flows if f.get("all")]
+    days3 = [c.get(k) for k in ("c1", "c2", "c3")]
+    paths = last.get("g11_path") or {}
+    py = [str(y) for y in range(y0, y0 + len(rows))]
+    keys = [r.get("g11_key_answer") for r in rows]
+    return {"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], "years_run": len(rows),
+            "c1_year": yr(c.get("c1")), "c2_year": yr(c.get("c2")), "c3_year": yr(c.get("c3")), "all3_year": yr(max(days3)) if all(d is not None for d in days3) else None,
+            **{f"{f}_year": yr(re_.get(f)) for f in ("F1", "F2", "F3", "F4")}, "mark_year": yr(last.get("g11_mark")),
+            "market_day_year": next((r["year"] for r in rows if r.get("g11_market_day")), None), "made": last.get("g11_made"), "smiths_end": last.get("g11_smiths"),
+            "coins_village_end": (last.get("g11_coins") or {}).get("village"), "coins_others_end": sum(((last.get("g11_coins") or {}).get("others") or {}).values()),
+            "flows_all_sum": sum(f.get("all", 0) for f in flows), "flows_coin_sum": sum(f.get("coin", 0) for f in flows), "coin_share_best": round(max(shares, default=0), 3),
+            "markets_deal_sum": sum(r.get("g11_markets_deals", 0) for r in rows), "markets_came": "・".join(sorted({o for r in rows for o in r.get("g11_market_came", [])})),
+            "credit_written_years": sum(1 for r in rows if (r.get("g11_credit") or {}).get("written")), "fails_sum": sum(len(r.get("g11_fails") or []) for r in rows),
+            "refused": last.get("g11_refused"), "path_zero_c1": sum(1 for y in py if (paths.get(y) or {}).get("c1", 1) == 0),
+            "path_zero_c3": sum(1 for y in py if (paths.get(y) or {}).get("c3", 1) == 0), "path_consults": len(last.get("g11_consulted") or []),
+            "key_answer_years": sum(1 for k in keys if k), "key_years": sum(1 for k in keys if k is not None), "readers_end": last.get("g11_readers"),
+            "pop_end": last.get("pop"), "famine_seasons": last.get("famine_seasons"), "store_all_days_end": last.get("store_all_days"),
+            "store_all_days_min": min((r.get("store_all_days", 0) for r in rows), default=None), "strong_people_end": last.get("strong_people"),
+            "g10_c_now": "・".join(sorted((last.get("g10_c_now") or {}).keys())), "secs": res["secs"]}
+
+
+def write_g11_csv(out_dir, path, years_path=None):
+    rows = [g11_row(json.loads(f.read_text(encoding="utf-8"))) for f in sorted(Path(out_dir).glob("*.json"))]
+    rows = [r for r in rows if r["world"] == "W11"]
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", newline="", encoding="utf-8") as fh:
+        wr = csv.DictWriter(fh, fieldnames=G11_COLS, extrasaction="ignore")
+        wr.writeheader()
+        wr.writerows(rows)
+    if years_path:
+        cols = ["world", "bundle", "seed", "year", "pop", "store_all_days", "made", "smiths", "coins_village", "coins_unmarked", "coins_others", "flows_all", "flows_coin",
+                "markets", "markets_deals", "credit_coin", "credit_written", "fails", "refused", "path_meetings", "path_c1", "path_c2", "path_c3", "path_chose",
+                "key_answer", "readers", "c", "F"]
+        with open(years_path, "w", newline="", encoding="utf-8") as fh:
+            wr = csv.DictWriter(fh, fieldnames=cols)
+            wr.writeheader()
+            for f in sorted(Path(out_dir).glob("*.json")):
+                res = json.loads(f.read_text(encoding="utf-8"))
+                if res["world"] != "W11":
+                    continue
+                for r in res["rows"]:
+                    co, fl, cr = r.get("g11_coins") or {}, r.get("g11_flows") or {}, r.get("g11_credit") or {}
+                    pw = (r.get("g11_path") or {}).get(str((r["day"] + 1) // YEAR - 1)) or {}
+                    wr.writerow({"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], "year": r["year"], "pop": r["pop"],
+                                 "store_all_days": r["store_all_days"], "made": r.get("g11_made"), "smiths": r.get("g11_smiths"), "coins_village": co.get("village"),
+                                 "coins_unmarked": co.get("unmarked"), "coins_others": sum((co.get("others") or {}).values()), "flows_all": fl.get("all", 0),
+                                 "flows_coin": fl.get("coin", 0), "markets": r.get("g11_markets"), "markets_deals": r.get("g11_markets_deals"),
+                                 "credit_coin": cr.get("coin", 0), "credit_written": cr.get("written", 0), "fails": len(r.get("g11_fails") or []),
+                                 "refused": r.get("g11_refused"), "path_meetings": pw.get("meetings", 0), "path_c1": pw.get("c1", 0), "path_c2": pw.get("c2", 0),
+                                 "path_c3": pw.get("c3", 0), "path_chose": pw.get("chose", 0), "key_answer": r.get("g11_key_answer"), "readers": r.get("g11_readers"),
+                                 "c": "・".join(sorted(r.get("g11_c") or {})), "F": "・".join(sorted(r.get("g11_reached") or {}))})
+    return rows
+
+
 def write_csv(out_dir, path):
     rows = [row_of(json.loads(f.read_text(encoding="utf-8"))) for f in sorted(Path(out_dir).glob("*.json"))]
     rows.sort(key=lambda r: (r["world"], r["bundle"], r["seed"]))
@@ -1093,6 +1163,7 @@ def main():
     ap.add_argument("--csv")
     ap.add_argument("--years-csv", dest="years_csv", help="csv で、年ごとの行も書く (重い押しの確かめ)")
     ap.add_argument("--g9-csv", dest="g9_csv", help="csv で、G9 の確かめの表を書く (2026-10-29。--years-csv があれば G9 の年ごとの行も)")
+    ap.add_argument("--g11-csv", dest="g11_csv", help="csv で、G11 の確かめの表を書く (2026-11-05。--years-csv があれば G11 の年ごとの行も)")
     ap.add_argument("--g10-csv", dest="g10_csv", help="csv で、G10 の確かめの表を書く (2026-11-04。--years-csv があれば G10 の年ごとの行も)")
     ap.add_argument("--world", default="W0")
     ap.add_argument("--bundle", default="B0")
@@ -1103,6 +1174,10 @@ def main():
     ap.add_argument("--years", type=int, default=15)
     ap.add_argument("--procs", type=int, default=2)
     a = ap.parse_args()
+    if a.cmd == "csv" and a.g11_csv:
+        rows = write_g11_csv(a.out, a.g11_csv, a.years_csv)
+        print(f"{len(rows)} 行 → {a.g11_csv}")
+        return
     if a.cmd == "csv" and a.g10_csv:
         rows = write_g10_csv(a.out, a.g10_csv, a.years_csv)
         print(f"{len(rows)} 行 → {a.g10_csv}")
