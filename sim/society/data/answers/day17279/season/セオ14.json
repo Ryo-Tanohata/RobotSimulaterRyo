@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、実った畑は夏のうちに刈ってしまおうね。落ちたらもったいないから。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "夏は毎夕畑を刈るのが一番の仕事"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "子が小さいが畑なら近くで働ける"}, "ナセ34": {"activity": "畑仕事", "place": "camp", "why": "刈り手を増やすため"}, "ワユ34": {"activity": "畑仕事", "place": "camp", "why": "子でも刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えの種をまいた畑の草取りを続けるため"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りが増える"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を出す"}, "ナセ34": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を出す"}, "ワユ34": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで夏の実りが増えるから"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ナセ34": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ワユ34": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて夏の実りを増やすため"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ナセ34": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ワユ34": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ユエ43": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りあふれた年",
+ "feeling": "蓄えは十分で心強い。今年も畑を無駄なく刈りたい。"}
