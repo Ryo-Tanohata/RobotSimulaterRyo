@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "前の季節は、世話の手が足りずにヤギが 18 頭も消えた。この秋は、わしがキャンプでヤギを見る。若い者も何人か手を貸してくれ。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "ヤギが 132 頭いて、世話をする人が少ないと季節ごとに何十頭も消えてしまうから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギが 143 頭いて草で養えるのが 110 頭ほどだと、季節ごとに 11 頭ほどやせていなくなり、世話が足りないとさらに 18 頭ほどいなくなる", "because": [1710954, 1710955], "confidence": 0.8}],
+ "proposal": {"text": "この秋のはじめに、草で養える約 110 頭をこえるヤギ (いま 22 頭ほど) を、乳の出ないオスから先につぶして干し肉にし、村の蓄えに入れよう。残ったヤギは 40 頭ごとに一人、いまは三人が毎日キャンプで世話をしよう。前の季節は世話が足りず 18 頭、草が足りず 11 頭いなくなったから。", "because": [1710954, 1710955], "penalty": null, "tax": null, "rate": null},
+ "votes": [
+  {"id": "L449", "against": "", "agree": true, "reason": "種まきと草取り、ヤギの数を減らすことと世話を、まとめて決めているから"},
+  {"id": "L445", "against": "", "agree": true, "reason": "多すぎるヤギはやせて消える前に肉にしたほうがいい"},
+  {"id": "L444", "against": "", "agree": true, "reason": "草が足りないのだから、ヤギを減らすのは正しい"},
+  {"id": "L429", "against": "", "agree": true, "reason": "草で養える数をこえる分を減らし、世話をする人も決めるから"},
+  {"id": "L423", "against": "", "agree": true, "reason": "わしが出した掟で、いまの村に合っている"},
+  {"id": "L446", "against": "", "agree": true, "reason": "板に記せば、覚えちがいで揉めずにすむ"},
+  {"id": "L447", "against": "", "agree": true, "reason": "ワユ3の村との貸し借りも、数を見せ合えば確かになる"}
+ ],
+ "feeling": "年をとったが、ヤギを減らさずに冬をこえさせたい"}

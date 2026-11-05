@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "冬の前だ。みんなで顔をそろえて、草の種を土器に入れておこう。俺は土器を焼く。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器を焼くのが一番得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ワユ24": {"activity": "採集", "place": "北川12", "why": "採集が得意で、冬の前に食べ物を集めたいから"},
+  "オセ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"},
+  "セヤ29": {"activity": "狩り", "place": "北川12", "why": "狩りが得意だから"},
+  "ソナ31": {"activity": "狩り", "place": "北川12", "why": "狩りが得意だから"},
+  "ルタ31": {"activity": "狩り", "place": "北川12", "why": "狩りが得意だから"},
+  "セオ32": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "キサ33": {"activity": "採集", "place": "北川12", "why": "冬に備えて食べ物を集めるため"},
+  "ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "ケセ34": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いが、蓄えは十分にあるので落ち着いている。"}
