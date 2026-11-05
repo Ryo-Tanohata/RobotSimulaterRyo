@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "黒い金属は、わたしがずっと試しているよ。冬の前に、もう少し形になるまで続けるね。みんな、畑の草取りも忘れずにね。"}],
+ "job": {"activity": "試す", "place": "camp", "try": "H9-01", "with": [], "why": "黒い金属の試しを続けて、できるようにしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"シエ33": true},
+ "family": {
+  "リセ23": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで、夏の実りを守るため"},
+  "タユ25": {"activity": "畑仕事", "place": "camp", "why": "草取りをして畑の実りを増やすため"},
+  "ケセ25": {"activity": "畑仕事", "place": "camp", "why": "草取りをして畑の実りを増やすため"},
+  "セオ25": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないように世話をするため"},
+  "タユ26": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をしながら、小さな子のそばにいるため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "黒い金属のことが気になって、胸がわくわくしている。"}

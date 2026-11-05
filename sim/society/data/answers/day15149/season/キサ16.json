@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋のうちに草の種をまいて、冬の前に木の実もためておこう。わたしは土器を焼いて、蓄えの種を守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意なので、土器を増やして蓄えの草の種を虫やネズミから守りたい"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"シエ33": true},
+ "family": {
+  "アコ19": {"activity": "畑仕事", "place": "camp", "why": "冬と春に畑の草取りをして、夏の実りを減らさないため"},
+  "トナ24": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして畑を守るため"},
+  "リセ25": {"activity": "採集", "place": "南川12", "with": ["アコ26"], "why": "近い川で二人で木の実や魚を探し、冬の食べ物を足す"},
+  "アコ26": {"activity": "採集", "place": "南川12", "with": ["リセ25"], "why": "一人では行かず、リセ25と二人で採集に行くため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多いけれど、冬に備えて土器と畑をしっかり整えたい。"}
