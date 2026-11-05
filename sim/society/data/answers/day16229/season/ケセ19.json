@@ -1,0 +1,5 @@
+{"say": [{"to": "みんな", "text": "この秋は私が黒い金属の鎌を打つ。来年の夏に刈り残しが出ないよう、覚えたい人は私の名を書いて一緒に作ろう。"}], "job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "来年の夏に畑を刈り切るため、黒い金属の鎌を作りためる"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "作り方を覚えて鎌を増やす"}, "セオ25": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "草取りをして来年の実りを守る"}, "タユ30": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "keep": false, "feast": false, "leader": null, "trade": {"T219": {"side": "村", "利子": 0.1}}, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ワユ3の村が草の種3000つかみを貸してほしいと言っている。蓄えは十分なので、少し上乗せして貸せる。", "because": [1561138], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで落ち着いている。鎌作りに打ち込める秋になりそうだ。"}

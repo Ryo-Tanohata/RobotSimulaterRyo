@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけれど、虫やネズミに食われる分は土器で守れる。わたしは今季も土器を焼き続けるよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、土器に入れると蓄えの草の種が守られるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ナセ21": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで夏の実りが増えるから"},
+  "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守るため"},
+  "ワユ24": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬の前に食べ物を集める"},
+  "オセ28": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をする人が少ないといなくなるから"},
+  "セヤ29": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"},
+  "ワユ30": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って実りを守るため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T219": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を千つかみまき、土器を焼いて蓄えを守り、草が足りないのでヤギを肉にして減らす。", "because": [1561126, 1561127], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもあり落ち着いている。土器を焼いて冬に備えよう。"}
