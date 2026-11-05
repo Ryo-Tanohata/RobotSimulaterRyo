@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "黒い金属の鎌を、この秋はわたしが作るよ。赤い金属より減りにくいから、来年の夏の刈り入れが楽になるはず。"}],
+ "job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "黒い金属の作り方を知っているのは村でわたしだけ。村にまだ1本もないので、夏の刈り入れ前に鎌を作りためたい"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "リセ23": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで、夏の実りを減らさないため"},
+  "タユ25": {"activity": "畑仕事", "place": "camp", "why": "草取りを家で分けて、畑の実りを守る"},
+  "ケセ25": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が少ないと実りが減るので手伝う"},
+  "セオ25": {"activity": "土器づくり", "place": "camp", "why": "草の種を土器に入れて虫やネズミから守るため"},
+  "タユ26": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが世話不足でいなくなるのを防ぐため"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は3049100つかみあり、冬を越すには十分。秋は畑にまき、黒い金属の鎌を作りためるのがよい", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。黒い金属の鎌づくりに集中できるのがうれしい"}

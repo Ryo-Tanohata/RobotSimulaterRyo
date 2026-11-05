@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどあるし、わたしは畑の草取りをしておくよ。子どもたちを見ながらね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、キャンプで子どもたちのそばにいながらできる畑仕事を続ける。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に畑へ草の種をまき、冬と春に草取りをすると、夏のはじめに実りが増える。", "because": [1412596], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。ひとりで静かに畑仕事をして、子どもたちと過ごしたい。"}
