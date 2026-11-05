@@ -1,0 +1,10 @@
+{"say": [{"to": "ケナ36", "text": "雨の夜にまた濡れたね。この秋はふたりで、わたしたちの住まいを建てようよ。"}, {"to": "みんな", "text": "村の住まいに入りきらない夜が多い。家のない人は、住まい作りをたがいに手伝おう。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["ケナ36"], "why": "雨の夜に6回も外で濡れた。子のセヤ36のためにも、家族の住まいがほしい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケナ36": {"activity": "住まいを建てる", "place": "camp", "why": "ふたりで働けば早く建つ。雨の夜に子を濡らさないため。"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T212": "村", "T213": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "雨の夜に外で濡れるのは、家族の住まいがないからだ。秋のうちに建てれば冬を屋根の下で越せる。", "because": [1515594], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "子を雨にあてたくない。大胆にいくぞ、まず住まいを建てる。"}
