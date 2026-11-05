@@ -4,6 +4,9 @@
   PYTHONUTF8=1 python3.13 sim/society/tools/lab_region.py summary --csv /tmp/…/runs.csv [--out FILE]
   PYTHONUTF8=1 python3.13 sim/society/tools/lab_region.py check --data /tmp/…/data   (region_sweep.py と同じ数になるかの確かめ)
   PYTHONUTF8=1 python3.13 sim/society/tools/lab_region.py anatomy --data /tmp/…/data --csv /tmp/…/runs.csv   (c1 に届いた回の中身を見る)
+  PYTHONUTF8=1 python3.13 sim/society/tools/lab_region.py g10 --data /tmp/…/data --seeds 100 --years 15 --procs 4 --csv /tmp/…/g10_region.csv
+      (2026-11-04 G10 の c3「広いまとまり」の見込み。本物の state (写し。13799 日目) の地域 (まわりの集落・つながり・求め・待ち・北の大きな村の特別な決まり・
+       世界の旗) から、地域の決まりだけで回す。村 (V0) は「求めない」決まりで動く集落 (入る日の見た目のまま)。docs/society_phase/G10_check.md)
 
 - 土台は tools/region_sweep.py (G7_sweep.md の掃き出し)。region.py の 1 年の決まりをそのまま使い、川辺の村は「決まりで動く集落」(V0)。
   世界 (era2・world) は動かさない。state.json は読むだけ (写しを指すこと)
@@ -309,6 +312,121 @@ def cmd_check(a):
     print("ちがい", bad)
 
 
+# ---------------- G10 の c3 の見込み (2026-11-04。docs/society_phase/G10_design.md 5.2) ----------------
+G10_COLS = ["seed", "years", "reach", "reach_yr", "reach_top", "reach_D", "reach_members", "reach_n", "village", "maxD", "maxD_yr", "max_members",
+            "strong_people_end", "strong_D_max", "wars", "gone", "setts_end", "secs"]
+G10_D, G10_SHARE = 4, 0.5  # g10.C3_D・C3_SHARE と同じ
+
+
+def g10_base(data):
+    """本物の state (写し) から、地域の決まりが読むものだけを取り出す (state は読むだけ)"""
+    import era2  # noqa: F401
+    import g7
+    st = json.loads((Path(data) / "state.json").read_text(encoding="utf-8"))
+    g7.sync_world(st)
+    w = (st["era2"]["g7"].get("world") or {})
+    return {"day": st["day"], "R": st["era2"]["g7"]["region"], "setts": g7._setts(st), "next_other": st["era2"]["g6"]["next_other"],
+            "strong": st["era2"]["g7"].get("strong"), "world": {"desert": bool(w.get("desert")), "no_flee": bool(w.get("no_flee")), "bad": w.get("bad")}}
+
+
+def g10_run(job):
+    """1 つの種で years 年 (本物の g7.region_year・begin・region_day と同じ順: 年のはじめに待ちを決めて貢ぎを払う → 戦の日の戦 →
+    年の終わりに天気・地域の 1 年・病)。決める段は、年のはじめと年の終わりに、この 1 年に払ったつながりで数える (v2)"""
+    import copy
+    base, seed, years = job
+    t0 = time.process_time()
+    region.DESERT, region.NO_FLEE = base["world"]["desert"], base["world"]["no_flee"]
+    region.WEATHER_BAD = float(base["world"]["bad"]) if base["world"].get("bad") is not None else region.WEATHER_BAD0
+    R, setts = copy.deepcopy(base["R"]), copy.deepcopy(base["setts"])
+    nxt = {"n": base["next_other"]}
+
+    def make(parent, c, n, kind):
+        o = rs.new(f"N{nxt['n']}", c, n, f"{parent.get('name', parent['id'])}の子")
+        o.update(grain=0, goats=0, cattle_f=0.0, kind=kind)
+        nxt["n"] += 1
+        setts.append(o)
+        return o
+    m = {"reach": 0, "reach_yr": None, "reach_top": None, "reach_D": None, "reach_members": None, "reach_n": None, "village": None,
+         "maxD": 0, "maxD_yr": None, "max_members": 0, "strong_D_max": 0, "wars": 0, "gone": 0}
+    day0 = base["day"]
+
+    def look(k, d):
+        paid = [t for t in region.ties_on(R) if t["paid"] and t["paid"][-1] > d - region.YEAR_DAYS]
+        lv = region.levels(setts, paid, d, village_rules=True)
+        n = len(region._live(setts))
+        for x in lv:
+            if x["D"] > m["maxD"]:
+                m["maxD"], m["maxD_yr"] = x["D"], k
+            m["max_members"] = max(m["max_members"], len(x["members"]))
+            if x["top"] == base["strong"]:
+                m["strong_D_max"] = max(m["strong_D_max"], x["D"])
+            if not m["reach"] and x["D"] >= G10_D and len(x["members"]) >= G10_SHARE * n:
+                m.update(reach=1, reach_yr=k, reach_top=x["top"], reach_D=x["D"], reach_members=len(x["members"]), reach_n=n, village=x["village"])
+    for k in range(1, years + 1):
+        d1 = day0 + 1 + (k - 1) * region.YEAR_DAYS  # 年のはじめ (夏の集まりの日の次の日)
+        out = []
+        region.decide(R, setts, d1, village={}, make=make, out=out)
+        region.pay_ties(R, setts, d1, out=out)
+        look(k, d1)
+        for w in sorted((w for w in R["wars"] if not w.get("done")), key=lambda w: (w["day"], int(w["id"][1:]))):
+            by = region._by(setts)
+            if w["att"] not in by or w["def"] not in by or by[w["att"]].get("gone") or by[w["def"]].get("gone"):
+                w.update(done=w["day"], called_off=True)
+                continue
+            region.fight(R, setts, w, region.war_rng(f"g10reg{seed}", int(w["id"][1:])), w["day"], out=out)
+            m["wars"] += 1
+        D = d1 + region.YEAR_DAYS - 1  # 年の終わり
+        y = (D + 1) // region.YEAR_DAYS
+        live = region._live(setts)
+        z, rbad, bad = region.weather(random.Random(f"g10reg|weather|{seed}|{y}"), [(s["id"], region.cell_of(s)) for s in live])
+        for s in live:
+            s["bad"] = D if s["id"] in bad else None
+        region.year_end(R, setts, random.Random(f"g10reg|year|{seed}|{y}"), y, D, out=out)
+        sr = random.Random(f"g10reg|sick|{seed}|{y}")
+        last = set(R.get("sick_last") or [])
+        now = []
+        for s in region._live(setts):
+            mine = {t["payer"] if t["payee"] == s["id"] else t["payee"] for t in region.ties_on(R) if s["id"] in (t["payer"], t["payee"])}
+            hit, _ = region.sick(sr, s, len(mine), bool(mine & last))
+            if hit and not s.get("village"):
+                s["people"] -= round(s["people"] * sr.uniform(*region.SICK_DEATH))
+                now.append(s["id"])
+        R["sick_last"] = now
+        region.collapse(R, setts, D, out)
+        m["gone"] += sum(1 for e in out if e["kind"] == "集落" and e["data"].get("gone"))
+        look(k, D)
+    so = next((s for s in setts if s["id"] == base["strong"]), None)
+    m["strong_people_end"] = so["people"] if so and not so.get("gone") else 0
+    m["setts_end"] = len(region._live(setts))
+    m["secs"] = round(time.process_time() - t0, 3)
+    return dict(seed=seed, years=years, **m)
+
+
+def cmd_g10(a):
+    base = g10_base(a.data)
+    jobs = [(base, s, a.years) for s in range(a.seed0, a.seed0 + a.seeds)]
+    t0 = time.time()
+    with Pool(a.procs) as pool:
+        rows = sorted(pool.map(g10_run, jobs), key=lambda r: r["seed"])
+    with open(a.csv, "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=G10_COLS)
+        w.writeheader()
+        for r in rows:
+            w.writerow({c: r.get(c) for c in G10_COLS})
+    n = len(rows)
+    k = sum(r["reach"] for r in rows)
+    yrs = sorted(r["reach_yr"] for r in rows if r["reach"])
+    tops = {}
+    for r in rows:
+        if r["reach"]:
+            tops[r["reach_top"]] = tops.get(r["reach_top"], 0) + 1
+    print(f"回 {n} ({a.years} 年)。c3 (段 {G10_D} 以上・地域の半分以上) に届いた回 {k} ({pct(k, n)})。届いた年の真ん中 {statistics.median(yrs) if yrs else '-'}"
+          f" (最短 {yrs[0] if yrs else '-'})。中心 {tops}。いちばん深い段の分布 "
+          + str({d: sum(1 for r in rows if r['maxD'] == d) for d in sorted({r['maxD'] for r in rows})})
+          + f"。北の大きな村の段の最大の分布 " + str({d: sum(1 for r in rows if r['strong_D_max'] == d) for d in sorted({r['strong_D_max'] for r in rows})})
+          + f"。時間 {time.time() - t0:.0f} 秒")
+
+
 # ---------------- まとめ ----------------
 
 def wilson(k, n, z=1.96):
@@ -491,8 +609,15 @@ def main():
     p.add_argument("--csv", required=True)
     p.add_argument("--n", type=int, default=200)
     p.add_argument("--out", default=None)
+    p = sub.add_parser("g10")  # 2026-11-04: G10 の c3 の見込み (本物の state の写しの地域から。G10_check.md)
+    p.add_argument("--data", required=True)
+    p.add_argument("--seeds", type=int, default=100)
+    p.add_argument("--seed0", type=int, default=1)
+    p.add_argument("--years", type=int, default=15)
+    p.add_argument("--procs", type=int, default=2)
+    p.add_argument("--csv", required=True)
     a = ap.parse_args()
-    {"run": cmd_run, "summary": cmd_summary, "check": cmd_check, "anatomy": cmd_anatomy}[a.cmd](a)
+    {"run": cmd_run, "summary": cmd_summary, "check": cmd_check, "anatomy": cmd_anatomy, "g10": cmd_g10}[a.cmd](a)
 
 
 if __name__ == "__main__":

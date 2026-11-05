@@ -12,7 +12,9 @@
   python sim/society/step.py next_part --closed-by-decision "<本人の言葉>" [--fill F]
                                                  G6 を、町の条件がそろわないまま本人の決めで閉じたとき (2026-10-17) に、G7 に入る。
                                                  閉じたことを出来事「フェーズ」と g6.closed に残してから入る (止まっていなくてよい。G6 のときだけ)
-                                                 G7 から G8 (g7.closed)、G8 から G9 (2026-10-29。g7.closed8。重い押しを切り、G9 の仕組みを入れる) も同じ形
+                                                 G7 から G8 (g7.closed)、G8 から G9 (2026-10-29。g7.closed8。重い押しを切り、G9 の仕組みを入れる) も同じ形。
+                                                 G9 から G10 (2026-11-04。g7.closed9。第 5 部もここで終わる。G10 の仕組みを入れ、黒い金属と音の字の札を入る日に開く) も同じ形。
+                                                 本人の言葉は、打つときに書く (docs/society_phase/G10_design.md 0.・HANDOFF.md)
   python sim/society/step.py heavy on             G8 の続き「重い押し」を入れる (2026-10-25 本人の決め。docs/society_phase/G8_heavy_design.md。G8 のときだけ。
                                                  入れたら消さない)。強い集落の村への求めを「村の去年の刈り入れの 2 割」にする。年の集まりの歩で、
                                                  まだ答えがなければ、その日に「増やせ」の求めを出して、お題を書き直す (ほかの日なら、次の年の終わりに出す)
@@ -147,8 +149,8 @@ def _next_part_refusal(state, fill, closed=None):
         if not closed.strip():
             return "--closed-by-decision に本人の言葉がない"
         g7s = (state["era2"].get("g7") or {})
-        if not ((state.get("era") == "G6" and not g7s) or (state.get("era") in ("G7", "G8") and g7s)):  # 2026-10-25: G7 から G8 も。2026-10-29: G8 から G9 も
-            return f"本人の決めで閉じて入れるのは G6 から G7、G7 から G8、G8 から G9 だけ (今は {state.get('era')})"
+        if not ((state.get("era") == "G6" and not g7s) or (state.get("era") in ("G7", "G8", "G9") and g7s)):  # 2026-10-25: G7 から G8 も。2026-10-29: G8 から G9 も。2026-11-04: G9 から G10 も
+            return f"本人の決めで閉じて入れるのは G6 から G7、G7 から G8、G8 から G9、G9 から G10 だけ (今は {state.get('era')})"
         if state.get("hold"):
             return "一時停止している (部の終わりなら --closed-by-decision なしの next_part で入る)"
         if state["era"] == "G6" and ((state["era2"].get("g6") or {}).get("end") or (state["era2"].get("g6") or {}).get("closed")):
@@ -157,6 +159,8 @@ def _next_part_refusal(state, fill, closed=None):
             return "G7 はもう閉じている"
         if state["era"] == "G8" and (g7s.get("closed8") or "G8" in (g7s.get("ends") or {})):
             return "G8 はもう閉じている"
+        if state["era"] == "G9" and (g7s.get("closed9") or "G9" in (g7s.get("ends") or {}) or "g9" not in g7s):
+            return "G9 はもう閉じている (か、G9 の仕組みがない)"
     elif not state.get("hold"):
         return "一時停止していない"
     code, why = _hold_text(state)
@@ -297,7 +301,8 @@ def read_answers(state, phase):
 ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道具": "道具づくり", "火": "火おこし", "種まき": "種まき",
                 "畑仕事": "畑仕事", "ヤギの世話": "ヤギの世話", "ヤギを捕まえる": "ヤギを捕まえる", "土器": "土器づくり", "住まい": "住まいを建てる",
                 "交換に行く": "交換に行く", "記録をつける": "記録をつける",
-                "守る": "守る", "取り立てる": "取り立てる", "戦に出る": "戦に出る", "試す": "試す"}  # Society 2.0 の仕事 (交換に行く・記録をつけるは G6 から、後ろの 4 つは G7 から)
+                "守る": "守る", "取り立てる": "取り立てる", "戦に出る": "戦に出る", "試す": "試す",
+                "黒い金属を作る": "黒い金属を作る", "字を習う": "字を習う"}  # Society 2.0 の仕事 (交換に行く・記録をつけるは G6 から、守る〜試すは G7 から、後ろの 2 つは G10 から)
 
 
 def day_labels(state, extra=()):
@@ -534,6 +539,11 @@ def main():
         elif a.closed is not None and state["era"] == "G8":  # G8 を本人の決めで閉じた (2026-10-28 本人の決め。12599 日目): 閉じたことを残してから G9 に入る
             c = g7.close_g8(state, a.closed.strip())
             print(f"* G8 (外からの押し): 3 つの条件はそろわないまま、本人の決めで閉じた ({_yd(c['day'])})")
+        elif a.closed is not None and state["era"] == "G9":  # G9 を本人の決めで閉じた (2026-11-04 本人の決め「お任せします」): 閉じたことを残してから G10 に入る
+            c = g7.close_g9(state, a.closed.strip())
+            print(f"* G9 (遠くとの商い): 3 つの条件はそろわないまま、本人の決めで閉じた ({_yd(c['day'])}。第 5 部もここで終わった。"
+                  f"c1 {_yd(c['c1']) if c['c1'] is not None else 'まだ'}・F1 {_yd(c['f1']) if c['f1'] is not None else 'まだ'}・運ぶ人 {c['visits']} 回・"
+                  f"替えた {c['deals']}・約束 {c['promises']}・赤い金属の道具 {c['tools']})")
         elif a.closed is not None:  # G6 を本人の決めで閉じた (町の条件がそろわないまま。2026-10-17): 閉じたことを残してから G7 に入る
             c = g7.close_g6(state, a.closed.strip())
             print(f"* 第 4 部の終わり (G6): 町の条件はそろわないまま、本人の決めで閉じた ({_yd(c['day'])}。記録の条件 "
@@ -554,7 +564,7 @@ def main():
             g7.enter_next(state)
             g = state["era2"]["g7"]
             if a.closed is not None:
-                state["era_log"][-1]["g7_closed" if was == "G7" else "g8_closed"] = state["day"]
+                state["era_log"][-1]["g7_closed" if was == "G7" else "g8_closed" if was == "G8" else "g9_closed"] = state["day"]
         for kind in ("season", "feeling"):  # 前の部のお題 (もうコミットしてある) を消して、新しい部のお題を書く (ask_why の作り直しと同じ)
             d = pdir(state, kind, "prompts")
             if d.exists():
@@ -575,6 +585,14 @@ def main():
                   + (f"{so['name']} ({so['id']}) {so['people']} 人は残る。" if so else "")
                   + ("重い押しは切った (求めはふつうの量)。" if (g.get("heavy") or {}).get("end") == state["day"] else "")
                   + f"村の赤い金属の道具 {len(g9s['tools'])}。よその便りの札 2 枚を足した")
+        if nxt == "G10":
+            g10s = g["g10"]
+            so = next((o for o in era2._g6(state)["others"] if o["id"] == g.get("strong")), None)
+            import hints  # noqa: E402
+            print(f"* G10 の世界: G9 のまま (草原を砂地・逃げ場なし・悪い年 {g['world']['bad']}・段の数え方 {g['count']}・遠くの町の運ぶ人の重み {hints.far_weight(state)})。"
+                  + (f"{so['name']} ({so['id']}) {so['people']} 人は残る。" if so else "")
+                  + f"村の赤い金属の道具 {len([t for t in g['g9']['tools'] if t['gone'] is None])} ({g['g9']['use']['choice']})。よその便りの札 1 枚を足した。"
+                  + f"入る日に開いた札: {'・'.join(g10s['opened']) or 'なし'}")
         if nxt == "G7":
             print(f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめに置いた集落 {len(fl['placed'])}・{fl['people']} 人。地域の人数を K の {fl['share']:.0%} に)"
                   if fl else f"* まわりの集落: {len(era2._g6(state)['others'])} (はじめの集落は置かなかった。--fill なし = 今のまま)")
@@ -826,6 +844,16 @@ def main():
                   f"商人の家 {_yd(i['g9_c2_day']) if i['g9_c2_day'] is not None else 'まだ'} (交換に行った日のいちばん多い家 {i['g9_trip_days_max']} 日) / "
                   f"遠くとの約束を書く {_yd(i['g9_c3_day']) if i['g9_c3_day'] is not None else 'まだ'} / F {'・'.join(sorted(G9['reached'])) or 'まだ'} / "
                   f"赤い金属の道具 {i['g9_tools']} ({i['g9_use']}) / 遠くの運ぶ人 {i['g9_far_visits']} 回・約束 {i['g9_promises']} (書いた {i['g9_written']}・守り合った {i['g9_kept']})")
+        if "g10_c1_day" in i:  # G10 (2026-11-04): G10 の条件と F (G9 の行と G7 の物差しは、ならべて出す)
+            G10 = state["era2"]["g7"]["g10"]
+            print(f"G10 / 条件: 黒い金属の道具を使う {_yd(i['g10_c1_day']) if i['g10_c1_day'] is not None else 'まだ'} (この年 刈った {i['g10_reap_all']} 人日のうち 黒い金属 {i['g10_reap_iron']}・赤い金属 {i['g10_reap_bronze']}) / "
+                  f"字を読み書きできる人 {_yd(i['g10_c2_day']) if i['g10_c2_day'] is not None else 'まだ'} (読める大人 {i['g10_readers']}・記録をつける家の外 {i['g10_outside_readers']}) / "
+                  f"広いまとまり {_yd(i['g10_c3_day']) if i['g10_c3_day'] is not None else 'まだ'} (いちばん深い段 {i['g10_region_maxD']}・{i['g10_region_top']}・{i['g10_region_members']} 集落) / "
+                  f"F {'・'.join(sorted(G10['reached'])) or 'まだ'} / 黒い金属の鎌 {i['g10_iron_made']} 本 (使える {i['g10_iron_tools']}) / 字で比べた {i['g10_letters']} 回")
+            pw = G10.get("path") or {}
+            if pw:
+                y, row = max(pw.items(), key=lambda kv: int(kv[0]))
+                print(f"G10 / 道の見張り ({y}年): 集まり {row['meetings']} 回のうち、条件 1 の道が出た {row['c1']} 回・条件 2 の道が出た {row['c2']} 回")
         if i.get("g7_on"):
             print(f"{state['era']} / 役の人 {i['g7_role_people']} / まわりの集落 {i['g7_others']} (人 約 {i['g7_region_people']}) / "
                   f"{'G7 の物差し (ならべて測る)' if 'g9_c1_day' in i else '条件'}: 決める段 3 {_yd(i['g7_f3_day']) if i['g7_f3_day'] is not None else 'まだ'} / "

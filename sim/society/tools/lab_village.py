@@ -7,6 +7,8 @@
   (G9 の確かめ 2026-10-29: --data sim/society/data (本物の 12599 日目。読むだけ) --worlds W9 --bundles B0,B1T --years 15。表は csv --g9-csv <runs.csv> --years-csv <years.csv>。
    感度は --worlds W9F (遠くの商人の重み 0.5) --bundles B1T。docs/society_phase/G9_check.md)
   (G9 の「来る見込みを 5 割に」2026-10-29: --data sim/society/data (本物の 13079 日目。読むだけ) --worlds W9R --bundles B0 --seeds 2 --years 5)
+  (G10 の確かめ 2026-11-04: --data <本物の 13799 日目の state.json の写しのフォルダ> --worlds W10 --bundles G10B0,G10B1 --seeds 4 --years 15。
+   表は csv --g10-csv <runs.csv> --years-csv <years.csv>。docs/society_phase/G10_check.md)
 
 - はじめの state は G6 の 5849 日目 (e436dfc の 1 つ前のコミットの data の写し)。メモリの中で g7.close_g6 → g7.enter (G7 に入る。本物と同じ道) してから回す。
   写しの state.json は読むだけ。何も書かない (書くのは --out の結果のファイルだけ)
@@ -67,7 +69,11 @@ WORLDS = {
     # 2026-10-29 本人の決め「来る見込みを 5 割に」の確かめ: 本物の村の今 (もう G9。108年120日目) から、step.py far_rate 0.5 と同じ関数 (g9.set_far_rate) で切り替える
     "W9R": {"name": "G9 の今から (本物の 13079 日目。遠くの商人の重みを step.py far_rate で 0.5 に)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2,
             "from_g9": True, "far_rate": 0.5},
+    # G10 の世界 (2026-11-04 本人の決め「お任せします」): 本物の村の 13799 日目 (G9。年の集まりのお題が出たまま) から、step.py next_part --closed-by-decision と
+    #   同じ道で G10 に入る (g7.close_g9 → g7.enter_next → g7.start_g10。世界の旗・北の大きな村・遠くの運ぶ人 0.5・赤い金属の道具はそのまま)
+    "W10": {"name": "G10 (鉄と広い国。本物の 13799 日目から。G9 の世界のまま)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g10": True},
 }
+G10_NOTE = "本人の決め 2026-11-04 (お任せ): 遠くとの商いを閉じた (決まりの村の確かめ)"
 ORIG = {"K": dict(region.K), "WEATHER_BAD": region.WEATHER_BAD, "cells": region.cells, "refuge": region.refuge, "k_total": region.k_total,
         "LAM_FAR": hints.LAM_FAR}
 
@@ -108,6 +114,12 @@ def enter_g7(state, w):
         if w.get("far_rate"):
             import g9
             g9.set_far_rate(state, w["far_rate"], "本人の決め 2026-10-29: 来る見込みを 5 割に")
+        return
+    if w.get("g10"):  # 本物の 13799 日目 (G9): G9 を閉じて G10 に入る (step.py next_part --closed-by-decision と同じ関数)
+        assert state.get("era") == "G9", state.get("era")
+        g7.close_g9(state, G10_NOTE)
+        g7.enter_next(state)
+        state["era_log"][-1]["g9_closed"] = state["day"]
         return
     if w.get("g9"):  # 本物の 12599 日目 (G8): G8 を閉じて G9 に入る (step.py next_part --closed-by-decision と同じ関数)
         assert state.get("era") == "G8", state.get("era")
@@ -155,7 +167,18 @@ BUNDLES = {
     "B5": {"name": "まとめ役と役の人", **BASE, "lead": True},
     # G9 の確かめ (2026-10-29): G9_check.md の「B1 (商いに寄せた)」。国の答え (税・罰・求める) はしない。B0 は G9 の欄に答えない (今の LLM に近い: 交換をしない)
     "B1T": {"name": "商いに寄せた (G9 の B1)", **BASE, "trade": True},
+    # G10 の確かめ (2026-11-04): G10_check.md の B0・B1。どちらも赤い金属は「使う」・遠くの申し出は「受ける」(本物の村と同じ)。
+    #   G10B0 は試す・作る・習うを選ばない (今の LLM に近い)。G10B1 は黒い金属と字に寄せる (仕事は季節ごとなので、下の G10_* の人数と季節で決める)
+    "G10B0": {"name": "G10 の B0 (今の LLM に近い。試す・作る・習うを選ばない)", **BASE, "g10": "none"},
+    "G10B1": {"name": "G10 の B1 (黒い金属と字に寄せた)", **BASE, "g10": "push"},
 }
+# G10B1 の割り振り (季節ごとの主な仕事。夏は畑と刈り入れのまま)。下書きの「毎季節 5 日・10 日」は、仕事が季節ごとなので、季節と人数で近い人日にした
+G10_SEASONS = ("秋", "冬", "春")  # 試す・作る・習うをする季節
+G10_TRY_IRON = 1  # 黒い金属を試す人 (便りを知っている人。季節ごと)。その人と一緒に試す人を 1 人つける (腕を広げる。答える家は 3 年ごとに入れかわるため)。
+#   1 年に約 180 人日 (下書きは 4 人 × 5 日 × 4 季節 = 80)
+G10_TRY_ALPHA = 2  # 音の字を試す人 (便りを知っている、記録をつける家の外の人)。冬だけ。1 年に約 60 人日 (下書きは 3 人 × 5 日 × 4 = 60)
+G10_MAKERS = 2  # 黒い金属を作る人 (答える家の、作り方を知る人から。足りなければ、その人と一緒に作る人)。季節ごとに。1 年に約 180 人日 (下書きは 4 人 × 10 日 × 4 = 160)
+G10_LEARNERS = 1  # 字を習う人 (冬だけ)。1 年に約 30 人日 (下書きは 2 人 × 5 日 × 4 = 40)
 TRADERS = 3  # B1T: 商人の家にする 1 つの家から、季節ごとに交換に行く大人の数
 TRADE_CARRY = {"草の種": 900}  # B1T: 1 人が持って行く物 (LOAD の上限)
 CKPT_YEARS = 3  # とちゅうの写しを書く間 (年)
@@ -299,6 +322,39 @@ def _trade_jobs(state, fam):
     return {m: _job("交換に行く", to=to["id"], carry=dict(TRADE_CARRY), want="ヤギ", then="畑仕事") for m in fam[1:TRADERS + 1]}
 
 
+def _g10_jobs(state, fams, sea):
+    """G10B1: その季節の、黒い金属と字の仕事 ({名前: 仕事})。答える家の大人 (代表でない人から) の中から、名前の順で決まった人を選ぶ"""
+    import g10
+    if sea not in G10_SEASONS:
+        return {}
+    alive = {p["name"]: p for p in era2.adults(state)}
+    pool = [n for n in dict.fromkeys(sorted({m for ms in fams.values() for m in ms[1:]}) + sorted(fams)) if n in alive]
+    out = {}
+
+    def take(cands, k, job):
+        got = [n for n in cands if n not in out][:k]
+        for n in got:
+            out[n] = job(n)
+        return got
+    ti, ta = g10._tech(state, g10.CARD_IRON), g10._tech(state, g10.CARD_ALPHA)
+    if g10.iron_ready(state):
+        sm = take([n for n in pool if g10.smith(state, n)], G10_MAKERS, lambda n: _job(g10.ACT_MAKE))
+        if sm and len(sm) < G10_MAKERS:
+            take([n for n in pool if not g10.smith(state, n)], G10_MAKERS - len(sm), lambda n: dict(_job(g10.ACT_MAKE), **{"with": [sm[0]]}))
+    elif ti.get("open") is not None:
+        kn = take([n for n in pool if hints.knows(state, n, g10.CARD_IRON)], G10_TRY_IRON, lambda n: dict(_job("試す"), **{"try": g10.CARD_IRON}))
+        if kn:
+            take([n for n in pool if not hints.knows(state, n, g10.CARD_IRON)], 1, lambda n: dict(_job("試す"), **{"try": g10.CARD_IRON, "with": [kn[0]]}))
+    if sea == "冬":
+        if ta.get("open") is not None and not ta.get("done"):
+            sh = set(g10.scribe_houses(state))
+            take([n for n in pool if hints.knows(state, n, g10.CARD_ALPHA) and alive[n].get("household") not in sh], G10_TRY_ALPHA,
+                 lambda n: dict(_job("試す"), **{"try": g10.CARD_ALPHA}))
+        elif g10.alpha_ready(state) and g10.readers(state):
+            take([n for n in pool if n not in state["era2"]["g7"]["g10"]["readers"]], G10_LEARNERS, lambda n: _job(g10.ACT_LEARN))
+    return out
+
+
 def make_answers(state, pol, rt):
     """集まりの歩の、答える人みんなの決まりの答え ({名前: JSON の文})"""
     g = state["era2"]["g7"]
@@ -343,6 +399,10 @@ def make_answers(state, pol, rt):
         common["far"] = {o["id"]: "約束する" for o in g9s.get("offers", [])}
         common["far_write"] = "書く"
         trader = next((n for n in names if len(fams[n]) >= TRADERS + 1), None)
+    if pol.get("g10"):  # G10 の確かめ: 赤い金属は「使う」・遠くの申し出は「受ける」(本物の村と同じ)
+        g9s = g.get("g9") or {}
+        common["metal"] = "使う"
+        common["far"] = {o["id"]: "受ける" for o in g9s.get("offers", [])}
     out = {}
     if ask == "年":
         seas = SEASONS[SEASONS.index(now):]
@@ -350,6 +410,9 @@ def make_answers(state, pol, rt):
         if trader:
             for s in seas:
                 plans[s].update(_trade_jobs(state, fams[trader]))
+        if pol.get("g10") == "push":
+            for s in seas:
+                plans[s].update(_g10_jobs(state, fams, s))
         for i, n in enumerate(names):
             a = {"say": [], "year": {s: _season_part(state, pol, rt, n, fams[n], s, plans[s]) for s in seas}, **common}
             if i < len(to_propose):
@@ -362,6 +425,8 @@ def make_answers(state, pol, rt):
         roles = _assign(fams, _roles(state, pol, now, rt, ask))
         if trader:
             roles.update(_trade_jobs(state, fams[trader]))
+        if pol.get("g10") == "push" and not famine:
+            roles.update(_g10_jobs(state, fams, now))
         for i, n in enumerate(names):
             a = {"say": [], **_season_part(state, pol, rt, n, fams[n], now, roles, famine), **common}
             if i < len(to_propose):
@@ -479,7 +544,7 @@ def _year_row(state, y0, acc):
             "dem_in_strong": sum(1 for d in reg.get("demands", []) if d.get("to") == "V0" and d.get("from") == g.get("strong")),
             "wars_v0": sum(1 for x in reg.get("wars", []) if "V0" in (x.get("att"), x.get("def")) and x.get("done") is not None and not x.get("called_off")),
             "strong_people": next((o["people"] for o in g7._others(state) if o["id"] == g.get("strong")), None),
-            **_heavy_cols(state), **_g9_cols(state),
+            **_heavy_cols(state), **_g9_cols(state), **_g10_cols(state),
             **{k: acc[k] for k in sorted(acc)}}
 
 
@@ -499,6 +564,29 @@ def _g9_cols(state):
             "strong_dem_amounts": [d["what"].get("草の種") for d in reg.get("demands", []) if d.get("to") == "V0" and d.get("from") == g.get("strong")],
             "alliances_seen": sum(1 for e in state["events"] if e["type"] == "よその村" and (e.get("data") or {}).get("alliance")),
             "g7_reached": dict(g.get("reached") or {})}
+
+
+def _g10_cols(state):
+    """G10 の確かめ (2026-11-04) の年ごとの列: 条件と F の日・黒い金属・刈る人日・読み書き・まとまり・道の見張り・燃料と力の帳簿"""
+    g = state["era2"]["g7"]
+    if "g10" not in g:
+        return {}
+    import g10
+    s = g["g10"]
+    ti, ta = g10._tech(state, g10.CARD_IRON), g10._tech(state, g10.CARD_ALPHA)
+    return {"g10_c": dict(s["c"]), "g10_reached": dict(s["reached"]), "g10_made": len(s["made"]), "g10_iron_tools": len(g10.iron_tools(state)),
+            "g10_reap": dict(s["reap"]), "g10_readers": len(g10.readers(state)), "g10_outside": len(g10.outside_readers(state)),
+            "g10_letters": s["letters"], "g10_region": dict(s.get("region") or {}), "g10_c3_log": list(s["c3_log"]), "g10_path": dict(s["path"]),
+            "g10_fuel": s["fuel"][-1] if s["fuel"] else None, "g10_iron_try": [ti.get("first"), round(ti.get("progress", 0), 1), ti.get("done")],
+            "g10_alpha_try": [ta.get("first"), round(ta.get("progress", 0), 1), ta.get("done")], "g10_smiths": len(s["smiths"]),
+            "g10_stall": {k: dict(v) for k, v in (g.get("stall") or {}).items()},
+            "g10_consulted": [c for c in g.get("consulted", []) if str(c.get("why", "")).startswith("path")],
+            "g9_c_now": dict(g["g9"]["c"]), "g9_tools_now": len(g9_tools_alive(state)), "g9_visits_now": len(g["g9"]["visits"]),
+            "levels_all": [[x["top"], x["D"], len(x["members"])] for x in (g10.region_now(state)[0]) if x["D"] >= 2]}
+
+
+def g9_tools_alive(state):
+    return [t for t in state["era2"]["g7"]["g9"]["tools"] if t["gone"] is None and not t.get("iron")]
 
 
 def _heavy_cols(state):
@@ -766,6 +854,80 @@ def write_g9_csv(out_dir, path, years_path=None):
     return rows
 
 
+G10_COLS = ["world", "bundle", "seed", "years_run", "c1_year", "c2_year", "c3_year", "F1_year", "F2_year", "F3_year", "F4_year", "c3_top", "c3_village",
+            "iron_done_year", "alpha_done_year", "iron_made", "iron_tools_end", "reap_all_max", "reap_iron_max", "iron_share_best", "readers_end",
+            "outside_end", "letters", "smiths_end", "maxD_max", "members_max", "path_zero_years_c1", "path_zero_years_c2", "path_consults",
+            "char_kg_total", "bronze_tools_end", "far_visits", "pop_end", "kid_deaths", "adult_deaths", "births", "famine_seasons", "famine_all_seasons",
+            "store_all_days_min", "store_all_days_end", "strong_people_end", "secs"]
+
+
+def g10_row(res):
+    """G10 の確かめ (2026-11-04) の 1 回 = 1 行。年目は 1 年目 = 115年 (G10 に入った日の次の歩から)"""
+    rows = res["rows"]
+    last = rows[-1] if rows else {}
+    y0 = res["y0"]
+
+    def yr(day):
+        return None if day is None else max(1, (day + 1) // YEAR - y0 + (0 if (day + 1) % YEAR == 0 else 1))
+    c, re_ = last.get("g10_c") or {}, last.get("g10_reached") or {}
+    reap = last.get("g10_reap") or {}
+    shares = [v["iron"] / v["all"] for v in reap.values() if v.get("all")]
+    path = last.get("g10_path") or {}
+    c3 = (last.get("g10_c3_log") or [None])[0] or {}
+    return {"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], "years_run": len(rows),
+            **{f"{k}_year": yr(c.get(k)) for k in ("c1", "c2", "c3")}, **{f"{f}_year": yr(re_.get(f)) for f in ("F1", "F2", "F3", "F4")},
+            "c3_top": c3.get("top"), "c3_village": c3.get("village"),
+            "iron_done_year": yr((last.get("g10_iron_try") or [None, None, None])[2]), "alpha_done_year": yr((last.get("g10_alpha_try") or [None, None, None])[2]),
+            "iron_made": last.get("g10_made"), "iron_tools_end": last.get("g10_iron_tools"),
+            "reap_all_max": max((v["all"] for v in reap.values()), default=0), "reap_iron_max": max((v["iron"] for v in reap.values()), default=0),
+            "iron_share_best": round(max(shares, default=0), 3), "readers_end": last.get("g10_readers"), "outside_end": last.get("g10_outside"),
+            "letters": last.get("g10_letters"), "smiths_end": last.get("g10_smiths"),
+            "maxD_max": max(((r.get("g10_region") or {}).get("maxD", 0) for r in rows), default=0),
+            "members_max": max(((r.get("g10_region") or {}).get("members", 0) for r in rows), default=0),
+            "path_zero_years_c1": sum(1 for v in path.values() if not v.get("c1")), "path_zero_years_c2": sum(1 for v in path.values() if not v.get("c2")),
+            "path_consults": len(last.get("g10_consulted") or []),
+            "char_kg_total": sum(((r.get("g10_fuel") or {}).get("char_kg", 0) for r in rows)), "bronze_tools_end": last.get("g9_tools_now"),
+            "far_visits": last.get("g9_visits_now"),
+            **{k: last.get(k) for k in ("kid_deaths", "adult_deaths", "births", "famine_seasons", "famine_all_seasons")},
+            "pop_end": last.get("pop"), "store_all_days_min": min((r["store_all_days"] for r in rows), default=None), "store_all_days_end": last.get("store_all_days"),
+            "strong_people_end": last.get("strong_people"), "secs": res["secs"]}
+
+
+def write_g10_csv(out_dir, path, years_path=None):
+    rows = [g10_row(json.loads(f.read_text(encoding="utf-8"))) for f in sorted(Path(out_dir).glob("*.json"))]
+    rows = [r for r in rows if r["world"] == "W10"]
+    rows.sort(key=lambda r: (r["world"], r["bundle"], r["seed"]))
+    with open(path, "w", encoding="utf-8", newline="") as fh:
+        wr = csv.DictWriter(fh, fieldnames=G10_COLS, extrasaction="ignore")
+        wr.writeheader()
+        for r in rows:
+            wr.writerow(r)
+    if years_path:
+        cols = ["world", "bundle", "seed", "year", "pop", "store_all_days", "harvest", "g10_made", "g10_iron_tools", "reap_all", "reap_iron", "reap_bronze",
+                "g10_readers", "g10_outside", "g10_letters", "maxD", "top", "members", "path_meetings", "path_c1", "path_c2", "char_kg", "g9_tools_now",
+                "kid_deaths_year", "adult_deaths_year", "famine_seasons_year", "strong_people"]
+        with open(years_path, "w", encoding="utf-8", newline="") as fh:
+            wr = csv.DictWriter(fh, fieldnames=cols, extrasaction="ignore")
+            wr.writeheader()
+            for f in sorted(Path(out_dir).glob("*.json")):
+                res = json.loads(f.read_text(encoding="utf-8"))
+                if res["world"] != "W10":
+                    continue
+                prev = {}
+                for r in res["rows"]:
+                    d = {f"{k}_year": r.get(k, 0) - prev.get(k, 0) for k in ("kid_deaths", "adult_deaths", "famine_seasons")}
+                    prev = r
+                    y = str(r["day"] // YEAR)
+                    rp = (r.get("g10_reap") or {}).get(y) or {}
+                    rg = r.get("g10_region") or {}
+                    pw = (r.get("g10_path") or {}).get(str((r["day"] + 1) // YEAR - 1)) or {}
+                    wr.writerow({"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], **{k: v for k, v in r.items() if k in cols}, **d,
+                                 "reap_all": rp.get("all", 0), "reap_iron": rp.get("iron", 0), "reap_bronze": rp.get("bronze", 0),
+                                 "maxD": rg.get("maxD"), "top": rg.get("top"), "members": rg.get("members"), "path_meetings": pw.get("meetings", 0),
+                                 "path_c1": pw.get("c1", 0), "path_c2": pw.get("c2", 0), "char_kg": (r.get("g10_fuel") or {}).get("char_kg")})
+    return rows
+
+
 def write_csv(out_dir, path):
     rows = [row_of(json.loads(f.read_text(encoding="utf-8"))) for f in sorted(Path(out_dir).glob("*.json"))]
     rows.sort(key=lambda r: (r["world"], r["bundle"], r["seed"]))
@@ -836,6 +998,7 @@ def main():
     ap.add_argument("--csv")
     ap.add_argument("--years-csv", dest="years_csv", help="csv で、年ごとの行も書く (重い押しの確かめ)")
     ap.add_argument("--g9-csv", dest="g9_csv", help="csv で、G9 の確かめの表を書く (2026-10-29。--years-csv があれば G9 の年ごとの行も)")
+    ap.add_argument("--g10-csv", dest="g10_csv", help="csv で、G10 の確かめの表を書く (2026-11-04。--years-csv があれば G10 の年ごとの行も)")
     ap.add_argument("--world", default="W0")
     ap.add_argument("--bundle", default="B0")
     ap.add_argument("--worlds", default=",".join(WORLDS))
@@ -845,6 +1008,10 @@ def main():
     ap.add_argument("--years", type=int, default=15)
     ap.add_argument("--procs", type=int, default=2)
     a = ap.parse_args()
+    if a.cmd == "csv" and a.g10_csv:
+        rows = write_g10_csv(a.out, a.g10_csv, a.years_csv)
+        print(f"{len(rows)} 行 → {a.g10_csv}")
+        return
     if a.cmd == "csv" and a.g9_csv:
         rows = write_g9_csv(a.out, a.g9_csv, a.years_csv)
         print(f"{len(rows)} 行 → {a.g9_csv}")

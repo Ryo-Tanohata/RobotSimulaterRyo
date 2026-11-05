@@ -150,8 +150,24 @@ def reap(state, p, tool, n):
     """赤い金属の道具で刈る (1 人 1 日 1 つ): 刈る量は 2.5 倍。使った人日を数える (c1)"""
     g, y = _g(state), str(state["day"] // YEAR)
     tool["uses"] += 1
-    g["used"][y] = g["used"].get(y, 0) + 1
+    if not tool.get("iron"):  # G10 (2026-11-04): 村で作った黒い金属の鎌 (iron) は、G9 の c1 (赤い金属) に数えない (G9 までは iron の道具はない)
+        g["used"][y] = g["used"].get(y, 0) + 1
+    if _g10_on(state):  # G10: 刈る人日を、赤い金属と黒い金属に分けて数える (G9 までは数えない)
+        import g10
+        g10.count_tool(state, tool)
     return n * 5 // 2
+
+
+def _g10_on(state):
+    return "g10" in state["era2"]["g7"]
+
+
+def _letters(state):
+    """G10 (2026-11-04): 村に読み書きできる大人がいれば、遠くの町の運ぶ人との約束を、覚えでなく字で書いて比べる (G9 までは False)"""
+    if not _g10_on(state):
+        return False
+    import g10
+    return g10.letters(state, "村")
 
 
 # ---------------- 遠くの町の運ぶ人 (hints._deliver_v0 から) ----------------
@@ -270,6 +286,8 @@ def _promise(state, off, write):
     g["promises"].append({"id": pid, "offer": off["id"], "day": D, "due": D + YEAR, "give": dict(off["give"]), "want": dict(off["want"]),
                           "written": bool(write), "status": "待つ", "end": None,
                           "mem": {"village": round(rng.uniform(1 - FAR_SPREAD, 1), 3), "merchant": round(rng.uniform(1, 1 + FAR_SPREAD), 3)}})
+    if not write and _letters(state):  # G10: 板に書かなくても、村の読み書きできる人が字で書いておく (覚えのずれ 0。G9 までは鍵がない)
+        g["promises"][-1]["letters"] = True
     return pid
 
 
@@ -282,6 +300,10 @@ def _due(state):
         want = pr["want"]["草の種"]
         if pr["written"]:
             ask, mine, how = want, want, "粘土の板を読み合わせて"
+        elif pr.get("letters"):  # G10: 字で書いておいた約束 (G9 までは鍵がない)
+            ask, mine, how = want, want, "字で書いておいた量を読み合わせて"
+            import g10
+            g10.letters_used(state)
         else:
             ask, mine, how = math.ceil(want * pr["mem"]["merchant"]), math.floor(want * pr["mem"]["village"]), "覚えで"
         head = f"{FAR_WORD}が、約束 [{pr['id']}] のとおり、また来た"
