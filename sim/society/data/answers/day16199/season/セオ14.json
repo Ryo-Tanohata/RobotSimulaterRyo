@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは五百日分以上ある。夏は毎夕、実った畑を刈って土器にしまおう。ヤギは草が足りないから、少しつぶして干し肉にするのがいいと思う。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に毎夕刈るのが一番大事だから"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手が多いほどよいから"}, "キオ23": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手が多いほどよいから"}, "タユ27": {"activity": "土器づくり", "place": "camp", "why": "刈った種をしまう土器が要るから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 10},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りを続けて夏の実りを増やすため"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手になるため"}, "キオ23": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手になるため"}, "タユ27": {"activity": "土器づくり", "place": "camp", "why": "土器が割れるので補うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで実りが増えるから"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "キオ23": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "タユ27": {"activity": "土器づくり", "place": "camp", "why": "冬のうちに土器を作り足すため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏に備えて草取りを続けるため"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "キオ23": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "タユ27": {"activity": "土器づくり", "place": "camp", "why": "夏の刈り入れ前に土器を用意するため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えが五百六十日分ほどある夏は、毎夕畑を刈って土器にしまい、ヤギを少しつぶして草の不足をやわらげる", "because": [1549656], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い年",
+ "feeling": "蓄えは十分で落ち着いている。草が足りないヤギのことが少し気がかりだ。"}

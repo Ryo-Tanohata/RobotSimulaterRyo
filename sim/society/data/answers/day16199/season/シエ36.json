@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑の草の種を刈ってしまおう。落ちてしまう前にね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れる"}, "family": {"ナセ36": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを一緒に手伝う"}, "ホタ36": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋のまき付けのあと畑の世話をする"}, "family": {"ナセ36": {"activity": "畑仕事", "place": "camp", "why": "畑の世話をする"}, "ホタ36": {"activity": "畑仕事", "place": "camp", "why": "畑の世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで次の実りを増やす"}, "family": {"ナセ36": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ホタ36": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実りの前に草取りを続ける"}, "family": {"ナセ36": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ホタ36": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い夏の年",
+ "mood": "蓄えは十分にあるので落ち着いている。雨の夜に外で濡れるのが少しつらい。"}

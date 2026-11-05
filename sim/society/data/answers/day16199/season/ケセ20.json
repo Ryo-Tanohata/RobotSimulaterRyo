@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈ろう。落ちたらもったいない。冬は魚とけもので食いつなげる。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"ユエ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ケセ23": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "テナ26": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で肉を得られる"}, "ラキ28": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で肉を得られる"}, "ロワ28": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ヒセ30": {"activity": "採集", "place": "camp", "why": "採集が得意で木の実を集める"}}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "冬に備えて木の実を集めるため"}, "family": {"ユエ22": {"activity": "採集", "place": "camp", "why": "冬に備える"}, "ケセ23": {"activity": "採集", "place": "camp", "why": "冬に備える"}, "テナ26": {"activity": "狩り", "place": "北丘12", "why": "肉を得る"}, "ラキ28": {"activity": "狩り", "place": "北丘12", "why": "肉を得る"}, "ロワ28": {"activity": "採集", "place": "camp", "why": "冬に備える"}, "ヒセ30": {"activity": "採集", "place": "camp", "why": "冬に備える"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も獣はいるので肉を得る"}, "family": {"ユエ22": {"activity": "狩り", "place": "北丘12", "why": "冬も獲物がいる"}, "ケセ23": {"activity": "狩り", "place": "北丘12", "why": "冬も獲物がいる"}, "テナ26": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ラキ28": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ロワ28": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ヒセ30": {"activity": "休む", "place": "camp", "why": "乳飲み子がいて冬は無理をしない"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで夏の実りを増やすため"}, "family": {"ユエ22": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケセ23": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "テナ26": {"activity": "狩り", "place": "北丘12", "why": "肉を得る"}, "ラキ28": {"activity": "狩り", "place": "北丘12", "why": "肉を得る"}, "ロワ28": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヒセ30": {"activity": "採集", "place": "camp", "why": "木の実を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "病と赤子の年",
+ "feeling": "蓄えは十分ある。畑を刈って、あとは静かに暮らしたい。"}

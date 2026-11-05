@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑の草の種をしっかり刈ろう。落ちてしまっては惜しいからね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ムイ24": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ホタ27": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉を取ってくる"}, "ルタ28": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りで実りを増やすため"}, "family": {"ムイ24": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ホタ27": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を得る"}, "ルタ28": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬のあいだも畑の草取りを続けるため"}, "family": {"ムイ24": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ホタ27": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいるので狩りに行く"}, "ルタ28": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため草取りを続ける"}, "family": {"ムイ24": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ホタ27": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉を取ってくる"}, "ルタ28": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": true, "ほかの村から": true},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "畑の草の種は夏のうちに刈らないと落ちてしまうので、夏は刈り入れを急ぐ", "because": [1549643], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い年",
+ "mood": "蓄えは十分あるので安心している。畑をしっかり刈って、みんなで冬を迎えたい。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏は夕に畑を刈り、昼は土器を焼こう。ヤギは草が足りないから、肉にして減らそう。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れると草の種が虫やネズミに食べられにくい。昼は土器を焼き、夕に刈る"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夕に刈って落とさない"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で手が早いので刈り入れに回る"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手"}, "セヤ29": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手"}, "ワユ30": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手"}, "ソナ31": {"activity": "畑仕事", "place": "camp", "why": "子も草を刈って手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 60},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えを守る土器を焼き続ける"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の世話"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "セヤ29": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ワユ30": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ソナ31": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は実りがないので土器を焼いて蓄えを守る"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで夏の実りが増える"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "冬の草取り"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "冬の草取り"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "冬の草取り"}, "セヤ29": {"activity": "畑仕事", "place": "camp", "why": "冬の草取り"}, "ワユ30": {"activity": "畑仕事", "place": "camp", "why": "冬の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えを虫やネズミから守るため土器を焼く"}, "family": {"ナセ21": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "ワユ22": {"activity": "畑仕事", "place": "camp", "why": "春の草取り"}, "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "春の草取り"}, "オセ28": {"activity": "畑仕事", "place": "camp", "why": "春の草取り"}, "セヤ29": {"activity": "畑仕事", "place": "camp", "why": "春の草取り"}, "ワユ30": {"activity": "畑仕事", "place": "camp", "why": "春の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は昼に土器を焼き夕に畑を刈る。秋に千つかみまき、冬と春に草取りをする。ヤギは草が足りないので肉にして減らす。", "because": [1549656], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせた年",
+ "feeling": "蓄えは十分で落ち着いている。土器を焼いて守りたい。"}
