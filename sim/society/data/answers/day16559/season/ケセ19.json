@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだ山ほど残っている。落ちる前に、手の空いた人は毎夕刈ろう。秋と冬は私が黒い金属の鎌を打ちためるよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が大量に残っていて、夏のうちに刈らないと落ちるから"}, "family": {"タユ25": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに畑を刈り切るため"}, "セオ25": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに畑を刈り切るため"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が多いほどよい"}, "タユ30": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手に"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手に"}, "ロワ33": {"activity": "畑仕事", "place": "camp", "why": "子でも半分の働きで刈り入れを助けられる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "黒い金属の鎌を作りためて、来年の夏に刈り切るため"}, "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "作り手を絶やさず、鎌を多く作るため"}, "セオ25": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の世話と刈り入れの準備"}, "タユ26": {"activity": "採集", "place": "南川12", "why": "冬に備えて食べ物を集める"}, "タユ30": {"activity": "採集", "place": "南川12", "why": "冬に備えて食べ物を集める"}, "キサ31": {"activity": "採集", "place": "南川12", "why": "冬に備えて食べ物を集める"}, "ロワ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "冬は実りがない分、鎌づくりに専念できるから"}, "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "鎌を多く作りためるため"}, "セオ25": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで夏の実りを減らさないため"}, "タユ26": {"activity": "狩り", "place": "北川12", "why": "冬も魚はいるので食べ物を足す"}, "タユ30": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ロワ33": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "夏の刈り入れまでに鎌をできるだけ増やすため"}, "family": {"タユ25": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "鎌を増やすため"}, "セオ25": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "タユ26": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれ、世話が足りないとヤギがいなくなる"}, "タユ30": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ロワ33": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": "村", "max": 3000, "not": [], "利子": 0.2}, "demand": null, "share": null, "metal": "使う", "far": {"M17": "受けない"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は膨大に残っている。夏のうちに毎夕刈り、秋と冬と春は黒い金属の鎌を作りためる。", "because": [1617070], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "黒い鎌の年"
+}

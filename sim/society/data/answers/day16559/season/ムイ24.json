@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに、実った畑をみんなで刈ろうね。落ちてしまう前に。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ホタ27": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ルタ28": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "アコ32": {"activity": "畑仕事", "place": "camp", "why": "手伝い"}, "タユ33": {"activity": "畑仕事", "place": "camp", "why": "手伝い"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "得意の採集で食べ物を集める"}, "family": {"ホタ27": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ルタ28": {"activity": "採集", "place": "camp", "why": "採集が得意"}, "アコ32": {"activity": "畑仕事", "place": "camp", "why": "手伝い"}, "タユ33": {"activity": "畑仕事", "place": "camp", "why": "手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りで実りを増やす"}, "family": {"ホタ27": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ルタ28": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "アコ32": {"activity": "畑仕事", "place": "camp", "why": "手伝い"}, "タユ33": {"activity": "畑仕事", "place": "camp", "why": "手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りを続ける"}, "family": {"ホタ27": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ルタ28": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "アコ32": {"activity": "畑仕事", "place": "camp", "why": "手伝い"}, "タユ33": {"activity": "畑仕事", "place": "camp", "why": "手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "far": {"M17": "受けない"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は夏のうちに刈らないと落ちてしまう", "because": [1617070], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "子がたくさん亡くなった年",
+ "feeling": "蓄えは多いけれど、小さな子たちが亡くなったのが悲しい。みんなで畑を守りたい。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈り切ろう。落ちてしまう前に、みんなで毎夕刈ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"ムイ28": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ヌオ29": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ケセ30": {"activity": "畑仕事", "place": "camp", "why": "狩りが苦手なので畑を刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の世話と刈り入れの続き"}, "family": {"ムイ28": {"activity": "採集", "place": "camp", "why": "木の実が実る秋に家の食べ物を集める"}, "ヌオ29": {"activity": "採集", "place": "camp", "why": "木の実が実る秋に家の食べ物を集める"}, "ケセ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると翌夏の実りが増えるから"}, "family": {"ムイ28": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいるので狩りで食べ物を得る"}, "ヌオ29": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいるので狩りで食べ物を得る"}, "ケセ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて夏の実りを増やす"}, "family": {"ムイ28": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ヌオ29": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ケセ30": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "far": {"M17": "受けない"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を毎夕刈り、秋にまき、冬と春は草取りをする。蓄えは十分にある。", "because": [1617070], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がよく実った年",
+ "feeling": "蓄えは多くて安心だ。今年も畑を大事にしたい。"}
