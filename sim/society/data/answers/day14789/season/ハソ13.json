@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、秋のうちに畑にしっかりまいて、冬と春は交代で草取りをしよう。わたしはうちの家族と一緒に畑を見るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが3割になってしまう。次の夏の実りのために畑を育てたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ワユ19": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、畑の草取りを人手多くやる方が次の夏に効く"},
+  "ナセ22": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"},
+  "セヤ24": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"},
+  "ムイ24": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるのでキャンプのそばの畑で働く"},
+  "ネイ25": {"activity": "畑仕事", "place": "camp", "why": "14歳なので半人前として草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に草の種を1000つかみずつ畑にまき、家族みんなで冬と春に草取りをすると、次の夏にまた実る", "because": [1345883], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。畑をきちんと育てて、次の夏の実りを楽しみにしている。"}

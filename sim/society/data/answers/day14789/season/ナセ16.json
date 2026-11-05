@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。今年も秋のうちに畑に種をまいて、草取りをみんなでやろう。ヤギも草に比べて多いから、少しつぶして肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、まいた畑の世話をする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "family": {
+  "キサ18": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして畑の実りを守る"},
+  "ソナ19": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして畑の実りを守る"},
+  "キサ23": {"activity": "畑仕事", "place": "camp", "why": "技能が低くても草取りならできる"},
+  "ヒセ23": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やす"},
+  "ソワ23": {"activity": "畑仕事", "place": "camp", "why": "草取りなら慣れていなくてもできる"},
+  "タユ24": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑を手伝う"},
+  "シエ25": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑を手伝う"},
+  "ユエ25": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑を手伝う"},
+  "セオ26": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑を手伝う"},
+  "ルタ26": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑を手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。畑とヤギの数が気がかりなので、手を動かしたい。"}

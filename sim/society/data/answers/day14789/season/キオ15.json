@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "ヤギはまだ草より多い。オスを少しつぶして干し肉にしておけば、冬にやせて消えるよりましだ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをしておけば、夏の実りが減らずにすむから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギが 160 頭いて草で養えるのが 140 頭ほどだと、季節ごとに 7 頭ほどやせていなくなる", "because": [1346201], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L423", "against": "", "agree": true, "reason": "畑にまいて、多すぎるヤギを干し肉にするのは、村の食べ物を守るから"}],
+ "feeling": "疲れはあるが、畑をしっかり世話して冬をこえたい。"}
