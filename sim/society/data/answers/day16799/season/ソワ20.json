@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を毎夕刈ろう。秋にまいて、冬と春は草取りだよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"ホタ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ネイ26": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ユエ30": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ヌオ33": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "ホタ33": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話を始める"}, "family": {"ホタ22": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ネイ26": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ユエ30": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヌオ33": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}, "ホタ33": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りが夏の実りを増やす"}, "family": {"ホタ22": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ネイ26": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ユエ30": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ33": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}, "ホタ33": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りを増やす"}, "family": {"ホタ22": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ネイ26": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ユエ30": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ33": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}, "ホタ33": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "far": {"M18": "受けない"}, "far_write": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を毎夕刈り、秋にまき、冬と春は草取りをする。", "because": [1660823], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い年",
+ "feeling": "蓄えは多い。今年も畑を大事に働こう。"}
