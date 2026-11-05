@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にある。わたしは土器を焼いて、冬の前に種を入れる器を増やすよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。器に入れておけば草の種が虫に食べられにくい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ハソ41": true},
+ "family": {
+  "シエ30": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、冬の前に肉を確保できる"},
+  "トナ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、シエ30と組んで獲物を狙う"},
+  "テナ31": {"activity": "採集", "place": "東林12", "why": "採集が得意で、木の実を集められる"},
+  "ヒセ32": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして実りを増やす"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。冬に向けて静かに土器を作りたい。"}

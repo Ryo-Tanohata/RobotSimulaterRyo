@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬の前に、まだ行っていない北の丘のほうを歩いてみるよ。何か面白い物が見つかったら持ち帰るね。"}],
+ "job": {"activity": "探索", "place": "北丘12", "with": [], "why": "蓄えは十分あるので、まだ知らない物を探しに行きたい。"},
+ "sow": 300, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 2,
+ "accept": {"ハソ41": true},
+ "family": {"アコ19": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬に備えて続ける。"}, "リセ25": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬の肉を取ってくる。"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T235": false}, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種はとても多く、約690日分ある。ヤギは養える数より多いので、少しずつ肉にして減らすとよい。", "because": [1648675], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は元気で、冬の前にまだ見ぬ場所を歩けるのが楽しみだ。"}

@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "この秋もみんなで種をまいて、冬と春は交代で草取りをしよう。わたしも畑に出るよ。"}, {"to": "ハソ41", "text": "南西から遠くまでよく来たね。住まいのことで困ったら声をかけて。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りが足りないと実りが減るから、続けて畑を見る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 1, "accept": {"ハソ41": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T235": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ワユ3の村は、借りた草の種を少しずつ返しに来ることもある", "because": [1648688], "confidence": 0.6}, {"op": "add", "text": "ヤギが草で養える数より 5 頭ほど多いと、1 季節に 2 頭ほどがやせていなくなる", "because": [1648675], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L431", "against": "", "agree": true, "reason": "みんなで種をまいて草取りをすれば、次の夏にたくさん刈れるから"},
+  {"id": "L433", "against": "", "agree": true, "reason": "世話をする人がいれば、ヤギがいなくならないから"},
+  {"id": "L435", "against": "", "agree": true, "reason": "種まきと草取り、余ったヤギを肉にするのはよいこと"},
+  {"id": "L439", "against": "", "agree": true, "reason": "草が足りないから、多すぎる分は肉にしたほうがいい"},
+  {"id": "L440", "against": "", "agree": true, "reason": "やせて消えるより干し肉にしたほうがいい"},
+  {"id": "L442", "against": "", "agree": true, "reason": "畑にまく量をみんなで決めておくと迷わない"},
+  {"id": "L444", "against": "養える数は 140 頭ほどで、110 頭はつぶしすぎかもしれない", "agree": false, "reason": "いまの養える数に合わせたほうがいい"},
+  {"id": "L445", "against": "養える数は 140 頭ほどで、110 頭はつぶしすぎかもしれない", "agree": false, "reason": "いまの養える数に合わせたほうがいい"},
+  {"id": "L446", "against": "", "agree": true, "reason": "覚えちがいで少なく返されることがあったから"},
+  {"id": "L447", "against": "", "agree": true, "reason": "ワユ3の村はまだ返していない分があるから、板に残しておきたい"},
+  {"id": "L449", "against": "", "agree": true, "reason": "種まき、草取り、ヤギの世話がそろっているから"}
+ ],
+ "feeling": "疲れているけれど、畑が実るのを思うと力が出る。"}
