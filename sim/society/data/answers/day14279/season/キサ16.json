@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに畑を刈り切ろう。刈り残すと落ちてしまうからね。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるので刈り入れる"},"family":{"アコ19":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手に"},"ホタ21":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手に"},"トナ24":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"畑の草取りで実りを増やす"},"family":{"アコ19":{"activity":"畑仕事","place":"camp","why":"草取り"},"ホタ21":{"activity":"採集","place":"camp","why":"木の実を集めて食べ物を増やす"},"トナ24":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器づくりが得意で、蓄えを守る土器を増やす"},"family":{"アコ19":{"activity":"畑仕事","place":"camp","why":"草取り"},"ホタ21":{"activity":"狩り","place":"南川12","why":"冬も魚やけものはいるので狩りをする"},"トナ24":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の実りのため草取りを続ける"},"family":{"アコ19":{"activity":"畑仕事","place":"camp","why":"草取り"},"ホタ21":{"activity":"ヤギの世話","place":"camp","why":"乳がとれる"},"トナ24":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":"使う",
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"畑を刈り切った年",
+"mood":"蓄えは十分。落ち着いて働こう。"}
