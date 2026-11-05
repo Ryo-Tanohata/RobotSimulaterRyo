@@ -819,6 +819,9 @@ def _inherit(state, dead):
 G5_P, G5_MAX_P, MAX_NEW, TALK_MAX, DROP_AGE = 0.3, 0.9, 3, 2, 4
 FEAST_DAYS, TRAMPLE, FREE_DAYS, REAP_SHARE, MAX_PAY = 3, 0.2, 10, 0.1, 1000
 LEAVE_P, BANDY, MIN_HOMES, MIN_ADULTS = 0.5, 30, 3, 6
+# 本人の決め 2026-11-05 (124年の終わりにワユ3の家 36 人が、一度も集まりで話し合えないまま出ていった): 1 年ごとの集まり (G7 から) では、季節の集まりのない季節が多い。
+#   この日からは、答えのある集まりで一度は話し合った (met) もめごとだけで家が出ていく。前の日までの村 (写しをふくむ) は 1 バイトも変わらない
+LEAVE_TALK_FROM = 14999  # 話し合いを数えはじめる日 (125年の年の集まり)。出ていく決まりは、その次の日から
 GRAIN = UNITS["草の種"][1]
 DAY_FOOD = BASE_KCAL + 500  # 大人 1 人の 1 日分 (_need と同じ)
 OPEN = "収まっていない"
@@ -1017,6 +1020,8 @@ def _g5_season_end(state, frac):
     pop = sum(1 for q in state["people"] if q["alive"])
     if g["feast_day"] != e2.get("step_day") and (g["last_fission"] is None or day - g["last_fission"] >= YEAR):
         for d in stale:
+            if day > LEAVE_TALK_FROM and not d.get("met"):  # 集まりで一度も話し合っていない (本人の決め 2026-11-05)
+                continue
             if _can_leave(state, d["from"]) and rng.random() < LEAVE_P * min(1.0, pop / BANDY) * frac:
                 _split(state, d)
                 break
@@ -1197,6 +1202,8 @@ def _g5_meeting(state, c, n, how="集まり"):
         if talked >= TALK_MAX and not rec:
             continue
         talked += 0 if rec else 1
+        if how == "集まり" and state["day"] >= LEAVE_TALK_FROM:
+            d["met"] = state["day"]
         if rec:
             _g6_check(state, d)
         tally = {k: len(s) for k, s in c["judge"].get(d["id"], {}).items()}
