@@ -1,6 +1,8 @@
 {
   "_about": "研究ダッシュボード (sim/society/app/research.html) の手で書いた文。数はみな src の文書にあるものだけ。build_research_dashboard.py --check で、文の中の数が src にあるかを確かめる。作り直し: python3.13 sim/society/tools/build_research_dashboard.py",
-  "asof": "2026-11-04",
+  "asof": "2026-11-05",
+  "village_note": "G10 を 1 年ずつ回している",
+  "reports_note": "本物の村の 1 年ごとのようす (条件の進み・人と暮らし・起きたこと)。スマホで読めるやさしい日本語のページ。118年は G9 の最後の年、119年からは G10。",
   "title": "研究ダッシュボード: 川辺の村と人間らしさ",
   "cite_note": "外から持ってきた研究には〔 〕の印をつけた。くわしくは下の出典の欄。",
   "purpose": {
@@ -10,12 +12,15 @@
 
   "status": {
     "running": [
-      {"text": "いま回っているものはない。本物の村は 108年120日目 (13079 日目) で止まっている。", "src": ["sim/society/HANDOFF.md"]},
-      {"text": "G9 の 4 年で、遠くの町の運ぶ人は 1 回も来なかった。来る見込みを 0.1 から 0.5 にした (本人の決め 2026-10-29)。", "src": ["sim/society/HANDOFF.md"]},
-      {"text": "修士論文〔田之畑 2017 (修士論文)〕の元データは、もうない (本人 2026-10-31)。人間とのくらべは、論文に載った主成分の表 3 だけでする。", "src": ["docs/research/humanity/thesis2017_questionnaire.md"]},
+      {"text": "本物の村は G10「鉄と広い国」を 1 年ずつ回している。119〜124年の 6 年が済んだ (124年120日目まで)。G10 の 3 つの条件 (黒い金属の道具・字を読み書きできる人・広いまとまり) は、まだどれも届いていない。", "src": ["sim/society/reports/year119.html", "sim/society/reports/year124.html", "sim/society/app/tech_tree.html"]},
+      {"text": "124年に、人は 204 人から 173 人にへった。もめごとが収まらないまま 2 季節たち、家ごと 36 人が村を出たため (飢えはない。蓄えは 531 日分)。", "src": ["sim/society/reports/year124.html"]},
+      {"text": "G10 の 1 年に使ったトークン: 119年 約 514 万・120年 約 597 万・121年 約 634 万・122年 約 719 万・123年 約 604 万・124年 約 575 万。どの年も 1 年の線 (1,500 万) の下。", "src": ["sim/society/reports/year119.html", "sim/society/reports/year120.html", "sim/society/reports/year121.html", "sim/society/reports/year122.html", "sim/society/reports/year123.html", "sim/society/reports/year124.html", "docs/society_phase/G10_design.md"]},
+      {"text": "G9「遠くとの商い」は 118年120日目 (14279 日目) に、本人の決め (お任せ) で閉じた。c1 は届き、c2・c3 は 14 年 (105〜118年) 届かなかった。第 5 部もここで終わった。", "src": ["sim/society/techtree/plan.json", "sim/society/reports/year118.html"]},
+      {"text": "G10 には 14279 日目に入った。コードは確かめてから入れた: 前の歩のやり直しは本物と 1 バイトも同じ、決まりの村と決まりの地域でも確かめた (G10_check.md)。", "src": ["docs/society_phase/G10_check.md", "sim/society/techtree/plan.json"]},
+      {"text": "いま書いているもの: G9 の評価 (G9.md) と第 5 部のまとめ (part5.md)。G9 の動画は、まだ作っていない。", "src": ["sim/society/HANDOFF.md", "docs/society_phase/G10_design.md"]},
+      {"text": "実験 4 (村人が「取る」を選ぶ) は済んだ。写しの村 B0 の 1 年目 (12599 → 12719 日目) を回し、結果をまとめて論文 2 に入れた。約 1,146 万トークン。2・3 年目と B1 は回さない (本人「お任せします」(2026-11-04) を受けて、1 年目でやめると決めた)。", "src": ["docs/research/humanity/paper2_exp4_results.md", "docs/research/humanity/paper2_exp4_prereg.md"]},
       {"text": "実験 3 の写しの村 3 つは、3 年を回し終えた (12599 → 12959)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
-      {"text": "本物の村 (G9) を 1 年ずつ続けている (本人 2026-11-04「おすすめで」)。109年は約 431 万トークン。遠くの運ぶ人は来ず、青銅の道具は 1 年 20 人日 (線は 30)。", "src": ["sim/society/HANDOFF.md"]},
-      {"text": "実験 4 (村人が「取る」を選ぶ) は、写しの村 B0 の 1 年目 (12599 → 12719 日目) を回して止めた。約 1,146 万トークン。2・3 年目と B1 は回さない (本人「お任せします」(2026-11-04) を受けて、1 年目でやめると決めた)。", "src": ["docs/research/humanity/paper2_exp4_results.md", "docs/research/humanity/paper2_exp4_prereg.md"]}
+      {"text": "修士論文〔田之畑 2017 (修士論文)〕の元データは、もうない (本人 2026-10-31)。人間とのくらべは、論文に載った主成分の表 3 だけでする。", "src": ["docs/research/humanity/thesis2017_questionnaire.md"]}
     ],
     "decide": [
       {"text": "実験 4 は 1 年目で止めた。この先も回さないでよいか。回すなら、2・3 年目を足すより、モデルと役を分ける組 (気持ちの人も sonnet にするなど) を新しい事前登録で。", "src": ["docs/research/humanity/paper2_exp4_results.md"]}
@@ -47,7 +52,7 @@
         "54 問の英訳の確かめ",
         "わけの分け方を、人がもう 1 人で確かめる",
         "赤い [TODO] を消し、arXiv の分野を決める",
-        "修士論文〔田之畑 2017 (修士論文)〕のインタビューから出た所を本人が確かめる (2026-10-31 に確かめ済み)"
+        "論文 2 の「弱い立場」の段落 (5.1 節。修士論文〔田之畑 2017 (修士論文)〕のインタビューから出た所) を、本人が目で確かめる (インタビューから出た所は 2026-10-31 に一度確かめた)"
       ]
     }
   },
@@ -64,7 +69,8 @@
     {"id": "G8", "range": "70年120日目〜90年120日目", "name": "G8 外からの押し (20 年)", "text": "北の大きな村に毎年 2,340 つかみを払った。10 年目に条件 1 (段 3) がそろった。村は従う側。", "src": ["docs/society_phase/G8.md"]},
     {"id": "G8h", "range": "90年120日目〜100年120日目", "name": "G8 重い押し (10 年)", "text": "求めは刈り入れの 10 割。10 年で 8 回払い、2 回やめた。村の蓄えは 304 万 → 26.7 万。", "src": ["docs/society_phase/G8_heavy.md"]},
     {"id": "G8c", "range": "100年120日目〜104年120日目", "name": "G8 の続き (4 年)", "text": "103年の春に村の蓄えが尽き、103年に 16 人が亡くなった (子 12)。貢ぎをやめ、村は国の外にもどった。", "src": ["docs/society_phase/G8_heavy.md"]},
-    {"id": "G9", "text": "赤い金属の刃を「使う」と決めた (蓄え約 23 日分)。4 年で遠くの運ぶ人は来なかった。", "src": ["docs/research/humanity/part2_technology.md", "sim/society/HANDOFF.md"]}
+    {"id": "G9", "text": "赤い金属の刃を「使う」と決めた (蓄え約 23 日分)。はじめの 4 年は遠くの運ぶ人が来ず、来る見込みを 0.1 から 0.5 にした。c1 は届き、c2・c3 は 14 年届かなかった。本人の決め (お任せ) で閉じ、第 5 部もここで終わった。", "src": ["docs/research/humanity/part2_technology.md", "sim/society/HANDOFF.md", "sim/society/techtree/plan.json"]},
+    {"id": "G10", "text": "目標は、黒い金属の道具・字を読み書きできる人・広いまとまり。119〜124年は、どの条件もまだ届かない (村で作った黒い金属の鎌 0 本・読み書きできる大人 0 人)。124年に、もめごとから家ごと 36 人が村を出て、人は 173 人に。", "src": ["docs/society_phase/G10_design.md", "sim/society/reports/year124.html"]}
   ],
 
   "timeline_research": [
@@ -76,11 +82,13 @@
     {"date": "2026-10-29", "name": "論文 1 の下書き", "text": "LLM の村は人類史をたどるか (英語、20 ページ)。", "src": ["paper/paper1/README.md", "paper/paper1/要約_ja.md"]},
     {"date": "2026-10-29", "name": "論文 2・実験 1 (アンケート)", "text": "LLM 290 人。人格の言葉だと、ばらつきが 1 本の「厳しさ」の軸になる。", "src": ["docs/research/humanity/paper2_exp1_results.md"]},
     {"date": "2026-10-29", "name": "論文 2・実験 2 (アンケート)", "text": "暮らし・立場を持たせた 230 人。ばらつきの形が人間の範囲に入った。", "src": ["docs/research/humanity/paper2_exp2_results.md"]},
-    {"date": "2026-10-30", "name": "論文 2 の下書き", "text": "性格の言葉か、暮らしの事情か (英語。2026-10-31 に実験 2b・2c・3 を入れて 18 ページ)。", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md"]},
+    {"date": "2026-10-30", "name": "論文 2 の下書き", "text": "性格の言葉か、暮らしの事情か (英語)。2026-10-31 に「2 つの層」(厳しさのつまみと、中身に合わせた動き) に組み直し、実験 2b・2c・3 を入れた。2026-11-04 に実験 4 を入れて 24 ページ。", "src": ["paper/paper2/README.md", "paper/paper2/要約_ja.md"]},
     {"date": "2026-10-30", "name": "論文 2・実験 3 (写しの村)", "text": "村の中では、暮らしやまわりの様子を足しても選びは変わらなかった (6 つとも支持しない)。", "src": ["docs/research/humanity/paper2_exp3_results.md"]},
     {"date": "2026-10-31", "name": "論文 2・実験 2b (アンケート)", "text": "様子の中身を借りた物に変えると、答えは動いたが、第 1 主成分 (厳しさの軸) は動かなかった。D2 の権利意識との一致は、くり返しても出た。", "src": ["docs/research/humanity/paper2_exp2b_results.md"]},
     {"date": "2026-10-31", "name": "論文 2・実験 2c (アンケート)", "text": "過去の出来事を渡すと、その領域の答えだけが動いた。第 1 主成分 (厳しさ) は変わらなかった。", "src": ["docs/research/humanity/paper2_exp2c_results.md"]},
-    {"date": "2026-11-04", "name": "論文 2・実験 4 (写しの村、1 年目だけ)", "text": "村の人が「取る」を選べると、取るかはモデルで分かれた: haiku は 59 のうち 57 が取り、代表 (sonnet・opus) は 41 の答えで 1 度も取らなかった。修士論文〔田之畑 2017 (修士論文)〕に合わせた条件の差は、1 年目では見えなかった。", "src": ["docs/research/humanity/paper2_exp4_results.md"]}
+    {"date": "2026-11-04", "name": "G10「鉄と広い国」の設計と確かめ", "text": "本人の決め (お任せ)。黒い金属を作る・音の字と読み書き・広いまとまりの物差しなど、小さな仕組み 4 つと札 1 枚。前の歩のやり直しは 1 バイトも同じ。", "src": ["docs/society_phase/G10_design.md", "docs/society_phase/G10_check.md"]},
+    {"date": "2026-11-04", "name": "論文 2・実験 4 (写しの村、1 年目だけ)", "text": "村の人が「取る」を選べると、取るかはモデルで分かれた: haiku は 59 のうち 57 が取り、代表 (sonnet・opus) は 41 の答えで 1 度も取らなかった。修士論文〔田之畑 2017 (修士論文)〕に合わせた条件の差は、1 年目では見えなかった。", "src": ["docs/research/humanity/paper2_exp4_results.md"]},
+    {"date": "2026-11-05", "name": "G9 を閉じ、G10 に入った", "text": "118年120日目 (14279 日目)。年報 (1 年に 1 枚) を作りはじめた。", "src": ["sim/society/techtree/plan.json", "sim/society/reports/year118.html"]}
   ],
 
   "findings": [
@@ -208,12 +216,20 @@
     {"label": "論文 2・実験 3", "man": 6580, "text": "約 6,580 万", "src": "docs/research/humanity/paper2_exp3_results.md"},
     {"label": "論文 2・実験 4 (B0 の 1 年目だけ)", "man": 1146, "text": "約 1,146 万", "src": "docs/research/humanity/paper2_exp4_results.md"},
     {"label": "Society 1.0・G1〜G6", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"},
-    {"label": "G9 の 4 年 (105〜108年)", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"}
+    {"label": "G9 の 4 年 (105〜108年)", "man": null, "text": "記録なし", "src": "paper/paper1/README.md"},
+    {"label": "G9 の 109〜114年 (6 年)", "man": 2827, "text": "約 2,827 万", "src": "docs/society_phase/G10_design_draft.md"},
+    {"label": "G10 の 119年", "man": 514, "text": "約 514 万", "src": "sim/society/reports/year119.html"},
+    {"label": "G10 の 120年", "man": 597, "text": "約 597 万", "src": "sim/society/reports/year120.html"},
+    {"label": "G10 の 121年", "man": 634, "text": "約 634 万", "src": "sim/society/reports/year121.html"},
+    {"label": "G10 の 122年", "man": 719, "text": "約 719 万", "src": "sim/society/reports/year122.html"},
+    {"label": "G10 の 123年", "man": 604, "text": "約 604 万", "src": "sim/society/reports/year123.html"},
+    {"label": "G10 の 124年", "man": 575, "text": "約 575 万", "src": "sim/society/reports/year124.html"}
   ],
 
   "next": [
     {"name": "実験 4: 村人が「取る」を選べる世界", "text": "1 年目で止めた (B0 だけ)。取るかはモデルで分かれた。2・3 年目と B1 は回さない。回すなら、モデルと役を分ける組を新しい事前登録で。", "cost": "1 年目 約 1,146 万トークン (使った)。2・3 年目は約 1,130 万 (見積もり。回さない)", "src": ["docs/research/humanity/paper2_exp4_results.md", "docs/research/humanity/paper2_exp4_prereg.md"]},
-    {"name": "G9 を続ける (1 年ずつ)", "text": "遠くの運ぶ人の来る見込み 0.5 で、109年から。1 年 1,500 万トークンをこえたら止める。10 年か合わせて 1 億で相談。", "cost": "1 年 約 600〜800 万トークン (見込み。109年は約 431 万)", "src": ["docs/society_phase/G9_design.md", "docs/society_phase/G9_design_draft.md", "sim/society/HANDOFF.md"]},
+    {"name": "G10 を続ける (1 年ずつ)", "text": "1 年ごとに年報で報告する。1 年 1,500 万トークンをこえたら止める。10 年か合わせて 1 億で相談。条件 1・2 の道が 2 年つづけてお題に出なければ、止めて相談 (道の見張り)。", "cost": "1 年 約 600〜800 万トークン (見込み。119〜124年は 約 514 万〜719 万)", "src": ["docs/society_phase/G10_design.md", "sim/society/reports/year119.html", "sim/society/reports/year122.html", "sim/society/reports/year124.html"]},
+    {"name": "G9 の評価・第 5 部のまとめ・G9 の動画", "text": "G9.md と part5.md は、いま書いている。G9 の動画はまだ。", "cost": "まとめはトークンほとんどなし", "src": ["sim/society/HANDOFF.md", "docs/society_phase/G10_design.md"]},
     {"name": "人とくらべる", "text": "本物の人 20〜30 人に同じ場面を答えてもらう。「LLM は人より協力的でやさしい」かを初めて確かめられる。小さな社会の経済ゲームの人のデータ〔Henrich ほか 2005〕も物差しになる。", "cost": "トークンはほとんど要らない", "src": ["docs/research/humanity/README.md"]},
     {"name": "お題のかたよりを外す", "text": "空欄のときの手を逆にする・前の例を消す・裁く側と裁かれる側を入れ替える。", "cost": "約 1,450 万トークン", "src": ["docs/research/humanity/README.md"]},
     {"name": "モデルをくらべる", "text": "53 年の写しから 5 年、haiku だけ・sonnet だけ・opus だけ・今の混ぜ方。", "cost": "約 1.2 億トークン", "src": ["docs/research/humanity/README.md"]}

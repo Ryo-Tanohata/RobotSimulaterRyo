@@ -11,7 +11,8 @@
     sim/society/app/tech_tree.html の tt-data (フェーズ・テクノロジーツリーの数)、
     sim/society/tools/survey/out/summary.md・out_exp2/summary.md (第 1 主成分・H8)、
     docs/research/humanity/data/exp3/summary.md (実験 3 の組ごとの数)、
-    paper/paper*/README.md (ページ数・本人の TODO の数)、docs/youtube_upload.md (上げた動画)
+    paper/paper*/README.md (ページ数・本人の TODO の数)、docs/youtube_upload.md (上げた動画)、
+    sim/society/reports/yearNNN.html (1 年ごとの年報。tools/year_report.py が作る。リンクとフェーズだけ読む)
   - 出典の一覧: sim/society/tools/references.json (build_references.py が作る。人が読む形は docs/research/references.md)。
     手で書いた文の〔名前〕は、この一覧の label につなぐ。--check は、文に出てくる外の研究の名前がみな一覧にあり、〔 〕の印がついているかも確かめる
 ダッシュボード (dashboard.html) のデータには入れない (【シ】の決まり)。
@@ -36,6 +37,7 @@ SRC_EXP2 = "sim/society/tools/survey/out_exp2/summary.md"
 SRC_EXP3 = "docs/research/humanity/data/exp3/summary.md"
 SRC_YT = "docs/youtube_upload.md"
 SRC_HANDOFF = "sim/society/HANDOFF.md"
+SRC_REPORTS = "sim/society/reports"
 
 
 def rd(rel):
@@ -115,6 +117,17 @@ def parse_paper(rel):
     todo = t.split("## TODO for the author")[1]
     n = len(re.findall(r"^\d+\. ", todo, re.M))
     return pages, n
+
+
+def load_reports():
+    """年報 (sim/society/reports/yearNNN.html) の一覧。年とフェーズ。"""
+    out = []
+    for f in sorted((ROOT / SRC_REPORTS).glob("year[0-9]*.html")):
+        t = f.read_text(encoding="utf-8")
+        y = int(re.search(r"year(\d+)\.html$", f.name).group(1))
+        ph = re.search(r"フェーズ (G\d+)", t)
+        out.append({"year": y, "file": f.name, "era": ph.group(1) if ph else ""})
+    return out
 
 
 def count_youtube():
@@ -335,8 +348,11 @@ def build():
     p2_pages, p2_todo = parse_paper("paper/paper2/README.md")
     yt_all, yt_up = count_youtube()
     handoff = rd(SRC_HANDOFF)
-    last = seasons[-1]
+    reports = load_reports()
     asof = tt["asof"]
+    # 本物の村が回っているあいだは、季節の記録がテクノロジーツリーより先に進んでいることがある。テクノロジーツリーの日にそろえる
+    seasons = [r for r in seasons if r["day"] <= asof["day"]]
+    last = seasons[-1]
     assert asof["day"] == last["day"], (asof, last)
     assert "108年120日目 (13079 日目)" in handoff
     assert p1_todo == len(C["status"]["paper1_todo"]["items"]), (p1_todo, "paper1 の TODO の数が content と合わない")
@@ -378,9 +394,9 @@ def build():
 
     # 2. 数のタイル
     tiles = [
-        ("村の日", asof["date"], "%s 日目・%s 人・%s %s (止まっている)" % (asof["day"], last["pop"], asof["era"], asof["era_name"]),
-         [SRC_TT, SRC_SEASON, SRC_HANDOFF]),
-        ("走らせた年数", "108 年", "0年1日目 → %s。季節の記録 %d" % (asof["date"], len(seasons)), [SRC_SEASON, "paper/paper1/要約_ja.md"]),
+        ("村の日", asof["date"], "%s 日目・%s 人・%s %s (%s)" % (asof["day"], last["pop"], asof["era"], asof["era_name"], C["village_note"]),
+         [SRC_TT, SRC_SEASON]),
+        ("走らせた年数", "%d 年" % ((asof["day"] + 1) // 120), "0年1日目 → %s。季節の記録 %d" % (asof["date"], len(seasons)), [SRC_SEASON, SRC_TT]),
         ("実験", "%d" % n_exp, "国の研究 %d (A1・A2・B・C) + 論文 2 の実験 %d" % (len(C["state_experiments"]["rows"]), len(C["experiments"])),
          ["docs/research/state_emergence_*.md", "docs/research/humanity/paper2_exp*_results.md"]),
         ("前もって決めた仮説", "%d" % n_hyp, "✓支持 %d・◐一部 %d・✕支持しない %d・⇄逆 %d" % (hyp["yes"], hyp["part"], hyp["no"], hyp["rev"]),
@@ -398,7 +414,12 @@ def build():
     st = C["status"]
     b = ['<div class="cols2"><div><h3>いま</h3><ul class="plain">']
     b += ['<li>%s <span class="src">(%s)</span></li>' % (T(i["text"]), esc("・".join(i["src"]))) for i in st["running"]]
-    b.append('</ul><h3>研究で決めてほしいこと</h3><ul class="checks">')
+    b.append('</ul>')
+    if reports:
+        b.append('<h3>1 年ごとの年報 (%d 枚)</h3><p class="note">%s</p><ul class="reports">' % (len(reports), T(C["reports_note"])))
+        b += ['<li><a href="../reports/%s">%d年</a> <span class="note">%s</span></li>' % (esc(r["file"]), r["year"], esc(r["era"])) for r in reports]
+        b.append('</ul><p class="src">出どころ: <code>%s/year*.html</code> (<code>sim/society/tools/year_report.py</code> が作る)</p>' % SRC_REPORTS)
+    b.append('<h3>研究で決めてほしいこと</h3><ul class="checks">')
     b += ['<li><span class="box-ic" aria-hidden="true">☐</span><span>%s <span class="src">(%s)</span></span></li>' % (T(i["text"]), esc("・".join(i["src"]))) for i in st["decide"]]
     b.append('</ul></div><div>')
     for key, name in (("paper1_todo", "論文 1"), ("paper2_todo", "論文 2")):
@@ -416,7 +437,7 @@ def build():
         p = ph.get(it["id"])
         rng = it.get("range") or "%s〜%s" % (p["start_text"], p["end_text"] or "今")
         name = it.get("name") or "%s %s" % (it["id"], p["name"])
-        now = ' <span class="now">今</span>' if it["id"] == "G9" else ""
+        now = ' <span class="now">今</span>' if it["id"] == asof["era"] else ""
         b.append('<li><div class="tl-d">%s</div><div class="tl-n">%s%s</div><div class="tl-t">%s</div>'
                  '<div class="src">%s</div></li>' % (esc(rng), esc(name), now, esc(it["text"]), esc("・".join(it["src"]))))
     b.append('</ol></div><div><h3>研究の歩み (本当の日付)</h3><ol class="tl">')
@@ -458,7 +479,7 @@ def build():
     A(card("実験の結果表", "".join(b), ["各表の下"], "", "h-res"))
 
     # 7. 図
-    b = ['<h3>村の人の数 (季節の終わり)</h3><p class="note">うすい帯はフェーズ (G1〜G9)。線にさわると、その季節の数が出ます。いま (%s): <b>%s 人</b>。</p>' % (esc(last["label"]), last["pop"]),
+    b = ['<h3>村の人の数 (季節の終わり)</h3><p class="note">うすい帯はフェーズ (G1〜%s)。線にさわると、その季節の数が出ます。いま (%s): <b>%s 人</b>。</p>' % (esc(asof["era"]), esc(last["label"]), last["pop"]),
          line_chart("c-pop", seasons, "pop", "村の人の数", " 人", eras), line_chart("c-pop-m", seasons, "pop", "村の人の数", " 人", eras, W=420, H=300, yrstep=20, minlab=22, cls="only-phone"), srcline(SRC_SEASON),
          '<h3>村の蓄え (何日分。季節の終わり)</h3><p class="note">村の蓄えだけ (家の倉は入らない)。103年の冬と春は 0。いま (%s): <b>%s 日分</b>。</p>' % (esc(last["label"]), last["store"]),
          line_chart("c-store", seasons, "store", "村の蓄え (日分)", " 日分", eras), line_chart("c-store-m", seasons, "store", "村の蓄え (日分)", " 日分", eras, W=420, H=300, yrstep=20, minlab=22, cls="only-phone"), srcline(SRC_SEASON)]
@@ -549,7 +570,8 @@ def build():
       '<li>まとめ: <code>docs/research/humanity/README.md</code> (くわしくは part1〜3)</li>'
       '<li>論文 2 の実験: <code>docs/research/humanity/paper2_exp1〜3_*.md</code>・<code>sim/society/tools/survey/out*/summary.md</code>・<code>docs/research/humanity/data/exp3/summary.md</code></li>'
       '<li>国の研究: <code>docs/research/state_emergence_A1・A2・B・C.md</code></li>'
-      '<li>村のフェーズ: <code>docs/society_phase/G7.md・G8.md・G8_heavy.md・G9_design.md・G9_check.md</code>・<code>sim/society/HANDOFF.md</code></li>'
+      '<li>村のフェーズ: <code>docs/society_phase/G7.md・G8.md・G8_heavy.md・G9_design.md・G9_check.md・G10_design.md・G10_check.md</code>・<code>sim/society/techtree/plan.json</code> (閉じた日)・<code>sim/society/HANDOFF.md</code></li>'
+      '<li>1 年ごとの年報: <code>sim/society/reports/yearNNN.html</code> (<code>sim/society/tools/year_report.py</code> が作る)</li>'
       '<li>村の数: <code>sim/society/data/records/season_village.jsonl</code>・テクノロジーツリー <code>sim/society/app/tech_tree.html</code></li>'
       '<li>論文: <code>paper/paper1/</code>・<code>paper/paper2/</code>。動画: <code>docs/youtube_upload.md</code></li>'
       '<li>手で書いた文: <code>sim/society/tools/research_dashboard_content.json</code></li>'
@@ -815,6 +837,9 @@ dl.rdl dd{margin:0;overflow-wrap:anywhere}
 .r-no{border-color:var(--neutral);border-style:dashed}
 .r-warn{border-color:var(--crit);border-style:double;border-width:3px}
 .plinks{display:flex;gap:16px;flex-wrap:wrap}
+ul.reports{list-style:none;margin:6px 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 10px}
+ul.reports li{border:1px solid var(--border);border-radius:8px;padding:2px 10px;background:var(--page);font-size:14px}
+ul.reports .note{font-size:12px}
 @media (max-width:640px){
  table.res thead{display:none}
  table.res tr{display:block;border-bottom:1px solid var(--axis);padding:4px 0}
