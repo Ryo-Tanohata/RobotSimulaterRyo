@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるし、畑も実っている。夏のうちに刈り入れを急ごう。ヤギは草が足りないから、少しつぶして肉にしておこうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちる前に刈り入れる"}, "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ナセ34": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ワユ34": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "セヤ37": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "セヤ39": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 3},
+  "秋": {"job": {"activity": "採集", "place": "東林12", "with": [], "why": "木の実が実る秋に食べ物を集める"}, "family": {"ハソ21": {"activity": "狩り", "place": "北丘12", "why": "肉を得る"}, "タユ27": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話"}, "ナセ34": {"activity": "採集", "place": "東林12", "why": "木の実を集める"}, "ワユ34": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "セヤ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "セヤ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りで実りを増やす"}, "family": {"ハソ21": {"activity": "狩り", "place": "北丘12", "why": "冬も獲物がいる"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ナセ34": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ワユ34": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "セヤ37": {"activity": "狩り", "place": "北丘12", "why": "肉を得る"}, "セヤ39": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りを続ける"}, "family": {"ハソ21": {"activity": "狩り", "place": "北丘12", "why": "肉を得る"}, "タユ27": {"activity": "ヤギの世話", "place": "camp", "why": "乳がとれる"}, "ナセ34": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ワユ34": {"activity": "ヤギの世話", "place": "camp", "why": "乳がとれる"}, "セヤ37": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "セヤ39": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種はとても多く、しばらく食べ物の心配はない。ヤギは草に対して多すぎる。", "because": [1950322], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い年",
+ "feeling": "蓄えが多くて安心している。"}
