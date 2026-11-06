@@ -10,6 +10,7 @@
 読むもの (3 つとも要る): records/ の people.json・season_village.jsonl・season_household.jsonl・season_person/ (年ごとのファイル。前の season_person.jsonl も読む)・ledger.jsonl、
 state.json (era2.g6 の貸し借りと記録の道具・era2.fields の畑)、しまった出来事 data/archive/events_*.jsonl (貸し借り・覚え・交換・畑の実りの倍率)。
 死・生まれる・よそから来るの見込みは era2._season_end の文から、畑の実りの決まりは era2._field_season の文から読む (数を写さない)。
+G7 からは生まれる見込み (BIRTH_P7) と病の季節で決まりが変わるので、読むのは G7 の前の決まりで、記録も G7 に入った日の季節までで切る (2026-11-06)。
 節: 1. 生命表 2. 記録と決めごとの死亡率 3. 子の生まれ方 4. 蓄えが尽きる見込み 5. 貸しの帳簿 6. 限りの表 7. 村の会計
     8. 会計・経済・投資理論 (貸借対照表・減価償却・貸倒引当金・蓄えに回した割合・みんなの倉・記録の手間・投資の戻り・天気と蓄え・分散投資) 9. 前の調べの数とのちがい
 6.〜8. は build_records.py が accounts.py で作った記録の列 (binding・accounts・sectors・grain_fate・store_days_all・balance) を読む。
@@ -60,13 +61,14 @@ OUT, IN = "ほかの村へ出した", "ほかの村から入った"  # 帳簿の
 POT_WORK, GATHER, KEEP = "土器づくり", "採集", "記録をつける"  # season_person の仕事の名前
 # era2._season_end の文から読む見込み (書き方が変わって読めなければ止まる。数をここに写さない)
 CODE_RE = {
-    "child": r'p_die = ([\d.]+) if c\["age"\] < (\d+) else ([\d.]+) if c\["age"\] < (\d+) else ([\d.]+)',
+    "child": r'p_die = \(?([\d.]+) if c\["age"\] < (\d+) else ([\d.]+) if c\["age"\] < (\d+) else ([\d.]+)\)?',
     "hungry": r'c\["hunger"\] >= ([\d.]+):\s+p_die = max\(p_die, ([\d.]+)\)',
     "old": r'p\["age"\] >= (\d+) and rng\.random\(\) < ([\d.]+) \* frac \* \(1 \+ \(p\["age"\] - \d+\) / (\d+)\)',
     "adult": r'era_at_least\(state, "(G\d)"\) and p\["age"\] < \d+ and rng\.random\(\) < \(([\d.]+) if p\["age"\] < (\d+) else ([\d.]+)\) \* frac',
     "mothers": r'p\["sex"\] == "女" and (\d+) <= p\["age"\] <= (\d+)',
     "fed": r'w\["hunger"\] >= ([\d.]+) or day - w\.get\("last_birth", [^)]+\) < YEAR',
-    "birth": r'if rng\.random\(\) < ([\d.]+) \* frac:\s+c = _new_person',
+    # G7 から: 生まれる見込みは BIRTH_P7 (直し 7)、子の死は病の季節に g7.sick_mult 倍。ここで読むのは G7 の前の決まり (else のほう)
+    "birth": r'if rng\.random\(\) < \(?(?:BIRTH_P7 if _fix\(state\) else )?([\d.]+)\)? \* frac:[^\n]*\n\s+c = _new_person',
     "come": r'\(([\d.]+) \+ min\(([\d.]+), store_days\(state\) / (\d+)\)\) \* frac',
 }
 # era2._field_season の文から読む畑の実りの決まり (三角分布の 下・上・いちばん多い値、草取りに要る時間、草取りの効き方)
@@ -750,6 +752,14 @@ def report(data):
     state = archive.load_state(data)
     R = code_rates()
     e = village[-1]["season_end_day"]
+    # G7 に入ったあとは、生まれる見込み (BIRTH_P7) と病の季節 (g7.sick_mult) で決まりが変わる。この節は G6 までの決まりで見込みを出すので、
+    # 記録は G7 に入った日 (その日の季節の終わりまでは G6 の決まり) で切る (2026-11-06)
+    g7_day = next((x["day"] for x in state.get("era_log", []) if x["era"] == "G7"), None)
+    if g7_day is not None:
+        e = max(r["season_end_day"] for r in village if r["season_end_day"] <= g7_day)
+    last = village[-1]["season_end_day"]
+    village, hhs, ledger = ([r for r in rows if r["season_end_day"] <= e] for rows in (village, hhs, ledger))
+    persons = [r for r in persons if r["season_end_day"] <= e]
     s = next(r["season_start_day"] - 1 for r in village if r["era"] == "G4")
     out = []
     w = out.append
@@ -759,6 +769,10 @@ def report(data):
       "数は `python3.13 sim/society/tools/econ_report.py` で作り直せる (`--out docs/society_phase/G6_measures.md`)。"
       "作り直すには、records (`sim/society/data/records/`)・state.json・しまった出来事 (`data/archive/`) の 3 つがみな要る。")
     w("")
+    if g7_day is not None:
+        w(f"G7 に入った日 ({dl(g7_day)}) から、生まれる見込みと病の季節の決まりが変わったので、ここの数は G7 に入った日までの記録で数えた "
+          f"(記録はそのあと {dl(last)} まである)。")
+        w("")
     w(f"記録の最後の日は {dl(e)}。日付の「40年30日目」は、はじめから 40 年たった年の 30 日目 (この世界の 1 年は 120 日 = 季節 30 日 × 4)。"
       "ここの数はみな【シ】(シミュレーションの中だけで分かる数。正確な年齢・本当の量を使う)。"
       "ダッシュボードにも村人のお題にも出さない (docs/dashboard_data_model.md §5)。人数が少ないので、1 つの値には幅をいっしょに書く。【読み】と書いたところは Claude の読み。")

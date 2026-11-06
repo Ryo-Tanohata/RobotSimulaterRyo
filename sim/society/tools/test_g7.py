@@ -53,6 +53,22 @@ def real_state():
     return json.loads(real_text())
 
 
+def as_g10(st):
+    """本物の state が G11 なら、写しの中で G11 に入る前の G10 にもどす (G10 の仕組みだけの確かめのため。2026-11-06)。
+    g11 を外し、G11 に入る日に g7.before.G10 に移した G7 の物差し (g7.start_g11) をもどす"""
+    g = st["era2"]["g7"]
+    if st.get("era") == "G11":
+        g.pop("g11", None)
+        g.pop("closed10", None)
+        g.pop("part_start11", None)
+        import g7
+        b = (g.get("before") or {}).get("G10") or {}
+        g.update({k: b[k] for k in g7.MEASURE_KEYS if k in b})
+        g["before"] = {k: v for k, v in g["before"].items() if k != "G10"}
+        st["era"] = "G10"
+    return st
+
+
 def is_g6(st):
     return st.get("era") == "G6" and "g7" not in (st.get("era2") or {})
 
@@ -3648,7 +3664,7 @@ class T_G10FIX(unittest.TestCase):
     def base(cls):
         if cls._st is None:
             st = real_state()
-            cls._st = st if "g10" in ((st.get("era2") or {}).get("g7") or {}) else False
+            cls._st = as_g10(st) if "g10" in ((st.get("era2") or {}).get("g7") or {}) else False
         if cls._st is False:
             raise unittest.SkipTest("本物の state が G10 でない")
         return copy.deepcopy(cls._st)
@@ -3894,12 +3910,8 @@ class T_G11(unittest.TestCase):
 
     def g10_state(self):
         """G10 の state (本物が G11 なら、写しの中で g11 を外して G10 にもどす。G10 の仕組みだけの確かめのため)"""
-        st = self.real()
+        st = as_g10(self.real())
         g = st["era2"]["g7"]
-        if st["era"] == "G11":
-            g.pop("g11", None)
-            g.pop("closed10", None)
-            st["era"] = "G10"
         st["hold"] = False
         g["hold"] = None
         return st

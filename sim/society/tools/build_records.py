@@ -316,7 +316,12 @@ class Builder:
                 ee = st["next_event"]
             else:
                 ee = records.meeting_first(st, r)
-            rounds.append({"start": a, "end": r, "meeting_day": a, "meeting_first": mf, "event_first": ef, "event_end": ee, "snapshot": s is not None})
+            rd = {"start": a, "end": r, "meeting_day": a, "meeting_first": mf, "event_first": ef, "event_end": ee, "snapshot": s is not None}
+            if rounds and rounds[-1]["event_end"] < mf:
+                # 控えは季節の終わりにとるので、そのあと集まりの前に書いた出来事 (フェーズを閉じる・入る日の受けつぎなど) は、どの回にも入っていなかった。
+                # 次の季節の出来事として読む (2026-11-06。帳簿の「記録にない差」になっていた。5849 日目の G7 に入る日の、だれもいない家の倉)
+                rd["gap_first"] = rounds[-1]["event_end"]
+            rounds.append(rd)
         self.rounds = rounds
         self.seasons = {}
         for rd in rounds:
@@ -343,9 +348,11 @@ class Builder:
         a = rds[0]["start"]
         P, C = self.snaps.get(a), self.snaps.get(D)
         mf, end = rds[0]["meeting_first"], rds[-1]["event_end"]
-        ev = self.ev[mf:end]
-        era = (P or {}).get("era") or self.era_on(a)
-        era_end = (C or {}).get("era") or self.era_on(D)
+        ev = self.ev[rds[0].get("gap_first", mf):end]  # 前の季節の控えのあと、この集まりの前の出来事 (フェーズに入る日など) も、この季節に入れる
+        # フェーズは state の era_log から (2026-11-06)。G7 からの部の入れかえ (step.py next_part) は季節の終わりの控えのあとなので、控えの era は前のフェーズのまま
+        #   (5849・8519・12599・14279・18119 日目)。G6 までは控えと era_log がいつも同じ
+        era = self.era_on(a) or (P or {}).get("era")
+        era_end = self.era_on(D) or (C or {}).get("era")
         meeting_ids = set()
         for rd in rds:
             meeting_ids |= set(range(rd["meeting_first"], rd["event_first"]))
@@ -381,8 +388,14 @@ class Builder:
             act.setdefault(n, {}).setdefault(day, a_)
 
         g6 = {"events": {}, "moves": [], "meet_in": [], "meet_out": set(), "in": {}, "out": {}, "trips": 0}  # G6 (G6 の前は空のまま)
+        tie_moves = set()  # G7: 同じ日の同じ貢ぎ (tie) の出来事には、どれにも同じ moves が書いてある (g7._region_after)。帳簿には 1 回だけ数える (2026-11-06)
         for e in ev:
             t, x, who, d, day = e["type"], e["text"], e.get("who"), e.get("data") or {}, e["day"]
+            if t in ("貢ぎ", "崩れ") and d.get("region") and d.get("tie") and d.get("moves"):
+                key = (day, d["tie"], json.dumps(d["moves"], ensure_ascii=False, sort_keys=True))
+                if key in tie_moves:
+                    d = {k: v for k, v in d.items() if k != "moves"}
+                tie_moves.add(key)
             if t in G6_TYPES:
                 add(g6["events"], t, 1)
             if t == "交換に行く" and "へ交換に行った" in x:
