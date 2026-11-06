@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りない。おれは狩りでけものをとって肉を持ってくる。ヤギをつぶす家も出してくれ。"}],
+ "job": {"activity": "狩り", "place": "北草原28", "with": [], "why": "狩りが得意で、肉をとればヤギを減らさず食べ物が増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ44": {"activity": "狩り", "place": "北草原28", "why": "狩りの腕が確かなので、いっしょにけものをとる"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "mark": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の量をこえて多いので、狩りで肉をとってヤギの数を抑えるのがよい", "because": [1935242], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "体は軽い。狩りに出るのが楽しみだ。"}

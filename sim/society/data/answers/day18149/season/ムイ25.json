@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。畑がないから、蓄えの草の種をまいて、冬のあいだは草取りを欠かさずやろう。ヤギも草が足りないから、少し肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑に草の種をまいたので、実りを増やすために草取りをする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ムイ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ナセ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ヒセ35": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減らないよう世話をする"},
+  "ソワ35": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "オセ37": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"},
+  "ソワ37": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ハソ38": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "オネ38": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"},
+  "ケセ40": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りができる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "mark": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑の実りを楽しみに、みんなと力を合わせて冬を越したい。"}
