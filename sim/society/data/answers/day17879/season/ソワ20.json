@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を毎夕刈ろう。ヤギは多すぎるから、少しつぶして干し肉にしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ホタ22": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ネイ26": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ユエ30": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ヌオ33": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話と、まく仕事を手伝うため"}, "family": {"ホタ22": {"activity": "土器づくり", "place": "camp", "why": "蓄えを虫から守る土器が要る"}, "ネイ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ユエ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ヌオ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りが夏の実りを増やすから"}, "family": {"ホタ22": {"activity": "土器づくり", "place": "camp", "why": "蓄えを守る土器づくり"}, "ネイ26": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ユエ30": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ33": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りを増やすため"}, "family": {"ホタ22": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ネイ26": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ユエ30": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ33": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を毎夕刈り、秋にまき、冬と春は草取りをする。ヤギは草に合わせて数を減らす。", "because": [1875762], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "mood": "いつもどおり畑に出て、蓄えを守りたい。"}
