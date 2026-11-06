@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "ヤギが草より多くなりすぎている。今季はヤギを5頭つぶして肉にしよう。秋のうちに種もまいておこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りをして、来年の実りを増やすため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ムイ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして実りを増やすため"},
+  "ヒセ35": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので肉や魚を集めて冬にそなえるため"},
+  "ソワ35": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので冬の食べ物を増やすため"},
+  "オセ37": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので冬にそなえて肉を集めるため"},
+  "ソワ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ハソ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉を集めるため"},
+  "オネ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ケセ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ケナ43": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だが、ヤギが増えすぎているのが気がかりだ。"}

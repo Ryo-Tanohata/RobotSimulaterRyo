@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。わたしは得意な狩りで北の林に行って、肉を持ち帰るよ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りの腕がいちばん高いので、肉を蓄えに足したい"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ネイ30": {"activity": "狩り", "place": "北林12", "why": "狩りが得意で、肉が家族の助けになる"},
+  "ルタ35": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので肉をとる"},
+  "ロワ38": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので肉をとる"},
+  "ナセ39": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので肉をとる"},
+  "オネ40": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので肉をとる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。体も軽いので、狩りに出るのが楽しみだ。"}
