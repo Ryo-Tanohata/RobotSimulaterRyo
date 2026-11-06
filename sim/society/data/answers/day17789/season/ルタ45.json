@@ -1,0 +1,11 @@
+{"say": [{"to": "アコ45", "text": "蓄えは十分ある。今季は畑に種をまいて、草取りもいっしょにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["アコ45"], "why": "秋に種をまき、冬と春の草取りで実りを増やすため。蓄えは多いので無理はしない"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"アコ45": {"activity": "畑仕事", "place": "camp", "why": "ぼくと一緒に畑をまいて草取りをするため"}},
+ "keep": false,
+ "judge": {"M482": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "雨の夜に外で濡れるのがつらいが、蓄えは多く落ち着いている。畑仕事をこつこつやるつもり。"}

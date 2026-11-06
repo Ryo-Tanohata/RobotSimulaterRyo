@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬が近い。おれは林で木の実を集めて、蓄えをもう少し厚くしておくよ。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "冬は木の実が実らないので、秋のうちに集めておきたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ39": {"activity": "採集", "place": "東林12", "why": "冬に備えて食べ物を集めるため"}},
+ "keep": false,
+ "judge": {"M482": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "疲れはあるが、冬の前にしっかり働いておきたい。"}

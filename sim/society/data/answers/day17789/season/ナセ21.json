@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "おれはまた土器を焼くよ。蓄えを土器に入れておけば冬も安心だ。みんなも冬の前に草の種を運んでおこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れた草の種は傷みにくく、蓄えを守れるから続ける"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ワユ24": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、冬に備えて食べ物を集める"},
+  "キサ33": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、木の実を集める"},
+  "セヤ29": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を持ち帰る"},
+  "ソナ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を持ち帰る"},
+  "ルタ31": {"activity": "狩り", "place": "南林12", "why": "狩りが得意なので、肉を持ち帰る"}
+ },
+ "keep": false,
+ "judge": {"M482": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりある。土器を焼いて冬に備えるだけだ。"}
