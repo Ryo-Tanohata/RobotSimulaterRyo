@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに畑の草の種を刈ろう。落ちる前に、みんなで声をかけあって刈り入れよう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちてしまうから"},"family":{"ワユ24":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを急ぐため"},"オセ28":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを急ぐため"},"セヤ29":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを急ぐため"},"ソナ31":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを急ぐため"},"ルタ31":{"activity":"ヤギの世話","place":"camp","why":"乳がとれる季節で、小さい子の世話もあるから"},"セオ32":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを急ぐため"},"キサ33":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを急ぐため"},"ヒセ33":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを急ぐため"},"ケセ34":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを急ぐため"},"ヌオ35":{"activity":"ヤギの世話","place":"camp","why":"乳がとれる季節だから"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器づくりが得意で、蓄えを守る器を増やせるから"},"family":{"ワユ24":{"activity":"採集","place":"camp","why":"木の実を集めて食べ物を足す"},"オセ28":{"activity":"採集","place":"camp","why":"木の実を集めて食べ物を足す"},"セヤ29":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"},"ソナ31":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"},"ルタ31":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"},"キサ33":{"activity":"採集","place":"camp","why":"採集が得意だから"},"ケセ34":{"activity":"採集","place":"camp","why":"採集が得意だから"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"冬も屋根の下でできる仕事だから"},"family":{"セヤ29":{"activity":"狩り","place":"北丘12","why":"魚やけものは冬もいるから"},"ソナ31":{"activity":"狩り","place":"北丘12","why":"魚やけものは冬もいるから"},"ルタ31":{"activity":"狩り","place":"北丘12","why":"魚やけものは冬もいるから"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器を増やして蓄えを守るため"},"family":{"ワユ24":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"キサ33":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"ケセ34":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"ヌオ35":{"activity":"ヤギの世話","place":"camp","why":"春は子ヤギと乳の世話"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"土器を焼いた年",
+"feeling":"蓄えは十分にある。土器を焼きながら、みんなと穏やかに過ごしたい。"}

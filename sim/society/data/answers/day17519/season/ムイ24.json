@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、夏の畑は落ちる前に毎夕みんなで刈ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ホタ27": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝って畑を落とさないため"}, "アコ32": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝って畑を落とさないため"}, "アコ33": {"activity": "畑仕事", "place": "camp", "why": "みんなで刈れば早く終わる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "冬の前に木の実を集めておくため"}, "family": {"ホタ27": {"activity": "採集", "place": "camp", "why": "採集が得意なので食べ物を集める"}, "アコ32": {"activity": "採集", "place": "camp", "why": "採集が得意なので食べ物を集める"}, "アコ33": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをするため"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると夏の実りが増えるから"}, "family": {"ホタ27": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "アコ32": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "アコ33": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため草取りを続ける"}, "family": {"ホタ27": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をする人が足りないから"}, "アコ32": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "アコ33": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えは十分あるので、夏は畑を刈り切り、秋に種をまいて、冬は草取りをするとよい", "because": [1799151], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たっぷり実りの年",
+ "feeling": "蓄えが多くて安心。みんなで畑を刈り切りたい。"}
