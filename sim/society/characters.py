@@ -34,7 +34,10 @@ def _me(state, p):
     sk = "、".join(f"{k} {v:.2f}" for k, v in p["skills"].items())
     hold = holdings(p)
     hunger = "満腹" if p["hunger"] < 0.1 else "少し空腹" if p["hunger"] < 0.3 else "かなり空腹" if p["hunger"] < 0.6 else "ひどく空腹 (危ない)"
-    trust = "、".join(f"{n} {v:+.1f}" for n, v in p["trust"].items() if any(q["name"] == n and q["alive"] and not q.get("child") for q in state["people"]))
+    # 2026-11-06 (docs/society_phase/state_size_plan.md 案 A): people の順に生きている大人をたどり、trust にない名前は 0.0。
+    # 印 (state の trust_sparse) のない state では、trust の名前の順が people の順 (自分を除く) と同じなので、前の書き方と 1 文字も同じ文になる
+    trust = "、".join(f"{q['name']} {p['trust'].get(q['name'], 0.0):+.1f}" for q in state["people"]
+                     if q is not p and q["alive"] and not q.get("child"))
     return (f"あなたは {p['name']} ({p['sex']}、{p['age']} 歳)。今は {days}。\n"
             f"性格 (0〜1): {pers}\n技能 (0〜1): {sk}\n"
             f"おなか: {hunger} / 疲れ {p['fatigue']:.1f} / けが {'あり' if p['injured'] else 'なし'}\n"

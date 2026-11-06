@@ -3,6 +3,17 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-06 state.json の信頼の表から 0 を外す (docs/society_phase/state_size_plan.md の案 A。147年の年の集まり = 17639 日目に入れる。ブランチ state-slim)
+
+- わけ: state.json が 56.6 MB (146年) になり、その 42 % (23.7 MB) が 0 だけの信頼の表 (人の数の 2 乗で増える。0 でないのは 1614170 組のうち 17 組)。このままだと 175〜186年ごろ 100 MB。
+- 作り: 印 `state["trust_sparse"]` (`era2.trust_sparse`) があれば、trust は 0 でないものだけ (ない名前 = 0.0)。`era2._new_person` は印があれば 0 を足さない。
+  `characters._me` の「仲間への信頼」は people の順に生きている大人をたどり `.get(名前, 0.0)` で出す (印のない state でも前と 1 文字も同じ)。
+  **これから trust を読むコードは、いつも `p["trust"].get(名前, 0.0)` で読む。**
+- 新しいコマンド `step.py slim_trust --why "<わけ>"`: `step.TRUST_SPARSE_FROM = 17639` の日 (年の集まり)・止まっていない・その日の答えがまだないときだけ。印を書き、trust から 0 を外し (順はそのまま)、app_data と記録を作り直す (同じになる)。2 回目は何もしない。
+- 確かめ (146年の写し): state.json 56.6 MB → 32.9 MB。お題 63 通は外す前・後・本物のものと sha256 が同じ。app_data.json も同じ。前の歩のやり直し (3cd06660・bd134a15) は同じ。
+  0 を外した写しで歩を進めても (7b8e8863・3cd06660)、state は「trust の 0 のほか」同じ・お題・app_data・archive は 1 バイトも同じ。試し `test_g7.py T_TrustSparse`。
+- **次**: 本人がマージ。147年の年の集まり (17639 日目) で止まったら `slim_trust` を動かしてコミット (state_size_plan.md の 7.)。
+
 ## 2026-11-05 大きくなるファイルを小さくした (docs/society_phase/data_size_plan.md の案 A・C。17039 日目。コミットはまだ)
 
 - 案 A: `step.py` の `APP_SLIM_FROM = 17039`。この日より後 (この日は印 `state["app_slim"]` があるときだけ) の app_data.json は、`people[]` に trust を入れず、`resumes[].trust` は 0 でないものだけ。
