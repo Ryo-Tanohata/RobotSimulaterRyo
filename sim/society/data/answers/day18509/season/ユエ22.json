@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。今年の秋も畑にまいて、冬のあいだ草取りをして、夏の実りを増やそう。ヤギは草に対して多いから、少しずつ肉にして減らしたいな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで夏の実りが増える。蓄えは多いが、来年のために畑を育てたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ26": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして畑の実りを守るため"},
+  "ラキ28": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、今は畑の草取りに人手が要るため"},
+  "キサ36": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので草取りを任せる"},
+  "ロワ39": {"activity": "畑仕事", "place": "camp", "why": "まだ技能が低いので、手堅い畑仕事で覚えてもらう"},
+  "ヌオ40": {"activity": "畑仕事", "place": "camp", "why": "畑仕事を手伝いながら力をつけるため"},
+  "ワユ41": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら半分の働きができる"}
+ },
+ "keep": false,
+ "judge": {"M485": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。畑をていねいに育てて、来年の夏に備えたい。"}

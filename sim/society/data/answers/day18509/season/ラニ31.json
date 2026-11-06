@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬のあいだは草取りに通うよ。蓄えは多いから、来年の夏の実りに備えよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬の草取りで実りが増えるので、まいたあとの世話を続けたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ40": {"activity": "畑仕事", "place": "camp", "why": "草取りは人手が要るので、いっしょに畑を世話する"}},
+ "keep": false,
+ "judge": {"M485": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬のあいだの草取りで夏の実りが増える。今季はまいて草取りに通う。", "because": [2024914], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑の世話を落ち着いてやりたい。"}
