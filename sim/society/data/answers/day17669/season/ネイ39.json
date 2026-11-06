@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋だ、蓄えの種を畑にまいておこう。俺は狩りに出て、肉をみんなに分けるよ。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意で、蓄えは十分あるので肉を足して皆で食べたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ45": true},
+ "family": {"ソワ39": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で、まいた畑の草取りを手伝えば実りが増える"}},
+ "keep": false,
+ "judge": {"M481": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": []}

@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、秋の畑にたっぷり種をまいて、冬のあいだ草取りをしよう。ヤギは草より多いから、少しつぶして肉にしたいな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、冬のあいだ畑を世話したい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"ルタ45": true},
+ "family": {
+  "ホタ27": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなでやれば実りが増える"},
+  "アコ32": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って夏の実りを増やす"},
+  "アコ33": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎるので世話をして、いなくなるのを防ぐ"},
+  "ユエ36": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑の実りを増やす"}
+ },
+ "keep": false,
+ "judge": {"M481": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。畑の草取りをしっかりして、来年の夏の実りを楽しみにしたい。"}
