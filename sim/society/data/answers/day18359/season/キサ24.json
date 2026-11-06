@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈らないと落ちる。みんなで夕方まで刈ろう。冬は私が狩りに出る。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "リセ32": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ラニ37": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "シエ37": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ケセ38": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ホタ38": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やす"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "リセ32": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を集める"}, "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "ラニ37": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "シエ37": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "ケセ38": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "ホタ38": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も獣と魚はいるので、狩りの腕を生かして肉を取る"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを守る"}, "リセ32": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから"}, "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを守る"}, "ラニ37": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを守る"}, "シエ37": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを守る"}, "ケセ38": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを守る"}, "ホタ38": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りを増やす"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "リセ32": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "ソワ32": {"activity": "ヤギの世話", "place": "camp", "why": "乳がとれる"}, "ラニ37": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "シエ37": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "ケセ38": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "ホタ38": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null},
+ "knowledge": [{"op": "add", "text": "夏のうちに畑を刈らないと実りが落ちてしまう", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い年",
+ "feeling": "蓄えは十分にある。落ち着いて畑と狩りに励みたい。"}

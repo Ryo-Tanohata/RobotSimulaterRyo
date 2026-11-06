@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑はたっぷり実っている。夏のうちに刈り入れて、秋にはまた種をまこう。ヤギは草に対して多すぎるから、少し肉にして干しておきたいね。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちてしまうから"},"family":{"タユ27":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"ナセ34":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"ワユ34":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"セヤ37":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"セヤ39":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"ソナ41":{"activity":"畑仕事","place":"camp","why":"子も半分の働きで手伝う"},"オネ41":{"activity":"ヤギの世話","place":"camp","why":"乳をとり、ヤギを見守る"}},"pick":0,"plant":0,"harvest":60,"eat_goat":3},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"秋のはじめにまいた畑を大事に育てるため"},"family":{"タユ27":{"activity":"畑仕事","place":"camp","why":"畑を守る"},"ナセ34":{"activity":"採集","place":"東林12","with":[],"why":"木の実を集めて蓄えを助ける"},"ワユ34":{"activity":"畑仕事","place":"camp","why":"畑を守る"},"セヤ37":{"activity":"狩り","place":"北草原28","why":"冬に備えて肉を得る"},"セヤ39":{"activity":"狩り","place":"北草原28","why":"冬に備えて肉を得る"},"ソナ41":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"},"オネ41":{"activity":"ヤギの世話","place":"camp","why":"ヤギを見守る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":2,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで実りを増やす"},"family":{"タユ27":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ナセ34":{"activity":"狩り","place":"北草原28","why":"冬は魚やけものが頼り"},"ワユ34":{"activity":"狩り","place":"南川12","why":"冬も魚はいるから"},"セヤ37":{"activity":"狩り","place":"北草原28","why":"冬は魚やけものが頼り"},"セヤ39":{"activity":"狩り","place":"南川12","why":"冬も魚はいるから"},"ソナ41":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の実りのため草取りを続ける"},"family":{"タユ27":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ナセ34":{"activity":"ヤギの世話","place":"camp","why":"春は乳がとれる"},"ワユ34":{"activity":"ヤギの世話","place":"camp","why":"春は乳がとれる"},"セヤ37":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"セヤ39":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"ソナ41":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"実りの多い草の年",
+"feeling":"蓄えは十分で安心だが、ヤギが多すぎるのが気がかり。"}

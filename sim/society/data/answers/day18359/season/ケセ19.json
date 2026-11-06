@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだ山ほど残っている。毎夕しっかり刈ろう。わたしは黒い金属の鎌を作りためるよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "黒い金属を作れるのは私。夕方に畑を刈りつつ鎌を作りためる"}, "family": {"セオ25": {"activity": "畑仕事", "place": "camp", "why": "夏の畑を刈り入れる"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "夏の畑を刈り入れる"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "夏の畑を刈り入れる"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "私と一緒に鎌を作る"}, "キオ38": {"activity": "畑仕事", "place": "camp", "why": "夏の畑を刈り入れる"}, "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "夏の畑を刈り入れる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "鎌を作りためて来年の夏に刈り切る"}, "family": {"セオ25": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "私と一緒に鎌を作る"}, "キオ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "鎌を作りためる"}, "family": {"セオ25": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "私と一緒に鎌を作る"}, "キオ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "鎌を作りためて夏の刈り入れに備える"}, "family": {"セオ25": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "私と一緒に鎌を作る"}, "キオ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null},
+ "knowledge": [{"op": "add", "text": "18360日目の夏、畑は約1493711つかみ残る。毎夕刈り、秋は種をまき、秋冬春は黒い金属の鎌をロワ33と作りためる。", "because": [1978702], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑が山ほど実った年",
+ "feeling": "畑はまだ山ほどある。鎌を作りためて、今年こそ刈り切りたい。"}
