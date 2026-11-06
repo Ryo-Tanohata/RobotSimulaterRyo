@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに実った畑をみんなで刈ってしまおう。落ちてしまってはもったいない。ヤギが多すぎるので、少しずつ肉にして減らしたい。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるから"},"family":{"ムイ26":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やすため"},"ナセ31":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やすため"},"ヒセ35":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ソワ35":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"オセ37":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ソワ37":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ハソ38":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"オネ38":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":2},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器づくりが得意で、蓄えを守る器が役に立つから"},"family":{"ムイ26":{"activity":"採集","place":"東林12","why":"食べ物を集める"},"ナセ31":{"activity":"狩り","place":"北川12","why":"魚をとって食べ物を増やす"},"ヒセ35":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"},"ソワ35":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"},"オセ37":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"},"ソワ37":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"},"ハソ38":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"},"オネ38":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"}},"pick":0,"plant":0,"harvest":0,"eat_goat":2,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"北川12","with":[],"why":"冬も魚はいるので食べ物を増やせる"},"family":{"ムイ26":{"activity":"狩り","place":"東川28","why":"魚をとる"},"ナセ31":{"activity":"狩り","place":"北川12","why":"魚をとる"},"ヒセ35":{"activity":"畑仕事","place":"camp","why":"草取り"},"ソワ35":{"activity":"畑仕事","place":"camp","why":"草取り"},"オセ37":{"activity":"畑仕事","place":"camp","why":"草取り"},"ソワ37":{"activity":"畑仕事","place":"camp","why":"草取り"},"ハソ38":{"activity":"畑仕事","place":"camp","why":"草取り"},"オネ38":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":2},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで夏の実りを増やすため"},"family":{"ムイ26":{"activity":"採集","place":"西草原12","why":"春の食べ物を集める"},"ナセ31":{"activity":"狩り","place":"北川12","why":"魚をとる"},"ヒセ35":{"activity":"畑仕事","place":"camp","why":"草取り"},"ソワ35":{"activity":"畑仕事","place":"camp","why":"草取り"},"オセ37":{"activity":"畑仕事","place":"camp","why":"草取り"},"ソワ37":{"activity":"畑仕事","place":"camp","why":"草取り"},"ハソ38":{"activity":"畑仕事","place":"camp","why":"草取り"},"オネ38":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":2}},
+"keep":false,"seal_store":[],
+"accept":{"ラキ48":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"mark":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"実りを刈った年",
+"feeling":"蓄えは十分にあるので安心している。仲間と力を合わせて働きたい。"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "畑は実った。夏のうちに刈ってしまおう。冬は俺が狩りに出る。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"セオ37": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要るから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 20},
+          "秋": {"job": {"activity": "探索", "place": "北丘12", "with": [], "why": "新しい土地や野生のヤギを見てみたいから"}, "family": {"セオ37": {"activity": "狩り", "place": "東林12", "why": "肉をとって蓄えを助けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "狩り", "place": "東林28", "with": [], "why": "冬も獣はいるので肉をとる"}, "family": {"セオ37": {"activity": "狩り", "place": "南林28", "why": "腕のある狩りで肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで次の実りを増やすため"}, "family": {"セオ37": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラキ48": true},
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "mark": null, "pay": null, "redeem": null, "market": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせた年",
+ "mood": "身体は軽い。畑の実りが多く、安心している。"
+}
