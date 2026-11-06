@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "今年も蓄えの種をまいて、冬と春に草取りをしよう。畑の実りが次の夏の食べ物になる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、毎年どおり畑を育てる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ネイ30": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど次の夏の実りが増えるから"},
+  "ルタ35": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど次の夏の実りが増えるから"},
+  "ロワ38": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど次の夏の実りが増えるから"},
+  "ナセ39": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど次の夏の実りが増えるから"},
+  "オネ40": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど次の夏の実りが増えるから"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "落ち着いている。蓄えは十分あるので、畑を大事に育てたい。"}

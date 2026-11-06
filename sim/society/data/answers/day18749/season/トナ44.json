@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "ヤギが草の量より多い。おれの家の者は北の丘で狩りをして肉を持ち帰る。畑の草取りにも人が要るぞ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをした分だけ実りが増えるので、おれが畑を見る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ44": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かで、ヤギを減らさず肉が増える"}, "オセ44": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かで、ハソ44と組めば安全"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分でおだやかだ。畑と狩りで冬に備えたい。"}

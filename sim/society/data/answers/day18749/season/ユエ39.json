@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、冬と春は草取りをみんなで分けてやろう。実りが減らないようにしたいね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えは十分あるが、来年の夏の実りを守りたい。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は草取りをすると実りが増える。畑仕事は大事な仕事だ。", "because": [2078354], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって落ち着いている。畑の草取りを仲間と力を合わせてやりたい。"}

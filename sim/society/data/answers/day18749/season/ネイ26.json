@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。わたしは北の丘でヤギの群れを追って、肉を持ち帰るよ。みんなも畑に種をまいて、冬にそなえよう。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕には自信がある。冬の前に肉を蓄えに入れたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ33": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから、いっしょに北の丘へ行く"},
+  "ナセ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから、肉を多く持ち帰れる"},
+  "ワユ35": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かだから"},
+  "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "狩りは苦手なので、畑の草取りで実りを増やす"},
+  "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを守る"},
+  "ナセ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽く、腹も満ちている。丘へ出るのが楽しみだ。"}

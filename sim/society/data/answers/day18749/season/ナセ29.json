@@ -1,0 +1,10 @@
+{"say": [{"to": "ラキ36", "text": "冬の前に、北の丘でけものを追ってみる。おまえも肉を持ち帰ってくれ。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": ["ラキ36"], "why": "村の蓄えは十分あるが、冬は木の実も種もない。魚やけものは冬もいるので、肉を獲って備えたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ36": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、ぼくと一緒に北の丘で肉を獲る。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "満腹で体も軽い。冬に向けて大きな獲物を狙いたい。"}
