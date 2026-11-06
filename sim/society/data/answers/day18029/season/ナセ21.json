@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "冬の前に、また器をたくさん焼いておくよ。蓄えは器に入れておけば安心だ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えを虫やネズミから守れるから続ける"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "オセ28": {"activity": "畑仕事", "place": "camp", "why": "狩りも採集も苦手なので畑の草取りを手伝う"},
+  "セヤ29": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が最高なので肉を取ってくる"},
+  "ソナ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが上手なので冬に向けて肉を集める"},
+  "ルタ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが上手なので肉を集める"},
+  "セオ32": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "キサ33": {"activity": "採集", "place": "東林12", "why": "採集が最高なので木の実を集める"},
+  "ヒセ33": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をする"},
+  "ヌオ35": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ユエ35": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をする人が少ないので手伝う"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあって落ち着いている。土器を焼く日々が楽しい。"}

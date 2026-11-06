@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋の畑に種をまいたら、冬と春の草取りを皆で分けてやろう。ヤギの世話も人が足りないから、手の空く人は来てほしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増える。わたしは手が早いので続けて働く"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ28": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人が少なくヤギがいなくなったので、見てやる"},
+  "ケナ31": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして実りを守る"},
+  "アコ31": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減らないように世話をする"},
+  "ユエ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ケセ39": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える"},
+  "オネ39": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}
+ },
+ "keep": false,
+ "judge": {"M483": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "世話をする人が少ないとヤギがいなくなる。秋は畑の草取りとヤギの世話に人を分けるとよい", "because": [1911805], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "穏やかな気持ち。冬の前に畑とヤギをきちんと見ておきたい"}

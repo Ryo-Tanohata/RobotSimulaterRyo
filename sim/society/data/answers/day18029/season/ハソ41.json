@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬が近いね。蓄えは十分あるから、私は狩りで肉を足すよ。畑にもしっかり種をまいておこう。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意だし、冬の前に肉を蓄えに足したいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オセ41": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、私と一緒に肉を集めてほしい"}},
+ "keep": false,
+ "judge": {"M483": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、夏のはじめに実る", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "mood": "落ち着いている。冬に向けて家族とみんなのために働きたい"}

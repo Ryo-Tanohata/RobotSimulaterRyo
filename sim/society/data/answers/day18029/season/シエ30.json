@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "北の丘のヤギの群れを見てくる。ひとりのほうが獲物に気づかれにくい。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りがいちばん得意で、獲物を持ち帰れば蓄えの減りが少なくなる"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "トナ31": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かで、肉と蓄えの節約になる"},
+  "テナ31": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かで、肉と蓄えの節約になる"}
+ },
+ "keep": false,
+ "judge": {"M483": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "静かに狩りに出られればそれでいい"
+}

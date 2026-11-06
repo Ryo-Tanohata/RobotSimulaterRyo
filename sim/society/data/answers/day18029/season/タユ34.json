@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギがまた減らないように、この秋はわたしが毎日世話に回るよ。手のあいた人は一緒に来てほしい。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "世話をする人が少ないとヤギがいなくなると覚えているので、秋のあいだ毎日世話をして群れを守る"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ36": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減らないよう、わたしと一緒に世話をしてもらう"}},
+ "keep": false,
+ "judge": {"M483": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "世話をする人が少ない季節にはヤギが何十頭もいなくなる。秋は世話に回る人を増やす必要がある。", "because": [1911805], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "ヤギを減らしたくない。蓄えは十分あるので落ち着いて世話に励む。"}
