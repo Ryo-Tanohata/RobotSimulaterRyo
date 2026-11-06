@@ -2707,6 +2707,16 @@ def council_prompt(state, sid):
         if pnt["kind"] == "求められた":
             q = next(x for x in reg["demands"] if x["id"] == pnt["demand"])
             a = by.get(q["from"])
+            if state["day"] >= region.ALLY_CHECK_FROM and a:  # 集まりの「助けを頼む」をたしかめる (region.ALLY_CHECK_FROM から): 頼める村を書き、逃げ場のない世界では逃げるを出さない
+                ok = region.allies_for(setts, s, a)
+                fl = not no_flee(state)
+                asks.append(f"- [{q['id']}] {region._name(a)} が、毎年 {region._goods(q['what'])} を出すように求めてきた。"
+                            + ("払う / 戦う / 逃げる (村ごと、遠くの空いた土地へ移る) / 助けを頼む (ほかの村に。頼む村を ally に) のどれか" if fl else
+                               "払う / 戦う / 助けを頼む (ほかの村に。頼む村を ally に) のどれか (まわりに空いた住める土地はなく、逃げる道はない)")
+                            + (f"。助けに来てくれるのは、{region._name(a)} よりこの村との結びつきが強い村だけ: " + "・".join(f"{region._name(c)} ({c['id']})" for c in ok)
+                               + " (頼むなら、ally にその番号を書く)" if ok else f"。{region._name(a)} よりこの村との結びつきが強い村はないので、助けを頼んでも来てくれる村はない"))
+                form[q["id"]] = "払う か 戦う か 逃げる か 助けを頼む" if fl else "払う か 戦う か 助けを頼む"
+                continue
             asks.append(f"- [{q['id']}] {region._name(a) if a else 'ほかの村'} が、毎年 {region._goods(q['what'])} を出すように求めてきた。"
                         "払う / 戦う / 逃げる (村ごと、遠くの空いた土地へ移る) / 助けを頼む (ほかの村に。頼む村を ally に) のどれか")
             form[q["id"]] = "払う か 戦う か 逃げる か 助けを頼む"

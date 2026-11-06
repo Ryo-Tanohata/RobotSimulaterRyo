@@ -4417,7 +4417,10 @@ class T_TrustSparse(unittest.TestCase):
         import characters
         import step
         st = real_state()
-        st.pop("trust_sparse", None)
+        if st.pop("trust_sparse", None):  # 本物がもう 0 を外したあと (17639 日目から): 外す前の形 (people の順に自分を除くみな。ない名前は 0.0) にもどしてから
+            for p in st["people"]:
+                if p.get("trust") is not None:
+                    p["trust"] = {**{q["name"]: p["trust"].get(q["name"], 0.0) for q in st["people"] if q is not p}, **p["trust"]}
         alive = [i for i, p in enumerate(st["people"]) if p["alive"]]
         before = {i: characters._me(st, st["people"][i]) for i in alive}
         for i in alive:
@@ -4493,6 +4496,131 @@ class T_TrustSparse(unittest.TestCase):
             self.assertEqual((d / "state.json").read_text(encoding="utf-8"), text)
         finally:
             shutil.rmtree(d, ignore_errors=True)
+
+
+class T_AllyCheck(unittest.TestCase):
+    """2026-11-06 (docs/society_phase/G10_c3_diag.md 6. の 1・9.): region.ALLY_CHECK_FROM から、集まりの「助けを頼む」は、ally が設計の条件
+    (region.allies_for。決まりの答えと同じ) に合うときだけ通す。合わなければ決まりと同じく払うか戦うか。逃げ場がないのに「逃げる」も同じ。
+    集まりのお題には頼める村を書き、逃げ場のない世界では逃げるを出さない。その日より前は前のまま"""
+
+    G = region.ALLY_CHECK_FROM
+
+    def world(self, ally_commit):
+        R = {"ties": [], "demands": [], "wars": [], "pending": [], "gone": [], "log": []}
+        S = [sett("V0", 150, (5, 5), village=True), sett("N1", 90, (5, 7), org=1), sett("N2", 20, (5, 9)),
+             sett("N3", 30, (6, 8), commit=dict(ally_commit))]
+        q = {"id": "Q1", "from": "N1", "to": "N2", "what": {"草の種": 100}, "war_day": None}
+        R["demands"].append(q)
+        return R, S, q
+
+    def ans(self, ally_commit, day, ch="助けを頼む", ally="N3", how="集まり"):
+        R, S, q = self.world(ally_commit)
+        out = []
+        region.answer(R, S, q, ch, ally, day, how, out)
+        return R, S, q, out
+
+    def test_rule_and_council_same_condition(self):
+        R, S, q = self.world({"N2": 1.0, "N1": 1.0})
+        by = region._by(S)
+        self.assertEqual(region.allies_for(S, by["N2"], by["N1"]), [], "同じ結びつきでは頼めない")
+        self.assertIsNone(region.costs(R, S, by["N2"], by["N1"], 100)[1], "決まりの答えも頼めない")
+        R, S, q = self.world({"N2": 1.0, "N1": 0.5})
+        by = region._by(S)
+        self.assertEqual([c["id"] for c in region.allies_for(S, by["N2"], by["N1"])], ["N3"])
+        self.assertEqual(region.costs(R, S, by["N2"], by["N1"], 100)[1], "N3")
+
+    def test_invalid_ally_refused_after_gate(self):
+        R, S, q, out = self.ans({"N2": 1.0, "N1": 1.0}, self.G + 1)
+        self.assertIn(q["answer"], ("払う", "戦う"), "決まりと同じく払うか戦うか")
+        self.assertFalse(any(e["kind"] == "同盟" for e in out), "求めは取り下げられない")
+        e = next(e for e in out if e["data"].get("refused") == "助けを頼む")
+        self.assertIn("助けに来なかった", e["text"])
+        self.assertIn("結びつきが強くない", e["text"])
+        self.assertEqual(e["data"]["ally"], "N3")
+        self.assertEqual(S[3]["commit"], {"N2": 1.0, "N1": 1.0}, "結びつきは足さない")
+        self.assertTrue(q.get("end") or R["wars"], "払うならつながり、戦うなら戦")
+        # 求めた村に貢いでいる村 (N2 とも 0 の村) も、地域にない村も
+        R, S, q, out = self.ans({"N1": 1.0}, self.G + 1)
+        self.assertIn(q["answer"], ("払う", "戦う"))
+        R, S, q, out = self.ans({"N2": 1.0}, self.G + 1, ally="N1")
+        self.assertIn(q["answer"], ("払う", "戦う"), "求めた村そのものには頼めない")
+
+    def test_invalid_ally_accepted_before_gate(self):
+        for day in (self.G, self.G - 120):
+            R, S, q, out = self.ans({"N2": 1.0, "N1": 1.0}, day)
+            self.assertEqual((q["answer"], q["end"]), ("助けを頼む", day), "前のまま (ただで取り下げる)")
+            self.assertTrue(any(e["kind"] == "同盟" for e in out))
+            self.assertFalse(any("refused" in e["data"] for e in out))
+
+    def test_valid_ally_after_gate(self):
+        R, S, q, out = self.ans({"N2": 1.0, "N1": 0.5}, self.G + 1)
+        self.assertEqual((q["answer"], q["end"]), ("助けを頼む", self.G + 1))
+        e = next(e for e in out if e["kind"] == "同盟")
+        self.assertIn("取り下げた", e["text"])
+        self.assertGreater(S[3]["commit"]["N2"], 1.0 - 1e-9)
+
+    def test_rule_how_not_checked(self):
+        """決まりで選んだ・村の答えは、前のまま (決まりの手はもともと条件どおり)"""
+        R, S, q, out = self.ans({"N2": 1.0, "N1": 1.0}, self.G + 1, how="決まりで選んだ")
+        self.assertEqual(q["answer"], "助けを頼む")
+
+    def test_flee_without_refuge(self):
+        saved = region.NO_FLEE
+        try:
+            region.NO_FLEE = True
+            R, S, q, out = self.ans({}, self.G + 1, ch="逃げる", ally=None)
+            self.assertIn(q["answer"], ("払う", "戦う"))
+            self.assertTrue(any("逃げられる空いた土地がなかった" in e["text"] for e in out))
+            R, S, q, out = self.ans({}, self.G, ch="逃げる", ally=None)
+            self.assertEqual((q["answer"], q["end"]), ("逃げる", self.G), "前のまま")
+        finally:
+            region.NO_FLEE = saved
+
+    def test_decide_uses_check(self):
+        R, S, q = self.world({"N2": 1.0, "N1": 1.0})
+        R["pending"] = [{"kind": "求めへの答え", "who": "N2", "demand": "Q1", "rule": "払う", "ally": None}]
+        R["councils"] = {"answers": {"N2": {"Q1": "助けを頼む", "ally": "N3"}}}
+        out = region.decide(R, S, self.G + 1, out=[])
+        self.assertIn(q["answer"], ("払う", "戦う"))
+        self.assertEqual(q["how"], "集まり")
+        self.assertTrue(any(e["data"].get("refused") for e in out))
+
+    def prompt_state(self, day):
+        import g7
+        st = real_state()
+        st["day"] = day
+        reg = g7._reg(st)
+        oth = {o["id"]: o for o in g7._others(st)}
+        oth["N14"]["commit"].update(N13=1.0, N83=1.0)
+        oth["N52"]["commit"].update(N13=0.9, N83=0.2)
+        reg["demands"].append({"id": "Q9999", "from": "N83", "to": "N13", "what": {"草の種": 560}})
+        reg["councils"] = {"day": day, "ask": ["N13"], "points": {"N13": [{"kind": "求められた", "demand": "Q9999"}]}, "answers": {}}
+        return g7, st
+
+    def test_prompt(self):
+        g7, st = self.prompt_state(self.G - 120)
+        old = g7.council_prompt(st, "N13")
+        self.assertIn("払う / 戦う / 逃げる (村ごと、遠くの空いた土地へ移る) / 助けを頼む (ほかの村に。頼む村を ally に) のどれか\n", old)
+        self.assertNotIn("結びつき", old, "前の日のお題は前のまま")
+        self.assertIn('"Q9999": "払う か 戦う か 逃げる か 助けを頼む"', old)
+        g7, st = self.prompt_state(self.G)
+        self.assertTrue(g7.no_flee(st), "本物の世界は逃げ場がない")
+        new = g7.council_prompt(st, "N13")
+        line = next(x for x in new.splitlines() if "[Q9999]" in x)
+        self.assertNotIn("逃げる (", line)
+        self.assertIn("逃げる道はない", line)
+        self.assertIn('"Q9999": "払う か 戦う か 助けを頼む"', new)
+        setts = g7._setts(st)
+        by = region._by(setts)
+        ok = [f"{region._name(c)} ({c['id']})" for c in region.allies_for(setts, by["N13"], by["N83"])]
+        self.assertIn(f"{region._name(by['N52'])} (N52)", ok)
+        self.assertNotIn(f"{region._name(by['N14'])} (N14)", ok)
+        self.assertIn("結びつきが強い村だけ: " + "・".join(ok) + " (頼むなら、ally にその番号を書く)", line)
+        self.assertNotIn(region._name(by["N14"]), line)
+        oth = {o["id"]: o for o in g7._others(st)}
+        for o in oth.values():
+            o.get("commit", {}).pop("N13", None)
+        self.assertIn("助けを頼んでも来てくれる村はない", g7.council_prompt(st, "N13"))
 
 
 if __name__ == "__main__":

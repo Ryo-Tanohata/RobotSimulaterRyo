@@ -3,6 +3,15 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-06 集まりの「助けを頼む」をたしかめる直し (ブランチ ally-fix。g11-impl から)
+
+- `docs/society_phase/G10_c3_diag.md` 6. の 1 をした (9. に書いた)。集まりが頼めない村 (例 北の大きな村 に貢ぐ 北東の村14) に助けを頼むと書いても、もう求めは消えない。
+  決まりと同じく払うか戦うか。出来事「求め」にわけを書く。逃げ場がないのに「逃げる」も同じ。集まりのお題には頼める村を番号つきで書き、逃げ場のない世界では「逃げる」を出さない。
+- 入る日は `region.ALLY_CHECK_FROM = 18119` (150年の年の集まり)。本物がこの日のお題を前のコードでもう書いていれば、答えの前に `step.py refresh_prompts --why "…"` で書き直すか、
+  この数を次の年の集まりの日 (120×年−1。例 18239) に書きかえる。前の日は 1 バイトも同じ。
+- 試し: `test_g7.py T_AllyCheck` (新)・`T_TrustSparse` (`test_me_same` を、0 を外したあとの本物の state でも動くように直した)・`T_G11`・`T_G10FIX`、`test_hints.py`・`test_archive.py`。
+  前の歩のやり直し `tools/exp3_replay.py` も同じ。
+
 ## 2026-11-06 G11 の決まりの村の確かめを終えた・直し 1 つ (ブランチ g11-impl。本物の村はまだ G10 のまま)
 
 - 決まりの村 (本物の 17039 日目から G11 に入って 15 年): 束 4 つ (G11B0・G11B1・G11B1R・G11B1X) × **種 1・2 の 8 回** (種 3・4 は時間のため回していない)。結果は `docs/society_phase/G11_check.md` 2.、数は `docs/research/data/G11_check_runs.csv`・`G11_check_years.csv`。
