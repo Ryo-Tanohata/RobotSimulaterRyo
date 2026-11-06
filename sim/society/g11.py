@@ -74,6 +74,18 @@ def mark_fix(state, why):
         _g(state)["fix"] = {"day": state["day"], "why": why}
 
 
+def trust_fixed(state):
+    """信頼の直し (era2.TRUST_FIX_FROM。G11_stall_diag.md「した直し 2」) のお題の行を出すか: その日より後はいつも。その日 (お題は前のコードで出ていた) は、
+    step.py refresh_prompts が g7.g11.trust_fix を書いたあとだけ (fixed と同じ形。世界の決まりのほうは era2.trust_fixed が歩の日で決める)"""
+    return on(state) and (state["day"] > era2.TRUST_FIX_FROM or (state["day"] == era2.TRUST_FIX_FROM and "trust_fix" in _g(state)))
+
+
+def mark_trust_fix(state, why):
+    """refresh_prompts から: era2.TRUST_FIX_FROM の日に、信頼の直しのお題の行を今の歩から入れたことを g7.g11.trust_fix に残す (その日より前なら何もしない)"""
+    if on(state) and state["day"] >= era2.TRUST_FIX_FROM and "trust_fix" not in _g(state):
+        _g(state)["trust_fix"] = {"day": state["day"], "why": why}
+
+
 def _y(state):
     return str(state["day"] // YEAR)
 
@@ -898,9 +910,11 @@ def _others_rows(state):
     vis = visitors(state)
     out = ["- 市の日を決めると来る村: " + ("・".join(f"[{o['id']}] {o['name']}" for o in vis) + " (申し出に来なくなった村も、市の日には来る)" if vis
                                        else "いまはない (行き来したことがあり、歩いて 2 日以内の村だけが来る)")]
+    tf = trust_fixed(state)  # 信頼の直しのあと: 信頼が低い村 (era2.TRUST_FLOOR より下) を書き、もどる道も書く (数は出さない)
     for o in g7._others(state):
-        if o.get("known") is not None and not o.get("gone") and o.get("people", 0) > 0 and o.get("trust", 0.5) <= 0:
-            out.append(f"- [{o['id']}] {o['name']}: 村に申し出や、ここで暮らしたい人を何度も受けてもらえなかったので、もう申し出に来ない"
+        if o.get("known") is not None and not o.get("gone") and o.get("people", 0) > 0 and (o.get("trust", 0.5) < era2.TRUST_FLOOR if tf else o.get("trust", 0.5) <= 0):
+            out.append(f"- [{o['id']}] {o['name']}: 村に申し出や、ここで暮らしたい人を何度も受けてもらえなかったので、"
+                       + ("申し出にはあまり来ない。村と争わない年がつづけば少しずつまた来るようになり、来た申し出を村が受ければもっと来る" if tf else "もう申し出に来ない")
                        + ("。市の日には来る" if o in vis else ""))
     out.append("- 申し出 (trade・年の方針の trade_rule) を決めない (null) 人が多いと、村の物で受ける人 (\"村\") が大人の半分に届かず、"
                + ("まとめ役も \"村\" と答えなければ、" if era2._leader(state) else "") + "その申し出は受けないことになる")

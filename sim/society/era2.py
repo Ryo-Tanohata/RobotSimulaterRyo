@@ -206,7 +206,7 @@ def apply_answers(state, answers, how="集まり"):
     e2 = state["era2"]
     alive = {p["name"]: p for p in adults(state)}
     places = {pl["id"] for pl in state["places"]}
-    e2["jobs"], accept = {}, {}
+    e2["jobs"], accept, refuse = {}, {}, {}  # refuse: はっきり「受け入れない」と答えた大人 (信頼の直し (a) だけが読む)
     e2["craft_days"] = {}  # この季節に、作ること (土器づくり・道具づくり) をした日数
     e2["step_day"] = state["day"] + 1
     talk = []
@@ -280,6 +280,8 @@ def apply_answers(state, answers, how="集まり"):
         for v, ok in (a.get("accept").items() if isinstance(a.get("accept"), dict) else []):
             for q in fam:
                 accept.setdefault(v, []).append((q["name"], ok is True or ok in ("true", "はい", "賛成")))
+                if _no(ok):
+                    refuse.setdefault(v, set()).add(q["name"])
         if g5:
             _g5_collect(state, c5, p, a, fam)
         if g6:
@@ -297,7 +299,7 @@ def apply_answers(state, answers, how="集まり"):
         _g5_meeting(state, c5, len(alive), how)  # 掟を決めてから (この集まりで採用された罰の掟も、この集まりで使う)
     if g6:
         _g6_meeting(state, c6, len(alive), how)  # 印 → 村の蓄えの封 → 申し出 (よそから来た人の受け入れの前)
-    _settle_visitors(state, accept, len(alive), how)
+    _settle_visitors(state, accept, len(alive), how, refuse)
     _eat_goats(state)
     if yname:
         _year_name(state, yname, len(alive))  # 集まりの最後に (ほかの集まりの出来事の並びは変わらない)
@@ -314,7 +316,7 @@ def _int(v):
         return 0
 
 
-def _settle_visitors(state, accept, n_adults, how="集まり"):
+def _settle_visitors(state, accept, n_adults, how="集まり", refuse=None):
     e2 = state["era2"]
     pol = "年の方針で。" if how == "方針" else ""  # G7 の答えのない季節 (G6 までは空の文字)
     rng = _rng(state, 11)
@@ -352,7 +354,8 @@ def _settle_visitors(state, accept, n_adults, how="集まり"):
             o = _other(state, v.get("from")) if v.get("from") else None
             log(state, "去る", None, f"よそから来た {v['name']} たちは、受け入れられず{'、' + o['name'] + 'へ帰って' if o else '去って'}いった ({pol}賛成 {yes} / {n_adults})")
         if v.get("from"):
-            _g6_settled(state, v, yes * 2 > n_adults)
+            nos = {w for key, ws in (refuse or {}).items() if key in member_names or key == v["name"] for w in ws if not votes.get(w)}
+            _g6_settled(state, v, yes * 2 > n_adults, len(nos) * 2 > n_adults)
         if v.get("hint") and "g7" in e2:  # G7: よその便りの群れ (受け入れたら知っている人。「人」の札なら教える腕。docs/society_phase/G7_design.md 4.C.4)
             _g7m().hint_settled(state, v, yes * 2 > n_adults)
     e2["visitors"] = []
@@ -1364,6 +1367,13 @@ G6_EVENTS = ("よその村", "交換", "貸し借り", "覚え", "印", "封", "
 DIRS = {"南": ("川にそって南へ", (39, 79)), "北": ("川にそって北へ", (49, 0)), "東": ("東へ", (79, 40)), "西": ("西へ", (0, 40))}
 MAX_STRANGERS, STRANGER_P, JOIN_P, JOIN_MIN, BAD_P = 3, 0.10, 0.15, 12, 0.2
 CONTACT_P = {"分かれた家": 0.35, "よその村": 0.15}
+# 2026-11-06 本人の決め「信頼の決まりも直して 5 年見る」(docs/society_phase/G11_stall_diag.md 7. の 4。「した直し 2」): TRUST_FIX_FROM (160年の年の集まり)
+# の日に始まる歩から (歩の step_day = 始まりの日 + 1 > TRUST_FIX_FROM。trust_fixed)。その前の歩 (この日を作った歩も) をやり直しても state もお題も 1 バイトも同じ。乱数は使わない
+#   (a) 申し出・よそから来た人を受けなかったとき、信頼を下げるのは、本当に断ったとき (大人の半分をこえる「受けない」か、まとめ役の「受けない」) だけ。
+#       決める人が足りずに受けなかった (決まりで受けないことになった) ときは下げない
+#   (b) 知っている村の信頼が TRUST_FLOOR より低ければ、その年に争い (戦・求め・返されない貸し) がなければ、1 年に TRUST_RECOVER ずつ TRUST_FLOOR までもどる
+TRUST_FIX_FROM = 19199
+TRUST_FLOOR, TRUST_RECOVER = 0.2, 0.05
 USE_OBSIDIAN, OBS_BREAK = True, 0.5
 VALUE = {"草の種": 1, "干し肉": 6, "ヤギ": 375, "土器": 40, "鎌": 75, "黒曜石": 40}
 LOAD = {"草の種": 900, "土器": 4, "鎌": 10}  # 1 人が運べる量。持って行けるのは、ほかの村が受けとる物 (_g6_cap と同じ 3 つ) だけ
@@ -1516,6 +1526,44 @@ def _g6_contact(state, o):
         o["contacts"].append(sd)
     g["exchanges"] += 1
     o["trust"] = min(1.0, round(o["trust"] + 0.1, 2))
+
+
+def trust_fixed(state):
+    """信頼の直し (TRUST_FIX_FROM の日に始まる歩から。歩の step_day は始まりの日 + 1): 歩の中で信頼を変えるとき、新しい決まりを使うか"""
+    return state["era2"].get("step_day", 0) > TRUST_FIX_FROM
+
+
+def _no(ok):
+    """よそから来た人の受け入れの答えが、はっきり「受け入れない」か (null・わからない答えは数えない)"""
+    return ok is False or str(ok).strip().lower() in ("false", "いいえ", "受け入れない", "受けない", "反対", "no")
+
+
+def _trust_hostile(state, oid, lo, hi):
+    """lo〜hi 日に、村 (V0) と oid の村のあいだに争いがあったか: 戦 (起きた日か終わった日)・求め (どちらからでも)・返されないままになった貸し借り"""
+    e2 = state["era2"]
+    reg = (e2.get("g7") or {}).get("region") or {}
+    for w in reg.get("wars", []):
+        if {"V0", oid} == {w["att"], w["def"]} and any(d is not None and lo <= d <= hi for d in (w.get("day"), w.get("done"))):
+            return True
+    if any({"V0", oid} == {q["from"], q["to"]} and lo <= q["day"] <= hi for q in reg.get("demands", [])):
+        return True
+    return any(d["other"] == oid and d["status"] == "返されない" and d.get("end") is not None and lo <= d["end"] <= hi
+               for d in (e2.get("g6") or {}).get("debts", []))
+
+
+def _trust_recover(state):
+    """直し (b) (_g6_season_end の 5. の前。trust_fixed のときだけ): 年が変わって最初の季節の終わりに 1 度、知っている村の信頼を少しもどす。
+    この 1 年 (いまの日までの 120 日) に村と争いがあった村はもどさない。g6.trust_up に、もどした年を残す (1 年に 1 度だけ)"""
+    g, day = _g6(state), state["day"]
+    y = day // YEAR
+    if g.get("trust_up") == y:
+        return
+    g["trust_up"] = y
+    for o in g["others"]:
+        if o["known"] is None or o.get("gone") or o.get("people", 0) <= 0 or o["trust"] >= TRUST_FLOOR:
+            continue
+        if not _trust_hostile(state, o["id"], day - YEAR + 1, day):
+            o["trust"] = min(TRUST_FLOOR, round(o["trust"] + TRUST_RECOVER, 2))
 
 
 # ---- 村の物・家の物 ----
@@ -1761,7 +1809,9 @@ def _g6_decide(state, c, off, o, n, lead, how="集まり"):
         side = max(sorted(cands), key=lambda h: sum(f["kcal"] for f in _house(state, h)["store"])) if cands else None
     votes = f"村 {tally.get('村', 0)}・家 {tally.get('家', 0)}・受けない {tally.get(False, 0)} / 大人 {n}"
     if side is None:
-        o["trust"] = max(0.0, round(o["trust"] - 0.1, 2))
+        # 直し (a) (trust_fixed から): 大人の半分をこえる「受けない」か、まとめ役の「受けない」のときだけ下げる (決める人が足りずに受けなかったときは下げない)
+        if not trust_fixed(state) or tally.get(False, 0) * 2 > n or (lead and c["trade_by"].get(off["id"], {}).get(lead) is False):
+            o["trust"] = max(0.0, round(o["trust"] - 0.1, 2))
         log(state, "よその村", None, f"{at}、{o['name']} の申し出 [{off['id']}] は受けなかった ({votes})", other=o["id"], offer=off["id"])
         return
     if side == "村" and "g7" in state["era2"] and _g11_on(state):  # G11 (2026-11-05): 村が「印で払う」と決めていれば、印のかたまりで受ける (G10 までは通らない)
@@ -2207,8 +2257,9 @@ def _record_ok(state):
     return ((state["era2"].get("g6") or {}).get("checked") or {}).get("板", 0) >= 1
 
 
-def _g6_settled(state, v, accepted):
-    """ほかの村から来た群れを、受け入れた / 受け入れなかった"""
+def _g6_settled(state, v, accepted, refused=True):
+    """ほかの村から来た群れを、受け入れた / 受け入れなかった。refused: 大人の半分をこえる人が、はっきり「受け入れない」と答えた
+    (直し (a): trust_fixed のときは、そのときだけ信頼を下げる。賛成が半分に届かなかっただけなら下げない)"""
     o = _other(state, v.get("from"))
     if not o:
         return
@@ -2217,7 +2268,7 @@ def _g6_settled(state, v, accepted):
         if v.get("seed") is not None:
             o["people"] = max(0, o["people"] - len(v["members"]))
             _g6(state)["joined"] += len(v["members"])
-    else:
+    elif refused or not trust_fixed(state):
         o["trust"] = max(0.0, round(o["trust"] - 0.1, 2))
 
 
@@ -2296,6 +2347,8 @@ def _g6_season_end(state, frac):
             o["pots"], o["sickles"] = int(o["pots"] * 0.97), int(o["sickles"] * 0.95)
         if o["has_obsidian"]:
             o["obsidian"] = min(40, o["obsidian"] + 8)
+    if trust_fixed(state):  # 直し (b): 1 年に 1 度、争いのない知っている村の信頼を少しもどす (乱数は使わない)
+        _trust_recover(state)
     # 5. ほかの村の人が来る (この季節に村の人が行った村は来ない)
     went = {tr.get("to") for tr in g["trips"].values()}
     for o in g["others"]:

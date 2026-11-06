@@ -3861,6 +3861,8 @@ class T_G10FIX(unittest.TestCase):
         import step
         st, A, B, C = self.scene(mark=False)
         st["day"] = self.base()["day"]
+        st["hold"] = None  # 2026-11-06: 本物の state が止まっている (HOLD consult) 日でも試せるように、写しでは止まりを外す
+        st["era2"]["g7"]["hold"] = None
         d = tmpdir()
         try:
             self.assertIn("--why", step._refresh_refusal(st, " "))
@@ -4886,6 +4888,277 @@ class T_AllyCheck(unittest.TestCase):
         for o in oth.values():
             o.get("commit", {}).pop("N13", None)
         self.assertIn("助けを頼んでも来てくれる村はない", g7.council_prompt(st, "N13"))
+
+
+class T_TrustFix(unittest.TestCase):
+    """2026-11-06 本人の決め「信頼の決まりも直して 5 年見る」(docs/society_phase/G11_stall_diag.md 7. の 4 と「した直し 2」): era2.TRUST_FIX_FROM (160年の年の集まり)
+    の日に始まる歩から (step_day > TRUST_FIX_FROM)。(a) 決める人が足りずに受けなかった申し出・よそから来た人では信頼を下げない (本当に断ったときだけ −0.1)
+    (b) 知っている村の信頼は、その年に村と争いがなければ 1 年に TRUST_RECOVER ずつ TRUST_FLOOR までもどる。お題の「もう申し出に来ない」の行は、
+    その日は refresh_prompts の印 (g7.g11.trust_fix) のあとだけ新しい文。決まった git の state (OLD。19199 日目・G11・前のコード) の写しで確かめる。本物の data は読まない"""
+
+    OLD = "0cef573f"  # 直しの前のコミット (159年の年報。state は 19199 日目、前のコードで書いたお題がある)
+    G = era2.TRUST_FIX_FROM
+    _st = None
+    _old = {}
+
+    @classmethod
+    def base(cls):
+        if cls._st is None:
+            st = git_state(cls.OLD)
+            cls._st = st if st["day"] == cls.G and "g11" in ((st.get("era2") or {}).get("g7") or {}) else False
+        if cls._st is False:
+            raise unittest.SkipTest("OLD の state が 19199 日目の G11 でない")
+        return copy.deepcopy(cls._st)
+
+    @classmethod
+    def old(cls, name):
+        """直しの前の era2.py・g11.py (git から読む。別の名の模様として。中で呼ぶほかの模様は今のもの)"""
+        if name not in cls._old:
+            import importlib.util
+            r = subprocess.run(["git", "-C", str(ROOT), "show", f"{cls.OLD}:sim/society/{name}.py"], capture_output=True, text=True)
+            if r.returncode:
+                raise unittest.SkipTest("前のコードが git にない")
+            spec = importlib.util.spec_from_loader(f"{name}_old", loader=None)
+            m = importlib.util.module_from_spec(spec)
+            m.__file__ = str(SOC / f"{name}.py")
+            exec(compile(r.stdout, f"{name}_old.py", "exec"), m.__dict__)
+            cls._old[name] = m
+        return cls._old[name]
+
+    def scene(self, start):
+        """start の日に始まる歩の中 (step_day = start + 1)"""
+        st = self.base()
+        st["era2"]["step_day"] = start + 1
+        return st
+
+    @staticmethod
+    def js(st):
+        return json.dumps(st, ensure_ascii=False, sort_keys=True)
+
+    @staticmethod
+    def oth(st, oid):
+        return next(o for o in st["era2"]["g6"]["others"] if o["id"] == oid)
+
+    def offer(self, st, votes, lead=None, lead_vote=None, oid="N1", trust=0.3):
+        """申し出 1 つを決める (家の物で受ける家はない)。votes: {"村": 人数, False: 人数}。戻り値: その村の信頼"""
+        mod = era2
+        o = self.oth(st, oid)
+        o["trust"] = trust
+        names = [p["name"] for p in era2.adults(st)]
+        n, i, c = len(names), 0, {"trade": {"T9999": {}}, "trade_by": {"T9999": {}}, "house": {}}
+        for side, k in votes.items():
+            c["trade"]["T9999"][side] = set(names[i:i + k])
+            for x in names[i:i + k]:
+                c["trade_by"]["T9999"][x] = side
+            i += k
+        if lead:
+            c["trade_by"]["T9999"][lead] = lead_vote
+        off = {"id": "T9999", "other": oid, "kind": "交換", "want": {"草の種": 10 ** 9}, "give": {"ヤギ": 1}}
+        mod._g6_decide(st, c, off, o, n, lead)
+        return o["trust"], n
+
+    def test_gate_identical(self):
+        """この日を作った歩 (19169 日目から) と、その日より前に始まる歩: 申し出・よそから来た人・季節の終わりは、前のコード (OLD の era2.py) と state が 1 バイトも同じ"""
+        old = self.old("era2")
+        for start in (self.G - 30, self.G - 1, self.G - era2.YEAR):
+            self.assertFalse(era2.trust_fixed(self.scene(start)))
+            for votes in ({"村": 3}, {"村": 3, False: 2}, {}):
+                a, b = self.scene(start), self.scene(start)
+                n = len(era2.adults(a))
+                for st, mod in ((a, era2), (b, old)):
+                    o = self.oth(st, "N1")
+                    o["trust"] = 0.3
+                    c = {"trade": {"T9999": {k: {p["name"] for p in era2.adults(st)[:v]} for k, v in votes.items()}}, "trade_by": {"T9999": {}}, "house": {}}
+                    mod._g6_decide(st, c, {"id": "T9999", "other": "N1", "kind": "交換", "want": {"草の種": 10 ** 9}, "give": {}}, o, n, None)
+                    v = {"name": "テス1", "from": "N2", "members": [{"name": "テス1", "sex": "女", "age": 20}], "seed": 1}
+                    st["era2"]["visitors"] = [v]
+                    acc = {"テス1": [(era2.adults(st)[0]["name"], False)]}
+                    if mod is era2:
+                        mod._settle_visitors(st, acc, n, "集まり", {"テス1": {era2.adults(st)[0]["name"]}})
+                    else:
+                        mod._settle_visitors(st, acc, n, "集まり")
+                self.assertEqual(self.oth(a, "N1")["trust"], 0.2, "前は、決めないだけでも −0.1")
+                self.assertEqual(self.js(a), self.js(b), (start, votes))
+            a, b = self.scene(start), self.scene(start)
+            a["day"] = b["day"] = start + 30
+            era2._g6_season_end(a, 1.0)
+            old._g6_season_end(b, 1.0)
+            self.assertNotIn("trust_up", a["era2"]["g6"])
+            self.assertEqual(self.js(a), self.js(b), start)
+
+    def test_offer_after_gate(self):
+        """(a) この日に始まる歩から: 決める人が足りずに受けなかった申し出 (「村」が半分に届かず、「受けない」も半分をこえない) では信頼を下げない。
+        大人の半分をこえる「受けない」(年の方針の false も同じ票) か、まとめ役の「受けない」なら、前のとおり −0.1"""
+        st = self.scene(self.G)
+        self.assertTrue(era2.trust_fixed(st))
+        for votes in ({}, {"村": 3}, {"村": 30, False: 20}):
+            t, n = self.offer(self.scene(self.G), votes)
+            self.assertEqual(t, 0.3, votes)
+        st = self.scene(self.G)
+        n = len(era2.adults(st))
+        t, _ = self.offer(st, {False: n // 2 + 1})
+        self.assertEqual(t, 0.2, "本当に断った")
+        t, _ = self.offer(self.scene(self.G), {False: n // 2})
+        self.assertEqual(t, 0.3, "ちょうど半分は、半分をこえない")
+        ad = [p["name"] for p in era2.adults(st)]
+        t, _ = self.offer(self.scene(self.G), {}, lead=ad[-1], lead_vote=False)
+        self.assertEqual(t, 0.2, "まとめ役が受けないと答えた")
+        t, _ = self.offer(self.scene(self.G), {False: n // 2 + 1}, trust=0.0)
+        self.assertEqual(t, 0.0, "0 より下にはならない")
+        ev = [e for e in st["events"] if e.get("data", {}).get("offer") == "T9999"]
+        self.assertTrue(ev and "は受けなかった (" in ev[-1]["text"], "出来事の文は前のまま")
+
+    def test_newcomers_after_gate(self):
+        """(a) よそから来た人: 賛成が半分に届かず、はっきり「受け入れない」も半分をこえないなら下げない。半分をこえる「受け入れない」(年の方針の false も) なら −0.1。
+        答えの accept の false・「受け入れない」だけを数え、null は数えない (era2._no)"""
+        for ok, want in ((False, True), ("受け入れない", True), ("いいえ", True), (None, False), ("わからない", False), (True, False)):
+            self.assertEqual(era2._no(ok), want, ok)
+        for n_no, want in ((0, 0.3), (2, 0.3), (3, 0.2)):
+            st = self.scene(self.G)
+            o = self.oth(st, "N2")
+            o["trust"] = 0.3
+            ad = [p["name"] for p in era2.adults(st)][:5]
+            st["era2"]["visitors"] = [{"name": "テス1", "from": "N2", "members": [{"name": "テス1", "sex": "女", "age": 20}, {"name": "テス2", "sex": "男", "age": 22}], "seed": 1}]
+            acc = {"テス1": [(x, False) for x in ad[:n_no]]}
+            era2._settle_visitors(st, acc, 5, "集まり", {"テス2": set(ad[:n_no])})  # 群れのだれの名前で書いても同じ群れ
+            self.assertEqual(o["trust"], want, n_no)
+        st = self.scene(self.G)
+        o = self.oth(st, "N2")
+        o["trust"] = 0.3
+        ad = [p["name"] for p in era2.adults(st)][:5]
+        st["era2"]["visitors"] = [{"name": "テス1", "from": "N2", "members": [{"name": "テス1", "sex": "女", "age": 20}], "seed": 1}]
+        era2._settle_visitors(st, {"テス1": [(x, x != ad[0]) for x in ad[:3]] + [(ad[0], False)]}, 9, "集まり", {"テス1": {ad[0], ad[1], ad[2]}})
+        self.assertEqual(o["trust"], 0.3, "賛成と書いた人は、受け入れないに数えない")
+        st = self.scene(self.G - 30)
+        era2._g6_settled(st, {"from": "N2", "members": []}, False, False)
+        self.assertEqual(self.oth(st, "N2")["trust"], max(0.0, round(self.oth(self.base(), "N2")["trust"] - 0.1, 2)), "前の歩は前のまま")
+
+    def test_recover(self):
+        """(b) 年が変わって最初の季節の終わりに 1 度、知っている村の信頼が TRUST_RECOVER ずつ TRUST_FLOOR までもどる。上より高い村・知らない村・なくなった村はそのまま。
+        その 1 年に村と戦 (起きた日・終わった日)・求め (どちらからでも)・返されないままの貸し借りがあった村はもどらない。0 の村も 4 年で 0.2 (申し出に来る見込みが 0 でなくなる)"""
+        st = self.scene(self.G)
+        st["day"] = self.G + 30
+        oth = {o["id"]: o for o in st["era2"]["g6"]["others"]}
+        for k, t in (("N1", 0.0), ("N2", 0.17), ("N4", 0.3), ("N5", 0.0), ("N7", 0.0), ("N8", 0.0), ("N10", 0.0), ("N12", 0.0), ("N86", 0.0)):
+            oth[k]["trust"] = t
+        self.assertIsNone(oth["N86"]["known"])
+        reg = st["era2"]["g7"]["region"]
+        reg["wars"].append({"id": "W9999", "att": "N5", "def": "V0", "day": st["day"] - 100, "done": None})
+        reg["wars"].append({"id": "W9998", "att": "V0", "def": "N10", "day": st["day"] - 400, "done": st["day"] - 5})
+        reg["wars"].append({"id": "W9997", "att": "V0", "def": "N12", "day": st["day"] - 400, "done": st["day"] - 300})  # 前の年の戦は数えない
+        reg["demands"].append({"id": "Q9999", "from": "V0", "to": "N7", "what": {"草の種": 1}, "day": st["day"] - 50})
+        st["era2"]["g6"]["debts"].append({"id": "D9999", "other": "N8", "lender": "村", "goods": {"草の種": 1}, "day": 0, "due": 1, "status": "返されない", "end": st["day"] - 2})
+        era2._trust_recover(st)
+        got = {k: oth[k]["trust"] for k in ("N1", "N2", "N4", "N5", "N7", "N8", "N10", "N12", "N86")}
+        self.assertEqual(got, {"N1": 0.05, "N2": 0.2, "N4": 0.3, "N5": 0.0, "N7": 0.0, "N8": 0.0, "N10": 0.0, "N12": 0.05, "N86": 0.0})
+        self.assertEqual(st["era2"]["g6"]["trust_up"], st["day"] // era2.YEAR)
+        st["day"] += 60
+        era2._trust_recover(st)
+        self.assertEqual(oth["N1"]["trust"], 0.05, "1 年に 1 度だけ")
+        for y in range(1, 6):
+            st["day"] += era2.YEAR
+            era2._trust_recover(st)
+        self.assertEqual(oth["N1"]["trust"], era2.TRUST_FLOOR, "上 (0.2) まで、そこで止まる")
+        self.assertEqual(oth["N5"]["trust"], era2.TRUST_FLOOR, "争いのない年がつづけば、もどる")
+        self.assertEqual(oth["N4"]["trust"], 0.3)
+        st2 = self.scene(self.G)
+        o = self.oth(st2, "N1")
+        o["trust"] = 0.0
+        days = []
+        for y in range(4):
+            st2["day"] = self.G + 30 + y * era2.YEAR
+            era2._trust_recover(st2)
+            days.append(o["trust"])
+        self.assertEqual(days, [0.05, 0.1, 0.15, 0.2])
+        p = era2.CONTACT_P["よその村"] * o["trust"] / 0.5
+        self.assertAlmostEqual(p, 0.06, msg="4 年で 1 季節に 6% (1 年に約 2 割) の見込みで申し出に来る")
+
+    def test_season_end_after_gate(self):
+        """季節の終わり (_g6_season_end) の中で、この日に始まる歩から、1 年に 1 度もどす (乱数は使わない)"""
+        st = self.scene(self.G)
+        st["day"] = self.G + 30
+        before = {o["id"]: o["trust"] for o in st["era2"]["g6"]["others"]}
+        era2._g6_season_end(st, 1.0)
+        self.assertEqual(st["era2"]["g6"]["trust_up"], st["day"] // era2.YEAR)
+        after = {o["id"]: o["trust"] for o in st["era2"]["g6"]["others"]}
+        self.assertEqual(after["N1"], 0.05, (before["N1"], after["N1"]))
+        self.assertEqual(after["N86"], before["N86"], "知らない村はそのまま")
+        n0 = st["next_event"]
+        era2._g6_season_end(st, 1.0)
+        self.assertEqual(self.oth(st, "N1")["trust"], 0.05, "同じ年の 2 度目の季節の終わりは、もどさない")
+        self.assertFalse(any(e["id"] >= n0 and "信頼" in e["text"] for e in st["events"]), "もどすときは出来事を書かない")
+
+    def test_prompt_line(self):
+        """お題の行: 19199 日目は印 (g7.g11.trust_fix) がなければ前のコード (OLD の g11.py) と 1 文字も同じ。印のあと (と、その日より後) は、信頼の低い村
+        (TRUST_FLOOR より下) に「申し出にはあまり来ない。…また来るようになり、…もっと来る」。書かない言葉・信頼の字は出ない"""
+        import g11
+        old = self.old("g11")
+        st = self.base()
+        self.assertNotIn("trust_fix", st["era2"]["g7"]["g11"])
+        self.assertFalse(g11.trust_fixed(st))
+        for p in era2.adults(st)[:40]:
+            self.assertEqual(g11.text(st, p), old.text(st, p))
+        self.assertEqual(g11._others_rows(st), old._others_rows(st))
+        t0 = "\n".join(g11._others_rows(st))
+        self.assertIn("もう申し出に来ない", t0)
+        pre = self.base()
+        pre["day"] = self.G - era2.YEAR
+        g11.mark_trust_fix(pre, "試し")
+        self.assertNotIn("trust_fix", pre["era2"]["g7"]["g11"], "その日より前は何もしない")
+        g11.mark_trust_fix(st, "試し")
+        self.assertEqual(st["era2"]["g7"]["g11"]["trust_fix"], {"day": self.G, "why": "試し"})
+        self.assertTrue(g11.trust_fixed(st))
+        for o in st["era2"]["g6"]["others"]:
+            if o["id"] == "N89":
+                o["trust"] = 0.15
+        rows = g11._others_rows(st)
+        t1 = "\n".join(rows)
+        self.assertNotIn("もう申し出に来ない", t1)
+        low = [o for o in st["era2"]["g6"]["others"] if o.get("known") is not None and not o.get("gone") and o.get("people", 0) > 0 and o["trust"] < era2.TRUST_FLOOR]
+        self.assertIn("N89", [o["id"] for o in low])
+        for o in low:
+            self.assertIn(f"- [{o['id']}] {o['name']}: 村に申し出や、ここで暮らしたい人を何度も受けてもらえなかったので、申し出にはあまり来ない。"
+                          "村と争わない年がつづけば少しずつまた来るようになり、来た申し出を村が受ければもっと来る", t1)
+        for o in st["era2"]["g6"]["others"]:
+            if o["trust"] >= era2.TRUST_FLOOR:
+                self.assertNotIn(f"[{o['id']}] {o['name']}: 村に申し出や", t1)
+        self.assertEqual(g11.bad_words(t1), [])
+        self.assertNotIn("信頼", t1)
+        nxt = self.base()
+        nxt["day"] = self.G + era2.YEAR
+        self.assertTrue(g11.trust_fixed(nxt), "その日より後は、印がなくても新しい文")
+
+    def test_refresh_prompts(self):
+        """step.py refresh_prompts (写しのフォルダ。19199 日目の年の集まり): 止まっている (HOLD consult) あいだは断る (何も変えない)。resume のあとなら
+        g7.g11.trust_fix を書き、季節のお題を新しい行で書き直す (g7.g11.fix はもうあるので、そのまま)"""
+        import g11
+        st = self.base()
+        d = tmpdir()
+        try:
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
+            if st.get("hold"):
+                r = run("refresh_prompts", "--why", "試しのわけ")
+                self.assertEqual(r.returncode, 3, r.stdout + r.stderr)
+                self.assertIn("一時停止している", r.stdout)
+                r = run("resume")
+                self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            r = run("refresh_prompts", "--why", "試しのわけ")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            new = json.loads((d / "state.json").read_text(encoding="utf-8"))
+            self.assertEqual(new["era2"]["g7"]["g11"]["trust_fix"], {"day": self.G, "why": "試しのわけ"})
+            self.assertEqual(new["era2"]["g7"]["g11"]["fix"], st["era2"]["g7"]["g11"]["fix"])
+            pd = d / "prompts" / f"day{st['day']:03d}"
+            ss = list((pd / "season").glob("*.md"))
+            self.assertEqual({f.stem for f in ss}, set(era2.answerers(new)))
+            for f in ss:
+                t = f.read_text(encoding="utf-8")
+                self.assertIn("申し出にはあまり来ない。村と争わない年がつづけば", t)
+                self.assertNotIn("もう申し出に来ない", t)
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
 
 
 if __name__ == "__main__":
