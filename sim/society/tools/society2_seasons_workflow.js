@@ -38,7 +38,14 @@ const STEPS = MODE === 'year' ? (args.years || 1) * 12 : args.steps  // year: 1 
 let years = 0
 for (let k = 0; k < STEPS; k++) {
   // 状態は step.py who で読む (読むだけ。DAY・PHASE・HOLD・MODE・MEET・NAMES・FEEL・COUNCIL・ASKLOG の行)
-  const st = await agent(runner(`cd ${ROOT}/sim/society && ${ENV}PYTHONUTF8=1 PYTHONIOENCODING=utf-8 ${PY} step.py who`), { label: `step ${k} status`, model: 'haiku', phase: 'Seasons' })
+  // 2026-11-06: 読む役 (haiku) が、集まりの歩で COUNCIL と ASKLOG の行を落として返した (17879 日目。4 集落が決まりで選ばれた)。
+  // 最後の ASKLOG の行がないときは、2 回まで読み直す。それでもなければ止まる
+  let st = ''
+  for (let t = 0; t < 3; t++) {
+    st = await agent(runner(`cd ${ROOT}/sim/society && ${ENV}PYTHONUTF8=1 PYTHONIOENCODING=utf-8 ${PY} step.py who`) + (t ? ' '.repeat(t) : ''), { label: `step ${k} status${t ? ' retry' : ''}`, model: 'haiku', phase: 'Seasons' })
+    if (/ASKLOG (True|False)/.test(st || '') && /COUNCIL/.test(st || '')) break
+  }
+  if (!/ASKLOG (True|False)/.test(st || '') || !/COUNCIL/.test(st || '')) return { stopped: k, why: 'bad status (COUNCIL/ASKLOG line missing)', out: st, log: log_ }
   const dm = (st || '').match(/DAY (\d+) (\w+) (\w+)/), nm = (st || '').match(/NAMES[ \t]*([^\n`]*)/)  // 空の行 (集まりのない歩) は「NAMES」だけになることがある (行の終わりの空白が落ちても読む)
   if (!dm || dm[2] !== 'season' || dm[3] === 'True' || !nm) return { stopped: k, why: 'bad status', out: st, log: log_ }
   const mm = (st || '').match(/MODE (\w+)/), me = (st || '').match(/MEET (\S+)/), cm = (st || '').match(/COUNCIL[ \t]*([^\n`]*)/)
