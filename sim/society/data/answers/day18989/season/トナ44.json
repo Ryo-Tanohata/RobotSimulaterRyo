@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "ヤギが草より多すぎる。おれは北の丘で狩りをして、肉をとってヤギを減らす。冬に向けて肉を蓄えに入れよう。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意で、肉をとれば食べ物が増え、多すぎるヤギも抑えられるから"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ44": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が高く、冬に備えて肉をとれるから"}, "オセ44": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が高く、父と一緒なら安全に肉をとれるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の量をこえて多い年は、北の丘の狩りで肉をとると食べ物が増えてヤギも減らせる", "because": [2138449], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は動く。冬の前に北の丘でしっかり獲物をとりたい。"}

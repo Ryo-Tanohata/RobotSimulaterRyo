@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけれど、冬と春のために畑に種をまいて、みんなで草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが多いほど実るので、家族みんなで手伝う"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "アコ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やすため"},
+  "リセ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やすため"},
+  "ソナ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やすため"},
+  "ヌオ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やすため"},
+  "ソワ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やすため"},
+  "タユ44": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える"},
+  "ラニ44": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心。みんなで畑をがんばりたい。"}

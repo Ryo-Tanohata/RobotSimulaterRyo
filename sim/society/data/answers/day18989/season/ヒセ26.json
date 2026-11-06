@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "冬の前に畑にしっかり種をまいて、みんなで草取りを続けましょう。蓄えは十分あるから、あわてずにいきましょうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増えるので、続けて世話をする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "アコ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ユエ33": {"activity": "ヤギの世話", "place": "camp", "why": "世話する人が少ないとヤギがいなくなるので"},
+  "ケセ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "オネ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "ナセ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ヒセ44": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "ケナ45": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝うため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあって安心。冬に向けて、畑を大事に育てたい。"}

@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけど、冬に向けて肉もほしいね。わたしは北の丘で狩りをしてくるよ。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意で、蓄えに肉を足して冬に備えられるから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから"},
+  "ラニ38": {"activity": "採集", "place": "東林12", "why": "採集が得意で、木の実を集められるから"},
+  "ネイ41": {"activity": "採集", "place": "西草原12", "why": "近場で無理なく食べ物を集めるため"},
+  "キオ42": {"activity": "採集", "place": "東林12", "why": "ラニと一緒に採集を覚えるため"},
+  "ユエ42": {"activity": "採集", "place": "西草原12", "why": "ネイと一緒に近場で集めるため"},
+  "キサ43": {"activity": "狩り", "place": "北丘12", "why": "狩りの上手な人について覚えるため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。冬まで家族みんなで元気に過ごしたい。"}

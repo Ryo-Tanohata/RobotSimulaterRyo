@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、わたしは今季、まだ行っていない林や丘の奥を見てくるよ。木の実の木や野生のヤギの様子が分かったら伝えるね。"}],
+ "job": {"activity": "探索", "place": "北林12", "with": [], "why": "蓄えが足りているので、好奇心のままに北の林を調べ、新しい食べ物や獲物の場所を見つけたい"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケセ30": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、冬に備えて草や実を集める"},
+  "ユエ37": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を得て家の食べ物を増やす"},
+  "タユ39": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで実りを増やす"},
+  "ホタ41": {"activity": "ヤギの世話", "place": "camp", "why": "技能がまだ低いので、ヤギの世話で村を手伝う"},
+  "セヤ43": {"activity": "畑仕事", "place": "camp", "why": "若く技能が低いので、畑の草取りを手伝う"},
+  "シエ44": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって落ち着いている。知らない場所を歩くのが楽しみだ。"}
