@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えはたっぷりあるから、あわてず冬の前にみんなで道具をととのえよう。"}, {"to": "ソワ39", "text": "今季は畑の草取りをたのむよ。おれは石の鎌を作って待ってる。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりが得意で、鎌は割れることがあるので、冬の前に数をそろえておきたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ソワ39": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で、畑の草取りで次の夏の実りを増やせるから"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T253": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は約700日分あり、秋にまいて畑仕事をすれば次の夏に実る", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "おだやかで、みんなと話せるのがうれしい"}

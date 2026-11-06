@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "秋だね。わたしは今季も土器を焼くよ。畑の草取りも、手の空いた人はたのむ。ヤギが多すぎるから、少しつぶして肉にしよう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は蓄えの草の種を虫やネズミから守る。わたしは土器が一番得意だから続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ワユ24": {"activity": "畑仕事", "place": "camp", "why": "草取りで冬と春の実りを増やす"},
+  "オセ28": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手がいる"},
+  "セヤ29": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎるので見守って数を整える"},
+  "ソナ31": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"},
+  "ルタ31": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"},
+  "セオ32": {"activity": "土器づくり", "place": "camp", "why": "わたしと並んで土器を作り、蓄えを守る"},
+  "キサ33": {"activity": "採集", "place": "camp", "why": "木の実を集めて食べ物を足す"},
+  "ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"},
+  "ヌオ35": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ユエ35": {"activity": "土器づくり", "place": "camp", "why": "土器づくりを覚えて冬の前に数をそろえる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた草の種は、草取りをすると夏に多く実る", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心だが、ヤギが多すぎるのが気がかりだ"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけど、冬と春の草取りを怠ると夏の実りが減る。今のうちに種をまいて、みんなで畑に出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えると覚えている。大胆にやる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ハソ28": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして夏の実りを確かにするため"},
+  "オセ29": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑を守るため"},
+  "タユ29": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑を守るため"},
+  "ラニ34": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを進めるため"},
+  "ケセ36": {"activity": "畑仕事", "place": "camp", "why": "子が小さいので、キャンプのそばで畑仕事をする"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T253": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。畑で体を動かすのが楽しみだ。"}

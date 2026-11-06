@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりある。冬の前に畑にしっかり種をまいて、草取りもみんなでやろう。ワユ3の村が困っているなら、貸してあげてもいいと思う。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。手が足りないと実りが減るので、得意な採集の腕より畑を優先する。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "trade": {"T253": {"side": "村", "利子": 0}}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春の草取りをすると夏に実りが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑仕事を丁寧にやりたい。"}
