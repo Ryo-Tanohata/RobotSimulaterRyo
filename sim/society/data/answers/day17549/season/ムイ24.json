@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、秋のうちに畑に種をまいて、冬は草取りをしよう。ヤギも草が足りないから、少しつぶして肉にしたいね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると夏に多く実るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3,
+ "family": {"ホタ27": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やすため"}, "アコ32": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やすため"}, "アコ33": {"activity": "ヤギの世話", "place": "camp", "why": "草が足りないヤギの世話をするため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草原の草より多いので、少しつぶして肉にして減らすとよい", "because": [1809721], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心している。冬に向けて畑を育てたい。"}
