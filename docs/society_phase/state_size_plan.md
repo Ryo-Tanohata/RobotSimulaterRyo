@@ -3,7 +3,8 @@
 本物の村の `sim/society/data/state.json` が 50 MB をこえ、GitHub が注意を出している。
 GitHub は 100 MB をこえるファイルを受けとらない。
 
-この文書は計画だけ。コードも data も変えていない (data には書いていない。git にもさわっていない。LLM も使っていない)。
+この文書ははじめ計画だけだった (コードも data も変えていない (data には書いていない。git にもさわっていない。LLM も使っていない)。
+**2026-11-06 に案 A をコードに入れた (ブランチ state-slim。本物の data にはまだ入れていない。下の 7.)。**
 調べは、いまの state.json と git の履歴 (`git show <コミット>:sim/society/data/state.json` を流して読む) とコードを読むだけで行った。
 前の計画 (app_data.json と season_person.jsonl) は `docs/society_phase/data_size_plan.md`。考え方 (日や印で切りかえて、前の歩のやり直しを 1 バイトも同じにする) はそれと同じ。
 
@@ -163,3 +164,37 @@ GitHub は 100 MB をこえるファイルを受けとらない。
 - state.json の「今の年の出来事」は、生きている人が増えるほど増える。生きている人が 500 人をこえるころにもう一度はかる。
 - リポジトリ全体 (pack) の増え方は、state.json の差 (季節ごとに書きかわるところ) で決まる。trust はほとんど書きかわらないので、案 A で pack の増え方はあまり変わらない。
 - 履歴に残った 50 MB 台の版は消さない (100 MB の上限はファイルごと・プッシュのとき)。
+
+## 7. 入れたこと (2026-11-06。ブランチ state-slim。本物の data にはまだ入れていない)
+
+### コード
+
+- `era2.py`: `trust_sparse(state)` (印 `state["trust_sparse"]` があるか)。`_new_person` は、印があれば新しい人の trust を `{}` にし、ほかの人に 0.0 を足さない。印がなければ前のまま。
+- `characters.py` `_me`: 「仲間への信頼」の行を、people の順に生きている大人 (自分と子どもを除く) をたどり、`p["trust"].get(名前, 0.0)` で出す。
+  印のない state でも、前の書き方と 1 文字も同じ (trust の名前の順が people の順と同じため。3.)。
+- `step.py`: `TRUST_SPARSE_FROM = 17639` (147年の年の集まり)・`_trust_refusal`・`slim_trust(state, why)`・コマンド `slim_trust --why "<わけ>"`。
+  - 断るとき (終わりのコード 3。何も変えない): わけがない・TRUST_SPARSE_FROM の日でない・年の集まりの日でない・一時停止している・その日の答え (season・feeling・council・evening・night) がもうある。
+  - 印がもうあれば「もう 0 を外した形」と出して何もしない (終わりのコード 0)。
+  - することは: すべての人の trust から 0 を外す (名前の順はそのまま) → 印 `{"day", "why"}` → state.json を書く → app_data.json を作り直す → 記録を作り直す。お題・日・世界は変えない。
+- 変えていないもの: `world.py` 748 行 (もう `.get(…, 0)`)・`resume.py` (0 でないものは同じ順で残るので、app_data.json は同じ)。
+- 試し: `tools/test_g7.py T_TrustSparse` (4 つ: `_me` が前の書き方と同じ・外す前と後で同じ / `_new_person` / 断るわけ / コマンド)。
+
+### 確かめ (本物の data にはさわらず、git から出した 146年の写し (3cd06660、17519 日目) で)
+
+| 確かめ | 結果 |
+|---|---|
+| state.json の大きさ | 56,587,542 → 32,887,072 バイト (外した組 1,614,153) |
+| 17519 日目のお題 63 通 (年の集まり・気持ち・季節) を、印のない state と 0 を外した state で新しいコードで書く | どちらも、本物のお題 (git の 3cd06660) と sha256 が同じ |
+| app_data.json (同じ 2 つ) | どちらも本物のものと sha256 が同じ (aecb6347…) |
+| `exp3_replay.py --commits 3cd06660,bd134a15` (新しいコードで前の歩をやり直す) | state・app_data・archive・次のお題 がみな同じ |
+| 0 を外した写しで歩を進める (7b8e8863 = 145年の年の集まりの歩、3cd06660) | state は trust の 0 のほか同じ (0 でない組 17)・新しく来た人 3 人・4 人の trust は `{}`・次のお題 65 通・58 通・app_data・archive は 1 バイトも同じ |
+| `test_g7.py T_TrustSparse T_AppSlim`・`test_hints.py`・`test_archive.py` | みな通る |
+
+### 止まりで動かすこと (147年の年の集まり = 17639 日目)
+
+1. `python3.13 sim/society/step.py who` → `DAY 17639 season False`・`HOLD none`・`MEET 年`。季節を進めるワークフローが動いていない。`git status` で data に書きかけがない (17609 日目からの歩のコミットが済んでいる)。
+2. 前のお題の sha をとっておく: `(cd sim/society/data/prompts/day17639 && find . -type f | sort | xargs sha256sum) > /tmp/p_before.txt`・`sha256sum sim/society/data/app_data.json`。
+3. `python3.13 sim/society/step.py slim_trust --why "state.json が 50 MB をこえた (docs/society_phase/state_size_plan.md の案 A)"`
+4. 見ること: state.json が 約 33 MB・`(cd sim/society/data/prompts/day17639 && find . -type f | sort | xargs sha256sum) | diff - /tmp/p_before.txt` が空・app_data.json の sha が同じ・`step.py who` が 1. と同じ。
+5. コミット (state.json と、作り直した records/ に変わりがあればそれも)。そのあと年の集まりに答えて続ける。最初の季節のコミットを `exp3_replay.py` でやり直して「同じ」を見る。
+6. TRUST_SPARSE_FROM の日を変えるとき (17639 日目で止められなかったとき): `step.py` の `TRUST_SPARSE_FROM` を、止めた年の集まりの日 (120 × 年 − 1) にして、この文書と HANDOFF.md も直す。

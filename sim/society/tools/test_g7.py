@@ -3928,5 +3928,97 @@ class T_AppSlim(unittest.TestCase):
         finally:
             shutil.rmtree(d, ignore_errors=True)
 
+class T_TrustSparse(unittest.TestCase):
+    """2026-11-06 (docs/society_phase/state_size_plan.md 案 A): step.py slim_trust が TRUST_SPARSE_FROM の日に state.json の信頼の表から 0 を外し、
+    印 state["trust_sparse"] を書く。印があれば、新しい人に 0 を足さない (ない名前 = 0.0)。お題の「仲間への信頼」の行は前と 1 文字も同じ。
+    本物の state の写しで (本物の data は読むだけ)"""
+
+    @staticmethod
+    def old_line(st, p):  # 前の書き方 (2026-11-06 より前の characters._me)
+        return "、".join(f"{n} {v:+.1f}" for n, v in p["trust"].items() if any(q["name"] == n and q["alive"] and not q.get("child") for q in st["people"]))
+
+    def test_me_same(self):
+        """印のない state でも、0 を外した state でも、生きている人みなの _me が前の書き方の行をふくみ、外す前と後で 1 文字も同じ"""
+        import characters
+        import step
+        st = real_state()
+        st.pop("trust_sparse", None)
+        alive = [i for i, p in enumerate(st["people"]) if p["alive"]]
+        before = {i: characters._me(st, st["people"][i]) for i in alive}
+        for i in alive:
+            self.assertIn(f"仲間への信頼 (-1〜+1): {self.old_line(st, st['people'][i])}\n", before[i])
+        nz = {p["name"]: {k: v for k, v in p["trust"].items() if v} for p in st["people"]}
+        n = step.slim_trust(st, "試し")
+        self.assertGreater(n, 0)
+        self.assertEqual(st["trust_sparse"], {"day": st["day"], "why": "試し"})
+        self.assertEqual({p["name"]: p["trust"] for p in st["people"]}, nz, "0 でないものは残る")
+        self.assertFalse(any(0 in p["trust"].values() for p in st["people"]))
+        for i in alive:
+            self.assertEqual(characters._me(st, st["people"][i]), before[i])
+
+    def test_new_person(self):
+        """印があれば _new_person は 0 を足さない。印がなければ前のまま (新しい人にみなの 0、みなに新しい人の 0)"""
+        import step
+        st = real_state()
+        st.pop("trust_sparse", None)
+        n0 = len(st["people"])
+        p = era2._new_person(st, random.Random(1), "女", 20)
+        self.assertEqual(list(p["trust"]), [q["name"] for q in st["people"][:n0]])
+        self.assertTrue(all(q["trust"][p["name"]] == 0.0 for q in st["people"][:n0]))
+        st = real_state()
+        st.pop("trust_sparse", None)
+        step.slim_trust(st, "試し")
+        before = [dict(q["trust"]) for q in st["people"]]
+        p = era2._new_person(st, random.Random(1), "女", 20)
+        self.assertEqual(p["trust"], {})
+        self.assertEqual([q["trust"] for q in st["people"][:n0]], before)
+
+    def test_refusal(self):
+        import step
+        st = real_state()
+        D = step.TRUST_SPARSE_FROM
+        self.assertEqual((D + 1) % era2.YEAR, 0, "年の集まりの日")
+        self.assertIn("--why", step._trust_refusal(dict(st, day=D), " "))
+        self.assertIn("TRUST_SPARSE_FROM", step._trust_refusal(dict(st, day=D - 120), "試し"))
+        self.assertIn("TRUST_SPARSE_FROM", step._trust_refusal(dict(st, day=D + 120), "試し"))
+        self.assertIn("一時停止", step._trust_refusal(dict(st, day=D, hold=True), "試し"))
+
+    def test_slim_trust(self):
+        """slim_trust: わけがなければ断る。印と 0 を外した trust のほかは state を変えない。お題は書かない。
+        2 回目は何もしない。答えがあれば断る"""
+        import step
+        st = real_state()
+        st.pop("trust_sparse", None)
+        st["day"], st["hold"] = step.TRUST_SPARSE_FROM, None
+        d = tmpdir()
+        try:
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
+            ad = d / "answers" / f"day{st['day']:03d}" / "feeling"
+            ad.mkdir(parents=True)
+            (ad / "だれか.json").write_text("{}", encoding="utf-8")
+            r = run("slim_trust", "--why", "答えのあと")
+            self.assertEqual(r.returncode, 3, r.stdout + r.stderr)
+            self.assertIn("答えがもうある", r.stdout)
+            shutil.rmtree(d / "answers")
+            self.assertEqual(run("slim_trust").returncode, 3, "わけがなければ断る")
+            r = run("slim_trust", "--why", "試しのわけ")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            new = json.loads((d / "state.json").read_text(encoding="utf-8"))
+            self.assertEqual(new.pop("trust_sparse"), {"day": step.TRUST_SPARSE_FROM, "why": "試しのわけ"})
+            for p in st["people"]:
+                p["trust"] = {k: v for k, v in p["trust"].items() if v}
+            self.assertEqual(new, st, "印と 0 を外した trust のほかは state を変えない")
+            self.assertFalse((d / "prompts").exists(), "お題は書かない")
+            text = (d / "state.json").read_text(encoding="utf-8")
+            r = run("slim_trust", "--why", "もう一度")
+            self.assertEqual(r.returncode, 0, "印がもうあれば何もしない")
+            self.assertEqual((d / "state.json").read_text(encoding="utf-8"), text)
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
