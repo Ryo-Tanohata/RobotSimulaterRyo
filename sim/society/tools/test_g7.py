@@ -53,6 +53,22 @@ def real_state():
     return json.loads(real_text())
 
 
+G11_ENTRY = "c2566124"  # G11 に入った日 (18119 日目。印はまだ決まっていない。N52 が生きている) の state のコミット
+_GIT_TEXT = {}
+
+
+def git_state(commit):
+    """git にある、決まった日の state.json の中身 (読むだけ。コミットごとに 1 回だけ読む)。
+    本物の state は日が進むと形が変わる (印が決まる・村がなくなる・直しの印がつく) ので、その日の場面が要る試しはこれを使う (2026-11-06)。
+    git にないときは試しをとばす"""
+    if commit not in _GIT_TEXT:
+        r = subprocess.run(["git", "-C", str(ROOT), "show", f"{commit}:sim/society/data/state.json"], capture_output=True)
+        _GIT_TEXT[commit] = r.stdout.decode("utf-8") if r.returncode == 0 else None
+    if _GIT_TEXT[commit] is None:
+        raise unittest.SkipTest(f"{commit} の state が git にない")
+    return json.loads(_GIT_TEXT[commit])
+
+
 def as_g10(st):
     """本物の state が G11 なら、写しの中で G11 に入る前の G10 にもどす (G10 の仕組みだけの確かめのため。2026-11-06)。
     g11 を外し、G11 に入る日に g7.before.G10 に移した G7 の物差し (g7.start_g11) をもどす"""
@@ -3893,7 +3909,8 @@ class T_G11(unittest.TestCase):
     """2026-11-05 G11「お金と市場」(docs/society_phase/G11_design.md): G10 を閉じて入る (部は終わらない)・印のかたまりを作る (腕・一緒に作る・印の前と後)・
     印で払う (受けとる決まり・引きかえ・断ったあと 2 年・返しを印で)・市の日 (来る・替える・方針がないとき)・c1〜c3・F・進み・道の見張り (答える人のうち選べる人)・
     名前で知らせる行・わけのない休むが 0・作れる人の家が答える家に・言葉の表。G10 の state では何も働かない。
-    本物の state の写しから、メモリの中で入る (本物が G10 なら close_g10 → enter_next。もう G11 ならそのまま)。本物の data は読むだけ"""
+    G11 に入った日の state (git の G11_ENTRY。印はまだ決まっていない) の写しから、メモリの中で確かめる (G10 なら close_g10 → enter_next。G11 ならそのまま)。
+    本物の state は日が進むと印が決まり、試した人が亡くなるので使わない (2026-11-06)。本物の data は読むだけ"""
 
     NOTE = "本人の決め 2026-11-05 (お任せ): 鉄と広い国を閉じた (試し)"
     _st = None
@@ -3901,11 +3918,11 @@ class T_G11(unittest.TestCase):
     @classmethod
     def real(cls):
         if cls._st is None:
-            st = real_state()
+            st = git_state(G11_ENTRY)
             g = (st.get("era2") or {}).get("g7") or {}
             cls._st = st if ("g10" in g and st.get("era") in ("G10", "G11")) else False
         if cls._st is False:
-            raise unittest.SkipTest("本物の state が G10 か G11 でない")
+            raise unittest.SkipTest("G11_ENTRY の state が G10 か G11 でない")
         return copy.deepcopy(cls._st)
 
     def g10_state(self):
@@ -4362,7 +4379,8 @@ class T_G11FIX(unittest.TestCase):
     """2026-11-06 本人の決め「②③を直して続ける」(docs/society_phase/G11_stall_diag.md 7. の 1〜3 と「した直し」): g11.G11_FIX_FROM (158年の年の集まり) からの直し 3 つ。
     ① 市の日 (market_day) とねうち (coin_rate) を年の集まりの村の欄に (g7._tally。掟の道も残す) ② 道の見張り: 前の 1 年に出し入れ 0 回なら条件 1・3 は 0、報告に 1 行
     ③ お題だけの行 (印のかたまりでできること・申し出に来なくなった村・null だと受けない・市の日に来る村)。
-    直しの日より前と、直しの日で refresh_prompts の印がないときは、前のコード (OLD) と同じ文・同じ state。本物の state (G11) の写しで確かめる (本物の data は読むだけ)"""
+    直しの日より前と、直しの日で refresh_prompts の印がないときは、前のコード (OLD) と同じ文・同じ state。直しの前の state (git の OLD。18839 日目・G11・印のまま・直しの印なし) の写しで確かめる。
+    本物の state はもう直しの日をこえ、印と市の日がついているので使わない (2026-11-06。本物の data は読むだけ)"""
 
     OLD = "78d16211"  # 直しの前のコミット (g11.py)
     _st = None
@@ -4371,10 +4389,10 @@ class T_G11FIX(unittest.TestCase):
     @classmethod
     def base(cls):
         if cls._st is None:
-            st = real_state()
+            st = git_state(cls.OLD)
             cls._st = st if "g11" in ((st.get("era2") or {}).get("g7") or {}) else False
         if cls._st is False:
-            raise unittest.SkipTest("本物の state が G11 でない")
+            raise unittest.SkipTest("OLD の state が G11 でない")
         return copy.deepcopy(cls._st)
 
     @classmethod
@@ -4832,8 +4850,9 @@ class T_AllyCheck(unittest.TestCase):
         self.assertTrue(any(e["data"].get("refused") for e in out))
 
     def prompt_state(self, day):
+        """G11 に入った日の state (git の G11_ENTRY。N52 が生きている。本物では 18839 日目に N52 がなくなった) の写し"""
         import g7
-        st = real_state()
+        st = git_state(G11_ENTRY)
         st["day"] = day
         reg = g7._reg(st)
         oth = {o["id"]: o for o in g7._others(st)}
