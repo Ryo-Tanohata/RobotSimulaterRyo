@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだ山ほど残っている。毎夕しっかり刈ろう。黒い金属の鎌は私とロワ33がこれからも作りためるよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "畑がまだ大量に残るので、刈る力を増やす鎌を作りためる"}, "family": {"セオ25": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が一番なので肉を取ってくる"}, "タユ26": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で家の食べ物を支える"}, "キサ31": {"activity": "採集", "place": "camp", "why": "採集が得意"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "why": "鎌を作れるので一緒に作る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "来年の夏に刈り切れるよう鎌を作りためる"}, "family": {"セオ25": {"activity": "狩り", "place": "北丘12", "why": "肉を取る"}, "タユ26": {"activity": "狩り", "place": "北丘12", "why": "肉を取る"}, "キサ31": {"activity": "採集", "place": "camp", "why": "実りを集める"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "why": "鎌作りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "冬も鎌を作りためる"}, "family": {"セオ25": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものは取れる"}, "タユ26": {"activity": "狩り", "place": "北丘12", "why": "冬も肉を取る"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "why": "鎌作りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "夏の刈り入れ前に鎌を仕上げる"}, "family": {"セオ25": {"activity": "狩り", "place": "北丘12", "why": "肉を取る"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "why": "鎌作りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "18000日目、夏の畑は約756756つかみ残る。毎夕刈り、秋は種をまき、秋冬春は黒い金属の鎌を作りためる。", "because": [1901667], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "鎌の年",
+ "feeling": "畑は豊かで蓄えも厚い。鎌を作り続けて、来年こそ刈り切りたい。"}
