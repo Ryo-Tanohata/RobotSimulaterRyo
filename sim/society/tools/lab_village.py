@@ -1052,12 +1052,18 @@ def g11_row(res):
             "flows_all_sum": sum(f.get("all", 0) for f in flows), "flows_coin_sum": sum(f.get("coin", 0) for f in flows), "coin_share_best": round(max(shares, default=0), 3),
             "markets_deal_sum": sum(r.get("g11_markets_deals", 0) for r in rows), "markets_came": "・".join(sorted({o for r in rows for o in r.get("g11_market_came", [])})),
             "credit_written_years": sum(1 for r in rows if (r.get("g11_credit") or {}).get("written")), "fails_sum": sum(len(r.get("g11_fails") or []) for r in rows),
-            "refused": last.get("g11_refused"), "path_zero_c1": sum(1 for y in py if (paths.get(y) or {}).get("c1", 1) == 0),
-            "path_zero_c3": sum(1 for y in py if (paths.get(y) or {}).get("c3", 1) == 0), "path_consults": len(last.get("g11_consulted") or []),
+            "refused": last.get("g11_refused"), "path_zero_c1": _zero_years(paths, py, c, "c1"), "path_zero_c3": _zero_years(paths, py, c, "c3"),
+            "path_consults": len(last.get("g11_consulted") or []),
             "key_answer_years": sum(1 for k in keys if k), "key_years": sum(1 for k in keys if k is not None), "readers_end": last.get("g11_readers"),
             "pop_end": last.get("pop"), "famine_seasons": last.get("famine_seasons"), "store_all_days_end": last.get("store_all_days"),
             "store_all_days_min": min((r.get("store_all_days", 0) for r in rows), default=None), "strong_people_end": last.get("strong_people"),
             "g10_c_now": "・".join(sorted((last.get("g10_c_now") or {}).keys())), "secs": res["secs"]}
+
+
+def _zero_years(paths, py, c, k):
+    """道の見張りで、条件 k にまだ届いていない年 (届いた年より前) のうち、選べた答える人が 0 人だった年の数"""
+    reach = c.get(k)
+    return sum(1 for y in py if (reach is None or int(y) < reach // YEAR) and (paths.get(y) or {}).get(k, 1) == 0)
 
 
 def write_g11_csv(out_dir, path, years_path=None):

@@ -518,6 +518,17 @@ def try_day(state, p, t):
                                           + ("。腕のある人に教わりながら" if teach else ""), card=card))
 
 
+def _learned_alive(state, card):
+    """G11 から (2026-11-05 の決まりの村の確かめで見つけた): 黒い金属の札 (H9-01) は、腕のある人と一緒に作って覚えた人 (g10 の smiths。
+    g10.smith が作れる人とみなす人) が生きていれば、札を試した人がみな亡くなっても、できたまま (作れる人がいるのに村で作れなくなるのをふせぐ)。
+    G10 までは働かない (G10 の歩のやり直しは前と同じ)"""
+    g7s = state["era2"].get("g7") or {}
+    if card != "H9-01" or "g11" not in g7s:
+        return False
+    alive = {p["name"] for p in era2.adults(state)}
+    return any(n in alive for n in (g7s.get("g10") or {}).get("smiths", []))
+
+
 def _tech_season(state):
     """季節の終わり: 待つ札が開く・できる・腕を持つ人がいなくなったら戻る (乱数なし)"""
     h, D = _h(state), state["day"]
@@ -535,7 +546,7 @@ def _tech_season(state):
                 log(state, "試す", who[0]["name"] if who else None,
                     f"村で「{c['name']}」ができるようになった ({'よその便りから' if t['source'] == 'ヒント' else 'きっかけから'}。"
                     f"試した人 {'・'.join(p['name'] for p in who[:6])}{' ほか' if len(who) > 6 else ''})", card=card, source=t["source"])
-        if t.get("done") and not any(p["skills"].get(f"試す:{card}", 0) > 0 for p in era2.adults(state)):
+        if t.get("done") and not any(p["skills"].get(f"試す:{card}", 0) > 0 for p in era2.adults(state)) and not _learned_alive(state, card):
             t["done"], t["progress"] = None, round(t["progress"] / 2, 3)
             log(state, "試す", None, f"「{c['name']}」を覚えた人が村にいなくなり、できなくなった", card=card)
     for card, names in sorted(h["pending_knowers"].items()):

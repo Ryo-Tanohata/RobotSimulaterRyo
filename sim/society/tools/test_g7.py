@@ -4283,6 +4283,29 @@ class T_G11(unittest.TestCase):
         for h in kh:
             self.assertIn(h, new, "3 年をこえても、作れる人の家は外れない")
 
+    def test_iron_kept_by_learned(self):
+        """札を試した人 (試すの腕のある人) がみな亡くなっても、一緒に作って覚えた人が生きていれば、G11 では黒い金属は作れたまま
+        (2026-11-05 の決まりの村 G11B0 の種 1 で、ケセ19 が 4 年目に亡くなり、タユ25 がいるのに作れる人が 0 人になった)。G10 では前のまま (できなくなる)"""
+        import g10
+        import g11
+        import hints
+        key = f"試す:{g10.CARD_IRON}"
+        for st, kept in ((self.g11_state(), True), (self.g10_state(), False)):
+            tried = [p for p in era2.adults(st) if p["skills"].get(key, 0) > 0]
+            learned = [n for n in st["era2"]["g7"]["g10"]["smiths"] if n not in {p["name"] for p in tried}]
+            self.assertTrue(tried and learned, "試した人と、一緒に作って覚えた人がいる")
+            for p in tried:
+                p["alive"] = False
+            self.assertTrue(g10.iron_ready(st))
+            hints._tech_season(st)
+            self.assertEqual(g10.iron_ready(st), kept)
+            if kept:
+                self.assertEqual(g11.smiths(st), sorted(n for n in learned if n in {p["name"] for p in era2.adults(st)}))
+                self.assertTrue(g11.key_houses(st))
+                self.assertFalse(any("できなくなった" in e["text"] for e in st["events"][-3:]))
+            else:
+                self.assertIn("できなくなった", st["events"][-1]["text"])
+
     def test_next_part_cli(self):
         """step.py next_part --closed-by-decision (写しのフォルダ): G10 → G11。形 A・B の文をそのまま残す。G11 のお題に節と欄。2 回目は断る"""
         import g11
