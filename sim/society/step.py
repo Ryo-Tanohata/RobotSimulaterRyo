@@ -725,6 +725,9 @@ def main():
         import g10  # noqa: E402
         if g10.on(state):
             g10.mark_fix(state, a.why.strip())  # 直しの日 (g10.G10_FIX_FROM) なら、この歩から直しを入れる (g7.g10.fix)
+        if "g11" in state["era2"]["g7"]:  # G10 までは g11.py を読みこまない
+            import g11  # noqa: E402
+            g11.mark_fix(state, a.why.strip())  # 2026-11-06: G11 の直しの日 (g11.G11_FIX_FROM) なら、この歩から直し ①〜③ を入れる (g7.g11.fix)
         added = g7.g10_sample_add(state) if g10.fixed(state) else []  # ③ 作れる人・試している人の家を、答える家に足す (年の終わりの見本の選びのあとと同じ)
         if added:
             g7.donors(state)
