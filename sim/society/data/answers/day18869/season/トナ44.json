@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "ヤギが草より多いままだ。この秋は北の丘で狩りをして、肉で食べ物を増やしながらヤギの数を抑えるよ。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": ["ハソ44", "オセ44"], "why": "狩りが得意で、ヤギが草の量をこえて多いので、肉をとってヤギを減らしたいから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ44": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かで、一緒に行けば獲物を逃がしにくいから"}, "オセ44": {"activity": "狩り", "place": "北丘12", "why": "狩りが上手で、群れを探すと言っていたので北の丘へ行く"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": []
+}

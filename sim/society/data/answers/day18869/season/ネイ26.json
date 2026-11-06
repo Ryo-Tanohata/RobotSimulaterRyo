@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋だよ、畑に草の種をたっぷりまこう。草取りを怠けたら実りが減るから、私が先にやるよ。誰か一緒に来て、にぎやかにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えは十分あるので、来夏の実りを確かにしたい"},
+ "sow": 1000, "pick": 40, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ33": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ナセ35": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ワユ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬に備えて肉をとる"},
+  "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ナセ42": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝いながら仕事を覚える"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "体は軽く、みんなと畑で働くのが楽しみだ"}

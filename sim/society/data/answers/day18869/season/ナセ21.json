@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "冬の前に、土器をもう少し焼いておくよ。草の種は器に入れておけば虫にやられないからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。蓄えの草の種を守る器を冬までに増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "オセ28": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで夏の実りを増やすため"},
+  "セヤ29": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が要るので手伝う"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は草取りをしないと実りが減るので、家の何人かは畑仕事に回すのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって落ち着いている。土器をこねる日々が楽しみだ。"}

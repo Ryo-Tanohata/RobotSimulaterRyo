@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけれど、畑がないと夏に実りがない。今年も私は草の種をまいて、冬も春も草取りをするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、草取りをする人が要るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ネイ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする人を増やして実りを守るため"},
+  "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を持ち帰って蓄えを助けるため"},
+  "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉をとって村に入れるため"},
+  "ナセ39": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手になるため"},
+  "オネ40": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手になるため"},
+  "キサ44": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝うため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって落ち着いている。畑の草取りを続けよう。"}

@@ -1,0 +1,24 @@
+{"say": [{"to": "みんな", "text": "ヤギが草の数より二十頭ほど多いよ。やせていなくなる前に、オスから少しつぶして干し肉にしておこうね。畑には今年もみんなで種をまいて、冬も草取りに出よう。"}, {"to": "ロワ33", "text": "黒い鎌はもう村にたくさんあるから、この秋は畑の草取りを手伝ってくれるとうれしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをして、夏の実りを増やしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3,
+ "family": {
+  "ロワ33": {"activity": "畑仕事", "place": "camp", "why": "黒い鎌は足りているので、畑の草取りに手を回してほしい"},
+  "キオ38": {"activity": "畑仕事", "place": "camp", "why": "みんなでまいた畑の草取りが要るから"},
+  "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "みんなでまいた畑の草取りが要るから"},
+  "ネイ41": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので、キャンプの近くで畑を手伝ってほしい"},
+  "キオ42": {"activity": "畑仕事", "place": "camp", "why": "大人になったばかりなので、みんなと畑で働いて覚えてほしい"},
+  "キサ43": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを少しずつ覚えてほしい"},
+  "ユエ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを少しずつ覚えてほしい"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": "使う", "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "草が足りず、前の季節はヤギが 11 頭やせていなくなった。草で養えるのは 140 頭ほどで、今は 163 頭いる", "because": [2105975], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L494", "against": "", "agree": true, "reason": "多すぎるヤギを干し肉にして、畑にまいて草取りもするのは、毎年うまくいっているから"},
+  {"id": "L495", "against": "", "agree": true, "reason": "私が出した提案で、今もヤギが多すぎるから"},
+  {"id": "L498", "against": "", "agree": true, "reason": "ヤギを減らし、畑にまくのは大事だから"},
+  {"id": "L499", "against": "", "agree": true, "reason": "やせていなくなる前に食べ物にしたいから"},
+  {"id": "L491", "against": "", "agree": true, "reason": "畑にまくこととヤギを減らすことの両方が入っているから"}
+ ],
+ "feeling": "家の子たちもみんな元気で、蓄えもたっぷりあるから、落ち着いた秋になりそう。"}
