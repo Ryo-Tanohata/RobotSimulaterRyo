@@ -9,7 +9,7 @@
   (G9 の「来る見込みを 5 割に」2026-10-29: --data sim/society/data (本物の 13079 日目。読むだけ) --worlds W9R --bundles B0 --seeds 2 --years 5)
   (G10 の確かめ 2026-11-04: --data <本物の 13799 日目の state.json の写しのフォルダ> --worlds W10 --bundles G10B0,G10B1 --seeds 4 --years 15。
    表は csv --g10-csv <runs.csv> --years-csv <years.csv>。docs/society_phase/G10_check.md)
-  (G11 の確かめ 2026-11-05: --data <本物の 17039 日目の state.json のあるフォルダ> --worlds W11 --bundles G11B0,G11B1,G11B1R,G11B1X --seeds 4 --years 15 --procs 2。
+  (G11 の確かめ 2026-11-05: --data <本物の 17039 日目の state.json のあるフォルダ> --worlds W11 --bundles G11B0,G11B1,G11B1R,G11B1X --seeds 2 --years 15 --procs 2 (回したのは種 1・2。1 回 約 1 時間)。
    表は csv --g11-csv <runs.csv> --years-csv <years.csv>。docs/society_phase/G11_check.md)
 
 - はじめの state は G6 の 5849 日目 (e436dfc の 1 つ前のコミットの data の写し)。メモリの中で g7.close_g6 → g7.enter (G7 に入る。本物と同じ道) してから回す。
