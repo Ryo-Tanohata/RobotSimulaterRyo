@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだ山ほど残っている。落ちる前に、黒い金属の鎌で毎夕刈り切ろう。秋と冬は私とロワ33で鎌をもっと作る。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の畑は夏のうちに刈らないと落ちるので、刈り入れを続ける"}, "family": {"セオ25": {"activity": "畑仕事", "place": "camp", "why": "畑が残っているので刈り入れを手伝う"}, "タユ26": {"activity": "畑仕事", "place": "camp", "why": "畑が残っているので刈り入れを手伝う"}, "キサ31": {"activity": "畑仕事", "place": "camp", "why": "畑が残っているので刈り入れを手伝う"}, "ロワ33": {"activity": "畑仕事", "place": "camp", "why": "畑が残っているので刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5},
+  "秋": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "来年の夏に刈り切るため、黒い金属の鎌を作りためる"}, "family": {"セオ25": {"activity": "狩り", "place": "camp", "why": "狩りが得意で、肉を蓄えに足せる"}, "タユ26": {"activity": "狩り", "place": "camp", "why": "狩りが得意で、肉を蓄えに足せる"}, "キサ31": {"activity": "採集", "place": "camp", "why": "採集が得意なので木の実や草を集める"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "why": "ケセ19と一緒に黒い金属の鎌を作る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "sow": 1000},
+  "冬": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "冬も鎌を作りためる"}, "family": {"セオ25": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいるので狩りをする"}, "タユ26": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいるので狩りをする"}, "キサ31": {"activity": "採集", "place": "camp", "why": "採れる物を集める"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "why": "ケセ19と一緒に鎌を作る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5},
+  "春": {"job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "夏の刈り入れに備えて鎌を作りためる"}, "family": {"セオ25": {"activity": "狩り", "place": "camp", "why": "狩りで食べ物を足す"}, "タユ26": {"activity": "狩り", "place": "camp", "why": "狩りで食べ物を足す"}, "キサ31": {"activity": "採集", "place": "camp", "why": "採集で食べ物を足す"}, "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "why": "ケセ19と一緒に鎌を作る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "17760日目、夏の畑は約1052278つかみ残る。黒い金属の鎌で毎夕刈り、秋は種をまき、秋冬春は鎌を作りためる。ヤギは草に対して多いのでつぶして減らす。", "because": [1849164], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "黒い金属の鎌の年",
+ "feeling": "畑はまだ広い。鎌をもっと作って、刈り残しのないようにしたい。"}
