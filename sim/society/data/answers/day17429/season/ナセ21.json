@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "冬の前だ、器をたくさん焼いておくよ。草の種を入れる器が足りなくなったら声をかけてくれ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れた草の種は傷みにくい。蓄えを守る仕事で、おれの一番の得意でもある。"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ワユ24": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬に備えて木の実や草の種を集める。"},
+  "オセ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やす。"},
+  "セヤ29": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を家に持ち帰る。"},
+  "ソナ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬の前に肉を集める。"},
+  "ルタ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を集める。"},
+  "セオ32": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う。"},
+  "キサ33": {"activity": "採集", "place": "camp", "why": "採集が得意なので、食べ物を集める。"},
+  "ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う。"},
+  "ケセ34": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬の前に集める。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えもたっぷりあるし、落ち着いた気分だ。土をこねるのが楽しみだ。"}

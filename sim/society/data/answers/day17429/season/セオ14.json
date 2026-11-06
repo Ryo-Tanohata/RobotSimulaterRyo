@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるが、冬と春の草取りがないと夏の実りが減る。年寄りのわしも畑に出るから、みんなも手を貸しておくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、季節の終わりまで畑に出る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ21": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やすため"}, "タユ27": {"activity": "畑仕事", "place": "camp", "why": "子が多い家なので、実りを増やして冬に備えるため"}, "ナセ34": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を確保するため"}, "ワユ34": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を確保するため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "蓄えが七百日分近くある秋は、種を1000つかみずつ畑にまき、家族みんなで草取りを続けるのがよい", "because": [1786045], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで落ち着いている。畑をしっかり育てて、冬を穏やかに迎えたい。"}

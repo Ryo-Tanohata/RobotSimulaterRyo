@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。秋のうちに畑にまいて、冬と春は交代で草取りをしよう。わたしもまくし、草取りもする。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑にまいた草の種は草取りをしないと実りが減る。蓄えが多い今、来年の夏の実りを確かにしたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ37": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば、家の畑の実りが十分に増える。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に草の種をまいたら、冬と春のあいだ草取りをしないと実りが3割に減る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑がよく実ってほしい。"}

@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "冬が近いね。わたしは持っている種を埋めて、木の実の木を増やしておくよ。"}],
+ "job": {"activity": "種まき", "place": "camp", "with": [], "why": "種を持っているので、キャンプのそばに埋めて将来の木の実の木を育てたい"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソワ23": {"activity": "採集", "place": "西草原12", "why": "冬の前に食べ物を集めておくため"},
+  "タユ24": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を蓄えに足すため"},
+  "キサ28": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、冬に備えて木の実などを集める"},
+  "ルタ29": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので、魚を捕って蓄えに足す"},
+  "オセ31": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを守るため"},
+  "ナセ32": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ネイ32": {"activity": "ヤギの世話", "place": "camp", "why": "世話が足りないとヤギがいなくなるため"},
+  "オネ33": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が必要なため"},
+  "ソワ33": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを減らさないため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあるので落ち着いている。冬の前に木の種を埋めておきたい。"}

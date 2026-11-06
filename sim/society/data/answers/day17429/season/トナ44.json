@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "この秋は種をたくさんまいて、冬のあいだも草取りに通うつもりだ。おれは畑に立つぞ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は草取りをしないと実りが3割に減る。大胆にまいたぶん、しっかり世話をしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ44": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば、畑の実りが多く残る"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、草取りをした時間だけ実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "体は満腹で力がある。畑を広く世話するのが楽しみだ"}
