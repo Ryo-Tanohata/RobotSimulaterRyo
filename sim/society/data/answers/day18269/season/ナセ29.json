@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋だ。蓄えの草の種を畑にまいて、冬と春の草取りをしっかりやろう。夏にまた実りを刈ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えはあるが、来年の夏の実りのために畑を育てたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ36": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要る。わたしと一緒に畑を見てほしい。"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、草取りをした分だけ夏の実りが増える。", "because": [1963257], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあって落ち着いている。畑仕事に精を出したい。"}

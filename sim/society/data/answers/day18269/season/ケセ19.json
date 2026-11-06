@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "この秋も畑に種をまくよ。わたしとロワ33は黒い金属の鎌を作りためて、来年の夏にしっかり刈り切れるようにしておく。"}],
+ "job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "鎌を作れるのは私とロワ33だけ。作りためて来年の夏に刈り切るため。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ロワ33": {"activity": "黒い金属を作る", "place": "camp", "with": ["ケセ19"], "why": "一緒に黒い金属の鎌を作りためるため。"},
+  "セオ25": {"activity": "採集", "place": "camp", "why": "家族の食べ物と蓄えの足しにするため。"},
+  "タユ26": {"activity": "採集", "place": "camp", "why": "家族の食べ物と蓄えの足しにするため。"},
+  "キサ31": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで夏の実りを減らさないため。"},
+  "キオ38": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで夏の実りを減らさないため。"},
+  "ラニ38": {"activity": "採集", "place": "camp", "why": "蓄えの足しにするため。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "18270日目の秋、畑はなく蓄えは草の種4710548つかみ。種を1000つかみまき、黒い金属の鎌をロワ33と作りためて来年の夏に刈り切る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。鎌作りを続けて来年の夏に備えたい。"}

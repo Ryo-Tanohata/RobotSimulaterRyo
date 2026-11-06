@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種がたっぷりあるから、この秋もわたしは畑にまいて、冬のあいだ草取りをするよ。来年の夏にまた実るようにしたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど実りが増えるので、家族みんなで畑を世話する"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ホタ36": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど実りが増えるから"},
+  "ソワ36": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やすため"},
+  "ケナ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やすため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは多くて落ち着いている。畑がよく実ってほしい。"}

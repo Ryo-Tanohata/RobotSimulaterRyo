@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "畑がいまは一つもない。この秋もみんなで種をまいて、冬と春は交代で草取りに出よう。おれも毎日畑に行く。"}, {"to": "タユ42", "text": "子らは満腹で元気だ。畑はおれとお前で見よう。ヒセ42にはヤギを頼む。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まく畑が多く、草取りの手が足りないと夏の実りが減るから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"タユ42": {"activity": "畑仕事", "place": "camp", "why": "家の畑の草取りをして、夏の実りを増やすため"}, "ヒセ42": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギは140頭いて、世話が足りないといなくなるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "飼っているヤギは今140頭で、草で養える約140頭とちょうど同じくらい", "because": [], "confidence": 0.9}, {"op": "add", "text": "土器に入れた草の種でも、季節に3万7千つかみほど傷む", "because": [1963742], "confidence": 0.8}],
+ "proposal": {"text": "この秋のはじめに、大人はみな蓄えの草の種を 1000 つかみずつ畑にまこう。ヤギはいま 140 頭で草とちょうど釣り合っているので、つぶさずに残し、毎日三人がキャンプで世話をしよう。秋から春までは毎日十人ほどが交代で草取りをしよう。", "because": [], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L475", "against": "", "agree": true, "reason": "種をまき、草取りとヤギの世話の人を決めるのはいまの村に合っている"}, {"id": "L455", "against": "", "agree": true, "reason": "畑が多いので草取りの人を増やしたい"}, {"id": "L454", "against": "四人の草取りでは足りない", "agree": true, "reason": "まくこと自体には賛成"}, {"id": "L477", "against": "ヤギはいま140頭で草で養える数をこえていない", "agree": false, "reason": "いまはつぶす分がない"}, {"id": "L478", "against": "ヤギは多すぎない", "agree": false, "reason": "前の数のままで、いまに合わない"}, {"id": "L479", "against": "ヤギは多すぎない", "agree": false, "reason": "前の数のままで、いまに合わない"}, {"id": "L457", "against": "", "agree": true, "reason": "ヤギの世話をする人が毎日いるのはよい"}],
+ "feeling": "蓄えは十分ある。あとは畑をしっかり育てるだけだ。"}

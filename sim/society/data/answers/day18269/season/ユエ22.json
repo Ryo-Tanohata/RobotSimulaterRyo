@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるが、冬の前に畑に種をまいておこう。草取りも忘れずにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、冬と春に備えて畑を育てたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ26": {"activity": "畑仕事", "place": "camp", "why": "採集が苦手なので、畑の草取りを手伝う"},
+  "ラキ28": {"activity": "採集", "place": "camp", "why": "採集が得意なので、木の実を集めて食べ物を増やす"},
+  "ホタ34": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬に向けて肉を集める"},
+  "キサ36": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を集める"},
+  "ケセ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ロワ39": {"activity": "畑仕事", "place": "camp", "why": "まだ慣れていないので、畑仕事で働き方を覚える"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、落ち着いている。冬に向けて畑を大事にしたい。"}
