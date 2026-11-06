@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりあるから、この秋はみんなで畑に種をまいて、草取りもしっかりやろう。冬の前に木の実も少しずつ取っておこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすると、夏の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "タユ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなで分けて進めるため"},
+  "キサ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やすため"},
+  "ロワ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るので手伝う"},
+  "キオ38": {"activity": "畑仕事", "place": "camp", "why": "採集も得意だが、まず畑の草取りを手伝う"},
+  "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で一緒に進めるため"}
+ },
+ "keep": false,
+ "judge": {"M484": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた草の種の畑は、秋・冬・春に草取りをすると、夏の実りが増える", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは十分で安心している。畑仕事に精を出したい。"}

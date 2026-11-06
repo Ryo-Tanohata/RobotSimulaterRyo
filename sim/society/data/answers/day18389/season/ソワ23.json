@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りない。冬の前に何頭か肉にして、蓄えに回そう。おれは持っている種を林に埋めて、木を増やしておくよ。"}],
+ "job": {"activity": "種まき", "place": "北林12", "with": [], "why": "持っている種を埋めて、先々のために木の実の木を増やしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "タユ24": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉をとるため"},
+  "キサ28": {"activity": "採集", "place": "東林12", "why": "木の実を集めて蓄えを増やすため"},
+  "ルタ29": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉をとるため"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草原の草より多く、毎年やせていなくなる。肉にして減らすほうがよい。", "because": [1993990], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは十分あるので落ち着いている。木の実の木が育つのが楽しみだ。"}

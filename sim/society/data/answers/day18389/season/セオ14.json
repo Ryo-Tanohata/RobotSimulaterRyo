@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にあるから、この秋は畑にしっかり種をまいて、みんなで草取りもしよう。ヤギは草が足りないから、少しずつ減らしていこうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、年寄りでもできる畑仕事で村に役立ちたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "タユ27": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やすため"},
+  "ナセ34": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、秋は畑の草取りが実りに効くため"},
+  "ワユ34": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなで分担するため"},
+  "セヤ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなで分担するため"},
+  "セヤ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなで分担するため"},
+  "ソナ41": {"activity": "畑仕事", "place": "camp", "why": "子でも畑仕事なら半分の働きができるため"},
+  "オネ41": {"activity": "畑仕事", "place": "camp", "why": "子でも畑仕事なら半分の働きができるため"}
+ },
+ "keep": false,
+ "judge": {"M484": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。今年も畑を元気に育てたい。"}

@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りないね。みんなで肉にして減らそう。わたしは土器を焼いて、蓄えの草の種を守る。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ30": {"activity": "狩り", "place": "北丘12", "why": "狩りが上手で、冬の前に肉をとれるから"},
+  "リセ32": {"activity": "狩り", "place": "北丘12", "why": "狩りが上手で、ラニ30と二人で行けば安全だから"},
+  "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ラニ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "シエ37": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をする人が必要だから"},
+  "ケセ38": {"activity": "採集", "place": "南川12", "why": "採集が得意で、魚や木の実を集められるから"},
+  "ホタ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "ヤギが多くて草が心配だけれど、土器を焼いて蓄えを守れば冬は越せると思う。"}
