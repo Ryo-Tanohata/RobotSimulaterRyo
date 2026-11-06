@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりある。今年の秋も畑にしっかりまいて、冬のあいだの草取りも皆で分けてやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、家族みんなで畑を育てる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "アコ33": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"},
+  "リセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を持ち帰って家族と村の食べ物を増やす"},
+  "ソナ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を獲って冬に備える"},
+  "ヌオ42": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝い、畑の実りを守る"},
+  "ソワ42": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝い、畑の実りを守る"},
+  "タユ44": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝い、畑の実りを守る"},
+  "ラニ44": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝い、畑の実りを守る"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T259": "村"}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで心強い。困っているリセ3の村にも分けてあげられるのがうれしい。"}

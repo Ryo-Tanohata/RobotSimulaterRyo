@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "冬の前に、土器をもう少し焼いておくね。草の種を守る器は多いほうが安心だよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが一番得意で、草の種を虫やネズミから守れるから続ける"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬に備えて肉を集める"},
+  "ラニ38": {"activity": "採集", "place": "東林12", "why": "採集が得意で、近くの林で木の実を集められる"},
+  "ネイ41": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので草の種や実を集める"},
+  "キオ42": {"activity": "採集", "place": "南林12", "why": "採集が得意なので木の実を集める"},
+  "ユエ42": {"activity": "採集", "place": "北林12", "why": "採集が得意なので近くの林で食べ物を集める"},
+  "キサ43": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとってくる"},
+  "キサ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "シエ45": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "家族みんなが満腹で、穏やかな気持ち。冬に向けて土器をたくさん作りたい。"}

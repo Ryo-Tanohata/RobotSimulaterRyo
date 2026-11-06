@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬と春の草取りを分けて続けよう。ヤギも多すぎるから、少しずつ肉にしていこうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、畑の世話を続けたい"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ケナ31": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして、来年の夏の実りを守るため"},
+  "アコ31": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をする人が要るため"},
+  "ユエ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分け合うため"},
+  "ケセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬に備えて肉を取ってくる"},
+  "オネ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、ケセ39と一緒に肉を取ってくる"},
+  "ナセ40": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手として働いてもらうため"},
+  "ヒセ44": {"activity": "ヤギの世話", "place": "camp", "why": "まだ慣れていないので、ヤギの世話から覚えてもらう"},
+  "ケナ45": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T259": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "秋は蓄えの種をまき、冬と春に畑の草取りを分け合うと、夏の実りが増える。", "because": [2191008], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で安心だけれど、ヤギが多すぎるのが気がかり。畑をしっかり育てたい。"}

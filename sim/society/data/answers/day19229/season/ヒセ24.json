@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるが、ヤギが草を食べすぎている。わたしは冬の前に狩りで肉をとってくる。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りの腕がいちばん高いので、冬の前に肉をとって皆の食べ物を増やす"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ネイ30": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので肉をとる"},
+  "ルタ35": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので肉をとる"},
+  "ロワ38": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので肉をとる"},
+  "ナセ39": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので肉をとる"},
+  "オネ40": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので肉をとる"},
+  "キサ44": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので皆といっしょに肉をとる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "いつもどおり静かに狩りに出る。冬の前に肉を確かめておきたい。"}
