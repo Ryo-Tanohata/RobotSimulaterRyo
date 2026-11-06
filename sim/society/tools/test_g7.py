@@ -4358,6 +4358,240 @@ class T_G11(unittest.TestCase):
                 shutil.rmtree(d, ignore_errors=True)
 
 
+class T_G11FIX(unittest.TestCase):
+    """2026-11-06 本人の決め「②③を直して続ける」(docs/society_phase/G11_stall_diag.md 7. の 1〜3 と「した直し」): g11.G11_FIX_FROM (158年の年の集まり) からの直し 3 つ。
+    ① 市の日 (market_day) とねうち (coin_rate) を年の集まりの村の欄に (g7._tally。掟の道も残す) ② 道の見張り: 前の 1 年に出し入れ 0 回なら条件 1・3 は 0、報告に 1 行
+    ③ お題だけの行 (印のかたまりでできること・申し出に来なくなった村・null だと受けない・市の日に来る村)。
+    直しの日より前と、直しの日で refresh_prompts の印がないときは、前のコード (OLD) と同じ文・同じ state。本物の state (G11) の写しで確かめる (本物の data は読むだけ)"""
+
+    OLD = "78d16211"  # 直しの前のコミット (g11.py)
+    _st = None
+    _old = None
+
+    @classmethod
+    def base(cls):
+        if cls._st is None:
+            st = real_state()
+            cls._st = st if "g11" in ((st.get("era2") or {}).get("g7") or {}) else False
+        if cls._st is False:
+            raise unittest.SkipTest("本物の state が G11 でない")
+        return copy.deepcopy(cls._st)
+
+    @classmethod
+    def old(cls):
+        """直しの前の g11.py (git から読む。別の名の模様として。中で呼ぶ g7・era2 は今のもの)"""
+        if cls._old is None:
+            import importlib.util
+            r = subprocess.run(["git", "-C", str(ROOT), "show", f"{cls.OLD}:sim/society/g11.py"], capture_output=True, text=True)
+            if r.returncode:
+                raise unittest.SkipTest("前のコードが git にない")
+            spec = importlib.util.spec_from_loader("g11_old", loader=None)
+            m = importlib.util.module_from_spec(spec)
+            exec(compile(r.stdout, "g11_old.py", "exec"), m.__dict__)
+            cls._old = m
+        return cls._old
+
+    def scene(self, day=None, mark=True, year=True):
+        import g11
+        st = self.base()
+        st["day"] = g11.G11_FIX_FROM if day is None else day
+        g7s = st["era2"]["g7"]
+        if year:
+            g7s["ask"] = "年"
+        g7s["g11"].pop("fix", None)
+        if mark:
+            g11.mark_fix(st, "試し")
+        return st
+
+    def texts(self, mod, st):
+        out = [mod.facts(st), "\n".join(mod.field_rows(st, True)), "\n".join(mod.field_rows(st, False)), mod.fields_json(st), json.dumps(mod.paths(st), ensure_ascii=False),
+               "\n".join(mod.report_lines(st)), str(mod.market_day(st)), str(mod.value(st))]
+        for p in era2.adults(st)[:60]:
+            out += [mod.text(st, p), mod.feel_note(st, p)]
+        return out
+
+    def test_gate_identical(self):
+        """直しの日より前 (本物の日・直しの日の 1 年前) と、直しの日で印がないときは、お題の文・道の見張り・報告・欄が前のコードと 1 文字も同じ。
+        答えに market_day・coin_rate があっても state は前と同じ (読まない)"""
+        import g11
+        old = self.old()
+        for day, mark in ((self.base()["day"], True), (g11.G11_FIX_FROM - era2.YEAR, True), (g11.G11_FIX_FROM - 1, True), (g11.G11_FIX_FROM, False)):
+            st = self.scene(day, mark)
+            self.assertFalse(g11.fixed(st), (day, mark))
+            self.assertNotIn("fix", st["era2"]["g7"]["g11"])
+            self.assertEqual(self.texts(g11, st), self.texts(old, st), (day, mark))
+            ans = {n: {"market_day": 7, "coin_rate": 20, "pay": "物"} for n in era2.answerers(st)[:5]}
+            a, b = copy.deepcopy(st), copy.deepcopy(st)
+            g11.apply_answers(a, copy.deepcopy(ans))
+            g11.count_paths(a, copy.deepcopy(ans))
+            old.apply_answers(b, copy.deepcopy(ans))
+            old.count_paths(b, copy.deepcopy(ans))
+            self.assertEqual(json.dumps(a, ensure_ascii=False, sort_keys=True), json.dumps(b, ensure_ascii=False, sort_keys=True), (day, mark))
+            self.assertIsNone(a["era2"]["g7"]["g11"]["value"])
+            self.assertNotIn("market_day", a["era2"]["g7"]["g11"])
+        self.assertTrue(g11.fixed(self.scene(g11.G11_FIX_FROM + 1, mark=False)), "直しの日より後は、印がなくても直す")
+        st = self.scene(g11.G11_FIX_FROM - era2.YEAR)
+        self.assertNotIn("fix", st["era2"]["g7"]["g11"], "直しの日より前は、mark_fix も何もしない")
+
+    def test_fields_tally(self):
+        """① 直しの日から、年の集まりの答えの market_day・coin_rate を、いちばん多い手で決める (決めない人は数えない)。出来事「印」。掟の道も残り、新しいほうを使う。
+        ほかの集まりでは読まない。欄はお題の形と答えの欄の説明に出る"""
+        import g11
+        st = self.scene()
+        g = st["era2"]["g7"]["g11"]
+        self.assertTrue(g11.fixed(st))
+        self.assertEqual(g["fix"], {"day": st["day"], "why": "試し"})
+        fj = g11.fields_json(st)
+        self.assertIn('"market_day": null, "coin_rate": null', fj)
+        rows = "\n".join(g11.field_rows(st, True))
+        self.assertIn("(market_day。決めないなら null)", rows)
+        self.assertIn("(coin_rate。決めないなら null)", rows)
+        self.assertNotIn("掟の提案に market_day (季節の何日目か。1 から 30) をつけると", rows)
+        self.assertIsNone(g11.market_day(st))
+        self.assertEqual(g11.value(st), g11.COIN_VALUE)
+        ans = era2.answerers(st)
+        self.assertGreaterEqual(len(ans), 4)
+        real = {ans[0]: {"market_day": 7, "coin_rate": 20}, ans[1]: {"market_day": "7", "coin_rate": {"印のかたまり": 20}},
+                ans[2]: {"market_day": 12, "coin_rate": None}, ans[3]: {"market_day": 99, "coin_rate": 0}}
+        n0 = st["next_event"]
+        g11.apply_answers(st, real)
+        self.assertEqual((g11.market_day(st), g11.value(st)), (7, 20))
+        self.assertEqual((g["market_day"]["n"], g["market_day"]["day"], g["value"]["n"]), (7, st["day"], 20))
+        self.assertIn("いちばん多い手", g["market_day"]["votes"])
+        ev = [e["text"] for e in st["events"] if e["id"] >= n0]
+        self.assertTrue(any("市の日を、季節ごとの 7 日目に決めた" in t for t in ev), ev)
+        self.assertTrue(any("印のかたまり 1 個のねうちを、草の種 20 つかみに決めた" in t for t in ev), ev)
+        n1 = st["next_event"]
+        g11.apply_answers(st, {ans[0]: {"market_day": 7}})
+        self.assertFalse(any(e["id"] >= n1 and e["type"] == "印" for e in st["events"]), "同じなら出来事は書かない")
+        self.assertIn("- 市の日: 季節ごとの 7 日目。", g11.text(st, era2.adults(st)[0]))
+        st["laws"].append({"id": "L99999", "text": "市の日", "status": "採用", "votes": {}, "day": st["day"], "changed": st["day"] + 1, "market_day": 15, "coin_rate": 30})
+        self.assertEqual((g11.market_day(st), g11.value(st)), (15, 30), "掟のほうが新しければ掟")
+        st["day"] += 2
+        g11.apply_answers(st, {ans[0]: {"market_day": 3}})
+        self.assertEqual(g11.market_day(st), 3, "年の集まりで決め直したほうが新しい")
+        st2 = self.scene()
+        st2["era2"]["g7"]["ask"] = "秋"
+        g11.apply_answers(st2, {ans[0]: {"market_day": 7, "coin_rate": 20}})
+        self.assertIsNone(g11.market_day(st2), "年の集まりでないときは読まない")
+        self.assertNotIn("market_day", g11.fields_json(st2))
+        self.assertIn("年の集まりの答え (market_day・coin_rate)", "\n".join(g11.field_rows(st2, False)))
+        st3 = self.scene()
+        self.assertEqual(g11._chose(st3, {ans[0]: {"market_day": 5}}), 1, "道を選んだ人に数える")
+        st3["era2"]["g7"]["g11"]["market_day"] = {"n": 10, "day": st3["day"], "votes": ""}
+        st3["day"] = (st3["day"] // era2.SEASON_DAYS + 1) * era2.SEASON_DAYS + 9
+        n2 = st3["next_event"]
+        g11.market(st3)
+        self.assertTrue(any(e["id"] >= n2 and e["type"] == "市" for e in st3["events"]), "村の欄で決めた市の日にも市が立つ")
+
+    def test_path_watch(self):
+        """② 直しの日から: 前の 1 年によその集落との出し入れが 0 回なら、条件 1・3 の道は 0 (報告に 1 行)。出し入れがあれば前のとおり。
+        条件 2 は、年の集まりなら答える人みな (market_day を書ける)。2 年つづけて 0 なら止めて相談 (前の決まりのまま)"""
+        import g11
+        st = self.scene()
+        g = st["era2"]["g7"]["g11"]
+        ans = era2.answerers(st)
+        g["flow_log"] = [f for f in g["flow_log"] if f["day"] <= st["day"] - era2.YEAR]
+        self.assertEqual(g11.flows_recent(st), 0)
+        pt = g11.paths(st)
+        self.assertEqual((pt.get("c1"), pt.get("c3", [])), ([], []))
+        self.assertEqual(set(pt["c2"]), set(ans), "年の集まりは、だれでも market_day を書ける")
+        y = st["day"] // era2.YEAR
+        g["flows"].pop(str(y), None)
+        self.assertTrue(any("よその集落との出し入れが 0 回" in t for t in g11.report_lines(st)))
+        old = self.old()
+        pre = self.scene(mark=False)
+        self.assertEqual(g11.paths(pre), old.paths(pre), "印がなければ前のまま")
+        g["flow_log"].append({"day": st["day"] - 10, "other": "N89", "kind": "交換", "coin": 0})
+        g["flows"][str(y)] = {"all": 1, "coin": 0}
+        self.assertEqual(g11.paths(st)["c1"], old.paths(st)["c1"], "出し入れがあれば前の数え方")
+        self.assertFalse(any("出し入れが 0 回" in t for t in g11.report_lines(st)))
+        g["flow_log"][-1]["day"] = st["day"] - era2.YEAR
+        self.assertEqual(g11.flows_recent(st), 0, "1 年より前の出し入れは数えない")
+        yy = (st["day"] + 1) // era2.YEAR
+        g["path"].pop(str(yy), None)
+        g11.count_paths(st, {})
+        self.assertEqual(g["path"][str(yy)]["c1"], 0)
+        self.assertEqual(g["path"][str(yy)]["c2"], len(ans))
+        g["path"][str(yy + 1)] = dict(g["path"][str(yy)])
+        st["day"] = (yy + 2) * era2.YEAR - 1
+        c = g11.path_consult(st, [])
+        self.assertEqual((c["why"], c["year"]), ("g11_path_c1", yy + 1), "2 年つづけて 0 なら止めて相談")
+
+    def test_prompt_lines(self):
+        """③ お題だけの行: 直しの日 (印のあと) から、決まりの文に「印のかたまりでできること」、節に市の日に来る村・申し出に来なくなった村 (信頼 0)・
+        決めないと受けない、気持ちのお題にも 1 行。前は出ない。state は変えない。書かない言葉・【】は出ない"""
+        import g11
+        import g7
+        st = self.scene()
+        before = json.dumps(st, ensure_ascii=False, sort_keys=True)
+        p = era2.adults(st)[0]
+        f, t, fn = g11.facts(st), g11.text(st, p), g11.feel_note(st, p)
+        self.assertEqual(json.dumps(st, ensure_ascii=False, sort_keys=True), before, "お題を書いても state は変わらない")
+        self.assertIn(g11.GAIN_TEXT, f)
+        self.assertIn("市の日に、村の物を運び出さずに", f)
+        self.assertIn("年の集まりの答えの market_day か掟で", f)
+        self.assertIn("- 市の日を決めると来る村: ", t)
+        vis = g11.visitors(st)
+        for o in vis:
+            self.assertIn(f"[{o['id']}] {o['name']}", t.split("- 市の日を決めると来る村: ")[1].split("\n")[0])
+        zero = [o for o in g7._others(st) if o.get("known") is not None and not o.get("gone") and o.get("people", 0) > 0 and o["trust"] <= 0]
+        self.assertTrue(zero)
+        for o in zero:
+            self.assertIn(f"- [{o['id']}] {o['name']}: 村に申し出や、ここで暮らしたい人を何度も受けてもらえなかったので、もう申し出に来ない", t)
+        for o in g7._others(st):
+            if o["trust"] > 0:
+                self.assertNotIn(f"- [{o['id']}] {o['name']}: 村に申し出や", t)
+        self.assertIn("を決めない (null) 人が多いと", t)
+        self.assertIn("その申し出は受けないことになる", t)
+        self.assertIn("市の日をどうするか、家の代表に伝えられる", fn)
+        allt = "".join(self.texts(g11, st))
+        self.assertEqual(g11.bad_words(allt), [])
+        self.assertNotIn("【", allt)
+        self.assertNotIn("信頼", allt, "信頼の数・字は出さない")
+        pre = self.scene(mark=False)
+        q = era2.adults(pre)[0]
+        for s_ in (g11.facts(pre), g11.text(pre, q), g11.feel_note(pre, q)):
+            self.assertNotIn("市の日を決めると来る村", s_)
+            self.assertNotIn("もう申し出に来ない", s_)
+            self.assertNotIn(g11.GAIN_TEXT, s_)
+        yp = g7.year_prompt(st, p, g7.since(st))
+        self.assertIn(g11.GAIN_TEXT, yp)
+        self.assertIn('"market_day": null, "coin_rate": null', yp)
+
+    def test_refresh_prompts(self):
+        """step.py refresh_prompts (写しのフォルダ。直しの日の年の集まり): g7.g11.fix を書き、季節・気持ちのお題を新しい行で書き直す"""
+        import g11
+        st = self.scene(mark=False)
+        st["hold"] = None
+        st["era2"]["g7"]["hold"] = None
+        d = tmpdir()
+        try:
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            r = subprocess.run([sys.executable, str(SOC / "step.py"), "refresh_prompts", "--why", "試しのわけ"], env=env, capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            new = json.loads((d / "state.json").read_text(encoding="utf-8"))
+            self.assertEqual(new["era2"]["g7"]["g11"]["fix"], {"day": g11.G11_FIX_FROM, "why": "試しのわけ"})
+            self.assertTrue(g11.fixed(new))
+            pd = d / "prompts" / f"day{st['day']:03d}"
+            ss = list((pd / "season").glob("*.md"))
+            self.assertEqual({f.stem for f in ss}, set(era2.answerers(new)))
+            for f in ss:
+                t = f.read_text(encoding="utf-8")
+                self.assertIn(g11.GAIN_TEXT.strip(), t)
+                self.assertIn("市の日を決めると来る村", t)
+                self.assertIn('"market_day": null, "coin_rate": null', t)
+                self.assertNotIn("試しのわけ", t)
+            fs = list((pd / "feeling").glob("*.md"))
+            self.assertTrue(fs)
+            for f in fs:
+                self.assertIn("市の日をどうするか、家の代表に伝えられる", f.read_text(encoding="utf-8"))
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+
 class T_AppSlim(unittest.TestCase):
     """2026-11-05 (docs/society_phase/data_size_plan.md 案 A): step.APP_SLIM_FROM から app_data.json の信頼の表の 0 を外す。
     その日は step.py slim_app の印 (state["app_slim"]) があるときだけ (だから、その日を作った歩のやり直しは前と 1 バイトも同じ)。

@@ -196,6 +196,9 @@ def _g11_year(g, st, y):
     rch = g.get("reached") or {}
     mark = g.get("mark") if g.get("mark") and on(g["mark"].get("day")) else None
     md = _g11_law(st, "market_day", end)
+    vf = g.get("market_day")  # 2026-11-06 直し ① (g11.G11_FIX_FROM から): 年の集まりで決めた市の日 (掟より新しければ、こちら。g11.market_day と同じ)
+    if vf and vf["day"] <= end and (not md or vf["day"] >= (md.get("changed") or md.get("day") or 0)):
+        md = {"market_day": vf["n"]}
     begun = g.get("start") is not None and g["start"] <= end
     s1 = 4 if on(rch.get("F3")) else 3 if on(rch.get("F1")) else 2 if mark else 1 if begun else 0
     s2 = 2 if on(rch.get("F2")) else 1 if md else 0

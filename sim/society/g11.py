@@ -37,6 +37,12 @@ C3_YEARS = 2  # c3: 印の貸し・返しを字で書いた年が 2 年つづく
 MARKET_WALK = 2  # 市に来る集落: 歩いて 2 日以内で、行き来のあるところ
 REFUSE_YEARS = 2  # 村が引きかえを断ると、2 年は受けとらない
 PATH_YEARS = 2  # 道の見張り: 選べる答える人が 2 年つづけて 0 人なら止めて相談
+RATE_MAX = 10 ** 4  # ねうち (草の種のつかみ) の上限 (掟の rate と同じ)
+# 2026-11-06 本人の決め「②③を直して続ける」(docs/society_phase/G11_stall_diag.md 7. の 1〜3。「した直し」): G11_FIX_FROM (158年の年の集まり) からの直し 3 つ
+#   ① 市の日 (market_day) とねうち (coin_rate) を、年の集まりの村の欄にする (mark・pay と同じ g7._tally。掟の道も残す。新しく決めたほうを使う)
+#   ② 道の見張り: 条件 1 は、前の 1 年によその集落との出し入れが 0 回なら 0 と数える (報告にも 1 行)。条件 2 は ① の欄で選べる人を数える
+#   ③ お題だけの行: 印のかたまりで村が何をできるか・申し出に来なくなった村・決めない (null) と申し出は受けない・市の日に来る村
+G11_FIX_FROM = 18959
 FAIL_REPORT = 3  # 1 年に「選んだのにできなかった」がこれだけあれば、報告に書く
 MARK_MAX = 30  # 村の印の言葉の長さ
 WORDS = ("お金", "硬貨", "貨幣", "通貨", "市場", "銀行") + g10.WORDS  # 村の人に見せる G11 の文に書かない言葉
@@ -54,6 +60,18 @@ def on(state):
 
 def _g(state):
     return state["era2"]["g7"]["g11"]
+
+
+def fixed(state):
+    """2026-11-06 の直し (①〜③) が効くか: G11_FIX_FROM より後の日はいつも。G11_FIX_FROM の日 (お題は前のコードで出ていた) は、
+    step.py refresh_prompts が g7.g11.fix を書いたあとだけ (だから、その日までの歩をやり直しても、state もお題も前と 1 バイトも同じ。g10.fixed と同じ形)"""
+    return on(state) and (state["day"] > G11_FIX_FROM or (state["day"] == G11_FIX_FROM and "fix" in _g(state)))
+
+
+def mark_fix(state, why):
+    """refresh_prompts から: G11_FIX_FROM の日に、直しを今の歩から入れたことを g7.g11.fix に残す (その日より前なら何もしない)"""
+    if on(state) and state["day"] >= G11_FIX_FROM and "fix" not in _g(state):
+        _g(state)["fix"] = {"day": state["day"], "why": why}
 
 
 def _y(state):
@@ -234,6 +252,37 @@ def apply_answers(state, real):
             if m != {k: v for k, v in (g["market"] or {}).items() if k in ("give", "take", "pay")}:
                 log(state, "印", None, f"{at}、市の日の方針を決めた: {_market_text(m)} ({txt})", market=m)
             g["market"] = dict(m, day=D, votes=txt)
+        if fixed(state):  # 直し ①: 市の日とねうちも村の欄 (いちばん多い手。決めない人は数えない)
+            _apply_day_rate(state, real, w, at)
+
+
+def _day_of(v):
+    n = era2._num(v)
+    return int(n) if n and n == int(n) and 1 <= n <= SEASON_DAYS else None
+
+
+def _rate_of(v):
+    if isinstance(v, dict):
+        v = next((x for k, x in v.items() if "印" in str(k)), None)
+    n = era2._num(v)
+    return min(int(n), RATE_MAX) if n and n >= 1 else None
+
+
+def _apply_day_rate(state, real, w, at):
+    """直し ① (G11_FIX_FROM から。年の集まりだけ): 答えの market_day (季節の何日目か) と coin_rate (印のかたまり 1 個 = 草の種何つかみ) を g7._tally で決める。
+    決めた値は g7.g11.market_day・g7.g11.value に残す ({"n", "day", "votes"})。掟で決めた値より新しければ、こちらを使う (market_day()・value())"""
+    import g7
+    g, D = _g(state), state["day"]
+    for key, slot, read in (("market_day", "market_day", _day_of), ("coin_rate", "value", _rate_of)):
+        votes = {n: read(a.get(key)) for n, a in real.items() if isinstance(a, dict)}
+        votes = {n: v for n, v in votes.items() if v}
+        ch, txt = g7._tally(state, votes, w)
+        if not ch:
+            continue
+        if ch != (g.get(slot) or {}).get("n"):
+            word = f"市の日を、季節ごとの {ch} 日目に決めた" if slot == "market_day" else f"印のかたまり 1 個のねうちを、草の種 {ch} つかみに決めた"
+            log(state, "印", None, f"{at}、{word} ({txt})", coin_rule=key, choice=ch)
+        g[slot] = {"n": ch, "day": D, "votes": txt}
 
 
 def _market_text(m):
@@ -260,16 +309,25 @@ def _law_key(state, key):
     return next((l for l in reversed(state.get("laws", [])) if l.get("status") == "採用" and l.get(key)), None)
 
 
+def _newer(field, law):
+    """直し ①: 村の欄 (g7.g11 の {"n", "day"}) と掟のうち、新しく決めたほう (同じ日なら村の欄)。直しの前は村の欄がない (value は None) ので、掟のまま"""
+    if isinstance(field, dict) and (not law or field["day"] >= (law.get("changed") or law.get("day") or 0)):
+        return field["n"]
+    return None
+
+
 def market_day(state):
-    """掟で決まった市の日 (季節の何日目か。1〜30)。なければ None"""
+    """市の日 (季節の何日目か。1〜30): 掟で決まったもの、か (直し ① から) 年の集まりで決めたもの。なければ None"""
     l = _law_key(state, "market_day")
-    return l["market_day"] if l else None
+    n = _newer(_g(state).get("market_day"), l)
+    return n if n is not None else l["market_day"] if l else None
 
 
 def value(state):
-    """印のかたまり 1 個のねうち (草の種のつかみ)。掟で決まっていればその数"""
+    """印のかたまり 1 個のねうち (草の種のつかみ)。掟で決まっていればその数。直し ① から、年の集まりで決めたほうが新しければその数"""
     l = _law_key(state, "coin_rate")
-    return l["coin_rate"] if l else COIN_VALUE
+    n = _newer(_g(state).get("value"), l)
+    return n if n is not None else l["coin_rate"] if l else COIN_VALUE
 
 
 # ---------------- 受けとる決まりと払い ----------------
@@ -663,19 +721,28 @@ def paths(state):
     """いまのお題に答える人 (era2.answerers) のうち、まだ届いていない条件ごとに、その道を自分で選べる人の名前。
     c1: 村の印が決まっていなければ、だれでも (mark) / 作れる人と、作れる人のいる家の代表 / 村に印のかたまりがあり印が決まっていれば、だれでも (pay)。
     c2: 年の集まりなら、だれでも (掟の market_day・方針の market)。ほかの集まりは、市の日と方針が決まっていれば、だれでも (pay)。
-    c3: 村に読み書きできる大人がいて、c1 の道を選べる人 (印で貸すには、印のかたまりと pay が要る)。読める人がいなければ 0"""
+    c3: 村に読み書きできる大人がいて、c1 の道を選べる人 (印で貸すには、印のかたまりと pay が要る)。読める人がいなければ 0。
+    直し ② (G11_FIX_FROM から): 前の 1 年によその集落との出し入れが 0 回なら、c1 (と c3) は 0 (印のかたまりで払う場がない)。
+    c2 は、年の集まりなら答えの market_day (直し ①。村の欄) で、だれでも選べる (直しの前の年の集まりは、掟の道だけだった)"""
     g = _g(state)
     ans = era2.answerers(state)
     year = (state["era2"]["g7"].get("ask") or "") == "年"
     sm = set(smiths(state))
     coins = g["coins"]["village"] + g["coins"]["unmarked"]
+    place = not fixed(state) or flows_recent(state) > 0
 
     def c1_ok(n):
-        return g["mark"] is None or n in sm or bool(_house_smiths(state, n)) or (coins > 0 and g["mark"] is not None)
+        return place and (g["mark"] is None or n in sm or bool(_house_smiths(state, n)) or (coins > 0 and g["mark"] is not None))
     out = {"c1": [n for n in ans if c1_ok(n)],
            "c2": [n for n in ans if year or (market_day(state) and g["market"])],
            "c3": [n for n in ans if c1_ok(n)] if g10.readers(state) else []}
     return {k: v for k, v in out.items() if k not in g["c"]}
+
+
+def flows_recent(state):
+    """直し ②: 前の 1 年 (この日までの 120 日) の、村 (と家) とよその集落の出し入れの回数 (flow_log から)"""
+    D = state["day"]
+    return sum(1 for f in _g(state)["flow_log"] if D - YEAR < f["day"] <= D)
 
 
 def _chose(state, real):
@@ -687,7 +754,7 @@ def _chose(state, real):
         txt = json.dumps({x: a.get(x) for x in ("year", "job", "family")}, ensure_ascii=False)
         prop = a.get("proposal") if isinstance(a.get("proposal"), dict) else {}
         if ACT_COIN in txt or _mark_text(a.get("mark")) or _choice(a.get("pay"), PAY_CHOICES, "印", "物") == "印" or _market(a.get("market")) \
-                or era2._num(prop.get("market_day")):
+                or era2._num(prop.get("market_day")) or (fixed(state) and (_day_of(a.get("market_day")) or _rate_of(a.get("coin_rate")))):
             k += 1
     return k
 
@@ -739,6 +806,9 @@ def report_lines(state):
     kh = key_houses(state)
     if len(kh) == 1:
         out.append(f"印のかたまりを作れる人がいる家は {kh[0]} だけ")
+    if fixed(state):  # 直し ②
+        if not (_g(state)["flows"].get(str(y)) or {}).get("all"):
+            out.append(f"この年 ({y}年) の、よその集落との出し入れが 0 回 (印のかたまりで払う場がない。前の 1 年に出し入れがなければ、条件 1・3 の道は 0 と数える)")
     return out
 
 
@@ -756,18 +826,26 @@ def indicators(state):
 
 # ---------------- お題 ----------------
 
+# 直し ③ (G11_FIX_FROM から。お題だけ。state は変えない): 印のかたまりで村が何をできるか (今の仕組みでできることだけ)
+GAIN_TEXT = ("印のかたまりがあると、村はこんなことができる: 市の日に、村の物を運び出さずに、よその村の人が持って来たヤギ・黒曜石・土器・草の種を、印のかたまりで受けとれる "
+             "(村の草の種は、その村が苦しい年に引きかえに来るまで減らない)。苦しい村が「貸して」と来たとき、草の種のかわりに印のかたまりを貸せる (その村は、印のかたまりで先に返す)。"
+             "印のかたまりを持っているよその村は、市の日に、それで村の物を買いに来る。印のかたまりは、草の種のように、蓄えておくあいだにへることがない。\n")
+
 def facts(state):
     """お題の決まりの文 (G11 から)。数 (半分・4 回・2 回・2 年・5 g・受けとる決まりの中の計算) は書かない"""
     v = value(state)
+    fx = fixed(state)
     return ("印のかたまり: 黒い金属を作れる人は、主な仕事を「印のかたまりを作る」にすると、1 日に 10 個ほど、村の印を打った小さな黒い金属のかたまりを作れる。"
             "作れる人と同じ季節に、with にその人の名前を書いて作れば、次の季節から作れる。\n"
             "村の印は、集まりで決める (答えの mark に、印の形をことばで書く)。印が決まるまでのかたまりは、払いに使えない。\n"
-            f"村は、印のかたまりを、いつでも決めたねうち (掟で決める。いまは 1 個 = 草の種 {v} つかみ) の草の種と引きかえると約束している。"
+            f"村は、印のかたまりを、いつでも決めたねうち ({'年の集まりの答えの coin_rate か、掟で決める' if fx else '掟で決める'}。いまは 1 個 = 草の種 {v} つかみ) の草の種と引きかえると約束している。"
             "よその村は、村がこの約束を守り、引きかえられるだけの草の種が村にあれば、印のかたまりを受けとる。村が引きかえを断ると、よその村はしばらく受けとらない。\n"
             "印のかたまりは、虫やネズミに食べられず、割れない。\n"
+            + (GAIN_TEXT if fx else "") +
             "集まりの答えの pay を \"印\" にすると、村の物で申し出を受ける・貸すときに、印のかたまりで払う (\"物\" なら今までどおり物で)。"
             "よその村は、村の印のかたまりを持っていれば、返しに来たとき、それで先に返す。\n"
-            "市の日: 掟で市の日 (季節の何日目か) を決めると、その日に、行き来のある近くの村の人が、物か印のかたまりを持って来る。市で村の物から何を出し、何を受けるかは、"
+            + ("市の日: 年の集まりの答えの market_day か掟で、市の日 (季節の何日目か) を決めると、その日に" if fx else "市の日: 掟で市の日 (季節の何日目か) を決めると、その日に")
+            + "、行き来のある近くの村の人が、物か印のかたまりを持って来る。市で村の物から何を出し、何を受けるかは、"
             "年の方針の「市」(market) で決める (市の日は集まらない。方針のとおりに替える)\n")
 
 
@@ -797,8 +875,12 @@ def text(state, p):
         mk = g["markets"].get(str(y), [])
         rows.append(f"- 市の日: 季節ごとの {md} 日目。" + (f"市の方針: {_market_text(m)}" if m else "市の方針はまだない (来た人は見て帰る)")
                     + (f"。この年の市 {len(mk)} 回 (替えた市 {sum(1 for r in mk if r['deals'])} 回)" if mk else ""))
+    elif fixed(state):
+        rows.append("- 市の日: (まだ決まっていない。年の集まりの答えの market_day (季節の何日目か) に書くと決まる。掟の提案に market_day をつけてもよい)")
     else:
         rows.append('- 市の日: (まだ決まっていない。掟の提案に market_day (季節の何日目か) をつけて決める)')
+    if fixed(state):  # 直し ③: 市の日に来る村・申し出に来なくなった村・決めないと申し出は受けない
+        rows += _others_rows(state)
     rd = g10.readers(state)
     rows.append(f"- 字を読み書きできる人: {'・'.join(rd) or 'いない'}" + (" (字で書いておけば、印のかたまりで貸した量を読み合わせられる)" if rd else
                                                                      " (字を書ける人がいないと、印のかたまりで貸した量を字で書けない)"))
@@ -807,6 +889,22 @@ def text(state, p):
         rows.append("- 印のかたまりと市で、できなかったこと: " + " / ".join(x["why"] for x in f))
     rows += _mine(state, p)
     return "\n## 印のかたまりと市\n" + "\n".join(rows) + "\n"
+
+
+def _others_rows(state):
+    """直し ③ (お題だけ): 市の日に来る村 (信頼に関係なく来る。visitors)・知っている村のうち、申し出に来なくなった村 (信頼 0。数は出さない)・
+    申し出を決めない (null) と、受けないことになる"""
+    import g7
+    vis = visitors(state)
+    out = ["- 市の日を決めると来る村: " + ("・".join(f"[{o['id']}] {o['name']}" for o in vis) + " (申し出に来なくなった村も、市の日には来る)" if vis
+                                       else "いまはない (行き来したことがあり、歩いて 2 日以内の村だけが来る)")]
+    for o in g7._others(state):
+        if o.get("known") is not None and not o.get("gone") and o.get("people", 0) > 0 and o.get("trust", 0.5) <= 0:
+            out.append(f"- [{o['id']}] {o['name']}: 村に申し出や、ここで暮らしたい人を何度も受けてもらえなかったので、もう申し出に来ない"
+                       + ("。市の日には来る" if o in vis else ""))
+    out.append("- 申し出 (trade・年の方針の trade_rule) を決めない (null) 人が多いと、村の物で受ける人 (\"村\") が大人の半分に届かず、"
+               + ("まとめ役も \"村\" と答えなければ、" if era2._leader(state) else "") + "その申し出は受けないことになる")
+    return out
 
 
 def _mine(state, p):
@@ -837,6 +935,8 @@ def feel_note(state, p):
         out.append(f"- あなたは黒い金属を作れる。家の代表が、あなたの仕事を「{ACT_COIN}」にすれば、あなたは印のかたまりを作れる")
     if _g(state)["mark"] is None and hints.knows(state, p["name"], CARD_COIN):
         out.append("- あなたは、印を押した金属のかたまりの話を知っている。村の印をどうするか、家の代表に伝えられる")
+    if fixed(state):  # 直し ③
+        out.append("- 村に印のかたまりがあれば、市の日に村の物を運び出さずによその村の物を受けとれ、苦しい村に草の種のかわりに貸せる (市の日をどうするか、家の代表に伝えられる)")
     return ("\n" + "\n".join(out)) if out else ""
 
 
@@ -850,7 +950,13 @@ def field_rows(state, year=False):
         rows.append("   村の印: 印のかたまりに打つ村の印を、ことばで書く (mark。例「川と麦の穂」。決めないなら null)")
     rows.append('   払い方: 村の物で申し出を受ける・貸すとき、印のかたまりで払うなら "印"、物で払うなら "物" (pay。決めないなら null)')
     rows.append('   引きかえ: よその村が持って来た印のかたまりを、約束どおり草の種と "引きかえる" か "引きかえない" (redeem。決めないなら null)')
-    rows.append('   市の日: 掟の提案に market_day (季節の何日目か。1 から 30) をつけると、市の日を決める掟になる。印のかたまりのねうちは rate に {"印のかたまり": つかみ}')
+    if fixed(state) and year:  # 直し ①: 年の集まりの村の欄 (掟の道も残す)
+        rows.append('   市の日: 市を開く日を、季節の何日目か (1 から 30) で書く (market_day。決めないなら null)。印のかたまり 1 個のねうちを、草の種何つかみか で書く '
+                    '(coin_rate。決めないなら null)。どちらも、答えのいちばん多いものに決まる。掟の提案に market_day・rate をつけて決めることもできる')
+    elif fixed(state):
+        rows.append('   市の日: 市の日とねうちは、年の集まりの答え (market_day・coin_rate) か、掟の提案 (market_day・rate に {"印のかたまり": つかみ}) で決める')
+    else:
+        rows.append('   市の日: 掟の提案に market_day (季節の何日目か。1 から 30) をつけると、市の日を決める掟になる。印のかたまりのねうちは rate に {"印のかたまり": つかみ}')
     if year:
         rows.append('   市の方針: 市の日に村が出してよい物と 1 年の上限 (give: {"草の種": つかみ, "鎌": 本, "土器": 個, "印": 個})、受ける物 (take: ["ヤギ", ...])、'
                     '印のかたまりで払う・受けるか (pay: true か false) を書く (market。決めないなら null)')
@@ -861,7 +967,8 @@ def fields_json(state):
     g = _g(state)
     year = (state["era2"]["g7"].get("ask") or "") == "年"
     return ((' "mark": null,' if g["mark"] is None else "") + ' "pay": null, "redeem": null,'
-            + (' "market": {"give": {}, "take": [], "pay": null},' if year else ""))
+            + (' "market": {"give": {}, "take": [], "pay": null},' if year else "")
+            + (' "market_day": null, "coin_rate": null,' if year and fixed(state) else ""))
 
 
 def bad_words(s):
