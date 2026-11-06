@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "わたしは北の丘で獲物を追う。蓄えはたっぷりあるから、冬のためにけものの肉も足しておくよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕がいちばん得意で、肉を蓄えに足せるから"}, "family": {"ネイ30": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "オネ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "続けて狩りをして肉を集める"}, "family": {"ネイ30": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "オネ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "魚やけものは冬もいるので狩りを続ける"}, "family": {"ネイ30": {"activity": "狩り", "place": "北丘12", "why": "冬も獲物はいる"}, "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "冬も獲物はいる"}, "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "冬も獲物はいる"}, "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "冬も獲物はいる"}, "オネ40": {"activity": "狩り", "place": "北丘12", "why": "冬も獲物はいる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "得意な狩りを続ける"}, "family": {"ネイ30": {"activity": "狩り", "place": "北丘12", "why": "得意な狩り"}, "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "得意な狩り"}, "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "得意な狩り"}, "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "得意な狩り"}, "オネ40": {"activity": "狩り", "place": "北丘12", "why": "得意な狩り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "肉をたくわえた年",
+ "mood": "蓄えは十分で落ち着いている。いつもどおり丘で狩りをするだけだ。"}
