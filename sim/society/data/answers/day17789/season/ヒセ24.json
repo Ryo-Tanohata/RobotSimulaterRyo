@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "畑は今ないから、この秋はまかないと夏に刈れないよ。わたしも1000つかみまくし、冬と春の草取りにも出るつもり。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がなく、この秋にまいた種を草取りで育てないと次の夏に実りが減るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ネイ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り人手を増やし、実りを守るため"}, "ルタ35": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、次の夏の実りを増やすため"}, "ロワ38": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}},
+ "keep": false,
+ "judge": {"M482": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "少し疲れているが、畑を育てれば冬も安心だと思う。"}

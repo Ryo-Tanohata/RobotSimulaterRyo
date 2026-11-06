@@ -122,7 +122,7 @@
 {"table":"season_household","column":"jobs","label_ja":"大人の仕事ののべ日数","unit":"人・日","tag":"シ","source":"出来事","exact":true,"since_day":489,"note":null},
 {"table":"season_household","column":"rain_outside_person_nights","label_ja":"雨の夜に外で寝た、のべの夜","unit":"人・夜","tag":"シ","source":"出来事「雨」","exact":true,"since_day":1529,"note":null},
 {"table":"season_household","column":"snapshot","label_ja":"季節の終わりの値が控えから取れたか","unit":null,"tag":"-","source":"","exact":true,"since_day":489,"note":null},
-{"table":"season_person","column":"season_end_day","label_ja":"季節の終わりの日","unit":"日","tag":"-","source":"","exact":true,"since_day":489,"note":"1 行 = 1 季節 × 1 人"},
+{"table":"season_person","column":"season_end_day","label_ja":"季節の終わりの日","unit":"日","tag":"-","source":"","exact":true,"since_day":489,"note":"1 行 = 1 季節 × 1 人。年ごとのファイル records/season_person/season_person_NNNN.jsonl (NNNN = season_end_day // 120。2026-11-05 から)"},
 {"table":"season_person","column":"person_id","label_ja":"人","unit":null,"tag":"-","source":"","exact":true,"since_day":489,"note":null},
 {"table":"season_person","column":"household_id","label_ja":"家","unit":null,"tag":"調","source":"membership","exact":true,"since_day":489,"note":null},
 {"table":"season_person","column":"present_from","label_ja":"この季節にいたはじめの日","unit":"日","tag":"-","source":"membership","exact":true,"since_day":489,"note":null},

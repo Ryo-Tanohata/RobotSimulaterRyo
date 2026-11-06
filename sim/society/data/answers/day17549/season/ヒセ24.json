@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "この秋も種をまいたら、冬と春の草取りを忘れないようにしよう。私は畑に出る。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増えるので、今季も畑仕事を続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ネイ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、私と一緒に畑で働いてもらう"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "この秋も蓄えの草の種を大人ひとり1000つかみまき、草取りをして夏のはじめに刈る。", "because": [1809555], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "いつもどおり畑で働く。蓄えは十分あるので落ち着いている。"}

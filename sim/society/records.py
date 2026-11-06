@@ -246,6 +246,42 @@ def snap_files(data_dir):
     return out + (sorted(d.glob("snapshots_*.jsonl")) if d.is_dir() else [])
 
 
+PERSON_FILE = "season_person.jsonl"  # 前の 1 つのファイル (records/season_person.jsonl)。あれば読む (2026-11-05 に年ごとに分けた。前の写しの村もこのまま読める)
+PERSON_DIR = "season_person"  # 2026-11-05 (docs/society_phase/data_size_plan.md 案 C): 人の季節の行は年ごとのファイル records/season_person/season_person_NNNN.jsonl
+# (NNNN = season_end_day // 120。控えと同じ数え方)。全部の年のファイルを年の順につなげると、前の 1 つのファイルと 1 バイトも同じ
+
+
+def person_path(data_dir, season_end_day):
+    """人の季節の行の年ごとのファイル (例: records/season_person/season_person_0141.jsonl = 141年 (16920〜17039 日目) に終わった季節の行)"""
+    return Path(data_dir) / "records" / PERSON_DIR / f"season_person_{season_end_day // era2.YEAR:04d}.jsonl"
+
+
+def person_files(data_dir):
+    """人の季節の行のファイルを読む順に: 前の 1 つのファイル (あれば) → 年ごとのファイル (年の順)"""
+    r = Path(data_dir) / "records"
+    out = [r / PERSON_FILE] if (r / PERSON_FILE).exists() else []
+    d = r / PERSON_DIR
+    return out + (sorted(d.glob("season_person_*.jsonl")) if d.is_dir() else [])
+
+
+def person_lines(data_dir):
+    """人の季節の行 (JSON の文字列) を、ファイルの順・行の順に (読むだけ。行の終わりの改行は除く。空の行は飛ばす)"""
+    for f in person_files(data_dir):
+        with open(f, encoding="utf-8") as fh:
+            for line in fh.read().splitlines():
+                if line.strip():
+                    yield line
+
+
+def person_rows(data_dir):
+    """人の季節の行 (records の season_person) を、前の形 (1 つのファイル) でも年ごとのファイルでも、dict の list で返す。
+    どちらもなければ FileNotFoundError (前の読み方と同じに、ないことに気づけるように)"""
+    r = Path(data_dir) / "records"
+    if not (r / PERSON_FILE).exists() and not (r / PERSON_DIR).is_dir():
+        raise FileNotFoundError(f"{Path(data_dir) / 'records'} に {PERSON_FILE} も {PERSON_DIR}/ もない")
+    return [json.loads(x) for x in person_lines(data_dir)]
+
+
 def snap_lines(data_dir):
     """控えの行を、ファイルの順・行の順に (読むだけ。行の終わりの改行は除く)"""
     for f in snap_files(data_dir):

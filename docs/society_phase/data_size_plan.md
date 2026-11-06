@@ -6,6 +6,7 @@
 - `sim/society/data/records/season_person.jsonl` (1 行 = 1 季節 × 1 人の記録)
 
 この文書は計画だけ。コードも data も変えていない (data には書いていない。git にもさわっていない。LLM も使っていない)。
+**2026-11-05 に案 A と案 C を入れた (下の 7. 入れたこと)。**
 調べは、コードと git の履歴を読むだけで行った。
 
 年の数え方: 年の集まりの日は 120 × 年 − 1 (例: 141年の年の集まり = 16919 日目、142年 = 17039 日目)。
@@ -202,6 +203,50 @@ N が 19 人増えると、trust だけで 約 1.3 MB 増える。これが app_
 - state.json (49.7 MB) にも同じ trust の表がある (21 MB、1 回だけ)。trust は季節のお題 (characters.py 37 行: 生きている大人への信頼) に使われ、
   世界が読むので、形を変えると state.json もお題も変わる。180年より前に 90 MB には届かない見込みなので、いまはしない。
   するなら「亡くなった人・出た人の名前の 0 を消す」を日で切りかえる案 (お題は生きている大人しか出さないので、お題は同じのはず。試しで確かめる)。
+  → 2026-11-06: state.json が 56.6 MB になったので、0 をみな外す案を作った (`docs/society_phase/state_size_plan.md`。印 `trust_sparse`・`step.py slim_trust`。147年の年の集まり = 17639 日目に入れる)。
 - `ledger.jsonl` (13 MB、1 年 約 0.14 MB)・`season_household.jsonl` (10.6 MB) はまだ小さい。要れば案 C と同じ分け方ができる。
 - 履歴に残った大きいファイル (前の 60 MB の版) は消さない。100 MB の上限は 1 つのファイルごと・プッシュのときなので、履歴にあるものは問題にならない。
   リポジトリ全体 (pack 1.5 GB) は、案 A・C で季節ごとに増える量が小さくなる。
+
+## 7. 入れたこと (2026-11-05。142年の年の集まり = 17039 日目で止めて。コミットは本人)
+
+### 案 A: app_data.json の信頼の表から 0 を外す
+
+- `step.py`: `APP_SLIM_FROM = 17039` と `app_slim(state)`。軽い形にするのは **17039 日目より後の日はいつも、17039 日目は state に印 `app_slim` があるときだけ**。
+  軽い形: `people[]` に `trust` を入れない・`resumes[].trust` は 0 でないものだけ。ほかの鍵は 1 バイトも同じ。
+- 印にしたわけ: 17039 日目の app_data.json は、その日を作った歩 (17009 日目から。e3e9c684) が書いた。日だけで切りかえる (`day >= 17039`) と、その歩のやり直しで app_data が「ちがう」になる。
+  `day > 17039` だけにすると、17039 日目の app_data.json は前の形 (66 MB) のままコミットすることになる。
+  そこで G10 の直し (`g10.G10_FIX_FROM` と印 `g7.g10.fix`。`refresh_prompts` が書く) と同じに、その日は印があるときだけにした。
+- 新しいコマンド `step.py slim_app --why "<わけ>"`: 17039 日目 (APP_SLIM_FROM) の歩で、止まっていなくて、その日の答え (season・feeling・council) がまだないときだけ、
+  印 `state["app_slim"] = {"day", "why"}` を書き、app_data.json と記録を作り直す。お題・日・世界は変えない (印は export だけが読む)。答えがあれば・ほかの日なら断る (終わりのコード 3)。
+- `app/index.html` 442 行: 「信頼している人」は `r.trust || {}` の 0 でないものだけ (なければ「―」)。前の形の app_data.json でも同じ見え方。
+- 試し: `tools/test_g7.py T_AppSlim` (切りかえの日と印・slim_app の前後で people と resumes の trust のほかは同じ・答えがあれば断る)。
+
+### 案 C: season_person.jsonl を年ごとのファイルに分ける
+
+- `records.py`: `PERSON_FILE`・`PERSON_DIR`・`person_path`・`person_files`・`person_lines`・`person_rows` (前の 1 つのファイルがあればそれ → 年のファイルを年の順に。控えの `snap_files` と同じ)。
+- `tools/build_records.py`: `write_person` が `records/season_person/season_person_NNNN.jsonl` (NNNN = season_end_day // 120) に書く。中身が同じ年のファイルは書かない。
+  もう作らない年のファイルと、前の 1 つのファイル `season_person.jsonl` は消す。行が日の順に並んでいなければ止める。`columns.json` の説明に年ごとのファイルと書いた。
+- 読む人を `records.person_rows` / `person_lines` に: `build_dashboard.py`・`econ_report.py`・`exp4_measure.py`・`test_records.py`・`test_g7.py` (G_Flow)。`year_report.py` は読まない (変えていない)。
+
+### 本物の data に入れたこと
+
+- `python3.13 sim/society/step.py slim_app --why "app_data.json と season_person.jsonl が大きくなった (docs/society_phase/data_size_plan.md の案 A・C)"` (state.json を手で直していない)。
+- 確かめ: state.json は印 `app_slim` のほかは HEAD と同じ。prompts/day17039 の 62 通は sha256 が前と同じ。answers/day17039 は空のまま。
+  年のファイル 138 (4〜141年) をつなげると前の season_person.jsonl (62,502,300 バイト) と 1 バイトも同じ。records/ のほかのファイルは columns.json (説明の 1 行) のほかは同じ。
+  新しい app_data.json は、前のものから people の trust を消し、resumes の trust の 0 を外したものと同じ (0 でない組は 17)。
+  `step.py who` → DAY 17039・MEET 年・HOLD none。
+- やり直し (`tools/exp3_replay.py --work /tmp/rp`): 8dcf9d30 (14969)・e3e72933 (16979)・e3e9c684 (17009) はみな state・app_data・archive・次のお題が同じ。
+- 試し: `test_g7.py T_G10FIX・T_AppSlim`・`test_archive.py`・`test_hints.py` はみな通る。`test_records.py` (M_Accounts.test_same_python を除く。メモリが足りないのでクラスの組ごとに別のプロセスで) は、落ちるのは HEAD と同じ 16 (B_KnownValues・B_Prompts・C_Ledger・H_Performance・E_Boundaries 2・J_Grounding 2・M_Accounts 4・I_Pasture 2・L_AskWhy・M_Accounts.test_same_as_before (polity・tribute のファイルが前のコードにないため。HEAD を写した git のない場所では飛ばされたが、わけは今度の直しと関係ない))。`D_Determinism` の比べ方は年ごとのフォルダも読むように直した。
+- 写しで、前の形 (1 つのファイル) と新しい形の records から作った build_dashboard の中身は同じ。econ_report は HEAD でも動かない (`era2._season_end の書き方が変わった`。前からのこと)。
+
+| ファイル | 前 (HEAD、17039 日目) | 後 |
+|---|---|---|
+| app_data.json | 66,360,138 | 23,792,951 |
+| records/season_person.jsonl | 62,502,300 | (消した) |
+| records/season_person/ (138 ファイル) | | 合わせて 62,502,300。いちばん大きいのは 141年の 946,195 |
+| state.json | 52,639,022 | 52,639,167 (印の分だけ) |
+
+- **次**: 本人が見てコミット (`sim/society/step.py`・`records.py`・`app/index.html`・`tools/` の 7 つ・`HANDOFF.md`・この文書・`sim/society/data` (state.json・app_data.json・records/)。
+  `records/season_person.jsonl` は消したので `git add -A sim/society/data/records`)。そのあと 17039 日目の年の集まりに答えて村を続ける。最初の季節のコミットで 5. の 6. を見る。
+

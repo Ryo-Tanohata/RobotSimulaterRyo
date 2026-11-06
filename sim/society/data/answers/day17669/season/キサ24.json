@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけれど、土器は割れるものだから、私はこの秋も土器を焼いておくよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりは得意で、蓄えの草の種を虫やネズミから守る器が割れた分だけ要るから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ45": true},
+ "family": {
+  "ラニ30": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、肉を家族の食べ物に足せるから"},
+  "リセ32": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、ラニと組めば安全だから"},
+  "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "狩りは苦手なので、畑の草取りで村を助ける"}
+ },
+ "keep": false,
+ "judge": {"M481": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって落ち着いている。今季も手を動かして土器を焼こう。"}

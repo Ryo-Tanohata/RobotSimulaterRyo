@@ -345,15 +345,14 @@ def world_rows(name, path, lo, hi):
             out["left_people"] = sum(len(r["left"]) for r in rs)
             out["pop_end"] = rs[-1]["population"]
             out["gini_end"] = rs[-1].get("wealth_gini")
-    sp = path / "records" / "season_person.jsonl"
-    if sp.exists():
+    import records  # noqa: E402  (人の季節の行は年ごとのファイル records/season_person/。2026-11-05。前の 1 つのファイルも読む)
+    if records.person_files(path):
         h3 = h6 = 0
-        with open(sp, encoding="utf-8") as f:
-            for line in f:
-                r = json.loads(line)
-                if lo < r["season_end_day"] <= hi + 1 and r["status_at_end"] == "生きている":
-                    h3 += (r.get("hunger") or 0) >= 0.3
-                    h6 += (r.get("hunger") or 0) >= 0.6
+        for line in records.person_lines(path):
+            r = json.loads(line)
+            if lo < r["season_end_day"] <= hi + 1 and r["status_at_end"] == "生きている":
+                h3 += (r.get("hunger") or 0) >= 0.3
+                h6 += (r.get("hunger") or 0) >= 0.6
         out["hungry_person_seasons_0.3"] = h3
         out["hungry_person_seasons_0.6"] = h6
     return out

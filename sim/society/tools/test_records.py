@@ -97,7 +97,7 @@ class Base(unittest.TestCase):
         r = cls.d / "records"
         cls.V = {x["season_end_day"]: x for x in jl(r / "season_village.jsonl")}
         cls.H = {(x["season_end_day"], x["household_id"]): x for x in jl(r / "season_household.jsonl")}
-        cls.P = {(x["season_end_day"], x["person_id"]): x for x in jl(r / "season_person.jsonl")}
+        cls.P = {(x["season_end_day"], x["person_id"]): x for x in records.person_rows(cls.d)}
         cls.L = jl(r / "ledger.jsonl")
         cls.people = json.loads((r / "people.json").read_text(encoding="utf-8"))
         cls.mem = json.loads((r / "membership.json").read_text(encoding="utf-8"))
@@ -298,7 +298,9 @@ class D_Determinism(Base):
 
     def files(self, d):
         r = Path(d) / "records"
-        return {p.name: p.read_bytes() for p in sorted(r.iterdir()) if p.name not in ("snapshots.jsonl", records.SNAP_DIR)}
+        out = {p.name: p.read_bytes() for p in sorted(r.iterdir()) if p.is_file() and p.name != "snapshots.jsonl"}
+        out |= {f"{records.PERSON_DIR}/{p.name}": p.read_bytes() for p in sorted((r / records.PERSON_DIR).glob("*"))}  # 人の季節の行の年ごとのファイル (2026-11-05)
+        return out
 
     def test_rebuild_same(self):
         a = self.files(self.d)
@@ -662,7 +664,7 @@ class G_StepSmoke(unittest.TestCase):
                     s["era2"].pop(k, None)
             self.assertEqual(s1, s2)
             D = s2["day"]
-            rows = [x for x in jl(d2 / "records" / "season_person.jsonl") if x["season_end_day"] == D]
+            rows = [x for x in records.person_rows(d2) if x["season_end_day"] == D]
             by = {k: [x for x in rows if x["decided_by"] == k] for k in ("自分", "代表が割り振った", "代表と同じ仕事")}
             self.assertTrue(by["自分"])
             self.assertTrue(by["代表が割り振った"] or not any("family" in a for a in ans.values()))
@@ -1053,14 +1055,18 @@ class M_Accounts(Base):
                                capture_output=True, text=True, encoding="utf-8", env=dict(os.environ, PYTHONUTF8="1"))
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
             old, new = d2 / "records", self.d / "records"
+            # 2026-11-05: 人の季節の行は年ごとのファイル (records/season_person/)。つなげたものを前の 1 つのファイルとくらべる
+            renamed = lambda n: records.PERSON_FILE if n == records.PERSON_DIR else n
             names = sorted(p.name for p in old.iterdir())
-            self.assertEqual(names, sorted(p.name for p in new.iterdir()))
+            self.assertEqual(names, sorted(renamed(p.name) for p in new.iterdir()))
             for n in names:
-                a, b = (old / n).read_bytes(), (new / n).read_bytes()
+                a = (old / n).read_bytes()
+                b = (b"".join(f.read_bytes() for f in records.person_files(self.d)) if n == records.PERSON_FILE else (new / n).read_bytes())
                 if n == "columns.json":  # 足した列のほかは同じ並び。4409 日目の区切りを書きそえた列は note だけちがう
                     cs = [c for c in json.loads(b) if not (c["table"] == "season_village" and c["column"] in ACC_KEYS) and (c["table"], c["column"]) not in G7_COLS]
                     self.assertTrue(all("4409" in c["note"] for c in cs if (c["table"], c["column"]) in ACC_NOTES))
-                    was, now = ([dict(c, note=None) if (c["table"], c["column"]) in ACC_NOTES else c for c in x] for x in (json.loads(a), cs))
+                    was, now = ([dict(c, note=None) if (c["table"], c["column"]) in ACC_NOTES | {("season_person", "season_end_day")} else c for c in x]
+                                for x in (json.loads(a), cs))  # season_end_day の note は、年ごとのファイルを書きそえた (2026-11-05)
                     self.assertEqual(now, was)
                 elif n == "season_village.jsonl":
                     rows = [json.loads(x) for x in b.decode("utf-8").splitlines()]

@@ -160,6 +160,13 @@ def _next_name(state):
     return n
 
 
+def trust_sparse(state):
+    """2026-11-06 (docs/society_phase/state_size_plan.md 案 A): 信頼の表 (people[].trust) に 0 でないものだけを持つか。
+    step.py slim_trust が印 state["trust_sparse"] を書いたあとだけ (印のない state は前のまま、みなに 0.0 を持つ)。
+    trust を読むときは、いつも p["trust"].get(名前, 0.0) で読む"""
+    return "trust_sparse" in state
+
+
 def _new_person(state, rng, sex, age, child=False, mother=None, origin="生まれた", name=None):
     e2 = state["era2"]
     if name is None:
@@ -169,14 +176,15 @@ def _new_person(state, rng, sex, age, child=False, mother=None, origin="生ま�
          "personality": {k: round(rng.random(), 2) for k in ("協力", "大胆", "好奇心", "社交")},
          "skills": {k: round(rng.uniform(0.1, 0.4), 2) for k in ("採集", "狩り", "道具", "火")},
          "reserve": world.RESERVE_START, "hunger": 0.0, "fatigue": 0.0, "injured": 0, "food": [], "items": [],
-         "trust": {n: 0.0 for n in names}, "heard": [], "plan": {"activity": "休む", "place": "camp", "with": []},
+         "trust": {} if trust_sparse(state) else {n: 0.0 for n in names}, "heard": [], "plan": {"activity": "休む", "place": "camp", "with": []},
          "today": None, "knowledge": [], "feeling": "", "born_day": state["day"] - age * YEAR, "origin": origin}
     if child:
         p["child"] = True
     if mother:
         p["mother"] = mother
-    for q in state["people"]:
-        q.setdefault("trust", {})[name] = 0.0
+    if not trust_sparse(state):  # 印があれば 0 を足さない (ない名前 = 0.0。state_size_plan.md 案 A)
+        for q in state["people"]:
+            q.setdefault("trust", {})[name] = 0.0
     if not child:
         _give_initial_knowledge(state, p)
     state["people"].append(p)

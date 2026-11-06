@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑の草の種は山ほどある。まずは刈って、冬に備えよう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が残っているうちに刈らないと落ちてしまうから"},"family":{"ハソ44":{"activity":"畑仕事","place":"camp","why":"家族そろって刈り入れを手伝うため"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"来年の実りのために畑を手入れしたいから"},"family":{"ハソ44":{"activity":"畑仕事","place":"camp","why":"草取りの人手が足りないので手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで畑の実りを増やすため"},"family":{"ハソ44":{"activity":"畑仕事","place":"camp","why":"草取りを分け合うため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の実りに向けて草取りを続ける"},"family":{"ハソ44":{"activity":"畑仕事","place":"camp","why":"草取りを続けるため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"蓄えあふれる年",
+"feeling":"蓄えは十分にある。体を動かして畑を守りたい。"}

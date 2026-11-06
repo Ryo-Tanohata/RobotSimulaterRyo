@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。わたしは土器を焼いて、草の種を虫から守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番なので、草の種を傷みから守る器を作り足す"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ユエ27": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を持ち帰る"},
+  "ラニ30": {"activity": "畑仕事", "place": "camp", "why": "秋の畑の草取りで実りを増やす"},
+  "リセ32": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をする"},
+  "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "狩りが苦手なので畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。いつもどおり土をこねたい。"}

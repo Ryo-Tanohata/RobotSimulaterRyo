@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬の前に、北の丘でしっかり獲ってくるよ。獲れた肉はその日のうちに分けて食べよう。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕が一番だし、北の丘は秋も獲物がとれる。肉で村の食べ物を助けたい。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ45": true},
+ "keep": false,
+ "judge": {"M481": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "北の丘は秋のあいだも狩りに向いていて、獲物がとれる。", "because": [1835693], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体が軽い。早く丘へ出て獲物を追いたい。"}

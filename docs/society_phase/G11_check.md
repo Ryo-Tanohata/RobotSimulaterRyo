@@ -128,7 +128,13 @@ G11 のコード (直しのあと。30f25384) で、本物の data (17039 日目
   - `sim/society/tools/test_g7.py`: 両方が最後に試しのクラスを足した (`T_G11` と `T_AppSlim`) → 両方を残す。
   - `step.py` (next_part と slim_app)・`build_records.py`・`records.py` などは、ぶつからずに入った。
 - 入れたあとで `test_g7.py T_G10 T_G10FIX T_G11 T_AppSlim` は 29 個 OK (とばし 11)、`test_records.py` (クラスごと) の落ちる 16 は、入れる前と同じ 16。
-- 17039 日目にすることが 2 つになる: `step.py slim_app --why …` (案 A) と `step.py next_part --closed-by-decision …` (G11 に入る)。どちらも「その日の答えがまだないとき」だけできるので、**答えを集める前に** 両方を打つ。
+- そのあと (2026-11-06) 本物のブランチは G10 のまま 148年の年報 (10a5b4e3) まで進み、state.json の信頼の表の 0 を外す直し (`slim_trust`・`T_TrustSparse`) も入った。
+  これも g11-impl に入れた (マージのコミット)。ぶつかったのは同じ 2 つ (HANDOFF.md・test_g7.py) だけで、両方を残した。
+  入れたあとで `test_g7.py T_G10FIX T_G11 T_AppSlim T_TrustSparse A_Gate` は、`T_TrustSparse.test_me_same` 1 つだけ落ちる。これは本物のブランチのコードだけでも落ちる
+  (本物の state がもう 0 を外した形なので、試しが前提にした「印のない state」が作れない)。G11 の試しは、148年120日目 (17879 日目) の本物の state でも通る。
+  `test_records.py` (クラスごと) は 15 落ちる: 3. の 16 から `I_Pasture.test_below_cap_same_as_before` が通るようになったもの (本物の data が進んだため)。新しく落ちる試しはない。
+- 本物の村は 148年120日目 (17879 日目) の年の集まりで止まっていて、G10 の c1 は 142年 (17069 日目) に届いている。だから G11 に入るときの閉じる文は形 A
+  (`G11_design.md` 0.1。年・年数は入る日に合わせる)。`slim_app`・`slim_trust` は本物でもう済んでいる。
 
 ## 5. 費用
 

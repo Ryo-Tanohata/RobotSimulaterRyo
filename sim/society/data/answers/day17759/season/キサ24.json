@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑の草の種を刈っておこう。落ちたらもったいない。私は秋からまた土器を焼く。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに刈らないと落ちるので、刈り入れを手伝う"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れに人手が要る"}, "リセ32": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れに人手が要る"}, "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "狩りは苦手なので刈り入れを手伝う"}, "ラニ37": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "シエ37": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "ケセ38": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "ホタ38": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を守る器が増える"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "リセ32": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で肉を得られる"}, "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ラニ37": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ホタ38": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬も土器が焼ける。慣れた仕事を続ける"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "リセ32": {"activity": "狩り", "place": "北丘12", "why": "魚やけものは冬もいる"}, "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れに向けて鎌を補う"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "リセ32": {"activity": "狩り", "place": "北丘12", "why": "肉を得る"}, "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "草が足りず、飼っていたヤギ55頭がやせていなくなった", "because": [1849164], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせていなくなった年",
+ "feeling": "蓄えは十分ある。いつも通り土器と道具を作って過ごせればいい。"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "今年の秋も、わしは畑に 1000 つかみまいて、冬まで草取りに通う。ヤギは草の分より 45 頭ほど多いから、やせて消える前に少しずつ干し肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをするほど次の夏に多く実るから、続けて畑を見る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "judge": {"M482": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える数より 70 頭ほど多いと、1 季節に 23 頭ほどがやせていなくなる", "because": [1861699], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L469", "against": "", "agree": true, "reason": "草の分をこえるヤギは、やせて消える前に干し肉にしたほうがよい"},
+  {"id": "L466", "against": "", "agree": true, "reason": "多すぎるヤギをつぶし、みなで畑にまくのはよいこと"},
+  {"id": "L463", "against": "", "agree": true, "reason": "ヤギを減らして畑にまけば、冬をこえて食べ物が増える"},
+  {"id": "L462", "against": "", "agree": true, "reason": "草取りの人を増やすと実りが減らない"},
+  {"id": "L455", "against": "", "agree": true, "reason": "まく畑が多いので草取りは十人ほどいる"},
+  {"id": "L447", "against": "", "agree": true, "reason": "ワユ3の村は借りた分を全部返さないので、板に残すべき"},
+  {"id": "L446", "against": "", "agree": true, "reason": "覚えちがいをなくすため、貸し借りは板に記すのがよい"}
+ ],
+ "feeling": "畑とヤギのことを、静かに続けていきたい。"}

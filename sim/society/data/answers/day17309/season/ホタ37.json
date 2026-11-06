@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に畑に種をまいておこう。蓄えはたっぷりある、おれは畑の草取りをやるぞ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、冬と春のあいだ手をかける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"トナ44": true},
+ "family": {"ムイ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やすため"}, "セオ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やすため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T247": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "秋に畑に種をまいて草取りをすると、夏のはじめに実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは十分で落ち着いている。冬に向けて体を動かしたい。"}

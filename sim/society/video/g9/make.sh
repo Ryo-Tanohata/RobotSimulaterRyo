@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# G9「遠くとの商い」(104年120日目〜118年120日目) の 14 年をまとめた動画を作る (2026-11-05、本人の希望。part5.md 7. の「G9 の動画」)。
+# ナレーション: VOICEVOX:ずんだもん (tools/voicevox/setup.sh で用意。声・絵・動画はリポジトリに入れない)。
+#   使い方: bash sim/society/video/g9/make.sh <作業フォルダ (例: /tmp/g9v)> [VOICEVOX の保存先 (既定 /tmp/vv)]
+#   出力: <作業フォルダ>/g9.mp4 (1920x1080、音は -16 LUFS)
+# 文は lines.json (text = 字幕、say = 読み上げ)。文に書いた数は data.py が記録 (sim/society/data。読むだけ) と合うか確かめ、合わないと止まる。
+# 中身のもと: docs/society_phase/G9.md。図は charts.py (matplotlib・IPA ゴシック)、絵は shots.cjs (Playwright)。
+set -euo pipefail
+HERE="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$HERE/../../../.." && pwd)"
+OUT="$(mkdir -p "${1:?作業フォルダ}" && cd "$1" && pwd)"; VV="${2:-/tmp/vv}"
+TH="${FFMPEG_THREADS:-2}"
+cd "$OUT"
+python3 "$HERE/data.py" facts.json
+python3 "$HERE/charts.py" facts.json charts
+[ -x "$VV/venv/bin/python" ] || bash "$ROOT/tools/voicevox/setup.sh" "$VV"
+"$VV/venv/bin/python" "$ROOT/tools/voicevox/synth.py" "$HERE/lines.json" voice "$VV"
+node "$HERE/shots.cjs" "$OUT"
+rm -f seg_*.mp4 list.txt
+for id in $(python3 -c "import json,sys;print(' '.join(l['id'] for l in json.load(open(sys.argv[1]))))" "$HERE/lines.json"); do
+  ffmpeg -loglevel error -y -threads "$TH" -loop 1 -i "$id.png" -i "voice/$id.wav" -af "adelay=300|300,apad=pad_dur=0.8" \
+    -c:v libx264 -threads "$TH" -tune stillimage -pix_fmt yuv420p -r 30 -vf scale=1920:1080 -c:a aac -ar 48000 -ac 2 -b:a 160k -shortest "seg_$id.mp4"
+  echo "file 'seg_$id.mp4'" >> list.txt
+done
+ffmpeg -loglevel error -y -threads "$TH" -loop 1 -i s99.png -f lavfi -i anullsrc=r=48000:cl=stereo -t 5 \
+  -c:v libx264 -threads "$TH" -tune stillimage -pix_fmt yuv420p -r 30 -vf scale=1920:1080 -c:a aac -ar 48000 -ac 2 -b:a 160k seg_99.mp4
+echo "file 'seg_99.mp4'" >> list.txt
+ffmpeg -loglevel error -y -threads "$TH" -f concat -safe 0 -i list.txt -c copy raw.mp4
+ffmpeg -loglevel error -y -threads "$TH" -i raw.mp4 -c:v copy -af loudnorm=I=-16:TP=-1.5:LRA=11 -c:a aac -ar 48000 -b:a 160k g9.mp4
+echo "できた: $OUT/g9.mp4 ($(ffprobe -v error -show_entries format=duration -of csv=p=0 g9.mp4) 秒)"

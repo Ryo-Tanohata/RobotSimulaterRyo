@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "畑がひとつもないから、わしは蓄えの草の種を1000つかみまく。冬と春の草取りに手を貸してくれる者は、キャンプで声をかけてくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "いま畑がないので、秋にまいて冬と春に草取りをし、来年の夏の実りを守るため"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ30": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして、まいた畑の実りを減らさないため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "畑がないときは、秋のはじめに蓄えの草の種を1000つかみずつまかないと、夏に刈るものがない", "because": [1809214], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑のない秋は心もとない。まいて、冬のあいだ草取りをしっかりやりたい。"}

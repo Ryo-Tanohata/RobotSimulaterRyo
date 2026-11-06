@@ -30,6 +30,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SOC = os.path.dirname(HERE)
 sys.path.insert(0, SOC)
 import archive  # noqa: E402  (古い年の記録を戻す。2026-10-10)
+import records as soc_records  # noqa: E402  (人の季節の行は年ごとのファイル。2026-11-05)
 DEFAULT_DATA = os.path.join(SOC, "data")
 DEFAULT_OUT = os.path.join(SOC, "app", "dashboard_data.json")
 PROTECTED = os.path.join(SOC, "data")
@@ -267,10 +268,9 @@ def load(data_dir, tries=3, wait=2.0):
                 for l in fh:
                     if '"item":"ヤギ"' in l and "つぶした" in l:
                         rec["ledger_goats"].append(json.loads(l))
-            sp = os.path.join(R, "season_person.jsonl")
             rec["work_days"] = {}
             if any(r.get("era") in ("G6", "G7", "G8") for r in rec["season_village"]):  # G6 以上 (G7 からも村の記録は続く)
-                for r in _read_jsonl(sp):
+                for r in soc_records.person_rows(data_dir):  # records/season_person/ の年ごとのファイル (前の 1 つのファイルも読む)
                     dba = r.get("days_by_activity") or {}
                     n = sum(v for k, v in dba.items() if k in G6_WORK)
                     if n:

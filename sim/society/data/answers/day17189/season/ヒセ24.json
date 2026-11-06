@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。わたしはこの秋に種をまいて、あとは畑の草取りをするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "いま畑がないので、秋に蓄えの草の種をまき、草取りをして次の夏に実らせたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ネイ30": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要るので、同じ畑で働いてもらう"}, "ルタ32": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを減らさないため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [{"op": "add", "text": "この秋も蓄えの草の種を大人ひとり1000つかみまき、草取りをして夏に刈る。", "because": [1736576], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるので落ち着いている。畑仕事を黙々とやるつもり。"}

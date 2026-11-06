@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけれど、ヤギが草より多いから、少しずつ肉にして減らそうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ラニ28": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手を増やすため"}, "ケナ31": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手を増やすため"}, "アコ31": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ユエ33": {"activity": "畑仕事", "place": "camp", "why": "子でも刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5},
+  "秋": {"job": {"activity": "採集", "place": "東林12", "with": [], "why": "冬に備えて木の実を集める"}, "family": {"ラニ28": {"activity": "採集", "place": "東林12", "why": "木の実集め"}, "ケナ31": {"activity": "狩り", "place": "北丘12", "why": "冬の前に肉を増やす"}, "アコ31": {"activity": "採集", "place": "東林12", "why": "木の実集め"}, "ユエ33": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 5, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬は魚やけものが頼りになる"}, "family": {"ラニ28": {"activity": "狩り", "place": "北丘12", "why": "冬の肉を得る"}, "ケナ31": {"activity": "狩り", "place": "北丘12", "why": "冬の肉を得る"}, "アコ31": {"activity": "採集", "place": "南川12", "why": "魚をとる"}, "ユエ33": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やす"}, "family": {"ラニ28": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケナ31": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれる"}, "アコ31": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ユエ33": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギ多く草足りぬ年",
+ "mood": "蓄えは多くて安心だけれど、ヤギの数が気がかり。"}

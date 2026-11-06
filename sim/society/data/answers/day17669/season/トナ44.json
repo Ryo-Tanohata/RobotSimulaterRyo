@@ -1,0 +1,12 @@
+{"say": [{"to": "ハソ44", "text": "冬の前に、俺は北の林で狩りをしてくる。肉をとってくるから、子どもたちを頼む。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "蓄えは十分だが、冬は魚やけものが頼りになる。大胆に肉を狩ってくる。"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ45": true},
+ "family": {"ハソ44": {"activity": "採集", "place": "南林12", "why": "木の実や草の実を集めて、家の食べ物を足す。"}},
+ "keep": false,
+ "judge": {"M481": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だが、冬に向けて体を動かしておきたい。"}

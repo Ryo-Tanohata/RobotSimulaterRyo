@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑の実りがたくさん残っている。夏のうちに毎日刈ろう。ヤギは草に対して多すぎるから、春には何頭かつぶして肉にしたい。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が落ちる前に毎日刈るため"},"family":{"ムイ25":{"activity":"畑仕事","place":"camp","why":"畑を刈る手を増やす"},"ムイ26":{"activity":"畑仕事","place":"camp","why":"畑を刈る手を増やす"},"ソワ26":{"activity":"畑仕事","place":"camp","why":"畑を刈る手を増やす"},"ナセ31":{"activity":"畑仕事","place":"camp","why":"畑を刈る手を増やす"},"ユエ34":{"activity":"畑仕事","place":"camp","why":"刈り入れの手伝い"},"ヒセ35":{"activity":"畑仕事","place":"camp","why":"刈り入れの手伝い"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで実りを増やす"},"family":{"ムイ25":{"activity":"狩り","place":"南川12","why":"魚で食べ物を足す"},"ムイ26":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ソワ26":{"activity":"採集","place":"東林12","why":"木の実を集める"},"ナセ31":{"activity":"畑仕事","place":"camp","why":"草取り"},"ユエ34":{"activity":"ヤギの世話","place":"camp","why":"ヤギの世話"},"ヒセ35":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで来年の実りを増やす"},"family":{"ムイ25":{"activity":"狩り","place":"南川12","why":"冬も魚はとれる"},"ムイ26":{"activity":"畑仕事","place":"camp","why":"草取り"},"ソワ26":{"activity":"畑仕事","place":"camp","why":"草取り"},"ナセ31":{"activity":"狩り","place":"北丘12","why":"けものをとる"},"ユエ34":{"activity":"畑仕事","place":"camp","why":"草取り"},"ヒセ35":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りを続ける"},"family":{"ムイ25":{"activity":"ヤギの世話","place":"camp","why":"乳をとる"},"ムイ26":{"activity":"畑仕事","place":"camp","why":"草取り"},"ソワ26":{"activity":"ヤギの世話","place":"camp","why":"乳をとる"},"ナセ31":{"activity":"畑仕事","place":"camp","why":"草取り"},"ユエ34":{"activity":"ヤギの世話","place":"camp","why":"世話の手伝い"},"ヒセ35":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept":{"ヒセ43":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"実り多き刈り入れの年",
+"feeling":"蓄えは十分で落ち着いているが、ヤギが増えすぎて草が心配だ。"}
