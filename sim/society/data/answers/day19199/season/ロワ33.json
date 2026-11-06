@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけれど、実った畑は夏のうちに刈らないと落ちてしまうよ。手の空いた人はいっしょに刈ろう。わたしは土器を焼いて、種を虫から守るね。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守れるから"}, "family": {"キオ38": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈り入れるため"}, "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈り入れるため"}, "ネイ41": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "キオ42": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "ユエ42": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの乳をとり、世話をするため"}, "キサ43": {"activity": "狩り", "place": "camp", "why": "狩りが得意で、肉を村にもたらすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器を増やして蓄えを守り続けるため"}, "family": {"キオ38": {"activity": "畑仕事", "place": "camp", "why": "秋まきの畑の草取りと世話のため"}, "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "畑の世話のため"}, "ネイ41": {"activity": "採集", "place": "camp", "why": "木の実を集めるため"}, "キオ42": {"activity": "採集", "place": "camp", "why": "木の実を集めるため"}, "ユエ42": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話のため"}, "キサ43": {"activity": "狩り", "place": "camp", "why": "冬に備えて肉をとるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は冬も作れるから"}, "family": {"キオ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "ネイ41": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りのため"}, "キオ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りのため"}, "ユエ42": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話のため"}, "キサ43": {"activity": "狩り", "place": "camp", "why": "魚やけものは冬もいるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器を作り続けるため"}, "family": {"キオ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りのため"}, "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りのため"}, "ネイ41": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りのため"}, "キオ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りのため"}, "ユエ42": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギと乳の世話のため"}, "キサ43": {"activity": "狩り", "place": "camp", "why": "肉を村にもたらすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null,
+ "knowledge": [{"op": "add", "text": "草が足りず、ヤギが140頭ほどを超えるとやせていなくなる。221頭いる今は減らす必要がある。", "because": [2181983], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギが減った年",
+ "feeling": "蓄えは多くて安心だけれど、ヤギと畑のことが気がかり。みんなで助け合っていきたい。"}
