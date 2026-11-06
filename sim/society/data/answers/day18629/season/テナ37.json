@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるが、冬は木の実が実らない。今のうちに林で木の実を集めておくよ。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": [], "why": "冬に木の実が実らないので、秋のうちに林で集めて備えるため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ37": {"activity": "採集", "place": "北林12", "why": "家族みんなで林の木の実を集めれば冬の備えになる"}},
+ "keep": false,
+ "judge": {"M486": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは十分で落ち着いている。冬に向けて静かに働くつもりだ。"}

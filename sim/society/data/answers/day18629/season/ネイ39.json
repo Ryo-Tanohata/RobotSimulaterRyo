@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬のまえに、おれは北の丘で狩りをするよ。肉をとってきて、みんなで分けよう。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕がいちばん自信がある。冬に向けて肉を蓄えたい。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M486": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種は約700日分あり、食べ物には当分困らない。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "みんなと話せてうれしい。狩りに出るのが楽しみだ。"}

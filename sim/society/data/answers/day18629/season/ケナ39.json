@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、わたしは林で木の実を集めておくよ。蓄えは十分あるけれど、手を動かしていると落ち着くからね。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": [], "why": "冬は木の実が実らないので、秋のうちに集めておきたい。採集は得意だから。"},
+ "sow": 0, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ40": {"activity": "採集", "place": "北林12", "why": "母と同じ林で木の実を集め、冬に備える。"}},
+ "keep": false,
+ "judge": {"M486": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあるし、穏やかな秋だ。冬も落ち着いて迎えられそう。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、わたしは林でたっぷり木の実を集めてくるよ。にぎやかにいこう、みんなも声をかけて!"}, {"to": "ヌオ33", "text": "いっしょに北の丘で狩りをしよう。獲物の肉は村に分けよう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集が得意で、冬に向けて食べ物を多く集めておきたいから"}, "sow": 500, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ33": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬前に肉を持ち帰ってもらう"},
+  "ナセ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、ヌオ33と組めば安全で獲物も増える"},
+  "ワユ35": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、肉を集める"},
+  "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りも苦手なので、畑の草取りで役に立つ"},
+  "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りも苦手なので、畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M486": "ゆるす"}, "feast": true, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "冬の前でわくわくしている。みんなと話して、にぎやかに過ごしたい。"}

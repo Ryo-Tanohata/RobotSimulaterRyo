@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "わたしは土器をこねて焼く。蓄えの種を虫から守る器は、冬を越すのに欠かせないからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりの腕には自信があり、草の種を守る器はいくらあっても困らないから"},
+ "sow": 200, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ30": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、冬に向けて肉を蓄えに入れるため"},
+  "リセ32": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、ラニ30と組んで安全に行けるため"},
+  "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りが足りないと実りが減るため"},
+  "ラニ37": {"activity": "狩り", "place": "北丘12", "why": "若く力があり、狩りが得意だから"},
+  "シエ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを増やすため"},
+  "ケセ38": {"activity": "採集", "place": "東林12", "why": "採集が得意で、近くの林で食べ物を集められるため"},
+  "ホタ38": {"activity": "畑仕事", "place": "camp", "why": "採集は苦手なので、畑の草取りで役に立つため"}
+ },
+ "keep": false,
+ "judge": {"M486": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは多く、冬も落ち着いて土器を作れそうだ。"}

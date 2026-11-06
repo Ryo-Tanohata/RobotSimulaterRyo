@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をまいて、冬と春は交代で草取りをしよう。木の実も毎夕少しずつ取って、冬にそなえよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど実りが増えるので、冬と春のあいだ草取りを続ける"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "タユ24": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やして実りを守るため"},
+  "キサ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やして実りを守るため"},
+  "ルタ29": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚やけものを取って家族の食べ物を増やす"},
+  "ネイ32": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚やけものを取る"},
+  "ラキ37": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚やけものを取る"},
+  "キサ37": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚やけものを取る"},
+  "タユ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ヌオ39": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、魚やけものを取る"},
+  "ホタ39": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるのでキャンプで畑の草取りをする"},
+  "ネイ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "キオ41": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ケセ41": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M486": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。畑と木の実の仕事をこつこつ進めたい。"}
