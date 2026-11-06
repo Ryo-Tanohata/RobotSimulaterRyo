@@ -13,7 +13,7 @@
   --out     書く HTML のファイル。sim/society/data/ の下には書かない
 
 読むもの: data/state.json (しまった年の出来事は data/archive/ から)・data/records/ (season_village.jsonl・people.json・laws.json・snapshots/)・
-  techtree/ (tools/build_tech_tree.py の build をそのまま使う)。G9・G10 の条件の数え方は g9.py・g10.py の決まり (目標の数) をそのまま使う。
+  techtree/ (tools/build_tech_tree.py の build をそのまま使う)。G9・G10・G11 の条件の数え方は g9.py・g10.py・g11.py の決まり (目標の数) をそのまま使う。
 出すもの: 1 つの HTML (CSS も図も中に入れる。外のファイルを読まない)。
 出さないもの: 村の会計・貸借対照表・持ち物の差 (ジニ係数)・接地度・答えた人の数・よその便りの札の番号と史実の出どころなど、【シ】の帳簿の数。
   (ダッシュボードとちがい、本人むけの報告なので、人の名前・年齢・人数・条件の物差しは出す。)
@@ -35,6 +35,7 @@ import archive  # noqa: E402
 import era2  # noqa: E402
 import g9 as G9  # noqa: E402
 import g10 as G10  # noqa: E402
+import g11 as G11  # noqa: E402
 import records  # noqa: E402
 
 YEAR = era2.YEAR
@@ -163,6 +164,46 @@ def g9_data(st):
     return {"used": used, "c": c, "reached": reached, "closed": closed}
 
 
+def g10_data(st):
+    """G10 の帳簿: G11 に入ったあとは g7.g10 の c・path を入った日に空にして数え直している (ならべて測る) ので、
+    G10 のあいだの c・reached・道の見張りは、入った日の写し (g7.before.G10.g10) から読む (なければ、いまの値)"""
+    live = _g7(st).get("g10") or {}
+    before = ((_g7(st).get("before") or {}).get("G10") or {}).get("g10")
+    if not before:
+        return live
+    g = dict(live)
+    g["c"], g["reached"] = dict(before.get("c") or {}), dict(before.get("reached") or {})
+    g["path"] = {**(live.get("path") or {}), **(before.get("path") or {})}
+    return g
+
+
+def _g11_law(st, key, end):
+    """その年の終わりまでに決まっていた掟 (key のあるもの) のうち、いちばん新しいもの"""
+    return next((l for l in reversed(st.get("laws", [])) if l.get("status") == "採用" and l.get(key) and (l.get("day") or 0) <= end), None)
+
+
+def _g11_year(g, st, y):
+    """y 年の G11 の数 (g11.season_end・g11.progress と同じ数え方を、その年の帳簿から)"""
+    end = y * YEAR + YEAR - 1
+    on = (lambda d: d is not None and d <= end)
+    ys = str(y)
+    row = (g.get("flows") or {}).get(ys) or {"all": 0, "coin": 0}
+    mk = (g.get("markets") or {}).get(ys) or []
+    deals = sum(1 for r in mk if r["deals"] > 0)  # g11.markets_with_deals
+    run = 0
+    while ((g.get("credit") or {}).get(str(y - run)) or {}).get("written", 0) >= 1:
+        run += 1
+    rch = g.get("reached") or {}
+    mark = g.get("mark") if g.get("mark") and on(g["mark"].get("day")) else None
+    md = _g11_law(st, "market_day", end)
+    begun = g.get("start") is not None and g["start"] <= end
+    s1 = 4 if on(rch.get("F3")) else 3 if on(rch.get("F1")) else 2 if mark else 1 if begun else 0
+    s2 = 2 if on(rch.get("F2")) else 1 if md else 0
+    s3 = 2 if on(rch.get("F4")) else 1 if on(rch.get("F3")) else 0
+    return {"row": row, "mk": mk, "deals": deals, "run": run, "mark": mark, "md": md["market_day"] if md else None,
+            "prog": {"c1": (s1, round(1000 * row["coin"] / row["all"]) if row["all"] else 0), "c2": (s2, deals), "c3": (s3, run)}}
+
+
 def _bar(label, value, goal, unit, done_day, note="", y_end=None):
     hit = done_day is not None and (y_end is None or done_day <= y_end)
     return {"label": label, "value": value, "goal": goal, "unit": unit, "done": hit, "done_day": done_day if hit else None, "note": note}
@@ -191,7 +232,7 @@ def conditions(D, y, phase):
         if (g["closed"] or {}).get("day") is not None and g["closed"]["day"] <= end and g["closed"]["day"] >= y * YEAR:
             out["extra"].append(f"G9 は {yd(g['closed']['day'])} に、本人の決めで閉じた (条件 2・3 は届かないまま)")
     elif phase == "G10":
-        g = _g7(st).get("g10") or {}
+        g = g10_data(st)
         row = (g.get("reap") or {}).get(str(y)) or {"all": I.get("g10_reap_all", 0), "iron": I.get("g10_reap_iron", 0), "bronze": I.get("g10_reap_bronze", 0)}
         rowp = (g.get("reap") or {}).get(str(y - 1)) or {"all": 0, "iron": 0}
         goal1 = max(G10.C1_MIN, -(-row["all"] * G10.C1_SHARE // 1))
@@ -226,8 +267,83 @@ def conditions(D, y, phase):
         p = (g.get("path") or {}).get(str(y))
         cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("path_") and c.get("year") == y]
         out["path"] = {"row": p, "consult": cons, "start": g.get("start")}
+    elif phase == "G11":
+        g = _g7(st).get("g11") or {}
+        Y, P = _g11_year(g, st, y), _g11_year(g, st, y - 1)
+        row, cs = Y["row"], g.get("c") or {}
+        goal1 = max(G11.C1_MIN, int(-(-row["all"] * G11.C1_SHARE // 1)))
+        cr = (g.get("credit") or {}).get(str(y)) or {"coin": 0, "written": 0}
+        out["bars"] = [
+            _bar("条件 1 印のかたまりで払う", row["coin"], goal1, "回", cs.get("c1"),
+                 f"この年の、よその集落との出し入れ {row['all']} 回のうち、印のかたまりで払ったか受けたのは {row['coin']} 回。"
+                 f"目標は半分以上で、少なくとも {G11.C1_MIN} 回", end),
+            _bar("条件 2 市の日", Y["deals"], G11.C2_MARKETS, "回", cs.get("c2"),
+                 (f"掟の市の日 (季節ごとの {Y['md']} 日目) に、よその集落の人が来て替えた市の数" if Y["md"] else "市の日はまだ掟で決まっていない")
+                 + f" (去年 {P['deals']} 回)。目標は 1 年 {G11.C2_MARKETS} 回以上を {G11.C2_YEARS} 年つづける", end),
+            _bar("条件 3 印のかたまりで貸し、字で書く", Y["run"], G11.C3_YEARS, "年", cs.get("c3"),
+                 f"よその村への貸し・返しを印のかたまりでして、量を字で書いた年が、つづいた数 (この年: 印でした貸し・返し {cr.get('coin', 0)} 回、"
+                 f"字で書いたのは {cr.get('written', 0)} 回)。目標は {G11.C3_YEARS} 年つづける", end)]
+        out["moves"] = {k: (Y["prog"][k] > P["prog"][k]) - (Y["prog"][k] < P["prog"][k]) for k in ("c1", "c2", "c3")}
+        rch = g.get("reached") or {}
+        out["fs"] = [(k, v, rch.get(k) if (rch.get(k) or end + 1) <= end else None) for k, v in G11.FS.items()]
+        out["g11"] = g11_lines(g, st, y, Y)
+        p = (g.get("path") or {}).get(str(y))
+        cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g11_path_") and c.get("year") == y]
+        out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G11"}
     else:
         out["extra"] = [f"この年のフェーズ {phase} の条件の棒は、まだ作っていない。条件: {(st.get('era_info') or {}).get('next', '-')}"]
+    return out
+
+
+def g11_lines(g, st, y, Y):
+    """G11 のこの年のようす (やさしい日本語の箇条)"""
+    lo, end = y * YEAR, y * YEAR + YEAR - 1
+    out = []
+    m = Y["mark"]
+    out.append(f"村の印: 「{m['text']}」 ({yd(m['day'])}に、集まりで決めた)" if m else "村の印: まだ決まっていない (決まるまでの印のかたまりは、払いに使えない)")
+    pay, red = g.get("pay") or {}, g.get("redeem") or {}
+    pc = pay.get("choice", "物") if (pay.get("day") or 0) <= end else "物"
+    rc = red.get("choice", "引きかえる") if (red.get("day") or 0) <= end else "引きかえる"
+    out.append(f"払い方: 村の物で払うときは「{pc}」で払う" + (" (まだ印のかたまりで払うとは決めていない)" if pc == "物" else "")
+               + f"。よその村が持って来た印のかたまりは「{rc}」と決めている")
+    led = next((r for r in g.get("ledger") or [] if r.get("year") == y), None)
+    made_y = sum(r["n"] for r in g.get("made") or [] if lo <= r["day"] <= end)
+    made_all = sum(r["n"] for r in g.get("made") or [] if r["day"] <= end)
+    if led:
+        have = f"年の終わりに村に {led['village']} 個" + (f" (印のないもの {led['unmarked']} 個)" if led.get("unmarked") else "") + \
+               f"・よその村に {sum((led.get('others') or {}).values())} 個。作れる人 {led.get('smiths', 0)} 人"
+    else:
+        c = g.get("coins") or {}
+        have = f"いま村に {c.get('village', 0)} 個・よその村に {sum((c.get('others') or {}).values())} 個"
+    out.append(f"印のかたまりを作った数: この年 {made_y} 個 (はじめから {made_all} 個)。{have}")
+    mk = Y["mk"]
+    if Y["md"]:
+        came = sum(1 for r in mk if r["came"])
+        out.append(f"市: 季節ごとの {Y['md']} 日目が市の日。この年の市 {len(mk)} 回 (よその人が来た {came} 回・替えた {Y['deals']} 回)"
+                   + ("" if g.get("market") else "。市の方針 (何を出し、何を受けるか) はまだない"))
+    else:
+        out.append("市: 市の日はまだ掟で決まっていないので、この年は市が立たなかった")
+    fl = [f for f in g.get("flow_log") or [] if lo <= f["day"] <= end]
+    row = Y["row"]
+    t = f"よその集落との出し入れ: この年 {row['all']} 回 (印のかたまりで {row['coin']} 回・物で {row['all'] - row['coin']} 回)"
+    if fl:
+        kinds = {}
+        for f in fl:
+            k = kinds.setdefault(f["kind"], [0, 0])
+            k[0] += 1
+            k[1] += f["coin"]
+        t += "。" + "・".join(f"{k} {a} 回" + (f" (印 {n} 個)" if n else "") for k, (a, n) in kinds.items())
+    out.append(t)
+    cr = (g.get("credit") or {}).get(str(y)) or {}
+    out.append(f"印のかたまりの貸し・返し: この年 {cr.get('coin', 0)} 回 (字で書いたのは {cr.get('written', 0)} 回)" if cr.get("coin") else
+               "印のかたまりの貸し・返し: この年はなかった")
+    ref = [d for d in g.get("refused") or [] if lo <= d <= end]
+    fa = [f for f in g.get("fails") or [] if f.get("year") == y]  # g11.fails_year
+    if ref or fa:
+        t = (f"引きかえを断った・できなかった: {len(ref)} 回。" if ref else "") + (f"選んだのにできなかったこと {len(fa)} 回: " + " / ".join(clean(f["why"], 60) for f in fa[:3]) if fa else "")
+        out.append(t)
+    else:
+        out.append("断ったこと・選んだのにできなかったこと: なかった")
     return out
 
 
@@ -238,6 +354,11 @@ def path_line(C, y):
     r = p["row"]
     if not r:
         return f"道の見張り: この年 ({y}年) は、まだ村の集まりがなかった (数える年は {(p['start'] + 1) // YEAR}年から)"
+    if p.get("g") == "G11":
+        t = (f"道の見張り: この年の村の集まり {r['meetings']} 回で、答える人のうち、その道を自分で選べた人は、のべで条件 1 (印を決める・作る・印で払う) {r['c1']} 人、"
+             f"条件 2 (市の日を決める) {r['c2']} 人、条件 3 (字の読める村で印で貸す) {r['c3']} 人。実際に選んだ人は {r.get('chose', 0)} 人。"
+             f"{G11.PATH_YEARS} 年つづけて 0 人なら、止めて相談する")
+        return t + ("。この年の終わりに、止めて相談することになった" if p["consult"] else "")
     t = (f"道の見張り: この年の村の集まり {r['meetings']} 回のうち、条件 1 の道 (黒い金属を試す・作る) がお題に出たのは {r['c1']} 回、"
          f"条件 2 の道 (音の字を試す・習う) は {r['c2']} 回。{G10.PATH_YEARS} 年つづけて 0 回なら、止めて相談する")
     if p["consult"]:
@@ -420,6 +541,18 @@ def next_lines(C, y, phase_next, nxt_era=None):
         if zero:  # 止めて相談になるかもしれないので、いちばん上に出す
             out.insert(1 if phase_next else 0,
                        f"道の見張り: 今年、条件 {'・'.join(zero)} の道がお題に出なかった。来年も 0 回なら、止めて相談になる")
+    elif C["phase"] == "G11":
+        b = {i: x for i, x in enumerate(C["bars"], 1)}
+        rch = dict((k, d) for k, _, d in C["fs"])
+        if not b[1]["done"]:
+            out.append("村の印を打った印のかたまりができるか (作れる人が「印のかたまりを作る」を選ぶか)" if not rch.get("F1") else
+                       "村が印のかたまりで払うと決めて (pay)、よその集落との出し入れの半分以上を印のかたまりでするか" if not rch.get("F3") else
+                       f"よその集落との出し入れの半分以上を印のかたまりでするか (今年 {b[1]['value']} / 目標 {b[1]['goal']} 回)")
+        if not b[2]["done"]:
+            out.append("掟で市の日が決まり、よその集落の人が来て替える市が立つか" if not rch.get("F2") else
+                       f"よその人が来て替える市が、1 年 {G11.C2_MARKETS} 回以上つづくか (今年 {b[2]['value']} 回)")
+        if not b[3]["done"]:
+            out.append("よその村への貸し・返しを印のかたまりでして、その量を字で書くか")
     elif C["phase"] == "G9":
         for i, x in enumerate(C["bars"], 1):
             if not x["done"]:
@@ -610,6 +743,8 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
         w('<div class="note">小さな目盛り (F):</div><div class="fs">'
           + "".join(f'<span class="{"on" if d is not None else ""}">{"✓ " if d is not None else ""}{e(k)} {e(v)}</span>' for k, v, d in C["fs"]) + "</div>")
     pl = path_line(C, y)
+    if C.get("g11"):
+        w('<p style="margin:10px 0 2px"><b>印のかたまりと市 (この年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["g11"]) + "</ul>")
     for x in C["extra"] + ([pl] if pl else []):
         w(f'<p class="note">{e(x)}</p>')
     w("</section>")
