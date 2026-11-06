@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに畑を刈ってしまおう。落ちる前に刈り入れを急ぐよ。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるので刈り入れをする"},"family":{"ホタ36":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ソワ36":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ケナ37":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"シエ42":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"狩り","place":"北丘12","with":[],"why":"狩りが得意なので肉を蓄えに足す"},"family":{"ホタ36":{"activity":"狩り","place":"北丘12","why":"狩りが得意"},"ソワ36":{"activity":"狩り","place":"北丘12","why":"狩りが得意"},"ケナ37":{"activity":"狩り","place":"北丘12","why":"狩りが得意"},"シエ42":{"activity":"畑仕事","place":"camp","why":"畑の草取りをする"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで来年の実りを増やす"},"family":{"ホタ36":{"activity":"狩り","place":"北丘12","why":"冬も獲物がいるので狩る"},"ソワ36":{"activity":"狩り","place":"北丘12","why":"冬も獲物がいるので狩る"},"ケナ37":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"シエ42":{"activity":"畑仕事","place":"camp","why":"草取りをする"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで夏の実りを増やす"},"family":{"ホタ36":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"ソワ36":{"activity":"狩り","place":"北丘12","why":"肉をとってくる"},"ケナ37":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"シエ42":{"activity":"畑仕事","place":"camp","why":"草取りをする"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},
+"knowledge":[{"op":"add","text":"秋にまいた畑は冬と春に草取りをすると夏によく実る","because":[2093965],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"実りの年",
+"mood":"蓄えは十分で落ち着いている。畑を大事にしたい。"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にある。わたしは狩りで肉を持ち帰るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ネイ30": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で肉をとれる"}, "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ナセ39": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "オネ40": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "キサ44": {"activity": "畑仕事", "place": "camp", "why": "半分でも手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意で、冬に向けて肉を蓄えたい"}, "family": {"ネイ30": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確か"}, "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "オネ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "キサ44": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "魚やけものは冬もいるので肉をとる"}, "family": {"ネイ30": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確か"}, "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "オネ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "キサ44": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "得意な狩りを続ける"}, "family": {"ネイ30": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確か"}, "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "オネ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "キサ44": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null},
+ "knowledge": [{"op": "add", "text": "蓄えの草の種はたっぷりあり、草が足りずヤギが減っている", "because": [2093982], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "狩りの年",
+ "mood": "落ち着いている。体を動かして狩りに出たい。"
+}
