@@ -3,6 +3,13 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-06 G10 の評価と動画 (本人「G10の動画を作って下さい」)
+
+- 評価 `docs/society_phase/G10.md` (村ぜんたいの数と年報の事実だけ。c1・c2 は届き、c3 は 32 年届かなかった。鉄は「買う物」から「村で作る物」に、字は貸した量を確かめるのに使われた。止まりと家の出ていき方は作る側の直しがあったことも書いた)。
+- 動画の台本 `sim/society/video/g10/` (make.sh・data.py・charts.py・shots.cjs・lines.json。g9/ と同じ作り。27 文 + 終わりの札、約 6 分 40 秒)。
+  `bash sim/society/video/g10/make.sh /tmp/g10v` で `/tmp/g10v/g10.mp4`。data.py は記録を読むだけで、文の数が記録と合わないと止まる (G11 が進んでも、G10 の日の範囲だけを読む)。
+  VOICEVOX は `/tmp/vv` に入れ直して使い、作ったあと消した (次は make.sh が setup.sh で入れ直す)。mp4・声・絵はリポジトリに入れていない。
+
 ## 2026-11-06 集まりの「助けを頼む」をたしかめる直し (ブランチ ally-fix。g11-impl から)
 
 - `docs/society_phase/G10_c3_diag.md` 6. の 1 をした (9. に書いた)。集まりが頼めない村 (例 北の大きな村 に貢ぐ 北東の村14) に助けを頼むと書いても、もう求めは消えない。
