@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈って、秋にまた種をまこう。冬の草取りも忘れずにね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"キオ40": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が多いほどよいから"}, "ムイ42": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも刈り入れの助けになる"}, "リセ43": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも刈り入れの助けになる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りは得意で、肉を蓄えに足せるから"}, "family": {"キオ40": {"activity": "狩り", "place": "北丘12", "why": "走るのが速く狩りの腕がある"}, "ムイ42": {"activity": "畑仕事", "place": "camp", "why": "畑の世話を手伝う"}, "リセ43": {"activity": "畑仕事", "place": "camp", "why": "畑の世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで夏の実りが増えるから"}, "family": {"キオ40": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要るから"}, "ムイ42": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "リセ43": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて実りを増やすため"}, "family": {"キオ40": {"activity": "狩り", "place": "北丘12", "why": "春は肉を捕って蓄えを助ける"}, "ムイ42": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "リセ43": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れと草取りの年",
+ "mood": "蓄えは十分あるので、落ち着いて畑に向かえる。"}

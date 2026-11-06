@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎる。草が足りないから、今年はつぶして肉にして数を減らそう。夏の刈り入れはみんなで急ごう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちる前に刈るため"}, "family": {"ヌオ33": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "ナセ35": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "ワユ35": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをして実りを増やす"}, "family": {"ヌオ33": {"activity": "狩り", "place": "北丘12", "why": "腕がよいので獲物をとる"}, "ナセ35": {"activity": "狩り", "place": "北丘12", "why": "腕がよいので獲物をとる"}, "ワユ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて実りを守る"}, "family": {"ヌオ33": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいる"}, "ナセ35": {"activity": "狩り", "place": "北丘12", "why": "冬も獲物をとる"}, "ワユ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで実りを増やす"}, "family": {"ヌオ33": {"activity": "狩り", "place": "北丘12", "why": "獲物をとる"}, "ナセ35": {"activity": "狩り", "place": "北丘12", "why": "獲物をとる"}, "ワユ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null},
+ "knowledge": [{"op": "add", "text": "草が足りないと、ヤギはやせていなくなる。ヤギを減らさないと増えすぎる。", "because": [2041485], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせた年",
+ "mood": "畑は豊かで蓄えも多い。落ち着いて働けそうだ。"}

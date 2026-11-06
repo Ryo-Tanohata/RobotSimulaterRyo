@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈って、秋にまた種をまこう。ヤギは草に合わせて減らした方がいい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"キオ37": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の世話をして、来年の実りを守る"}, "family": {"キオ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も魚やけものはいるので、狩りの腕を生かす"}, "family": {"キオ37": {"activity": "狩り", "place": "北丘12", "why": "北の丘で一緒に獲物を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器に入れた種は虫に食べられにくく、蓄えを守れる"}, "family": {"キオ37": {"activity": "土器づくり", "place": "camp", "why": "土器づくりを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑が実った年",
+ "feeling": "蓄えは十分にある。ヤギが多すぎるのが気がかりだ。"}
