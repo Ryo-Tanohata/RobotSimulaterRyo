@@ -1,0 +1,13 @@
+{"say": [], "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ケナ40": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "キオ43": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+ "秋": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意で、肉を蓄えに足せるから"}, "family": {"ケナ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので"}, "キオ43": {"activity": "採集", "place": "東林12", "why": "採集が得意なので"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+ "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も魚やけものはいるので狩りを続ける"}, "family": {"ケナ40": {"activity": "狩り", "place": "北丘12", "why": "冬の食べ物を確保するため"}, "キオ43": {"activity": "採集", "place": "東林12", "why": "採集が得意なので"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+ "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして畑の実りを増やすため"}, "family": {"ケナ40": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "キオ43": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "mood": "やるべきことをやるだけ。蓄えは十分あるので落ち着いている。"}
