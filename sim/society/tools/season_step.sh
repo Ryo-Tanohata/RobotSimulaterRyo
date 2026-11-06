@@ -12,6 +12,9 @@ export PYTHONIOENCODING=utf-8 PYTHONUTF8=1  # Windows でも記録を UTF-8 で�
 D=$($PY -c "import json;print(json.load(open('$DATA/state.json', encoding='utf-8'))['day'])")
 # G7 から: コミットの文に、この歩が年の集まり・寄る季節・集まり直し・秋の集まりかをそえる (集まりのない季節と G6 までは「季節」のまま)
 K=$($PY -c "import json;g=(json.load(open('$DATA/state.json', encoding='utf-8')).get('era2') or {}).get('g7');print({'年': '年の集まり', '寄る': '寄る季節', '集まり直し': '集まり直し', '秋': '秋の集まり'}.get((g or {}).get('ask'), '季節'))")
+# 2026-11-06: 回す役 (haiku) がこのスクリプトを 2 回動かし、次の年の集まりを答えなしで進めてしまった (18569 日目 → 18599 日目)。
+# EXPECT_DAY (ワークフローが渡す、この歩の日) とちがう日なら進めない
+if [ -n "$EXPECT_DAY" ] && [ "$D" != "$EXPECT_DAY" ]; then echo "season_step: いまは $D 日目で、この歩は $EXPECT_DAY 日目のはず。進めない (2 回目の呼び出し?)"; exit 4; fi
 $PY sim/society/step.py season; rc=$?; echo "season exit=$rc"
 # テクノロジーツリー (2026-10-28。docs/tech_tree.md): 季節のあとに、記録を読むだけでページを作り直す (別のプロセスなので state.json は変わらない。
 #   写しで確かめた: 入れても入れなくても、季節のあとの data/ は 1 バイトも同じ)。本物の村のときだけ。作れなくても季節とコミットは止めない

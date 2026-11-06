@@ -91,7 +91,7 @@ for (let k = 0; k < STEPS; k++) {
     const mj = JSON.stringify({ season: Object.fromEntries(names.map((n) => [n, repModel(n)])), feeling: Object.fromEntries(feel.map((n) => [n, 'haiku'])), council: Object.fromEntries(council.map((n) => [n, councilModel()])) })
     await agent(runner(`printf '%s\\n' '${mj}' > ${ROOT}/${DATA}/answers/day${pad(d)}/models.json`), { label: `d${d} models`, model: 'haiku', phase: 'Seasons' })
   }
-  const out = await agent(runner(`${ENV}PY='${PY}' CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
+  const out = await agent(runner(`${ENV}PY='${PY}' EXPECT_DAY=${d} CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })
   // exit=4: 生きている人がいない / exit=5: G7 の札の表 (よその便り) が変わった (直したなら step.py cards "<note>" のあとで、また動かす)
   // exit=6 (行の頭の「RECORDS failed …」): 季節は進んだが記録 (records/) を作れなかった。直して build_records.py で作り直してから、また動かす (2026-10-22)
