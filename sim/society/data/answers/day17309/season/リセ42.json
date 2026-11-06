@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "前の季節はヤギの世話が足りず 15 頭もいなくなった。おれはこの秋、キャンプでヤギを見る。畑の草取りにも手を貸してくれ。"}, {"to": "トナ44", "text": "南の村から来たのか。ここは食べ物も住まいもある。一緒に働こう。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "世話が足りずヤギが 15 頭いなくなったので、残りを守りたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"トナ44": true},
+ "family": {"タユ42": {"activity": "畑仕事", "place": "camp", "why": "みんなでまく畑が多く、草取りの手が要るから"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T247": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "世話をする人が少ないと、ヤギが一つの季節で 15 頭ほどいなくなることがある", "because": [1761260], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分ある。あとはヤギと畑をしっかり見るだけだ。"}

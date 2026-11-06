@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋の畑には草の種をたっぷりまこう。冬のあいだ、わたしは黒い金属の鎌を作りためる。来年の夏はこれで刈り切れる。"}],
+ "job": {"activity": "黒い金属を作る", "place": "camp", "with": [], "why": "黒い金属の鎌を作れるのは自分だけ。作りためて来年の夏に畑を刈り切るため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"トナ44": true},
+ "family": {
+  "セオ25": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やすため"},
+  "タユ26": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"},
+  "キサ31": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"},
+  "ロワ33": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T247": "村"}, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "17310日目の秋、畑はなく蓄えは草の種4103804つかみ。種をまき、黒い金属の鎌を作りためて来年の夏に刈り切る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。鎌作りに打ち込めるのがうれしい。"}

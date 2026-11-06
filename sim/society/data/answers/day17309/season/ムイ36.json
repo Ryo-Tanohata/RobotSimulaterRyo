@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "前の季節は世話の手が足りず、ヤギが 15 頭も消えた。この秋から春まで、毎日三人はキャンプでヤギを見ていよう。うちのセオ36 も出すよ。"}, {"to": "みんな", "text": "畑はまくだけじゃ実らない。わたしは秋のあいだ草取りに出る。手の空く人は一緒に来て。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "みんなが畑にまいたあと、草取りが足りないと夏の実りが減るから。土器は蓄えの分もう足りている"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"トナ44": true},
+ "family": {"セオ36": {"activity": "ヤギの世話", "place": "camp", "why": "世話の人が少なくてヤギが消えたから、うちからも一人出す"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T247": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う",
+ "knowledge": [{"op": "add", "text": "前の秋に世話の人が少なく、ヤギが 15 頭いなくなった。秋も世話の人を三人は置くべきだ", "because": [1761260], "confidence": 0.9}],
+ "proposal": {"text": "この秋から春まで、毎日三人がキャンプでヤギの世話をしよう。いまは 103 頭で草は足りているので、つぶさずに残そう。前の季節は世話が足りず 15 頭がいなくなったから。", "because": [1761260], "penalty": null, "tax": null, "rate": null},
+ "votes": [{"id": "L455", "against": "", "agree": true, "reason": "まく畑が多いので、草取りの人を増やさないと実りが減る"}, {"id": "L456", "against": "", "agree": true, "reason": "金属の刃で刈り切れば落ちる種が減る。ヤギも草は足りている"}],
+ "feeling": "蓄えは十分ある。あとはヤギを消さず、畑をしっかり育てたい。"}
