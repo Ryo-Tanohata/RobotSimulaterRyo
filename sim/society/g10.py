@@ -283,7 +283,8 @@ def _reach(state, f, day, why):
     if f in g["reached"] or day is None:
         return
     g["reached"][f] = day
-    log(state, "目盛り", None, f"目盛り: G10 の {f}「{FS[f]}」に届いた ({why})", g="G10", f=f)
+    if not state["era2"]["g7"].get("closed10"):  # G10 を閉じたあと (G11) は、出来事に出さない (数えて記録するだけ)
+        log(state, "目盛り", None, f"目盛り: G10 の {f}「{FS[f]}」に届いた ({why})", g="G10", f=f)
     if f == "F3":
         _cond(state, "c3", day, why)
 
@@ -292,7 +293,8 @@ def _cond(state, c, day, why):
     g = _g(state)
     if c not in g["c"]:
         g["c"][c] = day
-        log(state, "目盛り", None, f"目盛り: G10 の条件 {c[1:]}「{CS[c]}」に届いた ({why})", g="G10", c=c)
+        if not state["era2"]["g7"].get("closed10"):  # G10 を閉じたあと (G11 で数え直すとき) は、出来事に出さない (G9 の 2026-11-05 の直しと同じ)
+            log(state, "目盛り", None, f"目盛り: G10 の条件 {c[1:]}「{CS[c]}」に届いた ({why})", g="G10", c=c)
 
 
 def region_now(state):

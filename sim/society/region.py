@@ -53,6 +53,10 @@ CATTLE_PER = 8  # 牛は人 8 人に 1 頭 (小数。4.F の 5)
 #   (実験 A1 の tools/lab_region.py の circ "desert"・"nofl" と同じ差しかえを、本物の道に入れたもの)
 DESERT = False
 NO_FLEE = False
+# 集まりの「助けを頼む」をたしかめる (2026-11-06。docs/society_phase/G10_c3_diag.md 6. の 1・9.): この日 (年の集まりの日 120×Y−1) の集まりのお題から。
+# 答えは次の歩のはじめ (day > ALLY_CHECK_FROM) に当てる。集まりが書いた ally が設計の条件 (allies_for。決まりの答えと同じ) に合わなければ頼めず、
+# 逃げ場がないのに「逃げる」と書いたときも、決まりと同じく「払う」と「戦う」の損の小さいほう。この日より前は何も変えない。遅らせるなら 120×Y−1 の日に
+ALLY_CHECK_FROM = 18119
 
 
 def map_hash():
@@ -300,6 +304,12 @@ def _mean(r):
     return (r[0] + r[1]) / 2
 
 
+def allies_for(setts, t, a):
+    """t が a に求められたとき、助けを頼める集落 (8): 生きていて、a より t との結びつきが強い (0 より大きい) 集落 (番号の順)"""
+    return [c for c in _live(setts) if c["id"] not in (t["id"], a["id"])
+            and (c.get("commit") or {}).get(t["id"], 0) > max(0.0, (c.get("commit") or {}).get(a["id"], 0))]
+
+
 def costs(R, setts, t, a, amount, defend_own=None):
     """求めへの答えの損 (8)。人の数に直す。戻り値: {手: 損} (逃げるは逃げ場があるときだけ) と、助けを頼む相手と、逃げ場"""
     by = _by(setts)
@@ -313,8 +323,7 @@ def costs(R, setts, t, a, amount, defend_own=None):
         return deaths + pl * (pay + _mean(LOOT) * t.get("grain", 0) / u)
     out = {"払う": pay, "戦う": fight(0.0)}
     ally = None
-    cands = [c for c in _live(setts) if c["id"] not in (t["id"], a["id"])
-             and (c.get("commit") or {}).get(t["id"], 0) > max(0.0, (c.get("commit") or {}).get(a["id"], 0))]
+    cands = allies_for(setts, t, a)
     if cands:
         c = max(cands, key=lambda c: (c["commit"][t["id"]], -num(c["id"])))
         ally = c["id"]
@@ -717,6 +726,17 @@ def answer(R, setts, q, ch, ally, day, how, out, make=None):
     a, t = by[q["from"]], by[q["to"]]
     q.update(answer=ch, how=how, answer_day=day)
     old = next((x for x in ties_on(R) if x["id"] == q["raise"]), None) if q.get("raise") else None
+    if how == "集まり" and day > ALLY_CHECK_FROM:  # 集まりの答えをたしかめる (ALLY_CHECK_FROM から): 頼めない村に頼む・逃げ場がないのに逃げる は通さない
+        no = None
+        if ch == "助けを頼む" and ally and ally in by and ally not in [c["id"] for c in allies_for(setts, t, a)]:
+            no = (f"{_name(t)} は {_name(by[ally])} に助けを頼もうとしたが、{_name(by[ally])} は {_name(a)} より {_name(t)} との結びつきが強くないので、"
+                  f"助けに来なかった。{_name(a)} は求め [{q['id']}] を取り下げなかった")
+        elif ch == "逃げる" and refuge(setts, t, a) is None:
+            no = f"{_name(t)} は {_name(a)} の求め [{q['id']}] から逃げようとしたが、逃げられる空いた土地がなかった"
+        if no:
+            _ev(out, "求め", no, [t["id"], a["id"]] + ([ally] if ch == "助けを頼む" else []), demand=q["id"], how=how, refused=ch,
+                **({"ally": ally} if ch == "助けを頼む" else {}))
+            ch, ally = None, None  # 下の else (決まりの手: 払う > 戦う で小さいほう)
     if ch == "払う" and old:  # G8 の重い押し (2026-10-25): 「増やせ」に払うと答えた: 今の貢ぎの量を、求めの量にする (新しいつながりは作らない)
         old.update(goods=dict(q["what"]), heavy=True, raised=day, raise_demand=q["id"])
         q["end"] = day
