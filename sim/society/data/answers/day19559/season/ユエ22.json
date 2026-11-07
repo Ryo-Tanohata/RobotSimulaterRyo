@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実りが残っている。落ちる前に、みんなで刈り入れを急ごう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れる"}, "family": {"ラキ28": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "キサ36": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ヌオ40": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ワユ41": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "セヤ45": {"activity": "畑仕事", "place": "camp", "why": "若くても刈り入れを手伝える"}, "ユエ45": {"activity": "畑仕事", "place": "camp", "why": "若くても刈り入れを手伝える"}, "セオ46": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも刈り入れを助ける"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やす"}, "family": {"ラキ28": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "キサ36": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を確保する"}, "ヌオ40": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を確保する"}, "ワユ41": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "セヤ45": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ユエ45": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "セオ46": {"activity": "畑仕事", "place": "camp", "why": "草取りを助ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬は魚やけものがいるので肉をとる"}, "family": {"ラキ28": {"activity": "狩り", "place": "北丘12", "why": "冬の肉をとる"}, "キサ36": {"activity": "狩り", "place": "北丘12", "why": "冬の肉をとる"}, "ヌオ40": {"activity": "採集", "place": "南川12", "why": "川で魚をとる"}, "ワユ41": {"activity": "採集", "place": "南川12", "why": "川で魚をとる"}, "セヤ45": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ユエ45": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "セオ46": {"activity": "畑仕事", "place": "camp", "why": "草取りを助ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りに向けて草取りをする"}, "family": {"ラキ28": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "キサ36": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヌオ40": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ワユ41": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "セヤ45": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ユエ45": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "セオ46": {"activity": "畑仕事", "place": "camp", "why": "草取りを助ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は刈らないと落ちてしまうので、夏は刈り入れを急ぐ。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "草刈りの年",
+ "feeling": "畑も木も実りが多く、落ち着いた気持ちで1年を迎えられる。"}
