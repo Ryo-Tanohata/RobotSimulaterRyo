@@ -11,6 +11,7 @@
   季節の終わりの順 (4.G.1) は season_end に、次の歩のはじめの順は begin に、その順で足していく
 - 乱数の塩 (4.G.2) は era2 の頭 (HINT_SALT など)。ここで使うのは 53 (地域の天気)・61 (見本の家)・79 (はじめの集落。G7 に入る日だけ)
 """
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -1448,12 +1449,50 @@ def answerers(state):
     return [p["name"] for p in ads if p["name"] in who]
 
 
+# 気持ちの席 (2026-11-07 本人の決め「心持ちだけの役を減らして続ける」。docs/society_phase/token_plan.md): 162年は 1 年に約 1,625 万トークンで、
+#   そのうち約 1,200 万が気持ちだけ答える人 (haiku、1 回の集まりに約 80 人) だった。FEEL_CAP_FROM (163年の年の集まり) の日から、1 回の集まりで
+#   答える人は、代表 (と まとめ役) と気持ちの人を合わせて FEEL_SEATS 人まで (代表はみな、今までどおり答える)。気持ちの人は、気持ちを答えたのが
+#   いちばん前の人から (feeling_day。ない人が先)。同じなら、名前と年から決まる並び (sha256。乱数は使わない)。お題のない人は、答えのない人と同じく
+#   気持ちが前のまま (era2.apply_feelings は答えた人だけを変える。気持ちの答えは、仕事・票・受け入れには使わない)。
+#   その日 (お題は前のコードで出ていた) は、step.py refresh_prompts が g7.feel_cap を書いたあとだけ (g11.fixed と同じ形)。その日までの歩をやり直しても
+#   state もお題も前と 1 バイトも同じ。実験 4 の写しの村 (g7.exp4。気持ちの答えに選びの欄がある) では減らさない
+FEEL_CAP_FROM = 19559
+FEEL_SEATS = 70  # 【仮定】1 回の集まりで答える人 (代表 + 気持ち) の数の上限。162年の代表 17 人なら気持ち 53 人 (約 80 人から)
+
+
+def feel_capped(state):
+    """気持ちの席を減らすか: FEEL_CAP_FROM より後の日はいつも。その日は refresh_prompts の印 (g7.feel_cap) のあとだけ"""
+    g = _g(state)
+    return "exp4" not in g and (state["day"] > FEEL_CAP_FROM or (state["day"] == FEEL_CAP_FROM and "feel_cap" in g))
+
+
+def mark_feel_cap(state, why):
+    """refresh_prompts から: FEEL_CAP_FROM の日に、気持ちの席を今の歩から減らしたことを g7.feel_cap に残す (その日より前なら何もしない)"""
+    g = _g(state)
+    if state["day"] >= FEEL_CAP_FROM and "feel_cap" not in g and "exp4" not in g:
+        g["feel_cap"] = {"day": state["day"], "why": why}
+
+
 def feelers(state):
-    """気持ちだけ答える人 (era2.feelers から): 見本の家の大人で、代表でない人 (4.A.8)"""
+    """気持ちだけ答える人 (era2.feelers から): 見本の家の大人で、代表でない人 (4.A.8)。feel_capped のときは、そのうち席の数まで (FEEL_SEATS)"""
     if not state["era2"].get("rep_mode"):
         return []
     who, sample = set(answerers(state)), _g(state).get("sample") or {}
-    return [p["name"] for p in era2.adults(state) if p["name"] not in who and p.get("household") in sample]
+    out = [p["name"] for p in era2.adults(state) if p["name"] not in who and p.get("household") in sample]
+    if not feel_capped(state):
+        return out
+    return feel_pick(state, out, max(0, FEEL_SEATS - len(who)))
+
+
+def feel_pick(state, names, n):
+    """気持ちの人 names から n 人 (並びは names のまま): 気持ちを答えたのがいちばん前の人から。同じなら sha256(名前|年) の順"""
+    if len(names) <= n:
+        return list(names)
+    day = {p["name"]: p.get("feeling_day") for p in era2.adults(state)}
+    y = str(state["day"] // YEAR)
+    key = lambda x: (-1 if day.get(x) is None else day[x], hashlib.sha256(f"{x}|{y}".encode("utf-8")).hexdigest())
+    pick = set(sorted(names, key=key)[:n])
+    return [x for x in names if x in pick]
 
 
 def _seasons_of(v, now):

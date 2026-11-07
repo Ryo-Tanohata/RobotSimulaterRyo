@@ -65,14 +65,15 @@ for (let k = 0; k < STEPS; k++) {
     const todoF = feel.filter((n) => !(preF || '').includes(`${n}.json`))
     await parallel([...todo.map((n) => () => agent(rp(d, n), { label: `d${d} ${n} (${repModel(n)})`, model: repModel(n), phase: 'Seasons' })),
                     ...todoF.map((n) => () => agent(rpf(d, n), { label: `d${d} ${n} (気持ち)`, model: 'haiku', phase: 'Seasons' }))])
-    const ls = await agent(runner(`ls ${ROOT}/${DATA}/answers/day${pad(d)}/season/`), { label: `d${d} check`, model: 'haiku', phase: 'Seasons' })
-    const miss = names.filter((n) => !(ls || '').includes(`${n}.json`))
-    if (miss.length) { log(`day ${d}: retry ${miss.join('、')}`); await parallel(miss.map((n) => () => agent(rp(d, n) + ' ', { label: `d${d} ${n} retry`, model: repModel(n), phase: 'Seasons' }))) }
-    if (feel.length) {  // 気持ちの答えは、ない人がいても季節は進める (気持ちが前のまま)。1 回だけやり直す
-      const lf = await agent(runner(`ls ${ROOT}/${DATA}/answers/day${pad(d)}/feeling/`), { label: `d${d} check (気持ち)`, model: 'haiku', phase: 'Seasons' })
-      const missF = feel.filter((n) => !(lf || '').includes(`${n}.json`))
-      if (missF.length) await parallel(missF.map((n) => () => agent(rpf(d, n) + ' ', { label: `d${d} ${n} (気持ち) retry`, model: 'haiku', phase: 'Seasons' })))
-    }
+    // 2026-11-07 (docs/society_phase/token_plan.md): 季節の答えと気持ちの答えの有無は、1 回の ls で読む (前は 2 回。読む役 1 体分のトークンを減らす。やり直しの決まりは同じ)
+    const ls = await agent(runner(`ls ${ROOT}/${DATA}/answers/day${pad(d)}/season/ && echo FEELING: && ls ${ROOT}/${DATA}/answers/day${pad(d)}/feeling/`), { label: `d${d} check`, model: 'haiku', phase: 'Seasons' })
+    const [lsS, lsF] = (ls || '').split('FEELING:')
+    const miss = names.filter((n) => !(lsS || '').includes(`${n}.json`))
+    // 気持ちの答えは、ない人がいても季節は進める (気持ちが前のまま)。1 回だけやり直す (代表のやり直しと同時に)。FEELING: の行が読めなければ、みなやり直さない
+    const missF = lsF === undefined ? [] : feel.filter((n) => !lsF.includes(`${n}.json`))
+    if (miss.length) log(`day ${d}: retry ${miss.join('、')}`)
+    if (miss.length || missF.length) await parallel([...miss.map((n) => () => agent(rp(d, n) + ' ', { label: `d${d} ${n} retry`, model: repModel(n), phase: 'Seasons' })),
+                                                     ...missF.map((n) => () => agent(rpf(d, n) + ' ', { label: `d${d} ${n} (気持ち) retry`, model: 'haiku', phase: 'Seasons' }))])
     if (council.length) {  // G7: まわりの集落の集まり (1 回だけやり直す。なければ step.py が決まりで選ぶ)
       const once = async () => {
         const lc = await agent(runner(`mkdir -p ${ROOT}/${DATA}/answers/day${pad(d)}/council && ls ${ROOT}/${DATA}/answers/day${pad(d)}/council/`), { label: `d${d} check (集まり)`, model: 'haiku', phase: 'Seasons' })
@@ -87,11 +88,10 @@ for (let k = 0; k < STEPS; k++) {
   } else {
     log(`day ${d}: no meeting (yearly plan)`)
   }
-  if (meet) {  // 使ったモデルを残す (季節の答えの置き場所のとなり。step.py は読まない)
-    const mj = JSON.stringify({ season: Object.fromEntries(names.map((n) => [n, repModel(n)])), feeling: Object.fromEntries(feel.map((n) => [n, 'haiku'])), council: Object.fromEntries(council.map((n) => [n, councilModel()])) })
-    await agent(runner(`printf '%s\\n' '${mj}' > ${ROOT}/${DATA}/answers/day${pad(d)}/models.json`), { label: `d${d} models`, model: 'haiku', phase: 'Seasons' })
-  }
-  const out = await agent(runner(`${ENV}PY='${PY}' EXPECT_DAY=${d} CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
+  // 使ったモデルを残す (季節の答えの置き場所のとなり。step.py は読まない)。2026-11-07: 書くのは季節を進める同じコマンドの頭で (前は別の読む役 1 体。中身は同じ)
+  const mj = meet ? JSON.stringify({ season: Object.fromEntries(names.map((n) => [n, repModel(n)])), feeling: Object.fromEntries(feel.map((n) => [n, 'haiku'])), council: Object.fromEntries(council.map((n) => [n, councilModel()])) }) : ''
+  const pre_ = meet ? `printf '%s\\n' '${mj}' > ${ROOT}/${DATA}/answers/day${pad(d)}/models.json; ` : ''
+  const out = await agent(runner(`${pre_}${ENV}PY='${PY}' EXPECT_DAY=${d} CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })
   // exit=4: 生きている人がいない / exit=5: G7 の札の表 (よその便り) が変わった (直したなら step.py cards "<note>" のあとで、また動かす)
   // exit=6 (行の頭の「RECORDS failed …」): 季節は進んだが記録 (records/) を作れなかった。直して build_records.py で作り直してから、また動かす (2026-10-22)

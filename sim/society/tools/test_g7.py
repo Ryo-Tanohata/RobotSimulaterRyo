@@ -5161,5 +5161,230 @@ class T_TrustFix(unittest.TestCase):
             shutil.rmtree(d, ignore_errors=True)
 
 
+class T_FeelCap(unittest.TestCase):
+    """2026-11-07 本人の決め「心持ちだけの役を減らして続ける」(docs/society_phase/token_plan.md): g7.FEEL_CAP_FROM (163年の年の集まり = 19559 日目) から、
+    1 回の集まりで答える人は代表と気持ちの人を合わせて g7.FEEL_SEATS 人まで。その日は refresh_prompts の印 (g7.feel_cap) のあとだけ。
+    決まった git の state (OLD。19559 日目・HOLD consult・前のコードで書いた気持ちのお題 82 通) と、その前の集まりの state (EARLY。19469 日目の秋の集まり) で確かめる"""
+
+    OLD = "8b121c95"  # 19529 日目からの歩 (state は 19559 日目。年の集まりのお題は前のコード)
+    EARLY = "bc4bff13"  # 19439 日目からの歩 (state は 19469 日目。秋の集まり。気持ち 80 人が答えた)
+    CODE = "cb9e892c"  # 前のコード (162年の年報)
+    G = 19559
+    _old = None
+
+    @classmethod
+    def old_g7(cls):
+        if cls._old is None:
+            import importlib.util
+            r = subprocess.run(["git", "-C", str(ROOT), "show", f"{cls.CODE}:sim/society/g7.py"], capture_output=True, text=True)
+            if r.returncode:
+                raise unittest.SkipTest("前のコードが git にない")
+            spec = importlib.util.spec_from_loader("g7_old_feel", loader=None)
+            m = importlib.util.module_from_spec(spec)
+            m.__file__ = str(SOC / "g7.py")
+            exec(compile(r.stdout, "g7_old_feel.py", "exec"), m.__dict__)
+            cls._old = m
+        return cls._old
+
+    def st(self, commit=None):
+        st = git_state(commit or self.OLD)
+        if commit is None and (st["day"] != self.G or "g7" not in st["era2"]):
+            self.skipTest("OLD の state が 19559 日目の G7 からでない")
+        return st
+
+    def test_gate_identical(self):
+        """印のない 19559 日目と、その前の集まり: 気持ちの人は前のコードと同じ (みな)。印はその日より前には書かない"""
+        import g7
+        self.assertEqual(g7.FEEL_CAP_FROM, self.G)
+        old = self.old_g7()
+        for c in (self.OLD, self.EARLY):
+            st = self.st(c)
+            self.assertFalse(g7.feel_capped(st), c)
+            self.assertEqual(era2.feelers(st), old.feelers(st), c)
+            self.assertGreater(len(era2.feelers(st)), 70, c)
+        early = self.st(self.EARLY)
+        js = json.dumps(early, sort_keys=True, ensure_ascii=False)
+        g7.mark_feel_cap(early, "試し")
+        self.assertEqual(json.dumps(early, sort_keys=True, ensure_ascii=False), js, "その日より前は何もしない")
+        st = self.st()
+        on = [x.name[:-3] for x in sorted((ROOT / "sim/society/data/prompts/day19559/feeling").glob("*.md"))] if (ROOT / "sim/society/data/prompts/day19559/feeling").exists() else None
+        if on is not None:
+            self.assertEqual(sorted(on), sorted(era2.feelers(st)))
+
+    def test_after_gate(self):
+        """印のあと (と、その日より後): 気持ちの人は FEEL_SEATS − 答える人 (並びは前のまま)。答えたのがいちばん前の人から。代表はみな答える"""
+        import g7
+        st = self.st()
+        full, names = era2.feelers(st), era2.answerers(st)
+        g7.mark_feel_cap(st, "試し")
+        self.assertEqual(st["era2"]["g7"]["feel_cap"], {"day": self.G, "why": "試し"})
+        self.assertTrue(g7.feel_capped(st))
+        self.assertEqual(era2.answerers(st), names, "代表は変えない")
+        sub = era2.feelers(st)
+        self.assertEqual(len(sub), g7.FEEL_SEATS - len(names))
+        self.assertEqual(sub, [n for n in full if n in set(sub)], "並びは前のまま")
+        self.assertEqual(sub, era2.feelers(st), "何度呼んでも同じ")
+        fd = {p["name"]: p.get("feeling_day") for p in era2.adults(st)}
+        key = lambda n: -1 if fd[n] is None else fd[n]
+        self.assertLessEqual(max(key(n) for n in sub), min(key(n) for n in full if n not in sub), "答えたのが前の人から")
+        nxt = self.st()
+        nxt["day"] = self.G + 1
+        self.assertTrue(g7.feel_capped(nxt), "その日より後は印がなくても")
+        x4 = self.st()
+        x4["day"] = self.G + 30
+        x4["era2"]["g7"]["exp4"] = {"arm": "B0"}
+        self.assertFalse(g7.feel_capped(x4), "実験 4 の写しの村では減らさない")
+        few = self.st()
+        g7.mark_feel_cap(few, "試し")
+        self.assertEqual(g7.feel_pick(few, full[:5], 53), full[:5], "席より少なければみな")
+        self.assertEqual(g7.feel_pick(few, full, 0), [])
+
+    def test_rotation(self):
+        """答えた人の feeling_day が新しくなると、次の集まりでは、前に選ばれなかった人がみな先に選ばれる (2 回の集まりで全員)。同じ日の人は年で並びが変わる"""
+        import g7
+        st = self.st()
+        full = era2.feelers(st)
+        g7.mark_feel_cap(st, "試し")
+        a = era2.feelers(st)
+        for p in era2.adults(st):
+            if p["name"] in a:
+                p["feeling_day"] = st["day"]
+        st["day"] += 30  # 次の集まり (秋)。見本の家は変えない
+        b = era2.feelers(st)
+        self.assertEqual(len(b), len(a))
+        self.assertTrue(set(full) - set(a) <= set(b), "前に選ばれなかった人が先")
+        self.assertEqual(set(a) | set(b), set(full))
+        y1 = g7.feel_pick(dict(st, day=self.G), full, 20)
+        y2 = g7.feel_pick(dict(st, day=self.G + era2.YEAR), full, 20)
+        self.assertNotEqual(set(y1), set(y2), "同じ日の人の並びは年で変わる")
+
+    def test_no_prompt(self):
+        """お題のない人: 気持ち・気持ちの日・予定・家は変わらない (答えのない人と同じ)。read_feelings は、お題のない人を「答えがない人」に数えない"""
+        import g7
+        import io
+        import contextlib
+        import step
+        st = self.st()
+        full = era2.feelers(st)
+        g7.mark_feel_cap(st, "試し")
+        sub = era2.feelers(st)
+        off = [n for n in full if n not in sub]
+        self.assertTrue(off)
+        before = {p["name"]: json.dumps(p, sort_keys=True, ensure_ascii=False) for p in st["people"] if p["name"] in off}
+        era2.apply_feelings(st, {n: json.dumps({"feeling": "うれしい", "say": [{"to": "みんな", "text": "やあ"}]}, ensure_ascii=False) for n in sub})
+        for n in sub:
+            self.assertEqual(next(p for p in st["people"] if p["name"] == n)["feeling"], "うれしい")
+        for p in st["people"]:
+            if p["name"] in off:
+                q = json.loads(before[p["name"]])
+                self.assertEqual({k: p.get(k) for k in ("feeling", "feeling_day", "plan", "household", "trust")},
+                                 {k: q.get(k) for k in ("feeling", "feeling_day", "plan", "household", "trust")}, p["name"])
+        d = tmpdir()
+        saved = step.DATA
+        try:
+            step.DATA = d
+            st3 = self.st()
+            g7.mark_feel_cap(st3, "試し")
+            fa = step.pdir(st3, "feeling", "answers")
+            fa.mkdir(parents=True)
+            for n in era2.feelers(st3)[:-2]:
+                (fa / f"{n}.json").write_text('{"feeling": "x"}', encoding="utf-8")
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):
+                got = step.read_feelings(st3)
+            self.assertEqual(set(got), set(era2.feelers(st3)[:-2]))
+            self.assertIn("気持ちの答えがない人: " + "、".join(era2.feelers(st3)[-2:]), buf.getvalue())
+            self.assertFalse(any(n in buf.getvalue() for n in off), "お題のない人は数えない")
+        finally:
+            step.DATA = saved
+            shutil.rmtree(d, ignore_errors=True)
+
+    def test_refresh_prompts(self):
+        """写しのフォルダ (OLD の state と 19559 日目のお題): HOLD のあいだは断る。resume → refresh_prompts で g7.feel_cap を書き、前のコードの気持ちのお題
+        (82 通) を消して席の数だけ書く。who の FEEL の行とお題のファイルが同じ。季節・まわりの集落のお題は 1 バイトも同じ"""
+        st = self.st()
+        d = tmpdir()
+        try:
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            r = subprocess.run(["git", "-C", str(ROOT), "archive", "--format=tar", self.OLD, "sim/society/data/prompts/day19559"], capture_output=True)
+            if r.returncode:
+                self.skipTest("19559 日目のお題が git にない")
+            import tarfile
+            import io
+            with tarfile.open(fileobj=io.BytesIO(r.stdout)) as t:
+                for m in t.getmembers():
+                    m.name = m.name[len("sim/society/data/"):]
+                    t.extract(m, d, filter="data")
+            pd = d / "prompts" / "day19559"
+            old = {f"{k}/{f.name}": f.read_bytes() for k in ("season", "feeling", "council") for f in sorted((pd / k).glob("*.md"))}
+            self.assertEqual(len([k for k in old if k.startswith("feeling/")]), len(era2.feelers(st)))
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
+            if st.get("hold"):
+                r = run("refresh_prompts", "--why", "試しのわけ")
+                self.assertEqual(r.returncode, 3, r.stdout + r.stderr)
+                r = run("resume")
+                self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            r = run("refresh_prompts", "--why", "試しのわけ")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            new = json.loads((d / "state.json").read_text(encoding="utf-8"))
+            self.assertEqual(new["era2"]["g7"]["feel_cap"], {"day": self.G, "why": "試しのわけ"})
+            import g7
+            sub = era2.feelers(new)
+            self.assertEqual(len(sub), g7.FEEL_SEATS - len(era2.answerers(new)))
+            self.assertIn(f"気持ち {len(sub)}", r.stdout)
+            got = {f"{k}/{f.name}": f.read_bytes() for k in ("season", "feeling", "council") for f in sorted((pd / k).glob("*.md"))}
+            self.assertEqual({k[8:-3] for k in got if k.startswith("feeling/")}, set(sub), "前のお題は消えた")
+            for k, v in got.items():
+                self.assertEqual(v, old[k], f"{k} は前のコードのお題と同じ")
+            w = run("who")
+            self.assertEqual(re.search(r"^FEEL (.*)$", w.stdout, re.M).group(1).split(), sub)
+            self.assertIn("HOLD none", w.stdout)
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+    def test_workflow_calls(self):
+        """ワークフロー: 集まりの歩の読む役は、答えの有無を 1 回の ls で読み (check (気持ち) はない)、models.json は季節を進めるコマンドの頭で書く。
+        気持ちの答えのない人は 1 回だけやり直す"""
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("node がない")
+        harness = r"""
+const fs = require('fs')
+const src = fs.readFileSync(process.argv[2], 'utf8').replace(/^export const meta/m, 'const meta')
+const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor
+;(async () => {
+  let day = 5519, n = 0
+  const labels = [], cmds = []
+  const agent = async (prompt, opts) => {
+    labels.push(opts.label)
+    if (prompt.includes('step.py who')) return `DAY ${day} season False\nPHASE G7\nHOLD none\nMODE year\nMEET ${(day + 1) % 120 === 0 ? '年' : 'none'}\nNAMES ソル ミナ\nFEEL カイ ルナ\nCOUNCIL \nASKLOG True`
+    if (prompt.includes('season_step.sh')) { cmds.push(prompt); day += 30; return `season exit=0\n${day} 日目まで進んだ\ncommitted` }
+    if (prompt.includes('mkdir -p')) return 'FEELING:'
+    if (prompt.includes('echo FEELING:')) return n++ ? '' : 'ソル.json\nミナ.json\nFEELING:\nカイ.json'
+    return 'done'
+  }
+  const fn = new AsyncFunction('args', 'agent', 'parallel', 'log', src)
+  const res = await fn({ mode: 'year', years: 1 }, agent, async (fs_) => Promise.all(fs_.map((f) => f())), () => {})
+  console.log(JSON.stringify({ res: res.why, labels, cmds }))
+})()
+"""
+        f = Path(tmpdir()) / "h.js"
+        try:
+            f.write_text(harness, encoding="utf-8")
+            r = subprocess.run([node, str(f), str(SOC / "tools" / "society2_seasons_workflow.js")], capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            out = json.loads(r.stdout)
+        finally:
+            shutil.rmtree(f.parent, ignore_errors=True)
+        self.assertEqual(out["res"], "end")
+        lab = out["labels"]
+        self.assertFalse([x for x in lab if "models" in x or "check (気持ち)" in x], lab)
+        self.assertEqual([x for x in lab if "retry" in x], ["d5519 ルナ (気持ち) retry"], "気持ちのない人だけ 1 回")
+        self.assertIn("models.json", out["cmds"][0])
+        self.assertTrue(all("models.json" not in c for c in out["cmds"][1:]), "集まらない歩では書かない")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

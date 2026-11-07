@@ -3,6 +3,20 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-07 気持ちだけ答える人を減らす (ブランチ feel-cap。本人「心持ちだけの役を減らして続ける」)
+
+- 162年は 1 年に 16,254,120 トークン (上限 1,500 万をこえた)。はかると 74% (1,207 万) が気持ちだけ答える人 (haiku、1 回の集まりに 約 80 人 × 年 2 回)。
+  代表 17%・まわりの集落 2%・コマンドを動かす係 7%。くわしくは `docs/society_phase/token_plan.md`。
+- `g7.FEEL_CAP_FROM = 19559` (163年の年の集まり) から、1 回の集まりで答える人は代表と気持ちの人を合わせて `g7.FEEL_SEATS = 70` 人まで。代表はみな答える (決め方は変えない)。
+  気持ちの人は、気持ちを答えたのがいちばん前の人から (同じなら sha256(名前|年))。お題のない人は、答えのない人と同じく気持ちが前のまま (仕事・票・予定は変わらない)。
+  162年の顔ぶれなら気持ち 82 → 53 人。見こみは 1 年 約 1,200 万。
+- ワークフロー: 答えの有無を 1 回の ls で読む (check (気持ち) をなくした)・models.json は季節を進めるコマンドの頭で書く。1 年に 4 体へる。世界は変わらない。
+- 19559 日目は止まっている (HOLD consult) ので、本物では **feel-cap を入れて → `python3.13 step.py resume` → `python3.13 step.py refresh_prompts --why "本人の決め 2026-11-07 (心持ちだけの役を減らして続ける): 気持ちだけ答える人を、代表と合わせて 70 人までに"`**。
+  refresh_prompts が `g7.feel_cap` を書き、`prompts/day19559/feeling/` を消して 53 通だけ書き直す (前の 82 通は残らない。季節・集落のお題は 1 バイトも同じ)。who の FEEL の行もその 53 人。
+  前の日は 1 バイトも同じ。
+- 試し: `test_g7.py T_FeelCap` (新)・`T_TrustFix`・`T_G11FIX`・`T_G11`・`T_AllyCheck`・`T_TrustSparse`・`T_G10FIX`・`F_Year.test_workflow_year`、`test_hints.py`・`test_archive.py`。
+  前の歩のやり直し `tools/exp3_replay.py` (bc4bff13・21ef04f2・8b121c95) も同じ。
+
 ## 2026-11-06 信頼の決まりの直し (ブランチ trust-fix。本人「信頼の決まりも直して 5 年見る」)
 
 - `docs/society_phase/G11_stall_diag.md` 7. の 4. をした (11.「した直し 2」に書いた)。入る日は `era2.TRUST_FIX_FROM = 19199` (160年の年の集まり)。この日に始まる歩から効く。

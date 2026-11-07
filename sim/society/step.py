@@ -729,6 +729,7 @@ def main():
             import g11  # noqa: E402
             g11.mark_fix(state, a.why.strip())  # 2026-11-06: G11 の直しの日 (g11.G11_FIX_FROM) なら、この歩から直し ①〜③ を入れる (g7.g11.fix)
             g11.mark_trust_fix(state, a.why.strip())  # 2026-11-06: 信頼の直しの日 (era2.TRUST_FIX_FROM) なら、この歩からお題の行を直す (g7.g11.trust_fix)
+        g7.mark_feel_cap(state, a.why.strip())  # 2026-11-07: 気持ちの席の日 (g7.FEEL_CAP_FROM) なら、この歩から気持ちのお題を席の数までにする (g7.feel_cap)
         added = g7.g10_sample_add(state) if g10.fixed(state) else []  # ③ 作れる人・試している人の家を、答える家に足す (年の終わりの見本の選びのあとと同じ)
         if added:
             g7.donors(state)
@@ -741,7 +742,8 @@ def main():
         write_prompts(state, "season")
         export(state)
         _records(None)  # 記録を作り直す (控えの行は足さない)
-        print(f"* {_yd(state['day'])}のお題を書き直した ({a.why.strip()})" + (f"。答える家に足した: {'・'.join(added)}" if added else ""))
+        print(f"* {_yd(state['day'])}のお題を書き直した ({a.why.strip()})" + (f"。答える家に足した: {'・'.join(added)}" if added else "")
+              + (f"。答える人 {len(era2.answerers(state))}・気持ち {len(era2.feelers(state))}" if g7.feel_capped(state) else ""))
         _records_exit()
         return
     if a.cmd == "slim_app":  # 2026-11-05 (docs/society_phase/data_size_plan.md 案 A): APP_SLIM_FROM の日に、app_data.json を今から軽い形にする (日・お題・世界は変えない)
