@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、この秋は草の種をたっぷりまいて、みんなで草取りをして来年の夏に備えよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えに余裕があるので畑を育てたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "アコ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人が多いほど実りが増えるから"},
+  "リセ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを守るため"},
+  "ソナ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを守るため"},
+  "ヌオ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを守るため"},
+  "ソワ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを守るため"},
+  "タユ44": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを守るため"},
+  "ラニ44": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを守るため"}
+ },
+ "keep": false,
+ "judge": {"M489": "ゆるす", "M490": "ゆるす", "M491": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T263": false}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、キャンプから離れないほうが安全だから"},
+  {"id": "L3", "against": "", "agree": true, "reason": "複数人で行けば助け合えるから"}
+ ],
+ "feeling": "蓄えがたっぷりあって安心。家族みんなで畑を育てるのが楽しみ。"}

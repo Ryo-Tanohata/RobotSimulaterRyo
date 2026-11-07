@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "冬の肉のために、わたしは北の丘で狩りをするよ。畑の草取りは分かれて手伝おう。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": ["キオ38", "ラニ38", "キサ43"], "why": "狩りが得意なので、冬に備えて肉を蓄えに入れたい"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、一緒に冬の肉を持ち帰れる"},
+  "ラニ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、一緒に冬の肉を持ち帰れる"},
+  "キサ43": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"},
+  "ネイ41": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やす"},
+  "キオ42": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やす"},
+  "ユエ42": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やす"},
+  "キサ45": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って実りを増やす"},
+  "シエ45": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って実りを増やす"}
+ },
+ "keep": false,
+ "judge": {"M489": "ゆるす", "M490": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "みんなで冬を越せるよう、狩りをがんばりたい。"}

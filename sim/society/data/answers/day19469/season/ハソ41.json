@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、この秋は多めにまいて、冬と春に草取りをがんばろうね。ヤギも草が足りないから、少し肉にして数を整えよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑は秋にまき冬と春に草取りをすると夏の実りが増えるので、畑の世話をする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ45": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど実りが増えるから"}, "ラニ45": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど実りが増えるから"}, "トナ47": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}},
+ "keep": false,
+ "judge": {"M489": "ゆるす", "M490": "ゆるす", "M491": "ゆるす"}, "feast": true, "leader": null, "trade": {"T263": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "秋に多めに草の種をまいて、冬と春にみんなで草取りをすると、夏に刈れる量が増える", "because": [2246766], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心。みんなで畑を世話して、仲良く冬を越したい。"}

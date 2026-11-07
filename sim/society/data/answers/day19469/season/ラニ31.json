@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。秋のうちに種をまいて、冬は草取りに通おう。ヤギが多すぎるから、少しつぶして肉にするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬の草取りで夏の実りが増えると覚えているから、畑仕事を続ける"},
+ "sow": 600, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ムイ42": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要るので一緒に畑で働く"}, "リセ43": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やすため畑で働く"}},
+ "keep": false,
+ "judge": {"M489": "ゆるす", "M490": "ゆるす", "M491": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T263": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を畑にまき、冬のあいだ畑仕事に通う。刈った量の差は小さなもめごとなので、ゆるして収めるのがよい。", "because": [2246860], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えが多くて安心している。冬の畑仕事をがんばろうと思う。"}

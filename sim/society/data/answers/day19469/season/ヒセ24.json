@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "ヤギが草に対して多すぎる。私は狩りに出て、肉を持ち帰るよ。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕が一番だから、肉を村に入れたい。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ネイ30": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので肉をとる。"},
+  "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる。"},
+  "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる。"},
+  "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる。"},
+  "オネ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる。"},
+  "キサ44": {"activity": "狩り", "place": "北丘12", "why": "若いので年上と一緒に狩りを覚える。"}
+ },
+ "keep": false,
+ "judge": {"M489": "ゆるす", "M490": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草に対して多すぎるので、つぶして肉にして減らすのがよい。", "because": [2246852], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "落ち着いている。狩りに出られるのがありがたい。"}

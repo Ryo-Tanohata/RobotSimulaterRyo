@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にある。この秋は種をしっかりまいて、草取りを怠らず、来年の夏の実りを増やそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると夏の実りが増える。蓄えは十分でも、手を抜かずに畑を育てたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラキ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が要る。家族みんなで畑を見るほうが実りが増える。"},
+  "キサ36": {"activity": "畑仕事", "place": "camp", "why": "草取りの時間を家族で分け合えば、畑の実りが十割に近づく。"},
+  "ヌオ40": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りをして、夏の実りを増やす。"},
+  "ワユ41": {"activity": "畑仕事", "place": "camp", "why": "子が小さいのでキャンプのそばで働ける畑仕事がよい。"},
+  "セヤ45": {"activity": "畑仕事", "place": "camp", "why": "まだ腕が育っていないので、畑の草取りで村の役に立つ。"},
+  "ユエ45": {"activity": "畑仕事", "place": "camp", "why": "畑仕事を覚えながら、半人前の働きで手伝う。"},
+  "セオ46": {"activity": "畑仕事", "place": "camp", "why": "畑仕事を覚えながら、半人前の働きで手伝う。"}
+ },
+ "keep": false,
+ "judge": {"M489": "ゆるす", "M490": "ゆるす", "M491": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T263": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "刈った草の種がよその家の倉に入る言い争いが続いている。畑の刈り方を皆で決めておくとよい。", "because": [2246860], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。年をとったが、畑の世話でまだ役に立ちたい。"}
