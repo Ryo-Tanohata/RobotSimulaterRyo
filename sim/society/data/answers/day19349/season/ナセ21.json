@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の前に、おれたちは北の丘で狩りをして肉をとってくる。みんなも体を大事にして、冬にそなえよう。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": ["オセ28", "セヤ29"], "why": "狩りは得意だし、冬の前に肉をとっておきたいから"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "family": {"オセ28": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから"}, "セヤ29": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "ヤギが多すぎるので、秋のうちに少しつぶして肉にするのがよい", "because": [2221397], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心だ。みんなと話しながら狩りに行くのが楽しみだ。"}
