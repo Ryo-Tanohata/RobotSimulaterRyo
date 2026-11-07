@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "畑がないままでは夏に刈れない。蓄えの草の種をひとり1000つかみまいて、草取りも忘れずにやろう。私は北の丘で肉を狩ってくる。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意で、冬に向けて肉を蓄えに入れられるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ネイ30": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、一緒に肉を集める"},
+  "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、肉を集める"},
+  "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、肉を集める"},
+  "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、肉を集める"},
+  "オネ40": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、肉を集める"}
+ },
+ "keep": false,
+ "judge": {"M492": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "落ち着いている。冬に向けて肉と畑の備えをしたい。"}

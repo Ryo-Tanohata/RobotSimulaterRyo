@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりある。今年も秋のうちに畑にまいて、冬のあいだ草取りをしよう。ヤギの世話も忘れずにな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、毎年の実りのために畑仕事を続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラキ28": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人が少ないとヤギがいなくなるので、ヤギを守る"},
+  "キサ36": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"},
+  "ヌオ40": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"},
+  "ワユ41": {"activity": "ヤギの世話", "place": "camp", "why": "赤子がいるのでキャンプのそばでヤギの世話をする"},
+  "セヤ45": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので畑の草取りを手伝う"},
+  "ユエ45": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので畑の草取りを手伝う"},
+  "セオ46": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M492": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは豊かで落ち着いている。畑とヤギを大事にしたい。"}

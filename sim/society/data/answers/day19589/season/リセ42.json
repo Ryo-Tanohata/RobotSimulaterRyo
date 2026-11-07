@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "ヤギはもう草で養える数より少ない。前の季節は世話の手が足りずに二十四頭も逃げた。今度は世話をする者を毎日きちんと決めよう。わしもヤギのそばにつく。"}, {"to": "みんな", "text": "畑はいま一つもない。この秋のうちに大人はみな千つかみずつまいて、冬と春の草取りも交代でやろう。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "世話の手が足りずにヤギが二十四頭いなくなったから、わしが見張って守る"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ42": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、夏の実りを増やすため"}, "リセ44": {"activity": "畑仕事", "place": "camp", "why": "小さな子がいるからキャンプのそばで畑の草取りをする"}, "ロワ46": {"activity": "ヤギの世話", "place": "camp", "why": "まだ若いので、わしのそばでヤギの世話を覚えさせる"}},
+ "keep": false,
+ "judge": {"M492": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "飼っているヤギは今125頭で、草で養える約140頭より少ないが、前の季節は世話の手が足りず24頭がいなくなった", "because": [2276832], "confidence": 0.9}, {"op": "add", "text": "土器に入れた草の種でも、季節に3万6千つかみほど傷む", "because": [2276839], "confidence": 0.8}],
+ "proposal": {"text": "この秋から、毎日だれか五人が交代でキャンプのヤギの世話をしよう。ヤギは草で養える数より少なくなったから、もうつぶさずに守ろう。大人はみな蓄えの草の種を1000つかみずつ畑にまき、冬と春も交代で草取りをしよう。前の季節は世話が足りずに24頭がいなくなったから。", "because": [2276832], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L508", "against": "", "agree": true, "reason": "毎日四人でヤギの世話をすれば、ヤギがいなくならずにすむ"}, {"id": "L506", "against": "", "agree": true, "reason": "畑にまいて草取りをすれば、夏にたくさん刈れる"}, {"id": "L504", "against": "", "agree": true, "reason": "冬と春も草取りをするのはよいこと"}, {"id": "L503", "against": "", "agree": true, "reason": "畑にまいて交代で草取りをするのに賛成"}, {"id": "L509", "against": "ヤギはもう養える数より少ないので、つぶす分がない", "agree": false, "reason": "いまはヤギを減らすより守るときだ"}],
+ "feeling": "ヤギがまた逃げないよう、この秋はしっかり見ていたい"}

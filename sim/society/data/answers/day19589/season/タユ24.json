@@ -1,0 +1,28 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にある。秋のうちに畑に種をたっぷりまいて、冬と春は草取りを欠かさずやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど実りが増えるので、毎日畑を手入れする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ28": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ルタ29": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ネイ32": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ラキ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "キサ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "タユ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ネイ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "キオ41": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ケセ41": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ラキ43": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ムイ43": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "セオ44": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ソナ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ホタ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ホミ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ソナ46": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}
+ },
+ "keep": false,
+ "judge": {"M492": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは多く、落ち着いた気持ちで秋の畑仕事にとりかかる。"
+}

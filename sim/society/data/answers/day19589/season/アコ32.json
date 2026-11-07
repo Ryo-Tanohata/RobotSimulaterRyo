@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "冬の肉は私と家族の弓でまかなうよ。北の丘へ行く人は声をかけて。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕が一番だから、冬に備えて肉を蓄えに入れたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "アコ33": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので一緒に肉を取る"},
+  "リセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので一緒に肉を取る"},
+  "ソナ40": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので一緒に肉を取る"},
+  "ヌオ42": {"activity": "採集", "place": "camp", "why": "採集が得意なので木の実を集める"},
+  "ソワ42": {"activity": "採集", "place": "camp", "why": "採集が得意なので木の実を集める"},
+  "タユ44": {"activity": "狩り", "place": "北丘12", "why": "弓の腕を活かして冬の肉を取る"},
+  "ラニ44": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕を活かして冬の肉を取る"}
+ },
+ "keep": false,
+ "judge": {"M492": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が来る前に肉をたくさん取って、みんなで安心して過ごしたい。"}
