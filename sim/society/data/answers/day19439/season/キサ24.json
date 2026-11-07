@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈らないと落ちてしまう。みんなで刈ろう。わたしは冬に向けて狩りもするよ。"}],
+"year": {
+"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れるため"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る人手が要る"}, "リセ32": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る人手が要る"}, "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る人手が要る"}, "ラニ37": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る人手が要る"}, "シエ37": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る人手が要る"}, "ケセ38": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る人手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 3},
+"秋": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意で、冬の肉を蓄えたい"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"}, "リセ32": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉をとる"}, "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ラニ37": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉をとる"}, "シエ37": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを見る"}, "ケセ38": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2, "sow": 1000},
+"冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も魚やけものはいるので肉をとる"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "リセ32": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}, "ソワ32": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ラニ37": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}, "シエ37": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}, "ケセ38": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+"春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため草取りをする"}, "family": {"ラニ30": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "リセ32": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ソワ32": {"activity": "ヤギの世話", "place": "camp", "why": "乳をとる"}, "ラニ37": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "シエ37": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}, "ケセ38": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+"keep": false, "seal": false, "seal_store": [],
+"accept_rule": {"よその群れ": null, "ほかの村から": null},
+"judge_rule": "ゆるす", "feast": [], "leader": null,
+"trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null,
+"knowledge": [{"op": "add", "text": "夏のうちに畑を刈らないと実りが落ちる。蓄えは十分にある。", "because": [], "confidence": 0.7}],
+"proposal": null,
+"votes": [],
+"year_name": "刈り入れと狩りの年",
+"feeling": "蓄えは多く、穏やかな気持ちだ。"}

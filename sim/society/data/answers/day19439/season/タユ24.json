@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏は実った畑を落とさぬよう刈り、秋にしっかりまいて、冬と春は草取りをしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"キサ28": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ルタ29": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ネイ32": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ラキ37": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "キサ37": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話をして実りを守る"}, "family": {"キサ28": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ルタ29": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やす"}, "family": {"キサ28": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ルタ29": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やす"}, "family": {"キサ28": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ルタ29": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は、夏のうちに刈らないと落ちてしまう。", "because": [2221667], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "子らが旅立った実りの年",
+ "feeling": "蓄えは豊かで落ち着いているが、亡くなった人たちのことが胸に残る。"}
