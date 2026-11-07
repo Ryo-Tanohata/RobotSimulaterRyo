@@ -65,12 +65,14 @@ for (let k = 0; k < STEPS; k++) {
     const todoF = feel.filter((n) => !(preF || '').includes(`${n}.json`))
     await parallel([...todo.map((n) => () => agent(rp(d, n), { label: `d${d} ${n} (${repModel(n)})`, model: repModel(n), phase: 'Seasons' })),
                     ...todoF.map((n) => () => agent(rpf(d, n), { label: `d${d} ${n} (気持ち)`, model: 'haiku', phase: 'Seasons' }))])
-    // 2026-11-07 (docs/society_phase/token_plan.md): 季節の答えと気持ちの答えの有無は、1 回の ls で読む (前は 2 回。読む役 1 体分のトークンを減らす。やり直しの決まりは同じ)
-    const ls = await agent(runner(`ls ${ROOT}/${DATA}/answers/day${pad(d)}/season/ && echo FEELING: && ls ${ROOT}/${DATA}/answers/day${pad(d)}/feeling/`), { label: `d${d} check`, model: 'haiku', phase: 'Seasons' })
-    const [lsS, lsF] = (ls || '').split('FEELING:')
-    const miss = names.filter((n) => !(lsS || '').includes(`${n}.json`))
-    // 気持ちの答えは、ない人がいても季節は進める (気持ちが前のまま)。1 回だけやり直す (代表のやり直しと同時に)。FEELING: の行が読めなければ、みなやり直さない
-    const missF = lsF === undefined ? [] : feel.filter((n) => !lsF.includes(`${n}.json`))
+    // 2026-11-07: ない答えだけを名前で書かせる (前は ls の一覧を読ませていたが、読む役が一覧をまとめて返し、19559 日目に代表 17 人・気持ち 53 人をみなやり直した)。
+    // 「CHECKED」の行が読めなければ、だれもやり直さない (やり直しすぎるより安全。代表の答えがなければ step.py が前の予定で進める)
+    const chk = [...names.map((n) => `[ -f season/${n}.json ] || echo MISS_S ${n}`), ...feel.map((n) => `[ -f feeling/${n}.json ] || echo MISS_F ${n}`)].join('; ')
+    const ls = await agent(runner(`cd ${ROOT}/${DATA}/answers/day${pad(d)} && { ${chk}; }; echo CHECKED`), { label: `d${d} check`, model: 'haiku', phase: 'Seasons' })
+    const okc = /CHECKED/.test(ls || '')
+    const miss = okc ? names.filter((n) => new RegExp(`MISS_S ${n}(\\s|$)`).test(ls)) : []
+    const missF = okc ? feel.filter((n) => new RegExp(`MISS_F ${n}(\\s|$)`).test(ls)) : []
+    if (!okc) log(`day ${d}: check unreadable, no retries`)
     if (miss.length) log(`day ${d}: retry ${miss.join('、')}`)
     if (miss.length || missF.length) await parallel([...miss.map((n) => () => agent(rp(d, n) + ' ', { label: `d${d} ${n} retry`, model: repModel(n), phase: 'Seasons' })),
                                                      ...missF.map((n) => () => agent(rpf(d, n) + ' ', { label: `d${d} ${n} (気持ち) retry`, model: 'haiku', phase: 'Seasons' }))])
