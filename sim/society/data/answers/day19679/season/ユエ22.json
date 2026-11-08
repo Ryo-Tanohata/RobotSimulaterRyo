@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑はまだ刈れる。落ちる前に、みんなで手分けして刈り入れよう。秋には草取りも忘れずにな。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が落ちる前に刈り入れを急ぐため"},"family":{},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"採集","place":"東林12","with":[],"why":"秋は木の実が実るので集めて蓄えを厚くする"},"family":{},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"北丘12","with":[],"why":"冬は木の実も草の種もないので、肉で支える"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りをして夏の実りを増やす"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,
+"knowledge":[{"op":"add","text":"夏の畑は刈らないと落ちるので、夏のはじめから刈り入れに力を入れる。","because":[2294668],"confidence":0.8}],
+"proposal":null,
+"votes":[],
+"year_name":"畑が大きく実った年",
+"mood":"畑の実りは豊かで、落ち着いた気持ちだ。"}

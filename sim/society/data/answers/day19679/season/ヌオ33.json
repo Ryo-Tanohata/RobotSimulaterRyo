@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実りが多い。落ちる前に、みんなで刈り入れよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ナセ35": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ワユ35": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}, "ナセ42": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "北林12", "with": [], "why": "秋は木の実が実るので集めて蓄えを厚くする"}, "family": {"ナセ35": {"activity": "採集", "place": "東林12", "why": "木の実が実る季節だから"}, "ワユ35": {"activity": "採集", "place": "南林12", "why": "木の実が実る季節だから"}, "ソナ37": {"activity": "狩り", "place": "北丘12", "why": "肉も蓄えたい"}, "セヤ38": {"activity": "狩り", "place": "北丘12", "why": "肉も蓄えたい"}, "ナセ42": {"activity": "採集", "place": "西林12", "why": "木の実が実る季節だから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬は木の実がないが、けものは冬もいるので肉をとる"}, "family": {"ナセ35": {"activity": "狩り", "place": "北丘12", "why": "冬の肉を支える"}, "ワユ35": {"activity": "狩り", "place": "北丘12", "why": "冬の肉を支える"}, "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ナセ42": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏に向けて畑の草取りをして実りを増やす"}, "family": {"ナセ35": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ乳がとれる"}, "ワユ35": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ナセ42": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は夏のうちに刈らないと落ちる。村の蓄えは草の種がとても多い。", "because": [2294668], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "mood": "蓄えは十分で、落ち着いた気持ち。"}

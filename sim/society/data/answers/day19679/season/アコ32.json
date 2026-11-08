@@ -1,0 +1,17 @@
+{"say":[{"to":"みんな","text":"夏の畑がまだ山ほど実っている。落ちる前に、手の空いた人はみんなで刈ろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちてしまうから、刈り入れを最優先にする"},"family":{"リセ39":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やす"},"ソナ40":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やす"},"ヌオ42":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やす"},"ソワ42":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やす"},"タユ44":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やす"},"ラニ44":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やす"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"採集","place":"東林12","with":[],"why":"秋は木の実が実るので、冬に備えて食べ物を集める"},"family":{"リセ39":{"activity":"畑仕事","place":"camp","why":"畑の草取りで実りを増やす"},"ソナ40":{"activity":"狩り","place":"北丘12","why":"狩りが得意なので肉を集める"},"ヌオ42":{"activity":"採集","place":"東林12","why":"採集が得意"},"ソワ42":{"activity":"採集","place":"東林12","why":"採集が得意"},"タユ44":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ラニ44":{"activity":"狩り","place":"北丘12","why":"狩りが得意"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"北丘12","with":[],"why":"冬は木の実が実らないが、けものはいるので肉を獲る"},"family":{"リセ39":{"activity":"狩り","place":"北丘12","why":"狩りが得意"},"ソナ40":{"activity":"狩り","place":"北丘12","why":"狩りが得意"},"ヌオ42":{"activity":"狩り","place":"北丘12","why":"冬の肉を支える"},"ソワ42":{"activity":"狩り","place":"北丘12","why":"冬の肉を支える"},"タユ44":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ラニ44":{"activity":"狩り","place":"北丘12","why":"狩りが得意"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"ヤギの世話","place":"camp","with":[],"why":"春は子ヤギが生まれ、世話をすると乳がとれる"},"family":{"リセ39":{"activity":"ヤギの世話","place":"camp","why":"乳をとる"},"ソナ40":{"activity":"狩り","place":"北丘12","why":"肉を集める"},"ヌオ42":{"activity":"採集","place":"東林12","why":"採集が得意"},"ソワ42":{"activity":"採集","place":"東林12","why":"採集が得意"},"タユ44":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ラニ44":{"activity":"狩り","place":"北丘12","why":"狩りが得意"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{"T265":false,"T266":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},
+"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":null,"market_day":null,"coin_rate":null,
+"knowledge":[{"op":"add","text":"夏は実った畑の刈り入れが何より大事。みんなで畑仕事をする。","because":[2294668],"confidence":0.8}],
+"proposal":null,
+"votes":[],
+"year_name":"刈り入れの年",
+"feeling":"実りが多くてありがたい。みんなで無事に刈り終えたい。"}
