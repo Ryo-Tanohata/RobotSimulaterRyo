@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "ヤギが草に比べて多すぎる。今季は何頭か肉にして減らそう。わしは土器を焼いて蓄えを守る。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの草の種を虫やネズミから守れるから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"セヤ55": true},
+ "family": {
+  "オセ28": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をするため"},
+  "セヤ29": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、冬に向けて肉を得るため"},
+  "ソナ31": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、肉を家と村に入れるため"},
+  "ルタ31": {"activity": "土器づくり", "place": "camp", "why": "蓄えを守る土器を増やすため"},
+  "キサ33": {"activity": "採集", "place": "東林12", "why": "採集が得意で、木の実を集めるため"},
+  "ハソ45": {"activity": "採集", "place": "東林12", "why": "採集が得意で、木の実を集めるため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "秋のうちにヤギを何頭か肉にして、草に合う数まで減らすのがよい", "because": [2308346], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いが蓄えは多い。土器を焼いて落ち着いて過ごそう。"}

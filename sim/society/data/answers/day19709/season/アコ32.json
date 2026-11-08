@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋の畑は草取りをしっかりやろう。実りが増えるから、私たちの家も畑仕事に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増える。蓄えは十分あるので、冬と夏のために畑を育てる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"セヤ55": true},
+ "family": {
+  "リセ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ソナ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ヌオ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ソワ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "タユ44": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ラニ44": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ヌオ48": {"activity": "畑仕事", "place": "camp", "why": "子も畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、秋・冬・春の草取りで実りが増え、夏のはじめに刈れる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "仲間と畑を育てるのが楽しみで、落ち着いている。"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "北の丘の群れを狩ってくる。冬の肉は私にまかせて、干し肉を蓄えに入れるよ。"}, {"to": "ホミ45", "text": "弓の腕を見せてほしい。北の丘で一緒に群れを追わない?"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": ["ホミ45"], "why": "狩りの腕が一番だから。冬に木の実が実らないので、肉を蓄えておきたい"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"セヤ55": true},
+ "keep": false,
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "knowledge": [{"op": "add", "text": "北の丘は秋も狩りに向いている。ザガに気をつけて狩れば獲物がとれる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽い。早く丘で獲物を追いたい。"}
