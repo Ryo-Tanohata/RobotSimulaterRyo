@@ -69,6 +69,16 @@ def _g11_on(state):
     return "g11" in (state["era2"].get("g7") or {})
 
 
+def _g12m():
+    """G12 (大きな都と帝国) の仕組み (g12.py)。呼ぶのは G12 の F を見るときと、state に g7.g12 があるときだけ (G11 までは読みこみもしない)"""
+    import g12
+    return g12
+
+
+def _g12_on(state):
+    return "g12" in (state["era2"].get("g7") or {})
+
+
 def _g7m():
     """G7 (王と役所) から働く仕組み (g7.py。docs/society_phase/G7_design.md)。g7.py が era2 を読みこむので、関数の中で読みこむ。
     呼ぶのは state["era2"] に "g7" があるとき (G7 に入ったあと) だけ。だから G6 までは読みこみもしない"""
@@ -473,6 +483,8 @@ def _day(state):
                 reaped[p["name"]] = got
     kids_ate = _feed(state, rng)
     world.evening(state, [], [], takes)
+    if g7 and _g12_on(state):  # G12 (2026-11-10): 倉の約束の刈り手が、その日の終わりに、刈られていない村の畑を刈る (G11 までは何もしない)
+        _g12m().hands_day(state)
     if fix:
         g7.evening_cost(state, reaped)  # 直し A1a: 夕方に木から取った・刈った時間を、次の日の働く時間から引き、疲れを足す
     if state["stats"] and kids_ate:  # 子が食べた量も、その日の食べた量に数える
@@ -2865,7 +2877,7 @@ def _feeling_prompt(state, p, first):
 
 ## あなたの家族 ({p.get('household')})
 村の大人が {REP_FROM} 人をこえたので、季節の集まりでは家族ごとに、いちばん年上の大人が代表して答える。{f'{p.get("household")} の代表は {rep}。' if rep else ''}代表が、家族の大人の仕事・掟の投票・よそから来た人の受け入れを決める。あなたは代表ではないので、仕事は決めない。
-{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}{_g10m().feel_note(state, p) if g7 and _g10_on(state) else ""}{_g11m().feel_note(state, p) if g7 and _g11_on(state) else ""}
+{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}{_g10m().feel_note(state, p) if g7 and _g10_on(state) else ""}{_g11m().feel_note(state, p) if g7 and _g11_on(state) else ""}{_g12m().feel_note(state, p) if g7 and _g12_on(state) else ""}
 
 ## いま
 {state["day"] + 1} 日目、{sea}。{g7.meeting_word(state) if g7 else "季節のはじめの集まり"}。あなたが答えるのは次の 2 つだけ。
@@ -3046,9 +3058,14 @@ CRITERIA["G10"] = ("暦の 1 年に、夕方の刈り入れの人日の半分以
 CRITERIA["G11"] = ("暦の 1 年に、よその集落との出し入れの半分以上 (少なくとも 4 回) を印のかたまりで払うか受ける と、掟で決めた市の日に、よその集落の人が来て替えた市が "
                    "1 年 2 回以上を 2 年つづける と、よその村への貸し・返しを印のかたまりでして、その量を字で書いた年が 2 年つづく、の 3 つに、一度でも届く (どれが先でもよい)",
                    lambda i: bool(i.get("g11_c1_day")) and bool(i.get("g11_c2_day")) and bool(i.get("g11_c3_day")))
-ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11"]
+# G12 (2026-11-10 本人の決め「おすすめどおりで進める」(お任せ)。docs/society_phase/G12_design.md): 「大きな都と帝国」(第 6 部の終わり)。
+#   「倉と帳の帝国」として測る。3 つとも【村が決めた】。届いた日は g12.py の物差しが残す。G11 の物差しは「ならべて測る」
+CRITERIA["G12"] = ("暦の 1 年に、倉の約束どおり村に出した集落が 5 つ以上の年が 2 回 と、暦の 1 年に、村の倉から 3 つ以上のよその集落へ合わせて草の種 3 万つかみ分以上を出す と、"
+                   "読み書きできる人が、大人のいる家みなの人の数と村の倉と倉の約束を字で書いた帳が 2 年つづく、の 3 つに、一度でも届く (どれが先でもよい)",
+                   lambda i: bool(i.get("g12_c1_day")) and bool(i.get("g12_c2_day")) and bool(i.get("g12_c3_day")))
+ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12"]
 NAMES2 = {"G1": "村ができる", "G2": "畑と家畜", "G3": "余りと分業", "G4": "持ち物と差", "G5": "リーダーと決まり", "G6": "交易・町・記録",
-          "G7": "王と役所", "G8": "外からの押し", "G9": "遠くとの商い", "G10": "鉄と広い国", "G11": "お金と市場"}
+          "G7": "王と役所", "G8": "外からの押し", "G9": "遠くとの商い", "G10": "鉄と広い国", "G11": "お金と市場", "G12": "大きな都と帝国"}
 assert set(CRITERIA) <= set(ORDER2) and set(NAMES2) == set(ORDER2), "CRITERIA・NAMES2 の G は ORDER2 に入れる (入れないと era_at_least が黙って False になる)"
 # 部の終わりの G (第 N 部)。G6 の終わりは第 4 部の終わり。いちばん後の G の終わりは工業の入口 (止めて相談する。next_part は受けつけない)。G7・G8 は部の終わりではない
 #   2026-10-25: G8 に「外からの押し」を入れたので、もとの計画の G8〜G14 を 1 つずつずらした (G9 = 遠くとの商い … G15 = 工業の入口の前)
@@ -3100,6 +3117,11 @@ SUBSTEPS["G11"] = [("F1", "印のかたまりができた", lambda s: _g11m().re
                    ("F2", "市が立った", lambda s: _g11m().reached(s, "F2")),
                    ("F3", "印のかたまりで払った", lambda s: _g11m().reached(s, "F3")),
                    ("F4", "印のかたまりの貸しを字で書いた", lambda s: _g11m().reached(s, "F4"))]
+# G12 の F (2026-11-10 本人の決め (お任せ)。届いたかは g12.py の物差しが決める。G12 に入ってから見る)
+SUBSTEPS["G12"] = [("F1", "はじめての倉の約束", lambda s: _g12m().reached(s, "F1")),
+                   ("F2", "はじめて倉から助けを出した", lambda s: _g12m().reached(s, "F2")),
+                   ("F3", "はじめての帳", lambda s: _g12m().reached(s, "F3")),
+                   ("F4", "約束の分が、はじめて村に届いた", lambda s: _g12m().reached(s, "F4"))]
 # G1・G2 の F は、この仕組みを作る前に終わっていたので、記録 (出来事) から日を決めた (2026-10-08。G1_notes.md・G2_notes.md)
 RETRO_SUBSTEPS = [
     {"g": "G1", "f": "F1", "name": "畑を始める", "day": 510, "why": "セナとウィロが初めて畑に草の種をまいた"},
@@ -3238,7 +3260,8 @@ YEAR_EVENTS = ("フェーズ", "区切り", "段階", "分かれる", "死", "�
                "年の集まり",  # G7 から (次の年が、1 年に 1 回の集まりか、季節ごとに集まるか。年の終わりに決まる)
                "戦", "崩れ", "貢ぎ", "求め", "同盟",  # G7 から (まわりの集落とのこと。docs/society_phase/G7_design.md 4.B.7)
                "よその便り", "きっかけ", "取り立て", "病", "試す", "倉を分ける",
-               "市")  # G11 から (2026-11-05。市の日。G10 までは起きない)  # G7 から (4.C.8・4.F・2026-10-23 の share。どれも G6 までは起きない)
+               "市",  # G11 から (2026-11-05。市の日。G10 までは起きない)
+               "倉")  # G12 から (2026-11-10。倉の約束・倉から助ける・刈り手。G11 までは起きない)  # G11 から (2026-11-05。市の日。G10 までは起きない)  # G7 から (4.C.8・4.F・2026-10-23 の share。どれも G6 までは起きない)
 YEAR_DIGEST_MAX = 15
 STOP_WORDS = ("フェーズが", "Society 2.0 が終わった")  # ワークフローが止まる文と重なる名前は読まない (step.py が出来事を表示するため)
 
