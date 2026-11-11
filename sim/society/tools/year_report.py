@@ -36,6 +36,7 @@ import era2  # noqa: E402
 import g9 as G9  # noqa: E402
 import g10 as G10  # noqa: E402
 import g11 as G11  # noqa: E402
+import g12 as G12  # noqa: E402  (読むのは数の決まりだけ。state は変えない)
 import records  # noqa: E402
 
 YEAR = era2.YEAR
@@ -293,6 +294,39 @@ def conditions(D, y, phase):
         p = (g.get("path") or {}).get(str(y))
         cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g11_path_") and c.get("year") == y]
         out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G11"}
+    elif phase == "G12":
+        g = _g7(st).get("g12") or {}
+        ys, ysp = str(y), str(y - 1)
+        cs = g.get("c") or {}
+        paid = (g.get("paid") or {}).get(ys) or {}
+        n_paid = sum(1 for v in paid.values() if v == "出した")
+        c1y = [x for x in g.get("c1_years") or [] if x <= y]
+        rel, relp = (g.get("relief") or {}).get(ys) or {}, (g.get("relief") or {}).get(ysp) or {}
+        cen = (g.get("census") or {}).get(ys) or {}
+        run = 0
+        while ((g.get("census") or {}).get(str(y - run)) or {}).get("done"):
+            run += 1
+        led = next((r for r in g.get("ledger") or [] if r.get("year") == y), {})
+        out["bars"] = [
+            _bar("条件 1 倉の約束の輪 (約束どおり出した村)", n_paid, G12.C1_MIN, "村", cs.get("c1"),
+                 f"この年の終わりに、倉の約束どおり村に出した集落の数 (約束 {led.get('pacts', '?')})。目標は {G12.C1_MIN} つ以上の年が {G12.C1_TIMES} 回 "
+                 f"(届いた年: {'・'.join(map(str, c1y)) or 'まだ'})", end),
+            _bar("条件 2 倉から地域を養う (集落)", len(rel), G12.C2_SETTLEMENTS, "集落", cs.get("c2"),
+                 f"この年に村の倉から出した先の集落の数 (去年 {len(relp)})。目標は 1 年に {G12.C2_SETTLEMENTS} 集落以上で、合わせて {G12.C2_AMOUNT} つかみ以上", end),
+            _bar("条件 2 倉から地域を養う (量)", sum(rel.values()), G12.C2_AMOUNT, "つかみ", cs.get("c2"),
+                 f"この年に村の倉から出した量 (草の種のつかみにしたねうち。去年 {sum(relp.values())})", end),
+            _bar("条件 3 人と倉の帳", run, G12.C3_YEARS, "年", cs.get("c3"),
+                 f"家の人の数・村の倉・倉の約束を字で書いた帳がそろった年が、つづいた数 (この年 {len(cen.get('houses', []))} 家を書いた"
+                 + ("・そろった" if cen.get("done") else "") + f")。目標は {G12.C3_YEARS} 年つづける", end)]
+        pv = sum(1 for v in ((g.get("paid") or {}).get(ysp) or {}).values() if v == "出した")
+        out["moves"] = {"c1": (n_paid > pv) - (n_paid < pv), "c2": (sum(rel.values()) > sum(relp.values())) - (sum(rel.values()) < sum(relp.values())),
+                        "c3": (bool(cen.get("done")) - bool(((g.get("census") or {}).get(ysp) or {}).get("done")))}
+        rch = g.get("reached") or {}
+        out["fs"] = [(k, v, rch.get(k) if (rch.get(k) or end + 1) <= end else None) for k, v in G12.FS.items()]
+        out["g12"] = g12_lines(g, st, y, led)
+        p = (g.get("path") or {}).get(str(y))
+        cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g12_path_") and c.get("year") == y]
+        out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G12"}
     else:
         out["extra"] = [f"この年のフェーズ {phase} の条件の棒は、まだ作っていない。条件: {(st.get('era_info') or {}).get('next', '-')}"]
     return out
@@ -350,6 +384,44 @@ def g11_lines(g, st, y, Y):
     return out
 
 
+def g12_lines(g, st, y, led):
+    """G12 のこの年のようす (やさしい日本語の箇条)"""
+    lo, end = y * YEAR, y * YEAR + YEAR - 1
+    out = []
+    pacts = g.get("pacts") or {}
+    made = [p for p in pacts.values() if lo <= p["day"] <= end]
+    ended = [p for p in pacts.values() if p.get("end") is not None and lo <= p["end"] <= end]
+    alive = [p for p in pacts.values() if p["day"] <= end and (p.get("end") is None or p["end"] > end)]
+    out.append(f"倉の約束: 年の終わりに {len(alive)} 村 (この年に結んだ {len(made)}・切れた {len(ended)})"
+               + ("。切れたわけ: " + " / ".join(clean(p.get("why") or "", 60) for p in ended[:3]) if ended else ""))
+    paid = (g.get("paid") or {}).get(str(y)) or {}
+    if paid:
+        kinds = {}
+        for v in paid.values():
+            kinds[v] = kinds.get(v, 0) + 1
+        out.append("年の終わりの約束の出し入れ: " + "・".join(f"{k} {n} 村" for k, n in kinds.items()))
+    rl = [r for r in g.get("relief_log") or [] if lo <= r["day"] <= end]
+    if rl:
+        gr = sum(r["goods"].get("草の種", 0) for r in rl)
+        out.append(f"倉から出した: {len(rl)} 回・{len({r['other'] for r in rl})} 集落・草の種 {gr} つかみ"
+                   + (f"・ヤギ {sum(r['goods'].get('ヤギ', 0) for r in rl)} 頭" if any(r['goods'].get('ヤギ') for r in rl) else "")
+                   + (f"・黒い金属の鎌 {sum(r['goods'].get(G12.IRON, 0) for r in rl)} 本" if any(r['goods'].get(G12.IRON) for r in rl) else ""))
+    else:
+        out.append("倉から出した: この年はなかった")
+    hd = (g.get("hands") or {}).get(str(y)) or {}
+    if hd:
+        out.append(f"刈り手: のべ {hd.get('days', 0)} 人日が来て、草の種 {hd.get('grain', 0)} つかみを刈った (村の蓄えから {hd.get('ate', 0)} つかみを食べた)")
+    cen = (g.get("census") or {}).get(str(y)) or {}
+    out.append(f"帳: {len(cen.get('houses', []))} 家を書いた (のべ {cen.get('days', 0)} 日。書いた人 {'・'.join(sorted(cen.get('by') or {})) or 'いない'})"
+               + ("。この年の帳はそろった" if cen.get("done") else "") if cen else "帳: この年はだれも帳をつけなかった")
+    if led:
+        out.append(f"ならべて測るもの: 都の大きさ (村の人 ÷ 地域の人) {round(100 * led.get('city', 0))}% / 虫やネズミに食べられた 約 {led.get('pests', 0)} つかみ / "
+                   f"刈らずに落ちた 約 {led.get('fallen', 0)} つかみ / ヤギ {led.get('goats', '?')} 頭 / 読める大人 {led.get('readers', '?')} 人")
+    fa = [f for f in g.get("fails") or [] if f.get("year") == y]
+    out.append(f"受けなかった・減らした・切れた・休んだ: {len(fa)} 回" + (": " + " / ".join(clean(f["why"], 60) for f in fa[:3]) if fa else ""))
+    return out
+
+
 def path_line(C, y):
     p = C.get("path")
     if not p:
@@ -357,6 +429,11 @@ def path_line(C, y):
     r = p["row"]
     if not r:
         return f"道の見張り: この年 ({y}年) は、まだ村の集まりがなかった (数える年は {(p['start'] + 1) // YEAR}年から)"
+    if p.get("g") == "G12":
+        t = (f"道の見張り: この年の村の集まり {r['meetings']} 回で、答える人のうち、その道を自分で選べた人は、のべで条件 1 (倉の約束) {r['c1']} 人、"
+             f"条件 2 (倉から助ける) {r['c2']} 人" + ("" if r.get("need2", True) else " (苦しい村がなかった)") + f"、条件 3 (帳をつける) {r['c3']} 人。"
+             f"実際に選んだ人は {r.get('chose', 0)} 人。{G12.PATH_YEARS} 年つづけて 0 人なら、止めて相談する")
+        return t + ("。この年の終わりに、止めて相談することになった" if p["consult"] else "")
     if p.get("g") == "G11":
         t = (f"道の見張り: この年の村の集まり {r['meetings']} 回で、答える人のうち、その道を自分で選べた人は、のべで条件 1 (印を決める・作る・印で払う) {r['c1']} 人、"
              f"条件 2 (市の日を決める) {r['c2']} 人、条件 3 (字の読める村で印で貸す) {r['c3']} 人。実際に選んだ人は {r.get('chose', 0)} 人。"
@@ -544,6 +621,17 @@ def next_lines(C, y, phase_next, nxt_era=None):
         if zero:  # 止めて相談になるかもしれないので、いちばん上に出す
             out.insert(1 if phase_next else 0,
                        f"道の見張り: 今年、条件 {'・'.join(zero)} の道がお題に出なかった。来年も 0 回なら、止めて相談になる")
+    elif C["phase"] == "G12":
+        b = {i: x for i, x in enumerate(C["bars"], 1)}
+        rch = dict((k, d) for k, _, d in C["fs"])
+        if not b[1]["done"]:
+            out.append("近くの村と倉の約束を結ぶか (答えの pact)" if not rch.get("F1") else
+                       f"倉の約束どおり出す村が {G12.C1_MIN} つ以上の年が来るか (今年 {b[1]['value']} 村)")
+        if not b[2]["done"]:
+            out.append("いま苦しい村に、村の倉から助けを出すか (答えの help)" if not rch.get("F2") else
+                       f"1 年に {G12.C2_SETTLEMENTS} 集落・{G12.C2_AMOUNT} つかみまで倉から出すか (今年 {b[2]['value']} 集落・{b[3]['value']} つかみ)")
+        if not b[4]["done"]:
+            out.append("字を読める人が「帳をつける」を選ぶか" if not rch.get("F3") else "家と倉と約束を書いた帳が 2 年つづくか")
     elif C["phase"] == "G11":
         b = {i: x for i, x in enumerate(C["bars"], 1)}
         rch = dict((k, d) for k, _, d in C["fs"])
@@ -746,6 +834,8 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
         w('<div class="note">小さな目盛り (F):</div><div class="fs">'
           + "".join(f'<span class="{"on" if d is not None else ""}">{"✓ " if d is not None else ""}{e(k)} {e(v)}</span>' for k, v, d in C["fs"]) + "</div>")
     pl = path_line(C, y)
+    if C.get("g12"):
+        w('<p style="margin:10px 0 2px"><b>倉と約束と帳 (この年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["g12"]) + "</ul>")
     if C.get("g11"):
         w('<p style="margin:10px 0 2px"><b>印のかたまりと市 (この年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["g11"]) + "</ul>")
     for x in C["extra"] + ([pl] if pl else []):
