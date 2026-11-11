@@ -4021,7 +4021,7 @@ class T_G11(unittest.TestCase):
         q["plan"] = {"activity": "休む", "place": "camp", "with": []}
         g7.job(st, q, {"activity": g11.ACT_COIN})
         self.assertNotIn("rest_why", st["era2"]["g7"], "G10 では、印のかたまりのわけは残さない (仕事の並びにないので前のまま)")
-        self.assertEqual(era2.ORDER2[-2:], ["G10", "G11"])
+        self.assertEqual(era2.ORDER2[era2.ORDER2.index("G10"):era2.ORDER2.index("G10") + 2], ["G10", "G11"])
 
     def test_make_coins(self):
         """作る: 作れる人は 1 日 10 個 / 作れない人は休む (わけ) / 作れる人と同じ日に with で作れば作れ、次の季節から作れる人 / 印の前は印のないかたまり、印が決まると村のもの (F1)"""
@@ -4373,7 +4373,13 @@ class T_G11(unittest.TestCase):
                         j = t.find("\n## ", i + 5)
                         self.assertEqual(g11.bad_words(t[i:j if j > 0 else None]), [], "節に書かない言葉 (年の出来事の「フェーズ」の文は G10 と同じく前からの形)")
                     r = run("next_part", "--closed-by-decision", note)
-                    self.assertEqual(r.returncode, 3, "2 回目は断る")
+                    # 2026-11-10: G11 から G12 に閉じて入れるようになったので、2 回目は G10 をもう一度閉じず、G11 を閉じて G12 に入る (G10 は閉じたまま)
+                    self.assertNotIn("* G10 (鉄と広い国)", r.stdout, "G10 は 2 回閉じない")
+                    if r.returncode == 0:
+                        self.assertIn("* G11 (お金と市場)", r.stdout)
+                        self.assertEqual(json.loads((d / "state.json").read_text(encoding="utf-8"))["era2"]["g7"]["closed10"]["note"], note)
+                    else:
+                        self.assertEqual(r.returncode, 3)
             finally:
                 shutil.rmtree(d, ignore_errors=True)
 
