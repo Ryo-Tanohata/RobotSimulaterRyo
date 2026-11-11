@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蔵の種はたっぷりある。この秋は畑にしっかりまいて、草取りもみんなで分けてやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、家族みんなで畑を守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ユエ33": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ケセ39": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "オネ39": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ケナ45": {"activity": "畑仕事", "place": "camp", "why": "小さい子の近くで畑を手伝う"},
+  "タユ46": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ソワ48": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ナセ50": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える"}
+ },
+ "keep": false, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは十分で落ち着いている。冬に向けて畑をしっかり育てたい。"}

@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "この秋はわたしが家ごとの人の数と倉の量を字で書きとめる。来年、虫やネズミにどれだけ食べられたか分かるようにしたい。"}, {"to": "みんな", "text": "北の村と北西の村が苦しいと聞いた。うちの倉はたっぷりあるから、草の種を分けて助けよう。"}],
+ "job": {"activity": "帳をつける", "place": "camp", "with": [], "why": "字を読み書きできるので、家ごとの人の数と倉の量を書いて、村の蓄えをはっきりさせたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ46": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、来年の夏の実りを増やすため"}, "ヒセ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やして、実りを減らさないため"}, "オセ49": {"activity": "畑仕事", "place": "camp", "why": "若いうちに畑の仕事を覚えてほしいから"}, "ユエ49": {"activity": "畑仕事", "place": "camp", "why": "もうすぐ大人なので、畑の草取りを手伝ってほしい"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "pay": null, "redeem": null,
+ "pact": [{"to": "N4", "give": {"草の種": 1500}, "take": {"草の種": 50}}, {"to": "N83", "give": {"草の種": 5000}, "take": {"草の種": 100}}],
+ "help": [{"to": "N2", "草の種": 6000}, {"to": "N10", "草の種": 2000}],
+ "knowledge": [{"op": "add", "text": "土器に入れた草の種でも、一季節に約 39000 つかみほど傷む", "because": [2474104], "confidence": 0.7}, {"op": "add", "text": "ヤギはいま 124 頭で、草で養える約 140 頭より少ない", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L517", "against": "", "agree": true, "reason": "畑に種をまいて草取りを続ければ、来年の夏も実りが多い"}, {"id": "L518", "against": "", "agree": true, "reason": "ヤギは草で養える数より少ないので、つぶさずに育てたほうがよい"}, {"id": "L519", "against": "", "agree": true, "reason": "ヤギが多すぎるときだけつぶすのは理にかなっている"}],
+ "feeling": "蓄えは十分ある。字で書きとめて、まわりの苦しい村も助けたい。"}
