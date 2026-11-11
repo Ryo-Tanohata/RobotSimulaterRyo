@@ -255,6 +255,20 @@ def _oid(state, v):
     return f"N{int(n)}" if n and n == int(n) and _other(state, f"N{int(n)}") else None
 
 
+def _float(v):
+    try:
+        return float(v) if v is not None and not isinstance(v, bool) else None
+    except (TypeError, ValueError):
+        return None
+
+
+def _vtxt(txt, votes, ch):
+    """票の文 (g7._tally) の中の答えの形 (JSON) を、村の人に読めることばにする"""
+    for v in sorted(set(votes.values()), key=len, reverse=True):
+        txt = txt.replace(v, "この中身" if v == ch else "やめる" if v == "end" else "ほかの中身")
+    return txt
+
+
 def _rows(v):
     if isinstance(v, dict):
         if "to" in v:
@@ -287,7 +301,7 @@ def _help_votes(state, a):
         goods = _goods({k: v for k, v in r.items() if k not in ("to", "lend")}, GIVE_GOODS)
         if not goods:
             continue
-        lend = era2._num(r.get("lend"))
+        lend = _float(r.get("lend"))
         lend = round(min(0.5, lend), 2) if lend and lend > 0 else None
         out[oid] = json.dumps({"goods": goods, "lend": lend}, ensure_ascii=False, sort_keys=True)
     return out
@@ -311,13 +325,13 @@ def apply_answers(state, real):
         ch, txt = g7._tally(state, pv[oid], w)
         if ch:
             by = sorted(n for n, v in pv[oid].items() if v == ch)
-            _pact_answer(state, _other(state, oid), ch, txt, by)
+            _pact_answer(state, _other(state, oid), ch, _vtxt(txt, pv[oid], ch), by)
     for oid in sorted(hv, key=key):
         ch, txt = g7._tally(state, hv[oid], w)
         if ch:
             by = sorted(n for n, v in hv[oid].items() if v == ch)
             h = json.loads(ch)
-            _help(state, _other(state, oid), h["goods"], h.get("lend"), txt, by)
+            _help(state, _other(state, oid), h["goods"], h.get("lend"), _vtxt(txt, hv[oid], ch), by)
 
 
 def _gw(goods):

@@ -54,6 +54,7 @@ def real_state():
 
 
 G11_ENTRY = "c2566124"  # G11 に入った日 (18119 日目。印はまだ決まっていない。N52 が生きている) の state のコミット
+G12_ENTRY = "c9fc7a96"  # G12 に入る日 (164年120日目 = 19799 日目。G11・HOLD consult・答えなし) の state のコミット (2026-11-10)
 _GIT_TEXT = {}
 
 
@@ -5384,6 +5385,398 @@ const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor
         self.assertEqual([x for x in lab if "retry" in x], ["d5519 ルナ (気持ち) retry"], "気持ちのない人だけ 1 回")
         self.assertIn("models.json", out["cmds"][0])
         self.assertTrue(all("models.json" not in c for c in out["cmds"][1:]), "集まらない歩では書かない")
+
+
+class T_G12(unittest.TestCase):
+    """2026-11-10 G12「大きな都と帝国」(docs/society_phase/G12_design.md): G11 を閉じて入る (部は終わらない)・倉の約束 (受ける決まり 1〜5 とわけ・いちばん多い手・
+    1 人で決まる・出し入れ・苦しい年に助ける・2 年で切れる・村が破るとすぐ切れる)・倉から助ける (苦しくない村は受けない・上限 1 割・300 日分・減らしたわけ・貸す)・
+    刈り手 (刈られていない畑だけ)・帳 (読めない人は休む + わけ・2 家 / 日・そろった年)・c1〜c3・F・進み・道の見張り (名前の行・0 の場面・苦しい村のない年・5 年ごと)・
+    わけのない休むが 0・step.py next_part (写し)。G11 の state では何も働かない。
+    164年120日目 (19799 日目。G11・HOLD consult・答えなし) の git の state (G12_ENTRY) の写しから、メモリの中で確かめる。本物の data は読むだけ"""
+
+    NOTE = "本人の決め 2026-11-10: お金と市場を 164年120日目で閉じた。c1・c2・c3 は 14 年届かなかった"
+    _st = None
+
+    @classmethod
+    def real(cls):
+        if cls._st is None:
+            st = git_state(G12_ENTRY)
+            cls._st = st if (st.get("era") in ("G11", "G12") and "g11" in st["era2"]["g7"]) else False
+        if cls._st is False:
+            raise unittest.SkipTest("G12_ENTRY の state が G11 か G12 でない")
+        return copy.deepcopy(cls._st)
+
+    def g11_state(self):
+        st = self.real()
+        if st["era"] != "G11":
+            self.skipTest("G12_ENTRY の state が G11 でない")
+        return st
+
+    def g12_state(self):
+        import g7
+        st = self.real()
+        if st["era"] == "G11":
+            st["hold"] = False
+            st["era2"]["g7"]["hold"] = None
+            g7.close_g11(st, self.NOTE)
+            g7.enter_next(st)
+            st["era_log"][-1]["g11_closed"] = st["day"]
+        return st
+
+    def o(self, st, oid):
+        import g7
+        return next(x for x in g7._others(st) if x["id"] == oid)
+
+    def calm(self, st, oid):
+        """oid の村を苦しくない村にする (天気も蓄えも)"""
+        o = self.o(st, oid)
+        o["bad"] = None
+        o["grain"] = max(o["grain"], o["people"] * 200 + 5000)
+        return o
+
+    def test_enter_from_g11(self):
+        import g11
+        import g12
+        import g7
+        import hints
+        import step
+        st = self.g11_state()
+        self.assertEqual(st["day"], 19799)
+        self.assertIn("一時停止している", step._next_part_refusal(st, None, self.NOTE), "止まっている (HOLD consult) と断る")
+        st["hold"] = False
+        st["era2"]["g7"]["hold"] = None  # step.py resume と同じ
+        if not list((REAL / "answers" / f"day{st['day']:03d}").glob("*/*.json")):
+            self.assertIsNone(step._next_part_refusal(st, None, self.NOTE))
+        n_ev = st["next_event"]
+        t11 = st["era2"]["g7"]["g11"]
+        reached11, path11 = dict(t11["reached"]), {k: dict(v) for k, v in t11["path"].items()}
+        sha0 = hints.cards_sha(st)
+        c = g7.close_g11(st, self.NOTE)
+        self.assertEqual((c["day"], c["note"], c["made"], c["c"]), (19799, self.NOTE, 0, {"c1": None, "c2": None, "c3": None}))
+        self.assertEqual(sum(r["all"] for r in c["flows"].values()), 0)
+        self.assertIn("G11 はもう閉じている", step._next_part_refusal(st, None, self.NOTE))
+        part0, ps0 = st["era2"]["g7"]["part"], st["era2"]["g7"]["part_start"]
+        g7.enter_next(st)
+        g = st["era2"]["g7"]
+        self.assertEqual((st["era"], st["era_info"]["name"], g["part"], g["part_start"], g["part_start12"]), ("G12", "大きな都と帝国", part0, ps0, 19799),
+                         "部は終わらない (第 6 部のまま)")
+        self.assertEqual(era2.PART_END["G12"], 6)
+        self.assertEqual(g["before"]["G11"]["g11"]["reached"], reached11)
+        self.assertEqual(g["before"]["G11"]["g11"]["path"], path11)
+        self.assertEqual((g["g11"]["c"], g["g11"]["path"]), ({}, {}), "G11 の条件と道の見張りは数え直す")
+        self.assertEqual(g["g11"]["reached"], reached11, "G11 の F は消さない")
+        self.assertNotIn("stall", g)
+        self.assertIn("stall", g["before"]["G11"])
+        self.assertEqual(hints.cards_sha(st), sha0, "札は足さない")
+        types = [e["type"] for e in st["events"] if e["id"] >= n_ev]
+        self.assertEqual(types, ["フェーズ", "フェーズ"])
+        self.assertIn("フェーズ G12 (大きな都と帝国) を始めた", st["events"][-1]["text"])
+        ind = era2.indicators(st)
+        self.assertEqual((ind["g12_c1_day"], ind["g12_c2_day"], ind["g12_c3_day"]), (None, None, None))
+        self.assertFalse(era2.CRITERIA["G12"][1](ind))
+        self.assertIn(g12.ACT_CENSUS, g7.acts(st))
+        self.assertTrue(g12.key_houses(st))
+        for h in g12.key_houses(st):
+            self.assertIn(h, g["sample"], "読める人の家は、入る日から答える家")
+        self.assertEqual(len(g12.candidates(st)), 17)
+        self.assertEqual(g12.cap_left(st)[0], int(g["g12"]["year_store"]["164"] * 0.1))
+        txt = g7.facts(st) + g7._field_rows(st, False, True) + g7.fields_json(st, era2.adults(st)[0], False)
+        for p in era2.adults(st)[:60]:
+            txt += g12.text(st, p) + g12.feel_note(st, p)
+        self.assertIn('"pact": [], "help": []', txt)
+        self.assertIn("## 倉と約束と帳", txt)
+        self.assertEqual(g12.bad_words(txt), [], "都・帝国・国・税・お金・市場・鉄などを書かない")
+        self.assertNotIn("【", g12.text(st, era2.adults(st)[0]))
+        self.assertEqual(g11.bad_words(g12.facts(st)), [])
+        consult = g7.consult_why(st)
+        self.assertIsNone(consult, "入る日には止めない")
+
+    def test_g11_unchanged(self):
+        """G11 の state (g7.g12 がない) では、新しい仕事・文・欄・目安は何も働かない"""
+        import g7
+        import g12
+        st = self.g11_state()
+        self.assertNotIn(g12.ACT_CENSUS, g7.acts(st))
+        p = era2.adults(st)[0]
+        self.assertNotIn("倉の約束", g7.facts(st) + g7.text(st, p) + g7._field_rows(st, False, True))
+        self.assertNotIn('"pact"', g7.fields_json(st, p, False))
+        self.assertNotIn("g12_c1_day", era2.indicators(st))
+        g7.new_season(st)
+        p["plan"] = {"activity": "休む", "place": "camp", "with": []}
+        g7.job(st, p, {"activity": g12.ACT_CENSUS})
+        self.assertNotIn("rest_why", st["era2"]["g7"], "G11 では、帳をつけるの休みのわけは残さない (仕事の並びにないので前のまま)")
+        self.assertEqual(era2.ORDER2[-2:], ["G11", "G12"])
+
+    def test_pact_rules(self):
+        """受ける決まり 1〜5 とわけ・いちばん多い手 (1 人でも決まる)・やめる"""
+        import g12
+        st = self.g12_state()
+        g = st["era2"]["g7"]["g12"]
+        ans = era2.answerers(st)
+        A, B = ans[0], ans[1]
+        n13 = self.o(st, "N13")
+        cases = [({"to": "N19", "give": {"草の種": 3000}, "take": {"草の種": 100}}, "信じきれていない"),
+                 ({"to": "N13", "give": {"草の種": 3000}, "take": {"草の種": n13["people"] * 10 + 1}}, f"{n13['people'] * 10} つかみより多くは出せない"),
+                 ({"to": "N13", "give": {"草の種": 3000}, "take": {"刈り手": [9, 20]}}, "刈り手は"),
+                 ({"to": "N13", "give": {"草の種": 3000}, "take": {"黒曜石": 3}}, "黒曜石"),
+                 ({"to": "N13", "give": {"草の種": 500}, "take": {"草の種": 200}}, "得がない"),
+                 ({"to": "N13", "give": {}, "take": {"草の種": 200}}, "give")]
+        for row, word in cases:
+            n0 = len(g["fails"])
+            g12.apply_answers(st, {A: {"pact": [row]}})
+            self.assertNotIn(row["to"], g["pacts"], word)
+            self.assertEqual(len(g["fails"]), n0 + 1, word)
+            self.assertIn(word, g["fails"][-1]["why"])
+            self.assertEqual(st["events"][-1]["type"], "倉", "受けなかったわけは出来事「倉」に")
+        far = next((o for o in era2._g6(st)["others"] if o.get("days", 0) > 3 and o.get("known") is not None), None)
+        if far:
+            self.assertIn("遠い", g12.accept_why(st, far, {"give": {"草の種": 3000}, "take": {"草の種": 10}}))
+        self.assertIsNone(g12.accept_why(st, n13, {"give": {"草の種": 3000}, "take": {"草の種": 200}}))
+        # 1 人で決まる
+        g12.apply_answers(st, {A: {"pact": [{"to": "N13", "give": {"草の種": 3000}, "take": {"草の種": 200}}]}, B: {"pact": None}})
+        p = g["pacts"]["N13"]
+        self.assertEqual((p["status"], p["give"], p["take"], p["by"]), ("続く", {"草の種": 3000}, {"草の種": 200}, [A]))
+        self.assertIn("F1", g["reached"])
+        self.assertTrue(any(x["type"] == "区切り" or x["type"] == "目盛り" for x in st["events"][-3:]))
+        # いちばん多い手 (重みの多いほう)
+        w = __import__("g7")._vote_weights(st, {A: {}, B: {}})
+        big, small = (A, B) if w[A] >= w[B] else (B, A)
+        g12.apply_answers(st, {big: {"pact": [{"to": "N14", "give": {"草の種": 4000}, "take": {"草の種": 300}}]},
+                               small: {"pact": [{"to": "N14", "give": {"草の種": 3000}, "take": {"草の種": 200}}]}})
+        self.assertEqual(g["pacts"]["N14"]["give"], {"草の種": 4000})
+        # やめる
+        g12.apply_answers(st, {A: {"pact": [{"to": "N14", "end": True}]}})
+        self.assertEqual(g["pacts"]["N14"]["status"], "切れた")
+        self.assertEqual(g12.candidates(st)[0]["id"], "N1")
+
+    def test_settle(self):
+        """年の終わりの出し入れ: 苦しくない相手は take を出す (c1・F4・信頼 +0.1) / 出せない年が 2 年で切れる / 苦しい相手には村が give を出す / 出せなければすぐ切れる (信頼 −0.2)。
+        c1 は 5 つ以上の年が 2 回"""
+        import g12
+        st = self.g12_state()
+        g = st["era2"]["g7"]["g12"]
+        A = era2.answerers(st)[0]
+        ids = ["N1", "N2", "N4", "N5", "N7", "N10"]
+        for oid in ids:
+            self.calm(st, oid)
+        g12.apply_answers(st, {A: {"pact": [{"to": oid, "give": {"草の種": 3000}, "take": {"草の種": 50}} for oid in ids]}})
+        self.assertEqual(sum(1 for p in g["pacts"].values() if g12._active(p)), 6)
+        t0 = self.o(st, "N1")["trust"]
+        v0 = era2._g6_have(st, "村", "草の種")
+        st["day"] = 19919
+        g12._settle(st)
+        self.assertEqual(g["paid"]["165"], {oid: "出した" for oid in ids})
+        self.assertEqual(era2._g6_have(st, "村", "草の種"), v0 + 300)
+        self.assertAlmostEqual(self.o(st, "N1")["trust"], round(t0 + 0.1, 2))
+        self.assertIn("F4", g["reached"])
+        self.assertEqual(g["c1_years"], [165])
+        self.assertNotIn("c1", g["c"])
+        st["day"] = 20039
+        g12._settle(st)
+        self.assertIn("c1", g["c"], "5 つ以上の年が 2 回")
+        # 出せない年が 2 年で切れる
+        n2 = self.o(st, "N2")
+        n2["grain"] = n2["people"] * 100
+        for d in (20159, 20279):
+            st["day"] = d
+            g12._settle(st)
+        self.assertEqual(g["pacts"]["N2"]["status"], "切れた")
+        self.assertIn("2 年つづけて", g["pacts"]["N2"]["why"])
+        # 苦しい相手には村が出す
+        n4 = self.o(st, "N4")
+        n4["bad"] = 20399
+        st["day"] = 20399
+        n0 = era2._g6_have(st, "村", "草の種")
+        g12._settle(st)
+        self.assertEqual(g["paid"]["169"]["N4"], "苦しいので村が出した")
+        self.assertIn("N4", g["relief"]["169"])
+        self.assertIn("F2", g["reached"])
+        # 村が出せなければすぐ切れる (上限)
+        g["given"]["170"] = 10 ** 9
+        st["day"] = 20519
+        t5 = self.o(st, "N4")["trust"]
+        g12._settle(st)
+        self.assertEqual(g["pacts"]["N4"]["status"], "切れた")
+        self.assertIn("村が約束を破った", g["pacts"]["N4"]["why"])
+        self.assertAlmostEqual(self.o(st, "N4")["trust"], round(max(0, t5 - 0.2), 2))
+        self.assertTrue(any("1 割" in f["why"] for f in g["fails"]), "減らしたわけ")
+
+    def test_help_cap_lend(self):
+        """苦しくない村は受けない / 苦しい村は受ける (F2・信頼) / 1 割の上限で減らしたわけ / 300 日分 / 貸す (貸し借りの帳簿) / c2 (3 集落・3 万)"""
+        import g12
+        st = self.g12_state()
+        g = st["era2"]["g7"]["g12"]
+        A = era2.answerers(st)[0]
+        self.calm(st, "N2")
+        g12.apply_answers(st, {A: {"help": [{"to": "N2", "草の種": 1000}]}})
+        self.assertIn("いまは足りている", g["fails"][-1]["why"])
+        self.assertNotIn("F2", g["reached"])
+        nd = [o["id"] for o in g12.needy(st)]
+        self.assertGreaterEqual(len(nd), 3)
+        g6 = era2._g6(st)
+        k0 = len(g6["debts"])
+        g12.apply_answers(st, {A: {"help": [{"to": nd[0], "草の種": 12000}, {"to": nd[1], "草の種": 9000, "lend": 0.1}]}})
+        self.assertIn("F2", g["reached"])
+        self.assertEqual(len(g6["debts"]), k0 + 1)
+        self.assertEqual((g6["debts"][-1]["other"], g6["debts"][-1]["rate"], g6["debts"][-1]["goods"]), (nd[1], 0.1, {"草の種": 9000}))
+        self.assertNotIn("c2", g["c"])
+        g12.apply_answers(st, {A: {"help": [{"to": nd[2], "草の種": 9000}]}})
+        self.assertIn("c2", g["c"], "3 集落・3 万")
+        left, _ = g12.cap_left(st)
+        g12.apply_answers(st, {A: {"help": [{"to": nd[3], "草の種": left + 500}]}})
+        self.assertIn(f"{left} つかみだけ出した", g["fails"][-1]["why"])
+        self.assertEqual(g12.cap_left(st)[0], 0)
+        # 300 日分
+        st2 = self.g12_state()
+        need = era2._need(st2)
+        kc = sum(f["kcal"] for f in st2["store"])
+        keep = int((kc - 301 * need) // era2.FOOD_KCAL["草の種"])
+        era2._g6_take(st2, "村", {"草の種": keep})
+        left2, why2 = g12.cap_left(st2)
+        self.assertIn("300 日分", why2)
+        self.assertLessEqual(left2, need // era2.FOOD_KCAL["草の種"] + 1, "300 日分を切る分は出さない")
+
+    def test_hands(self):
+        """刈り手は、実ったまま刈られていない畑だけを刈る (1 人 1 日 150 つかみまで)。村の蓄えから食べる。F4"""
+        import g12
+        st = self.g12_state()
+        g = st["era2"]["g7"]["g12"]
+        f = {"id": 99999, "state": "実った", "yield": 1000, "harvested": 900, "seed": 100, "day": 0, "work": 0, "owner": None}
+        done = {"id": 99998, "state": "刈った", "yield": 1000, "harvested": 1000, "seed": 100, "day": 0, "work": 0, "owner": None}
+        st["era2"]["fields"] = [f, done]
+        g["hands_due"] = {"N1": {"n": 2, "left": 20, "days": 20, "day": st["day"], "came": 0}}
+        g12.hands_day(st)
+        self.assertEqual((f["harvested"], f["state"], done["harvested"]), (1000, "刈った", 1000))
+        self.assertEqual(g["hands"][str(st["day"] // era2.YEAR)]["grain"], 100)
+        self.assertIn("F4", g["reached"])
+        g12.hands_day(st)
+        self.assertEqual(g["hands_due"]["N1"]["came"], 1, "刈る畑がない日は来ない")
+
+    def test_census(self):
+        """読めない人は休む (わけ) / 読める人は 1 日 2 家 / 倉・約束のあとにそろう / c3 は 2 年 / 進みが上がる / 答えのときも休むのわけ"""
+        import g10
+        import g12
+        import g7
+        st = self.g12_state()
+        g = st["era2"]["g7"]["g12"]
+        rd = g10.readers(st)
+        R = next(p for p in era2.adults(st) if p["name"] == rd[0])
+        N = next(p for p in era2.adults(st) if p["name"] not in rd)
+        t = {}
+        st["day"] = 19800
+        g12.census_day(st, N, t)
+        ev = st["events"][-1]
+        self.assertEqual((ev["type"], ev["who"]), ("休む", N["name"]))
+        self.assertIn("字を読み書きできない", ev["text"])
+        self.assertTrue(any(f["who"] == N["name"] and f["what"] == g12.ACT_CENSUS for f in g["fails"]))
+        p0 = g12.progress(st)["c3"]
+        g12.census_day(st, R, t)
+        row = g["census"]["165"]
+        self.assertEqual(len(row["houses"]), 2)
+        self.assertIn("F3", g["reached"])
+        self.assertGreater(g12.progress(st)["c3"], p0)
+        n = len(era2._homes(st))
+        for _ in range(n):
+            g12.census_day(st, R, t)
+        self.assertIsNotNone(row["done"])
+        self.assertIsNotNone(row["store"])
+        st["day"] = 19919
+        g12.season_end(st)
+        self.assertNotIn("c3", g["c"])
+        st["day"] = 19920
+        for _ in range(n):
+            g12.census_day(st, R, t)
+        st["day"] = 20039
+        g12.season_end(st)
+        self.assertIn("c3", g["c"])
+        # 答えのとき: 読めない人の「帳をつける」は休む + わけ (G10 の直し ② と同じ道)
+        g7.new_season(st)
+        N["plan"] = {"activity": "休む", "place": "camp", "with": []}
+        g7.job(st, N, {"activity": g12.ACT_CENSUS})
+        self.assertIn(N["name"], st["era2"]["g7"]["rest_why"])
+        N["plan"] = {"activity": g12.ACT_CENSUS, "place": "camp", "with": []}
+        g7.job(st, N, {"activity": g12.ACT_CENSUS})
+        self.assertEqual(N["plan"]["activity"], "休む")
+        # 読める人がいない村でも、わけを残す
+        st["era2"]["g7"]["g10"]["readers"] = {}
+        self.assertNotIn(g12.ACT_CENSUS, g7.acts(st))
+        self.assertIn("いない", g12.rest_why(st, N["name"], g12.ACT_CENSUS))
+
+    def test_paths(self):
+        """道の見張り: 名前の行 / 受けてくれそうな村が 0 なら c1 は 0 / 読める人が 0 なら c3 は 0 と報告 / 苦しい村のない年は 2 年 0 に数えない / 2 年 0 で相談 / 5 年ごと"""
+        import g10
+        import g12
+        import g7
+        st = self.g12_state()
+        g = st["era2"]["g7"]["g12"]
+        ans = era2.answerers(st)
+        ps, need = g12.paths(st)
+        self.assertEqual((len(ps["c1"]), len(ps["c2"]), need), (len(ans), len(ans), True))
+        self.assertTrue(ps["c3"])
+        for n in ps["c3"]:
+            p = next(q for q in era2.adults(st) if q["name"] == n)
+            self.assertTrue(any("帳をつけ" in x for x in g12._mine(st, p)), n)
+        for n in ans:
+            p = next(q for q in era2.adults(st) if q["name"] == n)
+            self.assertTrue(any("pact と help" in x for x in g12._mine(st, p)), n)
+        for o in g7._others(st):
+            o["trust"] = 0.0
+            o["bad"] = None
+            o["grain"] = o["people"] * 500
+        st["era2"]["g7"]["g10"]["readers"] = {}
+        ps, need = g12.paths(st)
+        self.assertEqual((ps["c1"], ps["c2"], ps["c3"], need), ([], [], [], False))
+        self.assertTrue(any("0 人" in x for x in g12.report_lines(st)))
+        for y in (165, 166):
+            st["day"] = y * era2.YEAR - 1
+            g12.count_paths(st, {})
+        st["day"] = 166 * era2.YEAR + era2.YEAR - 1
+        c = g12.path_consult(st, [])
+        self.assertEqual(c["why"], "g12_path_c1")
+        done = [c, {"why": "g12_path_c3", "year": c["year"]}]
+        self.assertIsNone(g12.path_consult(st, done), "苦しい村のない年は、c2 の 2 年 0 に数えない")
+        st["day"] = 20879
+        g["c"] = {"c1": 1, "c2": 1, "c3": 1}
+        self.assertEqual(g12.path_consult(st, [])["why"], "g12_years_20879")
+        st["day"] = 20999
+        self.assertIsNone(g12.path_consult(st, []))
+
+    def test_next_part_cli(self):
+        """step.py (写しのフォルダ): 止まっていると断る → resume → next_part で G11 → G12。G12 のお題に節と欄。2 回目は断る"""
+        import g12
+        st = self.g11_state()
+        d = tmpdir()
+        try:
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            (d / "archive").symlink_to(REAL / "archive")
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
+            r = run("next_part", "--closed-by-decision", self.NOTE)
+            self.assertEqual(r.returncode, 3, "止まっていると断る")
+            r = run("resume")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            r = run("next_part", "--closed-by-decision", self.NOTE)
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertIn("* G11 (お金と市場): 3 つの条件はそろわないまま、本人の決めで閉じた (164年120日目 (19799 日目)", r.stdout)
+            self.assertIn("* フェーズ G12 (大きな都と帝国) に入った", r.stdout)
+            self.assertIn("* G12 の世界", r.stdout)
+            new = json.loads((d / "state.json").read_text(encoding="utf-8"))
+            self.assertEqual((new["era"], new["day"], new["era2"]["g7"]["closed11"]["note"], new["era_log"][-1]["g11_closed"]), ("G12", 19799, self.NOTE, 19799))
+            pd = d / "prompts" / "day19799"
+            names = {f.stem for f in (pd / "season").glob("*.md")}
+            self.assertEqual(names, set(era2.answerers(new)))
+            for f in (pd / "season").glob("*.md"):
+                t = f.read_text(encoding="utf-8")
+                i = t.index("## 倉と約束と帳")
+                j = t.find("\n## ", i + 5)
+                self.assertEqual(g12.bad_words(t[i:j if j > 0 else None]), [], f.name)
+                self.assertIn('"pact": [], "help": []', t)
+            r = run("status")
+            self.assertIn("G12 / 条件", r.stdout)
+            r = run("next_part", "--closed-by-decision", self.NOTE)
+            self.assertEqual(r.returncode, 3, "2 回目は断る")
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
 
 
 if __name__ == "__main__":
