@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "わたしは狩りに行く。北の丘の群れを追って、ルクの肉をたくさん持ち帰るよ。"}],
+ "year": {"夏": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りがいちばん得意なので、肉を蓄えに入れたい"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "秋": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬に備えて肉を多く集める"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+          "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も獣はいるので、狩りで食べ物を得る"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "続けて狩りをする"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T271": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "狩りの年"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑がたくさん実っている。夏のうちに刈らないと落ちてしまうから、みんなで刈り入れをしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ナセ35": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要るから"}, "ワユ35": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要るから"}, "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要るから"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要るから"}, "ナセ42": {"activity": "ヤギの世話", "place": "camp", "why": "赤ん坊のそばで、ヤギの乳もとれるから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、蓄えの種を守る器がまだ要るから"}, "family": {"ナセ35": {"activity": "狩り", "place": "北川12", "why": "魚をとって食べ物を増やすため"}, "ワユ35": {"activity": "採集", "place": "camp", "why": "木の実が実る秋に集めるため"}, "ソナ37": {"activity": "狩り", "place": "東川28", "why": "魚をとるため"}, "セヤ38": {"activity": "採集", "place": "camp", "why": "木の実が実る秋に集めるため"}, "ナセ42": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減らないように世話をするため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして、次の夏の実りを増やすため"}, "family": {"ナセ35": {"activity": "狩り", "place": "北川12", "why": "冬も魚はいるから"}, "ワユ35": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ソナ37": {"activity": "狩り", "place": "東川28", "why": "冬も魚はいるから"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ナセ42": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを見守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで夏の実りを増やすため"}, "family": {"ナセ35": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ワユ35": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ソナ37": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ、乳もとれるから"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ナセ42": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギと乳のため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ホタ56": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T271": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種はとても多く、夏に実った畑は夏のうちに刈らないと落ちる。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑の実り豊かな年",
+ "feeling": "蓄えは豊かで安心している。夏の刈り入れが楽しみだ。"}
