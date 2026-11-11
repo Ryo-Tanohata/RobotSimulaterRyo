@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "みんな、この夏も木の実をたくさん集めようじゃないか。話しながら働くのが一番だ。"}],
+ "year": {"夏": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "木の実がなる季節で、自分の腕なら多く取れるから"}, "family": {}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "秋も実がなるので続ける"}, "family": {}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+          "冬": {"job": {"activity": "狩り", "place": "camp", "with": [], "why": "冬は実がないので、けものを狩って食べ物を得る"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "春は採集で蓄えを増やす"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "木の実の年",
+ "mood": "のんびり働いて、みんなと話せれば満足だ。"
+}
