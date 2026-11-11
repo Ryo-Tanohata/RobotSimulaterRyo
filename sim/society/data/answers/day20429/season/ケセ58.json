@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋だから畑に種をまこう。冬と春の草取りは、わたしも続けて出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをしないと実りが減る。続けて畑を守る"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ58": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので、いっしょに畑の草取りをしてほしい"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "pay": null, "redeem": null,
+ "pact": [],
+ "help": [{"to": "N85", "草の種": 3000}, {"to": "N4", "草の種": 1500}],
+ "knowledge": [{"op": "add", "text": "ヤギは世話をする人が少ないといなくなる。前の季節に25頭いなくなった", "because": [2505276], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "雨の夜に外で濡れるのはつらいけれど、畑の実りが楽しみだ。"}
