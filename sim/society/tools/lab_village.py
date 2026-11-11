@@ -766,7 +766,8 @@ def _g12_cols(state):
     import g12
     s = g["g12"]
     y = str(state["day"] // YEAR)
-    kh = g12.key_houses(state)
+    rd = set(g10.readers(state))  # 読める人の家 (g12.key_houses と同じ。B1X で差しかえても、ここは本当の家を見る)
+    kh = sorted({p.get("household") for p in era2.adults(state) if p["name"] in rd and p.get("household")})
     ans_h = {p.get("household") for p in era2.adults(state) if p["name"] in set(era2.answerers(state))}
     led = s["ledger"][-1] if s["ledger"] and s["ledger"][-1]["year"] == int(y) else {}
     return {"g12_c": dict(s["c"]), "g12_reached": dict(s["reached"]), "g12_c1_years": list(s["c1_years"]),
