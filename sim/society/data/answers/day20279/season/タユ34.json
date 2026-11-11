@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに実った畑を刈り切ろう。秋はヤギの世話に人を回し、冬と春は草取りを交代でやろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるから"},"family":{"ヌオ36":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"ネイ42":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"ケセ46":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"ケナ48":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"トナ50":{"activity":"畑仕事","place":"camp","why":"子も刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"ヤギの世話","place":"camp","with":[],"why":"世話する人が少ないとヤギがいなくなるから"},"family":{"ヌオ36":{"activity":"ヤギの世話","place":"camp","why":"ヤギを守るため"},"ネイ42":{"activity":"採集","place":"camp","why":"食べ物を集めて蓄えを助けるため"},"ケセ46":{"activity":"ヤギの世話","place":"camp","why":"ヤギを守るため"},"ケナ48":{"activity":"畑仕事","place":"camp","why":"畑の草取りのため"},"トナ50":{"activity":"ヤギの世話","place":"camp","why":"子もヤギの世話を手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りをしないと実りが減るから"},"family":{"ヌオ36":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ネイ42":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ケセ46":{"activity":"狩り","place":"北川12","why":"冬も魚がいるので肉と魚を取る"},"ケナ48":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"トナ50":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りをして夏の実りを増やすため"},"family":{"ヌオ36":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ネイ42":{"activity":"ヤギの世話","place":"camp","why":"春は子ヤギが生まれるので世話をする"},"ケセ46":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ケナ48":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"トナ50":{"activity":"ヤギの世話","place":"camp","why":"子もヤギの世話を手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"ラニ58":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{"T287":"村"},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[{"to":"N14","草の種":3000},{"to":"N4","草の種":2000}],
+"knowledge":[{"op":"add","text":"村の蓄えは草の種が何百日分もあるので、苦しい村に分けても村は困らない。","because":[2459796],"confidence":0.6}],
+"proposal":null,
+"votes":[{"id":"L518","against":"","agree":true,"reason":"ヤギは大事に育て、秋の種まきと草取りも続けたいから"}],
+"year_name":"ヤギ守りの年",
+"feeling":"蓄えは十分あるので、落ち着いて畑とヤギを守りたい。"}

@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑の実りが落ちる前に、みんなで夏のうちに刈ってしまおう。秋はまた種をまいて、蓄えを絶やさないようにしよう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるので、刈り入れを手伝う"},"family":{"ユエ33":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るので"},"ケセ39":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るので"},"オネ39":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るので"},"ケナ45":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るので"},"タユ46":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るので"},"ソワ48":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るので"},"ナセ50":{"activity":"畑仕事","place":"camp","why":"子も刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"狩り","place":"北丘12","with":[],"why":"狩りが得意なので、冬の前に肉をとって蓄えに入れる"},"family":{"ユエ33":{"activity":"採集","place":"東林12","why":"木の実を集めて冬に備える"},"ケセ39":{"activity":"採集","place":"東林12","why":"木の実を集めて冬に備える"},"オネ39":{"activity":"採集","place":"南林12","why":"木の実を集めて冬に備える"},"ケナ45":{"activity":"狩り","place":"北丘12","why":"狩りの腕が良いので肉をとる"},"タユ46":{"activity":"狩り","place":"北丘12","why":"狩りの腕が良いので肉をとる"},"ソワ48":{"activity":"狩り","place":"北丘12","why":"狩りの腕が良いので肉をとる"},"ナセ50":{"activity":"畑仕事","place":"camp","why":"子も畑の草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":5,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"北丘12","with":[],"why":"冬も魚やけものはいるので肉をとる"},"family":{"ユエ33":{"activity":"狩り","place":"北丘12","why":"冬も獲物がいる"},"ケセ39":{"activity":"狩り","place":"北丘12","why":"冬も獲物がいる"},"オネ39":{"activity":"狩り","place":"北丘12","why":"冬も獲物がいる"},"ケナ45":{"activity":"畑仕事","place":"camp","why":"草取りで来年の実りを増やす"},"タユ46":{"activity":"畑仕事","place":"camp","why":"草取りで来年の実りを増やす"},"ソワ48":{"activity":"畑仕事","place":"camp","why":"草取りで来年の実りを増やす"},"ナセ50":{"activity":"畑仕事","place":"camp","why":"子も草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで夏の実りを増やす"},"family":{"ユエ33":{"activity":"ヤギの世話","place":"camp","why":"春はヤギの乳がとれる"},"ケセ39":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"オネ39":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ケナ45":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"タユ46":{"activity":"狩り","place":"北丘12","why":"肉をとって蓄えに入れる"},"ソワ48":{"activity":"狩り","place":"北丘12","why":"肉をとって蓄えに入れる"},"ナセ50":{"activity":"畑仕事","place":"camp","why":"子も草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"ラニ58":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],
+"knowledge":[{"op":"add","text":"夏の実った畑は夏のうちに刈らないと落ちる。村の蓄えは十分にある。","because":[2459770],"confidence":0.8}],
+"proposal":null,
+"votes":[],
+"year_name":"実りを刈る年",
+"feeling":"蓄えは十分だが、ヤギが多すぎるので少し減らしたい。みんなで力を合わせていこう。"}

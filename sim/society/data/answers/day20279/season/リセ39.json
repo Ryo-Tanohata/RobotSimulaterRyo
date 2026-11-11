@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑がたくさん実っている。落ちる前に、みんなで刈り入れよう。秋と冬は、狩りと道具で村を支えるよ。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が夏のうちに刈らないと落ちてしまうので、刈り入れを手伝う"},"family":{"ソナ40":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"ヌオ42":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"ソワ42":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"タユ44":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"},"ヌオ48":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手を増やすため"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"狩り","place":"北草原28","with":[],"why":"狩りの腕を生かして肉を蓄えに入れる"},"family":{"ソナ40":{"activity":"狩り","place":"北草原28","why":"狩りが得意なので肉を獲る"},"ヌオ42":{"activity":"採集","place":"東林12","why":"採集が得意なので食べ物を集める"},"ソワ42":{"activity":"採集","place":"南林12","why":"採集が得意なので食べ物を集める"},"タユ44":{"activity":"畑仕事","place":"camp","why":"畑の世話をする"},"ヌオ48":{"activity":"畑仕事","place":"camp","why":"畑の世話をする"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"北草原28","with":[],"why":"冬も魚やけものはいるので狩りをする"},"family":{"ソナ40":{"activity":"狩り","place":"北草原28","why":"冬も肉を獲る"},"ヌオ42":{"activity":"畑仕事","place":"camp","why":"畑の草取りをして実りを増やす"},"ソワ42":{"activity":"畑仕事","place":"camp","why":"畑の草取りをして実りを増やす"},"タユ44":{"activity":"畑仕事","place":"camp","why":"畑の草取りをして実りを増やす"},"ヌオ48":{"activity":"畑仕事","place":"camp","why":"畑の草取りをして実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"道具づくり","place":"camp","with":[],"why":"道具の腕を生かして鎌を作り、次の刈り入れに備える"},"family":{"ソナ40":{"activity":"狩り","place":"北草原28","why":"肉を獲る"},"ヌオ42":{"activity":"畑仕事","place":"camp","why":"畑の草取りをする"},"ソワ42":{"activity":"畑仕事","place":"camp","why":"畑の草取りをする"},"タユ44":{"activity":"ヤギの世話","place":"camp","why":"春はヤギの乳がとれる"},"ヌオ48":{"activity":"ヤギの世話","place":"camp","why":"春はヤギの乳がとれる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept":{},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T287":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"実りの刈り入れの年",
+"feeling":"畑がよく実っていて安心している。みんなで刈り入れをがんばりたい。"}
