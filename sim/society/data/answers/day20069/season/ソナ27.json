@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "蔵にはまだ草の種がたっぷりある。苦しい村には貸してあげよう。ヤギは草より多いから、少しつぶして干し肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた種が来年の夏に実るので、草取りをして実りを増やしたい"}, "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "トナ29": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "アコ34": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "ホミ34": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をする"},
+  "リセ37": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をする"},
+  "ヒセ38": {"activity": "畑仕事", "place": "camp", "why": "狩りは得意でも畑の人手がほしい"},
+  "キサ39": {"activity": "狩り", "place": "北丘12", "why": "冬の前に肉を持ち帰る"},
+  "オセ40": {"activity": "狩り", "place": "北丘12", "why": "冬の前に肉を持ち帰る"},
+  "キサ41": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "オネ43": {"activity": "狩り", "place": "北丘12", "why": "冬の前に肉を持ち帰る"},
+  "ホミ47": {"activity": "畑仕事", "place": "camp", "why": "若い力で畑を手伝う"},
+  "ルタ48": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ヌオ49": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"},
+  "セオ49": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "タユ50": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}
+ }, "keep": false,
+ "feast": false, "leader": null, "trade": {"T275": "村", "T276": "村"}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えは約537日分あり、苦しい村に草の種を貸す余裕がある。ヤギは草で養える数より多い。", "because": [2404213, 2404200], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。冬の前に畑とヤギをきちんと整えたい。"}

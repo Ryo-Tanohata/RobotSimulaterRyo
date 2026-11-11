@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。この秋は畑にしっかりまいて、冬のあいだ草取りも欠かさず、夏の実りを増やそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、毎日草取りをして村の食べ物を守りたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "アコ31": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを人数で分けて、実りを減らさないため"},
+  "ユエ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを人数で分けて、実りを減らさないため"},
+  "ケセ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを人数で分けて、実りを減らさないため"},
+  "オネ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを人数で分けて、実りを減らさないため"},
+  "ヒセ44": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬の前に肉をとって蓄えを厚くする"},
+  "ケナ45": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬の前に肉をとって蓄えを厚くする"},
+  "タユ46": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、冬の前に肉をとって蓄えを厚くする"},
+  "ソワ48": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えが多くて安心している。みんなで畑を育てていきたい。"}

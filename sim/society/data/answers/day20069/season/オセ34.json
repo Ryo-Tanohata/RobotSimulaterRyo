@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、わたしは北の丘で肉をとってくる。自分の腕を信じているから、ついて来なくていい。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意で、冬の前に肉を蓄えに入れておきたいから。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ40": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕があるので、肉を多くとれる。"},
+  "キオ43": {"activity": "採集", "place": "camp", "why": "採集の腕があり、家の食べ物を支えられる。"},
+  "ソナ44": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かだから。"},
+  "ラニ47": {"activity": "採集", "place": "camp", "why": "採集が得意で、狩りはまだ未熟だから。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽く、腹も満ちている。冬の前に丘へ出るのが楽しみだ。"}

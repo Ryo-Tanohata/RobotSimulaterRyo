@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬の前に、おれは北の丘で肉をとってくる。とれた分は村の蓄えに入れるよ。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬は木の実も種も実らないので、魚やけものの肉を蓄えに足しておきたい。狩りは得意だから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "草が足りないとヤギがやせていなくなるので、ヤギは肉にして減らすほうがよい。", "because": [2404200], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽く、満腹だ。冬に向けて仲間のために肉を持ち帰りたい。"}

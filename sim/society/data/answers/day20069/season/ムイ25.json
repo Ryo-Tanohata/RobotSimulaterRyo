@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "冬の前に北の丘で肉をとってくる。ヤギも草より多いから、少し肉にして減らそう。みんなで冬を越そう。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬は木の実も草の種も実らないので、秋のうちに肉を蓄えておきたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ムイ26": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、一緒に冬の肉をとる。"},
+  "ヒセ35": {"activity": "狩り", "place": "北丘12", "why": "冬の前に肉を蓄えるため。"},
+  "ソワ35": {"activity": "狩り", "place": "北丘12", "why": "冬の前に肉を蓄えるため。"},
+  "オセ37": {"activity": "狩り", "place": "北丘12", "why": "冬の前に肉を蓄えるため。"},
+  "ソワ37": {"activity": "採集", "place": "東林12", "why": "木の実を採って蓄えを増やす。"},
+  "オネ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす。"},
+  "ケセ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす。"},
+  "ケナ43": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがやせないように世話をする。"},
+  "アコ46": {"activity": "狩り", "place": "北丘12", "why": "若いので歩いて肉を運べる。"},
+  "ラキ49": {"activity": "畑仕事", "place": "camp", "why": "畑の手伝い。"},
+  "アコ49": {"activity": "畑仕事", "place": "camp", "why": "畑の手伝い。"},
+  "ヒセ50": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの手伝い。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": []}

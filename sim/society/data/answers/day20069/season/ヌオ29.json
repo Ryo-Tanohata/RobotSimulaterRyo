@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。この秋は畑に種をまいて、冬と春の草取りを忘れずにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、畑の世話に力を注ぐ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ユエ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "タユ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ホタ41": {"activity": "狩り", "place": "北丘12", "why": "冬の前に肉をとって蓄えに加えるため"},
+  "セヤ43": {"activity": "狩り", "place": "北丘12", "why": "冬の前に肉をとって蓄えに加えるため"},
+  "シエ44": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ホタ47": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が高いので肉をとる"},
+  "ナセ48": {"activity": "畑仕事", "place": "camp", "why": "まだ腕が育っていないので畑を手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T275": "村", "T276": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は約537日分あり、秋に畑にまくだけの余裕がある。", "because": [2404213], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで落ち着いている。畑を育てるのが楽しみだ。"}

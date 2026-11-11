@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋だから、畑にたっぷり種をまこう。ヤギは草が足りなくてやせていくから、何頭かつぶして干し肉にしたほうがいい。"}, {"to": "ロワ46", "text": "この秋は畑の草取りをしっかりやろう。夏の実りはわたしたちの手しだいだよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすれば、次の夏の実りが大きく増えるから"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"ロワ46": {"activity": "畑仕事", "place": "camp", "why": "まだ採集も狩りも下手なので、畑の草取りで役に立ってほしい"}, "ヒセ48": {"activity": "畑仕事", "place": "camp", "why": "大人になったばかりなので、わたしと一緒に畑を覚えてほしい"}, "オセ49": {"activity": "畑仕事", "place": "camp", "why": "14 歳なので、畑の草取りを手伝わせる"}},
+ "keep": false,
+ "feast": true, "leader": null,
+ "trade": {"T275": {"side": "村", "利子": 0}, "T276": {"side": "村", "利子": 0}},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "草で養えるヤギは約 110 頭で、それより多いとやせていなくなる", "because": [2404200], "confidence": 0.9}, {"op": "forget", "text": "k17992", "because": [2404200], "confidence": 0.0}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "子が生まれてうれしいけれど、小さい子が亡くなるのはつらい。蓄えはたくさんあるから、苦しい村にも少し分けてあげたい。"}
