@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、わたしは北の丘で獲物を追う。ついてくる者は勝手についてこい。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕には自信がある。前の季節も狩りで食べ物を得られたので、冬に備えて肉をとる。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ40": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、肉をとってもらう。"},
+  "キオ43": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、肉をとってもらう。"},
+  "ソナ44": {"activity": "狩り", "place": "北丘12", "why": "採集は苦手でも狩りは得意なので、狩りをしてもらう。"},
+  "ラニ47": {"activity": "採集", "place": "camp", "why": "まだ若く狩りは不慣れなので、キャンプのそばで食べ物を集めてもらう。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T272": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "疲れは少しあるが、北の丘で獲物を追うのが楽しみだ。"}

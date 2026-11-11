@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。冬の前に、おれは川の粘土で土器をたくさん焼いておくよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。土器に入れれば蓄えの草の種が虫やネズミに食われにくくなるから。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ35": {"activity": "土器づくり", "place": "camp", "why": "一緒に土器を作れば、冬に備えて蓄えを守れる。"}, "ワユ35": {"activity": "採集", "place": "camp", "why": "木の実を集めて家の食べ物を増やす。"}, "ソナ37": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいるので、肉を確保しておく。"}, "セヤ38": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで実りを増やす。"}, "ナセ42": {"activity": "採集", "place": "camp", "why": "子の世話をしながらキャンプのそばで木の実を集める。"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T272": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "土器に入れた草の種は傷みにくいので、冬の前に土器を増やしておくと安心できる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは多くて落ち着いている。冬に向けて手を動かしたい。"}

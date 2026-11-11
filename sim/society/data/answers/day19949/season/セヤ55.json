@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の前に北の丘で肉をとってくる。干して蓄えに足すから、草取りの手が足りない日は声をかけてくれ。"}, {"to": "リセ55", "text": "今度もいっしょに丘へ行こう。けがをしないように、離れすぎるなよ。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": ["リセ55"], "why": "狩りがいちばん得意だから、冬の前に肉を多くとっておきたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"リセ55": {"activity": "狩り", "place": "北丘12", "why": "リセ55も狩りが上手なので、二人で組めば多くとれる"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T272": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "前の夏の刈り入れで、ひとりおよそ草の種 8000 つかみが刈れた。秋に 1000 つかみまくと、たくさん実る", "because": [2373582], "confidence": 0.7}, {"op": "add", "text": "いまヤギは 103 頭で、草で養える数より少ない", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L510", "against": "", "agree": true, "reason": "ヤギは養える数より少ないので守り、畑にまいて草取りをすれば夏に多く刈れる"}, {"id": "L0", "against": "", "agree": true, "reason": "夜のザガはこわい"}],
+ "feeling": "冬が来る前に、肉をしっかりとっておきたい。"}
