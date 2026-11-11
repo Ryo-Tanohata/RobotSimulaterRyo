@@ -2260,7 +2260,7 @@ def year_prompt(state, p, first):
 {D + 1} 日目、{now}。1 年に 1 回の村の集まり。これから {nxt - D - 1} 日 ({'・'.join(seas)}) の、季節ごとの予定と、{'1 年' if len(seas) == 4 else '年の終わりまで'}の方針を決める (次の年の集まりは {nxt} 日目、夏のはじめ。{'秋は、秋のはじめにも集まって、畑と種を見てから、秋の仕事とまく量 (sow) を決め直す (year の秋は、そのときの見込み)。ほかの季節は集まらない。' if AUTUMN in seas[1:] else ''}途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。
 季節ごとに見て分かること:
 {_season_notes(state, seas)}
-{asks}
+{_g12m().prompt_block(state, p) if _g12_on(state) else ''}{asks}
 
 場所の一覧:
 {places}

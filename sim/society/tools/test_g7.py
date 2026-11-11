@@ -5785,5 +5785,113 @@ class T_G12(unittest.TestCase):
             shutil.rmtree(d, ignore_errors=True)
 
 
+class T_G12Prompt(unittest.TestCase):
+    """2026-11-11 本人の決め「お題を直して 5 年見る」(G12_design.md 12.): g12.G12_PROMPT_FROM (168年120日目 = 20279 日目) から、「## いま」の答えの並びのすぐ前に
+    短い節 (g12.prompt_block。その人ができる pact・help・帳と 3 つの進み) を置く。その日は refresh_prompts の印 (g7.g12.prompt_fix) のあとだけ。
+    20279 日目 (G12・HOLD consult・答えなし) の git の state (AT) と、そのとき前のコードで書いたお題から、メモリの中で確かめる"""
+
+    AT = "1572f94a"  # 20249 日目からの歩 (state は 20279 日目。年の集まりのお題は前のコード)
+    G = 20279
+    READER = "ヒセ42"  # 自分が読める代表
+    FAMILY = "ムイ25"  # 家の ヒセ35 が読める代表
+    PLAIN = "キオ31"  # 家に読める人のいない代表
+
+    def st(self):
+        st = git_state(self.AT)
+        if st["day"] != self.G or "g12" not in st["era2"]["g7"]:
+            self.skipTest("AT の state が 20279 日目の G12 でない")
+        return st
+
+    def prompt(self, st, name, season=False):
+        import g7
+        p = next(q for q in st["people"] if q["name"] == name)
+        return era2.season_prompt(st, p, g7.since(st)) if season else g7.year_prompt(st, p, g7.since(st))
+
+    def old_file(self, name):
+        r = subprocess.run(["git", "-C", str(ROOT), "show", f"{self.AT}:sim/society/data/prompts/day{self.G}/season/{name}.md"], capture_output=True)
+        if r.returncode:
+            self.skipTest("前のお題が git にない")
+        return r.stdout.decode("utf-8")
+
+    def test_gate_identical(self):
+        """印のない 20279 日目: お題は前のコードで書いたものと 1 バイトも同じ (節はない)。印はその日より前には書かない"""
+        import g12
+        self.assertEqual(g12.G12_PROMPT_FROM, self.G)
+        st = self.st()
+        self.assertFalse(g12.prompt_fixed(st))
+        for n in (self.READER, self.FAMILY, self.PLAIN):
+            self.assertIn(n, era2.answerers(st))
+            t = self.prompt(st, n)
+            self.assertNotIn(g12.BLOCK_HEAD[:8], t)
+            self.assertEqual(t, self.old_file(n), n)
+        early = self.st()
+        early["day"] = self.G - 30
+        js = json.dumps(early, sort_keys=True, ensure_ascii=False)
+        g12.mark_prompt_fix(early, "試し")
+        self.assertEqual(json.dumps(early, sort_keys=True, ensure_ascii=False), js, "その日より前は何もしない")
+        self.assertFalse(g12.prompt_fixed(early))
+        self.assertEqual(g12.prompt_block(early, early["people"][0]), "")
+
+    def test_block(self):
+        """印のあと: 「## いま」の答えの並び (1.) のすぐ前に節。読める人の家の代表には、その家の読める人の名前。pact の例は相手が受ける形。書かない言葉は 0"""
+        import g10
+        import g12
+        st = self.st()
+        g12.mark_prompt_fix(st, "試し")
+        self.assertEqual(st["era2"]["g7"]["g12"]["prompt_fix"], {"day": self.G, "why": "試し"})
+        self.assertTrue(g12.prompt_fixed(st))
+        nxt = self.st()
+        nxt["day"] = self.G + 30
+        self.assertTrue(g12.prompt_fixed(nxt), "その日より後は印がなくても")
+        rd = set(g10.readers(st))
+        for n, want in ((self.READER, f"- 帳: あなた ({self.READER}) は字を読み書きできる"), (self.FAMILY, "は family に書く"),
+                        (self.PLAIN, "- 帳: あなたの家には字を読み書きできる人がいない")):
+            t = self.prompt(st, n)
+            head = g12.BLOCK_HEAD.replace("あなたが", f"あなた ({n}) が", 1)
+            i, k, j = t.index("\n## いま\n"), t.index(head), t.index("\n1. 話したいこと")
+            self.assertTrue(i < k < j, n)
+            blk = t[k:j]
+            self.assertEqual(t.count(head), 1)
+            self.assertIn(want, blk, n)
+            self.assertEqual(g12.bad_words(blk), [], n)
+            for key in ('"pact": [{"to": "', '"help": [{"to": "', "倉の約束の輪:", "倉から地域を養う:", "人と倉の帳:", "しなくてもよい"):
+                self.assertIn(key, blk, (n, key))
+            self.assertIn("## 倉と約束と帳", t, "長い節も残す")
+            self.assertNotIn(f"- あなた ({n}) は字を読み書きできるので、主な仕事を", t, "その人だけの行は短い節へ移した")
+            self.assertEqual(len(re.findall(r"^- (倉の約束の輪|倉から地域を養う|人と倉の帳): ", blk, re.M)), 3)
+            self.assertNotIn("しなければならない", blk)
+            self.assertIn('"take": {"草の種": 100}}] のように書く', t, "欄の説明の例も、受ける形に")
+        fam =g12._house_readers(st, self.FAMILY)
+        self.assertTrue(fam and set(fam) <= rd)
+        self.assertIn(f"あなたの家の {'・'.join(fam)} は", self.prompt(st, self.FAMILY))
+        cand = g12.candidates(st)
+        self.assertTrue(cand)
+        for o in cand:
+            self.assertIsNone(g12.accept_why(st, o, g12._pact_example(o)), f"例の約束は、相手が受ける形 ({o['id']})")
+
+    def test_season_prompt(self):
+        """秋の集まり・季節の形のお題 (era2.season_prompt) でも、「## いま」の答えの並びのすぐ前に出る (印の前は出ない)"""
+        import g12
+        st = self.st()
+        self.assertNotIn(g12.BLOCK_HEAD[:8], self.prompt(st, self.READER, season=True))
+        g12.mark_prompt_fix(st, "試し")
+        t = self.prompt(st, self.READER, season=True)
+        i, k, j = t.index("\n## いま\n"), t.index(g12.BLOCK_HEAD[:8]), t.index("\n1. 話したいこと")
+        self.assertTrue(i < k < j)
+
+    def test_progress(self):
+        """進みの行: 届いた条件は「届いた」、帳のそろった年がつづけば数える"""
+        import g12
+        st = self.st()
+        g = st["era2"]["g7"]["g12"]
+        g["c"]["c2"] = 20000
+        y = g12._y(st)
+        for k, d in ((y, 20200), (y - 1, 20100)):
+            g["census"][str(k)] = {"houses": [], "people": {}, "store": None, "pacts": None, "days": 3, "by": {}, "done": d}
+        ls = g12.progress_lines(st)
+        self.assertEqual(ls[1], "- 倉から地域を養う: 届いた (20000 日目)")
+        self.assertIn("いま 2 年つづいている", ls[2])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

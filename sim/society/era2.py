@@ -3854,7 +3854,7 @@ def _season_prompt(state, p, first):
 {_year_names_text(state)}{_g5_text(state)}{_g6_text(state)}{_g7_text(state, p)}{vis}{_year_end_text(state)}
 ## いま
 {state["day"] + 1} 日目、{sea}。これから {SEASON_DAYS - (state["day"] + 1) % SEASON_DAYS} 日 (この季節の終わりまで) の仕事を決める集まり (途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。{g7.zoom_line(state) if g7 else ""}
-1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
+{_g12m().prompt_block(state, p) if g7 and _g12_on(state) else ""}1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
 2. この季節の主な仕事を決める (job)。仕事は {' / '.join(acts2(state))} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
    畑仕事 (草取り・刈り入れ) は camp で行う
    ヤギの世話は camp で行う。ヤギを捕まえるは、野生のヤギのいる場所で行う

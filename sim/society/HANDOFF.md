@@ -3,6 +3,34 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-11 G12 のお題の直し (ブランチ g12-prompt-fix。本人の決め「お題を直して 5 年見る」。本物の村は 168年120日目 = 20279 日目で `HOLD consult` のまま)
+
+- G12 の 4 年、答える人は pact・help・仕事「帳をつける」をほとんど選ばなかった (168年は 0)。お題 (1 通 約 255 KB) の中で、節「## 倉と約束と帳」は 900 行目ほどに埋もれていた。
+  **お題だけ** を直した (決まり・数は変えない。`docs/society_phase/G12_design.md` 12.・`G12_check.md` 5.)。
+- `g12.G12_PROMPT_FROM = 20279` から、「## いま」の答えの並び (1.) のすぐ前に短い節 `g12.prompt_block`「倉と約束と帳: この集まりで、あなた (名前) ができること (どれも、しなくてもよい…)」:
+  pact (受けてくれそうな村と、受ける形の例 1 行)・help (苦しい村・この年にあと出せる量・例)・帳 (その人の家で「帳をつける」にできる人と、何日で書き終えて何が分かるか)・3 つの進み (1 行ずつ)。
+  長い節は残し、重なる行は 1 行にした。欄の説明の pact の例の take は 200 → 100 (前の例は北の村13 が受けない形だった)。気持ち・まわりの集落のお題は変わらない。
+- 20279 日目は止まっていて、お題は前のコードで出ている。印 `g7.g12.prompt_fix` は `refresh_prompts` が書く (これがないと 20279 日目のお題は前のまま。前の日は 1 バイトも同じ)。
+- **本物の村に入れる手順 (答えを集める前に)**:
+  1. 本物の村は止めたまま、g12-prompt-fix を本物の村のブランチに入れる (merge)。入れたあと `python3.13 sim/society/tools/test_g7.py T_G12Prompt` (1 分ほど) と `T_G12`。
+  2. `python3.13 sim/society/step.py who` → `DAY 20279 season True`・`PHASE G12`・`HOLD consult`・`MEET 年`。答え (`sim/society/data/answers/day20279/`) がまだないこと。
+  3. 止まりを解く (日は進まない): `python3.13 sim/society/step.py resume` → 「再開した」 (止まったままだと refresh_prompts は「一時停止している」と断る)。
+  4. お題を書き直す (3〜4 分):
+     ```bash
+     python3.13 sim/society/step.py refresh_prompts --why "本人の決め 2026-11-11 (お題を直して 5 年見る): 倉の約束・倉から助ける・帳を、その人ができることとして「いま」の前に短く"
+     ```
+     → 「* 168年120日目 (20279 日目)のお題を書き直した (…)。答える人 20・気持ち 50」 (写しでは、答える家に足す人はいなかった)。
+  5. 確かめ (読むだけ):
+     - `grep -l "倉と約束と帳: この集まりで" sim/society/data/prompts/day20279/season/*.md | wc -l` → 20 (答える人みな)。
+     - `grep -c "^- 帳: あなた (ヒセ42) は字を読み書きできる" sim/society/data/prompts/day20279/season/ヒセ42.md` → 1。`grep -c "ヒセ35 は family に書く" sim/society/data/prompts/day20279/season/ムイ25.md` → 1。
+       `grep -c "^- 帳: あなたの家には字を読み書きできる人がいない" sim/society/data/prompts/day20279/season/キオ31.md` → 1。
+     - `python3.13 -c "import json; print(json.load(open('sim/society/data/state.json'))['era2']['g7']['g12']['prompt_fix'])"` → `{'day': 20279, 'why': '本人の決め 2026-11-11 …'}`。
+     - `git status --short sim/society/data/prompts/day20279` で変わるのは `season/` の 20 通だけ (`feeling/` 50 通と `council/` 4 通は 1 バイトも同じ)。
+  6. コミットしてプッシュ (`git add sim/society/data`。文は「社会シミュレーション: G12 のお題を直した (168年120日目。本人の決め 2026-11-11)」)。
+  7. ワークフローを 1 年ずつ 5 年 (`{"mode": "year", "years": 1, "py": "python3.13", "session": "<URL>"}`)。次の相談は 5 年ごとの相談 (173年120日目 = 20879 日目。コードが `HOLD consult`)。
+     1 年ごとに `step.py status` の「G12 / 道の見張り」(選んだ人の数 `chose`)・「G12 / 条件」・「G12 / 報告」を見る。止める決まりは 2026-11-10 の項のまま。
+- 試し (1 クラス 1 プロセス) と前の歩のやり直しは `G12_check.md` 5.。
+
 ## 2026-11-10 G12「大きな都と帝国」を作った (本人の決め「おすすめどおりで進める」。ブランチ g12-impl。本物の村はまだ G11 のまま 164年120日目で休んでいる)
 
 - 下書き `docs/society_phase/G12_design_draft.md` のおすすめ (9. の 1〜13) をみな決めにした: `docs/society_phase/G12_design.md` (決めた所に「本人の決め 2026-11-10 (お任せ): おすすめ」)。確かめ: `docs/society_phase/G12_check.md`。
