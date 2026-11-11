@@ -1,0 +1,13 @@
+{"say":[{"to":"みんな","text":"夏の畑はたっぷり実っている。落ちる前に、みんなで刈ってしまおう。"}],
+"year":{"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑を夏のうちに刈らないと落ちてしまうから"},"family":{"ルタ35":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ロワ38":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ナセ39":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"オネ40":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":2},
+"秋":{"job":{"activity":"狩り","place":"北丘12","with":[],"why":"狩りが得意なので肉を取って蓄えに足す"},"family":{"ルタ35":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"},"ロワ38":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"},"ナセ39":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"},"オネ40":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"北丘12","with":[],"why":"冬も獣はいるので肉を取る"},"family":{"ルタ35":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"},"ロワ38":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"},"ナセ39":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"},"オネ40":{"activity":"狩り","place":"北丘12","why":"狩りが得意だから"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで畑の実りを増やすため"},"family":{"ルタ35":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"},"ロワ38":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"},"ナセ39":{"activity":"狩り","place":"北丘12","why":"狩りで肉を取る"},"オネ40":{"activity":"狩り","place":"北丘12","why":"狩りで肉を取る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{"T280":"村","T281":"村","T282":"村","T283":"村"},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"実りの夏の年","mood":"蓄えは多く、落ち着いた気持ちでいる。"}

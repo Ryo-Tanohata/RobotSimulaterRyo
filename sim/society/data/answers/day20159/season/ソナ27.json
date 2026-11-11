@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏は畑を刈り、秋にまいて、冬は北の丘で肉をとろう。ヤギは草より多いから、少しつぶして減らそう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"トナ29": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "アコ34": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ホミ34": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "リセ37": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ヒセ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "キサ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "オセ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "キサ41": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "オネ43": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 10},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やす"}, "family": {"トナ29": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "アコ34": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ホミ34": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "リセ37": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヒセ38": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を集める"}, "キサ39": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を集める"}, "オセ40": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を集める"}, "キサ41": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を集める"}, "オネ43": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も魚やけものはいるから肉をとる"}, "family": {"トナ29": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}, "アコ34": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}, "ホミ34": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "リセ37": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため草取りを続ける"}, "family": {"トナ29": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "アコ34": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ホミ34": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "リセ37": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヒセ38": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T280": "村", "T281": "村", "T282": false, "T283": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えは約449日分あり、苦しい村に草の種を貸せる。ヤギは草で養える数より多い。", "because": [2423783], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ゆたかな蓄えの年",
+ "feeling": "蓄えが多くて安心している。みんなで冬までしっかり働きたい。"}
