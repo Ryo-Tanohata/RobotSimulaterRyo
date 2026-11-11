@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りん。夏のうちに何頭か肉にして、畑の草の種はちゃんと刈っておこう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ホタ42": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "アコ44": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "リセ45": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ハソ50": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので畑で働かせる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 10},
+  "秋": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "肉をとって蓄えを厚くする"}, "family": {"ホタ42": {"activity": "採集", "place": "東林12", "why": "木の実を集める"}, "アコ44": {"activity": "採集", "place": "南林12", "why": "木の実を集める"}, "リセ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ハソ50": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 100000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も魚やけものはいるから肉をとる"}, "family": {"ホタ42": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}, "アコ44": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}, "リセ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ハソ50": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "得意な狩りで肉を蓄えに入れる"}, "family": {"ホタ42": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}, "アコ44": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "リセ45": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ハソ50": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギの多い年",
+ "mood": "蓄えは十分あるし、いつもどおり狩りをして過ごせればいい。"}

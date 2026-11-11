@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈ってしまおう。落ちてからでは遅い。ヤギは草に対して多すぎるから、少しつぶして肉にするのがよいと思う。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"タユ38": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の刈り入れを急ぐため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 20},
+          "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが要るので手伝う"}, "family": {"タユ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、肉を蓄えに足せるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで来年の実りが増えるから"}, "family": {"タユ38": {"activity": "狩り", "place": "北丘12", "why": "冬も獣はいるので肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて実りを守る"}, "family": {"タユ38": {"activity": "狩り", "place": "北丘12", "why": "春も肉をとって蓄えを助ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れを急いだ年"}
