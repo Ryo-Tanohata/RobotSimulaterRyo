@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑がよく実ったね。夏のうちにみんなで刈り切って、落とさないようにしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"オセ44": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "セオ45": {"activity": "畑仕事", "place": "camp", "why": "小さい子もいるが、キャンプで刈り入れを手伝える"}, "セヤ47": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬に備えて肉を集めたいから。狩りが得意なので続ける"}, "family": {"オセ44": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、肉を多く持ち帰れる"}, "セオ45": {"activity": "採集", "place": "camp", "why": "小さい子のそばでキャンプ近くを採集する"}, "セヤ47": {"activity": "採集", "place": "南川12", "why": "採集が得意で、川の近くなら安全"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意で、草の種を虫から守れる"}, "family": {"オセ44": {"activity": "狩り", "place": "北丘12", "why": "冬も獣はいるので肉をとる"}, "セオ45": {"activity": "休む", "place": "camp", "why": "小さい子の世話をして体を休める"}, "セヤ47": {"activity": "採集", "place": "北川12", "why": "冬は魚や芋を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして畑の実りを増やすため"}, "family": {"オセ44": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やすため"}, "セオ45": {"activity": "畑仕事", "place": "camp", "why": "キャンプで草取りができる"}, "セヤ47": {"activity": "採集", "place": "西草原12", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T273": false, "T274": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "草が足りないと、ヤギがやせていなくなる。ヤギが多すぎる", "because": [2393359], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑のみのりの年",
+ "feeling": "蓄えは十分あって安心している。夏の刈り入れをがんばりたい。"}
