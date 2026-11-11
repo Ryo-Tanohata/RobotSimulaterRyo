@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にある。この秋は畑の草取りをしっかりやって、来年の夏の実りを増やそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど実りが増える。蓄えは多いので、来年の夏のために手を貸したい。"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ36": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る。"},
+  "ヌオ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る。"},
+  "ワユ41": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないよう世話をする。"},
+  "セヤ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る。"},
+  "シエ49": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを進める。"},
+  "セヤ52": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える。"}
+ },
+ "keep": false,
+ "judge": {"M497": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T297": "村", "T298": "村", "T299": "村", "T300": "村", "T301": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまいた畑は、秋と冬と春に草取りをすると夏の実りが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えが多くて安心している。畑仕事に精を出して、村の来年を支えたい。"}

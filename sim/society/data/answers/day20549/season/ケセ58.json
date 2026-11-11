@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ヤギはいま 91 頭で、草で養える数よりずっと少ない。よその村がヤギを持って来るなら、土器と鎌で替えて増やしていいと思う。土器も鎌も村にたくさんある。"}, {"to": "ラニ58", "text": "この秋はヤギのそばにいてやって。世話が足りないと、また逃げてしまうから。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "みんなが種をまくので、草取りの手が足りないと実りが減るから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ラニ58": {"activity": "ヤギの世話", "place": "camp", "why": "前の季節に世話が足りず 8 頭いなくなったから"}}, "keep": false,
+ "judge": {"M497": "ゆるす"}, "feast": false, "leader": null, "trade": {"T297": "村", "T298": "村", "T299": "村", "T300": "村", "T301": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "世話をする人が少ないと、ヤギは 91 頭まで減った。前の季節にも 8 頭いなくなった", "because": [2537785], "confidence": 0.9}, {"op": "add", "text": "よその村はヤギ 1 頭を、土器と鎌と草の種あわせて草の種 300〜375 つかみ分ほどで替えたがる", "because": [2537797, 2537801], "confidence": 0.7}],
+ "proposal": {"text": "ヤギが草で養える約140頭より少ないあいだは、よその村が持って来るヤギを、土器や鎌と替えて受けとろう。毎日だれか三人が交代でヤギの世話をしよう。", "because": [2537785, 2537797, 2537801], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L520", "against": "", "agree": true, "reason": "種をまいて草取りをし、ヤギを守るのは今の村に合っている"}, {"id": "L518", "against": "", "agree": true, "reason": "ヤギは少ないので、つぶさずに育てたい"}, {"id": "L517", "against": "", "agree": true, "reason": "まいて草取りをすれば、夏に多く実るから"}, {"id": "L523", "against": "いまヤギは 91 頭で、つぶす分はない", "agree": false, "reason": "数がちがっていて、今の村には合わない"}],
+ "feeling": "畑の草をよく取って、来年の夏にたくさん刈りたい。"}
