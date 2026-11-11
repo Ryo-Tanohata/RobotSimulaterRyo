@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに実った畑を刈らないと落ちてしまう。まず刈り入れを皆でやろう。秋は畑にまく分も忘れずに。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるため"},"family":{"ナセ35":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ワユ35":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ソナ37":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"セヤ38":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"},"ナセ42":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"採集","place":"東林12","with":[],"why":"木の実が実る季節で、採集が得意なので"},"family":{"ナセ35":{"activity":"採集","place":"東林12","why":"木の実を集めて蓄えを増やす"},"ワユ35":{"activity":"狩り","place":"北丘12","why":"肉を確保する"},"ソナ37":{"activity":"採集","place":"南林12","why":"木の実を集める"},"セヤ38":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ナセ42":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"北丘12","with":[],"why":"冬は実りがないが魚やけものはいるため"},"family":{"ナセ35":{"activity":"狩り","place":"北丘12","why":"冬の肉を取る"},"ワユ35":{"activity":"狩り","place":"北丘12","why":"冬の肉を取る"},"ソナ37":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"セヤ38":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ナセ42":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで夏の実りを増やすため"},"family":{"ナセ35":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ワユ35":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ソナ37":{"activity":"採集","place":"東林12","why":"食べ物を集める"},"セヤ38":{"activity":"採集","place":"南林12","why":"食べ物を集める"},"ナセ42":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"畑がよく実った年",
+"mood":"蓄えは多く、落ち着いた気持ちで刈り入れに向かう。"}
