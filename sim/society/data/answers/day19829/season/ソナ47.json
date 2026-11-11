@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬の前に、わたしは北の丘で肉を狩ってくるよ。野生のヤギの群れもいるから、見つけたら知らせるね。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕が一番だから、冬に備えて肉を村に入れたい"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M494": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "北の丘には野生のヤギの群れがいて、狩りで肉が手に入る", "because": [2337271], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "赤ん坊のヌオ55のためにも、冬までにたくさん狩りたい。"}

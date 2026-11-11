@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "ヤギが草の養える数より 25 頭ほど多い。やせて消える前に、乳の出ないものから肉にして干しておこう。おれとリセ55は北の丘で狩りをして、冬の肉をためておく。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": ["リセ55"], "why": "狩りがいちばん得意だ。冬の前に肉をとっておきたい"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"リセ55": {"activity": "狩り", "place": "北丘12", "why": "リセ55も狩りがうまい。おれと組めば獲物が多い"}},
+ "keep": false,
+ "judge": {"M494": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える数をこえると、季節ごとに何頭もやせていなくなる。前の季節は 177 頭いて 12 頭いなくなった", "because": [2337285], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L511", "against": "", "agree": true, "reason": "いまもヤギが 165 頭で草が足りない。やせて消えるより肉にしたほうがいい"},
+           {"id": "L510", "against": "ヤギはいま草の養える数より多い。つぶさずにおくと、やせていなくなる", "agree": false, "reason": "今の数に合っていない"},
+           {"id": "L508", "against": "", "agree": true, "reason": "多すぎる分をつぶして、世話も交代でするのはいい"}],
+ "mood": "秋の獲物を追うのが楽しみだ"}

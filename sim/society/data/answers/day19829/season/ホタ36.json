@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "ヤギが草に対して多すぎるから、わたしの家でも肉にして干しておくよ。冬の前に北の丘も見てみたいね。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "ヤギが多すぎるので野の獣を狩って冬の肉をためたい。狩りの腕には自信がある。"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソワ36": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、冬の肉をとってもらう。"},
+  "ケナ37": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、冬の肉をとってもらう。"},
+  "シエ42": {"activity": "畑仕事", "place": "camp", "why": "採集が得意なので、畑の草取りで来年の実りを増やす。"},
+  "ケセ43": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので北の丘で肉をとる。"},
+  "キオ45": {"activity": "畑仕事", "place": "camp", "why": "採集が得意なので畑の草取りを手伝う。"},
+  "ヒセ46": {"activity": "畑仕事", "place": "camp", "why": "小さな子の世話もあるのでキャンプで畑仕事をする。"},
+  "シエ46": {"activity": "畑仕事", "place": "camp", "why": "キャンプの畑の草取りを手伝う。"}},
+ "keep": false,
+ "judge": {"M494": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "ヤギが草原の草より多く、秋に増えすぎた分はやせていなくなる。", "because": [2337285], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "ヤギのことは気がかりだが、体は軽く、冬に向けて狩りに出るのが楽しみだ。"}

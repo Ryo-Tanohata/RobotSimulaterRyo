@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "ヤギが草に対して多すぎる。冬の前に何頭かつぶして肉にしよう。わたしはこの秋、畑の草取りをする。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると次の夏の実りが増えるので、続けてやる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3,
+ "family": {
+  "ネイ30": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が一番だから、冬の前の肉を獲ってもらう"},
+  "ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、ネイ30と一緒に北の丘で肉を獲る"},
+  "ロワ38": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして、畑の実りを減らさないため"},
+  "ナセ39": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして、畑の実りを減らさないため"},
+  "オネ40": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて、肉をできるだけ多く集めるため"}},
+ "keep": false,
+ "judge": {"M494": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、草取りをする人が少ないと実りが減る。家の大人みんなで畑仕事をするとよい。", "because": [2337284], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるが、ヤギが多すぎるのが気がかり。畑の草取りをこつこつやるつもりだ。"}
