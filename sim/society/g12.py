@@ -54,6 +54,13 @@ WORDS = ("都", "帝国", "国", "税", "戸籍") + g11.WORDS  # 村の人に見
 FS = {"F1": "はじめての倉の約束", "F2": "はじめて倉から助けを出した", "F3": "はじめての帳", "F4": "約束の分が、はじめて村に届いた"}
 CS = {"c1": "倉の約束の輪", "c2": "倉から地域を養う", "c3": "人と倉の帳"}
 FALLEN_RE = re.compile(r"刈らずに残った草の種 約 (\d+) つかみ")
+# 2026-11-11 本人の決め「お題を直して 5 年見る」(G12_design.md 12.): G12 の 4 年、答える人は pact・help・仕事「帳をつける」をほとんど選ばなかった
+# (168年は 0)。お題が 255 KB あり、節「## 倉と約束と帳」は 900 行目ほどに埋もれていた。G12_PROMPT_FROM (168年120日目。第 6 部の 50 年の相談の日) から、
+# 「## いま」の答えの並びのすぐ前に、その人がこの集まりでできること (pact・help・帳) と、3 つの進みを短く書く (prompt_block)。決まりと数は変えない。
+# その日 (お題は前のコードで出ていた) は、step.py refresh_prompts が g7.g12.prompt_fix を書いたあとだけ (g11.trust_fixed・g7.feel_capped と同じ形)。
+# だから、その日までの歩をやり直しても、state もお題も前と 1 バイトも同じ
+G12_PROMPT_FROM = 20279
+BLOCK_HEAD = "倉と約束と帳: この集まりで、あなたができること (どれも、しなくてもよい。書かなければ今のまま)"
 
 
 def on(state):
@@ -62,6 +69,17 @@ def on(state):
 
 def _g(state):
     return state["era2"]["g7"]["g12"]
+
+
+def prompt_fixed(state):
+    """お題の直し (G12_PROMPT_FROM) が効くか: その日より後はいつも。その日は refresh_prompts の印 (g7.g12.prompt_fix) のあとだけ"""
+    return on(state) and (state["day"] > G12_PROMPT_FROM or (state["day"] == G12_PROMPT_FROM and "prompt_fix" in _g(state)))
+
+
+def mark_prompt_fix(state, why):
+    """refresh_prompts から: G12_PROMPT_FROM の日に、お題の直しを今の歩から入れたことを g7.g12.prompt_fix に残す (その日より前なら何もしない)"""
+    if on(state) and state["day"] >= G12_PROMPT_FROM and "prompt_fix" not in _g(state):
+        _g(state)["prompt_fix"] = {"day": state["day"], "why": why}
 
 
 def _y(state):
@@ -944,12 +962,16 @@ def text(state, p):
     rows = [f"- 村の倉: 草の種 {_grain_have(state)} つかみ (いまの人数で 約 {era2.store_days(state)} 日分)。"
             + (f"去年、虫やネズミに 約 {g['pests'][str(y - 1)]} つかみ食べられた。" if g["pests"].get(str(y - 1)) else "")
             + f"この年に倉から出せるのは、あと 草の種 {left} つかみ"]
-    nd = needy(state)
-    rows.append("- いま苦しい村 (天気が悪いか、蓄えが少ない): " + ("・".join(f"[{o['id']}] {o['name']}" for o in nd) if nd else "いまはない"))
-    cand = candidates(state)
-    rows.append("- 倉の約束を受けてくれそうな村 (村を信じていて、歩いて 3 日以内、この 1 年に村と争っていない): "
-                + ("・".join(_o_line(o) + ("・いま苦しい" if struggling(o) else "") for o in cand) + " (出せる物: 草の種・刈り手。黒曜石を持つ村は黒曜石も)"
-                   if cand else "いまはない"))
+    pf = prompt_fixed(state)
+    if pf:
+        rows.append("- いま苦しい村・倉の約束を受けてくれそうな村・あなたがこの集まりでできることは、下の「## いま」の答えの並びのすぐ前に書いた")
+    else:
+        nd = needy(state)
+        rows.append("- いま苦しい村 (天気が悪いか、蓄えが少ない): " + ("・".join(f"[{o['id']}] {o['name']}" for o in nd) if nd else "いまはない"))
+        cand = candidates(state)
+        rows.append("- 倉の約束を受けてくれそうな村 (村を信じていて、歩いて 3 日以内、この 1 年に村と争っていない): "
+                    + ("・".join(_o_line(o) + ("・いま苦しい" if struggling(o) else "") for o in cand) + " (出せる物: 草の種・刈り手。黒曜石を持つ村は黒曜石も)"
+                       if cand else "いまはない"))
     act = [(oid, x) for oid, x in sorted(g["pacts"].items(), key=lambda kv: int(kv[0][1:])) if _active(x)]
     if act:
         for oid, x in act:
@@ -986,7 +1008,8 @@ def text(state, p):
     f = [x for x in g["fails"] if x["year"] >= y - 1][-4:]
     if f:
         rows.append("- 倉と約束と帳で、できなかったこと: " + " / ".join(x["why"] for x in f))
-    rows += _mine(state, p)
+    if not pf:
+        rows += _mine(state, p)
     return "\n## 倉と約束と帳\n" + "\n".join(rows) + "\n"
 
 
@@ -1008,6 +1031,101 @@ def _mine(state, p):
     return out
 
 
+def _pact_example(o):
+    """o が受ける形の例 (受ける決まり 1〜5 に合う。数は書かずに、例の量だけ見せる)"""
+    take = max(10, min(o["people"] * TAKE_GRAIN_PER, o["people"] * TAKE_GRAIN_PER // 20 * 10))
+    return {"give": {GRAIN: take * 10}, "take": {GRAIN: take}}
+
+
+def _js(x):
+    return json.dumps(x, ensure_ascii=False)
+
+
+def progress_lines(state):
+    """3 つの進み (1 行ずつ。村の人が見て分かる数だけ)"""
+    g, y = _g(state), _y(state)
+    out = []
+    if "c1" in g["c"]:
+        out.append(f"- 倉の約束の輪: 届いた ({g['c']['c1']} 日目)")
+    else:
+        ys = sorted((k for k, v in g["paid"].items() if v), key=int)
+        last = ys[-1] if ys else None
+        n = sum(1 for v in (g["paid"].get(last) or {}).values() if v == "出した") if last else 0
+        out.append(f"- 倉の約束の輪: 続いている倉の約束 {sum(1 for x in g['pacts'].values() if _active(x))}。"
+                   + (f"{last}年に約束どおり村に出した村 {n}" if last else "約束どおり村に出した村は、まだない")
+                   + f"。1 年に {C1_MIN} つ以上の村が約束どおり出した年: {len(g['c1_years'])} 回 ({C1_TIMES} 回で届く)")
+    if "c2" in g["c"]:
+        out.append(f"- 倉から地域を養う: 届いた ({g['c']['c2']} 日目)")
+    else:
+        rel = g["relief"].get(str(y)) or {}
+        out.append(f"- 倉から地域を養う: {y}年に村の倉から出した村 {len(rel)}・合わせて 草の種 {sum(rel.values())} つかみ分"
+                   f" (1 年に {C2_SETTLEMENTS} つ以上の村へ、合わせて 草の種 {C2_AMOUNT} つかみ分以上を出すと届く)")
+    if "c3" in g["c"]:
+        out.append(f"- 人と倉の帳: 届いた ({g['c']['c3']} 日目)")
+    else:
+        cen = g["census"].get(str(y)) or {}
+        run = 0
+        while (g["census"].get(str(y - run)) or {}).get("done"):
+            run += 1
+        out.append(f"- 人と倉の帳: {y}年の帳は {len(cen.get('houses', []))} / {len(era2._homes(state))} 家" + ("・そろった" if cen.get("done") else "")
+                   + f"。帳がそろった年が、いま {run} 年つづいている ({C3_YEARS} 年つづくと届く)")
+    return out
+
+
+def prompt_block(state, p):
+    """「## いま」の答えの並びのすぐ前に置く短い節 (G12_PROMPT_FROM から。prompt_fixed のときだけ。前は空の文字)。
+    その人がこの集まりで書けること (pact・help)・その人の家で「帳をつける」にできる人と、そうするとどうなるか・3 つの進み。せかす言葉は書かない"""
+    if not p or not prompt_fixed(state):
+        return ""
+    g = _g(state)
+    left, why = cap_left(state)
+    rows = [BLOCK_HEAD.replace("あなたが", f"あなた ({p['name']}) が", 1)]
+    cand = candidates(state)
+    if cand:
+        ex = next((o for o in cand if not struggling(o)), cand[0])
+        rows.append(f"- 倉の約束 (pact): いま受けてくれそうな村は {len(cand)} ("
+                    + "・".join(_o_line(o) + ("・いま苦しい" if struggling(o) else "") for o in cand) + ")。"
+                    "give は相手が苦しい年に村の倉から出す物、take はふだんの年に相手が村に出す物 (草の種・刈り手。黒曜石を持つ村は黒曜石も)。"
+                    "相手が出す分が小さく、苦しい年に村が出す分がずっと多いと受ける。"
+                    f"例: \"pact\": [{_js({'to': ex['id'], **_pact_example(ex)})}]")
+    else:
+        rows.append("- 倉の約束 (pact): いま受けてくれそうな村はない (村を信じていて、歩いて 3 日以内で、この 1 年に村と争っていない村が受ける)")
+    act = [oid for oid, x in sorted(g["pacts"].items(), key=lambda kv: int(kv[0][1:])) if _active(x)]
+    if act:
+        rows.append(f"- 続いている倉の約束: {'・'.join(act)} (中身は上の「## 倉と約束と帳」。やめるなら {{\"to\": 番号, \"end\": true}})")
+    nd = needy(state)
+    if nd and left > 0:
+        rows.append("- 倉から助ける (help): いま苦しい村は " + "・".join(f"[{o['id']}] {o['name']} ({o['people']} 人)" for o in nd)
+                    + f"。この年に倉から出せるのは、あと 草の種 {left} つかみ。苦しい村だけが受ける。"
+                    f"例: \"help\": [{_js({'to': nd[0]['id'], GRAIN: min(2000, left)})}] (貸すなら \"lend\": 0.1 をそえる)")
+    elif nd:
+        rows.append(f"- 倉から助ける (help): いま苦しい村はあるが、この年は倉からもう出せない ({why})")
+    else:
+        rows.append("- 倉から助ける (help): いま苦しい村はない (苦しくない村は受けない)")
+    rd = g10.readers(state)
+    fam = _house_readers(state, p["name"])
+    homes = len(era2._homes(state))
+    days = -(-(homes + 1 + (1 if act else 0)) // HOUSES_PER_DAY)
+    gain = (f"1 人なら 1 日に {HOUSES_PER_DAY} 家ずつ書き、大人のいる {homes} 家と倉{'と約束' if act else ''}を、のべ 約 {days} 日で書き終える (帳がそろう)。"
+            "帳がそろった年の次のお題には、家ごとの人の数と、1 年に虫やネズミに食べられた量が出る。")
+    if fam:
+        me, others = p["name"] in fam, [n for n in fam if n != p["name"]]
+        who = (f"あなた ({p['name']})" + (f" と、あなたの家の {'・'.join(others)}" if others else "")) if me else f"あなたの家の {'・'.join(others)}"
+        how = "・".join((["あなたは job"] if me else []) + ([f"{'・'.join(others)} は family"] if others else []))
+        rows.append(f"- 帳: {who} は字を読み書きできるので、季節の主な仕事を「{ACT_CENSUS}」にできる ({how} に書く)。" + gain)
+    elif rd:
+        rows.append(f"- 帳: あなたの家には字を読み書きできる人がいない。「{ACT_CENSUS}」にできるのは {'・'.join(rd)} (その家の代表が決める)。" + gain)
+    else:
+        rows.append(f"- 帳: いま村に字を読み書きできる人がいないので、「{ACT_CENSUS}」にできる人はいない")
+    fs = g11._house_smiths(state, p["name"])
+    if fs:
+        rows.append(f"- あなたの家の {'・'.join(fs)} たちが作った黒い金属の鎌は、give・help の「黒い金属の鎌」にできる")
+    rows.append("- pact と help は、答えた人の中でいちばん多い中身に決まる (1 人の答えでも決まる)。書かなくてもよい (\"pact\": []・\"help\": [])")
+    rows.append("いまの進み (村の倉と約束と帳):")
+    rows += progress_lines(state)
+    return "\n".join(rows) + "\n"
+
+
 def feel_note(state, p):
     """気持ちだけのお題の行 (代表でない人は仕事を決めないので、代表に伝えられることだけ)"""
     out = []
@@ -1022,7 +1140,8 @@ def field_rows(state, year=False):
     rows = []
     if g10.readers(state):
         rows.append(f"   帳: 主な仕事を「{ACT_CENSUS}」にできるのは、字を読み書きできる人")
-    rows.append('   倉の約束: pact に [{"to": "N13", "give": {"草の種": 3000}, "take": {"草の種": 200}}] のように書く (take には {"刈り手": [人, 日]}・{"黒曜石": 個} も書ける。'
+    take = 100 if prompt_fixed(state) else 200  # 直しのあと: 前の例 (北の村13 は 18 人。1 年に出せる草の種は 180 つかみまで) は、そのまま書くと受けない形だった
+    rows.append('   倉の約束: pact に [{"to": "N13", "give": {"草の種": 3000}, "take": {"草の種": ' + str(take) + '}}] のように書く (take には {"刈り手": [人, 日]}・{"黒曜石": 個} も書ける。'
                 'やめるなら {"to": "N13", "end": true}。決めないなら [])')
     rows.append('   倉から助ける: help に [{"to": "N13", "草の種": 2000}] のように書く ("ヤギ"・"黒い金属の鎌" も書ける。貸すなら "lend": 0.1 をそえる。決めないなら [])')
     return rows

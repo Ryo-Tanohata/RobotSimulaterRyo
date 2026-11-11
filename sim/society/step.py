@@ -774,6 +774,9 @@ def main():
             import g11  # noqa: E402
             g11.mark_fix(state, a.why.strip())  # 2026-11-06: G11 の直しの日 (g11.G11_FIX_FROM) なら、この歩から直し ①〜③ を入れる (g7.g11.fix)
             g11.mark_trust_fix(state, a.why.strip())  # 2026-11-06: 信頼の直しの日 (era2.TRUST_FIX_FROM) なら、この歩からお題の行を直す (g7.g11.trust_fix)
+        if "g12" in (state["era2"].get("g7") or {}):  # G11 までは g12.py を読みこまない
+            import g12  # noqa: E402
+            g12.mark_prompt_fix(state, a.why.strip())  # 2026-11-11: G12 のお題の直しの日 (g12.G12_PROMPT_FROM) なら、この歩から「いま」の前の短い節を入れる (g7.g12.prompt_fix)
         g7.mark_feel_cap(state, a.why.strip())  # 2026-11-07: 気持ちの席の日 (g7.FEEL_CAP_FROM) なら、この歩から気持ちのお題を席の数までにする (g7.feel_cap)
         added = g7.g10_sample_add(state) if g10.fixed(state) else []  # ③ 作れる人・試している人の家を、答える家に足す (年の終わりの見本の選びのあとと同じ)
         if added:
