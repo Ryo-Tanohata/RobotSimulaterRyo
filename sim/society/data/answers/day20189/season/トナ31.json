@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬の前に畑へ種をたっぷりまいておこう。草取りは手が多いほど実りが増える。おれも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りの時間で実りが増える。村のために畑を育てたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M496": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "畑は秋にまいて、冬から春に草取りをすると、夏のはじめの実りが増える。", "because": [2440110], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "穏やかで、冬に備えて仲間と畑を守る気持ちでいる"}

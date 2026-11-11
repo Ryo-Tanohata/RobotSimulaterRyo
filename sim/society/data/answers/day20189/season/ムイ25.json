@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のうちに畑に草の種をまいて、草取りをみんなでやろう。来年の夏が楽しみだ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、冬の前に手をかけておきたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ムイ26": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族みんなでやれば実りが増える"},
+  "ヒセ35": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やす"},
+  "ソワ35": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やす"},
+  "ソワ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やす"},
+  "オネ38": {"activity": "畑仕事", "place": "camp", "why": "採集は不得手なので、畑の草取りで役に立つ"},
+  "ケセ40": {"activity": "畑仕事", "place": "camp", "why": "採集は不得手なので、畑の草取りで役に立つ"},
+  "ケナ43": {"activity": "畑仕事", "place": "camp", "why": "採集は不得手なので、畑の草取りで役に立つ"},
+  "アコ46": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やす"},
+  "ラキ49": {"activity": "畑仕事", "place": "camp", "why": "若い力で畑の草取りを手伝う"},
+  "アコ49": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える"},
+  "ヒセ50": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝える"}
+ },
+ "keep": false,
+ "judge": {"M496": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは多く心は落ち着いている。みんなで畑に精を出したい。"}

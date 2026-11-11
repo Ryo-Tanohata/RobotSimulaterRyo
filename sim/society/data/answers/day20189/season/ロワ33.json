@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、来年の夏のために畑に種をまいて、みんなで草取りをしようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、手を貸して来年の実りを守りたい"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから"},
+  "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから"},
+  "ネイ41": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから"},
+  "キオ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから"},
+  "ユエ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから"},
+  "キサ43": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから"},
+  "キサ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから"},
+  "シエ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが増えるから"},
+  "ホミ49": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}
+ },
+ "keep": false,
+ "judge": {"M496": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。みんなと畑で働くのが楽しみ。"}

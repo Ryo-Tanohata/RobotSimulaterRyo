@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。わたしは自分の仕事を黙ってやる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすれば夏の実りが増える。蓄えは十分あるので手堅く働く。"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす。"},
+  "キオ43": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす。"},
+  "ソナ44": {"activity": "畑仕事", "place": "camp", "why": "狩りが得意だが、まず畑の草取りを手伝う。"},
+  "ラニ47": {"activity": "畑仕事", "place": "camp", "why": "若い手で草取りを進める。"},
+  "ケナ49": {"activity": "畑仕事", "place": "camp", "why": "技能が低いので草取りで役に立つ。"}
+ },
+ "keep": false,
+ "judge": {"M496": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "落ち着いている。蓄えがあるので冬も心配していない。"}

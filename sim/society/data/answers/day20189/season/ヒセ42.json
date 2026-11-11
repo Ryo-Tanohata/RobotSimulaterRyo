@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "ヤギはいま 80 頭で、草で養える数より少ない。つぶさずに世話をして、春に子を産ませよう。畑には一人 1000 つかみずつまいて、冬も草取りを続けよう。"}, {"to": "ロワ46", "text": "狩りの腕はたしかだけど、この秋はヤギの世話を頼むよ。ヤギが減ると春の乳がとれなくなるから。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをしっかりすれば、夏の実りが何倍にもなるから続ける"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ46": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが少なくなったので、世話をする人を増やしていなくならないようにしたい"}, "ヒセ48": {"activity": "畑仕事", "place": "camp", "why": "手は多いほうがいいと自分でも言っていたから、草取りをいっしょにする"}, "オセ49": {"activity": "畑仕事", "place": "camp", "why": "大人になったばかりなので、キャンプのそばの畑で草取りを覚えてほしい"}, "ユエ49": {"activity": "畑仕事", "place": "camp", "why": "13 歳なら草取りを手伝える"}},
+ "keep": false,
+ "judge": {"M496": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "ヤギはいま 80 頭で、草で養える約 110 頭より少ないので、つぶさずに世話をしたほうがよい", "because": [], "confidence": 0.7}],
+ "proposal": {"text": "この秋のはじめに、大人はみな蓄えの草の種を 1000 つかみずつ畑にまこう。ヤギはいま 80 頭で草で養える数より少ないから、つぶさずに残し、毎日だれか五人が交代でキャンプのヤギの世話をしよう。冬と春も毎日交代で畑の草取りをしよう。", "because": [], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L510", "against": "", "agree": true, "reason": "ヤギが少ないいまは、つぶさずに世話をして守るのがよいから"}, {"id": "L514", "against": "", "agree": true, "reason": "畑に 1000 つかみずつまくのは夏の実りを増やすから。いまはこえるヤギもいない"}, {"id": "L515", "against": "", "agree": true, "reason": "畑にまくことに賛成。ヤギは養える数より少ないので、つぶす分は出ない"}, {"id": "L512", "against": "", "agree": true, "reason": "畑にまいて十人ほどで草取りをするのはよい考えだから"}],
+ "feeling": "子らが何人も亡くなってさびしいけれど、畑とヤギを守って、冬をみんなでこえたい。"}

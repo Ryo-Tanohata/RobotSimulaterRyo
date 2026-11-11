@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のうちに畑に種をまいて、冬と春の草取りを分け合おう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えが多いので、畑を育てて来年の夏に備えたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ユエ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに手が要る"},
+  "タユ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに手が要る"},
+  "ホタ41": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに手が要る"},
+  "セヤ43": {"activity": "狩り", "place": "北丘12", "why": "冬に向けて肉を集めたい"},
+  "シエ44": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに手が要る"},
+  "ホタ47": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉を集める"},
+  "ナセ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ソナ50": {"activity": "畑仕事", "place": "camp", "why": "子でもできる草取りを手伝う"},
+  "リセ50": {"activity": "畑仕事", "place": "camp", "why": "子でもできる草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M496": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "蓄えは五百日分以上あり、秋に畑へ種をまく余裕がある。", "because": [2440326], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて落ち着いている。畑仕事に精を出したい。"}

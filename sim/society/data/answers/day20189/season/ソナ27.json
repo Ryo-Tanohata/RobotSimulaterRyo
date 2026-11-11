@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、秋のうちに畑に種をまいて、冬のあいだも草取りを続けよう。手を貸してね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りをして、来年の夏の実りを増やしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "トナ29": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りも得意で畑の草取りも任せられるから"},
+  "アコ34": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手がほしいから"},
+  "ホミ34": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手がほしいから"},
+  "リセ37": {"activity": "畑仕事", "place": "camp", "why": "子が多いのでキャンプの近くで働けるから"},
+  "ヒセ38": {"activity": "畑仕事", "place": "camp", "why": "小さな子がいるのでキャンプの近くで働けるから"},
+  "キサ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので北の丘で肉を得たいから"},
+  "オセ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので北の丘で肉を得たいから"},
+  "キサ41": {"activity": "畑仕事", "place": "camp", "why": "小さな子がいるのでキャンプの近くで働けるから"},
+  "オネ43": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので冬に備えて肉を得たいから"},
+  "ホミ47": {"activity": "畑仕事", "place": "camp", "why": "まだ若く、畑の草取りで村の役に立てるから"},
+  "ルタ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手がほしいから"}
+ },
+ "keep": false,
+ "judge": {"M496": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多く心強い。冬の前に畑をしっかり整えたい。"}

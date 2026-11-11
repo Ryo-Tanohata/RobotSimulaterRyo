@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "冬の前に、畑に種をまいて草取りをしよう。蓄えは十分あるが、手を動かしておけば安心だ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えると覚えているので、続けて畑を世話する"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ28": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"},
+  "ルタ29": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"},
+  "ネイ32": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を確保するため"},
+  "ラキ37": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やすため"},
+  "キサ37": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を確保するため"}
+ },
+ "keep": false,
+ "judge": {"M496": "ゆるす"}, "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも十分で、穏やかな秋だ。畑仕事に精を出そう。"}

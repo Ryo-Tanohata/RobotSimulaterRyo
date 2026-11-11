@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけど、冬は魚とけものだけが頼りだ。おれは北の林で肉をたくさん狩ってくる。ラニ45もトナ47もいっしょに来てくれ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りの腕が一番なので、冬に備えて肉を干して蓄えに入れたい"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ45": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので、いっしょに肉を集める"}, "トナ47": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので、冬の前に肉を集める"}},
+ "keep": false,
+ "judge": {"M496": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": []}
