@@ -783,7 +783,7 @@ def _rest_note(state, q, act, j):
         if w:
             _g13m()._fail(state, q["name"], act, w, log_it=False)
     elif act == "試す" and _g13_on(state) and str((j or {}).get("try") or "").strip().upper() == _g13m().CARD:  # G13: 水の輪の札を試せなかったわけも帳簿に
-        w = _g10m().rest_why(state, q["name"], act, j, (q.get("plan") or {}).get("with"))
+        w = _g13m().try_rest_why(state, q["name"]) or _g10m().rest_why(state, q["name"], act, j, (q.get("plan") or {}).get("with"))
         if w:
             _g13m()._fail(state, q["name"], act, w, log_it=False)
     else:

@@ -3818,10 +3818,15 @@ class T_G10FIX(unittest.TestCase):
             s2["people"] = st["people"]  # 同じ人 (A を作れる人に)
             real = g10.key_houses
             g10.key_houses = (lambda s: keys) if keys is not None else real
+            import g11
+            import g12  # 2026-11-12: 本物の state が G11・G12 からは、作れる人の家 (g11.key_houses)・読める人の家 (g12.key_houses) も足すので、この試しでは止める (G10 の足し方だけを見る)
+            real11, real12 = g11.key_houses, g12.key_houses
+            g11.key_houses = g12.key_houses = lambda s: []
             try:
                 return g7.choose(s2, random.Random(7))
             finally:
                 g10.key_houses = real
+                g11.key_houses, g12.key_houses = real11, real12
 
         y = g10.G10_FIX_FROM + era2.YEAR  # 次の年の終わり
         plain, more = pick(y, []), pick(y, [ha])

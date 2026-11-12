@@ -185,6 +185,13 @@ def rest_why(state, name, act):
     return None
 
 
+def try_rest_why(state, name):
+    """札 H12-01 の「試す」を「休む」に変えたわけ (できるようになったあと。前は g10 の「いまは村で試せない」になり、わけが分かりにくかった)"""
+    if mill_ready(state):
+        return f"{name} は、「{_card_name()}」[{CARD}] はもう村でできるようになったので、試さずに休んだ (主な仕事を「{ACT_MILL}」にすると、水の輪を建てられる)"
+    return None
+
+
 def knower(state, name):
     p = next((q for q in state["people"] if q["name"] == name), None)
     return bool(p) and (hints.knows(state, name, CARD) or p["skills"].get(f"試す:{CARD}", 0) > 0)
