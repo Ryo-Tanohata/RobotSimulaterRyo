@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "冬の前に北の丘でけものをとってくる。家の者も連れていくよ。肉が多ければ、みんなで分けよう。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕が一番なので、冬に備えて肉を干して蓄えたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ61": true},
+ "family": {
+  "ソナ40": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が確かなので、一緒に獲物を追う"},
+  "ヌオ42": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、草の実や芋を集める"},
+  "ソワ42": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、林で木の実を集める"},
+  "タユ44": {"activity": "ヤギの世話", "place": "camp", "why": "小さい子がいるので、キャンプで世話の仕事をする"},
+  "ヌオ48": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕があり、若く力があるので肉をとる"},
+  "ケセ50": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを手伝う"},
+  "ムイ50": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M498": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分だけれど、冬の前に肉をとっておけば安心できる。"}

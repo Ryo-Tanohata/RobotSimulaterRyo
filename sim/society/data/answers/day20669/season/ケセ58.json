@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "前の季節、世話の手が足りなくてヤギが25頭も消えた。この秋は私がヤギのそばにつく。手の空いた人は一日でもいいから来て。"}, {"to": "ラニ58", "text": "畑の草取りをお願い。冬と春に草が伸びると実りが減るから、今のうちに根から抜いておいて。"}],
+ "job": {"activity": "ヤギの世話", "place": "camp", "with": ["ケセ50", "ヒセ48"], "why": "世話の手が足りずヤギが25頭いなくなったので、群れを守りたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"タユ61": true}, "family": {"ラニ58": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りが足りないと、夏の実りが減るから"}}, "keep": false,
+ "judge": {"M498": "ゆるす"}, "feast": false, "leader": null, "trade": {"T310": "村", "T311": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "pact": [{"to": "N2", "give": {"草の種": 1200}, "take": {"草の種": 120}}],
+ "help": [{"to": "N19", "草の種": 3000}],
+ "knowledge": [{"op": "add", "text": "世話をする人が少ないと、ヤギが140頭近くいても25頭ほどいなくなる。草だけでなく世話の手もいる", "because": [2567593], "confidence": 0.8}, {"op": "add", "text": "土器に入れた草の種も、1つの季節に3万つかみほど傷む", "because": [2567604], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L525", "against": "", "agree": true, "reason": "ヤギは140頭より少ないあいだは受けとり、世話を毎日交代でするのが群れを守る道だから"}, {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るから"}],
+ "feeling": "ヤギの数がまた減らないよう、この秋は群れのそばでよく見ていたい。"}

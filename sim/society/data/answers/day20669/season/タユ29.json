@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋の種まきは蓄えの草の種からやる。冬の前に畑の草取りを怠けるなよ。おれは畑に出る。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りが少ないと実りが減る。蓄えは十分あるので、来年の実りを守るために畑の世話をする。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ61": true},
+ "family": {
+  "ホタ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手を増やし、冬と春の実りを確かにする。"},
+  "アコ44": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人が少なくてヤギがいなくなったので、世話の手を足す。"},
+  "リセ45": {"activity": "畑仕事", "place": "camp", "why": "草取りの時間をみんなで分けて、畑の実りを守る。"},
+  "ハソ50": {"activity": "畑仕事", "place": "camp", "why": "まだ狩りも採集も慣れていないので、畑の草取りで働く。"}
+ },
+ "keep": false,
+ "judge": {"M498": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T310": false, "T311": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは多く、落ち着いている。畑を見回って静かに働くつもりだ。"}
