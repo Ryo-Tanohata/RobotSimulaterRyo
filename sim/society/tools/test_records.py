@@ -1215,7 +1215,7 @@ class M_Accounts(Base):
                     a, b = (json.dumps({k: v for k, v in json.loads(x).items() if k not in ("ledger", "harvest_replay_unverified")}, ensure_ascii=False, sort_keys=True)
                             for x in (a, b))
                 if n == "columns.json":  # 足した列のほかは同じ並び。4409 日目の区切りを書きそえた列は note だけちがう
-                    cs = [c for c in json.loads(b) if not (c["table"] == "season_village" and c["column"] in ACC_KEYS) and (c["table"], c["column"]) not in G7_COLS]
+                    cs = [c for c in json.loads(b) if not (c["table"] == "season_village" and c["column"] in ACC_KEYS) and (c["table"], c["column"]) not in G7_COLS and c["table"] != "granary"]  # granary は G12 から (2026-11-12)
                     self.assertTrue(all("4409" in c["note"] for c in cs if (c["table"], c["column"]) in ACC_NOTES))
                     was, now = ([dict(c, note=None) if (c["table"], c["column"]) in ACC_NOTES | {("season_person", "season_end_day")} else c for c in x]
                                 for x in (json.loads(a), cs))  # season_end_day の note は、年ごとのファイルを書きそえた (2026-11-05)
