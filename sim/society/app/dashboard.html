@@ -1454,6 +1454,15 @@ function renderKiroku7(p, d) {
   if (ln.length) p.append(h("div", { class: "card" }, h("h3", {}, "上乗せのある貸し借りの記録 (G7から)"),
     tbl([{ t: "季節" }, { t: "貸した物 (数え札)" }, { t: "上乗せ", n: 1 }, { t: "道具" }, { t: "返された" }],
       ln.slice(-12).map((r) => [r.label, tk(r.tokens), `${Math.round(r.rate * 100)}%`, r.how, r.back ? "返された" : "まだ"]))));
+  const g12 = D.g12;  /* G12 から (2026-11-12): 村の人が字で書いた帳のまとめ (名前は出さない) */
+  if (g12 && g12.entered) {
+    const cs = g12.census.filter((r) => r.d != null && r.d <= d);
+    p.append(h("div", { class: "card" }, h("h3", {}, "人と倉の帳 (G12から)"),
+      cs.length ? tbl([{ t: "年" }, { t: "書いた家", n: 1 }, { t: "人の数", n: 1 }, { t: "倉 (草の種・つかみ)", n: 1 }, { t: "倉の約束", n: 1 }, { t: "そろった" }],
+        cs.slice(-12).map((r) => [`${r.year}年`, fmt(r.houses), fmt(r.people), r.grain_written != null ? fmt(r.grain_written) : "―", r.pacts != null ? fmt(r.pacts) : "―", r.done ? "そろった" : "まだ"]))
+        : h("p", { class: "empty" }, "まだない (字を読み書きできる人が「帳をつける」を選ぶと残る)"),
+      h("p", { class: "notice" }, "倉の量は 100 つかみ単位にまるめた")));
+  }
 }
 </script>
 </body>

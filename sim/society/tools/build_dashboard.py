@@ -772,6 +772,7 @@ def build(st, rec):
     # ---- G6 (村の記録)。G6 の前は空
     g6 = build_g6(st, rec, rows, seasons, layer_of_row, row_of_event, ev_by_type, adv)
     g7 = build_g7(st, rec, rows, seasons, row_of_day) if e2.get("g7") else None  # G7 (王と役所) から。G6 までは鍵を足さない
+    g12 = build_g12(st, rows, row_of_day) if (e2.get("g7") or {}).get("g12") else None  # G12 (2026-11-12): 村の人が字で書いた帳のまとめ。G11 までは鍵を足さない
 
     last = seasons[-1]
     lc = last["cum"]
@@ -863,6 +864,7 @@ def build(st, rec):
         "how": how,
         "g6": g6,
         **({"g7": g7} if g7 is not None else {}),
+        **({"g12": g12} if g12 is not None else {}),
     }
     return out
 
@@ -1064,6 +1066,21 @@ def build_g7(st, rec, rows, seasons, row_of_day):
         w["text"] = w["text"][:G7_TEXT] + ("…" if len(w["text"]) > G7_TEXT else "")
     return {"entered": True, "tribute": trib[-G7_KEEP["tribute"]:], "written": written[-G7_KEEP["written"]:], "loans": loans[-G7_KEEP["loans"]:],
             "counts": {"tribute": len(trib), "written": len(written), "loans": len(loans)}, "token_units": dict(G7_TOKEN)}
+
+
+def build_g12(st, rows, row_of_day):
+    """G12 から (2026-11-12。G13_design.md 9. の 1): 村の人が字で書いた帳 (【村】) のまとめ。年ごとに、書いた家の数・人の数・倉の量 (100 つかみ単位)・約束の数・そろったか。
+    名前は出さない。倉と約束・水と務めの帳簿 (【シ】) は出さない (records/granary.jsonl にある)"""
+    out = []
+    for y, c in sorted((((st["era2"].get("g7") or {}).get("g12") or {}).get("census") or {}).items(), key=lambda kv: int(kv[0])):
+        if not c.get("houses"):
+            continue
+        day = c.get("done") or (int(y) * YEAR + YEAR - 1)
+        i = row_of_day(day)
+        sg = (c.get("store") or {}).get("grain")
+        out.append({"d": rows[i]["d"] if i is not None else None, "year": int(y), "houses": len(c["houses"]), "people": sum((c.get("people") or {}).values()),
+                    "grain_written": None if sg is None else int(round(sg, -2)), "pacts": (c.get("pacts") or {}).get("n"), "done": bool(c.get("done"))})
+    return {"entered": True, "census": out[-20:]}
 
 
 def _seal_letter(k):
