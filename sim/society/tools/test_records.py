@@ -1233,7 +1233,7 @@ class M_Accounts(Base):
 
 G7_COLS = {("season_person", "is_sample"), ("season_person", "plan_answer_day"), ("season_person", "donor_household_id"),  # G7 (年 1 回の答え) で足した列。G7 の行にだけある
            ("season_village", "g7"), ("polity", "season_end_day"), ("tribute", "kind")}  # G7 の物差しと記録 (4.D.9)。g7 は G7 の行にだけ、polity・tribute は G7 に入ってからのファイル
-G7_FILES = ("polity.jsonl", "tribute.jsonl")  # G7 に入ってからのファイル (前のコードは作らない)
+G7_FILES = ("polity.jsonl", "tribute.jsonl", "granary.jsonl")  # G7 に入ってからのファイル (前のコードは作らない。granary.jsonl は G12 から。2026-11-12)
 WHY_ADDED = ("   その仕事にした理由を一言で書く (why。続けている仕事なら、続ける理由を)\n",
              "\n- family に書いた人ごとに、その仕事にした理由も一言書く (family の why)", ', "why": "..."')  # ask_why でお題に足す文
 ASK_KEYS = ("ask_why", "ask_why_log")
