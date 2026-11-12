@@ -433,6 +433,13 @@ def _use(state, rid, card):
 NEEDS_G10 = ("鉄の鉱石", "強い火", "音で書く")  # G10 から「そろっている」と読む前提 (docs/society_phase/G10_design.md 3.1・3.2。G9 までは「そろっていない」のまま)
 
 
+NEEDS_G13 = ("粉をひく", "木を組む")  # G13 から「そろっている」と読む前提 (docs/society_phase/G13_design.md 3.3。G12 までは「そろっていない」のまま)
+
+
+def _g13_on(state):
+    return "g13" in ((state.get("era2") or {}).get("g7") or {})
+
+
 def needs_ok(state, needs):
     """前提がそろっているか (コードにない前提は「そろっていない」と読む。そのとき札は「話だけ」)。
     G10 から (g7.g10 があるときだけ): 鉄の鉱石 (丘の赤土)・強い火 (土器を焼く火)・音で書く (札そのものの考え) はそろっている。
@@ -442,6 +449,8 @@ def needs_ok(state, needs):
             if len(state["era2"].get("cattle") or []) < n:
                 return False
         elif k in NEEDS_G10 and _g10_on(state):
+            continue
+        elif k in NEEDS_G13 and _g13_on(state):  # G13 (2026-11-12): 粉をひく (G13 から村みなが粉をひく)・木を組む (村は家を建てている)
             continue
         elif k == "粘土の板" and _g10_on(state) and ((state["era2"].get("g6") or {}).get("open") or {}).get("板"):
             continue

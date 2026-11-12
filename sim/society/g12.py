@@ -25,6 +25,7 @@ from world import log
 YEAR, SEASON_DAYS = era2.YEAR, era2.SEASON_DAYS
 ACT_CENSUS = "帳をつける"  # 新しい仕事 (world.ACTS7 に足した。G12 で読み書きできる人がいるときだけ選べる)
 GRAIN, GOAT, IRON, OBS, HANDS = "草の種", "ヤギ", g10.IRON, "黒曜石", "刈り手"
+WORKERS = "働き手"  # G13 から (2026-11-12。G13_design.md 3.4): take に書ける「働き手」(刈り入れの季節は刈り、ほかの日は村の水の道を掘る)。G12 だけの state では読まない
 GIVE_GOODS = (GRAIN, GOAT, IRON)  # 苦しい年に村が出す物・助けに渡す物
 TAKE_GOODS = (GRAIN, OBS, HANDS)  # ふだんの年に相手が村に出す物
 C1_MIN, C1_TIMES = 5, 2  # c1: 約束どおり出した集落が 1 年に 5 つ以上の年が 2 回【仮定】
@@ -65,6 +66,16 @@ BLOCK_HEAD = "倉と約束と帳: この集まりで、あなたができるこ�
 
 def on(state):
     return "g12" in ((state.get("era2") or {}).get("g7") or {})
+
+
+def _g13_on(state):
+    """G13 (2026-11-12) に入ったあとか。G13 の働き手 (take の「働き手」) と、G13 の短い節の中の形は、このときだけ"""
+    return "g13" in ((state.get("era2") or {}).get("g7") or {})
+
+
+def take_goods(state):
+    """take に書ける物 (G13 からは働き手も)"""
+    return TAKE_GOODS + ((WORKERS,) if _g13_on(state) else ())
 
 
 def _g(state):
@@ -163,13 +174,13 @@ def needy(state):
 def take_max(o):
     """相手が 1 年に出せる分の上限 (受ける決まりの 4)"""
     return {GRAIN: o["people"] * TAKE_GRAIN_PER, HANDS: [max(1, int(o["people"] * TAKE_HANDS_SHARE)), TAKE_HANDS_DAYS],
-            OBS: int(o.get("obsidian", 0) * TAKE_OBS_SHARE)}
+            OBS: int(o.get("obsidian", 0) * TAKE_OBS_SHARE), WORKERS: [max(1, int(o["people"] * TAKE_HANDS_SHARE)), TAKE_HANDS_DAYS]}
 
 
 def value(goods):
     v = 0
     for k, n in goods.items():
-        if k == HANDS:
+        if k in (HANDS, WORKERS):
             v += n[0] * n[1] * HAND_VALUE
         elif k == IRON:
             v += n * IRON_VALUE
@@ -193,6 +204,8 @@ def accept_why(state, o, terms):
         return f"1 年に草の種 {mx[GRAIN]} つかみより多くは出せないので"
     if HANDS in take and (take[HANDS][0] > mx[HANDS][0] or take[HANDS][1] > mx[HANDS][1]):
         return f"刈り手は {mx[HANDS][0]} 人が {mx[HANDS][1]} 日までしか出せないので"
+    if WORKERS in take and (take[WORKERS][0] > mx[WORKERS][0] or take[WORKERS][1] > mx[WORKERS][1]):
+        return f"働き手は {mx[WORKERS][0]} 人が {mx[WORKERS][1]} 日までしか出せないので"
     if OBS in take and take[OBS] > mx[OBS]:
         return "黒曜石をそれほど持っていないので" if mx[OBS] <= 0 else f"黒曜石は {mx[OBS]} 個までしか出せないので"
     if value(give) < GIVE_RATIO * value(take):
@@ -221,6 +234,8 @@ def _active(p):
 
 def _good(k):
     s = str(k)
+    if "働き手" in s:  # G13 から (G12 だけの state では、take_goods にないので落ちる。前もここは None で落ちていた)
+        return WORKERS
     if "刈" in s:
         return HANDS
     if "鎌" in s:
@@ -248,13 +263,13 @@ def _goods(v, allowed):
         good = _good(k)
         if good not in allowed:
             continue
-        if good == HANDS:
+        if good in (HANDS, WORKERS):
             if isinstance(n, (list, tuple)) and len(n) >= 2:
                 a, b = _int(n[0]), _int(n[1])
             else:
                 a, b = _int(n), TAKE_HANDS_DAYS
             if a and b:
-                out[HANDS] = [min(a, 1000), min(b, SEASON_DAYS)]
+                out[good] = [min(a, 1000), min(b, SEASON_DAYS)]
         else:
             m = _int(n)
             if m:
@@ -304,7 +319,7 @@ def _pact_votes(state, a):
         if r.get("end") is True or str(r.get("end")).strip() in ("やめる", "true"):
             out[oid] = "end"
             continue
-        give, take = _goods(r.get("give"), GIVE_GOODS), _goods(r.get("take"), TAKE_GOODS)
+        give, take = _goods(r.get("give"), GIVE_GOODS), _goods(r.get("take"), take_goods(state))
         if give or take:
             out[oid] = json.dumps({"give": give, "take": take}, ensure_ascii=False, sort_keys=True)
     return out
@@ -355,8 +370,8 @@ def apply_answers(state, real):
 def _gw(goods):
     out = []
     for k, n in goods.items():
-        if k == HANDS:
-            out.append(f"刈り手 {n[0]} 人 × {n[1]} 日")
+        if k in (HANDS, WORKERS):
+            out.append(f"{k} {n[0]} 人 × {n[1]} 日")
         elif k == IRON:
             out.append(f"{IRON} {n} 本")
         else:
@@ -527,8 +542,8 @@ def _settle(state):
                     why = f"{o['name']} の蓄えが少なく、約束の草の種 {n} つかみを出せず"
                 elif k == OBS and o.get("obsidian", 0) < n:
                     why = f"{o['name']} に約束の黒曜石 {n} 個がなく"
-                elif k == HANDS and o.get("people", 0) < n[0]:
-                    why = f"{o['name']} に刈り手を出せる人が足りず"
+                elif k in (HANDS, WORKERS) and o.get("people", 0) < n[0]:
+                    why = f"{o['name']} に{k}を出せる人が足りず"
                 if why:
                     break
         if why:
@@ -556,13 +571,18 @@ def _settle(state):
             elif k == HANDS:
                 g["hands_due"][oid] = {"n": n[0], "left": n[1], "days": n[1], "day": D, "came": 0}
                 got[HANDS] = n
+            elif k == WORKERS:  # G13: 働き手 (次の 1 年に、刈り入れの季節は刈り、ほかの日は水の道を掘る)。刈り手と同じ村なら、刈り手のあとに来る
+                g.setdefault("workers_due", {})[oid] = {"n": n[0], "left": n[1], "days": n[1], "day": D, "came": 0, "reap": 0, "dig": 0}
+                got[WORKERS] = n
         p["miss"] = 0
         paid[oid] = "出した"
         p["paid"][y] = paid[oid]
         o["trust"] = min(1.0, round(o["trust"] + TRUST_KEEP, 2))
-        rest = {k: v for k, v in got.items() if k != HANDS}
+        rest = {k: v for k, v in got.items() if k not in (HANDS, WORKERS)}
         log(state, "倉", None, f"{o['name']} が、倉の約束どおり、" + (f"{_gw(rest)} を村に出した" if rest else "")
-            + ("" if HANDS not in got else ("。" if rest else "") + f"刈り入れの季節に、刈り手 {got[HANDS][0]} 人が {got[HANDS][1]} 日まで来ると言った"),
+            + ("" if HANDS not in got else ("。" if rest else "") + f"刈り入れの季節に、刈り手 {got[HANDS][0]} 人が {got[HANDS][1]} 日まで来ると言った")
+            + ("" if WORKERS not in got else ("。" if rest or HANDS in got else "") + f"次の 1 年に、働き手 {got[WORKERS][0]} 人が {got[WORKERS][1]} 日来る"
+               "と言った (刈り入れの季節は刈り、ほかの日は村の水の道を掘る)"),
             other=oid, pact_take=True, moves=[era2._mv("村", 1, rest)] if rest else [])
         if rest:
             _reach(state, "F4", D, f"{o['name']} が約束どおり {_gw(rest)} を出した")
@@ -580,6 +600,8 @@ def hands_day(state):
     """刈り手: 約束の人数が来て、その日の終わりに、実ったまま刈られていない村の畑を刈る (1 人 1 日 150 つかみまで)。食べ物は村の蓄えから。
     刈り手は村の人にならない (家はない・答えない)。刈る畑がない日は来ない"""
     g = _g(state)
+    if g.get("workers_due"):  # G13: 働き手 (刈り手のあと。G12 だけの state には鍵がない)
+        _workers_day(state)
     if not g["hands_due"]:
         return
     e2, D = state["era2"], state["day"]
@@ -614,6 +636,51 @@ def hands_day(state):
         log(state, "倉", None, f"{o['name'] if o else oid} の刈り手 {h['n']} 人が、村の畑で草の種 {got} つかみを刈った (村の蓄えから {ate.get(GRAIN, 0)} つかみを食べた)",
             other=oid, hands=h["n"], amount=got)
         _reach(state, "F4", D, f"{o['name'] if o else oid} の刈り手が来て、村の畑を刈った")
+
+
+def _workers_day(state):
+    """G13 の働き手 (2026-11-12。G13_design.md 3.4): 約束の人数が来て、その日の終わりに、実ったまま刈られていない村の畑があれば刈り手と同じに刈り、
+    なければ村の水の道を掘る (g13.dig)。食べ物は村の蓄えから。村の人にならない (家はない・答えない)。乱数なし"""
+    import g13
+    g, e2, D = _g(state), state["era2"], state["day"]
+    y = str(_y(state))
+    for oid in sorted(g["workers_due"], key=lambda x: int(x[1:])):
+        h = g["workers_due"][oid]
+        if h["left"] <= 0:
+            continue
+        o = _other(state, oid)
+        ripe = [f for f in e2["fields"] if f["state"] == "実った" and f["yield"] > f["harvested"]]
+        got = 0
+        if ripe:
+            want = h["n"] * HAND_REAP
+            for f in ripe:
+                n = min(want - got, f["yield"] - f["harvested"])
+                if n <= 0:
+                    continue
+                f["harvested"] += n
+                got += n
+                era2._store_of(state, f.get("owner")).append({"kind": GRAIN, "kcal": n * era2.FOOD_KCAL[GRAIN], "day": D, "sown": True})
+                if f["harvested"] >= f["yield"]:
+                    f["state"] = "刈った"
+                if got >= want:
+                    break
+        ate = era2._g6_take(state, "村", {GRAIN: h["n"] * HAND_EAT})
+        h["left"] -= 1
+        h["came"] += 1
+        row = g["hands"].setdefault(y, {"days": 0, "grain": 0, "ate": 0, "from": {}})
+        row["ate"] += ate.get(GRAIN, 0)
+        if got:
+            h["reap"] += h["n"]
+            row["grain"] += got
+            g13.workers(state, oid, h["n"], "刈る", got)
+            log(state, "倉", None, f"{o['name'] if o else oid} の働き手 {h['n']} 人が、村の畑で草の種 {got} つかみを刈った (村の蓄えから {ate.get(GRAIN, 0)} つかみを食べた)",
+                other=oid, workers=h["n"], amount=got)
+        else:
+            h["dig"] += h["n"]
+            g13.workers(state, oid, h["n"], "掘る", 0)
+            g13.dig(state, h["n"], None)
+            log(state, "水", None, f"{o['name'] if o else oid} の働き手 {h['n']} 人が、村の水の道を掘った (村の蓄えから {ate.get(GRAIN, 0)} つかみを食べた)",
+                other=oid, workers=h["n"])
 
 
 # ---------------- 帳をつける (仕事。g7.role_day から) ----------------
@@ -1072,13 +1139,16 @@ def progress_lines(state):
     return out
 
 
-def prompt_block(state, p):
+def prompt_block(state, p, compact=False):
     """「## いま」の答えの並びのすぐ前に置く短い節 (G12_PROMPT_FROM から。prompt_fixed のときだけ。前は空の文字)。
-    その人がこの集まりで書けること (pact・help)・その人の家で「帳をつける」にできる人と、そうするとどうなるか・3 つの進み。せかす言葉は書かない"""
+    その人がこの集まりで書けること (pact・help)・その人の家で「帳をつける」にできる人と、そうするとどうなるか・3 つの進み。せかす言葉は書かない。
+    compact (G13 から。g13.prompt_block の中に入れる): 見出しと 3 つの進み・鎌の行を書かず、約束・助け・帳の行だけ (G13_design.md 5.1。問い 11)"""
     if not p or not prompt_fixed(state):
         return ""
     g = _g(state)
     left, why = cap_left(state)
+    if compact:
+        return _compact_rows(state, p)
     rows = [BLOCK_HEAD.replace("あなたが", f"あなた ({p['name']}) が", 1)]
     cand = candidates(state)
     if cand:
@@ -1124,6 +1194,30 @@ def prompt_block(state, p):
     rows.append("いまの進み (村の倉と約束と帳):")
     rows += progress_lines(state)
     return "\n".join(rows) + "\n"
+
+
+def _compact_rows(state, p):
+    """G13 の短い節に入れる G12 の 3 行 (続いている約束と受けてくれそうな村・苦しい村・帳。G13_design.md 5.1。問い 11: 合わせて 1 通 +2.5 KB をこえるので 3 行に)"""
+    g = _g(state)
+    left, why = cap_left(state)
+    act = [oid for oid, x in sorted(g["pacts"].items(), key=lambda kv: int(kv[0][1:])) if _active(x)]
+    cand = candidates(state)
+    rows = [f"- 倉の約束 (pact): 続いている {'・'.join(act) or 'ない'}。いま受けてくれそうな村 {'・'.join(o['id'] for o in cand) or 'ない'}"
+            " (中身と村のようすは「## 倉と約束と帳」、書き方は欄の説明)"]
+    nd = needy(state)
+    rows.append("- 倉から助ける (help): " + (("いま苦しい村 " + "・".join(f"[{o['id']}] {o['name']}" for o in nd)
+                                              + (f"。この年に倉から出せるのは、あと 草の種 {left} つかみ" if left > 0 else f"。この年は倉からもう出せない ({why})"))
+                                             if nd else "いま苦しい村はない"))
+    rd = g10.readers(state)
+    fam = _house_readers(state, p["name"])
+    homes = len(era2._homes(state))
+    days = -(-(homes + 1 + (1 if act else 0)) // HOUSES_PER_DAY)
+    if fam:
+        how = "・".join((["あなたは job"] if p["name"] in fam else []) + ([f"{'・'.join(n for n in fam if n != p['name'])} は family"] if [n for n in fam if n != p["name"]] else []))
+        rows.append(f"- 帳: {'・'.join(fam)} は字を読み書きできるので「{ACT_CENSUS}」にできる ({how} に書く。のべ 約 {days} 日で帳がそろう)")
+    else:
+        rows.append(f"- 帳: 「{ACT_CENSUS}」にできるのは {'・'.join(rd) or 'いない (読み書きできる人がいない)'}" + (" (その家の代表が決める)" if rd else ""))
+    return rows
 
 
 def feel_note(state, p):
