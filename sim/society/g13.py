@@ -587,6 +587,8 @@ def report_lines(state):
         elif len(kn) == 1:
             out.append(f"水の輪の札 ({CARD}) を知っている大人は {kn[0]} だけ")
     py = (state["day"] + 1) // YEAR
+    if str(py) not in g["path"]:  # 年の終わりの日 (次の年の集まりの前) は、まだその年の行がないので、前の年から数える
+        py -= 1
     rows = [g["path"].get(str(py - i)) for i in range(IDLE_YEARS)]
     if all(r and r.get("meetings") and (r["c1"] + r["c2"] + r["c3"]) > 0 and r.get("chose", 0) == 0 for r in rows):
         out.append(f"選べた答える人はいるのに、水の輪・水の道・働き手を、だれも選ばなかった年が {IDLE_YEARS} 年つづいた")
