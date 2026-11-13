@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑がまだたくさん残っている。落ちる前に、みんなで毎日刈ろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるから"},"family":{"ワユ35":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ソナ37":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"セヤ38":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ナセ42":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"腕に自信があり、冬の前に草の種を守る土器を増やしたい"},"family":{"ワユ35":{"activity":"採集","place":"camp","why":"食べ物を集める"},"ソナ37":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"セヤ38":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ナセ42":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りをして実りを増やす"},"family":{"ワユ35":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"ソナ37":{"activity":"狩り","place":"北林12","why":"冬も魚やけものはいるので肉を得る"},"セヤ38":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"ナセ42":{"activity":"畑仕事","place":"camp","why":"草取りをする"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の実りのために草取りを続ける"},"family":{"ワユ35":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"ソナ37":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"セヤ38":{"activity":"採集","place":"camp","why":"食べ物を集める"},"ナセ42":{"activity":"畑仕事","place":"camp","why":"草取りをする"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T322":false,"T323":false,"T324":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"刈り入れの年",
+"mood":"畑は豊かだ。落ちる前に刈り入れを進めたい。"}
