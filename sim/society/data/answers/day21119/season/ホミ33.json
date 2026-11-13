@@ -1,0 +1,17 @@
+{"say":[{"to":"みんな","text":"夏の畑はまだ実ったまま残っている。落ちる前に、みんなで刈ってしまおう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が残っていて、夏のうちに刈らないと落ちてしまうから"},"family":{"ルタ44":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"キサ48":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"セヤ48":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"ホタ49":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"ヌオ52":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝うため"},"ロワ53":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝うため"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器に入れると蓄えの草の種が虫やネズミに食べられにくいから"},"family":{"ルタ44":{"activity":"畑仕事","place":"camp","why":"秋にまいた畑の世話をするため"},"キサ48":{"activity":"畑仕事","place":"camp","why":"畑の草取りのため"},"セヤ48":{"activity":"畑仕事","place":"camp","why":"畑の草取りのため"},"ホタ49":{"activity":"畑仕事","place":"camp","why":"畑の草取りのため"},"ヌオ52":{"activity":"畑仕事","place":"camp","why":"畑の草取りのため"},"ロワ53":{"activity":"畑仕事","place":"camp","why":"畑の草取りを手伝うため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"冬は実りがないので、蓄えを守る土器を作る"},"family":{"ルタ44":{"activity":"畑仕事","place":"camp","why":"畑の草取りで実りを増やすため"},"キサ48":{"activity":"畑仕事","place":"camp","why":"畑の草取りで実りを増やすため"},"セヤ48":{"activity":"狩り","place":"camp","why":"冬も獲れる魚やけものを取るため"},"ホタ49":{"activity":"畑仕事","place":"camp","why":"畑の草取りで実りを増やすため"},"ヌオ52":{"activity":"畑仕事","place":"camp","why":"畑の草取りを手伝うため"},"ロワ53":{"activity":"畑仕事","place":"camp","why":"畑の草取りを手伝うため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の実りを増やすため草取りをする"},"family":{"ルタ44":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"キサ48":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"セヤ48":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"ホタ49":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"ヌオ52":{"activity":"畑仕事","place":"camp","why":"草取りを手伝うため"},"ロワ53":{"activity":"畑仕事","place":"camp","why":"草取りを手伝うため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T343":false,"T344":false,"T345":false,"T346":false,"T347":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},
+"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"刈り入れと土器の年",
+"mood":"畑はたっぷり実っている。落ち着いて、今年も働こう。"}

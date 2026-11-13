@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈っておこう。落ちてしまってはもったいない。わたしは土器を作りつづける。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、まず刈り入れを手伝う"}, "family": {"ヒセ35": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れが大事"}, "ソワ35": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れが大事"}, "ソワ37": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れが大事"}, "トナ51": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れが大事"}, "オネ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "ケセ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "アコ46": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "ラキ49": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は蓄えを守るので、得意な土器をつづける"}, "family": {"ヒセ35": {"activity": "採集", "place": "camp", "why": "秋は木の実が実る"}, "ソワ35": {"activity": "採集", "place": "camp", "why": "秋は木の実が実る"}, "ソワ37": {"activity": "採集", "place": "camp", "why": "秋は木の実が実る"}, "トナ51": {"activity": "採集", "place": "camp", "why": "秋は木の実が実る"}, "オネ38": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}, "ケセ40": {"activity": "狩り", "place": "北丘12", "why": "肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "why": "冬は実りがないので、キャンプで土器を作る", "with": []}, "family": {"ヒセ35": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいる"}, "ソワ35": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいる"}, "ソワ37": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいる"}, "トナ51": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りで実りを増やす"}, "family": {"ヒセ35": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "ソワ35": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "ソワ37": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "トナ51": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T343": false, "T344": false, "T345": false, "T346": false, "T347": false},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れ多き年",
+ "mood": "蓄えは多く、静かな夏だ。わたしは土器と畑を見守りたい。"}
