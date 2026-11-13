@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分だけど、畑の草取りを怠らないようにしよう。冬の前に、私は畑の世話をするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、続けて世話をする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {},
+ "family": {
+  "ソワ36": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "キオ45": {"activity": "狩り", "place": "北丘12", "why": "冬に向けて肉を確保するため"},
+  "ヒセ46": {"activity": "畑仕事", "place": "camp", "why": "畑の実りを増やすため"},
+  "シエ46": {"activity": "畑仕事", "place": "camp", "why": "小さな子の世話をしつつ近くで働けるため"},
+  "ハソ51": {"activity": "畑仕事", "place": "camp", "why": "畑仕事を覚えるため"},
+  "ラキ52": {"activity": "畑仕事", "place": "camp", "why": "家の手伝いをするため"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心しているが、ヤギが多すぎるのが少し気がかりだ。"}
