@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "川の力で粉をひく輪の話を、おれは知っている。この秋はそれを試す。手が空いている者は、おれの名を書いて一緒に試してくれ。"}],
+ "job": {"activity": "試す", "place": "camp", "try": "H12-01", "with": [], "why": "水の輪が建てば粉ひきの手が減り、村が楽になる。話を知るのはおれだけなので、試しを進める。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"オネ62": true},
+ "family": {
+  "ソワ32": {"activity": "採集", "place": "東林12", "why": "家の食べ物を足すため、得意な採集を続ける。"},
+  "ラニ37": {"activity": "採集", "place": "東林12", "why": "採集が得意なので家の食べ物を集める。"},
+  "シエ37": {"activity": "採集", "place": "南林12", "why": "採集が得意なので家の食べ物を集める。"},
+  "ケセ38": {"activity": "採集", "place": "南林12", "why": "採集が得意なので家の食べ物を集める。"},
+  "ソワ46": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので北の丘で獲物を探す。"},
+  "テナ47": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので獲物を探す。"},
+  "トナ48": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので獲物を探す。"},
+  "タユ48": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので獲物を探す。"},
+  "ラニ51": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので皆と一緒に獲物を探す。"}
+ },
+ "keep": false,
+ "judge": {"M500": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは十分にある。水の輪の試しを静かに進めたい。"}

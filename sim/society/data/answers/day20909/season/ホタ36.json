@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "ヤギが草に対して多すぎる。うちの家でも何頭かつぶして肉にするよ。私は土器をこねて、蓄えの種を守る器を作る。"}, {"to": "ユエ33", "text": "蓄えのもめごとのこと、覚えだけでは分からないね。まずは話を聞かせて。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の技は一番なので、蓄えの草の種を虫やネズミから守る器を増やしたい。"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "accept": {"オネ62": true},
+ "family": {"ソワ36": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を獲って食べ物を増やす。"}, "キオ45": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで実りを増やす。"}, "ヒセ46": {"activity": "畑仕事", "place": "camp", "why": "草取りをして畑の実りを守る。"}, "シエ46": {"activity": "土器づくり", "place": "camp", "why": "私と一緒に器を作って蓄えを守る。"}, "ハソ51": {"activity": "採集", "place": "西草原12", "why": "近くの草原で食べ物を集める。"}, "ラキ52": {"activity": "採集", "place": "南林12", "why": "近くの林で木の実を集める。"}},
+ "keep": false,
+ "judge": {"M500": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T325": false, "T326": false, "T327": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "土器に入れた草の種は虫やネズミに食べられにくい。器を増やすと蓄えが守れる。", "because": [2640641], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だけれど、ヤギと草のつり合いが気がかり。手を動かして器を作るのが落ち着く。"}
