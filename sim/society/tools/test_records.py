@@ -1215,7 +1215,7 @@ class M_Accounts(Base):
                     a, b = (json.dumps({k: v for k, v in json.loads(x).items() if k not in ("ledger", "harvest_replay_unverified")}, ensure_ascii=False, sort_keys=True)
                             for x in (a, b))
                 if n == "columns.json":  # 足した列のほかは同じ並び。4409 日目の区切りを書きそえた列は note だけちがう
-                    cs = [c for c in json.loads(b) if not (c["table"] == "season_village" and c["column"] in ACC_KEYS) and (c["table"], c["column"]) not in G7_COLS]
+                    cs = [c for c in json.loads(b) if not (c["table"] == "season_village" and c["column"] in ACC_KEYS) and (c["table"], c["column"]) not in G7_COLS and c["table"] != "granary"]  # granary は G12 から (2026-11-12)
                     self.assertTrue(all("4409" in c["note"] for c in cs if (c["table"], c["column"]) in ACC_NOTES))
                     was, now = ([dict(c, note=None) if (c["table"], c["column"]) in ACC_NOTES | {("season_person", "season_end_day")} else c for c in x]
                                 for x in (json.loads(a), cs))  # season_end_day の note は、年ごとのファイルを書きそえた (2026-11-05)
@@ -1233,7 +1233,7 @@ class M_Accounts(Base):
 
 G7_COLS = {("season_person", "is_sample"), ("season_person", "plan_answer_day"), ("season_person", "donor_household_id"),  # G7 (年 1 回の答え) で足した列。G7 の行にだけある
            ("season_village", "g7"), ("polity", "season_end_day"), ("tribute", "kind")}  # G7 の物差しと記録 (4.D.9)。g7 は G7 の行にだけ、polity・tribute は G7 に入ってからのファイル
-G7_FILES = ("polity.jsonl", "tribute.jsonl")  # G7 に入ってからのファイル (前のコードは作らない)
+G7_FILES = ("polity.jsonl", "tribute.jsonl", "granary.jsonl")  # G7 に入ってからのファイル (前のコードは作らない。granary.jsonl は G12 から。2026-11-12)
 WHY_ADDED = ("   その仕事にした理由を一言で書く (why。続けている仕事なら、続ける理由を)\n",
              "\n- family に書いた人ごとに、その仕事にした理由も一言書く (family の why)", ', "why": "..."')  # ask_why でお題に足す文
 ASK_KEYS = ("ask_why", "ask_why_log")

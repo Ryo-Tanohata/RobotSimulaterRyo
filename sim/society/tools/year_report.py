@@ -37,6 +37,7 @@ import g9 as G9  # noqa: E402
 import g10 as G10  # noqa: E402
 import g11 as G11  # noqa: E402
 import g12 as G12  # noqa: E402  (読むのは数の決まりだけ。state は変えない)
+import g13 as G13  # noqa: E402  (読むのは数の決まりだけ。state は変えない)
 import records  # noqa: E402
 
 YEAR = era2.YEAR
@@ -327,6 +328,42 @@ def conditions(D, y, phase):
         p = (g.get("path") or {}).get(str(y))
         cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g12_path_") and c.get("year") == y]
         out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G12"}
+    elif phase == "G13":
+        g = _g7(st).get("g13") or {}
+        ys, ysp = str(y), str(y - 1)
+        cs = g.get("c") or {}
+        my, myp = (g.get("mill") or {}).get("year", {}).get(ys) or {}, (g.get("mill") or {}).get("year", {}).get(ysp) or {}
+        share = (my.get("milled", 0) / my["need"]) if my.get("need") else 0
+        wa, wap = (g.get("water") or {}).get(ys) or {}, (g.get("water") or {}).get(ysp) or {}
+        wf = round(100 * wa.get("water", 0) / wa["sown"]) if wa.get("sown") else 0
+        wfp = round(100 * wap.get("water", 0) / wap["sown"]) if wap.get("sown") else 0
+        run = 0
+        while (y - run) in (g.get("c2_years") or []):
+            run += 1
+        c3 = (g.get("c3_rows") or {}).get(ys) or {}
+        c3p = (g.get("c3_rows") or {}).get(ysp) or {}
+        c3y = [x for x in g.get("c3_years") or [] if x <= y]
+        led = next((r for r in g.get("ledger") or [] if r.get("year") == y), {})
+        out["bars"] = [
+            _bar("条件 1 水の力の粉ひき (回った日)", my.get("days", 0), G13.C1_DAYS, "日", cs.get("c1"),
+                 f"この年に村の水の輪が回った日 (水の輪 {led.get('mills', '?')}・回っている {led.get('mills_running', '?')})。"
+                 f"目標は 1 年に {G13.C1_DAYS} 日以上回り、村の粉ひきの半分以上を引き受ける", end),
+            _bar("条件 1 水の力の粉ひき (粉の割合)", round(100 * share), round(100 * G13.C1_SHARE), "%", cs.get("c1"),
+                 f"この年に村の人が食べた粉のうち、水の輪がひいた割合 (去年 {round(100 * myp['milled'] / myp['need']) if myp.get('need') else 0}%)", end),
+            _bar("条件 2 水の来る畑", wf, round(100 * G13.C2_SHARE), "%", cs.get("c2"),
+                 f"この年の秋にまいた草の種 {wa.get('sown', 0)} つかみのうち、水の来る畑にまいた割合 (去年 {wfp}%。半分以上の年が、いま {run} 年つづいている)。"
+                 f"目標は半分以上の年が {G13.C2_YEARS} 年つづく", end),
+            _bar("条件 3 務め (出した集落)", c3.get("paid", 0), max(1, -(-c3.get("settlements", 0) * 1 // 2)) if c3 else 1, "集落", cs.get("c3"),
+                 f"この年の終わりに、村に約束の分か働き手を出した集落 (地域の集落 {c3.get('settlements', '?')})。目標は半分以上の年が {G13.C3_TIMES} 回 "
+                 f"(届いた年: {'・'.join(map(str, c3y)) or 'まだ'})", end)]
+        out["moves"] = {"c1": (my.get("days", 0) > myp.get("days", 0)) - (my.get("days", 0) < myp.get("days", 0)), "c2": (wf > wfp) - (wf < wfp),
+                        "c3": (c3.get("paid", 0) > c3p.get("paid", 0)) - (c3.get("paid", 0) < c3p.get("paid", 0))}
+        rch = g.get("reached") or {}
+        out["fs"] = [(k, v, rch.get(k) if (rch.get(k) or end + 1) <= end else None) for k, v in G13.FS.items()]
+        out["g13"] = g13_lines(g, st, y, led)
+        p = (g.get("path") or {}).get(str(y))
+        cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g13_path_") and c.get("year") == y]
+        out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G13"}
     else:
         out["extra"] = [f"この年のフェーズ {phase} の条件の棒は、まだ作っていない。条件: {(st.get('era_info') or {}).get('next', '-')}"]
     return out
@@ -422,6 +459,33 @@ def g12_lines(g, st, y, led):
     return out
 
 
+def g13_lines(g, st, y, led):
+    """G13 のこの年のようす (やさしい日本語の箇条)"""
+    out = []
+    gr = (g.get("grind") or {}).get(str(y)) or {}
+    if led:
+        out.append(f"粉ひき: 手でひいたのは のべ 約 {led.get('grind_days', 0)} 人日 (6 時間働く大人で)・水の輪がひいた分は 約 {led.get('water_days', 0)} 人日分"
+                   f" (人でない力の割合 {round(100 * led.get('water_share', 0))}%)")
+    elif gr:
+        out.append(f"粉ひき: 手でひいたのは のべ 約 {round(gr.get('hours', 0) / 6)} 人日")
+    m = g.get("mill") or {}
+    built = [x for x in m.get("mills") or [] if x["day"] // YEAR == y]
+    out.append(f"水の輪: 建った輪 {len(m.get('mills') or [])} (この年に建った {len(built)})" + (f"・試す進み {led.get('try')}" if led and not led.get("try_done") else "")
+               + (f"・この年に直した {led.get('mill_repair', 0)} 人日" if led else ""))
+    c = g.get("canal") or {}
+    out.append(f"水の道: この年に掘った {c.get('dug', {}).get(str(y), 0)} 人日・水の来る畑は 秋にまく草の種 {led.get('canal_cap', c.get('cap', 0))} つかみ分"
+               + (f"・泥でうまってへった {sum(x['lost'] for x in c.get('lost') or [] if x['year'] == y)} つかみ分" if any(x["year"] == y for x in c.get("lost") or []) else ""))
+    pr = (g.get("protected") or {}).get(str(y))
+    if pr:
+        out.append(f"村の悪い年に、水の来る畑が守った刈り入れ: 約 {pr} つかみ")
+    wk = (g.get("workers") or {}).get(str(y)) or {}
+    if wk:
+        out.append(f"約束の働き手: 刈った {wk.get('reap', 0)} 人日・水の道を掘った {wk.get('dig', 0)} 人日 ({'・'.join(sorted(wk.get('from') or {}))})")
+    fa = [f for f in g.get("fails") or [] if f.get("year") == y]
+    out.append(f"休んだ・へった・止まった: {len(fa)} 回" + (": " + " / ".join(clean(f["why"], 60) for f in fa[:3]) if fa else ""))
+    return out
+
+
 def path_line(C, y):
     p = C.get("path")
     if not p:
@@ -429,6 +493,11 @@ def path_line(C, y):
     r = p["row"]
     if not r:
         return f"道の見張り: この年 ({y}年) は、まだ村の集まりがなかった (数える年は {(p['start'] + 1) // YEAR}年から)"
+    if p.get("g") == "G13":
+        t = (f"道の見張り: この年の村の集まり {r['meetings']} 回で、答える人のうち、その道を自分で選べた人は、のべで条件 1 (水の輪を試す・建てる) {r['c1']} 人、"
+             f"条件 2 (水の道を掘る) {r['c2']} 人、条件 3 (約束の分・働き手) {r['c3']} 人。実際に選んだ人は {r.get('chose', 0)} 人"
+             f" (札を知っている大人 {r.get('knowers', 0)} 人)。{G13.PATH_YEARS} 年つづけて 0 人なら、止めて相談する")
+        return t + ("。この年の終わりに、止めて相談することになった" if p["consult"] else "")
     if p.get("g") == "G12":
         t = (f"道の見張り: この年の村の集まり {r['meetings']} 回で、答える人のうち、その道を自分で選べた人は、のべで条件 1 (倉の約束) {r['c1']} 人、"
              f"条件 2 (倉から助ける) {r['c2']} 人" + ("" if r.get("need2", True) else " (苦しい村がなかった)") + f"、条件 3 (帳をつける) {r['c3']} 人。"
@@ -621,6 +690,16 @@ def next_lines(C, y, phase_next, nxt_era=None):
         if zero:  # 止めて相談になるかもしれないので、いちばん上に出す
             out.insert(1 if phase_next else 0,
                        f"道の見張り: 今年、条件 {'・'.join(zero)} の道がお題に出なかった。来年も 0 回なら、止めて相談になる")
+    elif C["phase"] == "G13":
+        b = {i: x for i, x in enumerate(C["bars"], 1)}
+        rch = dict((k, d) for k, _, d in C["fs"])
+        if not b[1]["done"]:
+            out.append("札を知っている人が水の輪を試すか (仕事「試す」)" if not rch.get("F2") else
+                       "水の輪を建てて、1 年に 90 日回すか" if not rch.get("F3") else f"水の輪が村の粉の半分以上をひく年が来るか (今年 {b[2]['value']}%)")
+        if not b[3]["done"]:
+            out.append("だれかが「水の道を掘る」を選ぶか" if not rch.get("F1") else f"秋のまきつけの半分以上に水が来る年が 2 年つづくか (今年 {b[3]['value']}%)")
+        if not b[4]["done"]:
+            out.append(f"地域の集落の半分以上が、約束の分か働き手を出す年が 2 回来るか (今年 {b[4]['value']} 集落)")
     elif C["phase"] == "G12":
         b = {i: x for i, x in enumerate(C["bars"], 1)}
         rch = dict((k, d) for k, _, d in C["fs"])
@@ -834,6 +913,8 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
         w('<div class="note">小さな目盛り (F):</div><div class="fs">'
           + "".join(f'<span class="{"on" if d is not None else ""}">{"✓ " if d is not None else ""}{e(k)} {e(v)}</span>' for k, v, d in C["fs"]) + "</div>")
     pl = path_line(C, y)
+    if C.get("g13"):
+        w('<p style="margin:10px 0 2px"><b>水と畑と務め (この年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["g13"]) + "</ul>")
     if C.get("g12"):
         w('<p style="margin:10px 0 2px"><b>倉と約束と帳 (この年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["g12"]) + "</ul>")
     if C.get("g11"):
