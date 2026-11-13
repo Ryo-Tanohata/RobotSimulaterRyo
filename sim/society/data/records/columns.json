@@ -209,5 +209,10 @@
 {"table":"disputes","column":"end_day","label_ja":"終わった日","unit":"日","tag":"シ","source":"g5.disputes","exact":true,"since_day":1709,"note":null},
 {"table":"disputes","column":"end_season_end_day","label_ja":"終わった季節","unit":"日","tag":"-","source":"","exact":true,"since_day":1709,"note":null},
 {"table":"disputes","column":"event","label_ja":"言い出した出来事の番号","unit":null,"tag":"-","source":"g5.disputes","exact":true,"since_day":1709,"note":null},
-{"table":"disputes","column":"because","label_ja":"もとの出来事の番号","unit":null,"tag":"-","source":"g5.disputes","exact":true,"since_day":1709,"note":null}
+{"table":"disputes","column":"because","label_ja":"もとの出来事の番号","unit":null,"tag":"-","source":"g5.disputes","exact":true,"since_day":1709,"note":null},
+{"table":"granary","column":"year","label_ja":"年 (日 ÷ 120。1 年 1 行・種類ごと。G12 から)","unit":"年","tag":"-","source":"g7.g12.ledger・g7.g12.census・g7.g13.ledger","exact":true,"since_day":null,"note":null},
+{"table":"granary","column":"day","label_ja":"その年の行の日 (年の終わりの日か、帳がそろった日)","unit":"日","tag":"-","source":"","exact":true,"since_day":null,"note":null},
+{"table":"granary","column":"kind","label_ja":"種類 (倉と約束 = G12 の帳簿 / 帳 = 村の人が字で書いた帳 / 水と務め = G13 の帳簿)","unit":null,"tag":"-","source":"","exact":true,"since_day":null,"note":null},
+{"table":"granary","column":"tag","label_ja":"札 (村 = 村の人がつけた記録 / シ = シミュレーションだから分かる)","unit":null,"tag":"-","source":"","exact":true,"since_day":null,"note":"帳だけが【村】"},
+{"table":"granary","column":"data","label_ja":"中身 (倉と約束: 約束・出した村・助け・刈り手・倉・虫・落ちた量・都の大きさ / 帳: 家・人・倉・約束 / 水と務め: 粉ひきの人日・水の輪・回った日・粉の割合・水の道・水の来る畑・守った量・働き手・出した村・村の中の差)","unit":null,"tag":"シ","source":"","exact":true,"since_day":null,"note":"ダッシュボードとお題には、帳 (【村】) のまとめだけを出す"}
 ]
