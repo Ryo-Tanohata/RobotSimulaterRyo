@@ -1619,7 +1619,7 @@
 {"person_id":"P1618","household_id":"H122","from_day":20069,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2404204],"assigned_from_state_day":20069},
 {"person_id":"P1619","household_id":"H92","from_day":20069,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2404205],"assigned_from_state_day":20069},
 {"person_id":"P1620","household_id":"H114","from_day":20099,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2411422],"assigned_from_state_day":20099},
-{"person_id":"P1621","household_id":"H29","from_day":20129,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2417358],"assigned_from_state_day":20129},
+{"person_id":"P1621","household_id":"H29","from_day":20129,"to_day":20999,"why_in":"生まれた","why_out":"亡くなった","evidence":[2417358,2657522],"assigned_from_state_day":20129},
 {"person_id":"P1622","household_id":"H37","from_day":20129,"to_day":20159,"why_in":"生まれた","why_out":"亡くなった","evidence":[2417359,2423788],"assigned_from_state_day":20129},
 {"person_id":"P1623","household_id":"H100","from_day":20129,"to_day":20879,"why_in":"生まれた","why_out":"亡くなった","evidence":[2417360,2624795],"assigned_from_state_day":20129},
 {"person_id":"P1624","household_id":"H97","from_day":20129,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2417361],"assigned_from_state_day":20129},
@@ -1760,9 +1760,16 @@
 {"person_id":"P1759","household_id":"H114","from_day":20939,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2646252],"assigned_from_state_day":20939},
 {"person_id":"P1760","household_id":"H43","from_day":20939,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2646253],"assigned_from_state_day":20939},
 {"person_id":"P1761","household_id":"H100","from_day":20939,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2646254],"assigned_from_state_day":20939},
-{"person_id":"P1762","household_id":"H43","from_day":20969,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2651627],"assigned_from_state_day":20969},
+{"person_id":"P1762","household_id":"H43","from_day":20969,"to_day":20999,"why_in":"生まれた","why_out":"亡くなった","evidence":[2651627,2657523],"assigned_from_state_day":20969},
 {"person_id":"P1763","household_id":"H29","from_day":20969,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2651628],"assigned_from_state_day":20969},
 {"person_id":"P1764","household_id":"H127","from_day":20969,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2651629],"assigned_from_state_day":20969},
 {"person_id":"P1765","household_id":"H21","from_day":20969,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2651630],"assigned_from_state_day":20969},
-{"person_id":"P1766","household_id":"H92","from_day":20969,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2651631],"assigned_from_state_day":20969}
+{"person_id":"P1766","household_id":"H92","from_day":20969,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2651631],"assigned_from_state_day":20969},
+{"person_id":"P1767","household_id":"H68","from_day":20999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2657515],"assigned_from_state_day":20999},
+{"person_id":"P1768","household_id":"H107","from_day":20999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2657516],"assigned_from_state_day":20999},
+{"person_id":"P1769","household_id":"H21","from_day":20999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2657517],"assigned_from_state_day":20999},
+{"person_id":"P1770","household_id":"H115","from_day":20999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2657518],"assigned_from_state_day":20999},
+{"person_id":"P1771","household_id":"H29","from_day":20999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2657519],"assigned_from_state_day":20999},
+{"person_id":"P1772","household_id":"H100","from_day":20999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2657520],"assigned_from_state_day":20999},
+{"person_id":"P1773","household_id":"H97","from_day":20999,"to_day":null,"why_in":"生まれた","why_out":null,"evidence":[2657521],"assigned_from_state_day":20999}
 ]
