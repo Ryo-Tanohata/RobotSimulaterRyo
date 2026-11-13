@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "水の輪の試しはあと少しだ。この秋も続けて仕上げるから、家の者にも手伝ってもらう。"}],
+ "job": {"activity": "試す", "place": "camp", "with": [], "try": "H12-01", "why": "水の輪の試しが 169/200 まで進んだので、続けて仕上げたい"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソワ32": {"activity": "試す", "place": "camp", "try": "H12-01", "with": ["リセ32"], "why": "一緒に試して水の輪を覚え、早く仕上げるため"},
+  "ラニ37": {"activity": "試す", "place": "camp", "try": "H12-01", "with": ["リセ32"], "why": "一緒に試して水の輪を覚え、早く仕上げるため"},
+  "シエ37": {"activity": "試す", "place": "camp", "try": "H12-01", "with": ["リセ32"], "why": "一緒に試して水の輪を覚え、早く仕上げるため"},
+  "ケセ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "ソワ46": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "テナ47": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "トナ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "タユ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "ラニ51": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "シエ52": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "水の輪まであと一歩で、落ち着いて仕事に向かえそうだ。"}

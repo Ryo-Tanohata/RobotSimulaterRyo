@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋だから蓄えの草の種を畑にまこう。まいたあとは草取りをして、夏の実りを増やそうね。ヤギも多すぎるから、少しつぶして肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、草取りをすると夏の実りが増えるから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"キオ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手分けして、実りを増やすため。"}, "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手分けして、実りを増やすため。"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T333": false, "T334": false, "T335": false}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまき、畑仕事で草取りをすると夏の実りが増える。ヤギは多すぎるので毎年つぶして減らす。", "because": [2667849], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで安心している。畑とヤギの世話をしっかりやろうと思う。"}
