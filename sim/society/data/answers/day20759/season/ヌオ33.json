@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑の実りがたくさん残っている。落ちる前に、みんなで夕方までに刈ろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑を夏のうちに刈らないと落ちてしまうから"},"family":{"ワユ35":{"activity":"畑仕事","place":"camp","why":"実った畑を刈るため"},"ソナ37":{"activity":"畑仕事","place":"camp","why":"実った畑を刈るため"},"セヤ38":{"activity":"畑仕事","place":"camp","why":"実った畑を刈るため"},"ナセ42":{"activity":"畑仕事","place":"camp","why":"実った畑を刈るため"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"草の種を傷みから守る土器を増やしたいから"},"family":{"ワユ35":{"activity":"採集","place":"camp","why":"秋の木の実を集めるため"},"ソナ37":{"activity":"採集","place":"camp","why":"秋の木の実を集めるため"},"セヤ38":{"activity":"狩り","place":"東林12","why":"肉を蓄えるため"},"ナセ42":{"activity":"採集","place":"camp","why":"秋の木の実を集めるため"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"冬は実りがないので、土器を作って蓄えを守る"},"family":{"ワユ35":{"activity":"狩り","place":"東林12","why":"冬も魚やけものはいるから"},"ソナ37":{"activity":"狩り","place":"北林12","why":"冬も肉を得るため"},"セヤ38":{"activity":"採集","place":"南川12","why":"魚を取るため"},"ナセ42":{"activity":"採集","place":"南川12","why":"魚を取るため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで夏の実りを増やすため"},"family":{"ワユ35":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"ソナ37":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"セヤ38":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"ナセ42":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],
+"knowledge":[{"op":"add","text":"夏の畑は夏のうちに刈らないと落ちる。秋の畑まきと冬前の土器づくりが大事。","because":[],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"実りを刈る年",
+"mood":"畑の実りを無駄にしないよう、家族と力を合わせたい。"}

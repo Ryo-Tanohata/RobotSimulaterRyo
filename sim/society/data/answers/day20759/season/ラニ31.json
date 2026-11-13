@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏の畑は落ちる前に刈っておこう。わたしは草を刈り、あとは川で土器を作る。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を落ちる前に刈るため"}, "family": {"ムイ42": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "リセ43": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "オネ49": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "オネ50": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ケセ51": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "南川12", "with": [], "why": "蓄えの種を守る器を作る"}, "family": {"ムイ42": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "リセ43": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "オネ49": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "オネ50": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ケセ51": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "土器づくり", "place": "南川12", "with": [], "why": "冬も器を作り続ける"}, "family": {"ムイ42": {"activity": "狩り", "place": "東林12", "why": "冬も獲れる獣を狩る"}, "リセ43": {"activity": "狩り", "place": "東林12", "why": "冬も獲れる獣を狩る"}, "オネ49": {"activity": "休む", "place": "camp", "why": "寒い季節は体を休める"}, "オネ50": {"activity": "休む", "place": "camp", "why": "寒い季節は体を休める"}, "ケセ51": {"activity": "休む", "place": "camp", "why": "寒い季節は体を休める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "南川12", "with": [], "why": "得意な土器づくりを続ける"}, "family": {"ムイ42": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "リセ43": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "オネ49": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "オネ50": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ケセ51": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの夏の年"}
