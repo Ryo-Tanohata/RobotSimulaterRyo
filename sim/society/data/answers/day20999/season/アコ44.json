@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに実った畑を刈っておこう。落ちてしまっては惜しいから、みんなで手分けしよう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が夏のうちに落ちてしまうので刈り入れを手伝う"},"family":{"リセ45":{"activity":"畑仕事","place":"camp","why":"刈り入れを一緒にする"},"ハソ50":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"},"アコ51":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"},"ラニ52":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"},"セオ53":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ホタ54":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器が得意なので、蓄えの草の種を守る器を作る"},"family":{"リセ45":{"activity":"狩り","place":"camp","why":"狩りが得意で肉を村にもたらせる"},"ハソ50":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"アコ51":{"activity":"狩り","place":"camp","why":"狩りが得意"},"ラニ52":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"セオ53":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"},"ホタ54":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":0},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"冬は実りがないので土器を作る"},"family":{"リセ45":{"activity":"狩り","place":"camp","why":"魚やけものは冬もいる"},"ハソ50":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"アコ51":{"activity":"狩り","place":"camp","why":"魚やけものは冬もいる"},"ラニ52":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"セオ53":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"},"ホタ54":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器を増やして蓄えを守る"},"family":{"リセ45":{"activity":"狩り","place":"camp","why":"狩りが得意"},"ハソ50":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"アコ51":{"activity":"狩り","place":"camp","why":"狩りが得意"},"ラニ52":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"セオ53":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"},"ホタ54":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"実りを分け合う年",
+"feeling":"蓄えはたっぷりあるので安心している。みんなで仲良く働きたい。"}

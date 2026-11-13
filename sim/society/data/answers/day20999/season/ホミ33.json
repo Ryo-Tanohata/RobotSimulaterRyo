@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は刈らないと落ちてしまうから、まず刈り入れを急ごう。秋には種をまいて、冬は狩りで備えよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを優先する"}, "family": {"ルタ44": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "セヤ48": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えを虫から守れる"}, "family": {"ルタ44": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}, "キサ48": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}, "セヤ48": {"activity": "狩り", "place": "北丘12", "why": "肉を蓄えるため"}, "ホタ49": {"activity": "採集", "place": "camp", "why": "冬に備えて木の実を集める"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "畑の世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬は魚やけものがいるので狩りで食べ物を得る"}, "family": {"ルタ44": {"activity": "狩り", "place": "北丘12", "why": "冬の肉を得る"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "セヤ48": {"activity": "狩り", "place": "北丘12", "why": "冬の肉を得る"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りを増やす"}, "family": {"ルタ44": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "セヤ48": {"activity": "狩り", "place": "北丘12", "why": "肉を得る"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ケセ63": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T330": false, "T331": false, "T332": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "夏は実った畑の刈り入れを優先し、秋にまいて冬と春に草取りをする", "because": [2657501], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "mood": "蓄えは十分あるので落ち着いている。畑を大事に刈りたい。"}

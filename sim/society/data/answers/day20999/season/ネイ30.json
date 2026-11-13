@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、夏の刈り入れをきちんとして、冬は狩りで肉を足そう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ルタ35": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "ロワ38": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "ナセ39": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "オネ40": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話をして実りを増やすため"}, "family": {"ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で冬の肉を貯めるため"}, "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で冬の肉を貯めるため"}, "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で冬の肉を貯めるため"}, "オネ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で冬の肉を貯めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も魚やけものはいるので肉を足すため"}, "family": {"ルタ35": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから"}, "ロワ38": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから"}, "ナセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから"}, "オネ40": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の技能が高く、蓄えを守る器を増やせるから"}, "family": {"ルタ35": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "ロワ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "ナセ39": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "オネ40": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T330": false, "T331": false, "T332": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "蓄えゆたかな年",
+ "mood": "蓄えは多くて安心している。今年も静かに働きたい。"}
