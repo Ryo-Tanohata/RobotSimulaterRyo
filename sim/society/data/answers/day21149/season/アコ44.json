@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。畑に種をまいて、冬と春の草取りもみんなで分け合おう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだないので、種をまいたあとの草取りで夏の実りを守りたいから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "リセ45": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして夏の実りを減らさないため"},
+  "ハソ50": {"activity": "畑仕事", "place": "camp", "why": "採集や狩りは不得手なので、家族と一緒に畑の草取りをするため"},
+  "アコ51": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして実りを守るため"},
+  "ラニ52": {"activity": "畑仕事", "place": "camp", "why": "皆と同じく畑の草取りで村の蓄えを増やすため"},
+  "セオ53": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って家族の助けになるため"},
+  "ホタ54": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って家族の助けになるため"},
+  "オネ55": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って家族の助けになるため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T348": false, "T349": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑にたくさんまいて、みんなで冬と春を乗り切れるようにしたい。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ヤギが192頭もいて、草で養えるのは110頭ほどだ。前の季節は41頭がやせて消えた。消える前に、乳の出ないオスから干し肉にしようじゃないか。"}, {"to": "ムイ56", "text": "この秋は畑だ。種をまいて草を取れば、次の夏に子らが腹いっぱい食える。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ムイ56"], "why": "まいた畑の草取りをすれば、次の夏の実りがぐんと増えるから"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 5, "family": {"ムイ56": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手が多いほど実りが増えるから"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T348": false, "T349": {"side": "村", "利子": 0}}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "ヤギが233頭いたら、草が足りず41頭がやせていなくなった。いまも192頭で、草で養える約110頭をこえている", "because": [2695978], "confidence": 0.9}],
+ "proposal": {"text": "この秋のはじめに、草で養える約110頭をこえるヤギ (いま82頭ほど) を、乳の出ないオスから先につぶして干し肉にし、村の蓄えに入れよう。よその村のヤギは、数が減るまで受けとらない。前の季節も草が足りず41頭がやせていなくなったから。", "because": [2695978], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L541", "against": "", "agree": true, "reason": "ヤギが多すぎるあいだは、よその村のヤギを受けとらず、多い分を食べ物にしたほうがいい"}, {"id": "L540", "against": "", "agree": true, "reason": "おれの出した掟で、ヤギが減るまでヤギとの交換を止めるため"}, {"id": "L539", "against": "", "agree": true, "reason": "やせて消えるより干し肉にしたほうがいい"}, {"id": "L536", "against": "", "agree": true, "reason": "多すぎるヤギを食べ物にし、畑にもまけるから"}, {"id": "L525", "against": "いまヤギは192頭で草が足りない。よそのヤギを受けとると、もっとやせて消える", "agree": false, "reason": "ヤギが多すぎるから"}],
+ "feeling": "ヤギが減っていくのは惜しいが、畑をまけばまた夏に実る。腹は満ちている。"}

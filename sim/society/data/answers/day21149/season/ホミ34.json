@@ -1,0 +1,28 @@
+{"say": [{"to": "みんな", "text": "ヤギは草で養える数よりずっと多い。うちの家から五頭つぶして干し肉にするよ。秋のうちに畑にもたっぷりまいて、冬の草取りも交代でやろう。"}, {"to": "リセ37", "text": "水の道の掘りを頼むよ。悪い年でも刈り入れが減らないように、少しずつ伸ばしていこう。"}],
+ "job": {"activity": "帳をつける", "place": "camp", "with": [], "why": "字が読み書きできるのはわたしだから、家ごとの人の数と倉をそろえておきたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "リセ37": {"activity": "水の道を掘る", "place": "camp", "why": "悪い年でも刈り入れが半分にならないように"},
+  "ヒセ38": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"},
+  "キサ39": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑を広げたい"},
+  "オセ40": {"activity": "ヤギの世話", "place": "camp", "why": "残すヤギがいなくならないように"},
+  "オネ43": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手が要る"},
+  "ホミ47": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるから掘る仕事を"},
+  "ルタ48": {"activity": "水の道を掘る", "place": "camp", "why": "水の道を早く伸ばしたい"},
+  "セオ49": {"activity": "畑仕事", "place": "camp", "why": "子のそばのキャンプで草取りができる"},
+  "タユ50": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを交代でする"},
+  "ホタ51": {"activity": "水の輪を建てる", "place": "camp", "why": "粉ひきの手間を減らしたい"},
+  "ナセ53": {"activity": "畑仕事", "place": "camp", "why": "14 歳だから畑を手伝える"},
+  "ルタ53": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を覚えてほしい"},
+  "ソナ54": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝える"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T348": false, "T349": {"side": "村", "利子": 0}}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える数をこえると、季節ごとに多い分がやせていなくなる。前の季節は 41 頭いなくなった", "because": [2695978], "confidence": 0.95}],
+ "proposal": null,
+ "votes": [
+  {"id": "L539", "against": "よその村との行き来が減るかもしれない", "agree": true, "reason": "ヤギが多すぎて毎季節やせていなくなるから、つぶして干し肉にするほうがよい"},
+  {"id": "L540", "against": "交換を断ると相手の村が困る", "agree": true, "reason": "草が足りないうちはヤギを増やさないほうがよい"},
+  {"id": "L541", "against": "特にない", "agree": true, "reason": "草で養える数まで減らすのが先だから"}
+ ],
+ "feeling": "ヤギが多すぎるのが気がかり。帳をきちんとつけて、村の倉を見えるようにしたい。"}
