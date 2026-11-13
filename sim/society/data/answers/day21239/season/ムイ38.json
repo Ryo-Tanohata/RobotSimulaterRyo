@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈り切ろう。落ちたら惜しい。冬は俺が北の丘で獲物を追う。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れる"}, "family": {"テナ42": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ラキ47": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意で、蓄えを虫から守れる"}, "family": {"テナ42": {"activity": "狩り", "place": "北丘12", "why": "肉を家と村に持ち帰る"}, "ラキ47": {"activity": "狩り", "place": "北丘12", "why": "肉を家と村に持ち帰る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も獣はいる。狩りは自分の一番の技"}, "family": {"テナ42": {"activity": "狩り", "place": "北丘12", "why": "冬の肉を取る"}, "ラキ47": {"activity": "狩り", "place": "北丘12", "why": "冬の肉を取る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "春も獲物を取り、肉を蓄えに入れる"}, "family": {"テナ42": {"activity": "狩り", "place": "北丘12", "why": "肉を取る"}, "ラキ47": {"activity": "狩り", "place": "北丘12", "why": "肉を取る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"キサ65": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T354": false, "T355": false, "T356": false, "T357": false, "T358": false, "T359": false, "T360": false, "T361": false, "T362": false},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れと北の丘の年",
+ "feeling": "蓄えは十分にある。体も満ちているので、また狩りに出たい。"}

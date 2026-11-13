@@ -1,0 +1,16 @@
+{"say":[{"to":"みんな","text":"蓄えはたっぷりある。夏は畑の刈り入れをして、秋からも無理せず、いつもの暮らしを守ろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑を夏のうちに刈らないと落ちてしまうから"},"family":{"ルタ44":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"キサ48":{"activity":"ヤギの世話","place":"camp","why":"子を育てながらでき、乳もとれるから"},"セヤ48":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"ホタ49":{"activity":"ヤギの世話","place":"camp","why":"小さい子がいて遠くへ行きにくいから"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"秋":{"job":{"activity":"採集","place":"camp","with":[],"why":"実の多い季節に食べ物を集めるため"},"family":{"ルタ44":{"activity":"畑仕事","place":"camp","why":"畑の草取りで実りを増やすため"},"キサ48":{"activity":"ヤギの世話","place":"camp","why":"ヤギが減らないように世話するため"},"セヤ48":{"activity":"畑仕事","place":"camp","why":"畑の草取りで実りを増やすため"},"ホタ49":{"activity":"採集","place":"camp","why":"実の多い季節に食べ物を集めるため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":0},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"冬のあいだも草取りをして実りを守るため"},"family":{"ルタ44":{"activity":"狩り","place":"camp","why":"冬も獲れる獣を狩るため"},"キサ48":{"activity":"休む","place":"camp","why":"寒い季節は体を休めるため"},"セヤ48":{"activity":"狩り","place":"camp","why":"冬も獲れる獣を狩るため"},"ホタ49":{"activity":"畑仕事","place":"camp","why":"草取りで実りを守るため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の刈り入れに向けて草取りをするため"},"family":{"ルタ44":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"キサ48":{"activity":"ヤギの世話","place":"camp","why":"子ヤギと乳のため"},"セヤ48":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"ホタ49":{"activity":"ヤギの世話","place":"camp","why":"子ヤギと乳のため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{"T354":false,"T355":false,"T356":false,"T357":false,"T358":false,"T359":false,"T360":false,"T361":false,"T362":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"ゆたかな蓄えの年",
+"feeling":"蓄えは十分で心強い。みんなが穏やかに暮らせるよう、手を貸し合っていきたい。"}

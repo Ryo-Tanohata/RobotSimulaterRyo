@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだたくさん実っている。落ちる前にみんなで刈ろう。南の村から来た人たちも、いっしょに暮らしてもらおう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに刈らないと落ちてしまうから"}, "family": {"リセ45": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要るから"}, "ハソ50": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "アコ51": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ラニ52": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "セオ53": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ホタ54": {"activity": "畑仕事", "place": "camp", "why": "子でも刈り入れの助けになる"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器が得意なので、蓄えと交換に使う土器を作る"}, "family": {"リセ45": {"activity": "採集", "place": "camp", "why": "木の実がなる季節に集める"}, "ハソ50": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "アコ51": {"activity": "狩り", "place": "camp", "why": "狩りが得意で肉を得られる"}, "ラニ52": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "セオ53": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は実りがないので、家の中で土器を作る"}, "family": {"リセ45": {"activity": "狩り", "place": "camp", "why": "魚やけものは冬もいる"}, "ハソ50": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "アコ51": {"activity": "狩り", "place": "camp", "why": "狩りが得意だから"}, "ラニ52": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "セオ53": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして夏の実りを増やす"}, "family": {"リセ45": {"activity": "採集", "place": "camp", "why": "春の食べ物を集める"}, "ハソ50": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "アコ51": {"activity": "狩り", "place": "camp", "why": "狩りが得意だから"}, "ラニ52": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "セオ53": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"キサ65": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": ["秋"], "leader": null,
+ "trade": {"T354": false, "T355": false, "T356": false, "T357": "村", "T358": "村", "T359": "村", "T360": false, "T361": false, "T362": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りを分けあう年",
+ "feeling": "蓄えは多く安心している。みんなで刈り入れをして、困っている村や来た人とも分けあいたい。"}
