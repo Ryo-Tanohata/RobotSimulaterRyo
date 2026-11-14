@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだ刈れるぞ。落ちる前に、おれたちも出て刈ろう。秋は種まきだ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈るのが一番の損しない仕事だから"}, "family": {"テナ42": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る手が足りないので"}, "ラキ47": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る手が足りないので"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "秋は木の実が実る。腕のある採集で食べ物を増やす"}, "family": {"テナ42": {"activity": "採集", "place": "camp", "why": "木の実を集めるのが得意だから"}, "ラキ47": {"activity": "狩り", "place": "camp", "why": "魚や肉も蓄えに足したいから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "camp", "with": [], "why": "冬も魚やけものはいる。狩りの腕を生かす"}, "family": {"テナ42": {"activity": "狩り", "place": "camp", "why": "冬は木の実がないので狩りで食べ物を得る"}, "ラキ47": {"activity": "狩り", "place": "camp", "why": "冬は木の実がないので狩りで食べ物を得る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番高く、蓄えを守る器が増やせる"}, "family": {"テナ42": {"activity": "採集", "place": "camp", "why": "春の食べ物を集める"}, "ラキ47": {"activity": "狩り", "place": "camp", "why": "春の食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"セオ77": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M514": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T609": false, "T610": false, "T611": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "mood": "蓄えは多く、落ち着いている。夏の畑を落とさず刈りたい。"}

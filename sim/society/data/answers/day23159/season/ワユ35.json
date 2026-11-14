@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"わしは土器をつくる。草の種はたくさんあるから、秋の種まきは今までどおりでよい。"}],
+"year":{
+"夏":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器は得意だし、いつもの仕事だから続ける"},"family":{"ナセ42":{"activity":"畑仕事","place":"camp","why":"実った畑を刈らないと落ちてしまう"},"キサ56":{"activity":"畑仕事","place":"camp","why":"実った畑を刈らないと落ちてしまう"},"トナ58":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要る"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器は得意だから続ける"},"family":{"ナセ42":{"activity":"採集","place":"西草原12","why":"食べ物を集める"},"キサ56":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"トナ58":{"activity":"狩り","place":"東林12","why":"肉をとる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"冬も土器づくりは屋根の下でできる"},"family":{"ナセ42":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"キサ56":{"activity":"狩り","place":"南川12","why":"魚やけものは冬もいる"},"トナ58":{"activity":"狩り","place":"東林12","why":"肉をとる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器づくりを続ける"},"family":{"ナセ42":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"キサ56":{"activity":"ヤギの世話","place":"camp","why":"乳がとれる"},"トナ58":{"activity":"狩り","place":"東林12","why":"肉をとる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"セオ77":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge":{"M514":"ゆるす"},"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T609":false,"T610":false,"T611":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"ヤギと草の種の年",
+"feeling":"わしは静かに土器をつくっていたい。"}
