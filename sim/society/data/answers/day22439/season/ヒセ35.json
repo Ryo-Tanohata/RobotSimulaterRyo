@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりある。今年は冬に備えて、夏は畑を刈り、秋は魚と実を集めよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに実った畑を刈らないと落ちてしまうから、刈り入れを手伝う。"}, "family": {"ソワ35": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る人手がいる。"}, "ソワ37": {"activity": "採集", "place": "西草原12", "why": "近くの草原で実や種を集め、家の食べ物を足す。"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "東林12", "with": [], "why": "秋は木の実がなるので、冬に向けて集める。"}, "family": {"ソワ35": {"activity": "採集", "place": "東林12", "why": "木の実がなる秋に集める。"}, "ソワ37": {"activity": "狩り", "place": "北川12", "why": "川で魚をとり、冬の蓄えを厚くする。"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "狩り", "place": "南川12", "with": [], "why": "冬は実りがないので、魚やけものをとる。"}, "family": {"ソワ35": {"activity": "狩り", "place": "南川12", "why": "冬も魚はいるのでとる。"}, "ソワ37": {"activity": "狩り", "place": "北川12", "why": "川の魚をとって蓄えを助ける。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして畑の実りを増やす。"}, "family": {"ソワ35": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす。"}, "ソワ37": {"activity": "採集", "place": "西草原12", "why": "草の種や芋を集める。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade": {"T516": "ヤギは助かるが、土器と鎌を出す余裕を見て、草の種は少なめなら受けたい。", "T517": "様子を見て、蓄えに余裕があれば応じる。", "T518": "様子を見て、蓄えに余裕があれば応じる。", "T519": "様子を見て、蓄えに余裕があれば応じる。"},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの厚い年",
+ "feeling": "蓄えは豊かで落ち着いている。家族みんなで働いて冬に備えたい。"}

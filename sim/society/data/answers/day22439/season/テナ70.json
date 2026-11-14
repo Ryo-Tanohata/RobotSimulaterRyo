@@ -1,0 +1,17 @@
+{"say":[{"to":"みんな","text":"蓄えはたっぷりある。夏のうちに畑を刈って、あとは俺は狩りに出る。肉はいくらあってもいい。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏のうちに刈らないと実が落ちるので、まず刈り入れをする"},"family":{"ラニ70":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"狩り","place":"北林12","with":[],"why":"狩りが得意なので肉を獲って蓄えに入れる"},"family":{"ラニ70":{"activity":"採集","place":"西草原12","why":"採集が得意なので食べ物を集める"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":300},
+"冬":{"job":{"activity":"狩り","place":"北林12","with":[],"why":"冬も獣はいるので狩りで食べ物を得る"},"family":{"ラニ70":{"activity":"畑仕事","place":"camp","why":"畑の草取りをして実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"狩り","place":"北林12","with":[],"why":"狩りを続けて肉を蓄えに入れる"},"family":{"ラニ70":{"activity":"畑仕事","place":"camp","why":"草取りをして次の実りを守る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T516":false,"T517":false,"T518":false,"T519":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},
+"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"肉を追った夏の年",
+"mood":"蓄えは十分で気楽だ。思い切り狩りに出たい。"}
