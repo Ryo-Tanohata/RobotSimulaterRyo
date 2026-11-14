@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "冬の前に畑をしっかりまいて、草取りもみんなでやろう。蓄えは多いが、油断せずに行こう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。いつもどおり畑で働くのが一番確かだ。"},
+ "sow": 600, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "タユ46": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ソワ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ソワ52": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎるので、やせないよう見てまわる"},
+  "ロワ54": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "オセ57": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "オセ58": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ラキ59": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ケセ60": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にあって落ち着いている。冬の前に畑をまいて、体を動かしたい。"}

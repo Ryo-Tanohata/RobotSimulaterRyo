@@ -1,0 +1,30 @@
+{"say": [{"to": "みんな", "text": "水の輪が七つとも止まったままだよ。この秋はうちの家からも二人出すから、ほかの家も一人ずつ手を貸して、冬が来る前に回そう。"}, {"to": "みんな", "text": "ヤギはもう草で養える数ぎりぎりだ。北の村のヤギは今回は断ろう。"}],
+ "job": {"activity": "水の輪を建てる", "place": "camp", "with": ["ロワ46"], "why": "止まった水の輪を直さないと、水の来る畑が守れないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ロワ46": {"activity": "水の輪を建てる", "place": "camp", "why": "力があるので、私と一緒に輪の羽と軸を直してほしい"},
+  "ヒセ48": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ 414 人日も残っているから"},
+  "オセ49": {"activity": "水の道を掘る", "place": "camp", "why": "泥でうまる前に水の道をさらってほしい"},
+  "ホミ52": {"activity": "畑仕事", "place": "camp", "why": "秋にまく畑の草取りをして、来年の実りを増やすため"},
+  "オネ54": {"activity": "帳をつける", "place": "camp", "why": "字が読めるし、この年の帳がまだ書かれていないから"},
+  "リセ56": {"activity": "畑仕事", "place": "camp", "why": "小さな子がいるので、キャンプのそばの畑で働いてほしい"},
+  "テナ56": {"activity": "水の道を掘る", "place": "camp", "why": "家ごとに水の道へ人を出す約束を守るため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T491": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [
+  {"op": "add", "text": "ヤギが 143 頭いて、草で養える約 140 頭をこえていたので、1 頭がやせていなくなった", "because": [3010343], "confidence": 0.9},
+  {"op": "add", "text": "土器に入れた蓄えの草の種でも、季節ごとに 4 万つかみほどは虫やネズミにやられる", "because": [3010352], "confidence": 0.8},
+  {"op": "add", "text": "前に貸した村は、少しずつだが草の種を返しに来ている", "because": [3010357, 3010358, 3010359, 3010360, 3010361], "confidence": 0.7}
+ ],
+ "proposal": {"text": "この秋は水の来る畑の広さまで草の種をまき、冬と春のあいだ、家ごとに一人ずつ畑の草取りに出そう。草を取らない畑は実りが 3 割にへるから。", "because": [3010352], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L573", "against": "つぶしすぎると乳がへる", "agree": true, "reason": "ヤギが草で養える数をこえていて、やせていなくなるから"},
+  {"id": "L572", "against": "ほかの仕事の手がへる", "agree": true, "reason": "止まった水の輪を七つとも直したいから"},
+  {"id": "L571", "against": "貸さないと近くの村が困る", "agree": true, "reason": "水の道の手入れが残っているし、返さない村に貸し続けるのはよくない"},
+  {"id": "L570", "against": "夏の夕方は疲れる", "agree": true, "reason": "刈らずに落ちる草の種が多すぎるから"},
+  {"id": "L568", "against": "家によっては人が少ない", "agree": true, "reason": "水の道がうまると水の来る畑がへるから"},
+  {"id": "L566", "against": "畑の草取りの手がへる", "agree": true, "reason": "水の道と水の輪を守るため"},
+  {"id": "L564", "against": "オスがもういない", "agree": true, "reason": "ヤギが多すぎるあいだはよその村のヤギを受けとらないのがよい"}
+ ],
+ "feeling": "蓄えはたっぷりある。今は水の輪と水の道を立て直すときだ。"}
