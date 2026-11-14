@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまこう。ヤギは草より多いから、おれは何頭かつぶして肉にする。冬は獲物をとってくるよ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りが得意で、冬に向けて肉を蓄えに入れたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "キサ48": {"activity": "採集", "place": "東林12", "why": "採集が得意で、食べ物を集めるため"},
+  "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やすため"},
+  "ヌオ52": {"activity": "狩り", "place": "北林12", "why": "狩りが得意で、肉を蓄えにするため"},
+  "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守るため"},
+  "シエ59": {"activity": "ヤギの世話", "place": "camp", "why": "まだ腕が育っていないので、ヤギの世話を手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。冬に向けて体を動かしたい。"}

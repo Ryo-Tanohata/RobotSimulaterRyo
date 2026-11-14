@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "ヤギはもう草より多いのに、まだヤギを受けとるのはおかしいと思う。わたしは狩りに出て、けものの肉を持って帰るよ。"}],
+ "job": {"activity": "狩り", "place": "北林28", "with": [], "why": "狩りの腕がいちばん確かだし、冬の前に肉を蓄えに入れておきたい。遠くの林のけもののようすも見てみたい"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 1, "keep": false,
+ "feast": false, "leader": "ホタ56",
+ "trade": {"T545": false, "T546": {"side": "村", "利子": 0.1}},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "草で養えるヤギは約110頭なのに162頭いた季節には、17頭がやせていなくなった。いまも145頭で多すぎる", "because": [3129447], "confidence": 0.9},
+  {"op": "add", "text": "土器に入れていた約588万つかみの草の種のうち、ひと季節に約4万5千つかみが傷んだ", "because": [3129458], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L581", "against": "ヤギをつぶしすぎると乳が減る", "agree": true, "reason": "ヤギは145頭で草の約110頭より多い。やせていなくなるより食べたほうがむだがない"},
+  {"id": "L582", "against": "草取りに人をとられると狩りの手が減る", "agree": true, "reason": "畑にまかなければ次の夏に刈るものがない"},
+  {"id": "L585", "against": "住まいを建てる手が畑やヤギからとられる", "agree": true, "reason": "雨の夜に外で濡れる人がまだいるから"},
+  {"id": "L575", "against": "家ごとの交代は手間がかかる", "agree": true, "reason": "水の道がうまると水の来る畑がへるから"}],
+ "feeling": "秋の林にどんなけものがいるか、確かめに行くのが楽しみ"}
