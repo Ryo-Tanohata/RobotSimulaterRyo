@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いが、冬と春に畑の草取りをする人が少ないと実りが減る。いっしょに畑に出てくれる人はいないかな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の草取りをしないと実りが減る。蓄えが多く食べ物に困らないので、畑を育てて来年の夏に備えたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ラキ69": true},
+ "family": {
+  "ワユ35": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手が要るので、いっしょに畑を見る。"},
+  "ソナ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの人手が要るので、いっしょに畑を見る。"},
+  "ナセ42": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが草の足りない数いるので、世話をして見守る。"},
+  "キサ56": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝ってもらう。"},
+  "トナ58": {"activity": "畑仕事", "place": "camp", "why": "子どもでも草取りの手伝いはできる。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T435": false, "T436": false, "T437": false, "T438": false, "T439": false, "T440": false, "T441": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって安心している。畑をていねいに育てて、冬と春をのりきりたい。"}

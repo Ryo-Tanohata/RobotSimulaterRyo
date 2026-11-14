@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、冬と春の草取りも皆で欠かさずやろう。ヤギはいま多すぎるから、受けとらないでおこうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、冬と春の草取りで夏の実りが決まる。畑のそばで続けて働くのが皆のためになる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ラキ69": true},
+ "family": {
+  "ルタ44": {"activity": "畑仕事", "place": "camp", "why": "秋にまく畑と、冬からの草取りを家で分けて受け持つため。"},
+  "キサ48": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を確保し、夏の実りを増やすため。"},
+  "ホタ49": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く草が足りないので、世話をする人が要る。"},
+  "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを皆で分けて、一人の負担を軽くするため。"},
+  "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "畑を育てて夏に多く刈るため。"},
+  "オネ57": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝わせて、畑仕事を覚えさせるため。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T435": false, "T436": false, "T437": false, "T438": false, "T439": false, "T440": false, "T441": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える数より多いあいだは、ヤギを出す申し出は受けないほうがよい。", "because": [2891254], "confidence": 0.6}],
+ "proposal": null,
+ "votes": []}
