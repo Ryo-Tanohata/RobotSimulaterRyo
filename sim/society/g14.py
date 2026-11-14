@@ -234,6 +234,11 @@ def market_why(state, o, going=True):
         return f"{o['name']} は、この季節の分の土器と鎌をもう受けたか、ほかの村の人が運んでいるので"
     if _pay_left(state, o, going) < min(era2.VALUE[POT], era2.VALUE[SICKLE]):
         return f"{o['name']} は、この年に払える草の種をもう払ったので"
+    if going and not _carry(state, o, None):
+        w = [k for k, n in wants(state, o, True).items() if n > 0]
+        if not any(era2._g6_have(state, "村", k) for k in w):
+            return f"村の倉に、{o['name']} がほしがっている{'・'.join(w)}がないので"
+        return f"{o['name']} がこの年にまだ払える草の種では、ほしがっている{'・'.join(w)} 1 つ分に足りないので"
     return None
 
 
@@ -302,7 +307,7 @@ def _depart(state, p, t):
         note = (f" ({why0}、行き先を {o['name']} にした)" if want else f" (行き先が書かれていなかったので、いちばん近いほしがっている {o['name']} へ)")
     carry = _carry(state, o, name)
     if not carry:
-        why = f"{name} は、村の倉に運べる土器と鎌がなく、市へ運べず、休んだ"
+        why = f"{name} は、{o['name']} がほしがっている品を、払える草の種の分だけ運ぶことができず (仲間のねうちのため)、市へ運べず、休んだ"
         t.setdefault("events", []).append(log(state, "休む", name, why, rest_why=ACT_MARKET))
         _fail_once(state, name, ACT_MARKET, why)
         return None
