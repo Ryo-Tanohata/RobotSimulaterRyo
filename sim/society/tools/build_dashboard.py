@@ -772,7 +772,8 @@ def build(st, rec):
     # ---- G6 (村の記録)。G6 の前は空
     g6 = build_g6(st, rec, rows, seasons, layer_of_row, row_of_event, ev_by_type, adv)
     g7 = build_g7(st, rec, rows, seasons, row_of_day) if e2.get("g7") else None  # G7 (王と役所) から。G6 までは鍵を足さない
-    g12 = build_g12(st, rows, row_of_day) if (e2.get("g7") or {}).get("g12") else None  # G12 (2026-11-12): 村の人が字で書いた帳のまとめ。G11 までは鍵を足さない
+    g12 = build_g12(st, rows, row_of_day) if (e2.get("g7") or {}).get("g12") else None
+    g14 = build_g14(st, rows, row_of_day) if (e2.get("g7") or {}).get("g14") else None  # G14 (2026-11-14): 町と市と仲間のまとめ (数だけ。名前は出さない)。G13 までは鍵を足さない  # G12 (2026-11-12): 村の人が字で書いた帳のまとめ。G11 までは鍵を足さない
 
     last = seasons[-1]
     lc = last["cum"]
@@ -865,6 +866,7 @@ def build(st, rec):
         "g6": g6,
         **({"g7": g7} if g7 is not None else {}),
         **({"g12": g12} if g12 is not None else {}),
+        **({"g14": g14} if g14 is not None else {}),
     }
     return out
 
@@ -1081,6 +1083,18 @@ def build_g12(st, rows, row_of_day):
         out.append({"d": rows[i]["d"] if i is not None else None, "year": int(y), "houses": len(c["houses"]), "people": sum((c.get("people") or {}).values()),
                     "grain_written": None if sg is None else int(round(sg, -2)), "pacts": (c.get("pacts") or {}).get("n"), "done": bool(c.get("done"))})
     return {"entered": True, "census": out[-20:]}
+
+
+def build_g14(st, rows, row_of_day):
+    """G14 から (2026-11-14。G14_design.md 3.5): 町と市と仲間の帳簿 (【シ】) の年ごとのまとめ。数だけ (町の家の数と人・市へ運んだ回と草の種・書きつけ・仲間の数)。
+    名前と家の名は出さない (records/granary.jsonl にある)"""
+    out = []
+    for r in (((st["era2"].get("g7") or {}).get("g14") or {}).get("ledger") or []):
+        i = row_of_day(r["day"])
+        out.append({"d": rows[i]["d"] if i is not None else None, "year": r["year"], "town_houses": r.get("town_houses", 0), "town_people": r.get("town_people", 0),
+                    "town_share": r.get("town_share", 0), "market_trips": r.get("market_trips", 0), "market_grain": r.get("market_grain", 0),
+                    "notes_accepted": r.get("notes_accepted", 0), "notes_paid": r.get("notes_paid", 0), "guilds": len(r.get("guilds_ok") or [])})
+    return {"entered": True, "years": out[-20:]}
 
 
 def _seal_letter(k):
