@@ -1,0 +1,13 @@
+{"say": [{"to": "オネ62", "text": "雨の夜に外で濡れるのは、もうたくさん。この秋は二人で家の住まいを仕上げよう。"}, {"to": "みんな", "text": "ヤギはもう草で養える数をこえている。よその村のヤギは、いまは受けないほうがいいと思う。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["オネ62"], "why": "雨の夜に村の住まいに入りきらず濡れたので、家の住まいを早く仕上げたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ62": {"activity": "住まいを建てる", "place": "camp", "why": "家の住まいができれば、雨の夜も屋根の下で眠れる"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T380": false, "T381": false, "T382": false, "T383": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "草原と丘の草で養えるヤギは約140頭で、160頭いた季節には7頭がやせていなくなった", "because": [2767642], "confidence": 0.9},
+  {"op": "add", "text": "村の住まいに入りきらない雨の夜があり、外で濡れると疲れがとれない", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "疲れているけれど、自分の家の屋根ができると思うと、少し楽しみ。"}

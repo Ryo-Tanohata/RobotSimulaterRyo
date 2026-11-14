@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "夏は刈りきれずに、畑ごとに草の種がたくさん落ちてしまった。この秋はまく畑の草取りを手厚くして、来年の夏は手のあいた人がみな夕方に刈ろう。"}, {"to": "みんな", "text": "ヤギはまだ草で養える数より多い。よその村のヤギはこの秋も受けずにおこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをすれば、来年の夏の実りが増えるから"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "family": {"ロワ46": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので、肉をとって蓄えを助けてもらう"}, "ヒセ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手が要るから"}, "オセ49": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手が要るから"}, "ホミ52": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを覚えてほしいから"}, "オネ54": {"activity": "畑仕事", "place": "camp", "why": "14 歳になったので、草取りを手伝ってほしい"}, "リセ56": {"activity": "畑仕事", "place": "camp", "why": "草取りなら子でも手伝えるから"}, "テナ56": {"activity": "畑仕事", "place": "camp", "why": "草取りなら子でも手伝えるから"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T380": false, "T381": false, "T382": false, "T383": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "夏に刈りきれず、畑ごとに草の種が 2000〜14000 つかみほど落ちてしまった。刈る人の手が足りない", "because": [2767626, 2767630, 2767640], "confidence": 0.9},
+  {"op": "add", "text": "ヤギが 160 頭いて、草で養える約 140 頭をこえていたので、7 頭がやせていなくなった", "because": [2767642], "confidence": 0.9}],
+ "proposal": {"text": "刈り入れの夏は、ヤギの世話と帳の人のほかは、大人も 12 歳からの子も毎夕 60 つかみずつ畑を刈ろう。畑ごとに落ちる草の種をなくすため。", "because": [2767626, 2767634, 2767640], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L553", "against": "子にも刈らせるのは疲れさせるかもしれない", "agree": true, "reason": "刈らずに落とした草の種が多すぎたから"},
+  {"id": "L554", "against": "家ごとに 3 頭ずつでは、ヤギが減りすぎるかもしれない", "agree": true, "reason": "ヤギが草で養える数をこえて、やせていなくなっているから"},
+  {"id": "L555", "against": "いまの頭数とちがう数が書いてある", "agree": true, "reason": "多いヤギを干し肉にして蓄えに入れるほうがむだがないから"},
+  {"id": "L551", "against": "同じような掟がいくつもある", "agree": true, "reason": "よその村のヤギを受けずに、数を減らしたいから"}],
+ "feeling": "子を何人も亡くした季節のあとだ。せめて畑の実りはむだにしたくない。"}
