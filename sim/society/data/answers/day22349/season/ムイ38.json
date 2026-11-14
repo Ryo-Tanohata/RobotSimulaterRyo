@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギが草の分より増えすぎている。今日は何頭か肉にして、干して冬にそなえよう。おれは畑で草取りをする。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると夏に多く実る。蓄えは十分だが、畑の実りを落とさないために続ける。"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"タユ72": true},
+ "family": {"テナ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに手を貸し、実りを増やすため。"}, "ラキ47": {"activity": "狩り", "place": "北丘12", "why": "冬は肉と魚が頼りになるので、狩りの腕を生かして肉を持ち帰る。"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T508": false, "T509": false, "T510": false, "T511": false, "T512": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草原で養える数をこえているので、秋のうちに肉にして減らすのがよい。", "because": [3049419], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "腹は満ちているし蓄えも厚い。あとは冬にそなえて、畑とヤギの数を整えたい。"}

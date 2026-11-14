@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "ヤギはもう草の分より多い。よその村のヤギは今は断って、土器をこしらえて東や南の村へ運び、草の種と替えようじゃないか。"}, {"to": "タユ72", "text": "南の村8から来たんだな。ここは食べ物もあるし、手もほしい。いっしょにやろう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": ["ヌオ65", "ラキ52"], "why": "土器の腕はだれにも負けない。蓄えを守る土器も、よその村と替える土器も足りないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ72": true},
+ "family": {"ムイ56": {"activity": "水の道を掘る", "place": "camp", "why": "水の道が泥でうまると水の来る畑がへるから、家から一人出す"}, "オネ58": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草を取れば実りが増えるから"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T508": false, "T509": false, "T510": false, "T511": false, "T512": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [],
+ "guild": {"仕事": "土器づくり", "人": ["ホタ56", "ヌオ65", "ラキ52", "ラニ42", "アコ62"], "ねうち": 1.1, "弟子": true},
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える約140頭より多く、前の季節に11頭がやせていなくなった。よその村のヤギを今受けるのは損だ", "because": [3049419], "confidence": 0.8}, {"op": "add", "text": "南の村8からタユ72とヒセ72が来て、ここで暮らしたいと言った", "because": [3049441], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L568", "against": "家ごとに一人出すと、ほかの仕事の手がへる", "agree": true, "reason": "水の道がうまると水の来る畑がへるから"},
+  {"id": "L572", "against": "輪を七つ直すには人日が多くかかる", "agree": true, "reason": "止まった水の輪を直せば粉ひきの手がはぶける"},
+  {"id": "L574", "against": "草取りに人を取られる", "agree": true, "reason": "草を取らない畑は実りが3割にへるから"},
+  {"id": "L575", "against": "交代の順番で揉めるかもしれない", "agree": true, "reason": "水の道と水の輪はみんなの畑を守る"},
+  {"id": "L577", "against": "ヤギの少ない家には重い", "agree": true, "reason": "やせていなくなるより、干し肉にしたほうがいい"},
+  {"id": "L578", "against": "どの家が多いかで揉めるかもしれない", "agree": true, "reason": "ヤギが草より多いうちは、よその村のヤギを受けないほうがいい"}
+ ],
+ "feeling": "腕はまだ衰えちゃいない。土器をどんどん焼いて、村をもっと大きくしてやる。"}

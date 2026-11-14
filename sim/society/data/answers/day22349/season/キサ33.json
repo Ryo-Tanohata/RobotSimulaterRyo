@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "今年は畑がない。蓄えの種をまいて、冬と春は草取りに精を出そう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がないので、まず種をまき、育つ畑の草取りを担う"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ72": true},
+ "family": {"ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ハソ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ヌオ35": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎるので見守る"}, "ユエ48": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を得る"}, "ユエ50": {"activity": "狩り", "place": "北丘12", "why": "冬に備えて肉を得る"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T508": false, "T509": false, "T510": false, "T511": false, "T512": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで落ち着いている。畑がないのが少し気がかりだ。"}

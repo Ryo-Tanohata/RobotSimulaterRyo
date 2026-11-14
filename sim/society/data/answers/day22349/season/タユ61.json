@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の前に、木の実と芋をたくさん集めておこう。ヤギが多すぎるから、肉にして干しておくのもいいと思う。"}],
+ "job": {"activity": "採集", "place": "北林12", "with": [], "why": "冬に備えて木の実を集め、家族の食べ物を増やしたいから"}, "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3, "accept": {"タユ72": true}, "family": {"ヒセ61": {"activity": "採集", "place": "北林12", "why": "わたしと一緒に採集をして、冬の食べ物を増やすため"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T508": "村", "T509": "村", "T510": "村", "T511": "村", "T512": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "新しく来た人たちも、一緒に働けば村の仲間になれる。", "because": [3049441], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので離れないほうがよい"}, {"id": "L3", "against": "", "agree": true, "reason": "複数で行けば助け合える"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたら休むのは大事"}, {"id": "L30", "against": "肉は干して蓄えに入れられるので、全部その日に食べなくてもよい", "agree": false, "reason": "干し肉にできるのに無駄になる"}],
+ "feeling": "蓄えは多いけれど、冬に向けて気を引きしめたい。"}

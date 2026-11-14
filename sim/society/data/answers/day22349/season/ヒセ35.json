@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "水の道が泥でうまると畑が減る。まだ手入れが残っているから、俺は今季ずっと水の道を掘る。手の空いた者は手伝ってくれ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、うまると水の来る畑が減るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3,
+ "accept": {"タユ72": true},
+ "family": {"ソワ35": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを皆で早く終わらせるため"}, "ソワ37": {"activity": "採集", "place": "camp", "why": "家の食べ物を足すため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T508": false, "T509": false, "T510": false, "T511": false, "T512": false}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体はまだ動く。畑のために、静かに土を掘ろう。"}
