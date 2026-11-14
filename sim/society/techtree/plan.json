@@ -30,7 +30,7 @@
     {"id": "G11", "name": "お金と市場", "group": "第 6 部 鉄とお金の帝国", "real": "前 650〜300 年ごろ (リュディアの硬貨・ギリシアのポリス)", "doc": "docs/society_phase/G11_design.md"},
     {"id": "G12", "name": "大きな都と帝国", "group": "第 6 部 鉄とお金の帝国", "real": "前 300〜後 500 年ごろ (ローマ・漢)", "doc": "docs/society_phase/G12_design.md"},
     {"id": "G13", "name": "帝国のあとの農業社会", "group": "第 7 部 帝国のあとと町", "real": "500〜1000 年ごろ (アッバース朝・水車と紙)", "doc": "docs/society_phase/G13_design.md"},
-    {"id": "G14", "name": "町と商業", "group": "第 7 部 帝国のあとと町", "real": "950〜1350 年ごろ (北イタリアとフランドルの町・宋)", "doc": "docs/society2_extension_plan.md (もとの G13)"},
+    {"id": "G14", "name": "町と商業", "group": "第 7 部 帝国のあとと町", "real": "950〜1350 年ごろ (北イタリアとフランドルの町・宋)", "doc": "docs/society_phase/G14_design.md"},
     {"id": "G15", "name": "近世の農業と農村の手仕事", "group": "第 8 部 工業の入口", "real": "1350 年ごろ〜工業の入口 (1710〜1800 年ごろ)", "doc": "docs/society2_extension_plan.md (もとの G14)"}
   ],
   "closures": {
@@ -92,7 +92,7 @@
     {"id": "s_market", "tree": "社会制度", "era": "G", "name": "市場", "key": "market", "elements": ["market", "estate"], "prereq": ["s_credit", "s_town"], "xprereq": ["t_coin"], "does": "決まった日に市が立ち、売るためにつくる", "real": {"when": "前 6〜5 世紀", "where": "ギリシアのポリスの市場", "src": "【記憶】"}},
     {"id": "s_teach", "tree": "社会制度", "era": "G", "name": "教え", "key": "teaching", "elements": ["teaching"], "prereq": ["s_wlaw"], "xprereq": [], "does": "弱い者を守れと説く教え", "real": {"when": "前 8 世紀ごろ〜", "where": "弱い者を守れと説いた人たち (「枢軸時代」は【議論あり】)", "src": "Mullins ほか 2018"}},
     {"id": "s_manor", "tree": "社会制度", "era": "H", "name": "土地と義務", "key": "duty", "elements": ["duty", "corvee"], "prereq": ["s_home", "s_empire"], "xprereq": [], "does": "土地を持つ家に、働く日か年貢を出す", "real": {"when": "823 年ごろ", "where": "カロリング朝の荘園 (イルミノンの台帳)", "src": "society2_extension_plan.md 3."}},
-    {"id": "s_commerce", "tree": "社会制度", "era": "H", "name": "商業", "key": "guild", "elements": ["guild", "bill", "townfolk", "ruralcraft"], "prereq": ["s_market"], "xprereq": ["t_writing"], "does": "組合と町の自治・手形・売るための手仕事", "real": {"when": "11〜13 世紀", "where": "北イタリアとフランドルの町", "src": "Lopez 1971【記憶】"}}
+    {"id": "s_commerce", "tree": "社会制度", "era": "H", "name": "商業", "key": "guild", "elements": ["guild", "bill", "townfolk", "market_trip", "town_house", "ruralcraft"], "prereq": ["s_market"], "xprereq": ["t_writing"], "does": "組合と町の自治・手形・売るための手仕事", "real": {"when": "11〜13 世紀", "where": "北イタリアとフランドルの町", "src": "Lopez 1971【記憶】"}}
   ],
   "nodes": [
     {"id": "gather", "name": "採集", "phase": "F1", "kind": "仕事", "prereq": [], "does": "木の実・芋・草の種を集める。木の実から「種」も手に入る", "detect": {"ev": "採集"}, "real": null},
@@ -269,11 +269,15 @@
      "real": {"when": "前 6 千年紀〜", "where": "メソポタミアの川ぞいの村 (サマッラ文化の水路)", "ya": 7500, "src": "【記憶】", "sure": "記憶"}},
     {"id": "corvee", "name": "働き手 (働く日)", "phase": "G13", "kind": "しくみ", "prereq": ["granary_pact"], "does": "よその集落の人が、約束で村の刈り入れや水の道の仕事に来る (G13 の F4)", "detect": {"substep": "G13/F4"},
      "real": {"when": "823 年ごろ", "where": "カロリング朝の荘園 (イルミノンの台帳。週に何日かの働く日)", "ya": 1200, "src": "【二次】", "sure": "二次"}},
-    {"id": "guild", "name": "町の自治・組合", "phase": "G14", "kind": "しくみ", "prereq": ["town"], "does": "職人や商人の組合", "detect": null, "heard": "H13-02",
+    {"id": "guild", "name": "仲間 (組合)", "phase": "G14", "kind": "しくみ", "prereq": ["town"], "does": "同じ仕事の人が誓って仲間を結ぶ (G14 の F3)。この村では同じ仕事の人の仲間。町の自治は、首長がいないので測らない", "detect": {"substep": "G14/F3"}, "heard": "H13-02",
      "real": {"when": "11〜13 世紀", "where": "北イタリアとフランドルの町", "ya": 900, "src": "Lopez 1971【記憶】", "sure": "記憶"}},
-    {"id": "bill", "name": "契約と手形", "phase": "G14", "kind": "しくみ", "prereq": ["letter"], "does": "遠くの町で払う約束の書きつけ", "detect": null, "heard": "H13-01",
+    {"id": "bill", "name": "契約と手形", "phase": "G14", "kind": "しくみ", "prereq": ["letter"], "does": "この村ではあとで払う書きつけ (G14 の F2)。遠くの町で払う手形は、お金がないので測らない", "detect": {"substep": "G14/F2"}, "heard": "H13-01",
      "real": {"when": "12〜13 世紀", "where": "中世イタリアの商人 (イスラームの地域の送金の書きつけはもっと早い【未確認】)", "ya": 850, "src": "【記憶】", "sure": "記憶"}},
-    {"id": "townfolk", "name": "町に住む人が 1 割", "phase": "G14", "kind": "しくみ", "prereq": ["guild"], "does": "地域の 1 割以上が町に住む", "detect": null, "real": null},
+    {"id": "townfolk", "name": "町に住む人が 1 割", "phase": "G14", "kind": "しくみ", "prereq": ["town_house"], "does": "地域の 1 割以上が町に住む (G14 の条件 1。この村では村の中の町の家)", "detect": {"ev": "目盛り", "text": "G14 の条件 1"}, "real": null},
+    {"id": "market_trip", "name": "市へ運ぶ", "phase": "G14", "kind": "やり方", "prereq": ["trade"], "does": "村の倉の土器と鎌を、ほしがっている村に運んで草の種を受ける (G14 の F1。仕事「市へ運ぶ」)", "detect": {"substep": "G14/F1"},
+     "real": {"when": "10〜13 世紀", "where": "ヨーロッパの定期市・宋の草市 (「商業の革命」)", "ya": 1000, "src": "Lopez 1971【二次】", "sure": "二次"}},
+    {"id": "town_house", "name": "町の家", "phase": "G14", "kind": "しくみ", "prereq": ["market_trip"], "does": "家の大人の働いた日の半分以上が食べ物でない仕事の家 (G14 の F4)", "detect": {"substep": "G14/F4"},
+     "real": {"when": "1300 年ごろ", "where": "ヨーロッパの町に住む人は 1 割ほど【記憶・未確認】", "ya": 700, "src": "【記憶】", "sure": "記憶"}},
     {"id": "print", "name": "印刷", "phase": "G15", "kind": "もの", "prereq": ["paper"], "does": "金属の字で刷る", "detect": null, "heard": "H14-01",
      "real": {"when": "15 世紀 (グーテンベルク)", "where": "マインツ。それより前に東アジアの金属活字", "ya": 575, "src": "【記憶】", "sure": "記憶"}},
     {"id": "ruralcraft", "name": "農村の手仕事", "phase": "G15", "kind": "仕事", "prereq": ["market"], "does": "売るための手仕事を家でする", "detect": null,

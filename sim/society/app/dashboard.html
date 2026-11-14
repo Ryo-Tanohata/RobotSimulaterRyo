@@ -1463,6 +1463,15 @@ function renderKiroku7(p, d) {
         : h("p", { class: "empty" }, "まだない (字を読み書きできる人が「帳をつける」を選ぶと残る)"),
       h("p", { class: "notice" }, "倉の量は 100 つかみ単位にまるめた")));
   }
+  const g14 = D.g14;  /* G14 から (2026-11-14): 町と市と仲間のまとめ (数だけ。名前は出さない) */
+  if (g14 && g14.entered) {
+    const ys = g14.years.filter((r) => r.d != null && r.d <= d);
+    p.append(h("div", { class: "card" }, h("h3", {}, "町と市と仲間 (G14から)"),
+      ys.length ? tbl([{ t: "年" }, { t: "町の家", n: 1 }, { t: "町の家の人", n: 1 }, { t: "地域のうち", n: 1 }, { t: "市へ運んだ", n: 1 }, { t: "受けた草の種", n: 1 }, { t: "書きつけ (受けた)", n: 1 }, { t: "書きつけ (払った村)", n: 1 }, { t: "仲間", n: 1 }],
+        ys.slice(-12).map((r) => [`${r.year}年`, fmt(r.town_houses), fmt(r.town_people), `${(r.town_share * 100).toFixed(1)}%`, fmt(r.market_trips), fmt(r.market_grain), fmt(r.notes_accepted), fmt(r.notes_paid), fmt(r.guilds)]))
+        : h("p", { class: "empty" }, "まだない (年の終わりに残る)"),
+      h("p", { class: "notice" }, "シミュレーションの帳簿 (【シ】) の数だけ。名前は出さない")));
+  }
 }
 </script>
 </body>

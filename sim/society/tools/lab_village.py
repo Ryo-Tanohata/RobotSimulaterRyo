@@ -15,6 +15,8 @@
    表は csv --g12-csv <runs.csv> --years-csv <years.csv>。docs/society_phase/G12_check.md)
   (G13 の確かめ 2026-11-12: --data <本物の 20759 日目の state.json のあるフォルダ> --worlds W13 --bundles G13B0,G13B1,G13B1S,G13B1K,G13B1G,G13B1P --seeds 2 --years 15 --procs 2。
    表は csv --g13-csv <runs.csv> --years-csv <years.csv>。docs/society_phase/G13_check.md)
+  (G14 の確かめ 2026-11-14: --data <本物の 21419 日目の state.json のあるフォルダ> --worlds W14 --bundles G14B0,G14B1,G14B1S,G14B1R,G14B1T,G14B1N --seeds 2 --years 15 --procs 2。
+   表は csv --g14-csv <runs.csv> --years-csv <years.csv>。docs/society_phase/G14_check.md)
 
 - はじめの state は G6 の 5849 日目 (e436dfc の 1 つ前のコミットの data の写し)。メモリの中で g7.close_g6 → g7.enter (G7 に入る。本物と同じ道) してから回す。
   写しの state.json は読むだけ。何も書かない (書くのは --out の結果のファイルだけ)
@@ -87,6 +89,9 @@ WORLDS = {
     # G13 の世界 (2026-11-12 本人の決め (おすすめどおり)): 本物の村の 20759 日目 (G12 の 3 つの条件がそろって第 6 部が終わり、HOLD part_end) から、
     #   step.py next_part (--closed-by-decision なし) と同じ道で G13 に入る (g7.close_g12 → g7.enter_next → g7.start_g13。世界はそのまま)
     "W13": {"name": "G13 (帝国のあとの農業社会。本物の 20759 日目から。G12 のまま)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g13": True},
+    # G14 の世界 (2026-11-14 本人の言葉 (おすすめどおり)): 本物の村の 21419 日目 (G13 の 3 つの条件がそろって HOLD wait) から、
+    #   step.py next_part と同じ道で G14 に入る (g7.close_g13 → g7.enter_next → g7.start_g14。世界はそのまま)
+    "W14": {"name": "G14 (町と商業。本物の 21419 日目から。G13 のまま)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g14": True},
 }
 G12_NOTE = "本人の決め 2026-11-10: お金と市場を 164年120日目で閉じた (決まりの村の確かめ)"
 G11_NOTE = "本人の決め 2026-11-05 (お任せ): 鉄と広い国を閉じた (決まりの村の確かめ)"
@@ -132,6 +137,11 @@ def enter_g7(state, w):
         if w.get("far_rate"):
             import g9
             g9.set_far_rate(state, w["far_rate"], "本人の決め 2026-10-29: 来る見込みを 5 割に")
+        return
+    if w.get("g14"):  # 本物の 21419 日目 (G13。HOLD wait): G13 を閉じて G14 に入る (step.py next_part と同じ関数。enter_next が止まりを解く)
+        assert state.get("era") == "G13" and (state["era2"]["g7"].get("hold") or {}).get("why") == "wait", state.get("era")
+        g7.close_g13(state)
+        g7.enter_next(state)
         return
     if w.get("g13"):  # 本物の 20759 日目 (G12。HOLD part_end): G12 を閉じて G13 に入る (step.py next_part と同じ関数。enter_next が止まりを解く)
         assert state.get("era") == "G12" and (state["era2"]["g7"].get("hold") or {}).get("why") == "part_end", state.get("era")
@@ -235,7 +245,23 @@ BUNDLES = {
     "G13B1K": {"name": "G13 の B1K (札を知っている人がいない)", **BASE, "g13": "push", "no_know": True},
     "G13B1G": {"name": "G13 の B1G (B1 + 粉ひきの手間なし。対照)", **BASE, "g13": "push", "no_grind": True},
     "G13B1P": {"name": "G13 の B1P (B1 + 1 年目に村が約束をみなやめる)", **BASE, "g13": "push", "drop_pacts": True},
+    # G14 の確かめ (2026-11-14): G14_design.md 7.1 の束。どれも「ふつうの暮らし」(G13 の束と同じ。掟と「大人の半分」の道は使わない)。
+    #   G12 の倉の約束・助け・帳と、G13 の水の輪の直しと水の道の手入れは、本物の近ごろと同じに続ける (冬に 2 人が水の輪・春に 10 人が水の道)。
+    #   G14B0 は新しい仕事と欄を選ばない。G14B1 は町と市に寄せる。G14B1S は 1 人 (読める人の家の代表) だけが選ぶ (G14B1S0 は仲間の直しの前の決まり。記録のため)。
+    #   G14B1R は読める人がいない。G14B1T は町が大きすぎる (答える家の半分が 4 季節みな食べ物でない仕事)。G14B1N はまわりが払えない (地域の悪い年を毎年)
+    "G14B0": {"name": "G14 の B0 (今の LLM に近い。新しい仕事と欄を選ばない)", **BASE, "g14": "none"},
+    "G14B1": {"name": "G14 の B1 (町と市に寄せた)", **BASE, "g14": "push"},
+    "G14B1S": {"name": "G14 の B1S (1 人だけが選ぶ。仲間の直しのあと)", **BASE, "g14": "push", "solo": True, "guild_solo": True},
+    "G14B1S0": {"name": "G14 の B1S0 (1 人だけが選ぶ。仲間の直しの前の決まり)", **BASE, "g14": "push", "solo": True, "guild_solo": False},
+    "G14B1R": {"name": "G14 の B1R (読める人がいない)", **BASE, "g14": "push", "no_read": True},
+    "G14B1T": {"name": "G14 の B1T (町が大きすぎる)", **BASE, "g14": "push", "town_all": True},
+    "G14B1N": {"name": "G14 の B1N (まわりが払えない。地域の悪い年を毎年)", **BASE, "g14": "push", "bad_every": True},
 }
+# G14B1 の答え (G14_design.md 7.1): 答える家のうち大人の多い 4 家の代表が、家の大人の仕事を秋・冬・春に土器づくりと道具づくりにする (夏は畑)。
+#   毎季節 4 人 (ほかの答える家の、代表でない大人) が「市へ運ぶ」(行き先は近いほしがっている村を順に)。読める人の家の答える人が、年の集まりと秋の集まりで、
+#   受けてくれそうな村 5 つまでに書きつけ。土器の仲間を、ちがう家の答える人 2 人が書く (人は前の 1 年に 20 日以上土器を作った人から 5 人)
+G14_TOWN_HOUSES, G14_MARKET, G14_NOTES, G14_GUILD_PEOPLE = 4, 4, 5, 5
+G14_KEEP = {"冬": (2, "水の輪を建てる"), "春": (10, "水の道を掘る")}  # G13 の手入れ (どの束も。本物の近ごろと同じくらい: 水の輪 1 年 50 人日・水の道 約 290 人日)
 # G13B1 の答え (G13_design.md 7.1): 札を知っている 2 人が毎季節「試す」、ほかに 2 人が with。できたら 4 人が「水の輪を建てる」(輪が 2 つになるまで)、
 #   そのあとは冬に 1 人が直す (1 年に 30 人日)。毎季節 10 人が「水の道を掘る」。続いている約束のうち 3 つの take に働き手 (2 人まで × 20 日)
 G13_TRY, G13_WITH, G13_BUILD, G13_MILLS, G13_CANAL, G13_WORK_PACTS = 2, 2, 4, 2, 10, 3
@@ -554,6 +580,92 @@ def _g13_jobs(state, fams, sea, pol):
     return out
 
 
+def _g14_solo(state, names):
+    """G14B1S: 選ぶ 1 人 (読める人のいる家の答える人のうち、答える順で最初の人。いなければ最初の答える人)"""
+    import g14
+    return next((n for n in names if g14.house_readers(state, n)), names[0] if names else None)
+
+
+def _g14_jobs(state, fams, sea, pol):
+    """G14 の束: その季節の仕事 ({名前: 仕事})。どの束も G13 の手入れ (冬に 2 人が水の輪・春に 10 人が水の道)。
+    push なら、大人の多い 4 家 (B1T は答える家の半分。B1S は 1 家) の大人を、秋・冬・春 (B1T は 4 季節) に土器づくりと道具づくりに (読める人は帳のために除く)。
+    毎季節 4 人 (B1S はその家から) が「市へ運ぶ」(近いほしがっている村を順に)。B1R は冬に 1 人が「字を習う」"""
+    import g10
+    import g14
+    alive = {p["name"]: p for p in era2.adults(state)}
+    rd = set(g10.readers(state))
+    out = {}
+    town = set()
+    if pol.get("g14") == "push":
+        names = list(fams)
+        if pol.get("solo"):
+            s1 = _g14_solo(state, names)
+            heads = [s1] if s1 else []
+        elif pol.get("town_all"):
+            heads = sorted(names, key=lambda n: (-len(fams[n]), n))[:max(1, len(names) // 2)]
+        else:
+            heads = sorted(names, key=lambda n: (-len(fams[n]), n))[:G14_TOWN_HOUSES]
+        if sea != "夏" or pol.get("town_all"):
+            for h in heads:
+                for i, m in enumerate(fams[h]):
+                    if m in alive and m not in rd:
+                        out[m] = _job("土器づくり" if i % 2 == 0 else "道具づくり")
+                        town.add(m)
+    pool = [n for n in dict.fromkeys(sorted({m for ms in fams.values() for m in ms[1:]}) + sorted(fams)) if n in alive and n not in town]
+    k, act = G14_KEEP.get(sea, (0, None))
+    for n in [n for n in pool if n not in out][:k]:
+        out[n] = _job(act)
+    if pol.get("g14") == "push":
+        mp = pool
+        if pol.get("solo"):
+            s1 = _g14_solo(state, list(fams))
+            mp = [m for m in (fams.get(s1) or []) if m in alive]
+        places = g14.market_places(state)
+        got = [n for n in mp if n not in out and n not in rd][:G14_MARKET]
+        for i, n in enumerate(got):
+            out[n] = _job(g14.ACT_MARKET, **({"to": places[i % len(places)]["id"]} if places else {}))
+        if pol.get("no_read") and sea == "冬":
+            for n in [n for n in pool if n not in out][:1]:
+                out[n] = _job(g10.ACT_LEARN)
+    return out
+
+
+def _g14_notes(state, pol):
+    """G14B1: 書きつけ (受けてくれそうな村のうち近い 5 つまで。相手が受ける形)"""
+    import g14
+    out = []
+    for o in g14.note_places(state)[:G14_NOTES]:
+        w = g14.wants(state, o)
+        give = {k: min(n, era2._g6_have(state, "村", k)) for k, n in w.items() if n > 0}
+        give = {k: n for k, n in give.items() if n > 0}
+        while give and g14.value(state, give) > g14.NOTE_MAX:
+            k = max(give, key=lambda x: (give[x], x))
+            give[k] -= 1
+            give = {x: n for x, n in give.items() if n > 0}
+        if not give:
+            continue
+        v = g14.value(state, give)
+        take = {"草の種": min(v, int(g14.NOTE_GRAIN_SHARE * o.get("grain", 0)))}
+        rate = v / max(1, sum(era2.VALUE[k] * n for k, n in give.items()))
+        if g14.note_why(state, o, give, take, rate) is None:
+            out.append({"to": o["id"], "give": give, "take": take})
+    return out
+
+
+def _g14_guild(state):
+    """G14B1: 土器の仲間 (人は前の 1 年に 20 日以上土器を作った人から 5 人。2 家以上になるように)"""
+    import g14
+    el = g14.eligible(state, "土器づくり")
+    hs = {p["name"]: p.get("household") for p in era2.adults(state)}
+    pick = []
+    for n in el:
+        if len(pick) < G14_GUILD_PEOPLE - 1 or len({hs.get(m) for m in pick + [n]}) >= 2:
+            pick.append(n)
+        if len(pick) >= G14_GUILD_PEOPLE:
+            break
+    return {"仕事": "土器づくり", "人": pick, "ねうち": 1.1, "弟子": True} if len(pick) >= 3 else None
+
+
 def make_answers(state, pol, rt):
     """集まりの歩の、答える人みんなの決まりの答え ({名前: JSON の文})"""
     g = state["era2"]["g7"]
@@ -617,7 +729,36 @@ def make_answers(state, pol, rt):
                 if "market" not in laws:
                     to_propose = ["market"] + to_propose
     pact12, help12 = [], []
-    if pol.get("g13"):  # G13 の確かめ: G12 の束と同じ「ふつうの暮らし」。G12 の約束・助けは本物の近ごろと同じに続ける (年の集まり)
+    notes14, guild14, writers14 = [], None, set()
+    if pol.get("g14"):  # G14 の確かめ: G13 の束と同じ「ふつうの暮らし」。G12 の約束・助けは本物の近ごろと同じに続ける (年の集まり)
+        import g14
+        g9s = g.get("g9") or {}
+        common["metal"] = "使う"
+        common["far"] = {o["id"]: "受けない" for o in g9s.get("offers", [])}
+        common["votes"] = []
+        common["accept_rule"] = {"よその群れ": False, "ほかの村から": False}
+        common["accept"] = {v["name"]: False for v in e2.get("visitors", [])}
+        to_propose = []
+        if ask == "年":
+            pact12, help12 = _g13_common(state, dict(pol, g13="none"))
+        if pol["g14"] == "push":
+            if ask in ("年", "秋"):
+                notes14 = _g14_notes(state, pol)
+            if ask == "年":
+                guild14 = _g14_guild(state)
+            if pol.get("solo"):
+                writers14 = {_g14_solo(state, names)}
+            else:
+                hs = {p["name"]: p.get("household") for p in era2.adults(state)}
+                two, seen_h = [], set()
+                for n in names:
+                    if hs.get(n) not in seen_h:
+                        two.append(n)
+                        seen_h.add(hs.get(n))
+                    if len(two) >= 2:
+                        break
+                writers14 = set(two)
+    elif pol.get("g13"):  # G13 の確かめ: G12 の束と同じ「ふつうの暮らし」。G12 の約束・助けは本物の近ごろと同じに続ける (年の集まり)
         g9s = g.get("g9") or {}
         common["metal"] = "使う"
         common["far"] = {o["id"]: "受けない" for o in g9s.get("offers", [])}
@@ -650,15 +791,24 @@ def make_answers(state, pol, rt):
         if pol.get("g11") == "push":
             for s in seas:
                 plans[s].update(_g11_jobs(state, fams, s))
-        if pol.get("g12") == "push" or pol.get("g13"):
+        if pol.get("g12") == "push" or pol.get("g13") or pol.get("g14"):
             for s in seas:
                 plans[s].update(_g12_jobs(state, fams, s))
         if pol.get("g13") == "push":
             for s in seas:
                 plans[s].update(_g13_jobs(state, fams, s, pol))
+        if pol.get("g14"):
+            for s in seas:
+                plans[s].update(_g14_jobs(state, fams, s, pol))
         for i, n in enumerate(names):
             a = {"say": [], "year": {s: _season_part(state, pol, rt, n, fams[n], s, plans[s]) for s in seas}, **common}
-            if pol.get("g13"):  # G13: 約束と助けは答える人みな同じ (B1S は働き手を足した約束を 1 人だけが書く。ほかの人は働き手のない形を書く)
+            if pol.get("g14"):  # G14: 約束と助けは答える人みな同じ。書きつけは読める人のいる家の答える人 (B1S は 1 人)、仲間はちがう家の 2 人 (B1S は 1 人)
+                a["pact"], a["help"] = pact12, help12
+                if notes14 and g14.house_readers(state, n) and (not pol.get("solo") or n in writers14):
+                    a["note"] = notes14
+                if guild14 and n in writers14:
+                    a["guild"] = guild14
+            elif pol.get("g13"):  # G13: 約束と助けは答える人みな同じ (B1S は働き手を足した約束を 1 人だけが書く。ほかの人は働き手のない形を書く)
                 a["pact"], a["help"] = (pact12 if (i == 0 or not pol.get("solo")) else _g13_common(state, dict(pol, g13="none"))[0]), help12
             elif pol.get("g12") == "push" and (i == 0 or not pol.get("solo")):
                 a["pact"], a["help"] = pact12, help12
@@ -678,12 +828,16 @@ def make_answers(state, pol, rt):
             roles.update(_g10_jobs(state, fams, now))
         if pol.get("g11") == "push" and not famine:
             roles.update(_g11_jobs(state, fams, now))
-        if (pol.get("g12") == "push" or pol.get("g13")) and not famine:
+        if (pol.get("g12") == "push" or pol.get("g13") or pol.get("g14")) and not famine:
             roles.update(_g12_jobs(state, fams, now))
         if pol.get("g13") == "push" and not famine:
             roles.update(_g13_jobs(state, fams, now, pol))
+        if pol.get("g14") and not famine:
+            roles.update(_g14_jobs(state, fams, now, pol))
         for i, n in enumerate(names):
             a = {"say": [], **_season_part(state, pol, rt, n, fams[n], now, roles, famine), **common}
+            if notes14 and g14.house_readers(state, n) and (not pol.get("solo") or n in writers14):
+                a["note"] = notes14
             if i < len(to_propose):
                 a["proposal"] = _proposal(to_propose[i], pol)
             out[n] = json.dumps(a, ensure_ascii=False)
@@ -799,7 +953,7 @@ def _year_row(state, y0, acc):
             "dem_in_strong": sum(1 for d in reg.get("demands", []) if d.get("to") == "V0" and d.get("from") == g.get("strong")),
             "wars_v0": sum(1 for x in reg.get("wars", []) if "V0" in (x.get("att"), x.get("def")) and x.get("done") is not None and not x.get("called_off")),
             "strong_people": next((o["people"] for o in g7._others(state) if o["id"] == g.get("strong")), None),
-            **_heavy_cols(state), **_g9_cols(state), **_g10_cols(state), **_g11_cols(state), **_g12_cols(state), **_g13_cols(state),
+            **_heavy_cols(state), **_g9_cols(state), **_g10_cols(state), **_g11_cols(state), **_g12_cols(state), **_g13_cols(state), **_g14_cols(state),
             **{k: acc[k] for k in sorted(acc)}}
 
 
@@ -925,6 +1079,37 @@ def _g13_cols(state):
             "g12_c_now": dict(g["g12"]["c"])}
 
 
+def _g14_cols(state):
+    """G14 の確かめ (2026-11-14) の年ごとの列: 条件と F の日・町の家・市へ運ぶ・書きつけ・仲間・道の見張り・できなかったこと・G13 の手入れ・読める人・答える家"""
+    g = state["era2"]["g7"]
+    if "g14" not in g:
+        return {}
+    import g10
+    import g13
+    import g14
+    s = g["g14"]
+    y = str(state["day"] // YEAR)
+    kh = g14.key_houses(state)
+    ans_h = {p.get("household") for p in era2.adults(state) if p["name"] in set(era2.answerers(state))}
+    nt = s["notes"]["year"].get(y) or {}
+    return {"g14_c": dict(s["c"]), "g14_reached": dict(s["reached"]), "g14_town": dict(s["town"].get(y) or {}),
+            "g14_c1_years": list(s["c1_years"]), "g14_c2_years": list(s["c2_years"]), "g14_c3_years": list(s["c3_years"]),
+            "g14_market": dict(s["market"]["year"].get(y) or {}),
+            "g14_notes": {k: (len(v) if isinstance(v, list) else v) for k, v in nt.items() if k != "by"},
+            "g14_notes_paid_places": sorted(set(nt.get("paid") or [])), "g14_guilds": dict(s["guild_year"].get(y) or {}),
+            "g14_guild_list": [[x["id"], x["job"], len(x["people"]), x["status"], x["day"]] for x in s["guilds"]["list"]],
+            "g14_fails": [[f["day"], f["what"], f["why"][:90]] for f in s["fails"] if str(f["year"]) == y],
+            "g14_path": {k: {kk: vv for kk, vv in v.items() if kk != "who"} for k, v in s["path"].items()},
+            "g14_consulted": [c for c in g.get("consulted", []) if str(c.get("why", "")).startswith("g14_")],
+            "g14_ledger": s["ledger"][-1] if s["ledger"] and s["ledger"][-1]["year"] == int(y) else {}, "g14_key_houses": kh,
+            "g14_key_answer": all(h in ans_h for h in kh) if kh else None, "g14_report": g14.report_lines(state),
+            "g14_readers": len(g10.readers(state)), "g14_mills_running": len(g13.mills_running(state)), "g14_mills": len(g["g13"]["mill"]["mills"]),
+            "g14_canal_cap": g["g13"]["canal"]["cap"], "g14_canal_lost": sum(x["lost"] for x in g["g13"]["canal"]["lost"] if str(x["year"]) == y),
+            "g14_trust": {o["id"]: o["trust"] for o in g7._others(state) if not o.get("gone")},
+            "g14_others_people": sum(o.get("people", 0) for o in g7._others(state) if not o.get("gone")), "g14_harvest": g7.harvest_year(state),
+            "g13_c_now": dict(g["g13"]["c"])}
+
+
 def g9_tools_alive(state):
     return [t for t in state["era2"]["g7"]["g9"]["tools"] if t["gone"] is None and not t.get("iron")]
 
@@ -998,6 +1183,9 @@ def run_one(job):
             g12.key_houses = lambda st: []
         if pol.get("w_rule"):  # G12B1W: 約束を地域の貢ぎと同じ「1 回で切れる」に (苦しい年に出せないのも「出せなかった」)
             g12.MISS_LIMIT, g12.BAD_EXEMPT = 1, False
+    if pol.get("g14"):  # G14 の束: g14 の決まりの差しかえ (このプロセスの中だけ)
+        import g14
+        g14.GUILD_SOLO = pol.get("guild_solo", g14.GUILD_SOLO)  # G14B1S0: 仲間の直し (1 人の答えでも 2 家以上の人を名前で書けば結ぶ) の前の決まり
     if pol.get("g13"):  # G13 の束: g13 の決まりの差しかえ (このプロセスの中だけ。対照の束だけ)
         import g13
         g13.GRIND_ON = not pol.get("no_grind")  # G13B1G: 粉ひきの手間なし
@@ -1015,6 +1203,11 @@ def run_one(job):
         state = json.loads((Path(data) / "state.json").read_text(encoding="utf-8"))
         state["seed"] = state["seed"] + 1000 * seed
         enter_g7(state, w)
+        if pol.get("bad_every"):  # G14B1N: 地域の悪い年を毎年に (写しの世界の「悪い年」を 1.0。g7.sync_world が毎歩 region.WEATHER_BAD に写す。このプロセスの中だけ)
+            state["era2"]["g7"]["world"]["bad"] = 1.0
+        if pol.get("no_read"):  # G14B1R: 読める人がいない (入る日に消す。このプロセスの中だけ)
+            state["era2"]["g7"]["g10"]["readers"] = {}
+            g7.g10_sample_add(state)
         if pol.get("no_know"):  # G13B1K: 札 H12-01 を知っている人がいない (入る日に消す。このプロセスの中だけ)
             import g13
             kh = state["era2"]["g7"]["hints"]
@@ -1554,6 +1747,104 @@ def write_g13_csv(out_dir, path, years_path=None):
     return rows
 
 
+G14_COLS = ["world", "bundle", "seed", "years_run", "c1_year", "c2_year", "c3_year", "all3_year", "F1_year", "F2_year", "F3_year", "F4_year",
+             "town_share_best", "town_people_best", "town_houses_best", "c1_years", "market_trips_sum", "market_grain_sum", "market_grain_mean",
+             "notes_written", "notes_accepted", "notes_refused", "notes_paid_best", "notes_late", "notes_broken", "c2_years", "guilds_end", "c3_years",
+             "readers_min", "readers_end", "fails_sum", "fail_kinds", "path_zero_c1", "path_zero_c2", "path_zero_c3", "path_consults", "idle_reports",
+             "field_short_years", "mill_stop_years", "canal_lost_years", "key_answer_years", "key_years", "pop_end", "store_days_min", "store_days_end",
+             "famine_seasons", "harvest_mean", "trust_mean_end", "others_people_end", "g13_c_now", "secs"]
+
+
+def g14_row(res):
+    """G14 の確かめ (2026-11-14) の 1 回 = 1 行。年目は 1 年目 = 179年 (178年60日目に入った次の年。日 ÷ 120 - 178)。0 年目 = 入った年 (178年)"""
+    rows = res["rows"]
+    last = rows[-1] if rows else {}
+    y0 = res["y0"]
+
+    def yr(day):
+        return None if day is None else day // YEAR - y0
+    c, re_ = last.get("g14_c") or {}, last.get("g14_reached") or {}
+    days3 = [c.get(k) for k in ("c1", "c2", "c3")]
+    paths = last.get("g14_path") or {}
+    py = [str(y) for y in range(y0, y0 + len(rows))]
+    keys = [r.get("g14_key_answer") for r in rows]
+    fk = {}
+    for r in rows:
+        for f in r.get("g14_fails") or []:
+            fk[f[1]] = fk.get(f[1], 0) + 1
+    tr = list((last.get("g14_trust") or {}).values())
+    tw = [r.get("g14_town") or {} for r in rows]
+    mk = [r.get("g14_market") or {} for r in rows]
+    nt = [r.get("g14_notes") or {} for r in rows]
+    hv = [r.get("g14_harvest") for r in rows if r.get("g14_harvest") is not None]
+    gl = last.get("g14_guild_list") or []
+    return {"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], "years_run": len(rows),
+            "c1_year": yr(c.get("c1")), "c2_year": yr(c.get("c2")), "c3_year": yr(c.get("c3")), "all3_year": yr(max(days3)) if all(d is not None for d in days3) else None,
+            **{f"{f}_year": yr(re_.get(f)) for f in ("F1", "F2", "F3", "F4")},
+            "town_share_best": max((t.get("share", 0) for t in tw), default=0), "town_people_best": max((t.get("people", 0) for t in tw), default=0),
+            "town_houses_best": max((t.get("houses", 0) for t in tw), default=0),
+            "c1_years": "・".join(str(y - y0) for y in last.get("g14_c1_years") or []),
+            "market_trips_sum": sum(m.get("trips", 0) for m in mk), "market_grain_sum": sum(m.get("grain", 0) for m in mk),
+            "market_grain_mean": round(sum(m.get("grain", 0) for m in mk[1:]) / max(1, len(mk) - 1)),
+            "notes_written": sum(n.get("written", 0) for n in nt), "notes_accepted": sum(n.get("accepted", 0) for n in nt),
+            "notes_refused": sum(n.get("refused", 0) for n in nt), "notes_paid_best": max((len(r.get("g14_notes_paid_places") or []) for r in rows), default=0),
+            "notes_late": sum(n.get("late", 0) for n in nt), "notes_broken": sum(n.get("broken", 0) for n in nt),
+            "c2_years": "・".join(str(y - y0) for y in last.get("g14_c2_years") or []),
+            "guilds_end": "・".join(f"{x[1]} {x[2]} 人 {x[3]}" for x in gl) or "-", "c3_years": "・".join(str(y - y0) for y in last.get("g14_c3_years") or []),
+            "readers_min": min((r.get("g14_readers", 0) for r in rows), default=None), "readers_end": last.get("g14_readers"),
+            "fails_sum": sum(fk.values()), "fail_kinds": "・".join(f"{k} {n}" for k, n in sorted(fk.items())),
+            "path_zero_c1": _zero_years(paths, py, c, "c1"), "path_zero_c2": _zero_years(paths, py, c, "c2"), "path_zero_c3": _zero_years(paths, py, c, "c3"),
+            "path_consults": len([x for x in last.get("g14_consulted") or [] if str(x.get("why", "")).startswith("g14_path")]),
+            "idle_reports": sum(1 for r in rows if any("だれも選ばなかった" in t for t in r.get("g14_report") or [])),
+            "field_short_years": sum(1 for r in rows if any("下回った" in t for t in r.get("g14_report") or [])),
+            "mill_stop_years": sum(1 for r in rows if (r.get("g14_mills_running", 0) < r.get("g14_mills", 0))),
+            "canal_lost_years": sum(1 for r in rows if r.get("g14_canal_lost")),
+            "key_answer_years": sum(1 for k in keys if k), "key_years": sum(1 for k in keys if k is not None),
+            "pop_end": last.get("pop"), "store_days_min": min((r.get("store_days", 0) for r in rows), default=None), "store_days_end": last.get("store_days"),
+            "famine_seasons": last.get("famine_seasons"), "harvest_mean": round(sum(hv) / len(hv)) if hv else None,
+            "trust_mean_end": round(sum(tr) / len(tr), 2) if tr else None, "others_people_end": last.get("g14_others_people"),
+            "g13_c_now": "・".join(sorted((last.get("g13_c_now") or {}).keys())), "secs": res["secs"]}
+
+
+def write_g14_csv(out_dir, path, years_path=None):
+    res_all = [json.loads(f.read_text(encoding="utf-8")) for f in sorted(Path(out_dir).glob("*.json"))]
+    res_all = [r for r in res_all if r["world"] == "W14"]
+    rows = [g14_row(r) for r in res_all]
+    rows.sort(key=lambda r: (r["bundle"], r["seed"]))
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", newline="", encoding="utf-8") as fh:
+        wr = csv.DictWriter(fh, fieldnames=G14_COLS, extrasaction="ignore")
+        wr.writeheader()
+        wr.writerows(rows)
+    if years_path:
+        cols = ["world", "bundle", "seed", "year", "pop", "store_days", "harvest", "town_houses", "town_people", "region", "town_share", "town_answered",
+                "town_copied", "market_trips", "market_days", "market_grain", "notes_written", "notes_accepted", "notes_refused", "notes_paid", "notes_late",
+                "notes_broken", "guilds_ok", "guild_days", "readers", "mills_running", "canal_cap", "fails", "path_c1", "path_c2", "path_c3", "path_chose",
+                "key_answer", "c", "F"]
+        with open(years_path, "w", newline="", encoding="utf-8") as fh:
+            wr = csv.DictWriter(fh, fieldnames=cols)
+            wr.writeheader()
+            for res in res_all:
+                for r in res["rows"]:
+                    pw = (r.get("g14_path") or {}).get(str((r["day"] + 1) // YEAR - 1)) or {}
+                    tw = r.get("g14_town") or {}
+                    mk = r.get("g14_market") or {}
+                    nt = r.get("g14_notes") or {}
+                    gy = r.get("g14_guilds") or {}
+                    wr.writerow({"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], "year": r["year"], "pop": r["pop"], "store_days": r["store_days"],
+                                 "harvest": r.get("g14_harvest"), "town_houses": tw.get("houses", 0), "town_people": tw.get("people", 0), "region": tw.get("region"),
+                                 "town_share": tw.get("share", 0), "town_answered": len(tw.get("answered") or []), "town_copied": len(tw.get("copied") or []),
+                                 "market_trips": mk.get("trips", 0), "market_days": mk.get("days", 0), "market_grain": mk.get("grain", 0),
+                                 "notes_written": nt.get("written", 0), "notes_accepted": nt.get("accepted", 0), "notes_refused": nt.get("refused", 0),
+                                 "notes_paid": len(r.get("g14_notes_paid_places") or []), "notes_late": nt.get("late", 0), "notes_broken": nt.get("broken", 0),
+                                 "guilds_ok": len(gy.get("ok") or []), "guild_days": max((x["days"] for x in (gy.get("rows") or {}).values()), default=0),
+                                 "readers": r.get("g14_readers"), "mills_running": r.get("g14_mills_running"), "canal_cap": r.get("g14_canal_cap"),
+                                 "fails": len(r.get("g14_fails") or []), "path_c1": pw.get("c1", 0), "path_c2": pw.get("c2", 0), "path_c3": pw.get("c3", 0),
+                                 "path_chose": pw.get("chose", 0), "key_answer": r.get("g14_key_answer"),
+                                 "c": "・".join(sorted(r.get("g14_c") or {})), "F": "・".join(sorted(r.get("g14_reached") or {}))})
+    return rows
+
+
 def write_csv(out_dir, path):
     rows = [row_of(json.loads(f.read_text(encoding="utf-8"))) for f in sorted(Path(out_dir).glob("*.json"))]
     rows.sort(key=lambda r: (r["world"], r["bundle"], r["seed"]))
@@ -1624,6 +1915,7 @@ def main():
     ap.add_argument("--csv")
     ap.add_argument("--years-csv", dest="years_csv", help="csv で、年ごとの行も書く (重い押しの確かめ)")
     ap.add_argument("--g9-csv", dest="g9_csv", help="csv で、G9 の確かめの表を書く (2026-10-29。--years-csv があれば G9 の年ごとの行も)")
+    ap.add_argument("--g14-csv", dest="g14_csv", help="csv で、G14 の確かめの表を書く (2026-11-14。--years-csv があれば G14 の年ごとの行も)")
     ap.add_argument("--g13-csv", dest="g13_csv", help="csv で、G13 の確かめの表を書く (2026-11-12。--years-csv があれば G13 の年ごとの行も)")
     ap.add_argument("--g12-csv", dest="g12_csv", help="csv で、G12 の確かめの表を書く (2026-11-10。--years-csv があれば G12 の年ごとの行も)")
     ap.add_argument("--g11-csv", dest="g11_csv", help="csv で、G11 の確かめの表を書く (2026-11-05。--years-csv があれば G11 の年ごとの行も)")
@@ -1637,6 +1929,10 @@ def main():
     ap.add_argument("--years", type=int, default=15)
     ap.add_argument("--procs", type=int, default=2)
     a = ap.parse_args()
+    if a.cmd == "csv" and a.g14_csv:
+        rows = write_g14_csv(a.out, a.g14_csv, a.years_csv)
+        print(f"{len(rows)} 行 → {a.g14_csv}")
+        return
     if a.cmd == "csv" and a.g13_csv:
         rows = write_g13_csv(a.out, a.g13_csv, a.years_csv)
         print(f"{len(rows)} 行 → {a.g13_csv}")
