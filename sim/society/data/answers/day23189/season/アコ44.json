@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "蔵にはたっぷり種がある。この秋は畑の草取りを欠かさず、来年の夏もみんなで腹いっぱい食べよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、家族で手分けして世話をしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "アコ51": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ラニ52": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "セオ53": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ホタ54": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "オネ55": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ソナ56": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "リセ58": {"activity": "狩り", "place": "北草原28", "why": "狩りが得意なので肉を取ってくる"},
+  "ホミ58": {"activity": "狩り", "place": "西草原28", "why": "狩りが得意なので肉を取ってくる"},
+  "ケセ59": {"activity": "採集", "place": "東林12", "why": "採集が得意なので木の実や芋を集める"},
+  "ソナ65": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ユエ65": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蔵も木もゆたかで心が落ち着く。みんなが元気で、秋の畑仕事が楽しみ。"}
