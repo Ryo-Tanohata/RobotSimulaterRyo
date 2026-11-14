@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "ヤギが草より多いから、今年は肉にして減らそう。夏の畑は落ちる前にみんなで刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちる前に刈りたい"}, "family": {"ネイ42": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}, "ケセ46": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}, "トナ50": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}, "ケセ55": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}, "ユエ55": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}, "ネイ60": {"activity": "ヤギの世話", "place": "camp", "why": "乳をとり、ヤギを見る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 10},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やす"}, "family": {"ネイ42": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ケセ46": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "トナ50": {"activity": "狩り", "place": "北丘12", "why": "肉を蓄えに入れる"}, "ケセ55": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ユエ55": {"activity": "狩り", "place": "北丘12", "why": "肉を蓄えに入れる"}, "ネイ60": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを見る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 10, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬は木の実がない。けものと魚で蓄えを助ける"}, "family": {"ネイ42": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ケセ46": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "トナ50": {"activity": "狩り", "place": "北丘12", "why": "肉を取る"}, "ケセ55": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ユエ55": {"activity": "狩り", "place": "北丘12", "why": "肉を取る"}, "ネイ60": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを見る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため草取りをする"}, "family": {"ネイ42": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケセ46": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギと乳の世話"}, "トナ50": {"activity": "狩り", "place": "北丘12", "why": "肉を取る"}, "ケセ55": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ユエ55": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ネイ60": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギと乳の世話"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T558": false, "T559": false, "T560": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草原で養える数より多く、肉にして減らさないとやせていなくなる", "because": [3151644], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギが多すぎた年",
+ "feeling": "蓄えは多く安心だが、ヤギと人の数が気にかかる。"}

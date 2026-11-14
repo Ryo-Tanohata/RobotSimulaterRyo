@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏は畑の刈り入れに精を出して、ヤギは草が足りないから少し肉にしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"トナ47": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 10},
+  "秋": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意で、冬の肉を蓄えたい"}, "family": {"トナ47": {"activity": "狩り", "place": "北丘12", "why": "得意な狩りで肉を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "魚やけものは冬もいるから"}, "family": {"トナ47": {"activity": "狩り", "place": "北丘12", "why": "冬も獲物をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "春は木の実や草を集めて蓄えを支える"}, "family": {"トナ47": {"activity": "採集", "place": "camp", "why": "採集が得意"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T558": false, "T559": false, "T560": false},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギと実りの年",
+ "mood": "蓄えが多く、穏やかな気持ちだ。"}
