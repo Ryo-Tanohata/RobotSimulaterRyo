@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑は夏のうちに刈ってしまおう。ヤギは多すぎるから、肉にして減らしたいね。"}],
+"year": {
+"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ルタ44": {"activity": "畑仕事", "place": "camp", "why": "みんなで刈り入れを急ぐため"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 3},
+"秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の世話をするため"}, "family": {"ルタ44": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2, "sow": 1000},
+"冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで来年の実りが増えるから"}, "family": {"ルタ44": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2},
+"春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りを欠かさないため"}, "family": {"ルタ44": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "子も手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2}},
+"keep": false, "seal": false, "seal_store": [],
+"accept": {"ケセ69": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+"judge_rule": null, "feast": [], "leader": null,
+"trade": {"T449": false, "T450": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+"knowledge": [{"op": "add", "text": "ヤギが草で養える数より多いので、ヤギを受けとる申し出は断り、肉にして減らす。", "because": [2911160], "confidence": 0.7}],
+"proposal": null,
+"votes": [],
+"year_name": "ヤギがやせた年",
+"feeling": "畑はよく実った。ヤギを減らして、みんなで冬を越したい。"}
