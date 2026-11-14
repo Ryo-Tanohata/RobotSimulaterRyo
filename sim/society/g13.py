@@ -217,6 +217,26 @@ def _mill_due(state):
     return max(0.0, MILL_REPAIR * len(old) - g["mill"]["repair"].get(str(y), 0.0))
 
 
+def mill_due(state, y):
+    """y 年に直す人日の残り (_mill_due と同じ数え方で、年を選べる。読むだけ)。y 年のはじめにあった回っている輪 × 10 から、y 年に直した分を引く。
+    年の集まり (年の最後の日) に次の年を見るとき、その年の輪はいま回っている輪みな (G14 の続けることの年の直し。g14.keep_fixed のあとだけ使う)"""
+    old = [m for m in mills_running(state) if m["day"] // YEAR < y]
+    return max(0.0, MILL_REPAIR * len(old) - _g(state)["mill"]["repair"].get(str(y), 0.0))
+
+
+def restart_left(state):
+    """止まっている輪をみな動かすのに要る人日 (1 つ 10 人日から、もう直した分を引く。読むだけ)"""
+    return sum(max(0.0, MILL_REPAIR - x.get("fix", 0)) for x in _g(state)["mill"]["mills"] if x.get("stopped"))
+
+
+def plan_year(state):
+    """お題の「この年」: G14 の続けることの年の直し (g14.keep_fixed) のあとは、集まりの答えが効く年 (年の集まりなら次の年)。それまでは今の年 (前のまま)"""
+    if "g14" in state["era2"]["g7"]:
+        import g14
+        return g14.plan_year(state)
+    return _y(state)
+
+
 def work_day(state, p, t, act):
     """1 日: 水の道を掘る (cap に 60 つかみ分) / 水の輪を建てる (止まった輪を動かす → この年の直し → 新しい輪)"""
     g, D = _g(state), state["day"]
@@ -664,6 +684,7 @@ def _bad_text(state):
 def text(state, p):
     """お題の節「## 水と畑と務め」(長い節。短い節と重なる行は 1 行にする)"""
     g, y = _g(state), _y(state)
+    py = plan_year(state)  # 「この年に直した・掘った」の年 (G14 の続けることの年の直しのあとは、答えが効く年。それまでは y のまま)
     rows = []
     rows.append(f"- 粉ひき: いま村の粉ひきに、1 日 約 {grind_people(state)} 人分の手 (6 時間働く大人) がかかっている"
                 + (f" (水の輪がひいた分は 1 日 約 {min(len([q for q in state['people'] if q['alive']]), MILL_PEOPLE * len(mills_running(state)))} 人分)" if mills_running(state) else ""))
@@ -674,7 +695,7 @@ def text(state, p):
     if mill_ready(state) or m["mills"]:
         rows.append(f"- 水の輪: 建った輪 {len(m['mills'])} (回っている {len(mills_running(state))})"
                     + (f"。いま組んでいる輪は {round(m['work'])} / {MILL_DAYS} 人日" if m["work"] else "")
-                    + f"。この年に直した {round(m['repair'].get(str(y), 0))} 人日 (回っている輪 1 つにつき 1 年 {MILL_REPAIR} 人日)")
+                    + f"。この年に直した {round(m['repair'].get(str(py), 0))} 人日 (回っている輪 1 つにつき 1 年 {MILL_REPAIR} 人日)")
         for x in m["mills"]:
             if x.get("stopped"):
                 rows.append(f"- 止まっている水の輪 ({x['id']}): 直す手がなかったので止まった。あと {round(MILL_REPAIR - x.get('fix', 0))} 人日直せば、また回る")
@@ -686,7 +707,7 @@ def text(state, p):
         rows.append(f"- 水の輪: 「{_card_name()}」[{CARD}] は、まだ村で試せない。この便りを知っている人: {'・'.join(kn) or 'いない'}")
     sown, cap = _water_now(state)
     rows.append(f"- 水の道: いま水が来るのは、秋にまく草の種 {cap} つかみ分の畑 (去年の秋にまいたのは {sown} つかみ)。"
-                f"この年に掘った {g['canal']['dug'].get(str(y), 0)} 人日 (手入れに要るのは 1 年に 約 {round(cap / CANAL_PER_DAY * CANAL_KEEP)} 人日)")
+                f"この年に掘った {g['canal']['dug'].get(str(py), 0)} 人日 (手入れに要るのは 1 年に 約 {round(cap / CANAL_PER_DAY * CANAL_KEEP)} 人日)")
     if g["protected"]:
         yy = max(g["protected"], key=int)
         rows.append(f"- {yy}年は村の悪い年だったが、水の来る畑は刈り入れが半分にならなかった (約 {g['protected'][yy]} つかみ守った)")

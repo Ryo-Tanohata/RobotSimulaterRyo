@@ -567,6 +567,38 @@ def start_g14(state):
         donors(state)
 
 
+def close_g14(state, by):
+    """G14 を本人の決めで閉じる (3 つの条件がそろわないまま、G14 の相談 (HOLD consult) で止まっていたところから。2026-11-14 G14_design.md 14.)。
+    step.py next_part --closed-by-decision から 1 回だけ。G14 は第 7 部の最後の G で、次の G (G15) のコードはないので、次の G には入らず、
+    第 7 部の終わり (HOLD part_end) で止める。出来事「フェーズ」と g7.closed14 に残す (G7〜G13 を閉じた記録はそのまま)。乱数は使わない。お題はさわらない"""
+    g, D = _g(state), state["day"]
+    t = g["g14"]
+    h = g.get("hold") or {}
+    ty = max(t["town"], key=int) if t["town"] else None
+    mk = t["market"]["year"]
+    nts = t["notes"]["list"]
+    m13 = g["g13"]
+    c = {"day": D, "by": by, "how": "本人の決め", "part_end": era2.PART_END["G14"], "consult": {k: h.get(k) for k in ("day", "what")},
+         "c": {k: t["c"].get(k) for k in ("c1", "c2", "c3")}, "reached": {k: t["reached"].get(k) for k in ("F1", "F2", "F3", "F4")},
+         "c1_years": list(t["c1_years"]), "c2_years": list(t["c2_years"]), "c3_years": list(t["c3_years"]),
+         "town": dict(t["town"][ty], year=int(ty)) if ty else None,
+         "market": {"trips": sum(r.get("trips", 0) for r in mk.values()), "grain": sum(r.get("grain", 0) for r in mk.values())},
+         "notes": {st: sum(1 for x in nts if x["status"] == st) for st in sorted({x["status"] for x in nts})},
+         "guilds": {"all": len(t["guilds"]["list"]), "active": len(_g14m().active_guilds(state))},
+         "mills": len(m13["mill"]["mills"]), "mills_running": len(_g13m().mills_running(state)), "canal_cap": m13["canal"]["cap"],
+         "readers": list(_g10m().readers(state)), "pacts": sum(1 for p in g["g12"]["pacts"].values() if _g12m()._active(p)),
+         "path": {y: {k: v for k, v in r.items() if k != "who"} for y, r in t["path"].items()},
+         "prompt_fix": t.get("prompt_fix"), "keep_fix": t.get("keep_fix")}
+    g["closed14"] = c
+    g["ends"]["G14"] = {"day": D, "why": "part_end", "by": "本人の決め"}
+    g["hold"] = {"why": "part_end", "era": "G14", "day": D}
+    state["hold"] = True
+    n = era2.PART_END["G14"]
+    log(state, "フェーズ", None, f"G14 (町と商業): 3 つの条件はそろわないまま、ここで閉じた。第 {n} 部「{era2.PARTS.get(n, '')}」も、ここで終わった",
+        closed_by="本人の決め", note=by, part_end=n)
+    return c
+
+
 def _g14m():
     import g14
     return g14
