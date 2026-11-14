@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にある。苦しい村には貸して、村どうし助け合おう。もめごとは、ゆるして収めたい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意で、蓄えの草の種を虫やネズミから守れるし、ほかの村との交換にも使えるから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M504": "ゆるす", "M505": "ゆるす", "M506": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T406": "村", "T407": "村", "T408": "村", "T409": "村", "T410": "村", "T411": "村", "T412": "村", "T413": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": []}

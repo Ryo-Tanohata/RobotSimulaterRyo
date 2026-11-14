@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬の前に、肉をたくさんとってくるよ。ヤギは草が足りないから、数を減らして肉にしよう。みんなで分けて食べようね。"}],
+ "job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りが得意だし、冬は魚やけものだけが頼りになる。肉を蓄えに入れたい。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"トナ47": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、いっしょに肉をとる。"}},
+ "keep": false,
+ "judge": {"M504": "ゆるす", "M505": "ゆるす", "M506": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T406": false, "T407": "村", "T408": "村", "T409": false, "T410": "村", "T411": false, "T412": false, "T413": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "冬が近いので少し気が引きしまっている。みんなと話しながら狩りに行けるのが楽しみだ。"}
