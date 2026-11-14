@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は刈れるものが山ほど残っている。わたしは毎夕刈るよ。あとは狩りで肉をとってくる。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れる"}, "family": {"ナセ57": {"activity": "畑仕事", "place": "camp", "why": "若い手で刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "北草原28", "with": [], "why": "得意の狩りで肉を村にもたらす"}, "family": {"ナセ57": {"activity": "狩り", "place": "北草原28", "why": "狩りの腕が良いので肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北草原28", "with": [], "why": "冬も魚やけものはいるので狩りに出る"}, "family": {"ナセ57": {"activity": "狩り", "place": "北草原28", "why": "冬の肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "北草原28", "with": [], "why": "狩りで肉をとり続ける"}, "family": {"ナセ57": {"activity": "狩り", "place": "北草原28", "why": "狩りで肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T573": false, "T575": false, "T576": false, "T577": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れ山盛りの年",
+ "mood": "畑の実りが多く、安心している。"}

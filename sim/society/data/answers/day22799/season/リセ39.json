@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏は実った畑を毎日刈ろう。秋にまいて、冬と春に草取りと水の道の手入れをすれば、また夏に実る。ヤギは草より多いから、少しずつ肉にしよう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は刈らないと落ちるので、刈り入れを優先する"},"family":{"ソナ40":{"activity":"畑仕事","place":"camp","why":"刈り入れに人手が要る"},"ケセ50":{"activity":"畑仕事","place":"camp","why":"刈り入れに人手が要る"},"ワユ63":{"activity":"畑仕事","place":"camp","why":"子も刈り入れを手伝う"},"トナ64":{"activity":"畑仕事","place":"camp","why":"子も刈り入れを手伝う"},"ユエ64":{"activity":"ヤギの世話","place":"camp","why":"ヤギの乳をとる"}},"pick":0,"plant":0,"harvest":60,"eat_goat":2},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の世話をする"},"family":{"ソナ40":{"activity":"水の道を掘る","place":"camp","why":"水の道の手入れが足りないと畑が減る"},"ケセ50":{"activity":"水の道を掘る","place":"camp","why":"水の道の手入れが足りないと畑が減る"},"ワユ63":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"トナ64":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ユエ64":{"activity":"ヤギの世話","place":"camp","why":"ヤギの世話"}},"pick":0,"plant":0,"harvest":0,"eat_goat":2,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで実りを増やす"},"family":{"ソナ40":{"activity":"狩り","place":"北丘12","why":"冬も魚やけものがいるので肉をとる"},"ケセ50":{"activity":"狩り","place":"北丘12","why":"冬も肉をとる"},"ワユ63":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"トナ64":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ユエ64":{"activity":"ヤギの世話","place":"camp","why":"ヤギの世話"}},"pick":0,"plant":0,"harvest":0,"eat_goat":2},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りを続けて夏の実りに備える"},"family":{"ソナ40":{"activity":"畑仕事","place":"camp","why":"草取り"},"ケセ50":{"activity":"畑仕事","place":"camp","why":"草取り"},"ワユ63":{"activity":"畑仕事","place":"camp","why":"草取り"},"トナ64":{"activity":"畑仕事","place":"camp","why":"草取り"},"ユエ64":{"activity":"ヤギの世話","place":"camp","why":"子ヤギの世話"}},"pick":0,"plant":0,"harvest":0,"eat_goat":2}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":null,"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,
+"knowledge":[{"op":"add","text":"夏は実った畑を毎日刈り、秋にまいて冬と春に草取りをする。ヤギは草より多いので少しずつ肉にする。","because":[3189707],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"畑がよく実った年",
+"feeling":"畑も蓄えも十分で落ち着いている。刈り入れを頑張りたい。"}
