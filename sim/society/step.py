@@ -870,6 +870,9 @@ def main():
         if "g12" in (state["era2"].get("g7") or {}):  # G11 までは g12.py を読みこまない
             import g12  # noqa: E402
             g12.mark_prompt_fix(state, a.why.strip())  # 2026-11-11: G12 のお題の直しの日 (g12.G12_PROMPT_FROM) なら、この歩から「いま」の前の短い節を入れる (g7.g12.prompt_fix)
+        if "g14" in (state["era2"].get("g7") or {}):  # G13 までは g14.py を読みこまない
+            import g14  # noqa: E402
+            g14.mark_prompt_fix(state, a.why.strip())  # 2026-11-14: G14 のお題の直しの日 (g14.G14_PROMPT_FROM) なら、この歩から短い節の直しと note・guild の欄を入れる (g7.g14.prompt_fix)
         g7.mark_feel_cap(state, a.why.strip())  # 2026-11-07: 気持ちの席の日 (g7.FEEL_CAP_FROM) なら、この歩から気持ちのお題を席の数までにする (g7.feel_cap)
         added = g7.g10_sample_add(state) if g10.fixed(state) else []  # ③ 作れる人・試している人の家を、答える家に足す (年の終わりの見本の選びのあとと同じ)
         if added:

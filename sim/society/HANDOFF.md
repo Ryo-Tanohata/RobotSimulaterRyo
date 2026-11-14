@@ -3,6 +3,37 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-14 G14 のお題の直し (ブランチ g14-prompt-fix。本人の言葉「質問しないであなたのおすすめで進めて下さい」。181年の年の集まり = 180年120日目 = 21719 日目から)
+
+- 179年・180年の年の集まり (21479・21599 日目) で、答える人 22〜23 人のだれも 市へ運ぶ・note・guild を書かなかった。わけ (本物の答えとお題から): 答えの形 (JSON) に note・guild の欄がない
+  (pact・help は形にあり、みな `"pact": []` を書いていた)・仲間の例の名前が「…」で、入れる人の名前がどこにもない・市へ運ぶの書き方の例と、運ぶと何が入るかがない。
+  コードのまちがいはなかった。**お題だけ** を直した (決まり・数・決め方は変えない。`docs/society_phase/G14_design.md` 12.・`G14_check.md` 5.)。
+- `g14.G14_PROMPT_FROM = 21719` から、短い節の 3 行を直す: 市へ運ぶ (仕事の JSON の例・例の村へ 1 回で受ける草の種・運べる村みなで 1 季節に受けられる量と村の倉。市で得る量は小さいことも数のまま)・
+  書きつけ (受ける形の例をちがう村 3 つまで・払いは年の終わりに村の倉へ・書けない家には「書きつけにならない」)・仲間 (入れる人の名前 6 人・1 人でも 2 家 3 人を書けば結ぶ・名前の入った例)。
+  答えの形に `"note": [], "guild": null,`。お題は 1 通 平均 +0.84 KB (最大 +1.01 KB)。気持ち・まわりの集落のお題は変わらない。
+- 21719 日目はワークフローが止めたところでお題が前のコードで出ている。印 `g7.g14.prompt_fix` は `refresh_prompts` が書く (これがないと 21719 日目のお題は前のまま。前の日は 1 バイトも同じ)。
+- **本物の村に入れる手順 (21719 日目で、答えを集める前に)**:
+  1. ワークフローが 21719 日目で止まったら (答えはまだ集めない)、g14-prompt-fix を本物の村のブランチに入れる (merge)。入れたあと 1 クラス 1 プロセスで
+     `python3.13 sim/society/tools/test_g7.py T_G14PromptFix` (1 分ほど)・`T_G14Prompt`・`T_G12Prompt`。
+  2. `python3.13 sim/society/step.py who` → `DAY 21719 season False`・`PHASE G14`・`HOLD none`・`MEET 年`。答え (`sim/society/data/answers/day21719/`) がまだないこと
+     (写しでは NAMES 20 人・FEEL 50 人・COUNCIL N1 N5 N14。写しの 21719 日目の state.json の sha256 は `4e6d913605a30894…` で、本物も同じはず (21659 日目は本物と同じだった))。止まっていたら (HOLD が none でない) 入れずに本人と相談する。
+  3. お題を書き直す (3〜4 分。日は進まない):
+     ```bash
+     python3.13 sim/society/step.py refresh_prompts --why "G14 のお題の直し (2026-11-14。おすすめで): 市へ運ぶ・書きつけ・仲間の書き方の例と、受けると入るもの、答えの形に note と guild"
+     ```
+     → 「* 180年120日目 (21719 日目)のお題を書き直した (…)。答える人 20・気持ち 50」 (写しでは、答える家に足す人はいなかった)。
+  4. 確かめ (読むだけ):
+     - `grep -l '"note": \[\], "guild": null' sim/society/data/prompts/day21719/season/*.md | wc -l` → 答える人の数 (写しでは 20)。
+     - `grep -l '"activity": "市へ運ぶ", "place": "camp", "to": "N' sim/society/data/prompts/day21719/season/*.md | wc -l` → 同じ数。`grep -l '"…"' sim/society/data/prompts/day21719/season/*.md` → なし。
+     - `grep -l "受ける形の例: \"note\"" sim/society/data/prompts/day21719/season/*.md` → 読める人のいる家の答える人 (写しでは アコ44・ヒセ42・ホミ33・ムイ26)。
+       `grep -l "あなたの答えの note は書きつけにならない" sim/society/data/prompts/day21719/season/*.md | wc -l` → 残りの人 (写しでは 16)。
+     - `python3.13 -c "import json; print(json.load(open('sim/society/data/state.json'))['era2']['g7']['g14']['prompt_fix'])"` → `{'day': 21719, 'why': 'G14 のお題の直し …'}`。
+     - `git status --short sim/society/data/prompts/day21719` で変わるのは `season/` の答える人の数の通だけ (`feeling/`・`council/` は 1 バイトも同じ)。
+  5. コミットしてプッシュ (`git add sim/society/data`。文は「社会シミュレーション: G14 のお題を直した (180年120日目)」)。
+  6. ワークフローを 1 年ずつ。1 年ごとに `step.py status` の「G14 / 道の見張り」(選んだ人の数)・「G14 / 条件」・「G14 / 報告」を見る。止める決まりは 2026-11-14 の G14 の項のまま
+     (最初の相談 183年60日目 = 22019 日目)。直しのあとも選ぶ人が 0 のままなら、それも報告に書く (数や決まりは変えない)。
+- 試しと前の歩のやり直しは `G14_check.md` 5.。
+
 ## 2026-11-14 G14「町と市と仲間」を作った (本人の言葉「質問しないであなたのおすすめで進めて下さい」。ブランチ g14-impl。本物の村はまだ 178年60日目 = 21419 日目で `HOLD wait`)
 
 - 下書き `docs/society_phase/G14_design_draft.md` の問い 1〜18 をみな「おすすめ」で決めた: `docs/society_phase/G14_design.md` (決めた所に「おすすめで決めた (2026-11-14)」。下書きからのずれは 8.)。確かめ: `docs/society_phase/G14_check.md`。

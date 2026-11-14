@@ -6956,5 +6956,131 @@ class T_G14Prompt(unittest.TestCase):
         self.assertIn("町の家・市へ運ぶ・仲間のことを、家の代表に伝えられる", g14.feel_note(st, p))
 
 
+class T_G14PromptFix(unittest.TestCase):
+    """2026-11-14 G14 のお題の直し (G14_design.md 12.): g14.G14_PROMPT_FROM (180年120日目 = 21719 日目) から、短い節の市へ運ぶ・書きつけ・仲間の行を、
+    書き方の例 (名前と村の番号の入った形)・受けると村に入る草の種にし、答えの形 (JSON) に "note": []・"guild": null を足す。その日は refresh_prompts の印
+    (g7.g14.prompt_fix) のあとだけ。決まり・数は変えない。179年の年の集まり (21599 日目。前のコードでお題を書いた) の git の state (AT) から、メモリの中で確かめる
+    (直しのあとの形は、門の日をこの試しの中だけ AT の日にして見る)"""
+
+    AT = "823047e5"  # 21569 日目からの歩 (state は 21599 日目。180年の年の集まりのお題は前のコード)
+    G = 21599
+    READER = "ヒセ42"  # 自分が読める代表
+    FAMILY = "アコ44"  # 家の ハソ50 が読める代表
+    PLAIN = "キサ65"  # 家に読める人のいない代表
+
+    def setUp(self):
+        import g14
+        self._from = g14.G14_PROMPT_FROM
+
+    def tearDown(self):
+        import g14
+        g14.G14_PROMPT_FROM = self._from
+
+    def st(self):
+        st = git_state(self.AT)
+        if st["day"] != self.G or "g14" not in st["era2"]["g7"]:
+            self.skipTest("AT の state が 21599 日目の G14 でない")
+        return st
+
+    def fixed(self):
+        import g14
+        g14.G14_PROMPT_FROM = self.G
+        st = self.st()
+        g14.mark_prompt_fix(st, "試し")
+        self.assertTrue(g14.prompt_fixed(st))
+        return st
+
+    def prompt(self, st, name, season=False):
+        import g7
+        p = next(q for q in st["people"] if q["name"] == name)
+        return era2.season_prompt(st, p, g7.since(st)) if season else g7.year_prompt(st, p, g7.since(st))
+
+    def old_file(self, name):
+        r = subprocess.run(["git", "-C", str(ROOT), "show", f"{self.AT}:sim/society/data/prompts/day{self.G}/season/{name}.md"], capture_output=True)
+        if r.returncode:
+            self.skipTest("前のお題が git にない")
+        return r.stdout.decode("utf-8")
+
+    def test_gate_identical(self):
+        """門の日より前 (印もない): お題は前のコードで書いたものと 1 バイトも同じ。門の日でも印がなければ直さない。印は門の日より前には書かない"""
+        import g14
+        self.assertEqual(g14.G14_PROMPT_FROM, 21719)
+        st = self.st()
+        self.assertFalse(g14.prompt_fixed(st))
+        js = json.dumps(st, sort_keys=True, ensure_ascii=False)
+        g14.mark_prompt_fix(st, "試し")
+        self.assertEqual(json.dumps(st, sort_keys=True, ensure_ascii=False), js, "その日より前は何もしない")
+        for n in (self.READER, self.FAMILY, self.PLAIN):
+            self.assertIn(n, era2.answerers(st))
+            t = self.prompt(st, n)
+            self.assertNotIn('"note": [], "guild": null', t)
+            self.assertEqual(t, self.old_file(n), n)
+        g = self.st()
+        g["day"] = g14.G14_PROMPT_FROM
+        self.assertFalse(g14.prompt_fixed(g), "門の日は印のあとだけ")
+        g["day"] = g14.G14_PROMPT_FROM + 30
+        self.assertTrue(g14.prompt_fixed(g), "門の日より後は印がなくても")
+
+    def test_block(self):
+        """印のあと: 節は「## いま」の 1. のすぐ前のまま。市へ運ぶの仕事の例・書きつけの例 (書ける家)・書けない家のわけ・仲間の例 (名前入り)・答えの形の欄。
+        せかす言葉・書かない言葉は 0。前のお題より 1 通 1 KB まで"""
+        import g14
+        st0 = self.st()
+        st = self.fixed()
+        self.assertEqual(st["era2"]["g7"]["g14"]["prompt_fix"], {"day": self.G, "why": "試し"})
+        for n, want in ((self.READER, "- 書きつけ (note): あなたは字が書けるので"), (self.FAMILY, "- 書きつけ (note): あなたの家の "),
+                        (self.PLAIN, "- 書きつけ (note): あなたの家には字を書ける人がいないので")):
+            for season in (False, True):
+                t = self.prompt(st, n, season)
+                head = g14.BLOCK_HEAD.replace("あなたが", f"あなた ({n}) が", 1)
+                i, k, j = t.index("\n## いま\n"), t.index(head), t.index("\n1. 話したいこと")
+                self.assertTrue(i < k < j, (n, season))
+                blk = t[k:j]
+                self.assertIn(want, blk, n)
+                for key in ('- 市へ運ぶ: 季節ごとの job か family に {"activity": "市へ運ぶ", "place": "camp", "to": "N', "行って帰って ", "この季節に受けられるのは",
+                            '例: "guild": {"仕事": "', "あなた 1 人の答えでも、2 つ以上の家の 3 人以上を書けば結ぶ", "しなくてもよい", "いまの進み (町と市と仲間):"):
+                    self.assertIn(key, blk, (n, key))
+                self.assertNotIn('"…"', blk, "仲間の例に名前が入る")
+                self.assertEqual(g14.bad_words(blk), [], n)
+                for w in ("しなければならない", "すべき", "したほうがよい"):
+                    self.assertNotIn(w, blk)
+                self.assertIn('"pact": [], "help": [], "note": [], "guild": null,', t, "答えの形に note と guild")
+                self.assertEqual(t.count('"note": [], "guild": null'), 1)
+            if n != self.PLAIN:
+                self.assertIn('受ける形の例: "note": [{"to": "', self.prompt(st, n))
+            d = len(self.prompt(st, n).encode()) - len(self.prompt(st0, n).encode())
+            self.assertTrue(0 < d <= 1024, (n, d))
+
+    def test_examples_work(self):
+        """例のとおり書くと、決まりのとおりに通る: 書きつけの例はみな相手が受ける・仲間の例は 1 人の答えでも結ぶ・市へ運ぶの例の村は運べる"""
+        import g14
+        st = self.fixed()
+        mp = g14.market_places(st)
+        self.assertTrue(mp)
+        self.assertIsNone(g14.market_why(st, mp[0]))
+        ex = g14.note_examples(st, self.FAMILY)
+        self.assertTrue(ex)
+        self.assertEqual(len({x["to"] for x in ex}), len(ex), "村ごとに 1 つ")
+        g14.apply_notes(st, {self.FAMILY: {"note": ex}})
+        row = st["era2"]["g7"]["g14"]["notes"]["year"][str(g14._y(st))]
+        self.assertEqual((row["accepted"], row["refused"]), (len(ex), 0))
+        self.assertEqual(g14.note_examples(st, self.PLAIN), [])
+        for n in (self.READER, self.FAMILY, self.PLAIN):
+            s2 = self.fixed()
+            oj = g14.open_jobs(s2)
+            job = "土器づくり" if "土器づくり" in oj else next(iter(oj))
+            ppl = g14.guild_example(s2, n, job, oj[job])
+            self.assertEqual(len(ppl), 3)
+            self.assertGreaterEqual(len(g14._houses(s2, ppl)), 2)
+            g14.apply_guilds(s2, {n: {"guild": {"仕事": job, "人": ppl, "ねうち": 1.1, "弟子": True}}})
+            self.assertEqual([x["job"] for x in g14.active_guilds(s2)], [job], n)
+
+    def test_refresh_marks(self):
+        """step.py refresh_prompts は g14.mark_prompt_fix を呼ぶ (門の日だけ印を書く)"""
+        import inspect
+        import step
+        self.assertIn("g14.mark_prompt_fix(state, a.why.strip())", inspect.getsource(step.main))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
