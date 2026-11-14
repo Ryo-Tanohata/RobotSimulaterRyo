@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。わたしは手慣れた土器と狩りで、静かに家の者を食べさせるよ。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに実った畑を刈らないと落ちてしまうから"}, "family": {"アコ54": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ロワ56": {"activity": "狩り", "place": "東林12", "why": "狩りが得意で肉を得られる"}, "ムイ57": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ソワ62": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が高く、蓄えを虫から守れるから"}, "family": {"アコ54": {"activity": "採集", "place": "camp", "why": "採集が得意"}, "ロワ56": {"activity": "狩り", "place": "東林12", "why": "狩りが得意"}, "ムイ57": {"activity": "採集", "place": "camp", "why": "採集が得意"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+          "冬": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "冬も獣はいるので肉を得る"}, "family": {"アコ54": {"activity": "狩り", "place": "東林12", "why": "狩りが得意"}, "ロワ56": {"activity": "狩り", "place": "南林12", "why": "狩りが得意"}, "ムイ57": {"activity": "休む", "place": "camp", "why": "寒い冬は体を休める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕を活かす"}, "family": {"アコ54": {"activity": "採集", "place": "camp", "why": "採集が得意"}, "ロワ56": {"activity": "狩り", "place": "東林12", "why": "狩りが得意"}, "ムイ57": {"activity": "採集", "place": "camp", "why": "採集が得意"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T535": false, "T536": false, "T537": false, "T538": false, "T539": false, "T540": false, "T541": false, "T542": false, "T543": false, "T544": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "静かな土器の年"}

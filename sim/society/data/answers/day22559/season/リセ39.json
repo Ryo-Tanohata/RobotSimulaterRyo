@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈りきろう。落ちた種がもったいない。ヤギも草より多いから、少しずつ肉にしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ソナ40": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ケセ50": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ユエ51": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ユエ52": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ケセ53": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ホタ55": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "オセ56": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "テナ57": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ソワ57": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ムイ58": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "テナ59": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ホミ59": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ケナ61": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "テナ61": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "テナ62": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "ロワ63": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "ワユ63": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "トナ64": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}, "ユエ64": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の世話と、残った刈り入れのため"}, "family": {}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで次の夏の実りを増やす"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで実りを増やす"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T535": false, "T536": false, "T537": false, "T538": false, "T539": false, "T540": false, "T541": false, "T542": false, "T543": false, "T544": false},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を毎日刈る。秋に種をまき、冬と春に草取りをすれば次の夏に実る。ヤギは多いので少しずつ肉にする。", "because": [3115076, 3115093], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れに励んだ年",
+ "feeling": "畑を刈りきれるよう、家族みんなで働こうと思う。"}

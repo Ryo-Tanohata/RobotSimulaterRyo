@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈らないと落ちる。手の空いた者は毎夕刈ってくれ。蓄えは十分ある、あわてることはない。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちてしまうので、刈り入れを急ぐ"}, "family": {"ナセ57": {"activity": "畑仕事", "place": "camp", "why": "刈れる畑が山ほどあるので手伝わせる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。蓄えの草の種を守る器を増やす"}, "family": {"ナセ57": {"activity": "狩り", "place": "北草原28", "why": "狩りの腕がよいので肉を得る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北草原28", "with": [], "why": "冬も獣はいるので、肉を得る"}, "family": {"ナセ57": {"activity": "狩り", "place": "北草原28", "why": "狩りの腕がよいので肉を得る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "慣れた仕事を続けて、器を増やす"}, "family": {"ナセ57": {"activity": "採集", "place": "西草原12", "why": "春の草や木の実を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T535": "村", "T536": "村", "T537": false, "T538": "村", "T539": false, "T540": false, "T541": false, "T542": "村", "T543": false, "T544": "村"},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑が山ほど残っていて、刈らないと落ちてしまう。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの夏の年",
+ "mood": "蓄えは多い。やるべきことをやるだけだ。"}
