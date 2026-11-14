@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。冬の前に、わたしは土器を焼いておくよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信があるし、蓄えは十分なので、冬に備えて器を増やしたい"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "trade": {"T585": {"side": "村", "利子": 0.1}, "T586": {"side": "村", "利子": 0.1}}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L16", "agree": true, "against": "", "reason": "疲れたまま働くとけがをしやすいので休むのは大事だ"}, {"id": "L44", "agree": true, "against": "", "reason": "住まいがあれば蓄えも人も雨から守れる"}, {"id": "L30", "agree": false, "against": "肉は干して蓄えられるので、全部その日に食べる必要はない", "reason": "無駄な縛りだと思う"}],
+ "feeling": "蓄えが多く、落ち着いて土器を焼ける秋だ。"}

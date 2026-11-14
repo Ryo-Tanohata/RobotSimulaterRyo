@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の実りもたっぷりだね。苦しい隣の村には、蓄えから草の種を貸してあげましょう。私は土器を作って、冬に備えるよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信があり、蓄えの草の種を虫やネズミから守る器がいくらあっても足りないから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T585": "村", "T586": "村"}, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "リセ3の村とワユ3の村は畑が実らず苦しく、草の種を借りに来た。村の蓄えは十分あるので貸せる。", "because": [3237822, 3237823], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "穏やかで満ち足りている。困っている隣人を助けられるのがうれしい。"}
