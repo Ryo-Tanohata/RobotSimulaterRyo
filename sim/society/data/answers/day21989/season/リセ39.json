@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。この秋は畑に種をまいて、増えすぎたヤギも肉にしよう。"}],
+ "job": {"activity": "狩り", "place": "南林12", "with": ["ソナ40"], "why": "狩りの腕に自信がある。肉で蓄えを助けたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"ソナ40": {"activity": "狩り", "place": "南林12", "why": "狩りが得意なので一緒に行く"}, "ソワ42": {"activity": "畑仕事", "place": "camp", "why": "採集が得意なので畑の草取りを任せる"}},
+ "keep": false, "feast": false, "leader": null,
+ "trade": {"T451": false, "T452": {"side": "村", "利子": 0}, "T453": {"side": "村", "利子": 0}, "T454": {"side": "村", "利子": 0}, "T455": {"side": "村", "利子": 0}},
+ "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は冬と春の草取りで増え、次の夏に実る。ヤギは草に対して多すぎる。", "because": [2929166], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。苦しい村を助けられるのがうれしい。"}
