@@ -58,6 +58,11 @@ FS = {"F1": "はじめて市へ運んだ", "F2": "はじめての書きつけ", 
 CS = {"c1": "町の家", "c2": "書きつけ", "c3": "仲間"}
 BLOCK_HEAD = "町と市と仲間・続けること: この集まりで、あなたができること (どれも、しなくてもよい。書かなければ今のまま)"
 NONFOOD_WORDS = "土器・道具・黒い金属・住まい・水の輪・帳・市へ運ぶ"
+# 2026-11-14 G14 のお題の直し (G14_design.md 12。G12_design.md 12. と同じ形): 179年・180年の年の集まり (21479・21599 日目) で、答える人 22〜23 人のだれも
+# 市へ運ぶ・note・guild を選ばなかった。答えの形 (JSON) に note と guild の欄がなく (pact・help はある)、仲間の例の名前が「…」で、だれを書けば結ぶか分からず、
+# 市へ運ぶの例と、運ぶと何が村に入るかが短い節になかった。G14_PROMPT_FROM (180年120日目 = 181年の年の集まり) から、お題だけを直す (決まり・数・決め方は変えない)。
+# その日 (お題は前のコードで出ていた) は、step.py refresh_prompts が g7.g14.prompt_fix を書いたあとだけ。だから、その日までの歩をやり直しても 1 バイトも同じ
+G14_PROMPT_FROM = 21719
 
 
 def on(state):
@@ -66,6 +71,17 @@ def on(state):
 
 def _g(state):
     return state["era2"]["g7"]["g14"]
+
+
+def prompt_fixed(state):
+    """G14 のお題の直し (G14_PROMPT_FROM) が効くか: その日より後はいつも。その日は refresh_prompts の印 (g7.g14.prompt_fix) のあとだけ"""
+    return on(state) and (state["day"] > G14_PROMPT_FROM or (state["day"] == G14_PROMPT_FROM and "prompt_fix" in _g(state)))
+
+
+def mark_prompt_fix(state, why):
+    """refresh_prompts から: G14_PROMPT_FROM の日に、お題の直しを今の歩から入れたことを g7.g14.prompt_fix に残す (その日より前なら何もしない)"""
+    if on(state) and state["day"] >= G14_PROMPT_FROM and "prompt_fix" not in _g(state):
+        _g(state)["prompt_fix"] = {"day": state["day"], "why": why}
 
 
 def _y(state):
@@ -1129,11 +1145,16 @@ def prompt_block(state, p):
     sh = round(10 * nf / w) if w else 0
     rows.append(f"- 町の家: あなたの家 ({h}) の大人が前の 1 年に働いた日のうち、食べ物でない仕事 ({NONFOOD_WORDS}) は {sh} 割"
                 + (f" (半分にはあと 約 {to_town(nf, w)} 人日)" if w and nf * 2 < w else "") + "。半分をこえると「町の家」になる。家の大人の仕事は family で決める")
-    rows.append(f"- 市へ運ぶ: 主な仕事を「{ACT_MARKET}」(to に村の番号) にすると、村の倉の土器と鎌を、ほしがっている村に運んで、草の種を受けて帰る。"
-                f"いまほしがっている村: {_want_text(state)}")
+    if prompt_fixed(state):
+        rows.append(market_line(state))
+    else:
+        rows.append(f"- 市へ運ぶ: 主な仕事を「{ACT_MARKET}」(to に村の番号) にすると、村の倉の土器と鎌を、ほしがっている村に運んで、草の種を受けて帰る。"
+                    f"いまほしがっている村: {_want_text(state)}")
     rd = house_readers(state, name)
     allr = g10.readers(state)
-    if rd:
+    if prompt_fixed(state):
+        rows.append(note_line(state, name, rd, allr))
+    elif rd:
         ex = note_example(state, name)
         who = "あなたは" if name in rd else f"あなたの家の {'・'.join(rd)} は"
         rows.append(f"- 書きつけ: {who}字が書けるので、「いま渡して、次の年の終わりに草の種で払ってもらう」書きつけを書ける (note。1 つの村に 1 つ)。"
@@ -1141,6 +1162,13 @@ def prompt_block(state, p):
     else:
         rows.append(f"- 書きつけ: 書けるのは字を書ける {'・'.join(allr) or '人 (いまいない)'}" + (" (その家の代表が書く)" if allr else ""))
     oj = open_jobs(state)
+    if prompt_fixed(state):
+        rows.append(guild_line(state, name, oj))
+        rows.append(keep_line(state, p))
+        rows.append("- note・pact・help・guild は答えた人の中でいちばん多い中身に決まる (1 人の答えでも決まる)。書かないなら \"note\": []・\"guild\": null")
+        rows.append("いまの進み (町と市と仲間):")
+        rows += progress_lines(state)
+        return "\n".join(rows) + "\n"
     pot = eligible(state, "土器づくり")
     kn = knowers_alive(state)
     ln = f"- 仲間: 同じ仕事の人が誓って「仲間」を結ぶと、その品のねうち ({RATE_MIN}〜{RATE_MAX} 倍) と弟子 (一緒に働くと腕が早く上がる) を決められる。"
@@ -1162,6 +1190,119 @@ def prompt_block(state, p):
     rows.append("いまの進み (町と市と仲間):")
     rows += progress_lines(state)
     return "\n".join(rows) + "\n"
+
+
+def _trip(state, o):
+    """o へ 1 人が 1 回運ぶと受ける草の種 (いま持って行く品のねうち) と、行って帰る日数"""
+    return value(state, _carry(state, o, None)), 2 * o["days"] + 1
+
+
+def market_line(state):
+    """直しのあとの「市へ運ぶ」の行 (G14_PROMPT_FROM から): 仕事の書き方の例・ほしがっている村・1 回で受ける草の種・運べる村みなを合わせた量 (この季節)。
+    数は今の決まりのまま、いまの state から (ふやして見せない)"""
+    mp = market_places(state)
+    if not mp:
+        return (f"- 市へ運ぶ: 主な仕事を「{ACT_MARKET}」にすると、村の倉の土器と鎌を、ほしがっている村に運んで、草の種を受けて帰る。"
+                "いまは、土器と鎌をほしがっていて払える村がない (運んでも休むことになる)")
+    o = mp[0]
+    got, days = _trip(state, o)
+    tot = sum(min(value(state, wants(state, x)), _pay_left(state, x)) for x in mp)
+    return (f"- 市へ運ぶ: 季節ごとの job か family に {_js({'activity': ACT_MARKET, 'place': 'camp', 'to': o['id']})} のように書く (1 季節だけでもよい)。"
+            f"村の倉の土器と鎌を運び、受けた草の種は村の倉に入る。運んだ日は食べ物でない仕事に数える。"
+            f"いまほしがっている村: {_want_text(state)}。{o['id']} へ 1 回運ぶと、行って帰って {days} 日で 草の種 約 {got} つかみ。"
+            f"いま運べる村 {len(mp)} を合わせても、この季節に受けられるのは 草の種 約 {tot} つかみ分 (村の倉の草の種は いま {g12._grain_have(state)} つかみ)")
+
+
+def note_examples(state, name, k=3):
+    """書きつけの例 (受ける形。受けてくれそうな集落の近いほうから k まで。ちがう村ごとに 1 つ)"""
+    rd = house_readers(state, name)
+    if not rd:
+        return []
+    by = name if name in rd else rd[0]
+    out = []
+    for o in note_places(state):
+        w = wants(state, o)
+        give = {}
+        for kk in GOODS:
+            n = min(w[kk], era2._g6_have(state, "村", kk))
+            if n > 0:
+                give[kk] = n
+        while give and value(state, give, by) > NOTE_MAX:
+            kk = max(give, key=lambda x: (give[x], x))
+            give[kk] -= 1
+            if not give[kk]:
+                give.pop(kk)
+        if not give:
+            continue
+        v = value(state, give, by)
+        take = {GRAIN: min(v, int(NOTE_GRAIN_SHARE * o.get("grain", 0)))}
+        rate = v / max(1, sum(era2.VALUE[kk] * n for kk, n in give.items()))
+        if note_why(state, o, give, take, rate) is None:
+            out.append({"to": o["id"], "give": give, "take": take, "by": by})
+            if len(out) >= k:
+                break
+    return out
+
+
+def note_line(state, name, rd, allr):
+    """直しのあとの「書きつけ」の行: 書ける家には、受ける形の例 (ちがう村 3 つまで) と、受けると村に何が入るか。書けない家には、そのことと書ける人"""
+    if not rd:
+        return (f"- 書きつけ (note): あなたの家には字を書ける人がいないので、あなたの答えの note は書きつけにならない。書けるのは字を書ける "
+                + ("・".join(allr) + " のいる家の答え" if allr else "人 (いまいない)"))
+    who = "あなたは" if name in rd else f"あなたの家の {'・'.join(rd)} は"
+    ex = note_examples(state, name)
+    if not ex:
+        return f"- 書きつけ (note): {who}字が書けるので、書きつけを書ける。いま受けてくれそうな村はない"
+    return (f"- 書きつけ (note): {who}字が書けるので、書きつけを書ける (村ごとに 1 つ。いくつの村にも書ける)。"
+            f"受けると、いま村の倉から品を渡し、相手は年の終わり (次の年の集まりの前) に草の種を村の倉に払う。"
+            f"受ける形の例: \"note\": {_js(ex)} (合わせて 草の種 {sum(x['take'][GRAIN] for x in ex)} つかみ)")
+
+
+def guild_example(state, name, job, el):
+    """仲間の例の人 (入れる人 3 人・2 家。答える人が入れるなら自分、次に家の人、ほかは前の 1 年にその仕事を多くした人の順)"""
+    jd = job_days(state)
+    hs = {p["name"]: p.get("household") for p in era2.adults(state)}
+    me = hs.get(name)
+    order = sorted(el, key=lambda n: (n != name, hs.get(n) != me, -jd.get(n, {}).get(job, 0), n))
+    pick = order[:C3_PEOPLE]
+    if len({hs.get(n) for n in pick}) < C3_HOUSES:
+        other = next((n for n in order if hs.get(n) != hs.get(pick[0])), None)
+        if other:
+            pick = pick[:C3_PEOPLE - 1] + [other]
+    return pick
+
+
+def guild_line(state, name, oj):
+    """直しのあとの「仲間」の行: 入れる人の名前 (多い順)・1 人でも結べる決まり・名前の入った例・ねうちで村に何が入るか"""
+    g = _g(state)
+    ln = f"- 仲間 (guild): 同じ仕事の人が誓って「仲間」を結ぶと、その品のねうち ({RATE_MIN}〜{RATE_MAX} 倍) と弟子 (一緒に働くと腕が早く上がる) を決められる。"
+    if name in knowers_alive(state):
+        ln += "あなたは、川下の町の職人の誓いの話を知っている。"
+    ag = active_guilds(state)
+    if ag:
+        ln += "結んだ仲間: " + "・".join(f"{x['job']} {len(x['people'])} 人 ({x['status']})" for x in ag) + "。"
+    offs = g["guilds"]["offers"]
+    if offs:
+        ln += "仲間の申し出: " + "・".join(f"{x['job']} ({'・'.join(x['by'][:3])} が書いた)" for x in offs) + "。"
+    if not oj:
+        return ln + f"いま結べる仕事はない (前の 1 年にその仕事を {GUILD_MIN_DAYS} 日以上した人が {C3_PEOPLE} 人・{C3_HOUSES} 家要る)"
+    job = "土器づくり" if "土器づくり" in oj else next(iter(oj))
+    el = oj[job]
+    jd = job_days(state)
+    top = sorted(el, key=lambda n: (-jd.get(n, {}).get(job, 0), n))
+    ln += ("いま結べる仕事: " + "・".join(f"{j} ({len(e)} 人)" for j, e in oj.items()) + "。"
+           f"前の 1 年に {GUILD_MIN_DAYS} 日以上{job}をした人 (多い順): {'・'.join(top[:6])}" + (f" ほか {len(el) - 6} 人" if len(el) > 6 else "") + "。"
+           f"\"人\" に名前を書いた人のうち、この人たちが仲間になる (自分も入るなら自分の名前も書く)。"
+           f"あなた 1 人の答えでも、2 つ以上の家の {C3_PEOPLE} 人以上を書けば結ぶ。")
+    ex = {"仕事": job, "人": guild_example(state, name, job, el), "ねうち": 1.1, "弟子": True}
+    good = GOOD_OF_JOB.get(job)
+    return (ln + f"例: \"guild\": {_js(ex)}"
+            + (f" (ねうち 1.1 なら、市へ運ぶ・書きつけで {good} 1 つ = 草の種 {round(era2.VALUE[good] * 1.1)} つかみ。いまは {era2.VALUE[good]})" if good else ""))
+
+
+def fields_json(state):
+    """答えの形 (JSON) の欄 (直しのあとだけ。pact・help の後ろ)"""
+    return ' "note": [], "guild": null,' if prompt_fixed(state) else ""
 
 
 def keep_line(state, p):

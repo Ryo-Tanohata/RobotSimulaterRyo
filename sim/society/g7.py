@@ -2254,7 +2254,8 @@ def fields_json(state, p, solo):
     return ((' "demand": null,' if "demand" in on else "") + (' "answer_demand": {}, "ally": null,' if "answer_demand" in on else "")
             + (' "leave": false,' if "leave" in on and not solo else "") + (' "share": null,' if "share" in on and not solo else "") + (' "captives": null,' if "captives" in on else "")
             + (' "tribute": {},' if "tribute" in on else "") + (_g9m().fields_json(state) if _g9_on(state) else "")
-            + (_g11m().fields_json(state) if _g11_on(state) else "") + (_g12m().fields_json(state) if _g12_on(state) else ""))
+            + (_g11m().fields_json(state) if _g11_on(state) else "") + (_g12m().fields_json(state) if _g12_on(state) else "")
+            + (_g14m().fields_json(state) if _g14_on(state) else ""))  # G14 のお題の直し (g14.G14_PROMPT_FROM から): note・guild の欄
 
 
 def fields_prop(state):
