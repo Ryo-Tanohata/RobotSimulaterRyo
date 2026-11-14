@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋も畑に種をまいて、冬は草取りに通おう。ヤギは草より多いから、少しずつ肉にしていこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意で、蓄えの草の種を虫から守れるから続ける"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"オネ50": {"activity": "土器づくり", "place": "camp", "why": "手が器用で、土器は村の蓄えを守るから"}, "ケセ51": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで夏の実りを増やすため"}, "ラキ61": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を足すため"}, "ソナ61": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を足すため"}, "ホミ61": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を足すため"}, "ホミ62": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギがいなくならないように世話をする"}, "テナ63": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話の手が足りないから"}, "セオ63": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を足すため"}, "ロワ64": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}},
+ "keep": false,
+ "judge": {"M511": "ゆるす"}, "feast": false, "leader": null, "trade": {"T578": false, "T579": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草より多いので、秋もヤギを出す申し出は受けず、少しずつ肉にして減らす。", "because": [3202164], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて心は落ち着いている。秋の種まきと土器づくりに精を出したい。"}

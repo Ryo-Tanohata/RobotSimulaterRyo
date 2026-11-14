@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をまいて、冬と春は草取りを欠かさずやろう。畑が育てば来年の夏は楽になる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えは十分あるので、畑を育てて来年の夏に備える"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ネイ42": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ケセ46": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "トナ50": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ケセ55": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ユエ55": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ネイ60": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"},
+  "ソワ64": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "タユ65": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M511": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く落ち着いている。畑を育てるのが楽しみだ。"}
