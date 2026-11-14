@@ -1,0 +1,17 @@
+{"say":[{"to":"みんな","text":"畑が山ほど実っている。夏のうちに、手の空いた者はみな鎌をとって刈ろう。落とすのはもったいない。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑を夏のうちに刈らないと落ちてしまう。鎌で毎日刈る"},"family":{"テナ42":{"activity":"畑仕事","place":"camp","why":"実った畑の刈り入れに手を貸す"},"ラキ47":{"activity":"畑仕事","place":"camp","why":"刈り入れの手が足りないので刈る"}},"pick":0,"plant":0,"harvest":60,"eat_goat":8},
+"秋":{"job":{"activity":"水の道を掘る","place":"camp","with":[],"why":"水の道が泥でうまると畑がへるので手入れする"},"family":{"テナ42":{"activity":"水の道を掘る","place":"camp","why":"水の道の手入れに家から出る"},"ラキ47":{"activity":"畑仕事","place":"camp","why":"育つ畑の草取りで実りを増やす"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"水の道を掘る","place":"camp","with":[],"why":"冬は実りがないので水の道と水の輪の手入れに回る"},"family":{"テナ42":{"activity":"水の輪を建てる","place":"camp","why":"止まった水の輪を直す"},"ラキ47":{"activity":"畑仕事","place":"camp","why":"畑の草取りをする"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏に向けて畑の草取りをする"},"family":{"テナ42":{"activity":"畑仕事","place":"camp","why":"草取りの手を増やす"},"ラキ47":{"activity":"ヤギの世話","place":"camp","why":"春は子ヤギが生まれ乳がとれる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T487":false,"T488":false,"T489":false,"T490":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},
+"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":null,"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,
+"knowledge":[{"op":"add","text":"実った畑は夏のうちに刈らないと落ちる。刈る手が足りないと大きく損をする","because":[],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"畑が山ほど実った年",
+"feeling":"畑も木も実りが多く、体は軽い。刈れるだけ刈ってやる。"}

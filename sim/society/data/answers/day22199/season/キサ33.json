@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は刈り入れを急ごう。落ちる種がもったいない。おれは土器と畑で働く。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちるから"}, "family": {"ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "刈り入れ"}, "ヌオ35": {"activity": "畑仕事", "place": "camp", "why": "刈り入れ"}, "ハソ45": {"activity": "畑仕事", "place": "camp", "why": "刈り入れ"}, "ユエ48": {"activity": "畑仕事", "place": "camp", "why": "刈り入れ"}, "ユエ50": {"activity": "畑仕事", "place": "camp", "why": "刈り入れ"}, "ケナ54": {"activity": "畑仕事", "place": "camp", "why": "刈り入れ"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の来る畑は悪い年でも守られる"}, "family": {"ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ハソ45": {"activity": "水の道を掘る", "place": "camp", "why": "畑を守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りが増える"}, "family": {"ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ハソ45": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りを続ける"}, "family": {"ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T487": false, "T488": false, "T489": false, "T490": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り落としが多かった年",
+ "feeling": "蓄えは多いが、刈る手が足りないのが気がかりだ。"}

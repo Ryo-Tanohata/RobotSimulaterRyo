@@ -1,0 +1,17 @@
+{"say":[{"to":"みんな","text":"蓄えは山ほどある。夏は畑の実りを刈れるだけ刈って、あとは腕のある者が器を焼けばいい。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏のうちに刈らないと実りが落ちるので、刈り入れを急ぐ"},"family":{"ケナ45":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"},"タユ46":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"},"ソワ48":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"},"ソワ52":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"},"ロワ54":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"},"オセ57":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"},"オセ58":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"},"ラキ59":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手になる"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器の腕に自信があり、草の種を虫やネズミから守れる"},"family":{"ケナ45":{"activity":"採集","place":"camp","why":"木の実を集めて食べ物を増やす"},"タユ46":{"activity":"狩り","place":"北丘12","why":"肉を蓄えに足す"},"ソワ48":{"activity":"採集","place":"camp","why":"木の実を集める"},"ソワ52":{"activity":"狩り","place":"北丘12","why":"狩りが得意"},"ロワ54":{"activity":"狩り","place":"北丘12","why":"狩りが得意"},"オセ57":{"activity":"狩り","place":"北丘12","why":"狩りが得意"},"オセ58":{"activity":"採集","place":"camp","why":"木の実を集める"},"ラキ59":{"activity":"狩り","place":"北丘12","why":"狩りが得意"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"冬も器を作り続けて腕を保つ"},"family":{"ケナ45":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"タユ46":{"activity":"狩り","place":"北丘12","why":"冬も魚やけものはいる"},"ソワ48":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ソワ52":{"activity":"狩り","place":"北丘12","why":"狩りが得意"},"ロワ54":{"activity":"狩り","place":"北丘12","why":"狩りが得意"},"オセ57":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"オセ58":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ラキ59":{"activity":"狩り","place":"北丘12","why":"狩りが得意"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りをして夏の実りを増やす"},"family":{"ケナ45":{"activity":"畑仕事","place":"camp","why":"草取り"},"タユ46":{"activity":"狩り","place":"北丘12","why":"肉を得る"},"ソワ48":{"activity":"畑仕事","place":"camp","why":"草取り"},"ソワ52":{"activity":"狩り","place":"北丘12","why":"肉を得る"},"ロワ54":{"activity":"狩り","place":"北丘12","why":"肉を得る"},"オセ57":{"activity":"畑仕事","place":"camp","why":"草取り"},"オセ58":{"activity":"畑仕事","place":"camp","why":"草取り"},"ラキ59":{"activity":"狩り","place":"北丘12","why":"肉を得る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T487":false,"T488":false,"T489":false,"T490":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},
+"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"刈り入れを急いだ年",
+"mood":"蓄えは十分で気楽だが、夏の刈り入れは急がねばならない。"}
