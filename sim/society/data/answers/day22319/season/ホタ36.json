@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は残りが多い。落ちる前に、みんなで刈ってしまおう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈るため"}, "family": {"ソワ36": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "キオ45": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ヒセ46": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ハソ51": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ラキ52": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ワユ54": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ネイ59": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "木の実が実る季節なので集める"}, "family": {"ソワ36": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "キオ45": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ヒセ46": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ハソ51": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ラキ52": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ワユ54": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ネイ59": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "camp", "with": [], "why": "冬も獲物はいるので肉を得る"}, "family": {"ソワ36": {"activity": "狩り", "place": "camp", "why": "冬も獲物を狩る"}, "キオ45": {"activity": "狩り", "place": "camp", "why": "冬も獲物を狩る"}, "ヒセ46": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ハソ51": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ラキ52": {"activity": "狩り", "place": "camp", "why": "冬も獲物を狩る"}, "ワユ54": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ネイ59": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りを増やす草取り"}, "family": {"ソワ36": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "キオ45": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ヒセ46": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ハソ51": {"activity": "道具づくり", "place": "camp", "why": "鎌を作る"}, "ラキ52": {"activity": "道具づくり", "place": "camp", "why": "鎌を作る"}, "ワユ54": {"activity": "ヤギの世話", "place": "camp", "why": "乳をとる"}, "ネイ59": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "mood": "蓄えは十分にある。落ち着いて、年を過ごしたい。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだたっぷり残っている。落ちる前に、みんなで毎日刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちる前に刈り入れる"}, "family": {"ルタ44": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意で、蓄えの草の種を虫やネズミから守れる"}, "family": {"ルタ44": {"activity": "採集", "place": "camp", "why": "木の実がなる季節に食べ物を集める"}, "キサ48": {"activity": "採集", "place": "camp", "why": "木の実がなる季節に食べ物を集める"}, "ホタ49": {"activity": "土器づくり", "place": "camp", "why": "土器をいっしょに作る"}, "ヌオ52": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ロワ53": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "シエ59": {"activity": "採集", "place": "camp", "why": "木の実を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして畑の実りを増やす"}, "family": {"ルタ44": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいるので肉を得る"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ヌオ52": {"activity": "狩り", "place": "camp", "why": "冬の肉を得る"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで夏の実りを増やす"}, "family": {"ルタ44": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "畑がたくさん実っていて心強い。みんなで力を合わせて刈りたい。"}
