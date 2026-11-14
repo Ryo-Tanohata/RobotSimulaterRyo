@@ -199,28 +199,40 @@ def known(o):
     return g12.known(o)
 
 
-def wants(state, o):
-    """その集落が、この季節にまだほしがっている土器と鎌 (era2._g6_wants。交換・申し出・市へ運ぶ・書きつけで渡した分は引いてある)"""
+def wants(state, o, going=False):
+    """その集落が、この季節にまだほしがっている土器と鎌 (era2._g6_wants。交換・申し出・市へ運ぶ・書きつけで渡した分は引いてある)。
+    going なら、ほかの村の人がいまその集落へ運んでいる途中の分も引く (出かける日に、村の人は、だれがどこへ運んでいるかを知っている)"""
     w = era2._g6_wants(state, o)
-    return {k: w.get(k, 0) for k in GOODS}
+    out = {k: w.get(k, 0) for k in GOODS}
+    if going:
+        for tr in _g(state)["market"]["trips"].values():
+            if tr["state"] == "行く" and not tr["arrived"] and tr["to"] == o["id"]:
+                for k, n in tr["took"].items():
+                    out[k] = max(0, out.get(k, 0) - n)
+    return out
 
 
-def _pay_left(state, o):
-    """この暦の年に、その集落が市へ運んだ品に、まだ払える草の種 (その集落の草の種の 2 割まで)"""
+def _pay_left(state, o, going=False):
+    """この暦の年に、その集落が市へ運んだ品に、まだ払える草の種 (その集落の草の種の 2 割まで)。going なら、運んでいる途中の分のねうちも引く"""
     g = _g(state)
     paid = (g["market"]["paid"].get(str(_y(state))) or {}).get(o["id"], 0)
-    return max(0, int(MARKET_SHARE * (o.get("grain", 0) + paid)) - paid)
+    left = max(0, int(MARKET_SHARE * (o.get("grain", 0) + paid)) - paid)
+    if going:
+        for tr in g["market"]["trips"].values():
+            if tr["state"] == "行く" and not tr["arrived"] and tr["to"] == o["id"]:
+                left -= value(state, tr["took"], tr["who"])
+    return max(0, left)
 
 
-def market_why(state, o):
-    """その集落へ市へ運べないわけ (運べるなら None)"""
+def market_why(state, o, going=True):
+    """その集落へ市へ運べないわけ (運べるなら None)。going: ほかの村の人が運んでいる途中の分も数える (出かける日)"""
     if not known(o):
         return "もうない村か、まだよく知らない村なので"
     if o.get("trust", 0.5) < MARKET_TRUST:
         return f"{o['name']} は村をまだ信じきれていないので"
-    if not any(wants(state, o).values()):
-        return f"{o['name']} は、この季節の分の土器と鎌をもう受けたので"
-    if _pay_left(state, o) < min(era2.VALUE[POT], era2.VALUE[SICKLE]):
+    if not any(wants(state, o, going).values()):
+        return f"{o['name']} は、この季節の分の土器と鎌をもう受けたか、ほかの村の人が運んでいるので"
+    if _pay_left(state, o, going) < min(era2.VALUE[POT], era2.VALUE[SICKLE]):
         return f"{o['name']} は、この年に払える草の種をもう払ったので"
     return None
 
@@ -254,8 +266,8 @@ def set_dest(state, name, j):
 
 def _carry(state, o, who):
     """持って行く土器と鎌 (1 人が運べる量・相手のほしい量・村の倉・相手が払える草の種まで)"""
-    w = wants(state, o)
-    left = _pay_left(state, o)
+    w = wants(state, o, True)
+    left = _pay_left(state, o, True)
     have = {k: era2._g6_have(state, "村", k) for k in GOODS}
     pots = min(w[POT], era2.LOAD[POT], have[POT], int(left // (era2.VALUE[POT] * guild_rate(state, POT, who))))
     room = 1 - pots / era2.LOAD[POT]
@@ -308,7 +320,7 @@ def _arrive(state, p, t, tr):
     name = p["name"]
     o = _other(state, tr["to"])
     tr["arrived"] = True
-    why = market_why(state, o) if o else "もうない村なので"
+    why = market_why(state, o, False) if o else "もうない村なので"
     give = {}
     if why is None:
         w, left = wants(state, o), _pay_left(state, o)
