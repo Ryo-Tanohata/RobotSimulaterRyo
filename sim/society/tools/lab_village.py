@@ -1186,8 +1186,6 @@ def run_one(job):
     if pol.get("g14"):  # G14 の束: g14 の決まりの差しかえ (このプロセスの中だけ)
         import g14
         g14.GUILD_SOLO = pol.get("guild_solo", g14.GUILD_SOLO)  # G14B1S0: 仲間の直し (1 人の答えでも 2 家以上の人を名前で書けば結ぶ) の前の決まり
-        if pol.get("bad_every"):  # G14B1N: 地域の悪い年を毎年に (このプロセスの中だけ)
-            region.WEATHER_BAD = 1.0
     if pol.get("g13"):  # G13 の束: g13 の決まりの差しかえ (このプロセスの中だけ。対照の束だけ)
         import g13
         g13.GRIND_ON = not pol.get("no_grind")  # G13B1G: 粉ひきの手間なし
@@ -1205,6 +1203,8 @@ def run_one(job):
         state = json.loads((Path(data) / "state.json").read_text(encoding="utf-8"))
         state["seed"] = state["seed"] + 1000 * seed
         enter_g7(state, w)
+        if pol.get("bad_every"):  # G14B1N: 地域の悪い年を毎年に (写しの世界の「悪い年」を 1.0。g7.sync_world が毎歩 region.WEATHER_BAD に写す。このプロセスの中だけ)
+            state["era2"]["g7"]["world"]["bad"] = 1.0
         if pol.get("no_read"):  # G14B1R: 読める人がいない (入る日に消す。このプロセスの中だけ)
             state["era2"]["g7"]["g10"]["readers"] = {}
             g7.g10_sample_add(state)
@@ -1756,13 +1756,13 @@ G14_COLS = ["world", "bundle", "seed", "years_run", "c1_year", "c2_year", "c3_ye
 
 
 def g14_row(res):
-    """G14 の確かめ (2026-11-14) の 1 回 = 1 行。年目は 1 年目 = 179年 (178年60日目に入った次の年。日 ÷ 120 - 178)"""
+    """G14 の確かめ (2026-11-14) の 1 回 = 1 行。年目は 1 年目 = 179年 (178年60日目に入った次の年。日 ÷ 120 - 178)。0 年目 = 入った年 (178年)"""
     rows = res["rows"]
     last = rows[-1] if rows else {}
     y0 = res["y0"]
 
     def yr(day):
-        return None if day is None else day // YEAR - y0 + 1
+        return None if day is None else day // YEAR - y0
     c, re_ = last.get("g14_c") or {}, last.get("g14_reached") or {}
     days3 = [c.get(k) for k in ("c1", "c2", "c3")]
     paths = last.get("g14_path") or {}
@@ -1783,14 +1783,14 @@ def g14_row(res):
             **{f"{f}_year": yr(re_.get(f)) for f in ("F1", "F2", "F3", "F4")},
             "town_share_best": max((t.get("share", 0) for t in tw), default=0), "town_people_best": max((t.get("people", 0) for t in tw), default=0),
             "town_houses_best": max((t.get("houses", 0) for t in tw), default=0),
-            "c1_years": "・".join(str(y - y0 + 1) for y in last.get("g14_c1_years") or []),
+            "c1_years": "・".join(str(y - y0) for y in last.get("g14_c1_years") or []),
             "market_trips_sum": sum(m.get("trips", 0) for m in mk), "market_grain_sum": sum(m.get("grain", 0) for m in mk),
             "market_grain_mean": round(sum(m.get("grain", 0) for m in mk[1:]) / max(1, len(mk) - 1)),
             "notes_written": sum(n.get("written", 0) for n in nt), "notes_accepted": sum(n.get("accepted", 0) for n in nt),
             "notes_refused": sum(n.get("refused", 0) for n in nt), "notes_paid_best": max((len(r.get("g14_notes_paid_places") or []) for r in rows), default=0),
             "notes_late": sum(n.get("late", 0) for n in nt), "notes_broken": sum(n.get("broken", 0) for n in nt),
-            "c2_years": "・".join(str(y - y0 + 1) for y in last.get("g14_c2_years") or []),
-            "guilds_end": "・".join(f"{x[1]} {x[2]} 人 {x[3]}" for x in gl) or "-", "c3_years": "・".join(str(y - y0 + 1) for y in last.get("g14_c3_years") or []),
+            "c2_years": "・".join(str(y - y0) for y in last.get("g14_c2_years") or []),
+            "guilds_end": "・".join(f"{x[1]} {x[2]} 人 {x[3]}" for x in gl) or "-", "c3_years": "・".join(str(y - y0) for y in last.get("g14_c3_years") or []),
             "readers_min": min((r.get("g14_readers", 0) for r in rows), default=None), "readers_end": last.get("g14_readers"),
             "fails_sum": sum(fk.values()), "fail_kinds": "・".join(f"{k} {n}" for k, n in sorted(fk.items())),
             "path_zero_c1": _zero_years(paths, py, c, "c1"), "path_zero_c2": _zero_years(paths, py, c, "c2"), "path_zero_c3": _zero_years(paths, py, c, "c3"),

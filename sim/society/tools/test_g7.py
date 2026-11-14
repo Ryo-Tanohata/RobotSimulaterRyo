@@ -6713,8 +6713,13 @@ class T_G14(unittest.TestCase):
         self.assertEqual(g14.eligible(st, "土器づくり"), sorted(pot))
         self.assertIn("土器づくり", g14.open_jobs(st))
         gd = {"仕事": "土器づくり", "人": pot[:4] + ["だれでもない"], "ねうち": 9, "弟子": True}
-        # 1 家だけ: 申し出
-        g14.apply_guilds(st, {a1: {"guild": gd}})
+        self.assertTrue(g14.GUILD_SOLO, "前に決めておいた直しを入れた (G14_check.md 2.)")
+        old0 = g14.GUILD_SOLO
+        g14.GUILD_SOLO = False  # 直しの前の決まり: 1 家だけなら申し出
+        try:
+            g14.apply_guilds(st, {a1: {"guild": gd}})
+        finally:
+            g14.GUILD_SOLO = old0
         self.assertEqual(g14.active_guilds(st), [])
         self.assertEqual(g["guilds"]["offers"][0]["job"], "土器づくり")
         # 次の集まりで、ほかの家が書く: 結ぶ
