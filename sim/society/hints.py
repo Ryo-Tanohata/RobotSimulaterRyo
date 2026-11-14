@@ -23,6 +23,7 @@ from world import log, season
 CARDS = Path(__file__).parent / "hint_cards.json"
 CARDS_G9 = Path(__file__).parent / "hint_cards_g9.json"  # G9 (遠くとの商い) に入る日に足す札 (2026-10-29 本人の決め)。G9 に入るまでは引かない
 CARDS_G10 = Path(__file__).parent / "hint_cards_g10.json"  # G10 (鉄と広い国) に入る日に足す札 (2026-11-04 本人の決め「お任せします」)。G10 に入るまでは引かない
+CARDS_G14 = Path(__file__).parent / "hint_cards_g14.json"  # G14 (町と商業) に入る日に足す札 (2026-11-14。病の札 H13-03)。G14 に入るまでは引かない
 FAR = "遠く"  # 遠くの商人の「来た所」(G9 から。地図の外。集落の番号ではない)
 HINT_CAP = 3  # 1 年に届く便りは 3 通まで (捕らえた職人は数えない。4.C.3)
 HINT_REPEAT = 3  # 同じ札が来るのは、受けとる所ごとに 3 回まで (4.C.5)
@@ -66,10 +67,17 @@ def _g10_on(state):
     return bool(state) and "g10" in ((state.get("era2") or {}).get("g7") or {})
 
 
+def _g14_on(state):
+    """G14 (町と商業。2026-11-14) に入ったあとか。G13 までは False (前と 1 バイトも同じに進む)"""
+    return bool(state) and "g14" in ((state.get("era2") or {}).get("g7") or {})
+
+
 def cards_sha(state=None):
     """札の表のファイルのハッシュ (G7 に入る日に g7.hints.cards_sha に残す。ちがうまま season を動かすと止まる)。
     G9 に入ったあと (state に g7.g9 がある) は、hint_cards.json と hint_cards_g9.json をつないだもののハッシュ (G8 までは前のまま)。
     G10 に入ったあと (g7.g10 がある) は、hint_cards_g10.json もつなぐ (G9 までは前のまま)"""
+    if _g14_on(state):  # G14 から: hint_cards_g14.json もつなぐ (G13 までは前のまま)
+        return hashlib.sha256(CARDS.read_bytes() + b"\n" + CARDS_G9.read_bytes() + b"\n" + CARDS_G10.read_bytes() + b"\n" + CARDS_G14.read_bytes()).hexdigest()
     if _g10_on(state):
         return hashlib.sha256(CARDS.read_bytes() + b"\n" + CARDS_G9.read_bytes() + b"\n" + CARDS_G10.read_bytes()).hexdigest()
     if _g9_on(state):
@@ -83,11 +91,13 @@ _CACHE = {}
 def cards():
     """札の表 {番号: 札} (ファイルが変われば読みなおす)"""
     sha = (cards_sha() + (hashlib.sha256(CARDS_G9.read_bytes()).hexdigest() if CARDS_G9.exists() else "")
-           + (hashlib.sha256(CARDS_G10.read_bytes()).hexdigest() if CARDS_G10.exists() else ""))
+           + (hashlib.sha256(CARDS_G10.read_bytes()).hexdigest() if CARDS_G10.exists() else "")
+           + (hashlib.sha256(CARDS_G14.read_bytes()).hexdigest() if CARDS_G14.exists() else ""))
     if _CACHE.get("sha") != sha:
         data = json.loads(CARDS.read_text(encoding="utf-8"))
         extra = json.loads(CARDS_G9.read_text(encoding="utf-8"))["cards"] if CARDS_G9.exists() else []  # G9 の札 (g9: true。G9 に入るまでは _cand で引かない)
         extra += json.loads(CARDS_G10.read_text(encoding="utf-8"))["cards"] if CARDS_G10.exists() else []  # G10 の札 (g10: true。G10 に入るまでは引かない)
+        extra += json.loads(CARDS_G14.read_text(encoding="utf-8"))["cards"] if CARDS_G14.exists() else []  # G14 の札 (g14: true。G14 に入るまでは引かない)
         _CACHE.update(sha=sha, cards={c["id"]: c for c in data["cards"] + extra})
     return _CACHE["cards"]
 
@@ -255,8 +265,9 @@ def _cand(state, rid, stage, carrier):
     seen, used = (h["seen"].get(rid) or {}), set(h["used"].get(rid) or [])
     g9 = _g9_on(state)  # G9 の札 (g9: true) は G9 に入ってから (G8 までは前と同じ札から引く)
     g10 = _g10_on(state)  # G10 の札 (g10: true) は G10 に入ってから (G9 までは前と同じ札から引く)
+    g14 = _g14_on(state)  # G14 の札 (g14: true) は G14 に入ってから (G13 までは前と同じ札から引く)
     return sorted(c for c, x in cs.items() if x["stage"] == STAGES[stage] and carrier in x["carrier"] and c not in used and seen.get(c, 0) < HINT_REPEAT
-                  and (g9 or not x.get("g9")) and (g10 or not x.get("g10")))
+                  and (g9 or not x.get("g9")) and (g10 or not x.get("g10")) and (g14 or not x.get("g14")))
 
 
 def _pick_card(state, rng, rid, stage, now, carrier):

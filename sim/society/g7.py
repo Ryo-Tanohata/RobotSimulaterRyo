@@ -50,7 +50,8 @@ ACT_OF_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道
                 "黒い金属を作る": "黒い金属を作る", "字を習う": "字を習う",  # 2 つは G10 から (2026-11-04)
                 "印のかたまりを作る": "印のかたまりを作る",  # G11 から (2026-11-05)
                 "帳をつける": "帳をつける",  # G12 から (2026-11-10)
-                "水の道を掘る": "水の道を掘る", "水の輪を建てる": "水の輪を建てる"}  # G13 から (2026-11-12)
+                "水の道を掘る": "水の道を掘る", "水の輪を建てる": "水の輪を建てる",  # G13 から (2026-11-12)
+                "市へ運ぶ": "市へ運ぶ"}  # G14 から (2026-11-14)
 ROLE_TEXT = {"守る": "{n} がキャンプで見張りをした", "取り立てる": "{n} が、取り立てに回る支度をした",
              "戦に出る": "{n} がキャンプで戦の支度をした", "試す": "{n} がキャンプで、よその便りで聞いたことを試した"}
 # お題に出す決まりの文 (era2.FACTS_G7) を出すとき (4.F の 8 の「出すとき」)。下の FACTS_ON (年 1 回の答えの節) で決める
@@ -533,6 +534,48 @@ def _g13_on(state):
     return "g13" in (state["era2"].get("g7") or {})
 
 
+# ---------------- G14「町と商業」(町と市と仲間。2026-11-14 本人の言葉「質問しないであなたのおすすめで進めて下さい」。docs/society_phase/G14_design.md。仕組みは g14.py) ----------------
+ACTS14 = ("市へ運ぶ",)  # G14 の仕事 (world.ACTS7 に足した。G14 で、大人ならだれでも)
+
+
+def close_g13(state):
+    """G13 を閉じる (3 つの条件がそろって HOLD wait で止まっていたところから。2026-11-14 G14_design.md 0.)。
+    step.py next_part (--closed-by-decision なし) から、G14 に入る前に 1 回だけ。出来事「フェーズ」と g7.closed13 に残す (G7〜G12 を閉じた記録はそのまま)。乱数は使わない"""
+    g, D = _g(state), state["day"]
+    t = g["g13"]
+    c = {"day": D, "by": "条件がそろった", "end": (g.get("ends") or {}).get("G13"),
+         "c": {k: t["c"].get(k) for k in ("c1", "c2", "c3")}, "reached": {k: t["reached"].get(k) for k in ("F1", "F2", "F3", "F4")},
+         "c2_years": list(t["c2_years"]), "c3_years": list(t["c3_years"]), "mills": len(t["mill"]["mills"]),
+         "mills_running": len(_g13m().mills_running(state)), "canal_cap": t["canal"]["cap"],
+         "water": {y: dict(r) for y, r in t["water"].items()}, "workers": {y: dict(r, **{"from": dict(r.get("from") or {})}) for y, r in t["workers"].items()},
+         "path": {y: {k: v for k, v in r.items() if k != "who"} for y, r in t["path"].items()}, "readers": list(_g10m().readers(state)),
+         "pacts": sum(1 for p in g["g12"]["pacts"].values() if _g12m()._active(p))}
+    g["closed13"] = c
+    log(state, "フェーズ", None, "G13 (帝国のあとの農業社会): 3 つの条件がそろって終わった", closed_by="条件がそろった")
+    return c
+
+
+def start_g14(state):
+    """G14 に入った日 (enter_next): G13 のときの G7 の物差しの数を g7.before.G13 に移して数え直し、G14 の仕組み (g14.py) を入れる。
+    G10〜G13 の仕組みと直し・世界の旗・北の大きな村・遠くの町の運ぶ人・道具はそのまま。読める人・札 H13-02 を知る人の家を、答える家に足す (入る日から)"""
+    import g14
+    g, D = _g(state), state["day"]
+    g.setdefault("before", {})["G13"] = {**g.get("before", {}).get("G13", {}), **{k: g.pop(k) for k in MEASURE_KEYS if k in g}}
+    g["part_start14"] = D
+    g14.start(state)
+    if g.get("sample") and g10_sample_add(state):
+        donors(state)
+
+
+def _g14m():
+    import g14
+    return g14
+
+
+def _g14_on(state):
+    return "g14" in (state["era2"].get("g7") or {})
+
+
 def enter_next(state):
     """次の G の待ち・部の終わりから、次の G に入る (G8 から。その G のコードを入れたあと)。G7 に入るのは enter"""
     e2, D, g = state["era2"], state["day"], _g(state)
@@ -556,6 +599,8 @@ def enter_next(state):
         start_g12(state)
     elif nxt == "G13":
         start_g13(state)
+    elif nxt == "G14":
+        start_g14(state)
     n = era2.PART_START.get(nxt)
     if n:
         g["part"], g["part_start"] = n, D
@@ -711,6 +756,8 @@ def acts(state):
         on.update(_g12m().acts(state))
     if "g13" in g:  # G13 (2026-11-12): 水の道を掘る (いつも)・水の輪を建てる (できるようになったか、建った輪があるときだけ)
         on.update(_g13m().acts(state))
+    if "g14" in g:  # G14 (2026-11-14): 市へ運ぶ (大人ならだれでも)
+        on.update(ACTS14)
     return [a for a in ACTS7 if a in on]
 
 
@@ -728,7 +775,7 @@ def job(state, q, j):
     g, act = _g(state), q["plan"]["activity"]
     j = j if isinstance(j, dict) else {}
     out = {}
-    if act == "休む" and j.get("activity") in ("試す",) + ACTS10 + (ACTS11 if _g11_on(state) else ()) + (ACTS12 if _g12_on(state) else ()) + (ACTS13 if _g13_on(state) else ()):  # G10 の直し ② (2026-11-05): 選べない仕事だったので「休む」になった (era2.apply_answers)
+    if act == "休む" and j.get("activity") in ("試す",) + ACTS10 + (ACTS11 if _g11_on(state) else ()) + (ACTS12 if _g12_on(state) else ()) + (ACTS13 if _g13_on(state) else ()) + (ACTS14 if _g14_on(state) else ()):  # G10 の直し ② (2026-11-05): 選べない仕事だったので「休む」になった (era2.apply_answers)
         _rest_note(state, q, j.get("activity"), j)
     if act == "試す":
         card = str(j.get("try") or "").strip().upper()
@@ -753,6 +800,12 @@ def job(state, q, j):
         if not (_g13_on(state) and _g13m().can_do(state, act)):
             q["plan"]["activity"] = "休む"
             _rest_note(state, q, act, j)
+    elif act in ACTS14:  # G14 (2026-11-14): 市へ運ぶ (大人ならだれでも。行き先は to か place)。G14 でなければ「休む」(わけを残す)
+        if not _g14_on(state):
+            q["plan"]["activity"] = "休む"
+            _rest_note(state, q, act, j)
+        else:
+            _g14m().set_dest(state, q["name"], j)
     elif act == "住まいを建てる" and "壁" in str(j.get("build") or ""):
         out["build"] = "壁"
     elif act == "畑仕事" and era2._yes(j.get("plough")) and _plough(state):
@@ -865,6 +918,9 @@ def role_day(state, p, t, act):
     if act in ACTS13:  # G13 (2026-11-12)
         _g13m().work_day(state, p, t, act)
         return
+    if act in ACTS14:  # G14 (2026-11-14)
+        _g14m().market_day(state, p, t)
+        return
     t.setdefault("events", []).append(log(state, act, p["name"], ROLE_TEXT[act].format(n=p["name"])))
 
 
@@ -877,7 +933,10 @@ def hint_offer(state, c6, off, o, n, lead, how):
 
 
 def craft_step(state, p, act, base):
-    return hints.craft_step(state, p, act, base) if _g(state).get("hints") else base
+    out = hints.craft_step(state, p, act, base) if _g(state).get("hints") else base
+    if _g14_on(state):  # G14 (2026-11-14): 仲間の弟子は、腕の上がる量が 1.5 倍 (G13 までは鍵がないので前と同じ)
+        out *= _g14m().apprentice(state, p, act)
+    return out
 
 
 def milk_shares(state, sea):
@@ -1140,6 +1199,8 @@ def facts(state):
         out += _g12m().facts(state)
     if _g13_on(state):  # G13: 粉ひき・水の道・水の輪・約束の働き手
         out += _g13m().facts(state)
+    if _g14_on(state):  # G14: 町の家・市へ運ぶ・書きつけ・仲間
+        out += _g14m().facts(state)
     if no_flee(state):  # 逃げ場のない世界 (2026-10-24): 逃げる手はない (文を事実どおりに)
         out = out.replace(NO_FLEE_TEXT[0], NO_FLEE_TEXT[1])
     return out
@@ -1174,6 +1235,8 @@ def text(state, p):
         out += _g12m().text(state, p)
     if _g13_on(state):
         out += _g13m().text(state, p)
+    if _g14_on(state):
+        out += _g14m().text(state, p)
     return out
 
 
@@ -1236,6 +1299,8 @@ def season_end(state, frac):
         _g12m().season_end(state)
     if _g13_on(state):  # G13: 水の来る畑・水の道の手入れ・水の輪・c1〜c3・水と務めの帳簿 (乱数なし。G12 の約束の出し入れのあと)
         _g13m().season_end(state)
+    if _g14_on(state):  # G14: 市へ運ぶ人が帰る・書きつけの払い (c2)・町の家 (c1)・仲間 (c3)・町と市と仲間の帳簿 (乱数なし。G13 の季節の終わりのあと)
+        _g14m().season_end(state)
     yardstick.season_end(state, frac)  # 13. 物差し (乱数なし)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
     _offer(state)
@@ -1256,7 +1321,7 @@ def check(state, met, ind):
             g["hold"] = {"why": code, "era": era, "day": D}
             return "entrance" if code == "entrance" else "end"
         i = era2.ORDER2.index(era)
-        if i + 1 < len(era2.ORDER2):
+        if i + 1 < len(era2.ORDER2) and era != "G13":  # G13 の終わりは HOLD wait (G14 へは next_part で入る。2026-11-14。G14 のコードを足す前と同じに止まる)
             nxt = era2.ORDER2[i + 1]
             state["era"] = nxt
             state["era_log"].append({"era": nxt, "day": D, "indicators": ind})
@@ -1293,6 +1358,8 @@ def consult_why(state):
     """止めて相談するか (年の終わりだけ。一度ずつ): 部の年数が目安をこえた / どれかの条件が 16 年進まない (g7.stall。物差しの部分が数える)"""
     g, D = _g(state), state["day"]
     if (D + 1) % YEAR:
+        if "g14" in g and (D + 1) % era2.SEASON_DAYS == 0:  # G14 (2026-11-14): 5 年ごとの相談は入った日 (178年60日目。季節の終わり) から数える (G13 までは前のまま)
+            return _g14m().years_consult(state, g.setdefault("consulted", []))
         return None
     done = g.setdefault("consulted", [])
     part = g.get("part", 5)
@@ -1306,6 +1373,8 @@ def consult_why(state):
             continue
         if not any(c["why"] == k and c.get("since") == s["since"] for c in done):
             return {"why": k, "since": s["since"], "day": D, "text": f"条件 {k[1:]} が {y - s['since']} 年進んでいない"}
+    if "g14" in g:  # G14 (2026-11-14): 道の見張りは G14 の条件で (G13 の道の見張りは、G14 では止めない。数えるだけ)・5 年ごと
+        return _g14m().path_consult(state, done)
     if "g13" in g:  # G13 (2026-11-12): 道の見張りは G13 の条件で (G12 の道の見張りは、G13 では止めない。数えるだけ)・5 年ごとの相談
         return _g13m().path_consult(state, done)
     if "g12" in g:  # G12 (2026-11-10): 道の見張りは G12 の条件で (G11 の道の見張りは、G12 では止めない。数えるだけ)・168年120日目のあとは 5 年ごと
@@ -1335,7 +1404,7 @@ def indicators(state):
             "g7_region_people": sum(o["people"] for o in _others(state)), **yardstick.indicators(state),
             **(g9.indicators(state) if "g9" in g else {}), **(_g10m().indicators(state) if "g10" in g else {}),
             **(_g11m().indicators(state) if "g11" in g else {}), **(_g12m().indicators(state) if "g12" in g else {}),
-            **(_g13m().indicators(state) if "g13" in g else {})}
+            **(_g13m().indicators(state) if "g13" in g else {}), **(_g14m().indicators(state) if "g14" in g else {})}
 
 
 # ---------------- 年 1 回の答えと見本の家 (4.A) ----------------
@@ -1353,7 +1422,7 @@ WORK = (("集める", ("採集", "狩り", "探索", "休む", "火おこし", "
         ("作る", ("土器づくり", "道具づくり", "記録をつける", "交換に行く") + ACTS7))  # 仕事の組 (作る・記録・交換・役)
 WORK_TIE = ("作る", "畑", "集める")  # 日数が同じで、代表の仕事でも決まらないとき (まれな立場を先に)
 COPY_IF_DONE = ("交換に行く", "記録をつける", "取り立てる", "守る", "戦に出る")  # 前の年の同じ季節に、その家がしていたときだけまねる (4.A.4 の 2)
-NOT_COMMON = COPY_IF_DONE + ("試す", "黒い金属を作る", "字を習う", "印のかたまりを作る", "帳をつける", "水の道を掘る", "水の輪を建てる")  # 後ろの 2 つは G10 から (2026-11-04。G9 までは選べない)  # 「いちばん多い仕事」には数えない (行き先・残すもの・札のない仕事。era2._settle_visitors と同じ考え)
+NOT_COMMON = COPY_IF_DONE + ("試す", "黒い金属を作る", "字を習う", "印のかたまりを作る", "帳をつける", "水の道を掘る", "水の輪を建てる", "市へ運ぶ")  # 後ろの 2 つは G10 から (2026-11-04。G9 までは選べない)  # 「いちばん多い仕事」には数えない (行き先・残すもの・札のない仕事。era2._settle_visitors と同じ考え)
 DIGEST_MAX = 40  # 「前の 1 年のこと」の自分の行 (仕事の種類ごとに新しい 3 件まで。4.A.9)
 ZOOM_WHY = {"Z1": "ほかの村から求めが来ている", "Z2": "前の年に、村が戦をした", "Z3": "前の年に、貢いでいた村か、貢いでくる村が崩れた",
             "Z4": f"村の蓄えと家の倉を合わせても、{ZOOM_DAYS} 日分より少ない", "Z5": "村の蓄えが尽きて、集まり直した"}
@@ -1504,6 +1573,8 @@ def g10_sample_add(state, old=None):
         keys = sorted(set(keys) | set(_g12m().key_houses(state)))
     if _g13_on(state):  # G13 (2026-11-12): 水の輪の札を知っている人の家も (入る日から。試せる)
         keys = sorted(set(keys) | set(_g13m().key_houses(state)))
+    if _g14_on(state):  # G14 (2026-11-14): 読める人・札 H13-02 を知る人・仲間の人の家も (入る日から)
+        keys = sorted(set(keys) | set(_g14m().key_houses(state)))
     for h in keys:
         if h in homes and h not in g["sample"]:
             g["sample"][h] = {"since": old[h]["since"] if h in old else D, "cell": cells.get(h), "must": True, "g10": True}
@@ -1928,9 +1999,13 @@ def apply_year(state, answers, councils=None):
         _g11m().apply_answers(state, real)
     if _g13_on(state):  # G13: 道の見張り (答える人のうち、道を選べた人・選んだ人)。数えるのは答えを当てはめる前 (G12 の数え方と同じ)
         _g13m().count_paths(state, real)
+    if _g14_on(state):  # G14: 道の見張り (答えを当てはめる前の state で)
+        _g14m().count_paths(state, real)
     if _g12_on(state):  # G12: 道の見張り (答える人のうち、道を選べた人・選んだ人) → 倉の約束 (pact)・倉から助ける (help)。G13 では take に働き手も
         _g12m().count_paths(state, real)
         _g12m().apply_answers(state, real)
+    if _g14_on(state):  # G14: 書きつけ (note)・仲間 (guild)。G12 の pact・help のあと
+        _g14m().apply_answers(state, real)
     own, kinds = {}, {}
     if ask == "年":
         reps = set(_rep_of(state).values())
@@ -2169,6 +2244,8 @@ def _field_rows(state, solo, year):
         rows += _g12m().field_rows(state, year)
     if _g13_on(state):
         rows += _g13m().field_rows(state, year)
+    if _g14_on(state):
+        rows += _g14m().field_rows(state, year)
     return "\n".join(rows)
 
 
@@ -2344,7 +2421,7 @@ def year_prompt(state, p, first):
 {D + 1} 日目、{now}。1 年に 1 回の村の集まり。これから {nxt - D - 1} 日 ({'・'.join(seas)}) の、季節ごとの予定と、{'1 年' if len(seas) == 4 else '年の終わりまで'}の方針を決める (次の年の集まりは {nxt} 日目、夏のはじめ。{'秋は、秋のはじめにも集まって、畑と種を見てから、秋の仕事とまく量 (sow) を決め直す (year の秋は、そのときの見込み)。ほかの季節は集まらない。' if AUTUMN in seas[1:] else ''}途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。
 季節ごとに見て分かること:
 {_season_notes(state, seas)}
-{(_g13m().prompt_block(state, p) if _g13_on(state) else _g12m().prompt_block(state, p)) if _g12_on(state) else ''}{asks}
+{(_g14m().prompt_block(state, p) if _g14_on(state) else _g13m().prompt_block(state, p) if _g13_on(state) else _g12m().prompt_block(state, p)) if _g12_on(state) else ''}{asks}
 
 場所の一覧:
 {places}

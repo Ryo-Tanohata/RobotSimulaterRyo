@@ -89,6 +89,16 @@ def _g13_on(state):
     return "g13" in (state["era2"].get("g7") or {})
 
 
+def _g14m():
+    """G14 (町と市と仲間) の仕組み (g14.py)。呼ぶのは G14 の F を見るときと、state に g7.g14 があるときだけ (G13 までは読みこみもしない)"""
+    import g14
+    return g14
+
+
+def _g14_on(state):
+    return "g14" in (state["era2"].get("g7") or {})
+
+
 def _g7m():
     """G7 (王と役所) から働く仕組み (g7.py。docs/society_phase/G7_design.md)。g7.py が era2 を読みこむので、関数の中で読みこむ。
     呼ぶのは state["era2"] に "g7" があるとき (G7 に入ったあと) だけ。だから G6 までは読みこみもしない"""
@@ -2891,7 +2901,7 @@ def _feeling_prompt(state, p, first):
 
 ## あなたの家族 ({p.get('household')})
 村の大人が {REP_FROM} 人をこえたので、季節の集まりでは家族ごとに、いちばん年上の大人が代表して答える。{f'{p.get("household")} の代表は {rep}。' if rep else ''}代表が、家族の大人の仕事・掟の投票・よそから来た人の受け入れを決める。あなたは代表ではないので、仕事は決めない。
-{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}{_g10m().feel_note(state, p) if g7 and _g10_on(state) else ""}{_g11m().feel_note(state, p) if g7 and _g11_on(state) else ""}{_g12m().feel_note(state, p) if g7 and _g12_on(state) else ""}{_g13m().feel_note(state, p) if g7 and _g13_on(state) else ""}
+{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}{_g10m().feel_note(state, p) if g7 and _g10_on(state) else ""}{_g11m().feel_note(state, p) if g7 and _g11_on(state) else ""}{_g12m().feel_note(state, p) if g7 and _g12_on(state) else ""}{_g13m().feel_note(state, p) if g7 and _g13_on(state) else ""}{_g14m().feel_note(state, p) if g7 and _g14_on(state) else ""}
 
 ## いま
 {state["day"] + 1} 日目、{sea}。{g7.meeting_word(state) if g7 else "季節のはじめの集まり"}。あなたが答えるのは次の 2 つだけ。
@@ -3082,10 +3092,16 @@ CRITERIA["G12"] = ("暦の 1 年に、倉の約束どおり村に出した集落
 CRITERIA["G13"] = ("暦の 1 年に、村の水の輪が 90 日以上回り、村の粉ひきの半分以上を引き受けた と、秋にまいた草の種の半分以上が水の来る畑の年が 2 年つづく と、"
                    "暦の 1 年に、地域の集落の半分以上が、村に約束の分か働き手を出した年が 2 回、の 3 つに、一度でも届く (どれが先でもよい)",
                    lambda i: bool(i.get("g13_c1_day")) and bool(i.get("g13_c2_day")) and bool(i.get("g13_c3_day")))
-ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13"]
+# G14 (2026-11-14 本人の言葉「質問しないであなたのおすすめで進めて下さい」。docs/society_phase/G14_design.md): 「町と商業」(第 7 部の終わり)。
+#   「町と市と仲間」として測る。3 つとも【村が決めた】。届いた日は g14.py の物差しが残す。G13 の物差しは「ならべて測る」
+CRITERIA["G14"] = ("年の終わりに、家の大人の働いた日の半分以上が食べ物でない仕事だった家 (町の家) に住む人が、地域の人の 1 割以上の年が 2 年つづく と、"
+                   "暦の 1 年に、書きつけのとおり村に草の種を払った集落が 3 つ以上の年が 2 回 と、3 人以上・2 家以上で 1 年 90 人日以上の仲間がある年が 2 年つづく、"
+                   "の 3 つに、一度でも届く (どれが先でもよい)",
+                   lambda i: bool(i.get("g14_c1_day")) and bool(i.get("g14_c2_day")) and bool(i.get("g14_c3_day")))
+ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13", "G14"]
 NAMES2 = {"G1": "村ができる", "G2": "畑と家畜", "G3": "余りと分業", "G4": "持ち物と差", "G5": "リーダーと決まり", "G6": "交易・町・記録",
           "G7": "王と役所", "G8": "外からの押し", "G9": "遠くとの商い", "G10": "鉄と広い国", "G11": "お金と市場", "G12": "大きな都と帝国",
-          "G13": "帝国のあとの農業社会"}
+          "G13": "帝国のあとの農業社会", "G14": "町と商業"}
 assert set(CRITERIA) <= set(ORDER2) and set(NAMES2) == set(ORDER2), "CRITERIA・NAMES2 の G は ORDER2 に入れる (入れないと era_at_least が黙って False になる)"
 # 部の終わりの G (第 N 部)。G6 の終わりは第 4 部の終わり。いちばん後の G の終わりは工業の入口 (止めて相談する。next_part は受けつけない)。G7・G8 は部の終わりではない
 #   2026-10-25: G8 に「外からの押し」を入れたので、もとの計画の G8〜G14 を 1 つずつずらした (G9 = 遠くとの商い … G15 = 工業の入口の前)
@@ -3147,6 +3163,11 @@ SUBSTEPS["G13"] = [("F1", "はじめて水の道を掘った", lambda s: _g13m()
                    ("F2", "水の輪を試しはじめた", lambda s: _g13m().reached(s, "F2")),
                    ("F3", "水の輪が回った", lambda s: _g13m().reached(s, "F3")),
                    ("F4", "よその集落の働き手が、はじめて村で働いた", lambda s: _g13m().reached(s, "F4"))]
+# G14 の F (2026-11-14 本人の言葉 (おすすめどおり)。届いたかは g14.py の物差しが決める。G14 に入ってから見る)
+SUBSTEPS["G14"] = [("F1", "はじめて市へ運んだ", lambda s: _g14m().reached(s, "F1")),
+                   ("F2", "はじめての書きつけ", lambda s: _g14m().reached(s, "F2")),
+                   ("F3", "はじめての仲間", lambda s: _g14m().reached(s, "F3")),
+                   ("F4", "はじめての町の家", lambda s: _g14m().reached(s, "F4"))]
 # G1・G2 の F は、この仕組みを作る前に終わっていたので、記録 (出来事) から日を決めた (2026-10-08。G1_notes.md・G2_notes.md)
 RETRO_SUBSTEPS = [
     {"g": "G1", "f": "F1", "name": "畑を始める", "day": 510, "why": "セナとウィロが初めて畑に草の種をまいた"},
@@ -3214,7 +3235,7 @@ def hold_why(state):
             n = PART_END.get(h["era"])
             return why, f"第 {n} 部「{PARTS.get(n, '')}」の終わり ({h['era']})。第 {n} 部のまとめ待ち (次の部へは next_part。本人と決めてから)"
         if why == "wait":
-            nxt = ORDER2.index(h["era"]) + 1 < len(ORDER2)
+            nxt = ORDER2.index(h["era"]) + 1 < len(ORDER2) and h["era"] != "G13"  # G13 の待ちの文は G14 のコードを足す前のまま (前の歩のやり直しを 1 バイトも同じにするため。G14 へは next_part で入る)
             return why, f"{h['era']} の条件がそろった。次の G のコードを入れるまで待つ" + (" (次の G へは next_part)" if nxt else " (次の G はまだ作っていない)")
         if why == "entrance":
             return why, "工業の入口に着いた。Society 2.0 のまとめと、その先を本人と相談する (next_part は受けつけない)"
@@ -3287,7 +3308,8 @@ YEAR_EVENTS = ("フェーズ", "区切り", "段階", "分かれる", "死", "�
                "よその便り", "きっかけ", "取り立て", "病", "試す", "倉を分ける",
                "市",  # G11 から (2026-11-05。市の日。G10 までは起きない)
                "倉",  # G12 から (2026-11-10)
-               "水")  # G13 から (2026-11-12。水の道・水の輪・粉ひき。G12 までは起きない)。下の注は前の行の分: G12 から (2026-11-10。倉の約束・倉から助ける・刈り手。G11 までは起きない)  # G11 から (2026-11-05。市の日。G10 までは起きない)  # G7 から (4.C.8・4.F・2026-10-23 の share。どれも G6 までは起きない)
+               "水",  # G13 から (2026-11-12)
+               "町と市", "書きつけ", "仲間")  # G14 から (2026-11-14。町と市と仲間。G13 までは起きない)。下の注は前の行の分: G13 から (2026-11-12。水の道・水の輪・粉ひき。G12 までは起きない)。下の注は前の行の分: G12 から (2026-11-10。倉の約束・倉から助ける・刈り手。G11 までは起きない)  # G11 から (2026-11-05。市の日。G10 までは起きない)  # G7 から (4.C.8・4.F・2026-10-23 の share。どれも G6 までは起きない)
 YEAR_DIGEST_MAX = 15
 STOP_WORDS = ("フェーズが", "Society 2.0 が終わった")  # ワークフローが止まる文と重なる名前は読まない (step.py が出来事を表示するため)
 
@@ -3880,7 +3902,7 @@ def _season_prompt(state, p, first):
 {_year_names_text(state)}{_g5_text(state)}{_g6_text(state)}{_g7_text(state, p)}{vis}{_year_end_text(state)}
 ## いま
 {state["day"] + 1} 日目、{sea}。これから {SEASON_DAYS - (state["day"] + 1) % SEASON_DAYS} 日 (この季節の終わりまで) の仕事を決める集まり (途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。{g7.zoom_line(state) if g7 else ""}
-{(_g13m().prompt_block(state, p) if _g13_on(state) else _g12m().prompt_block(state, p)) if g7 and _g12_on(state) else ""}1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
+{(_g14m().prompt_block(state, p) if _g14_on(state) else _g13m().prompt_block(state, p) if _g13_on(state) else _g12m().prompt_block(state, p)) if g7 and _g12_on(state) else ""}1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
 2. この季節の主な仕事を決める (job)。仕事は {' / '.join(acts2(state))} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
    畑仕事 (草取り・刈り入れ) は camp で行う
    ヤギの世話は camp で行う。ヤギを捕まえるは、野生のヤギのいる場所で行う

@@ -46,7 +46,7 @@ ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道
                 "守る": "守る", "取り立てる": "取り立てる", "戦に出る": "戦に出る", "試す": "試す",
                 "黒い金属を作る": "黒い金属を作る", "字を習う": "字を習う",
                 "印のかたまりを作る": "印のかたまりを作る", "帳をつける": "帳をつける",
-                "水の道を掘る": "水の道を掘る", "水の輪を建てる": "水の輪を建てる"}  # step.py の ACT_BY_EVENT と同じ (+ 狩り)。黒い金属・字は G10 から、印のかたまりは G11 から、水の道・水の輪は G13 から
+                "水の道を掘る": "水の道を掘る", "水の輪を建てる": "水の輪を建てる", "市へ運ぶ": "市へ運ぶ"}  # step.py の ACT_BY_EVENT と同じ (+ 狩り)。黒い金属・字は G10 から、印のかたまりは G11 から、水の道・水の輪は G13 から、市へ運ぶは G14 から
 G6_TYPES = getattr(era2, "G6_EVENTS", ())  # G6 の出来事 (G6 の前は起きない)
 OUT_G6, IN_G6 = "ほかの村へ出した", "ほかの村から入った"  # G6: 交換・貸した・返してもらった・交換に持って行った・持ち帰った (出来事の data の moves)
 # G7 から: 取り立て (村の中の税)・貢ぎ・戦の出し入れは、ほかの村との交換と分けて書く (G6 までは、この種類の出来事に moves はない)
@@ -1524,7 +1524,7 @@ class Builder:
         倉と約束の帳簿 (g12.ledger。【シ】)・帳 (村の人が字で書いた帳。家の数・人の数・倉・約束。【村】)・水と務めの帳簿 (g13.ledger。G13 から。【シ】)"""
         self.granary_rows = []
         G = self.e2.get("g7") or {}
-        g12, g13 = G.get("g12"), G.get("g13")
+        g12, g13, g14 = G.get("g12"), G.get("g13"), G.get("g14")
         if not g12:
             return
         for r in g12.get("ledger") or []:
@@ -1538,6 +1538,8 @@ class Builder:
                                                "done": c.get("done"), "days": c.get("days"), "writers": len(c.get("by") or {})}})
         for r in (g13 or {}).get("ledger") or []:
             self.granary_rows.append({"year": r["year"], "day": r["day"], "kind": "水と務め", "tag": "シ", "data": {k: v for k, v in r.items() if k not in ("year", "day")}})
+        for r in (g14 or {}).get("ledger") or []:  # G14 から (2026-11-14): 町と市と仲間の帳簿 (【シ】。名前は帳簿の中だけ。ダッシュボードとお題にはまとめだけ)
+            self.granary_rows.append({"year": r["year"], "day": r["day"], "kind": "町と市と仲間", "tag": "シ", "data": {k: v for k, v in r.items() if k not in ("year", "day")}})
         self.granary_rows.sort(key=lambda r: (r["year"], r["day"], r["kind"]))
 
     def season_of(self, day):
@@ -1837,9 +1839,16 @@ COLUMNS = [
 ]
 
 
-def columns(g12=False):
-    return [{"table": t, "column": c, "label_ja": lab, "unit": u, "tag": tag, "source": src, "exact": ex, "since_day": since, "note": note}
-            for t, c, lab, u, tag, src, ex, since, note in COLUMNS + (COLUMNS_G12 if g12 else [])]
+def columns(g12=False, g14=False):
+    out = [{"table": t, "column": c, "label_ja": lab, "unit": u, "tag": tag, "source": src, "exact": ex, "since_day": since, "note": note}
+           for t, c, lab, u, tag, src, ex, since, note in COLUMNS + (COLUMNS_G12 if g12 else [])]
+    if g14:  # G14 から (2026-11-14): granary の種類に「町と市と仲間」を書きそえる (G13 までの columns.json は 1 バイトも変わらない)
+        for c in out:
+            if c["table"] == "granary" and c["column"] == "kind":
+                c["label_ja"] = c["label_ja"].replace(" / 水と務め = G13 の帳簿)", " / 水と務め = G13 の帳簿 / 町と市と仲間 = G14 の帳簿)")
+            if c["table"] == "granary" and c["column"] == "data":
+                c["label_ja"] = c["label_ja"][:-1] + " / 町と市と仲間: 町の家・市へ運ぶ・書きつけ・仲間・水の輪と水の道の手入れ・読める人・倉)"
+    return out
 
 
 # ---------------- 書き出し ----------------
@@ -1943,7 +1952,7 @@ def build(data_dir, quiet=False, check=False):
         write(out / "tribute.jsonl", as_lines(b.tribute_rows), written)
     if (b.e2.get("g7") or {}).get("g12"):  # G12 から (G11 までは作らない。columns.json も前のまま)
         write(out / "granary.jsonl", as_lines(b.granary_rows), written)
-    write(out / "columns.json", as_array(columns(bool((b.e2.get("g7") or {}).get("g12")))), written)
+    write(out / "columns.json", as_array(columns(bool((b.e2.get("g7") or {}).get("g12")), bool((b.e2.get("g7") or {}).get("g14")))), written)
     write(out / "meta.json", jdump(meta) + "\n", written)
     dt = time.time() - t0
     if quiet:
