@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えの種はたっぷりある。秋のうちにまいて、冬と春の草取りをみんなで欠かさずやろう。夏に刈り残さないようにしたいね。"}, {"to": "ルタ44", "text": "うちの家は畑の草取りを中心に回そう。ヌオとロワには水の道の手入れを頼むよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだないので、秋に種をまいて草取りをし、夏の実りを増やすのがいちばん蓄えのためになるから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"テナ70": true, "ケセ70": true}, "family": {"ルタ44": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを多くの人でして、夏の実りを増やすため"}, "キサ48": {"activity": "畑仕事", "place": "camp", "why": "草取りの時間を確保して実りを減らさないため"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "草取りの時間を確保して実りを減らさないため"}, "ヌオ52": {"activity": "水の道を掘る", "place": "camp", "why": "水の道がうまると畑が悪い年に弱くなるので手入れをするため"}, "ロワ53": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているのでその分を進めるため"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑の実りを守るため"}, "セヤ61": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑の実りを守るため"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T466": false, "T467": false, "T468": false, "T469": false, "T470": false, "T471": false, "T472": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは約482日分あり、秋に種をまいて冬と春に草取りをすれば夏に多く実る。ヤギは草より多いので、ヤギを出す申し出は受けない。", "because": [2969773], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えが多くて安心している。今年は畑をきちんと世話して、夏に刈り残さないようにしたい。"}

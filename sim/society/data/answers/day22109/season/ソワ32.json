@@ -1,0 +1,27 @@
+{"say": [{"to": "みんな", "text": "貸した草の種がまだ戻ってこない村ばかりだよ。返してもらうまでは、新しく貸すのはやめておこう。"}, {"to": "みんな", "text": "ヤギはもう草が足りてない。よそのヤギはもらわず、この秋は少しつぶして干し肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすれば、次の夏の実りが増えるから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ70": true, "ケセ70": true},
+ "family": {
+  "ラニ37": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒に進めるため"},
+  "ケセ38": {"activity": "水の道を掘る", "place": "camp", "why": "家ごとに一人は水の道の手入れに出す決まりだから"},
+  "ソワ46": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意だから、冬の前に肉をとってくる"},
+  "トナ48": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、ソワ46と一緒に行く"},
+  "タユ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手が要るから"},
+  "ラニ51": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕がいいから"},
+  "シエ52": {"activity": "畑仕事", "place": "camp", "why": "子のそばにいながら草取りができるから"},
+  "ケセ54": {"activity": "採集", "place": "東林12", "why": "木の実集めが上手で、冬の前に集めておきたいから"},
+  "トナ56": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、ケセ54と一緒に行く"}
+ },
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T466": false, "T467": false, "T468": false, "T469": false, "T470": false, "T471": false, "T472": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "南の村8・ハソ12の村は、前に借りた草の種をまだ返さないまま、また借りに来る", "because": [2969789, 2969794], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L566", "against": "", "agree": true, "reason": "水の道がうまると畑の実りが減るから"},
+  {"id": "L568", "against": "", "agree": true, "reason": "家ごとに一人なら無理がないから"},
+  {"id": "L570", "against": "", "agree": true, "reason": "刈った種をすぐ土器に入れれば傷みが少ないから"},
+  {"id": "L557", "against": "", "agree": true, "reason": "ヤギが多すぎてやせて減っているから、よそのヤギはいらない"}
+ ],
+ "feeling": "蓄えは十分ある。人に貸すより、自分たちの畑を大事にしたい。"}

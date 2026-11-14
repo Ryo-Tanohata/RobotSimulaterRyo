@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "この秋も畑の草取りに出る。まいた種が夏にちゃんと実るよう、手の空いた者は一緒に来てくれ。"}, {"to": "みんな", "text": "ヤギはもう草が足りん。よその村のヤギは受けとらず、多い分は干し肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "前の季節から畑で働いている。草取りをすれば夏の実りが増えるから続ける"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"テナ70": true, "ケセ70": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T466": "村", "T467": false, "T468": "村", "T469": false, "T470": false, "T471": "村", "T472": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "ヤギは150頭いて、草で養える140頭ほどをこえ、3頭がやせていなくなった。いまは147頭いる", "because": [2969773], "confidence": 0.9}, {"op": "add", "text": "村の蓄えは草の種で今の人数の約482日分あり、まだ返していない南の村8とハソ12の村のほかには少し貸す余裕がある", "because": [2969788, 2969789, 2969794], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L557", "against": "家ごとに3頭は多すぎるかもしれない", "agree": true, "reason": "ヤギが草で養える数をこえていて、やせていなくなるから"}, {"id": "L564", "against": "110頭は少なすぎるかもしれない", "agree": true, "reason": "ヤギを受けとらず、多い分を干し肉にするのはよい"}, {"id": "L566", "against": "畑の草取りの手が減る", "agree": true, "reason": "水の道がうまると水の来る畑がへるから"}, {"id": "L568", "against": "家に一人しかいないと畑に出られない", "agree": false, "reason": "おれの家はおれ一人なので、畑仕事を続けたい"}, {"id": "L553", "against": "子に毎夕刈らせるのは重い", "agree": true, "reason": "刈らずに落ちる草の種が多すぎるから"}],
+ "feeling": "蓄えは十分ある。あとは畑を手入れして、来年もしっかり実らせたい。"}

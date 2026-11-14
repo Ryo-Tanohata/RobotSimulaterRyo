@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のうちに種をまいて、冬のあいだ草取りを欠かさず、夏の実りに備えよう。"}, {"to": "みんな", "text": "苦しい村には、返せる分だけ貸してあげましょう。困ったときはお互いさまだから。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りで実りが増える。去年も働いたので続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"}, "ラニ38": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"}, "ユエ42": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"}, "キサ43": {"activity": "狩り", "place": "北丘12", "why": "肉を蓄えに加えるため"}, "キサ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"}, "シエ45": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "ホミ49": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "セオ50": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"}, "ソワ51": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので肉をとる"}, "ネイ52": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"}, "セヤ53": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"}, "ホミ56": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"}, "トナ57": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが草不足なので世話が要る"}, "キオ57": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"}},
+ "keep": false, "feast": false, "leader": null,
+ "trade": {"T466": "村", "T467": "村", "T468": "村", "T469": false, "T470": false, "T471": "村", "T472": "村"},
+ "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまくと、草取りをするほど夏のはじめの実りが増える", "because": [2969788], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて心強い。冬の畑仕事も皆で励みたい。"}
