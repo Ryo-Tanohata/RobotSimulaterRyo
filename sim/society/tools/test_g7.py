@@ -7082,5 +7082,238 @@ class T_G14PromptFix(unittest.TestCase):
         self.assertIn("g14.mark_prompt_fix(state, a.why.strip())", inspect.getsource(step.main))
 
 
+
+class T_G14KeepFix(unittest.TestCase):
+    """2026-11-14 続けることの年の直し (G14_design.md 13.): 年の集まり (年の最後の日) のお題の「続けること」と長い節の「この年に直した・掘った」を、
+    答えが効く年 ((日 + 1) // 120。年の集まりなら次の年) の数にする。止まっている輪は、動かすのに要る人日も書く。g14.G14_KEEP_FROM (185年120日目 = 22319 日目) から。
+    その日は refresh_prompts の印 (g7.g14.keep_fix) のあとだけ。手入れの数・決まりは変えない。184年の年の集まり (22199 日目。輪 7 つがみな止まった) の git の state (AT) から、
+    メモリの中で確かめる (直しのあとの形は、門の日をこの試しの中だけ AT の日にして見る)"""
+
+    AT = "058a766c"  # 22169 日目からの歩 (state は 22199 日目 = 184年120日目 = 185年の年の集まり。お題は前のコード)
+    G = 22199
+    AUTUMN = "06222950"  # 22079 日目からの歩 (state は 22109 日目 = 184年の秋の集まり)
+    NAMES = ("ヒセ42", "アコ44", "キサ65")
+
+    def setUp(self):
+        import g14
+        self._from = g14.G14_KEEP_FROM
+
+    def tearDown(self):
+        import g14
+        g14.G14_KEEP_FROM = self._from
+
+    def st(self, at=None, day=None):
+        st = git_state(at or self.AT)
+        if st["day"] != (day or self.G) or "g14" not in st["era2"]["g7"]:
+            self.skipTest("AT の state が思った日の G14 でない")
+        return st
+
+    def fixed(self, st=None):
+        import g14
+        st = st or self.st()
+        g14.G14_KEEP_FROM = st["day"]
+        g14.mark_keep_fix(st, "試し")
+        self.assertTrue(g14.keep_fixed(st))
+        return st
+
+    def prompt(self, st, name):
+        import g7
+        p = next(q for q in st["people"] if q["name"] == name)
+        return g7.year_prompt(st, p, g7.since(st))
+
+    def old_file(self, name):
+        r = subprocess.run(["git", "-C", str(ROOT), "show", f"{self.AT}:sim/society/data/prompts/day{self.G}/season/{name}.md"], capture_output=True)
+        if r.returncode:
+            self.skipTest("前のお題が git にない")
+        return r.stdout.decode("utf-8")
+
+    def test_gate_identical(self):
+        """門の日より前 (印もない): お題は前のコードで書いたものと 1 バイトも同じ (「あと 0 人日 (止まっている輪 7)」のまま)。門の日でも印がなければ直さない。
+        印は門の日より前には書かない"""
+        import g14
+        self.assertEqual(g14.G14_KEEP_FROM, 22319)
+        st = self.st()
+        self.assertFalse(g14.keep_fixed(st))
+        self.assertEqual(g14.plan_year(st), self.G // era2.YEAR)
+        js = json.dumps(st, sort_keys=True, ensure_ascii=False)
+        g14.mark_keep_fix(st, "試し")
+        self.assertEqual(json.dumps(st, sort_keys=True, ensure_ascii=False), js, "その日より前は何もしない")
+        for n in self.NAMES:
+            self.assertIn(n, era2.answerers(st))
+            t = self.prompt(st, n)
+            self.assertEqual(t, self.old_file(n), n)
+            self.assertIn("水の輪の直し あと 0 人日 (止まっている輪 7)", t)
+        g = self.st()
+        g["day"] = g14.G14_KEEP_FROM
+        self.assertFalse(g14.keep_fixed(g), "門の日は印のあとだけ")
+        g["day"] = g14.G14_KEEP_FROM + 30
+        self.assertTrue(g14.keep_fixed(g), "門の日より後は印がなくても")
+
+    def test_year_gathering(self):
+        """印のあと (年の集まり): 続けることは次の年の残り。止まっている輪 7 は「動かすには あと 70 人日」。水の道は次の年の手入れの全部。
+        長い節の「この年に掘った」も次の年 (0)。ほかの行は同じ。せかす言葉はない。1 通 +100 バイトまで"""
+        import g13
+        import g14
+        st0 = self.st()
+        st = self.fixed()
+        self.assertEqual(st["era2"]["g7"]["g14"]["keep_fix"], {"day": self.G, "why": "試し"})
+        self.assertEqual(g14.plan_year(st), self.G // era2.YEAR + 1)
+        c = st["era2"]["g7"]["g13"]["canal"]
+        keep = round(c["cap"] / g13.CANAL_PER_DAY * g13.CANAL_KEEP)
+        self.assertGreater(keep, 0)
+        stopped = [x for x in st["era2"]["g7"]["g13"]["mill"]["mills"] if x.get("stopped")]
+        self.assertEqual(len(stopped), 7)
+        for n in self.NAMES:
+            a, b = self.prompt(st0, n), self.prompt(st, n)
+            self.assertIn(f"- 続けること: 水の輪の直し: 止まっている輪 7・動かすには あと 70 人日 (主な仕事「水の輪を建てる」)・水の道の手入れ あと {keep} 人日", b)
+            self.assertIn(f"この年に掘った 0 人日 (手入れに要るのは 1 年に 約 {keep} 人日)", b)
+            la, lb = a.splitlines(), b.splitlines()
+            self.assertEqual(len(la), len(lb))
+            diff = [(x, y) for x, y in zip(la, lb) if x != y]
+            self.assertEqual(len(diff), 2, n)
+            self.assertTrue(diff[0][0].startswith("- 水の道: いま水が来るのは") and diff[1][0].startswith("- 続けること: "), diff)
+            for w in ("しなければならない", "すべき", "したほうがよい", "急いで", "早く"):
+                self.assertNotIn(w, lb[la.index(diff[1][0])])
+            self.assertIn("どれも、しなくてもよい", b)
+            self.assertEqual(g14.bad_words(b), g14.bad_words(a))
+            self.assertTrue(0 < len(b.encode()) - len(a.encode()) <= 100, n)
+
+    def test_numbers(self):
+        """数は手入れの決まりのまま: 今の年の mill_due は _mill_due と同じ・止まった輪を動かす人日は 10 から直した分を引いた和・
+        回っている輪がある年は、次の年の直しはその数 × 10 (年のはじめにある輪みな)。印のあとも、秋の集まりのお題は前と同じ"""
+        import g13
+        import g14
+        st = self.st()
+        y = self.G // era2.YEAR
+        self.assertEqual(g13.mill_due(st, y), g13._mill_due(st))
+        ms = st["era2"]["g7"]["g13"]["mill"]["mills"]
+        ms[0]["fix"] = 3
+        self.assertEqual(g13.restart_left(st), 70 - 3)
+        for x in ms[:5]:
+            x["stopped"], x["fix"] = None, 0
+        self.assertEqual(g13.mill_due(st, y + 1), 50)
+        st = self.fixed(st)
+        p = next(q for q in st["people"] if q["name"] == self.NAMES[0])
+        self.assertIn("水の輪の直し あと 50 人日 (止まっている輪 2・動かすには あと 20 人日)", g14.keep_line(st, p))
+        a = self.st(self.AUTUMN, 22109)
+        b = self.fixed(self.st(self.AUTUMN, 22109))
+        self.assertEqual(g14.plan_year(b), 22109 // era2.YEAR)
+        for n in era2.answerers(a)[:3]:
+            self.assertEqual(self.prompt(a, n), self.prompt(b, n), n)
+
+    def test_refresh_marks(self):
+        """step.py refresh_prompts は g14.mark_keep_fix を呼ぶ (門の日だけ印を書く)"""
+        import inspect
+        import step
+        self.assertIn("g14.mark_keep_fix(state, a.why.strip())", inspect.getsource(step.main))
+
+
+class T_G14Close(unittest.TestCase):
+    """2026-11-14 G14 を本人の決めで閉じる (G14_design.md 14.): G14 の相談 (HOLD consult) で止まっているときだけ、
+    step.py next_part --closed-by-decision "<本人の言葉>" で g7.closed14 を残し、次の G には入らず第 7 部の終わり (HOLD part_end) で止める。ほかのときは断る。
+    184年の年の終わり (22199 日目) の git の state に、相談の止まりを置いて確かめる (本物の data は読むだけ)"""
+
+    AT = "058a766c"
+
+    def setUp(self):
+        import step
+        self._pdir = step.pdir
+        self.d = tmpdir()
+        step.pdir = lambda state, phase, kind: self.d / kind / f"day{state['day']:03d}" / phase  # 答えのあるなしは写しのフォルダで見る
+
+    def tearDown(self):
+        import step
+        step.pdir = self._pdir
+        shutil.rmtree(self.d, ignore_errors=True)
+
+    def st(self, consult=True):
+        st = git_state(self.AT)
+        if st.get("era") != "G14" or st.get("hold"):
+            self.skipTest("AT の state が止まっていない G14 でない")
+        if consult:
+            st["hold"] = True
+            st["era2"]["g7"]["hold"] = {"why": "consult", "era": "G14", "day": st["day"], "what": "G14: 試しの相談"}
+        return st
+
+    def test_refusals(self):
+        import step
+        st = self.st(consult=False)
+        self.assertIn("HOLD consult", step._next_part_refusal(st, None, "閉じる"), "止まっていない")
+        st = self.st()
+        self.assertIn("本人の言葉がない", step._next_part_refusal(st, None, "  "))
+        self.assertIn("--fill", step._next_part_refusal(st, 0.3, "閉じる"))
+        self.assertIn("部の終わりか次の G を待つで止まっていない (止めて相談する", step._next_part_refusal(st, None), "言葉なしの next_part は相談では断る (前のまま)")
+        for why in ("part_end", "wait"):
+            s2 = self.st()
+            s2["era2"]["g7"]["hold"]["why"] = why
+            self.assertIn(f"HOLD {why}", step._next_part_refusal(s2, None, "閉じる"))
+        ans = self.d / "answers" / f"day{st['day']:03d}" / "season"
+        ans.mkdir(parents=True)
+        (ans / "x.json").write_text("{}", encoding="utf-8")
+        self.assertIn("答えがもうある", step._next_part_refusal(st, None, "閉じる"))
+        shutil.rmtree(self.d / "answers")
+        self.assertIsNone(step._next_part_refusal(st, None, "閉じる"))
+        g12 = self.st()
+        g12["era"] = "G12"
+        self.assertIn("本人の決めで閉じて入れるのは", step._next_part_refusal(g12, None, "閉じる"))
+
+    def test_close(self):
+        import g7
+        import step
+        st = self.st()
+        c = g7.close_g14(st, "本人の言葉")
+        g = st["era2"]["g7"]
+        self.assertIs(g["closed14"], c)
+        self.assertEqual((c["day"], c["by"], c["how"], c["part_end"]), (st["day"], "本人の言葉", "本人の決め", 7))
+        self.assertEqual(set(c["c"]), {"c1", "c2", "c3"})
+        self.assertEqual(set(c["reached"]), {"F1", "F2", "F3", "F4"})
+        self.assertEqual(c["consult"], {"day": st["day"], "what": "G14: 試しの相談"})
+        for k in ("town", "market", "notes", "guilds", "mills", "mills_running", "canal_cap", "readers", "pacts", "path", "c1_years", "c2_years", "c3_years"):
+            self.assertIn(k, c)
+        self.assertEqual((c["mills"], c["mills_running"]), (7, 0))
+        self.assertEqual(g["hold"], {"why": "part_end", "era": "G14", "day": st["day"]})
+        self.assertTrue(st["hold"])
+        self.assertEqual(era2.hold_why(st)[0], "part_end")
+        self.assertEqual(st["era"], "G14")
+        ev = st["events"][-1]
+        self.assertEqual((ev["type"], ev["data"]["closed_by"], ev["data"]["note"], ev["data"]["part_end"]), ("フェーズ", "本人の決め", "本人の言葉", 7))
+        self.assertIn("G14 (町と商業): 3 つの条件はそろわないまま、ここで閉じた。第 7 部「帝国のあとと町」も、ここで終わった", ev["text"])
+        self.assertIn("もう閉じている", step._next_part_refusal(st, None, "閉じる"))
+        self.assertIn("次の G (G14 の次) のコードがまだない", step._next_part_refusal(st, None))
+        self.assertIsNone(g7.check(st, True, {}) or None, "部の終わりは一度だけ (もう止めない)")
+
+    def test_cli(self):
+        """step.py (写しのフォルダ): 止まっていなければ断る → 相談の止まりでは閉じて HOLD part_end → resume も next_part も進めない"""
+        st = self.st(consult=False)
+        d = self.d
+        (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        shutil.copytree(REAL / "archive", d / "archive")  # 写す (つなぐと、閉じたあとの export が本物のしまった年の再生の行を書き直す)
+        env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+        run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
+        r = run("next_part", "--closed-by-decision", "閉じる")
+        self.assertEqual(r.returncode, 3, r.stdout)
+        self.assertIn("HOLD consult", r.stdout)
+        st = self.st()
+        (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        r = run("next_part", "--closed-by-decision", "第 7 部をここで終える (試し)")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("* G14 (町と商業): 3 つの条件はそろわないまま、本人の決めで閉じた", r.stdout)
+        self.assertIn("\nHOLD part_end\n", r.stdout)
+        new = json.loads((d / "state.json").read_text(encoding="utf-8"))
+        self.assertEqual(new["era2"]["g7"]["closed14"]["by"], "第 7 部をここで終える (試し)")
+        self.assertEqual((new["era"], new["day"], new["hold"]), ("G14", st["day"], True))
+        r = run("who")
+        self.assertIn("HOLD part_end", r.stdout)
+        self.assertIn("PHASE G14", r.stdout)
+        r = run("resume")
+        self.assertIn("resume では進めない", r.stdout)
+        r = run("next_part")
+        self.assertEqual(r.returncode, 3)
+        self.assertIn("コードがまだない", r.stdout)
+        r = run("next_part", "--closed-by-decision", "もう一度")
+        self.assertEqual(r.returncode, 3)
+        self.assertIn("もう閉じている", r.stdout)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

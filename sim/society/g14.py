@@ -63,6 +63,11 @@ NONFOOD_WORDS = "土器・道具・黒い金属・住まい・水の輪・帳・
 # 市へ運ぶの例と、運ぶと何が村に入るかが短い節になかった。G14_PROMPT_FROM (180年120日目 = 181年の年の集まり) から、お題だけを直す (決まり・数・決め方は変えない)。
 # その日 (お題は前のコードで出ていた) は、step.py refresh_prompts が g7.g14.prompt_fix を書いたあとだけ。だから、その日までの歩をやり直しても 1 バイトも同じ
 G14_PROMPT_FROM = 21719
+# 2026-11-14 続けることの年の直し (G14_design.md 13): 年の集まり (年の最後の日。日 % 120 == 119) のお題の「続けること」は、日 // 120 で年を出していたので、
+# 終わる年の手入れの残りを見せていた (年の集まりではいつも「水の輪の直し あと 0 人日」「水の道の手入れ あと 0 人日」。輪が止まった年も「あと 0 人日 (止まっている輪 7)」)。
+# 年の集まりの答えは次の年 (次の日から) の予定なので、その年 ((日 + 1) // 120) の残りを見せる。止まっている輪は、動かすのに要る人日も書く。手入れの数・決まりは変えない。
+# G14_KEEP_FROM (186年の年の集まり = 185年120日目 = 22319 日目) から。その日 (お題は前のコードで出ている) は refresh_prompts が g7.g14.keep_fix を書いたあとだけ (G14_PROMPT_FROM と同じ形)
+G14_KEEP_FROM = 22319
 
 
 def on(state):
@@ -82,6 +87,22 @@ def mark_prompt_fix(state, why):
     """refresh_prompts から: G14_PROMPT_FROM の日に、お題の直しを今の歩から入れたことを g7.g14.prompt_fix に残す (その日より前なら何もしない)"""
     if on(state) and state["day"] >= G14_PROMPT_FROM and "prompt_fix" not in _g(state):
         _g(state)["prompt_fix"] = {"day": state["day"], "why": why}
+
+
+def keep_fixed(state):
+    """続けることの年の直し (G14_KEEP_FROM) が効くか: その日より後はいつも。その日は refresh_prompts の印 (g7.g14.keep_fix) のあとだけ"""
+    return on(state) and (state["day"] > G14_KEEP_FROM or (state["day"] == G14_KEEP_FROM and "keep_fix" in _g(state)))
+
+
+def mark_keep_fix(state, why):
+    """refresh_prompts から: G14_KEEP_FROM の日に、続けることの年の直しを今の歩から入れたことを g7.g14.keep_fix に残す (その日より前なら何もしない)"""
+    if on(state) and state["day"] >= G14_KEEP_FROM and "keep_fix" not in _g(state):
+        _g(state)["keep_fix"] = {"day": state["day"], "why": why}
+
+
+def plan_year(state):
+    """集まりの答えが効く年: 直しのあとは次の日の年 ((日 + 1) // 120。年の集まりなら次の年、ほかの集まりでは今の年と同じ)。直しの前は今の年 (前のまま)"""
+    return (state["day"] + 1) // YEAR if keep_fixed(state) else state["day"] // YEAR
 
 
 def _y(state):
@@ -1309,15 +1330,21 @@ def keep_line(state, p):
     """続けること (G13 の水の輪と水の道の手入れ・G12 の倉の約束と助けと帳) の 1 行"""
     s12 = state["era2"]["g7"]["g12"]
     s13 = state["era2"]["g7"]["g13"]
-    y = _y(state)
-    due = round(g13._mill_due(state))
+    fix = keep_fixed(state)
+    y = plan_year(state)  # 直しのあとは、この集まりの答えが効く年 (年の集まりなら次の年)
+    due = round(g13.mill_due(state, y) if fix else g13._mill_due(state))
     st = [x for x in s13["mill"]["mills"] if x.get("stopped")]
     c = s13["canal"]
     need = max(0, round(c["cap"] / g13.CANAL_PER_DAY * g13.CANAL_KEEP - c["dug"].get(str(y), 0)))
     act = sum(1 for x in s12["pacts"].values() if g12._active(x))
     nd = g12.needy(state)
     fam = house_readers(state, p["name"])
-    return (f"- 続けること: 水の輪の直し あと {due} 人日" + (f" (止まっている輪 {len(st)})" if st else "") + f" (主な仕事「{g13.ACT_MILL}」)・"
+    if fix and st:  # 止まっている輪は、動かすのに要る人日も書く (動かした輪は、その年の直しもすんだことになる。g13.work_day)
+        stop = f"止まっている輪 {len(st)}・動かすには あと {round(g13.restart_left(state))} 人日"
+        mill = f"水の輪の直し あと {due} 人日 ({stop})" if due else f"水の輪の直し: {stop}"
+    else:
+        mill = f"水の輪の直し あと {due} 人日" + (f" (止まっている輪 {len(st)})" if st else "")
+    return (f"- 続けること: {mill} (主な仕事「{g13.ACT_MILL}」)・"
             f"水の道の手入れ あと {need} 人日 (「{g13.ACT_CANAL}」)。倉の約束 {act}・いま苦しい村 {'・'.join(o['id'] for o in nd) or 'なし'}・"
             f"帳は読める人が「{g12.ACT_CENSUS}」" + (f" ({'・'.join(fam)})" if fam else ""))
 

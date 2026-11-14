@@ -21,6 +21,8 @@
                                                  g7.closed12 に閉じた記録。粉ひき・水の道・水の輪・約束の働き手の仕組みを入れる。docs/society_phase/G13_design.md 0.)
                                                  G13 から G14 (2026-11-14。G13 は 3 つの条件がそろって HOLD wait。--closed-by-decision なしで打つ。部は 7 のまま。
                                                  g7.closed13 に閉じた記録。市へ運ぶ・書きつけ・仲間の仕組みと病の札を入れる。docs/society_phase/G14_design.md 0.)
+                                                 G14 を閉じる (2026-11-14。G14 の相談 = HOLD consult で止まっているときだけ。g7.closed14 に閉じた記録。
+                                                 次の G はないので、第 7 部の終わり HOLD part_end で止まる。docs/society_phase/G14_design.md 14.)
   python sim/society/step.py heavy on             G8 の続き「重い押し」を入れる (2026-10-25 本人の決め。docs/society_phase/G8_heavy_design.md。G8 のときだけ。
                                                  入れたら消さない)。強い集落の村への求めを「村の去年の刈り入れの 2 割」にする。年の集まりの歩で、
                                                  まだ答えがなければ、その日に「増やせ」の求めを出して、お題を書き直す (ほかの日なら、次の年の終わりに出す)
@@ -229,8 +231,22 @@ def _next_part_refusal(state, fill, closed=None):
         if not closed.strip():
             return "--closed-by-decision に本人の言葉がない"
         g7s = (state["era2"].get("g7") or {})
+        if state.get("era") == "G14":  # 2026-11-14: G14 は相談 (HOLD consult) で止まっているときだけ、本人の決めで閉じて第 7 部を終える (次の G はない。G14_design.md 14.)
+            if "g14" not in g7s:
+                return "G14 の仕組みがない"
+            if g7s.get("closed14") or "G14" in (g7s.get("ends") or {}):
+                return "G14 はもう閉じている (第 7 部はもう終わっている)"
+            code, why = _hold_text(state)
+            if code != "consult":
+                return f"G14 を本人の決めで閉じるのは、G14 の相談 (HOLD consult) で止まっているときだけ (今は {'HOLD ' + code if code else '止まっていない'})"
+            have = [f.name for kind in ("season", "feeling", "council") for f in sorted(pdir(state, kind, "answers").glob("*.json"))]
+            if have:
+                return f"{state['day']} 日目の答えがもうある ({len(have)} 通)"
+            if fill is not None:
+                return "--fill は G7 に入るときだけ"
+            return None
         if not ((state.get("era") == "G6" and not g7s) or (state.get("era") in ("G7", "G8", "G9", "G10", "G11") and g7s)):  # 2026-10-25: G7 から G8 も。2026-10-29: G8 から G9 も。2026-11-04: G9 から G10 も。2026-11-05: G10 から G11 も。2026-11-10: G11 から G12 も
-            return f"本人の決めで閉じて入れるのは G6 から G7、G7 から G8、G8 から G9、G9 から G10、G10 から G11、G11 から G12 だけ (今は {state.get('era')})"
+            return f"本人の決めで閉じて入れるのは G6 から G7、G7 から G8、G8 から G9、G9 から G10、G10 から G11、G11 から G12 だけ (G14 は相談で止まっているときに閉じて第 7 部を終える) (今は {state.get('era')})"
         if state.get("hold"):
             return "一時停止している (部の終わりなら --closed-by-decision なしの next_part で入る)"
         if state["era"] == "G6" and ((state["era2"].get("g6") or {}).get("end") or (state["era2"].get("g6") or {}).get("closed")):
@@ -715,6 +731,25 @@ def main():
             print(f"next_part はできない: {why} (何も変えない)")
             sys.exit(3)
         import g7  # noqa: E402  (G7 から働く仕組み。G6 までは読みこまない)
+        if a.closed is not None and state["era"] == "G14":  # G14 を本人の決めで閉じる (2026-11-14 G14_design.md 14.): 次の G には入らず、第 7 部の終わり (HOLD part_end) で止める
+            if a.world is not None or a.count is not None:
+                print("next_part はできない: --world と --count は G7 に入るときだけ (何も変えない)")
+                sys.exit(3)
+            c = g7.close_g14(state, a.closed.strip())
+            save(state)
+            export(state)
+            _records(None)  # 記録を作り直す (控えの行は足さない)
+            print(f"* G14 (町と商業): 3 つの条件はそろわないまま、本人の決めで閉じた ({_yd(c['day'])}。第 {c['part_end']} 部「{era2.PARTS.get(c['part_end'], '')}」もここで終わった。"
+                  + "・".join(f"{k} {_yd(c['c'][k]) if c['c'][k] is not None else 'まだ'}" for k in ("c1", "c2", "c3"))
+                  + f"・F {'・'.join(k for k, v in sorted(c['reached'].items()) if v is not None) or 'まだ'}・"
+                  f"町の家 {(c['town'] or {}).get('houses', 0)} ({(c['town'] or {}).get('people', 0)} 人)・市へ運んだ {c['market']['trips']} 回・"
+                  f"書きつけ {sum(c['notes'].values())}・仲間 {c['guilds']['active']}・水の輪 {c['mills']} (回っている {c['mills_running']})・"
+                  f"読める人 {'・'.join(c['readers']) or 'いない'})")
+            print(f"* 第 {c['part_end']} 部の終わり (G14): 本人の決めで閉じた → 一時停止 (第 {c['part_end']} 部のまとめ待ち。次の G のコードはまだない)。"
+                  f"この日のお題 ({state['day']} 日目) はそのまま (答えは集めない)")
+            print("HOLD part_end")  # ワークフローが読む機械用の 1 行
+            _records_exit()
+            return
         nxt = era2.ORDER2[era2.ORDER2.index(state["era"]) + 1]
         if a.closed is not None and state["era"] == "G7":  # G7 を本人の決めで閉じた (2026-10-23 本人の決め。8519 日目): 閉じたことを残してから G8 に入る
             c = g7.close_g7(state, a.closed.strip())
@@ -873,6 +908,7 @@ def main():
         if "g14" in (state["era2"].get("g7") or {}):  # G13 までは g14.py を読みこまない
             import g14  # noqa: E402
             g14.mark_prompt_fix(state, a.why.strip())  # 2026-11-14: G14 のお題の直しの日 (g14.G14_PROMPT_FROM) なら、この歩から短い節の直しと note・guild の欄を入れる (g7.g14.prompt_fix)
+            g14.mark_keep_fix(state, a.why.strip())  # 2026-11-14: 続けることの年の直しの日 (g14.G14_KEEP_FROM) なら、この歩から年の集まりの「続けること」を次の年の残りにする (g7.g14.keep_fix)
         g7.mark_feel_cap(state, a.why.strip())  # 2026-11-07: 気持ちの席の日 (g7.FEEL_CAP_FROM) なら、この歩から気持ちのお題を席の数までにする (g7.feel_cap)
         added = g7.g10_sample_add(state) if g10.fixed(state) else []  # ③ 作れる人・試している人の家を、答える家に足す (年の終わりの見本の選びのあとと同じ)
         if added:
