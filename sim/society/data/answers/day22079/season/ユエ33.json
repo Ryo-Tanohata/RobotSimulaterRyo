@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈らないと落ちてしまう。みんなで刈り入れを急ごう。おれも毎日刈るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを優先する"}, "family": {"ケセ39": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ケナ45": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "タユ46": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ソワ48": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手が要る"}, "ロワ54": {"activity": "畑仕事", "place": "camp", "why": "力のある若者は刈り入れに回る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "狩りの腕を生かして肉を蓄えに入れる"}, "family": {"ケセ39": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で肉をとれる"}, "ケナ45": {"activity": "採集", "place": "camp", "why": "秋は木の実が実る"}, "タユ46": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}, "ソワ48": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ロワ54": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬も獣はいるので狩りで肉をとる"}, "family": {"ケセ39": {"activity": "狩り", "place": "北丘12", "why": "冬も狩りができる"}, "ケナ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "タユ46": {"activity": "狩り", "place": "北丘12", "why": "冬も狩りができる"}, "ソワ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ロワ54": {"activity": "狩り", "place": "北丘12", "why": "冬も狩りができる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして夏の実りを増やす"}, "family": {"ケセ39": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケナ45": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれる"}, "タユ46": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ソワ48": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれる"}, "ロワ54": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れを急いだ年",
+ "mood": "蓄えは十分にある。夏の刈り入れをやりとげて、また狩りに出たい。"}

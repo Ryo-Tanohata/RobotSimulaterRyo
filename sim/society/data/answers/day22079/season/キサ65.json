@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑の実りは落ちる前に刈る。私は手を動かす。文句は刈ってから言え。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が落ちる前に刈るため"},"family":{"リセ65":{"activity":"畑仕事","place":"camp","why":"夏のうちに刈らないと落ちてしまうから"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器の腕が一番だから、蓄えを守る器を作る"},"family":{"リセ65":{"activity":"狩り","place":"北草原28","why":"狩りの腕が確かなので肉を得る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"北草原28","with":[],"why":"冬も魚やけものはいるので狩る"},"family":{"リセ65":{"activity":"狩り","place":"北草原28","why":"冬は狩りで食べ物を足す"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りをして実りを増やすため"},"family":{"リセ65":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"セヤ70":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"はじめて市へ運んだ年",
+"feeling":"蓄えは十分。体は動く。やるべきことをやるだけだ。"}

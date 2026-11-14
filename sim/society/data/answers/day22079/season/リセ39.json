@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは三百日分以上ある。夏は実った畑を毎日刈って、秋にまいたら冬と春の草取りを忘れずにやろう。ヤギは草に対して多いから、少しずつ肉にして減らそう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 15},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りを始めるため"}, "family": {"ムイ58": {"activity": "ヤギの世話", "place": "camp", "why": "子はヤギの世話で手伝う"}, "テナ59": {"activity": "ヤギの世話", "place": "camp", "why": "子はヤギの世話で手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 10, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで夏の実りを増やすため"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて実りを守るため"}, "family": {"ソナ40": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ乳もとれるから"}, "タユ44": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ乳もとれるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草に対して多すぎるので、毎季少しずつ肉にして減らす。畑は夏に刈り、秋にまき、冬と春に草取りをする。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れと草取りの年",
+ "feeling": "蓄えは十分で落ち着いている。畑とヤギの数が気がかり。"}
