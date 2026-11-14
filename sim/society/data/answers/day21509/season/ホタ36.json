@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。冬の前に、私は器をつくって蓄えを守っておくよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えが多いので、器を増やして虫やネズミから守りたい。土器は得意だから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソワ36": {"activity": "狩り", "place": "東林12", "why": "冬は魚やけものが頼りになるので肉を集める"},
+  "キオ45": {"activity": "採集", "place": "西草原12", "why": "近場で食べ物を集める"},
+  "ヒセ46": {"activity": "採集", "place": "camp", "why": "子どもの世話をしつつ近くで集める"},
+  "シエ46": {"activity": "採集", "place": "camp", "why": "子どもの世話をしつつ近くで集める"},
+  "ハソ51": {"activity": "狩り", "place": "南林12", "why": "冬に備えて肉を取る"},
+  "ラキ52": {"activity": "狩り", "place": "北林12", "why": "冬に備えて肉を取る"},
+  "ワユ54": {"activity": "休む", "place": "camp", "why": "赤ん坊の世話があるので無理をしない"}
+ },
+ "keep": false,
+ "judge": {"M502": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T396": false, "T397": false, "T398": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "冬は木の実も草の種も実らないので、秋のうちに器と蓄えを整えておくとよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、離れない決まりは身を守るのに大事"}],
+ "feeling": "蓄えが豊かで心強い。冬の前に器づくりに励みたい。"}

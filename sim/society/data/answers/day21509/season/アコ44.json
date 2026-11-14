@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはまだたっぷりあるね。この秋は私は土器を焼くよ。種を虫から守る器は、冬のあとも役に立つはず。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の技が高いので、種を守る器を増やして蓄えを長持ちさせたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "リセ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"},
+  "ハソ50": {"activity": "採集", "place": "camp", "why": "家の食べ物を足すため"},
+  "アコ51": {"activity": "狩り", "place": "北丘12", "why": "狩りの腕が高く、肉を蓄えに足せるから"},
+  "ラニ52": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを守るため"},
+  "セオ53": {"activity": "採集", "place": "camp", "why": "採集が得意で、木の実や草の種を集められるから"},
+  "ホタ54": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意で、冬に備えて肉を得るため"}
+ },
+ "keep": false,
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えが多くて落ち着いている。みんなと冬を無事に迎えたい。"}

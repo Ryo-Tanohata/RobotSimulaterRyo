@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蔵の種は十分ある。秋のうちに種をまいて、冬は草取りに通おう。ヤギは草に比べて多すぎるから、少しつぶして肉にするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬の草取りで夏の実りが増える。今季も通う。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "family": {"リセ43": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やすため。"}, "オネ50": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やすため。"}, "ケセ51": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やすため。"}},
+ "keep": false,
+ "judge": {"M502": "ゆるす"}, "feast": false, "leader": null, "trade": {"T396": false, "T397": false, "T398": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "ヤギが草に対して多いので、毎季少しずつ肉にして数を減らす。", "because": [2796608], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、落ち着いている。今季も畑に通う。"}
