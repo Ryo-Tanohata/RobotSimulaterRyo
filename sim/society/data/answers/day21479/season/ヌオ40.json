@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑をみんなで刈ろう。落ちる前に、いっしょに早く刈り入れたい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ワユ41": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "セヤ45": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "シエ49": {"activity": "畑仕事", "place": "camp", "why": "若い力で刈り入れを進める"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りで実りを増やす"}, "family": {"ワユ41": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "セヤ45": {"activity": "土器づくり", "place": "camp", "why": "蓄えを守る土器を作る"}, "シエ49": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕があり、蓄えの草の種を虫から守れる"}, "family": {"ワユ41": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "セヤ45": {"activity": "土器づくり", "place": "camp", "why": "土器を作って蓄えを守る"}, "シエ49": {"activity": "狩り", "place": "北丘12", "why": "冬も魚やけものはいるので肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして夏の実りを増やす"}, "family": {"ワユ41": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "セヤ45": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれる"}, "シエ49": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T392": false, "T393": false, "T394": false, "T395": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "みんなで刈った実りの年",
+ "mood": "蓄えは多く、落ち着いている。みんなで協力して畑を刈りたい。"}

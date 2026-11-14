@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を夕方までに刈り切ろう。落とすと冬の蓄えがもったいない。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れるため"}, "family": {"キサ33": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ヌオ35": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "アコ39": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "アコ42": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ホタ43": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ハソ45": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ユエ48": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "キサ50": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ユエ50": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "シエ51": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ラニ53": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ケナ54": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "キオ55": {"activity": "畑仕事", "place": "camp", "why": "子も刈りを手伝う"}, "ルタ56": {"activity": "畑仕事", "place": "camp", "why": "子も刈りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の世話と刈り残しの片づけ"}, "family": {"キサ33": {"activity": "土器づくり", "place": "camp", "why": "土器で蓄えを守る"}, "ヒセ33": {"activity": "土器づくり", "place": "camp", "why": "土器で蓄えを守る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "sow": 400},
+  "冬": {"job": {"activity": "狩り", "place": "西草原12", "with": [], "why": "冬も獲れる肉を村に足す"}, "family": {"キサ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ヌオ35": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "腕が良いので土器を作り蓄えを守る"}, "family": {"キサ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ヒセ33": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ヌオ35": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T392": false, "T393": false, "T394": false, "T395": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える数より多いと、やせていなくなる。ヤギは増やさないほうがよい。", "because": [2786462], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギ減りの年",
+ "mood": "刈り入れを落とさずにやりとげたい"}

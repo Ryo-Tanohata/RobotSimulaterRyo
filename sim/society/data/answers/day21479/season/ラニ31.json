@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈って、秋に種をまき、冬は草取りに通おう。蓄えは土器に入れて守りたいね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"リセ43": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "オネ50": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ケセ51": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えの傷みを減らせるから"}, "family": {"リセ43": {"activity": "土器づくり", "place": "camp", "why": "蓄えを土器で守るため"}, "オネ50": {"activity": "採集", "place": "camp", "why": "家の食べ物を足すため"}, "ケセ51": {"activity": "採集", "place": "camp", "why": "家の食べ物を足すため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで夏の実りが増えるから"}, "family": {"リセ43": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要るため"}, "オネ50": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要るため"}, "ケセ51": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて実りを増やすため"}, "family": {"リセ43": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}, "オネ50": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}, "ケセ51": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "夏は実った畑を刈り、秋にまいて冬に草取りに通う流れを続ける。蓄えが多いので心配は少ない。", "because": [2774344], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "蓄え豊かな年",
+ "mood": "蓄えは多く、落ち着いている。いつもの仕事を続けたい。"}

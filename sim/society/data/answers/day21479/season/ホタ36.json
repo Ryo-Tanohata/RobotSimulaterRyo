@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑の草の種を刈ってしまおう。落ちたらもったいない。ヤギも多すぎるから、少し肉にしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ソワ36": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手が足りないので"}, "キオ45": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手が足りないので"}, "ヒセ46": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手が足りないので"}, "シエ46": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手が足りないので"}, "ハソ51": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手が足りないので"}, "ラキ52": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手が足りないので"}, "ワユ54": {"activity": "畑仕事", "place": "camp", "why": "若いが刈り入れを手伝える"}, "ロワ55": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 10},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑の世話と刈り残しの仕事をするため"}, "family": {"ソワ36": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "キオ45": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヒセ46": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを見守る"}, "シエ46": {"activity": "土器づくり", "place": "camp", "why": "土器は蓄えを守る"}, "ハソ51": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ラキ52": {"activity": "採集", "place": "camp", "why": "木の実を集める"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬は木の実がないので肉をとる"}, "family": {"ソワ36": {"activity": "狩り", "place": "北丘12", "why": "冬は肉をとる"}, "キオ45": {"activity": "狩り", "place": "北丘12", "why": "冬は肉をとる"}, "ヒセ46": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "シエ46": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ハソ51": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ラキ52": {"activity": "狩り", "place": "北丘12", "why": "冬は肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして夏の実りを増やす"}, "family": {"ソワ36": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "キオ45": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヒセ46": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれる"}, "シエ46": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれる"}, "ハソ51": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ラキ52": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T392": "村", "T393": "村", "T394": "村", "T395": "村"},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [],
+ "knowledge": [{"op": "add", "text": "夏のうちに実った畑を刈らないと種が落ちる。ヤギは草に対して多すぎる。", "because": [2786462], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせた年",
+ "feeling": "蓄えは多いので安心だが、ヤギの多さと刈り残しが気がかり。"}
