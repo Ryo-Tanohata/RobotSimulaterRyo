@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "畑の実りが残っているうちに刈ってしまおう。ヤギは草に対して多すぎるから、これ以上は増やしたくない。"}],
+"year": {
+"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを急ぐ"}, "family": {"キサ48": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "リセ62": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+"秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "実りの季節に木の実を集めて蓄えを厚くする"}, "family": {"キサ48": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ホタ49": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ヌオ52": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ロワ53": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "シエ59": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "リセ62": {"activity": "畑仕事", "place": "camp", "why": "採集の腕がまだ低いので畑の草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+"冬": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "冬は実りがないので、狩りで肉を得る"}, "family": {"キサ48": {"activity": "狩り", "place": "北丘12", "why": "冬は肉を得る"}, "ホタ49": {"activity": "狩り", "place": "北丘12", "why": "冬は肉を得る"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "リセ62": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+"春": {"job": {"activity": "狩り", "place": "北丘12", "with": [], "why": "大胆に狩りへ出て村の食べ物を増やす"}, "family": {"キサ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"}, "ホタ49": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"}, "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"}, "シエ59": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"}, "リセ62": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+},
+"keep": false, "seal": false, "seal_store": [],
+"accept_rule": {"よその群れ": null, "ほかの村から": null},
+"judge_rule": null, "feast": [], "leader": null,
+"trade": {"T583": false, "T584": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null,
+"knowledge": [{"op": "add", "text": "ヤギは草原の草に比べて多すぎるので、ヤギを受けとる交換は断ったほうがよい", "because": [], "confidence": 0.6}],
+"proposal": null,
+"votes": [],
+"year_name": "実りを刈る年",
+"mood": "実りが多いので安心している。刈り入れを急ごう。"
+}
