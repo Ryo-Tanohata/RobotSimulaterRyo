@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "去年は刈る手が足りず、草の種がたくさん落ちた。わたしはこの秋、鎌を作りためておく。夏に手の空いた人がすぐ刈れるように。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "石の鎌も黒い金属の鎌もすり減っていて、夏に刈る手が足りず種が落ちたから。道具づくりはわたしの得意なこと"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M509": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T520": false, "T521": false, "T522": {"side": "村", "利子": 0.1}, "T523": false, "T524": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "pay": "物", "redeem": "引きかえる", "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "刈る手が足りないと、畑の草の種がひと年に6万つかみほども落ちてしまう", "because": [3092817], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L582", "against": "まく量が多すぎると草取りの手が足りなくなる", "agree": true, "reason": "畑がなければ次の夏に刈るものがないから"},
+  {"id": "L584", "against": "直す手が他の仕事から取られる", "agree": true, "reason": "水の輪が止まると粉ひきに手を取られるから"},
+  {"id": "L171", "against": "いまはヤギが111頭で、草で養える数より少ない", "agree": true, "reason": "世話をする人が少なくヤギがいなくなっているので、これ以上増やしたくない"},
+  {"id": "L571", "against": "苦しい村を見捨てることになる", "agree": true, "reason": "前に貸した草の種が返らないうちに新しく貸すのは危ないから"}
+ ],
+ "feeling": "鎌を作りながら、新しいやり方を考えてみたい"}

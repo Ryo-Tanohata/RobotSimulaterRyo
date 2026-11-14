@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "冬の前に、わたしは土器をたくさん作っておく。割れる分の足しになるはずだ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番高いので、蓄えを虫やネズミから守る器を作り足す"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "アコ54": {"activity": "採集", "place": "camp", "why": "採集が得意なので、家の食べ物を集める"},
+  "ロワ56": {"activity": "狩り", "place": "北丘12", "why": "狩りが得意なので、肉を持ち帰る"},
+  "ムイ57": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬に備えて集める"}
+ },
+ "keep": false,
+ "judge": {"M509": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T520": false, "T521": false, "T522": false, "T523": false, "T524": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分にある。静かに土器を作って過ごしたい。"}

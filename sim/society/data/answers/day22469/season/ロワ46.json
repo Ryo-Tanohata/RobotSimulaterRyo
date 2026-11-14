@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。今年の秋は草の種をしっかりまいて、草取りにも手を出そう。苦しい村には、分けられるぶん分けてやりたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだないので、秋に種をまいて草取りをすれば夏の実りが増える。狩りは得意だが、今は畑に手を貸したい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヒセ48": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が足りないので、家のみんなで畑を守る。"},
+  "オセ49": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が足りないので手伝う。"},
+  "ホミ52": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす。"},
+  "オネ54": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす。"},
+  "リセ56": {"activity": "畑仕事", "place": "camp", "why": "小さい子の世話をしながら近くの畑で働ける。"},
+  "テナ56": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす。"},
+  "オセ63": {"activity": "畑仕事", "place": "camp", "why": "子でもできる草取りを手伝う。"}
+ },
+ "keep": false,
+ "judge": {"M509": "ゆるす"},
+ "feast": true, "leader": null,
+ "trade": {"T520": "村", "T521": "村", "T522": "村", "T523": "村", "T524": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で心強い。みんなで畑を守り、苦しい村とも分け合っていきたい。"}

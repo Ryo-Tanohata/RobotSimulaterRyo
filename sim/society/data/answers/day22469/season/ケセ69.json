@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "組みかけの水の輪は、あと少しで回るよ。この秋のうちに仕上げたいから、手の空いた人は川へ来て。"}, {"to": "みんな", "text": "水の道はこの年まだだれも掘っていない。泥でうまる前に、家ごとに一人ずつ出してくれるとうれしい。"}],
+ "job": {"activity": "水の輪を建てる", "place": "camp", "with": [], "why": "組みかけの輪を仕上げて、止まりそうな輪も直したいから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"シエ69": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ手つかずで、うまると水の来る畑がへるから"}}, "keep": false,
+ "judge": {"M509": "ゆるす"}, "feast": false, "leader": null, "trade": {"T520": {"side": "村", "利子": 0}, "T521": "村", "T522": {"side": "村", "利子": 0}, "T523": false, "T524": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": "使う", "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "前の季節は世話をする人が少なく、ヤギが 16 頭いなくなった。いまのヤギは 111 頭ほど", "because": [3092822], "confidence": 0.8}, {"op": "add", "text": "土器に入れた草の種でも、前の季節に 4 万 7 千つかみほど傷んだ", "because": [3092841], "confidence": 0.8}],
+ "proposal": {"text": "この秋と冬は、家ごとに大人を一人ずつ水の道の手入れに出し、組みかけの水の輪は秋のうちに仕上げよう。ヤギは家ごとに交代で世話に出し、世話の手がないからといなくならせないようにしよう。", "because": [3092822], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L584", "against": "輪の直しに人を取られて、ほかの仕事が手薄になるかもしれない", "agree": true, "reason": "輪が止まると粉ひきに手を取られるから"}, {"id": "L575", "against": "畑やヤギの手が足りない家もある", "agree": true, "reason": "水の道がうまると水の来る畑がへるから"}, {"id": "L566", "against": "交代の順がはっきりしない", "agree": true, "reason": "水の道と輪の手入れはだれかがしないといけないから"}],
+ "feeling": "トナ73 が生まれてうれしい。この子が大きくなるまで、輪も水の道も回し続けたい。"}

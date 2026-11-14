@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、畑にまかなければ来年の実りはないよ。今年も畑の草取りを、みんなで少しずつ分けようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど実りが増えるので、毎日続けたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソワ36": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "キオ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ヒセ46": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人が少なくヤギがいなくなったので"},
+  "ハソ51": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ラキ52": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ワユ54": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを守り、春の乳に備えるため"},
+  "ネイ59": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}
+ },
+ "keep": false,
+ "judge": {"M509": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T520": "村", "T521": false, "T522": "村", "T523": false, "T524": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、秋・冬・春に草取りをするほど夏の実りが増える。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは安心だけれど、畑とヤギのことが気がかり。"}
