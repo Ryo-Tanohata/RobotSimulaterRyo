@@ -90,6 +90,12 @@ def _y(state):
     return str(state["day"] // YEAR)
 
 
+def _ylabel(state):
+    """記録の行の年のことば (g7.year_label。第 8 部の前の直しの前は「この年」のまま)"""
+    import g7
+    return g7.year_label(state, state["day"] // YEAR)
+
+
 def _gw(goods):
     return era2._gw(goods)
 
@@ -877,16 +883,16 @@ def text(state, p):
         on_ = {}
         for f in paid:
             on_[f["kind"]] = on_.get(f["kind"], 0) + f["coin"]
-        rows.append("- この年に印のかたまりで払った・受けたこと: " + "・".join(f"{k} {n} 個" for k, n in on_.items()) + f" ({len(paid)} 回)")
+        rows.append(f"- {_ylabel(state)}に印のかたまりで払った・受けたこと: " + "・".join(f"{k} {n} 個" for k, n in on_.items()) + f" ({len(paid)} 回)")
     else:
-        rows.append("- この年に印のかたまりで払った・受けたこと: なし")
+        rows.append(f"- {_ylabel(state)}に印のかたまりで払った・受けたこと: なし")
     rows.append(f"- 払い方: 村の物で払うときは「{g['pay']['choice']}」で払う (pay)。よその村の印のかたまりは「{g['redeem']['choice']}」(redeem)")
     md = market_day(state)
     if md:
         m = g["market"]
         mk = g["markets"].get(str(y), [])
         rows.append(f"- 市の日: 季節ごとの {md} 日目。" + (f"市の方針: {_market_text(m)}" if m else "市の方針はまだない (来た人は見て帰る)")
-                    + (f"。この年の市 {len(mk)} 回 (替えた市 {sum(1 for r in mk if r['deals'])} 回)" if mk else ""))
+                    + (f"。{_ylabel(state)}の市 {len(mk)} 回 (替えた市 {sum(1 for r in mk if r['deals'])} 回)" if mk else ""))
     elif fixed(state):
         rows.append("- 市の日: (まだ決まっていない。年の集まりの答えの market_day (季節の何日目か) に書くと決まる。掟の提案に market_day をつけてもよい)")
     else:
@@ -975,6 +981,17 @@ def field_rows(state, year=False):
         rows.append('   市の方針: 市の日に村が出してよい物と 1 年の上限 (give: {"草の種": つかみ, "鎌": 本, "土器": 個, "印": 個})、受ける物 (take: ["ヤギ", ...])、'
                     '印のかたまりで払う・受けるか (pay: true か false) を書く (market。決めないなら null)')
     return rows
+
+
+# 答えの形 (JSON) の欄の宣言 (第 8 部の前の直し 2。g7.answer_fields・tools/prompt_check.py が読む): 欄の名前 → 空の中身。answer_fields は、いまお題がその欄を書けと言っているもの
+ANSWER_FIELDS = {"mark": "null", "pay": "null", "redeem": "null", "market": "null", "market_day": "null", "coin_rate": "null"}
+
+
+def answer_fields(state):
+    g = _g(state)
+    year = (state["era2"]["g7"].get("ask") or "") == "年"
+    return ((["mark"] if g["mark"] is None else []) + ["pay", "redeem"] + (["market"] if year else [])
+            + (["market_day", "coin_rate"] if year and fixed(state) else []))
 
 
 def fields_json(state):

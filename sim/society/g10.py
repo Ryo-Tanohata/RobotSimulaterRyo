@@ -219,6 +219,12 @@ def count_tool(state, tool):
 
 # ---------------- 音の字と読み書き (仕事「字を習う」。g7.role_day から) ----------------
 
+def _ylabel(state):
+    """記録の行の年のことば (g7.year_label。第 8 部の前の直しの前は「この年」のまま)"""
+    import g7
+    return g7.year_label(state, state["day"] // YEAR)
+
+
 def alpha_ready(state):
     return bool(_g(state)["reached"].get("F2"))
 
@@ -493,7 +499,7 @@ def text(state, p):
         row = g["reap"].get(str(state["day"] // YEAR)) or {"iron": 0}
         sm = sorted(q["name"] for q in era2.adults(state) if smith(state, q["name"]))
         rows.append(f"- 黒い金属の鎌: 村で作ったのは {len(g['made'])} 本 (いま使えるのは {len(it)} 本" + (f"、すり減ったのは {gone} 本" if gone else "") + ")。"
-                    f"この年に黒い金属の鎌で刈った日は のべ {row['iron']} 日。作れる人: {'・'.join(sm[:10])}{' ほか' if len(sm) > 10 else ''}")
+                    f"{_ylabel(state)}に黒い金属の鎌で刈った日は のべ {row['iron']} 日。作れる人: {'・'.join(sm[:10])}{' ほか' if len(sm) > 10 else ''}")
         if fixed(state) and sm:  # ① 2026-11-05: 作り方を覚える道
             rows.append(f"  作り方を知らない人も、作れる人 ({'・'.join(sm[:10])}) と同じ季節に「{ACT_MAKE}」をして、with にその人の名前を書けば、"
                         "一緒に作って、次の季節から作れる")

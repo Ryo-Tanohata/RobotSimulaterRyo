@@ -3,6 +3,23 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-15 第 8 部の前の方法の直し (ブランチ part8-prep。トークン 0。本物の村は G15 に入るまで何も変わらない)
+
+- 本人の決め「先に方法を直してから G15 の下書きを見せる」(`part7.md` 10. の B) の、コードの直し。くわしくは `docs/society_phase/method_fixes_part8.md`。G15 の下書きは別の作業。
+- 直したもの (どれも `g7.fix8` = G15 に入った (`g7.g15`) か、193年60日目 (`g7.METHOD8_FROM = 23219`) 以後で印 `g7.method8` があるときだけ):
+  1. 年の数: お題の「この年」を `g7.plan_year` 1 つで出す (年の集まりなら次の年)。帳・倉から出せる量の言い方・市へ運べる村・記録の行の年の名前。
+  2. 答えの形の欄: G ごとに `ANSWER_FIELDS`・`answer_fields` を宣言。`step.py` はお題を書いたあと、答えの形に欄がなければ標準エラーに「!! 答えの形 (JSON) に欄 … がない」を出す (これは門なしでいつも。読むだけ)。
+     G15 からの G は `ANSWER_FIELDS` を書けば、答えの形に欄が自動で入る (`g7.LATER_GS`)。
+  3. 写しの記録 (`g7.gpath`。答えた家・写って動いた家・決まりの人日を仕事ごとに) と、新しい仕事「水の輪を直す」(直しだけ。新しい輪は組まない。「水の輪を建てる」は前のまま)。
+  4. `tools/prompt_check.py <prompts/dayN>`: 短い節の位置・答えの形の欄・大きさ・例の「…」を見る (読むだけ)。
+- 試しの直し: `tools/test_g7.py` の 10 か所が本物の `archive` を symlink していて、写しの export が本物の `archive/days_*.json` を書きかえることがあった。archive を写す形 (`copy_archive`) にした。
+- **入れ方 (merge)**: 本物の村は 23219 日目で `HOLD part_end` のまま。part8-prep を本物の村のブランチに merge するだけでよい (state・data はさわらない。refresh_prompts も打たない)。
+  入れたあと 1 クラス 1 プロセスで `python3.13 sim/society/tools/test_g7.py T_Method8`・`T_G14KeepFix`・`T_G14PromptFix`・`T_G14Close`。
+  `python3.13 sim/society/step.py who` → 前と同じ `HOLD part_end`。印 `g7.method8` はまだ書かない (G15 に入るコードが `g7.g15` を作れば印なしで効く。G15 に入る前に今のお題で試したいときだけ、`refresh_prompts` が書く)。
+- G15 を作る人へ: G15 に入る関数で `g7.g15` を作る (これで直しが効く)。G15 の欄は `g15.ANSWER_FIELDS` (と `answer_fields`) に書く。G15 の仕事は `world.ACTS7` の後ろに足す (写しの記録に自動で入る)。
+  入る日の写しのお題に `tools/prompt_check.py` をかけ、`step.py` の「!!」の知らせがないことを見る。
+- 前の歩のやり直し (23189→23219 の歩と 23219 日目の閉じる歩・22559・22319・21719・21419・21359・20279・19559・17069) はみな 1 バイトも同じ (`method_fixes_part8.md` 5.)。
+
 ## 2026-11-14 G14 を閉じて第 7 部が終わった (193年60日目 = 23219 日目で `HOLD part_end`。第 8 部は本人の決めを待つ)
 
 - **いまの村**: 193年60日目 (23219 日目)・`HOLD part_end` (第 7 部「帝国のあとと町」のまとめ待ち)・455 人・蓄え 297 日分。答えは要らない。トークン 0 で止めたまま。

@@ -219,6 +219,8 @@ def _g14_lines(state, i):
         out.append(f"G14 / 町の家 ({'答えた家 ' + '・'.join(tw['answered']) if tw['answered'] else '答えた家 なし'} / "
                    f"{'写って動いた家 ' + '・'.join(tw['copied']) if tw['copied'] else '写って動いた家 なし'})")
     out += [f"G14 / 報告: {t}" for t in g14.report_lines(state)]
+    import g7  # noqa: E402
+    out += [f"G14 / {t}" for t in g7.gpath_lines(state)]  # 第 8 部の前の直し 3 (g7.fix8 のあとだけ記録がある)
     return out
 
 
@@ -332,6 +334,7 @@ def write_prompts(state, phase):
     d = pdir(state, phase, "prompts")
     d.mkdir(parents=True, exist_ok=True)
     who = set(era2.answerers(state)) if phase == "season" else None
+    missing = {}  # 第 8 部の前の直し 2: 答えの形 (JSON) に、お題が書けと言っている欄がそろっているか (読むだけ。state もお題も変えない)
     for p in state["people"]:
         if not p["alive"]:
             continue
@@ -348,6 +351,13 @@ def write_prompts(state, phase):
             text = characters.night_prompt(state, p, state.get("tonight", {}).get(p["name"], []),
                                            characters.gifts_for(state, p["name"]))
         (d / f"{p['name']}.md").write_text(text, encoding="utf-8")
+        if g7 and phase == "season":
+            for k in g7.answer_form_check(state, text):
+                missing.setdefault(k, []).append(p["name"])
+    if missing:  # 大きな声で知らせる (標準エラー。ワークフローの読む行 (HOLD など) とはまざらない)。答えを集める前に直す
+        for k, names in sorted(missing.items()):
+            print(f"!! 答えの形 (JSON) に欄 \"{k}\" がない: {len(names)} 通 ({'・'.join(names[:6])}{' ほか' if len(names) > 6 else ''})。"
+                  "お題は書けと言っているのに、答えの形にないと、だれも書かない (第 7 部の学び 2)。答えを集める前に直す", file=sys.stderr)
     a = pdir(state, phase, "answers")
     a.mkdir(parents=True, exist_ok=True)
     print(f"お題: {d.relative_to(DATA.parent)}  →  答えの置き場所: {a.relative_to(DATA.parent)}/<名前>.json")
@@ -420,7 +430,7 @@ ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道
                 "守る": "守る", "取り立てる": "取り立てる", "戦に出る": "戦に出る", "試す": "試す",
                 "黒い金属を作る": "黒い金属を作る", "字を習う": "字を習う",
                 "印のかたまりを作る": "印のかたまりを作る",
-                "帳をつける": "帳をつける", "水の道を掘る": "水の道を掘る", "水の輪を建てる": "水の輪を建てる", "市へ運ぶ": "市へ運ぶ"}  # Society 2.0 の仕事 (交換に行く・記録をつけるは G6 から、守る〜試すは G7 から、黒い金属・字は G10 から、印のかたまりは G11 から、帳は G12 から、水の道・水の輪は G13 から、市へ運ぶは G14 から)
+                "帳をつける": "帳をつける", "水の道を掘る": "水の道を掘る", "水の輪を建てる": "水の輪を建てる", "市へ運ぶ": "市へ運ぶ", "水の輪を直す": "水の輪を直す"}  # Society 2.0 の仕事 (交換に行く・記録をつけるは G6 から、守る〜試すは G7 から、黒い金属・字は G10 から、印のかたまりは G11 から、帳は G12 から、水の道・水の輪は G13 から、市へ運ぶは G14 から)
 
 
 def day_labels(state, extra=()):
@@ -909,6 +919,7 @@ def main():
             import g14  # noqa: E402
             g14.mark_prompt_fix(state, a.why.strip())  # 2026-11-14: G14 のお題の直しの日 (g14.G14_PROMPT_FROM) なら、この歩から短い節の直しと note・guild の欄を入れる (g7.g14.prompt_fix)
             g14.mark_keep_fix(state, a.why.strip())  # 2026-11-14: 続けることの年の直しの日 (g14.G14_KEEP_FROM) なら、この歩から年の集まりの「続けること」を次の年の残りにする (g7.g14.keep_fix)
+        g7.mark_method8(state, a.why.strip())  # 2026-11-15: 第 8 部の前の方法の直し (g7.METHOD8_FROM 以後。G15 に入れば印なしでも効く)。この歩から年の数・答えの形の欄・写しの記録・水の輪の直しを入れる (g7.method8)
         g7.mark_feel_cap(state, a.why.strip())  # 2026-11-07: 気持ちの席の日 (g7.FEEL_CAP_FROM) なら、この歩から気持ちのお題を席の数までにする (g7.feel_cap)
         added = g7.g10_sample_add(state) if g10.fixed(state) else []  # ③ 作れる人・試している人の家を、答える家に足す (年の終わりの見本の選びのあとと同じ)
         if added:

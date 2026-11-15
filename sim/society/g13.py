@@ -30,6 +30,10 @@ from world import log
 YEAR, SEASON_DAYS = era2.YEAR, era2.SEASON_DAYS
 CARD = "H12-01"  # 札「川の力で粉をひく輪」
 ACT_CANAL, ACT_MILL = "水の道を掘る", "水の輪を建てる"  # 新しい仕事 (world.ACTS7 に足した)
+# 2026-11-15 第 8 部の前の方法の直し 3 (method_fixes_part8.md。part7.md 6. の 4): 「水の輪を建てる」は、直しが残っていれば直し、なければ新しい輪を組む 1 つの仕事だった。
+# 直しの予定が見本でない家に写ると、直しが終わったあとも、その手が新しい輪を組みつづけた (G14 で 5 → 25)。直しだけの仕事「水の輪を直す」を足す
+# (止まっている輪 → この年の直し。直す輪がなければ休む。新しい輪は組まない)。g7.fix8 のあとだけ選べる。「水の輪を建てる」は前のまま (前の答えも同じに動く)
+ACT_MILL_FIX = "水の輪を直す"
 WORKERS = g12.WORKERS
 GRIND_H = 0.25  # 1 人 1 日の分の粉をひく時間 (回す石臼として)【仮定】
 GRIND_ON = True  # 粉ひきの手間 (決まりの村の B1G だけ False にする。本物ではいつも True)
@@ -171,17 +175,36 @@ def can_do(state, act):
         return True
     if act == ACT_MILL:
         return mill_ready(state) or bool(_g(state)["mill"]["mills"])
+    if act == ACT_MILL_FIX:  # 第 8 部の前の直し (g7.fix8) のあと、建った輪があるときだけ
+        return _fix8(state) and bool(_g(state)["mill"]["mills"])
     return False
 
 
+def _fix8(state):
+    import g7
+    return g7.fix8(state)
+
+
+def mill_act_for_repair(state):
+    """お題で「水の輪の直し」に書く仕事の名前: 直し (g7.fix8) のあとは「水の輪を直す」、前は「水の輪を建てる」(前のまま)"""
+    return ACT_MILL_FIX if can_do(state, ACT_MILL_FIX) else ACT_MILL
+
+
+def repair_left(state):
+    """いま「水の輪を直す」でできる直しの人日 (止まっている輪を動かす分 + この年の回っている輪の直しの残り。読むだけ)"""
+    return round(sum(max(0.0, MILL_REPAIR - x.get("fix", 0)) for x in _g(state)["mill"]["mills"] if x.get("stopped")) + _mill_due(state), 2)
+
+
 def acts(state):
-    return [a for a in (ACT_CANAL, ACT_MILL) if can_do(state, a)]
+    return [a for a in (ACT_CANAL, ACT_MILL, ACT_MILL_FIX) if can_do(state, a)]
 
 
 def rest_why(state, name, act):
     """水の仕事を「休む」に変えたわけ (村の人に見せる短い文)。入る日からいつも残す"""
     if act == ACT_MILL and not can_do(state, act):
         return (f"{name} は、村でまだ水の輪を建てられないので、休んだ (「{_card_name()}」[{CARD}] を試して、できるようになってから建てられる)")
+    if act == ACT_MILL_FIX and _fix8(state) and not can_do(state, act):
+        return f"{name} は、村にまだ水の輪がないので、直せずに休んだ (輪を建てるのは「{ACT_MILL}」)"
     return None
 
 
@@ -234,7 +257,8 @@ def plan_year(state):
     if "g14" in state["era2"]["g7"]:
         import g14
         return g14.plan_year(state)
-    return _y(state)
+    import g7
+    return g7.plan_year(state)  # 直し (g7.fix8) の前は _y と同じ (前のまま)
 
 
 def work_day(state, p, t, act):
@@ -253,8 +277,15 @@ def work_day(state, p, t, act):
         return
     m = g["mill"]
     rate = MILL_KNOW if knower(state, name) else 1.0
-    m["by"][name] = round(m["by"].get(name, 0) + rate, 2)
     y = str(D // YEAR)
+    if act == ACT_MILL_FIX and not any(x.get("stopped") for x in m["mills"]) and _mill_due(state) <= 0:  # 直しだけの仕事: 直す輪がなければ休む (新しい輪は組まない)
+        why = f"{name} は、この年に直す水の輪がもうないので、休んだ (新しい輪を組むのは「{ACT_MILL}」)"
+        t.setdefault("events", []).append(log(state, "休む", name, why, rest_why=act))
+        if not any(f["who"] == name and f["what"] == act and f["day"] // SEASON_DAYS == D // SEASON_DAYS for f in g["fails"]):
+            _fail(state, name, act, why, log_it=False)
+        return
+    if act == ACT_MILL:  # 直しだけの仕事の人は、新しい輪を建てた人に数えない
+        m["by"][name] = round(m["by"].get(name, 0) + rate, 2)
     stopped = [x for x in m["mills"] if x.get("stopped")]
     if stopped:
         x = stopped[0]
@@ -264,11 +295,11 @@ def work_day(state, p, t, act):
             x["stopped"], x["fix"] = None, 0
             m["repair"][y] = round(m["repair"].get(y, 0.0) + MILL_REPAIR, 2)
             log(state, "水", None, f"止まっていた水の輪 ({x['id']}) が直って、また回りはじめた", mill=x["id"])
-        t.setdefault("events", []).append(log(state, ACT_MILL, name, txt, mill=x["id"]))
+        t.setdefault("events", []).append(log(state, act, name, txt, mill=x["id"]))
         return
-    if _mill_due(state) > 0 or not mill_ready(state):
+    if _mill_due(state) > 0 or not mill_ready(state) or act == ACT_MILL_FIX:
         m["repair"][y] = round(m["repair"].get(y, 0.0) + rate, 2)
-        t.setdefault("events", []).append(log(state, ACT_MILL, name, f"{name} が、川の水の輪の羽と軸を直した", repair=True))
+        t.setdefault("events", []).append(log(state, act, name, f"{name} が、川の水の輪の羽と軸を直した", repair=True))
         return
     m["work"] = round(m["work"] + rate, 2)
     t.setdefault("events", []).append(log(state, ACT_MILL, name, f"{name} が、川に新しい水の輪を組んだ (あと 約 {max(0, round(MILL_DAYS - m['work']))} 人日)",
@@ -392,7 +423,7 @@ def _year_end(state):
     for x in old[keep:]:
         x["stopped"], x["fix"] = D, 0
         _fail(state, None, ACT_MILL, f"水の輪 ({x['id']}) は、{y}年に直す手 ({MILL_REPAIR} 人日) がなかったので、羽と軸がいたんで止まった "
-              f"(主な仕事を「{ACT_MILL}」にして {MILL_REPAIR} 人日直せば、また回る)")
+              f"(主な仕事を「{mill_act_for_repair(state)}」にして {MILL_REPAIR} 人日直せば、また回る)")
     my = m["year"].get(ys) or {}
     if my.get("days", 0) >= C1_DAYS and my.get("need") and my["milled"] / my["need"] >= C1_SHARE:
         _cond(state, "c1", D, f"{y}年に水の輪が {my['days']} 日回り、村の粉ひきの {round(100 * my['milled'] / my['need'])}% を引き受けた")
@@ -545,7 +576,8 @@ def _chose(state, real):
         if not isinstance(a, dict):
             continue
         txt = json.dumps({x: a.get(x) for x in ("year", "job", "family")}, ensure_ascii=False)
-        if ACT_CANAL in txt or ACT_MILL in txt or CARD in txt or WORKERS in json.dumps(a.get("pact"), ensure_ascii=False):
+        if (ACT_CANAL in txt or ACT_MILL in txt or CARD in txt or WORKERS in json.dumps(a.get("pact"), ensure_ascii=False)
+                or (ACT_MILL_FIX in txt and _fix8(state))):  # 直しだけの仕事も選んだに数える (第 8 部の前の直し 3 のあとだけ)
             k += 1
     return k
 
@@ -858,6 +890,9 @@ def field_rows(state, year=False):
         rows.append(f"   水の輪: 主な仕事を「{ACT_MILL}」にできる (大人ならだれでも)")
     elif CARD in hints.open_techs(state):
         rows.append(f"   水の輪を試す: 主な仕事を「試す」にして try に \"{CARD}\" (話を知っている人と、その人と同じ季節に with に名前を書く人)")
+    if can_do(state, ACT_MILL_FIX):  # 第 8 部の前の直し 3 (g7.fix8 のあと)
+        rows.append(f"   水の輪を直す: 主な仕事を「{ACT_MILL_FIX}」にすると、止まっている輪と、この年の回っている輪の直しだけをする (新しい輪は組まない。直す輪がなければ休む)。"
+                    f"「{ACT_MILL}」は前のとおり、直しが残っていれば先に直し、なければ新しい輪を組む")
     rows.append(f'   約束の働き手: pact の take に {{"{WORKERS}": [人, 日]}} も書ける (刈り入れの季節は刈り、ほかの日は水の道を掘る)')
     return rows
 

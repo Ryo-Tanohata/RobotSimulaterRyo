@@ -472,6 +472,16 @@ def field_rows(state):
     return rows
 
 
+# 答えの形 (JSON) の欄の宣言 (第 8 部の前の直し 2。g7.answer_fields・tools/prompt_check.py が読む): 欄の名前 → 空の中身。answer_fields は、いまお題がその欄を書けと言っているもの
+ANSWER_FIELDS = {"metal": "null", "far": "{}", "far_write": "null"}
+
+
+def answer_fields(state):
+    g = _g(state)
+    return ((["metal"] if tools(state) else []) + (["far"] if g["offers"] else [])
+            + (["far_write"] if g["offers"] and ((state["era2"].get("g6") or {}).get("open") or {}).get("板") else []))
+
+
 def fields_json(state):
     g = _g(state)
     return ((' "metal": null,' if tools(state) else "") + ((' "far": {' + ", ".join(f'"{o["id"]}": "..."' for o in g["offers"]) + "},") if g["offers"] else "")
