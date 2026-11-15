@@ -990,6 +990,11 @@ def ws_line(state, name):
             rows.append(f"  作業場 {mid} ({w['tool']}): 使える{'' if not (m or {}).get('stopped') else ' (いまは止まっている。直すのは「' + g13.ACT_MILL_FIX + '」)'}。"
                         f"去年 8 人の日 {last} 日 (主な仕事「{ACT_WS_WORK}」、place に {mid}。1 日 {WS_CAP} 人まで)")
     tail = f"働くのは主な仕事「{ACT_WS_WORK}」(place に輪の名前。1 日 {WS_CAP} 人まで)"
+    if c or g["ws"]:  # 前に決めておいた直し (下書き 7.1。決まりの村の B1S で e3 が 4 回に 2 回以下だった。G15_check.md 6.): 作業場で働ける家の大人を名前で (数は変えない)
+        h = _house_of(state, name)
+        fam = [p["name"] for p in era2.adults(state) if h and p.get("household") == h][:6]
+        if fam:
+            tail += f"。あなたの家の大人 {'・'.join(fam)} は作業場で働ける"
     if ex:
         rows.append(f"  書き方: \"workshop\": [{_js(ex)}]。{tail}")
     else:

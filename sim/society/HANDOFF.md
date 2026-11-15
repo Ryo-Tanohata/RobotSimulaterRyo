@@ -3,6 +3,76 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-15 G15「水の作業場と燃える石」を作った (本人の言葉「お任せします」。ブランチ g15-impl。本物の村はまだ 193年60日目 = 23219 日目で `HOLD part_end`)
+
+- 下書き `docs/society_phase/G15_design_draft.md` の問い 1〜15 をみな「おすすめ」で決めた: `docs/society_phase/G15_design.md` (決めた所に「おすすめで決めた (2026-11-15)」。下書きからのずれは 8.)。確かめ: `docs/society_phase/G15_check.md`。
+  第 8 部の前の方法の直し (part8-prep。`g7.fix8`・`plan_year`・欄の宣言・写しの記録・「水の輪を直す」・`prompt_check.py`) は、`g7.g15` ができると効く。
+- **本人の希望 (2026-11-15) の「超優秀な人」**: G15 に入る日に、よそから来た大人 1 人 (30 才) が自分の新しい家を立て、その家の答える人になる。役はない。体と働く速さはほかの人と同じ。
+  ちがうのは、読み書きができることと、札「川の力で粉をひく輪」[H12-01] を知っていること (水の輪がまた組めるようになる) だけ。ほかの人のお題ではふつうの新しい人と同じに見える。
+  state には `g7.g15.newcomer` (why「作った人が入れた人 (本人の希望 2026-11-15)」・model "fable") と、年ごとに選んだことと写った家を残す。年報に毎年出す。
+  **名前は オセ78 (男。オセ78の家)**。答えはいちばん強いモデル Fable で書く: ワークフローの args に `"fable": ["オセ78"]` を入れる (`tools/society2_seasons_workflow.js`。args.fable がなければ前と同じ)。
+- 作り: `g15.py` (新)・`g7.py`・`era2.py`・`world.py`・`g13.py`・`hints.py` と `hint_cards_g15.json` (話の札 H14-03〜05)・`yardstick.py`・`records.py`・`grounding.py`・
+  `step.py` (`next_part --decided`・「G15 / …」の行)・`tools/build_records.py`・`tools/build_dashboard.py` と `app/dashboard.html`・`tools/year_report.py` (棒 5 本・作る側が入れた人の節)・
+  `techtree/plan.json` (要素 107)・`tools/lab_village.py` (W15・W15N・8 つの束・`--g15-csv`)・`tools/prompt_check.py` (`--require`・`--base`・`--grow-max`・`--words`)・
+  `tools/test_g7.py` (`T_G15`・`T_G15Prompt`)・`tools/society2_seasons_workflow.js` (`args.fable`)。どれも `g7.g15` があるときだけ働く (G14 までは 1 バイトも同じ。`G15_check.md` 1.)。
+- **G15 に入る手順 (本物の村。いまは 193年60日目 = 23219 日目で `HOLD part_end`。集まりの歩ではないので、お題も答えもない)**:
+  1. 本物の村は止めたまま、g15-impl を本物の村のブランチに入れる (merge)。入れたあと 1 クラス 1 プロセスで `python3.13 sim/society/tools/test_g7.py T_G15` (2 分ほど) と `T_G15Prompt` (30 秒ほど)・`T_Method8`・`T_G14Close`。
+  2. `python3.13 sim/society/step.py who` → `DAY 23219 season True`・`PHASE G14`・`HOLD part_end`・`MEET none`。止まりの文は「第 7 部「帝国のあとと町」の終わり (G14)。第 7 部のまとめ待ち …」のまま。
+  3. **`--decided` なしの `next_part` は断る** (「next_part はできない: G15 (第 8 部) に入るのは、本人の決めのしるし (--decided "<本人の言葉>") があるときだけ (何も変えない)」。終わりのコード 3)。
+     `resume` も打たない。入る (2〜3 分。記録の作り直しをふくむ):
+     ```bash
+     python3.13 sim/society/step.py next_part --decided "お任せします (2026-11-15。G15 の下書きの問いはみなおすすめで)"
+     ```
+     - 出る文 (写しで打ったもの。`SOC_RECORDS=0`):
+       「* フェーズ G15 (近世の農業と農村の手仕事) に入った (193年60日目 (23219 日目)。G7 の史実のずれの直しは 5850 日目から)」
+       「* G15 の世界: G14 のまま (草原を砂地・逃げ場なし・悪い年 0.35・段の数え方 v2・遠くの町の運ぶ人の重み 0.5)。燃える石の層を 北丘12 に置いた (作る側が置いた土地 (G15 の設計 3.3。本物のハブールのあたりに石炭はない))。話の札 3 枚 (H14-03〜05) を足した (札の表 f11cff97f1dd…)。本人の決め: お任せします (2026-11-15。G15 の下書きの問いはみなおすすめで)」
+       「* G15 の新しい人: オセ78 (男・30 才。オセ78の家 を立てた。作った人が入れた人 (本人の希望 2026-11-15)。答えるモデル fable。読み書きできる・札「川の力で粉をひく輪」[H12-01] を知っている → 水の輪を建てられる True)」
+       「* G15 の入る日: 水の輪 25 (回っている 25・粉ひきに残す 2)・作業場にできる輪 23・読める人 オセ78・オネ54・ロワ53・黒い金属の腕のある人 キオ38・ロワ33・答える家 21 人・答える家に足した家 オセ78の家・ハソ3の家・ホタ29の家・リセ42の家」
+       「お題: この季節は集まらない (年の集まりの予定と方針で進む)。次: season」も出る。**新しい人の名前が オセ78 でなかったら、その名前を args.fable に入れる** (state の `g7.g15.newcomer.name`)。
+  4. 確かめ (読むだけ):
+     - `python3.13 sim/society/step.py who` → `DAY 23219 season False`・`PHASE G15`・`HOLD none`・`MEET none`。2 回目の `next_part --decided …` は「一時停止していない」と断る。
+     - `python3.13 -c "import json; g=json.load(open('sim/society/data/state.json'))['era2']['g7']; print(g['part'], g['part_start'], g['part_start15'], g['hints']['cards_log'][-1]['note'], g['g15']['newcomer']['name'], g['g15']['newcomer']['model'], g['g15']['coal']['place'])"`
+       → `8 23219 23219 G15 に入った日: 話の札 3 枚 (H14-03〜05) オセ78 fable 北丘12`。
+     - `python3.13 sim/society/step.py status` に「G14 / 条件」(ならべて測る) と「G15 / 入口: e1 燃える石 まだ / … / 届いた 0 …」「G15 / 作業場と燃える石: …」「G15 / 作る側が入れた人: オセ78 …」の行。
+  5. `python3.13 sim/society/tools/build_tech_tree.py --quiet` (テクノロジーツリーを作り直す。G14 の closures はもうある。G15 には足さない)。
+  6. コミットしてプッシュ (`git add sim/society/data sim/society/app/tech_tree.html`。文は「社会シミュレーション: G15 に入った (193年60日目。第 8 部「工業の入口」。燃える石の層と、作る側が入れた新しい人 オセ78)」)。
+  7. ワークフロー `tools/society2_seasons_workflow.js` を 1 年ずつ:
+     `{"mode": "year", "years": 1, "py": "python3.13", "session": "<URL>", "fable": ["オセ78"]}`。はじめの 2 歩 (23219→23249・23249→23279) は集まらない。
+     **最初の集まりは 193年120日目 (23279 日目。194年の年の集まり)**。写しでそこまで回すと: `who` の `MEET 年`・NAMES 21 人 (最後が オセ78)・FEEL 49 人・COUNCIL N2 N8 N10 N14 N15 N19 だった。
+     answers/day23279/models.json の season に `"オセ78": "fable"` があることを見る。答えを集める前に、お題の確かめ:
+     ```bash
+     python3.13 sim/society/tools/prompt_check.py sim/society/data/prompts/day23279 --require workshop --words g15
+     ```
+     → 「答える人 21 / 短い節 OK 21・なし 0・位置ちがい 0 / 答えの形にない欄 なし / 例の「…」のあるお題 0 / … / 書かない言葉 (g15) なし → OK」(終わりのコード 0)。
+     `step.py` の標準エラーに「!! 答えの形 (JSON) に欄 … がない」が出ないこと。大きさは写しで G14 の短い節のお題より 平均 +1,090・最大 +1,171 バイト (決めは +2.5 KB まで)。
+     - `grep -l "水の作業場と燃える石・続けること: この集まりで" sim/society/data/prompts/day23279/season/*.md | wc -l` → 21。
+     - `grep -c "あなたは水の槌の作業場で教えられる" sim/society/data/prompts/day23279/season/ロワ33.md` → 1。`grep -l "あなたがいる日に、ほかの人が字を習える" …/season/*.md` → オセ78 (読める人の答える人)。
+     - `grep -l "水の作業場・燃える石のことを、家の代表に伝えられる" sim/society/data/prompts/day23279/feeling/*.md | wc -l` → 気持ちの人の数 (写しでは 49)。
+     - `grep -l "作った人が入れた" sim/society/data/prompts/day23279/season/*.md` → なし (ほかの人には、ふつうの新しい人に見える)。
+     1 年ごとに `step.py status` の「G15 / 入口」「G15 / 作業場と燃える石」「G15 / 道の見張り」(選んだ人と workshop を書いた人・例と同じ)・「G15 / 作る側が入れた人」・
+     「G15 / 写しの記録」・「G15 / 報告」を見て、年報 (`tools/year_report.py`。節「作る側が入れた人 (この年に選んだこと・写った家)」) を作る。
+  8. **止める点**:
+     - 1 年 **1,500 万トークン** をこえたら、その年で止めて相談 (ワークフローの側)。
+     - **G15 の最初の相談: 5 年 (198年60日目 = 23819 日目。コードが季節の終わりに `HOLD consult`) か合わせて 6,000 万トークンの早いほう**。そのあとも 5 年か 6,000 万ごと。
+     - **第 8 部の止めて相談する目安: 20 年 (213年60日目 = 25619 日目)**。5 年ごとの相談と重なってコードが止める (`g7.PART_YEARS[8] = 20` も年の終わりに見る)。
+     - 道の見張り: まだ届いていない e1・e3 の道を選べる答える人が 2 年つづけて 0 人 (コードが `HOLD consult`)。
+     - **読める大人が 1 人以下** (季節の終わりにコードが `HOLD consult`。1 人と 0 人で一度ずつ)。
+     - **入口の手前** (e1 燃える石と e3 水の作業場がそろい、3 つめがない。コードが年の終わりに `HOLD consult`。一度だけ)。
+     - **入口 (e1〜e5 のうち 3 つ以上・そのうち 1 つが e1 か e3)。コードが `HOLD entrance`**。`next_part` は受けつけない。`G15.md`・`part8.md`・`society2_overview.md`・動画を作り、その先を本人に聞く。
+     - 仕組みのまちがい / 村の人がみな亡くなる / 本人が止める / ワークフローのエージェントの上限。
+- 決まりの村 (W15 × 7 束・W15N × 1 束 × 種 2 × 10 年。`G15_check.md` 2.): W15 × 7 束 × 種 2 の 14 回: 入口に届いた回はない。寄せた束は e3 2 年目・e1 3 年目で「入口の手前」(3 年目に止めて相談)。e4 は 3 回つづけて上がらなかった。B1S は届かず (前に決めておいた直しを入れた)。W15N は止めた (下の「止めたところ」)。
+- **止めたところ (2026-11-15。本人の「止めて」で、きれいな所で止めた)**:
+  - 済み: コード・試し (T_G15・T_G15Prompt ほか OK)・前の歩のやり直し 10 歩 (みな同じ)・入る日の写しとお題の確かめ・決まりの村 W15 の 14 回 (`docs/research/data/G15_check_runs.csv`・`G15_check_years.csv`)・`G15_design.md`・`G15_check.md`・この項。
+  - 残り: (1) 決まりの村 W15N × G15B1N × 種 1・2 (燃える石なし。とちゅうの写しが /tmp/g15w/lab にあれば、そこから続く。なければ始めから 1 時間ずつ):
+    ```bash
+    PYTHONUTF8=1 python3.13 sim/society/tools/lab_village.py run --data <193年60日目の state.json のあるフォルダ (読むだけ)> --out /tmp/g15w/lab --worlds W15N --bundles G15B1N --seeds 2 --years 10 --procs 2
+    PYTHONUTF8=1 python3.13 sim/society/tools/lab_village.py csv --out /tmp/g15w/lab --g15-csv docs/research/data/G15_check_runs.csv --years-csv docs/research/data/G15_check_years.csv
+    ```
+    (入れ物が止まったときの .lock は古いとみなされる)。結果を `G15_check.md` 2. に足す。(2) test_records を、ほかの重い仕事と別に回す (data/prompts のある checkout で)。
+    (3) 本人に: 何も作らない槌の作業場の日も e3 に数えてよいか (`G15_check.md` 2.3)。(4) そのあとで、上の「G15 に入る手順」(本物の村。merge は本人と決めてから)。
+- 試し: `T_G15` (11)・`T_G15Prompt` (4) ほか OK。前のコードでも落ちる試し: test_g7 の `A_Gate.test_order`・`P_Fixes1023.test_stall_c1_village_level`・`R_CountV2World.test_yardstick_uses_v2`。
+- 前の歩のやり直し (23189→23219 の歩 48ec2817・G14 を閉じた歩 e6aeb930・22559・22319・21719・21419・21359・20279・19559・17069) はみな 1 バイトも同じ (`G15_check.md` 1.)。
+
 ## 2026-11-15 第 8 部の前の方法の直し (ブランチ part8-prep。トークン 0。本物の村は G15 に入るまで何も変わらない)
 
 - 本人の決め「先に方法を直してから G15 の下書きを見せる」(`part7.md` 10. の B) の、コードの直し。くわしくは `docs/society_phase/method_fixes_part8.md`。G15 の下書きは別の作業。
