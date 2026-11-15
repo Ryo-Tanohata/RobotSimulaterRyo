@@ -99,6 +99,16 @@ def _g14_on(state):
     return "g14" in (state["era2"].get("g7") or {})
 
 
+def _g15m():
+    """G15 (水の作業場と燃える石) の仕組み (g15.py)。呼ぶのは G15 の F を見るときと、state に g7.g15 があるときだけ (G14 までは読みこみもしない)"""
+    import g15
+    return g15
+
+
+def _g15_on(state):
+    return "g15" in (state["era2"].get("g7") or {})
+
+
 def _g7m():
     """G7 (王と役所) から働く仕組み (g7.py。docs/society_phase/G7_design.md)。g7.py が era2 を読みこむので、関数の中で読みこむ。
     呼ぶのは state["era2"] に "g7" があるとき (G7 に入ったあと) だけ。だから G6 までは読みこみもしない"""
@@ -509,6 +519,8 @@ def _day(state):
         g7.evening_cost(state, reaped)  # 直し A1a: 夕方に木から取った・刈った時間を、次の日の働く時間から引き、疲れを足す
     if g7 and _g13_on(state):  # G13 (2026-11-12): 粉ひきの手間 (水の輪がひいた分は引かない) を、次の日の家の大人の働く時間から引く (G12 までは何もしない)
         _g13m().evening(state)
+    if g7 and _g15_on(state):  # G15 (2026-11-15): 石のかまどの家が燃える石を燃やす・火と力の帳簿の 1 日 (G14 までは何もしない)
+        _g15m().evening(state)
     if state["stats"] and kids_ate:  # 子が食べた量も、その日の食べた量に数える
         s = state["stats"][-1]
         s["eaten"] += kids_ate["total"]
@@ -748,7 +760,8 @@ def _build_house(state, p, t):
         x, y = _house_site(state, h)
         v = homes[h] = {"x": x, "y": y, "start": state["day"], "built": None, "size": 0, "work": 0.0, "sizes": []}
     before = v["work"]
-    v["work"] = round(before + t.get("work_h", 6) * (0.6 + 0.4 * p["skills"].get("道具", 0.1)), 2)
+    boost = _g15m().plank_rate(state) if "g7" in state["era2"] and _g15_on(state) else 1  # G15 (2026-11-15): 村の倉の板を 1 束使うと倍はかどる (G14 までは 1 のまま)
+    v["work"] = round(before + t.get("work_h", 6) * (0.6 + 0.4 * p["skills"].get("道具", 0.1)) * boost, 2)
     p["skills"]["道具"] = round(min(1, p["skills"].get("道具", 0.1) + 0.02), 3)
     if v["built"] is None:
         if v["work"] >= HOUSE_HOURS:
@@ -2901,7 +2914,7 @@ def _feeling_prompt(state, p, first):
 
 ## あなたの家族 ({p.get('household')})
 村の大人が {REP_FROM} 人をこえたので、季節の集まりでは家族ごとに、いちばん年上の大人が代表して答える。{f'{p.get("household")} の代表は {rep}。' if rep else ''}代表が、家族の大人の仕事・掟の投票・よそから来た人の受け入れを決める。あなたは代表ではないので、仕事は決めない。
-{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}{_g10m().feel_note(state, p) if g7 and _g10_on(state) else ""}{_g11m().feel_note(state, p) if g7 and _g11_on(state) else ""}{_g12m().feel_note(state, p) if g7 and _g12_on(state) else ""}{_g13m().feel_note(state, p) if g7 and _g13_on(state) else ""}{_g14m().feel_note(state, p) if g7 and _g14_on(state) else ""}
+{chr(10).join(rows) if rows else '- (ほかの家族はいない)'}{_g10m().feel_note(state, p) if g7 and _g10_on(state) else ""}{_g11m().feel_note(state, p) if g7 and _g11_on(state) else ""}{_g12m().feel_note(state, p) if g7 and _g12_on(state) else ""}{_g13m().feel_note(state, p) if g7 and _g13_on(state) else ""}{_g14m().feel_note(state, p) if g7 and _g14_on(state) else ""}{_g15m().feel_note(state, p) if g7 and _g15_on(state) else ""}
 
 ## いま
 {state["day"] + 1} 日目、{sea}。{g7.meeting_word(state) if g7 else "季節のはじめの集まり"}。あなたが答えるのは次の 2 つだけ。
@@ -3098,10 +3111,16 @@ CRITERIA["G14"] = ("年の終わりに、家の大人の働いた日の半分以
                    "暦の 1 年に、書きつけのとおり村に草の種を払った集落が 3 つ以上の年が 2 回 と、3 人以上・2 家以上で 1 年 90 人日以上の仲間がある年が 2 年つづく、"
                    "の 3 つに、一度でも届く (どれが先でもよい)",
                    lambda i: bool(i.get("g14_c1_day")) and bool(i.get("g14_c2_day")) and bool(i.get("g14_c3_day")))
-ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13", "G14"]
+# G15 (2026-11-15 本人の言葉「お任せします」。docs/society_phase/G15_design.md): 「近世の農業と農村の手仕事」(第 8 部「工業の入口」のただ 1 つの G)。
+#   計画の入口の 5 つと「3 つ以上・そのうち 1 つが e1 か e3」をそのまま、この村の帳簿で測る (水の作業場と燃える石)。届いた日は g15.py の物差しが残す。G14 の条件は「ならべて測る」
+CRITERIA["G15"] = ("燃える石の熱が火と力の半分以上の年が 2 年つづく / 食べ物の仕事が地域の働いた日の半分未満 / 1 つの水の作業場で 3 家以上の大人 8 人以上が同じ日に働いた日が "
+                   "1 年に 30 日の年が 2 年つづく / 1 人あたりの作ったものの 3 年の平均が 3 回つづけて上がる / 火と力が 1 人 1 日 3 万 kcal をこえる、の 5 つのうち 3 つ以上に一度でも届き、"
+                   "そのうち 1 つが燃える石か水の作業場 (工業の入口)",
+                   lambda i: sum(1 for k in ("e1", "e2", "e3", "e4", "e5") if i.get(f"g15_{k}_day")) >= 3 and bool(i.get("g15_e1_day") or i.get("g15_e3_day")))
+ORDER2 = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13", "G14", "G15"]
 NAMES2 = {"G1": "村ができる", "G2": "畑と家畜", "G3": "余りと分業", "G4": "持ち物と差", "G5": "リーダーと決まり", "G6": "交易・町・記録",
           "G7": "王と役所", "G8": "外からの押し", "G9": "遠くとの商い", "G10": "鉄と広い国", "G11": "お金と市場", "G12": "大きな都と帝国",
-          "G13": "帝国のあとの農業社会", "G14": "町と商業"}
+          "G13": "帝国のあとの農業社会", "G14": "町と商業", "G15": "近世の農業と農村の手仕事"}
 assert set(CRITERIA) <= set(ORDER2) and set(NAMES2) == set(ORDER2), "CRITERIA・NAMES2 の G は ORDER2 に入れる (入れないと era_at_least が黙って False になる)"
 # 部の終わりの G (第 N 部)。G6 の終わりは第 4 部の終わり。いちばん後の G の終わりは工業の入口 (止めて相談する。next_part は受けつけない)。G7・G8 は部の終わりではない
 #   2026-10-25: G8 に「外からの押し」を入れたので、もとの計画の G8〜G14 を 1 つずつずらした (G9 = 遠くとの商い … G15 = 工業の入口の前)
@@ -3168,6 +3187,11 @@ SUBSTEPS["G14"] = [("F1", "はじめて市へ運んだ", lambda s: _g14m().reach
                    ("F2", "はじめての書きつけ", lambda s: _g14m().reached(s, "F2")),
                    ("F3", "はじめての仲間", lambda s: _g14m().reached(s, "F3")),
                    ("F4", "はじめての町の家", lambda s: _g14m().reached(s, "F4"))]
+# G15 の F (2026-11-15 本人の言葉「お任せします」(おすすめどおり)。届いたかは g15.py の物差しが決める。G15 に入ってから見る)
+SUBSTEPS["G15"] = [("F1", "はじめての水の作業場", lambda s: _g15m().reached(s, "F1")),
+                   ("F2", "はじめての燃える石", lambda s: _g15m().reached(s, "F2")),
+                   ("F3", "はじめての作業場の年", lambda s: _g15m().reached(s, "F3")),
+                   ("F4", "読める大人が 1 割", lambda s: _g15m().reached(s, "F4"))]
 # G1・G2 の F は、この仕組みを作る前に終わっていたので、記録 (出来事) から日を決めた (2026-10-08。G1_notes.md・G2_notes.md)
 RETRO_SUBSTEPS = [
     {"g": "G1", "f": "F1", "name": "畑を始める", "day": 510, "why": "セナとウィロが初めて畑に草の種をまいた"},
@@ -3309,7 +3333,8 @@ YEAR_EVENTS = ("フェーズ", "区切り", "段階", "分かれる", "死", "�
                "市",  # G11 から (2026-11-05。市の日。G10 までは起きない)
                "倉",  # G12 から (2026-11-10)
                "水",  # G13 から (2026-11-12)
-               "町と市", "書きつけ", "仲間")  # G14 から (2026-11-14。町と市と仲間。G13 までは起きない)。下の注は前の行の分: G13 から (2026-11-12。水の道・水の輪・粉ひき。G12 までは起きない)。下の注は前の行の分: G12 から (2026-11-10。倉の約束・倉から助ける・刈り手。G11 までは起きない)  # G11 から (2026-11-05。市の日。G10 までは起きない)  # G7 から (4.C.8・4.F・2026-10-23 の share。どれも G6 までは起きない)
+               "町と市", "書きつけ", "仲間",  # G14 から (2026-11-14)
+               "水の作業場", "燃える石")  # G15 から (2026-11-15。水の作業場と燃える石。G14 までは起きない)。下の注は前の行の分: G14 から (2026-11-14。町と市と仲間。G13 までは起きない)。下の注は前の行の分: G13 から (2026-11-12。水の道・水の輪・粉ひき。G12 までは起きない)。下の注は前の行の分: G12 から (2026-11-10。倉の約束・倉から助ける・刈り手。G11 までは起きない)  # G11 から (2026-11-05。市の日。G10 までは起きない)  # G7 から (4.C.8・4.F・2026-10-23 の share。どれも G6 までは起きない)
 YEAR_DIGEST_MAX = 15
 STOP_WORDS = ("フェーズが", "Society 2.0 が終わった")  # ワークフローが止まる文と重なる名前は読まない (step.py が出来事を表示するため)
 
@@ -3902,7 +3927,7 @@ def _season_prompt(state, p, first):
 {_year_names_text(state)}{_g5_text(state)}{_g6_text(state)}{_g7_text(state, p)}{vis}{_year_end_text(state)}
 ## いま
 {state["day"] + 1} 日目、{sea}。これから {SEASON_DAYS - (state["day"] + 1) % SEASON_DAYS} 日 (この季節の終わりまで) の仕事を決める集まり (途中で村の蓄えが尽きて、ひどく空腹の人が出たら、そこで集まり直す)。{g7.zoom_line(state) if g7 else ""}
-{(_g14m().prompt_block(state, p) if _g14_on(state) else _g13m().prompt_block(state, p) if _g13_on(state) else _g12m().prompt_block(state, p)) if g7 and _g12_on(state) else ""}1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
+{(_g15m().prompt_block(state, p) if _g15_on(state) else _g14m().prompt_block(state, p) if _g14_on(state) else _g13m().prompt_block(state, p) if _g13_on(state) else _g12m().prompt_block(state, p)) if g7 and _g12_on(state) else ""}1. 話したいことがあれば話す (0〜2 つ。相手は仲間の名前か「みんな」)。前と同じ言い回しをくり返さず、あなたらしい言葉で
 2. この季節の主な仕事を決める (job)。仕事は {' / '.join(acts2(state))} から 1 つ、場所は下の一覧の id から 1 つ、一緒に行きたい人 ({'、'.join(names) or 'なし'}) がいれば書く
    畑仕事 (草取り・刈り入れ) は camp で行う
    ヤギの世話は camp で行う。ヤギを捕まえるは、野生のヤギのいる場所で行う
