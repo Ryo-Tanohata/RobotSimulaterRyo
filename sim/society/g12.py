@@ -226,6 +226,29 @@ def cap_left(state):
     return max(0, a), f"この年に倉から出せるのは、年のはじめの倉の 1 割 ({int(base * CAP_SHARE)} つかみ) までなので"
 
 
+def _plan_y(state):
+    import g7
+    return g7.plan_year(state)
+
+
+def _year_word(state, y):
+    """お題の年のことば: 直し (g7.fix8) の前は「この年」(前のまま)。直しのあとは、今の年なら「この年」、年の集まりで次の年なら「{y}年 (次の年)」"""
+    return "この年" if y == _y(state) else f"{y}年 (次の年)"
+
+
+def cap_phrase(state, left, why=None):
+    """お題の「倉から出せる」の言い方 (読むだけ。state は変えない)。help はこの集まりの日に出すので、出せるのは今の暦の年の残り (cap_left のまま)。
+    第 8 部の前の直し (g7.fix8) のあと、年の集まり (答えが効くのが次の年) では、それが終わる年の分だと書き、次の年の上限の見込みもそえる (part7.md 6. の 1)。
+    why があれば「もう出せない」の言い方。直しの前と、年の集まりでないときは、前と 1 字も同じ"""
+    y, py = _y(state), _plan_y(state)
+    if py == y:
+        return f"この年は倉からもう出せない ({why})" if why is not None else f"この年に倉から出せるのは、あと 草の種 {left} つかみ"
+    nxt = f"{py}年は、年のはじめの倉の 1 割 (いまなら 約 {int(_grain_have(state) * CAP_SHARE)} つかみ) まで"
+    if why is not None:
+        return f"この集まりの help では倉からもう出せない ({y}年の分。{why})。{nxt}"
+    return f"この集まりの help で倉から出せるのは、あと 草の種 {left} つかみ ({y}年の分。{nxt})"
+
+
 def _active(p):
     return bool(p) and p.get("status") == "続く"
 
@@ -1029,7 +1052,7 @@ def text(state, p):
     left, _ = cap_left(state)
     rows = [f"- 村の倉: 草の種 {_grain_have(state)} つかみ (いまの人数で 約 {era2.store_days(state)} 日分)。"
             + (f"去年、虫やネズミに 約 {g['pests'][str(y - 1)]} つかみ食べられた。" if g["pests"].get(str(y - 1)) else "")
-            + f"この年に倉から出せるのは、あと 草の種 {left} つかみ"]
+            + cap_phrase(state, left)]
     pf = prompt_fixed(state)
     if pf:
         rows.append("- いま苦しい村・倉の約束を受けてくれそうな村・あなたがこの集まりでできることは、下の「## いま」の答えの並びのすぐ前に書いた")
@@ -1059,10 +1082,11 @@ def text(state, p):
     goats = len(state["era2"]["goats"])
     rows.append(f"- ヤギ: {goats} 頭 (村のヤギは、苦しい村に渡すこともできる)")
     rd = g10.readers(state)
-    cen = g["census"].get(str(y)) or {}
+    py = _plan_y(state)  # 第 8 部の前の直し (g7.fix8) のあとは、集まりの答えが効く年の帳 (年の集まりなら次の年。まだ書いていない)。前は y のまま
+    cen = g["census"].get(str(py)) or {}
     prev = g["census"].get(str(y - 1)) or {}
     rows.append(f"- 字を読み書きできる人: {'・'.join(rd) or 'いない'}" + (f" (主な仕事を「{ACT_CENSUS}」にできる)" if rd else " (帳をつけられる人がいない)")
-                + (f"。帳: この年 {len(cen.get('houses', []))} / {len(era2._homes(state))} 家を書いた" + ("・そろった" if cen.get("done") else "") if cen else "。帳: この年はまだ書いていない"))
+                + (f"。帳: {_year_word(state, py)} {len(cen.get('houses', []))} / {len(era2._homes(state))} 家を書いた" + ("・そろった" if cen.get("done") else "") if cen else f"。帳: {_year_word(state, py)}はまだ書いていない"))
     if prev.get("done"):
         ppl = prev.get("people") or {}
         top = sorted(ppl.items(), key=lambda kv: (-kv[1], kv[0]))[:12]
@@ -1167,10 +1191,10 @@ def prompt_block(state, p, compact=False):
     nd = needy(state)
     if nd and left > 0:
         rows.append("- 倉から助ける (help): いま苦しい村は " + "・".join(f"[{o['id']}] {o['name']} ({o['people']} 人)" for o in nd)
-                    + f"。この年に倉から出せるのは、あと 草の種 {left} つかみ。苦しい村だけが受ける。"
+                    + f"。{cap_phrase(state, left)}。苦しい村だけが受ける。"
                     f"例: \"help\": [{_js({'to': nd[0]['id'], GRAIN: min(2000, left)})}] (貸すなら \"lend\": 0.1 をそえる)")
     elif nd:
-        rows.append(f"- 倉から助ける (help): いま苦しい村はあるが、この年は倉からもう出せない ({why})")
+        rows.append(f"- 倉から助ける (help): いま苦しい村はあるが、{cap_phrase(state, 0, why)}")
     else:
         rows.append("- 倉から助ける (help): いま苦しい村はない (苦しくない村は受けない)")
     rd = g10.readers(state)
@@ -1207,7 +1231,7 @@ def _compact_rows(state, p):
             " (中身と村のようすは「## 倉と約束と帳」、書き方は欄の説明)"]
     nd = needy(state)
     rows.append("- 倉から助ける (help): " + (("いま苦しい村 " + "・".join(f"[{o['id']}] {o['name']}" for o in nd)
-                                              + (f"。この年に倉から出せるのは、あと 草の種 {left} つかみ" if left > 0 else f"。この年は倉からもう出せない ({why})"))
+                                              + (f"。{cap_phrase(state, left)}" if left > 0 else f"。{cap_phrase(state, 0, why)}"))
                                              if nd else "いま苦しい村はない"))
     rd = g10.readers(state)
     fam = _house_readers(state, p["name"])
@@ -1240,6 +1264,14 @@ def field_rows(state, year=False):
                 'やめるなら {"to": "N13", "end": true}。決めないなら [])')
     rows.append('   倉から助ける: help に [{"to": "N13", "草の種": 2000}] のように書く ("ヤギ"・"黒い金属の鎌" も書ける。貸すなら "lend": 0.1 をそえる。決めないなら [])')
     return rows
+
+
+# 答えの形 (JSON) の欄の宣言 (第 8 部の前の直し 2。g7.answer_fields・tools/prompt_check.py が読む): 欄の名前 → 空の中身。answer_fields は、いまお題がその欄を書けと言っているもの
+ANSWER_FIELDS = {"pact": "[]", "help": "[]"}
+
+
+def answer_fields(state):
+    return ["pact", "help"]
 
 
 def fields_json(state):

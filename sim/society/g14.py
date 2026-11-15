@@ -33,7 +33,7 @@ GRAIN, POT, SICKLE = "草の種", "土器", "鎌"
 GOODS = (POT, SICKLE)  # 市へ運ぶ・書きつけで渡す物 (村の倉の土器と鎌。黒い金属の鎌は道具として使っているので運ばない)
 # 食べ物でない仕事 (問い 4 のおすすめ。記録をつける (G6 の帳) と交換に行く (G6 の商い) も、帳・市へ運ぶと同じ側に数える)。ほかの仕事は食べ物の側 (水の道を掘るも)
 NONFOOD = ("土器づくり", "道具づくり", "黒い金属を作る", "印のかたまりを作る", "住まいを建てる", "水の輪を建てる", "帳をつける", "記録をつける", "試す", "字を習う",
-           ACT_MARKET, "交換に行く")
+           ACT_MARKET, "交換に行く", "水の輪を直す")  # 最後は第 8 部の前の直し 3 (g7.fix8 のあとだけ選べる。水の輪を建てると同じ側)
 REST = ("休む", "休む (けが)")  # 働いた日に数えない
 GUILD_JOBS = ("土器づくり", "道具づくり", "黒い金属を作る", ACT_MARKET)  # 仲間を結べる仕事
 GOOD_OF_JOB = {"土器づくり": POT, "道具づくり": SICKLE}  # 仲間のねうちが効く品
@@ -102,7 +102,10 @@ def mark_keep_fix(state, why):
 
 def plan_year(state):
     """集まりの答えが効く年: 直しのあとは次の日の年 ((日 + 1) // 120。年の集まりなら次の年、ほかの集まりでは今の年と同じ)。直しの前は今の年 (前のまま)"""
-    return (state["day"] + 1) // YEAR if keep_fixed(state) else state["day"] // YEAR
+    if keep_fixed(state):
+        return (state["day"] + 1) // YEAR
+    import g7
+    return g7.plan_year(state)  # 第 8 部の前の直し (g7.fix8) のあとも答えが効く年。直しの前は前のまま 日 // 120
 
 
 def _y(state):
@@ -249,10 +252,31 @@ def wants(state, o, going=False):
     return out
 
 
+_VIEW_YEAR = None  # お題を書くあいだだけ: 払える草の種を数える年 (plan_view。ふだんは None で、今の暦の年)
+
+
+class plan_view:
+    """お題の「市へ運ぶ」の行を書くあいだ、払える草の種を、集まりの答えが効く年で数える (第 8 部の前の直し g7.fix8 のあとだけ。読むだけ)。
+    年の集まりでは、運ぶのは次の年なので、終わる年にもう払いきった村も、次の年には払える (part7.md 6. の 1 と同じ形のずれ)。直しの前は何もしない"""
+    def __init__(self, state):
+        import g7
+        self.y = g7.plan_year(state) if g7.fix8(state) else None
+
+    def __enter__(self):
+        global _VIEW_YEAR
+        self.old, _VIEW_YEAR = _VIEW_YEAR, self.y
+        return self
+
+    def __exit__(self, *a):
+        global _VIEW_YEAR
+        _VIEW_YEAR = self.old
+        return False
+
+
 def _pay_left(state, o, going=False):
     """この暦の年に、その集落が市へ運んだ品に、まだ払える草の種 (その集落の草の種の 2 割まで)。going なら、運んでいる途中の分のねうちも引く"""
     g = _g(state)
-    paid = (g["market"]["paid"].get(str(_y(state))) or {}).get(o["id"], 0)
+    paid = (g["market"]["paid"].get(str(_VIEW_YEAR if _VIEW_YEAR is not None else _y(state))) or {}).get(o["id"], 0)
     left = max(0, int(MARKET_SHARE * (o.get("grain", 0) + paid)) - paid)
     if going:
         for tr in g["market"]["trips"].values():
@@ -1167,7 +1191,8 @@ def prompt_block(state, p):
     rows.append(f"- 町の家: あなたの家 ({h}) の大人が前の 1 年に働いた日のうち、食べ物でない仕事 ({NONFOOD_WORDS}) は {sh} 割"
                 + (f" (半分にはあと 約 {to_town(nf, w)} 人日)" if w and nf * 2 < w else "") + "。半分をこえると「町の家」になる。家の大人の仕事は family で決める")
     if prompt_fixed(state):
-        rows.append(market_line(state))
+        with plan_view(state):
+            rows.append(market_line(state))
     else:
         rows.append(f"- 市へ運ぶ: 主な仕事を「{ACT_MARKET}」(to に村の番号) にすると、村の倉の土器と鎌を、ほしがっている村に運んで、草の種を受けて帰る。"
                     f"いまほしがっている村: {_want_text(state)}")
@@ -1321,6 +1346,15 @@ def guild_line(state, name, oj):
             + (f" (ねうち 1.1 なら、市へ運ぶ・書きつけで {good} 1 つ = 草の種 {round(era2.VALUE[good] * 1.1)} つかみ。いまは {era2.VALUE[good]})" if good else ""))
 
 
+# 答えの形 (JSON) の欄の宣言 (第 8 部の前の直し 2。g7.answer_fields・tools/prompt_check.py が読む): 欄の名前 → 空の中身。answer_fields は、いまお題がその欄を書けと言っているもの (短い節は入る日から note・guild を書けと言う。
+#   お題の直し (G14_PROMPT_FROM) の前は答えの形に欄がなかったので、その日の前のお題では、この確かめは「欄がない」と言う。それが第 7 部の学び 2)
+ANSWER_FIELDS = {"note": "[]", "guild": "null"}
+
+
+def answer_fields(state):
+    return ["note", "guild"]
+
+
 def fields_json(state):
     """答えの形 (JSON) の欄 (直しのあとだけ。pact・help の後ろ)"""
     return ' "note": [], "guild": null,' if prompt_fixed(state) else ""
@@ -1344,7 +1378,7 @@ def keep_line(state, p):
         mill = f"水の輪の直し あと {due} 人日 ({stop})" if due else f"水の輪の直し: {stop}"
     else:
         mill = f"水の輪の直し あと {due} 人日" + (f" (止まっている輪 {len(st)})" if st else "")
-    return (f"- 続けること: {mill} (主な仕事「{g13.ACT_MILL}」)・"
+    return (f"- 続けること: {mill} (主な仕事「{g13.mill_act_for_repair(state)}」)・"
             f"水の道の手入れ あと {need} 人日 (「{g13.ACT_CANAL}」)。倉の約束 {act}・いま苦しい村 {'・'.join(o['id'] for o in nd) or 'なし'}・"
             f"帳は読める人が「{g12.ACT_CENSUS}」" + (f" ({'・'.join(fam)})" if fam else ""))
 
@@ -1362,7 +1396,10 @@ def progress_lines(state):
         out.append(f"- 書きつけ: 届いた ({g['c']['c2']} 日目)")
     else:
         nt = g["notes"]["year"].get(str(y)) or g["notes"]["year"].get(str(y - 1)) or {}
-        out.append(f"- 書きつけ: 書いたとおり払った村は、{'この年 ' + str(len(set(nt.get('paid') or []))) if nt else 'G14 に入ってからまだ 0'}"
+        import g7
+        ny = y if g["notes"]["year"].get(str(y)) else y - 1
+        lab = (f"{ny}年 " if g7.fix8(state) and g7.plan_year(state) != ny else "この年 ")  # 第 8 部の前の直しのあと: 答えが効く年でない年の数は、年の名前で書く
+        out.append(f"- 書きつけ: 書いたとおり払った村は、{lab + str(len(set(nt.get('paid') or []))) if nt else 'G14 に入ってからまだ 0'}"
                    f" (1 年に {C2_PLACES} つ以上の村が払った年が {C2_TIMES} 回で届く。いま {len(g['c2_years'])} 回)")
     if "c3" in g["c"]:
         out.append(f"- 仲間: 届いた ({g['c']['c3']} 日目)")

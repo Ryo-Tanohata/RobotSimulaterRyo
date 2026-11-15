@@ -51,7 +51,8 @@ ACT_OF_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道
                 "印のかたまりを作る": "印のかたまりを作る",  # G11 から (2026-11-05)
                 "帳をつける": "帳をつける",  # G12 から (2026-11-10)
                 "水の道を掘る": "水の道を掘る", "水の輪を建てる": "水の輪を建てる",  # G13 から (2026-11-12)
-                "市へ運ぶ": "市へ運ぶ"}  # G14 から (2026-11-14)
+                "市へ運ぶ": "市へ運ぶ",  # G14 から (2026-11-14)
+                "水の輪を直す": "水の輪を直す"}  # 第 8 部の前の直し 3 (2026-11-15。g7.fix8 のあと)
 ROLE_TEXT = {"守る": "{n} がキャンプで見張りをした", "取り立てる": "{n} が、取り立てに回る支度をした",
              "戦に出る": "{n} がキャンプで戦の支度をした", "試す": "{n} がキャンプで、よその便りで聞いたことを試した"}
 # お題に出す決まりの文 (era2.FACTS_G7) を出すとき (4.F の 8 の「出すとき」)。下の FACTS_ON (年 1 回の答えの節) で決める
@@ -63,6 +64,42 @@ def _g(state):
 
 def fix(state):
     return era2._fix(state)
+
+
+# ---------------- 第 8 部の前の方法の直し (docs/society_phase/method_fixes_part8.md。2026-11-15) ----------------
+# 第 7 部の学び (part7.md 6.) の 1〜4 を、トークンを使わずに直す。どれも「G15 に入った (g7.g15)」か、「METHOD8_FROM (193年60日目 = 23219 日目) 以後で、
+# 印 g7.method8 がある」ときだけ働く。印は step.py refresh_prompts (mark_method8) か、G15 に入るコードが書く。だから、その日までの歩をやり直しても、
+# state もお題も前と 1 バイトも同じ (G14 の G14_PROMPT_FROM・keep_fix と同じ形)
+METHOD8_FROM = 23219
+LATER_GS = ("g15", "g16", "g17")  # これから足す G の仕組み (ファイルがなければとばす)。ANSWER_FIELDS を読んで、答えの形の欄を自動で足す
+
+
+def fix8(state):
+    """第 8 部の前の方法の直しが効くか: G15 に入ったあとはいつも。その前は METHOD8_FROM 以後で印 g7.method8 があるときだけ"""
+    g = (state.get("era2") or {}).get("g7") or {}
+    return "g15" in g or (state["day"] >= METHOD8_FROM and "method8" in g)
+
+
+def mark_method8(state, why):
+    """refresh_prompts (か G15 に入るコード) から: METHOD8_FROM 以後なら、直しを今の歩から入れたことを g7.method8 に残す (その前なら何もしない)"""
+    g = (state.get("era2") or {}).get("g7")
+    if g is not None and state["day"] >= METHOD8_FROM and "method8" not in g:
+        g["method8"] = {"day": state["day"], "why": why}
+        return True
+    return False
+
+
+def year_label(state, y):
+    """記録の行 (終わった年・今の年の数) の年のことば: 直し (fix8) の前と、答えが効く年と同じ年なら「この年」(前のまま)。
+    年の集まりで答えが効くのが次の年なら「{y}年」(終わる年の記録だと分かるように)"""
+    return "この年" if plan_year(state) == y else f"{y}年"
+
+
+def plan_year(state, day=None):
+    """お題の「この年」: 集まりの答えが効く年 ((日 + 1) // 120。年の集まり (年の最後の日) なら次の年、ほかの集まりでは今の年と同じ)。
+    直し (fix8) の前は今の年 (日 // 120。前のまま)。年を出すお題の行は、みなこれを使う (G14 の続けることの年の直しは g14.plan_year が先に効かせる)"""
+    D = state["day"] if day is None else day
+    return (D + 1) // YEAR if fix8(state) else D // YEAR
 
 
 def _no(o):
@@ -491,7 +528,7 @@ def _g12_on(state):
 
 
 # ---------------- G13「帝国のあとの農業社会」(水と畑と務め。2026-11-12 本人の決め「おすすめどおりで進める」。docs/society_phase/G13_design.md。仕組みは g13.py) ----------------
-ACTS13 = ("水の道を掘る", "水の輪を建てる")  # G13 の仕事 (world.ACTS7 に足した。g13.acts が選べるときだけ出す)
+ACTS13 = ("水の道を掘る", "水の輪を建てる", "水の輪を直す")  # 3 つめは第 8 部の前の直し 3 (2026-11-15。g13.can_do が g7.fix8 のあとだけ選べるとする)。 G13 の仕事 (world.ACTS7 に足した。g13.acts が選べるときだけ出す)
 
 
 def close_g12(state):
@@ -930,8 +967,54 @@ def count_day(state, name, act):
             _g(state).pop("rest_why")
 
 
+GPATH_SKIP = ("守る", "取り立てる", "戦に出る")  # 写しの記録に数えない役の仕事 (G の道の仕事でない)
+GPATH_KEEP = 12  # 写しの記録を state に残す年の数
+
+
+def gpath_kind(src):
+    """g7.src (だれの答えで仕事が決まったか) を、写しの記録の 3 つに分ける: answered (答えた家) / copied (見本から写って動いた家) / rule (決まり・答えなし)"""
+    src = src or ""
+    if src == "見本から広げた":
+        return "copied"
+    if src.startswith(("決まり", "答えなし", "加わった")):
+        return "rule"
+    return "answered"
+
+
+def gpath_day(state, p, act):
+    """第 8 部の前の直し 3 (part7.md 6. の 4): G の道の仕事 (ACTS7 のうち役の仕事でないもの。これから足す G の仕事も) の 1 日を、
+    答えた家・写って動いた家・決まりで動いた家に分けて g7.gpath に残す ({年: {仕事: {answered|copied|rule: {家: 人日}}}})。g7.fix8 のあとだけ (前は何もしない)"""
+    if act in GPATH_SKIP or not fix8(state):
+        return
+    g = _g(state)
+    gp = g.setdefault("gpath", {})
+    y = str(state["day"] // YEAR)
+    row = gp.setdefault(y, {}).setdefault(act, {"answered": {}, "copied": {}, "rule": {}})
+    h = p.get("household") or p["name"]
+    k = gpath_kind((g.get("src") or {}).get(p["name"]))
+    row[k][h] = row[k].get(h, 0) + 1
+    if len(gp) > GPATH_KEEP:
+        for old in sorted(gp, key=int)[:-GPATH_KEEP]:
+            gp.pop(old)
+
+
+def gpath_lines(state, y=None):
+    """写しの記録の行 (step.py status・報告): 仕事ごとに、答えた家と写って動いた家の人日と家の数"""
+    gp = _g(state).get("gpath") or {}
+    if not gp:
+        return []
+    y = str(y) if y is not None else max(gp, key=int)
+    out = []
+    for act, row in sorted((gp.get(y) or {}).items()):
+        a, c, r = (row.get(k) or {} for k in ("answered", "copied", "rule"))
+        out.append(f"{act}: 答えた家 {sum(a.values())} 人日 ({len(a)} 家)・写って動いた家 {sum(c.values())} 人日 ({len(c)} 家)"
+                   + (f"・決まり {sum(r.values())} 人日 ({len(r)} 家)" if r else ""))
+    return [f"写しの記録 ({y}年): " + " / ".join(out)] if out else []
+
+
 def role_day(state, p, t, act):
     """G7 の役の仕事の 1 日 (守るは見張るだけで、何も作らない。取り立てるは季節の終わりに集める。戦に出るは戦の日に出かける。試すは hints.try_day)"""
+    gpath_day(state, p, act)  # 第 8 部の前の直し 3: 答えた家と写って動いた家を分けて残す (g7.fix8 のあとだけ)
     if act == "試す":
         hints.try_day(state, p, t)
         return
@@ -1454,7 +1537,7 @@ WORK = (("集める", ("採集", "狩り", "探索", "休む", "火おこし", "
         ("作る", ("土器づくり", "道具づくり", "記録をつける", "交換に行く") + ACTS7))  # 仕事の組 (作る・記録・交換・役)
 WORK_TIE = ("作る", "畑", "集める")  # 日数が同じで、代表の仕事でも決まらないとき (まれな立場を先に)
 COPY_IF_DONE = ("交換に行く", "記録をつける", "取り立てる", "守る", "戦に出る")  # 前の年の同じ季節に、その家がしていたときだけまねる (4.A.4 の 2)
-NOT_COMMON = COPY_IF_DONE + ("試す", "黒い金属を作る", "字を習う", "印のかたまりを作る", "帳をつける", "水の道を掘る", "水の輪を建てる", "市へ運ぶ")  # 後ろの 2 つは G10 から (2026-11-04。G9 までは選べない)  # 「いちばん多い仕事」には数えない (行き先・残すもの・札のない仕事。era2._settle_visitors と同じ考え)
+NOT_COMMON = COPY_IF_DONE + ("試す", "黒い金属を作る", "字を習う", "印のかたまりを作る", "帳をつける", "水の道を掘る", "水の輪を建てる", "市へ運ぶ", "水の輪を直す")  # 後ろの 2 つは G10 から (2026-11-04。G9 までは選べない)  # 「いちばん多い仕事」には数えない (行き先・残すもの・札のない仕事。era2._settle_visitors と同じ考え)
 DIGEST_MAX = 40  # 「前の 1 年のこと」の自分の行 (仕事の種類ごとに新しい 3 件まで。4.A.9)
 ZOOM_WHY = {"Z1": "ほかの村から求めが来ている", "Z2": "前の年に、村が戦をした", "Z3": "前の年に、貢いでいた村か、貢いでくる村が崩れた",
             "Z4": f"村の蓄えと家の倉を合わせても、{ZOOM_DAYS} 日分より少ない", "Z5": "村の蓄えが尽きて、集まり直した"}
@@ -2287,7 +2370,65 @@ def fields_json(state, p, solo):
             + (' "leave": false,' if "leave" in on and not solo else "") + (' "share": null,' if "share" in on and not solo else "") + (' "captives": null,' if "captives" in on else "")
             + (' "tribute": {},' if "tribute" in on else "") + (_g9m().fields_json(state) if _g9_on(state) else "")
             + (_g11m().fields_json(state) if _g11_on(state) else "") + (_g12m().fields_json(state) if _g12_on(state) else "")
-            + (_g14m().fields_json(state) if _g14_on(state) else ""))  # G14 のお題の直し (g14.G14_PROMPT_FROM から): note・guild の欄
+            + (_g14m().fields_json(state) if _g14_on(state) else "")  # G14 のお題の直し (g14.G14_PROMPT_FROM から): note・guild の欄
+            + later_fields_json(state))  # G15 から: 新しい G の欄は、その G の ANSWER_FIELDS から自動で足す (第 8 部の前の直し 2。G14 までは空の文字)
+
+
+def later_gs(state):
+    """いま働いている、これから足す G の仕組み (LATER_GS のうち、ファイルがあって on(state) のもの)。G14 までは空"""
+    import importlib
+    out = []
+    for name in LATER_GS:
+        if name not in _g(state):
+            continue
+        try:
+            m = importlib.import_module(name)
+        except ImportError:
+            continue
+        if getattr(m, "on", lambda s: True)(state):
+            out.append(m)
+    return out
+
+
+def later_fields_json(state):
+    """新しい G の答えの欄 (ANSWER_FIELDS の名前と空の中身。answer_fields があればそのうち、いま書けと言っている欄だけ)。G14 までは空の文字"""
+    out = ""
+    for m in later_gs(state):
+        decl = getattr(m, "ANSWER_FIELDS", {}) or {}
+        now = m.answer_fields(state) if hasattr(m, "answer_fields") else list(decl)
+        out += "".join(f' "{k}": {decl.get(k, "null")},' for k in now)
+    return out
+
+
+def answer_fields(state):
+    """いまのお題が「書け」と言っている G の答えの欄 (G9〜G14 と、これから足す G。各 G の answer_fields から)。名前の並び"""
+    mods = [m for on, m in ((_g9_on, "g9"), (_g11_on, "g11"), (_g12_on, "g12"), (_g14_on, "g14")) if on(state)]
+    import importlib
+    out = []
+    for m in [importlib.import_module(x) for x in mods] + later_gs(state):
+        f = getattr(m, "answer_fields", None)
+        for k in (f(state) if f else list(getattr(m, "ANSWER_FIELDS", {}) or {})):
+            if k not in out:
+                out.append(k)
+    return out
+
+
+ANSWER_HEAD = "## 答えの形 (JSON)"
+
+
+def answer_form_missing(text, fields):
+    """お題の文の「## 答えの形 (JSON)」の節に、fields の欄 ("名前":) がそろっているか。ないものの名前の並び (節がなければ fields みな)。
+    第 7 部の学び 2 (G14 のはじめの 2 年、短い節で note・guild を説明したのに、答えの形に欄がなく、1 通も書かれなかった)。読むだけ"""
+    i = text.rfind(ANSWER_HEAD)
+    if i < 0:
+        return list(fields)
+    form = text[i + len(ANSWER_HEAD):]
+    return [k for k in fields if f'"{k}":' not in form]
+
+
+def answer_form_check(state, text):
+    """step.py write_prompts から (お題を書いたあと。state もお題も変えない): このお題に、いま書けと言っている欄がそろっているか。ないものの名前の並び"""
+    return answer_form_missing(text, answer_fields(state))
 
 
 def fields_prop(state):

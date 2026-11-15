@@ -92,6 +92,12 @@ def is_g6(st):
     return st.get("era") == "G6" and "g7" not in (st.get("era2") or {})
 
 
+def copy_archive(d):
+    """本物の archive を写しの data に「写す」(2026-11-15。前は symlink で、写しの export が本物の archive/days_*.json の labels を書きかえた。
+    本物の data は読むだけにするため、いつも写す)"""
+    shutil.copytree(REAL / "archive", Path(d) / "archive")
+
+
 def tmpdir():
     return Path(tempfile.mkdtemp(prefix="g7s_test_", dir="/tmp"))
 
@@ -3878,7 +3884,7 @@ class T_G10FIX(unittest.TestCase):
                 self.assertEqual(step._refresh_refusal(st, "試し"), "この歩は集まらない (お題がない)")
                 return
             (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            copy_archive(d)  # 読むだけ (export)
             env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
             run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
             r = run("refresh_prompts")
@@ -4359,7 +4365,7 @@ class T_G11(unittest.TestCase):
             d = tmpdir()
             try:
                 (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-                (d / "archive").symlink_to(REAL / "archive")
+                copy_archive(d)
                 env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
                 run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
                 r = run("next_part", "--closed-by-decision", note)
@@ -4602,7 +4608,7 @@ class T_G11FIX(unittest.TestCase):
         d = tmpdir()
         try:
             (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            copy_archive(d)  # 読むだけ (export)
             env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
             r = subprocess.run([sys.executable, str(SOC / "step.py"), "refresh_prompts", "--why", "試しのわけ"], env=env, capture_output=True, text=True)
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
@@ -4653,7 +4659,7 @@ class T_AppSlim(unittest.TestCase):
         d = tmpdir()
         try:
             (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            copy_archive(d)  # 読むだけ (export)
             env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
             run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
             r = run("export")
@@ -4751,7 +4757,7 @@ class T_TrustSparse(unittest.TestCase):
         d = tmpdir()
         try:
             (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            copy_archive(d)  # 読むだけ (export)
             env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
             run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
             ad = d / "answers" / f"day{st['day']:03d}" / "feeling"
@@ -5150,7 +5156,7 @@ class T_TrustFix(unittest.TestCase):
         d = tmpdir()
         try:
             (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            copy_archive(d)  # 読むだけ (export)
             env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
             run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
             if st.get("hold"):
@@ -5322,7 +5328,7 @@ class T_FeelCap(unittest.TestCase):
         d = tmpdir()
         try:
             (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-            (d / "archive").symlink_to(REAL / "archive")  # 読むだけ (export)
+            copy_archive(d)  # 読むだけ (export)
             r = subprocess.run(["git", "-C", str(ROOT), "archive", "--format=tar", self.OLD, "sim/society/data/prompts/day19559"], capture_output=True)
             if r.returncode:
                 self.skipTest("19559 日目のお題が git にない")
@@ -5763,7 +5769,7 @@ class T_G12(unittest.TestCase):
         d = tmpdir()
         try:
             (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-            (d / "archive").symlink_to(REAL / "archive")
+            copy_archive(d)
             env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
             run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
             r = run("next_part", "--closed-by-decision", self.NOTE)
@@ -6309,7 +6315,7 @@ class T_G13(unittest.TestCase):
         d = tmpdir()
         try:
             (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-            (d / "archive").symlink_to(REAL / "archive")
+            copy_archive(d)
             env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
             run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
             r = run("next_part", "--closed-by-decision", "閉じる")
@@ -6843,7 +6849,7 @@ class T_G14(unittest.TestCase):
         d = tmpdir()
         try:
             (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-            (d / "archive").symlink_to(REAL / "archive")
+            copy_archive(d)
             env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
             run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)
             r = run("next_part", "--closed-by-decision", "閉じる")
@@ -7313,6 +7319,233 @@ class T_G14Close(unittest.TestCase):
         r = run("next_part", "--closed-by-decision", "もう一度")
         self.assertEqual(r.returncode, 3)
         self.assertIn("もう閉じている", r.stdout)
+
+
+class T_Method8(unittest.TestCase):
+    """2026-11-15 第 8 部の前の方法の直し (docs/society_phase/method_fixes_part8.md): 1 年の数 (g7.plan_year)・2 答えの形の欄の確かめ・3 写しの記録と水の輪を直す・
+    4 tools/prompt_check.py。どれも g7.fix8 (G15 に入ったか、METHOD8_FROM 以後で印 g7.method8) のあとだけ。192年の年の集まり (23159 日目) の git の state (AT) と、
+    第 7 部の終わり (23219 日目) の state (END) から、メモリの中で確かめる (直しのあとの形は、写しに g7.g15 を置いて見る)"""
+
+    AT = "6d054b59"  # 23129 日目からの歩 (state は 23159 日目 = 193年の年の集まり。お題は前のコード)
+    G = 23159
+    END = "e6aeb930"  # G14 を閉じた (23219 日目・HOLD part_end)
+    NAMES = ("アコ44",)
+
+    def st(self, at=None, day=None):
+        st = git_state(at or self.AT)
+        if st["day"] != (day or self.G) or "g14" not in st["era2"]["g7"]:
+            self.skipTest("state が思った日の G14 でない")
+        return st
+
+    def on(self, st):
+        import g7
+        st["era2"]["g7"]["g15"] = {}  # G15 に入った印だけ (g15.py はまだない。later_gs はとばす)
+        self.assertTrue(g7.fix8(st))
+        return st
+
+    def prompt(self, st, name):
+        import g7
+        p = next(q for q in st["people"] if q["name"] == name)
+        return g7.year_prompt(st, p, g7.since(st))
+
+    def old_file(self, name):
+        r = subprocess.run(["git", "-C", str(ROOT), "show", f"{self.AT}:sim/society/data/prompts/day{self.G}/season/{name}.md"], capture_output=True)
+        if r.returncode:
+            self.skipTest("前のお題が git にない")
+        return r.stdout.decode("utf-8")
+
+    def test_gate(self):
+        """門: 23219 日目より前は印を書かない・印なしでは効かない。23219 日目の state で印を書くと効く (2 回目は書かない)。G15 の印があれば日にかかわらず効く。
+        門の前のお題は前のコードで書いたものと 1 バイトも同じ"""
+        import g7
+        self.assertEqual(g7.METHOD8_FROM, 23219)
+        st = self.st()
+        self.assertFalse(g7.fix8(st))
+        self.assertEqual(g7.plan_year(st), self.G // era2.YEAR)
+        js = json.dumps(st, sort_keys=True, ensure_ascii=False)
+        self.assertFalse(g7.mark_method8(st, "試し"))
+        self.assertEqual(json.dumps(st, sort_keys=True, ensure_ascii=False), js, "門の日より前は何もしない")
+        for n in self.NAMES:
+            self.assertEqual(self.prompt(st, n), self.old_file(n), n)
+        e = self.st(self.END, 23219)
+        self.assertFalse(g7.fix8(e), "印がなければ効かない")
+        self.assertTrue(g7.mark_method8(e, "試し"))
+        self.assertTrue(g7.fix8(e))
+        self.assertFalse(g7.mark_method8(e, "2 回目"))
+        self.assertEqual(e["era2"]["g7"]["method8"], {"day": 23219, "why": "試し"})
+        self.assertTrue(g7.fix8(self.on(self.st())))
+
+    def test_plan_year(self):
+        """1: 年の集まり (日 % 120 == 119) の「この年」は次の年、秋の集まり (日 % 120 == 29) では今の年。直しの前は前のまま。g13・g14 の plan_year も同じ"""
+        import g7
+        import g13
+        import g14
+        st = self.on(self.st())
+        y = self.G // era2.YEAR
+        self.assertEqual(g7.plan_year(st), y + 1)
+        self.assertEqual(g7.plan_year(st, self.G - 90), y)
+        self.assertEqual((g13.plan_year(st), g14.plan_year(st)), (y + 1, y + 1))
+        self.assertEqual(g7.year_label(st, y), f"{y}年")
+        self.assertEqual(g7.year_label(self.st(), y), "この年")
+
+    def test_year_prompt(self):
+        """1・3: 直しのあと、年の集まりのお題で変わる行だけが変わる: 帳は次の年 (まだ書いていない)・倉から出せるのは「この集まりの help」(終わる年の分) と次の年の見込み・
+        続けることの水の輪の直しは「水の輪を直す」・仕事の並びと欄の説明に「水の輪を直す」・記録の行の年は年の名前。お題を書いても state は変わらない (読むだけ)"""
+        import g12
+        st = self.on(self.st())
+        y = self.G // era2.YEAR
+        for n in self.NAMES:
+            old = self.old_file(n)
+            js = json.dumps(st, sort_keys=True, ensure_ascii=False)
+            t = self.prompt(st, n)
+            self.assertEqual(json.dumps(st, sort_keys=True, ensure_ascii=False), js, "お題を書いても state は変わらない")
+            self.assertIn(f"帳: {y + 1}年 (次の年)はまだ書いていない", t)
+            self.assertNotIn("帳: この年", t)
+            self.assertIn(f"この集まりの help で倉から出せるのは、あと 草の種 {g12.cap_left(st)[0]} つかみ ({y}年の分。{y + 1}年は、年のはじめの倉の 1 割", t)
+            self.assertIn("(主な仕事「水の輪を直す」)", t)
+            self.assertIn("(主な仕事「水の輪を建てる」)", old)
+            self.assertIn(" / 水の輪を直す", t)
+            self.assertIn("   水の輪を直す: 主な仕事を「水の輪を直す」にすると", t)
+            self.assertIn(f"{y}年に黒い金属の鎌で刈った日は", t)
+            ol, nl = old.splitlines(), t.splitlines()
+            self.assertEqual(len(ol), len(nl) - 1, "足した行は欄の説明の 1 行だけ")
+            changed = [b for a, b in zip([x for x in ol], [x for x in nl if not x.startswith("   水の輪を直す:")]) if a != b]
+            self.assertLessEqual(len(changed), 8, changed)
+            self.assertLess(len(t.encode()) - len(old.encode()), 1500)
+
+    def test_answer_form(self):
+        """2: 答えの形 (JSON) の欄の確かめ。いまの G14 のお題では欄がそろう。お題の直しの前の形 (note・guild の欄がない) にすると、確かめは note・guild を出す
+        (第 7 部の学び 2 を、この確かめなら見つけられた)。これから足す G の ANSWER_FIELDS は、答えの形に自動で入る"""
+        import g7
+        import g14
+        st = self.st()
+        self.assertEqual(g7.answer_fields(st)[-2:], ["note", "guild"])
+        t = self.prompt(st, self.NAMES[0])
+        self.assertEqual(g7.answer_form_check(st, t), [])
+        self.assertEqual(g7.answer_form_missing("…\n## 答えの形 (JSON)\n{\"pact\": []}", ["pact", "help"]), ["help"])
+        self.assertEqual(g7.answer_form_missing("答えの形がない", ["pact"]), ["pact"])
+        keep = g14.G14_PROMPT_FROM
+        try:
+            g14.G14_PROMPT_FROM = 10 ** 6
+            t0 = self.prompt(st, self.NAMES[0])
+            self.assertEqual(g7.answer_form_check(st, t0), ["note", "guild"])
+        finally:
+            g14.G14_PROMPT_FROM = keep
+        import types
+        m = types.ModuleType("g15")
+        m.ANSWER_FIELDS = {"plan15": "[]", "mill15": "null"}
+        m.on = lambda s: "g15" in s["era2"]["g7"]
+        sys.modules["g15"] = m
+        try:
+            self.assertEqual(g7.later_fields_json(st), "", "G15 に入る前は足さない")
+            st15 = self.on(self.st())
+            self.assertEqual(g7.later_fields_json(st15), ' "plan15": [], "mill15": null,')
+            self.assertEqual(g7.answer_fields(st15)[-2:], ["plan15", "mill15"])
+            t15 = self.prompt(st15, self.NAMES[0])
+            self.assertIn(' "plan15": [], "mill15": null,', t15)
+            self.assertEqual(g7.answer_form_check(st15, t15), [])
+            m.answer_fields = lambda s: ["plan15"]
+            self.assertEqual(g7.later_fields_json(st15), ' "plan15": [],')
+        finally:
+            sys.modules.pop("g15", None)
+
+    def test_step_warning(self):
+        """2: step.py write_prompts は、答えの形に欄がないと標準エラーに「!! 答えの形 (JSON) に欄 …」を出す (お題と state は変えない)"""
+        import g14
+        src = (SOC / "step.py").read_text(encoding="utf-8")
+        self.assertIn("g7.answer_form_check(state, text)", src)
+        self.assertIn("!! 答えの形 (JSON) に欄", src)
+        self.assertTrue(hasattr(g14, "ANSWER_FIELDS"))
+
+    def test_mill_fix(self):
+        """3: 「水の輪を直す」は直しの前は選べない。直しのあとは選べて、止まっている輪 → この年の直しだけをし、直す輪がなければ休む (新しい輪は組まない)。
+        「水の輪を建てる」は前のとおり (直しが残っていれば直し、なければ組む)"""
+        import g7
+        import g13
+        st = self.st(self.END, 23219)
+        self.assertNotIn(g13.ACT_MILL_FIX, g13.acts(st))
+        self.assertNotIn(g13.ACT_MILL_FIX, g7.acts(st))
+        self.on(st)
+        self.assertIn(g13.ACT_MILL_FIX, g13.acts(st))
+        self.assertIn(g13.ACT_MILL_FIX, g7.acts(st))
+        g = st["era2"]["g7"]["g13"]
+        m = g["mill"]
+        p = era2.adults(st)[0]
+        y = str(st["day"] // era2.YEAR)
+        n0, w0 = len(m["mills"]), m["work"]
+        for x in m["mills"]:
+            x["stopped"], x["fix"] = None, 0
+        m["repair"][y] = 10 ** 6  # この年の直しはすんだ
+        self.assertEqual(g13._mill_due(st), 0)
+        t = {}
+        g13.work_day(st, p, t, g13.ACT_MILL_FIX)
+        self.assertEqual((len(m["mills"]), m["work"]), (n0, w0), "直す輪がなければ組まない")
+        self.assertTrue(any("直す水の輪がもうない" in e["text"] for e in st["events"][-3:]))
+        m["mills"][0]["stopped"] = st["day"]
+        g13.work_day(st, p, {}, g13.ACT_MILL_FIX)
+        self.assertEqual(m["mills"][0]["fix"], g13.MILL_KNOW if g13.knower(st, p["name"]) else 1.0)
+        self.assertEqual(m["work"], w0)
+        m["mills"][0]["stopped"], m["mills"][0]["fix"] = None, 0
+        st["era2"]["g7"]["hints"]["tech"][g13.CARD]["done"] = st["day"]  # 23219 日目は建て方を覚えた人がいない (直すだけになる)。試しの中だけ、建てられることにする
+        g13.work_day(st, p, {}, g13.ACT_MILL_FIX)
+        self.assertEqual(m["work"], w0, "建てられる村でも、直すは組まない")
+        g13.work_day(st, p, {}, g13.ACT_MILL)
+        self.assertGreater(m["work"], w0, "建てるは前のとおり組む")
+
+    def test_gpath(self):
+        """3: G の道の仕事の 1 日を、答えた家・写って動いた家・決まりに分けて残す (直しのあとだけ。役の仕事は数えない)"""
+        import g7
+        st = self.st(self.END, 23219)
+        ps = era2.adults(st)[:3]
+        g = st["era2"]["g7"]
+        g["src"] = {ps[0]["name"]: "年の答え (自分)", ps[1]["name"]: "見本から広げた", ps[2]["name"]: "決まり (前の年と同じ)"}
+        g7.gpath_day(st, ps[0], "水の道を掘る")
+        self.assertNotIn("gpath", g, "直しの前は何もしない")
+        self.on(st)
+        for q in ps:
+            g7.gpath_day(st, q, "水の道を掘る")
+        g7.gpath_day(st, ps[1], "守る")
+        row = g["gpath"][str(st["day"] // era2.YEAR)]
+        self.assertEqual(list(row), ["水の道を掘る"])
+        self.assertEqual({k: sum(v.values()) for k, v in row["水の道を掘る"].items()}, {"answered": 1, "copied": 1, "rule": 1})
+        self.assertIn("写って動いた家 1 人日 (1 家)", g7.gpath_lines(st)[0])
+        self.assertEqual([g7.gpath_kind(x) for x in ("自分", "代表が割り振った", "見本から広げた", "答えなし (前と同じ)", "加わった季節")],
+                         ["answered", "answered", "copied", "rule", "rule"])
+
+    def test_market_view(self):
+        """1: 年の集まりのお題の「市へ運ぶ」は、払える草の種を、答えが効く年 (次の年) で数える (plan_view。直しのあとだけ。読むだけ)"""
+        import g14
+        st = self.on(self.st())
+        o = next((x for x in g14._others(st) if x.get("grain", 0) > 0), None)
+        if o is None:
+            self.skipTest("草の種のある村がない")
+        y = str(self.G // era2.YEAR)
+        st["era2"]["g7"]["g14"]["market"]["paid"].setdefault(y, {})[o["id"]] = 10 ** 7  # この年はもう払いきった
+        self.assertEqual(g14._pay_left(st, o), 0)
+        with g14.plan_view(st):
+            self.assertGreater(g14._pay_left(st, o), 0, "次の年は払える")
+        self.assertEqual(g14._pay_left(st, o), 0)
+        st0 = self.st()
+        st0["era2"]["g7"]["g14"]["market"]["paid"].setdefault(y, {})[o["id"]] = 10 ** 7
+        with g14.plan_view(st0):
+            self.assertEqual(g14._pay_left(st0, o), 0, "直しの前は前のまま")
+
+    def test_prompt_check_tool(self):
+        """4: tools/prompt_check.py は、本文で書けと言っている欄が答えの形にないこと・例の「…」・短い節の位置を見つける"""
+        sys.path.insert(0, str(HERE))
+        import prompt_check as pc
+        f = pc.declared_fields()
+        for k in ("pact", "help", "note", "guild"):
+            self.assertIn(k, f)
+        good = ("決まり\n## いま\n1 日目\n町と市と仲間・続けること: この集まりで、あなた (ア) ができること (…)\n- 書きつけ: 例 \"note\": [{\"to\": \"N1\"}]\n"
+                "1. 話す\n2. 仕事\n## 答えの形 (JSON)\n{\"say\": [{\"to\": \"みんな\", \"text\": \"...\"}], \"note\": [], \"guild\": null}")
+        r = pc.check_text(good, f)
+        self.assertEqual((r["block"], r["missing"], r["placeholders"]), ("OK", [], []))
+        bad = good.replace('"note": [], ', "").replace('{"to": "N1"}', '"…"')
+        r = pc.check_text(bad, f)
+        self.assertEqual((r["missing"], len(r["placeholders"])), (["note"], 1))
+        moved = good.replace("## いま\n1 日目\n町と市", "町と市").replace("1. 話す", "## いま\n1. 話す")
+        self.assertEqual(pc.check_text(moved, f)["block"], "位置ちがい")
 
 
 if __name__ == "__main__":
