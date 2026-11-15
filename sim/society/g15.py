@@ -630,6 +630,9 @@ def _newcomer_year(state, y):
     gp = (g7s.get("gpath") or {}).get(str(y)) or {}
     donor = g7s.get("donor") or {}
     fol = sorted(x for x, d in donor.items() if d == h)
+    ans = {d: v for d, v in nc["answers"].items() if int(d) // YEAR == y or (int(d) + 1) // YEAR == y}
+    if not ans:  # その人がまだ答えていない年 (入った年) の写しは、前の手本の家の予定なので、その人のものに数えない
+        fol = []
     own, copied = {}, {}
     for act, r in gp.items():
         n = (r.get("answered") or {}).get(h, 0)
@@ -640,7 +643,6 @@ def _newcomer_year(state, y):
             if m:
                 copied.setdefault(x, {})[act] = m
     alive = any(p["name"] == nc["name"] and p["alive"] for p in state["people"])
-    ans = {d: v for d, v in nc["answers"].items() if int(d) // YEAR == y or (int(d) + 1) // YEAR == y}
     nc["years"][str(y)] = {"alive": alive, "own": own, "followers": fol, "copied": copied, "answers": ans}
     if len(nc["years"]) > 30:
         for k in sorted(nc["years"], key=int)[:-30]:
@@ -1047,7 +1049,7 @@ def progress_lines(state):
     else:
         lr = next((r for r in reversed(g["ledger"]) if r["year"] in (y, y - 1)), None) or {}
         big = max((r["big"] for r in (lr.get("ws") or {}).values()), default=0)
-        out.append(f"- 水の作業場: いま {len(workshops(state, done=True))}{f' (去年 8 人の日 {big} 日)' if lr else ''}。1 つの作業場で、3 つ以上の家の大人が 8 人以上同じ日に働いた日が、"
+        out.append(f"- 水の作業場: いま {len(workshops(state, done=True))}{f' (去年 8 人の日 {big} 日)' if lr and g['ws'] else ''}。1 つの作業場で、3 つ以上の家の大人が 8 人以上同じ日に働いた日が、"
                    f"1 年に {E3_DAYS} 日。それが {E3_YEARS} 年つづくと届く")
     if coal_on(state):
         if "e1" in g["e"]:

@@ -285,12 +285,12 @@ BUNDLES = {
 #   毎季節 4 人 (ほかの答える家の、代表でない大人) が「市へ運ぶ」(行き先は近いほしがっている村を順に)。読める人の家の答える人が、年の集まりと秋の集まりで、
 #   受けてくれそうな村 5 つまでに書きつけ。土器の仲間を、ちがう家の答える人 2 人が書く (人は前の 1 年に 20 日以上土器を作った人から 5 人)
 G14_TOWN_HOUSES, G14_MARKET, G14_NOTES, G14_GUILD_PEOPLE = 4, 4, 5, 5
-# G15B1 の答え (G15_design.md 7.1): 年の集まりで 1 人 (答える人の最初の人。B1S はその 1 人だけ) が workshop (水ののこ。B1K は水の槌) を書く。作りかけなら夏に 1 人が
+# G15B1 の答え (G15_design.md 7.1。1 季節は 30 日): 年の集まりで 1 人 (答える人の最初の人。B1S はその 1 人だけ) が workshop (水ののこ。B1K は水の槌) を書く。作りかけなら夏に 2 人が
 #   「水の作業場を作る」(60 人日)、秋と冬に大人の多い 4 家から 10 人 (3〜4 家) が「水の作業場で働く」。大きい家の代表 6 人 (まだ石のかまどでない家) が家の大人 1 人を
 #   夏に「かまどを作りかえる」に、毎季節 2 人が「燃える石を掘る」。B1T は答える家の半分の大人が 4 季節みな (作業場 20 人・のこりは掘る)
-G15_WORKERS, G15_WS_HOUSES, G15_STOVES, G15_DIG = 10, 4, 6, 2
+G15_WORKERS, G15_WS_HOUSES, G15_STOVES, G15_DIG, G15_BUILDERS = 10, 4, 6, 2, 2
 G15_WORK_SEASONS = ("秋", "冬")
-G15_KEEP = {"冬": (4, "水の輪を直す"), "春": (10, "水の道を掘る")}  # G13 の手入れ (G15 は「水の輪を直す」で。1 年 約 240 人日・水の道 約 600 人日。本物の近ごろの 220〜260 人日に近い)
+G15_KEEP = {"冬": (9, "水の輪を直す"), "春": (13, "水の道を掘る")}  # G13 の手入れ (G15 は「水の輪を直す」で。1 年 270 人日・水の道 390 人日。入る日の続けることの行の 260・306〜383 人日に近い)
 G14_KEEP = {"冬": (2, "水の輪を建てる"), "春": (10, "水の道を掘る")}  # G13 の手入れ (どの束も。本物の近ごろと同じくらい: 水の輪 1 年 50 人日・水の道 約 290 人日)
 # G13B1 の答え (G13_design.md 7.1): 札を知っている 2 人が毎季節「試す」、ほかに 2 人が with。できたら 4 人が「水の輪を建てる」(輪が 2 つになるまで)、
 #   そのあとは冬に 1 人が直す (1 年に 30 人日)。毎季節 10 人が「水の道を掘る」。続いている約束のうち 3 つの take に働き手 (2 人まで × 20 日)
@@ -727,8 +727,10 @@ def _g15_jobs(state, fams, sea, pol, taken):
     nw = _ws_answer(state, pol)
     building = g15.workshops(state, done=False) or ([nw[0]["輪"]] if nw else [])  # この集まりで workshop を書くなら、その輪 (当てはめるのは答えのあと)
     done = g15.workshops(state, done=True)
-    if building and sea == "夏" and pool:
-        out[pool.pop(0)] = _job(g15.ACT_WS_BUILD, place=building[0])
+    if building and sea == "夏":
+        for m in pool[:G15_BUILDERS]:
+            out[m] = _job(g15.ACT_WS_BUILD, place=building[0])
+        pool = pool[G15_BUILDERS:]
     if done and (sea in G15_WORK_SEASONS or pol.get("too_much")):
         if pol.get("too_much"):
             ws_pool = pool[:g15.WS_CAP]
