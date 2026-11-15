@@ -1994,7 +1994,7 @@ G15_COLS = ["world", "bundle", "seed", "years_run", "e1_year", "e2_year", "e3_ye
 
 
 def g15_row(res):
-    """G15 の確かめ (2026-11-15) の 1 回 = 1 行。年目は 1 年目 = 194年 (193年60日目に入った次の年。日 ÷ 120 - 193)。0 年目 = 入った年 (193年)"""
+    """G15 の確かめ (2026-11-15) の 1 回 = 1 行 (年ごとの行の year も同じ年目、cal_year は暦の年)。年目は 1 年目 = 194年 (193年60日目に入った次の年。日 ÷ 120 - 193)。0 年目 = 入った年 (193年)"""
     import g15
     rows = res["rows"]
     last = rows[-1] if rows else {}
@@ -2078,7 +2078,7 @@ def write_g15_csv(out_dir, path, years_path=None):
         wr.writeheader()
         wr.writerows(rows)
     if years_path:
-        cols = ["world", "bundle", "seed", "year", "pop", "adults", "store_days", "harvest", "ws_done", "big_days", "big_noans", "ws_days", "planks_made", "planks_used",
+        cols = ["world", "bundle", "seed", "year", "cal_year", "pop", "adults", "store_days", "harvest", "ws_done", "big_days", "big_noans", "ws_days", "planks_made", "planks_used",
                 "iron_made", "coal_dug", "coal_burned", "stoves", "homes", "coal_share", "coal_share_w1", "coal_share_w2", "kcal_pc", "output_pc", "output_avg",
                 "region_food", "village_food", "readers", "smiths", "mills", "mills_running", "grind_mills", "mill_repair", "fails", "path_e1", "path_e3",
                 "path_chose", "ws_written", "same_ex", "newcomer_alive", "newcomer_own", "newcomer_followers", "newcomer_copied", "e", "F"]
@@ -2094,7 +2094,7 @@ def write_g15_csv(out_dir, path, years_path=None):
                     nc = r.get("g15_newcomer") or {}
                     ny = nc.get("year") or {}
                     wsr = led.get("ws") or {}
-                    wr.writerow({"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], "year": r["year"], "pop": r["pop"], "adults": r["adults"],
+                    wr.writerow({"world": res["world"], "bundle": res["bundle"], "seed": res["seed"], "year": yy - res["y0"], "cal_year": yy, "pop": r["pop"], "adults": r["adults"],
                                  "store_days": r["store_days"], "harvest": r.get("g15_harvest"),
                                  "ws_done": sum(1 for v in (r.get("g15_ws") or {}).values() if v["done"] is not None),
                                  "big_days": max((w.get("big", 0) for w in wsr.values()), default=0), "big_noans": sum(w.get("big_noans", 0) for w in wsr.values()),
