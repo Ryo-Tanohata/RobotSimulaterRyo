@@ -503,8 +503,7 @@ def evening(state):
 def _base(state):
     """年のはじめの数 (作った土器・鎌・黒い金属の鎌の数え。年の終わりに引いて、その年に作った数にする)"""
     e2 = state["era2"]
-    _g(state)["base"] = {"year": _y(state) + (1 if (state["day"] + 1) % YEAR == 0 else 0), "pots": e2.get("pots", 0), "sickles": e2.get("sickles", 0),
-                         "iron": len(g10._g(state)["made"])}
+    _g(state)["base"] = {"year": _y(state) + (1 if (state["day"] + 1) % YEAR == 0 else 0), "iron": len(g10._g(state)["made"])}
 
 
 # ---------------- 年の終わり: 帳簿と物差し ----------------
@@ -529,7 +528,8 @@ def _ledger(state):
     g, D, e2 = _g(state), state["day"], state["era2"]
     y = D // YEAR
     ys = str(y)
-    b = g["base"] if g["base"].get("year") == y else {"pots": e2.get("pots", 0), "sickles": e2.get("sickles", 0), "iron": len(g10._g(state)["made"])}
+    b = g["base"] if g["base"].get("year") == y else {"iron": len(g10._g(state)["made"])}
+    made = __import__("g7")._made(state, y * YEAR)  # この年に作った土器と鎌 (出来事「土器」「道具」の数から。村の倉の数は割れたり運んだりで減るので使わない)
     wsy = g["wsyear"].get(ys) or {}
     s13 = state["era2"]["g7"]["g13"]
     hd = g14.house_days(state)
@@ -544,7 +544,8 @@ def _ledger(state):
     out_pots = mk.get(g14.POT, 0) + sum(x["give"].get(g14.POT, 0) for x in notes)
     out_sickles = mk.get(g14.SICKLE, 0) + sum(x["give"].get(g14.SICKLE, 0) for x in notes)
     row = {"year": y, "day": D, "pop": pop, "adults": len(era2.adults(state)),
-           "pots_made": e2.get("pots", 0) - b["pots"], "sickles_made": e2.get("sickles", 0) - b["sickles"], "iron_made": len(g10._g(state)["made"]) - b["iron"],
+           "pots_made": sum(v.get("土器", 0) for v in made.values()), "sickles_made": sum(v.get("鎌", 0) for v in made.values()),
+           "iron_made": len(g10._g(state)["made"]) - b["iron"],
            "ws": {k: {kk: (dict(vv) if isinstance(vv, dict) else vv) for kk, vv in v.items()} for k, v in wsy.items()},
            "ws_list": {k: {"tool": v["tool"], "done": v["done"], "work": v["work"]} for k, v in g["ws"].items()},
            "planks_made": g["planks"]["made"].get(ys, 0), "planks_used": g["planks"]["used"].get(ys, 0), "planks": g["planks"]["stock"],

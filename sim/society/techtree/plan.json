@@ -9,7 +9,7 @@
     "2 段にした (2026-10-28 本人の決め): techs が上の段 (Civ VI のように「テクノロジー」と「社会制度」の 2 本の木。前提の矢印つき)。nodes はその中の要素 (細かい技術)。1 つの要素はちょうど 1 つの techs に入る。key は決め手の要素 (これに届いた日に、上の段が「届いた」)",
     "eras は時代の列 (左から右)。上の段の era は、決め手の要素の予定の G の時代"
   ],
-  "updated": "2026-11-10",
+  "updated": "2026-11-15",
   "phases": [
     {"id": "F1", "name": "移動する採集民", "group": "Society 1.0 最初の 5 人", "real": "約 2.3 万年前より前 (後期旧石器時代)", "doc": "docs/society_phase/F1.md"},
     {"id": "F2", "name": "食べ物の幅を広げる", "group": "Society 1.0 最初の 5 人", "real": "約 2.3 万〜1.5 万年前 (オハロー II など。小さな獲物・魚・草の種)", "doc": "docs/society_phase/F2.md"},
@@ -31,7 +31,7 @@
     {"id": "G12", "name": "大きな都と帝国", "group": "第 6 部 鉄とお金の帝国", "real": "前 300〜後 500 年ごろ (ローマ・漢)", "doc": "docs/society_phase/G12_design.md"},
     {"id": "G13", "name": "帝国のあとの農業社会", "group": "第 7 部 帝国のあとと町", "real": "500〜1000 年ごろ (アッバース朝・水車と紙)", "doc": "docs/society_phase/G13_design.md"},
     {"id": "G14", "name": "町と商業", "group": "第 7 部 帝国のあとと町", "real": "950〜1350 年ごろ (北イタリアとフランドルの町・宋)", "doc": "docs/society_phase/G14_design.md"},
-    {"id": "G15", "name": "近世の農業と農村の手仕事", "group": "第 8 部 工業の入口", "real": "1350 年ごろ〜工業の入口 (1710〜1800 年ごろ)", "doc": "docs/society2_extension_plan.md (もとの G14)"}
+    {"id": "G15", "name": "近世の農業と農村の手仕事", "group": "第 8 部 工業の入口", "real": "1350 年ごろ〜工業の入口 (1710〜1800 年ごろ)", "doc": "docs/society_phase/G15_design.md"}
   ],
   "closures": {
     "G8": {"day": 12599, "how": "本人の決め (2026-10-28)。3 つの条件はそろわないまま閉じた。形の上の区切り (next_part) は G9 に入るときにする"},
@@ -74,7 +74,7 @@
     {"id": "t_mill", "tree": "テクノロジー", "era": "H", "name": "水車", "key": "mill", "elements": ["mill"], "prereq": ["t_irrig"], "xprereq": [], "does": "水か家畜の力で粉をひく", "real": {"when": "前 3〜1 世紀に知られる。広く使う時期は【議論あり】", "where": "地中海のまわり。ドゥームズデイ (1086 年) に約 5,600", "src": "Wilson; Bloch"}},
     {"id": "t_paper", "tree": "テクノロジー", "era": "H", "name": "紙", "key": "paper", "elements": ["paper"], "prereq": ["t_writing"], "xprereq": [], "does": "ぼろから薄い紙をつくる", "real": {"when": "8 世紀の末", "where": "バグダード (中国から)", "src": "Bloom【記憶】"}},
     {"id": "t_print", "tree": "テクノロジー", "era": "I", "name": "印刷", "key": "print", "elements": ["print", "literacy"], "prereq": ["t_paper"], "xprereq": [], "does": "金属の字で刷る。読み書きが広がる", "real": {"when": "15 世紀 (グーテンベルク)", "where": "マインツ。それより前に東アジアの金属活字", "src": "【記憶】"}},
-    {"id": "t_steam", "tree": "テクノロジー", "era": "I", "name": "石炭と蒸気機関", "key": "steam", "elements": ["coal", "steam", "factory"], "prereq": ["t_iron", "t_mill"], "xprereq": ["s_commerce"], "does": "石炭を燃やし、火の機械で動かす。工場", "real": {"when": "1712 年 (ニューコメンの機関)", "where": "イングランド", "src": "society2_extension_plan.md 3.2【記憶】"}},
+    {"id": "t_steam", "tree": "テクノロジー", "era": "I", "name": "石炭と蒸気機関", "key": "steam", "elements": ["coal", "steam", "factory", "water_workshop", "burning_stone"], "prereq": ["t_iron", "t_mill"], "xprereq": ["s_commerce"], "does": "石炭を燃やし、火の機械で動かす。工場", "real": {"when": "1712 年 (ニューコメンの機関)", "where": "イングランド", "src": "society2_extension_plan.md 3.2【記憶】"}},
     {"id": "s_share", "tree": "社会制度", "era": "A", "name": "分かち合い", "key": "share", "elements": ["share"], "prereq": [], "xprereq": [], "does": "とれた食べ物を仲間で分ける", "real": {"when": "【未確認】(狩猟採集民の民族誌でふつう)", "where": "―", "src": ""}},
     {"id": "s_law", "tree": "社会制度", "era": "A", "name": "集まりと掟", "key": "law", "elements": ["law"], "prereq": [], "xprereq": [], "does": "みんなで集まり、半分をこえる賛成で掟を決める", "real": {"when": "【未確認】(文字の前は残らない)", "where": "―", "src": ""}},
     {"id": "s_join", "tree": "社会制度", "era": "B", "name": "迎え入れと代表", "key": "accept", "elements": ["accept", "birth", "rep"], "prereq": ["s_law"], "xprereq": [], "does": "よそから来た人を迎え、家族ごとに代表が答える", "real": {"when": "約 1.5 万〜1 万年前 (村の人口がふえる)", "where": "ナトゥーフ期〜新石器時代のレバント", "src": "Bocquet-Appel 2002【二次】"}},
@@ -281,15 +281,19 @@
      "real": {"when": "1300 年ごろ", "where": "ヨーロッパの町に住む人は 1 割ほど【記憶・未確認】", "ya": 700, "src": "【記憶】", "sure": "記憶"}},
     {"id": "print", "name": "印刷", "phase": "G15", "kind": "もの", "prereq": ["paper"], "does": "金属の字で刷る", "detect": null, "heard": "H14-01",
      "real": {"when": "15 世紀 (グーテンベルク)", "where": "マインツ。それより前に東アジアの金属活字", "ya": 575, "src": "【記憶】", "sure": "記憶"}},
-    {"id": "ruralcraft", "name": "農村の手仕事", "phase": "G15", "kind": "仕事", "prereq": ["market"], "does": "売るための手仕事を家でする", "detect": null,
+    {"id": "ruralcraft", "name": "農村の手仕事", "phase": "G15", "kind": "仕事", "prereq": ["market"], "does": "売るための手仕事を家でする。この村では市へ運ぶ・書きつけで家の品を出した年を、ならべて測る (G15)。問屋のしくみはない", "detect": null,
      "real": {"when": "17〜18 世紀", "where": "「原工業化」(Mendels 1972。言葉に【議論あり】)", "ya": 330, "src": "Mendels 1972", "sure": "議論あり"}},
-    {"id": "literacy", "name": "読み書きが大人の半分", "phase": "G15", "kind": "しくみ", "prereq": ["print", "alphabet"], "does": "大人の半分が読み書きできる", "detect": null,
+    {"id": "literacy", "name": "読み書きが大人の半分", "phase": "G15", "kind": "しくみ", "prereq": ["print", "alphabet"], "does": "大人の半分が読み書きできる (G15 ではならべて測る。G15 の F4 は大人の 1 割)", "detect": null,
      "real": {"when": "1755 年ごろ (署名できる男 60%)【未確認】", "where": "イングランド", "ya": 270, "src": "society2_extension_plan.md 3. G14", "sure": "未確認"}},
-    {"id": "coal", "name": "石炭が燃料の半分", "phase": "G15", "kind": "やり方", "prereq": ["fire"], "does": "植物でない燃料に頼る", "detect": null,
+    {"id": "coal", "name": "石炭が燃料の半分", "phase": "G15", "kind": "やり方", "prereq": ["fire"], "does": "植物でない燃料に頼る。この村では作る側が北の丘に置いた燃える石を、家の石のかまどで燃やす (G15 の入口 e1。置いたときだけ)", "detect": {"ev": "目盛り", "text": "G15 の入口 e1"},
      "real": {"when": "1660〜1760 年のあいだ (1710 年ごろか)【見込み】", "where": "イングランド (10% → 35% → 64%)", "ya": 315, "src": "Warde【二次】", "sure": "二次"}},
     {"id": "steam", "name": "火の機械 (蒸気機関)", "phase": "G15", "kind": "もの", "prereq": ["coal", "iron"], "does": "火と水で水をくみ上げる", "detect": null, "heard": "H14-02",
      "real": {"when": "1712 年", "where": "ニューコメンの大気圧機関 (イングランド)", "ya": 314, "src": "society2_extension_plan.md 3. G14【記憶】", "sure": "記憶"}},
-    {"id": "factory", "name": "工場", "phase": "G15", "kind": "しくみ", "prereq": ["steam", "ruralcraft"], "does": "水か蒸気の力の機械に人が集まって働く", "detect": null,
-     "real": {"when": "1719〜21 年【記憶】", "where": "ロムの絹糸工場 (ダービー)。アークライトは 1771 年", "ya": 305, "src": "society2_extension_plan.md 3.2", "sure": "記憶"}}
+    {"id": "factory", "name": "工場", "phase": "G15", "kind": "しくみ", "prereq": ["steam", "ruralcraft"], "does": "水か蒸気の力の機械に人が集まって働く。この村では水の輪を作りかえた水の作業場に、3 家 8 人が集まって働く (G15 の入口 e3)。水の力だけ", "detect": {"ev": "目盛り", "text": "G15 の入口 e3"},
+     "real": {"when": "1719〜21 年【記憶】", "where": "ロムの絹糸工場 (ダービー)。アークライトは 1771 年", "ya": 305, "src": "society2_extension_plan.md 3.2", "sure": "記憶"}},
+    {"id": "water_workshop", "name": "水の作業場", "phase": "G15", "kind": "しくみ", "prereq": ["mill"], "does": "水の輪を作りかえて、川の力で木をひく (水ののこ)・黒い金属をたたく (水の槌) 作業場にする (G15 の F1)", "detect": {"substep": "G15/F1"},
+     "real": {"when": "13 世紀〜 (縮絨の水車・鉄の槌)", "where": "ヨーロッパの水の力の作業場 (「13 世紀の産業革命」Carus-Wilson 1941【議論あり】)", "ya": 750, "src": "Carus-Wilson 1941【記憶】", "sure": "議論あり"}},
+    {"id": "burning_stone", "name": "燃える石", "phase": "G15", "kind": "やり方", "prereq": ["fire"], "does": "北の丘で掘った燃える石を、家の石のかまどで燃やす (G15 の F2。作る側が置いた土地で、置いたときだけ)", "detect": {"substep": "G15/F2"},
+     "real": {"when": "16〜18 世紀", "where": "イングランドの家のかまど・塩・れんが・ビールの火 (Warde【二次】)", "ya": 400, "src": "Warde 2007【二次】", "sure": "二次"}}
   ]
 }
