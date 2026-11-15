@@ -75,7 +75,7 @@ def _g14_on(state):
 
 def _g15_on(state):
     """G15 (第 8 部。2026-11-15) に入ったあとか。G14 までは False (前と 1 バイトも同じに進む)"""
-    return bool(state) and "g15" in ((state.get("era2") or {}).get("g7") or {})
+    return bool(state) and "start" in (((state.get("era2") or {}).get("g7") or {}).get("g15") or {})
 
 
 def cards_sha(state=None):

@@ -92,7 +92,7 @@ COAL_ON = True  # 決まりの村の W15N (燃える石なし) だけ False に�
 
 
 def on(state):
-    return "g15" in ((state.get("era2") or {}).get("g7") or {})
+    return "start" in (((state.get("era2") or {}).get("g7") or {}).get("g15") or {})
 
 
 def _g(state):

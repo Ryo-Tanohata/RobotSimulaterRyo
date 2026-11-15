@@ -126,7 +126,7 @@ def evening(state):
         return
     y = str(D // YEAR)
     run = mills_running(state)
-    if "g15" in state["era2"]["g7"]:  # G15 (2026-11-15): 作業場に作りかえ終えた輪は粉をひかない (G14 までは鍵がないので前と同じ)
+    if "start" in (state["era2"]["g7"].get("g15") or {}):  # G15 (2026-11-15): 作業場に作りかえ終えた輪は粉をひかない (G14 までは鍵がないので前と同じ)
         run = [m for m in run if not m.get("ws")]
     milled = min(pop, MILL_PEOPLE * len(run))
     my = g["mill"]["year"].setdefault(y, {"days": 0, "milled": 0, "need": 0})
@@ -280,7 +280,7 @@ def work_day(state, p, t, act):
     m = g["mill"]
     rate = MILL_KNOW if knower(state, name) else 1.0
     y = str(D // YEAR)
-    if "g15" in state["era2"]["g7"]:  # G15 (2026-11-15): 村の倉に板があれば 1 束使って倍はかどる (直すことがないときは使わない。G14 までは鍵がないので前と同じ)
+    if "start" in (state["era2"]["g7"].get("g15") or {}):  # G15 (2026-11-15): 村の倉に板があれば 1 束使って倍はかどる (直すことがないときは使わない。G14 までは鍵がないので前と同じ)
         busy = any(x.get("stopped") for x in m["mills"]) or _mill_due(state) > 0 or (act == ACT_MILL and mill_ready(state))
         if busy:
             import g15

@@ -670,7 +670,7 @@ def _g15m():
 
 
 def _g15_on(state):
-    return "g15" in (state["era2"].get("g7") or {})
+    return "start" in ((state["era2"].get("g7") or {}).get("g15") or {})  # G15 の仕組みが入った (start_g15 が start を書く。方法の直しの試しの空の g7.g15 では働かない。fix8 は g15 の鍵だけで効く)
 
 
 def enter_next(state, decided=None):
@@ -857,7 +857,7 @@ def acts(state):
         on.update(_g13m().acts(state))
     if "g14" in g:  # G14 (2026-11-14): 市へ運ぶ (大人ならだれでも)
         on.update(ACTS14)
-    if "g15" in g:  # G15 (2026-11-15): 水の作業場を作る・働く (いつも)・燃える石を掘る・かまどを作りかえる (燃える石を置いた世界だけ)
+    if _g15_on(state):  # G15 (2026-11-15): 水の作業場を作る・働く (いつも)・燃える石を掘る・かまどを作りかえる (燃える石を置いた世界だけ)
         on.update(_g15m().acts(state))
     return [a for a in ACTS7 if a in on]
 
@@ -1524,7 +1524,7 @@ def consult_why(state):
     """止めて相談するか (年の終わりだけ。一度ずつ): 部の年数が目安をこえた / どれかの条件が 16 年進まない (g7.stall。物差しの部分が数える)"""
     g, D = _g(state), state["day"]
     if (D + 1) % YEAR:
-        if "g15" in g and (D + 1) % era2.SEASON_DAYS == 0:  # G15 (2026-11-15): 読める大人 1 人以下・5 年ごとの相談 (入った日 193年60日目から。G14 の相談は働かない)
+        if _g15_on(state) and (D + 1) % era2.SEASON_DAYS == 0:  # G15 (2026-11-15): 読める大人 1 人以下・5 年ごとの相談 (入った日 193年60日目から。G14 の相談は働かない)
             return _g15m().season_consult(state, g.setdefault("consulted", []))
         if "g14" in g and (D + 1) % era2.SEASON_DAYS == 0:  # G14 (2026-11-14): 5 年ごとの相談は入った日 (178年60日目。季節の終わり) から数える (G13 までは前のまま)
             return _g14m().years_consult(state, g.setdefault("consulted", []))
@@ -1541,7 +1541,7 @@ def consult_why(state):
             continue
         if not any(c["why"] == k and c.get("since") == s["since"] for c in done):
             return {"why": k, "since": s["since"], "day": D, "text": f"条件 {k[1:]} が {y - s['since']} 年進んでいない"}
-    if "g15" in g:  # G15 (2026-11-15): 入口の手前・道の見張り (e1・e3)・読める大人・5 年ごと (G14 の道の見張りは、G15 では止めない。数えるだけ)
+    if _g15_on(state):  # G15 (2026-11-15): 入口の手前・道の見張り (e1・e3)・読める大人・5 年ごと (G14 の道の見張りは、G15 では止めない。数えるだけ)
         return _g15m().path_consult(state, done)
     if "g14" in g:  # G14 (2026-11-14): 道の見張りは G14 の条件で (G13 の道の見張りは、G14 では止めない。数えるだけ)・5 年ごと
         return _g14m().path_consult(state, done)
@@ -1575,7 +1575,7 @@ def indicators(state):
             **(g9.indicators(state) if "g9" in g else {}), **(_g10m().indicators(state) if "g10" in g else {}),
             **(_g11m().indicators(state) if "g11" in g else {}), **(_g12m().indicators(state) if "g12" in g else {}),
             **(_g13m().indicators(state) if "g13" in g else {}), **(_g14m().indicators(state) if "g14" in g else {}),
-            **(_g15m().indicators(state) if "g15" in g else {})}
+            **(_g15m().indicators(state) if _g15_on(state) else {})}
 
 
 # ---------------- 年 1 回の答えと見本の家 (4.A) ----------------

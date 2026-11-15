@@ -99,7 +99,7 @@ def _first_plough(state):
 def _g9_since(state):
     """G9 (2026-10-29): G7 の物差しを「ならべて測る」とき、G9 に入ってからのことだけを数える (G8 までは None = 前のまま)"""
     g = _g(state)
-    if "g15" in g:  # G15 (2026-11-15): G15 に入ってからのことだけを数える (G15 に入った日に、G14 のときの数は g7.before.G14 に移した)
+    if "start" in (g.get("g15") or {}):  # G15 (2026-11-15): G15 に入ってからのことだけを数える (G15 に入った日に、G14 のときの数は g7.before.G14 に移した)
         return g["g15"]["start"]
     if "g14" in g:  # G14 (2026-11-14): G14 に入ってからのことだけを数える (G14 に入った日に、G13 のときの数は g7.before.G13 に移した)
         return g["g14"]["start"]
@@ -192,7 +192,7 @@ def _stall(state, lv):
     """年の終わり: 条件ごとに「進み」を見る。8 年進まなければ報告で相談 (ask)、16 年で止めて相談 (g7.consult_why が読む)"""
     g, D = _g(state), state["day"]
     y = (D + 1) // YEAR
-    if "g15" in g:  # G15 (2026-11-15): 止まりは、G15 の入口の e1・e3・e4 で数える (g15.progress。e2・e5 は届かない見込みなので数えない)
+    if "start" in (g.get("g15") or {}):  # G15 (2026-11-15): 止まりは、G15 の入口の e1・e3・e4 で数える (g15.progress。e2・e5 は届かない見込みなので数えない)
         import g15
         _stall_rows(g.setdefault("stall", {}), g15.progress(state), g15.done(state), y)
         return

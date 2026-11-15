@@ -7285,7 +7285,7 @@ class T_G14Close(unittest.TestCase):
         self.assertEqual((ev["type"], ev["data"]["closed_by"], ev["data"]["note"], ev["data"]["part_end"]), ("フェーズ", "本人の決め", "本人の言葉", 7))
         self.assertIn("G14 (町と商業): 3 つの条件はそろわないまま、ここで閉じた。第 7 部「帝国のあとと町」も、ここで終わった", ev["text"])
         self.assertIn("もう閉じている", step._next_part_refusal(st, None, "閉じる"))
-        self.assertIn("次の G (G14 の次) のコードがまだない", step._next_part_refusal(st, None))
+        self.assertIn("本人の決めのしるし", step._next_part_refusal(st, None), "2026-11-15: G15 のコードができたので、第 8 部には本人の決めのしるし (--decided) で入る")
         self.assertIsNone(g7.check(st, True, {}) or None, "部の終わりは一度だけ (もう止めない)")
 
     def test_cli(self):
@@ -7315,7 +7315,7 @@ class T_G14Close(unittest.TestCase):
         self.assertIn("resume では進めない", r.stdout)
         r = run("next_part")
         self.assertEqual(r.returncode, 3)
-        self.assertIn("コードがまだない", r.stdout)
+        self.assertIn("本人の決めのしるし", r.stdout)  # 2026-11-15: G15 のコードができた (--decided がなければ断る)
         r = run("next_part", "--closed-by-decision", "もう一度")
         self.assertEqual(r.returncode, 3)
         self.assertIn("もう閉じている", r.stdout)

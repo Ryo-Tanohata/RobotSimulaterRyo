@@ -106,7 +106,7 @@ def _g15m():
 
 
 def _g15_on(state):
-    return "g15" in (state["era2"].get("g7") or {})
+    return "start" in ((state["era2"].get("g7") or {}).get("g15") or {})  # G15 の仕組みが入った (g7.start_g15 が start を書く。方法の直しの試しの空の g7.g15 では働かない)
 
 
 def _g7m():
