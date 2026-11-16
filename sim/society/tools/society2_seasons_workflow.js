@@ -17,10 +17,16 @@ const pad = (n) => String(n).padStart(3, '0')
 // 答えるモデル (2026-10-23 本人の決め「代表だけ sonnet/opus」)。季節の答え (家の代表とまとめ役) と、まわりの集落の集まりは sonnet、
 // そのうち名前から決まる約 8 人に 1 人は opus (乱数なし。同じ人はずっと同じモデル)。気持ちだけ答える人と、コマンドを動かす係は haiku。
 // args.models === 'haiku' で前と同じ (みな haiku)。使ったモデルは答えの置き場所の models.json に書く
+// 2026-11-15 (G15。本人の希望「超優秀な人」): args.fable (名前の並び) に入れた人は、季節の答えも気持ちの答えも 'fable' で答える
+//   (作る側が入れた新しい人。名前は step.py next_part の「* G15 の新しい人」の行と state の g7.g15.newcomer.name)。args.fable がなければ前と同じ
+// --- models (tools/test_g7.py T_G15 が、この印のあいだを node で動かして確かめる) ---
 const ALL_HAIKU = args.models === 'haiku'
+const FABLE = new Set(Array.isArray(args.fable) ? args.fable.map(String) : [])
 function fnv(s) { let x = 2166136261; for (const ch of s) { x ^= ch.codePointAt(0); x = Math.imul(x, 16777619) >>> 0 } return x }
-const repModel = (n) => ALL_HAIKU ? 'haiku' : fnv(n) % 8 === 0 ? 'opus' : 'sonnet'
+const repModel = (n) => FABLE.has(n) ? 'fable' : ALL_HAIKU ? 'haiku' : fnv(n) % 8 === 0 ? 'opus' : 'sonnet'
+const feelModel = (n) => FABLE.has(n) ? 'fable' : 'haiku'
 const councilModel = () => ALL_HAIKU ? 'haiku' : 'sonnet'
+// --- end models ---
 function rp(d, n) {
   return `Read \`${ROOT}/${DATA}/prompts/day${pad(d)}/season/${n}.md\` and follow its instructions exactly: role-play that character and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/${DATA}/answers/day${pad(d)}/season/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
 }
@@ -64,7 +70,7 @@ for (let k = 0; k < STEPS; k++) {
     const todo = names.filter((n) => !(preS || '').includes(`${n}.json`))  // 再起動のあと: 答えのある人はとばす
     const todoF = feel.filter((n) => !(preF || '').includes(`${n}.json`))
     await parallel([...todo.map((n) => () => agent(rp(d, n), { label: `d${d} ${n} (${repModel(n)})`, model: repModel(n), phase: 'Seasons' })),
-                    ...todoF.map((n) => () => agent(rpf(d, n), { label: `d${d} ${n} (気持ち)`, model: 'haiku', phase: 'Seasons' }))])
+                    ...todoF.map((n) => () => agent(rpf(d, n), { label: `d${d} ${n} (気持ち)`, model: feelModel(n), phase: 'Seasons' }))])
     // 2026-11-07: ない答えだけを名前で書かせる (前は ls の一覧を読ませていたが、読む役が一覧をまとめて返し、19559 日目に代表 17 人・気持ち 53 人をみなやり直した)。
     // 「CHECKED」の行が読めなければ、だれもやり直さない (やり直しすぎるより安全。代表の答えがなければ step.py が前の予定で進める)
     const chk = [...names.map((n) => `[ -f season/${n}.json ] || echo MISS_S ${n}`), ...feel.map((n) => `[ -f feeling/${n}.json ] || echo MISS_F ${n}`)].join('; ')
@@ -75,7 +81,7 @@ for (let k = 0; k < STEPS; k++) {
     if (!okc) log(`day ${d}: check unreadable, no retries`)
     if (miss.length) log(`day ${d}: retry ${miss.join('、')}`)
     if (miss.length || missF.length) await parallel([...miss.map((n) => () => agent(rp(d, n) + ' ', { label: `d${d} ${n} retry`, model: repModel(n), phase: 'Seasons' })),
-                                                     ...missF.map((n) => () => agent(rpf(d, n) + ' ', { label: `d${d} ${n} (気持ち) retry`, model: 'haiku', phase: 'Seasons' }))])
+                                                     ...missF.map((n) => () => agent(rpf(d, n) + ' ', { label: `d${d} ${n} (気持ち) retry`, model: feelModel(n), phase: 'Seasons' }))])
     if (council.length) {  // G7: まわりの集落の集まり (1 回だけやり直す。なければ step.py が決まりで選ぶ)
       const once = async () => {
         const lc = await agent(runner(`mkdir -p ${ROOT}/${DATA}/answers/day${pad(d)}/council && ls ${ROOT}/${DATA}/answers/day${pad(d)}/council/`), { label: `d${d} check (集まり)`, model: 'haiku', phase: 'Seasons' })
@@ -91,7 +97,7 @@ for (let k = 0; k < STEPS; k++) {
     log(`day ${d}: no meeting (yearly plan)`)
   }
   // 使ったモデルを残す (季節の答えの置き場所のとなり。step.py は読まない)。2026-11-07: 書くのは季節を進める同じコマンドの頭で (前は別の読む役 1 体。中身は同じ)
-  const mj = meet ? JSON.stringify({ season: Object.fromEntries(names.map((n) => [n, repModel(n)])), feeling: Object.fromEntries(feel.map((n) => [n, 'haiku'])), council: Object.fromEntries(council.map((n) => [n, councilModel()])) }) : ''
+  const mj = meet ? JSON.stringify({ season: Object.fromEntries(names.map((n) => [n, repModel(n)])), feeling: Object.fromEntries(feel.map((n) => [n, feelModel(n)])), council: Object.fromEntries(council.map((n) => [n, councilModel()])) }) : ''
   const pre_ = meet ? `printf '%s\\n' '${mj}' > ${ROOT}/${DATA}/answers/day${pad(d)}/models.json; ` : ''
   const out = await agent(runner(`${pre_}${ENV}PY='${PY}' EXPECT_DAY=${d} CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })

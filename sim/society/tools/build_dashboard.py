@@ -773,6 +773,7 @@ def build(st, rec):
     g6 = build_g6(st, rec, rows, seasons, layer_of_row, row_of_event, ev_by_type, adv)
     g7 = build_g7(st, rec, rows, seasons, row_of_day) if e2.get("g7") else None  # G7 (王と役所) から。G6 までは鍵を足さない
     g12 = build_g12(st, rows, row_of_day) if (e2.get("g7") or {}).get("g12") else None
+    g15 = build_g15(st, rows, row_of_day) if (e2.get("g7") or {}).get("g15") else None  # G15 (2026-11-15): 水の作業場と燃える石のまとめ (数だけ)。G14 までは鍵を足さない
     g14 = build_g14(st, rows, row_of_day) if (e2.get("g7") or {}).get("g14") else None  # G14 (2026-11-14): 町と市と仲間のまとめ (数だけ。名前は出さない)。G13 までは鍵を足さない  # G12 (2026-11-12): 村の人が字で書いた帳のまとめ。G11 までは鍵を足さない
 
     last = seasons[-1]
@@ -867,6 +868,7 @@ def build(st, rec):
         **({"g7": g7} if g7 is not None else {}),
         **({"g12": g12} if g12 is not None else {}),
         **({"g14": g14} if g14 is not None else {}),
+        **({"g15": g15} if g15 is not None else {}),
     }
     return out
 
@@ -1083,6 +1085,21 @@ def build_g12(st, rows, row_of_day):
         out.append({"d": rows[i]["d"] if i is not None else None, "year": int(y), "houses": len(c["houses"]), "people": sum((c.get("people") or {}).values()),
                     "grain_written": None if sg is None else int(round(sg, -2)), "pacts": (c.get("pacts") or {}).get("n"), "done": bool(c.get("done"))})
     return {"entered": True, "census": out[-20:]}
+
+
+def build_g15(st, rows, row_of_day):
+    """G15 から (2026-11-15。G15_design.md 3.5・3.6): 水の作業場と燃える石の帳簿 (【シ】) の年ごとのまとめ。数だけ (作業場・8 人の日・燃える石の割合・
+    石のかまどの家の数・板・1 人 1 日の火と力・1 人あたりの作ったもの・地域の食べ物の仕事の割合)。名前と家の名は出さない (records/granary.jsonl にある)"""
+    g = ((st["era2"].get("g7") or {}).get("g15") or {})
+    out = []
+    for r in g.get("ledger") or []:
+        i = row_of_day(r["day"])
+        en = r.get("energy") or {}
+        out.append({"d": rows[i]["d"] if i is not None else None, "year": r["year"], "ws": len(r.get("ws_list") or {}),
+                    "big_days": max((x.get("big", 0) for x in (r.get("ws") or {}).values()), default=0), "coal_share": en.get("coal_share", 0),
+                    "stove_houses": len(r.get("stoves") or []), "planks_made": r.get("planks_made", 0), "kcal_pc": en.get("per_day", 0),
+                    "output_pc": r.get("output_pc", 0), "food_share_region": r.get("region_food_share", 1.0)})
+    return {"entered": True, "coal_placed": bool((g.get("coal") or {}).get("placed")), "e": {k: v for k, v in (g.get("e") or {}).items()}, "years": out[-20:]}
 
 
 def build_g14(st, rows, row_of_day):

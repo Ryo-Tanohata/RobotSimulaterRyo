@@ -1472,6 +1472,15 @@ function renderKiroku7(p, d) {
         : h("p", { class: "empty" }, "まだない (年の終わりに残る)"),
       h("p", { class: "notice" }, "シミュレーションの帳簿 (【シ】) の数だけ。名前は出さない")));
   }
+  const g15 = D.g15;  /* G15 から (2026-11-15): 水の作業場と燃える石のまとめ (数だけ。名前は出さない) */
+  if (g15 && g15.entered) {
+    const ys = g15.years.filter((r) => r.d != null && r.d <= d);
+    p.append(h("div", { class: "card" }, h("h3", {}, "水の作業場と燃える石 (G15から)"),
+      ys.length ? tbl([{ t: "年" }, { t: "作業場", n: 1 }, { t: "8 人の日", n: 1 }, { t: "燃える石の割合", n: 1 }, { t: "石のかまどの家", n: 1 }, { t: "板 (束)", n: 1 }, { t: "1 人 1 日 (kcal)", n: 1 }, { t: "1 人あたりの作ったもの", n: 1 }, { t: "地域の食べ物の仕事", n: 1 }],
+        ys.slice(-12).map((r) => [`${r.year}年`, fmt(r.ws), fmt(r.big_days), `${(r.coal_share * 100).toFixed(1)}%`, fmt(r.stove_houses), fmt(r.planks_made), fmt(r.kcal_pc), fmt(Math.round(r.output_pc)), `${(r.food_share_region * 100).toFixed(1)}%`]))
+        : h("p", { class: "empty" }, "まだない (年の終わりに残る)"),
+      h("p", { class: "notice" }, (g15.coal_placed ? "燃える石は作る側が北の丘に置いた土地。" : "燃える石を置かない世界。") + "シミュレーションの帳簿 (【シ】) の数だけ。名前は出さない")));
+  }
 }
 </script>
 </body>

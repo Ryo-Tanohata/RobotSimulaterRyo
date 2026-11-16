@@ -39,6 +39,7 @@ import g11 as G11  # noqa: E402
 import g12 as G12  # noqa: E402  (読むのは数の決まりだけ。state は変えない)
 import g13 as G13  # noqa: E402  (読むのは数の決まりだけ。state は変えない)
 import g14 as G14  # noqa: E402  (読むのは数の決まりだけ。state は変えない)
+import g15 as G15  # noqa: E402  (同じ。G15 の棒と節・作る側が入れた人の 1 年)
 import records  # noqa: E402
 
 YEAR = era2.YEAR
@@ -396,6 +397,39 @@ def conditions(D, y, phase):
         p = (g.get("path") or {}).get(str(y))
         cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g14_path_") and c.get("year") == y]
         out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G14"}
+    elif phase == "G15":
+        g = _g7(st).get("g15") or {}
+        es = g.get("e") or {}
+        led = next((r for r in g.get("ledger") or [] if r.get("year") == y), {})
+        ledp = next((r for r in g.get("ledger") or [] if r.get("year") == y - 1), {})
+        big = max((r.get("big", 0) for r in (led.get("ws") or {}).values()), default=0)
+        bigp = max((r.get("big", 0) for r in (ledp.get("ws") or {}).values()), default=0)
+        sh = round(100 * (led.get("energy") or {}).get("coal_share", 0), 1)
+        shp = round(100 * (ledp.get("energy") or {}).get("coal_share", 0), 1)
+        avg = {int(k): v for k, v in ((g.get("out") or {}) and _g15_avg(g)).items()}
+        kc, kcp = (led.get("energy") or {}).get("per_day", 0), (ledp.get("energy") or {}).get("per_day", 0)
+        fd = round(100 * led.get("region_food_share", 1.0), 1)
+        out["bars"] = [
+            _bar("e3 水の作業場 (8 人の日)", big, G15.E3_DAYS, "日", es.get("e3"),
+                 f"この年に、1 つの作業場で 3 家以上の大人 8 人以上が同じ日に働いた日 (去年 {bigp})。目標は 1 年に {G15.E3_DAYS} 日の年が {G15.E3_YEARS} 年つづく "
+                 f"(届いた年: {'・'.join(map(str, [x for x in g.get('e3_years') or [] if x <= y])) or 'まだ'})", end),
+            _bar("e1 燃える石 (火と力のうち)", sh, round(100 * G15.E1_SHARE), "%", es.get("e1"),
+                 (f"この年の火と力 (kcal) のうち、燃える石の熱 (去年 {shp}%。石のかまどの家 {len(led.get('stoves') or [])})。目標は半分以上の年が {G15.E1_YEARS} 年つづく"
+                  if (g.get("coal") or {}).get("placed") else "燃える石を置かない世界なので、この道はない"), end),
+            _bar("e4 作ったもの (3 年の平均が上がった回)", len([x for x in g.get("e4_rises") or [] if x <= y]), G15.E4_RISES, "回", es.get("e4"),
+                 f"1 人あたりの作ったもの {led.get('output_pc', '-')} つかみ (3 年の平均 {avg.get(y, '-')}・去年の平均 {avg.get(y - 1, '-')})。目標は 3 年の平均が {G15.E4_RISES} 回つづけて上がる", end),
+            _bar("e2 食べ物の仕事 (地域の働いた日のうち)", fd, round(100 * G15.E2_SHARE), "%", es.get("e2"),
+                 f"まわりの集落の大人はみな食べ物の仕事と数える (村だけなら {round(100 * led.get('village_food_share', 1.0), 1)}%)。目標は半分未満 (いまの世界では届かない見込み)", end),
+            _bar("e5 火と力 (1 人 1 日)", kc, G15.E5_KCAL, "kcal", es.get("e5"),
+                 f"火と力の帳簿の合わせ ÷ 人 ÷ 日 (去年 {kcp})。表 (まき 1 人 1 日 {G15.WOOD_KG} kg など) しだい。目標は 3 万 kcal (届かない見込み)", end)]
+        out["moves"] = {"e3": (big > bigp) - (big < bigp), "e1": (sh > shp) - (sh < shp), "e5": (kc > kcp) - (kc < kcp)}
+        rch = g.get("reached") or {}
+        out["fs"] = [(k, v, rch.get(k) if (rch.get(k) or end + 1) <= end else None) for k, v in G15.FS.items()]
+        out["g15"] = g15_lines(g, st, y, led)
+        out["newcomer"] = newcomer_lines(g, st, y)
+        p = (g.get("path") or {}).get(str(y))
+        cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g15_") and c.get("year", (c.get("day", 0) + 1) // YEAR - 1) == y]
+        out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G15"}
     else:
         out["extra"] = [f"この年のフェーズ {phase} の条件の棒は、まだ作っていない。条件: {(st.get('era_info') or {}).get('next', '-')}"]
     return out
@@ -523,6 +557,63 @@ def _setts_now(st):
     return sum(1 for o in ((st.get("era2") or {}).get("g6") or {}).get("others", []) if not o.get("gone") and o.get("people", 0) > 0)
 
 
+def _g15_avg(g):
+    """1 人あたりの作ったものの 3 年の平均 (g15.output_avg と同じ数え方。state を読むだけ)"""
+    o = {int(k): v for k, v in (g.get("out") or {}).items()}
+    y0 = g.get("start", 0) // YEAR + 1
+    return {str(y): round(sum(o[y - i] for i in range(G15.E4_WIN)) / G15.E4_WIN, 2) for y in sorted(o)
+            if all((y - i) in o and y - i >= y0 for i in range(G15.E4_WIN))}
+
+
+def g15_lines(g, st, y, led):
+    """G15 のこの年のようす (やさしい日本語の箇条)"""
+    out = []
+    ws = g.get("ws") or {}
+    if ws:
+        out.append("水の作業場: " + "・".join(f"{k} {v['tool']} ({'使える' if v.get('done') is not None else '作っている途中 ' + str(round(v.get('work', 0))) + ' 人日'})"
+                                             for k, v in sorted(ws.items())))
+    for k, r in sorted((led.get("ws") or {}).items()):
+        out.append(f"作業場 {k}: 働いた {r.get('days', 0)} 人日・8 人の日 {r.get('big', 0)} 日 (答えた家の人がいない日 {r.get('big_noans', 0)})・板 {r.get('planks', 0)} 束・"
+                   f"槌の日 {r.get('iron', 0)} (腕のある人のいない日 {r.get('no_smith', 0)})・家 {len(r.get('houses') or {})}")
+    if not ws:
+        out.append("水の作業場: まだない")
+    if (g.get("coal") or {}).get("placed"):
+        out.append(f"燃える石 (作る側が置いた土地): 掘った {round(led.get('coal_dug', 0))} kg・燃やした {round(led.get('coal_burned', 0))} kg・"
+                   f"石のかまどの家 {len(led.get('stoves') or [])} / {led.get('homes', '-')}")
+    en = led.get("energy") or {}
+    if en:
+        out.append(f"火と力の帳簿 (kcal・1 日あたりでなく 1 年): 食べ物 {en.get('food', 0):,}・まき {en.get('wood', 0):,}・燃える石 {en.get('coal', 0):,}・窯 {en.get('kiln', 0):,}・"
+                   f"炭 {en.get('char', 0):,}・水の輪 {en.get('mill', 0):,} (1 人 1 日 {en.get('per_day', 0):,} kcal。燃える石の割合はまき 1・1.5・2 kg の表で "
+                   + "・".join(f"{round(100 * v, 1)}%" for v in (led.get("e1_alt") or {}).values()) + ")")
+    if led:
+        out.append(f"板: ひいた {led.get('planks_made', 0)} 束・使った {led.get('planks_used', 0)} 束 / 黒い金属の鎌を作った {led.get('iron_made', 0)} 本 / "
+                   f"読める大人 {len(led.get('readers') or [])} ({'・'.join(led.get('readers') or []) or 'いない'})・腕のある人 {len(led.get('smiths') or [])} / "
+                   f"水の輪 {led.get('mills', 0)} (回っている {led.get('mills_running', 0)}・粉をひく {led.get('grind_mills', 0)})・この年に直した {led.get('mill_repair', 0)} 人日")
+    fa = [f for f in g.get("fails") or [] if f.get("year") == y]
+    out.append(f"休んだ・できなかった: {len(fa)} 回" + (": " + " / ".join(clean(f["why"], 60) for f in fa[:3]) if fa else ""))
+    return out
+
+
+def newcomer_lines(g, st, y):
+    """作る側が入れた人 (本人の希望 2026-11-15) のこの年: 答えの仕事と欄 workshop・その人の家が答えて動いた G の仕事・手本にして写って動いた家 (写しの記録 g7.gpath から)"""
+    nc = g.get("newcomer")
+    if not nc:
+        return []
+    r = (nc.get("years") or {}).get(str(y))
+    head = f"作る側が入れた人 {nc['name']} ({nc['household']}。{nc['why']}。答えるモデル {nc['model']})"
+    if not r:
+        return [head + ": この年の記録はまだない"]
+    out = [head + ("" if r.get("alive", True) else " (亡くなった)")]
+    for d, a in sorted((r.get("answers") or {}).items(), key=lambda kv: int(kv[0])):
+        out.append(f"{d} 日目の答え: 仕事 " + ("・".join(f"{k} {v}" for k, v in (a.get("jobs") or {}).items()) or "なし")
+                   + f" / workshop {'・'.join(f'{x[0]} {x[1]}' for x in a.get('workshop') or []) or 'なし'}")
+    out.append("その人の家が答えて動いた G の仕事: " + ("・".join(f"{k} {v} 人日" for k, v in (r.get("own") or {}).items()) or "なし"))
+    cp = r.get("copied") or {}
+    out.append(f"手本にした家 {len(r.get('followers') or [])} (" + ("・".join(r.get("followers") or []) or "なし") + ")・写って動いた G の仕事: "
+               + ("・".join(f"{h} {'・'.join(f'{k} {v}' for k, v in acts.items())}" for h, acts in sorted(cp.items())) or "なし"))
+    return out
+
+
 def g14_lines(g, st, y, led):
     """G14 のこの年のようす (やさしい日本語の箇条)"""
     out = []
@@ -554,6 +645,11 @@ def path_line(C, y):
     r = p["row"]
     if not r:
         return f"道の見張り: この年 ({y}年) は、まだ村の集まりがなかった (数える年は {(p['start'] + 1) // YEAR}年から)"
+    if p.get("g") == "G15":
+        t = (f"道の見張り: この年の村の集まり {r['meetings']} 回で、答える人のうち、その道を自分で選べた人は、のべで e3 (水の作業場) {r.get('e3', 0)} 人、"
+             f"e1 (燃える石) {r.get('e1', 0)} 人。実際に選んだ人は {r.get('chose', 0)} 人 (workshop を書いた {r.get('ws_written', 0)} 人・例と同じ {r.get('same_ex', 0)} 人。"
+             f"読める大人 {r.get('readers', 0)} 人)。{G15.PATH_YEARS} 年つづけて 0 人なら、止めて相談する")
+        return t + ("。この年の終わりに、止めて相談することになった" if p["consult"] else "")
     if p.get("g") == "G14":
         t = (f"道の見張り: この年の村の集まり {r['meetings']} 回で、答える人のうち、その道を自分で選べた人は、のべで条件 1 (町の家・市へ運ぶ) {r['c1']} 人、"
              f"条件 2 (書きつけ) {r['c2']} 人、条件 3 (仲間) {r['c3']} 人。実際に選んだ人は {r.get('chose', 0)} 人"
@@ -756,6 +852,15 @@ def next_lines(C, y, phase_next, nxt_era=None):
         if zero:  # 止めて相談になるかもしれないので、いちばん上に出す
             out.insert(1 if phase_next else 0,
                        f"道の見張り: 今年、条件 {'・'.join(zero)} の道がお題に出なかった。来年も 0 回なら、止めて相談になる")
+    elif C["phase"] == "G15":
+        b = {i: x for i, x in enumerate(C["bars"], 1)}
+        rch = dict((k, d) for k, _, d in C["fs"])
+        if not b[1]["done"]:
+            out.append("答える人が水の輪を作業場にするか (答えの workshop)" if not rch.get("F1") else f"作業場の 8 人の日が 1 年に 30 日になるか (今年 {b[1]['value']} 日)")
+        if not b[2]["done"] and "置かない" not in b[2]["note"]:
+            out.append("家のかまどを石のかまどにして、燃える石を燃やすか" if not rch.get("F2") else f"燃える石が火と力の半分をこえる年が 2 年つづくか (今年 {b[2]['value']}%)")
+        if not b[3]["done"]:
+            out.append(f"1 人あたりの作ったものの 3 年の平均が上がりつづけるか (いま {b[3]['value']} 回)")
     elif C["phase"] == "G14":
         b = {i: x for i, x in enumerate(C["bars"], 1)}
         rch = dict((k, d) for k, _, d in C["fs"])
@@ -988,6 +1093,10 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
         w('<div class="note">小さな目盛り (F):</div><div class="fs">'
           + "".join(f'<span class="{"on" if d is not None else ""}">{"✓ " if d is not None else ""}{e(k)} {e(v)}</span>' for k, v, d in C["fs"]) + "</div>")
     pl = path_line(C, y)
+    if C.get("g15"):
+        w('<p style="margin:10px 0 2px"><b>水の作業場と燃える石 (この年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["g15"]) + "</ul>")
+    if C.get("newcomer"):
+        w('<p style="margin:10px 0 2px"><b>作る側が入れた人 (この年に選んだこと・写った家)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["newcomer"]) + "</ul>")
     if C.get("g14"):
         w('<p style="margin:10px 0 2px"><b>町と市と仲間 (この年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["g14"]) + "</ul>")
     if C.get("g13"):
