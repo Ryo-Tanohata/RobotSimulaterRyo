@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りない。今季は私の家が林で狩りをして肉を持ち帰る。ヤギも少し肉にして干そう。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りの腕が一番高いので、冬の前に肉をたくさん蓄えに入れたい"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ホミ52": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高く、みんなで行けば安全で肉も多く取れる"},
+  "オネ54": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高く、みんなで行けば安全で肉も多く取れる"},
+  "リセ56": {"activity": "採集", "place": "西草原12", "why": "採集の腕が高いので、木の実や草の種を集めて冬に備える"},
+  "テナ56": {"activity": "狩り", "place": "東林12", "why": "採集より狩りが得意なので肉を取る"},
+  "オセ63": {"activity": "狩り", "place": "東林12", "why": "若くて力があり、狩りの腕も高い"},
+  "ナセ64": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高く、冬の前に肉がほしい"},
+  "テナ67": {"activity": "狩り", "place": "東林12", "why": "大人と一緒に行って狩りを覚える"},
+  "ムイ67": {"activity": "狩り", "place": "東林12", "why": "大人と一緒に行って狩りを覚える"}
+ },
+ "keep": false,
+ "judge": {"M518": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T652": false, "T653": false, "T654": false, "T655": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出て危ないので、みんなで守るべき決まりだ"}],
+ "feeling": "冬が近いので、仲間と力を合わせて肉をたくさん持ち帰りたい。"}

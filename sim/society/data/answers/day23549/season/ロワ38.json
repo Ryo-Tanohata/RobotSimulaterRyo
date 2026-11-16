@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬の前に、まだ行ったことのない林の奥を見てくる。新しい実りや獲物の場所がわかったら持ち帰るよ。"}],
+ "job": {"activity": "探索", "place": "北林45", "with": [], "why": "好奇心が強く、冬の前に新しい食べ物の場所を見つけたいから"},
+ "sow": 1000, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 5,
+ "family": {"オネ40": {"activity": "狩り", "place": "南林28", "why": "狩りが得意で、冬に魚やけものは捕れるから、蓄えの肉を増やしたい"}},
+ "keep": false,
+ "judge": {"M518": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T652": false, "T653": false, "T654": false, "T655": false},
+ "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近い。まだ見ぬ場所を歩けるのが楽しみだ。"}

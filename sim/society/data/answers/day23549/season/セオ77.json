@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "冬の前に、わたしは石の鎌をたくさん作るよ。道具づくりは得意だから、刈る人の助けになりたい。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の技が一番高いので、鎌を作って村の刈り入れを助けたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ルタ77": {"activity": "採集", "place": "西草原12", "why": "採集の技が高いので、食べ物を集めて家族と村を支える"}},
+ "keep": false,
+ "judge": {"M518": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T652": false, "T653": false, "T654": false, "T655": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、次の夏に実って刈れる", "because": [3415632], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "赤ちゃんのムイ80が生まれて うれしい。冬の前に道具をそろえたい"}

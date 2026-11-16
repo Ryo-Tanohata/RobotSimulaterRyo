@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をしっかりまいて、冬と春の草取りもみんなで分けてやろう。夏に刈り残しが出ないようにしたいね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、毎日畑で働いて来年の食べ物を守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケセ46": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "トナ50": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ケセ55": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ユエ55": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ヒセ67": {"activity": "畑仕事", "place": "camp", "why": "若い力で畑の草取りを手伝うため"},
+  "ラニ67": {"activity": "畑仕事", "place": "camp", "why": "若い力で畑の草取りを手伝うため"},
+  "ロワ68": {"activity": "畑仕事", "place": "camp", "why": "子も畑の草取りを手伝えるため"},
+  "シエ68": {"activity": "畑仕事", "place": "camp", "why": "子も畑の草取りを手伝えるため"},
+  "ラニ69": {"activity": "畑仕事", "place": "camp", "why": "子も畑の草取りを手伝えるため"}
+ },
+ "keep": false,
+ "judge": {"M518": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T652": false, "T653": false, "T654": false, "T655": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって心強い。畑の草取りをみんなでがんばれば、来年も安心だと思う。"}
