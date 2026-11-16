@@ -1,0 +1,17 @@
+{"say":[{"to":"みんな","text":"夏のうちに畑をしっかり刈って、蓄えを守ろう。ヤギは草より多いので、少しずつ肉にして減らそう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちてしまうから"},"family":{"ルタ52":{"activity":"畑仕事","place":"camp","why":"家族みんなで刈り入れを急ぐため"},"キサ53":{"activity":"畑仕事","place":"camp","why":"家族みんなで刈り入れを急ぐため"}},"pick":0,"plant":0,"harvest":60,"eat_goat":3},
+"秋":{"job":{"activity":"採集","place":"camp","with":[],"why":"冬に備えて木の実を集めるため"},"family":{"ルタ52":{"activity":"採集","place":"camp","why":"冬の食べ物を増やすため"},"キサ53":{"activity":"採集","place":"camp","why":"冬の食べ物を増やすため"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"camp","with":[],"why":"冬も魚やけものはいるので、肉を蓄えに入れるため"},"family":{"ルタ52":{"activity":"狩り","place":"camp","why":"狩りが得意なので肉を取る"},"キサ53":{"activity":"狩り","place":"camp","why":"狩りが得意なので肉を取る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"土器づくり","place":"camp","with":[],"why":"土器が蓄えを虫やネズミから守るから"},"family":{"ルタ52":{"activity":"土器づくり","place":"camp","why":"土器を増やして蓄えを守る"},"キサ53":{"activity":"土器づくり","place":"camp","why":"土器を増やして蓄えを守る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{"T662":false,"T663":false,"T664":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},
+"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],
+"knowledge":[{"op":"add","text":"夏に畑を刈らないと実りが落ちる。夏は刈り入れを優先する。","because":[3476089],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"たくさん刈った年",
+"mood":"みんなで協力して、実りを大事にしたい。"}
