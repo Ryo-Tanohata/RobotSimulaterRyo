@@ -379,6 +379,9 @@ def work_day(state, p, t, act):
               and g10.smith(state, q["name"])]
     if not g10.iron_ready(state) or not smiths:
         row["no_smith"] += 1
+        g.setdefault("wsnosm", {}).setdefault(mid, [])
+        if str(D) not in g["wsnosm"][mid]:  # 本人に聞いた点 (G15_check.md 2.3) をおすすめで決めた (2026-11-16): 何も作らない槌の日は e3 の「8 人の日」に数えない
+            g["wsnosm"][mid].append(str(D))
         why = f"{name} は、作業場 {mid} で槌を回したが、黒い金属の腕のある人がいないので、黒い金属はたたけなかった"
         t.setdefault("events", []).append(log(state, ACT_WS_WORK, name, why, mill=mid, no_smith=True))
         if not any(f["who"] == name and f["what"] == act and f["day"] // SEASON_DAYS == D // SEASON_DAYS for f in g["fails"]):
@@ -421,11 +424,14 @@ def _ws_season(state):
             houses = {hs.get(n) or n for n in names}
             for h in houses:
                 row["houses"][h] = row["houses"].get(h, 0) + sum(1 for n in names if (hs.get(n) or n) == h)
+            if ds in (g.get("wsnosm") or {}).get(mid, []):
+                continue
             if len(names) >= E3_PEOPLE and len(houses) >= E3_HOUSES:
                 row["big"] += 1
                 if not any(g7.gpath_kind(src.get(n)) == "answered" for n in names):
                     row["big_noans"] += 1
     g["wsday"] = {}
+    g["wsnosm"] = {}
 
 
 # ---------------- 燃える石 ----------------

@@ -7779,6 +7779,31 @@ class T_G15(unittest.TestCase):
         self.assertAlmostEqual(g10._g(st)["forge"] % g10.IRON_DAYS, (f0 + 2 * g10.IRON_DAYS / g15.HAMMER_DAYS) % g10.IRON_DAYS, places=3)
         self.assertIn(other, g10._g(st)["pending_smiths"], "一緒に働いた人は腕を覚える")
 
+    def test_hammer_no_smith_not_e3(self):
+        """2026-11-16 おすすめで決めた (G15_check.md 2.3): 腕のある人がいない槌の日は、8 人 3 家でも e3 の「8 人の日」に数えない"""
+        import g10
+        import g15
+        st = self.g15_state()
+        g = g15._g(st)
+        mid = g15.candidates(st)[-1]
+        g["ws"][mid] = {"tool": g15.HAMMER, "day": st["day"], "by": [], "votes": "", "work": 60, "done": st["day"], "builders": {}}
+        g15._mill(st, mid)["ws"] = g15.HAMMER
+        sm = set(g10.smiths_now(st))
+        hs = {}
+        for p in era2.adults(st):
+            if p.get("household") and p["name"] not in sm and not g10.smith(st, p["name"]):
+                hs.setdefault(p["household"], []).append(p["name"])
+        names = [n for h in sorted(hs, key=lambda h: -len(hs[h]))[:3] for n in hs[h][:4]][:10]
+        self.assertGreaterEqual(len(names), 8)
+        for n in names:
+            self.worker(st, n, g15.ACT_WS_WORK, mid)
+        g15._ws_season(st)
+        row = g["wsyear"][str(st["day"] // era2.YEAR)][mid]
+        self.assertEqual(row["days"], len(names))
+        self.assertGreater(row["no_smith"], 0)
+        self.assertEqual(row["big"], 0, "何も作らない槌の日は数えない")
+        self.assertEqual(g["wsnosm"], {})
+
     def test_coal(self):
         """燃える石: 掘る 200 kg・かまど 10 人日 (板で倍)・倉にあれば燃やす・なければまき・F2。置かない世界では仕事がなく、わけ"""
         import g15
