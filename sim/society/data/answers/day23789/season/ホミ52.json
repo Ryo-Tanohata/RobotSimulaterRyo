@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "止まっている水の輪が11もある。手の空いている人は、いっしょに直そう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "止まった水の輪を回して、粉ひきの手を助けたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソナ82": true, "ハソ82": true, "セヤ82": true},
+ "family": {
+  "オネ54": {"activity": "帳をつける", "place": "camp", "why": "字が書けるので、村の帳をつける"},
+  "リセ56": {"activity": "畑仕事", "place": "camp", "why": "草取りで冬の畑の実りを増やす"},
+  "テナ56": {"activity": "水の輪を直す", "place": "camp", "why": "止まった輪を回すため"},
+  "オセ63": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが足りないから"},
+  "ナセ64": {"activity": "水の輪を直す", "place": "camp", "why": "止まった輪を回すため"},
+  "テナ67": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが足りないから"},
+  "ムイ67": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やす"},
+  "ケナ71": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}
+ },
+ "keep": false, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりある。止まった輪を直して、来年に備えたい。"}
