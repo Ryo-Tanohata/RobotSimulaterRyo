@@ -1,0 +1,12 @@
+{"say":[{"to":"みんな","text":"夏の畑は実っている。落ちる前に、みんなで刈ろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が夏のうちに落ちてしまう前に刈るため"},"family":{},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで実りを増やすため"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"南草原45","with":[],"why":"冬は木の実も種も実らないので、肉をとって蓄えを助ける"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"育っている畑の草取りで実りを守るため"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],"accept":{"キオ80":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T650":false,"T651":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},
+"demand":null,"share":null,"metal":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],
+"knowledge":[],"proposal":null,"votes":[],
+"year_name":"ケナ45を悼む年","mood":"畑がよく実っていて安心している。みんなで協力して刈りたい。"}
