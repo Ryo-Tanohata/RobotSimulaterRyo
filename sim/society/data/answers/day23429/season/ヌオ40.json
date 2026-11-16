@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "この秋は、水の道の手入れがまだ残っているから、うちの家は みんなで水の道を掘りに出よう。春の実りを守るためだよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ約396人日残っていて、掘っておけば悪い年でも刈り入れが半分にならないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ナセ79": true},
+ "family": {"ワユ41": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家ごとに分けて進めるため"}, "タユ60": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道を掘り進めるため"}, "オセ61": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家族みんなで進めるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "far": {}, "far_write": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": []}
