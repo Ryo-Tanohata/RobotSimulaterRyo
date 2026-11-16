@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "冬の肉は、おれたちの家の狩りで集めるよ。ヤギは草より多いから、少しつぶして干し肉にしよう。"}],
+ "job": {"activity": "狩り", "place": "北草原28", "with": [], "why": "狩りが得意で、冬の肉を蓄えたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ホミ52": {"activity": "狩り", "place": "北草原28", "why": "狩りが得意で冬の肉を集められる"},
+  "オネ54": {"activity": "狩り", "place": "北草原28", "why": "狩りが得意で冬の肉を集められる"},
+  "リセ56": {"activity": "採集", "place": "西草原12", "why": "採集が得意で冬の食べ物を増やせる"},
+  "テナ56": {"activity": "狩り", "place": "北草原28", "why": "狩りが得意で冬の肉を集められる"},
+  "オセ63": {"activity": "狩り", "place": "東林28", "why": "若くて足が速く、肉を多く持ち帰れる"},
+  "ナセ64": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やす"},
+  "テナ67": {"activity": "狩り", "place": "東林28", "why": "狩りの腕をみがきながら肉を集める"},
+  "ムイ67": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やす"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T659": false, "T660": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬にそなえて、家族みんなで肉を集めたい。"}

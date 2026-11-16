@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋の畑には、水の来る分だけ種をまこう。夕方の木の実は取りすぎず、取り残しは土に埋めて木を増やそう。"}],
+ "job": {"activity": "帳をつける", "place": "camp", "what": ["蓄え", "交換"], "how": "板", "with": [], "why": "字を読める人が少ないので、蓄えと貸し借りを板に残して、覚えちがいのもめごとを防ぐため"},
+ "sow": 1000, "pick": 40, "plant": 5, "harvest": 0, "eat_goat": 5, "keep": false,
+ "feast": false, "leader": null, "trade": {"T659": false, "T660": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える数より多いので、ほかの村のヤギは受けず、毎季節少しずつ肉にして減らす", "because": [3452638], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多いけれど、ヤギと水の道が気がかり。帳をつけて村を支えたい。"}
