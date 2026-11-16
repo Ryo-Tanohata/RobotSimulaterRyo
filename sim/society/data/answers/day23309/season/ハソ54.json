@@ -1,0 +1,27 @@
+{"say": [{"to": "みんな", "text": "うちの家からは、ケナ60を水の道の手入れに、ヒセ63を水の輪の直しに出すよ。残りは畑の草取りをして、来年の夏の実りを増やそう。"}, {"to": "ムイ78", "text": "南の村から一日歩いて来たんだね。ここは蓄えもたっぷりあるから、安心して一緒に暮らそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りを足りるだけして、次の夏の実りを十割にしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ムイ78": true},
+ "family": {
+  "ケナ55": {"activity": "畑仕事", "place": "camp", "why": "赤子のキオ78がいるので、キャンプの畑で草取りをしながらそばにいられるから"},
+  "ケナ60": {"activity": "水の道を掘る", "place": "camp", "why": "家ごとに一人、水の道の手入れに出す決まりを守るため"},
+  "ヒセ63": {"activity": "水の輪を直す", "place": "camp", "why": "止まった水の輪の直しがまだ 140 人日残っているから"},
+  "オネ63": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので、草取りの手を増やすため"},
+  "ソナ66": {"activity": "畑仕事", "place": "camp", "why": "赤子のヒセ78がいるので、キャンプで働けるように"},
+  "セオ66": {"activity": "畑仕事", "place": "camp", "why": "大人になったばかりなので、まずはみんなと畑で覚えてほしいから"}
+ },
+ "keep": false,
+ "judge": {"M517": "ゆるす"},
+ "feast": false,
+ "leader": null,
+ "trade": {"T624": "村", "T625": false, "T626": "村", "T627": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "北の村・リセ3の村・ワユ3の村は、この年は畑が実らず苦しんでいる", "because": [3341563, 3341565, 3341566], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L601", "against": "畑の草取りの手がへるかもしれない", "agree": true, "reason": "水の道が足りないと水の来る畑がへるので、家ごとに一人出すのはよいと思う"},
+  {"id": "L600", "against": "毎夕刈るのは疲れる", "agree": true, "reason": "刈り残しが落ちるのはもったいないし、水の輪の直しも大事だから"},
+  {"id": "L598", "against": "L601とほとんど同じで、残りの日数が古い", "agree": true, "reason": "ヤギの世話の人を決めるのはよいことだから"}
+ ],
+ "feeling": "蓄えは山ほどあるから、困っているよその村にも少し分けてあげたい。"}

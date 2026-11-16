@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。冬の前に、おれは林で狩りをして干し肉を足しておくよ。ヤギは多すぎるから、少しつぶして肉にしよう。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りが得意で、冬の前に肉を増やしておけるから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ムイ78": true},
+ "family": {"ホミ52": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので一緒に肉をとる"}, "オネ54": {"activity": "記録をつける", "place": "camp", "what": ["蓄え", "交換"], "how": "板", "why": "字が読めるので、蓄えと交換の記録を残す"}, "リセ56": {"activity": "採集", "place": "camp", "why": "採集が得意なので食べ物を集める"}, "テナ56": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので一緒に肉をとる"}, "オセ63": {"activity": "狩り", "place": "東林12", "why": "若くて力があるので狩りを手伝う"}, "ナセ64": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので一緒に肉をとる"}},
+ "keep": false,
+ "judge": {"M517": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T624": "村", "T625": "村", "T626": "村", "T627": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えが多くて心強い。冬にそなえて、しっかり狩りをしたい。"}
