@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を、みんなで急いで刈ろう。落ちてしまうともったいないよ。わたしも毎日刈るね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに刈らないと落ちてしまうので、刈り入れを手伝う"}, "family": {"ルタ77": {"activity": "畑仕事", "place": "camp", "why": "いっしょに畑を刈って、落ちる草の種を減らすため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の技能が高いので、石の鎌を作って来年の刈り入れを助ける"}, "family": {"ルタ77": {"activity": "採集", "place": "camp", "why": "秋は木の実がなるので、食べ物を集めて蓄えを助ける"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると畑の実りが増えるので"}, "family": {"ルタ77": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のはじめの実りのために、草取りを続ける"}, "family": {"ルタ77": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T637": false, "T638": false, "T639": false},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null, "metal": null, "far": {"M19": "受けない"}, "far_write": null, "pay": null, "redeem": null,
+ "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "夏に実った畑は、夏のうちに刈らないと落ちてしまう", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れを急いだ年",
+ "mood": "みんなで協力して、畑をしっかり刈りたい。"}

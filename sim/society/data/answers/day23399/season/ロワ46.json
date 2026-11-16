@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに畑をみんなで刈ろう。落ちてしまったらもったいない。冬の狩りは、俺たちの家が引き受けるよ。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏のうちに刈らないと実りが落ちるので、みんなで刈る"},"family":{"ホミ52":{"activity":"畑仕事","place":"camp","why":"実った畑を刈る"},"オネ54":{"activity":"畑仕事","place":"camp","why":"実った畑を刈る"},"リセ56":{"activity":"畑仕事","place":"camp","why":"実った畑を刈る"},"テナ56":{"activity":"畑仕事","place":"camp","why":"実った畑を刈る"},"オセ63":{"activity":"畑仕事","place":"camp","why":"実った畑を刈る"},"ナセ64":{"activity":"畑仕事","place":"camp","why":"実った畑を刈る"},"テナ67":{"activity":"ヤギの世話","place":"camp","why":"子の手伝いでヤギの世話"},"ムイ67":{"activity":"畑仕事","place":"camp","why":"子の手伝いで刈り入れ"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"狩り","place":"東林12","with":[],"why":"狩りが得意なので、肉を村にもたらす"},"family":{"ホミ52":{"activity":"狩り","place":"東林12","why":"狩りの腕が高い"},"オネ54":{"activity":"狩り","place":"東林12","why":"狩りの腕が高い"},"リセ56":{"activity":"畑仕事","place":"camp","why":"畑の草取りで実りを守る"},"テナ56":{"activity":"狩り","place":"東林12","why":"狩りの腕が高い"},"オセ63":{"activity":"狩り","place":"東林12","why":"狩りの腕が高い"},"ナセ64":{"activity":"畑仕事","place":"camp","why":"畑の草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":20,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"東林12","with":[],"why":"冬は木の実がないので、魚やけものをとる"},"family":{"ホミ52":{"activity":"狩り","place":"東林12","why":"冬の肉をとる"},"オネ54":{"activity":"狩り","place":"南川12","why":"魚をとる"},"リセ56":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"テナ56":{"activity":"狩り","place":"北林12","why":"冬の肉をとる"},"オセ63":{"activity":"狩り","place":"東林12","why":"冬の肉をとる"},"ナセ64":{"activity":"畑仕事","place":"camp","why":"畑の草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"狩り","place":"東林12","with":[],"why":"肉をとって村の食べ物を助ける"},"family":{"ホミ52":{"activity":"ヤギの世話","place":"camp","why":"春は乳がとれる"},"オネ54":{"activity":"狩り","place":"東林12","why":"狩りの腕が高い"},"リセ56":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"テナ56":{"activity":"狩り","place":"東林12","why":"狩りの腕が高い"},"オセ63":{"activity":"狩り","place":"東林12","why":"狩りの腕が高い"},"ナセ64":{"activity":"畑仕事","place":"camp","why":"畑の草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{"T637":false,"T638":false,"T639":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"far":{"M19":"受けない"},"far_write":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"みんなで刈り、狩りでつなぐ年",
+"feeling":"蓄えは多く、安心している。夏はみんなで刈り、冬は狩りで支えたい。"}

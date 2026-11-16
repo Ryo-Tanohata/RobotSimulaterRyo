@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏は畑の実りを落とす前にみんなで刈ろう。冬は魚とけものをとって蓄えを守ろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるから"},"family":{"キサ43":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"ホミ49":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"セオ50":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"ネイ52":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"セヤ53":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"キオ57":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"キオ59":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"キサ60":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"畑の草取りで実りを増やすため"},"family":{"キサ43":{"activity":"狩り","place":"北川12","why":"狩りが得意で魚をとれるから"},"ホミ49":{"activity":"狩り","place":"北川12","why":"狩りが得意で魚をとれるから"},"セオ50":{"activity":"狩り","place":"東川28","why":"狩りが得意だから"},"ネイ52":{"activity":"狩り","place":"東川28","why":"狩りが得意だから"},"セヤ53":{"activity":"畑仕事","place":"camp","why":"草取りの人手のため"},"キオ57":{"activity":"畑仕事","place":"camp","why":"草取りの人手のため"},"キオ59":{"activity":"畑仕事","place":"camp","why":"草取りの人手のため"},"キサ60":{"activity":"畑仕事","place":"camp","why":"草取りの人手のため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":40},
+"冬":{"job":{"activity":"狩り","place":"北川12","with":[],"why":"冬も魚はいるので蓄えを守れる"},"family":{"キサ43":{"activity":"狩り","place":"北川12","why":"魚をとるため"},"ホミ49":{"activity":"狩り","place":"東川28","why":"魚をとるため"},"セオ50":{"activity":"狩り","place":"北川12","why":"魚をとるため"},"ネイ52":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"セヤ53":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"キオ57":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"キオ59":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"},"キサ60":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やすため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りをして次の夏の実りを増やす"},"family":{"キサ43":{"activity":"狩り","place":"東川28","why":"魚をとるため"},"ホミ49":{"activity":"狩り","place":"北川12","why":"魚をとるため"},"セオ50":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ネイ52":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"セヤ53":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"キオ57":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"キオ59":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"キサ60":{"activity":"畑仕事","place":"camp","why":"草取りのため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T637":false,"T638":false,"T639":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"metal":null,"far":{"M19":"受けない"},"far_write":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"畑を刈り尽くした年",
+"feeling":"畑は豊かだ。落とさず刈って、冬にそなえたい。"}
