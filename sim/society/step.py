@@ -121,7 +121,7 @@ def _records(snap):
             records.append_snapshot(DATA, snap)
         sys.stdout.flush()  # 表示の順を保つ (別のプロセスの表示より前に)
         r = subprocess.run([sys.executable, str(Path(__file__).parent / "tools" / "build_records.py"), "--data", str(DATA), "--quiet"],
-                           timeout=300)
+                           timeout=900)
         if r.returncode:
             print(f"記録: 記録を作れなかった (終わりのコード {r.returncode})。python3 sim/society/tools/build_records.py で作り直せる")
             RECORDS_FAILED.append(f"build {r.returncode}")
