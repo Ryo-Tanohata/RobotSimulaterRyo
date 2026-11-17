@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ヤギがまた 5 頭やせていなくなったね。草で養えるのは 110 頭くらいだから、多い分は肉にして干しておこうよ。"}, {"to": "ケナ82", "text": "秋は畑の草取りをいっしょにやろう。子たちはわたしが見ながら働くからね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ケナ82"], "why": "秋にまいた畑の草取りをすれば、次の夏の実りが増えるから"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"ユエ83": true, "ラキ84": true, "ソナ84": true}, "family": {"ケナ82": {"activity": "畑仕事", "place": "camp", "why": "わたしと組んで草取りをすれば、畑の実りが増えるから"}}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T685": false, "T686": "村", "T687": "村", "T688": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "草で養えるヤギは今は約 110 頭で、125 頭いたら 5 頭やせていなくなった", "because": [3577488], "confidence": 0.9}],
+ "proposal": {"text": "ヤギは草で養える約 110 頭をこえているから、この秋のはじめに多い分を肉にして干し、蓄えに入れよう。", "because": [3577488], "penalty": {"for": "ヤギ", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出てあぶないから"}, {"id": "L174", "against": "", "agree": true, "reason": "北の村はまだ前の分を返していないから"}, {"id": "L636", "against": "", "agree": true, "reason": "畑を刈って蓄えを守るのは大事だから"}],
+ "feeling": "新しい人がたくさん来て、にぎやかでうれしい。"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種は山ほどある。よその村が苦しいなら貸してやろう。返ってくれば、それでいい。"}, {"to": "ユエ83", "text": "よく来たな。畑の草取りを、わしがいっしょに教えてやる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど実る。体はまだ動くから、畑で汗を流す"},
+ "sow": 1000, "pick": 20, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "accept": {"ユエ83": true, "ラキ84": true, "ソナ84": true},
+ "family": {"ナセ60": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りに、若い力がいちばん役に立つ"}, "リセ66": {"activity": "畑仕事", "place": "camp", "why": "子のそばのキャンプで働けて、畑も実る"}, "タユ71": {"activity": "字を習う", "place": "camp", "why": "大人になったばかりで、字を覚えれば村の帳を手伝える"}},
+ "keep": false,
+ "feast": true, "leader": null,
+ "trade": {"T685": {"side": "村", "利子": 0.1}, "T686": {"side": "村", "利子": 0.1}, "T687": {"side": "村", "利子": 0.1}, "T688": {"side": "村", "利子": 0.1}},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "この年は、まわりの多くの村で畑が実らず、草の種を借りに来ている", "because": [3577503, 3577505, 3577506, 3577507], "confidence": 0.8}, {"op": "add", "text": "草原と丘の草で養えるヤギは約 110 頭で、それより多いとやせていなくなる", "because": [3577488], "confidence": 0.7}],
+ "proposal": {"text": "よその村に草の種を貸すときは、返す量を板に書いて残し、1 年たったら取りに行こう。", "because": [3577503, 3577507], "penalty": {"for": "蓄え", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L190", "against": "ヤギを減らしすぎると、あとで困るかもしれない", "agree": true, "reason": "草が足りずヤギがやせて死んだ。養えない分は肉にしたほうがむだがない"}, {"id": "L203", "against": "夕方に取ると次の日の畑仕事が減る", "agree": true, "reason": "冬は木の実が実らないから、秋のうちに取っておくのはよい"}, {"id": "L209", "against": "倉を持つ家だけが損をする", "agree": true, "reason": "蓄えが空になったときに子を飢えさせないため"}],
+ "feeling": "蓄えはたっぷりある。よその村にも分けてやれる、いい秋だ"}

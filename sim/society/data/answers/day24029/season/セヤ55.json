@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "水の道はまだ 557 人日も残っておる。わしは年寄りだが、この秋は土を掘りに出るぞ。"}, {"to": "みんな", "text": "新しく来た五人も、住まいが狭いうちは雨の夜に気をつけてやろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが足りないと、畑に水が来ず、まく草の種が減るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ユエ83": true, "ラキ84": true, "ソナ84": true},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T685": false, "T686": "村", "T687": "村", "T688": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "ヤギは125頭いて、草で養える約110頭をこえ、5頭がやせていなくなった。いまは120頭いる。ヤギを出す申し出は受けないほうがよい", "because": [3577488], "confidence": 0.9}, {"op": "add", "text": "蓄えの草の種は土器に入れていても、1つの季節に約18000つかみ傷んだ", "because": [3577500], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L636", "against": "夏の話なので、もう秋には合わないかもしれない", "agree": true, "reason": "よその村のヤギを受けず、新しく来た人に仕事を教えるのはよいから"}, {"id": "L635", "against": "家ごとに一人出すのは小さい家にはきつい", "agree": true, "reason": "水の輪と水の道を直さないと畑がやせるから"}, {"id": "L629", "against": "ヤギの数が今は少し多い", "agree": true, "reason": "世話の手と水の道の手入れ、どちらも大事だから"}],
+ "feeling": "年はとったが、まだ土は掘れる。村の畑に水を通したい。"}
