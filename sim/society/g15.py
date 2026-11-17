@@ -131,6 +131,14 @@ def _num(mid):
         return 10 ** 6
 
 
+def _s3(state):
+    """Society 3.0 (案 A) の仕組み (s3.py)。印 g7.s3 があるときだけ返す (印がなければ読みこみもしない。前の歩は 1 バイトも同じ)"""
+    if "s3" not in state["era2"]["g7"]:
+        return None
+    import s3
+    return s3 if s3.on(state) else None
+
+
 # ---------------- G15 に入る (g7.start_g15 から) ----------------
 
 def start(state, decided=None):
@@ -449,9 +457,15 @@ def _dig(state, p, t):
         return _rest(state, p, t, ACT_DIG, f"{name} は、燃える石のある所を知らないので、休んだ")
     c = g["coal"]
     y = str(_y(state))
-    c["stock"] = round(c["stock"] + COAL_KG_DAY, 1)
+    s3 = _s3(state)
+    vk = s3.dig(state, p, COAL_KG_DAY) if s3 else COAL_KG_DAY  # Society 3.0 (印のあとだけ): 2 割を掘った人の家の倉に
+    c["stock"] = round(c["stock"] + vk, 1)
     c["dug"][y] = c["dug"].get(y, 0) + COAL_KG_DAY
     c["by"][name] = c["by"].get(name, 0) + 1
+    if s3 and vk != COAL_KG_DAY:
+        t.setdefault("events", []).append(log(state, ACT_DIG, name, f"{name} が、北の丘で燃える石を {COAL_KG_DAY} kg 掘って、{round(vk)} kg を村の倉に、"
+                                              f"{round(COAL_KG_DAY - vk)} kg を家の倉に運んだ (村の倉の燃える石 {round(c['stock'])} kg)", coal=COAL_KG_DAY))
+        return
     t.setdefault("events", []).append(log(state, ACT_DIG, name, f"{name} が、北の丘で燃える石を {COAL_KG_DAY} kg 掘って、村の倉に運んだ (村の倉の燃える石 {round(c['stock'])} kg)",
                                           coal=COAL_KG_DAY))
 
@@ -495,7 +509,10 @@ def evening(state):
     en["people_days"] += len(alive)
     en["mill_days"] += len(g13.mills_running(state))
     coal_pd = 0
-    if coal_on(state) and g["stoves"]:
+    s3 = _s3(state)
+    if s3:  # Society 3.0 (印のあとだけ): 家の倉の石を先に燃やす・秋と冬のまき集め
+        coal_pd = s3.evening(state, en, y)
+    elif coal_on(state) and g["stoves"]:
         homes = {}
         for p in alive:
             h = p.get("household")
@@ -671,6 +688,9 @@ def season_end(state):
     D = state["day"]
     if (D + 1) % SEASON_DAYS:
         return
+    s3 = _s3(state)
+    if s3:  # Society 3.0 (印のあとだけ): 持ち場の日・家の板・見習い (作業場の日の表を消す前に)
+        s3.ws_season(state)
     _ws_season(state)
     if (D + 1) % YEAR == 0:
         _year_end(state)
@@ -957,7 +977,7 @@ def facts(state):
            f"水の槌は川の力で黒い金属をたたく (鎌 1 本 {HAMMER_DAYS} 人日。腕のある人がいる日だけ)。作業場の輪は粉をひかない。作業場も 1 年 {g13.MILL_REPAIR} 人日直さないと止まる。\n")
     if coal_on(state):
         out += (f"燃える石: 北の丘の崖に、火をつけると長く燃える黒い筋がある。掘ると 1 人 1 日 約 {COAL_KG_DAY} kg。家のかまどを石のかまどに作りかえると ({STOVE_DAYS} 人日)、"
-                "倉の燃える石をまきのかわりに燃やす (まきの倍の熱)。まきは今も足りている。\n")
+                "倉の燃える石をまきのかわりに燃やす (まきの倍の熱)。" + ("秋と冬は、まき集めに家の大人の手がかかる。\n" if _s3(state) and _s3(state).part(state, "a") else "まきは今も足りている。\n"))
     out += "板: 水ののこでひいた板を使うと、水の輪を直す・建てる・作業場を作る・かまどを作りかえる・住まいの仕事が倍はかどる。\n"
     return out
 
@@ -1052,8 +1072,11 @@ def prompt_block(state, p):
     name = p["name"]
     rows = [BLOCK_HEAD.replace("あなたが", f"あなた ({name}) が", 1)]
     rows += ws_line(state, name)
+    s3 = _s3(state)
     if coal_on(state):
-        rows += coal_line(state, p)
+        rows += s3.coal_lines(state, p) if s3 and s3.part(state, "a") else coal_line(state, p)  # Society 3.0 (印のあとだけ): まき集めと家の倉
+    if s3:
+        rows += s3.block_lines(state, p)
     rows.append(read_line(state, name))
     rows.append(g14.keep_line(state, p))
     rows.append("- workshop は答えた人の中でいちばん多い中身に決まる (1 人の答えでも決まる)。書かないなら \"workshop\": []")

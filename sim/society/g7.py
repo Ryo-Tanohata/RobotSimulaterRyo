@@ -73,7 +73,7 @@ def fix(state):
 # 印 g7.method8 がある」ときだけ働く。印は step.py refresh_prompts (mark_method8) か、G15 に入るコードが書く。だから、その日までの歩をやり直しても、
 # state もお題も前と 1 バイトも同じ (G14 の G14_PROMPT_FROM・keep_fix と同じ形)
 METHOD8_FROM = 23219
-LATER_GS = ("g15", "g16", "g17")  # これから足す G の仕組み (ファイルがなければとばす)。ANSWER_FIELDS を読んで、答えの形の欄を自動で足す
+LATER_GS = ("g15", "s3", "g16", "g17")  # これから足す G の仕組み (ファイルがなければとばす)。ANSWER_FIELDS を読んで、答えの形の欄を自動で足す
 
 
 def fix8(state):
@@ -673,6 +673,16 @@ def _g15_on(state):
     return "start" in ((state["era2"].get("g7") or {}).get("g15") or {})  # G15 の仕組みが入った (start_g15 が start を書く。方法の直しの試しの空の g7.g15 では働かない。fix8 は g15 の鍵だけで効く)
 
 
+def _s3m():
+    """Society 3.0 (案 A。2026-11-17 本人の OK。docs/society_phase/S3_design.md) の仕組み (s3.py)。印 g7.s3 があるときだけ読みこむ"""
+    import s3
+    return s3
+
+
+def _s3_on(state):
+    return "s3" in ((state["era2"].get("g7") or {})) and _s3m().on(state)  # 印 g7.s3 (step.py resume --s3 だけが書く) のあとだけ
+
+
 def enter_next(state, decided=None):
     """次の G の待ち・部の終わりから、次の G に入る (G8 から。その G のコードを入れたあと)。G7 に入るのは enter"""
     e2, D, g = state["era2"], state["day"], _g(state)
@@ -1020,6 +1030,8 @@ def gpath_kind(src):
         return "copied"
     if src == "作る側の後押し":  # 2026-11-16: 作る側の反実仮想の後押し (g15.PUSH_SRC。g7.g15.push の印のあとだけ出る)
         return "push"
+    if src == "持ち場を続ける":  # 2026-11-17: Society 3.0 の持ち場 (s3.POST_SRC。印 g7.s3 のあとだけ出る)
+        return "post"
     if src.startswith(("決まり", "答えなし", "加わった")):
         return "rule"
     return "answered"
@@ -1051,9 +1063,11 @@ def gpath_lines(state, y=None):
     out = []
     for act, row in sorted((gp.get(y) or {}).items()):
         a, c, r, u = (row.get(k) or {} for k in ("answered", "copied", "rule", "push"))
+        ps = row.get("post") or {}
         out.append(f"{act}: 答えた家 {sum(a.values())} 人日 ({len(a)} 家)・写って動いた家 {sum(c.values())} 人日 ({len(c)} 家)"
                    + (f"・決まり {sum(r.values())} 人日 ({len(r)} 家)" if r else "")
-                   + (f"・作る側の後押し {sum(u.values())} 人日 ({len(u)} 家)" if u else ""))
+                   + (f"・作る側の後押し {sum(u.values())} 人日 ({len(u)} 家)" if u else "")
+                   + (f"・持ち場 {sum(ps.values())} 人日 ({len(ps)} 家)" if ps else ""))
     return [f"写しの記録 ({y}年): " + " / ".join(out)] if out else []
 
 
@@ -1472,6 +1486,8 @@ def season_end(state, frac):
         _g14m().season_end(state)
     if _g15_on(state):  # G15: 作業場の日を数える・年の終わりの帳簿と入口の物差し (乱数なし。G14 の季節の終わりのあと)
         _g15m().season_end(state)
+    if _s3_on(state):  # 2026-11-17: Society 3.0 の蓄えの見張りと年の物差し (印 g7.s3 のあとだけ。G15 の帳簿のあと)
+        _s3m().season_end(state)
     yardstick.season_end(state, frac)  # 13. 物差し (乱数なし)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
     _offer(state)
@@ -1488,6 +1504,14 @@ def check(state, met, ind):
         g.setdefault("consulted", []).append(c)
         g["hold"] = {"why": "consult", "era": era, "day": D, "what": c["text"]}
         return "consult"
+    if _s3_on(state):  # 2026-11-17: Society 3.0 (印 g7.s3 のあと): 止まるのは S3 の入口と相談だけ (G15 の入口・相談・部の年数は見ない)
+        c = _s3m().check(state, g.setdefault("consulted", []))
+        if not c:
+            return False
+        g["consulted"].append(c)
+        code = "entrance" if c["why"] == "s3_entrance" else "consult"
+        g["hold"] = {"why": code, "era": era, "day": D, "what": c["text"]}
+        return code
     if met:
         if era in era2.PART_END:
             if era in g["ends"]:
@@ -2153,6 +2177,8 @@ def _apply(state, own, kinds, real, how, answer_day=None):
     g.setdefault("last_plans", {})[sea] = {p["name"]: {k: p["plan"][k] for k in ("activity", "place")} for p in era2.adults(state)}
     if _g15_on(state) and _g15m().push_on(state):  # 2026-11-16: 作る側の反実仮想の後押し (印 g7.g15.push のあとだけ。村の人の予定 last_plans を残したあとに足す)
         _g15m().push_season(state)
+    if _s3_on(state):  # 2026-11-17: Society 3.0 の持ち場の人は、やめると答えるまで作業場で働く (印 g7.s3 のあとだけ)
+        _s3m().season_start(state)
 
 
 def apply_year(state, answers, councils=None):
@@ -2195,6 +2221,8 @@ def apply_year(state, answers, councils=None):
         _g14m().apply_answers(state, real)
     if _g15_on(state):  # G15: 水の作業場 (workshop)。G14 の note・guild のあと
         _g15m().apply_answers(state, real)
+    if _s3_on(state):  # 2026-11-17: Society 3.0 の post・head・sell (印 g7.s3 のあとだけ)
+        _s3m().apply_answers(state, real)
     own, kinds = {}, {}
     if ask == "年":
         reps = set(_rep_of(state).values())
@@ -2437,6 +2465,8 @@ def _field_rows(state, solo, year):
         rows += _g14m().field_rows(state, year)
     if _g15_on(state):
         rows += _g15m().field_rows(state, year)
+    if _s3_on(state):  # 2026-11-17: Society 3.0 (印のあとだけ)
+        rows += _s3m().field_rows(state, year)
     return "\n".join(rows)
 
 

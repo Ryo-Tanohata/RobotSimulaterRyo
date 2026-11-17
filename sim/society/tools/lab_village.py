@@ -112,6 +112,11 @@ WORLDS = {
     "W15PX": {"name": "G15 の後押し (food,ws,coal,ws2,house)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15_push": True,
               "levers": ("food", "ws", "coal", "ws2", "house")},
 }
+# Society 3.0 案 A の確かめ (2026-11-17 本人の OK。docs/society_phase/S3_check.md): 本物の村の 24479 日目 (後押しなしの確かめの終わり。HOLD consult) から、
+#   step.py resume --s3 と同じ関数 (s3.mark) で印を書く。部分 (a まき集めと家の倉・b 持ち場・c 見習い・d 交換) を 1 つずつと、みな。S30 は部分なし (くらべるため)
+for _k, _ps in (("S3A", ("a",)), ("S3B", ("b",)), ("S3C", ("c",)), ("S3D", ("d",)), ("S3X", ("a", "b", "c", "d")), ("S30", ())):
+    WORLDS[_k] = {"name": f"Society 3.0 案 A (部分 {','.join(_ps) or 'なし'}。本物の 24479 日目から)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "s3": _ps}
+S3_WORDS = "決まりの村の確かめ (Society 3.0 案 A)"
 G15_PUSH_WORDS = "１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい"  # 本人の言葉 (2026-11-16)
 G15_NOTE = "本人の決め 2026-11-15 (お任せします): G15 の下書きの問いはみなおすすめで (決まりの村の確かめ)"
 G12_NOTE = "本人の決め 2026-11-10: お金と市場を 164年120日目で閉じた (決まりの村の確かめ)"
@@ -158,6 +163,13 @@ def enter_g7(state, w):
         if w.get("far_rate"):
             import g9
             g9.set_far_rate(state, w["far_rate"], "本人の決め 2026-10-29: 来る見込みを 5 割に")
+        return
+    if w.get("s3") is not None:  # 本物の 24479 日目 (後押しなしの確かめの終わり。HOLD consult): step.py resume --s3 と同じ関数で印を書き、止まりを解く
+        import s3
+        assert s3.refusal(state, S3_WORDS) is None, s3.refusal(state, S3_WORDS)
+        s3.mark(state, S3_WORDS, list(w["s3"]))
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
         return
     if w.get("g15_push"):  # 本物の 23819 日目 (G15 の 5 年の相談で HOLD consult): step.py resume --push と同じ関数で後押しの印を書き、止まりを解く
         import g15
@@ -297,6 +309,10 @@ BUNDLES = {
     #   G15B0 は新しい仕事と欄を選ばない。G15B1 は作業場と燃える石に寄せる。G15B1S は 1 人だけが選ぶ。G15B1K は黒い金属の腕のある人がいない (水の槌)。
     #   G15B1R は読める人がいない。G15B1N は燃える石なし (W15N で回す)。G15B1T は手を寄せすぎ。G15B1X は B1 で、作る側が入れた新しい人がいない (新しい人の効きを見る)
     "G15B0": {"name": "G15 の B0 (今の LLM に近い。新しい仕事と欄を選ばない)", **BASE, "g14": "none", "g15": "none"},
+    # Society 3.0 案 A の束 (2026-11-17): S3B0 は新しい仕事と欄を選ばない (G15B0 と同じ。今の LLM の村に近い)。
+    #   S3B1 は返りの大きい仕事を選ぶ (掘る・かまど・持ち場・見習い・交換。その世界にある部分だけ)
+    "S3B0": {"name": "S3 の B0 (新しい仕事と欄を選ばない。今の LLM の村に近い)", **BASE, "g14": "none", "g15": "none", "s3": "none"},
+    "S3B1": {"name": "S3 の B1 (返りの大きい仕事を選ぶ)", **BASE, "g14": "none", "g15": "none", "s3": "push"},
     "G15B1": {"name": "G15 の B1 (作業場と燃える石に寄せた)", **BASE, "g14": "none", "g15": "push"},
     "G15B1S": {"name": "G15 の B1S (1 人だけが選ぶ)", **BASE, "g14": "none", "g15": "push", "solo": True},
     "G15B1K": {"name": "G15 の B1K (黒い金属の腕のある人がいない。水の槌)", **BASE, "g14": "none", "g15": "push", "no_smith": True, "tool": "水の槌"},
@@ -786,6 +802,134 @@ def _g15_jobs(state, fams, sea, pol, taken):
     return out
 
 
+S3_POSTS = 10  # S3B1: 1 つの作業場に置く持ち場の人 (帳面番 1 + のこ番 9。1 家 3 人まで = 4 家以上)
+S3_APPR = 6  # S3B1: 季節ごとに見習いに出す人 (持ち場に空きがあるとき)
+S3_STOVES = 6  # S3B1: 夏に石のかまどに作りかえる家
+S3_PLANK_KEEP = 300  # S3B1: 村の倉に残す板
+S3_DIG_MAX = 6
+
+
+def _s3_ws(state):
+    """S3B1 が使う作業場 (使える水ののこの作業場のうち、止まっていないもの。番号の順)"""
+    import g15
+    out = []
+    for mid in g15.workshops(state, done=True):
+        m = g15._mill(state, mid)
+        if m is None or m.get("stopped") or g15._g(state)["ws"][mid]["tool"] != g15.SAW:
+            continue
+        out.append(mid)
+    return out
+
+
+def _s3_pool(state, fams, taken):
+    """S3B1: 答える家の大人 (家の大きい順。持ち場の人・読める人・もう仕事のある人を除く)"""
+    import g10
+    import s3
+    alive = {p["name"] for p in era2.adults(state)}
+    rd = set(g10.readers(state))
+    posts = s3._g(state)["posts"]
+    heads = sorted(fams, key=lambda n: (-len(fams[n]), n))
+    return [m for h in heads for m in fams[h] if m in alive and m not in rd and m not in taken and m not in posts]
+
+
+def _s3_jobs(state, fams, sea, taken):
+    """S3B1 の仕事 ({名前: 仕事}): a 掘る (村と家の倉が 2 季節分を切らないように。少なくとも 1 季節に燃やす分)・夏に石のかまど 6 家。
+    c 見習い (持ち場に空きのある作業場で 6 人。帳面番がいなければ、読める人 1 人が作業場で教える)"""
+    import g10
+    import g15
+    import s3
+    out = {}
+    pool = _s3_pool(state, fams, taken)
+    if s3.part(state, "a") and g15.coal_on(state):
+        if sea == "夏":
+            hs = {p["name"]: p.get("household") for p in era2.adults(state)}
+            k = 0
+            for h in sorted(fams, key=lambda n: (-len(fams[n]), n)):
+                if k >= S3_STOVES:
+                    break
+                hh = hs.get(h)
+                if not hh or g15.stove_done(state, hh):
+                    continue
+                m = next((x for x in fams[h] if x in pool), None)
+                if m:
+                    out[m] = _job(g15.ACT_STOVE)
+                    pool.remove(m)
+                    k += 1
+        need = s3.burn_per_day(state) * SEASON_DAYS
+        stock = g15._g(state)["coal"]["stock"] + sum(s3._g(state)["hcoal"].values())
+        per = g15.COAL_KG_DAY * SEASON_DAYS
+        n = max(math.ceil(need / per), math.ceil(max(0.0, 2 * need - stock) / per))
+        for m in pool[:min(S3_DIG_MAX, n)]:
+            out[m] = _job(g15.ACT_DIG, place=g15.COAL_PLACE)
+        pool = [m for m in pool if m not in out]
+    if s3.part(state, "c"):
+        ws = [m for m in _s3_ws(state) if len(s3.posts_of(state, m)) + S3_APPR <= s3.POST_CAP]
+        if ws:
+            mid = ws[0]
+            if not s3.posts_of(state, mid, s3.LEDGER_K):  # 教える人 (読める人) を 1 人
+                rd = set(g10.readers(state))
+                t = [m for ms in fams.values() for m in ms if m in rd and m not in taken and m not in s3._g(state)["posts"]]
+                if t:
+                    out[t[0]] = _job(g15.ACT_WS_WORK, place=mid)
+            for m in pool[:S3_APPR]:
+                out[m] = _job(g15.ACT_WS_WORK, place=mid)
+    return out
+
+
+def _s3_fields(state, fams, ask):
+    """S3B1 の欄 ({答える人: {欄: 中身}}): b post (帳面番 1 人と、のこ番を 1 つの作業場に合わせて 10 人まで。1 家 3 人まで)・head (帳面番)。
+    d sell (家の板 10 束以上を、ヤギをくれる近い集落か町に。村の倉の板 300 束をこえる分を町に。年の集まりと秋の集まり)"""
+    import g10
+    import g15
+    import s3
+    out = {}
+    g = s3._g(state)
+    hs = {p["name"]: p.get("household") for p in era2.adults(state)}
+    if s3.part(state, "b"):
+        ws = _s3_ws(state)
+        if ws:
+            mid = ws[0]
+            rd = set(g10.readers(state))
+            have = s3.posts_of(state, mid)
+            per_h = {}
+            for n in have:
+                per_h[hs.get(n)] = per_h.get(hs.get(n), 0) + 1
+            want = S3_POSTS - len(have)
+            led = s3.posts_of(state, mid, s3.LEDGER_K)
+            for n in sorted(fams, key=lambda n: (-len(fams[n]), n)):
+                rows = []
+                for m in fams[n]:
+                    if m in g["posts"] or hs.get(m) != hs.get(n):
+                        continue
+                    if not led and m in rd:
+                        rows.append({"人": m, "持ち場": s3.LEDGER_K, "輪": mid})
+                        led = [m]
+                        continue
+                    if want > 0 and m not in rd and per_h.get(hs.get(m), 0) < 3:
+                        rows.append({"人": m, "持ち場": s3.SAW_K, "輪": mid})
+                        per_h[hs.get(m)] = per_h.get(hs.get(m), 0) + 1
+                        want -= 1
+                if rows:
+                    out.setdefault(n, {})["post"] = rows
+            if not g["head"].get(mid) and led:
+                for n in fams:
+                    out.setdefault(n, {})["head"] = {"輪": mid, "人": led[0]}
+    if s3.part(state, "d") and ask in ("年", "秋"):
+        pts = s3.partners(state)
+        for n in fams:
+            h = hs.get(n)
+            hp = int(g["hplanks"].get(h, 0)) if h else 0
+            if hp >= 10:
+                best = max(pts, key=lambda pt: (s3.left(state, pt, "板") >= 10 and "ヤギ" in pt["price"]["板"][1], s3.left(state, pt, "板")))
+                out.setdefault(n, {})["sell"] = [{"物": "板", "数": hp - hp % 10, "相手": best["id"], "から": "家"}]
+        extra = g15._g(state)["planks"]["stock"] - S3_PLANK_KEEP
+        town = next(pt for pt in pts if pt["id"] == s3.TOWN)
+        if extra > 0 and s3.left(state, town, "板") > 0:
+            for n in fams:
+                out.setdefault(n, {}).setdefault("sell", []).append({"物": "板", "数": int(extra), "相手": s3.TOWN, "から": "村"})
+    return out
+
+
 def make_answers(state, pol, rt):
     """集まりの歩の、答える人みんなの決まりの答え ({名前: JSON の文})"""
     g = state["era2"]["g7"]
@@ -923,10 +1067,15 @@ def make_answers(state, pol, rt):
         if pol.get("g15"):
             for s in seas:
                 plans[s].update(_g15_jobs(state, fams, s, pol, set(plans[s])))
+        if pol.get("s3") == "push":
+            for s in seas:
+                plans[s].update(_s3_jobs(state, fams, s, set(plans[s])))
+        s3f = _s3_fields(state, fams, ask) if pol.get("s3") == "push" else {}
         for i, n in enumerate(names):
             a = {"say": [], "year": {s: _season_part(state, pol, rt, n, fams[n], s, plans[s]) for s in seas}, **common}
             if pol.get("g15") == "push" and i == 0 and _ws_answer(state, pol):  # G15: workshop は答える人の最初の 1 人が書く (B1S も同じ 1 人)
                 a["workshop"] = _ws_answer(state, pol)
+            a.update(s3f.get(n) or {})
             if pol.get("g14"):  # G14: 約束と助けは答える人みな同じ。書きつけは読める人のいる家の答える人 (B1S は 1 人)、仲間はちがう家の 2 人 (B1S は 1 人)
                 a["pact"], a["help"] = pact12, help12
                 if notes14 and g14.house_readers(state, n) and (not pol.get("solo") or n in writers14):
@@ -961,12 +1110,16 @@ def make_answers(state, pol, rt):
             roles.update(_g14_jobs(state, fams, now, pol))
         if pol.get("g15") and not famine:
             roles.update(_g15_jobs(state, fams, now, pol, set(roles)))
+        if pol.get("s3") == "push" and not famine:
+            roles.update(_s3_jobs(state, fams, now, set(roles)))
+        s3f = _s3_fields(state, fams, ask) if pol.get("s3") == "push" and not famine else {}
         for i, n in enumerate(names):
             a = {"say": [], **_season_part(state, pol, rt, n, fams[n], now, roles, famine), **common}
             if notes14 and g14.house_readers(state, n) and (not pol.get("solo") or n in writers14):
                 a["note"] = notes14
             if i < len(to_propose):
                 a["proposal"] = _proposal(to_propose[i], pol)
+            a.update(s3f.get(n) or {})
             out[n] = json.dumps(a, ensure_ascii=False)
     return out
 
@@ -1080,7 +1233,7 @@ def _year_row(state, y0, acc):
             "dem_in_strong": sum(1 for d in reg.get("demands", []) if d.get("to") == "V0" and d.get("from") == g.get("strong")),
             "wars_v0": sum(1 for x in reg.get("wars", []) if "V0" in (x.get("att"), x.get("def")) and x.get("done") is not None and not x.get("called_off")),
             "strong_people": next((o["people"] for o in g7._others(state) if o["id"] == g.get("strong")), None),
-            **_heavy_cols(state), **_g9_cols(state), **_g10_cols(state), **_g11_cols(state), **_g12_cols(state), **_g13_cols(state), **_g14_cols(state), **_g15_cols(state),
+            **_heavy_cols(state), **_g9_cols(state), **_g10_cols(state), **_g11_cols(state), **_g12_cols(state), **_g13_cols(state), **_g14_cols(state), **_g15_cols(state), **_s3_cols(state),
             **{k: acc[k] for k in sorted(acc)}}
 
 
@@ -1263,6 +1416,19 @@ def _g15_cols(state):
             "g15_readers": len(g10.readers(state)), "g15_smiths": len(g10.smiths_now(state)), "g15_mill_ready": g13.mill_ready(state),
             "g15_mills": len(g["g13"]["mill"]["mills"]), "g15_mills_running": len(g13.mills_running(state)), "g15_harvest": g7.harvest_year(state),
             "g15_iron_tools": len(g10.iron_tools(state))}
+
+
+def _s3_cols(state):
+    """Society 3.0 案 A の確かめ (2026-11-17) の年ごとの列: S3 の年の行・入口の日・e5 を割った年・F・止まりのわけ"""
+    g = state["era2"]["g7"]
+    if "s3" not in g:
+        return {}
+    import s3
+    s = g["s3"]
+    y = state["day"] // YEAR
+    return {"s3_row": s["rows"].get(str(y)), "s3_e": dict(s["e"]), "s3_e5_broken": list(s["e5_broken"]), "s3_reached": dict(s["reached"]),
+            "s3_entrance": s3.entrance(state), "s3_consulted": [c for c in g.get("consulted", []) if str(c.get("why", "")).startswith("s3_")],
+            "s3_posts": len(s["posts"]), "s3_head": {k: v["name"] for k, v in s["head"].items()}}
 
 
 def g9_tools_alive(state):
@@ -2220,6 +2386,7 @@ def main():
     ap.add_argument("--bundles", default=",".join(BUNDLES))
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--seeds", type=int, default=4)
+    ap.add_argument("--seed-list", dest="seed_list", default=None, help="run で回す種の並び (コンマ。たとえば 0,1,2。書けば --seeds より先)")
     ap.add_argument("--years", type=int, default=15)
     ap.add_argument("--procs", type=int, default=2)
     a = ap.parse_args()
@@ -2262,7 +2429,8 @@ def main():
     if a.cmd == "one":
         print(run_one((a.world, a.bundle, a.seed, a.years, a.data, a.out)))
         return
-    jobs = [(w, b, s, a.years, a.data, a.out) for s in range(1, a.seeds + 1) for b in a.bundles.split(",") for w in a.worlds.split(",")]
+    seeds = [int(x) for x in a.seed_list.split(",")] if a.seed_list else list(range(1, a.seeds + 1))
+    jobs = [(w, b, s, a.years, a.data, a.out) for s in seeds for b in a.bundles.split(",") for w in a.worlds.split(",")]
     t0 = time.time()
     with Pool(a.procs, maxtasksperchild=1) as pool:
         for i, f in enumerate(pool.imap_unordered(run_one, jobs), 1):

@@ -11,6 +11,9 @@
   python sim/society/step.py resume --unpush "<本人の言葉>" --years 3  2026-11-17: G15 の入口 (HOLD entrance) で、後押しをしているときだけ (1 回だけ)、
                                                  後押しを止めて (push.ended)、印 g7.g15.after を書き、止まりを解いて G15 のまま村の人だけで N 年回す。
                                                  最後の年の終わりに HOLD consult で止まる (村の人のお題には出さない。docs/society_phase/G15_push.md 7.)
+  python sim/society/step.py resume --s3 "<本人の言葉>" [--parts a,b,c,d]  2026-11-17: 後押しなしの確かめが終わって HOLD consult で止まっているときだけ (1 回だけ)、
+                                                 印 g7.s3 を書いて Society 3.0 (案 A) を始め、止まりを解き、この歩のお題を書き直す (村の人のお題には印も言葉も出さない。
+                                                 docs/society_phase/S3_design.md)
   python sim/society/step.py ask_why [on|off]    季節のお題で、主な仕事にした理由を一言たずねる (off でやめる。理由は世界の計算には使わない)
   python sim/society/step.py next_part [--fill F] 部の終わり (か次の G を待つ) で止まっているときだけ、次の部 (次の G) に入る (本人と決めてから 1 回だけ。
                                                  G7 なら F は地域の人数を K の何割にするか。書かなければ 0 = 今のまま、集落を置かない)
@@ -257,6 +260,9 @@ def _g15_lines(state, i):
     out += [f"G15 / {t}" for t in g7.gpath_lines(state)]
     out += [f"G15 / 作る側の後押し: {t}" for t in g15.push_lines(state)]
     out += [f"G15 / 後押しなしの確かめ: {t}" for t in g15.after_lines(state)]
+    if "s3" in state["era2"]["g7"]:  # 2026-11-17: Society 3.0 (印 g7.s3 のあとだけ)
+        import s3  # noqa: E402
+        out += [f"S3 / {t}" for t in s3.lines(state)]
     out += [f"G15 / 報告: {t}" for t in g15.report_lines(state)]
     return out
 
@@ -671,6 +677,8 @@ def main():
     ap.add_argument("--push", default=None, help="resume で、G15 の相談 (198年60日目から) のとき (2026-11-16): 作る側の反実仮想の後押しを始める本人の言葉 (印 g7.g15.push に残す。docs/society_phase/G15_push.md)")
     ap.add_argument("--unpush", default=None, help="resume で、G15 の入口 (HOLD entrance) のとき (2026-11-17): 後押しを止めて村の人だけで確かめる本人の言葉 (印 g7.g15.after に残す。docs/society_phase/G15_push.md 7.)")
     ap.add_argument("--years", type=int, default=None, help="resume --unpush で、後押しなしで回す年の数 (1〜10)")
+    ap.add_argument("--s3", default=None, help="resume で、後押しなしの確かめが終わった相談 (HOLD consult) のとき (2026-11-17): Society 3.0 (案 A) を始める本人の言葉 (印 g7.s3 に残す。docs/society_phase/S3_design.md)")
+    ap.add_argument("--parts", default=None, help="resume --s3 で入れる部分 (コンマでつなぐ。a,b,c,d。書かなければみな。s3.PARTS)")
     ap.add_argument("--levers", default=None, help="resume --push で選ぶ後押しの手 (コンマでつなぐ。food,ws,coal,ws2,house。書かなければみな。g15.LEVERS)")
     ap.add_argument("--decided", default=None, help="next_part で G14 の終わり (第 7 部の終わり) から G15 (第 8 部) に入るとき (2026-11-15): 本人の決めの言葉 (しるし。g7.g15.decided に残す)")
     ap.add_argument("--fill", type=float, default=None,
@@ -691,6 +699,10 @@ def main():
         sys.exit("--unpush は resume のときだけ書く (--push とは一緒に書かない)")
     if a.years is not None and a.unpush is None:
         sys.exit("--years は resume --unpush のときだけ書く")
+    if a.s3 is not None and (a.cmd != "resume" or a.push is not None or a.unpush is not None):
+        sys.exit("--s3 は resume のときだけ書く (--push・--unpush とは一緒に書かない)")
+    if a.parts is not None and a.s3 is None:
+        sys.exit("--parts は resume --s3 のときだけ書く")
     if a.note is not None and a.cmd not in ("exp3", "exp4"):
         sys.exit("--note は exp3・exp4 のときだけ書く")
     if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate", "exp3", "exp4"):
@@ -766,6 +778,36 @@ def main():
         return
     if a.cmd == "export":
         export(state)
+        return
+    if a.cmd == "resume" and a.s3 is not None:  # 2026-11-17: Society 3.0 (案 A) を始める (印 g7.s3。docs/society_phase/S3_design.md)
+        why = None
+        parts = None
+        if not (state.get("era2") or {}).get("g7") or "g15" not in state["era2"]["g7"]:
+            why = "G15 でないので、Society 3.0 は始められない"
+        else:
+            import s3  # noqa: E402
+            why = s3.refusal(state, a.s3)
+            try:
+                parts = s3.parse_parts(a.parts)
+            except ValueError as ex:
+                why = why or str(ex)
+        if why:
+            print(f"resume --s3 はできない: {why} (何も変えない)")
+            sys.exit(3)
+        g = s3.mark(state, a.s3, parts)
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
+        for kind in ("season", "feeling"):  # この歩のお題 (答えはまだない) を、印のあとの形で書き直す (出来事には残さない)
+            d = pdir(state, kind, "prompts")
+            if d.exists() and not any(pdir(state, kind, "answers").glob("*.json")):
+                shutil.rmtree(d)
+        save(state)
+        if state["era2"]["g7"].get("ask"):
+            write_prompts(state, "season")
+        export(state)
+        print(f"* {g['why']} を {_yd(state['day'])}から始めた ({g['start_year']}年から数える)。部分: " + " / ".join(f"{k} {s3.PARTS[k]}" for k in g["parts"]))
+        print("* 印と本人の言葉は、村の人のお題にも出来事にも出さない。止まるのは S3 の入口 (HOLD entrance) と相談 (HOLD consult) だけ")
+        print("再開した")
         return
     if a.cmd == "resume" and a.unpush is not None:  # 2026-11-17: G15 の入口で、後押しを止めて村の人だけで確かめる (印 g7.g15.after。docs/society_phase/G15_push.md 7.)
         import g15  # noqa: E402
