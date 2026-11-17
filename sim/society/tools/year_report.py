@@ -1118,6 +1118,8 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
         w('<p style="margin:10px 0 2px"><b>作る側が入れた人 (この年に選んだこと・写った家)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["newcomer"]) + "</ul>")
     if C.get("push"):
         w('<p style="margin:10px 0 2px"><b>作る側の反実仮想の後押し (村の人の選んだことではない)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["push"]) + "</ul>")
+    if C.get("branches"):
+        w('<p style="margin:10px 0 2px"><b>反実仮想の枝 (写しを 2 本回して、良いほうを本物の村の続きにした)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["branches"]) + "</ul>")
     if C.get("g14"):
         w('<p style="margin:10px 0 2px"><b>町と市と仲間 (この年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["g14"]) + "</ul>")
     if C.get("g13"):
@@ -1189,6 +1191,8 @@ def main(argv=None):
     ap.add_argument("--decide")
     ap.add_argument("--no-tech", action="store_true")
     ap.add_argument("--out", required=True)
+    # 2026-11-17 (G15 の反実仮想。本人の言葉「複数のシナリオをサブエージェントで一斉に回し良い結果を進める」): 回した写し (枝) のくらべと、選んだわけ。1 行 1 項目の文字のファイル。なければ前と同じ
+    ap.add_argument("--branches")
     a = ap.parse_args(argv)
     out = os.path.realpath(a.out)
     if out == PROTECTED or out.startswith(PROTECTED + os.sep):
@@ -1200,6 +1204,8 @@ def main(argv=None):
     PP = people_part(D, y)
     phase = phase_of_year(D, y)
     C = conditions(D, y, phase)
+    if a.branches:
+        C["branches"] = [x.strip() for x in Path(a.branches).read_text(encoding="utf-8").splitlines() if x.strip()]
     ev, n = pick_events(D, y)
     T = None if a.no_tech else tech_part(a.data, y)
     page = render(y, D, PP, C, ev, n, T, a.tokens, a.decide)
