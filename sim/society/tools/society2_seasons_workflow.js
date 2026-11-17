@@ -36,6 +36,16 @@ function rpf(d, n) {  // 代表でない大人: 気持ちと一言だけ (2026-1
 function rc_(d, n) {  // G7: まわりの集落の集まり (分かれ目の年だけ。答えがなければ step.py が決まりで選ぶ)
   return `Read \`${ROOT}/${DATA}/prompts/day${pad(d)}/council/${n}.md\` and follow its instructions exactly: role-play that settlement's council and produce ONLY the JSON object it asks for. Write that JSON (nothing else) to \`${ROOT}/${DATA}/answers/day${pad(d)}/council/${n}.json\` with the Write tool. You MUST call the Write tool to create that file before replying. Do not read any other files. Reply "done".`
 }
+// 2026-11-17: 季節の歩が 10 分 (Bash の上限) をこえ、回す役が待たずに返して、途中で止まった (写しを 2 本同時に回した 200年のはじめ)。
+// 季節の歩はうしろで動かしてログに書き、終わりの印 (STEPDONE) が出るまで、10 分より短い待ちをくり返す
+function longRunner(pre, cmd, logf) {
+  const fence = '```'
+  return `Run these shell commands with the Bash tool, one call each, in this order, and nothing else. Do not edit any files.\n\n` +
+    `1. Start it (it returns at once; the step keeps running in the background):\n${fence}\n${pre}rm -f ${logf}; (${cmd}; echo "STEPDONE rc=$?") > ${logf} 2>&1 < /dev/null &\n${fence}\n` +
+    `2. Wait (Bash timeout 600000 ms). It prints FINISHED when the step is done, or WAITING if not yet:\n${fence}\ntimeout 560 tail -n +1 -f ${logf} | grep -q -m1 '^STEPDONE'; grep -q '^STEPDONE' ${logf} && echo FINISHED || echo WAITING\n${fence}\n` +
+    `3. If step 2 printed WAITING, run the exact same step-2 command again. Repeat until it prints FINISHED. It can take up to 40 minutes: never give up, never reply early, and never run step 1 again.\n` +
+    `4. Then run ${fence.slice(0, 1)}cat ${logf}${fence.slice(0, 1)} and reply with its complete output, verbatim.`
+}
 function runner(cmd) {
   return `Run exactly this one shell command with the Bash tool (timeout 600000 ms), and nothing else. Do not edit any files. Then reply with the command's complete output, verbatim.\n\n\`\`\`\n${cmd}\n\`\`\``
 }
@@ -99,7 +109,7 @@ for (let k = 0; k < STEPS; k++) {
   // 使ったモデルを残す (季節の答えの置き場所のとなり。step.py は読まない)。2026-11-07: 書くのは季節を進める同じコマンドの頭で (前は別の読む役 1 体。中身は同じ)
   const mj = meet ? JSON.stringify({ season: Object.fromEntries(names.map((n) => [n, repModel(n)])), feeling: Object.fromEntries(feel.map((n) => [n, feelModel(n)])), council: Object.fromEntries(council.map((n) => [n, councilModel()])) }) : ''
   const pre_ = meet ? `printf '%s\\n' '${mj}' > ${ROOT}/${DATA}/answers/day${pad(d)}/models.json; ` : ''
-  const out = await agent(runner(`${pre_}${ENV}PY='${PY}' EXPECT_DAY=${d} CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
+  const out = await agent(longRunner(pre_, `${ENV}PY='${PY}' EXPECT_DAY=${d} CLAUDE_SESSION_URL=${args.session || ''} bash ${ROOT}/sim/society/tools/season_step.sh`, `/tmp/season_step${String(ROOT).replace(/[^A-Za-z0-9]/g, '_')}_${d}.log`), { label: `d${d} season step`, model: 'haiku', phase: 'Seasons' })
   log_.push({ day: d, out: (out || '').slice(0, 1200) })
   // exit=4: 生きている人がいない / exit=5: G7 の札の表 (よその便り) が変わった (直したなら step.py cards "<note>" のあとで、また動かす)
   // exit=6 (行の頭の「RECORDS failed …」): 季節は進んだが記録 (records/) を作れなかった。直して build_records.py で作り直してから、また動かす (2026-10-22)
