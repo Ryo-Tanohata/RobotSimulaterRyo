@@ -3,6 +3,46 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-16〜17 G15 の作る側の反実仮想の後押し (ブランチ g15-push。本人の言葉 2026-11-16「１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい」。本物の村は 198年60日目 = 23819 日目で `HOLD consult`)
+
+- 本物の村は G15 に入って 5 年 (198年60日目) の相談で止まっている。入口の物差し e1〜e5 はどれも届いていない (作業場 M6 だけ・8 人 3 家の日 0・燃える石を掘った人 0)。
+- 本人の言葉を「いくつかの筋を並べて、いちばんよい筋で進める」と読み直した (2026-11-17)。後押しは **村の人の選んだことではない**。state・`step.py status`・年報に
+  「作る側の反実仮想の後押し (本人の言葉 2026-11-16 「…」)」と書く。村の人のお題には出さない (出来事にも書かない)。くわしくは `docs/society_phase/G15_push.md`。
+- 作り: `g15.py` (後押し: `LEVERS`・`parse_levers`・`push_refusal`・`mark_push`・`push_season`・`push_act`・`push_lines`)・`g7.py` (`_apply` の終わりで `push_season`・
+  `role_day` の `push_act`・写しの記録の `push`)・`step.py` (`resume --push "<本人の言葉>" [--levers …]`・「G15 / 作る側の後押し」の行)・`tools/year_report.py` (節「作る側の反実仮想の後押し」)・
+  `tools/lab_village.py` (世界 W15P・W15P0・W15PF・W15PW・W15PC・W15PA・W15PX)・`tools/test_g7.py` (`T_G15Push`)。
+- **手 (levers)**: `food` 水の輪の直しと水の道 / `ws` 作業場 M6 に 4 家以上から 12 人 (e3) / `coal` かまどと燃える石 (e1) / `ws2` 2 つめの水ののこの作業場 (e4) / `house` 板で住まい (e4)。
+  手を回すのは「休む」の大人・「狩り」「採集」の半分まで・冬と春の「畑仕事」の 4 分の 1 まで。答えた人本人は動かさない。
+- 決まりの村 (8 筋 × 種 2 + 本物の天気の種 0。`G15_push.md` 4.): **food,ws,coal (S5) と みな (S6・S7) は、どの種でも 200年の終わり (24119 日目) に入口**。
+  ききんなし・蓄え 160 日分以上・読める大人 5〜6。後押しなし・1 つの手だけ・村の人が選ぶだけ (G15B1) は入口に届かない。本物の天気では e4 の余裕が S5 で 0.5%・S6 で 9%。
+- **おすすめ (最初の本物の年の 2 つの筋)**: 筋 A `food,ws,coal,ws2,house`・筋 B `food,ws,coal`。
+- 前の歩のやり直し (23819 日目より前) は 1 バイトも同じ (`G15_push.md` 5.)。印がなければ後押しは何もしない。
+- 試し: `T_G15Push` (9)・`T_G15`・`T_G15Prompt`・`T_Method8` (1 クラス 1 プロセス) OK。
+
+### 本物の村 (か、その写しの筋) に入れる手順 (198年60日目 = 23819 日目)
+
+1. 本物の村は止めたまま、g15-push を本物の村のブランチに入れる (merge)。入れたあと 1 クラス 1 プロセスで
+   `python3.13 sim/society/tools/test_g7.py T_G15Push` (5 分ほど)・`T_G15`・`T_G15Prompt`・`T_Method8`。
+2. `python3.13 sim/society/step.py who` → `DAY 23819 season True`・`PHASE G15`・`HOLD consult`・`MEET none`。
+3. 筋ごとの data の写しで (`SOC_DATA=<写しのフォルダ>`。本物で 1 つの筋だけなら写しは要らない):
+   ```bash
+   python3.13 sim/society/step.py resume --push "１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい" --levers food,ws,coal,ws2,house
+   ```
+   (筋 B は `--levers food,ws,coal`。後押しなしの筋は、ふつうの `python3.13 sim/society/step.py resume`)。出る行:
+   - 「* 作る側の反実仮想の後押し (本人の言葉 2026-11-16 「１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい」) を 198年60日目 (23819 日目)から始めた。村の人の選んだことではない (村の人のお題には出さない)。手を回すのは「休む」の大人・「狩り」「採集」の半分まで・冬と春の「畑仕事」の 4 分の 1 まで (答えた人本人は動かさない)」
+   - 「* 後押しの手 (levers food,ws,coal,ws2,house): food 水の輪の直しと水の道の手入れ (食べ物を守る) / ws 水の作業場に 4 家以上から 12 人 (e3) / …」
+   - 「再開した」
+   言葉がない・知らない手・2 回目・相談で止まっていないときは「resume --push はできない: … (何も変えない)」(終わりのコード 3)。
+4. 確かめ (読むだけ): `who` → `HOLD none`。
+   `python3.13 -c "import json; p=json.load(open('sim/society/data/state.json'))['era2']['g7']['g15']['push']; print(p['day'], p['levers'], p['why'])"`
+   → `23819 ['food', 'ws', 'coal', 'ws2', 'house'] 作る側の反実仮想の後押し (本人の言葉 2026-11-16 「…」)`。
+5. コミットしてプッシュ (`git add sim/society/data`。文は「社会シミュレーション: 作る側の反実仮想の後押しを始めた (198年60日目。手 …)」)。
+6. ワークフロー `tools/society2_seasons_workflow.js` を 1 年ずつ: `{"mode":"year","years":1,"py":"python3.13","session":"<URL>","fable":["オセ78"]}`
+   (筋の写しなら args.data / args.root も)。1 回目は 198年の終わり (23879 日目) までの 2 歩 (23879 日目に 199年の年の集まりのお題)。
+   年ごとに `step.py status` の「G15 / 入口」「G15 / 作る側の後押し」「G15 / 写しの記録」(作る側の後押しの人日) を見て、年報 (節「作る側の反実仮想の後押し」) を作る。
+   見込み: 199年の終わり (23999 日目) に e3 と e4、200年の終わり (24119 日目) に e1 で `HOLD entrance`。そこで Society 3.0 に進むかを本人に聞く。
+   **村の人のお題に後押しが出ていないこと**: `grep -l "後押し\|反実仮想\|作る側" sim/society/data/prompts/day23879/*/*.md` → なし。
+
 ## 2026-11-15 G15「水の作業場と燃える石」を作った (本人の言葉「お任せします」。ブランチ g15-impl。本物の村はまだ 193年60日目 = 23219 日目で `HOLD part_end`)
 
 - 下書き `docs/society_phase/G15_design_draft.md` の問い 1〜15 をみな「おすすめ」で決めた: `docs/society_phase/G15_design.md` (決めた所に「おすすめで決めた (2026-11-15)」。下書きからのずれは 8.)。確かめ: `docs/society_phase/G15_check.md`。
