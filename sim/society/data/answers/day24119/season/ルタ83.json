@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈ろう。おれは今年も体を動かして働くよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"セオ83": {"activity": "畑仕事", "place": "camp", "why": "二人で畑を刈って家の食べ物を確かにする"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "東林12", "with": [], "why": "木の実と草の実を集めて冬にそなえる"}, "family": {"セオ83": {"activity": "採集", "place": "東林12", "why": "秋は実りが多いので集める"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "狩り", "place": "南川12", "with": [], "why": "冬は魚やけものが頼りになるから"}, "family": {"セオ83": {"activity": "狩り", "place": "南川12", "why": "狩りの腕が高いので魚をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして実りを増やす"}, "family": {"セオ83": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ソナ85": true, "ハソ85": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T698": "村", "T699": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種がたっぷりあり、夏の畑は刈れるほど実っている", "because": [3604609], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たっぷり実りの年",
+ "mood": "おなかも元気で、体を動かして働くのが楽しみだ"}

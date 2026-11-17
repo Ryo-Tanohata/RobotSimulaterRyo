@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈れるだけ刈ろう。秋は家ごとに水の道の手入れにも人を出して、冬のあいだも手を休めずにいこう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 2},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋の畑と種まきを見守り、実りを増やすため"}, "family": {"ラニ57": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ残っているから"}, "セヤ58": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ残っているから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると畑の実りが増えるから"}, "family": {"ラニ57": {"activity": "水の輪を直す", "place": "camp", "why": "止まった水の輪を直して粉ひきを助けるため"}, "セヤ58": {"activity": "水の輪を直す", "place": "camp", "why": "止まった水の輪を直して粉ひきを助けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れに向けて草取りを続けるため"}, "family": {"ラニ57": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}, "セヤ58": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ソナ85": true, "ハソ85": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L641", "against": "", "agree": true, "reason": "ヤギが草で養える数をこえているから、多い分は肉にするのがよい"}],
+ "year_name": "実りを刈る年",
+ "feeling": "体はまだ動く。働ける仲間と、今年も畑を刈りたい。"}

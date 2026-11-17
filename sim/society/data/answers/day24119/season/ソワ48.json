@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑がたくさん実ったね。落ちる前に、みんなで刈ってしまおう。ヤギも多すぎるから、少し肉にしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ソワ52": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ロワ54": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "オセ58": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ラキ59": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ケセ60": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多いので世話が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 3},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋の草取りで実りが増えるから"}, "family": {"ソワ52": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ロワ54": {"activity": "狩り", "place": "北林12", "why": "肉を蓄えに足すため"}, "オセ58": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ラキ59": {"activity": "狩り", "place": "北林12", "why": "肉を蓄えに足すため"}, "ケセ60": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をつづける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで実りが増えるから"}, "family": {"ソワ52": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ロワ54": {"activity": "狩り", "place": "南川12", "why": "冬も魚がとれる"}, "オセ58": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ラキ59": {"activity": "狩り", "place": "南川12", "why": "冬も魚がとれる"}, "ケセ60": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで実りが増えるから"}, "family": {"ソワ52": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ロワ54": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギが生まれ乳もとれる"}, "オセ58": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ラキ59": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギの世話"}, "ケセ60": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギの世話"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ソナ85": true, "ハソ85": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T698": false, "T699": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "ヤギが草の量より多いので、夏のうちに少し肉にして干すのがよい。", "because": [3604618], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L641", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないから"}],
+ "year_name": "畑が実った夏の年",
+ "feeling": "畑もたくさん実って、新しい仲間も増えて、うれしい。ヤギのことが少し心配。"}
