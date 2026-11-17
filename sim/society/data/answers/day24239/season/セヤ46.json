@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑の種がたくさん実っている。夏のうちに、みんなで声をかけあって刈ってしまおう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れるため"}, "family": {"アコ54": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに刈らないと落ちるから"}, "ムイ57": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "ソワ62": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "ルタ64": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "アコ72": {"activity": "畑仕事", "place": "camp", "why": "子も刈りを手伝う"}, "ルタ73": {"activity": "畑仕事", "place": "camp", "why": "子も刈りを手伝う"}, "オセ75": {"activity": "畑仕事", "place": "camp", "why": "子も刈りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "冬にそなえて食べ物を集める"}, "family": {"アコ54": {"activity": "採集", "place": "camp", "why": "冬にそなえるため"}, "ムイ57": {"activity": "狩り", "place": "camp", "why": "魚やけものを取って蓄えを助ける"}, "ソワ62": {"activity": "採集", "place": "camp", "why": "冬にそなえるため"}, "ルタ64": {"activity": "狩り", "place": "camp", "why": "魚やけものを取って蓄えを助ける"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして実りを増やす"}, "family": {"アコ54": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ムイ57": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいるから"}, "ソワ62": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ルタ64": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいるから"}, "アコ72": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ルタ73": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "オセ75": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして実りを増やす"}, "family": {"アコ54": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ムイ57": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ソワ62": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ルタ64": {"activity": "狩り", "place": "camp", "why": "魚をとって食べ物を足す"}, "アコ72": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ルタ73": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "オセ75": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "蓄えはたっぷりあるので安心。いつものように畑で働くつもり。"}

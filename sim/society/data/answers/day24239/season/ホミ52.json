@@ -1,0 +1,17 @@
+{"say":[{"to":"みんな","text":"夏の畑は実りが多い。落ちる前に、みんなで声をかけあって刈ってしまおう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるので、刈り入れを手伝う"},"family":{},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"狩り","place":"東林12","with":[],"why":"狩りが得意なので、冬にそなえて肉をとる"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"東林12","with":[],"why":"冬も獣はいるので、肉をとって蓄えを助ける"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"道具づくり","place":"camp","with":[],"why":"道具が得意なので、次の刈り入れにそなえて鎌を作る"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T717":false,"T718":false,"T719":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},
+"demand":null,"share":null,"pay":null,"redeem":null,"market":null,"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],
+"knowledge":[{"op":"add","text":"夏に実った畑は、夏のうちにみんなで刈る。蓄えは今とても多い。","because":[3655814],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"畑がよく実った年",
+"mood":"蓄えがたっぷりあって、安心している。"}
