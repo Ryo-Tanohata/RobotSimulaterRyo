@@ -8343,5 +8343,236 @@ PUSH_ENTRY = "b8ea3e39"  # 198年60日目 (23819 日目。G15 の 5 年の相談
 PUSH_WORDS = "１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい"
 
 
+class T_G15After(unittest.TestCase):
+    """2026-11-17 後押しなしの確かめ (本人の言葉「後押しなしで確かめる」。docs/society_phase/G15_push.md 7.): step.py resume --unpush だけが
+    後押しを止め (push.ended)、印 g7.g15.after を書いて入口の止まりを解く (G15 の入口・後押しのある村・1 回だけ)。後押しの手はもう動かない
+    (作業場・かまど・燃える石の倉はそのまま)。入口はもう一度は止まらない。確かめの年の行 (作業場の 8 人の日を、答えた家・写って動いた家の人がいたかで分ける)・
+    最後の年の終わりに HOLD consult。村の人のお題と出来事には出ない。200年120日目 (24119 日目。HOLD entrance) の git の state (AFTER_ENTRY) の写しで確かめる"""
+
+    _st = None
+
+    @classmethod
+    def real(cls):
+        if cls._st is None:
+            st = git_state(AFTER_ENTRY)
+            ok = (st.get("era") == "G15" and st["day"] == 24119 and (st["era2"]["g7"].get("hold") or {}).get("why") == "entrance"
+                  and (st["era2"]["g7"]["g15"].get("push") or {}).get("day") == 23819)
+            cls._st = st if ok else False
+        if cls._st is False:
+            raise unittest.SkipTest("AFTER_ENTRY の state が 24119 日目の G15 の入口 (後押しあり) でない")
+        return copy.deepcopy(cls._st)
+
+    def unpushed(self, years=3):
+        import g15
+        st = self.real()
+        self.assertIsNone(g15.unpush_refusal(st, AFTER_WORDS, years))
+        g15.mark_unpush(st, AFTER_WORDS, years)
+        st["hold"] = False
+        st["era2"]["g7"]["hold"] = None
+        return st
+
+    def test_refusal_and_mark(self):
+        import g15
+        st = self.real()
+        self.assertTrue(g15.push_on(st))
+        self.assertFalse(g15.after_on(st))
+        self.assertIn("本人の言葉が要る", g15.unpush_refusal(st, " ", 3))
+        self.assertIn("--years は", g15.unpush_refusal(st, AFTER_WORDS, 0))
+        self.assertIn("--years は", g15.unpush_refusal(st, AFTER_WORDS, 11))
+        free = self.real()
+        free["hold"], free["era2"]["g7"]["hold"] = False, None
+        self.assertIn("HOLD entrance", g15.unpush_refusal(free, AFTER_WORDS, 3))
+        cons = self.real()
+        cons["era2"]["g7"]["hold"] = {"why": "consult", "era": "G15", "day": 24119, "what": "x"}
+        self.assertIn("HOLD entrance", g15.unpush_refusal(cons, AFTER_WORDS, 3))
+        nop = self.real()
+        nop["era2"]["g7"]["g15"].pop("push")
+        self.assertIn("後押しの印がない", g15.unpush_refusal(nop, AFTER_WORDS, 3))
+        st = self.unpushed()
+        g = g15._g(st)
+        self.assertEqual(g["push"]["ended"], {"day": 24119, "words": AFTER_WORDS, "why": f"後押しなしの確かめ (本人の言葉 2026-11-17 「{AFTER_WORDS}」)"})
+        a = g["after"]
+        self.assertEqual((a["day"], a["years"], a["from_year"], a["to_year"], a["until_day"], a["end"], a["rows"]), (24119, 3, 201, 203, 24479, None, {}))
+        self.assertEqual(a["base"]["year"], 200)
+        self.assertTrue(a["base"]["e1_like"] and a["base"]["e3_like"], "後押しのあった 200年は e1・e3 のよう")
+        self.assertEqual(set(a["base"]["ws"]), {"M6", "M26"})
+        self.assertFalse(g15.push_on(st), "後押しは止まった")
+        self.assertIn("もう止めてある", g15.unpush_refusal(st, AFTER_WORDS, 3))
+        st["hold"], st["era2"]["g7"]["hold"] = True, {"why": "entrance", "era": "G15", "day": 24119}
+        self.assertIn("もう止めてある", g15.unpush_refusal(st, AFTER_WORDS, 3), "1 回だけ")
+
+    def test_no_push_season(self):
+        """止めたあとの季節: 後押しで人を回さない (村の人の答えのとおり)。作業場・かまど・燃える石の倉は、そのまま"""
+        import g15
+        import g7
+        base = self.real()
+        st = self.unpushed()
+        g = g15._g(st)
+        ws0, stoves0, coal0 = copy.deepcopy(g["ws"]), copy.deepcopy(g["stoves"]), g["coal"]["stock"]
+        seasons0 = copy.deepcopy(g["push"]["seasons"])
+        g7.apply_plan(st)
+        self.assertEqual([n for n, v in st["era2"]["g7"]["src"].items() if v == g15.PUSH_SRC], [], "後押しで決まった人はいない")
+        self.assertEqual(g["push"]["seasons"], seasons0, "後押しの季節の行は足さない")
+        self.assertEqual((g["ws"], g["stoves"], g["coal"]["stock"]), (ws0, stoves0, coal0), "作業場・かまど・倉はそのまま")
+        self.assertIn("M26", g["ws"])
+        pushed = copy.deepcopy(base)
+        pushed["hold"], pushed["era2"]["g7"]["hold"] = False, None
+        g7.apply_plan(pushed)
+        self.assertGreater(sum(1 for v in pushed["era2"]["g7"]["src"].values() if v == g15.PUSH_SRC), 0, "止めなければ後押しは動く (くらべ)")
+        p = next(q for q in era2.adults(st) if q.get("household"))
+        self.assertEqual(g15.push_act(st, p, g15.ACT_STOVE), g15.ACT_STOVE)
+
+    def test_ws_split_and_rows(self):
+        """確かめのあいだの 8 人の日: 答えた家・写って動いた家の人がいたか・どちらもいないかで分ける。年の終わりに行 (e1 のよう・e3 のよう)"""
+        import g15
+        st = self.unpushed()
+        g = g15._g(st)
+        st["day"] = 24239
+        src = st["era2"]["g7"]["src"]
+        ads = era2.adults(st)
+        hs = {}
+        for p in ads:
+            if p.get("household"):
+                hs.setdefault(p["household"], []).append(p["name"])
+        hs = [v for v in hs.values() if len(v) >= 3][:4]
+        day = [n for v in hs for n in v[:3]][:9]
+        self.assertGreaterEqual(len(day), 8)
+        for n in day:
+            src[n] = "答えなし (前と同じ)"
+        g["wsday"] = {"M6": {"24200": list(day)}, "M26": {"24201": list(day)}}
+        g15._ws_season(st)
+        src[day[0]] = "見本から広げた"
+        g["wsday"] = {"M6": {"24202": list(day)}}
+        g15._ws_season(st)
+        src[day[1]] = "自分"
+        g["wsday"] = {"M6": {"24203": list(day)}}
+        g15._ws_season(st)
+        r = g["wsyear"]["201"]["M6"]
+        self.assertEqual((r["big"], r.get("big_ans", 0), r.get("big_copy", 0), r.get("big_other", 0)), (3, 1, 2, 1), r)
+        self.assertNotIn("big_push", r, "後押しの印は止めたあと数えない")
+        g15._year_end(st)
+        row = g["after"]["rows"]["201"]
+        self.assertEqual(row["ws"]["M6"]["big"], 3)
+        self.assertEqual((row["ws"]["M6"]["ans"], row["ws"]["M6"]["copy"], row["ws"]["M6"]["other"]), (1, 2, 1))
+        self.assertIn("M26", row["ws"])
+        self.assertFalse(row["e3_like"])
+        self.assertEqual(row["e1_like"], row["coal_share"] >= g15.E1_SHARE)
+        for k in ("stoves", "homes", "output_pc", "store_days", "famine", "readers", "chose", "chose_who"):
+            self.assertIn(k, row)
+        t = g15.after_lines(st)
+        self.assertTrue(any(x.startswith("201年: ") and "後押しなしで、e1 のよう" in x and "e3 のよう (1 つの作業場で 8 人・3 家の日が 30 日以上) は続かなかった" in x for x in t), t)
+        self.assertTrue(any(x.startswith("200年 (後押しのあった年。くらべるため)") for x in t))
+
+    def test_stop_and_no_entrance(self):
+        """入口はもう止まらない。最後の年の終わり (24479 日目) に HOLD consult (1 回だけ)"""
+        import g15
+        st = self.unpushed()
+        g = st["era2"]["g7"]
+        for d in (24149, 24239, 24359, 24449):
+            st["day"] = d
+            self.assertFalse(era2.check(st), d)
+            self.assertIsNone(g["hold"])
+        st["day"] = 24479
+        self.assertEqual(era2.check(st), "consult")
+        self.assertEqual(g["hold"]["why"], "consult")
+        self.assertIn("後押しなしの確かめの 3 年が終わった (201年〜203年", g["hold"]["what"])
+        self.assertEqual(g["consulted"][-1]["why"], "g15_after_end")
+        self.assertEqual(g["g15"]["after"]["end"], 24479)
+        self.assertFalse(g15.after_on(st))
+        st["hold"] = True
+        self.assertEqual(era2.hold_why(st)[0], "consult")
+        st["hold"], g["hold"] = False, None
+        st["day"] = 24599
+        self.assertFalse(era2.check(st), "確かめの止まりは 1 回だけ")
+
+    def test_prompts_plain(self):
+        """村の人のお題と出来事に、後押し・確かめのことは出ない"""
+        import g15
+        import g7
+        st0 = self.real()
+        st = self.unpushed()
+        self.assertEqual(st["events"], st0["events"], "印を書いても出来事は足さない")
+        g7.apply_plan(st)
+        names = era2.answerers(st)[:3] or [p["name"] for p in era2.adults(st)][:3]
+        for n in names:
+            p = next(q for q in st["people"] if q["name"] == n)
+            for t in (g7.year_prompt(st, p, g7.since(st)), era2.season_prompt(st, p, g7.since(st))):
+                for w in ("後押し", "反実仮想", "作る側", AFTER_WORDS, PUSH_WORDS, g15.PUSH_NAME, g15.AFTER_NAME):
+                    self.assertNotIn(w, t, (n, w))
+        st["day"] = 24479
+        n0 = len(st["events"])
+        era2.check(st)
+        self.assertEqual(len(st["events"]), n0, "確かめの終わりの止まりも出来事に残さない")
+
+    def test_lines(self):
+        """step.py status と年報の行"""
+        import g15
+        sys.path.insert(0, str(HERE))
+        import year_report
+        st = self.unpushed()
+        t = g15.after_lines(st)
+        self.assertIn(f"後押しなしの確かめ (本人の言葉 2026-11-17 「{AFTER_WORDS}」)。24119 日目に後押しを止めた。201年〜203年の 3 年を村の人だけで回して", t[0])
+        self.assertIn("24479 日目 (203年の終わり) で止めて相談する (HOLD consult)", t[0])
+        self.assertTrue(any("まだ確かめの年が終わっていない" in x for x in t))
+        self.assertIn("後押しは 24119 日目に止めた", g15.push_lines(st)[-1])
+        g = st["era2"]["g7"]["g15"]
+        self.assertEqual(year_report.after_lines(g, st, 199), [])
+        self.assertTrue(year_report.after_lines(g, st, 200)[1].startswith("200年 (後押しのあった年"))
+        self.assertTrue(any("201年の行は、年の終わりに足す" in x for x in year_report.after_lines(g, st, 201)))
+        self.assertEqual(year_report.after_lines(g, st, 204), [])
+        self.assertEqual(g15.after_lines(self.real()), [])
+
+    def test_resume_cli(self):
+        """step.py resume --unpush (写しのフォルダ): 断る (何も変えない) → 止める (止まりを解く) → 2 回目は断る"""
+        st = self.real()
+        d = tmpdir()
+        try:
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            copy_archive(d)
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)  # noqa: E731
+            s0 = (d / "state.json").read_bytes()
+            r = run("resume", "--unpush", " ")
+            self.assertEqual(r.returncode, 3)
+            self.assertIn("resume --unpush はできない: --unpush には本人の言葉が要る (何も変えない)", r.stdout)
+            r = run("resume", "--unpush", AFTER_WORDS, "--years", "0")
+            self.assertEqual(r.returncode, 3)
+            self.assertIn("--years は 1〜10 年", r.stdout)
+            r = run("resume")
+            self.assertEqual(r.returncode, 3, "ふつうの resume は入口では断る")
+            r = run("season", "--unpush", AFTER_WORDS)
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn("--unpush は resume のときだけ", r.stderr)
+            r = run("resume", "--years", "3")
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn("--years は resume --unpush のときだけ", r.stderr)
+            self.assertEqual((d / "state.json").read_bytes(), s0, "断ったときは何も変えない")
+            r = run("resume", "--unpush", AFTER_WORDS, "--years", "3")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertIn(f"* 作る側の後押しを 200年120日目 (24119 日目)で止めた。後押しなしの確かめ (本人の言葉 2026-11-17 「{AFTER_WORDS}」)", r.stdout)
+            self.assertIn("* 201年〜203年の 3 年を村の人だけで回す", r.stdout)
+            self.assertIn("203年120日目 (24479 日目) の終わりに HOLD consult で止まる", r.stdout)
+            self.assertIn("再開した", r.stdout)
+            new = json.loads((d / "state.json").read_text(encoding="utf-8"))
+            self.assertEqual(new["era2"]["g7"]["g15"]["after"]["until_day"], 24479)
+            self.assertEqual(new["era2"]["g7"]["g15"]["push"]["ended"]["day"], 24119)
+            r = run("who")
+            self.assertIn("HOLD none", r.stdout)
+            self.assertIn("MEET 年", r.stdout)
+            r = run("status")
+            self.assertIn("G15 / 後押しなしの確かめ: 後押しなしの確かめ (本人の言葉 2026-11-17", r.stdout)
+            s1 = (d / "state.json").read_bytes()
+            r = run("resume", "--unpush", AFTER_WORDS)
+            self.assertEqual(r.returncode, 3)
+            self.assertIn("もう止めてある", r.stdout)
+            self.assertEqual((d / "state.json").read_bytes(), s1)
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+
+AFTER_ENTRY = "bf557cc0"  # 200年120日目 (24119 日目。G15 の入口で HOLD entrance・後押しあり・年の集まりのお題) の state のコミット (2026-11-17)
+AFTER_WORDS = "後押しなしで確かめる"
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -8,6 +8,9 @@
   python sim/society/step.py resume              フェーズが進んで一時停止しているのを解く (本人が評価したあと)
   python sim/society/step.py resume --push "<本人の言葉>" [--levers food,ws,coal,ws2,house]  2026-11-16: G15 の相談 (198年60日目 = 23819 日目から) で止まっているときだけ、止まりを解いて
                                                  作る側の反実仮想の後押しを始める (印 g7.g15.push。村の人のお題には出さない。docs/society_phase/G15_push.md)
+  python sim/society/step.py resume --unpush "<本人の言葉>" --years 3  2026-11-17: G15 の入口 (HOLD entrance) で、後押しをしているときだけ (1 回だけ)、
+                                                 後押しを止めて (push.ended)、印 g7.g15.after を書き、止まりを解いて G15 のまま村の人だけで N 年回す。
+                                                 最後の年の終わりに HOLD consult で止まる (村の人のお題には出さない。docs/society_phase/G15_push.md 7.)
   python sim/society/step.py ask_why [on|off]    季節のお題で、主な仕事にした理由を一言たずねる (off でやめる。理由は世界の計算には使わない)
   python sim/society/step.py next_part [--fill F] 部の終わり (か次の G を待つ) で止まっているときだけ、次の部 (次の G) に入る (本人と決めてから 1 回だけ。
                                                  G7 なら F は地域の人数を K の何割にするか。書かなければ 0 = 今のまま、集落を置かない)
@@ -253,6 +256,7 @@ def _g15_lines(state, i):
                       f" ({'・'.join(last[1]['followers'][:4]) or '手本にした家なし'})" if last else ""))
     out += [f"G15 / {t}" for t in g7.gpath_lines(state)]
     out += [f"G15 / 作る側の後押し: {t}" for t in g15.push_lines(state)]
+    out += [f"G15 / 後押しなしの確かめ: {t}" for t in g15.after_lines(state)]
     out += [f"G15 / 報告: {t}" for t in g15.report_lines(state)]
     return out
 
@@ -665,6 +669,8 @@ def main():
     ap.add_argument("--closed-by-decision", dest="closed", default=None,
                     help="next_part で、G6 を本人の決めで閉じて G7 に入るとき: 本人の言葉 (記録に残す)")
     ap.add_argument("--push", default=None, help="resume で、G15 の相談 (198年60日目から) のとき (2026-11-16): 作る側の反実仮想の後押しを始める本人の言葉 (印 g7.g15.push に残す。docs/society_phase/G15_push.md)")
+    ap.add_argument("--unpush", default=None, help="resume で、G15 の入口 (HOLD entrance) のとき (2026-11-17): 後押しを止めて村の人だけで確かめる本人の言葉 (印 g7.g15.after に残す。docs/society_phase/G15_push.md 7.)")
+    ap.add_argument("--years", type=int, default=None, help="resume --unpush で、後押しなしで回す年の数 (1〜10)")
     ap.add_argument("--levers", default=None, help="resume --push で選ぶ後押しの手 (コンマでつなぐ。food,ws,coal,ws2,house。書かなければみな。g15.LEVERS)")
     ap.add_argument("--decided", default=None, help="next_part で G14 の終わり (第 7 部の終わり) から G15 (第 8 部) に入るとき (2026-11-15): 本人の決めの言葉 (しるし。g7.g15.decided に残す)")
     ap.add_argument("--fill", type=float, default=None,
@@ -681,6 +687,10 @@ def main():
         sys.exit("--push は resume のときだけ書く")
     if a.levers is not None and a.push is None:
         sys.exit("--levers は resume --push のときだけ書く")
+    if a.unpush is not None and (a.cmd != "resume" or a.push is not None):
+        sys.exit("--unpush は resume のときだけ書く (--push とは一緒に書かない)")
+    if a.years is not None and a.unpush is None:
+        sys.exit("--years は resume --unpush のときだけ書く")
     if a.note is not None and a.cmd not in ("exp3", "exp4"):
         sys.exit("--note は exp3・exp4 のときだけ書く")
     if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate", "exp3", "exp4"):
@@ -756,6 +766,23 @@ def main():
         return
     if a.cmd == "export":
         export(state)
+        return
+    if a.cmd == "resume" and a.unpush is not None:  # 2026-11-17: G15 の入口で、後押しを止めて村の人だけで確かめる (印 g7.g15.after。docs/society_phase/G15_push.md 7.)
+        import g15  # noqa: E402
+        years = 3 if a.years is None else a.years
+        why = g15.unpush_refusal(state, a.unpush, years) if (state.get("era2") or {}).get("g7") else "G7 より前なので、後押しは止められない"
+        if why:
+            print(f"resume --unpush はできない: {why} (何も変えない)")
+            sys.exit(3)
+        af = g15.mark_unpush(state, a.unpush, years)
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
+        save(state)
+        export(state)
+        print(f"* 作る側の後押しを {_yd(state['day'])}で止めた。{af['why']}。作業場・石のかまど・倉の燃える石・板・住まいは、そのまま残る (村の人のお題には出さない)")
+        print(f"* {af['from_year']}年〜{af['to_year']}年の {years} 年を村の人だけで回す (G15 のまま。入口は記録に残っているので、もう止まらない)。"
+              f"{_yd(af['until_day'])} の終わりに HOLD consult で止まる")
+        print("再開した")
         return
     if a.cmd == "resume":
         code, why = _hold_text(state)

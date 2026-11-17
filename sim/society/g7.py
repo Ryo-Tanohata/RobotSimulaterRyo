@@ -1483,6 +1483,11 @@ def check(state, met, ind):
     """G7 からの判定: True (フェーズが進んだ) / "end" (部の終わり) / "entrance" (工業の入口) / "wait" (次の G のコードを待つ) / "consult" / False。
     部の終わり・待ち・入口は、一度だけ返す (そのあとは条件がそろっていても進まない。進むのは next_part だけ)"""
     g, era, D = _g(state), state["era"], state["day"]
+    if _g15_on(state) and _g15m().after_due(state):  # 2026-11-17: 後押しなしの確かめ (印 g7.g15.after のあとだけ) の最後の年の終わり → 止めて相談する
+        c = _g15m().after_stop(state)
+        g.setdefault("consulted", []).append(c)
+        g["hold"] = {"why": "consult", "era": era, "day": D, "what": c["text"]}
+        return "consult"
     if met:
         if era in era2.PART_END:
             if era in g["ends"]:

@@ -432,6 +432,11 @@ def _ws_season(state):
                     row["big_push"] = row.get("big_push", 0) + 1
                 if not any(g7.gpath_kind(src.get(n)) == "answered" for n in names):
                     row["big_noans"] += 1
+                if after_on(state):  # 2026-11-17: 後押しなしの確かめのあいだだけ、答えた家・写って動いた家の人がいたかで分ける (印のあとだけ数える)
+                    ks = {g7.gpath_kind(src.get(n)) for n in names}
+                    for k, hit in (("big_ans", "answered" in ks), ("big_copy", "copied" in ks), ("big_other", not ks & {"answered", "copied"})):
+                        if hit:
+                            row[k] = row.get(k, 0) + 1
     g["wsday"] = {}
     g["wsnosm"] = {}
 
@@ -588,6 +593,8 @@ def _year_end(state):
     row = _ledger(state)
     _newcomer_year(state, y)
     _base(state)
+    if after_on(state):  # 2026-11-17: 後押しなしの確かめの年の行 (印のあとだけ)
+        _g(state)["after"]["rows"][str(y)] = after_row(state, y)
     if y <= g["start"] // YEAR:
         return
     en = row["energy"]
@@ -1188,7 +1195,9 @@ ACT_HOUSE = "住まいを建てる"
 
 
 def push_on(state):
-    return on(state) and bool(_g(state).get("push"))
+    """後押しが動いているか (印があり、まだ止めていない。止めた印 push.ended は step.py resume --unpush だけが書く。2026-11-17)"""
+    pu = _g(state).get("push") if on(state) else None
+    return bool(pu) and pu.get("ended") is None
 
 
 def push_why(words):
@@ -1406,9 +1415,9 @@ def push_season(state):
 
 def push_lines(state, y=None):
     """後押しの行 (step.py status・年報。村の人のお題には出さない): 印・季節ごとの手"""
-    if not push_on(state):
+    pu = _g(state).get("push") if on(state) else None
+    if not pu:
         return []
-    pu = _g(state)["push"]
     out = [f"{pu['why']}。{pu['day']} 日目から。村の人の選んだことではない (村の人のお題には出さない)。手: "
            + ("・".join(f"{k} {LEVERS[k]}" for k in pu.get("levers") or []) or "なし")]
     ss = [(int(d), r) for d, r in pu["seasons"].items() if y is None or (int(d) + 1) // YEAR == y]
@@ -1418,4 +1427,150 @@ def push_lines(state, y=None):
                    + (f" ({'・'.join(r['short'])})" if r["short"] else ""))
     if pu.get("ws2"):
         out.append(f"2 つめの作業場 {pu['ws2']} (水ののこ) は作る側が決めた (村の票ではない)")
+    if pu.get("ended") is not None:
+        out.append(f"後押しは {pu['ended']['day']} 日目に止めた ({pu['ended']['why']})。そのあとは手を回さない "
+                   "(作業場・石のかまど・倉の燃える石・板・住まいは、そのまま残る)")
+    return out
+
+
+# ---------------- 後押しなしの確かめ (本人の言葉 2026-11-17「後押しなしで確かめる」。docs/society_phase/G15_push.md 7.) ----------------
+# 入口 (HOLD entrance) に着いたあと、本人が「後押しを外して村人だけで数年回し、作業場と燃える石が続くかを見てから、Society 3.0 の設計に入る」を選んだ。
+# step.py resume --unpush "<本人の言葉>" --years N だけが、後押しを止め (push.ended)、印 g7.g15.after を書き、入口の止まりを解く (G15 のまま進む。
+# 入口は g7.ends に残っているので、もう一度 HOLD entrance にはならない。入口の物差しは記録のために年の終わりに見つづける)。
+# 確かめの年ごとに、後押しのない物差しの行 (after.rows) を残し、最後の年の終わり (until_day) に HOLD consult で止める。
+# 村の人のお題と出来事には何も出さない (印・行は state・step.py status・年報だけ)。印のない日 (前の日) は 1 バイトも変わらない。
+AFTER_DATE = "2026-11-17"
+AFTER_NAME = "後押しなしの確かめ"
+AFTER_YEARS = (1, 10)  # --years に書ける年の数
+
+
+def after_why(words):
+    return f"{AFTER_NAME} (本人の言葉 {AFTER_DATE} 「{words}」)"
+
+
+def after_on(state):
+    """後押しなしの確かめのあいだか (印 g7.g15.after のあと・まだ止めていない・印を書いた日の次の日から)"""
+    a = _g(state).get("after") if on(state) else None
+    return bool(a) and a.get("end") is None and state["day"] > a["day"]
+
+
+def unpush_refusal(state, words, years):
+    """resume --unpush ができないわけ (できるなら None)"""
+    if not (words or "").strip():
+        return "--unpush には本人の言葉が要る"
+    if not on(state) or state.get("era") != "G15":
+        return "G15 でないので、後押しは止められない"
+    pu = _g(state).get("push")
+    if not pu:
+        return "後押しの印がない (後押しをしていない村)"
+    if pu.get("ended") is not None or _g(state).get("after"):
+        return "後押しはもう止めてある (確かめは 1 回だけ)"
+    h = state["era2"]["g7"].get("hold") or {}
+    if not (state.get("hold") and h.get("why") == "entrance"):
+        return "後押しを止めるのは、入口 (HOLD entrance) で止まっているときだけ"
+    if not isinstance(years, int) or not AFTER_YEARS[0] <= years <= AFTER_YEARS[1]:
+        return f"--years は {AFTER_YEARS[0]}〜{AFTER_YEARS[1]} 年"
+    if (state["day"] + 1) % YEAR:
+        return "後押しを止めるのは、年の終わりの日だけ"
+    return None
+
+
+def mark_unpush(state, words, years):
+    """resume --unpush から: 後押しを止め (push.ended)、確かめの印 g7.g15.after を書く (村の出来事には残さない)。
+    確かめは、印の次の日からの暦の年 years 年。終わりの日 until_day (その年の終わり) に HOLD consult で止める"""
+    g, D = _g(state), state["day"]
+    words = words.strip()
+    why = after_why(words)
+    g["push"]["ended"] = {"day": D, "words": words, "why": why}
+    y0 = D // YEAR + 1
+    g["after"] = {"day": D, "words": words, "why": why, "years": years, "from_year": y0, "to_year": y0 + years - 1,
+                  "until_day": D + years * YEAR, "base": after_row(state, D // YEAR), "rows": {}, "end": None}
+    return g["after"]
+
+
+def after_row(state, y):
+    """確かめの年の行 (年の終わりに。帳簿の行と道の見張りから): 作業場ごとの 8 人の日 (答えた家・写って動いた家の人がいたか)・燃える石・かまど・
+    作ったもの・蓄え・ききん・読める大人・G15 の道を選んだ答える人"""
+    g = _g(state)
+    lr = next((r for r in g["ledger"] if r["year"] == y), None) or {}
+    en = lr.get("energy") or {}
+    ws = {}
+    wl = lr.get("ws") or {}
+    for mid in sorted(set(wl) | {m for m, v in (lr.get("ws_list") or {}).items() if v.get("done") is not None}, key=lambda m: (_num(m), m)):
+        r = wl.get(mid) or {}
+        big = r.get("big", 0)
+        w = {"big": big, "days": r.get("days", 0), "houses": len(r.get("houses") or {})}
+        if "big_ans" in r or "big_copy" in r or "big_other" in r or not r.get("big_push"):
+            w.update({"ans": r.get("big_ans", 0), "copy": r.get("big_copy", 0), "other": r.get("big_other", 0)})
+        if r.get("big_push"):
+            w["push"] = r["big_push"]
+        if "ans" not in w:
+            w["ans"] = big - r.get("big_noans", 0)
+        ws[mid] = w
+    big = max((w["big"] for w in ws.values()), default=0)
+    p = g["path"].get(str(y)) or {}
+    ev = [e for e in state["events"] if e["day"] // YEAR == y]
+    sh = en.get("coal_share", 0.0)
+    return {"year": y, "ws": ws, "big": big, "e3_like": big >= E3_DAYS, "coal_share": sh, "e1_like": sh >= E1_SHARE,
+            "stoves": len(lr.get("stoves") or []), "homes": lr.get("homes", 0), "coal_dug": lr.get("coal_dug", 0), "coal_burned": lr.get("coal_burned", 0), "coal_stock": lr.get("coal_stock", 0),
+            "output_pc": lr.get("output_pc", 0.0), "store_days": lr.get("store_days", 0),
+            "famine": sum(1 for e in ev if e["type"] == "蓄えが尽きる"), "starved": sum(1 for e in ev if e["type"] == "死" and "飢え" in e["text"]),
+            "readers": len(lr.get("readers") or []), "pop": lr.get("pop", 0),
+            "chose": p.get("chose", 0), "chose_who": list(p.get("chose_who") or []), "meetings": p.get("meetings", 0)}
+
+
+def after_due(state):
+    """確かめの終わりの日 (until_day の季節の終わり) か"""
+    a = _g(state).get("after") if on(state) else None
+    return bool(a) and a.get("end") is None and state["day"] >= a["until_day"]
+
+
+def after_stop(state):
+    """g7.check から、確かめの終わりの日に: 印に終わりを書き、相談の止まりの中身を返す (HOLD consult)"""
+    a, D = _g(state)["after"], state["day"]
+    a["end"] = D
+    rows = [a["rows"].get(str(y)) for y in range(a["from_year"], a["to_year"] + 1)]
+    e1 = sum(1 for r in rows if r and r["e1_like"])
+    e3 = sum(1 for r in rows if r and r["e3_like"])
+    return {"why": "g15_after_end", "day": D,
+            "text": f"G15: 後押しなしの確かめの {a['years']} 年が終わった ({a['from_year']}年〜{a['to_year']}年。燃える石が火と力の半分以上の年 {e1}・"
+                    f"作業場の 8 人の日が 30 日以上の年 {e3})。Society 3.0 に進むかを本人と相談する"}
+
+
+def _yn(b):
+    return "続いた" if b else "続かなかった"
+
+
+def after_row_text(r, base=False):
+    """確かめの年の行 (やさしい日本語。status と年報)"""
+    ws = "・".join(f"{mid} {w['big']} 日 (" + (f"後押しの人がいた日 {w['push']}・" if w.get("push") else "")
+                   + f"答えた家の人がいた日 {w['ans']}" + (f"・写って動いた家の人がいた日 {w['copy']}・どちらもいない日 {w['other']}" if "copy" in w else "")
+                   + f"。働いた人日 {w['days']}・{w['houses']} 家)" for mid, w in r["ws"].items()) or "なし"
+    head = f"{r['year']}年" + (" (後押しのあった年。くらべるため)" if base else "")
+    t = (f"{head}: 作業場の 8 人・3 家の日 {ws} / 燃える石は火と力の {round(r['coal_share'] * 100, 1)}% (掘った {round(r['coal_dug'])} kg・燃やした {round(r['coal_burned'])} kg・年の終わりの倉 {round(r.get('coal_stock', 0))} kg)・"
+         f"石のかまどの家 {r['stoves']} / {r['homes']} 家 / 1 人あたりの作ったもの {r['output_pc']} / 蓄え {r['store_days']} 日分・"
+         + (f"ききん {r['famine']} 回" if r["famine"] else "ききんなし") + (f"・飢えて亡くなった {r['starved']} 人" if r["starved"] else "")
+         + f" / 読める大人 {r['readers']} / G15 の道 (作業場・燃える石) を選んだ答える人 {r['chose']}" + (f" ({'・'.join(r['chose_who'][:6])})" if r["chose_who"] else ""))
+    if base:
+        return t
+    return (t + f"。→ 後押しなしで、e1 のよう (燃える石が火と力の半分以上) は{_yn(r['e1_like'])}。"
+            f"e3 のよう (1 つの作業場で 8 人・3 家の日が 30 日以上) は{_yn(r['e3_like'])}")
+
+
+def after_lines(state, y=None):
+    """後押しなしの確かめの行 (step.py status・年報。村の人のお題には出さない)。y があれば、その年の行だけ"""
+    a = _g(state).get("after") if on(state) else None
+    if not a:
+        return []
+    out = [f"{a['why']}。{a['day']} 日目に後押しを止めた。{a['from_year']}年〜{a['to_year']}年の {a['years']} 年を村の人だけで回して、"
+           f"作業場と燃える石が続くかを見る。{a['until_day']} 日目 ({a['to_year']}年の終わり) で止めて相談する (HOLD consult)"
+           + (f"。{a['end']} 日目に終わった" if a.get("end") is not None else "")]
+    if y is None or y == a["from_year"] - 1:
+        out.append(after_row_text(a["base"], base=True))
+    ys = sorted(int(k) for k in a["rows"])
+    for k in ys:
+        if y is None or k == y:
+            out.append(after_row_text(a["rows"][str(k)]))
+    if y is None and not ys:
+        out.append("まだ確かめの年が終わっていない (年の終わりに行を足す)")
     return out
