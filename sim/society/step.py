@@ -6,7 +6,7 @@
   python sim/society/step.py evening             夕方の答えを反映 (話す・分ける・食事・夜の危険) → 夜のお題を作る
   python sim/society/step.py night               夜の答えを反映 (知識・掟・明日の予定) → フェーズの判定 → アプリ用のデータを書き出す
   python sim/society/step.py resume              フェーズが進んで一時停止しているのを解く (本人が評価したあと)
-  python sim/society/step.py resume --push "<本人の言葉>"  2026-11-16: G15 の相談 (198年60日目 = 23819 日目から) で止まっているときだけ、止まりを解いて
+  python sim/society/step.py resume --push "<本人の言葉>" [--levers food,ws,coal,ws2,house]  2026-11-16: G15 の相談 (198年60日目 = 23819 日目から) で止まっているときだけ、止まりを解いて
                                                  作る側の反実仮想の後押しを始める (印 g7.g15.push。村の人のお題には出さない。docs/society_phase/G15_push.md)
   python sim/society/step.py ask_why [on|off]    季節のお題で、主な仕事にした理由を一言たずねる (off でやめる。理由は世界の計算には使わない)
   python sim/society/step.py next_part [--fill F] 部の終わり (か次の G を待つ) で止まっているときだけ、次の部 (次の G) に入る (本人と決めてから 1 回だけ。
@@ -665,6 +665,7 @@ def main():
     ap.add_argument("--closed-by-decision", dest="closed", default=None,
                     help="next_part で、G6 を本人の決めで閉じて G7 に入るとき: 本人の言葉 (記録に残す)")
     ap.add_argument("--push", default=None, help="resume で、G15 の相談 (198年60日目から) のとき (2026-11-16): 作る側の反実仮想の後押しを始める本人の言葉 (印 g7.g15.push に残す。docs/society_phase/G15_push.md)")
+    ap.add_argument("--levers", default=None, help="resume --push で選ぶ後押しの手 (コンマでつなぐ。food,ws,coal,ws2,house。書かなければみな。g15.LEVERS)")
     ap.add_argument("--decided", default=None, help="next_part で G14 の終わり (第 7 部の終わり) から G15 (第 8 部) に入るとき (2026-11-15): 本人の決めの言葉 (しるし。g7.g15.decided に残す)")
     ap.add_argument("--fill", type=float, default=None,
                     help="next_part で G7 に入るとき: 地域の人数 (村を除く) を、暮らせる人数 K の合計の何割にするか (0〜0.9。書かなければ 0 = 今のまま)")
@@ -678,6 +679,8 @@ def main():
         sys.exit("--why は refresh_prompts・slim_app・slim_trust のときだけ書く")
     if a.push is not None and a.cmd != "resume":
         sys.exit("--push は resume のときだけ書く")
+    if a.levers is not None and a.push is None:
+        sys.exit("--levers は resume --push のときだけ書く")
     if a.note is not None and a.cmd not in ("exp3", "exp4"):
         sys.exit("--note は exp3・exp4 のときだけ書く")
     if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate", "exp3", "exp4"):
@@ -762,10 +765,14 @@ def main():
         if a.push is not None:  # 2026-11-16: G15 の 5 年の相談から、作る側の反実仮想の後押しを始める (印 g7.g15.push。docs/society_phase/G15_push.md)
             import g15  # noqa: E402
             why = g15.push_refusal(state, a.push) if (state.get("era2") or {}).get("g7") else "G7 より前なので、後押しはできない"
+            try:
+                levers = g15.parse_levers(a.levers)
+            except ValueError as ex:
+                why = why or str(ex)
             if why:
                 print(f"resume --push はできない: {why} (何も変えない)")
                 sys.exit(3)
-            pu = g15.mark_push(state, a.push)
+            pu = g15.mark_push(state, a.push, levers)
         state["hold"] = False
         if (state.get("era2") or {}).get("g7"):
             state["era2"]["g7"]["hold"] = None
@@ -773,7 +780,8 @@ def main():
         export(state)
         if a.push is not None:
             print(f"* {pu['why']} を {_yd(state['day'])}から始めた。村の人の選んだことではない (村の人のお題には出さない)。"
-                  f"手を回すのは「休む」の大人・「狩り」「採集」の半分まで・冬と春の「畑仕事」の 4 分の 1 まで (答えた人本人は動かさない): 水の輪の直し・水の道の手入れ・水の作業場 (1 つ 12 人。2 つめの水ののこは作る側が決める)・板で住まい・かまど・燃える石")
+                  f"手を回すのは「休む」の大人・「狩り」「採集」の半分まで・冬と春の「畑仕事」の 4 分の 1 まで (答えた人本人は動かさない)")
+            print(f"* 後押しの手 (levers {','.join(pu['levers'])}): " + " / ".join(f"{k} {g15.LEVERS[k]}" for k in pu["levers"]))
         print("再開した")
         return
     if a.cmd == "who":  # 読むだけ (ワークフローのため。docs/society_phase/G7_design.md 4.E.5)

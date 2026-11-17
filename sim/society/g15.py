@@ -1176,6 +1176,14 @@ PUSH_WS_COUNT = 2  # 後押しで使う水ののこの作業場の数 (村の作
 PUSH_HOUSE_MAX = 24  # 板で住まいを建てる・広げる人 (1 季節)
 PUSH_COAL_KEEP = 1.25
 PUSH_KEEP = 40
+# 後押しの手 (lever)。step.py resume --push "<本人の言葉>" --levers a,b,c で選ぶ (2026-11-17 本人の言葉の読み直し「いくつかの筋を並べて、いちばんよい筋で進める」。
+# 筋 (写しの村) ごとにちがう組を入れて、決まりの村と LLM の年でくらべる)。state の g7.g15.push.levers に組を残す
+LEVERS = {"food": "水の輪の直しと水の道の手入れ (食べ物を守る)",
+          "ws": "水の作業場に 4 家以上から 12 人 (e3)",
+          "coal": "かまどを石のかまどに・燃える石を掘る (e1)",
+          "ws2": "2 つめの水の作業場 (水ののこ) を作る側が決めて作り、そこで働く (e4)",
+          "house": "のこの板で住まいを建てる・広げる (使った板は作ったものに数える。e4)"}
+LEVER_ORDER = ("food", "ws", "coal", "ws2", "house")
 ACT_HOUSE = "住まいを建てる"
 
 
@@ -1185,6 +1193,21 @@ def push_on(state):
 
 def push_why(words):
     return f"{PUSH_NAME} (本人の言葉 {PUSH_DATE} 「{words}」)"
+
+
+def parse_levers(text):
+    """--levers の文 → 手の並び (LEVER_ORDER の順)。書かなければみな。知らない名前があれば ValueError"""
+    if text is None or not str(text).strip():
+        return list(LEVER_ORDER)
+    xs = [x.strip() for x in str(text).replace("・", ",").split(",") if x.strip()]
+    bad = [x for x in xs if x not in LEVERS]
+    if bad:
+        raise ValueError(f"知らない手: {'・'.join(bad)} (選べるのは {','.join(LEVER_ORDER)})")
+    return [x for x in LEVER_ORDER if x in xs]
+
+
+def push_levers(state):
+    return set((_g(state).get("push") or {}).get("levers") or ())
 
 
 def push_refusal(state, words):
@@ -1202,11 +1225,12 @@ def push_refusal(state, words):
     return None
 
 
-def mark_push(state, words):
-    """resume --push から: 印 g7.g15.push を書く (村の出来事には残さない。村の人のお題に出さないため)"""
+def mark_push(state, words, levers=None):
+    """resume --push から: 印 g7.g15.push を書く (村の出来事には残さない。村の人のお題に出さないため)。levers: 手の並び (なければみな)"""
     words = words.strip()
+    lv = list(LEVER_ORDER) if levers is None else [x for x in LEVER_ORDER if x in levers]
     _g(state)["push"] = {"day": state["day"], "words": words, "why": push_why(words), "from": "決まりの村の束 G15B1 の手の配り方",
-                         "ws2": None, "seasons": {}}
+                         "levers": lv, "ws2": None, "seasons": {}}
     return _g(state)["push"]
 
 
@@ -1304,7 +1328,8 @@ def push_season(state):
             used.add(p["name"])
         return out
 
-    s13 = state["era2"]["g7"].get("g13")
+    lv = push_levers(state)
+    s13 = state["era2"]["g7"].get("g13") if "food" in lv else None
     if s13 and g13.can_do(state, g13.ACT_MILL_FIX):  # 水の輪の直し: 止まった輪とこの年の直しの残り
         need = g13.repair_left(state) - doing(g13.ACT_MILL_FIX, g13.ACT_MILL) * SEASON_DAYS
         for p in take(max(0, math.ceil(need / SEASON_DAYS))):
@@ -1317,13 +1342,16 @@ def push_season(state):
             _push_set(state, p, g13.ACT_CANAL)
             row["canal"] += 1
     if not famine:
-        _push_ws2(state, pu)
-        for mid in workshops(state, done=False):  # 作りかけの作業場 (60 人日。板で倍)
+        if "ws2" in lv:
+            _push_ws2(state, pu)
+        for mid in [m for m in workshops(state, done=False) if m == pu.get("ws2")]:  # 作りかけの作業場 (60 人日。板で倍)
             for p in take(PUSH_WS_BUILD, per_house=2):
                 _push_set(state, p, ACT_WS_BUILD, mill=mid)
                 row["build"] += 1
         saw = 0
         for mid in workshops(state, done=True):
+            if ("ws2" if mid == pu.get("ws2") else "ws") not in lv:
+                continue
             m = _mill(state, mid)
             if m is None or m.get("stopped"):
                 row["short"].append(f"{mid} は止まっている")
@@ -1338,7 +1366,7 @@ def push_season(state):
                 saw += len(ws) + there
             if len(ws) < E3_PEOPLE or len(houses) < E3_HOUSES:
                 row["short"].append(f"{mid} は {len(ws)} 人・{len(houses)} 家しか回せなかった")
-        if coal_on(state):
+        if coal_on(state) and "coal" in lv:
             new_h = set()
             pu["stove_for"] = {}
             left = []
@@ -1364,7 +1392,7 @@ def push_season(state):
                 _push_set(state, p, ACT_DIG, place=COAL_PLACE)
                 row["dig"] += 1
         homes = state["era2"].get("homes") or {}
-        n_house = min(PUSH_HOUSE_MAX, saw + g["planks"]["stock"] // SEASON_DAYS)  # 板の数だけ (のこの人 1 人 = 1 日 1 束)
+        n_house = 0 if "house" not in lv else min(PUSH_HOUSE_MAX, saw + g["planks"]["stock"] // SEASON_DAYS)  # 板の数だけ (のこの人 1 人 = 1 日 1 束)
         small = [p for p in pool if p["name"] not in used and p.get("household") and (homes.get(p["household"]) or {}).get("size", 0) < era2.HOUSE_MAX]
         for p in small[:n_house]:
             used.add(p["name"])
@@ -1381,7 +1409,8 @@ def push_lines(state, y=None):
     if not push_on(state):
         return []
     pu = _g(state)["push"]
-    out = [f"{pu['why']}。{pu['day']} 日目から。村の人の選んだことではない (村の人のお題には出さない)"]
+    out = [f"{pu['why']}。{pu['day']} 日目から。村の人の選んだことではない (村の人のお題には出さない)。手: "
+           + ("・".join(f"{k} {LEVERS[k]}" for k in pu.get("levers") or []) or "なし")]
     ss = [(int(d), r) for d, r in pu["seasons"].items() if y is None or (int(d) + 1) // YEAR == y]
     for d, r in sorted(ss)[-4:]:
         out.append(f"{d + 1} 日目からの季節: 休んでいた大人 {r['pool']} 人から、作業場 " + ("・".join(f"{k} {v[0]} 人 ({v[1]} 家)" for k, v in r["ws"].items()) or "なし")

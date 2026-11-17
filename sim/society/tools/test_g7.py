@@ -8199,6 +8199,29 @@ class T_G15Push(unittest.TestCase):
         self.assertEqual([p for p in era2.adults(base) if base["era2"]["g7"]["src"].get(p["name"]) == g15.PUSH_SRC], [])
         self.assertTrue(g13.can_do(st, g13.ACT_CANAL))
 
+    def test_levers(self):
+        """手 (lever) を選べる: 選ばなかった手の仕事には人を回さない。書かなければみな"""
+        import g15
+        import g7
+        self.assertEqual(g15.parse_levers(None), list(g15.LEVER_ORDER))
+        self.assertEqual(g15.parse_levers("house, food"), ["food", "house"])
+        with self.assertRaises(ValueError):
+            g15.parse_levers("food,x")
+        acts = {"food": {"水の輪を直す", "水の道を掘る"}, "ws": {g15.ACT_WS_WORK}, "coal": {g15.ACT_STOVE, g15.ACT_DIG},
+                "ws2": {g15.ACT_WS_BUILD}, "house": {g15.ACT_HOUSE}}
+        for lv in (["food"], ["ws"], ["coal"], ["ws2"], ["food", "ws", "coal"]):
+            st = self.real()
+            g15.mark_push(st, PUSH_WORDS, lv)
+            st["hold"], st["era2"]["g7"]["hold"] = False, None
+            g7.apply_plan(st)
+            got = {p["plan"]["activity"] for p in era2.adults(st) if g15.push_src(st, p["name"])}
+            allowed = set().union(*(acts[k] for k in lv))
+            self.assertTrue(got, lv)
+            self.assertLessEqual(got, allowed, lv)
+            self.assertEqual(g15._g(st)["push"]["levers"], lv)
+            self.assertEqual(bool(g15._g(st)["push"]["ws2"]), "ws2" in lv)
+            self.assertIn("手: " + "・".join(f"{k} {g15.LEVERS[k]}" for k in lv), g15.push_lines(st)[0])
+
     def test_days(self):
         """後押しの人の 1 日: かまどができたら燃える石を掘る・作業場ができたら働く。写しの記録は push に分ける。8 人の日の後押しの印"""
         import g15
@@ -8293,12 +8316,20 @@ class T_G15Push(unittest.TestCase):
             r = run("season", "--push", PUSH_WORDS)
             self.assertNotEqual(r.returncode, 0)
             self.assertIn("--push は resume のときだけ", r.stderr)
-            r = run("resume", "--push", PUSH_WORDS)
+            r = run("resume", "--push", PUSH_WORDS, "--levers", "food,magic")
+            self.assertEqual(r.returncode, 3)
+            self.assertIn("知らない手: magic", r.stdout)
+            r = run("resume", "--levers", "food")
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn("--levers は resume --push のときだけ", r.stderr)
+            r = run("resume", "--push", PUSH_WORDS, "--levers", "coal,food")
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertIn("* 後押しの手 (levers food,coal): food 水の輪の直しと水の道の手入れ", r.stdout)
             self.assertIn(f"* 作る側の反実仮想の後押し (本人の言葉 2026-11-16 「{PUSH_WORDS}」) を 198年60日目 (23819 日目)から始めた", r.stdout)
             self.assertIn("再開した", r.stdout)
             new = json.loads((d / "state.json").read_text(encoding="utf-8"))
             self.assertEqual(new["era2"]["g7"]["g15"]["push"]["words"], PUSH_WORDS)
+            self.assertEqual(new["era2"]["g7"]["g15"]["push"]["levers"], ["food", "coal"])
             r = run("who")
             self.assertIn("HOLD none", r.stdout)
             r = run("resume", "--push", PUSH_WORDS)

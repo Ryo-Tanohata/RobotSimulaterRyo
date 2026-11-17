@@ -102,7 +102,15 @@ WORLDS = {
     "W15N": {"name": "G15 (同じ。燃える石を置かない)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15": True, "coal": False},
     # G15 の後押しの確かめ (2026-11-16 本人の言葉「１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい」): 本物の村の 23819 日目
     #   (G15 の 5 年の相談。HOLD consult) から、step.py resume --push と同じ関数 (g15.mark_push) で作る側の後押しを始める。docs/society_phase/G15_push.md
-    "W15P": {"name": "G15 の後押し (本物の 23819 日目から。作る側の反実仮想の後押し)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15_push": True},
+    "W15P": {"name": "G15 の後押し (本物の 23819 日目から。作る側の反実仮想の後押し。手はみな)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15_push": True},
+    # 2026-11-17 (本人の言葉の読み直し「いくつかの筋を並べて、いちばんよい筋で進める」): 手 (lever) の組ごとの世界。W15P0 は後押しなし (ふつうの resume)
+    "W15P0": {"name": "G15 の 23819 日目から (後押しなし。resume だけ)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15_push": True, "levers": ()},
+    "W15PF": {"name": "G15 の後押し (food)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15_push": True, "levers": ("food",)},
+    "W15PW": {"name": "G15 の後押し (ws)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15_push": True, "levers": ("ws",)},
+    "W15PC": {"name": "G15 の後押し (coal)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15_push": True, "levers": ("coal",)},
+    "W15PA": {"name": "G15 の後押し (food,ws,coal)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15_push": True, "levers": ("food", "ws", "coal")},
+    "W15PX": {"name": "G15 の後押し (food,ws,coal,ws2,house)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15_push": True,
+              "levers": ("food", "ws", "coal", "ws2", "house")},
 }
 G15_PUSH_WORDS = "１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい"  # 本人の言葉 (2026-11-16)
 G15_NOTE = "本人の決め 2026-11-15 (お任せします): G15 の下書きの問いはみなおすすめで (決まりの村の確かめ)"
@@ -155,7 +163,9 @@ def enter_g7(state, w):
         import g15
         assert state.get("era") == "G15" and (state["era2"]["g7"].get("hold") or {}).get("why") == "consult", state.get("era")
         assert g15.push_refusal(state, G15_PUSH_WORDS) is None
-        g15.mark_push(state, G15_PUSH_WORDS)
+        lv = w.get("levers")
+        if lv is None or lv:  # 手が空の組 (W15P0) は印を書かない (ふつうの resume と同じ)
+            g15.mark_push(state, G15_PUSH_WORDS, None if lv is None else list(lv))
         state["hold"] = False
         state["era2"]["g7"]["hold"] = None
         return
@@ -2083,7 +2093,7 @@ def g15_row(res):
 
 def write_g15_csv(out_dir, path, years_path=None):
     res_all = [json.loads(f.read_text(encoding="utf-8")) for f in sorted(Path(out_dir).glob("*.json"))]
-    res_all = [r for r in res_all if r["world"] in ("W15", "W15N", "W15P")]
+    res_all = [r for r in res_all if r["world"] in ("W15", "W15N") or r["world"].startswith("W15P")]
     rows = [g15_row(r) for r in res_all]
     rows.sort(key=lambda r: (r["world"], r["bundle"], r["seed"]))
     Path(path).parent.mkdir(parents=True, exist_ok=True)
