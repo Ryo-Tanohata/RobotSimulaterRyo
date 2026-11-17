@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、冬と春は草取りを欠かさずやろう。来年の夏は刈り手を多く出して、落とさず刈りきろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。去年は刈り残しが多かったので、畑の世話に力を入れる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ85": true, "シエ85": true},
+ "family": {
+  "キサ48": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"},
+  "ヌオ52": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"},
+  "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"},
+  "シエ59": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"},
+  "リセ62": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"},
+  "シエ67": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので畑を手伝う"},
+  "オネ68": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので畑を手伝う"},
+  "オネ71": {"activity": "畑仕事", "place": "camp", "why": "まだ小さいが、畑の草取りなら手伝える"},
+  "ワユ72": {"activity": "畑仕事", "place": "camp", "why": "子も畑の草取りを手伝う"},
+  "ラニ73": {"activity": "畑仕事", "place": "camp", "why": "子も畑の草取りを手伝う"},
+  "ユエ73": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は疲れているが、畑がうまく育つと思うと気持ちは前向きだ。"}

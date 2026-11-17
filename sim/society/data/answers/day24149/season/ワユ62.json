@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "止まった水の輪がまだ残っているね。わたしは道具の手が慣れているから、この秋は輪の直しに行くよ。どこが割れているか、見るのも楽しみなんだ。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "直しがまだ 270 人日も残っている。道具づくりの腕を、止まった輪を回すのに使いたい"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ85": true, "ラニ85": true, "ケセ85": true, "シエ85": true}, "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T703": "村", "T706": {"side": "村", "利子": 0.1}},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "いまヤギは 50 頭で、草で養える数よりずっと少ない。よその村のヤギを 1 頭受けても草は足りる", "because": [3629311], "confidence": 0.7},
+  {"op": "add", "text": "土器に入れていた約 323 万つかみの草の種のうち、ひと季節に約 2 万 5 千つかみが傷んだ", "because": [3629306], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L639", "against": "板に書く手間がかかる", "agree": true, "reason": "ヒセ5の村に貸すなら、返す量を板に残しておくと忘れない"},
+  {"id": "L641", "against": "いまヤギは 50 頭で、草で養える数より少ない。つぶす必要はない", "agree": false, "reason": "ヤギは減りすぎているから、いまは肉にしないほうがいい"}],
+ "feeling": "疲れはあるけれど、水の輪のしくみをもっと知りたくてわくわくしている"}

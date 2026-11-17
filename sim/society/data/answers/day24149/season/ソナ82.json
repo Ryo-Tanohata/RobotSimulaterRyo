@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "ヒセ5の村から来たテナ85たちも、シエ85も、いっしょに暮らそうよ。秋は水の道を掘って、来年の畑に水を届けよう。"}, {"to": "テナ85", "text": "来たばかりで心細いでしょう。わからないことがあったら、わたしに聞いてね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ 737 人日も残っていて、水が来る畑は悪い年でも実りが守れたから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ85": true, "シエ85": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "ヤギはいま 50 頭で、草で養える約 110 頭よりずっと少ない。もうつぶさなくてよい", "because": [], "confidence": 0.8}, {"op": "add", "text": "刈る手が足りないと、実った草の種がたくさん落ちてしまう", "because": [3629283, 3629288], "confidence": 0.8}],
+ "proposal": {"text": "この秋と冬は、家ごとに大人を一人ずつ水の道の手入れ (あと 737 人日) に出し、残りの手で水の輪の直し (あと 270 人日) を進めよう。ヤギは 50 頭で草の 110 頭よりずっと少ないから、つぶさずに増やそう。", "because": [], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L639", "against": "板に書いても取りに行く手間がかかる", "agree": true, "reason": "貸した量を残しておけば、あとでもめずにすむから"}, {"id": "L641", "against": "ヤギはもう 50 頭しかおらず、草で養える数よりずっと少ない", "agree": false, "reason": "前はわたしが出したけれど、今はつぶすと減りすぎるから"}, {"id": "L640", "against": "水の輪の直しも 270 人日残っている", "agree": true, "reason": "水の道の手入れが畑を守るいちばんの近道だから"}],
+ "feeling": "子が生まれてうれしいけれど、亡くなった人を思うと胸が痛い。みんなで支え合いたい"}

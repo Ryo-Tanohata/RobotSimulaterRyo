@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "秋の畑は、草取りの手が足りないと実りが減るよ。今年はみんなで畑に出て、夏に刈り残しが出ないようにしよう。"}, {"to": "ヒセ5の村", "text": "畑が実らず苦しいと聞いた。草の種を貸すから、落ち着いたら返しておくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるし、去年は刈る手が足りず多く落ちた。畑を守るのが村のためになる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ85": true, "シエ85": true},
+ "family": {
+  "ケセ46": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして実りを守るため"},
+  "ケセ55": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして実りを守るため"},
+  "ユエ55": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑は悪い年でも実りが半分にならないので、水の道の手入れを進める"},
+  "ヒセ67": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが 737 人日も残っているため"},
+  "ラニ67": {"activity": "帳をつける", "place": "camp", "why": "字が書けるので、家ごとの人の数と倉の量を帳に残す"},
+  "ロワ68": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので水の道を掘る"},
+  "シエ68": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やすため"},
+  "ラニ69": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "ラニ71": {"activity": "畑仕事", "place": "camp", "why": "まだ慣れていないので、草取りから覚える"},
+  "ケセ72": {"activity": "畑仕事", "place": "camp", "why": "子の手も草取りの助けになる"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T703": false, "T706": {"side": "村", "利子": 0.1}}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは多くて安心している。畑と水の道を手入れして、来年の夏もたくさん刈れるようにしたい。"}

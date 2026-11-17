@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "水の道は、まだ 737 人日も残っている。畑に水が来れば悪い年でも実りが守れる。この秋、わたしは水の道を掘りに出る。"}, {"to": "みんな", "text": "ヒセ5の村は、前に借りた 4035 つかみをまだ返していない。返してもらうまでは、新しく貸すのは待とう。来た人たちは迎えよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがたくさん残っていて、畑を悪い年から守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ85": true, "シエ85": true},
+ "family": {"キサ56": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをして、夏の実りを増やすため"}, "トナ58": {"activity": "水の輪を直す", "place": "camp", "why": "水の輪の直しがまだ 270 人日残っているから"}, "ルタ69": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、村の帳をつけて量のずれをなくすため"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T703": "村", "T706": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "村のヤギは 50 頭に減った。草で養える約 110 頭より少ないので、いまはつぶさなくてよい", "because": [], "confidence": 0.8}, {"op": "add", "text": "去年は刈る手が足りず、畑の草の種がたくさん落ちてしまった", "because": [3629283, 3629288], "confidence": 0.8}],
+ "proposal": {"text": "ヤギは 50 頭で草の約 110 頭より少ないから、この秋はつぶさずに育てよう。家ごとに大人を一人ずつ水の道の手入れ (あと 737 人日) に出し、畑は一人 1000 つかみずつまこう。", "because": [], "penalty": {"for": "ヤギ", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L639", "against": "板に書く手間がかかる", "agree": true, "reason": "貸した量を板に残せば、返すときにもめないから"}, {"id": "L641", "against": "ヤギはもう 50 頭しかいなくて、草の約 110 頭より少ない", "agree": false, "reason": "いまは多すぎないので、つぶす理由がない"}, {"id": "L640", "against": "ヤギの数が古く、いまは 50 頭なのにつぶすことになる", "agree": false, "reason": "水の道は大事だが、ヤギをつぶすのは今に合わない"}, {"id": "L629", "against": "ヤギの数が古い", "agree": true, "reason": "家ごとに一人ずつ水の道とヤギの世話に出し、つぶさずに残すのは、今の村に合っている"}],
+ "feeling": "体は疲れているが、水の道を掘って畑を守りたい"}

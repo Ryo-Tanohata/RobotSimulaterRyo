@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギはもう 50 頭で、オスが一頭もいない。草はあまっているから、もうつぶさずに、北の村13 のヤギをもらって群れを育て直そう。"}, {"to": "テナ85", "text": "よく来たな。この村は種も木の実もたっぷりある。わしが水の道の掘り方を教えてやろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ 737 人日も残っていて、水の来る畑は悪い年でも実りを守ってくれるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ85": true, "シエ85": true},
+ "family": {"ナセ60": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、次の夏の実りを増やすため"}, "リセ66": {"activity": "水の輪を直す", "place": "camp", "why": "止まった水の輪の直しが 270 人日残っているから"}, "タユ71": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、よその村への貸し借りを書いて残してほしいから"}, "ムイ72": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝わせて、畑を覚えさせるため"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T703": "村", "T706": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "ヤギは 50 頭まで減り、オスが一頭もいない。草で養える約 110 頭よりずっと少ないので、もうつぶさず、よその村からヤギを入れたほうがよい", "because": [3629311], "confidence": 0.8}],
+ "proposal": {"text": "ヤギは 50 頭で、草で養える約 110 頭よりずっと少なく、オスもいない。この秋からヤギはつぶさず、よその村がヤギを出すと言ったら受けて、オスを手に入れ群れを育て直そう。", "because": [3629311], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L639", "against": "板に書くのに手間がかかる", "agree": true, "reason": "ヒセ5の村などにまだ貸しが残っていて、書いておかないと忘れてしまうから"}, {"id": "L641", "against": "ヤギはもう 50 頭しかいないので、これ以上つぶすと群れが絶えてしまう", "agree": false, "reason": "いまは草が足りており、つぶす理由がなくなったから"}],
+ "feeling": "ヤギがこんなに減るとは。今度は増やす番だ、腕が鳴る。"}
