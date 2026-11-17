@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に種をまいて、冬と春は草取りをして、夏に みんなで刈ろう。新しい二人も ようこそ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りをすると実りが増え、夏の刈り入れで村が助かるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ユエ82": true, "ホミ82": true},
+ "family": {"オセ82": {"activity": "畑仕事", "place": "camp", "why": "いっしょに畑の草取りをして、実りを増やすため"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "秋に畑に草の種をまき、冬と春に草取りをすると、夏に実って刈れる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "畑をしっかり育てて、夏にたくさん刈れるよう、やる気がある。"}

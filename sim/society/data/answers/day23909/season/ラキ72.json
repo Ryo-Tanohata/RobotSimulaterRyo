@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに畑に草の種をまいておこう。わたしは冬と春のあいだ、草取りをして実りを守るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は、草取りをしないと実りが3割になる。夏に刈れるように世話をしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ユエ82": true, "ラキ83": true},
+ "keep": false,
+ "judge": {"M519": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまき、草取りをすると、次の夏に畑が実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "新しい仲間も来るので、畑がよく実ってほしいと思う。"}

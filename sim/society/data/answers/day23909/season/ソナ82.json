@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "この秋は、作業場 M6 でいっしょに板をひかない？ 三つの家から八人そろえば、輪の直しがずっと早くなるよ。"}, {"to": "ケナ82", "text": "ケナ、水の道のほうをお願いね。夕方にはアコの顔を見に戻ろう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "板をひけば輪の直しや建てる仕事が倍はかどるし、八人そろう日を増やしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ユエ82": true, "ラキ83": true},
+ "family": {"ケナ82": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ 413 人日も残っていて、畑を守るのに要るから"}},
+ "keep": false,
+ "judge": {"M519": "ゆるす"},
+ "feast": false,
+ "leader": "ラキ36",
+ "trade": {"T675": false, "T676": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "人が増えて住まいに入りきらず、雨の夜に外で濡れる人がまだいる", "because": [3536759], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L624", "against": "ヤギはもう 137 頭で、つぶす話はいらなくなった", "agree": true, "reason": "家ごとに一人ずつ輪の直しと水の道に出すのは、手が分かれてよいから"},
+  {"id": "L625", "against": "倉の板を使いきると、家の住まいを建てる分が減る", "agree": true, "reason": "倉の板で輪を直せば早く終わるから"},
+  {"id": "L628", "against": "夏の話で、今の秋には合わない", "agree": false, "reason": "季節がもう過ぎているから"},
+  {"id": "L612", "against": "板が輪の直しに足りなくなるかもしれない", "agree": true, "reason": "雨の夜に外で濡れる人がまだいるから、住まいを建てたい"}
+ ],
+ "feeling": "人が多いと、話す相手も手も多くて楽しい。この秋はみんなで板をひこう。"}

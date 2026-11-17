@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがまだ残っている。おれは今季、掘りに出るぞ。手の空いた者は一緒にやろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが あと413人日 残っていて、大胆で力があるおれが掘れば畑の実りを守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ユエ82": true, "ラキ83": true},
+ "family": {
+  "キサ48": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家ごとに分けて進めるため"},
+  "ヌオ52": {"activity": "水の作業場で働く", "place": "M6", "why": "水ののこで板をひき、輪の直しを進めるため"},
+  "ロワ53": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、家ごとの人の数と倉を書き残すため"},
+  "シエ59": {"activity": "水の作業場で働く", "place": "M26", "why": "3つ以上の家で集まり、板をひくため"},
+  "リセ62": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを早く終わらせるため"}},
+ "keep": false,
+ "judge": {"M519": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、体もよく動く。水の道をしっかり掘って、冬と春にそなえたい。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑をみんなで刈ろう。落ちてしまう前に蔵へ入れたいね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから、みんなで刈り入れる"}, "family": {"ラキ52": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ワユ54": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ヌオ63": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "タユ68": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "トナ69": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ヌオ69": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の世話で来年の実りを守る"}, "family": {"ラキ52": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ワユ54": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヌオ63": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "タユ68": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "トナ69": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヌオ69": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りをして実りを減らさない"}, "family": {"ラキ52": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ワユ54": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ63": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "タユ68": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "トナ69": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ69": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続ける"}, "family": {"ラキ52": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ワユ54": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ63": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "タユ68": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "トナ69": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ69": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T673": false, "T674": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "metal": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "mood": "畑がよく実っていて、ほっとしている。"}
