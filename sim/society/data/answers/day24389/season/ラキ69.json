@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "木の実はたくさん実っている。冬の前に、みんなで食べ物を集めておこう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "冬は木の実も草の種も実らないので、秋のうちに食べ物を集めておきたい。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケセ87": true, "シエ87": true, "ナセ87": true},
+ "family": {"ケナ73": {"activity": "採集", "place": "東林12", "why": "若いので、わたしと一緒に採集をして冬に備える。"}},
+ "keep": false,
+ "judge": {"M520": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": []}

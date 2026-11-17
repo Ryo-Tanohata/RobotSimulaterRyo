@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "去年は刈る手が足りず、草の種がたくさん落ちた。この秋は草取りと水の道に手を回して、冬の前に畑をしっかり育てよう。"}, {"to": "ケセ87", "text": "遠くからよく来たな。ここで一緒に畑を見てくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ナセ60", "リセ66"], "why": "まいた畑の草取りをすれば、来年の実りが十割になるから"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ケセ87": true}, "family": {"ナセ60": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ七百人日以上残っていて、悪い年に畑を守ってくれるから"}, "リセ66": {"activity": "水の輪を直す", "place": "camp", "why": "水の輪の直しが残っている。粉ひきを止めないため"}, "タユ71": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、この年の帳をまだだれも書いていないから"}, "ムイ72": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして、刈り残しを減らすため"}, "ケセ74": {"activity": "畑仕事", "place": "camp", "why": "大人のそばで草取りを覚えてほしいから"}}, "keep": false,
+ "judge": {"M520": "ゆるす"}, "feast": false, "leader": null, "trade": {"T732": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "ヤギはいま117頭で、草で養える約140頭まで少し余る。世話する人が少ないと19頭もいなくなった", "because": [3720295], "confidence": 0.8}, {"op": "add", "text": "土器に入れた草の種でも、ひと季節で約2万4千つかみが傷んだ", "because": [3720303], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "年はとったが、まだ畑に出られる。若い者に負けずに草を取るぞ。"}

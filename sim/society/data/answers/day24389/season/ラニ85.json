@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をまいて、冬のあいだも草取りをしっかりしよう。夏にたくさん刈れるようにしたいな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増える。蓄えは十分あるので、狩りより畑を育てる方が村のためになる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケセ87": true},
+ "family": {"テナ85": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを人手多くやると夏の実りが増えるから。"}, "ケセ85": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝えば畑が早く片づく。"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "村の蓄えがたっぷりあって安心している。畑がうまく実るように働こう。"}
