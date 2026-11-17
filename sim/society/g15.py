@@ -428,6 +428,8 @@ def _ws_season(state):
                 continue
             if len(names) >= E3_PEOPLE and len(houses) >= E3_HOUSES:
                 row["big"] += 1
+                if push_on(state) and any(src.get(n) == PUSH_SRC for n in names):  # 2026-11-16: 作る側の後押しの人がいた 8 人の日 (印のあとだけ数える)
+                    row["big_push"] = row.get("big_push", 0) + 1
                 if not any(g7.gpath_kind(src.get(n)) == "answered" for n in names):
                     row["big_noans"] += 1
     g["wsday"] = {}
@@ -456,6 +458,8 @@ def stove_done(state, h):
 def _stove(state, p, t):
     g, D, name = _g(state), state["day"], p["name"]
     h = p.get("household")
+    if g.get("push") and (g["push"].get("stove_for") or {}).get(name) and push_src(state, name):  # 2026-11-16: 後押しで、ほかの家のかまどを手伝う人
+        h = g["push"]["stove_for"][name]
     if not coal_on(state):
         return _rest(state, p, t, ACT_STOVE, f"{name} は、燃える石がないので、かまどを作りかえずに休んだ")
     if not h:
@@ -1147,3 +1151,242 @@ def rest_why(state, name, act):
 
 SECTION = "## 水の作業場と燃える石"  # 長い節の見出し (tools/prompt_check.py --words g15 が読む)
 FACT_HEADS = ("水の作業場:", "燃える石:", "板:")  # 決まりの文の行の頭 (同じ)
+
+
+# ---------------- 作る側の反実仮想の後押し (本人の言葉 2026-11-16「１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい」。
+#   docs/society_phase/G15_push.md) ----------------
+# 本物の村の 5 年の相談 (198年60日目 = 23819 日目) で step.py resume --push "<本人の言葉>" が印 g7.g15.push を書いた日から、作る側が季節ごとに手を足す。
+# 村の人の選んだことではない。村の人のお題には出さない (出来事にも残さない。state・step.py status・年報に残す)。集まりの LLM の答えは今までどおり読み、
+# その季節の仕事を当てたあと (g7._apply の終わり) に、次の手を足すだけ (決まりの村の束 G15B1 の手の配り方をもとにした):
+#   - 手を回すのは、この季節の仕事が「休む」の大人と、「狩り」「採集」の大人の半分まで、草取りだけの冬と春は「畑仕事」の大人の 4 分の 1 まで。
+#     答えた人本人は動かさない。休む人・写しと決まりの家の人を先に (ヤギ・水・役・作る仕事と、夏・秋の刈り入れ・まきつけからは人を取らない)
+#   - 水の輪の直しと水の道の手入れ: その年に足りない人日を埋める (止まった輪を直し、水の来る畑を守る = 食べ物を守る)
+#   - 水の作業場: 作業場ごとに 4 家以上から 12 人 (1 家 3 人まで。作業場の 20 人の枠の残りまで)。毎季節。e3 の「8 人・3 家・30 日」に余裕
+#   - 2 つめの作業場 (水ののこ): 作る側が決めて作る (村の票ではない)。板は、休んでいる大人が自分の家の住まいを建てる・広げるのに使う (板の数だけ)。
+#     e4 の帳簿は「使った板 × 60」を作ったものに数える (設計 3.6)。刈り入れがふえるわけではない (G15_push.md に正直に書く)
+#   - かまど: まだ石のかまどでない家の大人 1 人が「かまどを作りかえる」(できたら、その季節の残りは燃える石を掘る)
+#   - 燃える石: 石のかまどの家の 1 季節分の 1.25 倍が倉にあるように、掘る人を足す
+# どれも印 (g7.g15.push) があるときだけ。印のない日 (前の日) は 1 バイトも変わらない。
+PUSH_FROM = 23819  # 本物の村の G15 の 5 年の相談の日 (198年60日目)。これより前には印を書けない
+PUSH_DATE = "2026-11-16"
+PUSH_NAME = "作る側の反実仮想の後押し"
+PUSH_SRC = "作る側の後押し"  # g7.src の値 (写しの記録 g7.gpath では push に分ける)
+PUSH_WS_PEOPLE, PUSH_WS_PER_HOUSE, PUSH_WS_BUILD = 12, 3, 6
+PUSH_WS_COUNT = 2  # 後押しで使う水ののこの作業場の数 (村の作業場 1 つ + 作る側が決める 1 つ)
+PUSH_HOUSE_MAX = 24  # 板で住まいを建てる・広げる人 (1 季節)
+PUSH_COAL_KEEP = 1.25
+PUSH_KEEP = 40
+ACT_HOUSE = "住まいを建てる"
+
+
+def push_on(state):
+    return on(state) and bool(_g(state).get("push"))
+
+
+def push_why(words):
+    return f"{PUSH_NAME} (本人の言葉 {PUSH_DATE} 「{words}」)"
+
+
+def push_refusal(state, words):
+    """resume --push ができないわけ (できるなら None)"""
+    if not (words or "").strip():
+        return "--push には本人の言葉が要る"
+    if not on(state):
+        return "G15 でないので、後押しはできない"
+    if _g(state).get("push"):
+        return "後押しはもう始めてある"
+    if state["day"] < PUSH_FROM:
+        return f"後押しは {PUSH_FROM} 日目 (G15 の 5 年の相談) からだけ"
+    if ((state["era2"]["g7"].get("hold") or {}).get("why")) != "consult":
+        return "後押しは、相談で止まっているときに resume と一緒にだけ始める"
+    return None
+
+
+def mark_push(state, words):
+    """resume --push から: 印 g7.g15.push を書く (村の出来事には残さない。村の人のお題に出さないため)"""
+    words = words.strip()
+    _g(state)["push"] = {"day": state["day"], "words": words, "why": push_why(words), "from": "決まりの村の束 G15B1 の手の配り方",
+                         "ws2": None, "seasons": {}}
+    return _g(state)["push"]
+
+
+def push_src(state, name):
+    """その人のこの季節の仕事が、後押しで決まったか"""
+    return (state["era2"]["g7"].get("src") or {}).get(name) == PUSH_SRC
+
+
+def push_act(state, p, act):
+    """g7.role_day から: 後押しで「かまどを作りかえる」になった人は、その家のかまどができていれば燃える石を掘る。
+    後押しで「水の作業場を作る」になった人は、作りかけの作業場がなくなっていれば (できあがっていれば)、その作業場で働く"""
+    if not (push_on(state) and push_src(state, p["name"])):
+        return act
+    h = (_g(state)["push"].get("stove_for") or {}).get(p["name"]) or p.get("household")
+    if act == ACT_STOVE and h and stove_done(state, h) and coal_on(state):
+        p["plan"]["place"] = COAL_PLACE
+        return ACT_DIG
+    if act == ACT_WS_BUILD and not workshops(state, done=False) and workshops(state, done=True):
+        p["plan"]["activity"] = ACT_WS_WORK
+        return ACT_WS_WORK
+    return act
+
+
+PUSH_FROM_ACTS = ("休む", "狩り", "採集", "畑仕事")  # 後押しで手を回せる仕事 (この順に。ヤギ・水・役・作る仕事からは取らない)
+PUSH_HUNT_SHARE = 0.5  # 狩り・採集の人は、その季節の半分までしか回さない (食べ物を守る)
+PUSH_FIELD_SHARE, PUSH_FIELD_SEASONS = 0.25, ("冬", "春")  # 畑仕事の人は、草取りだけの冬と春に、4 分の 1 までしか回さない (夏・秋の刈り入れとまきつけからは取らない)
+
+
+def _push_pool(state):
+    """後押しで手を回せる大人: この季節の仕事が「休む」の大人と、「狩り」「採集」の大人の半分まで、冬と春は「畑仕事」の大人の 4 分の 1 まで (答えた人本人は除く)。
+    休む人を先に、写しと決まりの家の人を先に、人の並びの順"""
+    import g7
+    g7s = state["era2"]["g7"]
+    src = g7s.get("src") or {}
+    answered = set((g7s.get("step") or {}).get("answered") or [])
+    order = {p["name"]: i for i, p in enumerate(state["people"])}
+    ads = era2.adults(state)
+    rest = [p for p in ads if (p.get("plan") or {}).get("activity") == "休む" and p["name"] not in answered]
+    food = [p for p in ads if (p.get("plan") or {}).get("activity") in PUSH_FROM_ACTS[1:3]]
+    food_ok = [p for p in food if p["name"] not in answered]
+    field = [p for p in ads if (p.get("plan") or {}).get("activity") == PUSH_FROM_ACTS[3]] if g7.season(state["day"] + 1) in PUSH_FIELD_SEASONS else []
+    field_ok = [p for p in field if p["name"] not in answered]
+
+    def key(p):
+        return (g7.gpath_kind(src.get(p["name"])) == "answered", order[p["name"]])
+    return (sorted(rest, key=key) + sorted(food_ok, key=key)[:int(len(food) * PUSH_HUNT_SHARE)]
+            + sorted(field_ok, key=key)[:int(len(field) * PUSH_FIELD_SHARE)])
+
+
+def _push_set(state, p, act, place="camp", mill=None):
+    p["plan"] = {"activity": act, "place": place, "with": []}
+    state["era2"]["g7"].setdefault("src", {})[p["name"]] = PUSH_SRC
+    if mill:
+        _g(state)["dest"][p["name"]] = mill
+    else:
+        _g(state)["dest"].pop(p["name"], None)
+
+
+def _push_ws2(state, pu):
+    """2 つめの作業場 (水ののこ): 作業場にできる輪があれば、作る側が決める (村の票ではない。出来事にもしない。作るのは後押しの人)"""
+    g = _g(state)
+    if pu.get("ws2") or len(g["ws"]) >= PUSH_WS_COUNT:
+        return
+    c = candidates(state)
+    if not c or ws_why(state, c[-1], SAW):
+        return
+    mid = c[-1]
+    g["ws"][mid] = {"tool": SAW, "day": state["day"], "by": [PUSH_SRC], "votes": PUSH_NAME, "work": 0.0, "done": None, "builders": {}}
+    pu["ws2"] = mid
+
+
+def push_season(state):
+    """季節のはじめ (g7._apply の終わり。その季節の仕事が決まったあと): 後押しの手を足す。乱数なし"""
+    import g13
+    g, pu, D = _g(state), _g(state)["push"], state["day"]
+    famine = state["era2"]["g7"].get("ask") == "集まり直し"
+    ads = era2.adults(state)
+    pool = _push_pool(state)
+    used = set()
+    row = {"pool": len(pool), "ws": {}, "build": 0, "house": 0, "stove": 0, "dig": 0, "mill_fix": 0, "canal": 0, "short": []}
+
+    def doing(*acts):
+        return sum(1 for p in ads if (p.get("plan") or {}).get("activity") in acts)
+
+    def take(n, house=None, per_house=None):
+        out, cnt = [], {}
+        for p in pool:
+            if len(out) >= n:
+                break
+            h = p.get("household") or p["name"]
+            if p["name"] in used or (house is not None and h != house) or (per_house and cnt.get(h, 0) >= per_house):
+                continue
+            out.append(p)
+            cnt[h] = cnt.get(h, 0) + 1
+            used.add(p["name"])
+        return out
+
+    s13 = state["era2"]["g7"].get("g13")
+    if s13 and g13.can_do(state, g13.ACT_MILL_FIX):  # 水の輪の直し: 止まった輪とこの年の直しの残り
+        need = g13.repair_left(state) - doing(g13.ACT_MILL_FIX, g13.ACT_MILL) * SEASON_DAYS
+        for p in take(max(0, math.ceil(need / SEASON_DAYS))):
+            _push_set(state, p, g13.ACT_MILL_FIX)
+            row["mill_fix"] += 1
+    if s13:  # 水の道の手入れ: その年に要る人日の残り
+        c = s13["canal"]
+        need = c["cap"] / g13.CANAL_PER_DAY * g13.CANAL_KEEP - c["dug"].get(str(_y(state)), 0) - doing(g13.ACT_CANAL) * SEASON_DAYS
+        for p in take(max(0, math.ceil(need / SEASON_DAYS))):
+            _push_set(state, p, g13.ACT_CANAL)
+            row["canal"] += 1
+    if not famine:
+        _push_ws2(state, pu)
+        for mid in workshops(state, done=False):  # 作りかけの作業場 (60 人日。板で倍)
+            for p in take(PUSH_WS_BUILD, per_house=2):
+                _push_set(state, p, ACT_WS_BUILD, mill=mid)
+                row["build"] += 1
+        saw = 0
+        for mid in workshops(state, done=True):
+            m = _mill(state, mid)
+            if m is None or m.get("stopped"):
+                row["short"].append(f"{mid} は止まっている")
+                continue
+            there = sum(1 for p in ads if (p.get("plan") or {}).get("activity") == ACT_WS_WORK and _pick_ws(state, p["name"], ACT_WS_WORK) == mid)
+            ws = take(max(0, min(PUSH_WS_PEOPLE, WS_CAP - there)), per_house=PUSH_WS_PER_HOUSE)
+            for p in ws:
+                _push_set(state, p, ACT_WS_WORK, mill=mid)
+            houses = {p.get("household") for p in ws}
+            row["ws"][mid] = [len(ws), len(houses)]
+            if g["ws"][mid]["tool"] == SAW:
+                saw += len(ws) + there
+            if len(ws) < E3_PEOPLE or len(houses) < E3_HOUSES:
+                row["short"].append(f"{mid} は {len(ws)} 人・{len(houses)} 家しか回せなかった")
+        if coal_on(state):
+            new_h = set()
+            pu["stove_for"] = {}
+            left = []
+            for h in sorted({p.get("household") for p in ads if p.get("household")}):
+                if stove_done(state, h):
+                    continue
+                got = take(1, house=h)
+                for p in got:
+                    _push_set(state, p, ACT_STOVE)
+                    row["stove"] += 1
+                    new_h.add(h)
+                if not got:
+                    left.append(h)
+            for h in left:  # その家に回せる大人がいない家: ほかの家の大人が手伝って作りかえる (後押しのときだけ)
+                for p in take(1):
+                    _push_set(state, p, ACT_STOVE)
+                    pu["stove_for"][p["name"]] = h
+                    row["stove"] += 1
+                    new_h.add(h)
+            homes = sum(1 for p in _people(state) if p.get("household") and (stove_done(state, p["household"]) or p["household"] in new_h))
+            need = homes * COAL_KG * SEASON_DAYS * PUSH_COAL_KEEP - g["coal"]["stock"]
+            for p in take(max(0, math.ceil(need / (COAL_KG_DAY * SEASON_DAYS)))):
+                _push_set(state, p, ACT_DIG, place=COAL_PLACE)
+                row["dig"] += 1
+        homes = state["era2"].get("homes") or {}
+        n_house = min(PUSH_HOUSE_MAX, saw + g["planks"]["stock"] // SEASON_DAYS)  # 板の数だけ (のこの人 1 人 = 1 日 1 束)
+        small = [p for p in pool if p["name"] not in used and p.get("household") and (homes.get(p["household"]) or {}).get("size", 0) < era2.HOUSE_MAX]
+        for p in small[:n_house]:
+            used.add(p["name"])
+            _push_set(state, p, ACT_HOUSE)
+            row["house"] += 1
+    pu["seasons"][str(D)] = row
+    if len(pu["seasons"]) > PUSH_KEEP:
+        for k in sorted(pu["seasons"], key=int)[:-PUSH_KEEP]:
+            pu["seasons"].pop(k)
+
+
+def push_lines(state, y=None):
+    """後押しの行 (step.py status・年報。村の人のお題には出さない): 印・季節ごとの手"""
+    if not push_on(state):
+        return []
+    pu = _g(state)["push"]
+    out = [f"{pu['why']}。{pu['day']} 日目から。村の人の選んだことではない (村の人のお題には出さない)"]
+    ss = [(int(d), r) for d, r in pu["seasons"].items() if y is None or (int(d) + 1) // YEAR == y]
+    for d, r in sorted(ss)[-4:]:
+        out.append(f"{d + 1} 日目からの季節: 休んでいた大人 {r['pool']} 人から、作業場 " + ("・".join(f"{k} {v[0]} 人 ({v[1]} 家)" for k, v in r["ws"].items()) or "なし")
+                   + f"・作業場を作る {r['build']}・板で住まい {r['house']}・かまど {r['stove']}・燃える石を掘る {r['dig']}・水の輪の直し {r['mill_fix']}・水の道 {r['canal']}"
+                   + (f" ({'・'.join(r['short'])})" if r["short"] else ""))
+    if pu.get("ws2"):
+        out.append(f"2 つめの作業場 {pu['ws2']} (水ののこ) は作る側が決めた (村の票ではない)")
+    return out

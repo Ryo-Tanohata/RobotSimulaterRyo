@@ -1018,6 +1018,8 @@ def gpath_kind(src):
     src = src or ""
     if src == "見本から広げた":
         return "copied"
+    if src == "作る側の後押し":  # 2026-11-16: 作る側の反実仮想の後押し (g15.PUSH_SRC。g7.g15.push の印のあとだけ出る)
+        return "push"
     if src.startswith(("決まり", "答えなし", "加わった")):
         return "rule"
     return "answered"
@@ -1034,7 +1036,7 @@ def gpath_day(state, p, act):
     row = gp.setdefault(y, {}).setdefault(act, {"answered": {}, "copied": {}, "rule": {}})
     h = p.get("household") or p["name"]
     k = gpath_kind((g.get("src") or {}).get(p["name"]))
-    row[k][h] = row[k].get(h, 0) + 1
+    row.setdefault(k, {})[h] = row.setdefault(k, {}).get(h, 0) + 1
     if len(gp) > GPATH_KEEP:
         for old in sorted(gp, key=int)[:-GPATH_KEEP]:
             gp.pop(old)
@@ -1048,14 +1050,17 @@ def gpath_lines(state, y=None):
     y = str(y) if y is not None else max(gp, key=int)
     out = []
     for act, row in sorted((gp.get(y) or {}).items()):
-        a, c, r = (row.get(k) or {} for k in ("answered", "copied", "rule"))
+        a, c, r, u = (row.get(k) or {} for k in ("answered", "copied", "rule", "push"))
         out.append(f"{act}: 答えた家 {sum(a.values())} 人日 ({len(a)} 家)・写って動いた家 {sum(c.values())} 人日 ({len(c)} 家)"
-                   + (f"・決まり {sum(r.values())} 人日 ({len(r)} 家)" if r else ""))
+                   + (f"・決まり {sum(r.values())} 人日 ({len(r)} 家)" if r else "")
+                   + (f"・作る側の後押し {sum(u.values())} 人日 ({len(u)} 家)" if u else ""))
     return [f"写しの記録 ({y}年): " + " / ".join(out)] if out else []
 
 
 def role_day(state, p, t, act):
     """G7 の役の仕事の 1 日 (守るは見張るだけで、何も作らない。取り立てるは季節の終わりに集める。戦に出るは戦の日に出かける。試すは hints.try_day)"""
+    if act in ("かまどを作りかえる", "水の作業場を作る") and _g15_on(state):  # 2026-11-16: 後押しでかまど・作業場を作った人は、できたら燃える石を掘る・作業場で働く (後押しの印のないときは act のまま)
+        act = _g15m().push_act(state, p, act)
     gpath_day(state, p, act)  # 第 8 部の前の直し 3: 答えた家と写って動いた家を分けて残す (g7.fix8 のあとだけ)
     if act == "試す":
         hints.try_day(state, p, t)
@@ -2141,6 +2146,8 @@ def _apply(state, own, kinds, real, how, answer_day=None):
                  "sample": sorted(h for h in sample if h in set(era2._homes(state))), "donor": {h: used[h] for h in sorted(used)},
                  "rule": sorted(rule_h), "joined": sorted(joined_h), "answered": sorted(real)}
     g.setdefault("last_plans", {})[sea] = {p["name"]: {k: p["plan"][k] for k in ("activity", "place")} for p in era2.adults(state)}
+    if _g15_on(state) and _g15m().push_on(state):  # 2026-11-16: 作る側の反実仮想の後押し (印 g7.g15.push のあとだけ。村の人の予定 last_plans を残したあとに足す)
+        _g15m().push_season(state)
 
 
 def apply_year(state, answers, councils=None):

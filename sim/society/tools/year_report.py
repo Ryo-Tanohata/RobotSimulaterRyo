@@ -427,6 +427,7 @@ def conditions(D, y, phase):
         out["fs"] = [(k, v, rch.get(k) if (rch.get(k) or end + 1) <= end else None) for k, v in G15.FS.items()]
         out["g15"] = g15_lines(g, st, y, led)
         out["newcomer"] = newcomer_lines(g, st, y)
+        out["push"] = push_lines(g, st, y)
         p = (g.get("path") or {}).get(str(y))
         cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g15_") and c.get("year", (c.get("day", 0) + 1) // YEAR - 1) == y]
         out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G15"}
@@ -611,6 +612,24 @@ def newcomer_lines(g, st, y):
     cp = r.get("copied") or {}
     out.append(f"手本にした家 {len(r.get('followers') or [])} (" + ("・".join(r.get("followers") or []) or "なし") + ")・写って動いた G の仕事: "
                + ("・".join(f"{h} {'・'.join(f'{k} {v}' for k, v in acts.items())}" for h, acts in sorted(cp.items())) or "なし"))
+    return out
+
+
+def push_lines(g, st, y):
+    """作る側の反実仮想の後押し (2026-11-16 本人の言葉。docs/society_phase/G15_push.md) のこの年: 印・季節ごとの手・写しの記録の後押しの人日。村の人の選んだことではない"""
+    pu = g.get("push")
+    if not pu or y < (pu["day"] + 1) // YEAR:
+        return []
+    out = G15.push_lines(st, y)
+    gp = ((_g7(st).get("gpath") or {}).get(str(y))) or {}
+    days = {act: sum((r.get("push") or {}).values()) for act, r in sorted(gp.items()) if r.get("push")}
+    if days:
+        out.append("後押しで動いた人日 (この年): " + "・".join(f"{k} {v}" for k, v in days.items()))
+    led = next((r for r in g.get("ledger") or [] if r.get("year") == y), {})
+    bp = sum((w.get("big_push", 0)) for w in (led.get("ws") or {}).values())
+    if led:
+        out.append(f"作業場の 8 人の日のうち、後押しの人がいた日 {bp}・答えた家の人のいない日 {sum(w.get('big_noans', 0) for w in (led.get('ws') or {}).values())}。"
+                   f"使った板 {led.get('planks_used', 0)} 束 (作ったものに 1 束 {G15.OUT_VALUE['板']} つかみで数える)・燃やした燃える石 {round(led.get('coal_burned', 0))} kg")
     return out
 
 
@@ -1097,6 +1116,8 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
         w('<p style="margin:10px 0 2px"><b>水の作業場と燃える石 (この年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["g15"]) + "</ul>")
     if C.get("newcomer"):
         w('<p style="margin:10px 0 2px"><b>作る側が入れた人 (この年に選んだこと・写った家)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["newcomer"]) + "</ul>")
+    if C.get("push"):
+        w('<p style="margin:10px 0 2px"><b>作る側の反実仮想の後押し (村の人の選んだことではない)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["push"]) + "</ul>")
     if C.get("g14"):
         w('<p style="margin:10px 0 2px"><b>町と市と仲間 (この年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["g14"]) + "</ul>")
     if C.get("g13"):

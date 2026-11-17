@@ -17,6 +17,8 @@
    表は csv --g13-csv <runs.csv> --years-csv <years.csv>。docs/society_phase/G13_check.md)
   (G14 の確かめ 2026-11-14: --data <本物の 21419 日目の state.json のあるフォルダ> --worlds W14 --bundles G14B0,G14B1,G14B1S,G14B1R,G14B1T,G14B1N --seeds 2 --years 15 --procs 2。
    表は csv --g14-csv <runs.csv> --years-csv <years.csv>。docs/society_phase/G14_check.md)
+  (G15 の後押しの確かめ 2026-11-16: --data <本物の 23819 日目の state.json のあるフォルダ> --worlds W15P --bundles G15B0 --seeds 2 --years 5 --procs 1 (と one --seed 0 = 本物と同じ天気)。
+   年目 0 = 198年 (後押しは 198年60日目から)。docs/society_phase/G15_push.md)
   (G15 の確かめ 2026-11-15: --data <本物の 23219 日目の state.json のあるフォルダ> --worlds W15 --bundles G15B0,G15B1,G15B1S,G15B1K,G15B1R,G15B1T,G15B1X --seeds 2 --years 10 --procs 2
    と --worlds W15N --bundles G15B1N。表は csv --g15-csv <runs.csv> --years-csv <years.csv>。docs/society_phase/G15_check.md)
 
@@ -98,7 +100,11 @@ WORLDS = {
     #   step.py next_part --decided と同じ道で G15 に入る (g7.enter_next → g7.start_g15。世界はそのまま)。W15 は燃える石を置く (本人の決め)・W15N は置かない (くらべるため)
     "W15": {"name": "G15 (近世の農業と農村の手仕事。本物の 23219 日目から。燃える石を置く)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15": True, "coal": True},
     "W15N": {"name": "G15 (同じ。燃える石を置かない)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15": True, "coal": False},
+    # G15 の後押しの確かめ (2026-11-16 本人の言葉「１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい」): 本物の村の 23819 日目
+    #   (G15 の 5 年の相談。HOLD consult) から、step.py resume --push と同じ関数 (g15.mark_push) で作る側の後押しを始める。docs/society_phase/G15_push.md
+    "W15P": {"name": "G15 の後押し (本物の 23819 日目から。作る側の反実仮想の後押し)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "g15_push": True},
 }
+G15_PUSH_WORDS = "１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい"  # 本人の言葉 (2026-11-16)
 G15_NOTE = "本人の決め 2026-11-15 (お任せします): G15 の下書きの問いはみなおすすめで (決まりの村の確かめ)"
 G12_NOTE = "本人の決め 2026-11-10: お金と市場を 164年120日目で閉じた (決まりの村の確かめ)"
 G11_NOTE = "本人の決め 2026-11-05 (お任せ): 鉄と広い国を閉じた (決まりの村の確かめ)"
@@ -144,6 +150,14 @@ def enter_g7(state, w):
         if w.get("far_rate"):
             import g9
             g9.set_far_rate(state, w["far_rate"], "本人の決め 2026-10-29: 来る見込みを 5 割に")
+        return
+    if w.get("g15_push"):  # 本物の 23819 日目 (G15 の 5 年の相談で HOLD consult): step.py resume --push と同じ関数で後押しの印を書き、止まりを解く
+        import g15
+        assert state.get("era") == "G15" and (state["era2"]["g7"].get("hold") or {}).get("why") == "consult", state.get("era")
+        assert g15.push_refusal(state, G15_PUSH_WORDS) is None
+        g15.mark_push(state, G15_PUSH_WORDS)
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
         return
     if w.get("g15"):  # 本物の 23219 日目 (G14 を閉じて HOLD part_end): G15 に入る (step.py next_part --decided と同じ関数。燃える石と新しい人は g15 の旗)
         assert state.get("era") == "G14" and (state["era2"]["g7"].get("hold") or {}).get("why") == "part_end", state.get("era")
@@ -2069,7 +2083,7 @@ def g15_row(res):
 
 def write_g15_csv(out_dir, path, years_path=None):
     res_all = [json.loads(f.read_text(encoding="utf-8")) for f in sorted(Path(out_dir).glob("*.json"))]
-    res_all = [r for r in res_all if r["world"] in ("W15", "W15N")]
+    res_all = [r for r in res_all if r["world"] in ("W15", "W15N", "W15P")]
     rows = [g15_row(r) for r in res_all]
     rows.sort(key=lambda r: (r["world"], r["bundle"], r["seed"]))
     Path(path).parent.mkdir(parents=True, exist_ok=True)
