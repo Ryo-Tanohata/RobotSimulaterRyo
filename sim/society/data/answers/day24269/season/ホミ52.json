@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、冬が近いから、わたしたちの家は狩りで肉も足しておくよ。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りの腕が一番なので、冬に向けて肉を蓄えに足したい"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "family": {
+  "オネ54": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので一緒に肉を集める"},
+  "テナ56": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので一緒に肉を集める"},
+  "オセ63": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので別の林で肉を集める"},
+  "ナセ64": {"activity": "休む", "place": "camp", "why": "小さい子が多いので家で子を見る"},
+  "テナ67": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので別の林で肉を集める"},
+  "ムイ67": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多いので世話をする"},
+  "ケナ71": {"activity": "採集", "place": "西草原12", "why": "近くの草原で食べ物を集める"}
+ },
+ "keep": false, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "蓄えが多い秋でも、冬に備えて狩りで肉を足しておくと安心できる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だけれど、冬の前にもうひとがんばりしたい。"}

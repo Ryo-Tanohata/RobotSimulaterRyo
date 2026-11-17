@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑がいまは空だから、この秋は一人 1000 つかみずつまいておこう。わたしは止まっている水の輪を直しに行くよ。"}, {"to": "みんな", "text": "北西の村のヤギ 1 頭、土器 7 個と鎌 1 本なら安いものだ。受けてオスを増やそう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "水の輪の直しがあと 270 人日残っていて、道具づくりの手が役に立つから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "trade": {"T721": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "ヤギは 67 頭 (メス 54・オス 13) で、草で養える約 110 頭より少ない。よその村のヤギを 1 頭受けても草は足りる", "because": [3673539], "confidence": 0.7}],
+ "proposal": {"text": "畑がいま空なので、この秋は大人一人 1000 つかみずつ畑にまこう。ヤギは 67 頭で草の約 110 頭より少ないからつぶさず、よその村がヤギを出すと言ったら村の土器と鎌で受けよう。手の空いた大人は水の輪の直し (あと 270 人日) と水の道の手入れ (あと 947 人日) に出よう。", "because": [3673539], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L654", "against": "土器を出しすぎると蓄えを守る器が減る", "agree": true, "reason": "土器は倉にありあまっていて、ヤギを増やしたいから"},
+  {"id": "L655", "against": "ヤギの数はもう 50 頭ではない", "agree": true, "reason": "つぶさずに群れを育てる考えは今も正しいから"},
+  {"id": "L656", "against": "冬の手入れのことが書いていない", "agree": true, "reason": "ヤギを増やし、水の道の手入れも進めるから"},
+  {"id": "L657", "against": "人手が直しに偏るかもしれない", "agree": true, "reason": "わたしが出した考えで、水の輪と水の道の両方を進めるから"},
+  {"id": "L658", "against": "夏の話で、今の秋には合わない所がある", "agree": true, "reason": "水の輪を直し、畑にまく量も決めているから"},
+  {"id": "L651", "against": "数が古い", "agree": true, "reason": "水の輪の直しを先に終わらせるのは大事だから"}
+ ],
+ "feeling": "畑が空なのが気になる。早くまいて、輪も直して、冬にそなえたい。"}

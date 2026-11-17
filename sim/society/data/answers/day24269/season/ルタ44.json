@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。冬の前に、体を動かして木の実と魚を集めておこう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集と狩りの腕に自信がある。冬の前に食べ物を集めて蓄えに足したい。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ48": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、一緒に冬の前の食べ物を集める。"},
+  "ヌオ52": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、一緒に食べ物を集める。"},
+  "ロワ53": {"activity": "帳をつける", "place": "camp", "what": ["蓄え"], "how": "数え札", "why": "字が読めるので、蓄えの帳を続ける。"}
+ },
+ "keep": false, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で安心している。体はよく動くので、冬に向けて働きたい。"}

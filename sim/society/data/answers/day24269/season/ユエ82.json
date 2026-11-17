@@ -1,0 +1,11 @@
+{"say": [{"to": "ホミ82", "text": "ぼくは狩りが得意だから、この秋は林で獲物を追うよ。きみは木の実や草の種を頼むね。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": ["ホミ82"], "why": "狩りの腕がいちばん高いので、肉をとって村の食べ物を増やす"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ82": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、近い草原なら安全に集められる"}},
+ "keep": false, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので、キャンプから離れないほうがよい"},
+           {"id": "L3", "against": "", "agree": true, "reason": "仲間といっしょなら助け合える"},
+           {"id": "L16", "against": "", "agree": true, "reason": "疲れたら休むのは大事"}],
+ "feeling": "おなかもいっぱいで元気。狩りに出るのが楽しみ。"}

@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "水の輪の直しがまだ残っている。わたしは倉の板を持って輪のところへ行くよ。北西の村のヤギは、土器で受けておこう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "直しがまだ 270 人日残っているので、冬の前に輪を止めないようにしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ56": {"activity": "水の道を掘る", "place": "camp", "why": "家ごとに一人、水の道の手入れに出る約束だから"},
+  "トナ58": {"activity": "水の輪を直す", "place": "camp", "why": "去年は直す輪がなく休んだが、今年は直しが残っているから"},
+  "ルタ69": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、倉の出し入れを帳に残してほしい"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T721": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "北の村は、借りた草の種を少しずつ返しに来る", "because": [3673538], "confidence": 0.7},
+  {"op": "add", "text": "ヒセ5の村に貸した草の種は、1 年たっても返ってこない", "because": [3673540], "confidence": 0.8}],
+ "proposal": {"text": "この秋は、手の空いた大人が倉の板で水の輪の直し (あと 270 人日) を終え、家ごとに一人ずつ水の道の手入れ (あと 947 人日) に出よう。ヤギは草の約 110 頭より少ないから、よその村のヤギは土器で受けて増やそう。", "because": [3673539], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L0", "against": "夜に動けないと困ることもある", "agree": true, "reason": "ザガは夜に出るので、離れないほうが安全"},
+  {"id": "L639", "against": "板に書く手間がかかる", "agree": true, "reason": "ヒセ5の村の借りが返ってこないので、書いて残すべき"},
+  {"id": "L641", "against": "いまヤギは 110 頭より少ない", "agree": false, "reason": "群れが少ないので、つぶす時ではない"},
+  {"id": "L654", "against": "土器を出しすぎるかもしれない", "agree": true, "reason": "土器は倉にありあまっていて、ヤギは足りない"},
+  {"id": "L657", "against": "水の道の手が足りないかもしれない", "agree": true, "reason": "ヤギを育て、輪の直しを先に終える考えに賛成"},
+  {"id": "L658", "against": "夏の刈り入れはもう終わった", "agree": true, "reason": "秋に板で輪を直し、冬に水の道を手入れするのはよい順番"}
+ ],
+ "feeling": "輪が回り続けるなら、冬もこわくない。"}

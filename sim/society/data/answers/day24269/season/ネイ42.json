@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。今のうちに水の輪の直しを終わらせて、冬にそなえよう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "蓄えは足りているので、残り 270 人日の水の輪の直しを手伝って、村の粉ひきを守るため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケセ46": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑は悪い年でも実りが半分にならないので、水の道を手入れする"},
+  "ユエ55": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが 947 人日も残っているので手伝う"},
+  "ヒセ67": {"activity": "水の輪を直す", "place": "camp", "why": "若い力で水の輪の直しを早く終わらせる"},
+  "ラニ67": {"activity": "水の輪を直す", "place": "camp", "why": "水の輪の直しを早く終わらせる"},
+  "ロワ68": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"},
+  "ラニ69": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"},
+  "ラニ71": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"},
+  "ケセ72": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T721": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種が約 231 日分あり、冬をこす分は足りている。水の輪の直しと水の道の手入れが、まだ残っている。", "because": [3673535], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えがあって安心している。冬の前に、みんなで村の仕事を進めたい。"}
