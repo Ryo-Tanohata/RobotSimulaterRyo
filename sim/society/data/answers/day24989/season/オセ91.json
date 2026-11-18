@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "水の輪の直しは、あと少しだ。わたしは道具が得意だから、この秋で終わらせてみせる。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕がいちばんあるから。止まった輪を早く直して、畑に水を回したい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キサ91": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っていて、冬の前に少しでも進めたいから"}},
+ "keep": false,
+ "feast": false, "leader": "ロワ38", "trade": {"T802": false, "T803": "村", "T804": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヤギは 128 頭で、草で養えるのは約 140 頭。よその村のヤギは少しなら受けられるが、2 頭ずつ受け続けるとすぐいっぱいになる", "because": [3979582, 3979583, 3979586], "confidence": 0.7},
+               {"op": "add", "text": "この 1 年も小さな子と若い人が病で何人も亡くなった", "because": [3979572, 3979573, 3979577, 3979578], "confidence": 0.8}],
+ "proposal": {"text": "この秋は大人一人 1000 つかみずつまき、道具の腕のある人は水の輪の直し (あと 290 人日) を終えよう。ヤギは 128 頭で草の約 140 頭より少ないから、つぶさず、よその村のヤギはこの秋 2 頭までにしよう。", "because": [3979582, 3979583, 3979586], "penalty": {"for": "ヤギ", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L741", "against": "ヤギの数は前より減っているので、受けないままでなくてもいいかもしれない", "agree": true, "reason": "わたしの出した掟。輪の直しと住まいは今も大事"},
+  {"id": "L733", "against": "水の道の手入れがおくれるかもしれない", "agree": true, "reason": "輪を先に直せば、水が畑に届く"},
+  {"id": "L729", "against": "建てる人手が畑から減る", "agree": true, "reason": "雨の夜に外で濡れる人をなくしたい"},
+  {"id": "L742", "against": "いまヤギは 128 頭で、草の約 140 頭より少ないから、つぶす必要はない", "agree": false, "reason": "数が古く、今のヤギの数に合わない"},
+  {"id": "L738", "against": "60 頭もつぶすと、ヤギが少なくなりすぎる", "agree": false, "reason": "今は草が足りているから"}
+ ],
+ "feeling": "輪を直す音を聞くと、落ち着く。"}

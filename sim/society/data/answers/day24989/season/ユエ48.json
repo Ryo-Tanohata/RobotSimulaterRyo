@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷりまいて、冬のあいだは家の子らのそばで、水の道の手入れも少しずつ進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "畑に水が来れば悪い年でも実りが半分にならない。手入れの残りが多いので、手の空いた私が掘って村を支えたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ50": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので、家族みんなで進める。"},
+  "ケナ54": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので、家族みんなで進める。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えはたっぷりあって落ち着いている。冬にそなえて、できる手入れをこつこつ進めたい。"}

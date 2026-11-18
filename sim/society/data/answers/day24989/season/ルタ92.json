@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがまだたくさん残っているから、わたしはこの秋、水の道を掘りに行くね。冬の前に少しでも進めたいの。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがあと 2297 人日も残っていて、畑に水をとどけるのに大事だから"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": "ロワ38", "trade": {"T802": false, "T803": false, "T804": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヤギは今 128 頭で、草で養える約 140 頭に近いから、よその村のヤギを多く受けるとまた草が足りなくなる", "because": [3979582, 3979583, 3979586], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L731", "against": "家ごとに二人は、小さな家には重い", "agree": true, "reason": "水の道の手入れが多く残っているから、みんなで出るのがよい"},
+  {"id": "L732", "against": "よその村のヤギを受けると草が足りなくなるかもしれない", "agree": true, "reason": "畑にまいて、水の道も手入れするのは大事だから"},
+  {"id": "L733", "against": "道具の腕のない人の仕事が書かれていない", "agree": true, "reason": "水の輪の直しを先に終えれば、そのあと水の道に回れるから"},
+  {"id": "L738", "against": "今は 128 頭で、60 頭もつぶすのは多すぎる", "agree": false, "reason": "ヤギはもう草で養える数より少ないから、たくさんつぶさなくてよい"},
+  {"id": "L741", "against": "ヤギの数は今は少し減っている", "agree": true, "reason": "水の輪の直しと住まいを広げるのは、冬に役に立つから"},
+  {"id": "L742", "against": "今はヤギが 128 頭で、草の約 140 頭より少ない", "agree": true, "reason": "よその村のヤギを受けないで、草が足りなくならないようにしたいから"}
+ ],
+ "feeling": "冬の前に、水の道を少しでも直しておきたい"}

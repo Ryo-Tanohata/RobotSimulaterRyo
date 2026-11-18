@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋の畑をまいたら、冬のあいだも草取りを交代でしよう。水の道の手入れもまだたくさん残っているから、家ごとに一人ずつ出そうね。"}, {"to": "トナ73", "text": "トナ、この秋は水の道を掘っておくれ。水の来る畑は悪い年でも実りが半分にならなかったからね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすると実りが増えるから、秋のうちから草を取っておきたい"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"トナ73": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ 2297 人日も残っていて、若くて力があるから"}, "ホタ78": {"activity": "畑仕事", "place": "camp", "why": "わたしといっしょに草取りを覚えてほしいから"}},
+ "keep": false,
+ "feast": false, "leader": "ロワ38", "trade": {"T802": false, "T803": false, "T804": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヤギはいま 128 頭で、草で養える約 140 頭より少ない。春に子ヤギが生まれるから、よその村のヤギはまだ受けないほうがいい", "because": [3979582, 3979583, 3979586], "confidence": 0.8}, {"op": "add", "text": "土器に入れた草の種でも、前の季節に 3 万つかみほど傷んだ", "because": [3979579], "confidence": 0.8}],
+ "proposal": {"text": "この秋にまいた畑は、冬と春のあいだ家ごとに一人ずつ交代で草取りをしよう。水の道の手入れも、家ごとに一人ずつ出して冬のうちに進めよう。", "because": [3979579], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L738", "against": "いまヤギは 128 頭で、もう多すぎではない", "agree": false, "reason": "ヤギは草で養える数より少なくなったので、60 頭もつぶさなくてよい"}, {"id": "L741", "against": "", "agree": true, "reason": "よその村のヤギを受けず、輪の直しや住まいを広げるのはよいことだから"}, {"id": "L742", "against": "いまヤギは 128 頭で、多すぎる分はない", "agree": false, "reason": "もう草で養える数より少ないから"}, {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るから"}],
+ "feeling": "子や若い人がまた亡くなってさびしいけれど、畑と水の道を守って冬をこえたい"}

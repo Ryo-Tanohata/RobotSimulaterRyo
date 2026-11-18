@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。おれは土器をひたすら作って、冬に備えるよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕がいちばんあり、草の種を虫から守れるので、続けて作る"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソナ66": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が1.0で、肉を取ってくるのに向いている"},
+  "セオ66": {"activity": "採集", "place": "camp", "why": "採集の腕が1.0で、食べ物を集めるのが得意"},
+  "ヌオ70": {"activity": "採集", "place": "camp", "why": "採集の腕が1.0で、食べ物を集めるのが得意"},
+  "ユエ70": {"activity": "採集", "place": "camp", "why": "採集の腕が1.0で、食べ物を集めるのが得意"},
+  "キオ76": {"activity": "畑仕事", "place": "camp", "why": "若くて腕はまだ低いので、畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心。土器づくりに打ちこめるのがうれしい。"}
