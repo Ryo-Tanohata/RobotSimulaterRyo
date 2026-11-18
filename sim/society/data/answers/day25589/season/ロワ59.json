@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。わたしは畑の草取りをして、秋の実りを守るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えは十分だが、草取りをすれば来年の実りが増えるので、慣れた畑仕事を続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セヤ60": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}, "ネイ62": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}},
+ "keep": false,
+ "judge": {"M535": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。静かに畑で働きたい。"}

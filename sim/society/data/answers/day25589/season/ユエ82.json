@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。今秋は畑に草の種をまいて、おれは水の道を掘るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、水が来る畑は悪い年でも実りが減らないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M535": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T886": false, "T887": false, "T888": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を一人 1000 つかみずつ畑にまくと、次の夏に実る。", "because": [4264413], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えがあって安心している。みんなで冬をこせそうだ。"}

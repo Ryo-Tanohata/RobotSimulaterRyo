@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。あわてず、冬にそなえて、できる仕事をひとつずつやっていこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番だから。蓄えを入れる壺も交換に使う壺も、まだ役に立つ。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ54": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高く、肉は冬の食べ物になる。"},
+  "テナ60": {"activity": "狩り", "place": "南林12", "why": "狩りが得意で、近い林なら安全。"},
+  "ソナ64": {"activity": "採集", "place": "西草原12", "why": "近い草原で木の実や種を集める。"},
+  "セヤ66": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っているから。"},
+  "ネイ69": {"activity": "水の輪を直す", "place": "camp", "why": "止まっている輪の直しが残っているから。"}
+ },
+ "keep": false,
+ "judge": {"M535": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T886": false, "T887": false, "T888": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "落ち着いている。蓄えは多いので、冬までやるべきことを静かに進めたい。"}

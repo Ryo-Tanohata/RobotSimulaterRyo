@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。今季は川で魚を獲って、みんなの食卓に彩りを足したい。"}],
+ "job": {"activity": "狩り", "place": "camp", "with": [], "why": "狩りの腕が一番なので、魚や肉で食べ物に彩りを足す"},
+ "sow": 200, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソナ66": {"activity": "狩り", "place": "camp", "why": "狩りが得意なので肉や魚をとる"},
+  "セオ66": {"activity": "採集", "place": "camp", "why": "採集が得意なので木の実や芋を集める"},
+  "ヌオ70": {"activity": "採集", "place": "camp", "why": "採集が得意なので木の実や芋を集める"},
+  "ユエ70": {"activity": "狩り", "place": "camp", "why": "狩りが得意なので肉や魚をとる"},
+  "キオ76": {"activity": "狩り", "place": "camp", "why": "狩りが得意なので肉や魚をとる"},
+  "ヒセ78": {"activity": "狩り", "place": "camp", "why": "狩りが得意なので肉や魚をとる"},
+  "ケセ79": {"activity": "狩り", "place": "camp", "why": "狩りが得意なので肉や魚をとる"},
+  "ホミ80": {"activity": "狩り", "place": "camp", "why": "狩りが得意なので肉や魚をとる"},
+  "オネ81": {"activity": "採集", "place": "camp", "why": "木の実や芋を集めて家の食べ物を足す"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": []
+}

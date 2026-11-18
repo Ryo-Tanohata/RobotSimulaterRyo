@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は水の輪の直しを、みんなで少しずつ進めよう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "水の輪の直しが残っている。蓄えは足りているので、止まる前に直しておきたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セヤ57": {"activity": "水の輪を直す", "place": "camp", "why": "いっしょに輪を直すと早く終わる"}, "ケナ66": {"activity": "採集", "place": "camp", "why": "家族の食べ物と子どもの世話のそばにいたい"}},
+ "keep": false,
+ "judge": {"M535": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T886": "村", "T887": "村", "T888": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出て危ないので、この決まりは大事"}],
+ "feeling": "蓄えがたっぷりあって安心。みんなで仕事をするのは楽しい。"}

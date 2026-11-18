@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をまこう。ぼくは冬の前に、水の道を掘りに行くよ。いっしょに行く人はいないかな。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の来る畑は悪い年でも実りが半分にならない。手入れがまだ多く残っているので、体力のあるぼくが掘って村の冬と春に備える"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケセ85": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをすると実りが増える。小さい子がいるので、キャンプのそばで働ける仕事がよい"}},
+ "keep": false,
+ "judge": {"M535": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T886": "村", "T887": "村", "T888": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかはいっぱいで元気。新しいことを試すのが楽しみで、冬の前に村のためにひと働きしたい。"}

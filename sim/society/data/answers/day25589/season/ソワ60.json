@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "もうすぐ冬だね。木の実をたくさん集めて、蓄えを厚くしておこう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "冬にそなえて木の実を集めたい。採集は得意だから。"},
+ "sow": 500, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ユエ76": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、冬の食べ物を集める。"}, "シエ77": {"activity": "狩り", "place": "北草原28", "why": "狩りが得意なので、肉を取って蓄えを増やす。"}},
+ "keep": false,
+ "judge": {"M535": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T886": false, "T887": false, "T888": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "冬は木の実も草の種も実らないので、秋のうちに食べ物をためておく。", "because": [4264413], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いけれど、蓄えはあるので落ち着いている。"}

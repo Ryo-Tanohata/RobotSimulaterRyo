@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "ヤギはメスばかり 79 頭。よその村のヤギにオスがまじっていたら、子がまた増えるかもしれないね。どんなヤギか、来たら見てみたいよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすれば、次の夏の実りがぐんと増える。前の季節も畑で働いたから、続けたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M535": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T886": "村", "T887": "村", "T888": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "村のヤギは 79 頭でみなメス。オスがいないと子が増えないので、よその村からヤギを受けるとよい", "because": [4264417, 4264418, 4264421], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L792", "against": "刈る人や直す人が多くて、ほかの仕事の手が足りなくなるかもしれない", "agree": true, "reason": "畑を刈りきり、輪と水の道を板で直すのは、村の食べ物を守ることになるから"},
+           {"id": "L776", "against": "土器や鎌を出しすぎると村の物が減る", "agree": true, "reason": "ヤギにオスがいないので、よその村のヤギを受けて増やしたい"}],
+ "feeling": "畑の土にさわるのは落ち着く。よその村のヤギがどんな子か、楽しみだ"}

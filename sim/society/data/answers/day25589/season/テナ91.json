@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えがたっぷりあるうちに、畑に草の種をしっかりまこう。冬のあいだも草取りをして、夏にたくさん刈ろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、草取りをすると夏の実りが増えるから、手伝いたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "いっしょに畑の草取りをして、実りを増やすため。"}},
+ "keep": false,
+ "judge": {"M535": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を多めにまき、秋・冬・春に草取りをすると、夏の実りが増える。", "because": [4264413], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えがあって安心。畑をがんばって、みんなで冬をこしたい。"}

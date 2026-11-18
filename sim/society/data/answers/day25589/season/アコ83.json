@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "この秋は、道具の腕のある俺が水の輪の直しを先に片づける。みんなも畑に種をまいて、冬の魚と蓄えに備えよう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕が 1.0 で、直しが残っている水の輪を先に終わらせられるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ83": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っていて、大人ならだれでも手伝えるから"}},
+ "keep": false,
+ "judge": {"M535": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T886": false, "T887": false, "T888": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまいておけば、次の夏に刈るものができる。ヤギは草で養える数をこえないようにする。", "because": [4264413], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あるので落ち着いている。腕を生かして水の輪を直せるのがうれしい。"}
