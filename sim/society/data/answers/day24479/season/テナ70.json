@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑はたくさん実っている。落ちる前に、みんなで刈ってしまおう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるから"},"family":{"ラニ70":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを手伝う"},"リセ72":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを手伝う"},"ハソ73":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":3},
+"秋":{"job":{"activity":"狩り","place":"北丘12","with":[],"why":"狩りが得意で、肉で蓄えを助けられる"},"family":{"ラニ70":{"activity":"採集","place":"camp","why":"木の実を集めて蓄えを助ける"},"リセ72":{"activity":"畑仕事","place":"camp","why":"畑の草取りをする"},"ハソ73":{"activity":"畑仕事","place":"camp","why":"畑の草取りをする"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":60},
+"冬":{"job":{"activity":"狩り","place":"北丘12","with":[],"why":"冬も魚やけものはいるので肉をとる"},"family":{"ラニ70":{"activity":"狩り","place":"北丘12","why":"冬の肉をとる"},"リセ72":{"activity":"畑仕事","place":"camp","why":"畑の草取りをする"},"ハソ73":{"activity":"畑仕事","place":"camp","why":"畑の草取りをする"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りをして夏の実りを増やす"},"family":{"ラニ70":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"リセ72":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"ハソ73":{"activity":"畑仕事","place":"camp","why":"草取りをする"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"キオ88":true,"ラニ88":true,"シエ88":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":"ゆるす","feast":["秋"],"leader":null,
+"trade":{"T739":false,"T740":false,"T741":false,"T742":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],
+"knowledge":[{"op":"add","text":"ヤギは草が足りず増えすぎている。少しつぶして肉にするとよい。","because":[3747652],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"実りと草足りぬ年",
+"mood":"畑がよく実って、みんなで元気に働けそうだ。"}
