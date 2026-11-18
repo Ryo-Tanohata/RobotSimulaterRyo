@@ -12,6 +12,8 @@
   d 交換: 板と燃える石を、近い集落 3 つと川下の町に替える (値と今年の残りをお題に出す)
 - 乱数は使わない。後押しはしない (g15.push は終わったまま)。印・本人の言葉・「作る側」のことは、村の人のお題にも出来事にも書かない
 - 物差し (S3_design.md 5.): e1 掘った石で燃やす・e2 作業場が続く・e3 自分で選ぶ・e4 教えて広がる・e5 暮らしを守る。年の終わりに行を残す
+  (2026-11-17 の直し: e3 は持ち場・掘る仕事を続けている答える人も数える・e4 は 1 年じゅう持ち場の人 10 人と見習いを終えた人 1 人・
+   e5 の人は印の日の人の 95% 以上・持ち場の上限 16 → 24)
 - 止まり: 入口 (e1・e2 と e3 か e4。そのあいだ e5 を割らない) で HOLD entrance。e5 を割った・道を選ぶ人が 2 年 0 人・村の倉の石が尽きて
   だれも掘らない・5 年ごとで HOLD consult (G15 の相談はかわりに止める)
 """
@@ -41,7 +43,7 @@ HOUSE_SHARE = 0.2  # 掘った燃える石のうち、掘った人の家の倉�
 # b 持ち場【仮定】
 SAW_K, HAM_K, LEDGER_K, HEAD_K = "のこ番", "槌番", "帳面番", "頭"
 POSTS = (SAW_K, HAM_K, LEDGER_K, HEAD_K)
-POST_CAP = 16  # 1 つの作業場の持ち場の人 (作業場の 20 人の枠のうち)
+POST_CAP = 24  # 1 つの作業場の持ち場の人 (2026-11-17 の直しで 16 → 24。見習いを終えた人が持ち場につけるように。1 日に働けるのは g15.WS_CAP の 20 人まで)
 LEDGER_CAP = 2
 PLANK_HOME = 0.2  # のこの持ち場の人がひいた板のうち、家の板になる分
 POST_SRC = "持ち場を続ける"  # g7.src の値 (写しの記録では post に分ける)
@@ -61,8 +63,9 @@ SELL_MAX = 6
 E1_DUG, E1_SHARE, E1_YEARS = 0.8, 0.5, 2
 E2_PEOPLE, E2_HOUSES, E2_DAYS, E2_YEARS = 8, 3, 30, 2
 E3_SHARE, E3_YEARS = 0.2, 2
-E4_N, E4_YEARS, E4_READ = 10, 2, 0.5
+E4_N, E4_NEW, E4_YEARS = 10, 1, 2  # 2026-11-17 の直し: 1 年じゅう持ち場の人 10 人以上と、その年に見習いを終えた人 1 人以上 (読める人が教えた割合は見ない)
 E5_STORE = 120
+E5_POP = 0.95  # 2026-11-17 の直し: 年の終わりの人が、印を書いた日の人 (pop0) の 95% 以上 (前の年より減らない、をやめた)
 LATER_YEARS = 5
 PATH_YEARS = 2
 ES = {"e1": "掘った燃える石で燃やす", "e2": "作業場が続く", "e3": "自分で選ぶ", "e4": "教えて広がる", "e5": "暮らしを守る"}
@@ -516,23 +519,36 @@ def _post_rows(v):
     return out
 
 
+def held(state, name):
+    """答える人が、いま道を続けているか (e3。2026-11-17 の直し): 自分か家の大人が、持ち場についている・いまの季節の仕事が燃える石を掘る
+    (持ち場も掘る仕事も、答えに書きなおさなくても続く)"""
+    g = _g(state)
+    h = _house_of(state, name)
+    fam = [q for q in era2.adults(state) if q["name"] == name or (h and q.get("household") == h)]
+    return any(q["name"] in g["posts"] or (q.get("plan") or {}).get("activity") == g15.ACT_DIG for q in fam)
+
+
 def count_chose(state, real):
-    """答えを当てはめる前 (g15.count_paths のあと): 作業場か掘る仕事を、自分か家の人に割り振った答える人 (e3)"""
+    """答えを当てはめる前 (g15.count_paths のあと): 作業場か掘る仕事を、自分か家の人に割り振った答える人と、
+    いま自分か家の大人が持ち場・掘る仕事を続けている答える人 (e3。2026-11-17 の直しで、続けている人も数える)"""
     g = _g(state)
     y = str((state["day"] + 1) // YEAR)
     row = g["chose"].setdefault(y, {"meetings": 0, "answerers": 0, "chose": 0, "who": []})
     row["meetings"] += 1
     row["answerers"] = max(row["answerers"], len(real))
-    n = 0
+    n = w = 0
     for name, a in sorted(real.items()):
         if not isinstance(a, dict):
             continue
         txt = json.dumps({x: a.get(x) for x in ("year", "job", "family")}, ensure_ascii=False)
-        if any(x in txt for x in CHOSE_ACTS) or _post_rows(a.get("post")):
+        wrote = any(x in txt for x in CHOSE_ACTS) or bool(_post_rows(a.get("post")))
+        w += wrote
+        if wrote or held(state, name):
             n += 1
             if name not in row["who"]:
                 row["who"] = (row["who"] + [name])[:30]
     row["chose"] = max(row["chose"], n)
+    row["wrote"] = max(row.get("wrote", 0), w)
 
 
 def apply_answers(state, real):
@@ -630,6 +646,7 @@ def row_of(state, y):
     share3 = round(ch.get("chose", 0) / ch["answerers"], 3) if ch.get("answerers") else 0.0
     done = [x for x in g["appr_done"] if x["year"] == y]
     rd = sum(1 for x in done if x["reader"])
+    whole = sum(1 for r in g["posts"].values() if r["day"] < y * YEAR)  # 1 年じゅう持ち場の人 (この年のはじめより前についた・今もついている)
     ev = [e for e in state["events"] if e["day"] // YEAR == y]
     famine = sum(1 for e in ev if e["type"] == "蓄えが尽きる")
     pop = len([p for p in state["people"] if p["alive"]])
@@ -645,14 +662,14 @@ def row_of(state, y):
             "stoves": len(lr.get("stoves") or []), "ws": ws, "big": big,
             "posts": len(g["posts"]), "posts_by": {k: len([1 for r in g["posts"].values() if r["post"] == k]) for k in POSTS},
             "quit": sum(1 for q in g["quit"] if q["day"] // YEAR == y), "appr": len(g["appr"]), "appr_done": len(done), "appr_reader": rd,
-            "answerers": ch.get("answerers", 0), "chose": ch.get("chose", 0), "chose_share": share3,
+            "answerers": ch.get("answerers", 0), "chose": ch.get("chose", 0), "wrote": ch.get("wrote", 0), "chose_share": share3, "posts_year": whole,
             "sold": {k: dict(v) for k, v in sold.items()}, "house_planks": round(sum(g["hplanks"].values()), 1), "planks": g15g["planks"]["stock"],
-            "store_min": smin, "store_end": era2.store_days(state), "famine": famine, "pop": pop, "pop_prev": pop_prev,
+            "store_min": smin, "store_end": era2.store_days(state), "famine": famine, "pop": pop, "pop_prev": pop_prev, "pop0": g["pop0"],
             "readers": len(g10.readers(state)), "harvest": lr.get("harvest", 0),
             "e1_like": bool(burned and dug >= E1_DUG * burned and en.get("coal_share", 0) >= E1_SHARE),
             "e2_like": big >= E2_DAYS, "e3_like": share3 >= E3_SHARE,
-            "e4_like": len(done) >= E4_N and rd >= E4_READ * len(done),
-            "e5_ok": famine == 0 and smin >= E5_STORE and pop >= pop_prev}
+            "e4_like": whole >= E4_N and len(done) >= E4_NEW,
+            "e5_ok": famine == 0 and smin >= E5_STORE and pop >= E5_POP * g["pop0"]}
 
 
 def year_end(state):
@@ -693,7 +710,7 @@ def check(state, done):
     if entrance(state) and not any(c["why"] == "s3_entrance" for c in done):
         return {"why": "s3_entrance", "day": D, "text": f"S3: 入口に着いた ({'・'.join(f'{k} {_yd(v)}' for k, v in sorted(g['e'].items()))}。そのあいだ e5 を割らなかった)"}
     if r and not r["e5_ok"] and not any(c["why"] == "s3_e5" and c.get("year") == y for c in done):
-        return {"why": "s3_e5", "year": y, "day": D, "text": f"S3: {y}年に e5 (暮らしを守る) を割った (ききん {r['famine']}・蓄えのいちばん少ない日 {r['store_min']} 日分・人 {r['pop_prev']} → {r['pop']})"}
+        return {"why": "s3_e5", "year": y, "day": D, "text": f"S3: {y}年に e5 (暮らしを守る) を割った (ききん {r['famine']}・蓄えのいちばん少ない日 {r['store_min']} 日分・人 {r['pop']} (はじめ {r['pop0']} の {round(E5_POP * 100)}% は {math.ceil(E5_POP * r['pop0'])}))"}
     ys = [g["rows"].get(str(y - i)) for i in range(PATH_YEARS)]
     if all(x and x["chose"] == 0 for x in ys) and not any(c["why"] == "s3_path" and c.get("year") == y for c in done):
         return {"why": "s3_path", "year": y, "day": D, "text": f"S3: 作業場か掘る仕事を選ぶ答える人が {PATH_YEARS} 年つづけて 0 人"}
@@ -818,8 +835,8 @@ def row_text(r):
     sold = "・".join(f"{k} " + "・".join(f"{kk} {vv}" for kk, vv in v.items()) for k, v in r["sold"].items()) or "なし"
     return (f"{r['year']}年: 掘った {round(r['coal_dug'])} kg ({r['diggers']} 人)・燃やした {round(r['coal_burned'])} kg (掘った分 {round(r['dug_share'] * 100)}%)・"
             f"火と力の {round(r['coal_share'] * 100, 1)}%・村の倉 {r['coal_stock']} kg・家の倉 {r['house_coal']} kg / まき集め {r['fire_pd']} 人日 (浮いた {r['saved_pd']}) / "
-            f"作業場の 8 人の日 {ws} / 持ち場 {r['posts']} (やめた {r['quit']})・見習い 終えた {r['appr_done']} (読める人が教えた {r['appr_reader']})・途中 {r['appr']} / "
-            f"選んだ答える人 {r['chose']} / {r['answerers']} / 交換 {sold} / 蓄え いちばん少ない {r['store_min']} 日分・ききん {r['famine']}・人 {r['pop_prev']} → {r['pop']} / "
+            f"作業場の 8 人の日 {ws} / 持ち場 {r['posts']} (1 年じゅう {r.get('posts_year', '-')}・やめた {r['quit']})・見習い 終えた {r['appr_done']} (読める人が教えた {r['appr_reader']})・途中 {r['appr']} / "
+            f"選んだ答える人 {r['chose']} (書いた {r.get('wrote', '-')}) / {r['answerers']} / 交換 {sold} / 蓄え いちばん少ない {r['store_min']} 日分・ききん {r['famine']}・人 {r['pop_prev']} → {r['pop']} (はじめ {r.get('pop0', '-')}) / "
             + " ".join(f"{k} {'○' if r[f'{k}_like'] else '×'}" for k in ("e1", "e2", "e3", "e4")) + f" e5 {'○' if r['e5_ok'] else '×'}")
 
 

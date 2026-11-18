@@ -8858,6 +8858,49 @@ class T_S3(unittest.TestCase):
         self.assertIn(S3_WORDS, lines[0])
         self.assertTrue(any(x.startswith("204年: ") for x in lines))
 
+    def test_measures_fix(self):
+        """2026-11-17 の物差しの直し: e3 は持ち場・掘る仕事を続けている答える人も数える・e4 は 1 年じゅう持ち場 10 人と見習いを終えた人 1 人・
+        e5 の人は印の日の人の 95% 以上 (前の年より減ってもよい)・持ち場の上限は 24"""
+        import g15
+        import s3
+        self.assertEqual(s3.POST_CAP, 24)
+        st = self.marked()
+        g = s3._g(st)
+        ans = era2.answerers(st)
+        a0, a1, a2 = ans[:3]
+        hs = {q["name"]: q.get("household") for q in era2.adults(st)}
+        for q in era2.adults(st):
+            if (q.get("plan") or {}).get("activity") == g15.ACT_DIG:
+                q["plan"] = {"activity": "採集", "place": "camp", "with": []}
+        fam1 = next(q for q in era2.adults(st) if q.get("household") == hs[a1])
+        g["posts"][fam1["name"]] = {"post": s3.SAW_K, "mill": "M6", "day": 24400, "via": "答え", "by": a1, "days": {}, "planks": 0.0}
+        fam2 = next(q for q in era2.adults(st) if q.get("household") == hs[a2])
+        fam2["plan"] = {"activity": g15.ACT_DIG, "place": g15.COAL_PLACE, "with": []}
+        st["day"] = 24539
+        s3.count_chose(st, {a0: {"job": {"activity": "採集"}}, a1: {}, a2: {}})
+        row = g["chose"]["204"]
+        self.assertEqual((row["chose"], row["wrote"]), (2, 0), "書かなくても、家の持ち場・掘る仕事が続いていれば選んだに数える")
+        self.assertNotIn(a0, row["who"])
+        g["posts"] = {f"P{i}": {"post": s3.SAW_K, "mill": "M6", "day": 24479, "via": "答え", "by": None, "days": {}, "planks": 0.0} for i in range(10)}
+        g["posts"]["P9"]["day"] = 24480
+        g["appr_done"] = [{"name": "P0", "mill": "M6", "teacher": "T", "reader": False, "day": 24500, "year": 204}]
+        r = s3.row_of(st, 204)
+        self.assertEqual(r["posts_year"], 9, "年のはじめのあとについた人は 1 年じゅうでない")
+        self.assertFalse(r["e4_like"])
+        g["posts"]["P9"]["day"] = 24479
+        self.assertTrue(s3.row_of(st, 204)["e4_like"], "1 年じゅう 10 人と見習い 1 人 (教えた人が読めなくてもよい)")
+        g["appr_done"] = []
+        self.assertFalse(s3.row_of(st, 204)["e4_like"], "その年に見習いを終えた人が 0 人なら届かない")
+        alive = [q for q in st["people"] if q["alive"]]
+        g["pop0"] = len(alive)
+        g["rows"]["203"] = {"pop": len(alive) + 5}
+        g["store_min"]["204"] = 200
+        st["events"] = [e for e in st["events"] if not (e["day"] // s3.YEAR == 204 and e["type"] == "蓄えが尽きる")]
+        r = s3.row_of(st, 204)
+        self.assertTrue(r["e5_ok"], "前の年より減っても、はじめの 95% 以上なら割らない")
+        g["pop0"] = math.ceil(len(alive) / s3.E5_POP) + 1
+        self.assertFalse(s3.row_of(st, 204)["e5_ok"], "はじめの 95% を下まわれば割る")
+
     def test_resume_cli(self):
         """step.py resume --s3 (写しのフォルダ): 断る (何も変えない) → 始める (止まりを解き、お題を書き直す) → 2 回目は断る"""
         st = self.real()
