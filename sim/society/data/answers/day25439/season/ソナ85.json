@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑をしっかり刈って、冬にそなえよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと落ちてしまうので、刈り入れをする"}, "family": {"ケナ85": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るのを手伝う"}, "トナ85": {"activity": "畑仕事", "place": "camp", "why": "まだ狩りは苦手なので、刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "冬の前に食べ物を集める"}, "family": {"ケナ85": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので食べ物を集める"}, "トナ85": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "冬も魚やけものはいるので、狩りで肉を取る"}, "family": {"ケナ85": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので川で魚を取る"}, "トナ85": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "得意な狩りで食べ物を取る"}, "family": {"ケナ85": {"activity": "採集", "place": "西草原12", "why": "春の草や実りを集める"}, "トナ85": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ルタ97": true, "オネ97": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T864": "村", "T865": "村", "T866": "村", "T867": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので大事な決まり"}],
+ "year_name": "子がふえた年",
+ "feeling": "蓄えもあるし、家族と静かに働きたい。"}

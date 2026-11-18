@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "おれは狩りが得意だ。一年じゅう林で獲物を追って、肉をみんなに分けるよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りの腕が一番高いので、肉を村にもたらす"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "秋も狩りで肉を集める"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "狩り", "place": "南林12", "with": [], "why": "冬は木の実がないが、けものと魚はいるので狩りをする"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "春も狩りを続ける"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "year_name": "狩りの年",
+ "feeling": "体が軽い。今年も思いきり狩りをしたい。"}
