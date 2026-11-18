@@ -116,6 +116,8 @@ WORLDS = {
 #   step.py resume --s3 と同じ関数 (s3.mark) で印を書く。部分 (a まき集めと家の倉・b 持ち場・c 見習い・d 交換) を 1 つずつと、みな。S30 は部分なし (くらべるため)
 for _k, _ps in (("S3A", ("a",)), ("S3B", ("b",)), ("S3C", ("c",)), ("S3D", ("d",)), ("S3X", ("a", "b", "c", "d")), ("S30", ())):
     WORLDS[_k] = {"name": f"Society 3.0 案 A (部分 {','.join(_ps) or 'なし'}。本物の 24479 日目から)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "s3": _ps}
+# 2026-11-18 (作業場の返りの直し。S3_check.md 8.): 本物の村の 25079 日目 (S3 の 5 年の相談。HOLD consult) の写しから。印はもうあるので、止まりを解くだけ
+WORLDS["S3R"] = {"name": "Society 3.0 案 A (本物の 25079 日目から。作業場の返りの直しのあと)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "from_s3": True}
 S3_WORDS = "決まりの村の確かめ (Society 3.0 案 A)"
 G15_PUSH_WORDS = "１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい"  # 本人の言葉 (2026-11-16)
 G15_NOTE = "本人の決め 2026-11-15 (お任せします): G15 の下書きの問いはみなおすすめで (決まりの村の確かめ)"
@@ -163,6 +165,12 @@ def enter_g7(state, w):
         if w.get("far_rate"):
             import g9
             g9.set_far_rate(state, w["far_rate"], "本人の決め 2026-10-29: 来る見込みを 5 割に")
+        return
+    if w.get("from_s3"):  # 本物の 25079 日目 (S3 の 5 年の相談。HOLD consult): 止まりを解くだけ (step.py resume と同じ)
+        import s3
+        assert s3.on(state) and state["day"] >= s3.RETURN_DAY, state["day"]
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
         return
     if w.get("s3") is not None:  # 本物の 24479 日目 (後押しなしの確かめの終わり。HOLD consult): step.py resume --s3 と同じ関数で印を書き、止まりを解く
         import s3
@@ -313,6 +321,8 @@ BUNDLES = {
     #   S3B1 は返りの大きい仕事を選ぶ (掘る・かまど・持ち場・見習い・交換。その世界にある部分だけ)
     "S3B0": {"name": "S3 の B0 (新しい仕事と欄を選ばない。今の LLM の村に近い)", **BASE, "g14": "none", "g15": "none", "s3": "none"},
     "S3B1": {"name": "S3 の B1 (返りの大きい仕事を選ぶ)", **BASE, "g14": "none", "g15": "none", "s3": "push"},
+    # 2026-11-18 (作業場の返りの直し): S3W は S3B0 に、答える家のうち大人の多い 3 家が、秋・冬・春に家の大人 3 人ずつを作業場 (水ののこ) に出す (8 人以上・3 家)
+    "S3W": {"name": "S3 の W (S3B0 + 3 家が作業場に 3 人ずつ)", **BASE, "g14": "none", "g15": "none", "s3": "ws"},
     "G15B1": {"name": "G15 の B1 (作業場と燃える石に寄せた)", **BASE, "g14": "none", "g15": "push"},
     "G15B1S": {"name": "G15 の B1S (1 人だけが選ぶ)", **BASE, "g14": "none", "g15": "push", "solo": True},
     "G15B1K": {"name": "G15 の B1K (黒い金属の腕のある人がいない。水の槌)", **BASE, "g14": "none", "g15": "push", "no_smith": True, "tool": "水の槌"},
@@ -876,6 +886,27 @@ def _s3_jobs(state, fams, sea, taken):
     return out
 
 
+S3W_HOUSES, S3W_PER_HOUSE, S3W_SEASONS = 3, 3, ("秋", "冬", "春")
+
+
+def _s3w_jobs(state, fams, sea, taken):
+    """S3W の仕事 ({名前: 仕事}): 答える家のうち大人の多い 3 家が、秋・冬・春に家の大人 3 人ずつを作業場 (水ののこ。番号のいちばん小さい所) に出す"""
+    import g15
+    ws = _s3_ws(state)
+    if sea not in S3W_SEASONS or not ws:
+        return {}
+    alive = {p["name"] for p in era2.adults(state)}
+    out, k = {}, 0
+    for h in sorted(fams, key=lambda n: (-len(fams[n]), n)):
+        ms = [m for m in fams[h] if m in alive and m not in taken][:S3W_PER_HOUSE]
+        if k >= S3W_HOUSES or len(ms) < S3W_PER_HOUSE:
+            continue
+        for m in ms:
+            out[m] = _job(g15.ACT_WS_WORK, place=ws[0])
+        k += 1
+    return out
+
+
 def _s3_fields(state, fams, ask):
     """S3B1 の欄 ({答える人: {欄: 中身}}): b post (帳面番 1 人と、のこ番を 1 つの作業場に合わせて 10 人まで。1 家 3 人まで)・head (帳面番)。
     d sell (家の板 10 束以上を、ヤギをくれる近い集落か町に。村の倉の板 300 束をこえる分を町に。年の集まりと秋の集まり)"""
@@ -1070,6 +1101,9 @@ def make_answers(state, pol, rt):
         if pol.get("s3") == "push":
             for s in seas:
                 plans[s].update(_s3_jobs(state, fams, s, set(plans[s])))
+        if pol.get("s3") == "ws":
+            for s in seas:
+                plans[s].update(_s3w_jobs(state, fams, s, set(plans[s])))
         s3f = _s3_fields(state, fams, ask) if pol.get("s3") == "push" else {}
         for i, n in enumerate(names):
             a = {"say": [], "year": {s: _season_part(state, pol, rt, n, fams[n], s, plans[s]) for s in seas}, **common}
@@ -1112,6 +1146,8 @@ def make_answers(state, pol, rt):
             roles.update(_g15_jobs(state, fams, now, pol, set(roles)))
         if pol.get("s3") == "push" and not famine:
             roles.update(_s3_jobs(state, fams, now, set(roles)))
+        if pol.get("s3") == "ws" and not famine:
+            roles.update(_s3w_jobs(state, fams, now, set(roles)))
         s3f = _s3_fields(state, fams, ask) if pol.get("s3") == "push" and not famine else {}
         for i, n in enumerate(names):
             a = {"say": [], **_season_part(state, pol, rt, n, fams[n], now, roles, famine), **common}
