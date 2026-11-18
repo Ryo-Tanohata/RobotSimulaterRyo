@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。秋の種まきをして、畑の草取りをみんなで手伝おう。困っている南東の村には草の種を貸してやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた草の種は草取りをすると実りが増える。蓄えが多いので、来年の夏の実りをしっかり守りたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"アコ100": true, "ワユ100": true, "ネイ100": true},
+ "family": {"リセ61": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ハソ63": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "キオ63": {"activity": "採集", "place": "camp", "why": "家で食べる木の実を集める"}, "ケセ65": {"activity": "採集", "place": "camp", "why": "家で食べる木の実を集める"}, "キサ66": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T900": "村", "T902": "村", "T903": "村"}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "秋にまいた草の種は、草取りをすれば夏のはじめに多く実る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑がうまく実るよう働くつもりだ"}

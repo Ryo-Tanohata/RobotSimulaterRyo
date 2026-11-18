@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いけれど、まだ知らない場所がありそうだから、わたしは北の草原のほうを歩いて見てくる。"}],
+ "job": {"activity": "探索", "place": "北草原28", "with": [], "why": "蓄えは十分あるので、まだ知らない場所や新しい食べ物を探したい。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"アコ100": true, "ワユ100": true, "ネイ100": true},
+ "family": {"ユエ96": {"activity": "採集", "place": "西草原12", "why": "近くで食べ物を集めて、家の食べ物をたやさないため。"}},
+ "keep": false, "feast": false, "leader": null,
+ "trade": {"T900": "村", "T902": false, "T903": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "よその群れから来た人たちが、ここで暮らしたいと言って来た。村の人がふえている。", "because": [4317045, 4317056, 4317057], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "どこか遠くの景色を見に行けるのが楽しみ。"}
