@@ -78,6 +78,9 @@ PATH_YEARS = 2
 # 2026-11-18 の 2 つめの直し (本人の「得が出るようにする」。S3_design.md 2.5・S3_check.md 8.)【仮定】: 作業場の返り。
 # 本物の村が止まっている日 (25079) より後の日だけ。それまでの歩は 1 バイトも変わらない
 RETURN_DAY = 25079
+# 2026-11-18: 入口の e5 は「ずっと割らない」でなく「数えた 2 年 (いちばん新しい年とその前の年) に割らない」。
+# 205年に一度割ると入口に二度と着けなかったため。この日より後だけ (前の歩は入口がなりたたないので同じ)
+ENTRANCE_DAY = 25439
 CREW = ((8, 3, 3), (4, 1, 2))  # (同じ日・同じ作業場の人, 家, 1 人日の板)。上から先に当てる。どれにも当たらなければ g15.PLANK_PER_DAY (1)
 TEACH_SAW_DAYS = 60  # のこ番は、その作業場で合わせて 60 日働くと見習いを教えられる
 ES = {"e1": "掘った燃える石で燃やす", "e2": "作業場が続く", "e3": "自分で選ぶ", "e4": "教えて広がる", "e5": "暮らしを守る"}
@@ -830,8 +833,14 @@ def year_end(state):
 
 
 def entrance(state):
-    e = _g(state)["e"]
-    return "e1" in e and "e2" in e and ("e3" in e or "e4" in e) and not _g(state)["e5_broken"]
+    g = _g(state)
+    e = g["e"]
+    if not ("e1" in e and "e2" in e and ("e3" in e or "e4" in e)):
+        return False
+    if state["day"] >= ENTRANCE_DAY and g.get("rows"):
+        ymax = max(int(k) for k in g["rows"])
+        return not any(b >= ymax - PATH_YEARS + 1 for b in g["e5_broken"])
+    return not g["e5_broken"]
 
 
 def check(state, done):
@@ -840,6 +849,8 @@ def check(state, done):
     if (D + 1) % SEASON_DAYS:
         return None
     if (D + 1) % YEAR:
+        if D > ENTRANCE_DAY and entrance(state) and not any(c["why"] == "s3_entrance" for c in done):
+            return {"why": "s3_entrance", "day": D, "text": f"S3: 入口に着いた ({'・'.join(f'{k} {_yd(v)}' for k, v in sorted(g['e'].items()))}。数えた 2 年に e5 を割らなかった)"}
         rd = g10.readers(state)
         if len(rd) <= g15.READERS_STOP and not any(c["why"] == f"s3_readers_{len(rd)}" for c in done):
             return {"why": f"s3_readers_{len(rd)}", "day": D, "text": f"S3: 読める大人が {len(rd)} 人になった"}
