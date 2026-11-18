@@ -1,0 +1,24 @@
+{"say": [{"to": "みんな", "text": "ヤギは107頭まで減った。草はまだ140頭ぶんある。土器で北の村のヤギを1頭受けよう。"}, {"to": "ネイ52", "text": "おまえは水の道の手入れに出てくれ。うちの家からの一人だ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋に畑にまいた種を、草取りでしっかり実らせたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ90": true},
+ "family": {
+  "ネイ52": {"activity": "水の道を掘る", "place": "camp", "why": "家ごとに一人、水の道の手入れに出すため"},
+  "セヤ53": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減ったので、世話の手をふやすため"},
+  "オセ67": {"activity": "住まいを建てる", "place": "camp", "why": "雨の夜に外で濡れた人がいたので、住まいを広げるため"}
+ },
+ "keep": false,
+ "judge": {"M526": "ゆるす"},
+ "feast": false,
+ "leader": null,
+ "trade": {"T753": "村", "T754": false, "T755": false},
+ "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヤギは107頭で、草で養える約140頭より少ない。よその村のヤギを土器で少し受けてもよい", "because": [3813068], "confidence": 0.7}],
+ "proposal": {"text": "この秋は大人一人 1000 つかみずつ畑にまき、家ごとに大人を一人ずつ水の道の手入れ (あと 1559 人日) に出そう。ヤギは 107 頭で草の約 140 頭より少ないから、つぶさずに世話をし、よその村のヤギは土器で 1 頭ずつ受けよう。", "because": [3813068], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L697", "against": "住まいを広げると、ほかの仕事の手がへる", "agree": true, "reason": "雨の夜に濡れる人がいるのはよくない"},
+  {"id": "L690", "against": "ほかの仕事が止まる", "agree": true, "reason": "刈り残して種を落とすのはもったいない"},
+  {"id": "L691", "against": "ヤギはもう107頭で、140頭より少ない", "agree": false, "reason": "いまはヤギが少ないので、つぶす話は合わない"},
+  {"id": "L696", "against": "ヤギはもう107頭で、140頭より少ない", "agree": false, "reason": "いまヤギをつぶすと、もっと減ってしまう"}
+ ],
+ "feeling": "ヤギが減った。手をかけて、また増やしてやる。"}

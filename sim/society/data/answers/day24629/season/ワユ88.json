@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "雨の夜に四度も外で濡れた。真ん中の住まいは十二人までなのに四十人あまりが眠っている。この秋、わたしは住まいを建てる。手の空いた人は一緒に壁を立てよう。"}, {"to": "リセ90", "text": "よく来たね。ここは草の種がたくさんある。ハソ12の村のこと、いろいろ聞かせてほしい。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": [], "why": "雨の夜に外で濡れる人が多く、小さな子も亡くなった。冬の前に雨をしのげる場所を増やしたい"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"リセ90": true}, "keep": false,
+ "judge": {"M526": "ゆるす"}, "feast": true, "leader": "ロワ38", "trade": {"T753": "村", "T754": "村", "T755": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "村のヤギはメスばかりでオスがいない。よその村からヤギをもらわないと、子ヤギが生まれず数が増えない", "because": [3813068, 3813069, 3813072], "confidence": 0.6}, {"op": "add", "text": "村の住まいに入りきらない人が多く、雨の夜に外で濡れる。住まいを広げることが大事", "because": [], "confidence": 0.7}],
+ "proposal": {"text": "ヤギは 107 頭で草の約 140 頭より少なく、オスが一頭もいない。この秋はよその村のヤギを受けて、オスがいれば群れに入れよう。秋は大人一人 1000 つかみずつ畑にまき、手の空いた人は住まいを広げて、雨の夜に外で眠る人をなくそう。", "because": [3813068, 3813069, 3813072], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガはこわい。みんなの命を守る決まりだ"}, {"id": "L697", "against": "", "agree": true, "reason": "子が亡くなり、雨の夜に濡れる人が多い。住まいを広げるのが先だ"}, {"id": "L688", "against": "", "agree": true, "reason": "畑にまくのは次の夏の実りのために大事"}],
+ "feeling": "子どもたちが亡くなってさびしい。でも新しい住まいを建てて、冬をみんなで越したい"}

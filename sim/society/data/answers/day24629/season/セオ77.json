@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、来年の夏の刈り入れにそなえよう。草取りも、みんなでわけてやろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた種を育てるには草取りが要る。畑が実れば、冬も春も蓄えが守れるから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ90": true},
+ "family": {"ルタ77": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをすれば、畑の実りが多くなるから。"}},
+ "keep": false,
+ "judge": {"M526": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T753": "村", "T754": false, "T755": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "秋にまいた草の種は、草取りをするほど次の夏によく実る。", "because": [3812243], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので、みんなで守るのがよいと思う。"}],
+ "feeling": "秋の畑しごとが楽しみ。みんなで冬をのりこえたい。"}

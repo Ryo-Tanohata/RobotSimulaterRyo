@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "輪の直しはもう終わったよ。この秋は、水の道を掘って畑に水を引こう。水が来る畑は、悪い年でも実りが守られるからね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "直す水の輪はもう残っていない。水の道の手入れがまだ大きく残っているので、畑を守るために掘る。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"リセ90": true}, "keep": false,
+ "judge": {"M526": "ゆるす"}, "feast": false, "leader": null, "trade": {"T753": false, "T754": false, "T755": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "水の輪の直しは終わった。水の道の手入れが 1559 人日ぶん残っているので、秋は水の道を掘ると畑が守られる。", "because": [3812998], "confidence": 0.6}],
+ "proposal": null,
+ "votes": []}

@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にある。みんなで助け合って、この秋も畑の草取りをしっかりやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。みんなのために畑を育てたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ90": true},
+ "family": {
+  "ムイ45": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "セヤ51": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "ハソ56": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "キサ61": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "ムイ63": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "オセ65": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "リセ73": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため。"},
+  "ロワ74": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため。"},
+  "オネ75": {"activity": "畑仕事", "place": "camp", "why": "畑仕事を覚えながら手伝うため。"},
+  "ホタ77": {"activity": "畑仕事", "place": "camp", "why": "畑仕事を覚えながら手伝うため。"}
+ },
+ "keep": false,
+ "judge": {"M526": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T753": false, "T754": false, "T755": false},
+ "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えがたくさんあって安心している。みんなで仲よく秋を過ごしたい。"
+}

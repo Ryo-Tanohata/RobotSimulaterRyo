@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋の畑をまいたら、手の空いた人は水の道の手入れに来てね。まだ 1559 人日も残っているよ。泥がたまる前に少しずつ片づけよう。"}, {"to": "トナ73", "text": "トナ、わたしと北川のそばの水の道を見に行こう。どこが埋まりやすいか、帳に書いておくといいよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": ["トナ73"], "why": "水の道の手入れがたくさん残っていて、水の来る畑は悪い年でも実りが落ちにくいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "accept": {"リセ90": true},
+ "family": {"トナ73": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので、いっしょに水の道を直して覚えてほしいから"}},
+ "keep": false,
+ "judge": {"M526": "ゆるす"}, "feast": true, "leader": null,
+ "trade": {"T753": false, "T754": false, "T755": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "水の道の手入れは、まだ 1559 人日も残っている。家ごとに人を出さないと追いつかない", "because": [], "confidence": 0.8}, {"op": "add", "text": "この 1 年も、病で若い人や小さな子がたくさん亡くなった", "because": [3813057, 3813059, 3813060, 3813061, 3813062, 3813063], "confidence": 0.9}],
+ "proposal": {"text": "この秋は大人一人 1000 つかみずつ畑にまき、家ごとに大人を一人ずつ水の道の手入れ (あと 1559 人日) に出そう。ヤギは草で養える約 140 頭をこえているから、よその村のヤギは受けず、家ごとに 2 頭ずつつぶして干し肉にしよう。", "because": [], "penalty": {"for": "蓄え", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L697", "against": "住まいを広げる手間で畑や水の道が遅れるかもしれない", "agree": true, "reason": "雨の夜に外で濡れる人がいて、小さな子もたくさん亡くなったから"}, {"id": "L696", "against": "ヤギを減らしすぎると春の乳が減る", "agree": true, "reason": "ヤギが多すぎて、やせていなくなるのはもったいないから"}, {"id": "L687", "against": "帳に書く手間がかかる", "agree": true, "reason": "書いておけば、あとでもめずにすむから"}],
+ "feeling": "蓄えはたっぷりあるけれど、亡くなった人が多くて胸が痛い。水の道を守って、みんなの暮らしを支えたい。"}
