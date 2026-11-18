@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまこう。冬のまえに、おれは木の実を集めて蓄えをふやすぞ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "採集の腕が一番なので、冬にそなえて食べ物を集める"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {"キサ48": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで来年の夏の実りをふやすため"}, "ロワ53": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りると実りが増えるため"}},
+ "keep": false,
+ "judge": {"M530": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T830": false, "T831": false, "T833": false, "T834": false, "T835": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかもいっぱいで元気だ。冬にそなえて身体を動かしたい。"}

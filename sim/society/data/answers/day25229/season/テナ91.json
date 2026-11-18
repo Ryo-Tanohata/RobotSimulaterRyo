@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬の前に、草の種をしっかりまこう。雨の夜は、村の住まいに入れない人がいるから、みんなで気をつけよう。"}, {"to": "ラニ91", "text": "ラニ、あなたは採集が上手だから、木の実をたくさん集めてきてね。家のみんなで冬を越そう。"}],
+ "job": {"activity": "帳をつける", "place": "camp", "with": [], "what": ["蓄え", "交換", "刈る"], "how": "数え札", "why": "字が読めるのは村でも少ないので、続けて帳をつけて、蓄えや貸し借りをはっきり残したい"},
+ "sow": 500, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ91": {"activity": "採集", "place": "西草原12", "why": "ラニは採集が得意で、冬に向けて食べ物を集められるから"}},
+ "keep": false,
+ "judge": {"M530": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T830": "村", "T831": "村", "T833": "村", "T834": "村", "T835": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと、次の夏に実る。冬の前にまいておくのが大事。", "because": [4094116], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので少し心配だけれど、蓄えもあるし、みんなで助け合えば大丈夫だと思う。"}

@@ -1,0 +1,32 @@
+{"say": [{"to": "みんな", "text": "輪の直しはあと少しだ。道具の腕があるおれが先に片づける。ぐずぐずせずにやろう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕がいちばんあるから、残った輪の直しを早く終わらせる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ネイ52": {"activity": "水の輪を直す", "place": "camp", "why": "狩りの腕があり力もあるので、輪の直しを手伝わせる"},
+  "セヤ53": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"},
+  "キオ57": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして実りを増やすため"},
+  "キサ60": {"activity": "畑仕事", "place": "camp", "why": "小さな子がいるので、近くの畑で働くのがよい"},
+  "オセ67": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるから、水の道を掘らせる"},
+  "ホタ68": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるから、水の道を掘らせる"},
+  "ラニ72": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、蓄えの出入りを残してもらう"},
+  "ソナ75": {"activity": "水の作業場で働く", "place": "M6", "why": "板があれば手入れがはかどるから、のこをひかせる"},
+  "テナ75": {"activity": "水の作業場で働く", "place": "M6", "why": "板があれば手入れがはかどるから、のこをひかせる"},
+  "ソナ76": {"activity": "水の作業場で働く", "place": "M6", "why": "板があれば手入れがはかどるから、のこをひかせる"},
+  "ムイ76": {"activity": "畑仕事", "place": "camp", "why": "赤子がいるので、キャンプのそばで働く"},
+  "トナ77": {"activity": "水の道を掘る", "place": "camp", "why": "若いので、水の道の手入れで体を使わせる"},
+  "ソナ78": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので、近くの畑で草取りを覚えさせる"}
+ },
+ "keep": false,
+ "judge": {"M530": "ゆるす"},
+ "feast": false,
+ "leader": null,
+ "trade": {"T830": "村", "T831": {"side": "村", "利子": 0.1}, "T833": {"side": "村", "利子": 0.1}, "T834": "村", "T835": "村"},
+ "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "土器に入れた蓄えでも、虫やネズミで少しずつ傷む。", "because": [4094116], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L762", "against": "夏の話がもう過ぎている", "agree": true, "reason": "秋に 1000 つかみまくのと、輪の直しを先にするのはまっとうだ"},
+  {"id": "L763", "against": "夏の刈り入れはもう終わった", "agree": true, "reason": "道具の腕のある者から輪を直すのはおれの考えと同じだ"},
+  {"id": "L764", "against": "ヤギを増やしすぎると草が足りなくなる", "agree": true, "reason": "畑にまいて冬に草取りをするのは実りのためになる"}
+ ],
+ "feeling": "まだ体は動く。輪の直しを終わらせてやる。"}

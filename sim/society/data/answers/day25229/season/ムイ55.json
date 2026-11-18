@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。畑にたっぷりまいて、あとは水の道の手入れをみんなで進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、蓄えにも余裕があるから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ネイ57": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家みんなで進めるため"}, "リセ61": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家みんなで進めるため"}}, "keep": false,
+ "judge": {"M530": "ゆるす"}, "feast": false, "leader": null, "trade": {"T830": false, "T831": {"side": "村", "利子": 0}, "T833": {"side": "村", "利子": 0}, "T834": false, "T835": false}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "秋に大人一人 1000 つかみずつ畑にまくと、次の夏にたくさん刈れる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L764", "against": "とくになし", "agree": true, "reason": "畑にたくさんまき、ヤギを増やすのは村のためになるから"}],
+ "feeling": "蓄えも木の実も豊かで、穏やかな気持ちで秋を迎えた。"}

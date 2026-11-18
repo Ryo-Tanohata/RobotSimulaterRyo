@@ -1,0 +1,28 @@
+{"say": [{"to": "みんな", "text": "水の道は手入れがまるで足りてない。うちの家から三人、掘りに出すよ。ほかの家も一人は出しておくれ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "手が一番慣れている。刈った草の種を虫から守る器は、いくらあっても困らない"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ56": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑は悪い年でも実った。手入れが三千人日以上も残っている"},
+  "トナ58": {"activity": "水の道を掘る", "place": "camp", "why": "力のある大人が掘れば、水の来る畑を守れる"},
+  "ルタ69": {"activity": "水の道を掘る", "place": "camp", "why": "家ごとに一人は掘りに出る掟に合わせて、多めに出す"},
+  "テナ78": {"activity": "水の作業場で働く", "place": "M6", "why": "板がふえれば、水の道や輪の手入れが倍はかどる"},
+  "ロワ79": {"activity": "水の作業場で働く", "place": "M6", "why": "若いうちにのこ番の仕事を覚えてほしい"}
+ },
+ "keep": false,
+ "judge": {"M530": "ゆるす"},
+ "feast": false,
+ "leader": null,
+ "trade": {"T830": "村", "T831": false, "T833": false, "T834": "村", "T835": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [
+  {"op": "add", "text": "村のヤギは 82 頭で、草で養える約 110 頭より少ない。よその村のヤギを少し受けてもよい", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "南の村7 や 南の村18 に前に貸した草の種は、まだ返ってこない。新しく貸すのはやめたほうがよい", "because": [4094122, 4094124], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L639", "against": "取りに行く手間がかかる", "agree": true, "reason": "貸した種が返ってこないことが多いから、板に残して取りに行くのがよい"},
+  {"id": "L641", "against": "いまヤギは 82 頭で、養える数より少ない", "agree": false, "reason": "多い分はないので、つぶす必要はない"},
+  {"id": "L723", "against": "ほかの仕事の手が減る", "agree": true, "reason": "水の道の手入れが足りないと、水の来る畑を守れない"}
+ ],
+ "feeling": "まだ手はよく動く。器を焼いて、水の道も守ってやるさ"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のうちに畑に種をまいて、草取りをしておこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がなく、秋に種をまいて草取りをすれば夏の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セオ83": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを一緒にして実りを増やすため"}},
+ "keep": false,
+ "judge": {"M530": "ゆるす"}, "feast": false, "leader": null, "trade": {"T830": false, "T831": false, "T833": false, "T834": false, "T835": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種は 337 日分ほどあり、秋にまく畑は夏に実る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで落ち着いている。畑仕事をがんばる。"}

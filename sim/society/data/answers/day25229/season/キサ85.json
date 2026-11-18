@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "おれは林で木の実と獲物をとってくる。蓄えに入れる分は、ちゃんと入れる。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集と狩りがいちばん得意だから、秋の実りをできるだけ集めて冬にそなえる"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M530": "つぐなう"}, "feast": false, "leader": null,
+ "trade": {"T830": "村", "T831": false, "T833": false, "T834": "村", "T835": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種がとても多く、今の人数で 1 年近くもつ", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L764", "against": "ヤギを増やしすぎると草が足りなくなるかもしれない", "agree": true, "reason": "畑にまいて冬に草取りをすれば、次の夏の実りが増えるから"},
+  {"id": "L763", "against": "みんなが水の道にばかり回ると、食べ物を集める人が減る", "agree": false, "reason": "おれは林で集めるほうが村の役に立つと思うから"}
+ ],
+ "feeling": "ひとりで林を歩くほうが気が楽だ"}
