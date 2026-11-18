@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。私は土器を焼く。器はいくらあっても困らないからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。蓄えの草の種を守る器を、これからも焼き足したいから。"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ65": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをして、次の夏の実りを増やしてほしいから。"}, "ソワ68": {"activity": "採集", "place": "camp", "why": "木の実の木が多いので、冬の前に食べ物を集めておくため。"}},
+ "keep": false,
+ "judge": {"M529": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T811": "村", "T812": false, "T813": "村", "T814": "村", "T815": false, "T816": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種が十分あるが、ヤギは草に対して多すぎる。", "because": [4035577], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "静かに土をこねていたい。蓄えが多くて、まず安心している。"}

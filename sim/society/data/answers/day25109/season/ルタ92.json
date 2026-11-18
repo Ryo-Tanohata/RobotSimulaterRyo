@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "畑が空だから、この秋はみんなで草の種をまこう。わたしは水の道の手入れに出て、冬の前に少しでも進めるね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだたくさん残っているから、畑のために進めたい"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M529": "ゆるす"}, "feast": false, "leader": "ロワ38", "trade": {"T811": "村", "T812": "村", "T813": "村", "T814": "村", "T815": "村", "T816": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヤギは今 114 頭で、草で養える約 110 頭を少しこえているから、2 頭ほどがやせていなくなった", "because": [4035577], "confidence": 0.8},
+  {"op": "add", "text": "村の蓄えは草の種がとても多く、よその村に少し貸しても冬は越せそうだ", "because": [4035596, 4035602], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L743", "against": "水の道に人を出すと、ほかの仕事の手が少し減る", "agree": true, "reason": "畑が空なので、まいて水の道も進めるのがよいと思う"},
+  {"id": "L747", "against": "冬の草取りは寒くて疲れる", "agree": true, "reason": "交代で草取りをすれば畑の実りが増えるから"},
+  {"id": "L733", "against": "板がないと直しが遅い", "agree": true, "reason": "水の輪の直しを先に終えるのは大事だから"}],
+ "feeling": "雨の夜に外で濡れるのはつらいけど、畑と水の道で冬にそなえたい"}

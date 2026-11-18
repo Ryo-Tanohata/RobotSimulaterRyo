@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いけれど、秋にまいた種が来年の実りになる。みんなで畑の草取りを欠かさずやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は草取りをしないと実りが減る。蓄えは多いが、来年の夏のために畑を育てたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M529": "ゆるす"}, "feast": false, "leader": "ロワ38",
+ "trade": {"T811": "村", "T812": "村", "T813": "村", "T814": "村", "T815": "村", "T816": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種はとても多い。秋に種をまき、秋・冬・春に草取りをすると次の夏に実る。", "because": [4035592], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑の草取りをがんばって、困っている村にも種を貸してあげたい。"}

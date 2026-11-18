@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ぼくは字が読めて道具も得意だから、秋は水の輪の直しを進めるよ。手があいた人は、のこ作業場の板ひきも手伝ってほしい。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "水の輪の直しがあと170人日残っていて、道具の腕が一番ある自分が働くのが役に立つから"}, "sow": 600, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2, "keep": false,
+ "judge": {"M529": "ゆるす"}, "feast": false, "leader": null, "trade": {"T811": "村", "T812": false, "T813": false, "T814": "村", "T815": false, "T816": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "水の輪の直しは道具の腕のある人が進めると早く、板があると手入れが半分ですむ。", "because": [4035595], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [{"id": "L755", "against": "", "agree": true, "reason": "ヤギが草で養える数をこえているので、肉にして減らすのがよいから"}, {"id": "L190", "against": "", "agree": true, "reason": "秋の終わりまでに草で養えない分を肉にすれば、ヤギも蓄えも守れるから"}],
+ "feeling": "蓄えは十分あるので、落ち着いて水の輪の直しに取りかかれる。"}

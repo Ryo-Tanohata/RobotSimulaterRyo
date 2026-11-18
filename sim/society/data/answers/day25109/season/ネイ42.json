@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、この秋は水の輪の直しを少しずつ進めよう。困っている村には草の種を貸してあげたい。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "蓄えは足りているので、残っている水の輪の直しを進める"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 4,
+ "family": {"ユエ55": {"activity": "水の輪を直す", "place": "camp", "why": "輪の直しが残っているので手伝う"}, "ヒセ67": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っている"}, "ラニ67": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので村の帳を守る"}, "ロワ68": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ラニ69": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ラニ71": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ケセ72": {"activity": "水の輪を直す", "place": "camp", "why": "輪の直しを早く終えたい"}, "ケナ75": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をする"}, "セヤ75": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}},
+ "keep": false,
+ "judge": {"M529": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T811": "村", "T812": "村", "T813": "村", "T814": "村", "T815": "村", "T816": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [], "proposal": null, "votes": [],
+ "feeling": "蓄えがたっぷりあって安心。みんなで仕事を分けて進めたい。"}

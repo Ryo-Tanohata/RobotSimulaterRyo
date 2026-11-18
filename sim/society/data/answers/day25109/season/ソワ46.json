@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は畑に種をまいて、冬の前に水の道の手入れを進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れが2552人日も残っているので、体の動く今のうちに進める"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ51": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家から出す"}, "ケセ54": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"}, "ルタ63": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}, "テナ71": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が高いので肉を取ってくる"}, "ヌオ73": {"activity": "水の道を掘る", "place": "camp", "why": "手入れの人手を増やす"}, "ネイ73": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多いので世話をする"}, "テナ74": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを進める"}, "ネイ75": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "タユ76": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを進める"}, "ラニ76": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ラキ78": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高い"}},
+ "keep": false,
+ "judge": {"M529": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T811": "村", "T812": "村", "T813": "村", "T814": "村", "T815": "村", "T816": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種で約319日分あり、秋に畑にまけば次の夏に実る。水の道の手入れはまだ2552人日残っている。", "because": [4035592], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心だが、亡くなった人も多く、冬の前に手を休めず働きたい。"}
