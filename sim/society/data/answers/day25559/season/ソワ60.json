@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "うちの畑と倉はうちで守るよ。わたしは今年も木の実と畑でしっかり稼ぐ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと落ちる。うちの家の分を確実に刈る"}, "family": {"ユエ76": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "シエ77": {"activity": "狩り", "place": "東林12", "why": "狩りが得意で肉を持ち帰れる"}}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "秋は木の実がなる。採集が得意"}, "family": {"ユエ76": {"activity": "採集", "place": "camp", "why": "採集が得意"}, "シエ77": {"activity": "狩り", "place": "東林12", "why": "狩りが得意"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "冬は木の実がない。魚やけものを狙う"}, "family": {"ユエ76": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やす"}, "シエ77": {"activity": "狩り", "place": "南林12", "why": "狩りが得意"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで夏の実りを増やす"}, "family": {"ユエ76": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "シエ77": {"activity": "狩り", "place": "東林12", "why": "狩りが得意"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": true, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T882": false, "T883": false, "T884": false, "T885": false},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの夏の年",
+ "mood": "今年も落ち着いて働きたい"}
