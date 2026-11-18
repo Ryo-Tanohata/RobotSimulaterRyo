@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "今年も手を動かして、畑を刈って蓄えを守ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちるから"}, "family": {"リセ66": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "タユ71": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので帳を任せる"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やすため"}, "family": {"リセ66": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "タユ71": {"activity": "帳をつける", "place": "camp", "why": "帳を続けるため"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けるため"}, "family": {"リセ66": {"activity": "狩り", "place": "東林12", "why": "冬は魚やけものを取る"}, "タユ71": {"activity": "帳をつける", "place": "camp", "why": "帳を続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やすため"}, "family": {"リセ66": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "タユ71": {"activity": "帳をつける", "place": "camp", "why": "帳を続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"セオ96": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "", 
+ "trade": {"T850": "断る。鎌も土器も今は手元で使う分がほしい", "T852": "断る。蓄えを守りたい"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "蓄えは多い。静かに働いて守りたい。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "ヤギが草より多いから、夏にすこし肉にしよう。畑は夏のうちに刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"オネ83": {"activity": "畑仕事", "place": "camp", "why": "二人で刈れば早く終わるから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 18},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っているから"}, "family": {"オネ83": {"activity": "水の輪を直す", "place": "camp", "why": "止まっている輪を直したいから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 800},
+  "冬": {"job": {"activity": "狩り", "place": "南川12", "with": [], "why": "狩りが得意で、冬も魚やけものはいるから"}, "family": {"オネ83": {"activity": "狩り", "place": "南川12", "why": "狩りが得意で、川の魚がよくとれるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れを進めるため"}, "family": {"オネ83": {"activity": "水の輪を直す", "place": "camp", "why": "水の輪の直しを進めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T850": false, "T852": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギを減らした年",
+ "feeling": "蓄えは十分。ヤギを減らして、水の仕事を進めたい。"}

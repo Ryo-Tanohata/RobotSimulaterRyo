@@ -1,0 +1,355 @@
+{
+ "say": [
+  {
+   "to": "みんな",
+   "text": "蓄えは多いけれど、夏のうちに畑をしっかり刈ろう。"
+  }
+ ],
+ "year": {
+  "夏": {
+   "job": {
+    "activity": "畑仕事",
+    "place": "camp",
+    "with": [],
+    "why": "実った畑が落ちる前に刈り入れるため"
+   },
+   "family": {
+    "ロワ59": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "セヤ60": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ネイ62": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ヌオ64": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ヒセ66": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ロワ71": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "セヤ72": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "オセ76": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ソナ77": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ケナ79": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ルタ81": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "子は畑仕事を手伝う"
+    },
+    "ホタ82": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "子はヤギの世話を手伝う"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 60,
+   "eat_goat": 0
+  },
+  "秋": {
+   "job": {
+    "activity": "畑仕事",
+    "place": "camp",
+    "with": [],
+    "why": "畑の草取りで実りを増やすため"
+   },
+   "family": {
+    "ロワ59": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "セヤ60": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ネイ62": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ヌオ64": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ヒセ66": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ロワ71": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "セヤ72": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "オセ76": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ソナ77": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ケナ79": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ルタ81": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "子は畑仕事を手伝う"
+    },
+    "ホタ82": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "子はヤギの世話を手伝う"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 0,
+   "eat_goat": 0,
+   "sow": 500
+  },
+  "冬": {
+   "job": {
+    "activity": "畑仕事",
+    "place": "camp",
+    "with": [],
+    "why": "畑の草取りで実りを増やすため"
+   },
+   "family": {
+    "ロワ59": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "セヤ60": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ネイ62": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ヌオ64": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ヒセ66": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ロワ71": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "セヤ72": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "オセ76": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ソナ77": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ケナ79": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ルタ81": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "子は畑仕事を手伝う"
+    },
+    "ホタ82": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "子はヤギの世話を手伝う"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 0,
+   "eat_goat": 0
+  },
+  "春": {
+   "job": {
+    "activity": "ヤギの世話",
+    "place": "camp",
+    "with": [],
+    "why": "春は子ヤギが生まれ、乳もとれるため"
+   },
+   "family": {
+    "ロワ59": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "セヤ60": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ネイ62": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ヌオ64": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ヒセ66": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ロワ71": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "セヤ72": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "オセ76": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ソナ77": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ケナ79": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "家族みんなで同じ仕事をそろえるため"
+    },
+    "ルタ81": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "子は畑仕事を手伝う"
+    },
+    "ホタ82": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "子はヤギの世話を手伝う"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 0,
+   "eat_goat": 0
+  }
+ },
+ "keep": false,
+ "seal": false,
+ "seal_store": [],
+ "accept": {
+  "セオ96": true
+ },
+ "accept_rule": {
+  "よその群れ": null,
+  "ほかの村から": null
+ },
+ "judge_rule": null,
+ "feast": [],
+ "leader": null,
+ "trade": {
+  "T850": "村",
+  "T852": "村"
+ },
+ "trade_rule": {
+  "交換": null,
+  "貸して": null,
+  "max": null,
+  "not": [],
+  "利子": 0
+ },
+ "demand": null,
+ "share": null,
+ "pay": null,
+ "redeem": null,
+ "market": {
+  "give": {},
+  "take": [],
+  "pay": null
+ },
+ "market_day": null,
+ "coin_rate": null,
+ "pact": [],
+ "help": [],
+ "note": [],
+ "guild": null,
+ "workshop": [],
+ "post": [],
+ "head": null,
+ "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りを刈る年",
+ "feeling": "蓄えがたっぷりあって安心している。"
+}
