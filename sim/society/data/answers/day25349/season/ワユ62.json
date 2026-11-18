@@ -1,0 +1,24 @@
+{"say": [{"to": "みんな", "text": "ヤギはいま 63 頭で、草の約 140 頭よりずっと少ない。もうつぶす話はやめて、近い村のヤギは受けて増やそう。"}, {"to": "みんな", "text": "わたしは道具の手があるから、水の輪の直しの残り 140 人日を先に片づけるよ。倉の板も使おう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕があるので、残っている水の輪の直しを板を使って早く終わらせたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソワ96": true}, "keep": false,
+ "judge": {"M531": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T855": "村", "T856": "村"}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [
+  {"op": "add", "text": "ヤギは 63 頭 (メス 63・オス 0) で、草で養える約 140 頭よりずっと少ない。オスがいないので子が増えにくい", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "南の村18 は 3000 つかみ借りて、まだ 2003 つかみほど返していないが、少しずつ返しに来る", "because": [4124026, 4154325], "confidence": 0.7},
+  {"op": "add", "text": "去年の秋にまいたのは 189300 つかみだけで、水の来る畑 (230 万つかみ分) よりずっと少ない", "because": [], "confidence": 0.7}
+ ],
+ "proposal": {"text": "ヤギは 63 頭でオスがいないから、この 1 年はつぶさず、近い村のヤギ (できればオス) を村の土器と鎌で受けて増やそう。秋は大人一人 1000 つかみずつまき、道具の腕のある人は水の輪の直しを先に終えよう。", "because": [4154322, 4154323], "penalty": {"for": "ヤギ", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L764", "against": "", "agree": true, "reason": "ヤギが少ないのでつぶさず増やし、畑にまくのはよい"},
+  {"id": "L765", "against": "", "agree": true, "reason": "水の輪の直しを先に終えて、草取りと水の道に出るのは理にかなう"},
+  {"id": "L766", "against": "", "agree": true, "reason": "倉の板を使えば手入れが半分ですむ"},
+  {"id": "L767", "against": "", "agree": true, "reason": "畑にまいて水の道を手入れするのに賛成"},
+  {"id": "L771", "against": "ヤギはもう 63 頭に減ったので、つぶす話は古い", "agree": false, "reason": "前に出した案だが、いまは数が足りない"},
+  {"id": "L750", "against": "ヤギは 63 頭で多すぎない", "agree": false, "reason": "いまつぶすとヤギがいなくなる"},
+  {"id": "L751", "against": "ヤギは 63 頭で多すぎない", "agree": false, "reason": "いまつぶすとヤギがいなくなる"},
+  {"id": "L768", "against": "ヤギの数が変わり、受けないとかえって減る", "agree": false, "reason": "いまはヤギを受けたほうがよい"}
+ ],
+ "feeling": "疲れているけれど、輪の音が止まらないように手を動かしたい"}

@@ -1,0 +1,30 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがまだ三千人日以上残ってる。倉の板を使えば半分ですむ。わたしは掘りに行くよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の来る畑は悪い年でも実る。手入れが大きく残っているから、板を使って進めたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ソワ96": true},
+ "family": {
+  "キサ56": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが多く残っているので、いっしょに掘る"},
+  "トナ58": {"activity": "水の輪を直す", "place": "camp", "why": "水の輪の直しがあと 140 人日あるので先に終わらせる"},
+  "ルタ69": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、倉の出し入れを書きとめる"},
+  "テナ78": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番なので、板をひきつづける"},
+  "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして実りを増やす"}
+ },
+ "keep": true,
+ "judge": {"M531": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [
+  {"op": "add", "text": "村のヤギは 63 頭に減り、草で養える約 110 頭より少ない。いまはつぶさず増やしたほうがよい", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "この年も病で若い大人や小さな子が何人も亡くなった。よそから来た人を迎えると手が足りる", "because": [4154314, 4154317, 4154327], "confidence": 0.8}
+ ],
+ "proposal": {"text": "この秋は大人一人 1000 つかみずつ畑にまき、家ごとに一人は倉の板を使って水の道の手入れ (あと 3727 人日) に出そう。ヤギは 63 頭に減ったから、この 1 年はつぶさず増やそう。", "because": [], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L0", "against": "夜にどうしても出たいときもある", "agree": true, "reason": "夜はザガが出て、一人のときに襲われた人がいる"},
+  {"id": "L3", "against": "一人のほうが早く動ける", "agree": true, "reason": "一人のときにザガに襲われてけがをした人がいる"},
+  {"id": "L764", "against": "水の道のことが書いていない", "agree": true, "reason": "ヤギが減ったので、つぶさず増やすのがよい"},
+  {"id": "L767", "against": "とくにない", "agree": true, "reason": "板で手入れを半分の手間にできる"},
+  {"id": "L768", "against": "いまヤギは 63 頭に減っていて、つぶすと足りなくなる", "agree": false, "reason": "ヤギの数が変わったので、もうつぶさなくてよい"},
+  {"id": "L771", "against": "ヤギは 63 頭に減っている", "agree": false, "reason": "今はつぶすより増やすべきだ"}
+ ],
+ "feeling": "まだ体は動く。水の道を掘って、次の悪い年にそなえたい"}
