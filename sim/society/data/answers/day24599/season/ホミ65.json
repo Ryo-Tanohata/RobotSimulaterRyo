@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実っている。落ちる前にみんなで刈ろう。ヤギは草より多いから、増やさずにいこう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"セヤ73": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ケナ74": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やす"}, "family": {"セヤ73": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ケナ74": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りが要るから"}, "family": {"セヤ73": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ケナ74": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "最後の草取りで夏の実りを守る"}, "family": {"セヤ73": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ケナ74": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ホミ89": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M525": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T749": false, "T750": false, "T751": false, "T752": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りを刈る年",
+ "mood": "みんなで刈り入れができるのがうれしい"}

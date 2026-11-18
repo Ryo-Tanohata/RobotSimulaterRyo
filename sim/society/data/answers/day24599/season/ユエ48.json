@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに畑をしっかり刈り切ろう。ヤギが草より多いので、少しずつ肉にして減らしたい。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が落ちる前に刈るのがいちばん大事だから"},"family":{"キサ50":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"ケナ54":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"テナ60":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"シエ62":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"ソナ64":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"セヤ66":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"ソワ66":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"ネイ69":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"ネイ71":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"オセ73":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"ホタ73":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"リセ76":{"activity":"畑仕事","place":"camp","why":"子も刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":60},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで実りを増やすため"},"family":{"キサ50":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ケナ54":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"テナ60":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"シエ62":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ソナ64":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"セヤ66":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ソワ66":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ネイ69":{"activity":"畑仕事","place":"camp","why":"草取りのため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":30,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで実りを守るため"},"family":{"キサ50":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ケナ54":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"テナ60":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"シエ62":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ソナ64":{"activity":"畑仕事","place":"camp","why":"草取りのため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで実りを守るため"},"family":{"キサ50":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ケナ54":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"テナ60":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"シエ62":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"ソナ64":{"activity":"畑仕事","place":"camp","why":"草取りのため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"ホミ89":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge":{"M525":"ゆるす"},"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T749":false,"T750":false,"T751":false,"T752":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"ヤギがふえすぎた年",
+"feeling":"畑も蓄えもゆたかだが、ヤギが多すぎるのが気がかりだ。"}
