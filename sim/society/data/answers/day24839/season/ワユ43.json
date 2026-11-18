@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに畑の草の種をしっかり刈って、みんなで蓄えよう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏のうちに刈らないと実が落ちるので、みんなの食べ物のために刈る"},"family":{},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"畑の世話と実りを守るため、続けて働く"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"水の道を掘る","place":"camp","with":[],"why":"水の道がまだ残っているので、冬の間に少しでも掘り進める"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで夏の実りを増やす"},"family":{},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"畑をみんなで刈った年",
+"feeling":"みんなで力を合わせて、畑を大事にしたい。"}
