@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えは三百日分以上ある。苦しい村には草の種を貸そう。ヤギは草より多いので、少し肉にして干そう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこで板をひけば、水の道の手入れの手間が浮く。体が元気なうちに村の役に立ちたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"ソワ57": {"activity": "水の作業場で働く", "place": "M6", "why": "家の者みんなでのこ場に行けば、板がたくさんとれる"}, "ムイ58": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として続ける"}},
+ "keep": false,
+ "judge": {"M532": "ゆるす", "M533": "ゆるす", "M534": "ゆるす"},
+ "feast": true, "leader": null,
+ "trade": {"T868": "村", "T869": "村", "T870": "村"},
+ "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで心が軽い。みんなで祭りをして、また働きたい。"}

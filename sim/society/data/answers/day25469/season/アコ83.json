@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。秋のうちに畑に種をまいて、夏に刈れるようにしておこう。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕が一番高いので、鎌などの道具を作って村の刈り入れを助けたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ83": {"activity": "採集", "place": "camp", "why": "採集の腕が高く、小さい子の近くで安全に働けるから"}},
+ "keep": false,
+ "judge": {"M532": "ゆるす", "M533": "ゆるす", "M534": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T868": "村", "T869": false, "T870": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまかないと、夏に刈るものがない", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心している。道具づくりに精を出したい。"}

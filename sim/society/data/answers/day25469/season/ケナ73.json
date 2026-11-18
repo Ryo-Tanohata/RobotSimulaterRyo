@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。苦しい村には少し貸してやればいい。おれは畑の草取りをする。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが減る。蓄えは十分なので、畑を守るのがいちばん役に立つ。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M532": "ゆるす", "M533": "ゆるす", "M534": "ゆるす"}, "feast": false, "leader": null, "trade": {"T868": "村", "T869": false, "T870": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種が四百万つかみ以上あり、苦しい村に貸す余裕がある。", "because": [4206147], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。静かに畑で働きたい。"}

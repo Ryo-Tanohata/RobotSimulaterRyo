@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。この秋は、みんなで水の道をどんどん掘って、畑に水を引こう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ 4426 人日も残っていて、蓄えに余裕があるので、体力のある私たちが掘るのがよい"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "リセ61": {"activity": "水の道を掘る", "place": "camp", "why": "力があるので水の道掘りを手伝う"},
+  "ハソ63": {"activity": "水の道を掘る", "place": "camp", "why": "力があるので水の道掘りを手伝う"},
+  "キオ63": {"activity": "水の道を掘る", "place": "camp", "why": "力があるので水の道掘りを手伝う"},
+  "ケセ65": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、家の人の数を帳に書く"},
+  "キサ66": {"activity": "水の道を掘る", "place": "camp", "why": "力があるので水の道掘りを手伝う"},
+  "ナセ67": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎて草が足りないので世話をする"},
+  "セオ70": {"activity": "水の道を掘る", "place": "camp", "why": "力があるので水の道掘りを手伝う"},
+  "オセ72": {"activity": "水の道を掘る", "place": "camp", "why": "力があるので水の道掘りを手伝う"},
+  "ラニ74": {"activity": "水の道を掘る", "place": "camp", "why": "力があるので水の道掘りを手伝う"},
+  "ケセ76": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話の人手がほしい"},
+  "ホタ80": {"activity": "採集", "place": "西草原12", "why": "まだ若いので、近くで採集して慣れる"}
+ },
+ "keep": false,
+ "judge": {"M532": "ゆるす", "M533": "ゆるす", "M534": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心。水の道を掘って、みんなの畑を豊かにしたい。"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りない。今季は何頭かつぶして干し肉にしよう。畑も忘れずに草取りしような。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋は畑の草取りで実りが増える。去年は刈り手が足りず穂が落ちたので、手を回したい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"オネ55": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を多く回すため"}, "ソナ56": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を多く回すため"}},
+ "keep": false,
+ "judge": {"M532": "ゆるす", "M533": "ゆるす", "M534": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T868": false, "T869": false, "T870": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種をまき、秋から春まで草取りをすると、次の夏の実りが増える。", "because": [4206140], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "ヤギが多くて草が心配だが、畑仕事に精を出して実りを待つ。"}

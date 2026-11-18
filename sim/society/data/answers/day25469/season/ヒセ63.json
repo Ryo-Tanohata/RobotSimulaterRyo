@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "冬の前に、おれは川で獲物を追う。肉が少しでも蓄えに回ればいいだろう。"}],
+ "job": {"activity": "狩り", "place": "北川12", "with": [], "why": "狩りの腕は一番だし、前の季節も 30 日のうち 25 日は食べ物が見つかった。冬に向けて肉を増やしたい"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソナ66": {"activity": "狩り", "place": "北川12", "why": "おれと一緒に川で獲物を追う"},
+  "セオ66": {"activity": "採集", "place": "camp", "why": "蓄えを助ける"},
+  "ヌオ70": {"activity": "採集", "place": "camp", "why": "蓄えを助ける"},
+  "ユエ70": {"activity": "採集", "place": "camp", "why": "蓄えを助ける"},
+  "キオ76": {"activity": "採集", "place": "camp", "why": "蓄えを助ける"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽い。川へ行くのが楽しみだ。"}

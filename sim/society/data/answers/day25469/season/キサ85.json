@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "ヤギは 123 頭で、草で養えるのは 110 頭ほどだ。よその村のヤギはもう受けないほうがいい。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだたくさん残っている。水の来る畑は悪い年でも実るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M532": "つぐなう", "M533": "ゆるす", "M534": "つぐなう"},
+ "feast": false, "leader": null,
+ "trade": {"T868": "村", "T869": false, "T870": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [
+  {"op": "add", "text": "ヤギは 123 頭で、草で養えるのは約 110 頭。多すぎる分がやせていなくなる", "because": [4206119], "confidence": 0.8},
+  {"op": "add", "text": "畑の草の種は、刈った人の家ではなく畑の家の倉に入るので、もめごとになりやすい", "because": [4206143, 4206144, 4206145], "confidence": 0.6}
+ ],
+ "proposal": {"text": "ヤギは 123 頭で草の約 110 頭をこえているから、この 1 年はよその村のヤギを受けず、冬のはじめに乳の出ないオスから約 13 頭を村でつぶして干し肉にしよう。秋は大人一人 1000 つかみずつまき、家ごとに一人は水の道の手入れに出よう。", "because": [4206119], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L780", "against": "ヤギが多すぎるのに、よその村のヤギを受けるのはよくない", "agree": false, "reason": "草が足りないのにヤギを増やすことになるから"},
+  {"id": "L781", "against": "9 頭も受けるとヤギがさらに多くなる", "agree": false, "reason": "ヤギはもう草の量をこえているから"},
+  {"id": "L782", "against": "とくにない", "agree": true, "reason": "水の道を直し、よその村のヤギを受けないのは理にかなう"}
+ ],
+ "feeling": "黙って水の道を掘る。それでいい。"}

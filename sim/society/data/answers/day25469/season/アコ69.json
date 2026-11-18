@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "村の蓄えはたっぷりある。苦しい村には、貸せるだけ貸してあげよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "手元に食べ物がないので、まず自分の食べる分を集める。採集は得意で、好奇心のままに新しい場所も見られる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"トナ75": {"activity": "採集", "place": "camp", "why": "得意な採集で、家の食べ物をいっしょに集めてもらう。"}},
+ "keep": false,
+ "judge": {"M532": "ゆるす", "M533": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T868": "村", "T869": false, "T870": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。仲間と分けあいながら、今日も外へ出るのが楽しみだ。"}

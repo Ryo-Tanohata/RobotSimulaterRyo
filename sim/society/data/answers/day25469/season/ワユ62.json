@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "畑がからっぽだから、この秋はまこう。わたしは道具の腕があるから、倉の板を使って水の道の手入れに出るよ。水が来る畑は、悪い年でも実るからね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の輪の直しはもう終わったので、道具の腕を生かして、残っている水の道の手入れを倉の板で早く進めたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M532": "つぐなう", "M533": "ゆるす", "M534": "つぐなう"},
+ "feast": false, "leader": null,
+ "trade": {"T868": false, "T869": false, "T870": {"side": "村", "利子": 0.1}},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヤギは 123 頭で、草で養える約 110 頭をまた少しこえている。よその村のヤギを受けるとさらに多すぎになる", "because": [4206148], "confidence": 0.8}],
+ "proposal": {"text": "畑がからっぽなので、この秋は大人一人 1000 つかみずつまき、家ごとに一人は倉の板を使って水の道の手入れ (あと 4426 人日) に出よう。ヤギは 123 頭で草の約 110 頭をこえているから、この 1 年はよその村のヤギを受けないでおこう。", "because": [4206148], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L780", "against": "夏の刈り入れのことは、もう終わっている", "agree": true, "reason": "秋にまいて、家ごとに一人を水の道の手入れに出すのは、今の畑と水の道にあっている"},
+  {"id": "L773", "against": "ヤギは今 123 頭で、63 頭ではない", "agree": false, "reason": "ヤギの数が今とちがうので、このままでは合わない"},
+  {"id": "L782", "against": "水の輪の直しはもう終わっていて、あと 0 人日", "agree": true, "reason": "倉の板で水の道の手入れに回るのは、今もそのとおりだから"},
+  {"id": "L771", "against": "つぶす数が今のヤギの数と合わない", "agree": false, "reason": "ヤギは 123 頭で、こえているのは少しだけだから、20 頭もつぶさなくてよい"}
+ ],
+ "feeling": "水の道がのびていくのを見るのが楽しみ"}
