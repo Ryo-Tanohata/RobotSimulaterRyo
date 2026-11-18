@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑が実っている。落ちる前に、みんなで刈ってしまおう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"キサ50": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ケナ54": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "テナ60": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "シエ62": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ソナ64": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番よく、草の種を虫から守る器が要るから"}, "family": {"キサ50": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ケナ54": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "テナ60": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "シエ62": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ソナ64": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は畑が静かなので、器を作りためる"}, "family": {"キサ50": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケナ54": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "テナ60": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "シエ62": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ソナ64": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れに備えて鎌を作る"}, "family": {"キサ50": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケナ54": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "テナ60": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "シエ62": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ソナ64": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れを急いだ年",
+ "mood": "みんなで無事に刈り入れができればいい。"}

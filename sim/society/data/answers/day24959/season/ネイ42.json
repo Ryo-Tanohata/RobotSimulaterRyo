@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑をしっかり刈って、秋にはまた種をまこう。ことしも みんなで食べ物を分け合っていこうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうので、刈り入れを手伝う"}, "family": {"ユエ55": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ヒセ67": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ラニ67": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ロワ68": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ラニ69": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "秋は木の実が実るので、冬にそなえて集める"}, "family": {"ユエ55": {"activity": "採集", "place": "camp", "why": "冬にそなえて食べ物を集める"}, "ヒセ67": {"activity": "採集", "place": "camp", "why": "冬にそなえて食べ物を集める"}, "ラニ67": {"activity": "採集", "place": "camp", "why": "冬にそなえて食べ物を集める"}, "ロワ68": {"activity": "採集", "place": "camp", "why": "冬にそなえて食べ物を集める"}, "ラニ69": {"activity": "採集", "place": "camp", "why": "冬にそなえて食べ物を集める"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "冬は木の実が実らないが、けものや魚はいるので肉を得る"}, "family": {"ユエ55": {"activity": "狩り", "place": "北林12", "why": "冬は肉が頼り"}, "ヒセ67": {"activity": "狩り", "place": "北林12", "why": "冬は肉が頼り"}, "ラニ67": {"activity": "狩り", "place": "北林12", "why": "冬は肉が頼り"}, "ロワ68": {"activity": "狩り", "place": "北林12", "why": "冬は肉が頼り"}, "ラニ69": {"activity": "狩り", "place": "北林12", "why": "冬は肉が頼り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "春は山菜や芋を集めて食べ物をふやす"}, "family": {"ユエ55": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ヒセ67": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ラニ67": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ロワ68": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ラニ69": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"シエ93": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T799": "村", "T800": "村", "T801": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ゆたかな刈り入れの年",
+ "mood": "畑がたくさん実っていて、ありがたい気持ちです。"}
