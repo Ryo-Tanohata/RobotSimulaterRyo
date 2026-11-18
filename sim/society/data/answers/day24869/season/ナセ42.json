@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "止まった水の輪は、わたしが直してくる。板があるうちに片づけてしまおう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕があるから、残っている水の輪の直しを早く終わらせたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ92": true},
+ "family": {
+  "キサ56": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをして、次の夏の実りを増やすため"},
+  "トナ58": {"activity": "水の道を掘る", "place": "camp", "why": "家から一人は水の道の手入れに出る決まりだから"},
+  "ルタ69": {"activity": "帳をつける", "place": "camp", "why": "字が読めるのは家でルタ69だけだから"},
+  "テナ78": {"activity": "畑仕事", "place": "camp", "why": "母といっしょに草取りを覚えるため"},
+  "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "母といっしょに草取りを覚えるため"}
+ },
+ "keep": false,
+ "feast": false, "leader": "ロワ38",
+ "trade": {"T782": false, "T783": false, "T786": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヒセ5の村は畑が実らず苦しい。村の蓄えはたくさんあるので、草の種を貸しても困らない", "because": [3921717], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L729", "against": "住まいを建てる人が多いと、畑の草取りの手が減る", "agree": true, "reason": "雨の夜に外で濡れる人がまだいるから"},
+  {"id": "L723", "against": "ほかの仕事の人手が減る", "agree": true, "reason": "水の道が傷むと畑に水が来なくなるから"}
+ ],
+ "feeling": "まだ手は動く。輪がまた回るのを見たい"}

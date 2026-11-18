@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "畑が空っぽだ。この秋はみんなで草の種をまいて、手の空いた者は水の道を掘りに行こう。わしも年だが、まだ鍬は振れるぞ。"}, {"to": "ルタ92", "text": "北の村からよく来たな。ここは人が多くてにぎやかだ。いっしょに冬をこそう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": ["ナセ60"], "why": "水の道の手入れがあと 2024 人日も残っていて、だれも掘っていない。水の来る畑は悪い年でも実りを守ってくれた"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ルタ92": true},
+ "family": {"ナセ60": {"activity": "水の道を掘る", "place": "camp", "why": "力があるので、わしといっしょに水の道を掘ってもらう"}, "リセ66": {"activity": "畑仕事", "place": "camp", "why": "まいたばかりの畑の草取りで、来年の実りを増やしたい"}, "タユ71": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、家の人の数と倉を帳に書いてもらう"}, "ムイ72": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど、夏の実りがふえる"}, "ケセ74": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道を掘れば、畑を悪い年から守れる"}},
+ "keep": false,
+ "feast": false, "leader": "ロワ38",
+ "trade": {"T782": false, "T783": false, "T784": "村", "T785": "村", "T786": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "水の来る畑は、村の悪い年でも刈り入れが半分にならず、たくさんの草の種を守れる", "because": [], "confidence": 0.8}],
+ "proposal": {"text": "この秋は大人一人 1000 つかみずつ畑にまき、家ごとに大人を二人ずつ水の道の手入れ (あと 2024 人日) に出そう。ヤギは 104 頭で草の約 110 頭に近いから、この 1 年はよその村のヤギを受けない。", "because": [], "penalty": {"for": "蓄え", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L726", "against": "家ごとに一人では、水の道の手入れが冬までに終わらないかもしれない", "agree": true, "reason": "空の畑にまいて、水の道も手入れできるから"}, {"id": "L723", "against": "秋か冬のどちらかだけでは足りないかもしれない", "agree": true, "reason": "水の来る畑を守ることが大事だから"}, {"id": "L729", "against": "住まいを建てると、畑や水の道の手が減る", "agree": true, "reason": "雨の夜に外で濡れる人がいるのはよくない"}, {"id": "L720", "against": "倉からは今年もう出せないと聞いている", "agree": true, "reason": "苦しい村に貸して、返してもらえば村どうしの仲がよくなる"}, {"id": "L725", "against": "ヤギを一頭も受けないと、よその村の頼みを断ることになる", "agree": true, "reason": "ヤギは草で養える数にほぼ届いているから"}],
+ "feeling": "体はまだ動く。若い者たちに水の道の掘り方を見せてやりたい"}

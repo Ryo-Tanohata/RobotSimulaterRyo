@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "畑が空っぽだから、この秋はみんなでしっかりまこうね。わたしは道具の腕をいかして、止まりそうな水の輪を直してくるよ。"}, {"to": "ルタ92", "text": "北の村からよく来たね。ここは人が多くてにぎやかだよ。困ったことがあったら、わたしに声をかけてね。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具づくりが一番得意だから、粉をひく輪の直し (あと 270 人日) を早く終わらせたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ルタ92": true}, "family": {"トナ82": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っていて、家から一人は出す約束だから"}}, "keep": false,
+ "feast": true, "leader": "ロワ38", "trade": {"T782": false, "T783": false, "T786": {"side": "村", "利子": 0}}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "この年は病で大人も子もたくさん亡くなった。ホミ82 も病で亡くなった", "because": [3921708], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L726", "against": "水の道に人を出すと、ほかの仕事の手がへる", "agree": true, "reason": "畑にまいて水の道を守れば、悪い年でも食べ物が残るから"}, {"id": "L725", "against": "ヤギを受けないと交換が減る", "agree": true, "reason": "ヤギは 104 頭で草の約 110 頭に近いから、ふやさないほうがいい"}, {"id": "L723", "against": "家によっては人手が足りない", "agree": true, "reason": "水の来る畑は大事だから"}, {"id": "L729", "against": "住まいを建てると畑や水の道の手がへる", "agree": true, "reason": "村の住まいに 36 人も眠っていて、雨の夜に濡れる人がいるから"}, {"id": "L720", "against": "貸した分が返ってこないかもしれない", "agree": true, "reason": "蓄えはたくさんあるし、返しに来る村もあるから"}],
+ "feeling": "亡くなった人が多くてさみしいけど、手を動かしていると少し気持ちが落ちつく。"}
