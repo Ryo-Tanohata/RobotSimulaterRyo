@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は畑の実りが多いから、みんなで毎夕しっかり刈ろう。秋はまく分も忘れずにね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が残っていて、夏のうちに刈らないと落ちてしまうから"}, "family": {"キサ61": {"activity": "畑仕事", "place": "camp", "why": "畑を刈りきるため"}, "ムイ63": {"activity": "畑仕事", "place": "camp", "why": "畑を刈りきるため"}, "オセ65": {"activity": "畑仕事", "place": "camp", "why": "畑を刈りきるため"}, "リセ73": {"activity": "畑仕事", "place": "camp", "why": "畑を刈りきるため"}, "ロワ74": {"activity": "畑仕事", "place": "camp", "why": "畑を刈りきるため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "東林12", "with": [], "why": "秋は木の実がなるので、家の食べ物を集める"}, "family": {"キサ61": {"activity": "採集", "place": "東林12", "why": "木の実を集めるため"}, "ムイ63": {"activity": "採集", "place": "東林12", "why": "木の実を集めるため"}, "オセ65": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをするため"}, "リセ73": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをするため"}, "ロワ74": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをするため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると来年の実りが増えるから"}, "family": {"キサ61": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ムイ63": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "オセ65": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "リセ73": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ロワ74": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りを続けて、夏の実りを守るため"}, "family": {"キサ61": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}, "ムイ63": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}, "オセ65": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}, "リセ73": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}, "ロワ74": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T896": false, "T897": false, "T899": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たくさん刈れた夏の年",
+ "feeling": "蓄えがたっぷりあって安心。今年も体を動かして働こう。"}
