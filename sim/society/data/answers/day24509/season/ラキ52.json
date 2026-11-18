@@ -1,0 +1,28 @@
+{"say": [{"to": "みんな", "text": "うちの畑で刈ってくれた人の草の種が、うちの倉に入ってしまったそうだ。すまなかった。ちゃんと返すよ。"}, {"to": "みんな", "text": "畑が空だから、この秋はみんなでまこう。わしは倉の板で水の輪の直しを先に片づける。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕があるので、倉の板で残りの水の輪の直しを早く終わらせたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ88": true, "ネイ88": true},
+ "family": {
+  "ワユ54": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っていて、悪い年でも畑を守れるから"},
+  "ヌオ63": {"activity": "水の道を掘る", "place": "camp", "why": "力のある若い者で水の道の手入れを進めたい"},
+  "タユ68": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、実りを増やすため"},
+  "トナ69": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やすため"},
+  "ソワ70": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが草の限りに近いので、よく見てやせさせないため"},
+  "ケセ73": {"activity": "畑仕事", "place": "camp", "why": "赤ん坊がいるので、キャンプの近くで草取りをしてほしい"},
+  "キオ74": {"activity": "畑仕事", "place": "camp", "why": "赤ん坊がいるので、キャンプの近くで草取りをしてほしい"},
+  "ルタ74": {"activity": "水の道を掘る", "place": "camp", "why": "大人になったばかりなので、兄たちと水の道を掘って覚えてほしい"},
+  "キオ75": {"activity": "畑仕事", "place": "camp", "why": "14 歳なので、大人と一緒に草取りを手伝ってほしい"}
+ },
+ "keep": false,
+ "judge": {"M522": "つぐなう", "M523": "つぐなう", "M524": "つぐなう"},
+ "feast": true, "leader": null,
+ "trade": {"T743": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "よその家の人がうちの畑で刈ると、その草の種がうちの倉に入って、もめごとになる", "because": [3768349, 3768350, 3768351], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L682", "against": "家ごとにつぶすと、ヤギの少ない家にはむずかしい", "agree": true, "reason": "ヤギが草の限りに近いから、増えすぎないようにしたい"},
+  {"id": "L674", "against": "まくと草取りの手がたくさん要る", "agree": true, "reason": "畑が空なので、まいて水の輪の直しも進めるのがよい"}
+ ],
+ "feeling": "うちのことで不満が出て申しわけない。きちんと返して、みんなで畑と水の道を進めたい"}

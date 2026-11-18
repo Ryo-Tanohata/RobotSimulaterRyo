@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋は畑に種をまいて、わしは字を書ける者として、蓄えと刈った量を帳に残しておこう。"}],
+ "job": {"activity": "帳をつける", "place": "camp", "what": ["蓄え", "刈る", "交換"], "how": "数え札", "why": "字を読み書きできる者が少なく、蓄えや刈った量を残す者が要るので続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ88": true, "ネイ88": true}, "keep": false,
+ "judge": {"M522": "ゆるす", "M523": "ゆるす", "M524": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T743": false}, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "老いても好奇心は尽きない。畑と帳で静かに秋を過ごしたい。"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "新しく来た人たち、よく来たね。今季は私が林で狩りをして、肉を村に持ち帰るよ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りの腕が一番あるので、冬の前に肉を干して蓄えを厚くしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ88": true, "ネイ88": true, "ソワ88": true},
+ "family": {"ホタ79": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が高いので、私と一緒に肉を集めてもらう"}},
+ "keep": false,
+ "judge": {"M522": "ゆるす", "M523": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T743": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": []}
