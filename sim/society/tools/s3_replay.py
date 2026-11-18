@@ -25,6 +25,7 @@ HERE = Path(__file__).resolve().parent
 SOC = HERE.parent
 ROOT = SOC.parent.parent
 D = "sim/society/data"
+ALLOW_S3 = False
 
 
 def git_extract(rev, paths, dest):
@@ -91,7 +92,7 @@ def one(c, old, work):
     out["real_json"] = "同じ" if st == json.loads((ref / "state.json").read_text(encoding="utf-8")) else "ちがう"
     out["sha"] = sha(dn / "state.json")[:16]
     out["s3"] = "s3" in st["era2"].get("g7", {}) if st.get("era2") else False
-    out["ok"] = rn.returncode == ro.returncode == 0 and not diff and all(out[k] == "同じ" for k in ("state", "app", "archive")) and not out["s3"]
+    out["ok"] = rn.returncode == ro.returncode == 0 and not diff and all(out[k] == "同じ" for k in ("state", "app", "archive")) and (ALLOW_S3 or not out["s3"])
     if not out["ok"]:
         out["err"] = (rn.stderr[-300:], ro.stderr[-300:])
     if not os.environ.get("S3_KEEP"):
@@ -104,7 +105,10 @@ def main():
     ap.add_argument("--commits", required=True)
     ap.add_argument("--old", required=True, help="前のコードの sim/society (step.py のあるフォルダ)")
     ap.add_argument("--work", default="/tmp/s3_replay")
+    ap.add_argument("--allow-s3", action="store_true", help="印 g7.s3 のあとの歩もくらべる (2026-11-18。S3 の直しが前の歩を変えないかの確かめ)")
     a = ap.parse_args()
+    global ALLOW_S3
+    ALLOW_S3 = a.allow_s3
     bad = 0
     print("| コミット | 歩の日 → 次 | 今のコード = 前のコード (state のバイト) | app_data | archive | 次のお題 | 本物とくらべて (中身) | 本物とくらべて (バイト) | sha256 (今のコード) | 結果 |")
     print("|---|---|---|---|---|---|---|---|---|---|")

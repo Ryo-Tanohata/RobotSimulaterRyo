@@ -14,6 +14,7 @@
 - 物差し (S3_design.md 5.): e1 掘った石で燃やす・e2 作業場が続く・e3 自分で選ぶ・e4 教えて広がる・e5 暮らしを守る。年の終わりに行を残す
   (2026-11-17 の直し: e3 は持ち場・掘る仕事を続けている答える人も数える・e4 は 1 年じゅう持ち場の人 10 人と見習いを終えた人 1 人・
    e5 の人は印の日の人の 95% 以上・持ち場の上限 16 → 24)
+  (2026-11-18 の直し。FIX_DAY より後だけ: e1 は S3 に入ってから掘ってためた石で数える・お題の持ち場の人の去年の日と石のかまどの家の数)
 - 止まり: 入口 (e1・e2 と e3 か e4。そのあいだ e5 を割らない) で HOLD entrance。e5 を割った・道を選ぶ人が 2 年 0 人・村の倉の石が尽きて
   だれも掘らない・5 年ごとで HOLD consult (G15 の相談はかわりに止める)
 """
@@ -67,12 +68,20 @@ E4_N, E4_NEW, E4_YEARS = 10, 1, 2  # 2026-11-17 の直し: 1 年じゅう持ち�
 E5_STORE = 120
 E5_POP = 0.95  # 2026-11-17 の直し: 年の終わりの人が、印を書いた日の人 (pop0) の 95% 以上 (前の年より減らない、をやめた)
 LATER_YEARS = 5
+# 2026-11-18 の直し (S3_check.md 6.・7.): 本物の村が 5 年の相談で止まった日 (208年の終わり) より後の年の終わりとお題だけ。
+# この日までの歩 (やり直し) は、state・お題・出来事が 1 バイトも変わらない
+FIX_DAY = 25079
 PATH_YEARS = 2
 ES = {"e1": "掘った燃える石で燃やす", "e2": "作業場が続く", "e3": "自分で選ぶ", "e4": "教えて広がる", "e5": "暮らしを守る"}
 FS = {"F1": "はじめて持ち場についた人", "F2": "はじめて村の人が掘った燃える石", "F3": "はじめての見習いの終わり", "F4": "はじめて板か燃える石を交換した"}
 # 村の人に見せない言葉 (お題と出来事。試しで確かめる)
 HIDE = ("後押し", "反実仮想", "作る側", "Society", "S3", "案 A", "本人")
 CHOSE_ACTS = (g15.ACT_WS_WORK, g15.ACT_WS_BUILD, g15.ACT_DIG)
+
+
+def fixed(state):
+    """2026-11-18 の直し (e1 を掘りためた石で数える・お題の 2 つの数のまちがい) が働くか: FIX_DAY より後の日だけ"""
+    return state["day"] > FIX_DAY
 
 
 def on(state):
@@ -672,12 +681,48 @@ def row_of(state, y):
             "e5_ok": famine == 0 and smin >= E5_STORE and pop >= E5_POP * g["pop0"]}
 
 
+def _old0(state):
+    """e1 の直し (2026-11-18): S3 に入る前からあった燃える石 (後押しの年までに掘った石) の kg。
+    数えはじめの年の前の年の終わりの村の倉 (G15 の帳簿) から、印のあとその年に村の人が掘った分を引く (家の倉は印の日に 0)"""
+    g = _g(state)
+    p = g.get("e1pool") or {}
+    if "old0" in p:
+        return p["old0"]
+    y0 = g["start_year"] - 1
+    lr = next((r for r in g15._g(state)["ledger"] if r["year"] == y0), None) or {}
+    return round(max(0.0, lr.get("coal_stock", 0) - sum((g["dug"].get(str(y0)) or {}).values())), 2)
+
+
+def e1_pool(state, upto, last=None):
+    """e1 の直し (2026-11-18): 年ごとに、燃やした石のうち、S3 に入ってから村の人が掘った石 (前の年に掘ってためた石も数える) の割合。
+    前からあった石を先に出す (燃やした石、つぎに替えた石)。last: upto 年の行 (まだ rows にないとき)。
+    戻り値: [{year, old_start, old_used, own_share, coal_share, like}] (state は変えない。前の年の数えなおしにも使う)"""
+    g = _g(state)
+    old, out = _old0(state), []
+    for y in range(g["start_year"], upto + 1):
+        r = last if (y == upto and last is not None) else g["rows"].get(str(y))
+        if not r:
+            continue
+        burned = r.get("coal_burned", 0)
+        sold = sum(v.get("燃える石", 0) for v in (r.get("sold") or {}).values())
+        used = min(old, burned)
+        own = round((burned - used) / burned, 3) if burned else 0.0
+        out.append({"year": y, "old_start": round(old), "old_used": round(used), "own_share": own, "coal_share": r.get("coal_share", 0.0),
+                    "like": bool(burned and own >= E1_DUG and r.get("coal_share", 0) >= E1_SHARE)})
+        old = max(0.0, old - used - sold)
+    return out
+
+
 def year_end(state):
     g, D = _g(state), state["day"]
     y = D // YEAR
     if y < g["start_year"]:
         return
     r = row_of(state, y)
+    if fixed(state):  # e1 の直し (2026-11-18): その年に掘った石でなく、S3 に入ってから掘ってためた石で燃やしたか (前の年の行と e_years は変えない)
+        g.setdefault("e1pool", {"old0": _old0(state)})
+        e = e1_pool(state, y, r)[-1]
+        r["own_share"], r["e1_like"] = e["own_share"], e["like"]
     g["rows"][str(y)] = r
     for k in ("e1", "e2", "e3", "e4"):
         if r[f"{k}_like"] and y not in g["e_years"][k]:
@@ -736,6 +781,10 @@ def coal_lines(state, p):
     g, g15g = _g(state), g15._g(state)
     h = p.get("household")
     n = len([x for x in g15g["stoves"] if g15.stove_done(state, x)])
+    if fixed(state):  # 直し (2026-11-18): 今いる家だけを数える (なくなった家の石のかまどを数えない)。まきのかまどの家の数も出す
+        hs = era2._homes(state)
+        n = len([x for x in hs if g15.stove_done(state, x)])
+        nw = len(hs) - n
     mine = "石のかまど" if h and g15.stove_done(state, h) else (f"石のかまどに作りかえている途中" if h in g15g["stoves"] else "まきのかまど")
     vill = g15g["coal"]["stock"]
     per = burn_per_day(state)
@@ -750,7 +799,7 @@ def coal_lines(state, p):
     hend = runout(state, hc, burn_per_day(state, h)) if h and g15.stove_done(state, h) else None
     t = (f"  あなたの家 ({h}) は{mine}" + (f"。{ys}年のまき集め 約 {round(fh)} 人日" if fh else "")
          + f"。家の倉の燃える石 {round(hc)} kg" + (f" ({_yd(hend)}ごろまで)" if hend and hc else "") + "。")
-    t += (f"村の倉 {round(vill)} kg" + (f" (このままなら {_yd(end)}ごろに尽きる)" if end else "") + f"・石のかまどの家 {n}")
+    t += (f"村の倉 {round(vill)} kg" + (f" (このままなら {_yd(end)}ごろに尽きる)" if end else "") + f"・石のかまどの家 {n}" + (f" (まきのかまどの家 {nw})" if fixed(state) else ""))
     dg = g["dug"].get(str(_y(state))) or g["dug"].get(str(_y(state) - 1)) or {}
     if dg:
         top = sorted(dg, key=lambda k: (-dg[k], k))[:4]
@@ -772,7 +821,7 @@ def block_lines(state, p):
                     if part(state, "b") else f"- 作業場の持ち場: {ps}。持ち場の人は、やめると答えるまで、季節ごとに作業場で働く。")
         r = g["posts"].get(name)
         if r:
-            y = str(_y(state) - 1)
+            y = str((state["day"] + 1) // YEAR - 1) if fixed(state) else str(_y(state) - 1)  # 直し (2026-11-18): 年の集まり (年の終わりの日) でも、終わった年の日を出す
             rows.append(f"  あなたは {r['mill']} の{r['post']}。{y}年に {r['days'].get(y, 0)} 日働いた" + (f"・家にもどった板 {int(r['planks'])} 束" if r["planks"] >= 1 else ""))
         fam = [q["name"] for q in era2.adults(state) if h and q.get("household") == h and q["name"] in g["posts"] and q["name"] != name]
         if fam:
@@ -836,6 +885,7 @@ def row_text(r):
     return (f"{r['year']}年: 掘った {round(r['coal_dug'])} kg ({r['diggers']} 人)・燃やした {round(r['coal_burned'])} kg (掘った分 {round(r['dug_share'] * 100)}%)・"
             f"火と力の {round(r['coal_share'] * 100, 1)}%・村の倉 {r['coal_stock']} kg・家の倉 {r['house_coal']} kg / まき集め {r['fire_pd']} 人日 (浮いた {r['saved_pd']}) / "
             f"作業場の 8 人の日 {ws} / 持ち場 {r['posts']} (1 年じゅう {r.get('posts_year', '-')}・やめた {r['quit']})・見習い 終えた {r['appr_done']} (読める人が教えた {r['appr_reader']})・途中 {r['appr']} / "
+            + (f"S3 からの石の分 {round(r['own_share'] * 100)}% / " if "own_share" in r else "") +
             f"選んだ答える人 {r['chose']} (書いた {r.get('wrote', '-')}) / {r['answerers']} / 交換 {sold} / 蓄え いちばん少ない {r['store_min']} 日分・ききん {r['famine']}・人 {r['pop_prev']} → {r['pop']} (はじめ {r.get('pop0', '-')}) / "
             + " ".join(f"{k} {'○' if r[f'{k}_like'] else '×'}" for k in ("e1", "e2", "e3", "e4")) + f" e5 {'○' if r['e5_ok'] else '×'}")
 

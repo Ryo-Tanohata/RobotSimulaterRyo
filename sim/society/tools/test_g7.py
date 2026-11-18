@@ -8901,6 +8901,45 @@ class T_S3(unittest.TestCase):
         g["pop0"] = math.ceil(len(alive) / s3.E5_POP) + 1
         self.assertFalse(s3.row_of(st, 204)["e5_ok"], "はじめの 95% を下まわれば割る")
 
+    def test_fix_1118(self):
+        """2026-11-18 の直し (S3_check.md 6.・7.): FIX_DAY (25079) より後だけ。e1 は S3 に入ってから掘ってためた石で数える
+        (前からあった石を先に燃やす)。お題: 持ち場の人の去年の日は終わった年・石のかまどの家は今いる家だけ (まきのかまどの家も)"""
+        import g15
+        import s3
+        st = self.marked()
+        g, gg = s3._g(st), g15._g(st)
+        self.assertEqual(s3._old0(st), round(next(r for r in gg["ledger"] if r["year"] == 203)["coal_stock"], 2))
+        old0 = s3._old0(st)
+        rows = {204: (30000, old0 + 10000, 0.6), 205: (0, 40000, 0.6), 206: (0, 40000, 0.4), 207: (0, 40000, 0.6)}
+        for y, (dug, burned, cs) in rows.items():
+            g["rows"][str(y)] = {"coal_dug": dug, "coal_burned": burned, "coal_share": cs, "sold": {}}
+        e = {x["year"]: x for x in s3.e1_pool(st, 207)}
+        self.assertEqual(e[204]["old_used"], round(old0))
+        self.assertLess(e[204]["own_share"], s3.E1_DUG, "前からあった石を先に燃やす")
+        self.assertTrue(e[205]["like"], "その年に掘らなくても、ためた石で燃やせば届く")
+        self.assertFalse(e[206]["like"], "燃える石が火と力の半分より少なければ届かない")
+        st["day"] = s3.FIX_DAY
+        self.assertFalse(s3.fixed(st))
+        st["day"] = 24599
+        s3.year_end(st)
+        self.assertNotIn("own_share", g["rows"]["204"], "FIX_DAY までは前の測り方のまま")
+        self.assertNotIn("e1pool", g)
+        st["day"] = 25199
+        for y in range(208, 210):
+            g["rows"].pop(str(y), None)
+        s3.year_end(st)
+        self.assertIn("own_share", g["rows"]["209"])
+        self.assertEqual(g["e1pool"]["old0"], old0)
+        p = next(q for q in era2.adults(st) if q.get("household") and g15.stove_done(st, q["household"]))
+        g["posts"][p["name"]] = {"post": s3.SAW_K, "mill": "M6", "day": 24479, "via": "答え", "by": None, "days": {"208": 7, "209": 33}, "planks": 0.0}
+        st["day"] = 25199
+        self.assertIn("209年に 33 日働いた", "\n".join(s3.block_lines(st, p)), "年の集まり (年の終わりの日) は、終わる年の日 (前は、その前の年を出していた)")
+        st["day"] = 25200 + 29
+        self.assertIn("209年に 33 日働いた", "\n".join(s3.block_lines(st, p)))
+        hs = era2._homes(st)
+        n = len([h for h in hs if g15.stove_done(st, h)])
+        self.assertIn(f"石のかまどの家 {n} (まきのかまどの家 {len(hs) - n})", s3.coal_lines(st, p)[-1])
+
     def test_resume_cli(self):
         """step.py resume --s3 (写しのフォルダ): 断る (何も変えない) → 始める (止まりを解き、お題を書き直す) → 2 回目は断る"""
         st = self.real()
