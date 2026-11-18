@@ -760,7 +760,7 @@ def _build_house(state, p, t):
         x, y = _house_site(state, h)
         v = homes[h] = {"x": x, "y": y, "start": state["day"], "built": None, "size": 0, "work": 0.0, "sizes": []}
     before = v["work"]
-    boost = _g15m().plank_rate(state) if "g7" in state["era2"] and _g15_on(state) else 1  # G15 (2026-11-15): 村の倉の板を 1 束使うと倍はかどる (G14 までは 1 のまま)
+    boost = _g15m().plank_rate(state, h) if "g7" in state["era2"] and _g15_on(state) else 1  # G15 (2026-11-15): 村の倉の板を 1 束使うと倍はかどる (G14 までは 1 のまま。S3 の返りの直しのあとは家の板が先)
     v["work"] = round(before + t.get("work_h", 6) * (0.6 + 0.4 * p["skills"].get("道具", 0.1)) * boost, 2)
     p["skills"]["道具"] = round(min(1, p["skills"].get("道具", 0.1) + 0.02), 3)
     if v["built"] is None:

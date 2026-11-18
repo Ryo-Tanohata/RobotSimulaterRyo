@@ -8940,6 +8940,108 @@ class T_S3(unittest.TestCase):
         n = len([h for h in hs if g15.stove_done(st, h)])
         self.assertIn(f"石のかまどの家 {n} (まきのかまどの家 {len(hs) - n})", s3.coal_lines(st, p)[-1])
 
+    def test_return_1118(self):
+        """2026-11-18 の 2 つめの直し「得が出るようにする」(S3_design.md 2.5。RETURN_DAY (25079) より後だけ): 水ののこは同じ日の人が多いほど
+        1 人日の板がふえる (1 人 1 束・4 人から 2 束・3 家 8 人から 3 束)。板は水の道の手入れにも使え、家の板は家の住まいとかまどに先に使う。
+        60 日働いたのこ番も見習いを教えられる。お題に板の返りと残っている手入れ。RETURN_DAY までは前のまま"""
+        import g13
+        import g15
+        import g7
+        import s3
+        st = self.marked()
+        g, gg = s3._g(st), g15._g(st)
+        # 返りの計算: 1 束で 1 人日浮く (PLANK_BOOST 2)。8 人の日は、のこ 1 人日で 3 束 = 3 人日浮く (ひいた 1 人日より 2 人日多い)
+        self.assertEqual([s3.crew_rate(n, h) for n, h in ((1, 1), (3, 3), (4, 1), (7, 3), (8, 2), (8, 3), (20, 5))], [1, 1, 2, 2, 2, 3, 3])
+        self.assertGreater(s3.crew_rate(8, 3) * (g15.PLANK_BOOST - 1), 1, "のこの 1 人日より多く浮く")
+        self.assertEqual(1 * (g15.PLANK_BOOST - 1), 1, "1 人ではもとがとれるだけ (前と同じ)")
+        hs = {}
+        for q in era2.adults(st):
+            if q.get("household"):
+                hs.setdefault(q["household"], []).append(q["name"])
+        big = [h for h in sorted(hs) if len(hs[h]) >= 3][:3]
+        crew = [n for h in big for n in hs[h][:3]][:8]
+        self.assertEqual(len(crew), 8)
+        m6 = g15._mill(st, "M6")
+        m6["stopped"] = None
+        for day, want in ((s3.RETURN_DAY, 8), (s3.RETURN_DAY + 1, 24)):
+            st["day"] = day
+            gg["wsday"] = {}
+            p0 = gg["planks"]["stock"]
+            for n in crew:
+                gg["dest"][n] = "M6"
+                g15.work_day(st, next(q for q in st["people"] if q["name"] == n), {}, g15.ACT_WS_WORK)
+            self.assertEqual(gg["planks"]["stock"] - p0, want, day)
+        self.assertEqual(g["crew"][str(st["day"] // s3.YEAR)]["extra"], 16)
+        st["day"] = s3.RETURN_DAY + 2
+        gg["wsday"] = {}
+        p0 = gg["planks"]["stock"]
+        for n in crew[:4]:
+            g15.work_day(st, next(q for q in st["people"] if q["name"] == n), {}, g15.ACT_WS_WORK)
+        self.assertEqual(gg["planks"]["stock"] - p0, 8, "4 人なら 1 人日 2 束")
+        # 水の道の手入れ: 残っていれば村の倉の板 1 束で 2 人日分。RETURN_DAY までは使わない
+        c = st["era2"]["g7"]["g13"]["canal"]
+        p = next(q for q in st["people"] if q["name"] == crew[0])
+        for day, want, used in ((s3.RETURN_DAY, 1, 0), (s3.RETURN_DAY + 1, 2, 1)):
+            st["day"] = day
+            gg["planks"]["stock"] = 5
+            d0 = c["dug"].get(str(day // s3.YEAR), 0)
+            g13.work_day(st, p, {}, g13.ACT_CANAL)
+            self.assertEqual(c["dug"].get(str(day // s3.YEAR), 0) - d0, want, day)
+            self.assertEqual(5 - gg["planks"]["stock"], used)
+        c["dug"][str(st["day"] // s3.YEAR)] = 10 ** 7
+        gg["planks"]["stock"] = 5
+        self.assertEqual(s3.canal_rate(st), 1, "手入れがすんだ年は板を使わない")
+        self.assertEqual(gg["planks"]["stock"], 5)
+        # 家の板は、家の住まいとかまどに先に使う
+        h = p["household"]
+        g["hplanks"][h] = 1.4
+        self.assertEqual(g15.plank_rate(st, h), g15.PLANK_BOOST)
+        self.assertAlmostEqual(g["hplanks"][h], 0.4)
+        self.assertEqual(gg["planks"]["stock"], 5)
+        self.assertEqual(g15.plank_rate(st, h), g15.PLANK_BOOST)
+        self.assertEqual(gg["planks"]["stock"], 4, "家の板がなければ村の倉から")
+        st["day"] = s3.RETURN_DAY
+        g["hplanks"][h] = 3
+        g15.plank_rate(st, h)
+        self.assertEqual(g["hplanks"][h], 3, "RETURN_DAY までは家の板を使わない")
+        # 60 日働いたのこ番は見習いを教えられる
+        sw, ln = crew[0], crew[1:4]
+        g["posts"] = {sw: {"post": s3.SAW_K, "mill": "M6", "day": 24479, "via": "答え", "by": None, "days": {"208": s3.TEACH_SAW_DAYS}, "planks": 0.0}}
+        g["appr"], g["appr_done"] = {}, []
+        st["day"] = s3.RETURN_DAY
+        self.assertEqual(s3.teachers(st, "M6", [sw]), [], "RETURN_DAY までは、のこ番は教えない")
+        st["day"] = s3.RETURN_DAY + 30
+        self.assertEqual(s3.teachers(st, "M6", [sw]), [sw])
+        self.assertEqual(s3.teachers(st, "M26", [sw]), [], "ほかの作業場では教えない")
+        gg["wsday"] = {"M6": {str(s3.RETURN_DAY + 1 + i): [sw] + ln for i in range(s3.APPR_DAYS)}}
+        s3.ws_season(st)
+        self.assertEqual(sorted(x["name"] for x in g["appr_done"]), sorted(ln))
+        self.assertTrue(all(x["teacher"] == sw for x in g["appr_done"]))
+        # お題: 板の返りと残っている手入れ (RETURN_DAY より後だけ)。出さない言葉は出ない
+        st["day"] = s3.RETURN_DAY
+        t0 = "\n".join(s3.block_lines(st, p))
+        self.assertNotIn("板の返り", t0)
+        self.assertNotIn("日以上働いたのこ番", t0)
+        st["day"] = s3.RETURN_DAY + 30
+        t = "\n".join(s3.block_lines(st, p))
+        self.assertIn("3 家から 8 人そろうと 1 人日で板 3 束", t)
+        self.assertIn("手入れ 1 人日が浮く", t)
+        self.assertIn("いま残っている手入れ: 水の輪の直し あと", t)
+        self.assertIn(f"いま教えられるのこ番: {sw}", t)
+        for w in s3.HIDE + g15.WORDS + (S3_WORDS,):
+            self.assertNotIn(w, "\n".join(s3.plank_lines(st, p)), w)
+        self.assertLess(len("\n".join(s3.plank_lines(st, p)).encode()), 1000, "短く")
+        y = g7.year_prompt(st, p, g7.since(st))
+        self.assertIn("板の返り", y)
+        self.assertEqual(g7.answer_form_check(st, y), [])
+        # 年の行に板と手入れの数 (RETURN_DAY より後の年の終わりだけ)
+        st["day"] = 25199
+        s3.year_end(st)
+        r = g["rows"]["209"]
+        for k in ("planks_made", "planks_used", "planks_house_used", "crew_extra", "canal_dug", "canal_left", "mill_repair"):
+            self.assertIn(k, r)
+        self.assertIn("板 ひいた", s3.row_text(r))
+
     def test_resume_cli(self):
         """step.py resume --s3 (写しのフォルダ): 断る (何も変えない) → 始める (止まりを解き、お題を書き直す) → 2 回目は断る"""
         st = self.real()

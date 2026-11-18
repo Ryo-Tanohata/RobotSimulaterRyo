@@ -268,7 +268,14 @@ def work_day(state, p, t, act):
     g, D = _g(state), state["day"]
     name = p["name"]
     if act == ACT_CANAL:
-        dig(state, 1, name)
+        n = 1
+        if "s3" in state["era2"]["g7"]:  # Society 3.0 の作業場の返り (25079 日目より後だけ): この年の手入れが残っていれば、村の倉の板 1 束で 2 人日分
+            import s3
+            n = s3.canal_rate(state)
+        dig(state, n, name)
+        if n > 1:
+            t.setdefault("events", []).append(log(state, ACT_CANAL, name, f"{name} が、川から村の畑へ水の道を掘った (板で土どめをして、はかどった)", canal=CANAL_PER_DAY * n))
+            return
         t.setdefault("events", []).append(log(state, ACT_CANAL, name, f"{name} が、川から村の畑へ水の道を掘った", canal=CANAL_PER_DAY))
         return
     if not can_do(state, act):

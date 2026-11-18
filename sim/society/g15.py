@@ -212,9 +212,15 @@ def newcomer(state):
 
 # ---------------- 板 (村の倉。直し・建てる・作業場・かまど・住まいの仕事が倍はかどる) ----------------
 
-def plank_rate(state):
-    """板が村の倉にあれば 1 束使って 2 (その 1 人日が 2 人日分)。なければ 1"""
+def plank_rate(state, h=None):
+    """板が村の倉にあれば 1 束使って 2 (その 1 人日が 2 人日分)。なければ 1。
+    h (住まい・かまどの家) があり、Society 3.0 の作業場の返りの直し (s3.ret。25079 日目より後) のあとは、その家の板を先に使う"""
     pk = _g(state)["planks"]
+    s3 = _s3(state) if h is not None else None
+    if s3 and s3.house_plank(state, h):
+        y = str(_y(state))
+        pk["used"][y] = pk["used"].get(y, 0) + 1
+        return PLANK_BOOST
     if pk["stock"] >= 1:
         pk["stock"] -= 1
         y = str(_y(state))
@@ -378,9 +384,15 @@ def work_day(state, p, t, act):
     row = _wsy(state, y, mid)
     row["days"] += 1
     if w["tool"] == SAW:
-        g["planks"]["stock"] += PLANK_PER_DAY
-        g["planks"]["made"][y] = g["planks"]["made"].get(y, 0) + PLANK_PER_DAY
-        row["planks"] += PLANK_PER_DAY
+        s3 = _s3(state)
+        k = s3.saw_planks(state, day) if s3 else PLANK_PER_DAY  # Society 3.0 の作業場の返り (25079 日目より後だけ): 同じ日の人が多いほど 1 人日の板がふえる
+        g["planks"]["stock"] += k
+        g["planks"]["made"][y] = g["planks"]["made"].get(y, 0) + k
+        row["planks"] += k
+        if s3 and s3.ret(state):
+            t.setdefault("events", []).append(log(state, ACT_WS_WORK, name, f"{name} が、作業場 {mid} の水ののこで木をひいて、板にした (この日 {len(day)} 人。"
+                                                  f"村の倉の板 {g['planks']['stock']} 束)", mill=mid))
+            return
         t.setdefault("events", []).append(log(state, ACT_WS_WORK, name, f"{name} が、作業場 {mid} の水ののこで木をひいて、板にした (村の倉の板 {g['planks']['stock']} 束)", mill=mid))
         return
     smiths = [q["name"] for q in era2.adults(state) if (q.get("today") or {}).get("activity") == ACT_WS_WORK and _pick_ws(state, q["name"], ACT_WS_WORK) == mid
@@ -486,7 +498,7 @@ def _stove(state, p, t):
     if stove_done(state, h):
         return _rest(state, p, t, ACT_STOVE, f"{name} は、{h}のかまどはもう石のかまどなので、休んだ")
     s = g["stoves"].setdefault(h, {"work": 0.0, "done": None, "by": []})
-    rate = plank_rate(state)
+    rate = plank_rate(state, h)
     s["work"] = round(s["work"] + rate, 2)
     if name not in s["by"]:
         s["by"].append(name)

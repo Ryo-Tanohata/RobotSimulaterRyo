@@ -15,6 +15,9 @@
   (2026-11-17 の直し: e3 は持ち場・掘る仕事を続けている答える人も数える・e4 は 1 年じゅう持ち場の人 10 人と見習いを終えた人 1 人・
    e5 の人は印の日の人の 95% 以上・持ち場の上限 16 → 24)
   (2026-11-18 の直し。FIX_DAY より後だけ: e1 は S3 に入ってから掘ってためた石で数える・お題の持ち場の人の去年の日と石のかまどの家の数)
+  (2026-11-18 の 2 つめの直し「得が出るようにする」。RETURN_DAY より後だけ: 水ののこは同じ日の人が多いほど 1 人日の板がふえる (crew_rate)・
+   板は水の道の手入れにも使える (canal_rate)・家の板は家の住まいとかまどに先に使う (house_plank)・60 日働いたのこ番も見習いを教えられる・
+   お題に板の返りと残っている手入れの行 (plank_lines))
 - 止まり: 入口 (e1・e2 と e3 か e4。そのあいだ e5 を割らない) で HOLD entrance。e5 を割った・道を選ぶ人が 2 年 0 人・村の倉の石が尽きて
   だれも掘らない・5 年ごとで HOLD consult (G15 の相談はかわりに止める)
 """
@@ -72,6 +75,11 @@ LATER_YEARS = 5
 # この日までの歩 (やり直し) は、state・お題・出来事が 1 バイトも変わらない
 FIX_DAY = 25079
 PATH_YEARS = 2
+# 2026-11-18 の 2 つめの直し (本人の「得が出るようにする」。S3_design.md 2.5・S3_check.md 8.)【仮定】: 作業場の返り。
+# 本物の村が止まっている日 (25079) より後の日だけ。それまでの歩は 1 バイトも変わらない
+RETURN_DAY = 25079
+CREW = ((8, 3, 3), (4, 1, 2))  # (同じ日・同じ作業場の人, 家, 1 人日の板)。上から先に当てる。どれにも当たらなければ g15.PLANK_PER_DAY (1)
+TEACH_SAW_DAYS = 60  # のこ番は、その作業場で合わせて 60 日働くと見習いを教えられる
 ES = {"e1": "掘った燃える石で燃やす", "e2": "作業場が続く", "e3": "自分で選ぶ", "e4": "教えて広がる", "e5": "暮らしを守る"}
 FS = {"F1": "はじめて持ち場についた人", "F2": "はじめて村の人が掘った燃える石", "F3": "はじめての見習いの終わり", "F4": "はじめて板か燃える石を交換した"}
 # 村の人に見せない言葉 (お題と出来事。試しで確かめる)
@@ -82,6 +90,11 @@ CHOSE_ACTS = (g15.ACT_WS_WORK, g15.ACT_WS_BUILD, g15.ACT_DIG)
 def fixed(state):
     """2026-11-18 の直し (e1 を掘りためた石で数える・お題の 2 つの数のまちがい) が働くか: FIX_DAY より後の日だけ"""
     return state["day"] > FIX_DAY
+
+
+def ret(state):
+    """2026-11-18 の 2 つめの直し (作業場の返り) が働くか: 印があって、RETURN_DAY より後の日だけ"""
+    return on(state) and state["day"] > RETURN_DAY
 
 
 def on(state):
@@ -257,6 +270,76 @@ def dig_saves_pd():
     return round(g15.COAL_KG_DAY / g15.COAL_KG * FIRE_H / PD_H, 1)
 
 
+# ---------------- 作業場の返り (2026-11-18 の 2 つめの直し。ret のときだけ) ----------------
+
+def crew_rate(n, houses):
+    """同じ日・同じ作業場 (水ののこ) に n 人 (houses 家) いるときの、1 人日の板"""
+    for k, hh, r in CREW:
+        if n >= k and houses >= hh:
+            return r
+    return g15.PLANK_PER_DAY
+
+
+def saw_planks(state, names):
+    """g15.work_day から: names (その日その作業場で働いた人。いま来た人が最後) の、いま来た人の分の板。
+    その日の板の合わせ (人 × crew_rate) が、1 人ふえてどれだけふえたか (日の終わりには、人 × crew_rate になる)"""
+    if not ret(state):
+        return g15.PLANK_PER_DAY
+    hs = {p["name"]: p.get("household") for p in state["people"] if p["alive"]}
+
+    def tot(ns):
+        return len(ns) * crew_rate(len(ns), len({hs.get(n) or n for n in ns})) if ns else 0
+    k = tot(names) - tot(names[:-1])
+    y = str(_y(state))
+    c = _g(state).setdefault("crew", {}).setdefault(y, {})
+    c["extra"] = c.get("extra", 0) + k - g15.PLANK_PER_DAY
+    return k
+
+
+def canal_left(state, y=None):
+    """y 年 (なければ今の年) の水の道の手入れの残り (人日。g13 の年の終わりの決まりと同じ数え方。読むだけ)"""
+    c = state["era2"]["g7"]["g13"]["canal"]
+    y = _y(state) if y is None else y
+    return max(0.0, c["cap"] / g13.CANAL_PER_DAY * g13.CANAL_KEEP - c["dug"].get(str(y), 0))
+
+
+def canal_rate(state):
+    """g13.work_day (水の道を掘る) から: この年の手入れが残っていて、村の倉に板があれば 1 束使って 2 人日分 (ret のときだけ)"""
+    if not ret(state) or canal_left(state) <= 0:
+        return 1
+    return int(g15.plank_rate(state))
+
+
+def house_plank(state, h):
+    """g15.plank_rate から (住まい・かまど): 家の板が 1 束以上あれば 1 束使う (ret のときだけ)。戻り値: 使ったか"""
+    g = _g(state)
+    if not ret(state) or not h or g["hplanks"].get(h, 0) < 1:
+        return False
+    g["hplanks"][h] = round(g["hplanks"][h] - 1, 2)
+    y = str(_y(state))
+    g.setdefault("hused", {})[y] = g.get("hused", {}).get(y, 0) + 1
+    return True
+
+
+def plank_lines(state, p):
+    """お題の板の返りの行 (ret で、使える水ののこの作業場があるとき)。短く"""
+    g15g = g15._g(state)
+    if not ret(state) or not any(g15g["ws"][m]["tool"] == g15.SAW for m in g15.workshops(state, done=True)):
+        return []
+    import g14
+    y = g14.plan_year(state)
+    due = round(g13.mill_due(state, y) + g13.restart_left(state))
+    cl = round(canal_left(state, y))
+    (n3, h3, r3), (n2, _, r2) = CREW
+    h = p.get("household")
+    hp = int(_g(state)["hplanks"].get(h, 0)) if h else 0
+    return [f"- 板の返り: 水ののこは、同じ作業場で同じ日に {h3} 家から {n3} 人そろうと 1 人日で板 {r3} 束 ({n2} 人からは {r2} 束・{n2 - 1} 人までは "
+            f"{g15.PLANK_PER_DAY} 束)。板 1 束で、水の輪の直し・水の道の手入れ・住まい・かまどの作りかえの 1 人日が {round(g15.PLANK_BOOST)} 人日分になり、"
+            f"手入れ 1 人日が浮く ({n3} 人そろった日は、のこの 1 人日で 約 {r3 * round(g15.PLANK_BOOST - 1)} 人日が浮く)。",
+            f"  いま残っている手入れ: 水の輪の直し あと {due} 人日・水の道の手入れ あと {cl} 人日 (板があれば、その分の人日が半分ですむ)。"
+            f"村の倉の板 {g15g['planks']['stock']} 束" + (f"・あなたの家の板 {hp} 束 (家の住まいとかまどに先に使う)" if hp else "")]
+
+
 # ---------------- b 持ち場・c 見習い ----------------
 
 def posts_of(state, mid=None, kind=None):
@@ -356,12 +439,19 @@ def season_start(state):
         src[n] = POST_SRC
 
 
+def sawyer(state, n, mid):
+    """その作業場で合わせて TEACH_SAW_DAYS 日以上働いたのこ番か (2026-11-18 の 2 つめの直し。ret のときだけ教えられる)"""
+    r = _g(state)["posts"].get(n) or {}
+    return r.get("post") == SAW_K and r.get("mill") == mid and sum(r.get("days", {}).values()) >= TEACH_SAW_DAYS
+
+
 def teachers(state, mid, names):
-    """その日、作業場で教えられる人: その作業場の帳面番・読める大人 (c)・黒い金属の腕のある人"""
+    """その日、作業場で教えられる人: その作業場の帳面番・読める大人 (c)・黒い金属の腕のある人。ret のあとは、60 日働いたのこ番も"""
     rd = set(g10.readers(state))
     g = _g(state)
+    sw = ret(state)
     return [n for n in names if (g["posts"].get(n) or {}).get("post") == LEDGER_K and g["posts"][n]["mill"] == mid
-            or n in rd or g10.smith(state, n)]
+            or n in rd or g10.smith(state, n) or (sw and sawyer(state, n, mid))]
 
 
 def ws_season(state):
@@ -723,6 +813,12 @@ def year_end(state):
         g.setdefault("e1pool", {"old0": _old0(state)})
         e = e1_pool(state, y, r)[-1]
         r["own_share"], r["e1_like"] = e["own_share"], e["like"]
+    if ret(state):  # 作業場の返りの直し (2026-11-18 の 2 つめ): 板と手入れの数 (記録だけ。物差しは変えない)
+        pk, ys = g15._g(state)["planks"], str(y)
+        c13 = state["era2"]["g7"]["g13"]
+        r.update({"planks_made": pk["made"].get(ys, 0), "planks_used": pk["used"].get(ys, 0), "planks_house_used": g.get("hused", {}).get(ys, 0),
+                  "crew_extra": (g.get("crew", {}).get(ys) or {}).get("extra", 0),
+                  "canal_dug": c13["canal"]["dug"].get(ys, 0), "canal_left": round(canal_left(state, y)), "mill_repair": c13["mill"]["repair"].get(ys, 0.0)})
     g["rows"][str(y)] = r
     for k in ("e1", "e2", "e3", "e4"):
         if r[f"{k}_like"] and y not in g["e_years"][k]:
@@ -812,7 +908,7 @@ def block_lines(state, p):
     """持ち場・見習い・交換の行 (b・c・d のとき)。短く"""
     g, g15g = _g(state), g15._g(state)
     name, h = p["name"], p.get("household")
-    rows = []
+    rows = plank_lines(state, p)
     done = [m for m in g15.workshops(state, done=True)]
     if (part(state, "b") or part(state, "c")) and done:
         ps = "・".join(f"{m} ({g15g['ws'][m]['tool']}): 持ち場 {len(posts_of(state, m))} 人" + (f"・頭 {g['head'][m]['name']}" if g["head"].get(m) else "")
@@ -833,7 +929,10 @@ def block_lines(state, p):
                         f"{LEDGER_K}は読める大人" + (f" (あなたの家の {'・'.join(rd[:3])})" if rd else "") + f"。頭は集まりで選ぶ (head: {{\"輪\": \"{done[0]}\", \"人\": 名前}})")
     if part(state, "c") and done:
         a = g["appr"].get(name)
-        rows.append(f"- 見習い: 作業場で、帳面番か読める大人か黒い金属の腕のある人と同じ日に {APPR_DAYS} 日働くと、見習いを終えて持ち場 (のこ番・槌番) につく"
+        sw = [n for m in done for n in posts_of(state, m, SAW_K) if sawyer(state, n, m)] if ret(state) else []
+        who = "帳面番か読める大人か黒い金属の腕のある人" + (f"か、{TEACH_SAW_DAYS} 日以上働いたのこ番" if ret(state) else "")
+        rows.append(f"- 見習い: 作業場で、{who}と同じ日に {APPR_DAYS} 日働くと、見習いを終えて持ち場 (のこ番・槌番) につく"
+                    + (f" (いま教えられるのこ番: {'・'.join(sw[:4])})" if sw else "")
                     + (f"。あなたは見習い {a['days']} 日目 ({a['mill']})" if a else ""))
     if part(state, "d"):
         pts = partners(state)
@@ -886,6 +985,7 @@ def row_text(r):
             f"火と力の {round(r['coal_share'] * 100, 1)}%・村の倉 {r['coal_stock']} kg・家の倉 {r['house_coal']} kg / まき集め {r['fire_pd']} 人日 (浮いた {r['saved_pd']}) / "
             f"作業場の 8 人の日 {ws} / 持ち場 {r['posts']} (1 年じゅう {r.get('posts_year', '-')}・やめた {r['quit']})・見習い 終えた {r['appr_done']} (読める人が教えた {r['appr_reader']})・途中 {r['appr']} / "
             + (f"S3 からの石の分 {round(r['own_share'] * 100)}% / " if "own_share" in r else "") +
+            (f"板 ひいた {r['planks_made']} (人の多い日の足し {r['crew_extra']})・使った {r['planks_used']} (家の板 {r['planks_house_used']})・水の道 掘った {r['canal_dug']} 人日 (手入れの残り {r['canal_left']}) / " if "planks_made" in r else "") +
             f"選んだ答える人 {r['chose']} (書いた {r.get('wrote', '-')}) / {r['answerers']} / 交換 {sold} / 蓄え いちばん少ない {r['store_min']} 日分・ききん {r['famine']}・人 {r['pop_prev']} → {r['pop']} (はじめ {r.get('pop0', '-')}) / "
             + " ".join(f"{k} {'○' if r[f'{k}_like'] else '×'}" for k in ("e1", "e2", "e3", "e4")) + f" e5 {'○' if r['e5_ok'] else '×'}")
 
