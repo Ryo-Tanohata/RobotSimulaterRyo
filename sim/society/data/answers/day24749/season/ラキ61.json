@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ヤギが草の分より多いから、今季は肉にして数をへらそう。わたしは狩りで肉をとってくるよ。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りの腕が一番だから、肉をとって蓄えを助けたい"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"キオ91": true, "テナ91": true}, "family": {"ソナ61": {"activity": "狩り", "place": "南林12", "why": "狩りが得意なので別の林で肉をとる"}, "ホミ61": {"activity": "道具づくり", "place": "camp", "why": "道具の腕が高いので、鎌や槍を作っておく"}}, "keep": false,
+ "judge": {"M527": "ゆるす"}, "feast": false, "leader": null, "trade": {"T765": {"side": "村", "利子": 0.1}, "T766": false, "T767": {"side": "村", "利子": 0.1}, "T768": {"side": "村", "利子": 0.1}, "T769": false, "T770": {"side": "村", "利子": 0.1}, "T771": {"side": "村", "利子": 0.1}, "T772": {"side": "村", "利子": 0.1}, "T773": {"side": "村", "利子": 0.1}}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヤギが草の分より多いと、やせていなくなる。肉にして数をへらすのがよい", "because": [3869832], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。ヤギを減らして、冬にそなえたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギは 124 頭で、草で養える 110 頭より多い。よその村のヤギはしばらく受けないでおこう。"}, {"to": "ナセ87", "text": "この秋はいっしょに畑の草取りをしよう。冬の前にしっかり手を動かすぞ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。次の夏の草の種のために働く"},
+ "family": {"ナセ87": {"activity": "畑仕事", "why": "13 歳なので、子にできる畑仕事を手伝わせて覚えさせたい"}},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 1, "accept": {"キオ91": true, "テナ91": true}, "keep": false,
+ "judge": {"M527": "ゆるす"}, "feast": false, "leader": "ロワ38",
+ "trade": {"T765": "村", "T766": false, "T767": "村", "T768": "村", "T769": false, "T770": "村", "T771": "村", "T772": "村", "T773": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヤギは 131 頭いて、草で養える約 110 頭をこえ、7 頭がやせていなくなった。今は 124 頭で、まだ少し多い", "because": [3869832], "confidence": 0.9}, {"op": "add", "text": "近くの村の多くが、この年は畑が実らず苦しいと言って、草の種を借りに来ている", "because": [3869851, 3869857, 3869859], "confidence": 0.8}],
+ "proposal": {"text": "ヤギは 124 頭で草で養える約 110 頭をこえているから、この 1 年はよその村のヤギを受けず、秋のはじめに家ごとに 1 頭ずつつぶして干し肉にしよう。秋は大人一人 1000 つかみずつ畑にまき、手の空いた人は畑の草取りに出よう。", "because": [3869832], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L712", "against": "つぶしすぎると乳が減る", "agree": true, "reason": "ヤギが草より多いので、少しずつつぶすのがよい"}, {"id": "L710", "against": "家ごとに 2 頭は多いかもしれない", "agree": true, "reason": "草が足りず、やせて減るよりは肉にしたほうがよい"}, {"id": "L700", "against": "今はヤギが草より多いのに、さらに受けると草が足りなくなる", "agree": false, "reason": "ヤギはもう 124 頭で多すぎる"}, {"id": "L697", "against": "住まいを広げる人手が畑から減る", "agree": true, "reason": "雨の夜に外で濡れる人がいて、小さな子が多く亡くなった"}],
+ "feeling": "ヤギが多すぎるのが気になるが、蓄えは十分あるので落ち着いて畑を守りたい"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑へたっぷり種をまいて、草取りもしっかりやろう。来年の夏の実りはこの秋で決まるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをすると、次の夏の実りがぐんと増えるから"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"キオ91": true, "テナ91": true},
+ "family": {"キサ56": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは手が多いほど実りが増える"}, "トナ58": {"activity": "燃える石を掘る", "place": "北丘12", "why": "燃える石があれば冬のまき集めの手が浮く"}, "ルタ69": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、蓄えの出し入れを書きとめてほしい"}},
+ "keep": false,
+ "judge": {"M527": "ゆるす"}, "feast": false, "leader": "ロワ38",
+ "trade": {"T765": {"side": "村", "利子": 0.1}, "T766": false, "T767": {"side": "村", "利子": 0.1}, "T768": {"side": "村", "利子": 0.1}, "T769": false, "T770": {"side": "村", "利子": 0.1}, "T771": {"side": "村", "利子": 0.1}, "T772": {"side": "村", "利子": 0.1}, "T773": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える約 110 頭をこえて 124 頭いる。よその村のヤギは受けず、多い分はつぶしたほうがよい", "because": [3869832], "confidence": 0.8}, {"op": "add", "text": "この年も病で若い大人や赤ん坊が何人も亡くなった。よそから来た若い人を迎えると手が足りる", "because": [3869844, 3869845, 3869846], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "夜に用がある人もいる", "agree": true, "reason": "夜はザガが出て、けが人も出たから"}, {"id": "L16", "against": "休みすぎると仕事が進まない", "agree": true, "reason": "疲れたままだと病やけがのもとになる"}],
+ "feeling": "蓄えは山ほどある。あとは畑と人を大事にするだけさ"}

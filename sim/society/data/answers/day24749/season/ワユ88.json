@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "まわりの村がこんなに苦しんでいる。蓄えはまだ 230 日分あるから、少しずつ貸して、来年返してもらおう。"}, {"to": "みんな", "text": "おれは道具が得意だから、倉の板で水の輪の直しを片づけるよ。手の空いた人は来てくれ。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕を生かして、残っている水の輪の直しを早く終わらせたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"キオ91": true, "テナ91": true}, "keep": false,
+ "judge": {"M527": "ゆるす"}, "feast": false, "leader": "ロワ38",
+ "trade": {"T765": "村", "T766": "村", "T767": "村", "T768": "村", "T769": false, "T770": "村", "T771": "村", "T772": "村", "T773": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "村のヤギは 124 頭でメスばかり。草で養えるのは約 110 頭で、多い分はやせていなくなる", "because": [3869832], "confidence": 0.8}, {"op": "add", "text": "まわりの多くの村で畑が実らず、草の種を借りに来ている", "because": [3869851, 3869854, 3869859], "confidence": 0.9}],
+ "proposal": {"text": "この秋は大人一人 1000 つかみずつ畑にまき、道具の腕のある人は倉の板で水の輪の直しを終えよう。苦しい村には蓄えから草の種を貸し、1 年のうちに返してもらおう。", "because": [3869851, 3869859], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L697", "against": "", "agree": true, "reason": "小さな子を雨から守りたい"}, {"id": "L709", "against": "", "agree": true, "reason": "子のいる家を先に住まいに入れるのはよい"}, {"id": "L704", "against": "", "agree": true, "reason": "オスがいないので、よその村のオスがほしい"}, {"id": "L703", "against": "", "agree": true, "reason": "畑にまいて、燃える石でまき集めの手を浮かせたい"}, {"id": "L712", "against": "家ごとに 2 頭ずつだと 130 頭ほどになり、ヤギがいなくなってしまう", "agree": false, "reason": "今のヤギは 124 頭で、つぶしすぎになる"}, {"id": "L710", "against": "家ごとに 2 頭ずつは多すぎる", "agree": false, "reason": "ヤギの数が前と変わっている"}],
+ "feeling": "水の輪がまた回るのが楽しみだ"}
