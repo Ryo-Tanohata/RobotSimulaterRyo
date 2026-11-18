@@ -843,11 +843,40 @@ def entrance(state):
     return not g["e5_broken"]
 
 
+def more_refusal(state, words, years):
+    """resume --s3more ができないわけ (できるなら None)"""
+    if not on(state):
+        return "Society 3.0 の印がない"
+    h = state["era2"]["g7"].get("hold") or {}
+    if h.get("why") != "entrance" or not str(h.get("what", "")).startswith("S3:"):
+        return "S3 の入口 (HOLD entrance) で止まっていない"
+    if _g(state).get("more"):
+        return "もう一度つけた (1 回だけ)"
+    if not str(words).strip():
+        return "本人の言葉がない"
+    if not (1 <= years <= 10):
+        return "年の数は 1〜10"
+    return None
+
+
+def mark_more(state, words, years):
+    """S3 の入口から、そのまま years 年確かめる印 (g7.s3.more)。止めるのは until_day の年の終わり"""
+    D = state["day"]
+    y0 = D // YEAR  # いまいる年 (季節の途中なら、その年も数える)
+    m = {"day": D, "words": words, "why": f"そのまま確かめる (本人の言葉 2026-11-18 「{words}」)", "years": years, "from_year": y0, "to_year": y0 + years - 1,
+         "until_day": (y0 + years) * YEAR - 1}
+    _g(state)["more"] = m
+    return m
+
+
 def check(state, done):
     """g7.check から (年の終わりと季節の終わり): 止まるわけ (なければ None)。G15 の相談のかわり"""
     g, D = _g(state), state["day"]
     if (D + 1) % SEASON_DAYS:
         return None
+    mo = g.get("more")
+    if mo and D >= mo["until_day"] and not any(c["why"] == "s3_more_end" for c in done):
+        return {"why": "s3_more_end", "day": D, "text": f"S3: 入口のあと、そのまま確かめた {mo['years']} 年 ({mo['from_year']}年〜{mo['to_year']}年) が終わった。この先を本人と相談する"}
     if (D + 1) % YEAR:
         if D > ENTRANCE_DAY and entrance(state) and not any(c["why"] == "s3_entrance" for c in done):
             return {"why": "s3_entrance", "day": D, "text": f"S3: 入口に着いた ({'・'.join(f'{k} {_yd(v)}' for k, v in sorted(g['e'].items()))}。数えた 2 年に e5 を割らなかった)"}
