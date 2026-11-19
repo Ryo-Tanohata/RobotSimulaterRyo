@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "畑がからっぽだから、おれもこの秋は 1000 つかみまくよ。そのあとは水の道の手入れにみんなで出よう。まだ 6000 人日ほど残っているからね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "畑は水が来ると悪い年でも実りが半分にならない。手入れがまだ 6254 人日も残っているので、年かさのおれも続けて手伝う。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ102": true, "ヒセ102": true},
+ "family": {
+  "ラニ51": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大事なので、家の大人みなで出る。"},
+  "ケセ54": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大事なので、家の大人みなで出る。"},
+  "トナ84": {"activity": "畑仕事", "place": "camp", "why": "14 歳になったので、まいた畑の草取りを半人前として手伝う。"}
+ },
+ "keep": false,
+ "judge": {"M536": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T915": "村", "T916": "村", "T917": "村", "T918": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "秋の畑は空なので、大人一人 1000 つかみずつまく。ヤギは 133 頭で、草で養える約 140 頭より少ないので、ほかの村のヤギを少し受けてもよい。水の道の手入れはあと 6254 人日残っている。", "because": [4379303], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "年をとったが体はまだ動く。畑と水の道を守って、冬を安心して迎えたい。"}

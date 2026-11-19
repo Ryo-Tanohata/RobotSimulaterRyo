@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いけれど、冬の前に狩りで肉を足しておこう。わたしは南の林へ行ってくる。"}, {"to": "タユ102", "text": "よく来たね。いっしょに暮らそう。わからないことは何でも聞いて。"}],
+ "job": {"activity": "狩り", "place": "南林12", "with": [], "why": "蓄えは多いが、冬に備えて秋のうちに肉を足しておくと安心だから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ102": true},
+ "family": {
+  "ナセ64": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が確かなので、冬の肉をたくわえる"},
+  "テナ67": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が確かなので、冬の肉をたくわえる"},
+  "ムイ67": {"activity": "採集", "place": "西草原12", "why": "草原で食べ物を集めて、家の食べ物を足す"},
+  "ケナ71": {"activity": "採集", "place": "西草原12", "why": "草原で食べ物を集めて、家の食べ物を足す"},
+  "セヤ77": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているから"}
+ },
+ "keep": false,
+ "judge": {"M536": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T915": false, "T916": false, "T917": false, "T918": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "蓄えが多い秋でも、狩りで肉を足しておくと冬に安心できる。新しく来た人は仲間に迎えるとよい。", "because": [4379314], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。冬に向けて、狩りで肉を足したい。"}

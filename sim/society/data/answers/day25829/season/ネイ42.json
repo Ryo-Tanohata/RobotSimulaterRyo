@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蔵の草の種はたっぷりある。秋のうちに水の道の手入れをみんなで進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れがまだ多く残っているから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ102": true, "ヒセ102": true},
+ "family": {"ユエ55": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家族で進めるため"}, "ラニ67": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので帳をつける"}},
+ "keep": false,
+ "judge": {"M536": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T915": "受けない", "T916": "受けない", "T917": "受けない", "T918": "受けない"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える数より多いので、よその村のヤギをもらう交換は受けない。水の道の手入れはまだ多く残っている。", "because": [4379308], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで安心している。みんなで水の道を進めたい。"}

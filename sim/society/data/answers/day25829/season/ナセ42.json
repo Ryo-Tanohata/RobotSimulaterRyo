@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "ヤギは 133 頭、草で養えるのは 140 頭ほど。よその村のヤギはこの秋は見送って、畑と水の道に手を回そう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ 6254 人日も残っている。倉の板を使えばはかどる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ102": true},
+ "family": {
+  "ルタ69": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、蓄えの出し入れを書いておけば、もめごとが減る"},
+  "テナ78": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番なので、続けて板をひく"},
+  "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをすれば、次の夏の実りが増える"}
+ },
+ "keep": false,
+ "judge": {"M536": "ゆるす"},
+ "feast": false,
+ "leader": "ナセ42",
+ "trade": {"T915": false, "T916": false, "T917": false, "T918": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "村のヤギは 133 頭で、草で養える約 140 頭に近い。よその村のヤギを受けるとこえてしまうので、受けないほうがよい", "because": [4379308, 4379309, 4379310, 4379312], "confidence": 0.8},
+  {"op": "add", "text": "南の村18 から若い大人が二人来た。病で人が減る村には、迎えると手が足りる", "because": [4379314], "confidence": 0.8}],
+ "proposal": {"text": "ヤギは 133 頭で草の約 140 頭に近いから、この 1 年はよその村のヤギを受けない。秋は大人一人 1000 つかみずつまき、家ごとに一人は倉の板を使って水の道の手入れ (あと 6254 人日) に出よう。", "because": [4379308, 4379310], "penalty": {"for": "ヤギ", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L805", "against": "畑を刈る手がほかの仕事から減る", "agree": true, "reason": "ヤギが草で養える数に近いので、受けないのがよい"},
+  {"id": "L806", "against": "つぶすとヤギが減りすぎるかもしれない", "agree": true, "reason": "多い分を干し肉にすれば草も守れる"},
+  {"id": "L807", "against": "水の道の手入れは人手がかかる", "agree": true, "reason": "板を使えば手入れがはかどる"},
+  {"id": "L808", "against": "冬と春の草取りに人が取られる", "agree": true, "reason": "ヤギを受けず、畑をきちんと世話するのはよい"}
+ ],
+ "feeling": "年はとったが、まだ掘れる。水が来れば畑は守れる"}

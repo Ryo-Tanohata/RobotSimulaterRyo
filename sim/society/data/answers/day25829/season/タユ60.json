@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "新しく来た二人は、働き手が増えるのでありがたい。いっしょに冬の支度をしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすると、次の夏の実りが増えるから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ102": true},
+ "family": {"オセ61": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っていて、畑の実りを支えるから。"}},
+ "keep": false,
+ "judge": {"M536": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心。畑をていねいに世話して、冬をおだやかに迎えたい。"}

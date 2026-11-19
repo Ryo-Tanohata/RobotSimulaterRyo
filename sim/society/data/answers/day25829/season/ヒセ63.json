@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いが、畑がからっぽだから、この秋は一人 1000 つかみ、草の種をまこう。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りが得意で、肉や魚で食べ物に彩りを足せるから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ102": true, "ヒセ102": true},
+ "family": {
+  "ソナ66": {"activity": "狩り", "place": "南川12", "why": "狩りの腕があり、魚をとれるから。"},
+  "セオ66": {"activity": "採集", "place": "西草原12", "why": "採集の腕が高いから。"},
+  "ヌオ70": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やすため。"},
+  "ユエ70": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高く、肉をとれるから。"},
+  "キオ76": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため。"},
+  "ヒセ78": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため。"},
+  "ケセ79": {"activity": "狩り", "place": "南林12", "why": "狩りの腕があるから。"},
+  "ホミ80": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため。"},
+  "オネ81": {"activity": "採集", "place": "北林12", "why": "採集の腕が高く、木の実を集められるから。"}
+ },
+ "keep": false,
+ "judge": {"M536": "ゆるす"}, "feast": false, "leader": null, "trade": {"T915": false, "T916": false, "T917": false, "T918": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心だ。今年は狩りで肉をとって、みんなに分けたい。"}

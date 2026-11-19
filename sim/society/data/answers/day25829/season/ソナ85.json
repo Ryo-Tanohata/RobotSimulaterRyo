@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、あわてずに。わたしは木の実をとりに行ってくるよ。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "木の実を集めておけば、冬の前に食べ物の備えが増える。慣れた仕事でいちばん確か。"},
+ "sow": 0, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"タユ102": true},
+ "family": {"ケナ85": {"activity": "採集", "place": "東林12", "why": "得意な採集で、木の実を集めてもらう。"}, "トナ85": {"activity": "採集", "place": "東林12", "why": "採集は得意なので、わたしたちといっしょに木の実を集める。"}},
+ "keep": false,
+ "judge": {"M536": "ゆるす"}, "feast": false, "leader": null, "trade": {"T915": false, "T916": false, "T917": false, "T918": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので、離れないほうが安心だから。"}],
+ "feeling": "蓄えもたっぷりで、静かな秋。いつものように木の実を集めたい。"}

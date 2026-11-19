@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "新しい二人もいっしょに迎えよう。この秋は、水の道の手入れをみんなで少しずつ進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが 6254 人日も残っていて、畑の実りを守るのに大切だから。ほかに急ぎの仕事がない大人が手をかしたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"タユ102": true}, "keep": false,
+ "judge": {"M536": "ゆるす"}, "feast": false, "leader": null, "trade": {"T915": "村", "T916": "村", "T917": "村", "T918": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [{"op": "add", "text": "水の道の手入れはまだ 6254 人日残っている。手をかす人が多いほど、畑の実りが守られる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "ザガが出るので、夜に離れないのは仲間を守るために大事だから。"}],
+ "feeling": "新しい仲間が増えてうれしい。この秋も、みんなのために体を動かそう。"}
