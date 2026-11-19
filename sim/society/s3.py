@@ -18,6 +18,7 @@
   (2026-11-18 の 2 つめの直し「得が出るようにする」。RETURN_DAY より後だけ: 水ののこは同じ日の人が多いほど 1 人日の板がふえる (crew_rate)・
    板は水の道の手入れにも使える (canal_rate)・家の板は家の住まいとかまどに先に使う (house_plank)・60 日働いたのこ番も見習いを教えられる・
    お題に板の返りと残っている手入れの行 (plank_lines))
+  (2026-11-19 の直し。COAL_DAY より後だけ: お題の村の倉の尽きる日は村の倉から燃やす分だけで出す・秋の集まりでも去年のまき集めの人日を出す)
 - 止まり: 入口 (e1・e2 と e3 か e4。そのあいだ e5 を割らない) で HOLD entrance。e5 を割った・道を選ぶ人が 2 年 0 人・村の倉の石が尽きて
   だれも掘らない・5 年ごとで HOLD consult (G15 の相談はかわりに止める)
 """
@@ -81,6 +82,10 @@ RETURN_DAY = 25079
 # 2026-11-18: 入口の e5 は「ずっと割らない」でなく「数えた 2 年 (いちばん新しい年とその前の年) に割らない」。
 # 205年に一度割ると入口に二度と着けなかったため。この日より後だけ (前の歩は入口がなりたたないので同じ)
 ENTRANCE_DAY = 25439
+# 2026-11-19: 燃える石の行の 2 つのまちがいの直し (S3_check.md 11.)。本物の村が止まっている日 (25799。214年の終わり) より後のお題だけ。
+# (1) 村の倉の尽きる日は、村の倉から燃やす分だけで出す (前は、その家しか燃やさない家の倉の石も足して、村じゅうで割っていた)。
+# (2) まき集めの人日は、家ごとのまき集めがある年を出す (前は、秋の集まりで今年の数がまだなく、行が出なかった)
+COAL_DAY = 25799
 CREW = ((8, 3, 3), (4, 1, 2))  # (同じ日・同じ作業場の人, 家, 1 人日の板)。上から先に当てる。どれにも当たらなければ g15.PLANK_PER_DAY (1)
 TEACH_SAW_DAYS = 60  # のこ番は、その作業場で合わせて 60 日働くと見習いを教えられる
 ES = {"e1": "掘った燃える石で燃やす", "e2": "作業場が続く", "e3": "自分で選ぶ", "e4": "教えて広がる", "e5": "暮らしを守る"}
@@ -93,6 +98,11 @@ CHOSE_ACTS = (g15.ACT_WS_WORK, g15.ACT_WS_BUILD, g15.ACT_DIG)
 def fixed(state):
     """2026-11-18 の直し (e1 を掘りためた石で数える・お題の 2 つの数のまちがい) が働くか: FIX_DAY より後の日だけ"""
     return state["day"] > FIX_DAY
+
+
+def coal_fixed(state):
+    """2026-11-19 の直し (燃える石の行: 村の倉の尽きる日・まき集めの年) が働くか: COAL_DAY より後の日だけ"""
+    return state["day"] > COAL_DAY
 
 
 def ret(state):
@@ -266,6 +276,18 @@ def runout(state, kg, per_day):
     if per_day <= 0:
         return None
     return state["day"] + int(kg // per_day)
+
+
+def vill_draw(state):
+    """村の倉から 1 日に燃やす燃える石 (kg) と、その家の数: 石のかまどの家のうち、家の倉の石が 1 日分にとどかない家 (evening と同じ順: 家の倉が先)"""
+    need = {}
+    for p in state["people"]:
+        h = p.get("household")
+        if p["alive"] and h and g15.stove_done(state, h):
+            need[h] = need.get(h, 0) + g15.COAL_KG
+    hc = _g(state)["hcoal"]
+    hs = [h for h in need if hc.get(h, 0) < need[h]]
+    return sum(need[h] - hc.get(h, 0) for h in hs), len(hs)
 
 
 def dig_saves_pd():
@@ -925,17 +947,26 @@ def coal_lines(state, p):
     vill = g15g["coal"]["stock"]
     per = burn_per_day(state)
     end = runout(state, vill + sum(g["hcoal"].values()), per)
+    if coal_fixed(state):  # 直し (2026-11-19): 村の倉は、村の倉から燃やす分だけで尽きる日を出す (家の倉の石は、その家しか燃やさない)
+        per, nv = vill_draw(state)
+        end = runout(state, vill, per)
     rows = [f"- 燃える石: 北の丘で掘ると 1 人 1 日 約 {g15.COAL_KG_DAY} kg (主な仕事「{g15.ACT_DIG}」)。そのうち {round(g15.COAL_KG_DAY * HOUSE_SHARE)} kg は掘った人の家の倉に入り、"
             f"その家が先に燃やす。かまどを石のかまどに作りかえるのは「{g15.ACT_STOVE}」(家の大人で {g15.STOVE_DAYS} 人日)。",
             f"  まき集め: 秋と冬は、まきで火をたく人 1 人につき 1 日 約 {FIRE_H} 時間、家の大人の働く時間がへる。"
             f"燃える石 {g15.COAL_KG_DAY} kg (掘る 1 人日) を秋と冬に燃やすと、まき集め 約 {dig_saves_pd()} 人日が浮く。"]
     ys = str(_y(state) - 1) if str(_y(state)) not in g["fire"] else str(_y(state))
+    if coal_fixed(state):  # 直し (2026-11-19): 今年の家ごとのまき集めがまだなければ (秋の集まり)、去年の数
+        ys = str(_y(state)) if "house" in (g["fire"].get(str(_y(state))) or {}) else str(_y(state) - 1)
     fh = ((g["fire"].get(ys) or {}).get("house") or {}).get(h)
     hc = g["hcoal"].get(h, 0)
     hend = runout(state, hc, burn_per_day(state, h)) if h and g15.stove_done(state, h) else None
     t = (f"  あなたの家 ({h}) は{mine}" + (f"。{ys}年のまき集め 約 {round(fh)} 人日" if fh else "")
          + f"。家の倉の燃える石 {round(hc)} kg" + (f" ({_yd(hend)}ごろまで)" if hend and hc else "") + "。")
-    t += (f"村の倉 {round(vill)} kg" + (f" (このままなら {_yd(end)}ごろに尽きる)" if end else "") + f"・石のかまどの家 {n}" + (f" (まきのかまどの家 {nw})" if fixed(state) else ""))
+    if coal_fixed(state) and per > 0 and vill < per:  # 直し (2026-11-19): もう尽きているときは、まきをたく石のかまどの家の数
+        t += f"村の倉 {round(vill)} kg (もう尽きた。家の倉に石のない石のかまどの家 {nv} は、まきをたく)"
+    else:
+        t += f"村の倉 {round(vill)} kg" + (f" (このままなら {_yd(end)}ごろに尽きる)" if end else "")
+    t += f"・石のかまどの家 {n}" + (f" (まきのかまどの家 {nw})" if fixed(state) else "")
     dg = g["dug"].get(str(_y(state))) or g["dug"].get(str(_y(state) - 1)) or {}
     if dg:
         top = sorted(dg, key=lambda k: (-dg[k], k))[:4]

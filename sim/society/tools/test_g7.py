@@ -8940,6 +8940,55 @@ class T_S3(unittest.TestCase):
         n = len([h for h in hs if g15.stove_done(st, h)])
         self.assertIn(f"石のかまどの家 {n} (まきのかまどの家 {len(hs) - n})", s3.coal_lines(st, p)[-1])
 
+    def test_coal_1119(self):
+        """2026-11-19 の直し (S3_check.md 11.。COAL_DAY (25799) より後だけ): お題の村の倉の尽きる日は、村の倉から燃やす分だけで出す
+        (家の倉の石は、その家しか燃やさない)。尽きていれば「もう尽きた」と、まきをたく石のかまどの家の数。秋の集まりで今年の家ごとの
+        まき集めがまだなければ、去年の数を出す。COAL_DAY までは前のまま"""
+        import g15
+        import s3
+        st = self.marked()
+        g, gg = s3._g(st), g15._g(st)
+        homes = {}
+        for q in era2.adults(st):
+            h = q.get("household")
+            if h and g15.stove_done(st, h):
+                homes.setdefault(h, []).append(q)
+        big, me = sorted(homes)[:2]
+        p = homes[me][0]
+        g["hcoal"] = {big: 30000.0}
+        gg["coal"]["stock"] = 1.0
+        y = s3._y(st)
+        st["day"] = s3.COAL_DAY
+        self.assertFalse(s3.coal_fixed(st))
+        old = s3.coal_lines(st, p)[-1]
+        self.assertIn("このままなら", old, "COAL_DAY までは、家の倉の石も足した前の日")
+        self.assertNotIn("もう尽きた", old)
+        st["day"] = s3.COAL_DAY + 30
+        y = s3._y(st)
+        self.assertTrue(s3.coal_fixed(st))
+        per, nv = s3.vill_draw(st)
+        self.assertEqual(nv, len([h for h in g15._g(st)["stoves"] if g15.stove_done(st, h) and h != big
+                                  and any(q["alive"] and q.get("household") == h for q in st["people"])]))
+        self.assertAlmostEqual(per, s3.burn_per_day(st) - s3.burn_per_day(st, big), places=2)
+        t = s3.coal_lines(st, p)[-1]
+        self.assertIn(f"村の倉 1 kg (もう尽きた。家の倉に石のない石のかまどの家 {nv} は、まきをたく)", t)
+        self.assertNotIn("このままなら", t)
+        gg["coal"]["stock"] = per * 10 + 5
+        self.assertIn(f"このままなら {s3._yd(st['day'] + 10)}ごろに尽きる", s3.coal_lines(st, p)[-1], "村の倉の分だけで数える")
+        # まき集めの年: 今年の記録が家ごとのまき集めなしなら (秋の集まり)、去年の数
+        g["fire"] = {str(y - 1): {"house": {me: 12.4}}, str(y): {"house_kg": 5.0}}
+        self.assertIn(f"{y - 1}年のまき集め 約 12 人日", s3.coal_lines(st, p)[-1])
+        st["day"] = s3.COAL_DAY - 60  # 前の年の秋の集まりの日 (COAL_DAY までの日)
+        y0 = s3._y(st)
+        g["fire"] = {str(y0 - 1): {"house": {me: 12.4}}, str(y0): {"house_kg": 5.0}}
+        self.assertNotIn("まき集め 約", s3.coal_lines(st, p)[-1], "COAL_DAY までは前のまま (行が出ない)")
+        st["day"] = s3.COAL_DAY + 30
+        g["fire"] = {str(y - 1): {"house": {me: 12.4}}, str(y): {"house_kg": 5.0}}
+        g["fire"][str(y)]["house"] = {me: 3.0}
+        self.assertIn(f"{y}年のまき集め 約 3 人日", s3.coal_lines(st, p)[-1])
+        for w in s3.HIDE:
+            self.assertNotIn(w, t)
+
     def test_return_1118(self):
         """2026-11-18 の 2 つめの直し「得が出るようにする」(S3_design.md 2.5。RETURN_DAY (25079) より後だけ): 水ののこは同じ日の人が多いほど
         1 人日の板がふえる (1 人 1 束・4 人から 2 束・3 家 8 人から 3 束)。板は水の道の手入れにも使え、家の板は家の住まいとかまどに先に使う。
