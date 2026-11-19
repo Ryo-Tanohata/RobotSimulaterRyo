@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑は実りがたっぷり残っている。落とさないよう、手のあいた人はみんなで刈ろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑がたくさん残っていて、夏のうちに刈らないと落ちてしまうから"},"family":{"ケナ66":{"activity":"畑仕事","place":"camp","why":"畑を刈る手を増やすため"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"秋にまく畑の世話と草取りをするため"},"family":{"ケナ66":{"activity":"畑仕事","place":"camp","why":"畑の草取りを手伝うため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"水の輪を直す","place":"camp","with":[],"why":"水の輪の直しがまだ残っていて、止まると粉がひけなくなるから"},"family":{"ケナ66":{"activity":"水の輪を直す","place":"camp","why":"直しを分けて進めるため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"水の道を掘る","place":"camp","with":[],"why":"水の道の手入れが大きく残っていて、悪い年でも畑を守れるから"},"family":{"ケナ66":{"activity":"水の道を掘る","place":"camp","why":"水の道の手入れを進めるため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"ユエ101":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T911":"村","T912":"村","T913":"村"},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"畑を刈り切りたい年",
+"feeling":"蓄えはたっぷりある。落とさずに刈って、水の道も直して、みんなで安心して暮らしたい。"}

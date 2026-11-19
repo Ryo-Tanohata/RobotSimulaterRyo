@@ -1,0 +1,13 @@
+{"say": [], "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実った畑が落ちてしまうので、一人で黙々と刈る"}, "family": {"ヌオ63": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいる夏は、畑を刈る"}, "タユ68": {"activity": "狩り", "place": "北草原28", "why": "狩りが得意なので、肉を蓄えに足す"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+ "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをして、来年の実りを増やす"}, "family": {"ヌオ63": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "タユ68": {"activity": "狩り", "place": "北草原28", "why": "得意の狩りで肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+ "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けると畑の実りが育つ"}, "family": {"ヌオ63": {"activity": "狩り", "place": "北草原28", "why": "冬も魚やけものはいるので、肉を取る"}, "タユ68": {"activity": "狩り", "place": "北草原28", "why": "冬の肉を蓄えに入れる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+ "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れに向けて、最後の草取りをする"}, "family": {"ヌオ63": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "タユ68": {"activity": "狩り", "place": "北草原28", "why": "狩りで肉を足す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ユエ101": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "水の道を掘った年",
+ "feeling": "蓄えはたっぷりある。ひとりで畑に向かう日が、いちばん落ち着く。"}
