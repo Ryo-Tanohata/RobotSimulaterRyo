@@ -677,6 +677,7 @@ def main():
     ap.add_argument("--push", default=None, help="resume で、G15 の相談 (198年60日目から) のとき (2026-11-16): 作る側の反実仮想の後押しを始める本人の言葉 (印 g7.g15.push に残す。docs/society_phase/G15_push.md)")
     ap.add_argument("--unpush", default=None, help="resume で、G15 の入口 (HOLD entrance) のとき (2026-11-17): 後押しを止めて村の人だけで確かめる本人の言葉 (印 g7.g15.after に残す。docs/society_phase/G15_push.md 7.)")
     ap.add_argument("--years", type=int, default=None, help="resume --unpush で、後押しなしで回す年の数 (1〜10)")
+    ap.add_argument("--s3fix", default=None, help="resume で、S3 の相談 (HOLD consult) のとき (2026-11-19): 燃える石の行の直しを、この日のお題から使う本人の言葉 (印 g7.s3.coal_fix。お題を書き直す)")
     ap.add_argument("--s3more", default=None, help="resume で、S3 の入口 (HOLD entrance) のとき (2026-11-18): そのまま --years 年 (書かなければ 3) 確かめる本人の言葉 (印 g7.s3.more。終わりに HOLD consult)")
     ap.add_argument("--s3", default=None, help="resume で、後押しなしの確かめが終わった相談 (HOLD consult) のとき (2026-11-17): Society 3.0 (案 A) を始める本人の言葉 (印 g7.s3 に残す。docs/society_phase/S3_design.md)")
     ap.add_argument("--parts", default=None, help="resume --s3 で入れる部分 (コンマでつなぐ。a,b,c,d。書かなければみな。s3.PARTS)")
@@ -779,6 +780,26 @@ def main():
         return
     if a.cmd == "export":
         export(state)
+        return
+    if a.cmd == "resume" and a.s3fix is not None:  # 2026-11-19: 燃える石の行の直し (s3.coal_fixed) を、いまの相談の日のお題から使う
+        import s3  # noqa: E402
+        h = ((state.get("era2") or {}).get("g7") or {}).get("hold") or {}
+        if not s3.on(state) or h.get("why") != "consult" or s3._g(state).get("coal_fix") or not a.s3fix.strip():
+            print("resume --s3fix はできない: S3 の相談 (HOLD consult) で止まっていない・もうつけた・言葉がない (何も変えない)")
+            sys.exit(3)
+        s3._g(state)["coal_fix"] = {"day": state["day"], "words": a.s3fix}
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
+        for kind in ("season", "feeling"):  # この歩のお題 (答えはまだない) を、直しのあとの形で書き直す (出来事には残さない)
+            d = pdir(state, kind, "prompts")
+            if d.exists() and not any(pdir(state, kind, "answers").glob("*.json")):
+                shutil.rmtree(d)
+        save(state)
+        if state["era2"]["g7"].get("ask"):
+            write_prompts(state, "season")
+        export(state)
+        print(f"* 燃える石の行の直しを {_yd(state['day'])} のお題から使う (本人の言葉 2026-11-19 「{a.s3fix}」。村の人のお題には出さない)")
+        print("再開した")
         return
     if a.cmd == "resume" and a.s3more is not None:  # 2026-11-18: S3 の入口から、そのまま何年か確かめる (印 g7.s3.more)
         import s3  # noqa: E402

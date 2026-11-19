@@ -102,7 +102,7 @@ def fixed(state):
 
 def coal_fixed(state):
     """2026-11-19 の直し (燃える石の行: 村の倉の尽きる日・まき集めの年) が働くか: COAL_DAY より後の日だけ"""
-    return state["day"] > COAL_DAY
+    return state["day"] > COAL_DAY or bool(_g(state).get("coal_fix"))  # resume --s3fix (25799 の相談) で、その日のお題から
 
 
 def ret(state):

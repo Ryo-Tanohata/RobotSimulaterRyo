@@ -8545,7 +8545,7 @@ class T_G15After(unittest.TestCase):
             self.assertIn("--unpush は resume のときだけ", r.stderr)
             r = run("resume", "--years", "3")
             self.assertNotEqual(r.returncode, 0)
-            self.assertIn("--years は resume --unpush のときだけ", r.stderr)
+            self.assertIn("--years は resume --unpush", r.stderr)
             self.assertEqual((d / "state.json").read_bytes(), s0, "断ったときは何も変えない")
             r = run("resume", "--unpush", AFTER_WORDS, "--years", "3")
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
