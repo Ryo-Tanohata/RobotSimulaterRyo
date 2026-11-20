@@ -119,6 +119,10 @@ for _k, _ps in (("S3A", ("a",)), ("S3B", ("b",)), ("S3C", ("c",)), ("S3D", ("d",
 # 2026-11-18 (作業場の返りの直し。S3_check.md 8.): 本物の村の 25079 日目 (S3 の 5 年の相談。HOLD consult) の写しから。印はもうあるので、止まりを解くだけ
 WORLDS["S3R"] = {"name": "Society 3.0 案 A (本物の 25079 日目から。作業場の返りの直しのあと)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "from_s3": True}
 S3_WORDS = "決まりの村の確かめ (Society 3.0 案 A)"
+# Society 4.0 (分業と町) の確かめ (2026-11-20。docs/society_phase/S4_check.md): 本物の村の 25919 日目 (215年の終わり。止まりなし・年の集まりのお題) の写しから、
+#   step.py resume --s4 と同じ関数 (s4.refusal・s4.mark) で印を書く
+WORLDS["S4R"] = {"name": "Society 4.0 (分業と町。本物の 25919 日目から)", "fill": 0.0, "str": "base", "circ": "open", "dr": 0.2, "from_s4": True}
+S4_WORDS = "決まりの村の確かめ (Society 4.0)"
 G15_PUSH_WORDS = "１フェーズ進めて下さい。何か問題があってもあなた方で反実仮想でよい風に進めて下さい"  # 本人の言葉 (2026-11-16)
 G15_NOTE = "本人の決め 2026-11-15 (お任せします): G15 の下書きの問いはみなおすすめで (決まりの村の確かめ)"
 G12_NOTE = "本人の決め 2026-11-10: お金と市場を 164年120日目で閉じた (決まりの村の確かめ)"
@@ -165,6 +169,13 @@ def enter_g7(state, w):
         if w.get("far_rate"):
             import g9
             g9.set_far_rate(state, w["far_rate"], "本人の決め 2026-10-29: 来る見込みを 5 割に")
+        return
+    if w.get("from_s4"):  # 本物の 25919 日目 (S3 のあと。止まりなし): step.py resume --s4 と同じ関数で印を書き、止まりを解く
+        import s4
+        assert s4.refusal(state, S4_WORDS) is None, s4.refusal(state, S4_WORDS)
+        s4.mark(state, S4_WORDS)
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
         return
     if w.get("from_s3"):  # 本物の 25079 日目 (S3 の 5 年の相談。HOLD consult): 止まりを解くだけ (step.py resume と同じ)
         import s3
@@ -323,6 +334,10 @@ BUNDLES = {
     "S3B1": {"name": "S3 の B1 (返りの大きい仕事を選ぶ)", **BASE, "g14": "none", "g15": "none", "s3": "push"},
     # 2026-11-18 (作業場の返りの直し): S3W は S3B0 に、答える家のうち大人の多い 3 家が、秋・冬・春に家の大人 3 人ずつを作業場 (水ののこ) に出す (8 人以上・3 家)
     "S3W": {"name": "S3 の W (S3B0 + 3 家が作業場に 3 人ずつ)", **BASE, "g14": "none", "g15": "none", "s3": "ws"},
+    # Society 4.0 の束 (2026-11-20): S4B0 は新しい欄 (town・pit・町との交換) を選ばない (S3B0 と同じ。S3 の持ち場は続く)。
+    #   S4B1 は返りの大きい道を選ぶ: 掘り場を作る・町の家 (掘る 1 家・作業場 M26 に 5 家)・夏に石のかまど・村の倉の板と余った燃える石を町に
+    "S4B0": {"name": "S4 の B0 (町の家・掘り場・町の市を選ばない)", **BASE, "g14": "none", "g15": "none", "s3": "none", "s4": "none"},
+    "S4B1": {"name": "S4 の B1 (返りの大きい道を選ぶ)", **BASE, "g14": "none", "g15": "none", "s3": "none", "s4": "push"},
     "G15B1": {"name": "G15 の B1 (作業場と燃える石に寄せた)", **BASE, "g14": "none", "g15": "push"},
     "G15B1S": {"name": "G15 の B1S (1 人だけが選ぶ)", **BASE, "g14": "none", "g15": "push", "solo": True},
     "G15B1K": {"name": "G15 の B1K (黒い金属の腕のある人がいない。水の槌)", **BASE, "g14": "none", "g15": "push", "no_smith": True, "tool": "水の槌"},
@@ -961,6 +976,90 @@ def _s3_fields(state, fams, ask):
     return out
 
 
+S4_DIG_HOUSES, S4_DIG_PER = 1, 3  # S4B1: 掘る町の家 (答える家のうち、大人 4 人以上の家。大人の多い順) と、そこから出す大人
+S4_WS_HOUSES, S4_WS_PER = 5, 4  # S4B1: 作業場 (持ち場のいちばん少ない水ののこ) の町の家と、そこから出す大人 (1 日 20 人まで)
+S4_PLANK_KEEP = 2000  # S4B1: 村の倉に残す板
+S4_COAL_SEASONS = 3  # S4B1: 村の倉に置いておく燃える石 (石のかまどの家の何季節分)
+
+
+def _s4_fields(state, fams, ask):
+    """S4B1 の欄 ({答える人: {欄: 中身}}): pit (まだなければ、みな true)・town (年の集まりで、町の家がまだ足りなければ)・
+    sell (村の倉の板を町へ。燃える石が足りなければ燃える石に、あまりは草の種に。村の倉の燃える石が多すぎれば草の種に)"""
+    import g10
+    import g15
+    import s3
+    import s4
+    g = s4._g(state)
+    out = {n: {} for n in fams}
+    if not g.get("pit") and g15.coal_on(state):
+        for n in fams:
+            out[n]["pit"] = True
+    hs = {p["name"]: p.get("household") for p in era2.adults(state)}
+    if ask == "年":
+        posts = s3._g(state)["posts"]
+        rd = set(g10.readers(state))
+        ws = sorted(_s3_ws(state), key=lambda m: (len(s3.posts_of(state, m)), m))
+        dig = sum(1 for r in g["town"].values() if r["job"] == g15.ACT_DIG)
+        wsn = sum(1 for r in g["town"].values() if r["job"] == g15.ACT_WS_WORK)
+        for n in sorted(fams, key=lambda n: (-len(fams[n]), n)):
+            h = hs.get(n)
+            if not h or h in g["town"] or len(fams[n]) < 4:
+                continue
+            ms = [m for m in fams[n] if m not in posts and m not in rd and hs.get(m) == h]
+            if dig < S4_DIG_HOUSES and len(ms) >= S4_DIG_PER:
+                out[n]["town"] = {"人": ms[:S4_DIG_PER], "仕事": g15.ACT_DIG}
+                dig += 1
+            elif wsn < S4_WS_HOUSES and ws and len(ms) >= S4_WS_PER:
+                out[n]["town"] = {"人": ms[:S4_WS_PER], "仕事": g15.ACT_WS_WORK, "輪": ws[0]}
+                wsn += 1
+    if ask in ("年", "秋"):
+        gg = g15._g(state)
+        need = s3.burn_per_day(state) * SEASON_DAYS * S4_COAL_SEASONS
+        coal = gg["coal"]["stock"]
+        extra = int(gg["planks"]["stock"] - S4_PLANK_KEEP)
+        rows = []
+        if extra > 0 and coal < need:
+            k = min(extra, s4.left(state, ("板", "燃える石")), math.ceil((need - coal) / s4.PRICE[("板", "燃える石")][1]))
+            if k > 0:
+                rows.append({"物": "板", "数": int(k), "相手": s4.TOWN, "から": "村", "もらう": "燃える石"})
+                extra -= k
+        if extra > 0:
+            k = min(extra, s4.left(state, ("板", "草の種")))
+            if k > 0:
+                rows.append({"物": "板", "数": int(k), "相手": s4.TOWN, "から": "村", "もらう": "草の種"})
+        if coal > 2 * need:
+            k = min(int(coal - 2 * need), s4.left(state, ("燃える石", "草の種")))
+            if k >= 100:
+                rows.append({"物": "燃える石", "数": int(k), "相手": s4.TOWN, "から": "村", "もらう": "草の種"})
+        if rows:
+            for n in fams:
+                out[n]["sell"] = list(rows)
+    return out
+
+
+def _s4_jobs(state, fams, sea, taken):
+    """S4B1 の仕事: 夏に、まだ石のかまどでない答える家 6 家の大人 1 人が「かまどを作りかえる」(S3B1 と同じ数)"""
+    import g15
+    import s4
+    out = {}
+    if sea != "夏" or not g15.coal_on(state):
+        return out
+    hs = {p["name"]: p.get("household") for p in era2.adults(state)}
+    town = {n for r in s4._g(state)["town"].values() for n in r["people"]}
+    k = 0
+    for h in sorted(fams, key=lambda n: (-len(fams[n]), n)):
+        if k >= S3_STOVES:
+            break
+        hh = hs.get(h)
+        if not hh or g15.stove_done(state, hh):
+            continue
+        m = next((x for x in fams[h] if x not in taken and x not in town), None)
+        if m:
+            out[m] = _job(g15.ACT_STOVE)
+            k += 1
+    return out
+
+
 def make_answers(state, pol, rt):
     """集まりの歩の、答える人みんなの決まりの答え ({名前: JSON の文})"""
     g = state["era2"]["g7"]
@@ -1104,7 +1203,12 @@ def make_answers(state, pol, rt):
         if pol.get("s3") == "ws":
             for s in seas:
                 plans[s].update(_s3w_jobs(state, fams, s, set(plans[s])))
+        if pol.get("s4") == "push":
+            for s in seas:
+                plans[s].update(_s4_jobs(state, fams, s, set(plans[s])))
         s3f = _s3_fields(state, fams, ask) if pol.get("s3") == "push" else {}
+        if pol.get("s4") == "push":
+            s3f = _s4_fields(state, fams, ask)
         for i, n in enumerate(names):
             a = {"say": [], "year": {s: _season_part(state, pol, rt, n, fams[n], s, plans[s]) for s in seas}, **common}
             if pol.get("g15") == "push" and i == 0 and _ws_answer(state, pol):  # G15: workshop は答える人の最初の 1 人が書く (B1S も同じ 1 人)
@@ -1148,7 +1252,11 @@ def make_answers(state, pol, rt):
             roles.update(_s3_jobs(state, fams, now, set(roles)))
         if pol.get("s3") == "ws" and not famine:
             roles.update(_s3w_jobs(state, fams, now, set(roles)))
+        if pol.get("s4") == "push" and not famine:
+            roles.update(_s4_jobs(state, fams, now, set(roles)))
         s3f = _s3_fields(state, fams, ask) if pol.get("s3") == "push" and not famine else {}
+        if pol.get("s4") == "push" and not famine:
+            s3f = _s4_fields(state, fams, ask)
         for i, n in enumerate(names):
             a = {"say": [], **_season_part(state, pol, rt, n, fams[n], now, roles, famine), **common}
             if notes14 and g14.house_readers(state, n) and (not pol.get("solo") or n in writers14):
@@ -1269,7 +1377,7 @@ def _year_row(state, y0, acc):
             "dem_in_strong": sum(1 for d in reg.get("demands", []) if d.get("to") == "V0" and d.get("from") == g.get("strong")),
             "wars_v0": sum(1 for x in reg.get("wars", []) if "V0" in (x.get("att"), x.get("def")) and x.get("done") is not None and not x.get("called_off")),
             "strong_people": next((o["people"] for o in g7._others(state) if o["id"] == g.get("strong")), None),
-            **_heavy_cols(state), **_g9_cols(state), **_g10_cols(state), **_g11_cols(state), **_g12_cols(state), **_g13_cols(state), **_g14_cols(state), **_g15_cols(state), **_s3_cols(state),
+            **_heavy_cols(state), **_g9_cols(state), **_g10_cols(state), **_g11_cols(state), **_g12_cols(state), **_g13_cols(state), **_g14_cols(state), **_g15_cols(state), **_s3_cols(state), **_s4_cols(state),
             **{k: acc[k] for k in sorted(acc)}}
 
 
@@ -1465,6 +1573,19 @@ def _s3_cols(state):
     return {"s3_row": s["rows"].get(str(y)), "s3_e": dict(s["e"]), "s3_e5_broken": list(s["e5_broken"]), "s3_reached": dict(s["reached"]),
             "s3_entrance": s3.entrance(state), "s3_consulted": [c for c in g.get("consulted", []) if str(c.get("why", "")).startswith("s3_")],
             "s3_posts": len(s["posts"]), "s3_head": {k: v["name"] for k, v in s["head"].items()}}
+
+
+def _s4_cols(state):
+    """Society 4.0 (分業と町) の確かめ (2026-11-20) の年ごとの列: S4 の年の行・f の日・f5 を割った年・入口・止まりのわけ"""
+    g = state["era2"]["g7"]
+    if "s4" not in g:
+        return {}
+    import s4
+    s = g["s4"]
+    y = state["day"] // YEAR
+    return {"s4_row": s["rows"].get(str(y)), "s4_f": dict(s["f"]), "s4_f5_broken": list(s["f5_broken"]), "s4_reached": dict(s["reached"]),
+            "s4_entrance": s4.entrance(state), "s4_consulted": [c for c in g.get("consulted", []) if str(c.get("why", "")).startswith("s4_")],
+            "s4_town": {h: {"job": r["job"], "n": len(r["people"])} for h, r in s["town"].items()}, "s4_pit": (s.get("pit") or {}).get("done")}
 
 
 def g9_tools_alive(state):
