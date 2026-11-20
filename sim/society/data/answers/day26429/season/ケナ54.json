@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋の畑に種をまいて、冬までしっかり草取りをしよう。蓄えは十分あるけれど、手は休めずにいこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "前の季節も畑で働いて実りが増えた。種をまく秋は、畑の草取りがいちばん役に立つから続ける。"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ60": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "ソナ64": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "セヤ66": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "ネイ69": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "オセ73": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "ホタ73": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため。"},
+  "ナセ89": {"activity": "畑仕事", "place": "camp", "why": "若いので畑の仕事で無理なく手伝う。"},
+  "ホタ91": {"activity": "畑仕事", "place": "camp", "why": "子どもなので畑の軽い仕事を手伝う。"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心している。今年の秋も、みんなで畑を守りたい。"}

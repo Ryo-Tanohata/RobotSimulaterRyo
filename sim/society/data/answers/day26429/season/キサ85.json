@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギは 104 頭になって、草で養える 110 頭より少なくなった。もうつぶさなくていい。よその村のヤギも受けないでおこう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが少なくなるから、毎日草を取る"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "feast": false, "leader": null, "trade": {"T999": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [{"op": "add", "text": "ヤギは 104 頭で、草で養える約 110 頭より少なくなった。もうつぶして減らさなくてよい", "because": [], "confidence": 0.7},
+  {"op": "add", "text": "刈らずに残した畑の草の種は落ちてしまう。夏に刈りきる人手が足りなかった", "because": [4663221, 4663225], "confidence": 0.7}],
+ "proposal": {"text": "ヤギは 104 頭で草の約 110 頭より少なくなったから、この 1 年はつぶさずに数を保ち、よその村のヤギは受けないでおこう。畑が空だから、この秋は大人一人 1000 つかみずつまき、手の空いた大人は草取りをして、残りは板を持って水の道の手入れ (あと 9453 人日) に出よう。", "because": [4663221, 4663248], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L836", "against": "ヤギはもう 104 頭で、つぶして減らす必要がない", "agree": false, "reason": "ヤギはもう草で養える数より少ないから、つぶすのはやめたい"},
+  {"id": "L837", "against": "ヤギはもう 104 頭で、つぶして減らす必要がない", "agree": false, "reason": "ヤギをこれ以上減らすと乳や肉が足りなくなる"},
+  {"id": "L838", "against": "ヤギをつぶすところは今はいらない", "agree": true, "reason": "1000 つかみまくことと水の道の手入れはよいから賛成する"}],
+ "feeling": "ヤギの数がやっと落ち着いた。畑の草取りを黙ってやろう。"}
