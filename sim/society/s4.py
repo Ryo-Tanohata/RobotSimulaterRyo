@@ -62,6 +62,15 @@ LATER_YEARS = 5
 FR = {"F1": "はじめて掘り場を作ると決めた", "F2": "はじめての掘り場", "F3": "はじめて川下の町の市で替えた", "F4": "はじめての町の家"}
 FS = {"f1": "食べ物でない仕事", "f2": "新しい燃える石", "f3": "町の家", "f4": "交換", "f5": "暮らしを守る"}
 HIDE = ("後押し", "反実仮想", "作る側", "Society", "S3", "S4", "案 A", "本人", "分業")
+# 2026-11-20 (ブランチ s4-b): 町の家を選ばないわけを調べた直し (S4_check.md 7.)。FIX_DAY より後の日 (221年から) か、
+# resume --s4fix の印 (g7.s4.fix。26519 日目の相談のお題から) があるときだけ。前の歩は 1 バイトも変わらない。
+# 中身は事実だけ (後押しはしない): 1 年の畑の草取りが要る分の何倍か・水の道の手入れの決まり・板の出入り・町の市の値での町の仕事の返り・
+# 年の終わりに数える「町の家」との区別・持ち場の人と止まっている作業場の書き方・はねた town の答えを「できなかったこと」に
+FIX_DAY = 26519
+
+
+def fixed(state):
+    return state["day"] > FIX_DAY or bool(_g(state).get("fix"))
 
 
 def on(state):
@@ -501,7 +510,10 @@ def apply_answers(state, real):
         if job == g15.ACT_WS_WORK and not mid:
             mid = next(iter(g15.workshops(state, done=True)), None)
         ns = sorted(dict.fromkeys(ns))
-        if town_why(state, h, ns, job, mid) is not None:
+        why = town_why(state, h, ns, job, mid)
+        if why is not None:
+            if fixed(state):  # 直し (s4-b): はねた答えを「水の作業場と燃える石で、できなかったこと」に出す (前は黙ってはねた)
+                g15._fail(state, name, "町の家", f"{name} の答えの町の家 ({'・'.join(ns) or '人なし'}・{job or '仕事なし'}) は、できなかった ({why})")
             continue
         old = g["town"].get(h)
         g["town"][h] = {"job": job, "mill": mid if job == g15.ACT_WS_WORK else None, "people": ns, "day": state["day"], "by": name}
@@ -691,9 +703,25 @@ def block_lines(state, p):
     n_ad = len([q for q in era2.adults(state) if h and q.get("household") == h])
     ws = g15.workshops(state, done=True)
     ex_ws = sorted(ws, key=lambda m: (len(_s3().posts_of(state, m)), m))[0] if ws else None
-    rows.append(f"  あなたの家 ({h}。大人 {n_ad} 人) は" + (f"町の家 ({'・'.join(mine['people'])} が「{mine['job']}」{(' ' + mine['mill']) if mine.get('mill') else ''})。" if mine else "町の家でない。")
-                + f"書き方 \"town\": {{\"人\": [\"{name}\"], \"仕事\": \"{g15.ACT_DIG}\"}}" + (f" か {{\"人\": [\"{name}\"], \"仕事\": \"{g15.ACT_WS_WORK}\", \"輪\": \"{ex_ws}\"}}" if ex_ws else "")
-                + f"・やめるは {{\"やめる\": true}} (あなたの家の大人だけ。1 家 {TOWN_PER_HOUSE} 人まで)")
+    if fixed(state):  # 直し (s4-b): 書き方の例を、その答える人が書ける形に (持ち場の人は、その作業場だけ)・止まっている作業場はそう書く
+        rows[0] += "名前で出すこの町の家は、年の終わりに数える「町の家」(働いた日の半分以上が食べ物でない仕事の家) とは別。"
+        post = _s3()._g(state)["posts"].get(name)
+        ex = f"{{\"人\": [\"{name}\"], \"仕事\": \"{g15.ACT_DIG}\"}}"
+        if post:
+            ex_ws = post["mill"]
+        if ex_ws:
+            m = g15._mill(state, ex_ws)
+            stop = " (いまは止まっている。町の家の人が先に「水の輪を直す」)" if m is not None and m.get("stopped") else ""
+            ex_w = f"{{\"人\": [\"{name}\"], \"仕事\": \"{g15.ACT_WS_WORK}\", \"輪\": \"{ex_ws}\"}}{stop}"
+            ex = ex_w if post else f"{ex} か {ex_w}"
+        rows.append(f"  あなたの家 ({h}。大人 {n_ad} 人) は" + (f"町の家 ({'・'.join(mine['people'])} が「{mine['job']}」{(' ' + mine['mill']) if mine.get('mill') else ''})。" if mine else "町の家でない。")
+                    + f"書き方 \"town\": {ex}・やめるは {{\"やめる\": true}} (あなたの家の大人だけ。1 家 {TOWN_PER_HOUSE} 人まで"
+                    + (f"。{name} は {post['mill']} の{post['post']}なので、町の仕事は {post['mill']} の「{g15.ACT_WS_WORK}」だけ)" if post
+                       else f"。持ち場の人は、その作業場の「{g15.ACT_WS_WORK}」だけ)"))
+    else:
+        rows.append(f"  あなたの家 ({h}。大人 {n_ad} 人) は" + (f"町の家 ({'・'.join(mine['people'])} が「{mine['job']}」{(' ' + mine['mill']) if mine.get('mill') else ''})。" if mine else "町の家でない。")
+                    + f"書き方 \"town\": {{\"人\": [\"{name}\"], \"仕事\": \"{g15.ACT_DIG}\"}}" + (f" か {{\"人\": [\"{name}\"], \"仕事\": \"{g15.ACT_WS_WORK}\", \"輪\": \"{ex_ws}\"}}" if ex_ws else "")
+                    + f"・やめるは {{\"やめる\": true}} (あなたの家の大人だけ。1 家 {TOWN_PER_HOUSE} 人まで)")
     if g15.coal_on(state):
         pit = g.get("pit")
         now = ("まだない。作るなら \"pit\": true (答えた人の中でいちばん多い中身)" if not pit else
@@ -709,9 +737,52 @@ def block_lines(state, p):
     rows.append(f"- {TOWN_NAME}の市 (sell の相手 \"{TOWN}\"): " + "・".join(pr) + "。"
                 f"町からもらう物は \"もらう\" に書く (書かなければ草の種)。例 \"sell\": [{{\"物\": \"板\", \"数\": 500, \"相手\": \"{TOWN}\", \"から\": \"村\", \"もらう\": \"燃える石\"}}]")
     fr = food_rate(state, ly)
-    rows.append(f"  くらべ: {ly}年は、畑仕事と水の道の 1 人日あたり 刈り入れ 約 {fr} つかみ。村の倉の板 {g15g['planks']['stock']} 束・燃える石 {round(g15g['coal']['stock'])} kg。"
-                f"村の蓄え 約 {era2.store_days(state)} 日分")
+    if fixed(state):  # 直し (s4-b): くらべの数の中身と、手の使いみちの事実 (後押しはしない)
+        pk = g15g["planks"]
+        kg = PIT_KG if (g.get("pit") or {}).get("done") is not None else g15.COAL_KG_DAY
+        r3 = _s3().CREW[0][2]
+        (_, c_rate), (_, p_rate) = PRICE[("燃える石", "草の種")], PRICE[("板", "草の種")]
+        rows.append(f"  くらべ: {ly}年は、畑仕事と水の道の 1 人日あたり 刈り入れ 約 {fr} つかみ (その年の刈り入れを、畑仕事と水の道の人日みなで割った数)。"
+                    f"町の市の値では、掘る 1 人日 (燃える石 {kg} kg) は草の種 {round(kg * c_rate / 100)} つかみ、{_s3().CREW[0][0]} 人そろった水ののこの 1 人日 (板 {r3} 束) は草の種 {r3 * p_rate} つかみ (町が受ける量まで)。"
+                    f"村の倉の板 {pk['stock']} 束 ({ly}年にひいた {pk['made'].get(str(ly), 0)} 束・使った {pk['used'].get(str(ly), 0)} 束)・燃える石 {round(g15g['coal']['stock'])} kg。"
+                    f"村の蓄え 約 {era2.store_days(state)} 日分")
+        rows += hands_lines(state)
+    else:
+        rows.append(f"  くらべ: {ly}年は、畑仕事と水の道の 1 人日あたり 刈り入れ 約 {fr} つかみ。村の倉の板 {g15g['planks']['stock']} 束・燃える石 {round(g15g['coal']['stock'])} kg。"
+                    f"村の蓄え 約 {era2.store_days(state)} 日分")
     return rows
+
+
+WEED_NEED = (0.15, 10)  # era2._field_season の草取りに要る時間 (まいた種 × 0.15 + 10)
+
+
+def weed_times(state):
+    """いちばん新しい、育ち終えた秋の畑の (まいた種, した草取り ÷ 要る草取り)。なければ None"""
+    fs = [f for f in state["era2"]["fields"] if f["state"] != "育つ" and era2.season(f["day"]) == "秋"]
+    if not fs:
+        return None
+    d = max(f["day"] for f in fs)
+    xs = [f for f in fs if f["day"] == d]
+    need = sum(f["seed"] * WEED_NEED[0] + WEED_NEED[1] for f in xs)
+    return sum(f["seed"] for f in xs), (sum(f["work"] for f in xs) / need if need else 0.0)
+
+
+def hands_lines(state):
+    """直し (s4-b): 畑の草取りと水の道の手入れの事実 (どちらも決まりのとおり。すすめない)"""
+    out = []
+    w = weed_times(state)
+    if w and w[0] > 0:
+        out.append(f"  畑の草取り: いちばん新しく実った畑 (秋にまいた {w[0]} つかみ) にした草取りは、要る時間の 約 {round(w[1], 1)} 倍 "
+                   f"(要る時間の分までで実りは 10 割。それより多くしても増えない)")
+    g13g = state["era2"]["g7"].get("g13") or {}
+    cap = (g13g.get("canal") or {}).get("cap", 0)
+    if cap:
+        sown, _ = g13._water_now(state)
+        per = round(g13.CANAL_PER_DAY / g13.CANAL_KEEP)
+        out.append(f"  水の道: いま水が来る畑は、秋にまく草の種 {cap} つかみ分で、去年の秋にまいた量の 約 {round(cap / sown) if sown else '-'} 倍。"
+                   f"掘る 1 人日で {g13.CANAL_PER_DAY} つかみ分ふえ、手入れに要る人日も、水の来る畑 {per} つかみ分ごとに 1 年 1 人日ふえる "
+                   f"(いま 約 {round(cap / per)} 人日。足りない年は、水の来る畑が {round(g13.CANAL_LOSS * 10)} 割へる)")
+    return out
 
 
 def field_rows(state, year=False):

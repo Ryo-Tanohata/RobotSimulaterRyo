@@ -11,6 +11,7 @@
   python sim/society/step.py resume --unpush "<本人の言葉>" --years 3  2026-11-17: G15 の入口 (HOLD entrance) で、後押しをしているときだけ (1 回だけ)、
                                                  後押しを止めて (push.ended)、印 g7.g15.after を書き、止まりを解いて G15 のまま村の人だけで N 年回す。
                                                  最後の年の終わりに HOLD consult で止まる (村の人のお題には出さない。docs/society_phase/G15_push.md 7.)
+  python sim/society/step.py resume --s4fix "<本人の言葉>"  2026-11-20 (s4-b): S4 の相談 (26519 日目から) で、町の家を選ばないわけを調べた直しを、この日のお題から使う (印 g7.s4.fix。お題を書き直す)
   python sim/society/step.py resume --s4 "<本人の言葉>"  2026-11-20: S3 のあと (25919 日目から。S3 の相談・入口か、止まりのないとき。1 回だけ)、
                                                  印 g7.s4 を書いて Society 4.0 (分業と町) を始め、止まりを解き、この歩のお題を書き直す (docs/society_phase/S4_design.md)
   python sim/society/step.py resume --s3 "<本人の言葉>" [--parts a,b,c,d]  2026-11-17: 後押しなしの確かめが終わって HOLD consult で止まっているときだけ (1 回だけ)、
@@ -686,6 +687,7 @@ def main():
     ap.add_argument("--s3more", default=None, help="resume で、S3 の入口 (HOLD entrance) のとき (2026-11-18): そのまま --years 年 (書かなければ 3) 確かめる本人の言葉 (印 g7.s3.more。終わりに HOLD consult)")
     ap.add_argument("--s3", default=None, help="resume で、後押しなしの確かめが終わった相談 (HOLD consult) のとき (2026-11-17): Society 3.0 (案 A) を始める本人の言葉 (印 g7.s3 に残す。docs/society_phase/S3_design.md)")
     ap.add_argument("--s4", default=None, help="resume で、S3 のあと (25919 日目から。S3 の相談・入口で止まっているか、止まりのないとき) (2026-11-20): Society 4.0 (分業と町) を始める本人の言葉 (印 g7.s4 に残す。docs/society_phase/S4_design.md)")
+    ap.add_argument("--s4fix", default=None, help="resume で、S4 の相談 (HOLD consult。26519 日目から) のとき (2026-11-20。ブランチ s4-b): 町の家を選ばないわけを調べた直し (s4.fixed) を、この日のお題から使う本人の言葉 (印 g7.s4.fix。お題を書き直す)")
     ap.add_argument("--parts", default=None, help="resume --s3 で入れる部分 (コンマでつなぐ。a,b,c,d。書かなければみな。s3.PARTS)")
     ap.add_argument("--levers", default=None, help="resume --push で選ぶ後押しの手 (コンマでつなぐ。food,ws,coal,ws2,house。書かなければみな。g15.LEVERS)")
     ap.add_argument("--decided", default=None, help="next_part で G14 の終わり (第 7 部の終わり) から G15 (第 8 部) に入るとき (2026-11-15): 本人の決めの言葉 (しるし。g7.g15.decided に残す)")
@@ -711,6 +713,8 @@ def main():
         sys.exit("--s3 は resume のときだけ書く (--push・--unpush とは一緒に書かない)")
     if a.parts is not None and a.s3 is None:
         sys.exit("--parts は resume --s3 のときだけ書く")
+    if a.s4fix is not None and (a.cmd != "resume" or any(x is not None for x in (a.push, a.unpush, a.s3, a.s3more, a.s3fix, a.s4))):
+        sys.exit("--s4fix は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix・--s4 とは一緒に書かない)")
     if a.s4 is not None and (a.cmd != "resume" or a.push is not None or a.unpush is not None or a.s3 is not None or a.s3more is not None or a.s3fix is not None):
         sys.exit("--s4 は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix とは一緒に書かない)")
     if a.note is not None and a.cmd not in ("exp3", "exp4"):
@@ -810,6 +814,29 @@ def main():
         export(state)
         print(f"* {g['why']} を {_yd(state['day'])}から始めた ({g['start_year']}年から数える)。部分: " + " / ".join(f"{k} {v}" for k, v in s4.PARTS.items()))
         print("* 印と本人の言葉は、村の人のお題にも出来事にも出さない。S3 の仕組みはそのまま動く。止まるのは S4 の入口 (HOLD entrance) と相談 (HOLD consult) だけ")
+        print("再開した")
+        return
+    if a.cmd == "resume" and a.s4fix is not None:  # 2026-11-20 (s4-b): 町の家を選ばないわけを調べた直し (s4.fixed) を、いまの相談の日のお題から使う
+        h = ((state.get("era2") or {}).get("g7") or {}).get("hold") or {}
+        ok = bool((state.get("era2") or {}).get("g7", {}).get("s4"))
+        if ok:
+            import s4  # noqa: E402
+            ok = s4.on(state) and state["day"] >= s4.FIX_DAY and not s4._g(state).get("fix")
+        if not ok or h.get("why") != "consult" or not str(h.get("what", "")).startswith("S4:") or not a.s4fix.strip():
+            print("resume --s4fix はできない: S4 の相談 (HOLD consult。26519 日目から) で止まっていない・もうつけた・言葉がない (何も変えない)")
+            sys.exit(3)
+        s4._g(state)["fix"] = {"day": state["day"], "words": a.s4fix.strip()}
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
+        for kind in ("season", "feeling"):  # この歩のお題 (答えはまだない) を、直しのあとの形で書き直す (出来事には残さない)
+            d = pdir(state, kind, "prompts")
+            if d.exists() and not any(pdir(state, kind, "answers").glob("*.json")):
+                shutil.rmtree(d)
+        save(state)
+        if state["era2"]["g7"].get("ask"):
+            write_prompts(state, "season")
+        export(state)
+        print(f"* 町の家を選ばないわけを調べた直し (事実の行と書き方の例・はねた答えを「できなかったこと」に) を {_yd(state['day'])} のお題から使う (本人の言葉 2026-11-20 「{a.s4fix.strip()}」。村の人のお題には出さない)")
         print("再開した")
         return
     if a.cmd == "resume" and a.s3fix is not None:  # 2026-11-19: 燃える石の行の直し (s3.coal_fixed) を、いまの相談の日のお題から使う
