@@ -431,6 +431,9 @@ def conditions(D, y, phase):
         out["after"] = after_lines(g, st, y)
         import s3 as S3
         out["s3"] = S3.lines(st) if S3.on(st) else []
+        if "s4" in _g7(st):  # 2026-11-20: Society 4.0 (印 g7.s4 のあとだけ)
+            import s4 as S4
+            out["s4"] = S4.lines(st)
         p = (g.get("path") or {}).get(str(y))
         cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g15_") and c.get("year", (c.get("day", 0) + 1) // YEAR - 1) == y]
         out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G15"}
@@ -1140,6 +1143,8 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
         w('<p style="margin:10px 0 2px"><b>後押しなしの確かめ (作る側の後押しを止めて、村の人だけで回した年)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["after"]) + "</ul>")
     if C.get("s3"):
         w('<p style="margin:10px 0 2px"><b>Society 3.0 (案 A): 村の人が見て・選んで・続ける仕事</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["s3"]) + "</ul>")
+    if C.get("s4"):
+        w('<p style="margin:10px 0 2px"><b>Society 4.0 (分業と町): 町の家・掘り場・川下の町の市</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["s4"]) + "</ul>")
     if C.get("branches"):
         w('<p style="margin:10px 0 2px"><b>反実仮想の枝 (写しを 2 本回して、良いほうを本物の村の続きにした)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["branches"]) + "</ul>")
     if C.get("g14"):
