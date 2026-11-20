@@ -2710,7 +2710,7 @@ def year_prompt(state, p, first):
     village = "" if era2.year_end(state) else f"\n村のおもな出来事 (この年):\n{era2._year_digest(state)}"
     out = f"""{RULES_Y}
 
-{me}{era2.FACTS2}{era2.FACTS_G3 + era2.FACTS_HOUSE}{era2.FACTS_G4}{era2._g5_facts(state)}{era2._g6_facts(state)}{facts(state)}
+{me}{era2.FACTS2}{era2.FACTS_G3 + era2.FACTS_HOUSE}{era2.FACTS_G4}{era2._g5_facts(state)}{era2._g6_facts(state)}{facts(state)}{_s4m().ask_block(state, p) if _s4_on(state) else ''}
 ## 村のようす
 {era2._village(state)}
 ## {digest_head(state)}

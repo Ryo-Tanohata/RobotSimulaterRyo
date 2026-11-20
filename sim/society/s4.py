@@ -27,6 +27,9 @@ YEAR, SEASON_DAYS = era2.YEAR, era2.SEASON_DAYS
 S4_FROM = 25919  # 本物の村が S3 を終えて止めた日 (215年の終わり)。これより前には印を書けない
 S4_DATE = "2026-11-20"
 S4_NAME = "Society 4.0 (分業と町)"
+# 2026-11-20 (s4-c): 人が読む所 (年報・設計の文) での呼び名。日本の枠組みでは Society 3.0 が工業・4.0 が情報の社会なので、これは「工業の続き」。
+# S4_NAME は印の why (state) に入っているので変えない (前の歩の state を変えない)
+S4_LABEL = "Society 3.5 (工業の続き: 分業と町)"
 PARTS = {"a": "町の家 (1 年じゅうの町の仕事と受け分)", "b": "掘り場 (板で支えた掘り場)", "c": "川下の町の市 (板と燃える石を草の種と燃える石に)"}
 # a 町の家【仮定】
 TOWN_SRC = "町の家の仕事"  # g7.src の値 (写しの記録では post に分ける)
@@ -74,6 +77,97 @@ FIX_DAY = 26519
 
 def fixed(state):
     return state["day"] > FIX_DAY or bool(_g(state).get("fix"))
+
+
+# 2026-11-20 (ブランチ s4-c): 年の集まりで、家ごとに町の家を聞く (S4_check.md 8.)。お題の終わり近くの町の行は読まれていなかったので、
+# 年の集まりのお題の上のほう (その人のようすのすぐあと) に、短い 1 節で聞く。事実だけで、すすめない。答えは今までの欄 town (と sell の相手「町」)。
+# ASK_DAY より後の日か、resume --s4ask の印 (g7.s4.ask。26639 日目の相談のお題から) があるときだけ、はじまりの年の集まりから ASK_YEARS 回。
+# 前の歩は 1 バイトも変わらない。聞いている年は「選ぶ人 2 年 0 人」の相談で止めず、終わりの年の終わりに止めて相談する
+ASK_DAY = 26639  # 221年の終わり
+ASK_YEARS = 3
+ASK_HEAD = "## 今年の集まりで、家ごとに聞くこと (町の家)"
+ASK_NO = ("出さない", "出さず", "いない", "なし", "false", "no")
+
+
+def ask_start(state):
+    a = _g(state).get("ask")
+    return a["day"] if a else ASK_DAY + YEAR
+
+
+def ask_window(state):
+    """聞く年のあいだ (はじまりの年の集まりの日から ASK_YEARS 年)"""
+    D, s = state["day"], ask_start(state)
+    return (bool(_g(state).get("ask")) or D > ASK_DAY) and s <= D < s + ASK_YEARS * YEAR
+
+
+def ask_on(state):
+    """この歩が、聞く年の年の集まりか"""
+    return on(state) and state["era2"]["g7"].get("ask") == "年" and ask_window(state)
+
+
+def _running_ws(state):
+    return [m for m in g15.workshops(state, done=True) if not (g15._mill(state, m) or {}).get("stopped")]
+
+
+def ask_block(state, p):
+    """年の集まりのお題の、その人のようすのすぐあとの短い節 (聞く年だけ。ほかは空)"""
+    if not ask_on(state):
+        return ""
+    g, g15g = _g(state), g15._g(state)
+    name, h = p["name"], p.get("household")
+    if not h:
+        return ""
+    n_ad = len([q for q in era2.adults(state) if q.get("household") == h])
+    run = _running_ws(state)
+    post = _s3()._g(state)["posts"].get(name)
+    jobs = ([f"「{g15.ACT_DIG}」"] if g15.coal_on(state) else []) + ([f"「{g15.ACT_WS_WORK}」(いま回っている作業場 {'・'.join(run)})"] if run else [])
+    if not jobs:
+        return ""
+    kg = PIT_KG if (g.get("pit") or {}).get("done") is not None else g15.COAL_KG_DAY
+    crew, r3 = _s3().CREW[0][0], _s3().CREW[0][2]
+    val = (f"掘る 1 人日 (燃える石 {kg} kg) = 草の種 {round(kg * PRICE[('燃える石', '草の種')][1] / 100)} つかみ・"
+           f"{crew} 人そろった水ののこの 1 人日 (板 {r3} 束) = 草の種 {r3 * PRICE[('板', '草の種')][1]} つかみ")
+    now = []
+    w = weed_times(state)
+    if w and w[0] > 0:
+        now.append(f"畑の草取りは要る時間の 約 {round(w[1], 1)} 倍 (要る分をこえても実りは増えない)")
+    cap = ((state["era2"]["g7"].get("g13") or {}).get("canal") or {}).get("cap", 0)
+    if cap:
+        per = round(g13.CANAL_PER_DAY / g13.CANAL_KEEP)
+        now.append(f"水の道の手入れに要るのは 1 年 約 {round(cap / per)} 人日 (水の来る畑 {per} つかみ分ごとに 1 人日。掘るほどふえる)")
+    now.append(f"村の倉の燃える石 {round(g15g['coal']['stock'])} kg・板 {g15g['planks']['stock']} 束")
+    if post and post["mill"] in run:
+        ex = f"{{\"人\": [\"{name}\"], \"仕事\": \"{g15.ACT_WS_WORK}\", \"輪\": \"{post['mill']}\"}}"
+    elif g15.coal_on(state):
+        ex = f"{{\"人\": [\"{name}\"], \"仕事\": \"{g15.ACT_DIG}\"}}"
+    else:
+        ex = f"{{\"人\": [\"{name}\"], \"仕事\": \"{g15.ACT_WS_WORK}\", \"輪\": \"{run[0]}\"}}"
+    mine = g["town"].get(h)
+    cur = (f"あなたの家はいま町の家 ({'・'.join(mine['people'])} が「{mine['job']}」)。やめるなら \"town\": {{\"やめる\": true}}。" if mine else "")
+    return (f"\n{ASK_HEAD}\n"
+            f"あなたの家 ({h}。大人 {n_ad} 人) から、大人を町の家の仕事に出すか。出しても出さなくてもよい。\n"
+            f"- 町の家の仕事: {' か '.join(jobs)}。出した人は 1 年じゅうその仕事をし、畑・ヤギ・水の道には出ない。"
+            f"その 1 人日ごとに、村の倉から草の種 {RATION} つかみが家の倉に入る。食べ物は今までどおり村の倉から\n"
+            f"- {TOWN_NAME}の市の値で: {val} (町が受ける量まで)\n"
+            f"- いま: {'・'.join(now)}\n"
+            f"- 答え: 出すなら \"town\": {ex} (あなたの家の大人だけ。{TOWN_PER_HOUSE} 人まで。持ち場の人は、その作業場の「{g15.ACT_WS_WORK}」だけ)。"
+            f"出さないなら \"town\": \"出さない\"。{cur}村の倉の板・燃える石を町と替えるなら \"sell\" (相手 \"{TOWN}\")\n")
+
+
+def _ask_no(v):
+    return v is False or (isinstance(v, str) and any(w in v.strip().lower() for w in ASK_NO))
+
+
+def ask_count(state, real, made, failed):
+    """聞く年の年の集まりの答え: 出した・出さないと答えた・書かなかった (帳面 g7.s4.asked。お題には出さない)"""
+    D = state["day"]
+    y = str((D + 1) // YEAR)
+    yes = sorted(made)
+    no = sorted(n for n, a in real.items() if isinstance(a, dict) and _ask_no(a.get("town")))
+    fail = sorted(failed)
+    quiet = len([n for n in real if n not in set(yes) | set(no) | set(fail)])
+    _g(state).setdefault("asked", {})[y] = {"day": D, "answerers": len(real), "yes": yes, "no": no, "failed": fail, "quiet": quiet,
+                                           "town": len(_g(state)["town"]), "town_people": sum(len(r["people"]) for r in _g(state)["town"].values())}
 
 
 def on(state):
@@ -163,6 +257,8 @@ def town_why(state, h, names, job, mid):
         return "燃える石のある所を知らない"
     if job == g15.ACT_WS_WORK and mid not in g15.workshops(state, done=True):
         return f"{mid} は使える作業場でない"
+    if job == g15.ACT_WS_WORK and ask_on(state) and mid not in _running_ws(state):  # 聞く年 (s4-c): 回っている作業場だけ
+        return f"{mid} はいま止まっている"
     if not names:
         return "人がいない"
     if len(names) > TOWN_PER_HOUSE:
@@ -499,11 +595,17 @@ def apply_answers(state, real):
     g = _g(state)
     _prune(state)
     count_chose(state, real)
+    asking = ask_on(state)
+    made, failed = [], []
     for name, a in sorted(real.items()):
         if not isinstance(a, dict):
             continue
         tr = _town_rows(a.get("town"))
         h = _house_of(state, name)
+        if asking and not tr and a.get("town") is not None and not _ask_no(a.get("town")):  # 聞く年 (s4-c): 読めない town も「できなかったこと」に
+            failed.append(name)
+            g15._fail(state, name, "町の家", f"{name} の答えの町の家は、書き方が分からず、できなかった (書き方 {{\"人\": [名前], \"仕事\": 仕事}})")
+            continue
         if not tr or not h:
             continue
         ns, job, mid, q = tr
@@ -517,7 +619,9 @@ def apply_answers(state, real):
         if why is not None:
             if fixed(state):  # 直し (s4-b): はねた答えを「水の作業場と燃える石で、できなかったこと」に出す (前は黙ってはねた)
                 g15._fail(state, name, "町の家", f"{name} の答えの町の家 ({'・'.join(ns) or '人なし'}・{job or '仕事なし'}) は、できなかった ({why})")
+            failed.append(name)
             continue
+        made.append(name)
         old = g["town"].get(h)
         g["town"][h] = {"job": job, "mill": mid if job == g15.ACT_WS_WORK else None, "people": ns, "day": state["day"], "by": name}
         if old and old["job"] == job and old["people"] == ns and old.get("mill") == g["town"][h]["mill"]:
@@ -527,6 +631,8 @@ def apply_answers(state, real):
         log(state, "町の家", name, f"{h}の {'・'.join(ns)} が、町の家の仕事として、1 年じゅう「{job}」{where}をすることにした (やめると答えるまで。"
             f"受け分は 1 人日 草の種 {RATION} つかみ)", household=h, job=job, people=ns)
         _reach(state, "F4", f"{h}が町の家になった")
+    if asking:
+        ask_count(state, real, made, failed)
     _pit_vote(state, real)
     if not _s3().part(state, "d"):  # S3 の d (交換) がない村では、川下の町の市だけここで
         apply_sell(state, {n: {"sell": [r for r in (a.get("sell") or []) if isinstance(r, dict) and _is_town(str(r.get("相手") or r.get("to") or ""))]}
@@ -671,7 +777,13 @@ def check(state, done):
     if r and not r["f5_ok"] and not any(c["why"] == "s4_f5" and c.get("year") == y for c in done):
         return {"why": "s4_f5", "year": y, "day": D, "text": f"S4: {y}年に f5 (暮らしを守る) を割った (ききん {r['famine']}・蓄えのいちばん少ない日 {r['store_min']} 日分・"
                 f"人 {r['pop']} (はじめ {r['pop0']} の {round(F5_POP * 100)}% は {math.ceil(F5_POP * r['pop0'])}))"}
+    if (g.get("ask") or D > ASK_DAY) and D == ask_start(state) + ASK_YEARS * YEAR and not any(c["why"] == "s4_ask" for c in done):  # 聞く年 (s4-c) の終わり
+        a = g.get("asked") or {}
+        return {"why": "s4_ask", "year": y, "day": D, "text": f"S4: 年の集まりで町の家を聞いた {ASK_YEARS} 年が終わった (出した答え "
+                + "・".join(f"{k}年 {len(v['yes'])}" for k, v in sorted(a.items())) + f"。いまの町の家 {len(g['town'])})"}
     ys = [g["rows"].get(str(y - i)) for i in range(PATH_YEARS)]
+    if ask_window(state) and D > ASK_DAY:  # 聞く年 (s4-c) のあいだは「選ぶ人 2 年 0 人」で止めない (終わりの年に止めて相談する)
+        ys = [None]
     if all(x and x["chose"] == 0 for x in ys) and not any(c["why"] == "s4_path" and c.get("year") == y for c in done):
         return {"why": "s4_path", "year": y, "day": D, "text": f"S4: 町の家・掘り場・交換を選ぶ答える人が {PATH_YEARS} 年つづけて 0 人"}
     n = y - g["start_year"] + 1
@@ -821,4 +933,7 @@ def lines(state):
            + f" / f5 を割った年 {'・'.join(map(str, g['f5_broken'])) or 'なし'} / 入口 {'○' if entrance(state) else 'まだ'}"]
     for y in sorted(g["rows"], key=int)[-3:]:
         out.append(row_text(g["rows"][y]))
+    for y, r in sorted((g.get("asked") or {}).items()):  # 聞く年 (s4-c)
+        out.append(f"{y}年の集まりで町の家を聞いた: 答える人 {r['answerers']} のうち、出した {len(r['yes'])} ({'・'.join(r['yes']) or 'なし'})・"
+                   f"出さない {len(r['no'])}・できなかった {len(r['failed'])}・書かなかった {r['quiet']} / 町の家 {r['town']} (大人 {r['town_people']})")
     return out

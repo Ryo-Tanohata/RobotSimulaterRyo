@@ -9580,5 +9580,179 @@ class T_S4B(unittest.TestCase):
             shutil.rmtree(d, ignore_errors=True)
 
 
+S4C_ENTRY = "d4982144"  # 221年の終わり (26639 日目。S4 の相談「選ぶ人 2 年 0 人」HOLD consult・年の集まりのお題・答えなし) の state のコミット (2026-11-20)
+S4C_WORDS = "年の集まりで聞く"
+
+
+class T_S4C(unittest.TestCase):
+    """2026-11-20 (ブランチ s4-c) 年の集まりで、家ごとに町の家を聞く (S4_check.md 8.): 26639 日目より後の日か、resume --s4ask の印 g7.s4.ask のときだけ、
+    年の集まりのお題の上のほう (その人のようすのすぐあと) に短い節が出る (事実だけ・すすめない)。答えは今までの town (と sell)。
+    はねた答えと読めない答えは「できなかったこと」。聞く 3 年は「選ぶ人 2 年 0 人」で止めず、終わりの年の終わりに止める。印がなければ 26639 日目は 1 バイトも変わらない"""
+
+    _st = None
+
+    @classmethod
+    def real(cls):
+        if cls._st is None:
+            st = git_state(S4C_ENTRY)
+            h = st["era2"]["g7"].get("hold") or {}
+            ok = (st["day"] == 26639 and "s4" in st["era2"]["g7"] and h.get("why") == "consult" and str(h.get("what", "")).startswith("S4:")
+                  and st["era2"]["g7"].get("ask") == "年")
+            cls._st = st if ok else False
+        if cls._st is False:
+            raise unittest.SkipTest("S4C_ENTRY の state が 26639 日目の S4 の相談でない")
+        return copy.deepcopy(cls._st)
+
+    def marked(self):
+        import s4
+        st = self.real()
+        s4._g(st)["ask"] = {"day": 26639, "words": S4C_WORDS}
+        return st
+
+    def person(self, st, n):
+        return next(q for q in st["people"] if q["name"] == n)
+
+    def prompt(self, st, n):
+        import g7
+        return g7.year_prompt(st, self.person(st, n), g7.since(st))
+
+    def test_gate_and_block(self):
+        import g15
+        import g7
+        import s3
+        import s4
+        st0, st = self.real(), self.marked()
+        self.assertFalse(s4.ask_on(st0), "印がなければ 26639 日目は聞かない")
+        self.assertTrue(s4.ask_on(st))
+        later = self.real()
+        later["day"] = 26759
+        self.assertTrue(s4.ask_window(later), "26639 日目より後は印なしで聞く (26759 日目から 3 回)")
+        later["day"] = 26759 + 3 * s4.YEAR
+        self.assertFalse(s4.ask_window(later))
+        st["day"] = 26639 + 3 * s4.YEAR
+        self.assertFalse(s4.ask_window(st), "印の日から 3 回まで")
+        st["day"] = 26639
+        posts = s3._g(st)["posts"]
+        ns = era2.answerers(st)
+        for n in [x for x in ns if x not in posts][:1] + [x for x in ns if x in posts][:1]:
+            t0, t = self.prompt(st0, n), self.prompt(st, n)
+            block = s4.ask_block(st, self.person(st, n))
+            self.assertNotIn(s4.ASK_HEAD, t0)
+            self.assertIn(s4.ASK_HEAD, t)
+            self.assertEqual(t.replace(block, ""), t0, "足すのは節 1 つだけ")
+            self.assertLess(t.index(s4.ASK_HEAD), t.index("## 村のようす"), "お題の上のほう")
+            self.assertLess(len(block.encode()), 1500, "短く")
+            for w in s4.HIDE + g15.WORDS + (S4C_WORDS, "すすめ", "入口", "目じるし", "f1", "f3"):
+                self.assertEqual(t.count(w), t0.count(w), (n, w))
+            for w in ("草の種 10 つかみ", "草の種 150 つかみ", "草の種 90 つかみ", "要る時間の 約", "水の道の手入れに要るのは", "村の倉の燃える石", '"town": "出さない"'):
+                self.assertIn(w, block, (n, w))
+            self.assertEqual(g7.answer_form_check(st, t), [])
+            ex = json.loads(block.split('出すなら "town": ', 1)[1].split(" (あなたの家の大人だけ")[0])
+            h = self.person(st, n)["household"]
+            self.assertIsNone(s4.town_why(st, h, ex["人"], ex["仕事"], ex.get("輪")), (n, ex, "例はその人が書ける形"))
+            if n in posts:
+                self.assertEqual(ex.get("輪"), posts[n]["mill"])
+
+    def test_apply(self):
+        import g15
+        import s3
+        import s4
+        st = self.marked()
+        ns = [n for n in era2.answerers(st) if n not in s3._g(st)["posts"]]
+        hs = {n: self.person(st, n)["household"] for n in ns}
+        a_yes, a_no, a_bad, a_other = ns[:4]
+        other = next(q["name"] for q in era2.adults(st) if q.get("household") not in (hs[a_other], None))
+        e0 = len(st["events"])
+        real = {a_yes: {"town": {"人": [a_yes], "仕事": g15.ACT_DIG}}, a_no: {"town": "出さない"}, a_bad: {"town": "考える"},
+                a_other: {"town": {"人": [other], "仕事": g15.ACT_DIG}}, ns[4]: {"town": None}}
+        s4.apply_answers(st, real)
+        g = s4._g(st)
+        self.assertEqual(g["town"][hs[a_yes]]["people"], [a_yes])
+        self.assertNotIn(hs[a_other], g["town"])
+        self.assertNotIn(hs[a_bad], g["town"])
+        fs = g15._g(st)["fails"][-2:]  # fails は 80 までの並び (前のものは落ちる)
+        self.assertEqual(sorted(f["who"] for f in fs), sorted([a_bad, a_other]), "はねた答えと読めない答えは「できなかったこと」")
+        self.assertTrue(all(f["what"] == "町の家" for f in fs))
+        self.assertGreaterEqual(len(st["events"]), e0 + 3)
+        r = g["asked"]["222"]
+        self.assertEqual((r["yes"], r["no"], sorted(r["failed"]), r["quiet"]), ([a_yes], [a_no], sorted([a_bad, a_other]), 1))
+        self.assertTrue(any("町の家を聞いた" in x for x in s4.lines(st)))
+        # 止まっている作業場は、聞く年ははねる
+        st2 = self.marked()
+        g15._mill(st2, "M26")["stopped"] = st2["day"]
+        n = ns[5]
+        s4.apply_answers(st2, {n: {"town": {"人": [n], "仕事": g15.ACT_WS_WORK, "輪": "M26"}}})
+        self.assertNotIn(self.person(st2, n)["household"], s4._g(st2)["town"])
+        self.assertIn("止まっている", g15._g(st2)["fails"][-1]["why"])
+        # 印がなければ 26639 日目は前のまま (読めない town は黙ってすてる・帳面なし)
+        st0 = self.real()
+        f0 = list(g15._g(st0)["fails"])
+        s4.apply_answers(st0, {a_bad: {"town": "考える"}, a_no: {"town": "出さない"}})
+        self.assertEqual(g15._g(st0)["fails"], f0)
+        self.assertNotIn("asked", s4._g(st0))
+
+    def test_check(self):
+        import s4
+        for mark in (False, True):
+            st = self.marked() if mark else self.real()
+            g = s4._g(st)
+            g["rows"]["222"] = dict(g["rows"]["221"], year=222, chose=0)
+            st["day"] = 26759
+            self.assertIsNone(s4.check(st, list(st["era2"]["g7"]["consulted"])), ("聞く年は「選ぶ人 2 年 0 人」で止めない", mark))
+        st = self.marked()
+        g = s4._g(st)
+        for y in (222, 223, 224):
+            g["rows"][str(y)] = dict(g["rows"]["221"], year=y, chose=0)
+        g["asked"] = {"222": {"yes": []}, "223": {"yes": ["x"]}, "224": {"yes": []}}
+        st["day"] = 26639 + 3 * s4.YEAR
+        done = list(st["era2"]["g7"]["consulted"])
+        c = s4.check(st, done)
+        self.assertEqual(c["why"], "s4_ask")
+        self.assertIn("3 年が終わった", c["text"])
+        c2 = s4.check(st, done + [c])
+        self.assertNotEqual((c2 or {}).get("why"), "s4_ask", "1 回だけ")
+
+    def test_resume_cli(self):
+        """step.py resume --s4ask (/dev/shm の写し): 断る (何も変えない) → つける (お題を書き直す・出来事は足さない) → 2 回目は断る"""
+        import s4
+        st = self.real()
+        base = "/dev/shm" if Path("/dev/shm").is_dir() else "/tmp"
+        d = Path(tempfile.mkdtemp(prefix="s4c_test_", dir=base))
+        try:
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            copy_archive(d)
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)  # noqa: E731
+            s0 = (d / "state.json").read_bytes()
+            r = run("resume", "--s4ask", " ")
+            self.assertEqual(r.returncode, 3)
+            self.assertIn("resume --s4ask はできない", r.stdout)
+            r = run("resume", "--s4ask", S4C_WORDS, "--s4fix", "x")
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn("--s4ask は resume のときだけ", r.stderr)
+            self.assertEqual((d / "state.json").read_bytes(), s0, "断ったときは何も変えない")
+            r = run("resume", "--s4ask", S4C_WORDS)
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertIn("再開した", r.stdout)
+            new = json.loads((d / "state.json").read_text(encoding="utf-8"))
+            self.assertEqual(new["era2"]["g7"]["s4"]["ask"], {"day": 26639, "words": S4C_WORDS})
+            self.assertFalse(new["hold"])
+            self.assertIsNone(new["era2"]["g7"]["hold"])
+            self.assertEqual(new["events"], st["events"], "出来事は足さない")
+            ps = sorted((d / "prompts" / "day26639" / "season").glob("*.md"))
+            self.assertEqual(len(ps), len(era2.answerers(st)))
+            for f in ps:
+                t = f.read_text(encoding="utf-8")
+                self.assertIn(s4.ASK_HEAD, t)
+                for w in ("後押し", "反実仮想", "作る側", S4C_WORDS, "Society", "分業", "S4", "本人", "入口", "目じるし"):
+                    self.assertNotIn(w, t, (f.name, w))
+            s1 = (d / "state.json").read_bytes()
+            r = run("resume", "--s4ask", S4C_WORDS)
+            self.assertEqual(r.returncode, 3)
+            self.assertEqual((d / "state.json").read_bytes(), s1)
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
