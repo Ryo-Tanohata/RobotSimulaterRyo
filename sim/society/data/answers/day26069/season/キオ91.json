@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "雨の夜に子どもたちがぬれるのはつらいの。わたしは家族の住まいを少しずつ建てていくよ。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": [], "why": "家族の住まいがなく、雨の夜に小さい子とぬれたので、屋根の下で眠れるようにしたい"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"セヤ105": true, "タユ105": true, "ヒセ105": true}, "keep": false,
+ "feast": false, "leader": null, "trade": {"T947": "村", "T948": "村", "T949": "村", "T950": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null, "pit": null,
+ "knowledge": [{"op": "add", "text": "家族の住まいがないと、雨の夜に子どもと外でぬれてしまう", "because": [4488286], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "とくになし", "agree": true, "reason": "夜はザガが出るので、みんなで離れないほうが安全だから"}],
+ "feeling": "子どもたちが雨にぬれない家がほしい。ていねいに建てていこう。"}

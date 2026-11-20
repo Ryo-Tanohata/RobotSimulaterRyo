@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をまいて、冬と春のあいだ、草取りも手伝うね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増える。採集が得意なので、手を動かして村の蓄えを守りたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"セヤ105": true, "タユ105": true, "ヒセ105": true},
+ "family": {"ソワ100": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りをして、実りを増やすため。"}},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null, "pit": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分あって安心。畑をていねいに世話して、冬をみんなでこえたい。"}

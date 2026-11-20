@@ -1,0 +1,33 @@
+{"say": [{"to": "みんな", "text": "畑が空いた。この秋も一人 1000 つかみずつまく。輪の直しは残り 100 人日、おれが先に片づけて、そのあとは水の道だ。"}, {"to": "みんな", "text": "ヤギは 140 頭で草のいっぱいだ。よそのヤギはもう入れるな。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕があるから、残りの輪の直し 100 人日を先に終わらせる"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"セヤ105": true, "タユ105": true, "ヒセ105": true},
+ "family": {
+  "ネイ52": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが 8615 人日も残っている"},
+  "セヤ53": {"activity": "水の道を掘る", "place": "camp", "why": "水の道が傷むと畑の実りが落ちる"},
+  "キオ57": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"},
+  "オセ67": {"activity": "水の輪を直す", "place": "camp", "why": "道具の腕があるので輪の直しを一緒に早く終える"},
+  "ホタ68": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を足す"},
+  "ラニ72": {"activity": "水の道を掘る", "place": "camp", "why": "倉の板を使って水の道をはかどらせる"},
+  "ソナ75": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れの手が足りない"},
+  "ソナ76": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番を続ける"},
+  "ムイ76": {"activity": "畑仕事", "place": "camp", "why": "小さい子のそばで畑の草取りをする"},
+  "トナ77": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"},
+  "ソナ78": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを守る"},
+  "タユ80": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道を掘る"},
+  "タユ81": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道を掘る"},
+  "ヌオ85": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので畑の草取りで覚える"},
+  "セオ86": {"activity": "畑仕事", "place": "camp", "why": "14 歳なので畑を手伝わせる"}
+ },
+ "keep": false,
+ "feast": false, "leader": "ナセ42",
+ "trade": {"T947": false, "T948": {"side": "村", "利子": 0.1}, "T949": {"side": "村", "利子": 0.1}, "T950": {"side": "村", "利子": 0.1}},
+ "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null, "pit": null,
+ "knowledge": [{"op": "add", "text": "ヤギは140頭で、草で養える約140頭ちょうど。よその村のヤギは受けないほうがよい", "because": [4488290], "confidence": 0.8}, {"op": "add", "text": "苦しい村が草の種を借りに来る年が続く。村の倉は約398日分あるので、少し上乗せして貸せる", "because": [4488292, 4488293, 4488294], "confidence": 0.7}],
+ "proposal": {"text": "畑が空だから、この秋は大人一人 1000 つかみずつまこう。水の輪の直し (あと 100 人日) は道具の腕のある人が先に終え、ほかの大人は倉の板を使って水の道の手入れ (あと 8615 人日) に出よう。ヤギは 140 頭で草の約 140 頭に届いているから、この 1 年はよその村のヤギを受けないでおこう。", "because": [4488290], "penalty": {"for": "", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L822", "against": "ヤギはもう 140 頭まで減った", "agree": false, "reason": "いまは 140 頭で、これ以上つぶす要はない"},
+  {"id": "L823", "against": "ヤギはもう 140 頭まで減った", "agree": false, "reason": "前に出したが、もう数は合っている"},
+  {"id": "L825", "against": "ヤギの数はもう足りている", "agree": true, "reason": "1000 つかみまきと冬春の草取りは今も正しい"},
+  {"id": "L811", "against": "数が少し古い", "agree": true, "reason": "1000 つかみまいて、板で水の道に出るのはよい"}
+ ],
+ "feeling": "輪を直したら、あとは水の道を掘るだけだ。"}

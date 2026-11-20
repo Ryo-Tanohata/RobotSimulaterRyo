@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "畑がいま空っぽだ。今年の秋はしっかり種をまいて、草取りも手を抜かずにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がなく、まいたあとの草取りで実りが決まる。大事な秋の仕事なので続ける。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"セヤ105": true, "タユ105": true, "ヒセ105": true},
+ "family": {"オネ83": {"activity": "畑仕事", "place": "camp", "why": "夫婦で草取りをして、畑の実りをふやすため。"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T947": false, "T948": "村", "T949": "村", "T950": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null, "pit": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに畑がなかったので、蓄えの草の種を多めにまいて草取りに力を入れる。蓄えは約 398 日分あり、ほかの村に草の種を貸す余裕はある。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分だ。畑をしっかり育てて、来年の夏に備えたい。"}

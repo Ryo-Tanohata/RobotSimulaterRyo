@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "ヤギはやっと 140 頭で草とつりあった。だからよそのヤギはもう入れない。そのかわり、苦しい村には蓄えの草の種を貸してやろう。蓄えは一年分ある。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りしないと実りが少ない。続けて畑に出る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"セヤ105": true, "タユ105": true, "ヒセ105": true},
+ "keep": false,
+ "feast": false, "leader": "ナセ42",
+ "trade": {"T947": false, "T948": "村", "T949": "村", "T950": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null, "pit": null,
+ "knowledge": [{"op": "add", "text": "ヤギは 140 頭で、草で養える約 140 頭とちょうど同じになった。これ以上増やすとやせていなくなる", "because": [], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L825", "against": "ヤギをつぶしすぎると乳が減る", "agree": true, "reason": "よそのヤギを受けず、畑にまいて草取りすれば村が安定する"},
+  {"id": "L822", "against": "今は 140 頭で、もう減らさなくてよいかもしれない", "agree": true, "reason": "草より多くならないようにする考えは正しい"}
+ ],
+ "feeling": "蓄えは十分ある。畑をしっかり見ていれば冬も大丈夫だ"}

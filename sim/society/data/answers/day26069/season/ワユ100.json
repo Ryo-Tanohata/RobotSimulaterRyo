@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "冬の前に、もう少し遠くの林も歩いてみたい。珍しい木の実や獣の跡があれば、持ち帰って話すよ。"}],
+ "job": {"activity": "探索", "place": "北林28", "with": [], "why": "蓄えは十分あるので、冬に備えて新しい食べ物の場所を探したい。好奇心が強く、見て回るのが向いている"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"セヤ105": true, "タユ105": true, "ヒセ105": true},
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T947": "村", "T948": "村", "T949": "村", "T950": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null, "pit": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは多く、冬までは食べ物に困らなさそうだ", "because": [4488295], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "穏やかな気持ちで、新しい場所を見に行くのが楽しみだ"}
