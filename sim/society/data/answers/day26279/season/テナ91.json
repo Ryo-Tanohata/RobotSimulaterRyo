@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "夏の畑は刈らないと落ちてしまうから、まず刈り入れをがんばろう。そのあと秋にまいて、冬と春は草取りをして、来年の実りを増やそうね。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうので、刈り入れをする"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "採集の腕が高いが、まず畑の刈り入れを一緒に急ぐ"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで、次の夏の実りを増やす"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にして実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りをして畑を守る"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りを増やす"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ソナ108": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T980": "村", "T981": "村", "T982": "村", "T984": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [{"op": "add", "text": "夏の実った畑は夏のうちに刈り、秋にまいて秋・冬・春に草取りをすると次の夏の実りが増える。", "because": [4579130], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り切った年"}
