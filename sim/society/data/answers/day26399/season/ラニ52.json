@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏の畑はたくさん実っている。落ちる前に、みんなで刈ってしまおう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"オネ55": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ホミ58": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、畑の実りを守れるから"}, "family": {"オネ55": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れ"}, "ホミ58": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れ"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬も水の道の手入れを続ける"}, "family": {"オネ55": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れ"}, "ホミ58": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れ"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして畑の実りを増やすため"}, "family": {"オネ55": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ホミ58": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "mood": "蓄えは十分あって安心している。畑と水の道をこつこつ守りたい。"
+}

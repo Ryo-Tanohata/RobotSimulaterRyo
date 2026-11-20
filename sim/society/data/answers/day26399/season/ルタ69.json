@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑をしっかり刈ろう。秋は水の道を掘って、来年の実りを守ろうぜ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実りが落ちるので、刈り入れを急ぐ"}, "family": {"テナ78": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る人手が要る"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "採集の腕が高く、刈り入れも手早い"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "若い力で刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが 9453 人日も残っていて、悪い年の備えになる"}, "family": {"テナ78": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひき、手入れを早める"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りを増やす"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "帳をつける", "place": "camp", "with": [], "why": "字が読めるので、家ごとの人数と倉の量を書き残す"}, "family": {"テナ78": {"activity": "水の作業場で働く", "place": "M6", "why": "冬も板をひいて手入れを助ける"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを守る"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れの前に、草取りで実りを増やす"}, "family": {"テナ78": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を出す"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T996": false, "T997": false, "T998": false},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草原の養える数 (約 110 頭) より多く、いなくなるので、ヤギを受けとるのは控えたほうがよい。", "because": [4631979], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "水の道を掘った年",
+ "mood": "蓄えは十分で落ち着いている。水の道の手入れをもっと進めたい。"}
