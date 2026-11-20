@@ -53,6 +53,9 @@ SELL_MAX = 6
 NONFOOD = tuple(g14.NONFOOD) + tuple(g15.ACTS15)
 F1_SHARE = 0.22
 F2_SHARE = 0.5
+# 2026-11-20 (220年の終わりの相談): 火と力の合わせに食べ物の熱と水の輪が入るので、新しい燃える石の分は 51% ほどが天井。
+# 同じ測り方のまま、221年から線を 45% にする (S4_check.md 7.)。それより前の年は 50% のまま
+F2_SHARE2, F2_FROM = 0.45, 221
 F3_HOUSES, F3_DAYS = 5, 180
 F4_VALUE = 30000
 F5_STORE, F5_POP = 120, 0.95
@@ -618,7 +621,7 @@ def row_of(state, y):
             "sold": dict(sold), "trade_value": tv, "planks": g15g["planks"]["stock"], "planks_made": g15g["planks"]["made"].get(ys, 0),
             "answerers": ch.get("answerers", 0), "chose": ch.get("chose", 0), "wrote": ch.get("wrote", 0),
             "store_min": smin, "store_end": era2.store_days(state), "famine": famine, "pop": pop, "pop0": g["pop0"], "harvest": lr.get("harvest", 0),
-            "f1_like": f1 >= F1_SHARE, "f2_like": f2 >= F2_SHARE, "f3_like": len(town_ok) >= F3_HOUSES, "f4_like": tv >= F4_VALUE,
+            "f1_like": f1 >= F1_SHARE, "f2_like": f2 >= (F2_SHARE2 if y >= F2_FROM else F2_SHARE), "f3_like": len(town_ok) >= F3_HOUSES, "f4_like": tv >= F4_VALUE,
             "f5_ok": famine == 0 and smin >= F5_STORE and pop >= F5_POP * g["pop0"]}
 
 
