@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "この秋は、わたしは草の多い所で実りを集めます。種もまいておくので、冬のあとの春も安心です。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "採集がいちばん得意で、蓄えに食べ物をたしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ88": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、いっしょに食べ物を集める"}, "ヒセ89": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やす"}},
+ "keep": false,
+ "judge": {"M540": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1012": false, "T1013": false, "T1014": false, "T1015": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [{"op": "add", "text": "もめごと M540 は量が小さく記録もないので、ゆるして収めるのがよい。", "because": [4728244], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心。冬に向けて、のんびり実りを集めたい。"}

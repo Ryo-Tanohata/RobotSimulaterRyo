@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "畑が空だから、この秋は一人 1000 つかみずつ草の種をまこう。そのあとは水の道の手入れに、板を持って出よう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ 10528 人日も残っていて、水の来る畑は悪い年でも実りが半分にならないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "タユ71": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので、家族みなで進める"},
+  "ムイ72": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので、家族みなで進める"},
+  "ケセ74": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので、家族みなで進める"},
+  "ラキ81": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので、家族みなで進める"}},
+ "keep": false,
+ "judge": {"M540": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1012": false, "T1013": false, "T1014": false, "T1015": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた草の種は次の夏に実る。畑が空のいまのうちにまいておくことがだいじ。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L841", "against": "ヤギは今 75 頭で草で養える数より少ないから、つぶす必要がない", "agree": false, "reason": "いまのヤギの数に合わない"},
+  {"id": "L842", "against": "ヤギは今 75 頭で草で養える数より少ないから、つぶす必要がない", "agree": false, "reason": "いまのヤギの数に合わない"}],
+ "feeling": "畑が空なのが心配だけれど、みんなで種をまいて水の道を直せば、来年は安心できると思う。"}

@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋の畑の草取りをしっかりやって、冬に備えよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りをすると実りが増え、村の蓄えが守れるから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ60": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ソナ64": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が確かで、肉を蓄えに足せるから"},
+  "セヤ66": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ネイ69": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ホタ73": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ナセ89": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "ホタ91": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}
+ },
+ "keep": false,
+ "judge": {"M540": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1012": false, "T1013": false, "T1014": false, "T1015": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出て危ないから、この決まりは守るべきだ"}],
+ "feeling": "蓄えがたっぷりあって安心している。冬に向けて落ち着いて畑を手入れしたい。"}
