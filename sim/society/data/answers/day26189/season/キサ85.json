@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "輪の直しはおれがやる。板を使えばすぐ終わる。ヤギは草より多いから、少しつぶしておく。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕があるから、残っている輪の直しを板で先に終わらせる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2, "accept": {"ラニ106": false}, "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T966": false, "T967": false, "T968": false, "T969": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [
+  {"op": "add", "text": "ヤギは 152 頭で、草で養えるのは約 140 頭。まだ多すぎる", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "南東の村・北東の村14・ハソ12の村は、前に借りた草の種をまだ返していないのに、また借りに来た", "because": [4547766, 4547768, 4547769], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L826", "against": "家ごとに一人出すと、ほかの仕事が手うすになる", "agree": true, "reason": "水の道の手入れはまだたくさん残っている"},
+  {"id": "L828", "against": "道具の腕のある人だけに直しが重くなる", "agree": true, "reason": "輪の直しを先に終えるのは理にかなっている。おれもそうする"},
+  {"id": "L831", "against": "つぶしすぎると乳が減る", "agree": true, "reason": "ヤギが草より多く、やせていなくなるより肉にしたほうがいい"}
+ ],
+ "feeling": "前に貸した種も返ってこない。よそには貸さず、自分の手で輪を直す。"}

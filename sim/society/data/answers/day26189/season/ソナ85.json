@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋だね。畑に種をまいて、冬と春のあいだ草取りをして、夏の実りにそなえよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増える。畑がなく、蓄えもたっぷりあるので、畑を育てるのが一番役に立つ。"},
+ "sow": 600, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ラニ106": true, "ケセ106": true},
+ "family": {"ケナ85": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを人手で分けて、実りを増やすため。"}, "トナ85": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを人手で分けて、実りを増やすため。"}},
+ "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T966": false, "T967": false, "T968": false, "T969": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあるので落ち着いている。畑をしっかり育てたい。"}
