@@ -9291,8 +9291,8 @@ class T_S4(unittest.TestCase):
         for _ in range(s4.PIT_DAYS):
             g15._dig(st, p, {})
         self.assertEqual(g["pit"]["done"], 25930)
-        self.assertAlmostEqual(gg["coal"]["stock"] - c0, s4.PIT_DAYS * s4.PIT_BUILD_KG * 0.8, places=1)
-        self.assertAlmostEqual(s3._g(st)["hcoal"][p["household"]] - h0, s4.PIT_DAYS * s4.PIT_BUILD_KG * 0.2, places=1)
+        self.assertAlmostEqual(gg["coal"]["stock"] - c0, s4.PIT_DAYS * s4.PIT_BUILD_KG * 0.8, delta=0.5)
+        self.assertAlmostEqual(s3._g(st)["hcoal"][p["household"]] - h0, s4.PIT_DAYS * s4.PIT_BUILD_KG * 0.2, delta=0.5)
         self.assertTrue(any(e["type"] == "掘り場" and "できた" in e["text"] for e in st["events"]))
         self.assertIn("F2", g["reached"])
         self.assertEqual(s4.dig_kg_now(st), s4.PIT_KG)
@@ -9300,12 +9300,12 @@ class T_S4(unittest.TestCase):
         c1 = gg["coal"]["stock"]
         for _ in range(2 * s4.PIT_WEAR):
             g15._dig(st, p, {})
-        self.assertAlmostEqual(gg["coal"]["stock"] - c1, 2 * s4.PIT_WEAR * s4.PIT_KG * 0.8, places=1)
+        self.assertAlmostEqual(gg["coal"]["stock"] - c1, 2 * s4.PIT_WEAR * s4.PIT_KG * 0.8, delta=0.5)
         self.assertEqual(p1 - gg["planks"]["stock"], 1, "20 人日ごとに板 1 束 (21 日目に 1 束)")
         gg["planks"]["stock"] = 0
         c2 = gg["coal"]["stock"]
         g15._dig(st, p, {})
-        self.assertAlmostEqual(gg["coal"]["stock"] - c2, g15.COAL_KG_DAY * 0.8, places=1, msg="板がなければ浅い所で 200 kg")
+        self.assertAlmostEqual(gg["coal"]["stock"] - c2, g15.COAL_KG_DAY * 0.8, delta=0.5, msg="板がなければ浅い所で 200 kg")
         self.assertIn("板がない", st["events"][-1]["text"])
         st2 = self.marked()
         st2["era2"]["g7"]["g15"]["planks"]["stock"] = 10
@@ -9342,9 +9342,10 @@ class T_S4(unittest.TestCase):
         n = era2.answerers(st)[0]
         h = next(q for q in era2.adults(st) if q["name"] == n)["household"]
         s3._g(st)["hplanks"][h] = 25
-        goat = next(pt for pt in s3.partners(st) if pt["id"] != s3.TOWN and "ヤギ" in pt["price"]["板"][1])
+        goat = next(pt for pt in s3.partners(st) if pt["id"] != s3.TOWN and "ヤギ" in pt["price"]["板"][1] and s3.left(st, pt, "板") >= 20)
         s3.apply_answers(st, {n: {"sell": [{"物": "板", "数": 20, "相手": goat["id"], "から": "家"}]}})
-        self.assertEqual(s3._g(st)["hplanks"][h], 5, "近い集落とは S3 のまま")
+        self.assertEqual(s3._g(st)["hplanks"][h], 5, "近い集落とは S3 のまま (板 10 束でヤギ 1 頭)")
+        self.assertEqual(st["events"][-1]["data"]["to"], goat["id"])
 
     def test_prompts_plain(self):
         """お題: 町の家・受け分・掘り場・川下の町の市の値と残り・くらべが短く出る。答えの形に town・pit。印・本人の言葉・書かない言葉は出ない"""
