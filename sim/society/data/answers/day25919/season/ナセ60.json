@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は畑がたくさん実っている。落ちる前に、みんなで刈ろう。おれは黙って刈る。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちるので、刈り入れを急ぐ"}, "family": {"リセ66": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "タユ71": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ムイ72": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ケセ74": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ラキ81": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "肉を取って冬の食べ物をふやす"}, "family": {"リセ66": {"activity": "採集", "place": "camp", "why": "秋の実を集める"}, "タユ71": {"activity": "採集", "place": "camp", "why": "秋の実を集める"}, "ムイ72": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りをふやす"}, "ケセ74": {"activity": "狩り", "place": "東林12", "why": "肉を取る"}, "ラキ81": {"activity": "狩り", "place": "東林12", "why": "肉を取る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "冬も魚やけものはいる。肉を取る"}, "family": {"リセ66": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りをふやす"}, "タユ71": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りをふやす"}, "ムイ72": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りをふやす"}, "ケセ74": {"activity": "狩り", "place": "東林12", "why": "肉を取る"}, "ラキ81": {"activity": "狩り", "place": "東林12", "why": "肉を取る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため、草取りをする"}, "family": {"リセ66": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "タユ71": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれるので世話をする"}, "ムイ72": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ケセ74": {"activity": "狩り", "place": "東林12", "why": "肉を取る"}, "ラキ81": {"activity": "狩り", "place": "東林12", "why": "肉を取る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T922": false, "T923": false, "T924": false, "T925": false, "T926": false, "T927": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null, "pit": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "畑はよく実った。黙って働けば、冬も困らない。"}
