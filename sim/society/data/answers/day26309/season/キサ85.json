@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "輪の直しは済んだ。水の道の手入れがまだ 8000 人日以上ある。おれは板を持って水の道に出る。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "輪の直しが終わって休んでいたので、残っている水の道の手入れをする。水の来る畑は悪い年でも実りが落ちにくい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ラニ108": true}, "keep": false,
+ "judge": {"M538": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T985": false, "T986": false, "T987": false, "T988": false, "T989": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [{"op": "add", "text": "ヤギは 133 頭で、草で養えるのは約 110 頭。12 頭がやせていなくなった。まだ多すぎる", "because": [4597949], "confidence": 0.8},
+  {"op": "add", "text": "南の村7・北東の村14・ハソ12の村・ワユ3の村・ヒセ5の村が、また草の種を借りに来た。前の分が返ったとは聞いていない", "because": [4597977, 4597979, 4597980, 4597981, 4597982], "confidence": 0.7}],
+ "proposal": {"text": "ヤギは 133 頭で草の約 110 頭をこえ、12 頭がやせて消えた。この 1 年はよその村のヤギを受けず、乳の出ないオスから村でつぶして干し肉にし、110 頭ほどまで減らそう。秋は大人一人 1000 つかみずつまき、手の空いた大人は板を持って水の道の手入れ (あと 8370 人日) に出よう。", "because": [4597949], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L826", "against": "家ごとに一人では手入れが進みにくい", "agree": true, "reason": "水の道の手入れはまだ多く残っている"},
+  {"id": "L828", "against": "とくにない", "agree": true, "reason": "輪の直しのあとに水の道へ移るのは理にかなう"},
+  {"id": "L831", "against": "数が古い", "agree": true, "reason": "ヤギが草より多いのは変わらない"},
+  {"id": "L832", "against": "とくにない", "agree": true, "reason": "まいたあとに水の道に出るのはよい"},
+  {"id": "L833", "against": "数が古い", "agree": true, "reason": "ヤギを減らすのは必要"},
+  {"id": "L834", "against": "数が古い", "agree": true, "reason": "ヤギを減らし、手入れを進めるのに賛成"}],
+ "feeling": "黙って水の道を直すだけだ"}
