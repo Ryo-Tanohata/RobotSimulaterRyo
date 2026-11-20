@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は水の道をどんどん掘って、来年の畑をもっと安心なものにしよう。おれが先に行くぞ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大量に残っていて、水が来る畑は悪い年でも実りが半分にならないから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ78": {"activity": "水の作業場で働く", "place": "M6", "why": "持ち場ののこ番なので、板をひいて水の道の手入れをはかどらせる。"},
+  "ロワ79": {"activity": "水の作業場で働く", "place": "M26", "why": "持ち場ののこ番なので、板をひいて手入れの人日を浮かせる。"},
+  "ムイ87": {"activity": "水の作業場で働く", "place": "M26", "why": "持ち場ののこ番なので、季節ごとに作業場で板をひく。"}
+ },
+ "keep": false,
+ "judge": {"M543": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1040": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて心強い。体を動かして水の道を掘るのが楽しみだ。"}

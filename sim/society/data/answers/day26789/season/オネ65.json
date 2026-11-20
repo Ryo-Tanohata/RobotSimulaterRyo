@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "ヤギは113頭で草にはまだ余裕がある。今年は畑の水の道の手入れが大きく足りない。秋にまいたら、手の空いた人は水の道に回ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが1万人日以上残っていて、足りないと水の来る畑が2割へるから、そこを手伝う"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"テナ77": {"activity": "水の道を掘る", "place": "camp", "why": "力のある若い大人で、水の道の手入れが進めば畑の実りが守られる"}, "アコ81": {"activity": "水の道を掘る", "place": "camp", "why": "採集も狩りも上手だが、今は水の道の手入れを急ぎたい"}},
+ "keep": false,
+ "judge": {"M543": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1040": false, "T1041": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [{"op": "add", "text": "秋にまく草の種を増やし、水の道の手入れをしないと、水の来る畑が2割へる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑も水の道も大きくなった。冬の前にできるだけ手入れをして、みんなで落ち着いて冬を迎えたい。"}

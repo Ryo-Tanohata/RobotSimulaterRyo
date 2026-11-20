@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがまだたくさん残っているね。わたしは今季、水の道を掘って畑を守るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが残っていて、畑の実りを守るために役に立つから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "シエ77": {"activity": "水の道を掘る", "place": "camp", "why": "手入れの人手が足りないので一緒に掘る"},
+  "トナ86": {"activity": "畑仕事", "place": "camp", "why": "小さな子がいるので、キャンプで草取りをする"},
+  "オセ89": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので水の道を掘る"}
+ },
+ "keep": false,
+ "judge": {"M543": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1040": false, "T1041": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかも満ち、蓄えもたっぷりあるので、落ち着いて働ける。"}
