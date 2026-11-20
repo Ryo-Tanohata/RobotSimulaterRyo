@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "今年もみんなで刈り入れをして、狩りの肉も持ち帰るよ。わいわい話しながら働こう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に、みんなで刈り入れをしたいから"}, "family": {"ワユ104": {"activity": "畑仕事", "place": "camp", "why": "実った畑を夏のうちに刈るため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りが得意なので、蓄えにない肉を持ち帰りたいから"}, "family": {"ワユ104": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、木の実や草の種を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "冬も魚やけものはいるので、狩りで肉をとる"}, "family": {"ワユ104": {"activity": "採集", "place": "西草原12", "why": "冬でも採れる食べ物を探す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りで肉を持ち帰り、村の食べ物を助けたい"}, "family": {"ワユ104": {"activity": "採集", "place": "西草原12", "why": "春の食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ホタ110": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "みんなで刈った夏の年",
+ "mood": "狩りも刈り入れも楽しみで、みんなと話せるのがうれしい"
+}

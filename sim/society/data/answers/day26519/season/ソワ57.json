@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈らないと落ちてしまう。まず刈って、そのあとは水ののこで板をひこう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、まず刈り入れをする"}, "family": {"ムイ58": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}, "テナ61": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}, "トナ64": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}, "キサ69": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひき、手入れの人日を浮かせる"}, "family": {"ムイ58": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}, "テナ61": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}, "トナ64": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}, "キサ69": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "冬は実りがないので、板づくりを続ける"}, "family": {"ムイ58": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}, "テナ61": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}, "トナ64": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}, "キサ69": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "板をひいて村の手入れを助ける"}, "family": {"ムイ58": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}, "テナ61": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}, "トナ64": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}, "キサ69": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ホタ110": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1008": false, "T1009": false, "T1010": false, "T1011": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "板ひきの年",
+ "mood": "蓄えは多く、落ち着いている。まず畑を刈り、それから板をひく。"}

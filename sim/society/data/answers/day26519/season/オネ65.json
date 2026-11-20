@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑をしっかり刈って、落とさないようにしましょう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れるため"}, "family": {"テナ77": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "アコ81": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "キサ88": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ルタ88": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ユエ90": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話と刈り残しを減らすため"}, "family": {"テナ77": {"activity": "水の道を掘る", "place": "camp", "why": "水の道で畑を守る"}, "アコ81": {"activity": "水の道を掘る", "place": "camp", "why": "水の道で畑を守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やすため"}, "family": {"テナ77": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが足りないため"}, "アコ81": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが足りないため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やすため"}, "family": {"テナ77": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが足りないため"}, "アコ81": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが足りないため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ホタ110": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1008": false, "T1009": false, "T1010": false, "T1011": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [{"op": "add", "text": "夏に刈らないと畑の草の種は落ちてしまう", "because": [4663312], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り残しを悔いた年",
+ "feeling": "蓄えは十分あるので、落ち着いて畑を守りたい。"}
