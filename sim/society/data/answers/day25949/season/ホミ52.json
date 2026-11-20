@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いけれど、冬の前に肉を足しておこう。私は林で狩りをするよ。水の道の手入れも残っているから、手の空いた人はそちらもお願いね。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "蓄えは多いが、冬の前に肉を足しておくと安心できるから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ64": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているから"},
+  "テナ67": {"activity": "狩り", "place": "東林12", "why": "冬に備えて肉を足すため"},
+  "ムイ67": {"activity": "水の道を掘る", "place": "camp", "why": "畑の水を守るため"},
+  "ケナ71": {"activity": "水の道を掘る", "place": "camp", "why": "畑の水を守るため"},
+  "セヤ77": {"activity": "水の道を掘る", "place": "camp", "why": "狩りはまだ苦手なので、水の道を手伝う"},
+  "ナセ77": {"activity": "狩り", "place": "南林12", "why": "冬に備えて肉を足すため"},
+  "ホタ81": {"activity": "狩り", "place": "北林12", "why": "狩りが得意で、肉を足せるから"},
+  "リセ83": {"activity": "狩り", "place": "西草原12", "why": "狩りが得意で、肉を足せるから"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null, "pit": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて心は落ち着いている。冬に向けて、しっかり肉を集めたい。"}

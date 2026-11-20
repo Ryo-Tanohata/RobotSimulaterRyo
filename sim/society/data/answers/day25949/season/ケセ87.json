@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "ヤギは 176 頭で、草で養える 140 頭よりまだ多い。よその村のヤギはこの秋も受けずに、乳の出ないオスを少しずつつぶそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑にまいた草の種は草取りをしないと 3 割しか実らない。冬の前に手を入れておきたい"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 2, "keep": false,
+ "feast": false, "leader": "ナセ42", "trade": {"T929": false, "T930": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null, "pit": null,
+ "knowledge": [{"op": "add", "text": "ヤギは 176 頭で、草で養える約 140 頭をまだ 36 頭ほどこえている", "because": [4434513, 4434515], "confidence": 0.9}],
+ "proposal": {"text": "ヤギは 176 頭で草の約 140 頭をこえているから、この 1 年はよその村のヤギを受けず、秋のはじめに乳の出ないオスから家ごとにつぶして干し肉にしよう。秋は大人一人 1000 つかみずつまき、冬と春は草取りに出よう。", "because": [4434513, 4434515], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L807", "against": "", "agree": true, "reason": "刈り入れとまく量の決まりはこれまでどおりでよい"},
+  {"id": "L808", "against": "", "agree": true, "reason": "よその村のヤギを受けないのは草のために大事"},
+  {"id": "L809", "against": "", "agree": true, "reason": "水の道の手入れはまだたくさん残っている"},
+  {"id": "L810", "against": "1 頭でもヤギを受けると草がもっと足りなくなる", "agree": false, "reason": "ヤギは今 176 頭で多すぎるから、受けないほうがよい"},
+  {"id": "L811", "against": "", "agree": true, "reason": "まくことと水の道の手入れ、ヤギを受けないこと、どれも賛成"},
+  {"id": "L812", "against": "", "agree": true, "reason": "多すぎるヤギをつぶして干し肉にするのはよい"},
+  {"id": "L813", "against": "", "agree": true, "reason": "やせて消えるより、つぶして蓄えにしたほうがよい"},
+  {"id": "L814", "against": "", "agree": true, "reason": "ヤギを減らし、畑と水の道を守る決まりに賛成"},
+  {"id": "L815", "against": "", "agree": true, "reason": "自分で出した掟。140 頭ほどまで減らしたい"},
+  {"id": "L816", "against": "", "agree": true, "reason": "ヤギを減らして蓄えに入れる考えは同じ"}
+ ],
+ "feeling": "ヤギが多すぎるのが気がかりだが、畑の手入れをして冬にそなえたい。"}
