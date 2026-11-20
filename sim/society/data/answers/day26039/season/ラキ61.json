@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は畑の実りを落とす前にみんなで刈ろう。ヤギは多すぎるから、よその村のヤギはもらわないほうがいい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が残っていて、夏のうちに刈らないと落ちるから"}, "family": {}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 2},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが多く残っていて、畑を守るために要るから"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると畑の実りが増えるから"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると畑の実りが増えるから"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ナセ104": true, "ムイ104": true, "ルタ104": true, "オネ104": true, "ワユ104": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T940": false, "T941": false, "T942": false, "T943": false, "T945": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null, "pit": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草の分より多いので、よその村のヤギを受けとる交換はさける", "because": [4465871], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "mood": "畑をしっかり刈って、みんなで冬をこえたい。"}
