@@ -73,7 +73,7 @@ def fix(state):
 # 印 g7.method8 がある」ときだけ働く。印は step.py refresh_prompts (mark_method8) か、G15 に入るコードが書く。だから、その日までの歩をやり直しても、
 # state もお題も前と 1 バイトも同じ (G14 の G14_PROMPT_FROM・keep_fix と同じ形)
 METHOD8_FROM = 23219
-LATER_GS = ("g15", "s3", "g16", "g17")  # これから足す G の仕組み (ファイルがなければとばす)。ANSWER_FIELDS を読んで、答えの形の欄を自動で足す
+LATER_GS = ("g15", "s3", "s4", "g16", "g17")  # これから足す G の仕組み (ファイルがなければとばす)。ANSWER_FIELDS を読んで、答えの形の欄を自動で足す
 
 
 def fix8(state):
@@ -683,6 +683,16 @@ def _s3_on(state):
     return "s3" in ((state["era2"].get("g7") or {})) and _s3m().on(state)  # 印 g7.s3 (step.py resume --s3 だけが書く) のあとだけ
 
 
+def _s4m():
+    """Society 4.0 (分業と町。2026-11-20。docs/society_phase/S4_design.md) の仕組み (s4.py)。印 g7.s4 があるときだけ読みこむ"""
+    import s4
+    return s4
+
+
+def _s4_on(state):
+    return "s4" in ((state["era2"].get("g7") or {})) and _s4m().on(state)  # 印 g7.s4 (step.py resume --s4 だけが書く) のあとだけ
+
+
 def enter_next(state, decided=None):
     """次の G の待ち・部の終わりから、次の G に入る (G8 から。その G のコードを入れたあと)。G7 に入るのは enter"""
     e2, D, g = state["era2"], state["day"], _g(state)
@@ -1031,6 +1041,8 @@ def gpath_kind(src):
     if src == "作る側の後押し":  # 2026-11-16: 作る側の反実仮想の後押し (g15.PUSH_SRC。g7.g15.push の印のあとだけ出る)
         return "push"
     if src == "持ち場を続ける":  # 2026-11-17: Society 3.0 の持ち場 (s3.POST_SRC。印 g7.s3 のあとだけ出る)
+        return "post"
+    if src == "町の家の仕事":  # 2026-11-20: Society 4.0 の町の家 (s4.TOWN_SRC。印 g7.s4 のあとだけ出る。続けている仕事なので持ち場と同じ側)
         return "post"
     if src.startswith(("決まり", "答えなし", "加わった")):
         return "rule"
@@ -1488,6 +1500,8 @@ def season_end(state, frac):
         _g15m().season_end(state)
     if _s3_on(state):  # 2026-11-17: Society 3.0 の蓄えの見張りと年の物差し (印 g7.s3 のあとだけ。G15 の帳簿のあと)
         _s3m().season_end(state)
+    if _s4_on(state):  # 2026-11-20: Society 4.0 の受け分・蓄えの見張り・年の物差し (印 g7.s4 のあとだけ。S3 のあと)
+        _s4m().season_end(state)
     yardstick.season_end(state, frac)  # 13. 物差し (乱数なし)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
     _offer(state)
@@ -1504,6 +1518,14 @@ def check(state, met, ind):
         g.setdefault("consulted", []).append(c)
         g["hold"] = {"why": "consult", "era": era, "day": D, "what": c["text"]}
         return "consult"
+    if _s4_on(state):  # 2026-11-20: Society 4.0 (印 g7.s4 のあと): 止まるのは S4 の入口と相談だけ (S3・G15 の入口と相談は見ない。S3 の行は数えつづける)
+        c = _s4m().check(state, g.setdefault("consulted", []))
+        if not c:
+            return False
+        g["consulted"].append(c)
+        code = "entrance" if c["why"] == "s4_entrance" else "consult"
+        g["hold"] = {"why": code, "era": era, "day": D, "what": c["text"]}
+        return code
     if _s3_on(state):  # 2026-11-17: Society 3.0 (印 g7.s3 のあと): 止まるのは S3 の入口と相談だけ (G15 の入口・相談・部の年数は見ない)
         c = _s3m().check(state, g.setdefault("consulted", []))
         if not c:
@@ -2179,6 +2201,8 @@ def _apply(state, own, kinds, real, how, answer_day=None):
         _g15m().push_season(state)
     if _s3_on(state):  # 2026-11-17: Society 3.0 の持ち場の人は、やめると答えるまで作業場で働く (印 g7.s3 のあとだけ)
         _s3m().season_start(state)
+    if _s4_on(state):  # 2026-11-20: Society 4.0 の町の家の人は、やめると答えるまで町の仕事をする (印 g7.s4 のあとだけ。S3 の持ち場のあと)
+        _s4m().season_start(state)
 
 
 def apply_year(state, answers, councils=None):
@@ -2223,6 +2247,8 @@ def apply_year(state, answers, councils=None):
         _g15m().apply_answers(state, real)
     if _s3_on(state):  # 2026-11-17: Society 3.0 の post・head・sell (印 g7.s3 のあとだけ)
         _s3m().apply_answers(state, real)
+    if _s4_on(state):  # 2026-11-20: Society 4.0 の town・pit (印 g7.s4 のあとだけ。sell は S3 の d の中で s4 の市に)
+        _s4m().apply_answers(state, real)
     own, kinds = {}, {}
     if ask == "年":
         reps = set(_rep_of(state).values())
@@ -2467,6 +2493,8 @@ def _field_rows(state, solo, year):
         rows += _g15m().field_rows(state, year)
     if _s3_on(state):  # 2026-11-17: Society 3.0 (印のあとだけ)
         rows += _s3m().field_rows(state, year)
+    if _s4_on(state):  # 2026-11-20: Society 4.0 (印のあとだけ)
+        rows += _s4m().field_rows(state, year)
     return "\n".join(rows)
 
 

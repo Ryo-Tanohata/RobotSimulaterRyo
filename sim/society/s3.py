@@ -110,6 +110,14 @@ def ret(state):
     return on(state) and state["day"] > RETURN_DAY
 
 
+def _s4(state):
+    """Society 4.0 (s4.py。印 g7.s4 があるときだけ。印がなければ読みこみもしない)"""
+    if "s4" not in state["era2"]["g7"]:
+        return None
+    import s4
+    return s4 if s4.on(state) else None
+
+
 def on(state):
     return "day" in (((state.get("era2") or {}).get("g7") or {}).get("s3") or {})
 
@@ -722,7 +730,9 @@ def apply_answers(state, real):
                         g["posts"][old]["post"] = SAW_K if w["tool"] == g15.SAW else HAM_K
                     log(state, "持ち場", r["人"], f"集まりで、{r['人']} を作業場 {r['輪']} の頭に選んだ (票 {txt})", mill=r["輪"], post=HEAD_K)
                     _reach(state, "F1", f"{r['人']} が {r['輪']} の頭になった")
-    if part(state, "d"):
+    if part(state, "d") and _s4(state):  # Society 4.0 (印のあとだけ): 川下の町は市の値で、村の倉の物は物・相手・もらう物ごとに決める
+        _s4(state).apply_sell(state, real, hs)
+    elif part(state, "d"):
         vill = {}
         for name, a in sorted(real.items()):
             if not isinstance(a, dict):
@@ -950,10 +960,12 @@ def coal_lines(state, p):
     if coal_fixed(state):  # 直し (2026-11-19): 村の倉は、村の倉から燃やす分だけで尽きる日を出す (家の倉の石は、その家しか燃やさない)
         per, nv = vill_draw(state)
         end = runout(state, vill, per)
-    rows = [f"- 燃える石: 北の丘で掘ると 1 人 1 日 約 {g15.COAL_KG_DAY} kg (主な仕事「{g15.ACT_DIG}」)。そのうち {round(g15.COAL_KG_DAY * HOUSE_SHARE)} kg は掘った人の家の倉に入り、"
+    s4 = _s4(state)
+    kd = s4.dig_kg_now(state) if s4 else g15.COAL_KG_DAY  # Society 4.0 (印のあとだけ): 掘り場があれば、いまの 1 人日の kg
+    rows = [f"- 燃える石: 北の丘で掘ると 1 人 1 日 約 {kd} kg (主な仕事「{g15.ACT_DIG}」)。そのうち {round(kd * HOUSE_SHARE)} kg は掘った人の家の倉に入り、"
             f"その家が先に燃やす。かまどを石のかまどに作りかえるのは「{g15.ACT_STOVE}」(家の大人で {g15.STOVE_DAYS} 人日)。",
             f"  まき集め: 秋と冬は、まきで火をたく人 1 人につき 1 日 約 {FIRE_H} 時間、家の大人の働く時間がへる。"
-            f"燃える石 {g15.COAL_KG_DAY} kg (掘る 1 人日) を秋と冬に燃やすと、まき集め 約 {dig_saves_pd()} 人日が浮く。"]
+            f"燃える石 {kd} kg (掘る 1 人日) を秋と冬に燃やすと、まき集め 約 {s4.dig_saves_pd(kd) if s4 else dig_saves_pd()} 人日が浮く。"]
     ys = str(_y(state) - 1) if str(_y(state)) not in g["fire"] else str(_y(state))
     if coal_fixed(state):  # 直し (2026-11-19): 今年の家ごとのまき集めがまだなければ (秋の集まり)、去年の数
         ys = str(_y(state)) if "house" in (g["fire"].get(str(_y(state))) or {}) else str(_y(state) - 1)
@@ -1007,6 +1019,8 @@ def block_lines(state, p):
                     + (f"。あなたは見習い {a['days']} 日目 ({a['mill']})" if a else ""))
     if part(state, "d"):
         pts = partners(state)
+        if _s4(state):  # Society 4.0 (印のあとだけ): 川下の町は s4 の市の行で出す
+            pts = [pt for pt in pts if pt["id"] != TOWN]
         pr = []
         for pt in pts:
             xs = []
@@ -1017,7 +1031,7 @@ def block_lines(state, p):
             pr.append(f"{pt['name']} ({pt['id']}) " + "・".join(xs))
         rows.append("- 交換 (sell): 板と燃える石を替えられる。" + " / ".join(pr))
         rows.append(f"  あなたの家の板 {int(g['hplanks'].get(h, 0))} 束・燃える石 {int(g['hcoal'].get(h, 0))} kg。村の倉の板 {g15g['planks']['stock']} 束。"
-                    f"書き方 \"sell\": [{{\"物\": \"板\", \"数\": 10, \"相手\": \"{pts[0]['id']}\", \"から\": \"家\"}}] (村の倉の物は \"から\": \"村\"。答えた人のいちばん多い中身)")
+                    f"書き方 \"sell\": [{{\"物\": \"板\", \"数\": 10, \"相手\": \"{pts[0]['id'] if pts else TOWN}\", \"から\": \"家\"}}] (村の倉の物は \"から\": \"村\"。答えた人のいちばん多い中身)")
     return rows
 
 

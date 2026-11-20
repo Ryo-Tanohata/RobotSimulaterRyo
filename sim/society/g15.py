@@ -139,6 +139,14 @@ def _s3(state):
     return s3 if s3.on(state) else None
 
 
+def _s4(state):
+    """Society 4.0 (分業と町) の仕組み (s4.py)。印 g7.s4 があるときだけ返す (印がなければ読みこみもしない。前の歩は 1 バイトも同じ)"""
+    if "s4" not in state["era2"]["g7"]:
+        return None
+    import s4
+    return s4 if s4.on(state) else None
+
+
 # ---------------- G15 に入る (g7.start_g15 から) ----------------
 
 def start(state, decided=None):
@@ -467,6 +475,9 @@ def _dig(state, p, t):
     g, name = _g(state), p["name"]
     if not coal_on(state):
         return _rest(state, p, t, ACT_DIG, f"{name} は、燃える石のある所を知らないので、休んだ")
+    s4 = _s4(state)
+    if s4:  # Society 4.0 (印のあとだけ): 掘り場の決まりで掘る
+        return s4.dig_day(state, p, t)
     c = g["coal"]
     y = str(_y(state))
     s3 = _s3(state)
@@ -1089,6 +1100,9 @@ def prompt_block(state, p):
         rows += s3.coal_lines(state, p) if s3 and s3.part(state, "a") else coal_line(state, p)  # Society 3.0 (印のあとだけ): まき集めと家の倉
     if s3:
         rows += s3.block_lines(state, p)
+    s4 = _s4(state)
+    if s4:  # Society 4.0 (印のあとだけ): 町の家・掘り場・川下の町の市
+        rows += s4.block_lines(state, p)
     rows.append(read_line(state, name))
     rows.append(g14.keep_line(state, p))
     rows.append("- workshop は答えた人の中でいちばん多い中身に決まる (1 人の答えでも決まる)。書かないなら \"workshop\": []")
