@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"蓄えはたっぷりあるね。夏の畑は落ちる前にみんなで刈ろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑を夏のうちに刈らないと落ちてしまうから"},"family":{"テナ77":{"activity":"畑仕事","place":"camp","why":"腕が良いので刈り入れに出る"},"アコ81":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"キサ88":{"activity":"畑仕事","place":"camp","why":"若くても刈り入れはできる"},"ルタ88":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"},"ユエ90":{"activity":"ヤギの世話","place":"camp","why":"赤ん坊のそばで近くの仕事をする"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"畑の草取りで実りを守る"},"family":{"テナ77":{"activity":"採集","place":"西草原12","why":"食べ物を足す"},"アコ81":{"activity":"狩り","place":"北林12","why":"肉を取る"},"キサ88":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"ルタ88":{"activity":"畑仕事","place":"camp","why":"草取りをする"},"ユエ90":{"activity":"ヤギの世話","place":"camp","why":"子のそばにいる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りで春から夏の実りを増やす"},"family":{"テナ77":{"activity":"狩り","place":"北林12","why":"冬も獲物はいる"},"アコ81":{"activity":"狩り","place":"南林12","why":"肉を取る"},"キサ88":{"activity":"畑仕事","place":"camp","why":"草取り"},"ルタ88":{"activity":"畑仕事","place":"camp","why":"草取り"},"ユエ90":{"activity":"休む","place":"camp","why":"寒いので子と休む"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の実りのため草取りを続ける"},"family":{"テナ77":{"activity":"採集","place":"西草原12","why":"食べ物を足す"},"アコ81":{"activity":"狩り","place":"東林12","why":"肉を取る"},"キサ88":{"activity":"畑仕事","place":"camp","why":"草取り"},"ルタ88":{"activity":"畑仕事","place":"camp","why":"草取り"},"ユエ90":{"activity":"ヤギの世話","place":"camp","why":"春は乳がとれる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],"accept":{},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":"なし",
+"trade":{"T1017":false,"T1018":false,"T1019":false,"T1020":false,"T1021":false,"T1022":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"town":"出さない","pit":false,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"たっぷり刈りの年",
+"feeling":"蓄えが多くて安心している。家族みんなで夏の畑を刈りたい。"}

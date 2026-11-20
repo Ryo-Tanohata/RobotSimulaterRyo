@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑の草の種がたっぷり実った。夏のうちに刈りきろう。刈り残すともったいない。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"キオ74": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ルタ74": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "キオ75": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "キオ81": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ユエ81": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "オセ90": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひき続ける"}, "family": {"キオ74": {"activity": "畑仕事", "place": "camp", "why": "畑の世話をする"}, "ルタ74": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく人数をそろえる"}, "キオ75": {"activity": "畑仕事", "place": "camp", "why": "畑の世話をする"}, "キオ81": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく人数をそろえる"}, "ユエ81": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく人数をそろえる"}, "オセ90": {"activity": "採集", "place": "camp", "why": "木の実を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "冬も板をひいて水の道の手入れに役立てる"}, "family": {"キオ74": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ルタ74": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく"}, "キオ75": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "キオ81": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく"}, "ユエ81": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく"}, "オセ90": {"activity": "狩り", "place": "東林12", "why": "魚やけものをとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番の務めを続ける"}, "family": {"キオ74": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ルタ74": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく"}, "キオ75": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "キオ81": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく"}, "ユエ81": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく"}, "オセ90": {"activity": "採集", "place": "camp", "why": "木の実を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ケナ112": true, "オセ112": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1017": false, "T1018": false, "T1019": false, "T1020": false, "T1021": false, "T1022": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": "出さない",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "草の種あふれる年",
+ "feeling": "蓄えが多くて安心した。のこ番の仕事を続けたい。"}
