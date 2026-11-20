@@ -1,0 +1,334 @@
+{
+ "say": [
+  {
+   "to": "みんな",
+   "text": "夏の畑がたくさん実っている。落ちる前に、みんなで刈ろう。"
+  }
+ ],
+ "year": {
+  "夏": {
+   "job": {
+    "activity": "畑仕事",
+    "place": "camp",
+    "with": [],
+    "why": "実った畑を落ちる前に刈るため"
+   },
+   "family": {
+    "ロワ68": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    },
+    "ラニ69": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    },
+    "ラニ71": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    },
+    "ケセ72": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    },
+    "ケナ75": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    },
+    "セヤ75": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    },
+    "ナセ80": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    },
+    "キサ81": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    },
+    "ケセ82": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    },
+    "キサ83": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    },
+    "ハソ84": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を落ちる前に刈るため"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 60,
+   "eat_goat": 0
+  },
+  "秋": {
+   "job": {
+    "activity": "畑仕事",
+    "place": "camp",
+    "with": [],
+    "why": "畑の草取りと秋の種まきの世話のため"
+   },
+   "family": {
+    "ロワ68": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    },
+    "ラニ69": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    },
+    "ラニ71": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    },
+    "ケセ72": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    },
+    "ケナ75": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    },
+    "セヤ75": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    },
+    "ナセ80": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    },
+    "キサ81": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    },
+    "ケセ82": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    },
+    "キサ83": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    },
+    "ハソ84": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りと秋の種まきの世話のため"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 0,
+   "eat_goat": 0,
+   "sow": 1000
+  },
+  "冬": {
+   "job": {
+    "activity": "畑仕事",
+    "place": "camp",
+    "with": [],
+    "why": "畑の草取りで実りを増やすため"
+   },
+   "family": {
+    "ロワ68": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ラニ69": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ラニ71": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ケセ72": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ケナ75": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "セヤ75": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ナセ80": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "キサ81": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ケセ82": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "キサ83": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ハソ84": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 0,
+   "eat_goat": 0
+  },
+  "春": {
+   "job": {
+    "activity": "畑仕事",
+    "place": "camp",
+    "with": [],
+    "why": "畑の草取りで実りを増やすため"
+   },
+   "family": {
+    "ロワ68": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ラニ69": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ラニ71": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ケセ72": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ケナ75": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "セヤ75": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ナセ80": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "キサ81": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ケセ82": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "キサ83": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    },
+    "ハソ84": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "畑の草取りで実りを増やすため"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 0,
+   "eat_goat": 0
+  }
+ },
+ "keep": false,
+ "seal": false,
+ "seal_store": [],
+ "accept_rule": {
+  "よその群れ": null,
+  "ほかの村から": null
+ },
+ "judge_rule": null,
+ "feast": [],
+ "leader": null,
+ "trade": {
+  "T959": false,
+  "T961": false,
+  "T962": false,
+  "T963": false,
+  "T964": false,
+  "T965": false
+ },
+ "trade_rule": {
+  "交換": null,
+  "貸して": null,
+  "max": null,
+  "not": [],
+  "利子": 0
+ },
+ "demand": null,
+ "share": null,
+ "pay": null,
+ "redeem": null,
+ "market": null,
+ "market_day": null,
+ "coin_rate": null,
+ "pact": [],
+ "help": [],
+ "note": [],
+ "guild": null,
+ "workshop": [],
+ "post": [],
+ "head": null,
+ "sell": [],
+ "town": null,
+ "pit": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りを刈る年",
+ "feeling": "蓄えは多く、おなかも満ちている。落ち着いた気持ち。"
+}
