@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑は刈らないと落ちてしまうよ。まず刈り入れをして、そのあとで板ひきにもどろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるから"},"family":{"ソワ97":{"activity":"畑仕事","place":"camp","why":"刈り入れの手を増やすため"},"ソワ104":{"activity":"畑仕事","place":"camp","why":"刈り入れを手伝う"}},"pick":0,"plant":0,"harvest":60,"eat_goat":10},
+"秋":{"job":{"activity":"水の作業場で働く","place":"M6","with":[],"why":"のこ番として板をひき、手入れを進める"},"family":{"ソワ97":{"activity":"水の作業場で働く","place":"M6","why":"板づくりで手入れがはかどる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","why":"草取りで来年の実りを増やす","with":[]},"family":{"ソワ97":{"activity":"畑仕事","place":"camp","why":"草取りの手が要る"},"ソワ104":{"activity":"畑仕事","place":"camp","why":"草取りを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"水の作業場で働く","place":"M6","with":[],"why":"のこ番として板をひく"},"family":{"ソワ97":{"activity":"水の作業場で働く","place":"M6","why":"板づくりを手伝う"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"タユ123":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T1115":false,"T1116":false,"T1117":false,"T1118":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":null,"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"板ひきと刈り入れの年",
+"feeling":"畑も板ひきも続けて、みんなで穏やかに暮らしたい。"}

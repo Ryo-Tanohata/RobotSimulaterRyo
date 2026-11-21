@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑をみんなで刈りきろう。刈り残すと落ちてしまう。そのあとは水の道を掘り進めよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が約100万つかみ残っていて、夏のうちに刈らないと落ちてしまうから"}, "family": {"テナ78": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れが一番大事なので、みんなで刈る"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "採集が上手で力があるので、刈り入れに回る"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "採集が上手で力があるので、刈り入れに回る"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "小さな子がいるので、キャンプで刈り入れを手伝う"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ一万人日以上残っているから"}, "family": {"テナ78": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが大きく残っているので進める"}, "ロワ79": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが大きく残っているので進める"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが大きく残っているので進める"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、実りを増やす"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると畑の実りが増えるから"}, "family": {"テナ78": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ロワ79": {"activity": "水の道を掘る", "place": "camp", "why": "冬も水の道の手入れを進める"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "冬も水の道の手入れを進める"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りをして、次の夏の実りを守るから"}, "family": {"テナ78": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "ロワ53",
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑を刈りきらないと落ちてしまうので、夏は全員で刈り入れを優先する。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "小さな子が多く亡くなった年",
+ "feeling": "たくさんの小さな命を失ってつらい。それでも夏の刈り入れをやりきって、みんなで冬を越したい。"}

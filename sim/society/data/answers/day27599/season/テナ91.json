@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りないね。今年は少しつぶして数を減らそう。夏のうちに畑を刈り切ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "いっしょに畑を刈って早く終わらせるため"}, "テナ103": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝ってもらうため"}, "キサ106": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝ってもらうため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 1},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りで次の夏の実りが増えるから"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "草取りをして実りを増やすため"}, "テナ103": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝ってもらうため"}, "キサ106": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝ってもらうため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて実りを増やすため"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}, "テナ103": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝ってもらうため"}, "キサ106": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝ってもらうため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りを十分に増やすため"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}, "テナ103": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝ってもらうため"}, "キサ106": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝ってもらうため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"タユ123": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1115": false, "T1116": false, "T1117": false, "T1118": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の量より多いと春の子ヤギが減りやせていなくなる。今年も少しつぶして減らすのがよい。", "because": [5268304], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "病で人を失った年",
+ "feeling": "病で去った人が多く悲しいが、家族みんなで畑を守って冬を越したい。"}
