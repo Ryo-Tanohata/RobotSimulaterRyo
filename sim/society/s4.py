@@ -102,7 +102,7 @@ def ask_window(state):
 
 def ask_on(state):
     """この歩が、聞く年の年の集まりか"""
-    return on(state) and state["era2"]["g7"].get("ask") == "年" and ask_window(state)
+    return on(state) and not closed(state) and state["era2"]["g7"].get("ask") == "年" and ask_window(state)
 
 
 def _running_ws(state):
@@ -172,6 +172,12 @@ def ask_count(state, real, made, failed):
 
 def on(state):
     return "day" in (((state.get("era2") or {}).get("g7") or {}).get("s4") or {})
+
+
+def closed(state):
+    """S4 を閉じたか (g7.s4.closed。2026-11-21 から、step.py resume --i4 が書く)。閉じたあとは、止まり・お題の節・答えの欄を出さない。
+    年の行は数えつづけ、町の家・掘り場・町の市の決まりはそのまま"""
+    return on(state) and _g(state).get("closed") is not None
 
 
 def _g(state):
@@ -766,7 +772,7 @@ def entrance(state):
 def check(state, done):
     """g7.check から (年の終わりだけ): 止まるわけ (なければ None)。S3・G15 の相談のかわり"""
     g, D = _g(state), state["day"]
-    if (D + 1) % YEAR:
+    if (D + 1) % YEAR or closed(state):  # 閉じたあと (2026-11-21) は止めない
         return None
     y = D // YEAR
     if y < g["start_year"]:
@@ -799,7 +805,9 @@ def dig_saves_pd(kg):
 
 
 def block_lines(state, p):
-    """町の家・掘り場・川下の町の市の行 (答える人ごと)。短く"""
+    """町の家・掘り場・川下の町の市の行 (答える人ごと)。短く。閉じたあと (2026-11-21) は出さない"""
+    if closed(state):
+        return []
     g, g15g = _g(state), g15._g(state)
     name, h = p["name"], p.get("household")
     ly = (state["day"] + 1) // YEAR - 1  # 終わった年
@@ -901,6 +909,8 @@ def hands_lines(state):
 
 
 def field_rows(state, year=False):
+    if closed(state):  # 閉じたあと (2026-11-21) は出さない
+        return []
     return ["   town: 町の家 (あなたの家の大人を、1 年じゅう町の仕事に)。例 {\"人\": [名前], \"仕事\": \"燃える石を掘る\"}。やめるは {\"やめる\": true}",
             "   pit: 北の丘の掘り場を作るなら true。sell の \"もらう\": 川下の町からもらう物 (草の種 か 燃える石)"]
 
@@ -909,6 +919,8 @@ ANSWER_FIELDS = {"town": "null", "pit": "null"}
 
 
 def answer_fields(state):
+    if closed(state):  # 閉じたあと (2026-11-21) は、答えの形から town・pit を外す
+        return []
     return ["town"] + (["pit"] if not _g(state).get("pit") and g15.coal_on(state) else [])
 
 
@@ -928,6 +940,8 @@ def lines(state):
     if not on(state):
         return []
     g = _g(state)
+    if closed(state):  # 2026-11-21: 閉じたあとは、閉じた日の 1 行と、年の行 (f の表) だけ
+        return [f"{g['why']}。{_yd(g['closed'])} ({g['closed']} 日目) で閉じた (入口の条件はそろわないまま)"] + [row_text(g["rows"][y]) for y in sorted(g["rows"], key=int)[-3:]]
     out = [f"{g['why']}。{g['day']} 日目から ({g['start_year']}年から数える)。町の家 {len(g['town'])}・掘り場 {'ある' if (g.get('pit') or {}).get('done') is not None else ('作っている' if g.get('pit') else 'ない')}"
            + " / " + " / ".join(f"{k} {FS[k]} {_yd(g['f'][k]) if k in g['f'] else 'まだ'}" for k in ("f1", "f2", "f3", "f4"))
            + f" / f5 を割った年 {'・'.join(map(str, g['f5_broken'])) or 'なし'} / 入口 {'○' if entrance(state) else 'まだ'}"]

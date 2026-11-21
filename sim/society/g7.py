@@ -73,7 +73,7 @@ def fix(state):
 # 印 g7.method8 がある」ときだけ働く。印は step.py refresh_prompts (mark_method8) か、G15 に入るコードが書く。だから、その日までの歩をやり直しても、
 # state もお題も前と 1 バイトも同じ (G14 の G14_PROMPT_FROM・keep_fix と同じ形)
 METHOD8_FROM = 23219
-LATER_GS = ("g15", "s3", "s4", "g16", "g17")  # これから足す G の仕組み (ファイルがなければとばす)。ANSWER_FIELDS を読んで、答えの形の欄を自動で足す
+LATER_GS = ("g15", "s3", "s4", "i4", "g16", "g17")  # これから足す G の仕組み (ファイルがなければとばす)。ANSWER_FIELDS を読んで、答えの形の欄を自動で足す (i4 は 2026-11-21。鍵 g7.i4 がなければとばす)
 
 
 def fix8(state):
@@ -693,6 +693,30 @@ def _s4_on(state):
     return "s4" in ((state["era2"].get("g7") or {})) and _s4m().on(state)  # 印 g7.s4 (step.py resume --s4 だけが書く) のあとだけ
 
 
+ACTS_I4 = ("字を教える", "知らせを書く")  # 2026-11-21: Society 4.0 フェーズ 1 の仕事 (world.ACTS7 に足した。i4.acts が選べるときだけ出す。「知らせを書く」は選ぶ仕事でない)
+
+
+def _i4m():
+    """Society 4.0 フェーズ 1 (読み書きと知らせ板。2026-11-21。docs/society_phase/I4_design.md) の仕組み (i4.py)。印 g7.i4 があるときだけ読みこむ"""
+    import i4
+    return i4
+
+
+def _i4_on(state):
+    return "i4" in ((state["era2"].get("g7") or {})) and _i4m().on(state)  # 印 g7.i4 (step.py resume --i4 だけが書く) のあとだけ
+
+
+def board_block(state, p, answer=True):
+    """お題の上のほうの節「## 村の知らせ板」(印 g7.i4 のあとだけ。前は空の文字)"""
+    return _i4m().board_block(state, p, answer) if _i4_on(state) else ""
+
+
+def i4_feelings(state, answers):
+    """気持ちだけ答える人の一言で、知らせの文を使ったか (印 g7.i4 のあとだけ。era2.apply_feelings から。数えるだけ)"""
+    if _i4_on(state):
+        _i4m().count_used(state, {n: characters.parse(raw) for n, raw in answers.items()})
+
+
 def enter_next(state, decided=None):
     """次の G の待ち・部の終わりから、次の G に入る (G8 から。その G のコードを入れたあと)。G7 に入るのは enter"""
     e2, D, g = state["era2"], state["day"], _g(state)
@@ -879,6 +903,8 @@ def acts(state):
         on.update(ACTS14)
     if _g15_on(state):  # G15 (2026-11-15): 水の作業場を作る・働く (いつも)・燃える石を掘る・かまどを作りかえる (燃える石を置いた世界だけ)
         on.update(_g15m().acts(state))
+    if "i4" in g and _i4_on(state):  # 2026-11-21: 字を教える (読める大人がいるときだけ。印 g7.i4 のあとだけ)
+        on.update(_i4m().acts(state))
     return [a for a in ACTS7 if a in on]
 
 
@@ -896,7 +922,7 @@ def job(state, q, j):
     g, act = _g(state), q["plan"]["activity"]
     j = j if isinstance(j, dict) else {}
     out = {}
-    if act == "休む" and j.get("activity") in ("試す",) + ACTS10 + (ACTS11 if _g11_on(state) else ()) + (ACTS12 if _g12_on(state) else ()) + (ACTS13 if _g13_on(state) else ()) + (ACTS14 if _g14_on(state) else ()) + (ACTS15 if _g15_on(state) else ()):  # G10 の直し ② (2026-11-05): 選べない仕事だったので「休む」になった (era2.apply_answers)
+    if act == "休む" and j.get("activity") in ("試す",) + ACTS10 + (ACTS11 if _g11_on(state) else ()) + (ACTS12 if _g12_on(state) else ()) + (ACTS13 if _g13_on(state) else ()) + (ACTS14 if _g14_on(state) else ()) + (ACTS15 if _g15_on(state) else ()) + (ACTS_I4[:1] if "i4" in g and _i4_on(state) else ()):  # G10 の直し ② (2026-11-05): 選べない仕事だったので「休む」になった (era2.apply_answers)
         _rest_note(state, q, j.get("activity"), j)
     if act == "試す":
         card = str(j.get("try") or "").strip().upper()
@@ -933,6 +959,10 @@ def job(state, q, j):
             _rest_note(state, q, act, j)
         else:
             _g15m().set_dest(state, q["name"], j)
+    elif act in ACTS_I4:  # 2026-11-21: 字を教える (読める大人だけ。印 g7.i4 のあとだけ)。ちがえば「休む」(わけを残す)
+        if not (_i4_on(state) and act == ACTS_I4[0] and _i4m().can_teach(state, q["name"])):
+            q["plan"]["activity"] = "休む"
+            _rest_note(state, q, act, j)
     elif act == "住まいを建てる" and "壁" in str(j.get("build") or ""):
         out["build"] = "壁"
     elif act == "畑仕事" and era2._yes(j.get("plough")) and _plough(state):
@@ -966,6 +996,10 @@ def _rest_note(state, q, act, j):
         w = _g15m().rest_why(state, q["name"], act)
         if w:
             _g15m()._fail(state, q["name"], act, w, log_it=False)
+    elif act in ACTS_I4 and _i4_on(state):  # 2026-11-21: 字を教えられないわけも帳簿に (印 g7.i4 のあとだけ)
+        w = _i4m().rest_why(state, q["name"], act)
+        if w:
+            _i4m()._fail(state, q["name"], act, w, log_it=False)
     elif act == "試す" and _g13_on(state) and str((j or {}).get("try") or "").strip().upper() == _g13m().CARD:  # G13: 水の輪の札を試せなかったわけも帳簿に
         w = _g13m().try_rest_why(state, q["name"]) or _g10m().rest_why(state, q["name"], act, j, (q.get("plan") or {}).get("with"))
         if w:
@@ -1095,7 +1129,10 @@ def role_day(state, p, t, act):
         _g10m().make_day(state, p, t)
         return
     if act == "字を習う":
-        _g10m().learn_day(state, p, t)
+        (_i4m().learn_day if _i4_on(state) else _g10m().learn_day)(state, p, t)  # 2026-11-21: 印 g7.i4 のあとは、字を教える人がいる日は 2 日分
+        return
+    if act in ACTS_I4 and _i4_on(state):  # 2026-11-21: 字を教える・知らせを書く (印 g7.i4 のあとだけ)
+        (_i4m().teach_day if act == ACTS_I4[0] else _i4m().write_day)(state, p, t)
         return
     if act == "印のかたまりを作る":  # G11 (2026-11-05)
         _g11m().make_day(state, p, t)
@@ -1502,6 +1539,8 @@ def season_end(state, frac):
         _s3m().season_end(state)
     if _s4_on(state):  # 2026-11-20: Society 4.0 の受け分・蓄えの見張り・年の物差し (印 g7.s4 のあとだけ。S3 のあと)
         _s4m().season_end(state)
+    if _i4_on(state):  # 2026-11-21: Society 4.0 フェーズ 1 の知らせ板の入れかえ・大人になった子・年の物差し (印 g7.i4 のあとだけ。S4 のあと)
+        _i4m().season_end(state)
     yardstick.season_end(state, frac)  # 13. 物差し (乱数なし)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
     _offer(state)
@@ -1518,6 +1557,14 @@ def check(state, met, ind):
         g.setdefault("consulted", []).append(c)
         g["hold"] = {"why": "consult", "era": era, "day": D, "what": c["text"]}
         return "consult"
+    if _i4_on(state):  # 2026-11-21: Society 4.0 フェーズ 1 (印 g7.i4 のあと): 止まるのは I4 の入口と相談だけ (S4 は閉じた。S4・S3・G15 の入口と相談は見ない)
+        c = _i4m().check(state, g.setdefault("consulted", []))
+        if not c:
+            return False
+        g["consulted"].append(c)
+        code = "entrance" if c["why"] == "i4_entrance" else "consult"
+        g["hold"] = {"why": code, "era": era, "day": D, "what": c["text"]}
+        return code
     if _s4_on(state):  # 2026-11-20: Society 4.0 (印 g7.s4 のあと): 止まるのは S4 の入口と相談だけ (S3・G15 の入口と相談は見ない。S3 の行は数えつづける)
         c = _s4m().check(state, g.setdefault("consulted", []))
         if not c:
@@ -1649,7 +1696,7 @@ WORK = (("集める", ("採集", "狩り", "探索", "休む", "火おこし", "
         ("作る", ("土器づくり", "道具づくり", "記録をつける", "交換に行く") + ACTS7))  # 仕事の組 (作る・記録・交換・役)
 WORK_TIE = ("作る", "畑", "集める")  # 日数が同じで、代表の仕事でも決まらないとき (まれな立場を先に)
 COPY_IF_DONE = ("交換に行く", "記録をつける", "取り立てる", "守る", "戦に出る")  # 前の年の同じ季節に、その家がしていたときだけまねる (4.A.4 の 2)
-NOT_COMMON = COPY_IF_DONE + ("試す", "黒い金属を作る", "字を習う", "印のかたまりを作る", "帳をつける", "水の道を掘る", "水の輪を建てる", "市へ運ぶ", "水の輪を直す", "水の作業場を作る", "水の作業場で働く", "燃える石を掘る", "かまどを作りかえる")  # 後ろの 2 つは G10 から (2026-11-04。G9 までは選べない)  # 「いちばん多い仕事」には数えない (行き先・残すもの・札のない仕事。era2._settle_visitors と同じ考え)
+NOT_COMMON = COPY_IF_DONE + ("試す", "黒い金属を作る", "字を習う", "印のかたまりを作る", "帳をつける", "水の道を掘る", "水の輪を建てる", "市へ運ぶ", "水の輪を直す", "水の作業場を作る", "水の作業場で働く", "燃える石を掘る", "かまどを作りかえる", "字を教える", "知らせを書く")  # 後ろの 2 つは G10 から (2026-11-04。G9 までは選べない)  # 「いちばん多い仕事」には数えない (行き先・残すもの・札のない仕事。era2._settle_visitors と同じ考え)
 DIGEST_MAX = 40  # 「前の 1 年のこと」の自分の行 (仕事の種類ごとに新しい 3 件まで。4.A.9)
 ZOOM_WHY = {"Z1": "ほかの村から求めが来ている", "Z2": "前の年に、村が戦をした", "Z3": "前の年に、貢いでいた村か、貢いでくる村が崩れた",
             "Z4": f"村の蓄えと家の倉を合わせても、{ZOOM_DAYS} 日分より少ない", "Z5": "村の蓄えが尽きて、集まり直した"}
@@ -2043,6 +2090,8 @@ def _fit(state, h, name, j, sea, common):
         return dict(common)
     if act in ACTS13 and not (_g13_on(state) and _g13m().can_do(state, act)):  # G13: 選べないときは、手本の水の仕事をまねない
         return dict(common)
+    if act in ACTS_I4 and not (_i4_on(state) and act == ACTS_I4[0] and _i4m().can_teach(state, name)):  # 2026-11-21: 読めない人は、手本の「字を教える」をまねない
+        return dict(common)
     return j
 
 
@@ -2203,6 +2252,8 @@ def _apply(state, own, kinds, real, how, answer_day=None):
         _s3m().season_start(state)
     if _s4_on(state):  # 2026-11-20: Society 4.0 の町の家の人は、やめると答えるまで町の仕事をする (印 g7.s4 のあとだけ。S3 の持ち場のあと)
         _s4m().season_start(state)
+    if _i4_on(state):  # 2026-11-21: 知らせを書いた家の読める大人は、季節のはじめの 1 日を「知らせを書く」にする (印 g7.i4 のあとだけ。S4 のあと)
+        _i4m().season_start(state)
 
 
 def apply_year(state, answers, councils=None):
@@ -2249,6 +2300,8 @@ def apply_year(state, answers, councils=None):
         _s3m().apply_answers(state, real)
     if _s4_on(state):  # 2026-11-20: Society 4.0 の town・pit (印 g7.s4 のあとだけ。sell は S3 の d の中で s4 の市に)
         _s4m().apply_answers(state, real)
+    if _i4_on(state):  # 2026-11-21: 知らせ板 (notice) と、知らせを使ったか (印 g7.i4 のあとだけ。S4 のあと)
+        _i4m().apply_answers(state, real)
     own, kinds = {}, {}
     if ask == "年":
         reps = set(_rep_of(state).values())
@@ -2495,6 +2548,8 @@ def _field_rows(state, solo, year):
         rows += _s3m().field_rows(state, year)
     if _s4_on(state):  # 2026-11-20: Society 4.0 (印のあとだけ)
         rows += _s4m().field_rows(state, year)
+    if _i4_on(state):  # 2026-11-21: Society 4.0 フェーズ 1 (印のあとだけ)
+        rows += _i4m().field_rows(state, year)
     return "\n".join(rows)
 
 
@@ -2710,7 +2765,7 @@ def year_prompt(state, p, first):
     village = "" if era2.year_end(state) else f"\n村のおもな出来事 (この年):\n{era2._year_digest(state)}"
     out = f"""{RULES_Y}
 
-{me}{era2.FACTS2}{era2.FACTS_G3 + era2.FACTS_HOUSE}{era2.FACTS_G4}{era2._g5_facts(state)}{era2._g6_facts(state)}{facts(state)}{_s4m().ask_block(state, p) if _s4_on(state) else ''}
+{me}{era2.FACTS2}{era2.FACTS_G3 + era2.FACTS_HOUSE}{era2.FACTS_G4}{era2._g5_facts(state)}{era2._g6_facts(state)}{facts(state)}{_s4m().ask_block(state, p) if _s4_on(state) else ''}{board_block(state, p)}
 ## 村のようす
 {era2._village(state)}
 ## {digest_head(state)}

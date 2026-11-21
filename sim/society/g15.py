@@ -139,6 +139,14 @@ def _s3(state):
     return s3 if s3.on(state) else None
 
 
+def _i4(state):
+    """Society 4.0 フェーズ 1 (読み書きと知らせ板) の仕組み (i4.py)。印 g7.i4 があるときだけ返す (印がなければ読みこみもしない。前の歩は 1 バイトも同じ)"""
+    if "i4" not in state["era2"]["g7"]:
+        return None
+    import i4
+    return i4 if i4.on(state) else None
+
+
 def _s4(state):
     """Society 4.0 (分業と町) の仕組み (s4.py)。印 g7.s4 があるときだけ返す (印がなければ読みこみもしない。前の歩は 1 バイトも同じ)"""
     if "s4" not in state["era2"]["g7"]:
@@ -1103,7 +1111,8 @@ def prompt_block(state, p):
     s4 = _s4(state)
     if s4:  # Society 4.0 (印のあとだけ): 町の家・掘り場・川下の町の市
         rows += s4.block_lines(state, p)
-    rows.append(read_line(state, name))
+    i4 = _i4(state)
+    rows += i4.read_lines(state, p) if i4 else [read_line(state, name)]  # Society 4.0 フェーズ 1 (印のあとだけ): 字の行に、習っている人と「字を教える」
     rows.append(g14.keep_line(state, p))
     rows.append("- workshop は答えた人の中でいちばん多い中身に決まる (1 人の答えでも決まる)。書かないなら \"workshop\": []")
     rows.append("いまの進み (水の作業場と燃える石):")

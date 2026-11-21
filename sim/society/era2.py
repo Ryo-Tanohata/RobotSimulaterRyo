@@ -2903,7 +2903,7 @@ def _feeling_prompt(state, p, first):
     g7 = _g7m() if "g7" in state["era2"] else None  # G7 から (G6 までは前と同じ文)
     return f"""{RULES2}
 
-{me}
+{me}{g7.board_block(state, p, False) if g7 else ""}
 ## 村のようす
 {_village(state)}{_year_names_text(state)}
 ## {g7.digest_head(state) if g7 else "前の季節のこと"}
@@ -2948,6 +2948,8 @@ def apply_feelings(state, answers):
             if n != t["from"] and (t["to"] == "みんな" or t["to"] == n):
                 q["heard"].append({k: t[k] for k in ("day", "from", "text", "event")})
                 q["heard"] = q["heard"][-30:]
+    if "i4" in (state["era2"].get("g7") or {}):  # 2026-11-21: 一言で知らせの文を使ったか (印 g7.i4 のあとだけ。数えるだけ)
+        _g7m().i4_feelings(state, {n: raw for n, raw in answers.items() if n in alive})
 
 
 # ---------------- 判定 ----------------
@@ -3910,7 +3912,7 @@ def _season_prompt(state, p, first):
 
     return f"""{RULES2}
 
-{me}{FACTS2}{(FACTS_G3 + FACTS_HOUSE) if era_at_least(state, "G3") else ""}{FACTS_G4 if era_at_least(state, "G4") else ""}{_g5_facts(state)}{_g6_facts(state)}{_g7_facts(state)}
+{me}{FACTS2}{(FACTS_G3 + FACTS_HOUSE) if era_at_least(state, "G3") else ""}{FACTS_G4 if era_at_least(state, "G4") else ""}{_g5_facts(state)}{_g6_facts(state)}{_g7_facts(state)}{g7.board_block(state, p) if g7 else ""}
 ## 村のようす
 {_village(state)}
 ## {g7.digest_head(state) if g7 else "前の季節のこと"}

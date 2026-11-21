@@ -434,12 +434,25 @@ def conditions(D, y, phase):
         if "s4" in _g7(st):  # 2026-11-20: Society 4.0 (印 g7.s4 のあとだけ)
             import s4 as S4
             out["s4"] = [x.replace(S4.S4_NAME, getattr(S4, "S4_LABEL", S4.S4_NAME)) for x in S4.lines(st)]  # 2026-11-20 (s4-c): 人が読む呼び名は Society 3.0 フェーズ 2
+        if "i4" in _g7(st):  # 2026-11-21: Society 4.0 フェーズ 1 (読み書きと知らせ板。印 g7.i4 のあとだけ)
+            out["i4"] = i4_part(st, y)
         p = (g.get("path") or {}).get(str(y))
         cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g15_") and c.get("year", (c.get("day", 0) + 1) // YEAR - 1) == y]
         out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G15"}
     else:
         out["extra"] = [f"この年のフェーズ {phase} の条件の棒は、まだ作っていない。条件: {(st.get('era_info') or {}).get('next', '-')}"]
     return out
+
+
+def i4_part(st, y):
+    """Society 4.0 フェーズ 1 (読み書きと知らせ板) の節の中身: 年ごとの i1〜i4 の行・この年の知らせ・教えた日と子・読めるようになった人"""
+    import i4 as I4
+    g = I4._g(st)
+    rows = [g["rows"][k] for k in sorted(g["rows"], key=int) if int(k) <= y]
+    import g10 as G10
+    new = sorted(n for n, d in G10._g(st)["readers"].items() if d is not None and d // YEAR == y)
+    return {"head": I4.lines(st)[:1], "rows": rows, "notes": I4.notes_of(st, y), "new": new, "taught": (g["taught"].get(str(y)) or {}),
+            "used": (g["used"].get(str(y)) or {}), "learning": len(g["kids"])}
 
 
 def g11_lines(g, st, y, Y):
@@ -1145,6 +1158,28 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
         w('<p style="margin:10px 0 2px"><b>Society 3.0 (案 A): 村の人が見て・選んで・続ける仕事</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["s3"]) + "</ul>")
     if C.get("s4"):
         w('<p style="margin:10px 0 2px"><b>Society 3.0 フェーズ 2 (分業と町): 町の家・掘り場・川下の町の市</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["s4"]) + "</ul>")
+    if C.get("i4"):  # 2026-11-21: Society 4.0 フェーズ 1 (読み書きと知らせ板)
+        q = C["i4"]
+        w('<p style="margin:10px 0 2px"><b>Society 4.0 フェーズ 1 (読み書きと知らせ板): 字で書いたことが、会わない人にも同じ形で届くか</b></p>')
+        w('<ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in q["head"]) + "</ul>")
+        if q["rows"]:
+            w('<table><tr><td>年</td><td>i1 読める大人 (25% 以上)</td><td>i2 知らせ (6 枚・4 家以上)</td><td>i3 字の仕事 (4% 以上)</td><td>i4 暮らしを守る</td><td>教えた</td><td>読めるようになった</td></tr>')
+            for r in q["rows"]:
+                ok = lambda b: "○" if b else "×"  # noqa: E731
+                w(f"<tr><td>{r['year']}</td><td>{ok(r['i1_like'])} {r['readers']}/{r['adults']} ({round(r['i1_share'] * 100, 1)}%)</td>"
+                  f"<td>{ok(r['i2_like'])} {r['notes']} 枚 ({r['note_houses']} 家)・使った {r['used']}</td><td>{ok(r['i3_like'])} {round(r['i3_share'] * 100, 2)}%</td>"
+                  f"<td>{ok(r['i4_ok'])} ききん {r['famine']}・蓄え {r['store_min']} 日分・人 {r['pop']}</td>"
+                  f"<td>{r['teach_days']} 人日 (子 {r['kids_taught']} 人)</td><td>{r['new_readers']} (子 {r['kid_readers']})</td></tr>")
+            w("</table>")
+        t = q["taught"]
+        w(f'<p class="note">この年に教えた日 {t.get("days", 0)} 人日・教わった子 {len(t.get("kids") or [])} 人 (のべ {t.get("kid_days", 0)} 日)・'
+          f'字を習う大人の 2 日分 {t.get("adult_days", 0)} 日・いま習っている子 {q["learning"]} 人。'
+          f'読めるようになった人: {e("・".join(q["new"][:20]) or "なし")}{" ほか" if len(q["new"]) > 20 else ""}。知らせの文を話・知識・掟で使った回 {q["used"].get("n", 0)}</p>')
+        if q["notes"]:
+            w('<p style="margin:6px 0 2px"><b>この年の知らせ</b></p><ul class="note">'
+              + "".join(f"<li>{e(x['season'])} {e(x['house'])} ({e(x['by'])}。書いたのは {e(x['writer'])}): 「{e(x['text'])}」</li>" for x in q["notes"]) + "</ul>")
+        else:
+            w('<p class="note">この年の知らせ: なし</p>')
     if C.get("branches"):
         w('<p style="margin:10px 0 2px"><b>反実仮想の枝 (写しを 2 本回して、良いほうを本物の村の続きにした)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["branches"]) + "</ul>")
     if C.get("g14"):

@@ -11,6 +11,9 @@
   python sim/society/step.py resume --unpush "<本人の言葉>" --years 3  2026-11-17: G15 の入口 (HOLD entrance) で、後押しをしているときだけ (1 回だけ)、
                                                  後押しを止めて (push.ended)、印 g7.g15.after を書き、止まりを解いて G15 のまま村の人だけで N 年回す。
                                                  最後の年の終わりに HOLD consult で止まる (村の人のお題には出さない。docs/society_phase/G15_push.md 7.)
+  python sim/society/step.py resume --i4 "<本人の言葉>"  2026-11-21: S4 のあと (26999 日目から。S4 の相談で止まっているか、止まりのないとき。1 回だけ)、
+                                                 印 g7.i4 を書いて Society 4.0 フェーズ 1 (読み書きと知らせ板) を始め、S4 を閉じ (g7.s4.closed)、止まりを解き、
+                                                 この歩のお題を書き直す (答えがまだないときだけ。docs/society_phase/I4_design.md)
   python sim/society/step.py resume --s4fix "<本人の言葉>"  2026-11-20 (s4-b): S4 の相談 (26519 日目から) で、町の家を選ばないわけを調べた直しを、この日のお題から使う (印 g7.s4.fix。お題を書き直す)
   python sim/society/step.py resume --s4ask "<本人の言葉>"  2026-11-20 (s4-c): S4 の相談 (26639 日目から。年の集まり) で、年の集まりのお題の上のほうで家ごとに町の家を聞く節を、この日のお題から 3 年 (印 g7.s4.ask。お題を書き直す)
   python sim/society/step.py resume --s4 "<本人の言葉>"  2026-11-20: S3 のあと (25919 日目から。S3 の相談・入口か、止まりのないとき。1 回だけ)、
@@ -270,6 +273,9 @@ def _g15_lines(state, i):
     if "s4" in state["era2"]["g7"]:  # 2026-11-20: Society 4.0 (印 g7.s4 のあとだけ)
         import s4  # noqa: E402
         out += [f"S4 / {t}" for t in s4.lines(state)]
+    if "i4" in state["era2"]["g7"]:  # 2026-11-21: Society 4.0 フェーズ 1 (印 g7.i4 のあとだけ)
+        import i4  # noqa: E402
+        out += [f"I4 / {t}" for t in i4.lines(state)]
     out += [f"G15 / 報告: {t}" for t in g15.report_lines(state)]
     return out
 
@@ -488,7 +494,8 @@ ACT_BY_EVENT = {"採集": "採集", "探索": "探索", "休む": "休む", "道
                 "黒い金属を作る": "黒い金属を作る", "字を習う": "字を習う",
                 "印のかたまりを作る": "印のかたまりを作る",
                 "帳をつける": "帳をつける", "水の道を掘る": "水の道を掘る", "水の輪を建てる": "水の輪を建てる", "市へ運ぶ": "市へ運ぶ", "水の輪を直す": "水の輪を直す",
-                "水の作業場を作る": "水の作業場を作る", "水の作業場で働く": "水の作業場で働く", "燃える石を掘る": "燃える石を掘る", "かまどを作りかえる": "かまどを作りかえる"}  # Society 2.0 の仕事 (交換に行く・記録をつけるは G6 から、守る〜試すは G7 から、黒い金属・字は G10 から、印のかたまりは G11 から、帳は G12 から、水の道・水の輪は G13 から、市へ運ぶは G14 から)
+                "水の作業場を作る": "水の作業場を作る", "水の作業場で働く": "水の作業場で働く", "燃える石を掘る": "燃える石を掘る", "かまどを作りかえる": "かまどを作りかえる",
+                "字を教える": "字を教える", "知らせを書く": "知らせを書く"}  # 2 つは 2026-11-21 (Society 4.0 フェーズ 1。印 g7.i4 のあとだけ出る)  # Society 2.0 の仕事 (交換に行く・記録をつけるは G6 から、守る〜試すは G7 から、黒い金属・字は G10 から、印のかたまりは G11 から、帳は G12 から、水の道・水の輪は G13 から、市へ運ぶは G14 から)
 
 
 def day_labels(state, extra=()):
@@ -690,6 +697,7 @@ def main():
     ap.add_argument("--s4", default=None, help="resume で、S3 のあと (25919 日目から。S3 の相談・入口で止まっているか、止まりのないとき) (2026-11-20): Society 4.0 (分業と町) を始める本人の言葉 (印 g7.s4 に残す。docs/society_phase/S4_design.md)")
     ap.add_argument("--s4fix", default=None, help="resume で、S4 の相談 (HOLD consult。26519 日目から) のとき (2026-11-20。ブランチ s4-b): 町の家を選ばないわけを調べた直し (s4.fixed) を、この日のお題から使う本人の言葉 (印 g7.s4.fix。お題を書き直す)")
     ap.add_argument("--s4ask", default=None, help="resume で、S4 の相談 (HOLD consult。26639 日目から。年の集まり) のとき (2026-11-20。ブランチ s4-c): 年の集まりで家ごとに町の家を聞く節 (s4.ask_block) を、この日のお題から 3 年使う本人の言葉 (印 g7.s4.ask。お題を書き直す)")
+    ap.add_argument("--i4", default=None, help="resume で、S4 のあと (26999 日目から。S4 の相談で止まっているか、止まりのないとき) (2026-11-21): Society 4.0 フェーズ 1 (読み書きと知らせ板) を始める本人の言葉 (印 g7.i4 に残す。S4 を閉じる。docs/society_phase/I4_design.md)")
     ap.add_argument("--parts", default=None, help="resume --s3 で入れる部分 (コンマでつなぐ。a,b,c,d。書かなければみな。s3.PARTS)")
     ap.add_argument("--levers", default=None, help="resume --push で選ぶ後押しの手 (コンマでつなぐ。food,ws,coal,ws2,house。書かなければみな。g15.LEVERS)")
     ap.add_argument("--decided", default=None, help="next_part で G14 の終わり (第 7 部の終わり) から G15 (第 8 部) に入るとき (2026-11-15): 本人の決めの言葉 (しるし。g7.g15.decided に残す)")
@@ -721,6 +729,8 @@ def main():
         sys.exit("--s4ask は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix・--s4・--s4fix とは一緒に書かない)")
     if a.s4 is not None and (a.cmd != "resume" or a.push is not None or a.unpush is not None or a.s3 is not None or a.s3more is not None or a.s3fix is not None):
         sys.exit("--s4 は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix とは一緒に書かない)")
+    if a.i4 is not None and (a.cmd != "resume" or any(x is not None for x in (a.push, a.unpush, a.s3, a.s3more, a.s3fix, a.s4, a.s4fix, a.s4ask))):
+        sys.exit("--i4 は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix・--s4・--s4fix・--s4ask とは一緒に書かない)")
     if a.note is not None and a.cmd not in ("exp3", "exp4"):
         sys.exit("--note は exp3・exp4 のときだけ書く")
     if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate", "exp3", "exp4"):
@@ -796,6 +806,30 @@ def main():
         return
     if a.cmd == "export":
         export(state)
+        return
+    if a.cmd == "resume" and a.i4 is not None:  # 2026-11-21: Society 4.0 フェーズ 1 (読み書きと知らせ板) を始める (印 g7.i4。docs/society_phase/I4_design.md)
+        why = "G7 より前" if not (state.get("era2") or {}).get("g7") else None
+        if why is None:
+            import i4  # noqa: E402
+            why = i4.refusal(state, a.i4)
+        if why:
+            print(f"resume --i4 はできない: {why} (何も変えない)")
+            sys.exit(3)
+        g = i4.mark(state, a.i4)
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
+        for kind in ("season", "feeling"):  # この歩のお題 (答えはまだない) を、印のあとの形で書き直す (出来事には残さない)
+            d = pdir(state, kind, "prompts")
+            if d.exists() and not any(pdir(state, kind, "answers").glob("*.json")):
+                shutil.rmtree(d)
+        save(state)
+        if state["era2"]["g7"].get("ask"):
+            write_prompts(state, "season")
+        export(state)
+        print(f"* {g['why']} を {_yd(state['day'])}から始めた ({g['start_year']}年から数える)。部分: " + " / ".join(f"{k} {v}" for k, v in i4.PARTS.items()))
+        print(f"* Society 3.0 フェーズ 2 (分業と町。S4) は {_yd(state['day'])} で閉じた (S4 の止まり・お題の節・答えの欄は出さない。年の行は数えつづける)")
+        print("* 印と本人の言葉は、村の人のお題にも出来事にも出さない。止まるのは I4 の入口 (HOLD entrance) と相談 (HOLD consult) だけ")
+        print("再開した")
         return
     if a.cmd == "resume" and a.s4 is not None:  # 2026-11-20: Society 4.0 (分業と町) を始める (印 g7.s4。docs/society_phase/S4_design.md)
         why = "G7 より前" if not (state.get("era2") or {}).get("g7") else None
