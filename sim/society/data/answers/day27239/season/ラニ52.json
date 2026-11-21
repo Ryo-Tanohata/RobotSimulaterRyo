@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "この年も、わしは水ののこで板をひいて、土器も作ろう。みんな、冬の前に蓄えを見なおそうな。"}],
+ "year": {
+  "夏": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": ["オネ55", "タユ67"], "why": "のこ番として板をひき、輪や水の道の手入れを助けるため"}, "family": {"オネ55": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}, "ケセ59": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "ユエ66": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "タユ67": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えの草の種を虫やネズミから守る土器が要るため"}, "family": {"オネ55": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}, "ケセ59": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "ユエ66": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "タユ67": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬は外の仕事が少ないので、土器を作りためる"}, "family": {"オネ55": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}, "ケセ59": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "ユエ66": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "タユ67": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として板をひく仕事に戻る"}, "family": {"オネ55": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}, "ケセ59": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "ユエ66": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "タユ67": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": true, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "のこ番の年",
+ "feeling": "木の実の木がたくさんあって安心だ。体も元気で、板をひく仕事も土器づくりも楽しみだ。"}

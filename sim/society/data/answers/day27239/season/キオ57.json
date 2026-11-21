@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑が実っている。落ちる前に、みんなで刈ってしまおうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから、まず刈り入れ"}, "family": {"オセ67": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいちばん要る季節"}, "ホタ68": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいちばん要る季節"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕に自信があり、蓄えを入れる器をふやせる"}, "family": {"オセ67": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ大きく足りない"}, "ホタ68": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ大きく足りない"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬は畑も実りも無いので、水の道の手入れにあてる"}, "family": {"オセ67": {"activity": "狩り", "place": "南林12", "why": "魚やけものは冬もいるので、肉を取ってきてほしい"}, "ホタ68": {"activity": "狩り", "place": "北林12", "why": "魚やけものは冬もいるので、肉を取ってきてほしい"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りで、次の夏の実りをふやす"}, "family": {"オセ67": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要る"}, "ホタ68": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が要る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ソナ119": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "夏の実った畑は夏のうちに刈る。冬までに水の道の手入れを進めたい。", "because": [5069744], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑のみのりの年",
+ "feeling": "蓄えは多く安心だけれど、水の道の手入れが気がかり。みんなで力を合わせたい。"}

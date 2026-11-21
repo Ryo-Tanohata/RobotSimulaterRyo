@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "畑がたくさん実っている。夏のうちに、みんなで毎夕刈り切ろう。ヤギは多すぎるから、少し肉にして干そう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを手伝う"}, "family": {"キサ98": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手伝い"}, "テナ98": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多いので世話の手伝い"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 20},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やす"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 300},
+  "冬": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りが得意なので、冬も魚やけものをとる"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りが得意なので、肉を蓄えに足す"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ソナ119": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1083": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは多いが、ヤギは草の分より多いので、夏に肉にして減らす。実った畑は夏のうちに刈る", "because": [5069752], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして減らすのがよい"},
+           {"id": "L201", "against": "", "agree": true, "reason": "夏は畑を刈らないと落ちてしまうから"},
+           {"id": "L202", "against": "", "agree": true, "reason": "毎夕みんなで刈れば刈り残しが減る"}],
+ "year_name": "ヤギをへらした年",
+ "feeling": "蓄えは多くて安心。狩りと畑仕事で村を支えたい。"}
