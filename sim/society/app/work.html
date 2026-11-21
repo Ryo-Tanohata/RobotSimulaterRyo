@@ -1,0 +1,185 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>川辺の村 — 仕事の一覧と職務経歴書</title>
+<style>
+/* 見るだけのページ。data は work_data.json (tools/build_work.py が季節ごとの人の記録から作る) */
+:root {
+  --bg: #edf1ec; --surface: #fbfcfa; --fg: #1d2520; --muted: #5a675e; --line: #cdd7ce;
+  --accent: #b36a1e; --accent-soft: #f3e3cf; --new: #2f7d4f; --new-bg: #dcefe2; --gone: #b3261e; --heat: 179, 106, 30;
+  --body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root {
+  --bg: #111612; --surface: #19201b; --fg: #e2e9e3; --muted: #9aa89e; --line: #2d3a31;
+  --accent: #e39a4c; --accent-soft: #3a2b1b; --new: #74c794; --new-bg: #1e3527; --gone: #f07a70; --heat: 227, 154, 76; color-scheme: dark } }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.6; margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 20px 16px 48px; display: grid; gap: 18px; }
+h1 { font-size: clamp(22px, 4vw, 32px); margin: 0; }
+h2 { font-size: 18px; margin: 0 0 8px; }
+h3 { font-size: 15px; margin: 14px 0 6px; color: var(--muted); }
+a { color: var(--accent); }
+.lead { color: var(--muted); font-size: 14px; margin: 0; max-width: 75ch; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tabs button { font: inherit; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--fg); cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; min-width: 0; overflow-x: auto; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; margin-bottom: 10px; font-size: 14px; }
+select, input { font: inherit; padding: 3px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { border-bottom: 1px solid var(--line); padding: 4px 8px; text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 500; white-space: nowrap; }
+td.n, th.n { text-align: right; font-family: var(--mono); white-space: nowrap; }
+.chip { display: inline-block; font-size: 12px; padding: 0 7px; border-radius: 999px; margin-left: 4px; }
+.chip.new { background: var(--new-bg); color: var(--new); }
+.chip.first { background: var(--accent-soft); color: var(--accent); }
+.gone { color: var(--gone); }
+.bar { height: 8px; background: var(--accent); border-radius: 0 4px 4px 0; min-width: 1px; }
+.heat { display: grid; gap: 1px; }
+.heat .row { display: grid; grid-template-columns: 150px 1fr 60px; gap: 8px; align-items: center; font-size: 13px; }
+.heat .cells { display: flex; height: 14px; }
+.heat .cells i { flex: 1; min-width: 1px; }
+.heat .axis { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.muted { color: var(--muted); }
+.why { color: var(--muted); font-size: 13px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+</style>
+<div class="wrap">
+  <header>
+    <h1>仕事の一覧と職務経歴書</h1>
+    <p class="lead">季節ごとに「だれが・どの仕事を・何日・なぜ」したかの記録から数えました。大人 (15 歳から) だけです。記録は 4 年からあります。いちばん新しい年は、途中までのことがあります。<a href="index.html">村のアプリへもどる</a></p>
+    <p class="lead" id="meta"></p>
+  </header>
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="t-period" aria-selected="true">時期ごとの仕事</button>
+    <button role="tab" id="t-flow" aria-selected="false">仕事の移り変わり</button>
+    <button role="tab" id="t-cv" aria-selected="false">一人ずつの職務経歴書</button>
+  </nav>
+  <section class="panel" id="p-period" role="tabpanel">
+    <div class="filters">
+      <label>年 <select id="yr"></select></label>
+      <button id="prev">← 前の年</button><button id="next">次の年 →</button>
+    </div>
+    <div id="period"></div>
+  </section>
+  <section class="panel" id="p-flow" role="tabpanel" hidden>
+    <p class="lead">仕事ごとに、年ごとの人日 (人数 × 日数) の濃さです。濃いほど、その年の働いた日のうち多くをその仕事にあてています (休むはのぞく)。</p>
+    <div class="heat" id="heat"></div>
+    <h3>仕事の表</h3>
+    <div id="jobs"></div>
+  </section>
+  <section class="panel" id="p-cv" role="tabpanel" hidden>
+    <div class="filters">
+      <label>名前でさがす <input id="q" placeholder="例: オセ78" size="10"></label>
+      <label>人 <select id="who"></select></label>
+      <label><input type="checkbox" id="alive" checked> 生きている人だけ</label>
+    </div>
+    <div id="cv"></div>
+  </section>
+</div>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const fmt = (n) => Number(n || 0).toLocaleString("ja-JP");
+let D;
+const yearOf = (d) => Math.floor(d / D.year_days);
+const seasonOf = (d) => D.seasons[(Math.floor(d / D.season_days) + D.season_start) % 4];
+const when = (d) => (d == null ? "―" : `${yearOf(d)}年 ${seasonOf(d)}`);
+const isRest = (a) => a.startsWith("休む");
+
+for (const t of ["period", "flow", "cv"]) $("t-" + t).onclick = () => {
+  for (const u of ["period", "flow", "cv"]) { $("t-" + u).setAttribute("aria-selected", u === t); $("p-" + u).hidden = u !== t; }
+};
+
+function renderPeriod() {
+  const y = Number($("yr").value), P = D.periods.find((p) => p.year === y);
+  if (!P) return;
+  const max = Math.max(1, ...P.jobs.map((j) => j.days));
+  $("period").innerHTML = `
+    <h2>${y}年${P.name ? `「${esc(P.name)}」` : ""}${P.seasons < 4 ? ` <span class="muted">(${P.seasons} 季節分まで)</span>` : ""}</h2>
+    <p class="muted">働いた大人 ${fmt(P.adults)} 人 ・ 働いた日 (休むをのぞく) ${fmt(P.worked)} 人日 ・ 仕事 ${P.jobs.filter((j) => !isRest(j.job)).length} 種</p>
+    <table><tr><th>仕事</th><th class="n">人日</th><th class="n">人</th><th class="n">割合</th><th style="width:30%"></th></tr>
+    ${P.jobs.map((j) => `<tr><td>${esc(j.job)}${j.first ? '<span class="chip first">村ではじめて</span>' : j.new ? '<span class="chip new">去年はなかった</span>' : ""}</td>
+      <td class="n">${fmt(j.days)}</td><td class="n">${fmt(j.people)}</td><td class="n">${j.share == null ? "―" : (j.share * 100).toFixed(1) + "%"}</td>
+      <td><div class="bar" style="width:${(j.days / max) * 100}%"></div></td></tr>`).join("")}
+    </table>
+    ${P.gone.length ? `<p class="gone">去年はあって、今年はなくなった仕事: ${P.gone.map(esc).join("・")}</p>` : ""}`;
+}
+
+function renderFlow() {
+  const ys = D.periods.map((p) => p.year);
+  const share = {};
+  for (const p of D.periods) for (const j of p.jobs) (share[j.job] = share[j.job] || {})[p.year] = j.share ?? (j.days / Math.max(1, p.worked));
+  const jobs = D.jobs.filter((j) => !isRest(j.job));
+  $("heat").innerHTML = jobs.map((j) => {
+    const m = Math.max(0.0001, ...Object.values(share[j.job] || {}));
+    return `<div class="row"><span>${esc(j.job)}</span><div class="cells">${ys.map((y) => {
+      const v = (share[j.job] || {})[y] || 0;
+      return `<i title="${y}年 ${esc(j.job)} ${(v * 100).toFixed(1)}%" style="background:${v ? `rgba(var(--heat),${0.12 + 0.88 * Math.sqrt(v / Math.max(m, 0.05))})` : "transparent"}"></i>`;
+    }).join("")}</div><span class="muted n">${(m * 100).toFixed(0)}%</span></div>`;
+  }).join("") + `<div class="row"><span></span><div class="axis"><span>${ys[0]}年</span><span>${ys[Math.floor(ys.length / 2)]}年</span><span>${ys[ys.length - 1]}年</span></div><span class="muted">いちばん</span></div>`;
+  $("jobs").innerHTML = `<table><tr><th>仕事</th><th class="n">はじめての年</th><th class="n">最後の年</th><th class="n">いちばん多い年</th><th class="n">全部の人日</th></tr>
+    ${D.jobs.map((j) => `<tr><td>${esc(j.job)}</td><td class="n">${j.first}</td><td class="n">${j.last}${j.last === D.last_year ? " (今も)" : ""}</td><td class="n">${j.peak}</td><td class="n">${fmt(j.total)}</td></tr>`).join("")}</table>`;
+}
+
+function fillWho() {
+  const q = $("q").value.trim(), al = $("alive").checked;
+  const L = D.people.filter((p) => (!al || p.status === "生きている") && (!q || p.name.includes(q)));
+  const cur = $("who").value;
+  $("who").innerHTML = L.slice(0, 800).map((p) => `<option value="${esc(p.id)}">${esc(p.name)}${p.status === "生きている" ? "" : " (" + esc(p.status) + ")"}</option>`).join("");
+  if (L.some((p) => p.id === cur)) $("who").value = cur;
+  renderCV();
+}
+
+function renderCV() {
+  const p = D.people.find((x) => x.id === $("who").value);
+  if (!p) { $("cv").innerHTML = `<p class="muted">条件に合う人がいません。</p>`; return; }
+  const ys = p.years, first = ys[0], last = ys[ys.length - 1];
+  const tot = Object.entries(p.total).filter(([a]) => !isRest(a)), sum = tot.reduce((s, [, d]) => s + d, 0) || 1;
+  const now = p.status === "生きている" ? "生きている"
+    : p.died != null ? `${when(p.died)}に亡くなった${p.age_death != null ? ` (${p.age_death} 歳` + (p.cause ? `・${esc(({ 年: "年をとって", 病: "病", 子: "子のうちに", 飢え: "飢え" })[p.cause] || p.cause)})` : ")") : ""}`
+    : p.left != null ? `${when(p.left)}に村を出た${p.left_why ? ` (${esc(p.left_why)})` : ""}` : esc(p.status);
+  const outs = Object.entries(p.out).filter(([, v]) => v).map(([k, v]) => `${esc(D.out_names[k] || k)} ${fmt(v)}`).join(" ・ ");
+  const dec = Object.entries(p.dec).map(([k, v]) => `${esc(k)} ${v}`).join(" ・ ");
+  $("cv").innerHTML = `
+  <div class="grid2">
+    <section><h2>履歴書</h2><table>
+      <tr><th>名前</th><td>${esc(p.name)} (${esc(p.sex)})</td></tr>
+      <tr><th>生まれ</th><td>${p.born != null ? when(p.born) : "―"} ・ ${esc(p.origin || "―")}${p.came ? ` ・ ${when(p.came)}に村へ` : ""}</td></tr>
+      <tr><th>家</th><td>${esc(last.hh || p.hh || "―")}</td></tr>
+      <tr><th>今</th><td>${now}</td></tr>
+      <tr><th>記録のある期間</th><td>${first.y}年〜${last.y}年 (${ys.length} 年・大人として)</td></tr>
+      <tr><th>役目</th><td>${ys.some((r) => r.leader) ? `まとめ役の年 ${ys.filter((r) => r.leader).length} ・ ` : ""}家の代表の年 ${ys.filter((r) => r.rep).length}</td></tr>
+      <tr><th>掟・知識</th><td>出した掟 ${fmt(ys.reduce((s, r) => s + r.laws, 0))} 本 ・ 覚えたこと ${fmt(ys.reduce((s, r) => s + r.know, 0))} 件</td></tr>
+    </table></section>
+    <section><h2>職務経歴書 (まとめ)</h2><table>
+      ${tot.map(([a, d]) => `<tr><td>${esc(a)}</td><td class="n">${fmt(d)} 日</td><td class="n">${((d / sum) * 100).toFixed(0)}%</td><td style="width:35%"><div class="bar" style="width:${(d / tot[0][1]) * 100}%"></div></td></tr>`).join("")}
+      ${p.total["休む (けが)"] ? `<tr><td class="muted">けがで休んだ</td><td class="n">${fmt(p.total["休む (けが)"])} 日</td><td></td><td></td></tr>` : ""}
+    </table>
+    ${outs ? `<p class="why">出来高: ${outs}</p>` : ""}
+    ${dec ? `<p class="why">仕事をだれが決めたか (季節の数): ${dec}</p>` : ""}</section>
+  </div>
+  <h3>経歴 (おもな仕事が変わったとき・本人が書いた理由)</h3>
+  <table><tr><th>いつ</th><th>仕事</th><th>決め方</th><th>理由</th></tr>
+    ${p.changes.map((c) => c.skip ? `<tr><td colspan="4" class="muted">… ${c.skip} 回の変わり目をはぶいた …</td></tr>`
+      : `<tr><td class="n">${when(c.day)}</td><td>${c.from ? esc(c.from) + " → " : ""}<b>${esc(c.to)}</b></td><td class="why">${esc(c.by || "")}</td><td class="why">${esc(c.why || "")}</td></tr>`).join("")}
+  </table>
+  <h3>年ごとの仕事 (日数)</h3>
+  <table><tr><th>年</th><th class="n">年齢</th><th>家</th><th>仕事</th></tr>
+    ${ys.slice().reverse().map((r) => `<tr><td class="n">${r.y}${r.leader ? " ★" : r.rep ? " ◆" : ""}</td><td class="n">${r.age ?? ""}</td><td>${esc(r.hh || "")}</td>
+      <td>${Object.entries(r.acts).map(([a, d]) => `${esc(a)} ${d}`).join(" ・ ")}</td></tr>`).join("")}
+  </table>
+  <p class="muted">★ まとめ役の年 ・ ◆ 家の代表の年</p>`;
+}
+
+fetch("work_data.json").then((r) => r.json()).then((d) => {
+  D = d;
+  $("meta").textContent = `${D.first_year}年〜${D.last_year}年 ・ 仕事 ${D.jobs.length} 種 ・ 記録のある大人 ${fmt(D.people.length)} 人`;
+  $("yr").innerHTML = D.periods.map((p) => `<option>${p.year}</option>`).reverse().join("");
+  $("yr").onchange = renderPeriod;
+  const step = (k) => { const ys = D.periods.map((p) => p.year), i = ys.indexOf(Number($("yr").value)) + k; if (ys[i] != null) { $("yr").value = ys[i]; renderPeriod(); } };
+  $("prev").onclick = () => step(-1); $("next").onclick = () => step(1);
+  $("q").oninput = fillWho; $("alive").onchange = fillWho; $("who").onchange = renderCV;
+  renderPeriod(); renderFlow(); fillWho();
+});
+</script>
