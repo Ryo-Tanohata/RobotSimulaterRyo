@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は水の道の手入れにみんなで力を出そう。ヤギはもう増やさなくていいよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っているし、蓄えも土器も足りているから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ラニ129": true},
+ "family": {"ケセ67": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}, "オネ70": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}},
+ "keep": false,
+ "judge": {"M559": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1166": false, "T1169": "村", "T1170": false, "T1171": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかは満ちている。冬の前に、水の道をひと掘りでも進めたい。"}

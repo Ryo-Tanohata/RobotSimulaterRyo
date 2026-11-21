@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。冬の前に、苦しい村にも分けられるぞ。みんなで気楽にいこう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。村の土器は蓄えを守るので、冬の前に作り足しておく"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ラニ129": true},
+ "family": {
+  "オセ72": {"activity": "土器づくり", "place": "camp", "why": "腕があるので土器を作り、交換の品を増やす"},
+  "ラニ74": {"activity": "狩り", "place": "北丘12", "why": "冬の前に肉を蓄えたい"},
+  "ケセ76": {"activity": "採集", "place": "西草原12", "why": "草の種と木の実を集めて蓄えを厚くする"},
+  "リセ84": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"},
+  "ソナ87": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}
+ },
+ "keep": false,
+ "judge": {"M559": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1166": "村", "T1169": "村", "T1170": "村", "T1171": "村"},
+ "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは今の人数で約430日分あり、冬を越すのに十分だ", "because": [5554311], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "agree": true, "reason": "夜のザガは危ないので賛成"}],
+ "feeling": "蓄えは十分で安心している。土器を焼いて冬に備えよう。"}
