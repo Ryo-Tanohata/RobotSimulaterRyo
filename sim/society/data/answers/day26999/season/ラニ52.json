@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだ実りが多い。落ちる前に、みんなで刈り入れをしよう。冬に向けて蓄えをふやしたい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実りが落ちてしまう。畑が実っているあいだは刈り入れがいちばん大事"}, "family": {"オネ55": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "ケセ59": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "ユエ66": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "タユ67": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "アコ68": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "秋は木の実が多い。採集の腕を生かして冬の前に食べ物をためる"}, "family": {"オネ55": {"activity": "採集", "place": "西草原12", "why": "冬に備えて食べ物を集める"}, "ケセ59": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを守る"}, "ユエ66": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを守る"}, "タユ67": {"activity": "採集", "place": "西草原12", "why": "冬に備えて食べ物を集める"}, "アコ68": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを守る"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "冬は木の実が実らないが、けものと魚はいる。狩りの腕で肉を取る"}, "family": {"オネ55": {"activity": "狩り", "place": "東林12", "why": "冬も取れる肉を狩る"}, "ケセ59": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ユエ66": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "タユ67": {"activity": "狩り", "place": "東林12", "why": "冬も取れる肉を狩る"}, "アコ68": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "南川12", "with": [], "why": "土器の腕が高い。土器に入れると草の種が虫やネズミに食べられにくい"}, "family": {"オネ55": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ケセ59": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ユエ66": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "タユ67": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "アコ68": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1059": false, "T1060": false, "T1061": false, "T1062": false, "T1063": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "体はまだ元気だ。みんなと話しながら働けるのがうれしい。"}
