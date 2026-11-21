@@ -3,6 +3,13 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-21 動画「Society 3.0 これまで」の台本 (`sim/society/video/s3/`。200年120日目〜232年の終わり。トークン 0)
+
+- 作りは `video/part7/` と同じ (make.sh・data.py・charts.py・shots.cjs・lines.json。27 文)。はじめに G15 (193〜200年) を 1 枚ふりかえり、後押しなしの確かめ・フェーズ 1 (案 A)・フェーズ 2 (分業と町・年の集まりで町の家を聞く)・フェーズ 3 (読み書きと知らせ板)・フェーズ 4 (頼み書きと町。232年は頼み 0) を見る。
+- 文の数は data.py が記録 (data は読むだけ) と合わせ、合わないと止まる。動画には今の呼び名「Society 3.0 フェーズ N」だけを出す (lines.json に「4.0」がないことも確かめる)。
+- 作り方: `FFMPEG_THREADS=2 bash sim/society/video/s3/make.sh /tmp/s3v /tmp/vv` → `/tmp/s3v/s3.mp4`。声・絵・動画はリポジトリに入れない。
+- トークンの図: 203年は途中から数えた分だけ。214年は年報の数 (約 215 万) がほかの年よりずっと少ないが、わけは記録に見つからなかった (年報の数のまま出した)。
+
 ## 2026-11-21 Society 3.0 フェーズ 4「頼み書きと町」を作った (コードの名前 p4。設計 `docs/society_phase/P4_design.md`・確かめ `docs/society_phase/P4_check.md`。トークン 0。本物の村は 27839 日目 (231年の終わり) で止まりなしのまま。印は書いていない)
 
 - 作り: `p4.py` (新しい) と、`g7.py`・`i4.py`・`step.py`・`tools/year_report.py`・`tools/test_g7.py` の小さな足し。
