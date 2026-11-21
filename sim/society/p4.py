@@ -15,6 +15,9 @@
 - 物差し (P4_design.md 4.): p1 果たした頼み 4 件以上 (頼んだ家 2・受けた家 2)・p2 よその家の頼みで 30 人日以上働いた家 2 以上・
   p3 食べ物でない仕事 22% 以上 (守り)・p4 暮らしを守る (ききんなし・蓄え 120 日分・人は印のときの 95%・読める大人 15%)。
   入口は p1 と p2 が 2 年つづき、その 2 年に p3 と p4 を割らない。止めて相談: p4 を割った年・頼みを書いた家と受けた家が 2 年 0・3 年ごと
+- 直し 1 (2026-11-21。P4_design.md 9.): 印 g7.p4.fix1 (step.py resume --p4fix "<本人の言葉>" だけが書く。28079 日目の P4 の相談から) のあとだけ、
+  燃える石は 100 kg から・板は 5 束から頼める。お題の頼み書きの行に、家の去年のまき集めが燃える石で何 kg かと、その家に合った小さな書き方の例を出す。
+  「2 年 0」の相談は直しの年から数え、3 年ごとの相談は直しのあと 2 年目の終わり (235年) から 3 年ごと。印がなければ前と 1 バイトも同じ
 """
 import copy
 import json
@@ -41,6 +44,12 @@ TEMA_PER_ADULT = 10
 OPEN_MAX = 2  # まだ受けられていない頼みは 1 家 2 枚まで
 BOARD_MAX = 8  # 板にのる頼みの枚数 (新しいほうから)
 LIFE = YEAR  # 受けられないまま 4 季節たつと消える
+# 直し 1【仮定】(印 g7.p4.fix1 のあとだけ。P4_design.md 9.)
+FIX1_FROM = 28079  # 本物の村が 233年を終えて「2 年 0」の相談で止まった日。これより前には印を書けない
+FIX1_DATE = "2026-11-21"
+FIX1_NAME = "頼み書きの直し 1 (燃える石 100 kg から・板 5 束から・家のまき集めを燃える石の kg で見せる)"
+FIX1_WANTS = {"燃える石": (100, 10000, "kg"), "板": (5, 200, "束")}
+FIX1_STEP = 100  # 書き方の例の燃える石は 100 kg きざみ
 # b 約束の帳【仮定】
 DAYS_MAX = 10  # 1 人 1 季節の頼みの仕事の日
 WORKERS_MAX = 4
@@ -70,6 +79,16 @@ def on(state):
 
 def _g(state):
     return state["era2"]["g7"]["p4"]
+
+
+def fixed(state):
+    """直し 1 の印 g7.p4.fix1 があるか"""
+    return on(state) and "fix1" in _g(state)
+
+
+def wants(state):
+    """頼める物と数のはば (直し 1 のあとは小さい数から)"""
+    return FIX1_WANTS if fixed(state) else WANTS
 
 
 def _i4():
@@ -175,6 +194,39 @@ def mark(state, words):
     return g
 
 
+def fix1_why(words):
+    return f"{FIX1_NAME} (本人の言葉 {FIX1_DATE} 「{words}」)"
+
+
+def fix1_refusal(state, words):
+    """resume --p4fix ができないわけ (できるなら None)"""
+    if not (words or "").strip():
+        return "--p4fix には本人の言葉が要る"
+    if not on(state):
+        return "P4 の印がないので、直し 1 はつけられない"
+    if "fix1" in _g(state):
+        return "直し 1 はもうつけてある"
+    if state["day"] < FIX1_FROM:
+        return f"直し 1 は {FIX1_FROM} 日目 (233年の終わり) からだけ"
+    h = (state["era2"]["g7"].get("hold") or {})
+    if not (h.get("why") == "consult" and str(h.get("what", "")).startswith("P4:")):
+        return "直し 1 は、P4 の相談 (HOLD consult) で止まっているときだけつける"
+    return None
+
+
+def mark_fix1(state, words):
+    """resume --p4fix から: 印 g7.p4.fix1 を書く (村の出来事には残さない)。数えるのは次の暦の年から"""
+    words = words.strip()
+    D = state["day"]
+    f = _g(state)["fix1"] = {"day": D, "words": words, "why": fix1_why(words), "start_year": D // YEAR + 1}
+    return f
+
+
+def fix1_year(state):
+    """直し 1 を数えはじめる年 (なければ None)"""
+    return _g(state)["fix1"]["start_year"] if fixed(state) else None
+
+
 # ---------------- 家の倉 (燃える石・板は S3 の家の倉。草の種は家の倉の食べ物) ----------------
 
 def have(state, h, k):
@@ -229,8 +281,8 @@ def _obj(v):
     return v if isinstance(v, dict) else "bad"
 
 
-def parse_order(v):
-    """答えの order を読む。戻り値: None (書かない) / 文 (書けないわけ) / {want, n, pay, pn}"""
+def parse_order(v, ws=None):
+    """答えの order を読む。戻り値: None (書かない) / 文 (書けないわけ) / {want, n, pay, pn}。ws は数のはば (なければ WANTS)"""
     v = _obj(v)
     if v is None:
         return None
@@ -242,7 +294,7 @@ def parse_order(v):
     if want not in WANTS:
         return "頼めるのは燃える石と板だけ"
     n = era2._num(v.get("数") if v.get("数") is not None else v.get("n"))
-    lo, hi, unit = WANTS[want]
+    lo, hi, unit = (ws or WANTS)[want]
     if not lo <= n <= hi:
         return f"{want}は {lo}〜{hi} {unit}で書く"
     pay = v.get("かわり") if v.get("かわり") is not None else v.get("pay")
@@ -313,7 +365,7 @@ def write_orders(state, real):
     for name, a in sorted(real.items()):
         if not isinstance(a, dict) or a.get("order") is None:
             continue
-        o = parse_order(a.get("order"))
+        o = parse_order(a.get("order"), wants(state))
         if o is None:
             continue
         if isinstance(o, str):
@@ -638,8 +690,14 @@ def work_day(state, p, t, act):
     if e is not None:
         u = WANTS[o["want"]][2]
         if act == g15.ACT_DIG:
-            e["text"] = (f"{name} が、{o['house']}の頼みで、北の丘で燃える石を {round(made)} kg 掘って、{round(give)} kg を{o['house']}の倉に運んだ"
-                         + (f" (のこり {round(made - give)} kg は村の倉と家の倉に)" if made - give >= 1 else ""))
+            left = ""
+            if made - give >= 1 and fixed(state):  # 直し 1: 小さい頼みでは、のこりのほうが多い。どこに入ったかをそのまま書く (家の倉の 2 割から先に頼んだ家へ回す)
+                hl, vl = max(0.0, dh - th), max(0.0, made - dh - (give - th))
+                where = "・".join(x for x, n in (("村の倉", vl), (f"{h}の倉", hl)) if n >= 1) or "村の倉"
+                left = f" (のこり {round(made - give)} kg は{where}に)"
+            elif made - give >= 1:
+                left = f" (のこり {round(made - give)} kg は村の倉と家の倉に)"
+            e["text"] = (f"{name} が、{o['house']}の頼みで、北の丘で燃える石を {round(made)} kg 掘って、{round(give)} kg を{o['house']}の倉に運んだ" + left)
         else:
             e["text"] = f"{name} が、{o['house']}の頼みで、作業場 {w.get('mill')} の水ののこで木をひいて、板 {round(give, 1)} {u}を{o['house']}の倉に運んだ"
         e.setdefault("data", {})["order"] = o["id"]
@@ -796,9 +854,15 @@ def check(state, done):
     if r and not r["p4_ok"] and not any(c["why"] == "p4_safe" and c.get("year") == y for c in done):
         return {"why": "p4_safe", "year": y, "day": D, "text": f"P4: {y}年に p4 (暮らしを守る) を割った (ききん {r['famine']}・蓄えのいちばん少ない日 {r['store_min']} 日分・"
                 f"人 {r['pop']} (はじめ {r['pop0']} の {round(P4_POP * 100)}% は {math.ceil(P4_POP * r['pop0'])})・読める大人 {round(r['r_share'] * 100, 1)}%)"}
-    ys = [g["rows"].get(str(y - i)) for i in range(ZERO_YEARS)]
+    fy = fix1_year(state)  # 直し 1 のあとは、「2 年 0」を直しの年から数える (直しの前の年は数えない)
+    ys = [g["rows"].get(str(y - i)) if fy is None or y - i >= fy else None for i in range(ZERO_YEARS)]
     if all(x and x["wrote"] == 0 and x["took"] == 0 for x in ys) and not any(c["why"] == "p4_zero" and c.get("year") == y for c in done):
-        return {"why": "p4_zero", "year": y, "day": D, "text": f"P4: 頼み書きを書いた家・受けた家が {ZERO_YEARS} 年つづけて 0"}
+        return {"why": "p4_zero", "year": y, "day": D, "text": f"P4: 頼み書きを書いた家・受けた家が {ZERO_YEARS} 年つづけて 0" + (f" ({fy}年の直し 1 のあと)" if fy is not None else "")}
+    if fy is not None:  # 直し 1 のあとの 3 年ごとの相談: 直しのあと 2 年目の終わり (fy + 1 年) から 3 年ごと (直しを 1 年で見ない)
+        k = y - fy + 1
+        if y <= fy or (y - fy - 1) % LATER_YEARS or any(c["why"] == f"p4_years_{y}" for c in done):
+            return None
+        return {"why": f"p4_years_{y}", "year": y, "day": D, "text": f"P4: 頼み書きの直し 1 ({fy}年から) のあと {k} 年たった (直しのあとの相談。そのあと 3 年ごと)"}
     n = y - g["start_year"] + 1
     if n > 0 and n % LATER_YEARS == 0 and not any(c["why"] == f"p4_years_{y}" for c in done):
         return {"why": f"p4_years_{y}", "year": y, "day": D, "text": f"P4: 頼み書きと約束の帳に入って {n} 年たった (3 年ごとの相談)"}
@@ -852,7 +916,11 @@ def order_lines(state, p, answer=True):
     kg = _s4().dig_kg_now(state)
     rows.append(f"- 燃える石 {kg} kg = 掘り場で掘る 1 人日。秋と冬に燃やすと、まき集め 約 {round(_s4().dig_saves_pd(kg))} 人日")
     fh = ((s3g["fire"].get(str(ly)) or {}).get("house") or {}).get(h, 0)
-    rows.append(f"- あなたの家の、去年のまき集め {round(fh)} 人日・家の倉の燃える石 {have(state, h, '燃える石')} kg・板 {have(state, h, '板')} 束")
+    fix = fixed(state)
+    if fix:  # 直し 1: 家の去年のまき集めが、燃える石なら何 kg かを見せる
+        rows += fix1_house_rows(state, h, fh)
+    else:
+        rows.append(f"- あなたの家の、去年のまき集め {round(fh)} 人日・家の倉の燃える石 {have(state, h, '燃える石')} kg・板 {have(state, h, '板')} 束")
     rows.append(f"- 頼みの仕事は 1 人 1 季節 {DAYS_MAX} 日まで。のこりの日はいつもの仕事。手間返しのときは、頼んだ家の人が書いた日数だけ、あなたの家の人のいつもの仕事をかわりにする")
     ads = _house_adults(state, h)
     why = (f"手間をまだ {owed(state, h)} 人日返していない" if owed(state, h) else
@@ -862,9 +930,16 @@ def order_lines(state, p, answer=True):
     else:
         tema = min(6, len(ads) * TEMA_PER_ADULT)
         goods = [f"{k} {have(state, h, k)} {PAY_UNIT[k]}" for k in ("草の種", "燃える石", "板") if have(state, h, k) >= 1]
-        rows.append(f"- 頼むなら \"order\": {{\"ほしい\": \"燃える石\", \"数\": 3000, \"かわり\": {{\"手間\": {tema}}}}} (燃える石 500〜10000 kg か 板 10〜200 束。"
-                    f"手間は家の大人の数 × {TEMA_PER_ADULT} 人日まで"
-                    + (f"。家の倉の {'・'.join(goods)} から 1 つでもよく、書いたとき預けに分ける" if goods else "") + ")。1 家 1 季節 1 枚")
+        if fix:
+            n_ex, tema = fix1_example(state, h, fh)
+            (clo, chi, _), (plo, phi, _) = FIX1_WANTS["燃える石"], FIX1_WANTS["板"]
+            rows.append(f"- 頼むなら \"order\": {{\"ほしい\": \"燃える石\", \"数\": {n_ex}, \"かわり\": {{\"手間\": {tema}}}}} (燃える石 {clo}〜{chi} kg か 板 {plo}〜{phi} 束。"
+                        f"小さい頼みでもよい。手間は家の大人の数 × {TEMA_PER_ADULT} 人日まで"
+                        + (f"。家の倉の {'・'.join(goods)} から 1 つでもよく、書いたとき預けに分ける" if goods else "") + ")。1 家 1 季節 1 枚")
+        else:
+            rows.append(f"- 頼むなら \"order\": {{\"ほしい\": \"燃える石\", \"数\": 3000, \"かわり\": {{\"手間\": {tema}}}}} (燃える石 500〜10000 kg か 板 10〜200 束。"
+                        f"手間は家の大人の数 × {TEMA_PER_ADULT} 人日まで"
+                        + (f"。家の倉の {'・'.join(goods)} から 1 つでもよく、書いたとき預けに分ける" if goods else "") + ")。1 家 1 季節 1 枚")
     other = [o for o in bd if o["house"] != h]
     if other:
         rows.append(f"- 受けるなら \"take\": {{\"頼み\": {other[0]['id']}, \"人\": [\"{name}\"]}} (あなたの家の大人 {WORKERS_MAX} 人まで。"
@@ -873,6 +948,32 @@ def order_lines(state, p, answer=True):
     if f:
         rows.append("- 頼み書きで、できなかったこと: " + " / ".join(x["why"] for x in f))
     return rows
+
+
+def fire_kg(pd):
+    """まき集め pd 人日のかわりになる燃える石 (kg)。まき集め 1 人 1 日 FIRE_H 時間 ↔ 石のかまど 1 人 1 日 COAL_KG kg"""
+    return pd * _s3().PD_H / _s3().FIRE_H * g15.COAL_KG
+
+
+def fix1_example(state, h, fh):
+    """直し 1 の書き方の例: 家の去年のまき集めをまかなう燃える石 (100 kg きざみに切り上げ。100〜10000) と、手間 (掘る人日。1 から。家の大人の数 × 10 まで)"""
+    lo, hi, _ = FIX1_WANTS["燃える石"]
+    n = min(hi, max(lo, math.ceil(fire_kg(fh) / FIX1_STEP) * FIX1_STEP))
+    tema = max(1, math.ceil(n / max(1, _s4().dig_kg_now(state))))
+    return n, min(tema, max(1, len(_house_adults(state, h)) * TEMA_PER_ADULT))
+
+
+def fix1_house_rows(state, h, fh):
+    """直し 1 の家の行: 去年のまき集めと、それをまかなう燃える石の kg・石のかまどがあるか・家の倉"""
+    stock = f"家の倉の燃える石 {have(state, h, '燃える石')} kg・板 {have(state, h, '板')} 束"
+    if round(fh) <= 0:
+        return [f"- あなたの家の去年のまき集め 0 人日 (まきを集めずにすんだ)。{stock}"]
+    kg = max(10, int(round(fire_kg(fh), -1)))
+    if h and g15.stove_done(state, h):
+        tail = "家の石のかまどで燃やせば、そのぶんのまき集めはいらない"
+    else:
+        tail = "燃える石を燃やすには石のかまどがいる。あなたの家のかまどは、まだ石のかまどでない"
+    return [f"- あなたの家の去年のまき集め {round(fh)} 人日 = 燃える石 約 {kg} kg ({tail})。{stock}"]
 
 
 def board_block(state, p, answer=True):
@@ -913,7 +1014,8 @@ def lines(state):
     g = _g(state)
     out = [f"{g['why']}。{g['day']} 日目から ({g['start_year']}年から数える)。板の頼み {len(g['orders'])}・受けている頼み {len([o for o in g['book'] if o['status'] == '受けた'])}"
            + " / " + " / ".join(f"{k} {FS[k]} {_yd(g['f'][k]) if k in g['f'] else 'まだ'}" for k in FS)
-           + f" / p4 を割った年 {'・'.join(map(str, g['p4_broken'])) or 'なし'} / 入口 {'○' if entrance(state) else 'まだ'}"]
+           + f" / p4 を割った年 {'・'.join(map(str, g['p4_broken'])) or 'なし'} / 入口 {'○' if entrance(state) else 'まだ'}"
+           + (f" / {g['fix1']['why']}。{_yd(g['fix1']['day'])}から ({g['fix1']['start_year']}年から数える。相談は {g['fix1']['start_year'] + 1}年の終わりから 3 年ごと)" if "fix1" in g else "")]
     for y in sorted(g["rows"], key=int)[-3:]:
         out.append(row_text(g["rows"][y]))
     return out

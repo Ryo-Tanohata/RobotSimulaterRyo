@@ -464,8 +464,11 @@ def p4_part(st, y):
     rows = [g["rows"][k] for k in sorted(g["rows"], key=int) if int(k) <= y]
     yr = (g.get("yr") or {}).get(str(y)) or {}
     pd = yr.get("pd") or {}
-    return {"head": P4.lines(st)[:1], "rows": rows, "orders": P4.orders_of(st, y), "book": P4.book_of(st, y),
-            "town": sorted(pd.items(), key=lambda kv: (-kv[1], kv[0])), "yr": yr}
+    out = {"head": P4.lines(st)[:1], "rows": rows, "orders": P4.orders_of(st, y), "book": P4.book_of(st, y),
+           "town": sorted(pd.items(), key=lambda kv: (-kv[1], kv[0])), "yr": yr}
+    if "fix1" in g:  # 2026-11-21: 頼み書きの直し 1 (印 g7.p4.fix1 のあとだけ。P4_design.md 9.)
+        out["fix1"] = g["fix1"]
+    return out
 
 
 def g11_lines(g, st, y, Y):
@@ -1110,6 +1113,10 @@ def p4_html(q, w):
     ok = lambda b: "○" if b else "×"  # noqa: E731
     w('<p style="margin:10px 0 2px"><b>Society 3.0 フェーズ 4 (頼み書きと町): 字で書いた頼みと約束で、家と家が仕事を受けあうか</b></p>')
     w('<ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in q["head"]) + "</ul>")
+    f1 = q.get("fix1")
+    if f1:  # 2026-11-21: 頼み書きの直し 1 (P4_design.md 9.)
+        w(f'<p class="note">直し 1 ({f1["start_year"]}年から): 燃える石は 100 kg から・板は 5 束から頼める。お題の頼み書きの行に、家の去年のまき集めが燃える石で何 kg かと、その家に合った小さな書き方の例を出す。'
+          f'「2 年 0」の相談は {f1["start_year"]}年から数え、次の相談は {f1["start_year"] + 1}年の終わり (本人の言葉 「{e(f1["words"])}」)。</p>')
     if q["rows"]:
         w('<table><tr><td>年</td><td>p1 果たした頼み (4 件・頼んだ家 2・受けた家 2)</td><td>p2 よその家の頼みで 30 人日の家 (2 家)</td><td>p3 食べ物でない仕事 (22% 以上)</td>'
           '<td>p4 暮らしを守る</td><td>書いた家・受けた家</td><td>まき集め</td></tr>')

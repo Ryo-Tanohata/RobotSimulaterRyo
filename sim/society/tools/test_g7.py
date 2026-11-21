@@ -10755,5 +10755,255 @@ class T_P4(unittest.TestCase):
             shutil.rmtree(d, ignore_errors=True)
 
 
+
+P4F_ENTRY = "0854c458"  # 233年の終わり (28079 日目。HOLD consult「P4: 頼み書きを書いた家・受けた家が 2 年つづけて 0」・年の集まりのお題・答えなし) の state のコミット (2026-11-21)
+P4F_WORDS = "小さく直して 2 年見る (おすすめ)"
+
+
+class T_P4F(unittest.TestCase):
+    """2026-11-21 頼み書きの直し 1 (docs/society_phase/P4_design.md 9.・P4_check.md 7.): step.py resume --p4fix だけが印 g7.p4.fix1 を書く
+    (28079 日目から・P4 の相談のときだけ・1 回だけ)。印のあとだけ、燃える石 100 kg から・板 5 束から頼め、お題に家のまき集めの燃える石の kg と小さな例が出る。
+    「2 年 0」は直しの年 (234年) から数え、3 年ごとの相談は 235年の終わりから。28079 日目の git の state (P4F_ENTRY) の写しで確かめる (メモリの中だけ。CLI は /dev/shm の写し)"""
+
+    _st = None
+    person = T_P4.person
+    kinds = T_P4.kinds
+    reader_houses = T_P4.reader_houses
+    order = T_P4.order
+    _season = T_P4._season
+
+    @classmethod
+    def real(cls):
+        if cls._st is None:
+            st = git_state(P4F_ENTRY)
+            h = st["era2"]["g7"].get("hold") or {}
+            ok = st["day"] == 28079 and "p4" in st["era2"]["g7"] and "fix1" not in st["era2"]["g7"]["p4"] and h.get("why") == "consult" and h.get("what", "").startswith("P4:")
+            cls._st = st if ok else False
+        if cls._st is False:
+            raise unittest.SkipTest("P4F_ENTRY の state が 28079 日目の P4 の相談でない")
+        return copy.deepcopy(cls._st)
+
+    def fixed(self):
+        import p4
+        st = self.real()
+        self.assertIsNone(p4.fix1_refusal(st, P4F_WORDS))
+        p4.mark_fix1(st, P4F_WORDS)
+        st["era2"]["g7"]["hold"] = None
+        st["hold"] = False
+        return st
+
+    def test_refusal_and_mark(self):
+        import p4
+        st = self.real()
+        self.assertFalse(p4.fixed(st))
+        self.assertEqual(p4.wants(st), p4.WANTS, "印がなければ前のはば")
+        self.assertIn("本人の言葉が要る", p4.fix1_refusal(st, " "))
+        early = self.real()
+        early["day"] = 28049
+        self.assertIn("28079 日目", p4.fix1_refusal(early, P4F_WORDS))
+        nohold = self.real()
+        nohold["era2"]["g7"]["hold"] = None
+        self.assertIn("P4 の相談", p4.fix1_refusal(nohold, P4F_WORDS))
+        other = self.real()
+        other["era2"]["g7"]["hold"] = {"why": "entrance", "era": "G15", "day": 28079, "what": "P4: 入口に着いた"}
+        self.assertIn("P4 の相談", p4.fix1_refusal(other, P4F_WORDS), "入口ではつけない")
+        nop4 = self.real()
+        nop4["era2"]["g7"].pop("p4")
+        self.assertIn("P4 の印がない", p4.fix1_refusal(nop4, P4F_WORDS))
+        n0, nx = len(st["events"]), st["next_event"]
+        f = p4.mark_fix1(st, P4F_WORDS)
+        self.assertEqual((len(st["events"]), st["next_event"]), (n0, nx), "印は出来事に残さない")
+        self.assertEqual((f["day"], f["start_year"], f["words"]), (28079, 234, P4F_WORDS))
+        self.assertIn(P4F_WORDS, f["why"])
+        self.assertTrue(p4.fixed(st))
+        self.assertEqual(p4.wants(st)["燃える石"][:2], (100, 10000))
+        self.assertEqual(p4.wants(st)["板"][:2], (5, 200))
+        self.assertIn("もうつけてある", p4.fix1_refusal(st, P4F_WORDS), "1 回だけ")
+        self.assertIn("頼み書きの直し 1", p4.lines(st)[0])
+        self.assertIn("相談は 235年の終わりから 3 年ごと", p4.lines(st)[0])
+
+    def test_order_range(self):
+        """印のないとき 200 kg は書けない (前のまま)。印のあとは 100 kg・板 5 束から (50 kg・板 4 束は書けない)。最大は前のまま"""
+        import p4
+        st = self.real()
+        g = p4._g(st)
+        rd = self.kinds(st)[0]
+        p4.write_orders(st, {rd: {"order": {"ほしい": "燃える石", "数": 200, "かわり": {"手間": 1}}}})
+        self.assertIn("500〜10000 kg", g["fails"][-1]["why"], "印がなければ前のはば")
+        self.assertEqual(p4.parse_order({"ほしい": "燃える石", "数": 200, "かわり": {"手間": 1}}), "燃える石は 500〜10000 kgで書く")
+        st = self.fixed()
+        g = p4._g(st)
+        for bad, why in (({"ほしい": "燃える石", "数": 50, "かわり": {"手間": 1}}, "100〜10000 kg"), ({"ほしい": "燃える石", "数": 20000, "かわり": {"手間": 1}}, "100〜10000 kg"),
+                         ({"ほしい": "板", "数": 4, "かわり": {"手間": 1}}, "5〜200 束"), ({"ほしい": "板", "数": 300, "かわり": {"手間": 1}}, "5〜200 束")):
+            p4.write_orders(st, {rd: {"order": bad}})
+            self.assertIn(why, g["fails"][-1]["why"], bad)
+        o = self.order(st, rd, "燃える石", 100, {"手間": 1})
+        self.assertIsNotNone(o)
+        self.assertEqual((o["want"], o["n"], o["pn"]), ("燃える石", 100, 1))
+        hs = [x for x in self.reader_houses(st, 10) if x[0] != o["house"]]
+        p4.write_orders(st, {hs[0][1][0]: {"order": {"ほしい": "板", "数": 5, "かわり": {"手間": 1}}}})
+        self.assertEqual((g["orders"][-1]["want"], g["orders"][-1]["n"]), ("板", 5))
+
+    def test_small_order_dig_and_stock(self):
+        """100 kg の頼み: 1 日掘れば果たす (頼んだ家に 100 kg・のこりは村の倉。掘った人はもとの仕事にもどる)。家の倉にあれば受けた日に 100 kg だけ渡す"""
+        import g15
+        import p4
+        import s3
+        import s4
+        st = self.fixed()
+        g, s3g, cg = p4._g(st), s3._g(st), g15._g(st)["coal"]
+        hs = self.reader_houses(st, 30, 2)
+        (h1, a1), (h2, a2), (h3, a3) = hs[0], hs[-1], hs[-2]
+        st["day"] = 28049
+        o = self.order(st, a1[0], "燃える石", 100, {"手間": 1})
+        st["day"] = 28079
+        s3g["hcoal"][h2] = 0
+        p4.take_orders(st, {a2[0]: {"take": {"頼み": o["id"], "人": [a2[0]]}}})
+        self.assertEqual((o["status"], o["workers"]), ("受けた", [a2[0]]))
+        w = a2[0]
+        p = self.person(st, w)
+        p["plan"] = {"activity": "畑仕事", "place": "camp", "with": []}
+        c1, v0 = s3g["hcoal"].get(h1, 0), cg["stock"]
+        kg = s4.dig_kg_now(st)
+        if era2.store_days(st) < p4.STORE_STOP:
+            self.skipTest(f"蓄えが少ない ({era2.store_days(st)} 日分)")
+        self._season(st, 3)
+        self.assertEqual(o["status"], "果たした", "1 日掘れば 100 kg の頼みは果たす")
+        self.assertEqual(o["pd"], 1)
+        self.assertEqual(o["made"], 100)
+        self.assertEqual(round(s3g["hcoal"][h1] - c1, 2), 100, "頼んだ家には頼んだ分だけ")
+        self.assertEqual(o["dug"], kg)
+        self.assertAlmostEqual(cg["stock"] - v0, kg - 100, delta=1, msg="のこりは村の倉 (掘った人の家の 2 割から先に頼んだ家へ回す)")
+        self.assertEqual(round(s3g["hcoal"].get(h2, 0), 2), 0)
+        self.assertEqual(p["plan"]["activity"], "畑仕事", "果たしたら、もとの仕事にもどる")
+        self.assertNotIn(w, g["work"])
+        ev = [e for e in st["events"] if "の頼みで、北の丘で燃える石を" in e["text"]][-1]
+        self.assertIn(f"燃える石を {kg} kg 掘って、100 kg を{h1}の倉に運んだ (のこり {kg - 100} kg は村の倉に)", ev["text"])
+        self.assertEqual(o["back"], {"need": 1, "done": 0, "from": o["end"]})
+        # 家の倉で渡す: 300 kg ある家は、受けた日に 100 kg だけ渡して果たす
+        g["book"] = [x for x in g["book"] if x["id"] != o["id"]]
+        st["day"] += 30
+        h4, a4 = [x for x in self.reader_houses(st, 30, 1) if x[0] not in (h1, h2, h3)][0]
+        o2 = self.order(st, a4[0], "燃える石", 100, {"手間": 1})
+        s3g["hcoal"][h3] = 300
+        c4 = s3g["hcoal"].get(h4, 0)
+        p4.take_orders(st, {a3[0]: {"take": {"頼み": o2["id"], "人": []}}})
+        self.assertEqual(o2["status"], "果たした")
+        self.assertEqual((s3g["hcoal"][h3], round(s3g["hcoal"][h4] - c4, 2), o2["stock"]), (200, 100, 100))
+
+    def test_prompt_line(self):
+        """お題: 家の去年のまき集めと燃える石の kg・石のかまどの有無・家に合った小さな例 (手間は掘る人日)。印がなければ前の行。書かない言葉"""
+        import g15
+        import g7
+        import p4
+        import s3
+        import s4
+        st0 = self.real()
+        rd, fam, none = self.kinds(st0)
+        b0 = g7.board_block(st0, self.person(st0, rd))
+        self.assertIn('"数": 3000', b0, "印がなければ前の例")
+        self.assertIn("あなたの家の、去年のまき集め", b0)
+        st = self.fixed()
+        fire = s3._g(st)["fire"]["233"]["house"]
+        h = self.person(st, rd)["household"]
+        fh = fire.get(h, 0)
+        b = g7.board_block(st, self.person(st, rd))
+        self.assertNotIn('"数": 3000', b)
+        self.assertIn("燃える石 100〜10000 kg か 板 5〜200 束", b)
+        n_ex, tema = p4.fix1_example(st, h, fh)
+        self.assertIn(f'"order": {{"ほしい": "燃える石", "数": {n_ex}, "かわり": {{"手間": {tema}}}}}', b)
+        if round(fh) > 0:
+            self.assertIn(f"あなたの家の去年のまき集め {round(fh)} 人日 = 燃える石 約 {max(10, int(round(p4.fire_kg(fh), -1)))} kg", b)
+        self.assertEqual(round(p4.fire_kg(8)), 90, "8 人日 = 燃える石 約 90 kg")
+        self.assertAlmostEqual(p4.fire_kg(s4.dig_saves_pd(500)), 500, delta=1, msg="s4 の「500 kg = まき集め 約 44 人日」と同じ換算")
+        # 家ごと: 石のかまどの家とまきのかまどの家・0 人日の家・大きい家
+        for hh, fh2 in list(fire.items())[:40]:
+            r = p4.fix1_house_rows(st, hh, fh2)[0]
+            if round(fh2) <= 0:
+                continue
+            self.assertIn("燃える石 約", r)
+            self.assertIn("石のかまどで燃やせば" if g15.stove_done(st, hh) else "まだ石のかまどでない", r)
+        self.assertIn("まきを集めずにすんだ", p4.fix1_house_rows(st, h, 0)[0])
+        self.assertEqual(p4.fix1_example(st, h, 0)[0], 100)
+        self.assertEqual(p4.fix1_example(st, h, 8), (100, 1))
+        self.assertEqual(p4.fix1_example(st, h, 158)[0], 1800)
+        self.assertEqual(p4.fix1_example(st, h, 5000)[0], 10000)
+        for n in (rd, fam, none):
+            sec = g7.board_block(st, self.person(st, n))
+            for w in p4.WORDS + (P4F_WORDS, P4_WORDS, "直し", "fix") + g15.WORDS:
+                self.assertNotIn(w, sec, (n, w))
+        bn = g7.board_block(st, self.person(st, none))
+        self.assertNotIn("まき集め", bn.split("頼み書き")[-1], "読めない家には中身を出さない (前のまま)")
+        t = g7.year_prompt(st, self.person(st, rd), g7.since(st))
+        self.assertEqual(g7.answer_form_check(st, t), [])
+
+    def test_consult_schedule(self):
+        """直し 1 のあと: 234年の終わりは止めない (2 年 0 は 234年から数える・3 年ごとは 235年へ)。235年の終わりに相談 (2 年 0 か、直しのあと 2 年)。そのあと 3 年ごと"""
+        import p4
+        st0 = self.real()
+        r0 = p4._g(st0)["rows"]["233"]
+        zero = dict(r0, wrote=0, took=0, p4_ok=True, p1_like=False, p2_like=False)
+        # 印がなければ、234年の終わりにまた止まる (前のまま)
+        st0["era2"]["g7"]["hold"] = None
+        st0["hold"] = False
+        p4._g(st0)["rows"]["234"] = dict(zero, year=234)
+        st0["day"] = 234 * 120 + 119
+        self.assertEqual(era2.check(st0), "consult")
+        self.assertIn("2 年つづけて 0", st0["era2"]["g7"]["hold"]["what"])
+        st = self.fixed()
+        g, gst = p4._g(st), st["era2"]["g7"]
+        g["rows"]["233"] = dict(zero, year=233)
+        g["rows"]["234"] = dict(zero, year=234)
+        st["day"] = 234 * 120 + 119
+        self.assertFalse(era2.check(st), "234年の終わりは止めない (直しを 1 年で見ない)")
+        self.assertIsNone(gst["hold"])
+        st["day"] = 235 * 120 + 119
+        g["rows"]["235"] = dict(zero, year=235)
+        self.assertEqual(era2.check(st), "consult")
+        self.assertEqual(gst["hold"]["what"], "P4: 頼み書きを書いた家・受けた家が 2 年つづけて 0 (234年の直し 1 のあと)")
+        gst["hold"] = None
+        gst["consulted"] = [c for c in gst["consulted"] if c.get("year") != 235]
+        g["rows"]["235"]["wrote"] = 1
+        self.assertEqual(era2.check(st), "consult")
+        self.assertEqual(gst["hold"]["what"], "P4: 頼み書きの直し 1 (234年から) のあと 2 年たった (直しのあとの相談。そのあと 3 年ごと)")
+        gst["hold"] = None
+        for y in (236, 237):
+            st["day"] = y * 120 + 119
+            g["rows"][str(y)] = dict(zero, year=y, wrote=1)
+            self.assertFalse(era2.check(st), y)
+        st["day"] = 238 * 120 + 119
+        g["rows"]["238"] = dict(zero, year=238, wrote=1)
+        self.assertEqual(era2.check(st), "consult")
+        self.assertIn("のあと 5 年たった", gst["hold"]["what"])
+        gst["hold"] = None
+        # p4 を割った年はすぐ止める (前のまま)
+        st["day"] = 239 * 120 + 119
+        g["rows"]["239"] = dict(zero, year=239, wrote=1, p4_ok=False)
+        self.assertEqual(era2.check(st), "consult")
+        self.assertIn("p4 (暮らしを守る) を割った", gst["hold"]["what"])
+
+    def test_resume_cli_refuse(self):
+        """step.py resume --p4fix (/dev/shm の写し): 言葉がない・ほかの印と一緒・resume でない → 断って何も変えない (つける回しは P4_check.md 7.)"""
+        st = self.real()
+        base = "/dev/shm" if Path("/dev/shm").is_dir() else "/tmp"
+        d = Path(tempfile.mkdtemp(prefix="p4f_test_", dir=base))
+        try:
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)  # noqa: E731
+            s0 = (d / "state.json").read_bytes()
+            r = run("resume", "--p4fix", " ")
+            self.assertEqual(r.returncode, 3)
+            self.assertIn("resume --p4fix はできない: --p4fix には本人の言葉が要る (何も変えない)", r.stdout)
+            r = run("resume", "--p4fix", P4F_WORDS, "--p4", "x")
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn("--p4fix は resume のときだけ", r.stderr)
+            r = run("season", "--p4fix", P4F_WORDS)
+            self.assertNotEqual(r.returncode, 0)
+            self.assertEqual((d / "state.json").read_bytes(), s0, "断ったときは何も変えない")
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -17,6 +17,8 @@
   python sim/society/step.py resume --p4 "<本人の言葉>"  2026-11-21: i4 のあと (27839 日目から。I4 の相談で止まっているか、止まりのないとき。1 回だけ)、
                                                  印 g7.p4 を書いて Society 3.0 フェーズ 4 (頼み書きと町) を始め、i4 の相談を閉じ (g7.i4.closed)、止まりを解き、
                                                  この歩のお題を書き直す (答えがまだないときだけ。docs/society_phase/P4_design.md)
+  python sim/society/step.py resume --p4fix "<本人の言葉>"  2026-11-21: P4 の相談 (HOLD consult。28079 日目から) で、頼み書きの直し 1 (燃える石 100 kg から・板 5 束から・
+                                                 家のまき集めを燃える石の kg で見せる) を、この日のお題から使う (印 g7.p4.fix1。お題を書き直す。P4_design.md 9.)
   python sim/society/step.py resume --s4fix "<本人の言葉>"  2026-11-20 (s4-b): S4 の相談 (26519 日目から) で、町の家を選ばないわけを調べた直しを、この日のお題から使う (印 g7.s4.fix。お題を書き直す)
   python sim/society/step.py resume --s4ask "<本人の言葉>"  2026-11-20 (s4-c): S4 の相談 (26639 日目から。年の集まり) で、年の集まりのお題の上のほうで家ごとに町の家を聞く節を、この日のお題から 3 年 (印 g7.s4.ask。お題を書き直す)
   python sim/society/step.py resume --s4 "<本人の言葉>"  2026-11-20: S3 のあと (25919 日目から。S3 の相談・入口か、止まりのないとき。1 回だけ)、
@@ -705,6 +707,7 @@ def main():
     ap.add_argument("--s4ask", default=None, help="resume で、S4 の相談 (HOLD consult。26639 日目から。年の集まり) のとき (2026-11-20。ブランチ s4-c): 年の集まりで家ごとに町の家を聞く節 (s4.ask_block) を、この日のお題から 3 年使う本人の言葉 (印 g7.s4.ask。お題を書き直す)")
     ap.add_argument("--i4", default=None, help="resume で、S4 のあと (26999 日目から。S4 の相談で止まっているか、止まりのないとき) (2026-11-21): Society 4.0 フェーズ 1 (読み書きと知らせ板) を始める本人の言葉 (印 g7.i4 に残す。S4 を閉じる。docs/society_phase/I4_design.md)")
     ap.add_argument("--p4", default=None, help="resume で、i4 のあと (27839 日目から。I4 の相談で止まっているか、止まりのないとき) (2026-11-21): Society 3.0 フェーズ 4 (頼み書きと町) を始める本人の言葉 (印 g7.p4 に残す。i4 の相談を閉じる。docs/society_phase/P4_design.md)")
+    ap.add_argument("--p4fix", default=None, help="resume で、P4 の相談 (HOLD consult。28079 日目から) のとき (2026-11-21): 頼み書きの直し 1 (燃える石 100 kg から・板 5 束から・家のまき集めを燃える石の kg で見せる) を、この日のお題から使う本人の言葉 (印 g7.p4.fix1。お題を書き直す。docs/society_phase/P4_design.md 9.)")
     ap.add_argument("--parts", default=None, help="resume --s3 で入れる部分 (コンマでつなぐ。a,b,c,d。書かなければみな。s3.PARTS)")
     ap.add_argument("--levers", default=None, help="resume --push で選ぶ後押しの手 (コンマでつなぐ。food,ws,coal,ws2,house。書かなければみな。g15.LEVERS)")
     ap.add_argument("--decided", default=None, help="next_part で G14 の終わり (第 7 部の終わり) から G15 (第 8 部) に入るとき (2026-11-15): 本人の決めの言葉 (しるし。g7.g15.decided に残す)")
@@ -740,6 +743,8 @@ def main():
         sys.exit("--i4 は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix・--s4・--s4fix・--s4ask とは一緒に書かない)")
     if a.p4 is not None and (a.cmd != "resume" or any(x is not None for x in (a.push, a.unpush, a.s3, a.s3more, a.s3fix, a.s4, a.s4fix, a.s4ask, a.i4))):
         sys.exit("--p4 は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix・--s4・--s4fix・--s4ask・--i4 とは一緒に書かない)")
+    if a.p4fix is not None and (a.cmd != "resume" or any(x is not None for x in (a.push, a.unpush, a.s3, a.s3more, a.s3fix, a.s4, a.s4fix, a.s4ask, a.i4, a.p4))):
+        sys.exit("--p4fix は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix・--s4・--s4fix・--s4ask・--i4・--p4 とは一緒に書かない)")
     if a.note is not None and a.cmd not in ("exp3", "exp4"):
         sys.exit("--note は exp3・exp4 のときだけ書く")
     if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate", "exp3", "exp4"):
@@ -815,6 +820,29 @@ def main():
         return
     if a.cmd == "export":
         export(state)
+        return
+    if a.cmd == "resume" and a.p4fix is not None:  # 2026-11-21: 頼み書きの直し 1 (印 g7.p4.fix1。P4_design.md 9.) を、いまの P4 の相談の日のお題から使う
+        why = "G7 より前" if not (state.get("era2") or {}).get("g7") else ("P4 の印がない" if "p4" not in state["era2"]["g7"] else None)
+        if why is None:
+            import p4  # noqa: E402
+            why = p4.fix1_refusal(state, a.p4fix)
+        if why:
+            print(f"resume --p4fix はできない: {why} (何も変えない)")
+            sys.exit(3)
+        f = p4.mark_fix1(state, a.p4fix)
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
+        for kind in ("season", "feeling"):  # この歩のお題 (答えはまだない) を、直しのあとの形で書き直す (出来事には残さない)
+            d = pdir(state, kind, "prompts")
+            if d.exists() and not any(pdir(state, kind, "answers").glob("*.json")):
+                shutil.rmtree(d)
+        save(state)
+        if state["era2"]["g7"].get("ask"):
+            write_prompts(state, "season")
+        export(state)
+        print(f"* {f['why']} を {_yd(state['day'])} のお題から使う ({f['start_year']}年から数える。「2 年 0」の相談は {f['start_year']}年から数え、"
+              f"次の相談は {f['start_year'] + 1}年の終わり。村の人のお題には出さない)")
+        print("再開した")
         return
     if a.cmd == "resume" and a.p4 is not None:  # 2026-11-21: Society 3.0 フェーズ 4 (頼み書きと町) を始める (印 g7.p4。docs/society_phase/P4_design.md)
         why = "G7 より前" if not (state.get("era2") or {}).get("g7") else None
