@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えは四百日分もある。この秋は、畑に種をたっぷりまいて、水の道の手入れにも手を貸すよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れがまだ たくさん残っているから、力のある私が手伝う"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"ヒセ119": true}, "keep": false,
+ "judge": {"M551": "ゆるす", "M552": "ゆるす", "M553": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草原で養える数より多いので、つぶして肉にして減らすのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くとけがをしやすいから"}, {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出て危ないから"}],
+ "feeling": "蓄えがあって安心。体を動かして村の役に立ちたい。"}

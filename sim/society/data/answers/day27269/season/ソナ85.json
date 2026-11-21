@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りないから、わたしの家でもオスのヤギを何頭かつぶして干し肉にするよ。"}],
+ "job": {"activity": "字を教える", "place": "camp", "with": [], "why": "字を読み書きできるので、キャンプの子に教えるのが村のためになるから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"ヒセ119": true, "ロワ119": true},
+ "family": {"ケナ85": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているから。"}, "トナ85": {"activity": "水の道を掘る", "place": "camp", "why": "若いので力仕事で村を助けるため。"}},
+ "keep": false,
+ "judge": {"M551": "ゆるす", "M552": "ゆるす", "M553": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の分より多いときは、よそのヤギを受けず、オスからつぶして減らすのがよい。", "because": [5092836], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "穏やかで、変わらない秋。子どもたちに字を教えるのが少し楽しみ。"}

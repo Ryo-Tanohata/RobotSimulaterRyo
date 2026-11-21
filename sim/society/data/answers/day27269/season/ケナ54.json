@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋は畑の草取りをして、冬の蓄えをしっかり育てよう。わしも毎日、畑に出るよ。"}, {"to": "ヒセ119", "text": "よく来たな。わからないことがあれば、遠慮なく聞いてくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増えるので、冬と春の蓄えのために畑に出る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヒセ119": true}, "family": {"テナ60": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "ソナ64": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}}, "keep": false,
+ "judge": {"M551": "つぐなう", "M552": "つぐなう", "M553": "ゆるす"}, "feast": false, "leader": "", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "秋に畑へ草の種をまき、草取りをすると、次の夏の実りが増える", "because": [5091388], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "年をとっても体は動く。畑で汗を流して、冬にそなえられるのがありがたい。"}

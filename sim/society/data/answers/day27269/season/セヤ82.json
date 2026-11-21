@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ヤギが多すぎて草が足りない。おれは今季、森で狩りをして肉を持ち帰る。ヤギも5頭つぶして干そう。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りも道具も得意で、冬の前に肉を蓄えたいから。"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"ヒセ119": true, "ロワ119": true}, "keep": false,
+ "judge": {"M551": "つぐなう", "M552": "ゆるす", "M553": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える数より多いので、秋のはじめに肉にして減らすのがよい。", "because": [5092836], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、肉にして蓄えるのはよい。"}],
+ "feeling": "体は軽い。森へ出て獲物を追うのが楽しみだ。"}

@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "冬の前に、のこ場で板をひいて、水の道の手入れを進めよう。わたしは今季もM6にいるよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "M6ののこ番だから。板がたまれば水の道の手入れが半分の日数ですむ。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ119": true},
+ "family": {
+  "ルタ74": {"activity": "水の作業場で働く", "place": "M6", "why": "同じ日に人がそろうと板がたくさんできるから。"},
+  "キオ75": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで来年の実りを増やすため。"},
+  "ユエ81": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎるので、ようすを見て世話をする。"},
+  "ケナ98": {"activity": "畑仕事", "place": "camp", "why": "まだ小さい力でも、草取りなら手伝える。"},
+  "ラニ99": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話で大人を助ける。"},
+  "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}},
+ "keep": false,
+ "judge": {"M551": "つぐなう", "M552": "つぐなう", "M553": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "秋に大人一人 1000 つかみ種をまいて草取りをすれば、次の夏に畑が実る。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L867", "against": "", "agree": true, "reason": "ヤギが草の量をこえているので、減らすのがよいと思う。"}],
+ "feeling": "冬が近い。蓄えは多いけれど、ヤギと畑のことが少し気がかり。"}

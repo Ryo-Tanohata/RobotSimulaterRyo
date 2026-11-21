@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけれど、水の道の手入れがまだ山ほど残っているね。冬の前に、みんなで少しずつ掘り進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは足りているので、残っている水の道の手入れに人手を回したい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"ヒセ119": true, "ロワ119": true}, "family": {"ハソ73": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひき、手入れを早めるため"}, "キサ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひき、手入れを早めるため"}}, "keep": false,
+ "judge": {"M551": "ゆるす", "M552": "ゆるす", "M553": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "ヤギが多すぎるので、秋に何頭か肉にして数をへらすと草が持つ。", "because": [5092836], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがあって心強い。みんなで冬に備えたい。"}

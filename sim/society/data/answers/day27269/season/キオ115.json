@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "冬の前に、のこ小屋で板をひいておくよ。木の道具の手入れなら任せて。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "蓄えは十分あるので、板をひいて水の輪や道の手入れの助けにしたい。手を動かすのが好きだから。"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ119": true, "ロワ119": true},
+ "family": {"テナ115": {"activity": "採集", "place": "camp", "why": "小さい子が 3 人いるので、キャンプのそばで木の実を集めて家のそばにいられるようにする。"}},
+ "keep": false,
+ "judge": {"M551": "ゆるす", "M552": "ゆるす", "M553": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかもいっぱいで穏やか。冬の前に手を動かして、家族とみんなの役に立ちたい。"}
