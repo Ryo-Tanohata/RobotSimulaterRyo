@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "亡くなった人たちの分も、夏は畑を刈りきって、そのあとは水の道を少しずつ掘ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実が落ちるので、まず刈り入れをする"}, "family": {"オネ101": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈りきるため、一緒に刈り入れをする"}, "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っているので続ける"}, "family": {"オネ101": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑を守るため手入れを進める"}, "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬も水の道の手入れを続ける"}, "family": {"オネ101": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして、夏の実りを増やす"}, "family": {"オネ101": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"アコ124": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "蓄えは約370日分あり多い。夏は畑を刈りきり、秋にまき、そのあとは水の道の手入れを続けるのがよい。", "because": [5327353], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "水の道を掘った年",
+ "feeling": "亡くなった人を思いつつ、また畑と水の道を静かに守っていきたい。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分にある。夏は実った畑を刈って、秋以降は土器づくりと畑仕事で村を支えよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れるため"}, "family": {"キオ75": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ユエ81": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ケナ98": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ラニ99": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が高く、蓄えの入れ物を増やせるため"}, "family": {"キオ75": {"activity": "採集", "place": "camp", "why": "採集の腕が高い"}, "ユエ81": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高い"}, "ケナ98": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ラニ99": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 300},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やすため"}, "family": {"キオ75": {"activity": "狩り", "place": "東林12", "why": "冬も魚やけものがいる"}, "ユエ81": {"activity": "狩り", "place": "南川12", "why": "冬も魚がとれる"}, "ケナ98": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ラニ99": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やすため"}, "family": {"キオ75": {"activity": "採集", "place": "西草原12", "why": "春の草や実を集める"}, "ユエ81": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高い"}, "ケナ98": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ラニ99": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "いない",
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "蓄えゆたかな年",
+ "feeling": "蓄えが多く、落ち着いて仕事ができそうだ。"}
