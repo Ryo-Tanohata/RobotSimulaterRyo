@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は落ちる前に、みんなで毎夕刈りきろう。ヤギが多すぎるから、オスから少しつぶして干し肉にしたい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れるため"}, "family": {"オセ62": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れが一番大事"}, "オセ68": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れが一番大事"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 1},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "板をひいて水の道の手入れを進めるため"}, "family": {"オセ62": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "オセ68": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 1, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "木の実も種も実らない冬は水の道の手入れをする"}, "family": {"オセ62": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "オセ68": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで畑の実りを増やすため"}, "family": {"オセ62": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギが生まれる季節で世話が要る"}, "オセ68": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ルタ117": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1075": false, "T1076": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は刈らないと落ちる。毎夕刈るのが大事", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L845", "against": "", "agree": true, "reason": "ヤギが多すぎるので、よその村のヤギは受けない方がよい"}, {"id": "L855", "against": "", "agree": true, "reason": "ヤギを減らして草が足りるようにしたい"}],
+ "year_name": "刈りきる夏の年",
+ "feeling": "畑がたくさん実っているので、落とさずに刈りたい。"}

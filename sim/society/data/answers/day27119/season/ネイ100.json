@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のあいだは、実った畑をみんなで毎日刈ろう。落ちる前に蓄えに入れたいね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏は実った畑を刈らないと落ちてしまう。刈れば蓄えが増えて冬をこせる"}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "family": {"ユエ100": {"activity": "畑仕事", "why": "半分の働きでも刈り入れを手伝える"}}},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りを続けて、実りを増やしたい"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000, "family": {"ユエ100": {"activity": "畑仕事", "why": "草取りを手伝う"}}},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬は草取りで畑の実りを守る"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ユエ100": {"activity": "畑仕事", "why": "草取りを手伝う"}}},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れにそなえて草取りをする"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ユエ100": {"activity": "畑仕事", "why": "草取りを手伝う"}}}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ルタ117": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1075": "村", "T1076": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種が多く、夏に畑を刈り、秋にまき、冬と春は草取りをするのが基本の流れ", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので守りたい"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたら休むのは大事"}, {"id": "L18", "against": "", "agree": true, "reason": "弱った人を助けたい"}],
+ "year_name": "刈り入れを守った年",
+ "feeling": "みんなで畑を守って、蓄えを大事にしたい。"}

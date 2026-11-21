@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は畑の刈り入れを手伝うよ。落ちる前に、みんなで刈ってしまおう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実が落ちるので、刈り入れを手伝う"}, "family": {}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋は畑に草の種をまく季節で、草取りもあるので畑を手伝う"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "冬は魚やけものが頼りなので、無理せず食べ物を集める"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏に向けて畑の草取りをして実りを守る"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "みんなで刈る年",
+ "feeling": "おなかもいっぱいで元気。みんなと畑仕事ができるのがうれしい。"}

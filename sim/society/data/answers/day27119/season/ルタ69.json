@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実りがたっぷり残っている。落とさないよう、みんなで刈ろう。ヤギは草より多いから、少しつぶして肉にしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちるから"}, "family": {"テナ78": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手が足りないから"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "採集の腕が高く刈り入れも早いから"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "若くて力があり刈り入れに向くから"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 30},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが大きく足りないから"}, "family": {"テナ78": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ワユ98": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬は実りがなく、水の道を掘る時間がとれるから"}, "family": {"テナ78": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れを続けるため"}, "family": {"テナ78": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ワユ98": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギの世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ルタ117": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1075": false, "T1076": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草より多いので、夏に少しつぶして肉にし、ほかの村からのヤギは受けないほうがよい。", "because": [5011602], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは危ないので守るべき"}],
+ "year_name": "刈り入れと水の道の年",
+ "feeling": "畑がたっぷり実っていて心強い。みんなで刈って水の道も進めたい。"}
