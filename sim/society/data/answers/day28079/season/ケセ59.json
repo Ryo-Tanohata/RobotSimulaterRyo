@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑がたくさん実ったね。夏のうちにみんなで刈りきろう。秋は一人 1000 つかみずつまこうね。"},{"to":"ラキ129","text":"よく来たね。ここで一緒に冬をこえよう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちてしまうから、手の空く人みんなで刈る"},"family":{"ユエ66":{"activity":"畑仕事","place":"camp","why":"畑を刈りきるため"},"タユ67":{"activity":"畑仕事","place":"camp","why":"畑を刈りきるため"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"水の作業場で働く","place":"M6","with":[],"why":"M6 ののこ番なので、板をひいて水の道の手入れを助ける"},"family":{"ユエ66":{"activity":"水の作業場で働く","place":"M6","why":"M6 ののこ番、板をひく"},"タユ67":{"activity":"水の作業場で働く","place":"M26","why":"M26 ののこ番、板をひく"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで実りを増やす"},"family":{"ユエ66":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"タユ67":{"activity":"畑仕事","place":"camp","why":"草取りのため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りを続けて次の夏の実りを守る"},"family":{"ユエ66":{"activity":"畑仕事","place":"camp","why":"草取りのため"},"タユ67":{"activity":"畑仕事","place":"camp","why":"草取りのため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"ラキ129":true,"ソナ129":true,"トナ129":true},"accept_rule":{"よその群れ":true,"ほかの村から":true},
+"judge_rule":"ゆるす","feast":[],"leader":null,
+"trade":{"T1162":"村","T1163":"村","T1164":"村","T1165":"村"},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,"order":null,"take":null,
+"knowledge":[{"op":"add","text":"ヤギは今 52 頭で、草で養える約 110 頭よりずっと少ない。つぶさず、よその村のヤギは受けてよい。","because":[],"confidence":0.6}],
+"proposal":null,
+"votes":[{"id":"L907","against":"ヤギは今 52 頭で少ないから","agree":false,"reason":"ヤギは増やしたい"},{"id":"L908","against":"ヤギは今 52 頭で少ないから","agree":false,"reason":"つぶす必要がない"},{"id":"L909","against":"ヤギは今 52 頭で少ないから","agree":false,"reason":"つぶす必要がない"},{"id":"L910","against":"ヤギは今 52 頭で少ないから","agree":false,"reason":"つぶす必要がない"},{"id":"L911","against":"ヤギは今 52 頭で少ないから","agree":false,"reason":"つぶす必要がない"},{"id":"L912","against":"ヤギは今 52 頭で少ないから","agree":false,"reason":"つぶす必要がない"},{"id":"L913","against":"","agree":true,"reason":"ヤギが少ないので、つぶさず受けるのがよい"},{"id":"L914","against":"","agree":true,"reason":"ヤギが少ないので、つぶさず受けるのがよい"},{"id":"L915","against":"","agree":true,"reason":"ヤギを増やしたい"},{"id":"L916","against":"","agree":true,"reason":"畑を刈りきり、秋にまくのがよい"},{"id":"L917","against":"","agree":true,"reason":"ヤギを増やしたい"},{"id":"L918","against":"","agree":true,"reason":"畑仕事を続けるのがよい"}],
+"year_name":"畑が実った年",
+"feeling":"蓄えはたっぷり。みんなで穏やかに冬をこせそうでうれしい。"}

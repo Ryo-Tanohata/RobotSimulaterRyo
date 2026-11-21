@@ -1,0 +1,15 @@
+{"say": [{"to": "キオ127", "text": "今年も無理せず、畑の刈り入れから始めよう。ヒセ128のこともあるし、ゆっくり行こう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"キオ127": {"activity": "畑仕事", "place": "camp", "why": "畑を一緒に刈って、赤ん坊の近くにいられるから"}}, "pick": 5, "plant": 0, "harvest": 40, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "近くの草原なら家に早く戻れて、食べ物も足せるから"}, "family": {"キオ127": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで実りを増やしたいから"}}, "pick": 5, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬は実りがないので、キャンプで畑の草取りをするのがよいから"}, "family": {"キオ127": {"activity": "畑仕事", "place": "camp", "why": "冬も畑の世話を続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春は子ヤギが生まれ、乳がとれてヒセ128にも役立つから"}, "family": {"キオ127": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1162": false, "T1163": false, "T1164": false, "T1165": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種がたくさんあり、しばらく食べ物には困らない。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "子がたくさん亡くなった年",
+ "feeling": "蓄えは十分にある。赤ん坊と家族とおだやかに暮らしたい。"}

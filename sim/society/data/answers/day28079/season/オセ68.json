@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "今年も多くの人が病で逝った。夏は刈り入れを急ぎ、秋からはまた作業場でのこをひいて板を貯めよう。新しく来た人たちとも、顔を合わせて話したい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちてしまうので、まず刈り入れを手伝う"}, "family": {"ホタ70": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいる"}, "ロワ73": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいる"}, "トナ76": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として続けてきた仕事。板は水の道の手入れに役立つ"}, "family": {"ホタ70": {"activity": "水の作業場で働く", "place": "M6", "why": "家の大人は作業場で働ける"}, "ロワ73": {"activity": "水の作業場で働く", "place": "M6", "why": "家の大人は作業場で働ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "冬も板をひき続ける"}, "family": {"ホタ70": {"activity": "水の作業場で働く", "place": "M6", "why": "冬も板をひく"}, "ロワ73": {"activity": "水の作業場で働く", "place": "M6", "why": "冬も板をひく"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "続けて板をひく"}, "family": {"ホタ70": {"activity": "水の作業場で働く", "place": "M6", "why": "続けて板をひく"}, "ロワ73": {"activity": "水の作業場で働く", "place": "M6", "why": "続けて板をひく"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラキ129": true, "ソナ129": true, "トナ129": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1162": "村", "T1163": "村", "T1164": "村", "T1165": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "病の多かった年",
+ "feeling": "病で人が多く逝って寂しいが、蓄えは十分。作業場で働き、仲間と話せるのが楽しみだ。"}

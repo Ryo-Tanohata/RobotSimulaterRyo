@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "畑がよく実った。蓄えもたっぷりある。みんなで刈り入れをして、ゆっくり話そう。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ケセ113": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを一緒にする"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで次の実りを増やすため"}, "family": {"ケセ113": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りをして実りを守る"}, "family": {"ケセ113": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのために草取りを続ける"}, "family": {"ケセ113": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラキ129": true, "ソナ129": true, "トナ129": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1162": "村", "T1163": "村", "T1164": "村", "T1165": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "year_name": "たっぷり実った年",
+ "feeling": "蓄えが多くて安心している。人が増えるのも楽しみだ。"}
