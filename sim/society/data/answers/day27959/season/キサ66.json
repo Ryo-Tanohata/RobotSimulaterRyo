@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を急いで刈ろう。落ちてしまう前に、みんなで手を合わせよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに刈らないと落ちてしまうから"}, "family": {"オセ72": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ラニ74": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ケセ76": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "リセ84": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ソナ87": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の世話で実りを増やすため"}, "family": {"オセ72": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ラニ74": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ケセ76": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "リセ84": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ソナ87": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りで実りを守るため"}, "family": {"オセ72": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ラニ74": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ケセ76": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "リセ84": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ソナ87": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りに向けて草取りを続ける"}, "family": {"オセ72": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ラニ74": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ケセ76": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "リセ84": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}, "ソナ87": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れを急いだ年",
+ "feeling": "蓄えはたっぷりある。みんなで畑を守れば、来年も安心だと思う。"}

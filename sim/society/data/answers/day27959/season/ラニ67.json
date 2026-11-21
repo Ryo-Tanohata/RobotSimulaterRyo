@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は落ちる前に畑を刈ろう。秋は一人1000つかみまいて、手のあく人は水の道を掘ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを先にする"}, "family": {"ラニ71": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手を増やす"}, "ケナ75": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手を増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "草の種はまかれるので、手のあく人は水の道の手入れをする"}, "family": {"ラニ71": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大量に残っている"}, "ケナ75": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大量に残っている"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで畑の実りを増やす"}, "family": {"ラニ71": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やす"}, "ケナ75": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りを続け、夏の実りにそなえる"}, "family": {"ラニ71": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ケナ75": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"キオ127": true, "ラニ127": true, "ナセ127": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1145": false, "T1146": false, "T1147": false, "T1148": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れと水の道の年",
+ "feeling": "蓄えはたっぷりある。落ち着いて、いつもの仕事をするだけだ。"}
