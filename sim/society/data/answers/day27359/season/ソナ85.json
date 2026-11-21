@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるが、ヤギが草より多い。秋のはじめにオスからつぶして減らそう。"}],
+"year": {
+"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに畑を刈らないと実が落ちるから"}, "family": {"ケナ85": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るため"}, "トナ85": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+"秋": {"job": {"activity": "字を教える", "place": "camp", "with": [], "why": "子に字を教えるのが自分の得意な役目だから"}, "family": {"ケナ85": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"}, "トナ85": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3, "sow": 1000},
+"冬": {"job": {"activity": "字を教える", "place": "camp", "with": [], "why": "冬も子に字を教え続けるため"}, "family": {"ケナ85": {"activity": "畑仕事", "place": "camp", "why": "草取りをするため"}, "トナ85": {"activity": "畑仕事", "place": "camp", "why": "草取りをするため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+"春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで畑の実りを増やすため"}, "family": {"ケナ85": {"activity": "畑仕事", "place": "camp", "why": "草取りをするため"}, "トナ85": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ乳がとれるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+"keep": false, "seal": false, "seal_store": [],
+"accept_rule": {"よその群れ": null, "ほかの村から": null},
+"judge": {"M551": "ゆるす", "M553": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+"trade": {"T1093": "断る", "T1094": "断る", "T1095": "断る"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+"knowledge": [{"op": "add", "text": "ヤギが草の分より多いので、ほかの村のヤギの申し出は断るのがよい。", "because": [5105056], "confidence": 0.6}],
+"proposal": null,
+"votes": [],
+"year_name": "字を教えた年",
+"feeling": "蓄えは豊かで落ち着いている。子らに字を伝えたい。"}

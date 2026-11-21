@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蔵には種がたっぷりある。夏は畑を刈って、ヤギが増えすぎたぶんは肉にして干そう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"テナ78": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいるから"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "採集の腕が高く刈り入れに向くから"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "採集の腕が高く刈り入れに向くから"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "みんなと刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 20},
+  "秋": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕が高いので、鎌や道具をととのえる"}, "family": {"テナ78": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "ロワ79": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}, "ムイ87": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}, "ワユ98": {"activity": "字を習う", "place": "camp", "why": "字を覚えると役に立つ"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やすため"}, "family": {"テナ78": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "子ヤギが生まれる季節で乳もとれるから"}, "family": {"テナ78": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギの世話"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ワユ98": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギの世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M551": "ゆるす", "M553": "ゆるす"}, "judge_rule": null, "feast": ["秋"], "leader": null,
+ "trade": {"T1093": "村", "T1094": "村", "T1095": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜の安全のために大事な決まりだから"}],
+ "year_name": "刈り入れとヤギ減らしの年",
+ "feeling": "蔵が満ちていて心強い。ヤギを減らして畑を守りたい。"}
