@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れが、まだ一万日ぶんも残っているよ。泥でうまる前に、家ごとに手を出そう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがたくさん残っていて、泥でうまると水の来る畑がへるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヌオ120": true, "テナ120": true},
+ "family": {
+  "ソナ67": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番を続けて、板を作ってもらう"},
+  "キオ70": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番で、若い人にも教えられるから"},
+  "オセ66": {"activity": "燃える石を掘る", "place": "北丘12", "why": "家の燃える石が冬の途中で尽きそうだから"},
+  "ケセ62": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、実りを増やすため"},
+  "ケセ64": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、実りを増やすため"},
+  "ケセ96": {"activity": "字を教える", "place": "camp", "why": "家の子に字を教えて、読める人を増やすため"}
+ },
+ "keep": false,
+ "judge": {"M554": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1096": "村"},
+ "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "水の道の手入れが一万日ぶん残る。家ごとに人を出そう",
+ "knowledge": [{"op": "add", "text": "ヤギは 89 頭で、草で養える約 110 頭より少ない。いまはつぶさずに増やすほうがよい", "because": [5161338], "confidence": 0.6}],
+ "proposal": {"text": "この秋は大人一人 1000 つかみずつまき、家ごとに大人の半分は倉の板を使って水の道の手入れ (あと 10723 人日) に出よう。ヤギは 89 頭で草の約 110 頭より少ないから、この 1 年はつぶさないでおこう。", "because": [5161332], "penalty": {"for": "蓄え", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L786", "against": "ヤギの数はもう変わっている", "agree": true, "reason": "まくことと水の道の手入れは、いまも大事だから"},
+  {"id": "L788", "against": "ヤギはいま 89 頭で、草で養える数より少ない", "agree": false, "reason": "いまつぶすと減りすぎるから"},
+  {"id": "L98", "against": "まとめるのに手間がかかる", "agree": true, "reason": "同じ掟がたくさんあって分かりにくいから"}
+ ],
+ "feeling": "水の道が気がかり。でも、新しい人が来てくれるのはうれしい"}

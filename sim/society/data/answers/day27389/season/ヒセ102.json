@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "雨の夜に外で濡れる人が多い。蓄えは十分あるから、この秋は水の道を掘って、冬に備えよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分あり、水の道の手入れがまだ大量に残っているので、体力のある自分が手伝う"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヌオ120": true, "テナ120": true}, "family": {"タユ102": {"activity": "水の道を掘る", "place": "camp", "why": "二人で力を合わせて水の道を掘り、村の手入れを進めるため"}}, "keep": false,
+ "judge": {"M554": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を畑にまくと、次の夏に実る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心。雨の夜がつらいが、働いて冬にそなえたい。"}
