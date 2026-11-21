@@ -1185,3 +1185,5 @@ done
 
 - VOICEVOX の声づくり (`tools/voicevox/setup.sh` は Linux 用)。**本人の PC の WSL (Ubuntu) で動いた (2026-10-09)**: git の改行の設定で台本が CRLF になっているので `sed 's/\r$//' tools/voicevox/setup.sh > /tmp/vv_setup.sh && bash /tmp/vv_setup.sh`。Windows から WSL の台本を動かすときは `wsl -d Ubuntu --exec bash <台本>` (`wsl -- bash -lc '…'` だと変数が先に展開されて動かない)。声は `~/.cache/robotsim-voicevox/venv/bin/python tools/voicevox/synth.py <セリフ.json> <出力>`。読みを変えたいときはセリフに `say` を足す (例: 104日目 → ひゃくよっかめ)
 - 撮影はクラウドでは止めた (G1 は半分まで撮っていたが、ローカルで撮り直す)
+
+- 2026-11-21 (227年の終わり): 本人の選びで、i4 の人が読む呼び名を **Society 3.0 フェーズ 3 (読み書きと知らせ板)** に直した (3.0 はまだ続く。分業と町は先のフェーズでまた試す)。`i4.I4_LABEL`・年報の見出し・year225/226.html。state の文とコード名 i4 はそのまま。`docs/society_phase/I4_design.md` 7.

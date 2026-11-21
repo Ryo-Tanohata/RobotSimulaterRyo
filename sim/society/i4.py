@@ -29,7 +29,8 @@ from world import log, season
 YEAR, SEASON_DAYS = era2.YEAR, era2.SEASON_DAYS
 I4_FROM = 26999  # 本物の村が S4 を閉じた日 (224年の終わり)。これより前には印を書けない
 I4_DATE = "2026-11-21"
-I4_NAME = "Society 4.0 フェーズ 1 (読み書きと知らせ板)"
+I4_NAME = "Society 4.0 フェーズ 1 (読み書きと知らせ板)"  # 印 g7.i4.why に入った文 (前の歩の state と同じにするため変えない)
+I4_LABEL = "Society 3.0 フェーズ 3 (読み書きと知らせ板)"  # 2026-11-21 本人が選んだ呼び名 (3.0 はまだ続く)。人が読む所はこちら
 PARTS = {"a": "知らせ板 (書いたことが、読める人みなに同じ形で届く)", "b": "手習い (読める大人が子に字を教える)"}
 ACT_TEACH, ACT_WRITE = "字を教える", "知らせを書く"  # 新しい仕事 (world.ACTS7 の後ろに足した。印のあとだけ。「知らせを書く」は選ぶ仕事でなく、書いた家の読める大人の 1 日)
 ACTS = (ACT_TEACH, ACT_WRITE)

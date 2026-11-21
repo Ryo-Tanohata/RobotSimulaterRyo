@@ -451,7 +451,7 @@ def i4_part(st, y):
     rows = [g["rows"][k] for k in sorted(g["rows"], key=int) if int(k) <= y]
     import g10 as G10
     new = sorted(n for n, d in G10._g(st)["readers"].items() if d is not None and d // YEAR == y)
-    return {"head": I4.lines(st)[:1], "rows": rows, "notes": I4.notes_of(st, y), "new": new, "taught": (g["taught"].get(str(y)) or {}),
+    return {"head": [x.replace(I4.I4_NAME, I4.I4_LABEL) for x in I4.lines(st)[:1]], "rows": rows, "notes": I4.notes_of(st, y), "new": new, "taught": (g["taught"].get(str(y)) or {}),
             "used": (g["used"].get(str(y)) or {}), "learning": len(g["kids"])}
 
 
@@ -1160,7 +1160,7 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
         w('<p style="margin:10px 0 2px"><b>Society 3.0 フェーズ 2 (分業と町): 町の家・掘り場・川下の町の市</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["s4"]) + "</ul>")
     if C.get("i4"):  # 2026-11-21: Society 4.0 フェーズ 1 (読み書きと知らせ板)
         q = C["i4"]
-        w('<p style="margin:10px 0 2px"><b>Society 4.0 フェーズ 1 (読み書きと知らせ板): 字で書いたことが、会わない人にも同じ形で届くか</b></p>')
+        w('<p style="margin:10px 0 2px"><b>Society 3.0 フェーズ 3 (読み書きと知らせ板): 字で書いたことが、会わない人にも同じ形で届くか</b></p>')
         w('<ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in q["head"]) + "</ul>")
         if q["rows"]:
             w('<table><tr><td>年</td><td>i1 読める大人 (25% 以上)</td><td>i2 知らせ (6 枚・4 家以上)</td><td>i3 字の仕事 (4% 以上)</td><td>i4 暮らしを守る</td><td>教えた</td><td>読めるようになった</td></tr>')
