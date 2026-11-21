@@ -1,0 +1,246 @@
+{
+ "say": [
+  {
+   "to": "みんな",
+   "text": "夏のうちに畑をしっかり刈って、そのあとは水の道の手入れをみんなでやろう。ヤギは草が足りないから、少し肉にして減らそう。"
+  }
+ ],
+ "year": {
+  "夏": {
+   "job": {
+    "activity": "畑仕事",
+    "place": "camp",
+    "with": [],
+    "why": "実った畑を夏のうちに刈らないと落ちてしまうから"
+   },
+   "family": {
+    "ハソ73": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を刈るため"
+    },
+    "キサ77": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を刈るため"
+    },
+    "ロワ85": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を刈るため"
+    },
+    "ハソ87": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "実った畑を刈るため"
+    },
+    "ムイ94": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "子も手伝う"
+    },
+    "シエ96": {
+     "activity": "畑仕事",
+     "place": "camp",
+     "why": "子も手伝う"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 60,
+   "eat_goat": 0
+  },
+  "秋": {
+   "job": {
+    "activity": "水の道を掘る",
+    "place": "camp",
+    "with": [],
+    "why": "水の道の手入れが足りないので、畑を守るため"
+   },
+   "family": {
+    "ハソ73": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "キサ77": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "ロワ85": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "ハソ87": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "ムイ94": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "子も手伝う"
+    },
+    "シエ96": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "子も手伝う"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 0,
+   "eat_goat": 60,
+   "sow": 1000
+  },
+  "冬": {
+   "job": {
+    "activity": "水の道を掘る",
+    "place": "camp",
+    "with": [],
+    "why": "水の道の手入れが足りないので、畑を守るため"
+   },
+   "family": {
+    "ハソ73": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "キサ77": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "ロワ85": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "ハソ87": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "ムイ94": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "子も手伝う"
+    },
+    "シエ96": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "子も手伝う"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 0,
+   "eat_goat": 0
+  },
+  "春": {
+   "job": {
+    "activity": "水の道を掘る",
+    "place": "camp",
+    "with": [],
+    "why": "水の道の手入れが足りないので、畑を守るため"
+   },
+   "family": {
+    "ハソ73": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "キサ77": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "ロワ85": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "ハソ87": {
+     "activity": "水の道を掘る",
+     "place": "camp",
+     "why": "水の道の手入れが足りないので"
+    },
+    "ムイ94": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "子も手伝う"
+    },
+    "シエ96": {
+     "activity": "ヤギの世話",
+     "place": "camp",
+     "why": "子も手伝う"
+    }
+   },
+   "pick": 0,
+   "plant": 0,
+   "harvest": 0,
+   "eat_goat": 0
+  }
+ },
+ "keep": false,
+ "seal": false,
+ "seal_store": [],
+ "accept": {
+  "キオ115": true,
+  "ラニ115": true
+ },
+ "accept_rule": {
+  "よその群れ": null,
+  "ほかの村から": null
+ },
+ "judge_rule": null,
+ "feast": [],
+ "leader": null,
+ "trade": {
+  "T1045": false,
+  "T1046": false,
+  "T1047": false,
+  "T1048": false
+ },
+ "trade_rule": {
+  "交換": null,
+  "貸して": null,
+  "max": null,
+  "not": [],
+  "利子": 0
+ },
+ "demand": null,
+ "share": null,
+ "pay": null,
+ "redeem": null,
+ "market": {
+  "give": {},
+  "take": [],
+  "pay": null
+ },
+ "market_day": null,
+ "coin_rate": null,
+ "pact": [],
+ "help": [],
+ "note": [],
+ "guild": null,
+ "workshop": [],
+ "post": [],
+ "head": null,
+ "sell": [],
+ "town": "出さない",
+ "knowledge": [
+  {
+   "op": "add",
+   "text": "水の道の手入れが足りないと水の来る畑が減るので、人手を回すとよい。",
+   "because": [],
+   "confidence": 0.6
+  }
+ ],
+ "proposal": null,
+ "votes": [],
+ "year_name": "水の道をほった年",
+ "feeling": "家族みんなで元気に、畑と水の道を守りたい。"
+}

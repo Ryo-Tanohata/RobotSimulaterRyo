@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑がまだたくさん残っている。みんなで刈りきろう。おれも毎日出るぞ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が残っていて、夏のうちに刈らないと落ちてしまうから"}, "family": {"テナ78": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが大きく残っていて、悪い年の備えになるから"}, "family": {"テナ78": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れのため"}, "ロワ79": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れのため"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬は実りがないので、水の道の手入れに力を使う"}, "family": {"テナ78": {"activity": "水の道を掘る", "place": "camp", "why": "冬の仕事として手入れを進める"}, "ロワ79": {"activity": "水の道を掘る", "place": "camp", "why": "冬の仕事として手入れを進める"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "冬の仕事として手入れを進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると実りが増えるから"}, "family": {"テナ78": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ロワ79": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"キオ115": true, "ラニ115": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1045": false, "T1046": false, "T1047": false, "T1048": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": "出さない",
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れを急いだ年",
+ "feeling": "畑がたくさん残っているので、体を動かして刈りたい気分だ。"}
