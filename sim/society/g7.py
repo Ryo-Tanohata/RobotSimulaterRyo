@@ -922,6 +922,8 @@ def job(state, q, j):
     g, act = _g(state), q["plan"]["activity"]
     j = j if isinstance(j, dict) else {}
     out = {}
+    if "i4" in g and _i4_on(state):  # 2026-11-21: 字を教える・知らせを書く・帳をつけるができない人は、休まず前の季節の仕事をする (印 g7.i4 のあとだけ)
+        act, j = _i4m().refit(state, q, act, j)
     if act == "休む" and j.get("activity") in ("試す",) + ACTS10 + (ACTS11 if _g11_on(state) else ()) + (ACTS12 if _g12_on(state) else ()) + (ACTS13 if _g13_on(state) else ()) + (ACTS14 if _g14_on(state) else ()) + (ACTS15 if _g15_on(state) else ()) + (ACTS_I4[:1] if "i4" in g and _i4_on(state) else ()):  # G10 の直し ② (2026-11-05): 選べない仕事だったので「休む」になった (era2.apply_answers)
         _rest_note(state, q, j.get("activity"), j)
     if act == "試す":

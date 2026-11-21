@@ -10032,15 +10032,50 @@ class T_I4(unittest.TestCase):
             q["today"] = {"activity": g10.ACT_LEARN}
             g7.role_day(st, q, {}, g10.ACT_LEARN)
         self.assertEqual([lr[q["name"]] - b for q, b in zip(ls, before)], [2, 2, 1])
-        # 読めない人は「字を教える」を選べない (休む・できなかったこと)
+        # 読めない人は「字を教える」をできない (休まず、かわりの仕事。できなかったこと。くわしくは test_refit)
         q = ls[0]
         q["plan"] = {"activity": i4.ACT_TEACH, "place": "camp", "with": []}
         g7.job(st, q, {"activity": i4.ACT_TEACH})
-        self.assertEqual(q["plan"]["activity"], "休む")
+        self.assertNotIn(q["plan"]["activity"], ("休む", i4.ACT_TEACH))
         self.assertIn("字を読み書きできないので", g["fails"][-1]["why"])
         self.assertIn(i4.ACT_TEACH, g7.acts(st))
         self.assertIn(i4.ACT_TEACH, era2.acts2(st))
         self.assertNotIn(i4.ACT_WRITE, g7.acts(st), "知らせを書くは選ぶ仕事でない")
+
+    def test_refit(self):
+        """印のあと: 字を教える・知らせを書く・帳をつけるができない人 (読めない人・代表と同じ仕事になった家の大人) は休まず、
+        前の季節の仕事 → 家でいちばん多かった仕事 → 畑仕事 をする (できなかったことに残す)。読める人はそのまま。印がなければ帳をつけるは前のまま「休む」"""
+        import g10
+        import g7
+        import i4
+        st = self.marked()
+        rd = g10._g(st)["readers"]
+        h = next(x for x in era2._homes(st) if len([q for q in era2.adults(st) if q.get("household") == x and q["name"] not in rd]) >= 2)
+        a, b = [q for q in era2.adults(st) if q.get("household") == h and q["name"] not in rd][:2]
+        reader = next(q for q in era2.adults(st) if q["name"] in rd)
+        past = {"day": 26999, "season": "春", "days": {a["name"]: {"ヤギの世話": 20, "休む": 10}, b["name"]: {}, "他の人": {"土器づくり": 30}},
+                "home": {a["name"]: h, b["name"]: h, "他の人": "ほかの家"}}
+        st["era2"]["g7"]["past"] = [past]
+
+        def run(q, act, j=None):
+            q["plan"] = {"activity": act, "place": "camp", "with": []}
+            g7.job(st, q, j if j is not None else {"activity": act})
+            return q["plan"]["activity"]
+        self.assertEqual(run(a, i4.ACT_TEACH), "ヤギの世話", "前の季節のその人の仕事")
+        self.assertIn("季節じゅう「ヤギの世話」をした", i4._g(st)["fails"][-1]["why"])
+        self.assertEqual(run(b, i4.ACT_TEACH), "ヤギの世話", "前の季節の仕事がなければ、家でいちばん多かった仕事")
+        self.assertEqual(run(b, "休む", {"activity": i4.ACT_WRITE}), "ヤギの世話", "知らせを書く (選べないので「休む」になった答え) も")
+        self.assertEqual(run(b, "帳をつける", {}), "ヤギの世話", "帳をつけるも (代表と同じ仕事で、くわしい答えなし)")
+        past["days"] = {}
+        self.assertEqual(run(b, i4.ACT_TEACH), "畑仕事", "どれもなければ畑仕事")
+        self.assertEqual(run(reader, i4.ACT_TEACH), i4.ACT_TEACH, "読める人はそのまま")
+        self.assertEqual(run(reader, "帳をつける"), "帳をつける")
+        self.assertNotEqual(run(reader, "休む", {"activity": i4.ACT_WRITE}), "休む", "読める人でも、知らせを書くを選んだら休まない")
+        st0 = self.real()
+        q0 = next(q for q in era2.adults(st0) if q["name"] == a["name"])
+        q0["plan"] = {"activity": "帳をつける", "place": "camp", "with": []}
+        g7.job(st0, q0, {"activity": "帳をつける"})
+        self.assertEqual(q0["plan"]["activity"], "休む", "印がなければ前のまま")
 
     def test_rows_and_stops(self):
         """年の行・入口 (i1 と i2 と i3 が 2 年。i4 を割らない) で HOLD entrance・i4 を割ったら・道の 2 年 0 人・5 年ごと・読める大人 1 人以下で HOLD consult"""

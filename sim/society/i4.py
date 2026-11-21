@@ -300,6 +300,57 @@ def rest_why(state, name, act):
     return None
 
 
+# 字の仕事ができない人の仕事 (2026-11-21。I4_check.md 5.6): 代表が「字を教える」「知らせを書く」「帳をつける」にして、家の大人が同じ仕事になったとき
+# (family に書かれなかった・代表と同じ仕事・見本の家の答えをまねた)、できない人は季節じゅう休まず、前の季節の仕事をする。
+# 前の季節の仕事がなければ、その人の家の前の季節にいちばん多かった仕事、それもなければ畑仕事。どれもキャンプでできる仕事だけ
+LETTER_JOBS = (ACT_TEACH, ACT_WRITE, "帳をつける")
+REFIT_OK = ("畑仕事", "ヤギの世話", "土器づくり", "道具づくり", "水の道を掘る", "燃える石を掘る")
+REFIT_LAST = "畑仕事"
+
+
+def _can_letter(state, name, act):
+    if act == ACT_TEACH:
+        return can_teach(state, name)
+    if act == "帳をつける":
+        import g12
+        return "g12" in state["era2"]["g7"] and g12.can_census(state, name)
+    return False  # 知らせを書くは選ぶ仕事でない (書いた家の読める大人の 1 日だけ)
+
+
+def _best(days, ok):
+    xs = sorted(((d, a) for a, d in days.items() if a in ok and d > 0), key=lambda x: (-x[0], x[1]))
+    return xs[0][1] if xs else None
+
+
+def refit_job(state, q):
+    """できない字の仕事のかわりの仕事: 前の季節のその人の仕事 → 家でいちばん多かった仕事 → 畑仕事"""
+    ok = [a for a in REFIT_OK if a in era2.acts2(state)]
+    past = (state["era2"]["g7"].get("past") or [None])[-1] or {}
+    days = past.get("days") or {}
+    a = _best(days.get(q["name"]) or {}, ok)
+    if a:
+        return a
+    h = q.get("household")
+    tot = {}
+    for n, acts_ in days.items():
+        if h and (past.get("home") or {}).get(n) == h:
+            for k, d in acts_.items():
+                tot[k] = tot.get(k, 0) + d
+    return _best(tot, ok) or REFIT_LAST
+
+
+def refit(state, q, act, j):
+    """g7.job のはじめ (印のあと): 字の仕事 (「休む」になる前の答えも見る) ができない人は、かわりの仕事にする。戻り値 (仕事, くわしい答え)"""
+    want = j.get("activity") if act == "休む" else act
+    if want not in LETTER_JOBS or _can_letter(state, q["name"], want):
+        return act, j
+    new = refit_job(state, q)
+    why = "字を読み書きできない" if want != ACT_WRITE else "知らせを書くのは、知らせを出した家の読める大人の 1 日だけな"
+    q["plan"] = {"activity": new, "place": "camp", "with": []}
+    _fail(state, q["name"], want, f"{q['name']} は、{why}ので「{want}」はできず、季節じゅう「{new}」をした", log_it=False)
+    return new, {"activity": new}
+
+
 def _today(state):
     g, D = _g(state), state["day"]
     if (g.get("today") or {}).get("day") != D:
