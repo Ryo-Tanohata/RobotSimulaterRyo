@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑をみんなで刈ろう。秋からは水の道を掘って、冬と春は草取りをしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"オセ67": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}, "ホタ68": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "ソナ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "ソナ75": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っているから"}, "family": {"オセ67": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ホタ68": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "ソナ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "ソナ75": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで夏の実りが増えるから"}, "family": {"オセ67": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ホタ68": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "ソナ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りで実りを増やす"}, "family": {"オセ67": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ホタ68": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "ソナ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ワユ121": true, "ソワ121": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草の分より多い。つぶして減らすのがよい。水の道の手入れはまだ大きく残っている。", "because": [5198117], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがふえすぎた年",
+ "feeling": "蓄えは多くて安心。水の道をこつこつ進めたい。"}

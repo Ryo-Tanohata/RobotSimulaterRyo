@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏のうちに実った畑を刈りきろう。秋はみんなで1000つかみずつまいて、冬と春は草取りに出よう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるから、刈り入れを手伝う"},"family":{"ラニ91":{"activity":"畑仕事","place":"camp","why":"夫婦で刈り入れをして、落ちる前に刈りきる"},"テナ103":{"activity":"畑仕事","place":"camp","why":"刈り入れの手伝い"},"キサ106":{"activity":"畑仕事","place":"camp","why":"刈り入れの手伝い"}},"pick":0,"plant":0,"harvest":60,"eat_goat":15},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで、次の夏の実りを増やす"},"family":{"ラニ91":{"activity":"畑仕事","place":"camp","why":"草取りで実りを守る"},"テナ103":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"},"キサ106":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"冬も草取りを続けると実りが増える"},"family":{"ラニ91":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"テナ103":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"},"キサ106":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の前の仕上げの草取り"},"family":{"ラニ91":{"activity":"畑仕事","place":"camp","why":"仕上げの草取り"},"テナ103":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"},"キサ106":{"activity":"畑仕事","place":"camp","why":"草取りの手伝い"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"ワユ121":true,"ソワ121":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":null,"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,
+"knowledge":[{"op":"add","text":"ヤギが草の量より多いと、やせていなくなる。少しつぶして減らすとよい。","because":[5198117],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"畑を刈りきった年",
+"feeling":"畑がよく実って安心。家族みんなで働きたい。"}

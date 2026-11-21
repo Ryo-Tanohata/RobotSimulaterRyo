@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "今年も木の実と草の種を集めて、蓄えを厚くしよう。ヒセ100とも組んで働くよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "採集の腕が一番高いので、近い草原で食べ物を集める"}, "family": {"ヒセ100": {"activity": "採集", "place": "西草原12", "why": "ナセ88といっしょに近場で採集を覚える"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "実のなる秋に、木の実をたくさん集めて冬にそなえる"}, "family": {"ヒセ100": {"activity": "採集", "place": "camp", "why": "実の多い季節に家族で集める"}}, "pick": 30, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "狩り", "place": "南林12", "with": [], "why": "冬は実がないので、狩りの腕を生かして肉を取る"}, "family": {"ヒセ100": {"activity": "採集", "place": "南川12", "why": "川で魚を取って冬の食べ物にする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "春に芽吹く草や実を集めて蓄えをもどす"}, "family": {"ヒセ100": {"activity": "採集", "place": "西草原12", "why": "ナセ88といっしょに集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "",
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ふくらむ蓄えの年",
+ "feeling": "体は軽い。今年も家族と食べ物を集めるのが楽しみだ。"}

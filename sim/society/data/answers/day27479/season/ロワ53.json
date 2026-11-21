@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"蓄えの草の種はたっぷりある。木の実も実っているから、みんなで落ち着いて働こう。"}],
+"year":{
+"夏":{"job":{"activity":"採集","place":"南林12","with":[],"why":"キャンプに近い林で木の実を集める。腕に自信があり、慣れた場所が安心"},"family":{"シエ59":{"activity":"採集","place":"西草原12","why":"近い草原で堅実に集める"},"ハソ75":{"activity":"採集","place":"東林12","why":"近い林で木の実を集める"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"秋":{"job":{"activity":"採集","place":"南林12","with":[],"why":"秋は実りが多い。冬に備えて木の実を集める"},"family":{"シエ59":{"activity":"採集","place":"西草原12","why":"草の種を集める"},"ハソ75":{"activity":"採集","place":"東林12","why":"木の実を集める"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":0},
+"冬":{"job":{"activity":"狩り","place":"北草原28","with":[],"why":"冬は木の実がないので、魚やけものを狩る"},"family":{"シエ59":{"activity":"採集","place":"南川12","why":"近い川で魚をとる"},"ハソ75":{"activity":"狩り","place":"北草原28","why":"けものを狩る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"採集","place":"西草原12","with":[],"why":"春は近い草原で食べ物を集める"},"family":{"シエ59":{"activity":"採集","place":"西草原12","why":"近い草原で集める"},"ハソ75":{"activity":"採集","place":"東林12","why":"林で集める"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":"なし",
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"実りの木の年",
+"feeling":"蓄えも木の実も十分で、穏やかな気持ち。"}
