@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "畑が空っぽだから、この秋はしっかりまいておこう。わしは板を使って、止まりかけの水の輪を直してくるよ。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕があるので、残っている輪の直し (あと 250 人日) を板を使って早く終わらせたい"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M550": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1077": false, "T1078": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [
+  {"op": "add", "text": "村のヤギは 138 頭 (メス 110・オス 28) で、草で養える約 140 頭にほぼ届いている。よその村のヤギを受けると草が足りなくなる", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "前の季節も、病で亡くなる大人と小さな子が多かった", "because": [5035789, 5035790, 5035791, 5035792], "confidence": 0.8},
+  {"op": "add", "text": "土器に入れていても、蓄えの草の種は季節ごとに少しずつ傷む", "because": [5035793], "confidence": 0.8}
+ ],
+ "proposal": {"text": "ヤギは 138 頭で草の約 140 頭にほぼ届いているから、この 1 年はよその村のヤギを受けず、つぶさずに数を保とう。秋は大人一人 1000 つかみずつまき、水の輪の直し (あと 250 人日) は道具の腕のある人が板で終え、ほかの手の空いた大人は板を持って水の道の手入れをしよう。", "because": [], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L861", "against": "いまのヤギは 138 頭で草の約 140 頭より少なく、110 頭まで減らすとつぶしすぎになる", "agree": false, "reason": "草はまだ足りているので、たくさんつぶす必要はない"},
+  {"id": "L858", "against": "いまは 152 頭ではなく 138 頭で、40 頭近くつぶすのは多すぎる", "agree": false, "reason": "数が今とちがうので、そのまま守るのはむずかしい"},
+  {"id": "L857", "against": "秋にまく量が多いと、蓄えが少し減る", "agree": true, "reason": "畑が空なので、大人一人 1000 つかみずつまくのは大事。板で水の道の手入れをするのもよい"},
+  {"id": "L852", "against": "ヤギを受けると、草がすぐに足りなくなるかもしれない", "agree": true, "reason": "140 頭をこえない分だけなら草は足り、畑と水の輪の進め方もよい"}
+ ],
+ "feeling": "まだ体は動く。輪を直して、冬の前に村の役に立ちたい"}

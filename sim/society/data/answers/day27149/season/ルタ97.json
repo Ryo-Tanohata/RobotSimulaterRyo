@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "鎌はまだ割れることがある。わたしは石を割って、この秋も新しい鎌を作りつづけるよ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕が一番高く、鎌は割れるので、畑を刈る夏にそなえて作りたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"アコ97": {"activity": "採集", "place": "西草原12", "why": "採集の腕が高く、近い草原で食べ物を集めて蓄えを助けるため"}},
+ "keep": false,
+ "judge": {"M550": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1077": false, "T1078": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "鎌は 1 本に 2 日ほどで作れるが、ときどき割れるので、毎季節少しずつ作り足すとよい", "because": [5035656], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "手を動かして道具を作るのが好きだ。今日も石の音を聞いていたい。"}

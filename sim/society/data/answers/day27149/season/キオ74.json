@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "冬の前に、のこで板をたくさんひいておくよ。手のあいた人はM6に来てね。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "M6ののこ番だから続ける。板があれば水の道の手入れが半分ですむ"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ルタ74": {"activity": "水の作業場で働く", "place": "M6", "why": "のこの仕事は人がそろうほど板がふえる"}, "キオ75": {"activity": "水の作業場で働く", "place": "M6", "why": "のこの仕事は人がそろうほど板がふえる"}, "ユエ81": {"activity": "水の作業場で働く", "place": "M6", "why": "家の仲間と一緒にのこで板をひく"}},
+ "keep": false,
+ "judge": {"M550": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1077": false, "T1078": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "M6ののこで同じ日に人がそろうと、板がたくさんできる", "because": [5035138], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "いつもの仕事で落ち着いている。冬にそなえて板をためたい。"}

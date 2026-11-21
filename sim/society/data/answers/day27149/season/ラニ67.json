@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、子どもたちに字を教えておくよ。みんなも蓄えを大事にしようね。"}],
+ "job": {"activity": "字を教える", "place": "camp", "with": [], "why": "字を習っている子がもうすぐ読み書きできるようになるので、最後まで教えたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ71": {"activity": "採集", "place": "西草原12", "why": "草原で食べ物を集めて冬にそなえる"},
+  "ケナ75": {"activity": "採集", "place": "東林12", "why": "林の木の実を集める"},
+  "ナセ80": {"activity": "採集", "place": "北林12", "why": "近い林で食べ物を集める"},
+  "キサ81": {"activity": "狩り", "place": "南林12", "why": "冬は魚やけものが頼りになるので、肉をとる"},
+  "ケセ82": {"activity": "狩り", "place": "南川12", "why": "川で魚をとって蓄えを助ける"},
+  "キサ83": {"activity": "採集", "place": "西草原12", "why": "草の種や木の実を集める"},
+  "ハソ84": {"activity": "狩り", "place": "北林12", "why": "けものをとって肉を持ち帰る"},
+  "ソナ90": {"activity": "採集", "place": "東林12", "why": "小さい子の世話の合間に近くで集める"},
+  "リセ91": {"activity": "採集", "place": "北川12", "why": "近場で食べ物を集める"},
+  "トナ97": {"activity": "畑仕事", "place": "camp", "why": "14 歳なので、畑の手伝いをする"}
+ },
+ "keep": false,
+ "judge": {"M550": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1077": false, "T1078": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬がくる前に、子どもたちが字を覚えるのを見とどけたい。"}

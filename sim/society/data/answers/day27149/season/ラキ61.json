@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "冬の前に、土器の蓄えをととのえておくよ。手のあいた人は水の道の手入れを手伝ってほしい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕がいちばんあり、草の種を虫から守る器が冬の前にもっといるから"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ホミ61": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているから"},
+  "セオ63": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているから"},
+  "ロワ64": {"activity": "水の作業場で働く", "place": "M6", "why": "板があると手入れが早く進むから"},
+  "ムイ66": {"activity": "水の作業場で働く", "place": "M6", "why": "板があると手入れが早く進むから"},
+  "ケセ67": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで実りを増やすため"},
+  "オネ70": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ワユ70": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、蓄えの記録を残すため"}
+ },
+ "keep": false,
+ "judge": {"M550": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1077": false, "T1078": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので落ち着いて土器を作り、家族みんなで蓄えを守りたい。"}

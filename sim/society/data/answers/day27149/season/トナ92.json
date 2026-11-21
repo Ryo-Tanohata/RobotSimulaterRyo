@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "畑が空っぽだから、この秋はみんなでまこう。おれは水の作業場で板をひいてみたい。板がふえれば水の道の手入れも早く進むはずだ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": ["オセ62"], "why": "水ののこで板をひくしくみが気になる。板がふえれば、残っている水の道の手入れがはかどるから"},
+ "family": {"ロワ100": {"activity": "畑仕事", "place": "camp", "why": "12 歳になったので、まいた畑の草取りを手伝ってほしい"}},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M550": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1077": false, "T1078": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [{"人": "トナ92", "持ち場": "のこ番", "輪": "M6"}], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "ヤギは今 138 頭で、草で養える約 140 頭とほぼ同じ。これ以上ふやすと草が足りなくなる", "because": [], "confidence": 0.8},
+               {"op": "add", "text": "土器に入れていても、蓄えの草の種は季節ごとに少し傷む", "because": [5035793], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L861", "against": "ヤギはもう 138 頭まで減っているので、つぶす話は今は合わないかもしれない", "agree": false, "reason": "ヤギは草で養える数の内側にもどったので、よその村のヤギを受けないだけでよいと思う"},
+           {"id": "L860", "against": "40 頭もつぶすと、草で養える数より大きく減ってしまう", "agree": false, "reason": "今のヤギの数なら、つぶす必要はない"},
+           {"id": "L857", "against": "よその村のヤギを受けると、草が足りなくなるおそれがある", "agree": false, "reason": "ヤギは 138 頭で、もう受け入れる余地がほとんどない"},
+           {"id": "L190", "against": "今は草で養えない分のヤギがほとんどいない", "agree": true, "reason": "多すぎる分だけを干し肉にするのは、むだがなくてよい"}],
+ "feeling": "板をひく水の力がどう回っているのか、早くこの目で見たい"}

@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋の風が冷たくなってきた。冬の前に、のこで板をたくさんひいておこう。草の種も少しまいておくよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続けて板をひく。板があると輪や道の手入れが早く進むから。"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "オネ55": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番なので板づくりを続ける。"},
+  "ケセ59": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番なので続ける。"},
+  "ユエ66": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番なので続ける。"},
+  "タユ67": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番なので続ける。"},
+  "アコ68": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで、夏の実りを増やす。"},
+  "ワユ69": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを手伝う。"},
+  "タユ70": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話をして、いなくならないようにする。"}
+ },
+ "keep": false,
+ "judge": {"M550": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種をまき、冬と春に草取りをすると、夏の実りが増える。のこで板をひくと手入れが早く進む。", "because": [5034632], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "今年も作業場で木をひける。体は元気で、冬にそなえる気持ちだ。"}

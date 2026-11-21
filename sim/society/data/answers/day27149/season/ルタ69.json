@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。この秋は、畑にまく種をたっぷり入れて、水の道の手入れも少しずつ進めよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋の畑の草取りで次の夏の実りが増える。畑仕事は村の大事な仕事だから続ける"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"テナ78": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場で板をひき、水の道の手入れをはかどらせるため"}, "ロワ79": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場で板をひいて手入れを助けるため"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}},
+ "keep": false,
+ "judge": {"M550": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1077": false, "T1078": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので守るのがよい"}],
+ "feeling": "蓄えは多くて安心だが、水の道の手入れがまだ先まで残っているのが気にかかる。"}
