@@ -68,6 +68,12 @@ def _g(state):
     return state["era2"]["g7"]["i4"]
 
 
+def closed(state):
+    """i4 の相談を閉じたか (g7.i4.closed。2026-11-21 から、step.py resume --p4 が書く)。閉じたあとは、入口と相談で止めない
+    (知らせ板・手習い・年の行・読める大人が 1 人以下の止まりはそのまま)"""
+    return on(state) and _g(state).get("closed") is not None
+
+
 def _yd(day):
     return f"{day // YEAR}年{day % YEAR + 1}日目"
 
@@ -535,7 +541,7 @@ def check(state, done):
     rd = g10.readers(state)
     if len(rd) <= g15.READERS_STOP and not any(c["why"] == f"i4_readers_{len(rd)}" for c in done):
         return {"why": f"i4_readers_{len(rd)}", "day": D, "text": f"I4: 読める大人が {len(rd)} 人になった"}
-    if (D + 1) % YEAR:
+    if (D + 1) % YEAR or closed(state):  # 閉じたあと (2026-11-21。p4 の印) は、入口・相談で止めない
         return None
     y = D // YEAR
     if y < g["start_year"]:
@@ -640,6 +646,9 @@ def lines(state):
     if not on(state):
         return []
     g = _g(state)
+    if closed(state):  # 2026-11-21: 閉じたあとは、閉じた日の 1 行 (知らせ板と手習いは続いている) と、年の行
+        return ([f"{g['why']}。{_yd(g['closed'])} ({g['closed']} 日目) で相談を閉じた (知らせ板と手習いは続いている)。読める大人 {len(g10.readers(state))}・板の知らせ {len(board_now(state))}"]
+                + [row_text(g["rows"][y]) for y in sorted(g["rows"], key=int)[-3:]])
     out = [f"{g['why']}。{g['day']} 日目から ({g['start_year']}年から数える)。読める大人 {len(g10.readers(state))}・板の知らせ {len(board_now(state))}・習っている子 {len(g['kids'])}"
            + " / " + " / ".join(f"{k} {IS[k]} {_yd(g['f'][k]) if k in g['f'] else 'まだ'}" for k in ("i1", "i2", "i3"))
            + f" / i4 を割った年 {'・'.join(map(str, g['i4_broken'])) or 'なし'} / 入口 {'○' if entrance(state) else 'まだ'}"]

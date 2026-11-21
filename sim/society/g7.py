@@ -73,7 +73,7 @@ def fix(state):
 # 印 g7.method8 がある」ときだけ働く。印は step.py refresh_prompts (mark_method8) か、G15 に入るコードが書く。だから、その日までの歩をやり直しても、
 # state もお題も前と 1 バイトも同じ (G14 の G14_PROMPT_FROM・keep_fix と同じ形)
 METHOD8_FROM = 23219
-LATER_GS = ("g15", "s3", "s4", "i4", "g16", "g17")  # これから足す G の仕組み (ファイルがなければとばす)。ANSWER_FIELDS を読んで、答えの形の欄を自動で足す (i4 は 2026-11-21。鍵 g7.i4 がなければとばす)
+LATER_GS = ("g15", "s3", "s4", "i4", "p4", "g16", "g17")  # これから足す G の仕組み (ファイルがなければとばす)。ANSWER_FIELDS を読んで、答えの形の欄を自動で足す (i4・p4 は 2026-11-21。鍵 g7.i4・g7.p4 がなければとばす)
 
 
 def fix8(state):
@@ -706,15 +706,30 @@ def _i4_on(state):
     return "i4" in ((state["era2"].get("g7") or {})) and _i4m().on(state)  # 印 g7.i4 (step.py resume --i4 だけが書く) のあとだけ
 
 
+def _p4m():
+    """Society 3.0 フェーズ 4 (頼み書きと町。2026-11-21。docs/society_phase/P4_design.md) の仕組み (p4.py)。印 g7.p4 があるときだけ読みこむ"""
+    import p4
+    return p4
+
+
+def _p4_on(state):
+    return "p4" in ((state["era2"].get("g7") or {})) and _p4m().on(state)  # 印 g7.p4 (step.py resume --p4 だけが書く) のあとだけ
+
+
 def board_block(state, p, answer=True):
-    """お題の上のほうの節「## 村の知らせ板」(印 g7.i4 のあとだけ。前は空の文字)"""
+    """お題の上のほうの節「## 村の知らせ板」(印 g7.i4 のあとだけ。前は空の文字)。印 g7.p4 のあとは、知らせのあとに頼み書きの行"""
+    if _p4_on(state) and _i4_on(state):
+        return _p4m().board_block(state, p, answer)
     return _i4m().board_block(state, p, answer) if _i4_on(state) else ""
 
 
 def i4_feelings(state, answers):
-    """気持ちだけ答える人の一言で、知らせの文を使ったか (印 g7.i4 のあとだけ。era2.apply_feelings から。数えるだけ)"""
+    """気持ちだけ答える人の一言で、知らせの文を使ったか (印 g7.i4 のあとだけ。era2.apply_feelings から。数えるだけ)。印 g7.p4 のあとは、頼み書きのことも数える"""
     if _i4_on(state):
-        _i4m().count_used(state, {n: characters.parse(raw) for n, raw in answers.items()})
+        real = {n: characters.parse(raw) for n, raw in answers.items()}
+        _i4m().count_used(state, real)
+        if _p4_on(state):
+            _p4m().count_used(state, real)
 
 
 def enter_next(state, decided=None):
@@ -1057,6 +1072,8 @@ def count_day(state, name, act):
     """人ごとの、この季節の仕事の日数 (役の人・前の年の予定・働いた日の帳簿)"""
     d = _g(state).setdefault("season_days", {}).setdefault(name, {})
     d[act] = d.get(act, 0) + 1
+    if "p4" in _g(state) and _p4_on(state):  # 2026-11-21: 手間返しの日を数える (印 g7.p4 のあとだけ)
+        _p4m().count_day(state, name, act)
     rw = _g(state).get("rest_why")
     if rw and name in rw:  # G10 の直し ② (2026-11-05): 休んだわけを、その人の出来事に残す (季節のはじめの日に 1 回)
         r = rw.pop(name)
@@ -1147,6 +1164,9 @@ def role_day(state, p, t, act):
         return
     if act in ACTS14:  # G14 (2026-11-14)
         _g14m().market_day(state, p, t)
+        return
+    if act in ACTS15 and "p4" in _g(state) and _p4_on(state) and _p4m().working(state, p, act):  # 2026-11-21: 頼みの仕事の日 (印 g7.p4 のあとだけ。できた物は頼んだ家の倉へ)
+        _p4m().work_day(state, p, t, act)
         return
     if act in ACTS15:  # G15 (2026-11-15)
         _g15m().work_day(state, p, t, act)
@@ -1543,6 +1563,8 @@ def season_end(state, frac):
         _s4m().season_end(state)
     if _i4_on(state):  # 2026-11-21: Society 4.0 フェーズ 1 の知らせ板の入れかえ・大人になった子・年の物差し (印 g7.i4 のあとだけ。S4 のあと)
         _i4m().season_end(state)
+    if _p4_on(state):  # 2026-11-21: Society 3.0 フェーズ 4 の頼みの仕事の人をもどす・期限・板の古い頼み・年の物差し (印 g7.p4 のあとだけ。i4 のあと)
+        _p4m().season_end(state)
     yardstick.season_end(state, frac)  # 13. 物差し (乱数なし)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
     _offer(state)
@@ -1559,6 +1581,14 @@ def check(state, met, ind):
         g.setdefault("consulted", []).append(c)
         g["hold"] = {"why": "consult", "era": era, "day": D, "what": c["text"]}
         return "consult"
+    if _p4_on(state):  # 2026-11-21: Society 3.0 フェーズ 4 (印 g7.p4 のあと): 止まるのは P4 の入口と相談と、読める大人が 1 人以下だけ (i4 は閉じた)
+        c = _p4m().check(state, g.setdefault("consulted", []))
+        if not c:
+            return False
+        g["consulted"].append(c)
+        code = "entrance" if c["why"] == "p4_entrance" else "consult"
+        g["hold"] = {"why": code, "era": era, "day": D, "what": c["text"]}
+        return code
     if _i4_on(state):  # 2026-11-21: Society 4.0 フェーズ 1 (印 g7.i4 のあと): 止まるのは I4 の入口と相談だけ (S4 は閉じた。S4・S3・G15 の入口と相談は見ない)
         c = _i4m().check(state, g.setdefault("consulted", []))
         if not c:
@@ -2256,6 +2286,8 @@ def _apply(state, own, kinds, real, how, answer_day=None):
         _s4m().season_start(state)
     if _i4_on(state):  # 2026-11-21: 知らせを書いた家の読める大人は、季節のはじめの 1 日を「知らせを書く」にする (印 g7.i4 のあとだけ。S4 のあと)
         _i4m().season_start(state)
+    if _p4_on(state):  # 2026-11-21: 受けた頼みの人は頼みの仕事 (1 人 10 日まで)・手間を返す家の大人はかわりの仕事 (印 g7.p4 のあとだけ。i4 のあと)
+        _p4m().season_start(state)
 
 
 def apply_year(state, answers, councils=None):
@@ -2304,6 +2336,8 @@ def apply_year(state, answers, councils=None):
         _s4m().apply_answers(state, real)
     if _i4_on(state):  # 2026-11-21: 知らせ板 (notice) と、知らせを使ったか (印 g7.i4 のあとだけ。S4 のあと)
         _i4m().apply_answers(state, real)
+    if _p4_on(state):  # 2026-11-21: 頼み書き (order)・受ける (take) (印 g7.p4 のあとだけ。i4 の知らせのあと)
+        _p4m().apply_answers(state, real)
     own, kinds = {}, {}
     if ask == "年":
         reps = set(_rep_of(state).values())
@@ -2552,6 +2586,8 @@ def _field_rows(state, solo, year):
         rows += _s4m().field_rows(state, year)
     if _i4_on(state):  # 2026-11-21: Society 4.0 フェーズ 1 (印のあとだけ)
         rows += _i4m().field_rows(state, year)
+    if _p4_on(state):  # 2026-11-21: Society 3.0 フェーズ 4 (印のあとだけ)
+        rows += _p4m().field_rows(state, year)
     return "\n".join(rows)
 
 

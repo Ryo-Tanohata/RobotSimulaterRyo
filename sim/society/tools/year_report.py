@@ -436,6 +436,8 @@ def conditions(D, y, phase):
             out["s4"] = [x.replace(S4.S4_NAME, getattr(S4, "S4_LABEL", S4.S4_NAME)) for x in S4.lines(st)]  # 2026-11-20 (s4-c): 人が読む呼び名は Society 3.0 フェーズ 2
         if "i4" in _g7(st):  # 2026-11-21: Society 4.0 フェーズ 1 (読み書きと知らせ板。印 g7.i4 のあとだけ)
             out["i4"] = i4_part(st, y)
+        if "p4" in _g7(st):  # 2026-11-21: Society 3.0 フェーズ 4 (頼み書きと町。印 g7.p4 のあとだけ)
+            out["p4"] = p4_part(st, y)
         p = (g.get("path") or {}).get(str(y))
         cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g15_") and c.get("year", (c.get("day", 0) + 1) // YEAR - 1) == y]
         out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G15"}
@@ -453,6 +455,17 @@ def i4_part(st, y):
     new = sorted(n for n, d in G10._g(st)["readers"].items() if d is not None and d // YEAR == y)
     return {"head": [x.replace(I4.I4_NAME, I4.I4_LABEL) for x in I4.lines(st)[:1]], "rows": rows, "notes": I4.notes_of(st, y), "new": new, "taught": (g["taught"].get(str(y)) or {}),
             "used": (g["used"].get(str(y)) or {}), "learning": len(g["kids"])}
+
+
+def p4_part(st, y):
+    """Society 3.0 フェーズ 4 (頼み書きと町) の節の中身: 年ごとの p1〜p4 の行・この年の頼み書き・約束の帳・よその家のために働いた家・まき集めと家の倉の石"""
+    import p4 as P4
+    g = P4._g(st)
+    rows = [g["rows"][k] for k in sorted(g["rows"], key=int) if int(k) <= y]
+    yr = (g.get("yr") or {}).get(str(y)) or {}
+    pd = yr.get("pd") or {}
+    return {"head": P4.lines(st)[:1], "rows": rows, "orders": P4.orders_of(st, y), "book": P4.book_of(st, y),
+            "town": sorted(pd.items(), key=lambda kv: (-kv[1], kv[0])), "yr": yr}
 
 
 def g11_lines(g, st, y, Y):
@@ -1092,6 +1105,37 @@ def fmt_tokens(n):
     return f"{n:,}"
 
 
+def p4_html(q, w):
+    """年報の節「Society 3.0 フェーズ 4 (頼み書きと町)」の HTML (render から)"""
+    ok = lambda b: "○" if b else "×"  # noqa: E731
+    w('<p style="margin:10px 0 2px"><b>Society 3.0 フェーズ 4 (頼み書きと町): 字で書いた頼みと約束で、家と家が仕事を受けあうか</b></p>')
+    w('<ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in q["head"]) + "</ul>")
+    if q["rows"]:
+        w('<table><tr><td>年</td><td>p1 果たした頼み (4 件・頼んだ家 2・受けた家 2)</td><td>p2 よその家の頼みで 30 人日の家 (2 家)</td><td>p3 食べ物でない仕事 (22% 以上)</td>'
+          '<td>p4 暮らしを守る</td><td>書いた家・受けた家</td><td>まき集め</td></tr>')
+        for r in q["rows"]:
+            w(f"<tr><td>{r['year']}</td><td>{ok(r['p1_like'])} {r['done']} 件 (頼んだ家 {r['req_houses']}・受けた家 {r['taker_houses']})</td>"
+              f"<td>{ok(r['p2_like'])} {r['town_n']} 家 (頼みの仕事 {r['pd']} 人日)</td><td>{ok(r['p3_ok'])} {round(r['p3_share'] * 100, 1)}%</td>"
+              f"<td>{ok(r['p4_ok'])} ききん {r['famine']}・蓄え {r['store_min']} 日分・人 {r['pop']}・読める大人 {round(r['r_share'] * 100, 1)}%</td>"
+              f"<td>{r['wrote']}・{r['took']}</td><td>{r['fire_pd']} 人日</td></tr>")
+        w("</table>")
+    yr = q["yr"]
+    w(f'<p class="note">頼みで掘った燃える石 {round(yr.get("coal_dug", 0))} kg・作業場の板 {round(yr.get("planks_made", 0), 1)} 束 / 家から家へ動いた燃える石 {round(yr.get("coal_moved", 0))} kg・板 {round(yr.get("planks_moved", 0), 1)} 束 / '
+      f'果たせなかった {yr.get("failed", 0)}・板から消えた {yr.get("gone", 0)} / 手間返し {yr.get("back_days", 0)} 人日 / 頼みのことを話で使った回 {yr.get("used", 0)}</p>')
+    if q["orders"]:
+        w('<p style="margin:6px 0 2px"><b>この年の頼み書き</b></p><ul class="note">'
+          + "".join(f"<li>頼み{o['id']} {e(o['season'])} {e(o['house'])} ({e(o['by'])}): {e(o['want'])} {o['n']} ← {e(o['pay'])} {o['pn']} ({e(o['status'])})</li>" for o in q["orders"]) + "</ul>")
+    else:
+        w('<p class="note">この年の頼み書き: なし</p>')
+    if q["book"]:
+        w('<p style="margin:6px 0 2px"><b>約束の帳</b></p><ul class="note">'
+          + "".join(f"<li>頼み{o['id']} {e(o['house'])} → {e(o.get('taker') or '-')}: 働いた {o.get('pd', 0)} 人日・渡した {round(o.get('made', 0))} / {o['n']} "
+                    f"(家の倉から {round(o.get('stock', 0))})・{e(o['status'])}"
+                    + (f"・手間返し {o['back']['done']}/{o['back']['need']} 人日" if o.get("back") else "") + "</li>" for o in q["book"]) + "</ul>")
+    if q["town"]:
+        w('<p class="note">よその家の頼みで働いた家 (人日の多い順): ' + e("・".join(f"{h} {d}" for h, d in q["town"][:10])) + "</p>")
+
+
 def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
     st = D["state"]
     phase = C["phase"]
@@ -1180,6 +1224,8 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
               + "".join(f"<li>{e(x['season'])} {e(x['house'])} ({e(x['by'])}。書いたのは {e(x['writer'])}): 「{e(x['text'])}」</li>" for x in q["notes"]) + "</ul>")
         else:
             w('<p class="note">この年の知らせ: なし</p>')
+    if C.get("p4"):  # 2026-11-21: Society 3.0 フェーズ 4 (頼み書きと町)
+        p4_html(C["p4"], w)
     if C.get("branches"):
         w('<p style="margin:10px 0 2px"><b>反実仮想の枝 (写しを 2 本回して、良いほうを本物の村の続きにした)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["branches"]) + "</ul>")
     if C.get("g14"):
