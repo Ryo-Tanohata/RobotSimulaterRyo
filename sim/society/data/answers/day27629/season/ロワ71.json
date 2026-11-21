@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋はまず種をまこう。そのあと手の空いた人は、板を使って水の道の手入れをしよう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "M6 ののこ番として、板をひいて水の道の手入れをはかどらせるため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ラニ123": true, "ケセ123": true},
+ "family": {
+  "セヤ72": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として続ける"},
+  "オセ76": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として続ける"},
+  "ソナ77": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが多く残っているので手伝う"},
+  "ケナ79": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが多く残っているので手伝う"},
+  "ルタ81": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを守る"},
+  "ホタ82": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを守る"},
+  "ケセ102": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "trade": {"T1119": false, "T1120": "村", "T1121": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあって、ほっとしている。いつもの仕事をていねいに続けたい。"}

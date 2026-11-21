@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "ヤギはもう 35 頭しかいない。つぶすのはやめて、手のあく者は水の道を掘ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだたくさん残っている。水の来る畑は悪い年でも実りが守られる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ラニ123": true}, "keep": false,
+ "feast": false, "leader": null,
+ "trade": {"T1119": "村", "T1120": false, "T1121": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "ヤギは 35 頭でメスだけになった。草で養える数よりずっと少ないので、つぶさないほうがよい", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "ハソ12の村とヒセ5の村が、また草の種を借りに来た。前の分が返ったとは聞いていない", "because": [5290669, 5290670], "confidence": 0.7}],
+ "proposal": {"text": "ヤギは 35 頭でメスだけだから、この 1 年はつぶさずに数を保とう。秋は大人一人 1000 つかみずつまき、手の空いた大人は板を持って水の道の手入れに出よう。", "because": [], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L888", "against": "ヤギはもう 35 頭しかいないのに、さらにつぶすことになる", "agree": false, "reason": "今のヤギの数に合わない"},
+  {"id": "L889", "against": "ヤギはもう 35 頭しかいないのに、さらにつぶすことになる", "agree": false, "reason": "今のヤギの数に合わない"},
+  {"id": "L890", "against": "ヤギはもう 35 頭しかいないのに、さらにつぶすことになる", "agree": false, "reason": "今のヤギの数に合わない"},
+  {"id": "L891", "against": "ヤギはもう 35 頭しかいないのに、さらにつぶすことになる", "agree": false, "reason": "今のヤギの数に合わない"},
+  {"id": "L885", "against": "特にない", "agree": true, "reason": "ヤギを守り、種をまき、水の道を手入れするのは今も正しい"}
+ ],
+ "feeling": "黙って水の道を掘る。それでいい。"}
