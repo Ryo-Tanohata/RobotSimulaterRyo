@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。草の種をしっかりまいて、草取りもみんなでやっておこう。ヤギも草が足りないから、少しお肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えは多いが、毎年の畑を大事にしたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "ムイ72": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、蓄えや畑の帳を残す"},
+  "ケセ74": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"},
+  "ラキ81": {"activity": "水の道を掘る", "place": "camp", "why": "水が来る畑を保つため、水の道の手入れを進める"},
+  "ソワ91": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが草不足なので、世話をきちんとする"},
+  "ルタ93": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M544": "ゆるす", "M545": "ゆるす", "M546": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草原の草で養える数より多いと、やせていなくなる。秋のうちに肉にして数を減らすのがよい。", "because": [4911007], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心。畑とヤギをていねいに見ていきたい。"}

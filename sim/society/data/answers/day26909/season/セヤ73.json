@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。苦しい村には草の種を貸してやろう。おれは水の道を掘るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": ["ケナ74"], "why": "水の道の手入れがまだ大きく残っていて、畑を守るために大人みんなの手が要るから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケナ74": {"activity": "水の道を掘る", "place": "camp", "why": "いっしょに水の道を掘って、畑の実りを守るため"}},
+ "keep": false,
+ "judge": {"M544": "ゆるす", "M545": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1049": "村", "T1050": "村", "T1051": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがあって安心。みんなで助け合って冬をこえたい。"}

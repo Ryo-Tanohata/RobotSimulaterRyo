@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、水の道の手入れにみんなで手を回そう。苦しい村にも草の種を貸してあげようね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っていて、足りないと畑が減るから、家族みんなでそこに人手を回す。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"ハソ73": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大事だから、私と同じ仕事をする。"}, "キサ77": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大事だから、私と同じ仕事をする。"}, "ロワ85": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大事だから、みんなで掘る。"}, "ハソ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大事だから、みんなで掘る。"}},
+ "keep": false,
+ "judge": {"M544": "ゆるす", "M545": "ゆるす", "M546": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1049": "村", "T1050": "村", "T1051": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [{"op": "add", "text": "草が足りないのにヤギが多いと毎年やせていなくなるので、秋に何頭か肉にして数をへらすとよい。", "because": [4911007], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。みんなで水の道を守りたい。"}

@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、水の道の手入れはまだ長く続くよ。わたしは帳をつけて、みんなの数を守るからね。"}],
+ "job": {"activity": "帳をつける", "place": "camp", "with": [], "why": "字が読めるのは村でも限られた人。蓄えや刈り入れの数を残す役目を続けたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "シエ59": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが一番たくさん残っているので手伝う。"},
+  "オネ71": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが一番たくさん残っているので手伝う。"},
+  "ハソ75": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが一番たくさん残っているので手伝う。"},
+  "ワユ75": {"activity": "畑仕事", "place": "camp", "why": "草取りをして、まいた畑の実りを増やす。"},
+  "アコ78": {"activity": "畑仕事", "place": "camp", "why": "草取りをして、まいた畑の実りを増やす。"},
+  "キオ79": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが一番たくさん残っているので手伝う。"},
+  "アコ79": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが一番たくさん残っているので手伝う。"},
+  "トナ91": {"activity": "畑仕事", "place": "camp", "why": "若いので畑の草取りで力をつける。"},
+  "ルタ94": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う。"},
+  "オネ94": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多いので世話を手伝う。"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "town": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは安心だけれど、水の道の仕事の多さが気がかり。ゆっくり確かに進めたい。"}
