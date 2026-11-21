@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。冬の前に、水の道の手入れをこつこつ進めておこう。"}],
+ "job": {"activity": "字を教える", "place": "camp", "with": [], "why": "年のわたしは、子どもたちに字を伝えておきたい。蓄えは十分で、字を覚える子が増えれば村の帳や約束が確かになる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"オセ122": true, "キサ122": true},
+ "family": {
+  "シエ59": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っている。水が来る畑は悪い年にも強い。"},
+  "ハソ75": {"activity": "水の道を掘る", "place": "camp", "why": "手入れの仕事を家で分けて進める。"},
+  "ワユ75": {"activity": "水の道を掘る", "place": "camp", "why": "手入れの仕事を家で分けて進める。"},
+  "キオ79": {"activity": "水の道を掘る", "place": "camp", "why": "力のある人が水の道を進めると早い。"},
+  "トナ91": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひくと、水の道の手入れが半分ですむ。"},
+  "ルタ94": {"activity": "水の作業場で働く", "place": "M26", "why": "板をひくと、手入れの人日が浮く。"},
+  "オネ94": {"activity": "水の作業場で働く", "place": "M26", "why": "板をひくと、手入れの人日が浮く。"},
+  "ハソ100": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをすると実りが増える。"}
+ },
+ "keep": false,
+ "judge": {"M555": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて心が落ち着く。若い人に字を渡していきたい。"}

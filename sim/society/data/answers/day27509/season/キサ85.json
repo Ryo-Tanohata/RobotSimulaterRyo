@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "ヤギはもう 74 頭しかいない。今年はつぶすのをやめておこう。"}],
+ "job": {"activity": "水の道を掘る", "place": "南川12", "with": [], "why": "水の道の手入れがまだたくさん残っている。水が来れば悪い年でも畑の実りが落ちにくい。"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"オセ122": true, "キサ122": true}, "keep": false,
+ "judge": {"M555": "つぐなう"}, "feast": false, "leader": null, "trade": {"T1104": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "ヤギは 74 頭でメスばかり、草で養える約 110 頭よりずっと少ない。今はつぶさないほうがよい", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "この 1 年も、小さい子や働きざかりの人が病で多く亡くなった", "because": [5232471, 5232478, 5232486], "confidence": 0.8},
+  {"op": "add", "text": "ハソ12の村・ワユ3の村・ヒセ5の村は、交換できる物を持たずに何度も来る", "because": [5232501, 5232502, 5232503], "confidence": 0.7}],
+ "proposal": {"text": "ヤギは 74 頭でメスばかり、草の約 110 頭よりずっと少ないから、この 1 年はつぶさずに数を保とう。秋は大人一人 1000 つかみずつまき、手の空いた大人は板を持って水の道の手入れに出よう。", "because": [], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L876", "against": "水の道に出る人が多すぎると畑の草取りが減る", "agree": true, "reason": "ヤギが少ないのでつぶさないのがよい。水の道の手入れも要る"},
+  {"id": "L877", "against": "よそのヤギを受けると病や草の取り合いがおきるかもしれない", "agree": true, "reason": "ヤギが少ないので、つぶさずに保つほうがよい"},
+  {"id": "L878", "against": "よそのヤギを受けると草が足りなくなるかもしれない", "agree": true, "reason": "ヤギが少ないのでつぶさず、まきと水の道もすすめられる"},
+  {"id": "L879", "against": "ヤギはもう 74 頭しかいないのに、25 頭もつぶすのは多すぎる", "agree": false, "reason": "今のヤギの数に合わない"},
+  {"id": "L880", "against": "ヤギはもう 74 頭しかいないのに、25 頭もつぶすのは多すぎる", "agree": false, "reason": "今のヤギの数に合わない"},
+  {"id": "L881", "against": "前に出したが、ヤギはもう 74 頭まで減った。つぶすのは多すぎる", "agree": false, "reason": "ヤギの数が変わったので、もう合わない"},
+  {"id": "L882", "against": "ヤギはもう 74 頭しかいないのに、25 頭もつぶすのは多すぎる", "agree": false, "reason": "今のヤギの数に合わない"}],
+ "feeling": "人が多く亡くなって胸が重いが、黙って水の道を掘る。"}
