@@ -1,0 +1,28 @@
+{"say": [{"to": "みんな", "text": "冬の前に、魚と肉をたくさんとってくる。草の種ばかりでは寂しいからな。"}],
+ "job": {"activity": "狩り", "place": "南川12", "with": [], "why": "狩りの腕には自信がある。川の魚で食べ物に彩りを出し、冬にそなえたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ70": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで次の夏の実りを守る"},
+  "キオ76": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで次の夏の実りを守る"},
+  "オネ81": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を足す"},
+  "ヒセ78": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので魚をとる"},
+  "ケセ79": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので魚をとる"},
+  "ラニ87": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので魚をとる"},
+  "ソナ95": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので魚をとる"},
+  "シエ95": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので魚をとる"},
+  "ロワ96": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので魚をとる"}
+ },
+ "keep": false,
+ "judge": {"M558": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1150": "村", "T1151": "村", "T1152": "村", "T1153": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に一人1000つかみずつ種をまき、草取りをすれば次の夏の実りが守られる。狩りで魚をとれば冬の食べ物に彩りが出る", "because": [5486642], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L913", "against": "", "agree": true, "reason": "ヤギを増やし、秋にしっかり種をまくのはよいことだ"},
+  {"id": "L914", "against": "", "agree": true, "reason": "ヤギを増やし、秋にしっかり種をまくのはよいことだ"},
+  {"id": "L915", "against": "", "agree": true, "reason": "ヤギを増やし、種まきと水の道の手入れも進めるのはよい"},
+  {"id": "L916", "against": "", "agree": true, "reason": "ヤギを増やし、畑を刈りきるのはよいことだ"},
+  {"id": "L917", "against": "", "agree": true, "reason": "ヤギの群れを増やすのはよいことだ"}
+ ],
+ "feeling": "体は軽い。川で魚を追うのが楽しみだ。"}

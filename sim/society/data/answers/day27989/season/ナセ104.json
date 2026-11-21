@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑に草の種をまいておこう。夏にたくさん刈れるように、いっしょに働こう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだないので、蓄えの草の種をまいて夏の刈り入れにそなえ、そのあとも畑を世話するため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホタ104": {"activity": "畑仕事", "place": "camp", "why": "いっしょに畑をまいて世話をするため"}},
+ "keep": false,
+ "judge": {"M558": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1150": false, "T1151": false, "T1152": false, "T1153": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまいておくと、夏に刈れる。", "because": [5486920], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "落ち着いている。畑がうまくいくといい。"}

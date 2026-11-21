@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。この秋は土器を焼いて、冬に備えよう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番高く、蓄えの草の種を虫やネズミから守れるから"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ75": {"activity": "採集", "place": "camp", "why": "腕があるので、食べ物を安定して集める"}, "ユエ81": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M558": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1150": false, "T1151": false, "T1152": false, "T1153": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜に離れないほうが安全だから"}, {"id": "L3", "against": "", "agree": true, "reason": "助け合えるから"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くとけがをしやすいから"}],
+ "feeling": "満腹で穏やか。土器づくりに精を出したい。"}

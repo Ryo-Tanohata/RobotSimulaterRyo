@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、秋のうちに草の種をしっかりまいて、冬と春の草取りも手を抜かずにやろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えは十分なので、畑を育てて次の夏に備える"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ムイ72": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして畑の実りを上げるため"},
+  "ケセ74": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして畑の実りを上げるため"},
+  "ラキ81": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けあうため"},
+  "ルタ93": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けあうため"},
+  "ナセ96": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けあうため"},
+  "ムイ99": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けあうため"},
+  "ヌオ104": {"activity": "畑仕事", "place": "camp", "why": "若いので畑の手伝いから覚えてもらうため"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {"T1150": false, "T1151": false, "T1152": false, "T1153": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を上限までまき、畑仕事で草取りをすると次の夏の実りが増える。蓄えは十分ある。", "because": [5486648], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもあって落ち着いている。この秋もこつこつ畑を育てたい。"}

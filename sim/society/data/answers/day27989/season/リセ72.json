@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、この秋は水の道の手入れに手を回そう。冬の前に、水がよく来るようにしておきたいね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは多く、水の道の手入れが 11789 人日も残っているので、みんなの畑のために人手を回す"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ73": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場で板をひき、水の道の手入れを助ける"}, "キサ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場で板をひき、手入れの人日を浮かせる"}},
+ "keep": false,
+ "judge": {"M558": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1150": "村", "T1151": false, "T1152": "村", "T1153": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは約 435 日分あるので、秋は畑に種をまき、水の道の手入れに人手を回すとよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L913", "against": "", "agree": true, "reason": "ヤギは 28 頭と少ないので、つぶさずにふやしたほうがよい"}, {"id": "L915", "against": "", "agree": true, "reason": "ヤギが減ったので受けて数をもどし、手の空いた人は水の道へ"}, {"id": "L910", "against": "ヤギは 28 頭しかいないのでつぶすと足りなくなる", "agree": false, "reason": "今はヤギをつぶす時ではない"}, {"id": "L912", "against": "ヤギは 28 頭しかいないのでつぶすと足りなくなる", "agree": false, "reason": "今はヤギをつぶす時ではない"}],
+ "feeling": "蓄えがあって安心。みんなで水の道を進めたい。"}

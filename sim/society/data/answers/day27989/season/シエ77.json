@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種は山ほどある。苦しい村には貸して、冬は水の道の手入れに手を出そう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "手入れがまだ山ほど残っている。体はじょうぶだから、冬の前に少しでも進めたい"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ98": {"activity": "狩り", "place": "南川12", "why": "狩りがうまいので、魚をとって冬の食べ物をふやしてほしい"}, "ナセ105": {"activity": "字を教える", "place": "camp", "why": "字が書けるので、ソワ113 たち子どもに教えてほしい"}},
+ "keep": false,
+ "judge": {"M558": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1150": {"side": "村", "利子": 0}, "T1151": {"side": "村", "利子": 0}, "T1152": "村", "T1153": {"side": "村", "利子": 0}},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "蓄えは多い。苦しい村には草の種を貸そう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種は、まわりの村に貸しても足りるほど多い。まわりの村はこの年、畑が実らず苦しい", "because": [5488097, 5488098, 5488100], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L914", "against": "ヤギの数が変わっていたら合わないかもしれない", "agree": true, "reason": "ヤギが少ないあいだはつぶさず、秋に種をしっかりまくのがよい"}, {"id": "L917", "against": "受けすぎると草が足りなくなる", "agree": true, "reason": "ヤギが少ないので、申し出を受けて群れをふやしたい"}],
+ "feeling": "蓄えは十分ある。あとは冬まで手を動かすだけだ"}

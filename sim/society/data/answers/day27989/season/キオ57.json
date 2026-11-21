@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "冬のまえに、のこ場の板をもっとひいておこう。板があれば水の道が早く進むからね。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "M6 ののこ番として続ける。板をひくと水の道の手入れが半分の日数ですむから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オセ67": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番。板をひいて水の道を早める。"}, "ホタ68": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番。板をひいて水の道を早める。"}, "ソナ76": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番。板をひいて水の道を早める。"}},
+ "keep": false,
+ "judge": {"M558": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1150": "村", "T1151": "村", "T1152": false, "T1153": "村"},
+ "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめ、畑がなければ大人一人1000つかみまく。のこ場で板をひく仕事を続け、冬と春の水の道の手入れにそなえる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "のこ場の仕事は手になじんでいる。畑の種もまけるので、冬へ向けて落ち着いた気持ち。"}

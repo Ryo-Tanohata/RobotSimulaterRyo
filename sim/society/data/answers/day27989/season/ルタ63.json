@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "畑がからっぽだから、この秋はしっかりまいて、冬と春の草取りも手分けしようね。ヤギは28頭しかいないから、大事に育てよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑が空なので、まいた畑の草取りをして次の夏の実りをふやしたい"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ヌオ73": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番として板をひき続ける"}, "テナ74": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っている"}}, "keep": false,
+ "judge": {"M558": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1150": {"side": "村", "利子": 0.1}, "T1151": {"side": "村", "利子": 0.1}, "T1152": "村", "T1153": {"side": "村", "利子": 0.1}}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "畑が空。秋は大人一人1000つかみまき、冬と春は草取りに出よう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "まわりの村の多くがこの年は畑が実らず、草の種を借りに来ている", "because": [5488097, 5488098, 5488100], "confidence": 0.8}, {"op": "add", "text": "この1年も、大人が病で何人も亡くなった", "because": [5488089, 5488090, 5488091, 5488092], "confidence": 0.9}],
+ "proposal": {"text": "ヤギは28頭で草の約110頭よりずっと少ないから、この1年はつぶさず、よその村のヤギは110頭をこえない分だけ受けよう。秋は大人一人1000つかみずつまき、冬と春は草取りに出よう。", "because": [5488099], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L913", "against": "ヤギを受けすぎると草が足りなくなるかもしれない", "agree": true, "reason": "ヤギが28頭しかいないので、つぶさずふやすのがよい"},
+  {"id": "L914", "against": "L913 と同じで、重ねて決めなくてもよい", "agree": true, "reason": "ヤギをふやし、畑にしっかりまく考えに賛成"},
+  {"id": "L915", "against": "受ける数の上限が書いていない", "agree": true, "reason": "今はヤギが少ないので、受けて数をもどしてよい"},
+  {"id": "L916", "against": "手のあく大人が少ないと刈りきれないかもしれない", "agree": true, "reason": "ヤギを守り、畑を刈りきり、まく量も十分"},
+  {"id": "L917", "against": "上限がないと、またふえすぎるかもしれない", "agree": true, "reason": "28頭なら、ヤギを受けて群れをふやすのがよい"}
+ ],
+ "feeling": "畑がからっぽなのが少し心配。でも蓄えはたっぷりあるから、落ちついてまこう。"}

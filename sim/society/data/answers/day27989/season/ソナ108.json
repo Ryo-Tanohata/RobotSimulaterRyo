@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "雨の夜に外で濡れる人が多い。冬の前に、屋根のある場所をもっと用意できないかな。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ケナ108"], "why": "採集が一番得意だし、冬の前に草の種と木の実を少しでも多く集めたい。"},
+ "sow": 1000, "pick": 40, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {"ケナ108": {"activity": "採集", "place": "西草原12", "why": "採集も狩りも上手なので、いっしょに草原で集める。"}},
+ "keep": false,
+ "judge": {"M558": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1150": "村", "T1151": "村", "T1152": "村", "T1153": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "雨の夜に村の住まいへ入りきらず、外で濡れる人が多い。", "because": [5488093], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるので安心。冬の前に、できることを少しずつやりたい。"}
