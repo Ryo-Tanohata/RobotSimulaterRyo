@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬の前に、水の道の泥をいっしょにさらおう。畑の水がとだえないようにしたいな。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ たくさん残っている。水が来る畑は悪い年でも実りが半分にならないので、みんなの冬と来年のために続ける。"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"トナ112": {"activity": "水の道を掘る", "place": "camp", "why": "わたしといっしょに水の道を直して、村の畑を守るため。"}},
+ "keep": false,
+ "judge": {"M547": "ゆるす", "M548": "ゆるす", "M549": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1064": false, "T1065": false, "T1066": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "水の道の手入れはまだ たくさん残っていて、手入れをした畑は悪い年でも実りが半分にならない。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、みんなで守るのがよい。"}, {"id": "L3", "against": "", "agree": true, "reason": "複数で行けば助け合えて安全だから。"}],
+ "feeling": "水の道を掘る日々が楽しみ。みんなと冬をこえたい。"}

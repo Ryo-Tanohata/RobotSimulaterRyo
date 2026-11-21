@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "冬の前に、水の道の泥をさらっておこう。おれは今季、水の道を掘る。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが 17099 人日も残っていて、悪い年でも畑を守れるから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ロワ71": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場で板をひくため。"},
+  "セヤ72": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場で板をひくため。"},
+  "オセ76": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場で板をひくため。"}
+ },
+ "keep": false,
+ "judge": {"M547": "ゆるす", "M548": "ゆるす", "M549": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1064": {"side": "村", "利子": 0.1}, "T1065": "村", "T1066": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": []}

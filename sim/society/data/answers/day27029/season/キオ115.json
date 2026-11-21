@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬の前に、水の道の手入れをこつこつ進めたいな。草の種も畑にしっかりまいておこう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ たくさん残っていて、畑の実りを守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"テナ115": {"activity": "水の道を掘る", "place": "camp", "why": "いっしょに水の道を手入れして、畑を守るため"}},
+ "keep": false,
+ "judge": {"M547": "ゆるす", "M548": "ゆるす", "M549": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1064": "村", "T1065": false, "T1066": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "雨の夜に外で濡れたのがつらかった。冬の前に、体を休めつつ働きたい。"}
