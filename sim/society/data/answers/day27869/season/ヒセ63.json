@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は、わしは土器を焼いて冬に備えよう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番だから、冬に使う器を作っておきたい"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ70": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので家の数を書き残す"},
+  "キオ76": {"activity": "狩り", "place": "東林12", "why": "狩りの腕があり、冬の前に肉をたくわえたい"},
+  "オネ81": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので草の種や実を集める"},
+  "セオ100": {"activity": "字を教える", "place": "camp", "why": "字を子どもたちに伝えたい"}
+ },
+ "keep": false,
+ "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1141": {"side": "村", "利子": 0}}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心だ。手を動かして良い器を作りたい。"}

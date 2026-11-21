@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまいて、冬と春のあいだ草取りを忘れずにやろうね。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひく仕事を続ける。板は水の道や輪の直しに役立つから。"},
+ "sow": 800, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "セヤ77": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで実りを増やすため"},
+  "ナセ77": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守るため"},
+  "リセ83": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "板をひいて水の道の手入れを進めるため"},
+  "オセ86": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているため"},
+  "トナ90": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多く、世話をする人が要るため"}},
+ "keep": false,
+ "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1141": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種がとても多く、北西の村に貸しても困らない。", "because": [5421919], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは危ないので、今の決まりを守りたい"}],
+ "feeling": "蓄えは十分で、落ち着いて秋の仕事ができそう。"}

@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。北西の村が困っているから、種を貸してあげよう。わたしは今季も水ののこで板をひくよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として板をひけば、水の道の手入れが早く進むから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "オセ76": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番なので板をひく"},
+  "ソナ77": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っているから"},
+  "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "人がそろうほど板がたくさんできるから"},
+  "ルタ81": {"activity": "畑仕事", "place": "camp", "why": "まいた種の草取りで実りを増やすため"},
+  "ホタ82": {"activity": "水の作業場で働く", "place": "M26", "why": "のこの仲間を増やして板を増やすため"},
+  "ケセ102": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので蓄えの帳を守る"}},
+ "keep": false,
+ "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1141": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは約444日分あり、ヤギは草に対して多すぎる。困っている村には種を貸せる", "because": [5421897, 5421919], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。のこをひく仕事が好きだ。"}

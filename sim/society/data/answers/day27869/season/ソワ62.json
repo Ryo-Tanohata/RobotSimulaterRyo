@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりある。今年の秋は一人1000つかみまいて、手のあく人は板を持って水の道へ出よう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ1万人日あまり残っているので、板を使って進める"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "アコ72": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家みなで進める"},
+  "ルタ73": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひいて手入れをはかどらせる"},
+  "アコ75": {"activity": "水の作業場で働く", "place": "M26", "why": "板をひいて手入れをはかどらせる"},
+  "ソワ80": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"},
+  "ホミ87": {"activity": "畑仕事", "place": "camp", "why": "秋にまく畑の草取りをする"},
+  "ホミ91": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"},
+  "ラキ92": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"},
+  "アコ96": {"activity": "帳をつける", "place": "camp", "why": "読める人として帳をつける"},
+  "ソナ99": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく手伝いをする"},
+  "トナ102": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"},
+  "ハソ107": {"activity": "畑仕事", "place": "camp", "why": "子も畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1141": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種はとても多い。秋にまく畑を決め、手のあく人は水の道の手入れをすればよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。体も元気なので、水の道の仕事をがんばりたい。"}

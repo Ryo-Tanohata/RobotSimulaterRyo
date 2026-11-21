@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "秋だね。畑がからっぽだから、まず種をまこう。そのあとは板をひいて水の道を進めよう。"}, {"to": "ソナ75", "text": "知らせ板の字、いつも読んでくれてありがとう。冬のまえにまた教えてね。"}],
+"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "ひいた板で水の道の手入れが半分の日数ですむ。ずっと続けてきたのこ番の仕事だから、続ける。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+"family": {
+"オセ67": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"},
+"ホタ68": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"},
+"ラニ72": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで夏の実りを増やす"},
+"ソナ75": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、家の人の数と倉の量を帳に書く"},
+"ソナ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"},
+"ムイ76": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ大きく足りない"},
+"タユ80": {"activity": "水の道を掘る", "place": "camp", "why": "板を持って水の道を進める"},
+"セオ86": {"activity": "水の作業場で働く", "place": "M26", "why": "M6 はいっぱいなので M26 で板をひく"},
+"ムイ95": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 で板をひく"},
+"ワユ99": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やす"},
+"ホミ103": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝う"}
+},
+"keep": false,
+"judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1141": "村"}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+"knowledge": [{"op": "add", "text": "秋のはじめに畑がからっぽなら、大人一人1000つかみまく。のこ場の板で水の道の手入れが半分になるので、のこ番の仕事を続けるのがよい。", "because": [5421897], "confidence": 0.6}],
+"proposal": null,
+"votes": [],
+"feeling": "蓄えはたっぷりあって安心。まず種をまいて、あとはのこ場で板をひく日々を続けたい。"}

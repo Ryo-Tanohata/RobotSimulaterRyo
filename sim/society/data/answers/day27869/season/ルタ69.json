@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋だ。まず畑に1000つかみずつまこう。手のあく者はおれと板を持って水の道を掘りに行こう。ヤギは草より多いから、オスを少しつぶして干し肉にするぞ。"}, {"to": "テナ78", "text": "水の道の手入れはまだ一万人日以上ある。いっしょに掘ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが一万人日以上残っていて、板で土どめをすればはかどる。道具の腕もあるので続けて掘る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"テナ78": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進め、来年の畑を守るため"}, "ロワ79": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが大きく残っているので、みんなで掘り進める"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道の手入れを進める"}, "ワユ98": {"activity": "水の道を掘る", "place": "camp", "why": "手入れの人日を増やすため"}}, "keep": false,
+ "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1141": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の養える数より多いので、秋にオスを少しつぶして干し肉にするのがよい。", "because": [5421897], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L904", "against": "つぶさないと草が足りず、ヤギがやせていなくなる", "agree": false, "reason": "ヤギが多すぎるので少しはつぶしたい"}, {"id": "L905", "against": "", "agree": true, "reason": "よそのヤギを受けず、畑と水の道に力を入れるのは正しい"}, {"id": "L906", "against": "", "agree": true, "reason": "春に子が生まれて増えるので、よそのヤギを受けないのがよい"}, {"id": "L907", "against": "よそのヤギを受けるとさらに草が足りなくなる", "agree": false, "reason": "いまヤギは多すぎる"}],
+ "feeling": "蓄えはたっぷりある。あとは水の道を掘り進めるだけだ。体が動くうちにやるぞ。"}

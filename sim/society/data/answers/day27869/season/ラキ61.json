@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋はたっぷりまいて、畑の草取りをみんなでやろう。ヤギは草より多いから、少し肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋は畑の草取りで来年の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3,
+ "family": {
+  "ホミ61": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"},
+  "セオ63": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"},
+  "ケセ67": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"},
+  "オネ70": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"},
+  "ワユ70": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"}
+ },
+ "keep": false, "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に種をまいて草取りをすると、次の夏に畑が実る。ヤギは草より多いので肉にして減らす", "because": [5421897], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "落ち着いている。今年もよく働こう。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の林は実がたくさんだ。東の林へ木の実を集めに行くよ。いっしょに歩きたい人は声をかけて。"}, {"to": "ワユ104", "text": "ヤギが草より多すぎるから、少しつぶして干し肉にしよう。冬の前に蓄えもふえる。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["ワユ104"], "why": "採集と狩りが得意で、人と話しながら歩くのが好き。冬の前に木の実を蓄えたい"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "family": {"ワユ104": {"activity": "採集", "place": "東林12", "why": "ネイ104といっしょに採集して、冬の食べ物をふやす"}}, "keep": false,
+ "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1141": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草原で養える数より多いので、つぶして干し肉にして数を減らすとよい", "because": [5421897], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心。秋の林を歩くのが楽しみだ。"}

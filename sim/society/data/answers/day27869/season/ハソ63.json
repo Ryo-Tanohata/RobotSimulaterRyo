@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋はしっかり種をまいて、あとは水の道の手入れに精を出そう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ1万人日以上残っていて、畑を守るために腕のある大人が掘るのがよいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {
+  "キサ66": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので手伝う"},
+  "オセ72": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので手伝う"},
+  "ラニ74": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので手伝う"},
+  "ケセ76": {"activity": "畑仕事", "place": "camp", "why": "子が多いのでキャンプで畑の草取りをする"},
+  "リセ84": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "ソナ87": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが草より多いので世話をして見守る"},
+  "ケセ94": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるのでキャンプで畑の草取りをする"},
+  "ヌオ97": {"activity": "帳をつける", "place": "camp", "why": "字が読み書きできるので家の数と倉を帳に残す"},
+  "キオ100": {"activity": "帳をつける", "place": "camp", "why": "字が読み書きできるので帳をつける"},
+  "アコ103": {"activity": "字を教える", "place": "camp", "why": "字を読める15歳なので、子らに字を教える"},
+  "キオ104": {"activity": "畑仕事", "place": "camp", "why": "まだ慣れていないので近くで草取りをする"},
+  "ケナ106": {"activity": "ヤギの世話", "place": "camp", "why": "14歳なのでヤギの世話を手伝う"}
+ },
+ "keep": false,
+ "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1141": "村"}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは多く、ヤギは草で養える数より多いので、肉にして減らしたほうがよい。", "because": [5421897], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で安心している。秋の種まきと水の道の手入れを落ち着いて進めたい。"}

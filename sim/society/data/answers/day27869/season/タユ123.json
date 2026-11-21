@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "ヤギが127頭で、草で養えるのは110頭ほどだ。やせて消えるのを待つより、乳の出ないオスを先につぶして干し肉にしたほうがいい。"}, {"to": "ヒセ123", "text": "この秋は二人でのこ場に行こう。板があれば水の輪も道も早く直せる。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": ["ヒセ123"], "why": "道具の腕をいかして板をひけば、直しの手間がずっと減るから"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ123": {"activity": "水の作業場で働く", "place": "M6", "why": "採集は苦手なので、わたしといっしょに板をひくほうが役に立つ"}}, "keep": false,
+ "judge": {"M557": "つぐなう"}, "feast": false, "leader": null, "trade": {"T1141": {"side": "村", "利子": 0.2}}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [{"人": "タユ123", "持ち場": "のこ番", "輪": "M6"}], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村のヤギは127頭で、草で養えるのは約110頭。多すぎて、季節ごとにやせて消えるヤギが出ている", "because": [5421897], "confidence": 0.8}, {"op": "add", "text": "病で若い人や子どもが亡くなることが、まだつづいている", "because": [5421911, 5421912, 5421913, 5421914], "confidence": 0.8}],
+ "proposal": {"text": "ヤギは127頭で草の約110頭をこえている。この1年はよその村のヤギを受けず、秋のはじめに乳の出ないオスから村で17頭ほどつぶして干し肉にしよう。秋は大人一人1000つかみずつまこう。", "because": [5421897], "penalty": {"for": "ヤギ", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L907", "against": "草で養えるのは今は約110頭で、もうこえているのに、まだヤギを受けることになる", "agree": false, "reason": "ヤギがやせて消えているので、受けるのはやめたほうがいい"}, {"id": "L888", "against": "つぶしすぎると春の子ヤギが減るかもしれない", "agree": true, "reason": "多すぎるヤギはオスからつぶすのが筋だから"}, {"id": "L171", "against": "ヤギがほしいときに困る", "agree": true, "reason": "今は草が足りないから、よそのヤギは受けない"}, {"id": "L0", "against": "夜に急ぎの用があるときに動けない", "agree": true, "reason": "ザガは夜に出るから"}],
+ "feeling": "板をどんどんひいて、村の手間を減らしてやる"}

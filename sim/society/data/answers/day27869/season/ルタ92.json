@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ヤギが127頭で、草が足りない。冬の前に何頭か干し肉にして、やせて消えるのをふせごう。"}, {"to": "みんな", "text": "草取りはもう足りているから、手のあいた大人は水の道の手入れに回ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "畑の草取りは足りすぎているので、たくさん残っている水の道の手入れを進めたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1141": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは今127頭で、草で養える約110頭をこえ、前の季節に8頭がやせていなくなった。つぶして干し肉にすると減らせる", "because": [5421897], "confidence": 0.8}, {"op": "add", "text": "蓄えの草の種は土器に入れていても、1 季節に 6 万つかみほど傷む", "because": [5421915], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L907", "against": "140頭は草の数より多い。今の草で養えるのは約110頭だ", "agree": false, "reason": "ヤギはもう草で養える数をこえているので、よその村のヤギは受けないほうがよい"}, {"id": "L906", "against": "とくにない", "agree": true, "reason": "よその村のヤギを受けず、畑を刈りきるのはよい考えだと思う"}, {"id": "L0", "against": "とくにない", "agree": true, "reason": "夜はザガが出るから、キャンプから離れないのが安全"}],
+ "feeling": "蓄えはたっぷりあるけれど、若い人が病で亡くなるのがつらい。子どもたちを守りたい。"}

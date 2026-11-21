@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋だ。畑に種をたっぷりまいて、冬と春は草取りをしよう。ヤギも多すぎるから、少しつぶして肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだないので、種をまいて育て、実りが減らないよう草取りをするため"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "family": {"ホタ104": {"activity": "畑仕事", "place": "camp", "why": "いっしょに畑をまいて草取りをするため"}}, "keep": false,
+ "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑がないので、秋に蓄えの草の種をまかないと夏に刈れない。", "because": [5421892], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は元気で、畑に種をまくのが楽しみだ。"}

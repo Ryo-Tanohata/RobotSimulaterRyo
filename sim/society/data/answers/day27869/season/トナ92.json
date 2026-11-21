@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "ヤギが 127 頭で、草で養える 110 頭をこえている。やせて消える前に、乳の出ないオスから干し肉にしたほうがいいと思う。"}, {"to": "ロワ100", "text": "のこで板をひくと水の道がはかどるらしい。いっしょに作業場で試してみよう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": ["ロワ100", "ソワ101"], "why": "板がどれだけ水の道や輪の直しを早めるのか、自分の手で確かめたい"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ100": {"activity": "水の作業場で働く", "place": "M6", "why": "3 家から 8 人そろうと板が多くとれるので、人数を足す"}, "ソワ101": {"activity": "字を教える", "place": "camp", "why": "字が読める子がふえると、帳や知らせ板が使える人がふえる"}},
+ "keep": false,
+ "judge": {"M557": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1141": {"side": "村", "利子": 0}}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは今 127 頭で、草で養える約 110 頭をこえている。前の季節は 135 頭いて 8 頭がやせていなくなった", "because": [5421897], "confidence": 0.8}, {"op": "add", "text": "病で若い大人も亡くなった。病はまだ続いている", "because": [5421911, 5421912, 5421913, 5421914], "confidence": 0.7}],
+ "proposal": {"text": "ヤギが草で養える約 110 頭より多いあいだは、ヤギを受ける申し出は受けず、この秋のはじめに乳の出ないオスから 17 頭ほどをつぶして干し肉にし、村の蓄えに入れよう。127 頭いて、前の季節も 8 頭がやせていなくなったから。", "because": [5421897], "penalty": {"for": "ヤギ", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L0", "against": "見張りがいれば少しは動ける", "agree": true, "reason": "夜のザガはいまも危ない"}, {"id": "L902", "against": "15 頭では少し足りないかもしれない", "agree": true, "reason": "オスから減らせば草が足りるようになる"}, {"id": "L904", "against": "ヤギは 110 頭をこえているのに、つぶさないとまたやせて消える", "agree": false, "reason": "いまは数が多すぎる"}, {"id": "L907", "against": "もう 110 頭をこえているので、受けるとまた減る", "agree": false, "reason": "よその村のヤギを受ける余地はない"}],
+ "feeling": "板がどれほど仕事を楽にするのか、早く確かめてみたい"}
