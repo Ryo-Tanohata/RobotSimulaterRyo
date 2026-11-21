@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は刈り入れを急ごう。落ちる前に、みんなで畑を刈ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ムイ104": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで刈り入れを急ぐため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがたくさん残っていて、畑を守るため"}, "family": {"ムイ104": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが残っているので一緒に掘る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると実りが増えるから"}, "family": {"ムイ104": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため、草取りを続ける"}, "family": {"ムイ104": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "水の道を掘った年",
+ "feeling": "蓄えは多く、落ち着いている。畑と水の道をしっかり守りたい。"}
