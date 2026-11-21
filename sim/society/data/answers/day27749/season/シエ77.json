@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "畑がからっぽだ。この秋はしっかりまいて、板を作って水の道も直していこう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "板があれば水の道の手入れが半分ですむ。手の空いたおれがのこをひく"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"テナ96": {"activity": "畑仕事", "place": "camp", "why": "まいたばかりの畑の草取りをして、次の夏の実りを増やすため"}, "オネ98": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、ナセ105 たち子どもに字を教えてほしい"}, "ナセ105": {"activity": "畑仕事", "place": "camp", "why": "13 歳なので畑の草取りを手伝ってもらう"}},
+ "keep": false,
+ "judge": {"M556": "ゆるす"}, "feast": false, "leader": "ケナ54",
+ "trade": {"T1132": "村", "T1133": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "畑はからっぽ。秋はしっかりまき、手のあく人は板を持って水の道を直そう",
+ "knowledge": [{"op": "add", "text": "ヤギは 64 頭で草で養える数よりずっと少ない。よその村のヤギを受けてふやしてよい", "because": [5357658, 5357659], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L895", "against": "まく量が書いていない", "agree": true, "reason": "ヤギは少ないのでつぶさず、板で水の道を直すのはよい"},
+  {"id": "L896", "against": "水の道のことがない", "agree": true, "reason": "ヤギをふやし、秋に大人一人 1000 つかみまくのに賛成"},
+  {"id": "L897", "against": "とくにない", "agree": true, "reason": "ヤギを受けて、秋にまき、冬に輪を直す。今の村に合っている"},
+  {"id": "L898", "against": "とくにない", "agree": true, "reason": "畑が空なので、しっかりまくのがいちばん大事"}
+ ],
+ "feeling": "蓄えは山ほどある。あとは畑と水の道をちゃんと整えるだけだ。"}

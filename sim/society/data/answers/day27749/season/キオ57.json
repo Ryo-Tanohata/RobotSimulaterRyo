@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋はまず種をまこう。そのあと、ひと休みせずにのこ場で板をひいて、水の道の手入れを進めましょう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひき続ける。板があると水の道の手入れが半分の日数ですむから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "オセ67": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ大きく残っているから"},
+  "ホタ68": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番として板をひき続けるため"},
+  "ラニ72": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "ソナ75": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "ソナ76": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番として板をひき続けるため"}
+ },
+ "keep": false,
+ "judge": {"M556": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1132": "村", "T1133": "村"}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "村の蓄えがたっぷりあって安心。今年も手を動かして、冬の前に水の道を進めたい。"}

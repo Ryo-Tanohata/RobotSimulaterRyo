@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "秋の仕事のはじまりだ。板ひきの仲間は、また M6 の水ののこに集まろう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として続けている仕事。板は家にも村にも役に立つので、今季も続ける"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソワ71": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番なので、板ひきを続ける"},
+  "シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番なので、板ひきを続ける"},
+  "セオ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番なので、板ひきを続ける"},
+  "セヤ79": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで次の実りを増やす"},
+  "ユエ79": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで次の実りを増やす"},
+  "オセ80": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "テナ80": {"activity": "採集", "place": "camp", "why": "家の食べ物を足す"},
+  "アコ98": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので帳をつける"}
+ },
+ "keep": false,
+ "judge": {"M556": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1132": "村", "T1133": "村"},
+ "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、板ひきの仕事も順調で、おだやかな気持ちだ。"}

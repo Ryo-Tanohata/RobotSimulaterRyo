@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "畑がからっぽだ。今年の秋は、おれたち大人も種をまいて、そのあと水の道の手入れにみんなで出よう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ9473人日も残っていて、畑に水を届けないと実りが守れないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オセ76": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが残っているので、みんなで進める"}, "ソナ77": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}, "ケナ79": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}, "ルタ81": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}, "ホタ82": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}, "ケセ102": {"activity": "帳をつける", "place": "camp", "why": "字が読み書きできるので、家と村の蓄えの数を帳に残す"}},
+ "keep": false,
+ "judge": {"M556": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1132": "村", "T1133": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに畑をからにしないよう、大人一人1000つかみまでの種をまくと、次の夏に実る", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多いが、畑と水の道を整えて、冬の前に安心したい"}

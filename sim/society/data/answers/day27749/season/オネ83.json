@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は畑に種をまいて、水の道の手入れをこつこつ進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っていて、放っておくと畑の実りが減るから。蓄えは十分なので手入れに力を入れる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ101": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家族みんなで進めるため。"}, "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "子でもできる畑の草取りを手伝う。"}},
+ "keep": false,
+ "judge": {"M556": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [{"op": "add", "text": "蓄えが多い秋は、畑に種をまき、水の道の手入れを続けるのがよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがあって安心。コツコツ働こう。"}

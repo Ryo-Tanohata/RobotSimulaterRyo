@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるけど、冬の前にもう少し木の実を集めておこう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "冬に備えて、採集が得意な私が木の実を集めたいから"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ワユ75": {"activity": "採集", "place": "西草原12", "why": "草の種を集めて蓄えを厚くするため"},
+  "キオ79": {"activity": "狩り", "place": "北林12", "why": "狩りの腕があるので、肉を冬の備えにするため"},
+  "トナ91": {"activity": "採集", "place": "東林12", "why": "私と一緒に行けば安全で、たくさん集められるから"},
+  "オネ94": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場を続けて板をひくため"},
+  "ハソ100": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、村の記録を残すため"},
+  "テナ102": {"activity": "知らせを書く", "place": "camp", "why": "季節のはじめに知らせ板へ書くため"}
+ },
+ "keep": false,
+ "judge": {"M556": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1132": "村", "T1133": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心。冬に向けて落ち着いて働きたい。"}

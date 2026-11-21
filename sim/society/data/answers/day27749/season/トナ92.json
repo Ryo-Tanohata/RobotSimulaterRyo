@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "水の道はまだ手入れが山ほど残ってる。板を持って行けば半分ですむから、秋はそっちを掘ってみたい。"}, {"to": "ロワ100", "text": "おまえも板を持って一緒に来い。どこが崩れやすいか、見ながら覚えよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": ["ロワ100", "ソワ101"], "why": "水の道の手入れがたくさん残っていて、村の倉の板を使えば早く進むから"},
+ "sow": 1000, "pick": 20, "plant": 2, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ100": {"activity": "水の道を掘る", "place": "camp", "why": "板を使えば手入れがはかどり、掘り方も覚えられるから"}, "ソワ101": {"activity": "水の道を掘る", "place": "camp", "why": "家みんなで同じ場所を手入れすれば早く終わるから"}},
+ "keep": false,
+ "judge": {"M556": "ゆるす"}, "feast": false, "leader": "ケナ54",
+ "trade": {"T1132": "村", "T1133": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋は大人一人1000つかみまこう。手の空いた人は板を持って水の道へ",
+ "knowledge": [{"op": "add", "text": "ヤギは今64頭で、草で養える約140頭よりずっと少ない。よその村のヤギを受けても草は足りる", "because": [5357658, 5357659], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L895", "against": "水の輪の直しはもう残っていない", "agree": true, "reason": "ヤギが少ないのでつぶさず、板で手入れするのはよいから"}, {"id": "L896", "against": "ふやしすぎると草が足りなくなる", "agree": true, "reason": "今は140頭よりずっと少ないから"}, {"id": "L897", "against": "冬に直す輪はもうない", "agree": true, "reason": "秋に1000つかみまくのは毎年うまくいっているから"}, {"id": "L898", "against": "草の数を110頭と見るのは少なめかもしれない", "agree": true, "reason": "刈りきって、まいて、板で水の道を直すのはよいから"}],
+ "feeling": "水の道がどこまで続くのか、掘りながら見てみたい"}

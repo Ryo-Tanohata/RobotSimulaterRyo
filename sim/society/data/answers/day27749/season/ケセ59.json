@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "冬の前に、板もひいて、畑の種もまいておこうね。みんなで分けあえば、寒い日も安心だよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として、板をひく仕事をこれまで通り続ける。板は水の道の手入れや家の役に立つから。"},
+ "sow": 200, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ユエ66": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として続ける。"},
+  "タユ67": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として続ける。"},
+  "アコ68": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として続ける。"},
+  "タユ70": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として続ける。"},
+  "テナ73": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが残っているので、畑を守るために掘る。"},
+  "ロワ77": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが残っているので手伝う。"},
+  "キオ77": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが残っているので手伝う。"},
+  "ケナ81": {"activity": "水の道を掘る", "place": "camp", "why": "直す輪がないので、水の道を掘る。"},
+  "セオ81": {"activity": "水の道を掘る", "place": "camp", "why": "直す輪がないので、水の道を掘る。"},
+  "シエ82": {"activity": "水の道を掘る", "place": "camp", "why": "直す輪がないので、水の道を掘る。"},
+  "ナセ82": {"activity": "水の道を掘る", "place": "camp", "why": "直す輪がないので、水の道を掘る。"}
+ },
+ "keep": false,
+ "judge": {"M556": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1132": "村", "T1133": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "村の蓄えもたっぷりあって安心。冬の前にみんなで働けるのがうれしい。"}

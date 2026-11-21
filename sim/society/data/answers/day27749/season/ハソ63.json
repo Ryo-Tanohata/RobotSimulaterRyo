@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがまだ山ほど残っている。この秋は板を使って、みんなで掘ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが9473人日も残っていて、秋に掘ると畑が守られるから"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ66": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので手伝ってもらう"},
+  "オセ72": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので手伝ってもらう"},
+  "ラニ74": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので手伝ってもらう"},
+  "ケセ76": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので手伝ってもらう"},
+  "リセ84": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので手伝ってもらう"},
+  "ソナ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので手伝ってもらう"},
+  "ケセ94": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので手伝ってもらう"},
+  "ヌオ97": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので水の道掘りに回る"},
+  "キオ100": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、帳と知らせ板の役目を続けてもらう"}
+ },
+ "keep": false,
+ "judge": {"M556": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えは多くて安心だが、水の道の仕事の多さが気がかりだ。"}
