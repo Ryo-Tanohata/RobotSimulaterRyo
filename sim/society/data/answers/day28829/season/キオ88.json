@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えは四百日分以上あるけれど、水の道の手入れがまだたくさん残っている。この秋は私の家みんなで水の道を掘るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは多いが水の道の手入れが大きく残っている。水が来る畑は悪い年でも実りが半分にならないので、秋は水の道を掘るのがよい。"}, "sow": 200, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"ワユ95": {"activity": "水の道を掘る", "place": "camp", "why": "力のある大人は水の道の手入れに回るのがよい。"}, "シエ98": {"activity": "水の道を掘る", "place": "camp", "why": "小さい子が多いので、キャンプのそばで水の道を掘る。"}, "ワユ101": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れはまだ大きく残っているので手伝う。"}, "アコ114": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道を掘り、畑に水を届ける。"}},
+ "keep": false,
+ "judge": {"M570": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは多くても、水の道の手入れはまだ大きく残っているので、秋は家族みんなで水の道を掘り、畑に草の種をまくのがよい。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので、みんなで守るのがよい。"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くと危ないので、休むのは大事。"}],
+ "feeling": "蓄えは安心だけれど、水の道はまだ長い。家族と一緒に、こつこつ掘ろう。"}

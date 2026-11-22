@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いから、この秋は草の種をたっぷりまいて、草取りもみんなでやろう。苦しい村には貸してあげよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると次の夏の実りが増えるから、まいたあとの草取りに力を出す"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ハソ139": true, "オセ139": true},
+ "family": {"ヒセ100": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので、草取りを手伝って実りを増やす"}, "オネ114": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているので、畑を守るために働く"}},
+ "keep": false,
+ "judge": {"M570": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1244": "村", "T1245": "村", "T1246": "村", "T1247": "村", "T1248": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあって、畑もよく実りそうで、わくわくしている。"}

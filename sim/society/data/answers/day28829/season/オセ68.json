@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "のこ番のつとめで、この秋も水ののこで板をひくよ。蓄えは十分あるから、手のあく人は作業場に来て、いっしょに板をひこう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": ["ホタ70", "ロワ73"], "why": "M6のこ番だから。板が増えれば水の道の手入れも早く進むし、家の板にもなる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ハソ139": true},
+ "family": {"ホタ70": {"activity": "水の作業場で働く", "place": "M6", "why": "M6のこ番なので、持ち場で板をひく"}, "ロワ73": {"activity": "水の作業場で働く", "place": "M6", "why": "M6のこ番なので、持ち場で板をひく"}},
+ "keep": false,
+ "judge": {"M570": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1244": "村", "T1245": "村", "T1246": false, "T1247": false, "T1248": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L963", "against": "", "agree": true, "reason": "小さい子のいる家が薬をもらえるのはよいことで、板をひく手伝いも作業場の役に立つ"}, {"id": "L964", "against": "", "agree": true, "reason": "小さい子を守れるし、石掘りを手伝えば家どうしが助け合える"}],
+ "feeling": "今年もたくさん板をひけて、ほっとしている。みんなと働くのは楽しい。"}

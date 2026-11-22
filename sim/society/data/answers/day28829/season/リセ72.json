@@ -1,0 +1,7 @@
+{"say": [{"to": "ロワ85", "text": "うちの小さい子のために、北の丘で燃える石を掘って、川下の町から子の薬をもらおう。わたしたちも一緒に掘るよ。"}, {"to": "みんな", "text": "蓄えは多いから、苦しい村には貸してあげよう。畑には秋のうちに種をまこうね。"}],
+ "job": {"activity": "燃える石を掘る", "place": "北丘12", "with": ["ロワ85", "ハソ87"], "why": "小さい子が3人いる家なので、町の頼み18を受けて燃える石を掘り、子の薬をもらうため"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ハソ139": true}, "family": {"ロワ85": {"activity": "燃える石を掘る", "place": "北丘12", "why": "頼み18の燃える石を一緒に掘って子の薬をもらうため"}, "ハソ87": {"activity": "燃える石を掘る", "place": "北丘12", "why": "頼み18の燃える石を一緒に掘って子の薬をもらうため"}, "シエ96": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているため"}, "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているため"}, "セオ105": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているため"}, "オセ115": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているため"}}, "keep": false,
+ "judge": {"M570": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1244": "村", "T1245": "村", "T1246": false, "T1247": false, "T1248": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": {"頼み": 18, "人": ["リセ72", "ロワ85", "ハソ87"]},
+ "knowledge": [{"op": "add", "text": "町の頼みを受けて燃える石を掘ると、子の薬がもらえて、小さい子が病で亡くなりにくくなる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "小さい子たちが元気に冬をこせるように、しっかり働こうと思う。"}

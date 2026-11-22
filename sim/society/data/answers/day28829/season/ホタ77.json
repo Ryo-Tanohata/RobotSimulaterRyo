@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は手のあく者で水の道を掘って、冬に備えよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ7000日分以上残っていて、みんなの畑を守るため"}, "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ハソ139": true}, "family": {"ソワ112": {"activity": "字を教える", "place": "camp", "why": "字が読めて、子に教えられるから"}, "ムイ114": {"activity": "帳をつける", "place": "camp", "why": "字が読める人が帳をつけると助かるから"}}, "keep": false,
+ "judge": {"M570": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1244": "村", "T1245": "村", "T1246": "村", "T1247": "村", "T1248": "村"}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは400日分以上あり、水の道の手入れはまだ7000日分以上残っている。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。みんなと水の道を掘る。"}

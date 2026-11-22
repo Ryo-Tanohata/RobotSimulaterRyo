@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋の畑は草取りがいちばん大事。冬の前に、まいた畑をしっかり見ておこう。"}, {"to": "ロワ136", "text": "うちのかまどを石のかまどに変えよう。まき集めが減れば、そのぶん畑に出られる。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草を取れば、次の夏の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ハソ139": true, "オセ139": true},
+ "family": {"ロワ136": {"activity": "かまどを作りかえる", "place": "camp", "why": "まき集めの手間を減らして、ほかの仕事に回すため"}},
+ "keep": false,
+ "judge": {"M570": "ゆるす"},
+ "feast": false,
+ "leader": "テナ61",
+ "trade": {"T1244": "村", "T1245": "村", "T1246": false, "T1247": false, "T1248": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "苦しい村が草の種を借りに来ることが多い。蓄えは多いので貸しても困らない", "because": [5976746, 5976747, 5976750], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L962", "against": "貸した種が返らないこともある", "agree": true, "reason": "ヤギは多すぎるし、蓄えはたっぷりあるから苦しい村に貸せる"},
+  {"id": "L961", "against": "つぶすオスの数が多すぎるかもしれない", "agree": true, "reason": "ヤギが草で養える数をこえているから"},
+  {"id": "L964", "against": "燃える石掘りの手がとられる", "agree": true, "reason": "小さい子が病で亡くなるのを減らしたい"}
+ ],
+ "feeling": "畑とかまど、できることを一つずつ進めよう。"}
