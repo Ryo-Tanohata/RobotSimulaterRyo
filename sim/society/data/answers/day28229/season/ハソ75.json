@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は畑に種をしっかりまいて、水の道の手入れをみんなで進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、水が来る畑は悪い年でも実りが守られるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ワユ75": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "キオ79": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "トナ91": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで夏の実りを増やすため"},
+  "オネ94": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひくため"},
+  "ハソ100": {"activity": "帳をつける", "place": "camp", "why": "家の人の数と倉の量を字で書き残すため"},
+  "テナ102": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "シエ103": {"activity": "字を教える", "place": "camp", "why": "家の子や村の子に字を教えるため"},
+  "タユ108": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "トナ109": {"activity": "字を教える", "place": "camp", "why": "子どもたちに字を教えるため"}
+ },
+ "keep": true,
+ "judge": {"M560": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "蓄えが多くて落ち着いている。冬の前に畑と水の道をととのえたい。"}
