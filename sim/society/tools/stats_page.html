@@ -298,7 +298,7 @@ function cover(p) {
 const HEAD = ["pop", "gdp", "store_min", "nonfood", "literacy", "imr"];
 const FIELD_HEAD = {pop: ["pop", "households", "pop_growth"], vital: ["births", "deaths", "e0"], econ: ["gdp", "gdp_pc", "gdp_growth"],
   work: ["work_days", "work_food", "rest_share"], food: ["harvest", "kcal_pc", "store_min"], price: ["trade_ratio"], living: ["wealth_gini", "store_gini", "rain_out"],
-  edu: ["literacy", "kids_taught"], health: ["imr", "u5mr", "sick_deaths"], ext: ["trade_in", "partners", "town_done"], rules: ["laws", "disputes"], env: ["coal_burned", "canal_days"]};
+  edu: ["literacy", "kids_taught"], health: ["imr", "u5mr", "sick_deaths", "care_kids"], ext: ["trade_in", "partners", "town_done"], rules: ["laws", "disputes"], env: ["coal_burned", "canal_days"]};
 function inEra(i, era) { return i.eras.includes(+era.slice(1)); }
 function eraPanel(era) {
   const p = document.getElementById("p-" + era);

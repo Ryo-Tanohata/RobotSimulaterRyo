@@ -2744,13 +2744,21 @@ def _season_end(state, frac=1.0):
                 log(state, "生まれる", w["name"], f"{w['name']} に子が生まれた。名前は {c['name']} ({c['sex']})")
     # 子の死亡 (【文献】15 歳までに 4〜5 割。0 歳 1 季節 0.06、1〜4 歳 0.015、5〜14 歳 0.004 を仮定) と、飢え
     sick = _g7m().sick_mult(state) if "g7" in e2 else 1  # G7: 村に病がはやった季節は 3 倍 (乱数を引く回数は同じ。4.F の 7)
-    for c in [c for c in children(state) if c["born_day"] < e2.get("step_day", 0)]:  # この回に生まれた子は、次の回から
+    kids = [c for c in children(state) if c["born_day"] < e2.get("step_day", 0)]  # この回に生まれた子は、次の回から
+    care = None
+    if "g7" in e2 and "fix1" in (e2["g7"].get("t5") or {}):  # 2026-11-22: T5 の直し 1 (印 g7.t5.fix1 のあとだけ): 子の薬と手当ての書きつけの掛け目 (乱数を引く回数は同じ。T5_design.md 7.)
+        care = _g7m().t5_care(state, kids, sick, frac)
+    for c in kids:
         p_die = (0.06 if c["age"] < 1 else 0.015 if c["age"] < 5 else 0.004) * sick
+        if care and c["name"] in care:
+            p_die *= care[c["name"]]
         if c["hunger"] >= 0.9:
             p_die = max(p_die, 0.3)
         if rng.random() < p_die * frac:
             c["alive"] = False
             log(state, "死", c["name"], f"{c['name']} ({c['age']} 歳) が亡くなった")
+    if care is not None:
+        _g7m().t5_care_after(state, care, kids)
     # 年をとった大人の死 (【仮定】55 歳から 1 季節 0.02)
     # G4 から、病気やけがで若い大人も亡くなる (【文献の目安】新石器時代の 15 歳の平均余命は 20〜25 年ほど (骨の年齢推定。資料で差が大きい)。
     #   【仮定】15〜39 歳 1 季節 0.0075 (1 年 3%)、40〜54 歳 0.0125 (1 年 5%))

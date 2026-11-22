@@ -489,6 +489,8 @@ def year_row(ctx, y, full=True):
     t5r, p4r = ctx.g7rows("t5").get(str(y)), ctx.g7rows("p4").get(str(y))
     o["for_others"] = ((t5r or {}).get("town_pd") or 0) + ((p4r or {}).get("pd") or 0) if (t5r or p4r) else None
     o["town_done"] = t5r.get("done") if t5r else None
+    o["care_kids"] = t5r.get("care_cs") if t5r else None  # 2026-11-22: T5 の直し 1 (子の病の手当て) のあとの年だけ
+    o["care_saved"] = t5r.get("saved") if t5r else None
     o["p4_done"] = p4r.get("done") if p4r else None
     s3r = ctx.g7rows("s3").get(str(y)) or {}
     for k in ("coal_burned", "coal_dug", "house_coal"):
@@ -738,7 +740,8 @@ def check(ctx, report_dir, years=None):
             "goats": o["goats"], "store_min": o["store_min"], "readers": o["readers"], "adults": o["lit_adults"], "literacy": o["literacy"],
             "nonfood": o["nonfood"], "kcal_pc": o["kcal_pc"], "wealth_gini": o["wealth_gini"], "house_gini": o["house_gini"], "homes": o["homes"],
             "bal_village_kcal": (o.get("bal_village") or 0) * UNIT, "bal_house_kcal": (o.get("bal_house") or 0) * UNIT, "e0_5y": o["e0"], "tfr_5y": o["tfr"],
-            "laws": o["laws"], "known": o.get("known"), "partners": o.get("partners"), "canal_days": o.get("canal_days"), "town_done": o.get("town_done")}
+            "laws": o["laws"], "known": o.get("known"), "partners": o.get("partners"), "canal_days": o.get("canal_days"), "town_done": o.get("town_done"),
+            "care_kids": o.get("care_kids")}
     rough = {"gdp_kcal", "gdp_food_kcal", "exp_cons_kcal", "exp_stock_kcal", "exp_net_kcal", "work_days", "harvest", "bal_village_kcal", "bal_house_kcal", "kcal_pc"}
     for k, v in R["values"].items():
         m = mine.get(k)

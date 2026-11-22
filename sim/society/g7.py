@@ -731,6 +731,16 @@ def t5_harvest(state, p, n):
     return _t5m().harvest(state, p, n)
 
 
+def t5_care(state, kids, sick, frac):
+    """era2 の季節の終わりの子の死から (印 g7.t5.fix1 のあとだけ): 0〜4 歳の子ごとの子の薬と手当ての書きつけの掛け目 {名: 掛け目}"""
+    return _t5m().care(state, kids, sick, frac)
+
+
+def t5_care_after(state, plan, kids):
+    """era2 の季節の終わりの子の死のあと (印 g7.t5.fix1 のあとだけ): 亡くなった 0〜4 歳の子を家ごとに帳へ"""
+    return _t5m().care_after(state, plan, kids)
+
+
 def board_block(state, p, answer=True):
     """お題の上のほうの節「## 村の知らせ板」(印 g7.i4 のあとだけ。前は空の文字)。印 g7.p4 のあとは、知らせのあとに頼み書きの行。印 g7.t5 のあとは、そのあとに川下の町の頼みの行"""
     if _t5_on(state) and _p4_on(state) and _i4_on(state):

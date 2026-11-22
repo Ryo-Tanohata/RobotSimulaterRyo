@@ -483,8 +483,13 @@ def t5_part(st, y):
     import t5 as T5
     g = T5._g(st)
     rows = [g["rows"][k] for k in sorted(g["rows"], key=int) if int(k) <= y]
-    return {"head": T5.lines(st)[:1], "rows": rows, "orders": T5.orders_of(st, y), "book": T5.book_of(st, y),
-            "tools": {h: len(v) for h, v in sorted(g["tools"].items()) if v}, "yr": (g.get("yr") or {}).get(str(y)) or {}}
+    out = {"head": T5.lines(st)[:1], "rows": rows, "orders": T5.orders_of(st, y), "book": T5.book_of(st, y),
+           "tools": {h: len(v) for h, v in sorted(g["tools"].items()) if v}, "yr": (g.get("yr") or {}).get(str(y)) or {}}
+    if "fix1" in g:  # 2026-11-22: 町の払いの直し 1 (子の病の手当て。印 g7.t5.fix1 のあとだけ。T5_design.md 7.)
+        cg = g["care"]
+        out["fix1"] = g["fix1"]
+        out["care"] = {"meds": dict(sorted(cg["meds"].items())), "sheets": sorted(cg["sheets"]), "yr": (cg.get("yr") or {}).get(str(y)) or {}}
+    return out
 
 
 def g11_lines(g, st, y, Y):
@@ -1195,9 +1200,24 @@ def t5_html(q, w):
     yr = q["yr"]
     w(f'<p class="note">町に渡した燃える石 {round(yr.get("coal", 0))} kg・板 {round(yr.get("planks", 0), 1)} 束 / 運んだ日 {yr.get("carry", 0)} / '
       f'町の鎌を持つ家: {e("・".join(f"{h} {n}" for h, n in list(q["tools"].items())[:12]) or "なし")}{" ほか" if len(q["tools"]) > 12 else ""}</p>')
+    if q.get("fix1"):  # 2026-11-22: 町の払いの直し 1 (子の病の手当て)
+        f, cq = q["fix1"], q["care"]
+        w(f'<p style="margin:6px 0 2px"><b>直し 1: 町の払いを子の病の手当て (子の薬と手当ての書きつけ) に ({f["start_year"]}年から)</b></p>')
+        hr = [r for r in q["rows"] if "h1_like" in r]
+        if hr:
+            w('<table><tr><td>年</td><td>h1 手当てが届いた子 (子 × 季節 40・家 2)</td><td>子の薬 (町が書いた・払った・使った・年の終わりに家に)</td><td>書きつけ (渡した・読める大人のいる家)</td>'
+              '<td>亡くなった 0〜4 歳 (手当てのあった子)</td><td>生まれた子</td><td>0〜4 歳 千人・年あたりの死 (5 年でならして)</td><td>見込みで救えた子 (直しから)</td></tr>')
+            for r in hr:
+                w(f"<tr><td>{r['year']}</td><td>{ok(r['h1_like'])} {r['care_cs']} ({r['care_house_n']} 家。薬 {r['med_cs']}・書きつけ {r['sheet_cs']})</td>"
+                  f"<td>{r['posted_meds']}・{r['paid_meds']}・{r['meds_used']}・{r['meds_now']} 包み ({r['med_houses']} 家)</td><td>{r['sheets_given']}・{r['sheet_houses']} 家</td>"
+                  f"<td>{r['u5_dead']} 人 ({r['care_dead']})</td><td>{r['births']}</td><td>{r['u5_rate']} ({r.get('u5_rate_avg')})</td><td>{r['saved']} 人 ({r.get('saved_sum')})</td></tr>")
+            w("</table>")
+        w(f'<p class="note">子の薬を持つ家: {e("・".join(f"{h} {n}" for h, n in list(cq["meds"].items())[:12]) or "なし")}{" ほか" if len(cq["meds"]) > 12 else ""} / '
+          f'手当ての書きつけのある家: {e("・".join(cq["sheets"][:12]) or "なし")}{" ほか" if len(cq["sheets"]) > 12 else ""}</p>')
     if q["orders"]:
         w('<p style="margin:6px 0 2px"><b>この年の町の頼み</b></p><ul class="note">'
-          + "".join(f"<li>頼み{o['id']} {e(o['season'])}: {e(o['want'])} {o['n']} ← 町の鎌 {o['pn']} 本 ({e(o['status'])}"
+          + "".join(f"<li>頼み{o['id']} {e(o['season'])}: {e(o['want'])} {o['n']} ← {e((o.get('was') or o)['pay'])} {(o.get('was') or o)['pn']} 本"
+                    + (f" (直し 1 の日に {e(o['pay'])} {o['pn']} 包みに書きかえ)" if o.get("was") else f" 包み" if o["pay"] == "子の薬" else "") + f" ({e(o['status'])}"
                     + (f"。受けた家 {e(o.get('taker'))}・働いた {o.get('pd', 0)} 人日・家の倉から {round(o.get('stock', 0))}" if o.get("taker") else "") + ")</li>" for o in q["orders"]) + "</ul>")
     else:
         w('<p class="note">この年の町の頼み: なし</p>')
@@ -1418,6 +1438,11 @@ def phase_panel(st, y):
         Y.append(_yard("t4", "暮らしを守る", r["t4_ok"], f, now, "4 つ全部", note))
         chips = [("町の頼み 出した", r["posted"], "枚"), ("果たした", r["done"], "件"), ("果たせなかった", r["failed"], "件"), ("消えた", r["gone"], "件"),
                  ("鉄の鎌 いま", r["tools_now"], f"本 ({r['tool_houses']} 家)"), ("鎌で刈った日", r["reap_uses"], "日")]
+        if "h1_like" in r:  # 2026-11-22: 町の払いの直し 1 (子の病の手当て)
+            Y.append(_yard("h1", "手当てが届いた子", r["h1_like"], min(r["care_cs"] / M.H1_CS, r["care_house_n"] / M.H1_HOUSES),
+                           f"{r['care_cs']} 人・季節・{r['care_house_n']} 家", f"{M.H1_CS} 人・季節・{M.H1_HOUSES} 家",
+                           "子の薬か手当ての書きつけで守られた 0〜4 歳の子 (1 人 1 季節を 1 と数える)"))
+            chips += [("子の薬 使った", r["meds_used"], "包み"), ("亡くなった 0〜4 歳", r["u5_dead"], "人"), ("見込みで救えた子", r["saved"], "人")]
     elif key == "p4":
         import p4 as M
         title = "フェーズ 4 (頼み書きと町) の物差し"
@@ -1475,7 +1500,8 @@ def fields_html(o, defs):
                    ("雨の夜に外にいた人", f"{_f(o.get('rain_out'))} 人", "シ")],
         "edu": [("読める大人", f"{pc(o.get('literacy'))} ({_f(o.get('readers'))}/{_f(o.get('lit_adults'))} 人)", "シ"), ("手習いの子", f"{_f(o.get('kids_taught'))} 人", "シ")],
         "health": [("乳児死亡率", f"{_f(o.get('imr'))}‰ (5 年 {_f(o.get('imr5'))}‰)", "シ"), ("病で亡くなった人", f"{_f(o.get('sick_deaths'))} 人", "シ"),
-                   ("けがで休んだ", f"{_f(o.get('injured'))} 人日", "シ")],
+                   ("けがで休んだ", f"{_f(o.get('injured'))} 人日", "シ")] + ([("手当てが届いた 0〜4 歳の子", f"{_f(o.get('care_kids'))} 人・季節 (見込みで救えた子 {_f(o.get('care_saved'), 2)} 人)", "シ")]
+                                                                       if o.get("care_kids") is not None else []),
         "ext": [("よそから入った草の種", f"{_f(o.get('trade_in'))} つかみ", "シ"), ("相手の村 (4 季節)", f"{_f(o.get('partners'))} 村", "シ"),
                 ("果たした町の頼み", f"{_f(o.get('town_done'))} 件", "シ")],
         "rules": [("生きている掟", f"{_f(o.get('laws'))} 件", "村"), ("新しいもめごと", f"{_f(o.get('disputes'))} 件", "シ")],

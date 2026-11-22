@@ -1896,6 +1896,33 @@
    "headline": false
   },
   {
+   "id": "care_kids",
+   "field": "health",
+   "name": "手当てが届いた 0〜4 歳の子 (子 × 季節)",
+   "unit": "人・季節",
+   "tag": "シ",
+   "status": "○",
+   "formula": "t5 の行の care_cs (子の薬か手当ての書きつけで守られた 0〜4 歳の子。1 人 1 季節を 1)。見込みで救えた子 (saved) も横に",
+   "source": "state.json era2.g7.t5",
+   "national": "予防接種率・保健サービスを受けた子の割合の近い形",
+   "refs": [
+    3
+   ],
+   "eras": [
+    3
+   ],
+   "since": "239年",
+   "unlock": "T5 の直し 1 (町の払いを子の病の手当てに) のあと",
+   "tech": [
+    "町",
+    "文字"
+   ],
+   "note": "T5_design.md 7.。見込みで救えた子は、乱数でなく見込みの和",
+   "kind": "num",
+   "good": "up",
+   "headline": false
+  },
+  {
    "id": "doctor",
    "field": "health",
    "name": "医者・薬",
