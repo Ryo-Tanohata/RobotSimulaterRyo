@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "おれは狩りが得意だ。この一年は森と草原でけものを追って、肉を村に持ち帰る。ナセ105は畑と木の実を頼む。"}],
+ "year": {
+  "夏": {"job": {"activity": "狩り", "place": "西草原28", "with": [], "why": "狩りの腕が一番高いので、肉をとって蓄えを助ける"}, "family": {"ナセ105": {"activity": "畑仕事", "place": "camp", "why": "夏は実った畑を刈る時期なので、刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "得意な狩りで肉を集める"}, "family": {"ナセ105": {"activity": "採集", "place": "camp", "why": "秋は木の実が実るので集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "狩り", "place": "南林12", "with": [], "why": "冬は木の実がないが、けものと魚はいるので狩る"}, "family": {"ナセ105": {"activity": "畑仕事", "place": "camp", "why": "草取りで春からの実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "続けて肉をとる"}, "family": {"ナセ105": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"シエ130": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1180": false, "T1181": false, "T1182": false, "T1183": false, "T1184": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "狩りの年",
+ "feeling": "体が軽い。早く森に出て獲物を追いたい。"}

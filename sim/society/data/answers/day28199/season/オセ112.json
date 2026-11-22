@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑をしっかり刈って、冬にそなえよう。わたしは先に動くよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"キサ112": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手をふやすため"}, "テナ113": {"activity": "畑仕事", "place": "camp", "why": "半人前でも刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "木の実や草の種を集めて蓄えをふやす"}, "family": {"キサ112": {"activity": "狩り", "place": "東林12", "why": "肉も蓄えたいから"}, "テナ113": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "冬も魚やけものはいるので肉を取る"}, "family": {"キサ112": {"activity": "狩り", "place": "南林12", "why": "冬の食べ物を足すため"}, "テナ113": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "近くで食べ物を集める"}, "family": {"キサ112": {"activity": "採集", "place": "西草原12", "why": "近くで食べ物を集める"}, "テナ113": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏に畑を刈らないと実りが落ちるので、夏は刈り入れをいちばんにする。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "蓄えは多い。大胆にいくけれど、夏の刈り入れはしっかりやるつもり。"}

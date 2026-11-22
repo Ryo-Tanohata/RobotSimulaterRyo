@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑の実りをしっかり刈って、蓄えに入れましょう。みんなで力を合わせれば大丈夫です。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実りが落ちてしまうから"}, "family": {"ホミ101": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が多いほど早いから"}, "ラニ103": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "ケナ104": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}, "オネ109": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋のはじめに畑をまくので、そのあとの世話をする"}, "family": {"ホミ101": {"activity": "採集", "place": "camp", "why": "食べ物を足すため"}, "ラニ103": {"activity": "採集", "place": "camp", "why": "食べ物を足すため"}, "ケナ104": {"activity": "採集", "place": "camp", "why": "食べ物を足すため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やすため"}, "family": {"ホミ101": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいるから"}, "ラニ103": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ケナ104": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのために草取りを続ける"}, "family": {"ホミ101": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ラニ103": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ケナ104": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "みんなで刈った実りの年",
+ "feeling": "蓄えがたっぷりあって安心です。みんなで元気に過ごしたいです。"}
