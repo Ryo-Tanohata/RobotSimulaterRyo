@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えは四百日分ある。水の道の手入れがまだ大きく残っているから、この秋はみんなで水の道を掘ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分あり、水の道の手入れが八千人日以上残っているから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {},
+ "family": {
+  "ワユ95": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道の手入れを進めるため"},
+  "シエ98": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道の手入れを進めるため"},
+  "ワユ101": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道の手入れを進めるため"},
+  "ネイ110": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道の手入れを進めるため"}},
+ "keep": false,
+ "judge": {"M563": "ゆるす", "M564": "ゆるす", "M565": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1213": false, "T1214": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心。みんなで水の道を掘るのが楽しみ。"}

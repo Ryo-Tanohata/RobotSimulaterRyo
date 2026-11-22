@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いから、この秋は種をまいて、水の道の手入れをこつこつ進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えが多いので、手入れがまだ大きく残る水の道を掘り進めるのがよいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ101": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道の手入れを進めるため"}, "ヌオ106": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道の手入れを進めるため"}},
+ "keep": false,
+ "judge": {"M563": "ゆるす", "M564": "ゆるす", "M565": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えが多い秋は、畑に1000つかみまき、水の道の手入れを続けるのがよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "おだやかで、こつこつ働く気持ち"}

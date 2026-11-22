@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋だなあ。おれは木の実を集めながら、通りがかった人とおしゃべりして過ごすよ。雨の夜はまた濡れたくないな。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "家から近い草原で、草の種や実を集めながら、人と話したいから"},
+ "sow": 0, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ルタ134": true},
+ "family": {"ネイ132": {"activity": "採集", "place": "西草原12", "why": "ふたりで近くの草原へ行けば、行き帰りも安全で食べ物も集まる"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "雨の夜は村の住まいに入りきらず、外で濡れる人が出る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるから気楽だ。のんびり採集して、人と話すのが楽しみ。"}

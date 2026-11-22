@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。わたしは秋もこれまでどおりのこ場で板をひく。手の空いた人は水の道の手入れに回ろう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": ["ホタ71", "ラキ73"], "why": "のこ番として続けて板をひく。板があると水の道の手入れが半分ですむから。"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {},
+ "family": {
+  "ホタ71": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番なので一緒に板をひく"},
+  "ラキ73": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番なので一緒に板をひく"},
+  "ホミ74": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ場で働いて板を増やす"},
+  "リセ79": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが大量に残っているため"},
+  "オセ81": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが大量に残っているため"},
+  "ロワ81": {"activity": "狩り", "place": "東林12", "why": "狩りの腕があり、肉を蓄えに入れるため"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりで落ち着いている。のこ場で仲間と働くのが楽しみだ。"}

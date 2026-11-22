@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は畑に種をまいて、あとは家のみんなで水の道の手入れに出よう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れが8000人日以上残っている。畑が育つよう水を通したい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ルタ134": true},
+ "family": {
+  "ロワ85": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れの人手が足りないので、みなで回る。"},
+  "ハソ87": {"activity": "水の道を掘る", "place": "camp", "why": "蓄えは多く、今は水の道の手入れが先。"},
+  "シエ96": {"activity": "水の道を掘る", "place": "camp", "why": "畑の水のため、水の道の手入れを手伝う。"},
+  "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "手の空く大人は水の道の手入れに出る。"},
+  "セオ105": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大量に残っているため。"}},
+ "keep": false,
+ "judge": {"M563": "ゆるす", "M564": "ゆるす", "M565": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1213": "村", "T1214": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがあって安心。みんなで水の道を整えるのが楽しみだ。"}
