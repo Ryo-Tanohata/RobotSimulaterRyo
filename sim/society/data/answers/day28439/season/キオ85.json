@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑がたくさん残っている。夏のうちにみんなで刈って、落とさないようにしよう。ヤギは草より多いから、少しつぶして肉にしたい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに刈らないと落ちてしまうから、刈り入れを急ぐ"}, "family": {"キオ95": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りも上手で力があるので、刈り入れを手伝う"}, "セオ108": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、家の子や村の子に字を教える"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 3},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをして、来年の実りを増やす"}, "family": {"キオ95": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手をふやすため"}, "セオ108": {"activity": "字を教える", "place": "camp", "why": "子どもたちが字を読めるようにするため"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 2, "sow": 1500},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬のあいだも草取りをして、畑の実りを守る"}, "family": {"キオ95": {"activity": "狩り", "place": "東林12", "why": "冬は魚やけものがいるので、肉を取って蓄えを助ける"}, "セオ108": {"activity": "字を教える", "place": "camp", "why": "冬も子に字を教え続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで夏の実りを増やす"}, "family": {"キオ95": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ、乳がとれるので世話をする"}, "セオ108": {"activity": "字を教える", "place": "camp", "why": "字を教える仕事を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れとヤギ減らしの年",
+ "feeling": "畑もヤギもたくさんある。家族みんなで、落ち着いて働いていきたい。"}

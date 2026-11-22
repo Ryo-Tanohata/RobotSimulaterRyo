@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "実った畑は夏のうちに刈らないと落ちる。まず刈り入れをして、そのあとは作業場ののこで板をひこう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと畑の実りが落ちてしまうので、まず刈り入れをする"}, "family": {"シエ76": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "セオ76": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "セヤ79": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ユエ79": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "オセ80": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "M6 ののこ番として板をひき、続けて村の手入れを助ける"}, "family": {"シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番を続ける"}, "セオ76": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番を続ける"}, "セヤ79": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ユエ79": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "オセ80": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "冬も板をひいて、水の輪や水の道の手入れに備える"}, "family": {"シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "セオ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "セヤ79": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ユエ79": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "オセ80": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番の仕事を続ける"}, "family": {"シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "セオ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "セヤ79": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ユエ79": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "オセ80": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "のこの音の年",
+ "feeling": "体はまだ動く。畑を刈り、板をひいて、静かに一年を過ごしたい。"}

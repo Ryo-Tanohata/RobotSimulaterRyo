@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑がたくさん残っているよ。落ちる前に、手の空いた人はみんなで刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れるため"}, "family": {"ロワ85": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}, "ハソ87": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}, "シエ96": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}, "ホタ100": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}, "セオ105": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが大量に残っているので人手を回す"}, "family": {"ロワ85": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話の人が足りないので"}, "ハソ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "シエ96": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "セオ105": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると夏の実りが増える"}, "family": {"ロワ85": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ハソ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "シエ96": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "セオ105": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "春は板を使って水の道の手入れを進める"}, "family": {"ロワ85": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ、乳もとれる"}, "ハソ87": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "シエ96": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "セオ105": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1211": false, "T1212": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を刈らないと落ちるので、まず刈り入れに人手を回し、そのあとは水の道の手入れをするとよい。", "because": [5727042], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がよく実った年",
+ "feeling": "蓄えは十分あるので、落ち着いて刈り入れから始めよう。"}

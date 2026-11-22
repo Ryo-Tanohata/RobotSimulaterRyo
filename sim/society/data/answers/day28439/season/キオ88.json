@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑の実りを刈ってしまおう。落ちる前に、みんなで手を動かそう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実りが落ちるので、刈り入れを急ぐ"}, "family": {"ワユ95": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "シエ98": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "ワユ101": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "ネイ110": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "アコ114": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の来る畑は悪い年でも実りが守られるので、水の道を手入れする"}, "family": {"ワユ95": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが多く残っている"}, "シエ98": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが多く残っている"}, "ワユ101": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが多く残っている"}, "ネイ110": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが多く残っている"}, "アコ114": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬も水の道の手入れを続ける"}, "family": {"ワユ95": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを続ける"}, "シエ98": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを続ける"}, "ワユ101": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを続ける"}, "ネイ110": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを続ける"}, "アコ114": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の技能が高く、蓄えの草の種を虫やネズミから守れる"}, "family": {"ワユ95": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "シエ98": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ワユ101": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "ネイ110": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"}, "アコ114": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1211": false, "T1212": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れを急いだ年",
+ "feeling": "みんなで力を合わせて、実りを無駄にしたくない。"}

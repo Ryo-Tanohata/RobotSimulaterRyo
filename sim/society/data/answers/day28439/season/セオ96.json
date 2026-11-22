@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏のうちに実った畑を刈りきろう。秋は草取りに手を貸す。おれは手を動かして食べ物を増やすほうがいい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから"}, "family": {"ルタ96": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れは人手がいるから"}, "リセ110": {"activity": "畑仕事", "place": "camp", "why": "みんなで刈れば早く終わる"}, "ホミ113": {"activity": "畑仕事", "place": "camp", "why": "子でも刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると来年の夏の実りが増えるから"}, "family": {"ルタ96": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "リセ110": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ホミ113": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りで実りが増える"}, "family": {"ルタ96": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "リセ110": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ホミ113": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため草取りを続ける"}, "family": {"ルタ96": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "リセ110": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ホミ113": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈りきった夏の年",
+ "mood": "今年も畑をしっかり刈って、みんなで食べていきたい。"
+}

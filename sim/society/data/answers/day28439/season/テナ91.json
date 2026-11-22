@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに、みんなで畑を刈りきろう。秋は水の道を掘って、来年の畑を守ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを手伝う"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを一緒にする"}, "テナ103": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを一緒にする"}, "キサ106": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを一緒にする"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道は泥でうまりやすく、掘ると来年の畑が守られる"}, "family": {"ラニ91": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れはまだ大きく残っている"}, "テナ103": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを手伝う"}, "キサ106": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると次の夏の実りが増える"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "テナ103": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "キサ106": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて夏の実りに備える"}, "family": {"ラニ91": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "テナ103": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "キサ106": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は夏のうちに刈り、秋にまいて秋・冬・春に草取りをすると次の夏の実りが増える。", "because": [5727042], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "水の道の年",
+ "feeling": "蓄えはたっぷりある。みんなで働いて、来年も実りますように。"}

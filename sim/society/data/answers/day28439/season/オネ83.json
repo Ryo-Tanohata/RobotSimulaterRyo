@@ -1,0 +1,13 @@
+{"say": [], "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに実った畑を刈らないと落ちてしまうので、刈り入れを手伝う"}, "family": {"オネ101": {"activity": "畑仕事", "place": "camp", "why": "実った畑の刈り入れを手伝う"}, "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "実った畑の刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+ "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑の草取りをすると来年の実りがふえる"}, "family": {"オネ101": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りをふやす"}, "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りをふやす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+ "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて実りを守る"}, "family": {"オネ101": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+ "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れの前に草取りを仕上げる"}, "family": {"オネ101": {"activity": "畑仕事", "place": "camp", "why": "草取りを仕上げる"}, "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "草取りを仕上げる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "みんなで草取りの年",
+ "feeling": "蓄えはたっぷりある。みんなと畑を守って、おだやかに過ごしたい。"}
