@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋だね。畑にたっぷり種をまいて、冬にそなえよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集が得意で、食べ物を確かに集められるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ132": true, "ユエ132": true, "ラキ133": true},
+ "family": {"キサ88": {"activity": "採集", "place": "camp", "why": "得意な採集で食べ物を集める"}, "ルタ88": {"activity": "採集", "place": "camp", "why": "得意な採集で食べ物を集める"}, "ユエ107": {"activity": "採集", "place": "camp", "why": "採集が得意だから"}},
+ "keep": false,
+ "judge": {"M562": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1200": "受けない", "T1201": "受ける", "T1202": "受ける"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分。落ち着いて秋の仕事にはげみたい。"}

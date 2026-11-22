@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "新しく来た六人も、うちの村で一緒に暮らそう。苦しい村にも、蓄えから草の種を分けてやろう。"}, {"to": "ロワ99", "text": "おまえは のこ場で板をひいてくれ。わしは水の道を掘る。板があれば手入れが早く進む。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだたくさん残っている。水の来る畑は悪い年でも刈り入れが減らない"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ132": true, "ユエ132": true, "ラキ133": true},
+ "family": {"ロワ99": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひけば、水の道や水の輪の手入れが倍はかどる"}},
+ "keep": false,
+ "judge": {"M562": "ゆるす"},
+ "feast": false,
+ "leader": "ヒセ63",
+ "trade": {"T1200": "村", "T1201": {"side": "村", "利子": 0}, "T1202": {"side": "村", "利子": 0}},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "世話をする人が少ないと、飼っているヤギがいなくなる。毎日世話の人を出すことが大事だ", "because": [5688282], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L927", "against": "ヤギの数が今は 76 頭で、書いてある数とちがう", "agree": true, "reason": "ヤギは草で養える数より少ないから、つぶさずに育て、秋はしっかりまくのがよい"},
+  {"id": "L928", "against": "水の道の手入れに出る人が多すぎると、ほかの仕事が手薄になる", "agree": true, "reason": "畑を刈りきり、板を持って水の道を直すのは村のためになる"},
+  {"id": "L929", "against": "ヤギの数が今と合っていない", "agree": true, "reason": "ヤギを増やし、秋に大人一人 1000 つかみまくのに賛成だ"}
+ ],
+ "feeling": "蓄えはたっぷりある。みんなで水の道を直して、来年も畑を実らせたい"}

@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をたっぷりまいて、冬と春は草取りに出よう。新しく来た人たちも、いっしょに畑を見てもらおうよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、草取りをすると夏にたくさん刈れる。人手が少ないと実りが減るので、畑仕事をする。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ132": true, "ユエ132": true, "ラキ133": true},
+ "family": {"ナセ99": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをして、夏の実りを増やすため。"}},
+ "keep": false,
+ "judge": {"M562": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまいて、畑仕事 (草取り) をする人がいると、次の夏の実りが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあって、おだやかな秋。みんなと畑に出るのが楽しみ。"}

@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。困っている村には貸してやろう。冬の前に、のこ小屋の板もしっかりひいておくよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "M6 ののこ番として、板をひいて水の輪や道の手入れを助けるため。続ける。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ132": true, "ユエ132": true, "ラキ133": true},
+ "family": {"ホタ71": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として続ける。"}},
+ "judge": {"M562": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1200": "村", "T1201": "村", "T1202": "村"},
+ "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、村は落ち着いている。仲間が増えるのは心強い。"}

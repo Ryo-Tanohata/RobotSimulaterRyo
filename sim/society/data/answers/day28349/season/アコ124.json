@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のうちに水の道を掘って、冬のあとの畑を守ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道は手入れが7193人日も残っていて、泥でうまると畑の実りが減る。蓄えが十分ある今、掘っておくのが役に立つ。"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ132": true, "ユエ132": true, "ラキ133": true},
+ "keep": false,
+ "judge": {"M562": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1200": false, "T1201": "村", "T1202": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種がたっぷりあり、秋は水の道を掘るのによい季節だ。", "because": [5661931], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで落ち着いている。道具をいじる時間も好きだが、今は水の道を掘ろう。"}
