@@ -28,6 +28,11 @@ YEAR = 120
 UNIT = 288000.0  # 大人 1 年分 = 2,400 kcal × 120 日
 S2_FIRST, S3_FIRST = 4, 201  # Society 2.0 は 489 日目 (4年) から、Society 3.0 は 24120 日目 (201年) から
 DEFS_PATH = os.path.join(HERE, "stats_indicators.json")
+# 統計の区切り (2026-11-22。docs/society_phase/A_design.md 2.・6.): 世界の人口の決まりを直した年。平均寿命・死亡率・合計特殊出生率・
+# 乳児死亡率 (5 年)・出生率と死亡率 (5 年) の 5 年まとめは、区切りの年からの年だけで作る (前と後を混ぜない)。
+# 使うのは印 g7.d1 があるときだけ (区切りの年は印の start_year。設計の年は 242)。図の点線は stats_indicators.json の breaks ("when": "d1")
+BREAKS = {242: "大人の死と生まれる見込みの決まりを直した (案 A)"}
+BREAK_D1 = BREAKS[242]
 
 REST = ("休む", "休む (けが)")
 FOOD_JOBS = ("畑仕事", "ヤギの世話", "採集", "狩り", "水の道を掘る", "種まき", "探索", "ヤギを捕まえる")
@@ -99,8 +104,9 @@ class Ctx:
     def slim(self):
         """state のうち、統計に使う所だけを残して、大きな state を手放す (build_stats の大きさをおさえる)"""
         st = self.state
-        for k in ("s3", "s4", "i4", "p4", "t5"):
+        for k in ("s3", "s4", "i4", "p4", "t5", "d1"):
             self.g7rows(k)
+        self.breaks()
         lo = (st.get("archive") or {}).get("upto")
         self._cache["live_famine"] = collections.Counter(x["day"] // YEAR for x in st.get("events", []) if x.get("type") == "蓄えが尽きる")
         self._cache["archive_upto"] = lo
@@ -108,6 +114,18 @@ class Ctx:
         self._cache["now"] = st["day"]
         self._cache["era_log"] = st.get("era_log") or []
         self._state = {"day": st["day"], "archive": st.get("archive"), "era_log": st.get("era_log"), "era2": {"g7": {}}, "events": []}
+
+    def breaks(self):
+        """統計の区切り {年: わけ} (印 g7.d1 があるときだけ。その start_year)"""
+        if "breaks" not in self._cache:
+            d1 = (((self.state.get("era2") or {}).get("g7")) or {}).get("d1") or {}
+            self._cache["breaks"] = {d1["start_year"]: BREAK_D1} if d1.get("start_year") else {}
+        return self._cache["breaks"]
+
+    def win0(self, y, n=5):
+        """y 年までの n 年まとめの、はじめの年 (区切りがあれば、区切りの年より前には行かない)"""
+        b = max((k for k in self.breaks() if k <= y), default=None)
+        return max(y - n + 1, b) if b is not None else y - n + 1
 
     @property
     def now(self):
@@ -408,11 +426,16 @@ def headline(ctx, y):
     dm = ctx.demo
     out["infant_deaths"] = dm["inf"].get(y, 0)
     out["imr"] = 1000 * out["infant_deaths"] / out["births"] if out["births"] else None
-    b5 = sum(sum(len(r.get("births") or []) for r in ctx.srows(yy)) for yy in range(y - 4, y + 1))
-    i5 = sum(dm["inf"].get(yy, 0) for yy in range(y - 4, y + 1))
+    w0 = ctx.win0(y)  # 2026-11-22: 区切り (BREAKS) の前の年と混ぜない
+    b5 = sum(sum(len(r.get("births") or []) for r in ctx.srows(yy)) for yy in range(w0, y + 1))
+    i5 = sum(dm["inf"].get(yy, 0) for yy in range(w0, y + 1))
     out["imr5"] = 1000 * i5 / b5 if b5 else None
     fam = pr.get("famine")
     out["famine"] = fam if fam is not None else ctx.famine(y)
+    if w0 != y - 4:  # 区切りのあと 5 年たつまでは、まとめた年が短い
+        out["win0"] = w0
+    if y in ctx.breaks():
+        out["break"] = ctx.breaks()[y]
     out["wealth_gini"] = end.get("wealth_gini") if end else None
     return out
 
@@ -514,8 +537,8 @@ def year_row(ctx, y, full=True):
         o["pyramid"] = {s: [c.get(i, 0) for i in range(17)] for s, c in ac.items() if s in ("女", "男")}
         o["pyramid_total"] = tot
     dm = ctx.demo
-    o["e0"], o["u5mr"] = life_table(dm, y - 4, y)
-    o["tfr"] = tfr(dm, y - 4, y)
+    o["e0"], o["u5mr"] = life_table(dm, ctx.win0(y), y)  # 2026-11-22: 区切りの前の年と混ぜない (ctx.win0)
+    o["tfr"] = tfr(dm, ctx.win0(y), y)
     if not full:
         return o
     # 家の行 (仕事・倉)

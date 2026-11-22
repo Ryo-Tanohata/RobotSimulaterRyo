@@ -726,6 +726,16 @@ def _t5_on(state):
     return "t5" in ((state["era2"].get("g7") or {})) and _t5m().on(state)  # 印 g7.t5 (step.py resume --t5 だけが書く) のあとだけ
 
 
+def _d1m():
+    """人口の決まりの直し 1 (案 A。2026-11-22。docs/society_phase/A_design.md) の仕組み (d1.py)。印 g7.d1 があるときだけ読みこむ"""
+    import d1
+    return d1
+
+
+def _d1_on(state):
+    return "d1" in ((state["era2"].get("g7") or {})) and _d1m().on(state)  # 印 g7.d1 (step.py resume --d1 だけが書く) のあとだけ
+
+
 def t5_harvest(state, p, n):
     """era2._field_work から (印 g7.t5 のあとだけ): 昼の畑仕事で実った畑を刈る 1 日。家の鉄の鎌があれば 1.3 倍"""
     return _t5m().harvest(state, p, n)
@@ -1594,6 +1604,8 @@ def season_end(state, frac):
         _p4m().season_end(state)
     if _t5_on(state):  # 2026-11-22: Society 3.0 フェーズ 5 の年の物差しと、川下の町の新しい頼み (印 g7.t5 のあとだけ。p4 のあと)
         _t5m().season_end(state)
+    if _d1_on(state):  # 2026-11-22: 人口の決まりの直し 1 の数え (生まれた子・亡くなった人・年の物差し。印 g7.d1 のあとだけ。t5 のあと)
+        _d1m().season_end(state)
     yardstick.season_end(state, frac)  # 13. 物差し (乱数なし)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
     _offer(state)
@@ -1608,6 +1620,13 @@ def check(state, met, ind):
     if _g15_on(state) and _g15m().after_due(state):  # 2026-11-17: 後押しなしの確かめ (印 g7.g15.after のあとだけ) の最後の年の終わり → 止めて相談する
         c = _g15m().after_stop(state)
         g.setdefault("consulted", []).append(c)
+        g["hold"] = {"why": "consult", "era": era, "day": D, "what": c["text"]}
+        return "consult"
+    if _d1_on(state):  # 2026-11-22: 人口の決まりの直し 1 (印 g7.d1 のあと): 止まるのは D1 の相談と、読める大人が 1 人以下だけ (T5 は閉じた)
+        c = _d1m().check(state, g.setdefault("consulted", []))
+        if not c:
+            return False
+        g["consulted"].append(c)
         g["hold"] = {"why": "consult", "era": era, "day": D, "what": c["text"]}
         return "consult"
     if _t5_on(state):  # 2026-11-22: Society 3.0 フェーズ 5 (印 g7.t5 のあと): 止まるのは T5 の入口と相談と、読める大人が 1 人以下だけ (P4 は閉じた)

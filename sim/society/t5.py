@@ -19,6 +19,8 @@
   手当ての書きつけ (果たした家に 1 枚。家に読める大人がいるあいだ、家の 0〜4 歳の子みなの死の見込み × 0.85)。板の上の町の頼みも、印の日に払いを書きかえる。
   家にある鎌はそのまま使える。お題に去年亡くなった 0〜4 歳の子 (村と家) を出す。物差しに h1 (手当てが届いた子) を足す。相談は 239年から数えなおす。
   印がなければ前と 1 バイトも同じ (era2 の子の死は、印 fix1 があるときだけ t5.care を呼ぶ。乱数を引く回数は同じ)
+- 閉じる (2026-11-22): step.py resume --d1 (人口の決まりの直し 1。d1.py) が g7.t5.closed を書く。そのあとは T5 の入口と相談で止めない (止まりは d1.check)。
+  町の頼み・運ぶ・鎌・子の手当て・年の行はそのまま続く
 """
 import math
 
@@ -164,6 +166,11 @@ def mark(state, words):
 
 
 # ---------------- 直し 1 (step.py resume --t5fix。T5_design.md 7.) ----------------
+
+def closed(state):
+    """T5 の入口と相談を閉じたか (g7.t5.closed。2026-11-22 から、step.py resume --d1 が書く)。閉じたあとも町の頼みと子の手当ては動く (止まりは d1.check)"""
+    return on(state) and "closed" in _g(state)
+
 
 def fixed(state):
     """直し 1 の印 g7.t5.fix1 があるか"""
@@ -743,7 +750,8 @@ def lines(state):
     out = [f"{g['why']}。{g['day']} 日目から ({g['start_year']}年から数える。P4 の入口と相談は閉じた)。板の町の頼み {len(town_open(state))}・"
            f"受けている町の頼み {len([o for o in tb if o['status'] in p4.ACTIVE])}・家にある{TOOL} {sum(len(v) for v in g['tools'].values())} 本"
            + " / " + " / ".join(f"{k} {FS[k]} {_yd(g['f'][k]) if k in g['f'] else 'まだ'}" for k in FS)
-           + f" / t4 を割った年 {'・'.join(map(str, g['t4_broken'])) or 'なし'} / 入口 {'○' if entrance(state) else 'まだ'}"]
+           + f" / t4 を割った年 {'・'.join(map(str, g['t4_broken'])) or 'なし'} / 入口 {'○' if entrance(state) else 'まだ'}"
+           + (f" / T5 の入口と相談は {_yd(g['closed'])}で閉じた (人口の決まりの直し 1。町の頼み・子の手当て・知らせ板・手習いは続く)" if "closed" in g else "")]
     if fixed(state):
         f, cg = g["fix1"], g["care"]
         out.append(f"直し 1: {f['why']}。{f['day']} 日目から ({f['start_year']}年から数える。「2 年 0」と 3 年ごとの相談も)。家にある{MED} {sum(cg['meds'].values())} {MED_UNIT} ({len(cg['meds'])} 家)・"

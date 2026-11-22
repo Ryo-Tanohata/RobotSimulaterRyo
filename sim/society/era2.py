@@ -2682,6 +2682,12 @@ def _famine_leave(state, days=SEASON_DAYS):
         log(state, "去る", c["name"], f"{c['name']} も、村を出た {c['mother']} を追って出ていった")
 
 
+def _d1m():
+    """人口の決まりの直し 1 (案 A。2026-11-22。docs/society_phase/A_design.md) の仕組み (d1.py)。印 g7.d1 があるときだけ読みこむ"""
+    import d1
+    return d1
+
+
 def _season_end(state, frac=1.0):
     """季節の終わり (または途中で区切った日)。見込みは、進んだ日数に合わせて frac 倍にする"""
     e2 = state["era2"]
@@ -2733,11 +2739,12 @@ def _season_end(state, frac=1.0):
         wild["count"] += 1
     # 子が生まれる (【文献】定住した農耕民の出生間隔 2〜3 年: 1 季節 0.1 で平均 2.5 年)
     men = [p for p in adults(state) if p["sex"] == "男" and p["age"] < 60]
+    dm = _d1m() if "g7" in e2 and "d1" in e2["g7"] else None  # 2026-11-22: 人口の決まりの直し 1 (印 g7.d1 のあとだけ。見込みだけを変え、乱数を引く回数は同じ。A_design.md 4.)
     if state["camp"].get("dwelling_day") is not None and men:
         for w in [p for p in adults(state) if p["sex"] == "女" and 15 <= p["age"] <= 40]:
             if w["hunger"] >= 0.5 or day - w.get("last_birth", -10 ** 6) < YEAR:
                 continue
-            if rng.random() < (BIRTH_P7 if _fix(state) else 0.10) * frac:  # G7 (直し 7): 0.08 (引く乱数の数は同じ)
+            if rng.random() < (dm.birth(state) if dm else BIRTH_P7 if _fix(state) else 0.10) * frac:  # G7 (直し 7): 0.08 (引く乱数の数は同じ)。d1 のあと: 筋の数 (S2 0.045)
                 c = _new_person(state, rng, "女" if rng.random() < 0.5 else "男", 0, child=True, mother=w["name"])
                 w["last_birth"] = day
                 e2["births"] += 1
@@ -2763,11 +2770,11 @@ def _season_end(state, frac=1.0):
     # G4 から、病気やけがで若い大人も亡くなる (【文献の目安】新石器時代の 15 歳の平均余命は 20〜25 年ほど (骨の年齢推定。資料で差が大きい)。
     #   【仮定】15〜39 歳 1 季節 0.0075 (1 年 3%)、40〜54 歳 0.0125 (1 年 5%))
     for p in adults(state):
-        if p["age"] >= 55 and rng.random() < 0.02 * frac * (1 + (p["age"] - 55) / 10):
+        if p["age"] >= 55 and rng.random() < 0.02 * frac * (1 + (p["age"] - 55) / 10) * (dm.old(state) if dm else 1):  # d1 のあと: × 0.35 (印がなければ × 1 で同じ数)
             p["alive"] = False
             log(state, "死", p["name"], f"{p['name']} ({p['age']} 歳) が年をとって亡くなった")
             _inherit(state, p)
-        elif era_at_least(state, "G4") and p["age"] < 55 and rng.random() < (0.0075 if p["age"] < 40 else 0.0125) * frac * sick:
+        elif era_at_least(state, "G4") and p["age"] < 55 and rng.random() < (dm.adult(state, p["age"]) if dm else 0.0075 if p["age"] < 40 else 0.0125) * frac * sick:  # d1 のあと: 0.0017・0.0042
             p["alive"] = False
             log(state, "死", p["name"], f"{p['name']} ({p['age']} 歳) が病で亡くなった")
             _inherit(state, p)

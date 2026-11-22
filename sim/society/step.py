@@ -24,6 +24,9 @@
                                                  止まりを解き、この歩のお題を書き直す (答えがまだないときだけ。docs/society_phase/T5_design.md)
   python sim/society/step.py resume --t5fix "<本人の言葉>"  2026-11-22: T5 の相談 (HOLD consult。28679 日目から) で、町の払いの直し 1 (鎌から子の病の手当て
                                                  (子の薬と手当ての書きつけ) に) を、この日のお題から使う (印 g7.t5.fix1。お題を書き直す。T5_design.md 7.)
+  python sim/society/step.py resume --d1 "<本人の言葉>" [--d1scen S2|S1]  2026-11-22: T5 の相談 (HOLD consult。29039 日目から。1 回だけ) で、人口の決まりの直し 1
+                                                 (案 A: 大人の死と生まれる見込みを昔の村に近づける) を書き (印 g7.d1。書かなければ筋 S2)、T5 の入口と相談を閉じ (g7.t5.closed)、
+                                                 止まりを解き、この歩のお題を書き直す (答えがまだないときだけ。中身は変わらない。docs/society_phase/A_design.md)
   python sim/society/step.py resume --s4fix "<本人の言葉>"  2026-11-20 (s4-b): S4 の相談 (26519 日目から) で、町の家を選ばないわけを調べた直しを、この日のお題から使う (印 g7.s4.fix。お題を書き直す)
   python sim/society/step.py resume --s4ask "<本人の言葉>"  2026-11-20 (s4-c): S4 の相談 (26639 日目から。年の集まり) で、年の集まりのお題の上のほうで家ごとに町の家を聞く節を、この日のお題から 3 年 (印 g7.s4.ask。お題を書き直す)
   python sim/society/step.py resume --s4 "<本人の言葉>"  2026-11-20: S3 のあと (25919 日目から。S3 の相談・入口か、止まりのないとき。1 回だけ)、
@@ -292,6 +295,9 @@ def _g15_lines(state, i):
     if "t5" in state["era2"]["g7"]:  # 2026-11-22: Society 3.0 フェーズ 5 (印 g7.t5 のあとだけ)
         import t5  # noqa: E402
         out += [f"T5 / {t}" for t in t5.lines(state)]
+    if "d1" in state["era2"]["g7"]:  # 2026-11-22: 人口の決まりの直し 1 (印 g7.d1 のあとだけ)
+        import d1  # noqa: E402
+        out += [f"D1 / {t}" for t in d1.lines(state)]
     out += [f"G15 / 報告: {t}" for t in g15.report_lines(state)]
     return out
 
@@ -717,6 +723,8 @@ def main():
     ap.add_argument("--p4", default=None, help="resume で、i4 のあと (27839 日目から。I4 の相談で止まっているか、止まりのないとき) (2026-11-21): Society 3.0 フェーズ 4 (頼み書きと町) を始める本人の言葉 (印 g7.p4 に残す。i4 の相談を閉じる。docs/society_phase/P4_design.md)")
     ap.add_argument("--p4fix", default=None, help="resume で、P4 の相談 (HOLD consult。28079 日目から) のとき (2026-11-21): 頼み書きの直し 1 (燃える石 100 kg から・板 5 束から・家のまき集めを燃える石の kg で見せる) を、この日のお題から使う本人の言葉 (印 g7.p4.fix1。お題を書き直す。docs/society_phase/P4_design.md 9.)")
     ap.add_argument("--t5fix", default=None, help="resume で、T5 の相談 (HOLD consult。28679 日目から) のとき (2026-11-22): 町の払いの直し 1 (鎌から子の病の手当て (子の薬と手当ての書きつけ) に) を、この日のお題から使う本人の言葉 (印 g7.t5.fix1。お題を書き直す。docs/society_phase/T5_design.md 7.)")
+    ap.add_argument("--d1", default=None, help="resume で、T5 の相談 (HOLD consult。29039 日目から) のとき (2026-11-22): 人口の決まりの直し 1 (案 A: 大人の死と生まれる見込みを昔の村に近づける) をつける本人の言葉 (印 g7.d1 に残す。T5 を閉じる。docs/society_phase/A_design.md)")
+    ap.add_argument("--d1scen", default=None, help="resume --d1 の筋 (S2 か S1。書かなければ S2。d1.SCEN)")
     ap.add_argument("--t5", default=None, help="resume で、p4 のあと (28319 日目から。P4 の相談で止まっているか、止まりのないとき) (2026-11-22): Society 3.0 フェーズ 5 (川下の町と鉄の道具) を始める本人の言葉 (印 g7.t5 に残す。P4 の相談を閉じる。docs/society_phase/T5_design.md)")
     ap.add_argument("--parts", default=None, help="resume --s3 で入れる部分 (コンマでつなぐ。a,b,c,d。書かなければみな。s3.PARTS)")
     ap.add_argument("--levers", default=None, help="resume --push で選ぶ後押しの手 (コンマでつなぐ。food,ws,coal,ws2,house。書かなければみな。g15.LEVERS)")
@@ -759,6 +767,10 @@ def main():
         sys.exit("--t5 は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix・--s4・--s4fix・--s4ask・--i4・--p4・--p4fix とは一緒に書かない)")
     if a.t5fix is not None and (a.cmd != "resume" or any(x is not None for x in (a.push, a.unpush, a.s3, a.s3more, a.s3fix, a.s4, a.s4fix, a.s4ask, a.i4, a.p4, a.p4fix, a.t5))):
         sys.exit("--t5fix は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix・--s4・--s4fix・--s4ask・--i4・--p4・--p4fix・--t5 とは一緒に書かない)")
+    if a.d1 is not None and (a.cmd != "resume" or any(x is not None for x in (a.push, a.unpush, a.s3, a.s3more, a.s3fix, a.s4, a.s4fix, a.s4ask, a.i4, a.p4, a.p4fix, a.t5, a.t5fix))):
+        sys.exit("--d1 は resume のときだけ書く (--push・--unpush・--s3・--s3more・--s3fix・--s4・--s4fix・--s4ask・--i4・--p4・--p4fix・--t5・--t5fix とは一緒に書かない)")
+    if a.d1scen is not None and a.d1 is None:
+        sys.exit("--d1scen は resume --d1 のときだけ書く")
     if a.note is not None and a.cmd not in ("exp3", "exp4"):
         sys.exit("--note は exp3・exp4 のときだけ書く")
     if a.onoff and a.cmd not in ("ask_why", "cards", "heavy", "far_rate", "exp3", "exp4"):
@@ -834,6 +846,34 @@ def main():
         return
     if a.cmd == "export":
         export(state)
+        return
+    if a.cmd == "resume" and a.d1 is not None:  # 2026-11-22: 人口の決まりの直し 1 (印 g7.d1。docs/society_phase/A_design.md) を、いまの T5 の相談の日から使う
+        why = "G7 より前" if not (state.get("era2") or {}).get("g7") else None
+        if why is None:
+            import d1  # noqa: E402
+            why = d1.refusal(state, a.d1, a.d1scen or "S2")
+        if why:
+            print(f"resume --d1 はできない: {why} (何も変えない)")
+            sys.exit(3)
+        g = d1.mark(state, a.d1, a.d1scen or "S2")
+        state["hold"] = False
+        state["era2"]["g7"]["hold"] = None
+        for kind in ("season", "feeling"):  # この歩のお題 (答えはまだない) を書き直す (直しはお題に出ないので、中身は前と同じ。出来事には残さない)
+            d = pdir(state, kind, "prompts")
+            if d.exists() and not any(pdir(state, kind, "answers").glob("*.json")):
+                shutil.rmtree(d)
+        save(state)
+        if state["era2"]["g7"].get("ask"):
+            write_prompts(state, "season")
+        export(state)
+        s_ = d1.SCEN[g["scen"]]
+        print(f"* {d1.D1_NAME} を {_yd(state['day'])}につけた ({g['start_year']}年から数える)。筋 {g['scen']} {s_['name']}: "
+              f"15〜39 歳の病の死 {d1.BASE['a']} → {g['a']}・40〜54 歳 {d1.BASE['b']} → {g['b']}・55 歳からの年寄りの死 × {g['old']}・生まれる見込み {d1.BASE['birth']} → {g['birth']} (1 季節)")
+        print(f"* わけ (印 g7.d1.why): {g['why']}")
+        print(f"* Society 3.0 フェーズ 5 (川下の町と鉄の道具。T5) の入口と相談は {_yd(state['day'])} で閉じた (町の頼み・子の手当て・知らせ板・手習いは続く。読める大人が 1 人以下なら止まる)")
+        print(f"* 止まるのは D1 の相談 (蓄えが {d1.D5_STORE} 日分を切った年・ききん・人が {g['pop0']} 人の {round(d1.POP_KEEP * 100)}% を切った年・d1 か d4 が 2 年つづけて線の外・"
+              f"3 年ごと ({g['start_year'] + 2}年の終わりから)) だけ。印と本人の言葉は、村の人のお題にも出来事にも出さない")
+        print("再開した")
         return
     if a.cmd == "resume" and a.t5fix is not None:  # 2026-11-22: T5 の直し 1 (印 g7.t5.fix1。T5_design.md 7.) を、いまの T5 の相談の日のお題から使う
         why = "G7 より前" if not (state.get("era2") or {}).get("g7") else ("T5 の印がない" if "t5" not in state["era2"]["g7"] else None)

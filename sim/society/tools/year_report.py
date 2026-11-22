@@ -445,6 +445,8 @@ def conditions(D, y, phase):
             out["p4"] = p4_part(st, y)
         if "t5" in _g7(st):  # 2026-11-22: Society 3.0 フェーズ 5 (川下の町と鉄の道具。印 g7.t5 のあとだけ)
             out["t5"] = t5_part(st, y)
+        if "d1" in _g7(st):  # 2026-11-22: 人口の決まりの直し 1 (案 A。印 g7.d1 のあとだけ)
+            out["d1"] = d1_part(D, y)
         p = (g.get("path") or {}).get(str(y))
         cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g15_") and c.get("year", (c.get("day", 0) + 1) // YEAR - 1) == y]
         out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G15"}
@@ -490,6 +492,41 @@ def t5_part(st, y):
         out["fix1"] = g["fix1"]
         out["care"] = {"meds": dict(sorted(cg["meds"].items())), "sheets": sorted(cg["sheets"]), "yr": (cg.get("yr") or {}).get(str(y)) or {}}
     return out
+
+
+def d1_base(ctx, start, n=10):
+    """人口の決まりの直し 1 の前の n 年 (241年までの 10 年) の、ボズラップの目印の幅 (統計の計算 stats_calc と同じ読みもの)"""
+    out = {"seed_w": [], "field_share": [], "nonfood_share": [], "canal_pd": [], "town_takers": []}
+    for yy in range(start - n, start):
+        aut = [r for r in ctx.srows(yy) if r.get("season") == "秋"]
+        if aut:
+            a = aut[-1].get("by_age_class") or {}
+            w = (a.get("大人") or 0) + 0.5 * (a.get("手伝える子") or 0)
+            if w and (aut[-1].get("fields") or {}).get("seed") is not None:
+                out["seed_w"].append(round(aut[-1]["fields"]["seed"] / w))
+        J = ctx.hh["jobs"].get(yy) or {}
+        work = sum(v for k, v in J.items() if k not in SC.REST)
+        if work:
+            out["field_share"].append(round((J.get("畑仕事", 0) + J.get("種まき", 0)) / work, 4))
+            out["canal_pd"].append(J.get("水の道を掘る", 0))
+        nf = SC.nonfood_of(SC._phase_row(ctx, yy))
+        if nf is not None:
+            out["nonfood_share"].append(nf)
+        t5r = ctx.g7rows("t5").get(str(yy))
+        if t5r:
+            out["town_takers"].append(t5r.get("taker_n"))
+    return {k: ([min(v), max(v), len(v)] if v else None) for k, v in out.items()} | {"years": [start - n, start - 1]}
+
+
+def d1_part(D, y):
+    """人口の決まりの直し 1 (案 A) の節の中身: 年ごとの d1〜d6 の行・直す前の 10 年のボズラップの目印の幅"""
+    import d1 as M
+    st = D["state"]
+    g = M._g(st)
+    rows = [g["rows"][k] for k in sorted(g["rows"], key=int) if int(k) <= y]
+    return {"head": M.lines(st)[:1], "rows": rows, "base": d1_base(_sc_ctx(D), g["start_year"]), "scen": g["scen"], "start": g["start_year"],
+            "bands": {"d1": M.D1_E0, "d2": M.D2_E15, "d3": M.SCEN[g["scen"]]["d3"], "d4": M.SCEN[g["scen"]]["d4"], "d5": M.D5_STORE},
+            "consult": [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("d1_") and c.get("year") == y]}
 
 
 def g11_lines(g, st, y, Y):
@@ -1349,8 +1386,8 @@ def _kpi(label, val, unit, cur, prev, kind="num", up_good=True, extra="", scale=
             f'<div class="v">{v}<small>{e(unit)}</small></div>{d}' + (f'<div class="x">{e(extra)}</div>' if extra else "") + "</div>")
 
 
-def svg_trend(pts, fmt, label, goal=None, goal_label="", lo0=True):
-    """小さな線の図 (1 本・目盛り 1 つ)。pts: [(年, 値 or None)]。値のない年は線を切る"""
+def svg_trend(pts, fmt, label, goal=None, goal_label="", lo0=True, brk=None):
+    """小さな線の図 (1 本・目盛り 1 つ)。pts: [(年, 値 or None)]。値のない年は線を切る。brk: [(年, わけ)] の区切り (点線。2026-11-22)"""
     have = [(yy, v) for yy, v in pts if v is not None]
     if not have:
         return '<div class="empty">この年までの記録がない</div>'
@@ -1376,6 +1413,9 @@ def svg_trend(pts, fmt, label, goal=None, goal_label="", lo0=True):
                  f'<text class="tm" x="{L + 3}" y="{yv(goal) - 3:.1f}">{e(goal_label)}</text>')
     for yy in (ys[0], ys[-1]):
         s.append(f'<text class="tm" x="{x(yy):.1f}" y="{H - 5}" text-anchor="{"start" if yy == ys[0] else "end"}">{yy}年</text>')
+    for yy, why in brk or ():  # 区切りの年のはじめ (前の年の終わりとのあいだ) に点線
+        bx = x(yy - 0.5)
+        s.append(f'<line class="ref" stroke-dasharray="3 3" x1="{bx:.1f}" x2="{bx:.1f}" y1="{T}" y2="{H - B}"><title>{yy}年から: {e(why)}</title></line>')
     seg = []
     for yy, v in pts + [(None, None)]:
         if v is None:
@@ -1393,6 +1433,40 @@ def svg_trend(pts, fmt, label, goal=None, goal_label="", lo0=True):
         s.append(f'<circle class="hit" cx="{x(yy):.1f}" cy="{yv(v):.1f}" r="9"><title>{yy}年: {e(fmt(v, False))}</title></circle>')
     s.append("</svg>")
     return "".join(s)
+
+
+def d1_html(q, w):
+    """年報の節「人口の決まりの直し (案 A)」の HTML (render から。印 g7.d1 のあとだけ)"""
+    ok = lambda b: "○" if b else "×"  # noqa: E731
+    pc = lambda v: "—" if v is None else f"{v * 100:.1f}%"  # noqa: E731
+    B = q["bands"]
+    w(f'<p style="margin:10px 0 2px"><b>人口の決まりの直し (案 A): 大人の死と生まれる見込みを、江戸時代の村の記録に近づけた ({q["start"]}年から。筋 {e(q["scen"])})</b></p>')
+    w('<ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in q["head"]) + "</ul>")
+    for c in q["consult"]:
+        w(f'<p class="note">この年の終わりに止めて相談: {e(c["text"])}</p>')
+    if q["rows"]:
+        w(f'<table><tr><td>年</td><td>人 (55 歳から)</td><td>生まれた子</td><td>亡くなった (子・大人・年寄り)</td><td>d1 平均寿命 ({B["d1"][0]:g}〜{B["d1"][1]:g} 歳)</td>'
+          f'<td>d2 15 歳の平均余命 ({B["d2"][0]:g}〜{B["d2"][1]:g} 年)</td><td>d3 自然増加 ({B["d3"][0]:g}〜{B["d3"][1]:g}%/年)</td><td>d4 合計特殊出生率 ({B["d4"][0]:g}〜{B["d4"][1]:g})</td>'
+          f'<td>d5 蓄え・ききん ({B["d5"]} 日分以上・0)</td><td>まとめた年</td></tr>')
+        import d1 as M
+        for r in q["rows"]:
+            w(f"<tr><td>{r['year']}</td><td>{r['pop']} ({r['old']})</td><td>{r['births']}</td><td>{r['deaths']} ({r['kid_dead']}・{r['adult_dead']}・{r['old_dead']})</td>"
+              f"<td>{ok(r['d1_ok'])} {_f(r['e0'], 1)}</td><td>{ok(r['d2_ok'])} {_f(r['e15'], 1)}</td><td>{ok(r['d3_ok'])} {_f(r['nat'], 2)}</td><td>{ok(r['d4_ok'])} {_f(r['tfr'], 2)}</td>"
+              f"<td>{ok(r['d5_ok'])} {r['store_end']} 日分 (いちばん少ない {r['store_min']})・{r['famine']}</td><td>{e(M.win_text(r))}</td></tr>")
+        w("</table>")
+        w('<p class="note">d1〜d4 は村の中の数え (季節の終わりごとに人を 1/4 年ずつ数える)。統計のページの数 (日ごとの数え) と少しちがうことがある。'
+          '5 年まとめは直した年からの年だけで作る (241年までの数と混ぜない)。1 年の死は数十人なので、5 年たつまでは大きくゆれる</p>')
+        b = q["base"]
+        rng = lambda k, f: "—" if not b.get(k) else f"{f(b[k][0])}〜{f(b[k][1])}"  # noqa: E731
+        w('<p style="margin:6px 0 2px"><b>d6 ボズラップの目印 (見るだけ。線なし)</b></p>'
+          '<table><tr><td>年</td><td>働き手 1 人あたりの秋の種まき</td><td>畑仕事の人日の割合</td><td>食べ物でない仕事</td><td>水の道の手入れ</td><td>町の頼みを受けた家</td></tr>')
+        w(f"<tr><td>{b['years'][0]}〜{b['years'][1]}年の幅</td><td>{rng('seed_w', lambda v: f'{v:,}')} つかみ</td><td>{rng('field_share', pc)}</td><td>{rng('nonfood_share', pc)}</td>"
+          f"<td>{rng('canal_pd', lambda v: f'{v:,}')} 人日</td><td>{rng('town_takers', str)} 家</td></tr>")
+        for r in q["rows"]:
+            w(f"<tr><td>{r['year']}</td><td>{_f(r['seed_w'])} つかみ</td><td>{pc(r['field_share'])}</td><td>{pc(r['nonfood_share'])}</td><td>{_f(r['canal_pd'])} 人日</td><td>{_f(r['town_takers'])} 家</td></tr>")
+        w("</table>")
+    else:
+        w('<p class="note">まだ年の行がない (直した年の終わりから)</p>')
 
 
 def _yard(code, name, ok, frac, now, goal, note=""):
@@ -1417,7 +1491,7 @@ def _safe(r, ok, store, popr, readers=None):
 def phase_panel(st, y):
     """いまのフェーズ (T5 → P4 → I4 の順で、その年の行があるもの) の物差しの棒と数。なければ空"""
     g7 = _g7(st)
-    for key in ("t5", "p4", "i4"):
+    for key in ("d1", "t5", "p4", "i4"):
         r = ((g7.get(key) or {}).get("rows") or {}).get(str(y))
         if r:
             break
@@ -1425,7 +1499,20 @@ def phase_panel(st, y):
         return ""
     pc = lambda v: f"{v * 100:.1f}%"  # noqa: E731
     Y, chips = [], []
-    if key == "t5":
+    if key == "d1":  # 2026-11-22: 人口の決まりの直し 1 (案 A)
+        import d1 as M
+        title = "人口の決まりの直し (案 A) の物差し"
+        s = M.SCEN[r["scen"]]
+        wt = M.win_text(r)
+        for code, name, v, band, unit in (("d1", "平均寿命", r["e0"], M.D1_E0, "歳"), ("d2", "15 歳の平均余命", r["e15"], M.D2_E15, "年"),
+                                          ("d3", "自然増加 (5 年平均)", r["nat"], s["d3"], "%/年"), ("d4", "合計特殊出生率", r["tfr"], s["d4"], "")):
+            Y.append(_yard(code, name, r[f"{code}_ok"], 1.0 if r[f"{code}_ok"] else 0.5, f"{_f(v, 2 if code in ('d3', 'd4') else 1)} {unit} ({wt})",
+                           f"{band[0]:g}〜{band[1]:g} {unit}", "線の中なら ○ (見通しの幅。外に出たら見通しとちがう動き)"))
+        Y.append(_yard("d5", "蓄え (守り)", r["d5_ok"], min(1.0, r["store_end"] / M.D5_STORE), f"年の終わり {r['store_end']} 日分・ききん {r['famine']}",
+                       f"{M.D5_STORE} 日分以上・ききん 0"))
+        chips = [("人", r["pop"], f"人 (はじめ {r['pop0']})"), ("55 歳から", r["old"], "人"), ("生まれた子", r["births"], "人"),
+                 ("亡くなった", r["deaths"], f"人 (子 {r['kid_dead']}・大人 {r['adult_dead']}・年寄り {r['old_dead']})"), ("秋の種まき 1 人あたり", r["seed_w"], "つかみ")]
+    elif key == "t5":
         import t5 as M
         title = "フェーズ 5 (川下の町と鉄の道具) の物差し"
         Y.append(_yard("t1", "果たした町の頼み", r["t1_like"], min(r["done"] / M.T1_DONE, r["taker_n"] / M.T1_HOUSES),
@@ -1707,18 +1794,21 @@ def dash_html(D, PP, y, tokens):
     num = lambda v, ax: f"{v:,.0f}"  # noqa: E731
     pct = lambda v, ax: f"{v:.0f}%" if ax else f"{v:.1f}%"  # noqa: E731
     gpts = [(r["year"], r.get("gdp") if r.get("gdp_full_year") else None) for r in S]
+    brk = [(yy, why) for yy, why in sorted(_sc_ctx(D).breaks().items()) if S[0]["year"] < yy <= y] or None  # 2026-11-22: 統計の区切り (案 A)
     charts = [
-        ("人", "年の終わりの人数", svg_trend(pts("pop"), num, "人のうつりかわり", lo0=False)),
-        ("村の生産 (大人 1 年分)", "食べ物・土器と鎌・ヤギ・住まいの合計。種と損と割れた分を引く", svg_trend(gpts, num, "村の生産のうつりかわり", lo0=False)),
-        ("蓄え (日分)", "1 年でいちばん少なかった日。めやす 120 日分", svg_trend(pts("store"), num, "蓄えのうつりかわり", goal=120, goal_label="めやす 120")),
-        ("読める大人 (%)", "大人のうち、字が読める人。めやす 25%", svg_trend(pts("literacy", 100), pct, "読める大人の割合のうつりかわり", goal=25, goal_label="めやす 25%")),
-        ("食べ物でない仕事 (%)", "燃える石・板・字など。めやす 22%", svg_trend(pts("nonfood", 100), pct, "食べ物でない仕事の割合のうつりかわり", goal=22, goal_label="めやす 22%")),
+        ("人", "年の終わりの人数", svg_trend(pts("pop"), num, "人のうつりかわり", lo0=False, brk=brk)),
+        ("村の生産 (大人 1 年分)", "食べ物・土器と鎌・ヤギ・住まいの合計。種と損と割れた分を引く", svg_trend(gpts, num, "村の生産のうつりかわり", lo0=False, brk=brk)),
+        ("蓄え (日分)", "1 年でいちばん少なかった日。めやす 120 日分", svg_trend(pts("store"), num, "蓄えのうつりかわり", goal=120, goal_label="めやす 120", brk=brk)),
+        ("読める大人 (%)", "大人のうち、字が読める人。めやす 25%", svg_trend(pts("literacy", 100), pct, "読める大人の割合のうつりかわり", goal=25, goal_label="めやす 25%", brk=brk)),
+        ("食べ物でない仕事 (%)", "燃える石・板・字など。めやす 22%", svg_trend(pts("nonfood", 100), pct, "食べ物でない仕事の割合のうつりかわり", goal=22, goal_label="めやす 22%", brk=brk)),
     ]
     H = [f'<section class="card dash"><h2>{y}年 川辺の村の統計 (ひと目で見る)</h2>'
          f'<p class="dsub">数えた日: {e(yd(min(D["state"]["day"], y * YEAR + YEAR - 1)))} まで ・ 次に出す日: {y + 1}年の終わり (年に 1 回、年報で出す)。<br>'
          '▲▼ は去年からの動き (割合は「ポイント」、量は数か %。緑はよい向き、赤はわるい向き、良い悪いのない数は色なし)。'
          '札 <span class="tag">シ</span> はシミュレーションだけが知る数、<span class="tag">村</span> は村の人がつけた帳、<span class="tag">調</span> は跡で分かる数。'
-         '図の点を指でさわると、その年の数が出る。</p>']
+         '図の点を指でさわると、その年の数が出る。'
+         + ("".join(f"<br>点線は区切り: {yy}年から{e(why)}。平均寿命・合計特殊出生率・乳児死亡率の 5 年まとめは、区切りの前の年と混ぜない。" for yy, why in brk) if brk else "")
+         + '</p>']
     H.append('<div class="kpis">' + "".join(tiles) + "</div>")
     H.append('<div class="trends">' + "".join(f'<div class="tr"><b>{e(a)}</b><div class="x">{e(b)}</div>{c}</div>' for a, b, c in charts) + "</div>")
     H.append(compo_html(D, y))  # 2026-11-22: 構成比の円 (年齢・仕事・食べ物)
@@ -1823,6 +1913,8 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
         p4_html(C["p4"], w)
     if C.get("t5"):  # 2026-11-22: Society 3.0 フェーズ 5 (川下の町と鉄の道具)
         t5_html(C["t5"], w)
+    if C.get("d1"):  # 2026-11-22: 人口の決まりの直し 1 (案 A)
+        d1_html(C["d1"], w)
     if C.get("branches"):
         w('<p style="margin:10px 0 2px"><b>反実仮想の枝 (写しを 2 本回して、良いほうを本物の村の続きにした)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["branches"]) + "</ul>")
     if C.get("g14"):

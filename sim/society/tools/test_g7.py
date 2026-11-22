@@ -11739,5 +11739,287 @@ class T_T5F(unittest.TestCase):
             shutil.rmtree(d, ignore_errors=True)
 
 
+D1_ENTRY = "f53ad7ae"  # 241年の終わり (29039 日目。HOLD consult「T5: 町の払いを子の手当てにして 3 年たった (3 年ごとの相談)」・年の集まりのお題・答えなし) の state のコミット (2026-11-22)
+D1_WORDS = "A 大人の死を昔の村に近づける (おすすめ)"
+
+
+class T_D1(unittest.TestCase):
+    """2026-11-22 人口の決まりの直し 1 (案 A。docs/society_phase/A_design.md・A_check.md): step.py resume --d1 だけが印 g7.d1 を書く
+    (29039 日目から・T5 の相談のときだけ・1 回だけ。g7.t5.closed も書く)。印のあとだけ、era2._season_end の見込み 3 か所 (生まれる・年寄りの死・病の死) が
+    筋 (S2) の数になる。お題は変えない。物差し d1〜d5 と相談 (d5・人 95%・d1/d4 が 2 年線の外・3 年ごと)。29039 日目の git の state (D1_ENTRY) の写しで確かめる"""
+
+    _st = None
+    person = T_P4.person
+
+    @classmethod
+    def real(cls):
+        if cls._st is None:
+            st = git_state(D1_ENTRY)
+            h = st["era2"]["g7"].get("hold") or {}
+            ok = (st["day"] == 29039 and "t5" in st["era2"]["g7"] and "d1" not in st["era2"]["g7"] and h.get("why") == "consult"
+                  and h.get("what", "").startswith("T5:"))
+            cls._st = st if ok else False
+        if cls._st is False:
+            raise unittest.SkipTest("D1_ENTRY の state が 29039 日目の T5 の相談でない")
+        return copy.deepcopy(cls._st)
+
+    def marked(self, scen="S2"):
+        import d1
+        st = self.real()
+        self.assertIsNone(d1.refusal(st, D1_WORDS, scen))
+        d1.mark(st, D1_WORDS, scen)
+        st["era2"]["g7"]["hold"] = None
+        st["hold"] = False
+        return st
+
+    @staticmethod
+    def free(st):
+        st["era2"]["g7"]["hold"] = None
+        st["hold"] = False
+        return st
+
+    def test_gate_no_import(self):
+        """印がなければ d1.py を読みこまない (お題・気持ちのお題・仕事の一覧・答えの欄・status の行・季節の終わり (生まれる・死)・判定)"""
+        code = ("import sys, json, subprocess\n"
+                f"sys.path.insert(0, {str(SOC)!r})\n"
+                "import era2, g7, g15, i4, p4, s4, t5, step\n"
+                f"st = json.loads(subprocess.run(['git', '-C', {str(ROOT)!r}, 'show', '{D1_ENTRY}:sim/society/data/state.json'], capture_output=True).stdout)\n"
+                "n = era2.answerers(st)[0]\n"
+                "p = next(q for q in st['people'] if q['name'] == n)\n"
+                "t = g7.year_prompt(st, p, g7.since(st))\n"
+                "era2._feeling_prompt(st, p, False)\n"
+                "g7.acts(st); g7.answer_fields(st); g7.board_block(st, p); step._g15_lines(st, era2.indicators(st))\n"
+                "st['hold'] = False; st['era2']['g7']['hold'] = None\n"
+                "st['day'] += 30; era2._season_end(st, 1.0); era2.check(st)\n"
+                "print('D1' if 'd1' in sys.modules else 'NO_D1')\n")
+        r = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=dict(os.environ, PYTHONUTF8="1", SOC_RECORDS="0", SOC_DATA="/dev/shm/d1_gate_nothing"))
+        self.assertEqual(r.returncode, 0, r.stderr[-800:])
+        self.assertIn("NO_D1", r.stdout, "印がなければ d1 を読みこまない")
+
+    def test_refusal_and_mark(self):
+        import d1
+        import g15
+        import t5
+        st = self.real()
+        self.assertIn("本人の言葉が要る", d1.refusal(st, " "))
+        self.assertIn("S2・S1", d1.refusal(st, D1_WORDS, "S3"))
+        early = self.real()
+        early["day"] = 29009
+        self.assertIn("29039 日目", d1.refusal(early, D1_WORDS))
+        nohold = self.free(self.real())
+        self.assertIn("T5 の相談", d1.refusal(nohold, D1_WORDS), "止まりなしではつけない")
+        ent = self.real()
+        ent["era2"]["g7"]["hold"] = {"why": "entrance", "era": "G15", "day": 29039, "what": "T5: 入口に着いた"}
+        self.assertIn("T5 の相談", d1.refusal(ent, D1_WORDS), "入口ではつけない")
+        p4c = self.real()
+        p4c["era2"]["g7"]["hold"] = {"why": "consult", "era": "G15", "day": 29039, "what": "P4: なにか"}
+        self.assertIn("T5 の相談", d1.refusal(p4c, D1_WORDS))
+        not5 = self.real()
+        not5["era2"]["g7"].pop("t5")
+        self.assertIn("T5 の印がない", d1.refusal(not5, D1_WORDS))
+        pu = self.real()
+        g15._g(pu)["push"] = {"day": 1}
+        self.assertIn("後押し", d1.refusal(pu, D1_WORDS))
+        n0, nx = len(st["events"]), st["next_event"]
+        g = d1.mark(st, D1_WORDS)
+        self.assertEqual((len(st["events"]), st["next_event"]), (n0, nx), "印は出来事に残さない")
+        self.assertEqual((g["day"], g["start_year"], g["scen"], g["a"], g["b"], g["old"], g["birth"], g["pop0"]),
+                         (29039, 242, "S2", 0.0017, 0.0042, 0.35, 0.045, 784))
+        self.assertEqual(g["words"], D1_WORDS)
+        self.assertTrue(g["why"].startswith(f"作る側が変えた (本人の言葉 2026-11-22 「{D1_WORDS}」)。"))
+        self.assertIn("A_projection.md", g["why"])
+        self.assertEqual(t5._g(st)["closed"], 29039, "T5 を閉じる")
+        self.assertTrue(t5.closed(st))
+        self.assertIn("閉じた", t5.lines(st)[0])
+        self.assertIn("もうつけてある", d1.refusal(st, D1_WORDS), "1 回だけ")
+        s1 = self.real()
+        g1 = d1.mark(s1, D1_WORDS, "S1")
+        self.assertEqual((g1["birth"], g1["a"]), (0.08, 0.0017), "S1 は生まれる見込みを変えない")
+
+    def test_same_probabilities_same_world(self):
+        """印をつけても、筋の数を今の決まりの数にすると、季節の終わりは印のない写しと 1 つもちがわない (見込みだけを変えている。乱数を引く回数と順は同じ)"""
+        import d1
+        base = self.free(self.real())
+        st = self.marked()
+        g = d1._g(st)
+        g.update(a=0.0075, b=0.0125, old=1, birth=0.08)
+        for x in (base, st):
+            x["day"] += 30
+            era2._season_end(x, 1.0)
+        keep = lambda x: (x["people"], x["events"], x["era2"]["births"], x["era2"]["goats"], x["era2"].get("visitors"))  # noqa: E731
+        self.assertEqual(json.dumps(keep(base), ensure_ascii=False, sort_keys=True), json.dumps(keep(st), ensure_ascii=False, sort_keys=True))
+
+    def test_probabilities_used(self):
+        """見込みを 0 にすると、生まれる子・大人の病の死・年寄りの死は 0。子の死は変わらず起きうる。見込みを 1 にすると 15〜54 歳の大人はみな病で亡くなる"""
+        import d1
+        st = self.marked()
+        d1._g(st).update(a=0.0, b=0.0, old=0.0, birth=0.0)
+        st["day"] += 30
+        era2._season_end(st, 1.0)
+        ev = [e for e in st["events"] if e["day"] == st["day"]]
+        self.assertFalse([e for e in ev if e["type"] == "生まれる"])
+        self.assertFalse([e for e in ev if e["type"] == "死" and ("病で" in e["text"] or "年をとって" in e["text"])])
+        st2 = self.marked()
+        d1._g(st2).update(a=1.0, b=1.0)
+        st2["day"] += 30
+        era2._season_end(st2, 1.0)  # 年をとるのが先 (15 歳になった子は大人・55 歳になった人は年寄り)
+        sick = {e["who"] for e in st2["events"] if e["day"] == st2["day"] and e["type"] == "死" and "病で" in e["text"]}
+        self.assertGreater(len(sick), 300)
+        self.assertFalse([p["name"] for p in era2.adults(st2) if p["age"] < 55], "15〜54 歳の大人はみな病で亡くなった")
+
+    def test_tally_rows(self):
+        """数え: 季節の終わりごとに、人年 (1/4 年)・死 (出来事)・母の年齢ごとの生まれた子を年に足す。年の終わりに行 (d1〜d6)"""
+        import d1
+        st = self.marked()
+        g = d1._g(st)
+        st["day"] = 29069
+        alive = [p for p in st["people"] if p["alive"]]
+        old = next(p for p in alive if p["age"] >= 55)
+        kid = next(p for p in alive if p.get("child") and p["age"] < 5)
+        mom = next(p for p in alive if p["sex"] == "女" and 20 <= p["age"] < 25)
+        for p, txt in ((old, f"{old['name']} ({old['age']} 歳) が年をとって亡くなった"), (kid, f"{kid['name']} ({kid['age']} 歳) が亡くなった")):
+            p["alive"] = False
+            world.log(st, "死", p["name"], txt)
+        world.log(st, "生まれる", mom["name"], f"{mom['name']} に子が生まれた。名前は テスト1 (女)")
+        d1.season_end(st)
+        t = g["demo"]["242"]
+        self.assertEqual((t["births"], t["kid_dead"], t["old_dead"], t["adult_dead"]), (1, 1, 1, 0))
+        self.assertEqual(sum(t["D"]), 2)
+        self.assertEqual(t["B"][1], 1, "母 20〜24 歳")
+        self.assertAlmostEqual(sum(t["E"]), 0.25 * len(alive))
+        self.assertEqual(g["tally_day"], 29069)
+        d1.season_end(st)
+        self.assertAlmostEqual(sum(t["E"]), 0.25 * len(alive), msg="同じ日は 2 回数えない")
+        for d in (29099, 29129, 29159):
+            st["day"] = d
+            d1.season_end(st)
+        r = g["rows"]["242"]
+        self.assertEqual(r["win"], [242, 242])
+        self.assertEqual((r["births"], r["deaths"]), (1, 2))
+        self.assertIsNotNone(r["e0"])
+        self.assertGreater(r["e15"], 30)
+        self.assertEqual(r["d1_ok"], 28 <= r["e0"] <= 40)
+        self.assertEqual(r["d5_ok"], r["famine"] == 0 and r["store_end"] >= 200)
+        self.assertIn("242年だけ", d1.row_text(r))
+        self.assertEqual(r["town_takers"], None, "t5 の 242年の行はまだない (季節の終わりを回していない)")
+        self.assertIn("D1 / ", "\n".join(__import__("step")._g15_lines(st, era2.indicators(st))))
+
+    def test_consult_schedule(self):
+        """相談: 242年は止めない → 243年に d1 が 2 年つづけて線の外 → 244年に 3 年ごと。d5 を割った年・人が 95% を切った年はすぐ。T5 の 3 年ごと (244年) は出ない"""
+        import d1
+        st = self.marked()
+        g, gst = d1._g(st), st["era2"]["g7"]
+        base = {"scen": "S2", "pop": 790, "pop0": 784, "store_end": 380, "store_min": 360, "famine": 0, "e0": 34.0, "e15": 45.0, "nat": 0.7, "tfr": 4.2,
+                "d1_ok": True, "d2_ok": True, "d3_ok": True, "d4_ok": True, "d5_ok": True}
+        st["day"] = 242 * 120 + 119
+        g["rows"]["242"] = dict(base, year=242, e0=26.0, d1_ok=False)
+        self.assertFalse(era2.check(st), "242年は止めない (1 年だけ線の外)")
+        st["day"] = 243 * 120 + 119
+        g["rows"]["243"] = dict(base, year=243, e0=27.5, d1_ok=False)
+        self.assertEqual(era2.check(st), "consult")
+        self.assertEqual(gst["hold"]["what"], "D1: d1 平均寿命 (26.0・27.5。線 28.0〜40.0) が 2 年つづけて線の外 (見通しとちがう動き)")
+        gst["hold"] = None
+        st["day"] = 244 * 120 + 119
+        g["rows"]["244"] = dict(base, year=244)
+        self.assertEqual(era2.check(st), "consult")
+        self.assertEqual(gst["hold"]["what"], "D1: 人口の決まりを直して 3 年たった (3 年ごとの相談)")
+        self.assertFalse(any(str(c.get("text", "")).startswith("T5:") and c.get("year", 0) >= 242 for c in gst["consulted"]), "T5 の相談は出ない")
+        gst["hold"] = None
+        st["day"] = 245 * 120 + 119
+        g["rows"]["245"] = dict(base, year=245, store_end=190, d5_ok=False)
+        self.assertEqual(era2.check(st), "consult")
+        self.assertEqual(gst["hold"]["what"], "D1: 蓄えが 200 日分を切った (245年の終わり 190 日分・いちばん少ない 360 日分・ききん 0)")
+        gst["hold"] = None
+        st["day"] = 246 * 120 + 119
+        g["rows"]["246"] = dict(base, year=246, pop=744)
+        self.assertEqual(era2.check(st), "consult")
+        self.assertEqual(gst["hold"]["what"], "D1: 人が 744 人になり、直したときの 784 人の 95% (745 人) を切った")
+        gst["hold"] = None
+        g["rows"]["246"]["pop"] = 745
+        gst["consulted"] = [c for c in gst["consulted"] if c.get("why") != "d1_pop"]
+        self.assertFalse(era2.check(st), "745 人なら止めない")
+        st["day"] = 247 * 120 + 119
+        g["rows"]["247"] = dict(base, year=247, tfr=5.3, d4_ok=False, famine=1, d5_ok=False)
+        self.assertEqual(era2.check(st), "consult")
+        self.assertIn("D1: 247年にききんがあった", gst["hold"]["what"])
+
+    def test_prompts_unchanged(self):
+        """お題 (年の集まり・気持ち・知らせ板) は印のない写しと 1 字もちがわない。書かない言葉 (d1.WORDS) はお題に出ない"""
+        import d1
+        import g7
+        st0 = self.free(self.real())
+        st = self.marked()
+        for n in era2.answerers(st)[:3]:
+            p0, p = self.person(st0, n), self.person(st, n)
+            t0, t = g7.year_prompt(st0, p0, g7.since(st0)), g7.year_prompt(st, p, g7.since(st))
+            self.assertEqual(t0, t, n)
+            self.assertEqual(era2._feeling_prompt(st0, p0, False), era2._feeling_prompt(st, p, False))
+            for w in d1.WORDS:
+                self.assertNotIn(w, t, (n, w))
+
+    def test_year_report_html(self):
+        """年報の節と物差しの棒 (行から作る。d6 の前の 10 年の幅は渡したものをそのまま)"""
+        import d1
+        import year_report as YR
+        st = self.marked()
+        r = {"year": 242, "scen": "S2", "win": [242, 242], "pop": 786, "pop0": 784, "adults": 440, "old": 27, "births": 22, "deaths": 20, "kid_dead": 14,
+             "adult_dead": 4, "old_dead": 2, "store_end": 390, "store_min": 350, "famine": 0, "e0": 33.1, "e15": 47.0, "nat": 0.26, "tfr": 4.1,
+             "d1_ok": True, "d2_ok": True, "d3_ok": True, "d4_ok": True, "d5_ok": True, "seed": 250000, "workers": 450, "seed_w": 556, "worked": 52000,
+             "field_share": 0.5, "nonfood_share": 0.25, "canal_pd": 4000, "town_takers": 3}
+        d1._g(st)["rows"]["242"] = r
+        out = []
+        q = {"head": d1.lines(st)[:1], "rows": [r], "scen": "S2", "start": 242, "consult": [],
+             "base": {"seed_w": [480, 650, 10], "field_share": [0.45, 0.55, 10], "nonfood_share": [0.2, 0.26, 10], "canal_pd": [3000, 5000, 10],
+                      "town_takers": [0, 3, 6], "years": [232, 241]},
+             "bands": {"d1": d1.D1_E0, "d2": d1.D2_E15, "d3": d1.SCEN["S2"]["d3"], "d4": d1.SCEN["S2"]["d4"], "d5": d1.D5_STORE}}
+        YR.d1_html(q, out.append)
+        h = "".join(out)
+        self.assertIn("人口の決まりの直し (案 A)", h)
+        self.assertIn("232〜241年の幅", h)
+        self.assertIn("242年だけ", h)
+        ph = YR.phase_panel(st, 242)
+        self.assertIn("人口の決まりの直し (案 A) の物差し", ph)
+        self.assertIn("(5 / 5 届いた", ph)
+
+    def test_stats_break(self):
+        """統計の区切り: 印 g7.d1 があるときだけ、5 年まとめを区切りの年 (242) から作る"""
+        import stats_calc as SC
+        c = SC.Ctx("/dev/shm/d1_no_data", state={"day": 29400, "era2": {"g7": {"d1": {"day": 29039, "start_year": 242}}}})
+        self.assertEqual(c.breaks(), {242: SC.BREAK_D1})
+        self.assertEqual((c.win0(241), c.win0(242), c.win0(244), c.win0(250)), (237, 242, 242, 246))
+        n = SC.Ctx("/dev/shm/d1_no_data", state={"day": 29400, "era2": {"g7": {}}})
+        self.assertEqual((n.breaks(), n.win0(244)), ({}, 240))
+        brk = [b for b in SC.defs()["breaks"] if b.get("when") == "d1"]
+        self.assertEqual([b["day"] for b in brk], [242 * 120])
+
+    def test_resume_cli_refuse(self):
+        """step.py resume --d1 (/dev/shm の写し): 言葉がない・筋がちがう・ほかの印と一緒・resume でない・--d1scen だけ → 断って何も変えない (つける回しは A_check.md)"""
+        st = self.real()
+        base = "/dev/shm" if Path("/dev/shm").is_dir() else "/tmp"
+        d = Path(tempfile.mkdtemp(prefix="d1_test_", dir=base))
+        try:
+            (d / "state.json").write_text(json.dumps(st, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            env = dict(os.environ, SOC_DATA=str(d), SOC_RECORDS="0", PYTHONUTF8="1")
+            run = lambda *a: subprocess.run([sys.executable, str(SOC / "step.py"), *a], env=env, capture_output=True, text=True)  # noqa: E731
+            s0 = (d / "state.json").read_bytes()
+            r = run("resume", "--d1", " ")
+            self.assertEqual(r.returncode, 3)
+            self.assertIn("resume --d1 はできない: --d1 には本人の言葉が要る (何も変えない)", r.stdout)
+            r = run("resume", "--d1", D1_WORDS, "--d1scen", "S9")
+            self.assertEqual(r.returncode, 3)
+            self.assertIn("S2・S1 のどれか", r.stdout)
+            r = run("resume", "--d1", D1_WORDS, "--t5fix", "x")
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn("--d1 は resume のときだけ", r.stderr)
+            r = run("season", "--d1", D1_WORDS)
+            self.assertNotEqual(r.returncode, 0)
+            r = run("resume", "--d1scen", "S1")
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn("--d1scen は resume --d1 のときだけ", r.stderr)
+            self.assertEqual((d / "state.json").read_bytes(), s0, "断ったときは何も変えない")
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -245,7 +245,7 @@ def build(data, scan=True):
     for y, v in hun.items():
         rows[y]["hunger"] = v
     for y in years:  # 平均の線 (5 年)
-        win = [rows[yy] for yy in range(y - 4, y + 1) if yy in rows]
+        win = [rows[yy] for yy in range(ctx.win0(y), y + 1) if yy in rows]  # 2026-11-22: 区切り (stats_calc.BREAKS) の前の年と混ぜない
         b = sum(r.get("births") or 0 for r in win)
         d = sum(r.get("deaths") or 0 for r in win)
         p = sum(r.get("pop") or 0 for r in win)
@@ -264,8 +264,11 @@ def build(data, scan=True):
     offers = scan_offers(data, upto, ctx._cache.get("live_offers") or []) if scan else {}
     tech = tech_data(rows)
     reports = sorted(int(re.findall(r"\d+", p.name)[0]) for p in Path(SOC, "reports").glob("year*.html"))
+    defs = SC.defs()
+    marks = {"d1"} if ctx.breaks() else set()  # 2026-11-22: 印のある区切りだけ図に点線を出す (breaks の "when")
+    defs["breaks"] = [b for b in defs.get("breaks", []) if b.get("when") is None or b["when"] in marks]
     D = {"asof": {"day": now, "label": f"{now // YEAR}年{now % YEAR + 1}日目", "last_year": last, "built": time.strftime("%Y-%m-%d")},
-         "defs": SC.defs(), "compo": SC.COMPO, "compo_tree": tree, "years": {str(y): _r(r) for y, r in rows.items()}, "s1": _r(s1), "seasons": seasons, "era_log": era_log,
+         "defs": defs, "compo": SC.COMPO, "compo_tree": tree, "years": {str(y): _r(r) for y, r in rows.items()}, "s1": _r(s1), "seasons": seasons, "era_log": era_log,
          "tech": tech, "offers": {str(k): v for k, v in offers.items()}, "check": {"n": n, "bad": _r(bad), "ref_calc": _r(mine)}, "reports": reports}
     print(f"統計: {years[0]}〜{last}年 {len(years)} 年・Society 1.0 の季節 {len(s1)}・照らし合わせ {n} (ちがう {len(bad)})・{time.time() - t0:.0f} 秒・"
           f"記憶のいちばん多い所 {resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024} MB", file=sys.stderr)
