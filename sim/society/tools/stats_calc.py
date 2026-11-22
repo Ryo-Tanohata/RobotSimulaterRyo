@@ -481,6 +481,7 @@ def year_row(ctx, y, full=True):
     t5r, p4r = ctx.g7rows("t5").get(str(y)), ctx.g7rows("p4").get(str(y))
     o["for_others"] = ((t5r or {}).get("town_pd") or 0) + ((p4r or {}).get("pd") or 0) if (t5r or p4r) else None
     o["town_done"] = t5r.get("done") if t5r else None
+    o["p4_done"] = p4r.get("done") if p4r else None
     s3r = ctx.g7rows("s3").get(str(y)) or {}
     for k in ("coal_burned", "coal_dug", "house_coal"):
         o[k] = s3r.get(k)
@@ -608,7 +609,7 @@ def _report_numbers(path):
 
 
 def check(ctx, report_dir, years=None):
-    """年報に書いた数と、設計の 236年の数とくらべる。(ちがい の list, くらべた数)"""
+    """年報に書いた数と、設計の 236年の数とくらべる。(ちがい の list, くらべた数, 236年の計算の数)"""
     bad, n = [], 0
     rd = Path(report_dir)
     for p in sorted(rd.glob("year*.html")):
@@ -658,7 +659,7 @@ def check(ctx, report_dir, years=None):
             ok = abs(m - v) < 0.5
         if not ok:
             bad.append({"src": "設計の 236年", "year": y, "key": k, "report": v, "calc": round(m, 4) if isinstance(m, float) else m})
-    return bad, n
+    return bad, n, mine
 
 
 def main(argv=None):
@@ -675,7 +676,7 @@ def main(argv=None):
         o.pop("pyramid", None)
         print(json.dumps(o, ensure_ascii=False, indent=1, default=str))
     if a.check:
-        bad, n = check(ctx, a.reports)
+        bad, n, _ = check(ctx, a.reports)
         print(f"くらべた数 {n}・ちがう {len(bad)}")
         for b in bad:
             print(f"  {b['src']} {b['year']}年 {b['key']}: 書いた数 {b['report']} / 計算 {b['calc']}" + (f" ({b['why']})" if b.get("why") else ""))
