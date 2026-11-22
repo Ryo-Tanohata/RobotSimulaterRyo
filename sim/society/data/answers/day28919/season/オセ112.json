@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。夏は畑を刈りきって、あとは水の道を掘ろう。ヤギは多すぎるから、もらう話は断ってつぶして減らそう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏に畑を刈らないと実りが落ちる。まず刈り入れをいちばんにする"}, "family": {"キサ112": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れを家族みんなで進める"}, "テナ113": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れを手伝う"}, "テナ121": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 2},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大量に残っているので掘る"}, "family": {"キサ112": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが残っているので掘る"}, "テナ113": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが残っているので掘る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると実りが増える"}, "family": {"キサ112": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "テナ113": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで次の夏の実りを守る"}, "family": {"キサ112": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "テナ113": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1253": false, "T1254": false, "T1255": false, "T1256": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える約110頭より多いので、ヤギをもらう申し出は断り、少しつぶして減らす。", "because": [6017612], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギ多く蓄え満ちる年",
+ "feeling": "蓄えは多くて安心。畑を刈りきって、水の道も進めたい。"}

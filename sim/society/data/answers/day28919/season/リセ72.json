@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を落とさずに刈ろう。秋からは水の道の手入れをして、ヤギは少しつぶして草に合わせよう。小さい子には、わかした水を忘れずに。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏に刈らないと落ちるので、まず刈り入れをする"}, "family": {"ロワ85": {"activity": "畑仕事", "place": "camp", "why": "みんなで刈れば早く終わる"}, "ハソ87": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "シエ96": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ホタ100": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "セオ105": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "オセ115": {"activity": "畑仕事", "place": "camp", "why": "小さい子の世話をしながら刈り入れを手伝う"}, "セヤ120": {"activity": "畑仕事", "place": "camp", "why": "半人前でも刈り入れの助けになる"}, "シエ120": {"activity": "畑仕事", "place": "camp", "why": "半人前でも刈り入れの助けになる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 15},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが8000人日以上残っていて、畑を守るため"}, "family": {"ロワ85": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに人手を回す"}, "ハソ87": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに人手を回す"}, "シエ96": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに人手を回す"}, "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに人手を回す"}, "セオ105": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに人手を回す"}, "オセ115": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに人手を回す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬は実りがないので、水の道の手入れを続ける"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "夏の実りのため、水の道の手入れを続ける"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1253": false, "T1254": false, "T1255": false, "T1256": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の分より多いので、夏のうちに何頭かつぶして肉にし、よその村のヤギは受けとらないほうがよい。", "because": [6017592], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "小さい子を悼んだ年",
+ "feeling": "子どもたちが元気に育つよう、みんなで畑と水の道を守りたい。"}
