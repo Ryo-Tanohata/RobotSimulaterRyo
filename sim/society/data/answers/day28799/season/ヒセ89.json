@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蔵の草の種はたっぷりある。夏は畑をしっかり刈って、秋にたくさんまこう。苦しい村には貸してやろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑がたくさん残っていて、夏のうちに刈らないと落ちてしまうから"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "リセ109": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やすため"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "リセ109": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがたくさん残っていて、畑を守れるから"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで畑を育てる"}, "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで畑を育てる"}, "リセ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを一緒に進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "夏の刈り入れの前に水の道を直しておきたい"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "リセ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを一緒に進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1240": false, "T1241": "村", "T1242": false, "T1243": "村"},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えの草の種はとても多い。苦しい村に貸しても、村は困らない。", "because": [5939734], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "草の種あふれる年",
+ "feeling": "蓄えが多くて安心している。体を動かして畑を刈るのが楽しみだ。"}

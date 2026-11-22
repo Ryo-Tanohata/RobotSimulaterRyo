@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "夏の畑がたくさん実っている。落ちる前に、みんなで刈り入れをしよう。そのあとは水の道の手入れをしたい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを急ぐ"}, "family": {"ラニ74": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}, "ケセ76": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 4},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが7520人日も残っている。来年の畑を守る"}, "family": {"ラニ74": {"activity": "畑仕事", "place": "camp", "why": "秋は草取りで実りが増える"}, "ケセ76": {"activity": "畑仕事", "place": "camp", "why": "秋は草取りで実りが増える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬は実りがないので、水の道の手入れを進める"}, "family": {"ラニ74": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを一緒に進める"}, "ケセ76": {"activity": "畑仕事", "place": "camp", "why": "冬も草取りで実りが増える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意なので、蓄えを守る土器を焼く"}, "family": {"ラニ74": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "ケセ76": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ、乳もとれる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1240": false, "T1241": "村", "T1242": false, "T1243": "村"},
+ "trade_rule": {"交換": null, "貸して": "村", "max": 3000, "not": [], "利子": 0},
+ "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草より多く、毎年何頭かやせていなくなる。肉にして干せば蓄えも増える", "because": [5939714], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせた年",
+ "feeling": "蓄えはたっぷりあるので安心している。苦しい村を助けつつ、水の道を守りたい。"}
