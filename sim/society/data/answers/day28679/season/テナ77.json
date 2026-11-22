@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏は畑を刈って、あとは草取りをしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れる"}, "family": {"キサ88": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ルタ88": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やす"}, "family": {"キサ88": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ルタ88": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りをして畑を育てる"}, "family": {"キサ88": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ルタ88": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りを続ける"}, "family": {"キサ88": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ルタ88": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を守った年",
+ "feeling": "蓄えが多くて安心。家族とふつうに働きたい。"}
