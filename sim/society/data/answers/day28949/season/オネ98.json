@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬は肉がものを言う。俺は南の林でけものを追う。獲物を見つけたら声をかけるから、腹を空かせたやつは来い。"}],
+ "job": {"activity": "狩り", "place": "南林12", "with": [], "why": "狩りがいちばん得意で、秋のうちに肉をためれば冬をしのげるから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ナセ105": {"activity": "狩り", "place": "東林12", "why": "狩りが得意なので、肉を多く取って冬にそなえる"}, "ソワ113": {"activity": "狩り", "place": "南林28", "why": "南の林で獲物を取ると言っていたので、冬の肉を任せる"}}, "keep": false,
+ "judge": {"M571": "ゆるす", "M572": "ゆるす", "M573": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1257": false, "T1258": false, "T1259": false, "T1260": false, "T1261": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に狩りを続けて肉をためると、冬の食べ物の足しになる。", "because": [6050464], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体がうずく。早く林に出て、でかい獲物を仕留めたい。"}

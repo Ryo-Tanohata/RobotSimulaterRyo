@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "秋は大人一人1000つかみずつ畑にまいて、冬までみんなで草取りをしよう。苦しい村には、蓄えから貸してあげよう。"}, {"to": "オセ139", "text": "今年もいっしょに畑の草をとろう。疲れたら無理しないでね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["オセ139"], "why": "まいた畑の草取りをすると、次の夏の実りが増えるから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"オセ139": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば、畑がよく実るから"}}, "keep": false,
+ "judge": {"M571": "つぐなう", "M572": "つぐなう", "M573": "つぐなう"}, "feast": false, "leader": "テナ61", "trade": {"T1257": "村", "T1258": "村", "T1259": "村", "T1260": "村", "T1261": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "まわりの村は、この年は畑が実らず、草の種を借りに来ている", "because": [6050686, 6050687, 6050688, 6050689, 6050690], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L970", "against": "メスをつぶすと子ヤギが減る", "agree": true, "reason": "ヤギが草の分をこえているので、減らしたほうがよい"},
+  {"id": "L971", "against": "つぶす数が多すぎるかもしれない", "agree": true, "reason": "乳の出ないオスから減らすのは理にかなっている"},
+  {"id": "L972", "against": "年をとったヤギだけで足りるかわからない", "agree": true, "reason": "小さい子から肉を分けるのはよい"},
+  {"id": "L973", "against": "町の頼みは字が読めないと受けられない", "agree": true, "reason": "ヤギを減らし、子の薬ももらえるから"},
+  {"id": "L974", "against": "10頭では足りないかもしれない", "agree": true, "reason": "畑を刈りきり、秋にまくのは大事だから"},
+  {"id": "L975", "against": "ヤギを減らす話がない", "agree": true, "reason": "子にわかした水を飲ませるのはよいこと"},
+  {"id": "L976", "against": "とくにない", "agree": true, "reason": "自分が出した案で、家のない家族を助けたいから"}
+ ],
+ "feeling": "蓄えはたっぷりあるから、まわりの村も助けて、みんなで冬を越したい。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "刈った種のことで、うちの家に不満が出てるのは知ってる。量は覚えだけで決まらないから、今度からは刈る前に分け方を決めておこう。今回はゆるしてほしい"}, {"to": "みんな", "text": "わたしは今年の秋も北の丘で燃える石を掘る。町に運べば子の薬になるし、余れば冬のまき集めも減る"}],
+ "job": {"activity": "燃える石を掘る", "place": "北丘12", "with": [], "why": "掘るのには慣れているし、町の頼みを果たせば子の薬がもらえるから"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M571": "ゆるす", "M572": "ゆるす", "M573": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1257": false, "T1258": false, "T1259": "村", "T1260": "村", "T1261": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "よその畑で刈る前に、刈った種の分け方を先に決めておこう", "order": null, "take": {"頼み": 22, "人": ["ナセ110"]},
+ "knowledge": [{"op": "add", "text": "前に貸した草の種をまだ返していない村が、また借りに来ている", "because": [6050686, 6050687, 6050690], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "うちの家がもめごとの相手になって気が重いけど、石を掘って薬を持ち帰れば、少しは村の役に立てるはず"}

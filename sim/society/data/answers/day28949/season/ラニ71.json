@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋だ。蓄えの草の種はたっぷりある。畑にしっかりまいて、苦しい村には貸してやろう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "見習いの途中なので、続けてのこ番の仕事を覚え、板をひいて村の手入れを助けたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケナ75": {"activity": "畑仕事", "place": "camp", "why": "秋と冬の草取りで来年の実りを増やすため"}, "キサ81": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを守るため"}},
+ "keep": false,
+ "judge": {"M571": "ゆるす", "M572": "ゆるす", "M573": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1257": "村", "T1258": "村", "T1259": "村", "T1260": "村", "T1261": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L976", "against": "", "agree": true, "reason": "ヤギが多すぎるので減らすのは良く、家のない家族の住まいを建てるのも助けになる"}],
+ "feeling": "蓄えもたっぷりあって落ち着いている。働きながら見習いを進めたい"}

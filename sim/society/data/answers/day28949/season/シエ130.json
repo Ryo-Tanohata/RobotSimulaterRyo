@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたくさんある。この秋は畑の草取りと、木の実の木の実り取りをして、冬にそなえよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋は草取りで次の夏の実りが増えるから。採集では何も見つからない日が続いたので畑仕事のほうが役に立つ。"}, "sow": 300, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ナセ130": {"activity": "畑仕事", "place": "camp", "why": "子が多い家なので、近くのキャンプで畑の草取りを手伝い、実りを増やす。"}}, "keep": false,
+ "judge": {"M571": "ルタ92の家の畑の種はルタ92の家の倉に入るのが決まりなので、不満は通らない。争わず収める。", "M572": "ルタ92の家の畑で刈った分は家の倉に入るのがふつう。これも争わず収める。", "M573": "同じ理由で、ルタ92の家の倉に入ったのはふつうのこと。収める。"}, "feast": false, "leader": "", "trade": {"T1257": "蓄えは多いので、貸してあげてよい。", "T1258": "蓄えは多いので、貸してあげてよい。", "T1259": "蓄えは多いので、貸してあげてよい。", "T1260": "蓄えは多いので、貸してあげてよい。", "T1261": "蓄えは多いので、貸してあげてよい。"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋は畑の草取りをすると次の夏の実りが増える。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "子どもたちが多くてにぎやか。蓄えがあって安心している。"}

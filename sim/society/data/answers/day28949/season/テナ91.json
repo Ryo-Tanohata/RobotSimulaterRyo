@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "畑がまだないから、今年の秋も蓄えの草の種をまこう。冬と春は、みんなで草取りをして夏に備えよう。"}, {"to": "キサ106", "text": "キサ、一緒に畑仕事をしよう。タユ131とユエ138も見ながら、ゆっくりやろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["キサ106"], "why": "畑がないので、まいた種が夏に実るよう草取りを続けたい。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"キサ106": {"activity": "畑仕事", "place": "camp", "why": "私と一緒に畑の草取りをして、夏の実りを増やすため。"}}, "keep": false,
+ "judge": {"M571": "ゆるす", "M572": "ゆるす", "M573": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1257": "村", "T1258": "村", "T1259": "村", "T1260": "村", "T1261": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまき、秋・冬・春に草取りをすると、次の夏の実りが増える。", "because": [6050680], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心。困っている村にも分けてあげたい。"}

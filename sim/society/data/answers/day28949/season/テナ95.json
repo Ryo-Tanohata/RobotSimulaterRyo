@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えがたっぷりあるから、秋のうちに草の種をまいて、みんなで草取りをして、来年の夏の実りを増やそうよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると夏に多く刈れると覚えているので、ナセ99と一緒に草取りをする"},
+ "sow": 200, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 1,
+ "family": {"ナセ99": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば、畑の実りが早く十分に育つから"}},
+ "keep": false,
+ "judge": {"M571": "ゆるす", "M572": "ゆるす", "M573": "ゆるす"},
+ "feast": true, "leader": "なし",
+ "trade": {"T1257": "村", "T1258": "村", "T1259": "村", "T1260": "村", "T1261": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種がとても多く、苦しい村に貸しても足りなくなる心配は今のところない。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。みんなで畑を育てるのが楽しみ。"}

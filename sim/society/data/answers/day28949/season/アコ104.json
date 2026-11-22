@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、この秋は畑に種をしっかりまいて、水の道の手入れも一緒に進めよう。にぎやかに働こうな。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っていて、畑に水が来なくなるのは困る。蓄えは足りているので、手を貸したい。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソナ112": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家族みんなで進めるため。"}, "ソワ114": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家族みんなで進めるため。"}},
+ "keep": false,
+ "judge": {"M571": "ゆるす", "M572": "ゆるす", "M573": "ゆるす"}, "feast": false, "leader": "なし",
+ "trade": {"T1257": "村", "T1258": "村", "T1259": "村", "T1260": "村", "T1261": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと次の夏に実る。水の道の手入れはまだ多く残っている。", "because": [6050680], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで安心している。みんなと話しながら働くのが楽しみだ。"}

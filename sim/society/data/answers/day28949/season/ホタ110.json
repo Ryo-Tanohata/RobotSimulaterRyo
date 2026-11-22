@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の前に、北の丘で燃える石を掘ってくる。うちのかまどをそろそろ変えたいからね。"}],
+ "job": {"activity": "燃える石を掘る", "place": "北丘12", "with": [], "why": "家のかまどを石のかまどにしたいし、冬のまき集めの手間も減らしたいから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ハソ117": {"activity": "帳をつける", "place": "camp", "why": "字が読める人が帳をつける決まりなので、続ける"}}, "keep": false,
+ "judge": {"M571": "ゆるす", "M572": "ゆるす", "M573": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1257": "村", "T1258": "村", "T1259": "村", "T1260": "村", "T1261": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "北の丘で燃える石を掘ると、冬のまき集めが減って家が楽になる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは山ほどあって安心。冬に向けて、手を動かして石を掘るのが楽しみ。"}
