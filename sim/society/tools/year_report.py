@@ -438,6 +438,8 @@ def conditions(D, y, phase):
             out["i4"] = i4_part(st, y)
         if "p4" in _g7(st):  # 2026-11-21: Society 3.0 フェーズ 4 (頼み書きと町。印 g7.p4 のあとだけ)
             out["p4"] = p4_part(st, y)
+        if "t5" in _g7(st):  # 2026-11-22: Society 3.0 フェーズ 5 (川下の町と鉄の道具。印 g7.t5 のあとだけ)
+            out["t5"] = t5_part(st, y)
         p = (g.get("path") or {}).get(str(y))
         cons = [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("g15_") and c.get("year", (c.get("day", 0) + 1) // YEAR - 1) == y]
         out["path"] = {"row": p, "consult": cons, "start": g.get("start"), "g": "G15"}
@@ -469,6 +471,15 @@ def p4_part(st, y):
     if "fix1" in g:  # 2026-11-21: 頼み書きの直し 1 (印 g7.p4.fix1 のあとだけ。P4_design.md 9.)
         out["fix1"] = g["fix1"]
     return out
+
+
+def t5_part(st, y):
+    """Society 3.0 フェーズ 5 (川下の町と鉄の道具) の節の中身: 年ごとの t1〜t4 の行・この年の町の頼み・帳・町の鎌 (鉄の鎌)"""
+    import t5 as T5
+    g = T5._g(st)
+    rows = [g["rows"][k] for k in sorted(g["rows"], key=int) if int(k) <= y]
+    return {"head": T5.lines(st)[:1], "rows": rows, "orders": T5.orders_of(st, y), "book": T5.book_of(st, y),
+            "tools": {h: len(v) for h, v in sorted(g["tools"].items()) if v}, "yr": (g.get("yr") or {}).get(str(y)) or {}}
 
 
 def g11_lines(g, st, y, Y):
@@ -1143,6 +1154,31 @@ def p4_html(q, w):
         w('<p class="note">よその家の頼みで働いた家 (人日の多い順): ' + e("・".join(f"{h} {d}" for h, d in q["town"][:10])) + "</p>")
 
 
+def t5_html(q, w):
+    """年報の節「Society 3.0 フェーズ 5 (川下の町と鉄の道具)」の HTML (render から)。村の人に見せる呼び名は「町の鎌」"""
+    ok = lambda b: "○" if b else "×"  # noqa: E731
+    w('<p style="margin:10px 0 2px"><b>Society 3.0 フェーズ 5 (川下の町と鉄の道具): 川下の町が燃える石と板を頼み、鉄の鎌 (村の言葉で「町の鎌」) で払う</b></p>')
+    w('<ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in q["head"]) + "</ul>")
+    if q["rows"]:
+        w('<table><tr><td>年</td><td>t1 果たした町の頼み (4 件・受けた家 2)</td><td>t2 町かよその家の頼みで 30 人日の家 (2 家)</td><td>t3 食べ物でない仕事 (22% 以上)</td>'
+          '<td>t4 暮らしを守る</td><td>町の鎌 (払った・傷んだ・年の終わりに家に)</td><td>鎌で多く刈った草の種</td></tr>')
+        for r in q["rows"]:
+            w(f"<tr><td>{r['year']}</td><td>{ok(r['t1_like'])} {r['done']} 件 (受けた家 {r['taker_n']}。出した {r['posted']} 枚・果たせなかった {r['failed']}・消えた {r['gone']})</td>"
+              f"<td>{ok(r['t2_like'])} {r['t2_n']} 家 (町の頼みの仕事 {r['town_pd']} 人日・運ぶ {r['carry']})</td><td>{ok(r['t3_ok'])} {round(r['t3_share'] * 100, 1)}%</td>"
+              f"<td>{ok(r['t4_ok'])} ききん {r['famine']}・蓄え {r['store_min']} 日分・人 {r['pop']}・読める大人 {round(r['r_share'] * 100, 1)}%</td>"
+              f"<td>{r['paid']}・{r['worn']}・{r['tools_now']} 本 ({r['tool_houses']} 家)</td><td>{r['reap_extra']} つかみ (刈る {r['days_saved']} 日分・使った日 {r['reap_uses']})</td></tr>")
+        w("</table>")
+    yr = q["yr"]
+    w(f'<p class="note">町に渡した燃える石 {round(yr.get("coal", 0))} kg・板 {round(yr.get("planks", 0), 1)} 束 / 運んだ日 {yr.get("carry", 0)} / '
+      f'町の鎌を持つ家: {e("・".join(f"{h} {n}" for h, n in list(q["tools"].items())[:12]) or "なし")}{" ほか" if len(q["tools"]) > 12 else ""}</p>')
+    if q["orders"]:
+        w('<p style="margin:6px 0 2px"><b>この年の町の頼み</b></p><ul class="note">'
+          + "".join(f"<li>頼み{o['id']} {e(o['season'])}: {e(o['want'])} {o['n']} ← 町の鎌 {o['pn']} 本 ({e(o['status'])}"
+                    + (f"。受けた家 {e(o.get('taker'))}・働いた {o.get('pd', 0)} 人日・家の倉から {round(o.get('stock', 0))}" if o.get("taker") else "") + ")</li>" for o in q["orders"]) + "</ul>")
+    else:
+        w('<p class="note">この年の町の頼み: なし</p>')
+
+
 def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
     st = D["state"]
     phase = C["phase"]
@@ -1233,6 +1269,8 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
             w('<p class="note">この年の知らせ: なし</p>')
     if C.get("p4"):  # 2026-11-21: Society 3.0 フェーズ 4 (頼み書きと町)
         p4_html(C["p4"], w)
+    if C.get("t5"):  # 2026-11-22: Society 3.0 フェーズ 5 (川下の町と鉄の道具)
+        t5_html(C["t5"], w)
     if C.get("branches"):
         w('<p style="margin:10px 0 2px"><b>反実仮想の枝 (写しを 2 本回して、良いほうを本物の村の続きにした)</b></p><ul class="note">' + "".join(f"<li>{e(x)}</li>" for x in C["branches"]) + "</ul>")
     if C.get("g14"):

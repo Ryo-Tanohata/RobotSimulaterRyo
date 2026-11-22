@@ -716,8 +716,25 @@ def _p4_on(state):
     return "p4" in ((state["era2"].get("g7") or {})) and _p4m().on(state)  # 印 g7.p4 (step.py resume --p4 だけが書く) のあとだけ
 
 
+def _t5m():
+    """Society 3.0 フェーズ 5 (川下の町と鉄の道具。2026-11-22。docs/society_phase/T5_design.md) の仕組み (t5.py)。印 g7.t5 があるときだけ読みこむ"""
+    import t5
+    return t5
+
+
+def _t5_on(state):
+    return "t5" in ((state["era2"].get("g7") or {})) and _t5m().on(state)  # 印 g7.t5 (step.py resume --t5 だけが書く) のあとだけ
+
+
+def t5_harvest(state, p, n):
+    """era2._field_work から (印 g7.t5 のあとだけ): 昼の畑仕事で実った畑を刈る 1 日。家の鉄の鎌があれば 1.3 倍"""
+    return _t5m().harvest(state, p, n)
+
+
 def board_block(state, p, answer=True):
-    """お題の上のほうの節「## 村の知らせ板」(印 g7.i4 のあとだけ。前は空の文字)。印 g7.p4 のあとは、知らせのあとに頼み書きの行"""
+    """お題の上のほうの節「## 村の知らせ板」(印 g7.i4 のあとだけ。前は空の文字)。印 g7.p4 のあとは、知らせのあとに頼み書きの行。印 g7.t5 のあとは、そのあとに川下の町の頼みの行"""
+    if _t5_on(state) and _p4_on(state) and _i4_on(state):
+        return _t5m().board_block(state, p, answer)
     if _p4_on(state) and _i4_on(state):
         return _p4m().board_block(state, p, answer)
     return _i4m().board_block(state, p, answer) if _i4_on(state) else ""
@@ -1565,6 +1582,8 @@ def season_end(state, frac):
         _i4m().season_end(state)
     if _p4_on(state):  # 2026-11-21: Society 3.0 フェーズ 4 の頼みの仕事の人をもどす・期限・板の古い頼み・年の物差し (印 g7.p4 のあとだけ。i4 のあと)
         _p4m().season_end(state)
+    if _t5_on(state):  # 2026-11-22: Society 3.0 フェーズ 5 の年の物差しと、川下の町の新しい頼み (印 g7.t5 のあとだけ。p4 のあと)
+        _t5m().season_end(state)
     yardstick.season_end(state, frac)  # 13. 物差し (乱数なし)
     ask_next(state)  # 13. 次の歩で答えが要るか (物差しは物差しの部分)
     _offer(state)
@@ -1581,6 +1600,14 @@ def check(state, met, ind):
         g.setdefault("consulted", []).append(c)
         g["hold"] = {"why": "consult", "era": era, "day": D, "what": c["text"]}
         return "consult"
+    if _t5_on(state):  # 2026-11-22: Society 3.0 フェーズ 5 (印 g7.t5 のあと): 止まるのは T5 の入口と相談と、読める大人が 1 人以下だけ (P4 は閉じた)
+        c = _t5m().check(state, g.setdefault("consulted", []))
+        if not c:
+            return False
+        g["consulted"].append(c)
+        code = "entrance" if c["why"] == "t5_entrance" else "consult"
+        g["hold"] = {"why": code, "era": era, "day": D, "what": c["text"]}
+        return code
     if _p4_on(state):  # 2026-11-21: Society 3.0 フェーズ 4 (印 g7.p4 のあと): 止まるのは P4 の入口と相談と、読める大人が 1 人以下だけ (i4 は閉じた)
         c = _p4m().check(state, g.setdefault("consulted", []))
         if not c:

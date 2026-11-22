@@ -39,7 +39,7 @@ EV = "頼み書き"  # 出来事の種類
 # a 頼み書き【仮定】
 WANTS = {"燃える石": (500, 10000, "kg"), "板": (10, 200, "束")}
 PAYS = ("手間", "草の種", "燃える石", "板")
-PAY_UNIT = {"手間": "人日", "草の種": "つかみ", "燃える石": "kg", "板": "束"}
+PAY_UNIT = {"手間": "人日", "草の種": "つかみ", "燃える石": "kg", "板": "束", "町の鎌": "本"}  # 町の鎌 (鉄の鎌) は川下の町の頼みの払いだけ (t5。2026-11-22。村の家の頼みには書けない)
 TEMA_PER_ADULT = 10
 OPEN_MAX = 2  # まだ受けられていない頼みは 1 家 2 枚まで
 BOARD_MAX = 8  # 板にのる頼みの枚数 (新しいほうから)
@@ -79,6 +79,20 @@ def on(state):
 
 def _g(state):
     return state["era2"]["g7"]["p4"]
+
+
+def closed(state):
+    """P4 の入口と相談を閉じたか (g7.p4.closed。2026-11-22 から、step.py resume --t5 が書く)。閉じたあとも頼み書きと約束の帳は動く"""
+    return on(state) and "closed" in _g(state)
+
+
+def _t5():
+    """Society 3.0 フェーズ 5 (川下の町と鉄の道具。t5.py)。町の頼み (o["town"]) があるときだけ読みこむ (町の頼みは印 g7.t5 のあとにしかない)"""
+    import t5
+    return t5
+
+
+ACTIVE = ("受けた", "運ぶ")  # 受けている頼み (「運ぶ」は町の頼みで、物がそろって川下の町へ運ぶのを待っているとき。t5 のあとだけ)
 
 
 def fixed(state):
@@ -447,8 +461,10 @@ def take_orders(state, real):
             elif n not in mine:
                 _fail(state, name, "受ける", f"{n} は {name} の家の大人でないので、頼み {t['id']} の人に入れなかった")
         ws = ws[:WORKERS_MAX]
+        if o.get("town") and not ws and name in mine:  # 町の頼み (t5): 運ぶ人がいる。名を書かなければ、答えた人が運ぶ
+            ws = [name]
         stock = min(have(state, h, o["want"]), o["n"])
-        if not ws and stock < o["n"]:
+        if not ws and (stock < o["n"] or o.get("town")):
             _fail(state, name, "受ける", f"{name} は、頼み {t['id']} の仕事をする人を書かなかったので、受けられなかった")
             continue
         g["orders"] = [x for x in g["orders"] if x["id"] != o["id"]]
@@ -460,7 +476,10 @@ def take_orders(state, real):
         yr = _yr(state, y)
         if h not in yr["took"]:
             yr["took"].append(h)
-        _reach(state, "F2", f"{h}の {name} が、{o['house']}の頼み {o['id']} を受けた")
+        if o.get("town"):  # 町の頼み (t5): p4 の F には数えない
+            _t5().took(state, o)
+        else:
+            _reach(state, "F2", f"{h}の {name} が、{o['house']}の頼み {o['id']} を受けた")
         if stock > 0:
             got = take_goods(state, h, o["want"], stock)
             _deliver(state, o, got, stock=True)
@@ -473,6 +492,13 @@ def _need(o):
 def _deliver(state, o, n, stock=False):
     """できた物 n を頼んだ家の倉へ。頼みの分になったら果たす"""
     if n <= 0:
+        return
+    if o.get("town"):  # 町の頼み (t5): できた物は受けた家が町へ運ぶまで持っておく。そろったら「運ぶ」
+        o["made"] = round(o["made"] + n, 2)
+        if stock:
+            o["stock"] = round(o["stock"] + n, 2)
+        if _need(o) <= 0:
+            _t5().ready(state, o)
         return
     put_goods(state, o["house"], o["want"], n)
     o["made"] = round(o["made"] + n, 2)
@@ -489,11 +515,14 @@ def _fulfil(state, o):
     o["status"], o["end"], o["end_y"] = "果たした", D, _ay(state)
     if o["pay"] == "手間":
         o["back"] = {"need": o["pn"], "done": 0, "from": D}
+    elif o.get("town"):  # 町の頼み (t5): 町が受けた家に鉄の鎌を渡す
+        _t5().pay(state, o)
     else:
         put_goods(state, o["taker"], o["pay"], o["escrow"])
     log(state, EV, o["taker_by"], f"{o['taker']}が、{o['house']}の頼み ({o['want']} {o['n']} {WANTS[o['want']][2]}) を果たした", order=o["id"], household=o["taker"])
     _yr(state, _ay(state))["done"] += 1
-    _reach(state, "F3", f"{o['taker']}が {o['house']}の頼み {o['id']} を果たした")
+    if not o.get("town"):  # 町の頼み (t5) は p4 の F に数えない
+        _reach(state, "F3", f"{o['taker']}が {o['house']}の頼み {o['id']} を果たした")
     for n, w in list(g["work"].items()):
         if w["id"] == o["id"]:
             _restore(state, n, w)
@@ -506,6 +535,8 @@ def _failed(state, o):
     o["status"], o["end"], o["end_y"] = "果たせなかった", D, _ay(state)
     if o["pay"] != "手間" and o.get("escrow"):
         put_goods(state, o["house"], o["pay"], o["escrow"])
+    if o.get("town") and o["made"] > 0:  # 町の頼み (t5): そろえた物は受けた家の倉にもどる
+        put_goods(state, o["taker"], o["want"], o["made"])
     _yr(state, _ay(state))["failed"] += 1
 
 
@@ -583,12 +614,14 @@ def season_start(state):
     busy = set()
     if food_first(state):
         for o in g["book"]:
-            if o["status"] == "受けた":
+            if o["status"] in ACTIVE:
                 o["due"] += SEASON_DAYS
                 o["food_first"].append(D + 1)
                 _yr(state, (D + 1) // YEAR)["food_first"] += 1
     else:
         mid = saw_ws(state)
+        for o in sorted((x for x in g["book"] if x["status"] == "運ぶ"), key=lambda x: x["id"]):  # 町の頼み (t5): そろった物を運ぶ人 (季節のはじめの 1 日)
+            _t5().carrier(state, o, src, busy)
         for o in sorted((x for x in g["book"] if x["status"] == "受けた"), key=lambda x: x["id"]):
             for n in o["workers"]:
                 p = _adult(state, n)
@@ -646,6 +679,9 @@ def work_day(state, p, t, act):
     name, h = p["name"], p.get("household")
     w = g["work"][name]
     o = next((x for x in g["book"] if x["id"] == w["id"]), None)
+    if w.get("carry") and o is not None and o["status"] == "運ぶ":  # 町の頼み (t5): 川を下って町へ運ぶ 1 日
+        _t5().carry_day(state, p, t, w, o)
+        return
     if o is None or o["status"] != "受けた":
         _restore(state, name, w)
         g["work"].pop(name)
@@ -684,11 +720,14 @@ def work_day(state, p, t, act):
     yr = _yr(state, y)
     yr["pd"][o["taker"]] = yr["pd"].get(o["taker"], 0) + 1
     yr["coal_dug" if act == g15.ACT_DIG else "planks_made"] = round(yr["coal_dug" if act == g15.ACT_DIG else "planks_made"] + made, 2)
+    if o.get("town"):  # 町の頼み (t5): 町の頼みの人日と物も、t5 の帳に数える
+        _t5().count_work(state, o, act, give)
     if yr["pd"][o["taker"]] >= P2_DAYS:
         _reach(state, "F4", f"{o['taker']}が、よその家の頼みで {P2_DAYS} 人日働いた")
     e = _ev(state, t)
     if e is not None:
         u = WANTS[o["want"]][2]
+        to = f"を{o['house']}の倉に運んだ" if not o.get("town") else f"を町へ運ぶ分として{h}に置いた"  # 町の頼み (t5): 物は受けた家が町へ運ぶまで持つ
         if act == g15.ACT_DIG:
             left = ""
             if made - give >= 1 and fixed(state):  # 直し 1: 小さい頼みでは、のこりのほうが多い。どこに入ったかをそのまま書く (家の倉の 2 割から先に頼んだ家へ回す)
@@ -697,11 +736,13 @@ def work_day(state, p, t, act):
                 left = f" (のこり {round(made - give)} kg は{where}に)"
             elif made - give >= 1:
                 left = f" (のこり {round(made - give)} kg は村の倉と家の倉に)"
-            e["text"] = (f"{name} が、{o['house']}の頼みで、北の丘で燃える石を {round(made)} kg 掘って、{round(give)} kg を{o['house']}の倉に運んだ" + left)
+            e["text"] = (f"{name} が、{o['house']}の頼みで、北の丘で燃える石を {round(made)} kg 掘って、{round(give)} kg {to}" + left)
         else:
-            e["text"] = f"{name} が、{o['house']}の頼みで、作業場 {w.get('mill')} の水ののこで木をひいて、板 {round(give, 1)} {u}を{o['house']}の倉に運んだ"
+            e["text"] = f"{name} が、{o['house']}の頼みで、作業場 {w.get('mill')} の水ののこで木をひいて、板 {round(give, 1)} {u}{to}"
         e.setdefault("data", {})["order"] = o["id"]
     _deliver(state, o, give)
+    if o.get("town") and o["status"] == "運ぶ" and name in g["work"]:  # 町の頼み (t5): そろえた人が、10 日のうちなら次の日に運ぶ
+        _t5().after_ready(state, name, w, o)
     if name in g["work"] and w["days"] >= DAYS_MAX:
         _restore(state, name, w)
         g["work"].pop(name)
@@ -770,6 +811,8 @@ def season_end(state):
     for o in list(g["book"]):
         if o["status"] == "受けた" and D >= o["due"]:
             _failed(state, o)
+        elif o["status"] == "運ぶ" and D >= o["due"]:  # 町の頼み (t5): 物はそろっている。次の季節のはじめに運ぶ
+            o["due"] += SEASON_DAYS
     for o in list(g["orders"]):
         if D - o["day"] >= LIFE:
             _drop(state, o, "受ける家がないまま 4 季節たった")
@@ -784,7 +827,7 @@ def row_of(state, y):
     g = _g(state)
     ys = str(y)
     yr = g["yr"].get(ys) or _yr(state, y)
-    done = [o for o in g["book"] if o["status"] == "果たした" and o.get("end_y", o.get("end", 0) // YEAR) == y]
+    done = [o for o in g["book"] if o["status"] == "果たした" and o.get("end_y", o.get("end", 0) // YEAR) == y and not o.get("town")]  # 町の頼み (t5) は t5 の行で数える
     req, tak = sorted({o["house"] for o in done}), sorted({o["taker"] for o in done})
     town = sorted((h for h, d in yr["pd"].items() if d >= P2_DAYS), key=lambda h: (-yr["pd"][h], h))
     w, nf = _s4().work_days(state)
@@ -822,7 +865,7 @@ def year_end(state):
     if not r["p4_ok"] and y not in g["p4_broken"]:
         g["p4_broken"].append(y)
     keep = (y - 2) * YEAR  # 帳は 3 年分 (受けている頼み・返していない手間は残す)
-    g["book"] = [o for o in g["book"] if o["status"] == "受けた" or o.get("end", D) >= keep or (o.get("back") and o["back"]["done"] < o["back"]["need"])]
+    g["book"] = [o for o in g["book"] if o["status"] in ACTIVE or o.get("end", D) >= keep or (o.get("back") and o["back"]["done"] < o["back"]["need"])]
 
 
 def entrance(state):
@@ -886,7 +929,7 @@ def order_lines(state, p, answer=True):
     name, h = p["name"], p.get("household")
     me, fam = i4.can_read(state, p)
     bd = board_now(state)
-    act = [o for o in g["book"] if o["status"] == "受けた"]
+    act = [o for o in g["book"] if o["status"] in ACTIVE]
     ly = (D + 1) // YEAR - 1
     fin = [o for o in g["book"] if o["status"] in ("果たした", "果たせなかった") and o.get("end_y", o.get("end", 0) // YEAR) >= ly]
     debt = [o for o in g["book"] if o.get("back") and o["back"]["done"] < o["back"]["need"]]
@@ -1012,10 +1055,11 @@ def lines(state):
     if not on(state):
         return []
     g = _g(state)
-    out = [f"{g['why']}。{g['day']} 日目から ({g['start_year']}年から数える)。板の頼み {len(g['orders'])}・受けている頼み {len([o for o in g['book'] if o['status'] == '受けた'])}"
+    out = [f"{g['why']}。{g['day']} 日目から ({g['start_year']}年から数える)。板の頼み {len(g['orders'])}・受けている頼み {len([o for o in g['book'] if o['status'] in ACTIVE])}"
            + " / " + " / ".join(f"{k} {FS[k]} {_yd(g['f'][k]) if k in g['f'] else 'まだ'}" for k in FS)
            + f" / p4 を割った年 {'・'.join(map(str, g['p4_broken'])) or 'なし'} / 入口 {'○' if entrance(state) else 'まだ'}"
-           + (f" / {g['fix1']['why']}。{_yd(g['fix1']['day'])}から ({g['fix1']['start_year']}年から数える。相談は {g['fix1']['start_year'] + 1}年の終わりから 3 年ごと)" if "fix1" in g else "")]
+           + (f" / {g['fix1']['why']}。{_yd(g['fix1']['day'])}から ({g['fix1']['start_year']}年から数える。相談は {g['fix1']['start_year'] + 1}年の終わりから 3 年ごと)" if "fix1" in g else "")
+           + (f" / P4 の入口と相談は {_yd(g['closed'])}で閉じた (頼み書きと約束の帳は続く。p1 の数には川下の町の頼みを入れない)" if "closed" in g else "")]
     for y in sorted(g["rows"], key=int)[-3:]:
         out.append(row_text(g["rows"][y]))
     return out
@@ -1030,4 +1074,4 @@ def orders_of(state, y):
 
 def book_of(state, y):
     """y 年に受けていた・果たした・果たせなかった頼み (年報)"""
-    return [o for o in _g(state)["book"] if (o.get("taken", 0) + 1) // YEAR <= y and (o["status"] == "受けた" or o.get("end_y", y) >= y)]
+    return [o for o in _g(state)["book"] if (o.get("taken", 0) + 1) // YEAR <= y and (o["status"] in ACTIVE or o.get("end_y", y) >= y)]

@@ -617,6 +617,9 @@ def _field_work(state, p, t, job, sea, rng):
     h = t.get("work_h", 6)
     mine = [f for f in e2["fields"] if f["state"] == "育つ"]
     ripe = [f for f in e2["fields"] if f["state"] == "実った"]
+    if ripe and "g7" in e2 and "t5" in e2["g7"]:  # 2026-11-22: Society 3.0 フェーズ 5 (印 g7.t5 のあとだけ): 家の鉄の鎌があれば 1.3 倍 (T5_design.md 1.)
+        _g7m().t5_harvest(state, p, int(150 * h / 6))
+        return
     if ripe:  # 刈る: 畑仕事の人は 1 日に 150 つかみまで【仮定】
         _harvest(state, p, int(150 * h / 6))
         return
