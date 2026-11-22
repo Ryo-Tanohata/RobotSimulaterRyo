@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "今年も実りが多くてよかった。みんなで集まって話せるのがうれしいよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実りが落ちるので、刈り入れを手伝う"}, "family": {"ネイ69": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを一緒にする"}, "ナセ89": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを一緒にする"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の技がいちばん高いので、蓄えの草の種を守る器を作る"}, "family": {"ネイ69": {"activity": "採集", "place": "camp", "why": "木の実を集めて食べ物を足す"}, "ナセ89": {"activity": "採集", "place": "camp", "why": "木の実を集めて食べ物を足す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬も器を作って蓄えを虫から守る"}, "family": {"ネイ69": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいるので食べ物を取る"}, "ナセ89": {"activity": "狩り", "place": "camp", "why": "狩りの腕が高いので肉を取る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして畑の実りを増やす"}, "family": {"ネイ69": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にする"}, "ナセ89": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラニ132": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1197": false, "T1198": false, "T1199": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い年",
+ "feeling": "蓄えがたっぷりあって安心だ。人と話せる集まりが楽しみだよ。"}

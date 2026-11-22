@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏は実った畑をみんなで刈りきって、そのあとは水の道を掘り進めよう。俺も毎日出るぞ。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈りきる"}, "family": {"ロワ79": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを優先する"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ七千人日以上残っている。板で土どめをするとはかどる"}, "family": {"ロワ79": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを進めて畑を守る"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを進めて畑を守る"}, "ワユ98": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを進めて畑を守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬は実りがないので、手のあくぶんを水の道に回す"}, "family": {"ロワ79": {"activity": "水の道を掘る", "place": "camp", "why": "冬は水の道を進める"}, "ムイ87": {"activity": "水の道を掘る", "place": "camp", "why": "冬は水の道を進める"}, "ワユ98": {"activity": "水の道を掘る", "place": "camp", "why": "冬は水の道を進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春は畑の草取りをして、夏の実りを増やす"}, "family": {"ロワ79": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ムイ87": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ワユ98": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラニ132": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1197": "村", "T1198": false, "T1199": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは約360日分あり、南東の村が草の種を貸してほしいと言っている。余裕があるので貸してよい。", "because": [5661857], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈りきりの年"}

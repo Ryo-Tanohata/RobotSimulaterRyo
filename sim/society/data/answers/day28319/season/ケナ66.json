@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実っている。落ちる前に、みんなで夕方に刈ろう。わたしは水ののこで板をひくよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひく。夕方は畑を刈る"}, "family": {"ソワ104": {"activity": "字を教える", "place": "camp", "why": "家の子や村の子に字を教える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番を続ける"}, "family": {"ソワ104": {"activity": "字を教える", "place": "camp", "why": "字を教える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "冬も板をひく"}, "family": {"ソワ104": {"activity": "字を教える", "place": "camp", "why": "字を教える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番を続ける"}, "family": {"ソワ104": {"activity": "字を教える", "place": "camp", "why": "字を教える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラニ132": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "year_name": "子らが多く亡くなった年",
+ "feeling": "蓄えは多く安心だが、亡くなった子らを思うと胸が痛む。"}

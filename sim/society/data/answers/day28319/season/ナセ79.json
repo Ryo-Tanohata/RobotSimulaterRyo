@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈ってしまおう。落ちたらもったいない。わしも毎日刈るぞ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番なので、蓄えを守る土器を作りたい"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 300},
+  "冬": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "冬は実りがないので、道具の腕を生かして鎌や石器を整える"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春は子ヤギが生まれ、世話をすると乳がとれるから"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種でとても多いが、小さな子どもが多く亡くなっている。夏のうちに畑を刈るのが大事。", "because": [5624492], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "子らの亡くなった年",
+ "feeling": "体はまだ元気だ。子どもたちが亡くなったのは悲しいが、今年も働こう。"}

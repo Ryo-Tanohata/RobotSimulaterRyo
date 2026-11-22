@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "わたしは手を動かしているほうが性に合う。今年は器と道具をつくって過ごすよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕がいちばん立つので、蓄えを守る器を作る"}, "family": {"ナセ109": {"activity": "採集", "place": "camp", "why": "採集の腕があるので食べ物を集める"}, "ラニ110": {"activity": "採集", "place": "camp", "why": "家の食べ物を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "鋭い石の扱いが得意で、鎌などを作れる"}, "family": {"ナセ109": {"activity": "採集", "place": "camp", "why": "採集の腕があるので食べ物を集める"}, "ラニ110": {"activity": "採集", "place": "camp", "why": "家の食べ物を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬も器を作って蓄えを虫から守る"}, "family": {"ナセ109": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ラニ110": {"activity": "採集", "place": "camp", "why": "家の食べ物を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れにそなえて道具を整える"}, "family": {"ナセ109": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ラニ110": {"activity": "採集", "place": "camp", "why": "家の食べ物を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラニ132": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1197": "村", "T1198": false, "T1199": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "病で人を多く失った年",
+ "feeling": "静かに器と道具を作っていたい。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈りきろう。落ちてしまってはもったいない。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちる前に刈るため"}, "family": {"ナセ77": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを進めるため"}, "オセ86": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを進めるため"}, "トナ90": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを進めるため"}, "ソワ102": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを進めるため"}, "セヤ103": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを進めるため"}, "ケセ108": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを進めるため"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "実のなる秋に食べ物を集めるため"}, "family": {"ナセ77": {"activity": "採集", "place": "camp", "why": "木の実を集めるため"}, "オセ86": {"activity": "採集", "place": "camp", "why": "木の実を集めるため"}, "トナ90": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ソワ102": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "セヤ103": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ケセ108": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "冬は木の実がないので、けものを狩るため"}, "family": {"ナセ77": {"activity": "狩り", "place": "北林12", "why": "冬の肉を得るため"}, "オセ86": {"activity": "狩り", "place": "北林12", "why": "冬の肉を得るため"}, "トナ90": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ソワ102": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "セヤ103": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ケセ108": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひき、手入れを助けるため"}, "family": {"ナセ77": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "オセ86": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "トナ90": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ソワ102": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "セヤ103": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ケセ108": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラニ132": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1197": false, "T1198": false, "T1199": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "病と別れの年",
+ "feeling": "たくさんの人が亡くなって心が重い。今年も黙って畑と木の実の仕事をするだけだ。"}

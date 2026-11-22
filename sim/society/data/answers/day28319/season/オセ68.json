@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"今年も実りが多い。みな、のこ場と畑をたのむよ。あいた日には、顔を見て話そう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏は実った畑を刈らないと落ちてしまうので、刈り入れを手伝う"},"family":{"ホタ70":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"},"ロワ73":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手のため"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"水の作業場で働く","place":"M6","with":[],"why":"のこ番として板をひき、家の板と村の手入れを助ける"},"family":{"ホタ70":{"activity":"水の作業場で働く","place":"M6","why":"のこ番の持ち場だから"},"ロワ73":{"activity":"水の作業場で働く","place":"M6","why":"のこ番の持ち場だから"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":0},
+"冬":{"job":{"activity":"狩り","place":"北林12","with":[],"why":"冬は木の実がないので、狩りで肉を得る"},"family":{"ホタ70":{"activity":"狩り","place":"北林12","why":"狩りの腕が高いので肉をとる"},"ロワ73":{"activity":"狩り","place":"北林12","why":"狩りの腕が高いので肉をとる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りをして実りを増やす"},"family":{"ホタ70":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"},"ロワ73":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":"今のままでよい",
+"trade":{},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,"order":null,"take":null,
+"knowledge":[],
+"proposal":null,
+"votes":[],
+"year_name":"のこ場のにぎわいの年",
+"feeling":"食べ物は足りていて、おだやかな気持ちだ。"}
