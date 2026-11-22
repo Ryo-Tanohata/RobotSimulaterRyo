@@ -2744,9 +2744,27 @@
    "url": "https://www.stat.go.jp/data/kagaku/c2_qa-1.html",
    "used": "研究費の範囲と国際標準についての答え",
    "how": "原文のまま: 「研究費は、研究開発に関する国際標準であるフラスカチマニュアルなどに沿って定義しています」「このフラスカチマニュアルは、 OECD（経済協力開発機構） がとりまとめています」。変えた: 村には研究費がないので、「ためした人日」を近い数にした"
+  },
+  {
+   "n": 21,
+   "publisher": "総務省統計局",
+   "title": "なるほど統計学園 グラフの種類「円グラフ」",
+   "edition": "ウェブページ (2026-11-22 の表示)",
+   "url": "https://www.stat.go.jp/naruhodo/4_graph/shokyu/pie-chart.html",
+   "used": "円グラフの描き方 (例は家計調査の消費支出の品目別の内訳)",
+   "how": "原文のまま: 「データは、時計の針の12時の位置から時計回りに、大きい順に並べます。」「「その他」はいくら大きくても、一番最後に表示します。」「構成比が小さいものは、まとめて「その他」にしてしまった方がよいでしょう。」。変えた: 村の円は 6 切れまでとし、7 つめから「その他」にまとめた。年齢・家の人数のように順のある種類は、大きい順でなく順のまま並べた"
+  },
+  {
+   "n": 22,
+   "publisher": "総務省統計局",
+   "title": "なるほど統計学園 グラフの種類「帯グラフ」",
+   "edition": "ウェブページ (2026-11-22 の表示)",
+   "url": "https://www.stat.go.jp/naruhodo/4_graph/shokyu/obi-graph.html",
+   "used": "帯グラフの使い方 (例は国勢調査の産業 3 部門別の就業者の割合、1920年から)",
+   "how": "原文のまま: 「帯グラフを並べることで、項目の構成比の変化を捉えることができます。」「項目の順序は入れ替えずに並べます。」。村に合わせて変えた: 年ごとの帯を縦の棒にして並べ (100% の積み上げ棒)、Society 2.0 のように年が多い時代は 5 年ずつまとめた"
   }
  ],
- "refs_unreached": "この作業の場所からは、国連 (unstats.un.org)・ILO (ilostat.ilo.org, www.ilo.org)・FAO (www.fao.org)・ユネスコ統計研究所 (uis.unesco.org)・世界銀行 (data.worldbank.org など)・OECD・IMF (imf.org, dsbb.imf.org)・Eurostat のページはつながらなかった (名前が引けない)。OECD の『オスロ・マニュアル』とフラスカチマニュアルの原文も開いていない ([19][20] の日本の資料を通して使った)。\n国連の「人口・住宅センサスの原則と勧告」・「人口動態統計の原則と勧告」、ILO の決議の原文、FAO の手引、OECD のよりよい暮らし指標、世界銀行の WDI はこのため開いておらず、この設計の根拠にしていない。国際基準は、それを日本語で説明した日本の役所の資料 ([3][4][6][7][8][13][16][17][18]) を通して使った。開けるようになったら原文で確かめ直す。",
+ "refs_unreached": "この作業の場所からは、国連 (unstats.un.org)・ILO (ilostat.ilo.org, www.ilo.org)・FAO (www.fao.org)・ユネスコ統計研究所 (uis.unesco.org)・世界銀行 (data.worldbank.org など)・OECD・IMF (imf.org, dsbb.imf.org)・Eurostat のページはつながらなかった (名前が引けない)。OECD の『オスロ・マニュアル』とフラスカチマニュアルの原文も開いていない ([19][20] の日本の資料を通して使った)。\n国連の「人口・住宅センサスの原則と勧告」・「人口動態統計の原則と勧告」、ILO の決議の原文、FAO の手引、OECD のよりよい暮らし指標、世界銀行の WDI はこのため開いておらず、この設計の根拠にしていない。国際基準は、それを日本語で説明した日本の役所の資料 ([3][4][6][7][8][13][16][17][18]) を通して使った。開けるようになったら原文で確かめ直す。構成比 (円と帯) の調べでは、統計局の家計調査の速報のページ (https://www.stat.go.jp/data/kakei/sokuhou/tsuki/index.html) は文字がくずれて読めず、『日本の統計 2026』の表紙のページ (https://www.stat.go.jp/data/nihon/index1.html) はグラフ 48 という数だけで中のグラフの形は見られなかったので、どちらも根拠にしていない。e-Stat の統計ダッシュボードの中のグラフの形も、この調べでは開いていない。",
  "village_sources": "2.・3.・4.5・4.6 の村の数は、`sim/society/data/records/` (season_village・season_household・people・granary) と `state.json` (`era2.g7` の t5・p4・i4 の行・`events`・`era_log`)・`app_data.json`・`app/dashboard_data.json`・`techtree/plan.json`・`techtree/emerged.json` を 2026-11-22 に読んで計算した。テクノロジーツリーの数は `tools/build_tech_tree.py` の `--out` で一時ファイル (`/tmp`) に出して読んだ (リポジトリのページは書きかえていない)。何も書いていない。",
  "reference_236": {
   "year": 236,

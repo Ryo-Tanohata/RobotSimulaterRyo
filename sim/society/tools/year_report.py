@@ -1499,6 +1499,153 @@ def fields_html(o, defs):
     return "".join(H)
 
 
+# ---------------------------------------------------------------- 構成比の円 (2026-11-22 本人の言葉「ダッシュボードでは円グラフで各種類も見たいです」)
+# 国の統計の円グラフと帯グラフの決まり [統計のページの出典 21・22]。数は stats_calc.compositions (統計のページと同じ)。
+# 年報には 3 つ: 年齢 3 区分・仕事の種類・食べ物の生産。円の横に表 (大きい順)、下に 12 年の 100% の帯。なぞると種類と量と % (title)。
+DASH_COMPO = ("age", "work", "food")
+COMPO_CSS = """
+.dash{--c1:#2a78d6;--c2:#eb6834;--c3:#1baf7a;--c4:#eda100;--c5:#e87ba4;--c6:#008300;--c7:#6250d6;--c8:#e34948;--oa1:#86b6ef;--oa2:#2a78d6;--oa3:#104281;
+ --ob1:#86b6ef;--ob2:#5598e7;--ob3:#2a78d6;--ob4:#1c5cab;--ob5:#104281}
+.cps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;margin-top:10px}
+.cp{background:var(--surface);border:1px solid var(--ring);border-radius:10px;padding:8px 10px}
+.cp b{font-size:13.5px;color:var(--ink)} .cp .x{font-size:11.5px;color:var(--muted);line-height:1.35}
+.cp svg{display:block;width:100%;height:auto;max-width:300px;margin:0 auto}
+.cp .dl1{font-size:11px;fill:var(--ink);font-weight:600} .cp .dl2{font-size:10px;fill:var(--ink2)}
+.cp .dc1{font-size:17px;font-weight:600;fill:var(--ink)} .cp .dc2{font-size:10.5px;fill:var(--ink2)}
+.cp .ld{stroke:var(--axis);stroke-width:1;fill:none}
+.cp table{width:100%;border-collapse:collapse;font-size:12px;margin:2px 0 4px}
+.cp td{border-bottom:1px solid var(--grid);padding:1px 3px;color:var(--ink2)} .cp td.n{text-align:right;white-space:nowrap;color:var(--ink)}
+.cp i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.cp .sel{fill:var(--ink)}
+@media (prefers-color-scheme:dark){
+ .dash{--c1:#3987e5;--c2:#d95926;--c3:#199e70;--c4:#c98500;--c5:#d55181;--c6:#0ca30c;--c7:#9085e9;--c8:#e66767;--oa1:#184f95;--oa2:#3987e5;--oa3:#9ec5f4;
+  --ob1:#184f95;--ob2:#256abf;--ob3:#3987e5;--ob4:#6da7ec;--ob5:#9ec5f4}
+}
+"""
+
+
+def _cp_colors(sp):
+    if sp["kind"] == "ordinal":
+        n = len(sp["parts"])
+        return [f"var(--{'oa' if n <= 3 else 'ob'}{i + 1})" for i in range(n)]
+    return [f"var(--c{k + 1})" for k in sp["slots"]]
+
+
+def _cp_amt(sp, v):
+    if sp["unit"] == "大人 1 年分":
+        return f"{v:,.{1 if abs(v) < 10 else 0}f} 人分"
+    return f"{v:,.0f} {sp['unit']}"
+
+
+def _arc(cx, cy, R, r, a0, a1):
+    import math
+    if a1 - a0 >= 2 * math.pi - 1e-6:
+        a1 = a0 + 2 * math.pi - 1e-4
+    p = lambda rad, a: f"{cx + rad * math.sin(a):.2f},{cy - rad * math.cos(a):.2f}"  # noqa: E731
+    big = 1 if a1 - a0 > math.pi else 0
+    return f"M{p(R, a0)}A{R},{R} 0 {big} 1 {p(R, a1)}L{p(r, a1)}A{r},{r} 0 {big} 0 {p(r, a0)}Z"
+
+
+def svg_donut(sp, rows, y):
+    """円 (ドーナツ)。決まった順 (235 年を通して大きい順・「その他」は最後) に 12 時から時計回り。5% 以上の切れの外に % と量。まん中に合計"""
+    import math
+    col = _cp_colors(sp)
+    tot = sum(v for _, v in rows)
+    W, H, cx, cy, R, r = 300, 200, 150, 100, 66, 42
+    aria = f"{y}年 {sp['title']}: " + "、".join(f"{n} {v / tot * 100:.1f}%" for n, v in rows if v > 0)
+    s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="{e(aria)}">']
+    a, labs = 0.0, []
+    for i, (n, v) in enumerate(rows):
+        if v <= 0:
+            continue
+        da, sh = v / tot * 2 * math.pi, v / tot
+        s.append(f'<path d="{_arc(cx, cy, R, r, a, a + da)}" fill="{col[i]}" stroke="var(--surface)" stroke-width="2" stroke-linejoin="round">'
+                 f'<title>{e(n)}: {e(_cp_amt(sp, v))} ({sh * 100:.1f}%)</title></path>')
+        if sh >= 0.05:
+            m = a + da / 2
+            labs.append({"m": m, "side": 1 if math.sin(m) >= 0 else -1, "y": cy - (R + 14) * math.cos(m),
+                         "t1": f"{sh * 100:.{1 if sh < 0.1 else 0}f}%", "t2": _cp_amt(sp, v)})
+        a += da
+    for sd in (1, -1):  # ラベルが重ならないように片側ずつ 24 あける
+        L = sorted([l for l in labs if l["side"] == sd], key=lambda l: l["y"])
+        for k, l in enumerate(L):
+            l["ty"] = max(l["y"], L[k - 1]["ty"] + 24 if k else 14)
+        for k in range(len(L) - 1, -1, -1):
+            lim = H - 14 if k == len(L) - 1 else L[k + 1]["ty"] - 24
+            L[k]["ty"] = min(L[k]["ty"], lim)
+    for l in labs:
+        ex, ey = cx + (R + 2) * math.sin(l["m"]), cy - (R + 2) * math.cos(l["m"])
+        tx = cx + l["side"] * (R + 22)
+        anc = "start" if l["side"] > 0 else "end"
+        s.append(f'<polyline class="ld" points="{ex:.1f},{ey:.1f} {cx + l["side"] * (R + 14):.1f},{l["ty"]:.1f} {tx:.1f},{l["ty"]:.1f}"/>'
+                 f'<text class="dl1" x="{tx + l["side"] * 3:.1f}" y="{l["ty"] - 1:.1f}" text-anchor="{anc}">{e(l["t1"])}</text>'
+                 f'<text class="dl2" x="{tx + l["side"] * 3:.1f}" y="{l["ty"] + 11:.1f}" text-anchor="{anc}">{e(l["t2"])}</text>')
+    s.append(f'<text class="dc1" x="{cx}" y="{cy + 2}" text-anchor="middle">{tot:,.0f}</text>'
+             f'<text class="dc2" x="{cx}" y="{cy + 16}" text-anchor="middle">合計 {e("人分" if sp["unit"] == "大人 1 年分" else sp["unit"])}</text></svg>')
+    return "".join(s)
+
+
+def svg_stack(sp, series, y):
+    """12 年の 100% の帯 (縦の棒)。parts の順に下から積む。なぞるとその年の割合"""
+    col = _cp_colors(sp)
+    W, H, Lm, Rm, T, B = 300, 112, 30, 6, 6, 18
+    cw = (W - Lm - Rm) / len(series)
+    bw = min(16, cw - 2)
+    yv = lambda f: T + (H - T - B) * (1 - f)  # noqa: E731
+    s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="{e(sp["title"])} の割合のうつりかわり ({series[0][0]}〜{series[-1][0]}年)">']
+    for f in (0, 0.5, 1):
+        s.append(f'<line class="{"gl" if f else "ax"}" x1="{Lm}" x2="{W - Rm}" y1="{yv(f):.1f}" y2="{yv(f):.1f}"/>'
+                 f'<text class="tm" x="{Lm - 4}" y="{yv(f) + 3.5:.1f}" text-anchor="end">{f * 100:.0f}%</text>')
+    for k, (yy, rows) in enumerate(series):
+        x = Lm + k * cw + (cw - bw) / 2
+        if not rows:
+            continue
+        tot = sum(v for _, v in rows)
+        acc, tip = 0.0, []
+        for i, (n, v) in enumerate(rows):
+            if v <= 0:
+                continue
+            f0, f1 = acc / tot, (acc + v) / tot
+            acc += v
+            h = max(0.0, yv(f0) - yv(f1) - (2 if f1 < 0.9999 else 0))
+            s.append(f'<rect x="{x:.1f}" y="{yv(f1):.1f}" width="{bw:.1f}" height="{h:.1f}" fill="{col[i]}"/>')
+        tip = "・".join(f"{n} {v / tot * 100:.1f}%" for n, v in rows)
+        s.append(f'<rect class="hit" x="{Lm + k * cw:.1f}" y="{T}" width="{cw:.1f}" height="{H - T - B}"><title>{yy}年: {e(tip)}</title></rect>')
+        if yy == y:
+            s.append(f'<path class="sel" d="M{Lm + k * cw + cw / 2:.1f},{H - B + 2}l-4,6h8z"/>')
+    s.append(f'<text class="tm" x="{Lm}" y="{H - 3}">{series[0][0]}年</text><text class="tm" x="{W - Rm}" y="{H - 3}" text-anchor="end">{series[-1][0]}年</text></svg>')
+    return "".join(s)
+
+
+def compo_html(D, y, n=12):
+    """年報のダッシュボードの円 3 つ (年齢・仕事・食べ物)。統計のページの円と同じ計算・同じ色"""
+    ctx = _sc_ctx(D)
+    rows = {yy: (SC.year_row(ctx, yy).get("compo") or {}) for yy in range(max(SC.S2_FIRST, y - n + 1), y + 1)}
+    out = []
+    for sp in SC.COMPO:
+        if sp["key"] not in DASH_COMPO:
+            continue
+        cur = rows[y].get(sp["key"])
+        if not cur or sum(v for _, v in cur) <= 0:
+            continue
+        col = _cp_colors(sp)
+        tot = sum(v for _, v in cur)
+        order = list(enumerate(cur))
+        if sp["kind"] != "ordinal":  # 表はこの年の大きい順 (「その他」「そのほか」は大きくても最後)
+            order.sort(key=lambda t: (t[1][0] in ("その他", "そのほか"), -t[1][1], t[0]))
+        tbl = "<table>" + "".join(f'<tr><td><i style="background:{col[i]}"></i>{e(nm)}</td><td class="n">{v / tot * 100:.1f}%</td><td class="n">{e(_cp_amt(sp, v))}</td></tr>'
+                                  for i, (nm, v) in order) + "</table>"
+        leg = '<div class="x">' + "・".join(f'<i style="background:{col[i]}"></i>{e(nm)}' for i, nm in enumerate(sp["parts"])) + "</div>"
+        series = [(yy, rows[yy].get(sp["key"])) for yy in sorted(rows)]
+        out.append(f'<div class="cp"><b>{e(sp["title"])} の割合</b><div class="x">{e(sp["note"])}</div>{svg_donut(sp, cur, y)}{tbl}'
+                   f'<div class="x">割合のうつりかわり (100% の帯・{series[0][0]}〜{y}年。▲ がこの年)</div>{leg}{svg_stack(sp, series, y)}</div>')
+    if not out:
+        return ""
+    return ('<div class="cps">' + "".join(out) + "</div>"
+            '<p class="dsub" style="margin-top:6px">円は国の統計の円グラフの形 (内わけを 12 時から時計回り、「その他」は最後)。年ごとの変化は帯 (100% の棒) を並べて見る。'
+            '色は種類ごとに決まっていて、年が変わっても同じ。ほかの分野の円 (家の人数・死因・村の生産の中身) は統計のページにある。</p>')
+
+
 def dash_html(D, PP, y, tokens):
     """年報のいちばん上のダッシュボード (国の統計の形。統計のページ app/stats.html と同じ計算 tools/stats_calc.py)"""
     S = dash_series(D, y)
@@ -1548,6 +1695,7 @@ def dash_html(D, PP, y, tokens):
          '図の点を指でさわると、その年の数が出る。</p>']
     H.append('<div class="kpis">' + "".join(tiles) + "</div>")
     H.append('<div class="trends">' + "".join(f'<div class="tr"><b>{e(a)}</b><div class="x">{e(b)}</div>{c}</div>' for a, b, c in charts) + "</div>")
+    H.append(compo_html(D, y))  # 2026-11-22: 構成比の円 (年齢・仕事・食べ物)
     H.append('<details class="fdet"><summary>分野ごとの数 (12 分野・国の統計の形)</summary>' + fields_html(full, defs)
              + '<p class="dsub" style="margin-top:6px">しま模様は「まだこの村にはない」数 (0 ではない)。指でさわると、何が起きたら点くかが出る。'
              '数の決まり (式・出どころ・国の数とのちがい・出典) と長いうつりかわりは、統計のページ <a href="../app/stats.html">app/stats.html</a> にある。</p></details>')
@@ -1577,7 +1725,7 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
     w = H.append
     w('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
       '<meta name="viewport" content="width=device-width,initial-scale=1">'
-      f"<title>川辺の村 {y}年の年報</title><style>{CSS}{DASH_CSS}</style></head><body><main>")
+      f"<title>川辺の村 {y}年の年報</title><style>{CSS}{DASH_CSS}{COMPO_CSS}</style></head><body><main>")
     # 見出し
     w(f"<h1>川辺の村 {y}年の年報</h1>")
     w(dash_html(D, PP, y, tokens))  # 2026-11-22: いちばん上のダッシュボード

@@ -160,6 +160,7 @@ class Ctx:
         def f():
             jobs = collections.defaultdict(collections.Counter)
             stores = collections.defaultdict(dict)
+            sizes = collections.defaultdict(collections.Counter)  # 年の終わりの家の人数 → 家の数 (世帯人員別の世帯数のもと)
             with open(self.rec / "season_household.jsonl", encoding="utf-8") as fh:
                 for x in fh:
                     try:
@@ -171,7 +172,9 @@ class Ctx:
                     jobs[y].update(r.get("jobs") or {})
                     if d % YEAR == YEAR - 1 and r.get("status") == "村にいる":
                         stores[y][r["household_id"]] = sum((r.get("store") or {}).values())
-            return {"jobs": jobs, "stores": stores}
+                        if r.get("members"):
+                            sizes[y][len(r["members"])] += 1
+            return {"jobs": jobs, "stores": stores, "sizes": sizes}
         return self._lazy("hh", f)
 
     @property
@@ -179,6 +182,8 @@ class Ctx:
         """ledger.jsonl を 1 回読み、年 × 理由の食べ物の kcal と、季節のはじめ・終わりの残り (食べ物) だけ残す"""
         def f():
             mv = collections.defaultdict(collections.Counter)
+            items = collections.defaultdict(collections.Counter)  # 年 × 物の、とれた食べ物の kcal (PROD_REASONS。種類別の生産のもと)
+            self._cache["ledger_items"] = items
             with open(self.rec / "ledger.jsonl", encoding="utf-8") as fh:
                 for x in fh:
                     try:
@@ -190,6 +195,8 @@ class Ctx:
                     y = r["season_end_day"] // YEAR
                     k = r["reason"] if r["kind"] == "動き" else ("start" if "はじめ" in r["reason"] else "end")
                     mv[y][k] += r.get("kcal") or 0.0
+                    if r["kind"] == "動き" and r["reason"] in PROD_REASONS:
+                        items[y][r.get("item")] += r.get("kcal") or 0.0
             return mv
         return self._lazy("ledger", f)
 
@@ -541,7 +548,96 @@ def year_row(ctx, y, full=True):
         o["supply"] = sup / UNIT
         o["self_suff"] = prod / sup if sup > 0 else None
     o["tribute"] = ctx.tribute.get(y, 0) if y * YEAR >= 5849 else None
+    o["food_items"] = {k: v / UNIT for k, v in (ctx._cache.get("ledger_items") or {}).get(y, {}).items() if v}
+    o["hh_sizes"] = {str(k): v for k, v in sorted((ctx.hh["sizes"].get(y) or {}).items())}
+    o["compo"] = compositions(o)
     return o
+
+
+# ---------------------------------------------------------------- 構成比 (円グラフと 100% の帯)
+# 2026-11-22 本人の言葉「ダッシュボードでは円グラフで各種類も見たいです」。国の統計の決まり (なるほど統計学園 [21][22]):
+# 円は 12 時から時計回りに大きい順・「その他」はいちばん最後・小さいものは「その他」にまとめる。年ごとの変化は帯を並べ、帯の中の順は変えない。
+# 1 つの円は 6 切れまで。種類 (色) は物について決め、順位では決めない (年が変わっても同じ色)。数のないものは作らない。
+# 村の円の並べ方: parts の順 (235 年を通して大きい順。「その他」「そのほか」は最後) に 12 時から時計回り。年ごとに並べかえないのは、
+#   帯 (100% の棒) と同じ順にして年をくらべやすくするため [22] と、となりあう色の組を決めて色覚の検査を通すため。その年の大きい順は横の表に出す。
+# kind: nominal (名前の種類。色は categorical の 1〜6 番) / ordinal (順のある種類。年齢・家の人数。1 つの色の濃さ。順のまま並べる)
+# donut: False は 2 つに分かれるだけの数 (円にすると 2 切れになるので、帯だけ)
+# slots: 名前の種類の色 (図の色の表の 8 色のうち何番目か。0 から)。円は物の決まった順に 12 時から時計回りに並べるので、となりあう色の組が決まる。
+#   その組 (と、数が 0 で切れが消えたときに新しくとなりあう組のうち、よくあるもの) が、色覚のちがう人にも見分けられるように選んだ (色の検査の道具で調べた)。
+#   順のある種類 (ordinal) は、1 つの青の濃さ (図の色の表の青の段) で描く。
+COMPO = [
+    {"key": "age", "field": "pop", "title": "年齢 3 区分の人口", "unit": "人", "kind": "ordinal", "donut": True,
+     "parts": ["0〜14 歳", "15〜54 歳", "55 歳〜"],
+     "note": "年の終わり。歳は村の年 (120 日)。国は 0〜14・15〜64・65〜 だが、村の大人は 15〜54、年寄りは 55〜 なので境がちがう"},
+    {"key": "sex", "field": "pop", "title": "男女別の人口", "unit": "人", "kind": "nominal", "donut": False, "parts": ["女", "男"], "slots": [0, 1],
+     "note": "年の終わり。2 つに分かれるだけなので、円にせず帯だけ"},
+    {"key": "hh", "field": "pop", "title": "世帯人員別の世帯数", "unit": "家", "kind": "ordinal", "donut": True,
+     "parts": ["1 人", "2 人", "3〜4 人", "5〜9 人", "10 人〜"],
+     "note": "年の終わりに村にいて人がいる家 (season_household の members の数)。世帯数 (season_village) と少しちがう年がある"},
+    {"key": "causes", "field": "vital", "title": "死因別の死亡数", "unit": "人", "kind": "nominal", "donut": True,
+     "parts": ["子", "病", "年・そのほか"], "slots": [0, 1, 2],
+     "note": "「子」は子の死。年・そのほか = 年 (老いて) とザガ・飢えなど (ザガは 235 年で 22 人だけなので、色を分けずにまとめた)。病・けが・飢えの区別は記録にない。1 年の死亡は数十人なので、1 人で数 % 動く"},
+    {"key": "product", "field": "econ", "title": "村の生産の中身 (生産面)", "unit": "大人 1 年分", "kind": "nominal", "donut": True,
+     "parts": ["食べ物", "土器と鎌", "ヤギ", "住まい"], "slots": [0, 1, 2, 3],
+     "note": "種と損と割れた分を引いた正味。マイナスの中身 (割れた分が作った分より多いなど) がある年は円にしない (円は全部がプラスのときだけ)"},
+    {"key": "work", "field": "work", "title": "仕事の種類別の人日", "unit": "人日", "kind": "nominal", "donut": True,
+     "parts": ["畑仕事", "狩り・採集", "物を作る", "水の道を掘る", "ヤギの世話", "そのほか"], "slots": [0, 1, 2, 6, 3, 4],
+     "note": "家の大人と手伝える子の 1 日 1 つの仕事。休む日はのぞく。畑仕事 = 畑仕事・種まき、狩り・採集 = 狩り・採集・探索・ヤギを捕まえる、"
+             "物を作る = 土器・道具・水の作業場・住まい・燃える石など、そのほか = 字・帳・試す・市へ運ぶなど"},
+    {"key": "food", "field": "food", "title": "食べ物の生産 (種類別・熱量)", "unit": "大人 1 年分", "kind": "nominal", "donut": True,
+     "parts": ["草の種", "木の実", "乳", "肉と魚", "そのほか"], "slots": [0, 1, 6, 3, 2],
+     "note": "帳簿 (ledger) の、とれた食べ物 (刈った・採った・狩った・乳をしぼった・つぶした など) の熱量。肉と魚 = 肉・干し肉・魚、そのほか = ピク・芋など"},
+    {"key": "lit", "field": "edu", "title": "読める大人・読めない大人", "unit": "人", "kind": "nominal", "donut": False, "parts": ["読める", "読めない"], "slots": [0, 1],
+     "note": "数えた年 (198年) から。2 つに分かれるだけなので、円にせず帯だけ"},
+]
+WORK_GROUP = {"畑仕事": "畑仕事", "種まき": "畑仕事", "狩り": "狩り・採集", "採集": "狩り・採集", "探索": "狩り・採集", "ヤギを捕まえる": "狩り・採集",
+              "ヤギの世話": "ヤギの世話", "水の道を掘る": "水の道を掘る"}
+FOOD_GROUP = {"草の種": "草の種", "木の実": "木の実", "乳": "乳", "肉": "肉と魚", "干し肉": "肉と魚", "魚": "肉と魚"}
+
+
+def compositions(o):
+    """1 年の構成比のもと。キー → [[種類, 量], ...] (COMPO の parts の順。数のない年は入れない)"""
+    out = {}
+    py = o.get("pyramid")
+    if py:
+        b = [sum(c[i] for c in py.values() for i in rng) for rng in (range(0, 3), range(3, 11), range(11, 17))]
+        out["age"] = [[n, v] for n, v in zip(COMPO[0]["parts"], b)]
+    if o.get("female") is not None and o.get("male") is not None:
+        out["sex"] = [["女", o["female"]], ["男", o["male"]]]
+    hs = o.get("hh_sizes")
+    if hs:
+        b = collections.Counter()
+        for k, v in hs.items():
+            k = int(k)
+            b["1 人" if k == 1 else "2 人" if k == 2 else "3〜4 人" if k <= 4 else "5〜9 人" if k <= 9 else "10 人〜"] += v
+        out["hh"] = [[n, b.get(n, 0)] for n in COMPO[2]["parts"]]
+    cz = o.get("causes")
+    if cz and o.get("deaths"):
+        b = collections.Counter()
+        for k, v in cz.items():
+            b[k if k in ("子", "病") else "年・そのほか"] += v
+        out["causes"] = [[n, b.get(n, 0)] for n in COMPO[3]["parts"]]
+    gp = o.get("gdp_parts")
+    if gp and o.get("gdp") is not None:
+        out["product"] = [["食べ物", gp.get("food") or 0.0], ["土器と鎌", gp.get("goods") or 0.0], ["ヤギ", gp.get("goats") or 0.0], ["住まい", gp.get("homes") or 0.0]]
+    J = o.get("jobs")
+    if J:
+        b = collections.Counter()
+        for k, v in J.items():
+            if k in REST:
+                continue
+            b[WORK_GROUP.get(k) or ("物を作る" if k in MAKE_JOBS else "そのほか")] += v
+        if sum(b.values()):
+            out["work"] = [[n, b.get(n, 0)] for n in COMPO[5]["parts"]]
+    fi = o.get("food_items")
+    if fi:
+        b = collections.Counter()
+        for k, v in fi.items():
+            b[FOOD_GROUP.get(k, "そのほか")] += v
+        out["food"] = [[n, b.get(n, 0.0)] for n in COMPO[6]["parts"]]
+    if o.get("readers") is not None and o.get("lit_adults"):
+        out["lit"] = [["読める", o["readers"]], ["読めない", o["lit_adults"] - o["readers"]]]
+    return out
 
 
 # ---------------------------------------------------------------- Society 1.0 (0〜488 日目。季節 = 30 日)

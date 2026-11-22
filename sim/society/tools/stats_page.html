@@ -5,13 +5,16 @@
 <style>
 .viz-root{color-scheme:light;--surface-0:#f7f6f2;--surface-1:#fcfcfb;--card:#ffffff;--text-primary:#0b0b0b;--text-secondary:#52514e;--text-muted:#6f6d68;
  --grid:#e1e0d9;--axis:#c3c2b7;--track:#ecebe5;--ring:rgba(11,11,11,.10);--series-1:#2a78d6;--series-2:#eb6834;--series-3:#1baf7a;
- --good:#006300;--bad:#c62f2f;--focus:#2a78d6;--hatch:#ecebe5}
+ --good:#006300;--bad:#c62f2f;--focus:#2a78d6;--hatch:#ecebe5;
+ --series-4:#eda100;--series-5:#e87ba4;--series-6:#008300;--series-7:#6250d6;--series-8:#e34948;--oa1:#86b6ef;--oa2:#2a78d6;--oa3:#104281;--ob1:#86b6ef;--ob2:#5598e7;--ob3:#2a78d6;--ob4:#1c5cab;--ob5:#104281;}
 @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .viz-root{color-scheme:dark;--surface-0:#0d0d0d;--surface-1:#1a1a19;--card:#151514;
  --text-primary:#f0efec;--text-secondary:#c3c2b7;--text-muted:#a3a198;--grid:#2c2c2a;--axis:#45443f;--track:#2c2c2a;--ring:rgba(255,255,255,.12);
- --series-1:#3987e5;--series-2:#d95926;--series-3:#199e70;--good:#0ca30c;--bad:#e66767;--focus:#86b6ef;--hatch:#242422}}
+ --series-1:#3987e5;--series-2:#d95926;--series-3:#199e70;--good:#0ca30c;--bad:#e66767;--focus:#86b6ef;--hatch:#242422;
+ --series-4:#c98500;--series-5:#d55181;--series-6:#0ca30c;--series-7:#9085e9;--series-8:#e66767;--oa1:#184f95;--oa2:#3987e5;--oa3:#9ec5f4;--ob1:#184f95;--ob2:#256abf;--ob3:#3987e5;--ob4:#6da7ec;--ob5:#9ec5f4;}}
 :root[data-theme="dark"] .viz-root{color-scheme:dark;--surface-0:#0d0d0d;--surface-1:#1a1a19;--card:#151514;--text-primary:#f0efec;--text-secondary:#c3c2b7;
  --text-muted:#a3a198;--grid:#2c2c2a;--axis:#45443f;--track:#2c2c2a;--ring:rgba(255,255,255,.12);--series-1:#3987e5;--series-2:#d95926;--series-3:#199e70;
- --good:#0ca30c;--bad:#e66767;--focus:#86b6ef;--hatch:#242422}
+ --good:#0ca30c;--bad:#e66767;--focus:#86b6ef;--hatch:#242422;
+ --series-4:#c98500;--series-5:#d55181;--series-6:#0ca30c;--series-7:#9085e9;--series-8:#e66767;--oa1:#184f95;--oa2:#3987e5;--oa3:#9ec5f4;--ob1:#184f95;--ob2:#256abf;--ob3:#3987e5;--ob4:#6da7ec;--ob5:#9ec5f4;}
 *{box-sizing:border-box}
 html,body{margin:0}
 body.viz-root{background:var(--surface-0);color:var(--text-primary);font:15px/1.65 system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;-webkit-text-size-adjust:100%}
@@ -78,6 +81,17 @@ select{font:inherit;font-size:14px;padding:2px 6px;border-radius:6px;border:1px 
 .pyr .b{height:9px;background:var(--series-1);border-radius:3px 0 0 3px}.pyr .r .b{background:var(--series-2);border-radius:0 3px 3px 0}
 .pyr .a{text-align:center;color:var(--text-muted)}
 .note{font-size:12.5px;color:var(--text-secondary)}
+.compo{border-top:1px solid var(--grid);margin-top:8px;padding-top:6px}
+.compo h4{font-size:13.5px;margin:0 0 2px}
+.cwrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:4px 12px;align-items:center}
+.cwrap .chart{width:100%;max-width:300px;margin:0 auto}
+.cleg{font-size:12.5px;border-collapse:collapse;width:100%}
+.cleg td{border-bottom:1px solid var(--grid);padding:2px 4px}
+.cleg .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.dn path{cursor:default}.dn path:focus{outline:none}.dn path:focus-visible,.dn path.hv{stroke:var(--text-primary);stroke-width:2}
+.dlab{font-size:11px;fill:var(--text-primary);font-weight:600}.dlab2{font-size:10px;fill:var(--text-secondary)}
+.dc1{font-size:17px;font-weight:650;fill:var(--text-primary)}.dc2{font-size:10.5px;fill:var(--text-secondary)}
+.sb .sel{fill:var(--text-primary)}
 @media (max-width:640px){
  .grid{display:block}
  .grp{display:block;background:var(--card);border:1px solid var(--ring);border-radius:12px;margin:8px 0;padding:0 8px}
@@ -88,7 +102,7 @@ select{font:inherit;font-size:14px;padding:2px 6px;border-radius:6px;border:1px 
 }
 @media (forced-colors:active){.ln{stroke:CanvasText}.off{background:none;border:1px dashed CanvasText}}
 </style></head>
-<body class="viz-root" data-palette="#2a78d6,#eb6834,#1baf7a">
+<body class="viz-root" data-palette="#2a78d6,#eb6834,#1baf7a,#eda100,#e87ba4,#008300,#6250d6,#e34948">
 <main>
 <h1 id="ttl">川辺の村の統計</h1>
 <div class="band" id="band"></div>
@@ -209,6 +223,7 @@ function wireCharts(root) {
     hit.addEventListener("pointermove", show); hit.addEventListener("pointerdown", show);
     hit.addEventListener("pointerleave", () => { xh.style.display = "none"; tip.style.display = "none"; });
   });
+  wireCompo(root);
 }
 const COL = ["var(--series-1)", "var(--series-2)", "var(--series-3)"];
 const yr = x => `${Math.round(x)}年`;
@@ -337,6 +352,7 @@ function fieldCard(f, era, y, ya, yb) {
   const lead = heads.find(i => i.status !== "―" && inEra(i, era) && i.id !== "trade_ratio");
   if (lead) h += `<div class="note" style="margin-top:4px">${esc(lead.name)} のうつりかわり (${ya}〜${yb}年)</div>` + yearChart(lead.id, ya, yb, {h: 150, lo0: !["pop", "households", "gdp", "e0"].includes(lead.id)});
   h += special(f.key, r, y);
+  h += compoBlock(f.key, y, ya, yb);
   h += `<details class="more"><summary>くわしく (${on.length} の数)</summary><div class="tw"><table><tr><th>数</th><th>${y}年</th><th>${y - 1}年</th><th>札</th></tr>` +
     on.map(i => `<tr><td>${esc(i.name)}<span class="st">${esc(i.status)}</span></td><td class="n">${esc(cell(i.id, r))}</td><td class="n">${esc(cell(i.id, R(y - 1) || {}))}</td><td>${tag(i.tag)}</td></tr>`).join("") +
     `</table></div></details>`;
@@ -388,6 +404,142 @@ function special(k, r, y) {
   }
   if (k === "ext" && r.moved) return `<div class="note" style="margin-top:6px">出し入れ (4 季節): ${Object.entries(r.moved).map(([a, b]) => `${esc(a)} 入 ${nf(b.in)}・出 ${nf(b.out)}`).join(" / ")}。貢ぎ ${nf(r.tribute)} 回</div>`;
   return "";
+}
+/* ---------- 構成比: 円 (ドーナツ) と 100% の帯 (国の統計の円グラフと帯グラフ [21][22]) ---------- */
+// 計算は stats_calc.compositions (年報と同じ)。円は決まった順 (235 年を通して大きい順・「その他」は最後) に 12 時から時計回り。
+// 色は種類について決める (年が変わっても同じ)。名前は円の横の表と、なぞると出る札にもある (色だけにしない)。
+const COMPO = D.compo || [];
+const CP = [];
+function cColors(sp) {
+  if (sp.kind === "ordinal") { const n = sp.parts.length; return sp.parts.map((_, i) => `var(--${n <= 3 ? "oa" : "ob"}${i + 1})`); }
+  return sp.slots.map(k => `var(--series-${k + 1})`);
+}
+function cAmt(sp, v) { return nf(v, sp.unit === "大人 1 年分" ? (Math.abs(v) < 10 ? 1 : 0) : 0) + " " + (sp.unit === "大人 1 年分" ? "人分" : sp.unit); }
+function arcPath(cx, cy, R, r, a0, a1) {
+  const p = (rad, a) => [cx + rad * Math.sin(a), cy - rad * Math.cos(a)].map(v => v.toFixed(2)).join(",");
+  const big = a1 - a0 > Math.PI ? 1 : 0;
+  if (a1 - a0 >= 2 * Math.PI - 1e-6) a1 = a0 + 2 * Math.PI - 1e-4;
+  return `M${p(R, a0)}A${R},${R} 0 ${big} 1 ${p(R, a1)}L${p(r, a1)}A${r},${r} 0 ${big} 0 ${p(r, a0)}Z`;
+}
+function donutSvg(sp, rows, y) {
+  const col = cColors(sp), tot = rows.reduce((a, x) => a + x[1], 0);
+  const W = 300, H = 200, cx = 150, cy = 100, R = 66, r = 42;
+  const s = [`<svg viewBox="0 0 ${W} ${H}" class="dn" role="img" aria-label="${esc(`${y}年 ${sp.title}: ` + rows.filter(x => x[1] > 0).map(x => `${x[0]} ${nf(x[1] / tot * 100, 1)}%`).join("、"))}">`];
+  let a = 0; const labs = [];
+  rows.forEach((x, i) => {
+    if (!(x[1] > 0)) return;
+    const da = x[1] / tot * 2 * Math.PI, sh = x[1] / tot;
+    s.push(`<path d="${arcPath(cx, cy, R, r, a, a + da)}" fill="${col[i]}" stroke="var(--card)" stroke-width="2" stroke-linejoin="round" tabindex="0" data-i="${i}"><title>${esc(x[0])}: ${esc(cAmt(sp, x[1]))} (${nf(sh * 100, 1)}%)</title></path>`);
+    if (sh >= 0.05) { const m = a + da / 2; labs.push({m, side: Math.sin(m) >= 0 ? 1 : -1, y: cy - (R + 14) * Math.cos(m), t1: nf(sh * 100, sh < 0.1 ? 1 : 0) + "%", t2: cAmt(sp, x[1])}); }
+    a += da;
+  });
+  [1, -1].forEach(sd => {  // ラベルが重ならないように、片側ずつ上から順に 24 px あける
+    const L = labs.filter(l => l.side === sd).sort((p, q) => p.y - q.y);
+    L.forEach((l, k) => { l.ty = Math.max(l.y, k ? L[k - 1].ty + 24 : 14); });
+    for (let k = L.length - 1; k >= 0; k--) l2(L, k);
+    function l2(L, k) { const lim = k === L.length - 1 ? H - 14 : L[k + 1].ty - 24; if (L[k].ty > lim) L[k].ty = lim; }
+  });
+  labs.forEach(l => {
+    const ex = cx + (R + 2) * Math.sin(l.m), ey = cy - (R + 2) * Math.cos(l.m), tx = cx + l.side * (R + 22);
+    s.push(`<polyline points="${ex.toFixed(1)},${ey.toFixed(1)} ${(cx + l.side * (R + 14)).toFixed(1)},${l.ty.toFixed(1)} ${tx.toFixed(1)},${l.ty.toFixed(1)}" fill="none" stroke="var(--axis)" stroke-width="1"/>` +
+      `<text class="dlab" x="${(tx + l.side * 3).toFixed(1)}" y="${(l.ty - 1).toFixed(1)}" text-anchor="${l.side > 0 ? "start" : "end"}">${esc(l.t1)}</text>` +
+      `<text class="dlab2" x="${(tx + l.side * 3).toFixed(1)}" y="${(l.ty + 11).toFixed(1)}" text-anchor="${l.side > 0 ? "start" : "end"}">${esc(l.t2)}</text>`);
+  });
+  s.push(`<text class="dc1" x="${cx}" y="${cy + 2}" text-anchor="middle">${esc(nf(tot, sp.unit === "大人 1 年分" ? 0 : 0))}</text><text class="dc2" x="${cx}" y="${cy + 16}" text-anchor="middle">合計 ${esc(sp.unit === "大人 1 年分" ? "人分" : sp.unit)}</text></svg>`);
+  return s.join("");
+}
+function cLegend(sp, rows, tot) {
+  const col = cColors(sp);
+  const ord = rows.map((x, i) => [x, i]);
+  if (sp.kind !== "ordinal") ord.sort((p, q) => (q[0][1] - p[0][1]) || (p[1] - q[1]));  // この年の大きい順 (その他は大きくても最後)
+  if (sp.kind !== "ordinal") { const k = ord.findIndex(o => /^(その他|そのほか)$/.test(o[0][0])); if (k >= 0) ord.push(ord.splice(k, 1)[0]); }
+  return `<table class="cleg"><tr><th>種類</th><th style="text-align:right">割合</th><th style="text-align:right">量</th></tr>` + ord.map(([x, i]) =>
+    `<tr><td><i class="sw" style="background:${col[i]}"></i>${esc(x[0])}</td><td class="n">${tot ? nf(x[1] / tot * 100, 1) + "%" : "—"}</td><td class="n">${esc(cAmt(sp, x[1]))}</td></tr>`).join("") + "</table>";
+}
+function stackSvg(sp, y, ya, yb) {
+  const col = cColors(sp), step = yb - ya + 1 > 40 ? 5 : 1;
+  const bins = [];
+  for (let b0 = step === 1 ? ya : Math.floor(ya / step) * step; b0 <= yb; b0 += step) {
+    const sum = sp.parts.map(() => 0); let n = 0;
+    for (let yy = Math.max(b0, ya); yy <= Math.min(b0 + step - 1, yb); yy++) {
+      const v = ((R(yy) || {}).compo || {})[sp.key];
+      if (!v || v.some(x => x[1] < 0)) continue;
+      v.forEach((x, i) => { sum[i] += x[1]; }); n++;
+    }
+    bins.push({b0, b1: Math.min(b0 + step - 1, yb), sum, tot: sum.reduce((a, v) => a + v, 0), n});
+  }
+  const W = 300, H = 150, Lm = 30, Rm = 6, T = 6, B = 20, pw = W - Lm - Rm, cw = pw / bins.length, bw = Math.min(24, Math.max(1, cw - (cw > 4 ? 1 : 0)));
+  const Yv = f => T + (H - T - B) * (1 - f);
+  const s = [`<svg viewBox="0 0 ${W} ${H}" class="sb" role="img" aria-label="${esc(sp.title)} の割合のうつりかわり (${ya}〜${yb}年${step > 1 ? "・5 年ずつ" : ""})">`];
+  [0, 0.5, 1].forEach(f => s.push(`<line class="${f ? "gl" : "ax"}" x1="${Lm}" x2="${W - Rm}" y1="${Yv(f)}" y2="${Yv(f)}"/><text class="tm" x="${Lm - 4}" y="${Yv(f) + 3.5}" text-anchor="end">${f * 100}%</text>`));
+  bins.forEach((b, k) => {
+    const x = Lm + k * cw + (cw - bw) / 2;
+    if (!b.tot) return;
+    let acc = 0;
+    b.sum.forEach((v, i) => { if (v <= 0) return; const f0 = acc / b.tot, f1 = (acc + v) / b.tot; acc += v;
+      const hgt = Math.max(0, Yv(f0) - Yv(f1) - (f1 < 0.9999 ? 1 : 0));
+      s.push(`<rect x="${x.toFixed(2)}" y="${Yv(f1).toFixed(2)}" width="${bw.toFixed(2)}" height="${hgt.toFixed(2)}" fill="${col[i]}"/>`); });
+  });
+  const kSel = bins.findIndex(b => y >= b.b0 && y <= b.b1);
+  if (kSel >= 0) { const xs = Lm + kSel * cw + cw / 2; s.push(`<path class="sel" d="M${xs.toFixed(1)},${H - B + 2}l-4,6h8z"/>`); }
+  s.push(`<text class="tm" x="${Lm}" y="${H - 4}">${bins[0].b0 < ya ? ya : bins[0].b0}年</text><text class="tm" x="${W - Rm}" y="${H - 4}" text-anchor="end">${yb}年</text>`);
+  if (kSel >= 0) { const xs = Lm + kSel * cw + cw / 2; if (xs > Lm + 40 && xs < W - Rm - 40) s.push(`<text class="tm" x="${xs.toFixed(1)}" y="${H - 4}" text-anchor="middle">${y}年</text>`); }
+  bins.forEach((b, k) => s.push(`<rect class="hit" data-k="${k}" x="${(Lm + k * cw).toFixed(2)}" y="${T}" width="${cw.toFixed(2)}" height="${H - T - B}" fill="transparent"/>`));
+  s.push("</svg>");
+  const id = CP.length; CP.push({sp, bins, W, Lm, cw});
+  const tbl = `<details class="more"><summary>帯の数 (表)</summary><div class="tw"><table><tr><th>年</th>${sp.parts.map(n => `<th>${esc(n)}</th>`).join("")}<th>合計</th></tr>` +
+    bins.slice().reverse().map(b => `<tr><td>${b.b0 === b.b1 ? b.b0 : b.b0 + "〜" + b.b1}</td>${b.sum.map(v => `<td class="n">${b.tot ? nf(v / b.tot * 100, 1) + "%" : "—"}</td>`).join("")}<td class="n">${b.tot ? esc(cAmt(sp, b.tot / Math.max(1, b.n))) + (step > 1 ? " (1 年の平均)" : "") : "—"}</td></tr>`).join("") + "</table></div></details>";
+  return `<div class="chart" data-cp="${id}">${s.join("")}<div class="tip"></div></div>` + tbl;
+}
+function compoBlock(fk, y, ya, yb) {
+  return COMPO.filter(sp => sp.field === fk).map(sp => {
+    const v = ((R(y) || {}).compo || {})[sp.key];
+    const has = YEARS.some(yy => yy >= ya && yy <= yb && ((R(yy) || {}).compo || {})[sp.key]);
+    if (!has) return "";
+    const col = cColors(sp);
+    let h = `<div class="compo"><h4>${esc(sp.title)} の割合</h4><div class="note">${esc(sp.note)}</div>`;
+    if (!v) h += `<div class="note">${y}年は記録がない。</div>`;
+    else {
+      const tot = v.reduce((a, x) => a + x[1], 0), neg = v.some(x => x[1] < 0);
+      if (sp.donut && !neg && tot > 0) {
+        const id = CP.length; CP.push({sp, rows: v, tot});
+        h += `<div class="cwrap"><div class="chart" data-cp="${id}">${donutSvg(sp, v, y)}<div class="tip"></div></div>${cLegend(sp, v, tot)}</div>`;
+      } else if (sp.donut && neg) {
+        h += `<div class="note">${y}年はマイナスの中身 (${v.filter(x => x[1] < 0).map(x => `${esc(x[0])} ${esc(cAmt(sp, x[1]))}`).join("・")}) があるので、円にしない (円は全部がプラスのときだけ)。帯の図には、マイナスの中身がある年を入れていない。</div>` + cLegend(sp, v, 0);
+      } else h += cLegend(sp, v, tot);
+    }
+    h += `<div class="note" style="margin-top:4px">割合のうつりかわり (100% の帯・${ya}〜${yb}年${yb - ya + 1 > 40 ? "・5 年ずつまとめた" : ""}。▲ が選んだ年)</div>` +
+      `<div class="legend">${sp.parts.map((n, i) => `<span><i style="background:${col[i]};height:10px;width:10px;vertical-align:-1px"></i>${esc(n)}</span>`).join("")}</div>` + stackSvg(sp, y, ya, yb);
+    return h + "</div>";
+  }).join("");
+}
+function wireCompo(root) {
+  root.querySelectorAll(".chart[data-cp]").forEach(el => {
+    if (el.dataset.w) return; el.dataset.w = 1;
+    const c = CP[+el.dataset.cp], tip = el.querySelector(".tip"), svg = el.querySelector("svg");
+    const put = (lines, ev) => {
+      tip.textContent = ""; lines.forEach((t, k) => { const d = document.createElement("div"); if (k === 0) { const b = document.createElement("b"); b.textContent = t; d.appendChild(b); } else d.textContent = t; tip.appendChild(d); });
+      tip.style.display = "block";
+      const bb = el.getBoundingClientRect(); let x, yv;
+      if (ev && ev.clientX != null && ev.type !== "focus") { x = ev.clientX - bb.left; yv = ev.clientY - bb.top; } else { const tb = ev.target.getBoundingClientRect(); x = tb.left - bb.left + tb.width / 2; yv = tb.top - bb.top + tb.height / 2; }
+      tip.style.left = Math.min(Math.max(0, x + 12), bb.width - tip.offsetWidth) + "px"; tip.style.top = Math.max(0, yv - tip.offsetHeight - 8) + "px";
+    };
+    const hide = () => { tip.style.display = "none"; svg.querySelectorAll(".hv").forEach(p => p.classList.remove("hv")); };
+    if (c.rows) {
+      svg.querySelectorAll("path[data-i]").forEach(p => {
+        const x = c.rows[+p.dataset.i];
+        const f = ev => { hide(); p.classList.add("hv"); put([x[0], cAmt(c.sp, x[1]), nf(x[1] / c.tot * 100, 1) + "%"], ev); };
+        p.addEventListener("pointermove", f); p.addEventListener("pointerdown", f); p.addEventListener("focus", f);
+        p.addEventListener("pointerleave", hide); p.addEventListener("blur", hide);
+      });
+    } else {
+      svg.querySelectorAll("rect.hit").forEach(rc => {
+        const b = c.bins[+rc.dataset.k];
+        const f = ev => put([(b.b0 === b.b1 ? `${b.b0}年` : `${b.b0}〜${b.b1}年`)].concat(b.tot ? c.sp.parts.map((n, i) => `${n} ${nf(b.sum[i] / b.tot * 100, 1)}%`).reverse() : ["記録がない (またはマイナスの中身がある)"]), ev);
+        rc.addEventListener("pointermove", f); rc.addEventListener("pointerdown", f); rc.addEventListener("pointerleave", hide);
+      });
+    }
+  });
 }
 function defList(list) {
   return '<div class="tw"><table><tr><th>数</th><th>式</th><th>単位</th><th>出どころ</th><th>国の数</th><th>出典</th><th>時代</th><th>いつから</th></tr>' +
@@ -456,7 +608,10 @@ function tech(p) {
 function defs(p) {
   const d = D.defs;
   let h = `<div class="card"><h2 style="margin-top:0">数の決まり (定義・出どころ・出典)</h2><p class="note">1 つの数に 1 行。◎ は今の記録から国と同じ式で出せる・○ は近い形で出せる・― はまだこの村にない (灰色の枠。数を作らない)。` +
-    `単位: ${esc(d.unit_note)}。村の 1 年は ${d.year_days} 日、年齢も村の年で数える。</p>`;
+    `単位: ${esc(d.unit_note)}。村の 1 年は ${d.year_days} 日、年齢も村の年で数える。</p>` +
+    `<h3 style="margin:10px 0 4px">構成比 (内わけ) の見せ方</h3><p class="note">国の統計は、全体を 100% とした内わけを円グラフで見せ、12 時から時計回りに大きい順、「その他」はいちばん最後、小さいものは「その他」にまとめる <a href="#ref21" data-ref="21">[21]</a>。` +
+    `年ごとの変化は帯グラフを並べて見せ、帯の中の順は入れかえない <a href="#ref22" data-ref="22">[22]</a>。` +
+    `村の円は 6 切れまでで、235 年を通して大きい順 (「その他」は最後) に並べ、横の 100% の帯と同じ順・同じ色にした。年齢と家の人数は順のある種類なので順のまま、1 つの青の濃さで描く。</p>`;
   FIELDS.forEach(f => { h += `<h3 style="margin:12px 0 4px">${esc(f.name)} <span class="note">(スマホでは「${esc(f.fold)}」にたたむ)</span></h3>` + defList(d.indicators.filter(i => i.field === f.key)) +
     d.indicators.filter(i => i.field === f.key && i.status === "―").map(i => `<div class="greybox off">░ ${esc(i.name)} → ${esc(i.unlock)}</div>`).join(""); });
   h += "</div>";
