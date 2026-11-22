@@ -104,6 +104,7 @@ class Ctx:
         lo = (st.get("archive") or {}).get("upto")
         self._cache["live_famine"] = collections.Counter(x["day"] // YEAR for x in st.get("events", []) if x.get("type") == "蓄えが尽きる")
         self._cache["archive_upto"] = lo
+        self._cache["live_offers"] = [{"day": x["day"], "text": x.get("text")} for x in st.get("events", []) if "がほしい" in (x.get("text") or "")]
         self._cache["now"] = st["day"]
         self._cache["era_log"] = st.get("era_log") or []
         self._state = {"day": st["day"], "archive": st.get("archive"), "era_log": st.get("era_log"), "era2": {"g7": {}}, "events": []}

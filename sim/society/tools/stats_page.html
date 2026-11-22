@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>川辺の村の統計</title>
+<!-- 作り方: tools/build_stats.py がこのひな形の DATA の所に数を入れて app/stats.html を書く。外のファイル・CDN は読まない -->
+<style>
+.viz-root{color-scheme:light;--surface-0:#f7f6f2;--surface-1:#fcfcfb;--card:#ffffff;--text-primary:#0b0b0b;--text-secondary:#52514e;--text-muted:#6f6d68;
+ --grid:#e1e0d9;--axis:#c3c2b7;--track:#ecebe5;--ring:rgba(11,11,11,.10);--series-1:#2a78d6;--series-2:#eb6834;--series-3:#1baf7a;
+ --good:#006300;--bad:#c62f2f;--focus:#2a78d6;--hatch:#ecebe5}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .viz-root{color-scheme:dark;--surface-0:#0d0d0d;--surface-1:#1a1a19;--card:#151514;
+ --text-primary:#f0efec;--text-secondary:#c3c2b7;--text-muted:#a3a198;--grid:#2c2c2a;--axis:#45443f;--track:#2c2c2a;--ring:rgba(255,255,255,.12);
+ --series-1:#3987e5;--series-2:#d95926;--series-3:#199e70;--good:#0ca30c;--bad:#e66767;--focus:#86b6ef;--hatch:#242422}}
+:root[data-theme="dark"] .viz-root{color-scheme:dark;--surface-0:#0d0d0d;--surface-1:#1a1a19;--card:#151514;--text-primary:#f0efec;--text-secondary:#c3c2b7;
+ --text-muted:#a3a198;--grid:#2c2c2a;--axis:#45443f;--track:#2c2c2a;--ring:rgba(255,255,255,.12);--series-1:#3987e5;--series-2:#d95926;--series-3:#199e70;
+ --good:#0ca30c;--bad:#e66767;--focus:#86b6ef;--hatch:#242422}
+*{box-sizing:border-box}
+html,body{margin:0}
+body.viz-root{background:var(--surface-0);color:var(--text-primary);font:15px/1.65 system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;-webkit-text-size-adjust:100%}
+main{max-width:1080px;margin:0 auto;padding:10px 12px 60px}
+h1{font-size:21px;line-height:1.35;margin:4px 0 2px} h2{font-size:18px;margin:18px 0 8px} h3{font-size:15.5px;margin:0}
+a{color:var(--series-1)} .muted{color:var(--text-muted)} .sec{color:var(--text-secondary)}
+.band{font-size:13px;color:var(--text-secondary);line-height:1.5}
+nav.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0;position:sticky;top:0;background:var(--surface-0);padding:6px 0;z-index:5}
+nav.tabs button{font:inherit;font-size:13.5px;border:1px solid var(--ring);background:var(--surface-1);color:var(--text-primary);border-radius:8px;padding:4px 10px;cursor:pointer}
+nav.tabs button[aria-selected="true"]{border-color:var(--series-1);color:var(--series-1);font-weight:700}
+button:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.panel{display:none}.panel.on{display:block}
+.card{background:var(--card);border:1px solid var(--ring);border-radius:12px;padding:10px 12px;margin:10px 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.kpi{background:var(--surface-1);border:1px solid var(--ring);border-radius:10px;padding:8px 10px;line-height:1.3}
+.kpi .k{font-size:12.5px;color:var(--text-secondary)} .kpi .v{font-size:25px;font-weight:650;margin:2px 0}
+.kpi .v small{font-size:12.5px;font-weight:500;color:var(--text-secondary);margin-left:3px}
+.kpi .d{font-size:12px;color:var(--text-muted)} .d.up{color:var(--good)} .d.down{color:var(--bad)}
+.kpi .x{font-size:11.5px;color:var(--text-muted);margin-top:3px}
+.off{background:repeating-linear-gradient(135deg,var(--hatch) 0 6px,transparent 6px 12px);color:var(--text-secondary)}
+.kpi.off .v{font-size:14px}
+.tag{display:inline-block;font-size:10.5px;line-height:1.4;border:1px solid var(--ring);border-radius:5px;padding:0 4px;color:var(--text-secondary);margin-left:4px;vertical-align:1px;font-weight:500}
+.st{font-size:11px;color:var(--text-muted);margin-left:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:10px}
+.grp{display:contents}.grp>.gsum{display:none}.grp>.fcard{order:var(--o)}
+.fcard{background:var(--card);border:1px solid var(--ring);border-radius:12px;padding:10px 12px}
+.fcard .hd{display:flex;justify-content:space-between;gap:8px;align-items:baseline;border-bottom:2px solid var(--grid);padding-bottom:3px;margin-bottom:6px}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px}
+.mini .kpi .v{font-size:19px}
+.greybox{border-radius:8px;padding:4px 8px;margin-top:6px;font-size:12.5px;border:1px dashed var(--axis)}
+details.more{margin-top:6px;font-size:13px} details.more summary{cursor:pointer;color:var(--text-secondary)}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;font-size:12.5px;width:100%}
+th,td{border-bottom:1px solid var(--grid);padding:3px 5px;text-align:left;vertical-align:top}
+th{color:var(--text-secondary);font-weight:600;background:var(--surface-1)}
+td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.chart{position:relative;max-width:760px} .chart svg{display:block;width:100%;height:auto;overflow:visible}
+.gl{stroke:var(--grid);stroke-width:1}.ax{stroke:var(--axis);stroke-width:1}
+.ln{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.tm{fill:var(--text-muted);font-size:10px}.tv{fill:var(--text-primary);font-size:11px;font-weight:600}
+.brk{stroke:var(--text-muted);stroke-width:1;stroke-dasharray:3 3}
+.goal{stroke:var(--text-muted);stroke-width:1}
+.xh{stroke:var(--text-secondary);stroke-width:1;pointer-events:none}
+.tip{position:absolute;pointer-events:none;background:var(--surface-1);border:1px solid var(--ring);border-radius:8px;padding:4px 8px;font-size:12px;line-height:1.4;
+ box-shadow:0 2px 8px rgba(0,0,0,.12);white-space:nowrap;z-index:3;display:none}
+.tip b{font-size:13px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text-secondary);margin:2px 0}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:4px;vertical-align:3px}
+.bars .row{display:grid;grid-template-columns:8.5em 1fr 4.5em;gap:6px;align-items:center;font-size:12.5px;margin:2px 0}
+.bars .tk{height:10px;background:var(--track);border-radius:5px;overflow:hidden}
+.bars .fl{height:100%;background:var(--series-1);border-radius:0 4px 4px 0}
+.bars .fl.neg{background:var(--text-muted)}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0}
+.chip{font-size:12px;border:1px solid var(--ring);border-radius:999px;padding:1px 8px;background:var(--surface-1)}
+.chip.ok{border-color:var(--good);color:var(--good);font-weight:600}
+.chip.late{border-color:var(--series-1);color:var(--series-1);font-weight:600}
+.chip.ng{color:var(--text-muted)}
+.chip.not{color:var(--text-muted)}
+select{font:inherit;font-size:14px;padding:2px 6px;border-radius:6px;border:1px solid var(--ring);background:var(--surface-1);color:var(--text-primary)}
+.eraband{display:flex;gap:3px;height:36px;margin:6px 0 2px}
+.eraband button{border:0;border-top:8px solid;padding:3px 2px 0;font:inherit;font-size:12.5px;color:var(--text-primary);background:var(--surface-1);cursor:pointer;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pyr{display:grid;grid-template-columns:1fr 3.2em 1fr;gap:1px 4px;font-size:10.5px;align-items:center}
+.pyr .l{display:flex;justify-content:flex-end}.pyr .r{display:flex}
+.pyr .b{height:9px;background:var(--series-1);border-radius:3px 0 0 3px}.pyr .r .b{background:var(--series-2);border-radius:0 3px 3px 0}
+.pyr .a{text-align:center;color:var(--text-muted)}
+.note{font-size:12.5px;color:var(--text-secondary)}
+@media (max-width:640px){
+ .grid{display:block}
+ .grp{display:block;background:var(--card);border:1px solid var(--ring);border-radius:12px;margin:8px 0;padding:0 8px}
+ .grp>.gsum{display:block;width:100%;text-align:left;border:0;background:none;font:inherit;color:var(--text-primary);cursor:pointer;font-weight:700;padding:8px 2px;font-size:15px}
+ .grp.closed>.fcard{display:none}
+ .grp .fcard{border:0;border-top:1px solid var(--grid);border-radius:0;padding:8px 2px}
+ .kpi .v{font-size:21px}
+}
+@media (forced-colors:active){.ln{stroke:CanvasText}.off{background:none;border:1px dashed CanvasText}}
+</style></head>
+<body class="viz-root" data-palette="#2a78d6,#eb6834,#1baf7a">
+<main>
+<h1 id="ttl">川辺の村の統計</h1>
+<div class="band" id="band"></div>
+<nav class="tabs" role="tablist" id="tabs"></nav>
+<section class="panel" id="p-cover"></section>
+<section class="panel" id="p-s1"></section>
+<section class="panel" id="p-s2"></section>
+<section class="panel" id="p-s3"></section>
+<section class="panel" id="p-tech"></section>
+<section class="panel" id="p-defs"></section>
+</main>
+<script>
+"use strict";
+const D = /*DATA*/;
+const Y = 120, UNIT = D.defs.unit_adult_year_kcal;
+const DEF = Object.fromEntries(D.defs.indicators.map(i => [i.id, i]));
+const FIELDS = D.defs.fields;
+const YEARS = Object.keys(D.years).map(Number).sort((a, b) => a - b);
+const LAST = D.asof.last_year;
+const ERA = {s1: [0, 3], s2: [4, 200], s3: [201, LAST]};
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const R = y => D.years[String(y)] || null;
+const TAGS = D.defs.tags;
+function nf(v, d) { return v == null || Number.isNaN(v) ? "—" : Number(v).toLocaleString("ja-JP", {minimumFractionDigits: d || 0, maximumFractionDigits: d || 0}); }
+function fmt(id, v) {
+  const i = DEF[id] || {};
+  if (v == null) return "—";
+  if (i.kind === "pct") return nf(v * 100, 1) + "%";
+  if (i.kind === "ratio3") return nf(v, 3);
+  if (i.kind === "ratio") return nf(v, Math.abs(v) < 10 ? 2 : 1);
+  return nf(v, Math.abs(v) < 10 && v % 1 ? 1 : 0);
+}
+function unitOf(id) { const u = (DEF[id] || {}).unit || ""; return u === "%" ? "" : u; }
+function tag(t) { return t && t !== "―" ? `<span class="tag" title="数の出どころ: ${esc(TAGS[t] || "")}">${esc(t)}</span>` : ""; }
+function delta(id, cur, prev) {
+  const i = DEF[id] || {};
+  if (cur == null) return '<div class="d">記録なし</div>';
+  if (prev == null) return '<div class="d">去年の記録なし</div>';
+  const pct = i.kind === "pct";
+  const diff = pct ? (cur - prev) * 100 : cur - prev;
+  const ps = fmt(id, prev) + (pct ? "" : unitOf(id));
+  if (Math.abs(diff) < (pct ? 0.05 : (Math.abs(prev) < 10 ? 0.005 : 0.5))) return `<div class="d">― 去年と同じ (${esc(ps)})</div>`;
+  let ds;
+  if (pct) ds = (diff > 0 ? "+" : "") + nf(diff, 1) + " ポイント";
+  else if (["gdp", "gdp_pc", "harvest", "work_days", "supply", "bal_village", "bal_house", "coal_burned", "coal_dug"].includes(id) && prev) ds = (diff > 0 ? "+" : "") + nf(diff / Math.abs(prev) * 100, 1) + "%";
+  else ds = (diff > 0 ? "+" : "") + nf(diff, Math.abs(diff) < 10 && diff % 1 ? 2 : 0);
+  const cls = i.good ? ((diff > 0) === (i.good === "up") ? " up" : " down") : "";
+  return `<div class="d${cls}">${diff > 0 ? "▲" : "▼"} ${esc(ds)} <span class="muted">(去年 ${esc(ps)})</span></div>`;
+}
+function tile(id, y, extra) {
+  const i = DEF[id], r = R(y) || {}, p = R(y - 1) || {};
+  if (!i) return "";
+  if (i.status === "―") return offTile(i);
+  return `<div class="kpi" title="${esc(i.name)}"><div class="k">${esc(i.name)}${tag(i.tag)}</div>` +
+    `<div class="v">${esc(fmt(id, r[id]))}<small>${esc(i.kind === "pct" ? "%" : i.unit)}</small></div>${delta(id, r[id], p[id])}` +
+    (extra ? `<div class="x">${extra}</div>` : "") + "</div>";
+}
+function offTile(i, why) {
+  return `<div class="kpi off" title="${esc(i.unlock || why || "")}"><div class="k">${esc(i.name)}</div><div class="v">${esc(why ? "この時代にはまだない" : "まだこの村にはない")}</div>` +
+    `<div class="x">${esc(why || i.unlock || "")}</div></div>`;
+}
+
+/* ---------- 線の図 (1 つの目盛り。十字線となぞると出る数) ---------- */
+const CH = [];
+function niceStep(span) { for (let k = -3; k < 10; k++) for (const m of [1, 2, 2.5, 5]) { const s = m * 10 ** k; if (span / s <= 4) return s; } return span; }
+function lineChart(o) {
+  // o: {series:[{name,pts:[[x,y]],color}], x0,x1, xfmt, yfmt, lo0, breaks:[[x,label]], marks:[[x,label]], goal:[v,label], h}
+  const W = o.w || 380, H = o.h || 200, L = 40, Rr = 50, T = o.marks && o.marks.length ? 18 : 10, B = 22;
+  const all = o.series.flatMap(s => s.pts.filter(p => p[1] != null).map(p => p[1])).concat(o.goal ? [o.goal[0]] : []);
+  if (!all.length) return '<div class="note">この時代の記録がない</div>';
+  let hi = Math.max(...all), lo = o.lo0 === false ? Math.min(...all) : Math.min(0, ...all);
+  if (hi === lo) hi = lo + (Math.abs(lo) || 1);
+  const step = niceStep(hi - lo), vmin = Math.floor(lo / step) * step, vmax = Math.ceil(hi / step) * step;
+  const x0 = o.x0, x1 = o.x1 === o.x0 ? o.x0 + 1 : o.x1;
+  const X = x => L + (W - L - Rr) * (x - x0) / (x1 - x0), Yv = v => T + (H - T - B) * (1 - (v - vmin) / (vmax - vmin || 1));
+  const s = [`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.label || "")}">`];
+  for (let v = vmin; v <= vmax + step / 2; v += step) s.push(`<line class="${Math.abs(v) < 1e-9 || v === vmin ? "ax" : "gl"}" x1="${L}" x2="${W - Rr}" y1="${Yv(v)}" y2="${Yv(v)}"/><text class="tm" x="${L - 4}" y="${Yv(v) + 3.5}" text-anchor="end">${esc(o.yfmt(v, true))}</text>`);
+  const xt = o.xticks || [x0, x1];
+  xt.forEach((x, k) => s.push(`<text class="tm" x="${X(x)}" y="${H - 6}" text-anchor="${k === 0 ? "start" : k === xt.length - 1 ? "end" : "middle"}">${esc(o.xfmt(x))}</text>`));
+  (o.breaks || []).forEach(([x, lab]) => { if (x > x0 && x < x1) s.push(`<line class="brk" x1="${X(x)}" x2="${X(x)}" y1="${T}" y2="${H - B}"><title>${esc(lab)}</title></line>`); });
+  if (o.goal) s.push(`<line class="goal" x1="${L}" x2="${W - Rr}" y1="${Yv(o.goal[0])}" y2="${Yv(o.goal[0])}"/><text class="tm" x="${L + 3}" y="${Yv(o.goal[0]) - 3}">${esc(o.goal[1])}</text>`);
+  (o.marks || []).forEach(([x, lab]) => { if (x >= x0 && x <= x1) s.push(`<text x="${X(x)}" y="11" text-anchor="middle" font-size="10" fill="var(--text-secondary)">◆<title>${esc(lab)}</title></text>`); });
+  const ends = [];
+  o.series.forEach(se => {
+    let seg = [];
+    const flush = () => { if (seg.length > 1) s.push(`<polyline class="ln" style="stroke:${se.color}" points="${seg.join(" ")}"/>`); else if (seg.length === 1) { const [a, b] = seg[0].split(","); s.push(`<circle cx="${a}" cy="${b}" r="3" fill="${se.color}"/>`); } seg = []; };
+    se.pts.forEach(p => { if (p[1] == null) flush(); else seg.push(`${X(p[0]).toFixed(1)},${Yv(p[1]).toFixed(1)}`); });
+    flush();
+    const lastp = [...se.pts].reverse().find(p => p[1] != null);
+    if (lastp) { s.push(`<circle cx="${X(lastp[0])}" cy="${Yv(lastp[1])}" r="4" fill="${se.color}" stroke="var(--card)" stroke-width="2"/>`);
+      ends.push({x: X(lastp[0]) + 7, y: Yv(lastp[1]) + 4, t: o.yfmt(lastp[1], false) + (o.series.length > 1 ? " " + se.name : "")}); }
+  });
+  ends.sort((a, b) => a.y - b.y);
+  ends.forEach((e, k) => { if (k && e.y - ends[k - 1].y < 12) e.y = ends[k - 1].y + 12; s.push(`<text class="tv" x="${e.x}" y="${e.y}">${esc(e.t)}</text>`); });
+  s.push(`<line class="xh" x1="0" x2="0" y1="${T}" y2="${H - B}" style="display:none"/><rect x="${L}" y="${T}" width="${W - L - Rr}" height="${H - T - B}" fill="transparent" class="hit"/></svg>`);
+  const id = CH.length;
+  CH.push({o, X, W, L, Rr, x0, x1});
+  const leg = o.series.length > 1 ? `<div class="legend">${o.series.map(se => `<span><i style="background:${se.color}"></i>${esc(se.name)}</span>`).join("")}</div>` : "";
+  return `${leg}<div class="chart" data-ch="${id}">${s.join("")}<div class="tip"></div></div>`;
+}
+function wireCharts(root) {
+  root.querySelectorAll(".chart[data-ch]").forEach(el => {
+    if (el.dataset.w) return; el.dataset.w = 1;
+    const c = CH[+el.dataset.ch], svg = el.querySelector("svg"), xh = svg.querySelector(".xh"), tip = el.querySelector(".tip"), hit = svg.querySelector(".hit");
+    const xs = [...new Set(c.o.series.flatMap(s => s.pts.filter(p => p[1] != null).map(p => p[0])))].sort((a, b) => a - b);
+    const show = ev => {
+      const bb = svg.getBoundingClientRect(), sx = (ev.clientX - bb.left) / bb.width * c.W;
+      const xv = c.x0 + (sx - c.L) / (c.W - c.L - c.Rr) * (c.x1 - c.x0);
+      let best = xs[0]; for (const x of xs) if (Math.abs(x - xv) < Math.abs(best - xv)) best = x;
+      const px = c.X(best);
+      xh.setAttribute("x1", px); xh.setAttribute("x2", px); xh.style.display = "";
+      tip.textContent = "";
+      const h = document.createElement("div"); h.textContent = c.o.xfmt(best, true); h.className = "muted"; tip.appendChild(h);
+      c.o.series.forEach(se => { const p = se.pts.find(q => q[0] === best); const d = document.createElement("div"); const b = document.createElement("b"); b.textContent = p && p[1] != null ? c.o.yfmt(p[1], false) : "—"; d.appendChild(b); if (c.o.series.length > 1) d.appendChild(document.createTextNode(" " + se.name)); tip.appendChild(d); });
+      tip.style.display = "block";
+      const left = px / c.W * bb.width; tip.style.left = Math.min(Math.max(0, left + 10), bb.width - tip.offsetWidth) + "px"; tip.style.top = "0px";
+    };
+    hit.addEventListener("pointermove", show); hit.addEventListener("pointerdown", show);
+    hit.addEventListener("pointerleave", () => { xh.style.display = "none"; tip.style.display = "none"; });
+  });
+}
+const COL = ["var(--series-1)", "var(--series-2)", "var(--series-3)"];
+const yr = x => `${Math.round(x)}年`;
+function yearChart(id, y0, y1, o) {
+  o = o || {};
+  const pts = []; for (let y = y0; y <= y1; y++) { const r = R(y); let v = r ? r[id] : null; if (v != null && DEF[id] && DEF[id].kind === "pct") v *= 100; pts.push([y, v]); }
+  const pct = DEF[id] && DEF[id].kind === "pct";
+  return lineChart(Object.assign({series: [{name: DEF[id] ? DEF[id].name : id, pts, color: COL[0]}], x0: y0, x1: y1, xfmt: yr,
+    yfmt: (v, ax) => pct ? nf(v, ax ? 0 : 1) + "%" : nf(v, Math.abs(v) < 10 && !ax ? 2 : 0), lo0: true, breaks: BREAKS, label: DEF[id] ? DEF[id].name : id}, o));
+}
+const BREAKS = D.defs.breaks.map(b => [b.day / Y, b.what]);
+
+/* ---------- 見出しと タブ ---------- */
+const TABS = [["cover", "全体の年表"], ["s1", "Society 1.0"], ["s2", "Society 2.0"], ["s3", "Society 3.0"], ["tech", "テクノロジー"], ["defs", "数の決まり"]];
+document.getElementById("ttl").textContent = `${LAST}年 川辺の村の統計`;
+document.getElementById("band").innerHTML = `数えた日: ${esc(D.asof.label)} まで (終わった年は ${LAST}年) ・ 次に出す日: ${LAST + 1}年の終わり (年に 1 回、年報といっしょに)。` +
+  ` 札: ${Object.entries(TAGS).map(([k, v]) => tag(k) + " " + esc(v)).join("・")}。しま模様の枠は「まだない」数 (0 ではない)。`;
+const tabs = document.getElementById("tabs");
+tabs.innerHTML = TABS.map(([k, n]) => `<button role="tab" data-t="${k}" aria-selected="false">${esc(n)}</button>`).join("");
+const built = {};
+function go(k) {
+  if (!TABS.find(t => t[0] === k)) k = "cover";
+  tabs.querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.t === k));
+  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + k));
+  const p = document.getElementById("p-" + k);
+  if (!built[k]) { built[k] = 1; ({cover, s1: era1, s2: () => eraPanel("s2"), s3: () => eraPanel("s3"), tech, defs})[k](p); }
+  wireCharts(p);
+  if (location.hash.slice(1) !== k) history.replaceState(null, "", "#" + k);
+}
+tabs.addEventListener("click", e => { const b = e.target.closest("button"); if (b) go(b.dataset.t); });
+
+/* ---------- 全体の年表 (表紙) ---------- */
+function cover(p) {
+  const now = D.asof.day / Y;
+  const segs = D.era_log.map((e, k) => ({era: e.era, from: e.day, to: k + 1 < D.era_log.length ? D.era_log[k + 1].day : D.asof.day}))
+    .filter(s => s.to > s.from || s.era === "G15");
+  const so = d => d < 489 ? "s1" : d < 24120 ? "s2" : "s3";
+  const band = [["s1", 0, 489, "Society 1.0"], ["s2", 489, 24120, "Society 2.0"], ["s3", 24120, D.asof.day + 1, "Society 3.0"]];
+  let h = `<div class="card"><h2 style="margin-top:0">0年 → ${LAST}年: 3 つの時代</h2>` +
+    `<div class="eraband">${band.map(([k, a, b, n], i) => `<button style="flex:${Math.max(b - a, 2600)};border-top-color:${COL[i]}" data-go="${k}" title="${esc(n)} (${Math.floor(a / Y)}〜${Math.floor((b - 1) / Y)}年)">${esc(n)}</button>`).join("")}</div>` +
+    `<div class="note">帯を押すと、その時代のダッシュボードへ (Society 1.0 は 4 年だけなので、帯は広げてある)。フェーズ: ${segs.map(s => `${esc(s.era)} ${Math.floor(s.from / Y)}年`).join("・")}。` +
+    ` Society 3.0 のフェーズ: s3 204年・s4 216年・i4 225年・p4 232年・t5 236年 (フェーズの行がある年)。</div>`;
+  const reached = D.tech.techs.filter(t => t.first_day != null && (t.status === "届いた")).map(t => [t.first_day / Y, `◆ ${t.name} (${Math.floor(t.first_day / Y)}年に届いた)`])
+    .concat(D.tech.techs.filter(t => t.status === "あとで届いた").map(t => [t.later_year, `◆ ${t.name} (あとで届いた ${t.later_year}年)`]))
+    .concat(D.tech.s3.filter(t => t.year).map(t => [t.year, `◆ ${t.name} (Society 3.0 の列 ${t.year}年)`]));
+  h += `<div class="note">◆ はテクノロジーツリーで「届いた」日 (なぞると名前)。点線はコードや時代の区切り。</div></div>`;
+  const s1p = (key) => D.s1.map(r => [(r.from + r.to) / 2 / Y, r[key]]);
+  const long = (title, note, pts, o) => `<div class="fcard"><div class="hd"><h3>${esc(title)}</h3></div><div class="note">${esc(note)}</div>${lineChart(Object.assign({series: [{name: title, pts, color: COL[0]}], x0: 0, x1: LAST, xfmt: yr, xticks: [0, 50, 100, 150, 200, LAST], yfmt: (v, ax) => nf(v, 0), breaks: BREAKS, label: title}, o || {}))}</div>`;
+  const ys = (k, m) => YEARS.map(y => [y, R(y)[k] == null ? null : R(y)[k] * (m || 1)]);
+  h += '<div class="grid">';
+  h += long("人口 (人)", "年の終わり (Society 1.0 は季節の終わり)", s1p("pop").concat(ys("pop")), {marks: reached, lo0: true});
+  h += long("世帯 (家)", "人がいる家 (Society 1.0 は家がない)", ys("households"));
+  h += long("蓄え (日分)", "1 年でいちばん少ない日 (204年から日ごと、その前は季節の終わり)。Society 1.0 は季節の終わりの蓄え ÷ (人 × 2,400 kcal)", s1p("store_days").concat(ys("store_min")));
+  h += long("1 人 1 日食べた (kcal)", "食べた熱量 ÷ 人 ÷ 日", s1p("kcal_pc").concat(ys("kcal_pc")));
+  h += long("食べ物でない仕事 (%)", "家の仕事の人日 (休むをのぞく) のうち、物を作る + そのほか。フェーズの物差し (持ち場の日を入れる) とは数え方がちがう", ys("work_make").map((p, i) => [p[0], p[1] == null ? null : (p[1] + (R(p[0]).work_other || 0)) * 100]), {yfmt: (v, ax) => nf(v, ax ? 0 : 1) + "%"});
+  h += `<div class="fcard"><div class="hd"><h3>出生率と死亡率 (人口千あたり・5 年の平均)</h3></div><div class="note">5 年の出生 (死亡) の合計 ÷ 5 年の年の終わりの人口の合計 × 1000</div>${lineChart({series: [{name: "出生率", pts: ys("cbr5"), color: COL[0]}, {name: "死亡率", pts: ys("cdr5"), color: COL[1]}], x0: 0, x1: LAST, xfmt: yr, xticks: [0, 50, 100, 150, 200, LAST], yfmt: (v) => nf(v, 0), breaks: BREAKS, label: "出生率と死亡率"})}</div>`;
+  h += long("村の生産 (大人 1 年分)", "4 季節そろった年だけ。3569 日目 (G6) より前は食べ物だけ", YEARS.map(y => [y, R(y).gdp_full_year ? R(y).gdp : null]), {lo0: false});
+  h += long("読める大人 (%)", "数えた年 (198年) から", ys("literacy", 100), {yfmt: (v, ax) => nf(v, ax ? 0 : 1) + "%"});
+  h += "</div>";
+  h += `<div class="card"><h3>ほかのページ</h3><ul><li><a href="#s1">Society 1.0</a>・<a href="#s2">Society 2.0</a>・<a href="#s3">Society 3.0</a> のダッシュボード</li>` +
+    `<li>年報 (${D.reports[0]}年〜): ${D.reports.slice(-6).map(y => `<a href="../reports/year${y}.html">${y}年</a>`).join("・")} ほか</li>` +
+    `<li><a href="dashboard.html">村の跡と記録</a> (村の人と考古学から見たページ。【シ】の数は出さない)</li><li><a href="tech_tree.html">テクノロジーツリー</a></li></ul></div>`;
+  p.innerHTML = h;
+  p.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => go(b.dataset.go)));
+}
+
+/* ---------- 時代のダッシュボード (Society 2.0・3.0) ---------- */
+const HEAD = ["pop", "gdp", "store_min", "nonfood", "literacy", "imr"];
+const FIELD_HEAD = {pop: ["pop", "households", "pop_growth"], vital: ["births", "deaths", "e0"], econ: ["gdp", "gdp_pc", "gdp_growth"],
+  work: ["work_days", "work_food", "rest_share"], food: ["harvest", "kcal_pc", "store_min"], price: ["trade_ratio"], living: ["wealth_gini", "store_gini", "rain_out"],
+  edu: ["literacy", "kids_taught"], health: ["imr", "u5mr", "sick_deaths"], ext: ["trade_in", "partners", "town_done"], rules: ["laws", "disputes"], env: ["coal_burned", "canal_days"]};
+function inEra(i, era) { return i.eras.includes(+era.slice(1)); }
+function eraPanel(era) {
+  const p = document.getElementById("p-" + era);
+  const [a, b] = ERA[era];
+  const ys = YEARS.filter(y => y >= a && y <= b);
+  p.innerHTML = `<div class="card"><h2 style="margin-top:0">${era === "s2" ? "Society 2.0 (G1〜G15・4〜200年)" : "Society 3.0 (フェーズ 1〜5・201年〜)"}</h2>` +
+    `<label class="note">年を選ぶ: <select id="sel-${era}">${ys.slice().reverse().map(y => `<option value="${y}">${y}年</option>`).join("")}</select></label>` +
+    `<div class="note">その年の数と、去年からの動き (割合は「ポイント」、量は % か数)。緑はよい向き・赤はわるい向き・良い悪いのない数は色なし。</div><div id="body-${era}"></div></div>`;
+  const sel = p.querySelector("select");
+  const draw = () => { const y = +sel.value; document.getElementById("body-" + era).innerHTML = eraBody(era, y, ys[0], ys[ys.length - 1]); wireCharts(p); };
+  sel.addEventListener("change", draw); draw();
+  p.addEventListener("click", e => { const b = e.target.closest(".gsum"); if (!b) return; const g = b.parentElement; const c = g.classList.toggle("closed");
+    b.setAttribute("aria-expanded", !c); b.firstChild.textContent = (c ? "▸" : "▾") + b.firstChild.textContent.slice(1); });
+}
+function eraBody(era, y, ya, yb) {
+  const r = R(y) || {};
+  const gp = r.gdp_parts || {};
+  let h = '<h3 style="margin:8px 0 4px">主な数</h3><div class="kpis">';
+  HEAD.forEach(id => {
+    const i = DEF[id];
+    if (!inEra(i, era)) { h += offTile(i, i.since + " から数える"); return; }
+    let x = "";
+    if (id === "gdp" && r.gdp != null) x = `中身: 食べ物 ${nf(gp.food)}・土器と鎌 ${nf(gp.goods)}・ヤギ ${nf(gp.goats)}・住まい ${nf(gp.homes)}。1 人あたり ${nf(r.gdp_pc, 2)}` + (r.gdp_food_only ? "。この年は食べ物だけ" : "") + (r.gdp_full_year ? "" : "。4 季節そろっていない");
+    if (id === "imr" && r.imr5 != null) x = `5 年の平均 ${nf(r.imr5)}‰ (この年の出生 ${r.births} 人・1 歳前の死亡 ${r.infant_deaths} 人)`;
+    if (id === "literacy" && r.lit_adults) x = `大人 ${r.lit_adults} 人のうち ${r.readers} 人`;
+    if (id === "store_min") x = "いまの人数で何日食べられるか";
+    if (id === "pop") x = `女 ${nf(r.female)}・男 ${nf(r.male)}`;
+    h += tile(id, y, esc(x));
+  });
+  h += tile("famine", y, "村の蓄えが尽きた回数 (0 がよい)");
+  h += "</div>";
+  // 12 分野 (スマホでは 6 つにたたむ)
+  const groups = [...new Set(FIELDS.map(f => f.fold))];
+  h += '<h3 style="margin:14px 0 4px">分野ごとの数 (12 分野)</h3><div class="grid">';
+  groups.forEach((g, gi) => {
+    const fs = FIELDS.filter(f => f.fold === g);
+    h += `<div class="grp${gi === 0 ? "" : " closed"}"><button class="gsum" aria-expanded="${gi === 0}">${gi === 0 ? "▾" : "▸"} ${esc(g)} <span class="muted" style="font-weight:400">(${fs.map(f => esc(f.name)).join("・")})</span></button>`;
+    fs.forEach(f => { h += fieldCard(f, era, y, ya, yb); });
+    h += "</div>";
+  });
+  h += "</div>";
+  h += `<p class="note">数の決まり (式・出どころ・国の数とのちがい・出典) は「<a href="#defs">数の決まり</a>」のタブにもまとめてある。年報: <a href="../reports/year${y}.html">${y}年の年報</a> (118年から)。</p>`;
+  return h;
+}
+function fieldCard(f, era, y, ya, yb) {
+  const inds = D.defs.indicators.filter(i => i.field === f.key);
+  const on = inds.filter(i => i.status !== "―" && inEra(i, era));
+  const later = inds.filter(i => i.status !== "―" && !inEra(i, era));
+  const off = inds.filter(i => i.status === "―");
+  const r = R(y) || {};
+  const heads = (FIELD_HEAD[f.key] || []).map(id => DEF[id]).filter(i => i && i.id !== "trade_ratio");
+  let h = `<div class="fcard" style="--o:${FIELDS.indexOf(f)}"><div class="hd"><h3>${esc(f.name)}</h3><span class="note">${[...new Set(on.map(i => i.tag))].map(tag).join("")}</span></div><div class="mini">`;
+  heads.forEach(i => { h += i.status === "―" ? offTile(i) : inEra(i, era) ? tile(i.id, y) : offTile(i, i.since + " から数える"); });
+  h += "</div>";
+  const lead = heads.find(i => i.status !== "―" && inEra(i, era) && i.id !== "trade_ratio");
+  if (lead) h += `<div class="note" style="margin-top:4px">${esc(lead.name)} のうつりかわり (${ya}〜${yb}年)</div>` + yearChart(lead.id, ya, yb, {h: 150, lo0: !["pop", "households", "gdp", "e0"].includes(lead.id)});
+  h += special(f.key, r, y);
+  h += `<details class="more"><summary>くわしく (${on.length} の数)</summary><div class="tw"><table><tr><th>数</th><th>${y}年</th><th>${y - 1}年</th><th>札</th></tr>` +
+    on.map(i => `<tr><td>${esc(i.name)}<span class="st">${esc(i.status)}</span></td><td class="n">${esc(cell(i.id, r))}</td><td class="n">${esc(cell(i.id, R(y - 1) || {}))}</td><td>${tag(i.tag)}</td></tr>`).join("") +
+    `</table></div></details>`;
+  h += `<details class="more"><summary>この数の決まり</summary>${defList(on.concat(later))}</details>`;
+  off.forEach(i => { h += `<div class="greybox off" title="${esc(i.unlock)}">░ ${esc(i.name)}: まだこの村にはない<br>→ ${esc(i.unlock)}</div>`; });
+  later.forEach(i => { h += `<div class="greybox off">░ ${esc(i.name)}: この時代にはまだない (${esc(i.since)})</div>`; });
+  return h + "</div>";
+}
+function cell(id, r) {
+  const v = r[id];
+  if (id === "causes" && v) return Object.entries(v).map(([k, n]) => `${k} ${n}`).join("・");
+  if (id === "trade_ratio") { const o = D.offers[String(r.year)]; return o ? `申し出 ${o.n} 件` : "—"; }
+  if (typeof v === "object" && v) return JSON.stringify(v);
+  return fmt(id, v) + (DEF[id] && DEF[id].kind !== "pct" && v != null ? " " + DEF[id].unit : "");
+}
+function bars(rows, unit) {
+  const m = Math.max(...rows.map(r => Math.abs(r[1] || 0)), 1e-9);
+  return '<div class="bars">' + rows.map(([n, v]) => `<div class="row"><span>${esc(n)}</span><div class="tk"><div class="fl${v < 0 ? " neg" : ""}" style="width:${Math.max(1, Math.abs(v || 0) / m * 100)}%"></div></div><span class="n" style="text-align:right">${esc(nf(v, Math.abs(v) < 10 ? 1 : 0))}${esc(unit || "")}</span></div>`).join("") + "</div>";
+}
+function special(k, r, y) {
+  if (k === "pop" && r.pyramid) {
+    const F = r.pyramid["女"] || [], M = r.pyramid["男"] || [], mx = Math.max(...F, ...M, 1);
+    let h = `<details class="more"><summary>人口ピラミッド (${y}年の終わり・5 歳きざみ・村の年)</summary><div class="legend"><span><i style="background:var(--series-1)"></i>女 (左)</span><span><i style="background:var(--series-2)"></i>男 (右)</span></div><div class="pyr">`;
+    for (let a = 16; a >= 0; a--) h += `<div class="l" title="女 ${a * 5}〜: ${F[a] || 0} 人"><div class="b" style="width:${(F[a] || 0) / mx * 100}%"></div></div><div class="a">${a * 5}${a === 16 ? "〜" : ""}</div><div class="r" title="男 ${a * 5}〜: ${M[a] || 0} 人"><div class="b" style="width:${(M[a] || 0) / mx * 100}%"></div></div>`;
+    return h + `</div><div class="note">年少 ${fmt("age_young", r.age_young)}・働く年齢 ${fmt("age_work", r.age_work)}・年寄り ${fmt("age_old", r.age_old)}。数えもれ: 村の帳 ${nf(r.count_people)} 人 / 本当 ${nf(r.pop)} 人</div></details>`;
+  }
+  if (k === "econ" && r.gdp != null) {
+    const g = r.gdp_parts || {};
+    return `<div class="note" style="margin-top:6px">中身 (生産面・大人 1 年分)</div>` + bars([["食べ物", g.food], ["土器と鎌", g.goods], ["ヤギ", g.goats], ["住まい", g.homes]]) +
+      `<div class="note">使い道 (支出面)</div>` + bars([["食べた", r.exp_cons], ["蓄えの増え", r.exp_stock], ["よそへ出した差", r.exp_net]]) +
+      `<div class="note">三面等価の生産面 = 支出面。残り (移した分・合わない分) ${nf(r.exp_other, 2)}。村の持ち物 ${nf(r.bal_village)}・家の持ち物 ${nf(r.bal_house)} (大人 1 年分)</div>`;
+  }
+  if (k === "work" && r.jobs) {
+    const tot = r.work_days || 1;
+    return `<details class="more"><summary>仕事ごとの人日 (時間の使い方)</summary>` + bars(Object.entries(r.jobs).slice(0, 12).map(([n, v]) => [n, v / tot * 100]), "%") + "</details>";
+  }
+  if (k === "food" && r.fbs) {
+    const f = r.fbs;
+    return `<details class="more"><summary>食料需給表 (大人 1 年分)</summary><div class="tw"><table>` +
+      [["国内生産", f.prod], ["よそから入った (輸入)", f.imp], ["よそへ出した (輸出・貢ぎ)", f.exp], ["蓄えの増え (在庫の変動)", f.dstock], ["= 国内消費仕向量", f.supply], ["種", f.seed], ["虫やネズミ・腐った (減耗)", f.loss], ["祭り", f.feast], ["食べた", f.eaten]]
+        .map(([n, v]) => `<tr><td>${esc(n)}</td><td class="n">${nf(v, 1)}</td></tr>`).join("") + `</table></div><div class="note">食料自給率 (熱量) ${fmt("self_suff", r.self_suff)}。空腹の人 ${fmt("hunger", r.hunger)}</div></details>`;
+  }
+  if (k === "price") {
+    const o = D.offers[String(y)];
+    if (!o) return '<div class="note">この年は、よその村の申し出の文がない (または読んでいない)。</div>';
+    const pg = o.per_goat ? Object.entries(o.per_goat).map(([a, b]) => `${a} ${nf(b, 1)}`).join("・") : "—";
+    const ex = o.example;
+    return `<div class="note" style="margin-top:6px">読みとり: よその村の申し出 ${o.n} 件。ヤギだけを出す申し出 ${o.goat_n} 件で、ヤギ 1 頭あたりに求めた物の平均: ${esc(pg)}。<br>よくある形: 「${esc(ex[0].map(x => x.join(" ")).join("・"))} を出すので、${esc(ex[1].map(x => x.join(" ")).join("・"))} がほしい」</div>`;
+  }
+  if (k === "ext" && r.moved) return `<div class="note" style="margin-top:6px">出し入れ (4 季節): ${Object.entries(r.moved).map(([a, b]) => `${esc(a)} 入 ${nf(b.in)}・出 ${nf(b.out)}`).join(" / ")}。貢ぎ ${nf(r.tribute)} 回</div>`;
+  return "";
+}
+function defList(list) {
+  return '<div class="tw"><table><tr><th>数</th><th>式</th><th>単位</th><th>出どころ</th><th>国の数</th><th>出典</th><th>時代</th><th>いつから</th></tr>' +
+    list.map(i => `<tr><td>${esc(i.name)} ${tag(i.tag)}<span class="st">${esc(i.status)}</span></td><td>${esc(i.formula || i.unlock)}${i.note ? `<br><span class="muted">${esc(i.note)}</span>` : ""}</td><td>${esc(i.unit)}</td><td>${esc(i.source)}</td><td>${esc(i.national)}</td><td>${i.refs.map(n => `<a href="#ref${n}" data-ref="${n}">[${n}]</a>`).join("")}</td><td>${i.eras.map(e => e + ".0").join("・") || "—"}</td><td>${esc(i.since)}</td></tr>`).join("") + "</table></div>";
+}
+
+/* ---------- Society 1.0 (季節) ---------- */
+function era1(p) {
+  const S = D.s1, last = S[S.length - 1], prev = S[S.length - 2];
+  const x = r => (r.from + r.to) / 2 / Y;
+  const ch = (title, key, f, note) => `<div class="fcard"><div class="hd"><h3>${esc(title)}</h3>${tag("シ")}</div><div class="note">${esc(note || "")}</div>${lineChart({series: [{name: title, pts: S.map(r => [x(r), r[key] == null ? null : r[key] * (f || 1)]), color: COL[0]}], x0: 0, x1: 4.07, xfmt: v => (Number.isInteger(v) ? v : nf(v, 1)) + "年", xticks: [0, 1, 2, 3, 4], yfmt: (v, ax) => nf(v, ax ? 0 : 1), label: title, h: 160})}</div>`;
+  let h = `<div class="card"><h2 style="margin-top:0">Society 1.0 (F1〜F5・0〜488 日目)</h2><div class="note">はじめの 5 人から、多くの日は 3 人の時代。4 年しかないので、1 行は季節 (30 日)。人が少なすぎるので、率 (出生率・乳児死亡率など) は出さず、数だけ出す。家・畑・帳はまだない。読むもの: archive/stats_*.jsonl (日ごとの数)・archive/days_*.json (人 × 日の仕事)・people.json・laws.json。</div>`;
+  const k = (n, v, u, note) => `<div class="kpi"><div class="k">${esc(n)}${tag("シ")}</div><div class="v">${esc(v)}<small>${esc(u)}</small></div><div class="x">${esc(note || "")}</div></div>`;
+  h += `<h3 style="margin:8px 0 4px">さいごの季節 (${esc(last.label)})</h3><div class="kpis">` +
+    k("人", nf(last.pop), "人", `前の季節 ${nf(prev.pop)} 人・いちばん多い日 ${nf(Math.max(...S.map(r => r.pop_max)))} 人`) +
+    k("1 人 1 日食べた", nf(last.kcal_pc), "kcal", "") + k("蓄え", nf(last.store_days, 1), "日分", "季節の終わりの蓄え ÷ (人 × 2,400 kcal)") +
+    k("火の日", nf(S.reduce((a, r) => a + r.fire_days, 0)), "日", "488 日のうち火があった日") +
+    k("生まれた・亡くなった", `${S.reduce((a, r) => a + r.births, 0)}・${S.reduce((a, r) => a + r.deaths, 0)}`, "人", "488 日の合計") +
+    k("生きている掟", nf(last.laws), "件", "") + `</div></div>`;
+  h += '<div class="grid">' + ch("人 (季節の終わり)", "pop") + ch("1 人 1 日食べた (kcal)", "kcal_pc") + ch("蓄え (日分)", "store_days") + ch("食べ物の仕事 (%)", "work_food", 100, "人 × 日の仕事のうち (休むをのぞく)") + "</div>";
+  h += `<div class="card"><h3>季節ごとの表</h3><div class="tw"><table><tr><th>季節</th><th>人</th><th>生まれた</th><th>亡くなった</th><th>1 人 1 日 kcal</th><th>蓄え 日分</th><th>火の日</th><th>雨の日</th><th>住まいにいた日</th><th>仕事の人日</th><th>おもな仕事</th><th>掟</th></tr>` +
+    S.map(r => `<tr><td>${esc(r.label)}</td><td class="n">${r.pop}</td><td class="n">${r.births}</td><td class="n">${r.deaths}</td><td class="n">${nf(r.kcal_pc)}</td><td class="n">${nf(r.store_days, 1)}</td><td class="n">${r.fire_days}</td><td class="n">${r.rain_days}</td><td class="n">${r.housed_days}</td><td class="n">${r.work_days}</td><td>${esc(Object.entries(r.jobs).slice(0, 3).map(([a, b]) => a + " " + b).join("・"))}</td><td class="n">${r.laws}</td></tr>`).join("") + "</table></div></div>";
+  h += '<div class="card"><h3>この時代にはまだない分野</h3>';
+  [["経済 (村の生産)", "○ 支出面だけ (食べた + 蓄えの増え)。村の会計 accounts は 489 日目から"], ["物の値うち", "交換がない"], ["暮らしと差", "家の倉がない"], ["教育", "字がない"], ["外とのつながり", "よその村との交換は G6 から"], ["出生と死亡の率", "人が少なすぎて率は出さない (数だけ)"]]
+    .forEach(([a, b]) => { h += `<div class="greybox off">░ ${esc(a)}: この時代にはまだない<br>→ ${esc(b)}</div>`; });
+  p.innerHTML = h + "</div>";
+}
+
+/* ---------- テクノロジー ---------- */
+function tech(p) {
+  const T = D.tech;
+  const so = e => e === "A" ? "Society 1.0" : "Society 2.0";
+  const chip = t => { const c = {"届いた": "ok", "あとで届いた": "late", "届かなかった": "ng", "まだ": "not"}[t.status] || "";
+    const w = t.status === "届いた" && t.first_day != null ? ` ${Math.floor(t.first_day / Y)}年` : t.status === "あとで届いた" ? ` ${t.later_year}年` : t.year ? ` ${t.year}年` : "";
+    return `<span class="chip ${c}" title="${esc((t.does || t.why || "") + (t.later_why ? " / あとで届いた: " + t.later_why : ""))}">${esc(t.name)}・${esc(t.status)}${esc(w)}${t.emerged ? " ◆創発" : ""}</span>`; };
+  let h = `<div class="card"><h2 style="margin-top:0">テクノロジーの節</h2><div class="note">テクノロジーツリー (<a href="tech_tree.html">tech_tree.html</a>。${esc(T.asof.date)} まで) の 2 本の木 (テクノロジー・社会制度) を、時代ごとに分けた。` +
+    `木の「届いた」は G の窓の中だけで見るので、そのあと記録の数に出たものを <b>「あとで届いた」</b> (4 つ目の状態) とした。Society 3.0 は予定の木に列がないので、記録の数から <b>Society 3.0 の列</b> を足した。</div>`;
+  h += `<div class="legend"><span class="chip ok">届いた</span><span class="chip late">あとで届いた</span><span class="chip ng">届かなかった</span><span class="chip not">まだ</span></div></div><div class="grid">`;
+  ["Society 1.0", "Society 2.0"].forEach(n => {
+    const L = T.techs.filter(t => so(t.era) === n);
+    const cnt = s => L.filter(t => t.status === s).length;
+    h += `<div class="fcard"><div class="hd"><h3>${n} (列 ${n === "Society 1.0" ? "A" : "B〜I"})</h3></div><div class="note">予定 ${L.length}・届いた ${cnt("届いた")}・あとで届いた ${cnt("あとで届いた")}・届かなかった ${cnt("届かなかった")}・まだ ${cnt("まだ")}</div>` +
+      ["テクノロジー", "社会制度"].map(tr => `<div class="note" style="margin-top:4px"><b>${tr}</b></div><div class="chips">${L.filter(t => t.tree === tr).map(chip).join("")}</div>`).join("") + "</div>";
+  });
+  h += `<div class="fcard"><div class="hd"><h3>Society 3.0 (新しい列)</h3></div><div class="note">予定の木 (plan.json) には列がないので、記録の数で「届いた年」を決めた。</div>` +
+    ["テクノロジー", "社会制度"].map(tr => `<div class="note" style="margin-top:4px"><b>${tr}</b></div><div class="chips">${T.s3.filter(t => t.tree === tr).map(chip).join("")}</div>`).join("") +
+    `<div class="tw"><table><tr><th>項目</th><th>届いた年</th><th>決め方</th><th>色がつく数</th></tr>${T.s3.map(t => `<tr><td>${esc(t.name)}</td><td class="n">${t.year ? t.year + "年" : "まだ"}</td><td>${esc(t.why)}</td><td>${esc(DEF[t.indicator] ? DEF[t.indicator].name : t.indicator)}</td></tr>`).join("")}</table></div></div>`;
+  h += "</div>";
+  // 初めて出たもの (イノベーション)
+  const fy = YEARS.map(y => [y, T.firsts_by_year[String(y)] || 0]);
+  h += `<div class="card"><h3>その年に初めて出たもの (プロダクトとやり方)</h3><div class="note">テクノロジーツリーの「初めての記録」(${T.counts.firsts} 件) の年ごとの数。国の「イノベーションを実現した企業の割合」[19] の近い形 (使った家の割合はまだ数えていない)。</div>` +
+    lineChart({series: [{name: "初めて出たもの", pts: fy, color: COL[0]}], x0: YEARS[0], x1: LAST, xfmt: yr, xticks: [4, 50, 100, 150, 200, LAST], yfmt: v => nf(v), lo0: true, label: "初めて出たもの", w: 760, h: 170}) + "</div>";
+  // つなぎの表
+  const link = {};
+  D.defs.indicators.forEach(i => i.tech.forEach(t => (link[t] = link[t] || []).push(i)));
+  const st = n => (T.techs.find(t => t.name === n) || T.s3.find(t => t.name === n) || {}).status || "—";
+  h += `<div class="card"><h3>テクノロジー → 色がつく数</h3><div class="tw"><table><tr><th>項目 (木)</th><th>いま</th><th>色がつく数</th></tr>` +
+    Object.entries(link).map(([t, L]) => { const s = st(t); const grey = s === "まだ" || s === "届かなかった";
+      return `<tr${grey ? ' class="off"' : ""}><td>${esc(t)}</td><td>${esc(s)}</td><td>${L.map(i => esc(i.name) + (i.status === "―" ? " (灰色)" : "")).join("・")}${grey ? "<br>→ 届くと色がつく" : ""}</td></tr>`; }).join("") + "</table></div></div>";
+  h += `<div class="card"><h3>創発 (村の人が自分で見つけた知恵) ${T.emerged.length}</h3><div class="chips">${T.emerged.map(e => `<span class="chip">◆ ${esc(e.name)} ${Math.floor(e.day / Y)}年 (${esc(e.kind)})</span>`).join("")}</div>` +
+    `<div class="note">研究開発にあたる「ためした人日」(仕事「試す」): ${YEARS.filter(y => R(y).try_days).map(y => `${y}年 ${R(y).try_days}`).slice(-8).join("・") || "なし"}。国の研究費の決まり [20] の近い形。</div></div>`;
+  p.innerHTML = h;
+}
+
+/* ---------- 数の決まり ---------- */
+function defs(p) {
+  const d = D.defs;
+  let h = `<div class="card"><h2 style="margin-top:0">数の決まり (定義・出どころ・出典)</h2><p class="note">1 つの数に 1 行。◎ は今の記録から国と同じ式で出せる・○ は近い形で出せる・― はまだこの村にない (灰色の枠。数を作らない)。` +
+    `単位: ${esc(d.unit_note)}。村の 1 年は ${d.year_days} 日、年齢も村の年で数える。</p>`;
+  FIELDS.forEach(f => { h += `<h3 style="margin:12px 0 4px">${esc(f.name)} <span class="note">(スマホでは「${esc(f.fold)}」にたたむ)</span></h3>` + defList(d.indicators.filter(i => i.field === f.key)) +
+    d.indicators.filter(i => i.field === f.key && i.status === "―").map(i => `<div class="greybox off">░ ${esc(i.name)} → ${esc(i.unlock)}</div>`).join(""); });
+  h += "</div>";
+  h += `<div class="card"><h3>段ごとの育ち (灰色の枠が点く順)</h3><div class="tw"><table><tr><th>段</th><th>村で起きること</th><th>点く数</th></tr>${d.stages.map(s => `<tr><td>${esc(s[0])}</td><td>${esc(s[1])}</td><td>${esc(s[2])}</td></tr>`).join("")}</table></div>` +
+    `<p class="note">灰色の枠は、条件がそろった年に色がつく (その年から数え、前の年は「記録なし」)。新しい記録は、次のフェーズを作るときに印をつけて足す (今は足していない)。それまで、文から読む数には「読みとり」と書く。</p>` +
+    `<h3>区切り (線の点線)</h3><ul class="note">${d.breaks.map(b => `<li>${b.day} 日目 (${Math.floor(b.day / Y)}年): ${esc(b.what)}</li>`).join("")}</ul></div>`;
+  const ref = d.reference_236, r236 = R(ref.year) || {};
+  h += `<div class="card"><h3>設計に書いた ${ref.year}年の数 (参考の数) と、照らし合わせ</h3><p class="note">${esc(ref.note)}。</p><div class="tw"><table><tr><th>数</th><th>設計の数</th><th>計算 (${ref.year}年)</th></tr>${Object.entries(ref.values).map(([k, v]) => { const c = (D.check.ref_calc || {})[k]; return `<tr><td>${esc(k)}</td><td class="n">${esc(nf(v, v % 1 ? 3 : 0))}</td><td class="n">${esc(c == null ? "—" : nf(c, c % 1 ? 3 : 0))}</td></tr>`; }).join("")}</table></div>` +
+    `<p class="note">照らし合わせ (tools/stats_calc.py --check): 年報 (reports/yearN.html) に書いた数と設計の数、あわせて ${D.check.n} をくらべ、ちがう所 ${D.check.bad.length}:</p>` +
+    `<div class="tw"><table><tr><th>どこ</th><th>年</th><th>数</th><th>書いた数</th><th>計算</th><th>わけ</th></tr>${D.check.bad.map(b => `<tr><td>${esc(b.src)}</td><td class="n">${b.year}</td><td>${esc(b.key)}</td><td class="n">${esc(nf(b.report, b.report % 1 ? 3 : 0))}</td><td class="n">${esc(b.calc == null ? "—" : nf(b.calc, b.calc % 1 ? 3 : 0))}</td><td>${esc(b.why || (b.src.startsWith("設計") ? "設計の数は 237年の終わりの state を読んだと見られる (236年の終わりの数は計算のほう)" : ""))}</td></tr>`).join("")}</table></div></div>`;
+  h += `<div class="card"><h3 id="refs">出典 (見た日はみな 2026-11-22)</h3><div class="tw"><table><tr><th>番号</th><th>出した所</th><th>題名</th><th>版・年</th><th>開いた URL</th><th>使った所</th><th>使い方</th></tr>` +
+    d.refs.map(r => `<tr id="ref${r.n}"><td>[${r.n}]</td><td>${esc(r.publisher)}</td><td>${esc(r.title)}</td><td>${esc(r.edition)}</td><td><a href="${esc(r.url)}" rel="noopener">${esc(r.url)}</a></td><td>${esc(r.used)}</td><td>${esc(r.how)}</td></tr>`).join("") + "</table></div>" +
+    `<h3>開けなかったページ</h3><p class="note">${esc(d.refs_unreached)}</p><h3>村の数の出どころ</h3><p class="note">${esc(d.village_sources)}</p>` +
+    `<p class="note">このページの数は tools/build_stats.py が ${esc(D.asof.built)} に、data/ を読むだけで作った (${esc(D.asof.label)} まで)。設計: docs/society_phase/dashboard_official_design.md。</p></div>`;
+  p.innerHTML = h;
+}
+document.addEventListener("click", e => { const a = e.target.closest("a[data-ref]"); if (a) { e.preventDefault(); go("defs"); setTimeout(() => { const t = document.getElementById("ref" + a.dataset.ref); if (t) t.scrollIntoView(); }, 0); } });
+go(location.hash.slice(1) || "cover");
+</script>
+</body></html>
