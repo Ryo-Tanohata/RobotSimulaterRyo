@@ -14,12 +14,17 @@
     { key: "eve", label: "夕方の焚き火", t0: 19, t1: 21.5, sec: 12 },
     { key: "night", label: "夜", t0: 21.5, t1: 22.5, sec: 5 },
   ];
-  const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが", "畑", "畑仕事", "ヤギの世話", "ヤギを捕まえる", "土器", "交換に行く", "記録をつける"];
+  const WORK_EVENTS = ["採集", "探索", "狩り", "道具", "火", "種まき", "住まい", "けが", "畑", "畑仕事", "ヤギの世話", "ヤギを捕まえる", "土器", "交換に行く", "記録をつける",
+    // G13・G15・Society 3.0 の仕事 (2026-11-22): 水の道・水の輪・水の作業場・燃える石・かまど・字の仕事
+    "水の道を掘る", "水の輪を直す", "水の作業場で働く", "水の作業場を作る", "燃える石を掘る", "かまどを作りかえる", "知らせを書く", "字を教える", "帳をつける"];
+  // 混んだ日の昼の知らせで先に見せる仕事 (この順。ほかの仕事は、その日に少ないものから)
+  const NEW_WORK = ["燃える石を掘る", "知らせを書く", "字を教える", "帳をつける", "かまどを作りかえる", "水の作業場を作る", "水の輪を直す", "水の作業場で働く", "水の道を掘る"];
   const EVE_EVENTS = ["話す", "分ける", "蓄える", "蓄えから取る", "収穫", "木から取る"];
   // 夜の知らせ: G5 の出来事 (もめごと・祭り・まとめ役・分かれる など) と G6 の出来事 (ほかの村・交換・印・記録・町 など) も出す (2026-10-09 本人と決めた)
   const NIGHT_EVENTS = ["死", "けが", "夜", "掟", "腐る", "育つ", "干す", "フェーズ", "生まれる", "訪れる", "加わる", "去る", "ヤギ", "大人になる", "家族", "虫", "雨", "受けつぎ", "区切り",
     "もめごと", "収める", "裁き", "罰", "祭り", "まとめ役", "分かれる", "段階", "共同の仕事", "倉から取る",
-    "よその村", "交換", "貸し借り", "覚え", "印", "封", "記録", "確かめる", "町"];
+    "よその村", "交換", "貸し借り", "覚え", "印", "封", "記録", "確かめる", "町",
+    "市", "水", "見習い", "持ち場", "字を習う", "年の集まり", "年の名前", "頼み", "知らせ"];
   // 日付は「10年31日目」と表す (2026-10-09 本人の希望。年は過ぎた年の数で、最初の年は 0年。era2.py の day // YEAR と同じ)。この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ、era2.py の YEAR) で、現実の 1 年とは違う
   const YEAR_DAYS = 120;
   const yearDay = (d) => ({ year: Math.floor(d / YEAR_DAYS), day: (d % YEAR_DAYS) + 1 });
@@ -53,6 +58,82 @@
     return sum / n;
   }
   const w2t = (D, x, y, lift = 0) => new THREE.Vector3(x - D.map.w / 2, hgt(D, x, y) + lift, y - D.map.h / 2);
+
+  // 建てた物の場所 (2026-11-22): 水の輪・水の作業場・燃える石の掘り場・知らせ板・畑・水の道の場所と、重なった家の並べ直し。
+  // state には場所がない物が多いので、地図 (川・草地) とキャンプから決める (いつから見せるかは app/scene3d.json。tools/build_scene3d.py が作る)。
+  // 村のデータは変えない。見せ方だけ
+  const CROWD = 40;  // その日に村にいる人がこれより多いと「混んだ日」: 名前は話に出る人だけ・人を仕事の場所に広げる
+  function layout(D) {
+    if (D._lay3d) return D._lay3d;
+    const T = D.map.terrain, W = D.map.w, H = D.map.h, SC = D.scene3d || {};
+    const ter = (x, y) => (x < 0 || y < 0 || x >= W || y >= H ? null : T[Math.floor(y)][Math.floor(x)]);
+    const cx = D.camp.x + 0.5, cy = D.camp.y + 0.5, dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+    const L = { fields: { x0: cx - 13, x1: cx - 1.5, y0: cy + 2, y1: cy + 12 }, mills: {}, ws: {}, house: {} };
+    const inFields = (q, m = 0) => q.x > L.fields.x0 - m && q.x < L.fields.x1 + m && q.y > L.fields.y0 - m && q.y < L.fields.y1 + m;
+    const grassNear = (x, y, avoid) => {  // (x, y) にいちばん近い草地のマス (avoid に当たらないもの)
+      let best = null;
+      for (let r = 0; r <= 8 && !best; r++) for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) {
+        const q = { x: Math.floor(x) + dx + 0.5, y: Math.floor(y) + dy + 0.5 };
+        if (ter(q.x, q.y) === "g" && !(avoid && avoid(q)) && (!best || dist(q, { x, y }) < dist(best, { x, y }))) best = q;
+      }
+      return best || { x, y };
+    };
+    if (SC.board) L.board = grassNear(cx - 2.5, cy - 2.6);
+    // 水の輪: キャンプに近い川のマスから、2.2 マスずつあけて (岸に草地のあるマス)。作業場は、その輪の岸の、キャンプがわの草地
+    const river = [];
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (ter(x, y) === "r") river.push({ x: x + 0.5, y: y + 0.5 });
+    river.sort((a, b) => dist(a, { x: cx, y: cy }) - dist(b, { x: cx, y: cy }));
+    const spots = [];
+    const bankOf = (q) => {
+      let best = null;
+      for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [1, 1], [-1, 1], [1, -1]]) {
+        const b = { x: q.x + dx, y: q.y + dy };
+        if (ter(b.x, b.y) === "g" && (!best || dist(b, { x: cx, y: cy }) < dist(best, { x: cx, y: cy }))) best = b;
+      }
+      return best;
+    };
+    for (const q of river) {
+      if (spots.length >= ((SC.mills || []).length || 0) + 2) break;
+      const bank = bankOf(q);
+      if (!bank || dist(q, { x: cx, y: cy }) < 2.5 || spots.some((s) => dist(s, q) < 2.2)) continue;
+      spots.push({ ...q, bank });
+    }
+    // 作業場のある輪を、キャンプにいちばん近いところに (作業場がよく見えるように)。ほかの輪はそのあとに並べる
+    const wsIds = (SC.ws || []).map((w) => w.id), order = (SC.mills || []).slice().sort((a, b) => (wsIds.includes(b.id) ? 1 : 0) - (wsIds.includes(a.id) ? 1 : 0));
+    order.forEach((m, i) => { if (spots[i]) L.mills[m.id] = spots[i]; });
+    (SC.ws || []).forEach((w, i) => {
+      const at = L.mills[w.id] || spots[i];
+      if (at) L.ws[w.id] = { x: at.bank.x + (at.bank.x - at.x) * 0.6, y: at.bank.y + (at.bank.y - at.y) * 0.6, wheel: at };
+    });
+    // 水の道: 畑にいちばん近い水の輪から、畑の北東の角へ
+    const fc = { x: L.fields.x1, y: L.fields.y0 };
+    const src = spots.slice().sort((a, b) => dist(a, fc) - dist(b, fc))[0];
+    if (src) L.canal = { a: { x: src.x, y: src.y }, b: { x: (L.fields.x0 + L.fields.x1) / 2, y: (L.fields.y0 + L.fields.y1) / 2 } };
+    if (SC.pit) { const pl = (D.places || []).find((p) => p.id === SC.pit.place); if (pl) L.pit = { x: pl.x + 0.5, y: pl.y + 0.5 }; }
+    // 家: 同じ場所に 2 軒以上ある家 (場所が見つからなかった家は同じ点に重なる) を、まわりの草地に 2 マスおきに並べ直す
+    const hs = D.houses || [], groups = {};
+    for (const v of hs) (groups[`${v.x},${v.y}`] = groups[`${v.x},${v.y}`] || []).push(v);
+    const placed = hs.filter((v) => groups[`${v.x},${v.y}`].length === 1).map((v) => ({ x: v.x + 0.5, y: v.y + 0.5 }));
+    const busy = (q) => dist(q, { x: cx, y: cy }) < 4.2 || inFields(q, 1.2) || (L.board && dist(q, L.board) < 2.6)
+      || Object.values(L.ws).some((w) => dist(q, w) < 2.4) || spots.some((s) => dist(q, s) < 1.4) || (L.pit && dist(q, L.pit) < 3)
+      || placed.some((p) => dist(q, p) < 1.9);
+    for (const key in groups) {
+      const g = groups[key];
+      if (g.length < 2) continue;
+      const o = { x: g[0].x + 0.5, y: g[0].y + 0.5 }, cand = [];
+      for (let y = 1; y < H - 1; y += 2) for (let x = 1; x < W - 1; x += 2) if (ter(x, y) === "g") cand.push({ x: x + 0.5, y: y + 0.5 });
+      cand.sort((a, b) => dist(a, o) - dist(b, o));
+      let k = 0;
+      for (const v of g) {
+        while (k < cand.length && busy(cand[k])) k++;
+        const q = cand[k++] || o;
+        L.house[v.household] = { x: q.x - 0.5, y: q.y - 0.5 }; placed.push(q);
+      }
+    }
+    D._lay3d = L;
+    return L;
+  }
+  const houseXY = (D, v) => (layout(D).house[v.household] || v);
 
   function cyl(len, r, mat) {  // 上端を原点にして下へ伸びる棒
     const g = new THREE.CylinderGeometry(r, r, len, 8); g.translate(0, -len / 2, 0);
@@ -113,7 +194,7 @@
   }
 
   function buildWorld(D, T) {
-    const scene = new THREE.Scene();
+    const scene = new THREE.Scene(), SC = D.scene3d || {}, LAY = layout(D);
     const W = D.map.w, H = D.map.h;
     const geo = new THREE.PlaneGeometry(W, H, W, H); geo.rotateX(-Math.PI / 2);
     const pos = geo.attributes.position, cols = new Float32Array(pos.count * 3);
@@ -178,9 +259,10 @@
 
     // 畑 (Society 2.0): 秋にまいた畑を、キャンプの南西に 1 枚ずつ並べる。色は季節で変える (fieldsOn で毎コマ決める)
     const plots = [];
-    for (let k = 0; k < 16; k++) {
+    for (let k = 0; k < 40; k++) {  // 16 枚までは前と同じ並び。畑が多い村 (Society 3.0 のころは 1 季節に何百枚もまく) は、西と南に 40 枚まで
       const m = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.08, 1.1), new THREE.MeshLambertMaterial({ color: T.tuber }));
-      const p = w2t(D, D.camp.x + 0.5 - 2.5 - (k % 4) * 1.8, D.camp.y + 0.5 + 2.5 + Math.floor(k / 4) * 1.4, 0.05);
+      const col = k < 16 ? k % 4 : k < 28 ? 4 + ((k - 16) % 2) : (k - 28) % 4, row = k < 16 ? Math.floor(k / 4) : k < 28 ? Math.floor((k - 16) / 2) : 4 + Math.floor((k - 28) / 4);
+      const p = w2t(D, D.camp.x + 0.5 - 2.5 - col * 1.8, D.camp.y + 0.5 + 2.5 + row * 1.4, 0.05);
       m.position.copy(p); m.visible = false; scene.add(m); plots.push(m);
     }
     const sowings = allEvents(D).filter((e) => e.type === "畑" && /をまいた/.test(e.text));
@@ -191,8 +273,12 @@
       const wall = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshLambertMaterial({ color: T.tuber.clone().lerp(col, 0.35) }));
       const roof = new THREE.Mesh(new THREE.BoxGeometry(1, 0.12, 1), new THREE.MeshLambertMaterial({ color: T.hill.clone().multiplyScalar(0.8) }));
       g.add(wall); g.add(roof);
-      g.position.copy(w2t(D, v.x + 0.5, v.y + 0.5)); g.visible = false; scene.add(g);
-      return { v, g, wall, roof };
+      // 石のかまど (G15): 作りかえ終えた日から、屋根に石の煙突 (housesOn で毎コマ決める)
+      const stove = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.6, 0.22), new THREE.MeshLambertMaterial({ color: new THREE.Color("#6b6b6b") }));
+      stove.visible = false; g.add(stove);
+      const at = houseXY(D, v);
+      g.position.copy(w2t(D, at.x + 0.5, at.y + 0.5)); g.visible = false; scene.add(g);
+      return { v, g, wall, roof, stove, stoveDay: (SC.stoves || {})[v.household] ?? null };
     });
 
     // ほかの村 (G6): 知っている村ごとに、地図の端の内がわに小さな家 3 つと、キャンプからのうすい道 (知った日から見せる。villagesOn で毎コマ決める)
@@ -212,9 +298,66 @@
       return { o, g, at: w2t(D, ex, ey, 1.4) };
     });
 
+    // 建てた物 (2026-11-22。G13・G15・Society 3.0): 見せる日は scene3d.json、場所は layout。どれも簡単な形
+    const things = [];  // { g, from: 見せはじめる日, label?: 名前の札, at?: 札の場所 }
+    const lam = (c) => new THREE.MeshLambertMaterial({ color: new THREE.Color(c) });
+    const wood = lam("#8a5a2b"), dark = lam("#3b3b3b"), stone = lam("#8d8d86"), water = lam("#4a90c2");
+    const wheelGeo = new THREE.TorusGeometry(0.55, 0.07, 6, 16), paddle = new THREE.BoxGeometry(0.12, 0.3, 0.32);
+    const makeWheel = (q, big) => {  // 水の輪: 川に立てた輪と羽
+      const g = new THREE.Group(), w = new THREE.Group(), s = big ? 1.4 : 1;
+      g.add(w); g.userData.spin = w;
+      const rim = new THREE.Mesh(wheelGeo, wood); w.add(rim);
+      for (let k = 0; k < 8; k++) { const b = new THREE.Mesh(paddle, wood); const a = k * Math.PI / 4; b.position.set(Math.cos(a) * 0.6, Math.sin(a) * 0.6, 0); b.rotation.z = a; w.add(b); }
+      const axle = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.9, 6), wood); axle.rotation.x = Math.PI / 2; w.add(axle);
+      g.scale.setScalar(s); g.position.copy(w2t(D, q.x, q.y, 0.35 * s));
+      g.lookAt(w2t(D, q.bank.x, q.bank.y, 0.35 * s));  // 輪の面を岸と同じ向きに (水は輪の下を流れる)
+      g.rotateY(Math.PI / 2);
+      scene.add(g); return g;
+    };
+    for (const m of SC.mills || []) {
+      const q = LAY.mills[m.id];
+      if (q) things.push({ g: makeWheel(q, (SC.ws || []).some((w) => w.id === m.id)), from: m.day, spin: true });
+    }
+    for (const [i, w] of (SC.ws || []).entries()) {  // 水の作業場: 板ぶきの小屋と、のこの台
+      const q = LAY.ws[w.id];
+      if (!q) continue;
+      const g = new THREE.Group();
+      const shed = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.2, 1.6), lam("#b08850")); shed.position.y = 0.6; g.add(shed);
+      const roof = new THREE.Mesh(new THREE.ConeGeometry(1.75, 0.8, 4), lam("#6e4a28")); roof.rotation.y = Math.PI / 4; roof.scale.set(1, 1, 0.7); roof.position.y = 1.6; g.add(roof);
+      for (let k = 0; k < 3; k++) { const log = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 1.6, 6), wood); log.rotation.z = Math.PI / 2; log.position.set(0, 0.12 + k * 0.2, 1.2 + (k % 2) * 0.05); g.add(log); }
+      g.position.copy(w2t(D, q.x, q.y)); g.lookAt(w2t(D, q.wheel.x, q.wheel.y)); scene.add(g);
+      things.push({ g, from: w.done ?? w.day, label: `水の作業場 ${w.id}`, at: w2t(D, q.x, q.y, 3.0 + 1.2 * (i % 2)) });
+    }
+    if (SC.canal && LAY.canal) {  // 水の道: 川から畑へ、細い水の筋
+      const { a, b } = LAY.canal, n = Math.max(3, Math.round(Math.hypot(b.x - a.x, b.y - a.y) / 0.8)), g = new THREE.Group();
+      for (let i = 0; i <= n; i++) { const m = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.04, 0.85), water); m.position.copy(w2t(D, a.x + (b.x - a.x) * i / n, a.y + (b.y - a.y) * i / n, 0.03)); g.add(m); }
+      scene.add(g); things.push({ g, from: SC.canal.day });
+    }
+    if (SC.pit && LAY.pit) {  // 燃える石の掘り場: 黒い穴と、掘った石の山と、木の枠
+      const g = new THREE.Group(), q = LAY.pit;
+      const hole = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 0.9, 0.3, 10), dark); hole.position.y = 0.05; g.add(hole);
+      for (let k = 0; k < 9; k++) { const r = new THREE.Mesh(new THREE.DodecahedronGeometry(0.22 + (k % 3) * 0.06), lam("#1f1f1f")); r.position.set(1.9 + (k % 3) * 0.32, 0.18 + Math.floor(k / 3) * 0.2, -0.4 + (k % 4) * 0.25); g.add(r); }
+      for (const [x, z] of [[-0.9, -0.9], [0.9, -0.9], [-0.9, 0.9], [0.9, 0.9]]) { const p = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.4, 0.12), wood); p.position.set(x, 0.7, z); g.add(p); }
+      const beam = new THREE.Mesh(new THREE.BoxGeometry(2, 0.12, 0.12), wood); beam.position.set(0, 1.4, 0); g.add(beam);
+      g.position.copy(w2t(D, q.x, q.y)); scene.add(g);
+      things.push({ g, from: SC.pit.day, label: "燃える石の掘り場", at: w2t(D, q.x, q.y, 3.2) });
+    }
+    if (SC.board && LAY.board) {  // 村の知らせ板: 2 本の柱と板。貼った知らせは白い紙
+      const g = new THREE.Group(), q = LAY.board;
+      for (const x of [-0.9, 0.9]) { const p = new THREE.Mesh(new THREE.BoxGeometry(0.14, 1.9, 0.14), wood); p.position.set(x, 0.95, 0); g.add(p); }
+      const plank = new THREE.Mesh(new THREE.BoxGeometry(2.1, 1.0, 0.1), lam("#a87b4f")); plank.position.y = 1.35; g.add(plank);
+      const sheets = [];
+      for (let k = 0; k < 12; k++) {
+        const m = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.34, 0.02), lam("#f4efe0"));
+        m.position.set(-0.8 + (k % 6) * 0.32, 1.58 - Math.floor(k / 6) * 0.44, 0.07); m.visible = false; g.add(m); sheets.push(m);
+      }
+      g.position.copy(w2t(D, q.x, q.y)); g.lookAt(w2t(D, D.camp.x + 0.5, D.camp.y + 0.5)); scene.add(g);
+      things.push({ g, from: SC.board.day, board: sheets, label: "村の知らせ板", at: w2t(D, q.x, q.y, 3.8) });
+    }
+
     const sun = new THREE.DirectionalLight(0xffffff, 0.9); sun.position.set(30, 50, 20); scene.add(sun);
     const amb = new THREE.AmbientLight(0xffffff, 0.55); scene.add(amb);
-    return { scene, camp, flame, fireLight, sun, amb, hut, hutDay: built ? built.day : null, plots, sowings, houses, villages };
+    return { scene, camp, flame, fireLight, sun, amb, hut, hutDay: built ? built.day : null, plots, sowings, houses, villages, things };
   }
 
   function placeOf(D, id) { return D.places.find((p) => p.id === id) || D.places[0]; }
@@ -233,7 +376,8 @@
     if (!v || v.start > day || (v.left != null && v.left <= day)) return null;  // 家ごと村を出た家は、出た日から描かない (2026-10-09 本人と決めた)
     const done = v.built != null && v.built <= day;
     const size = done ? (v.sizes.filter((s) => s[0] <= day).pop() || [0, 20])[1] : 0;
-    return { x: v.x, y: v.y, size, built: done };
+    const at = houseXY(D, v);
+    return { x: at.x, y: at.y, size, built: done };
   }
   function homeSpot(D, h, day) {  // 家族の集まる場所: 家族の住まいができていればその前、なければキャンプの火のまわりの家族ごとの場所
     const hs = homesOf(D), i = Math.max(0, hs.indexOf(h));
@@ -264,28 +408,81 @@
     const fams = {};  // 家族ごとの、その日にいる人 (家族の集まる場所で、まわりに並べるため)
     for (const n of names) if (plan[n].alive) (fams[plan[n].home] = fams[plan[n].home] || []).push(n);
     const oneHome = Object.keys(fams).length <= 1;
+    const crowded = names.filter((n) => plan[n].alive).length > CROWD;
+    // 仕事の場所 (2026-11-22): 記録の場所が「キャンプ」の仕事のうち、場所のある仕事は、その場所で (水の作業場・掘り場・知らせ板 など)。
+    // 混んだ日は、畑仕事は畑に、ほかのキャンプの人もキャンプのまわりに広げる (人の山にならないように)
+    const LAY = layout(D), st = {}, stKey = {};
+    const stationOf = (p) => {
+      const a = p.activity, wsIds = Object.keys(LAY.ws);
+      if (/水の作業場/.test(a) && wsIds.length) return "ws:" + wsIds[p.i % wsIds.length];
+      if (a === "水の輪を直す" && Object.keys(LAY.mills).length) return "mill";
+      if (a === "燃える石を掘る" && LAY.pit && day >= ((D.scene3d || {}).pit || {}).day) return "pit";
+      if (a === "知らせを書く" && LAY.board) return "board";
+      if (/^(字を教える|字を習う|帳をつける)$/.test(a) && LAY.board) return "school";
+      if (a === "水の道を掘る" && LAY.canal) return "canal";
+      if (a === "かまどを作りかえる" && houseAt(D, p.home, day)) return "home";
+      if (crowded && a === "畑仕事") return "fields";
+      if (crowded) return "camp";
+      return null;
+    };
+    for (const n of names) {
+      const p = plan[n];
+      if (!p.alive || p.place.id !== "camp") continue;
+      const k = stationOf(p);
+      if (k) { stKey[n] = k; (st[k] = st[k] || []).push(n); }
+    }
+    const sunflower = (c, k, r0, step) => { const r = r0 + step * Math.sqrt(k), a = k * 2.39996; return { x: c.x + Math.cos(a) * r, y: c.y + Math.sin(a) * r }; };
+    const stationSpot = (n) => {
+      const key = stKey[n], k = st[key].indexOf(n), m = st[key].length, p = plan[n];
+      if (key.startsWith("ws:")) { const w = LAY.ws[key.slice(3)]; return sunflower({ x: w.x + (w.x - w.wheel.x) * 0.8, y: w.y + (w.y - w.wheel.y) * 0.8 }, k, 1.0, 0.5); }
+      if (key === "mill") { const qs = Object.values(LAY.mills), q = qs[k % qs.length]; return { x: q.bank.x + 0.3 * Math.floor(k / qs.length), y: q.bank.y }; }
+      if (key === "pit") return sunflower(LAY.pit, k, 1.4, 0.5);
+      if (key === "board") return { x: LAY.board.x - 0.8 + 0.55 * k, y: LAY.board.y + 0.9 };
+      if (key === "school") return sunflower({ x: LAY.board.x - 2.6, y: LAY.board.y + 0.4 }, k, 0.6, 0.55);
+      if (key === "canal") { const { a, b } = LAY.canal, t = (k + 0.5) / m; return { x: a.x + (b.x - a.x) * t + 0.45 * (k % 2 ? 1 : -1), y: a.y + (b.y - a.y) * t }; }
+      if (key === "home") { const h = houseAt(D, p.home, day); return { x: h.x + 0.5 + 0.9, y: h.y + 0.5 }; }
+      if (key === "fields") { const F = LAY.fields, u = (k * 0.618034 + 0.31) % 1, w = (k + 0.5) / m; return { x: F.x0 + 0.3 + u * (F.x1 - F.x0 - 0.6), y: F.y0 + 0.3 + w * (F.y1 - F.y0 - 0.6) }; }
+      return sunflower({ x: D.camp.x + 0.5, y: D.camp.y + 0.5 }, k, 1.6, 0.45);  // camp
+    };
     for (const n of names) {
       const p = plan[n], k = groups[p.place.id].indexOf(n), a = k * 2.1;
       p.spot = { x: p.place.x + 0.5 + Math.cos(a) * 1.2 * (k > 0), y: p.place.y + 0.5 + Math.sin(a) * 1.2 * (k > 0) };
       if (p.place.id === "camp") p.spot = { x: D.camp.x + 0.5 + Math.cos(p.i * 1.26) * 2.2, y: D.camp.y + 0.5 + Math.sin(p.i * 1.26) * 2.2 };
+      if (crowded && p.place.id !== "camp") p.spot = sunflower({ x: p.place.x + 0.5, y: p.place.y + 0.5 }, k, 0, 0.55);
+      if (stKey[n]) p.spot = stationSpot(n);
+      p.station = stKey[n] || null;
       if (oneHome) {  // 家族が 1 つ (Society 1.0) のときは、前と同じく火のまわり
         p.ring = { x: D.camp.x + 0.5 + Math.cos(p.i * 1.2566) * 1.3, y: D.camp.y + 0.5 + Math.sin(p.i * 1.2566) * 1.3 };
       } else {  // 朝・夕方・夜は、家族の集まる場所 (家族の住まいの前か、火のまわりの家族ごとの場所) に、家族で輪になる
         const c = homeSpot(D, p.home, day), mates = fams[p.home] || [n], j = Math.max(0, mates.indexOf(n));
         const r = mates.length > 1 ? 0.55 + 0.12 * mates.length : 0;
         p.ring = { x: c.x + Math.cos(j * 2 * Math.PI / mates.length) * r, y: c.y + Math.sin(j * 2 * Math.PI / mates.length) * r };
-        if (p.child && p.activity === "休む") p.spot = p.ring;  // 子は昼も家族のところにいる
+        if (crowded && mates.length > 8) p.ring = sunflower(c, j, 0.5, 0.42);  // 大きな家族 (何十人も) は、大きな輪でなく、家の前にかたまって座る
+        if (p.child && p.activity === "休む" && !p.station) p.spot = p.ring;  // 子は昼も家族のところにいる
       }
       p.dist = Math.hypot(p.spot.x - p.ring.x, p.spot.y - p.ring.y);
       maxDist = Math.max(maxDist, p.dist);
     }
-    const eve = ev.filter((e) => EVE_EVENTS.includes(e.type));
+    let eve = ev.filter((e) => EVE_EVENTS.includes(e.type));
+    if (crowded) {  // 混んだ日の夕方: 話は 6 つまで (動画の話に出る人の話を先に)・ほかは 4 つまで。吹き出しを読める長さで出すため
+      const feat = (S && S.featured && S.featured[day]) || new Set();
+      const talks = eve.filter((e) => e.type === "話す"), keep = new Set([...talks.filter((e) => feat.has(e.who)), ...talks.filter((e) => !feat.has(e.who))].slice(0, 6));
+      eve.filter((e) => e.type !== "話す").slice(0, 4).forEach((e) => keep.add(e));
+      eve = eve.filter((e) => keep.has(e));
+    }
+    let work = ev.filter((e) => WORK_EVENTS.includes(e.type));
+    if (crowded) {  // 混んだ日の昼の知らせ: めずらしい仕事を先に、1 つの仕事から 2 つまで (畑仕事が何百も並ばないように)
+      const cnt = {}, took = {};
+      for (const e of work) cnt[e.type] = (cnt[e.type] || 0) + 1;
+      const pri = (e) => { const i = NEW_WORK.indexOf(e.type); return (i < 0 ? 100 + Math.min(cnt[e.type], 99) : i) + (/いなかった|休んだ|できなかった/.test(e.text) ? 50 : 0); };
+      work = work.slice().sort((a, b) => pri(a) - pri(b)).filter((e) => (took[e.type] = (took[e.type] || 0) + 1) <= 2).slice(0, 14);
+    }
     const segs = SEG.map((s) => ({ ...s }));
     segs[4].sec = Math.max(10, Math.min(eve.length, 12) * 2.6 + 2);  // 人が増えても夕方が長くなりすぎないように
     const over = (S && S.segOverride && S.segOverride[day]) || {};  // 動画用: 場面ごとの秒数を指定できる
     for (const s of segs) if (over[s.key]) s.sec = over[s.key];
     let acc = 0; for (const s of segs) { s.v0 = acc; acc += s.sec; s.v1 = acc; }
-    return { plan, maxDist, segs, total: acc, work: ev.filter((e) => WORK_EVENTS.includes(e.type)), eve,
+    return { plan, maxDist, segs, total: acc, work, eve, crowded,
       night: ev.filter((e) => NIGHT_EVENTS.includes(e.type)), fire: ev.some((e) => e.type === "火" && !/できなかった/.test(e.text)) || D.camp.fire > 0 };
   }
 
@@ -310,7 +507,15 @@
       const w = 0.9 + Math.sqrt(Math.max(v.size, 20)) / 5, d = w * 0.75, h = v.built ? 0.9 : 0.35;
       H.wall.scale.set(w, h, d); H.wall.position.y = h / 2;
       H.roof.visible = v.built; H.roof.scale.set(w + 0.2, 1, d + 0.2); H.roof.position.y = h + 0.06;
+      H.stove.visible = v.built && H.stoveDay !== null && H.stoveDay <= day; H.stove.position.set(w * 0.3, h + 0.3, d * 0.25);
     }
+  }
+
+  // 知らせ板に貼ってある知らせ: その日までに書かれ、1 年 (120 日) のうちのもの。新しいほうから 12 枚 (i4.py の板と同じ数え方)
+  function boardNotes(day) {
+    const B = (S && S.D.scene3d && S.D.scene3d.board) || null;
+    if (!B || day < B.day) return [];
+    return B.notes.filter((n) => n.day <= day && n.day > day - YEAR_DAYS).slice(-12);
   }
 
   function lerp(a, b, u) { return { x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * u }; }
@@ -329,6 +534,11 @@
     fieldsOn(S.dayNum);
     housesOn(S.dayNum);
     for (const V of S.W.villages) V.g.visible = V.o.known != null && S.dayNum >= V.o.known;
+    for (const X of S.W.things) {  // 建てた物 (見せはじめる日から)。水の輪は回し、知らせ板には 1 年のうちの知らせの紙を貼る
+      X.g.visible = X.from != null && S.dayNum >= X.from;
+      if (X.spin) X.g.userData.spin.rotation.z = -v * 0.9;
+      if (X.board) { const n = boardNotes(S.dayNum).length; X.board.forEach((m, k) => (m.visible = k < n)); }
+    }
     S.W.flame.visible = lit; S.W.fireLight.intensity = lit ? 1.6 + Math.sin(v * 13) * 0.3 : 0;
     S.W.scene.background = S.T.bg.clone().lerp(new THREE.Color(0x0b1220), 1 - Math.min(1, light / 0.9));
 
@@ -336,7 +546,7 @@
       const p = P.plan[n], fig = S.figs[n];
       fig.visible = p.alive;
       if (!p.alive) continue;
-      fig.scale.setScalar(p.size);
+      fig.scale.setScalar(p.size * (P.crowded ? 0.7 : 1));  // 混んだ日は人を少し小さく (重なりを減らす)
       let at = p.ring, heading = null, pose = "stand", moving = false;
       if (seg.key === "go" || seg.key === "back") {
         const need = p.dist / P.maxDist;
@@ -348,7 +558,8 @@
         heading = Math.atan2(-(to.y - from.y), to.x - from.x);
         if (seg.key === "back" && w <= 0) at = p.spot;
       } else if (seg.key === "work") {
-        at = { x: p.spot.x + Math.sin(v * 0.4 + p.i) * 0.5, y: p.spot.y + Math.cos(v * 0.3 + p.i) * 0.5 };
+        const j = P.crowded ? 0.15 : 0.5;  // 混んだ日は、となりの人と重ならないように小さく動く
+        at = { x: p.spot.x + Math.sin(v * 0.4 + p.i) * j, y: p.spot.y + Math.cos(v * 0.3 + p.i) * j };
         pose = p.activity === "探索" ? "walk" : p.activity === "休む" ? "sit" : "work";
         moving = pose === "walk";
         heading = v * 0.4 + p.i;
@@ -379,6 +590,7 @@
     }
     if (seg.key === "night") shown = P.night.length ? P.night : [{ text: "静かな夜" }];
     S.toast.innerHTML = shown.slice(-4).map((e) => `<div>${esc(plain(e.text))}</div>`).join("");
+    S.toastWho = new Set(shown.slice(-4).map((e) => e.who).filter(Boolean));
     for (const n in S.labels) S.labels[n].bubble = bubbles[n] || "";
   }
 
@@ -393,9 +605,28 @@
       el.hidden = !V.g.visible || p.z > 1;
       if (!el.hidden) el.style.transform = `translate(${(p.x * 0.5 + 0.5) * r.width}px, ${(-p.y * 0.5 + 0.5) * r.height}px) translate(-50%, -100%)`;
     }
+    for (const X of S.tlabels || []) {  // 建てた物の名前 (見えている日だけ)。知らせ板は、いちばん新しい知らせの字も
+      const p = X.at.clone().project(S.camera);
+      X.el.hidden = !X.g.visible || p.z > 1;
+      if (X.el.hidden) continue;
+      if (X.board) { const ns = boardNotes(S.dayNum), last = ns[ns.length - 1]; X.el.querySelector("span").textContent = `知らせ板 ${ns.length} 枚` + (last ? `「${last.text.length > 16 ? last.text.slice(0, 16) + "…" : last.text}」` : ""); }
+      X.el.style.transform = `translate(${(p.x * 0.5 + 0.5) * r.width}px, ${(-p.y * 0.5 + 0.5) * r.height}px) translate(-50%, -100%)`;
+    }
+    // 混んだ日 (2026-11-22): 名前は、話している人・動画の話に出る人 (setFeatured)・今の知らせに出る人だけ、カメラに近い順に 12 人まで
+    let allow = null;
+    if (S.day && S.day.crowded) {
+      const feat = (S.featured && S.featured[S.dayNum]) || new Set(), want = [];
+      for (const n in S.labels) {
+        const L = S.labels[n];
+        if (!S.figs[n].visible || !L.pos) continue;
+        if (L.bubble || feat.has(n) || (S.toastWho && S.toastWho.has(n))) want.push([L.bubble ? -1 : feat.has(n) ? 0 : 1, L.pos.distanceTo(S.camera.position), n]);
+      }
+      want.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+      allow = new Set(want.slice(0, 12).map((w) => w[2]));
+    }
     for (const n in S.labels) {
       const L = S.labels[n], fig = S.figs[n];
-      if (!fig.visible || !L.pos) { L.el.hidden = true; continue; }
+      if (!fig.visible || !L.pos || (allow && !allow.has(n))) { L.el.hidden = true; continue; }
       const p = L.pos.clone().project(S.camera);
       if (p.z > 1) { L.el.hidden = true; continue; }
       L.el.hidden = false;
@@ -422,10 +653,14 @@
 
   // 動画用: 見えている全員が入るように、カメラの注視点と距離を少しずつ合わせる
   function autoCamera() {
-    const ps = Object.values(S.figs).filter((f) => f.visible).map((f) => f.position);
+    let ps = Object.values(S.figs).filter((f) => f.visible).map((f) => f.position);
     if (!ps.length) return;
-    const c = ps.reduce((a, p) => a.add(p), new THREE.Vector3()).multiplyScalar(1 / ps.length);
-    const r = Math.max(...ps.map((p) => p.distanceTo(c)));
+    let c = ps.reduce((a, p) => a.add(p), new THREE.Vector3()).multiplyScalar(1 / ps.length);
+    let r = Math.max(...ps.map((p) => p.distanceTo(c)));
+    if (S.day && S.day.crowded) {  // 混んだ日: 遠くの数人に合わせず、7 割の人が入る広さ (村のまん中と、仕事の場所が見える) にする
+      const ds = ps.map((p) => p.distanceTo(c)).sort((a, b) => a - b);
+      r = Math.min(r, ds[Math.floor(ds.length * 0.7)]);
+    }
     const dist = Math.min(90, Math.max(13, r * 2.3 + 9));
     const dir = new THREE.Vector3(0.5, 0.62, 0.78).normalize();
     S.controls.target.lerp(c, 0.07);
@@ -476,9 +711,14 @@
         el.innerHTML = `<span>${esc(V.o.name)} (歩いて ${V.o.days} 日)</span>`; el.hidden = true;
         stage.appendChild(el); return { el, V };
       });
+      const tlabels = W.things.filter((X) => X.label).map((X) => {  // 建てた物の名前 (2026-11-22)
+        const el = document.createElement("div"); el.className = "r3-label r3-thing";
+        el.innerHTML = `<span>${esc(X.label)}</span>`; el.hidden = true;
+        stage.appendChild(el); return { el, g: X.g, at: X.at, board: !!X.board };
+      });
       const died = {};  // 人ごとの、亡くなった出来事 (しまった年もふくめて最初のもの)
       for (const e of allEvents(D)) if (e.type === "死" && !(e.who in died)) died[e.who] = e;
-      S = { D, walk, T, W, renderer, camera, controls, figs, labels, vlabels, v: 0, speed: 1, playing: true, loadYear: loadYear || null, years: {}, died,
+      S = { D, walk, T, W, renderer, camera, controls, figs, labels, vlabels, tlabels, featured: {}, v: 0, speed: 1, playing: true, loadYear: loadYear || null, years: {}, died,
         clock: stage.querySelector(".r3-clock"), toast: stage.querySelector(".r3-toast"),
         playBtn: root.querySelector("#r3-play"), slider: root.querySelector("#r3-slider"), follow: "" };
       const days = allDays(D);
@@ -517,6 +757,13 @@
     },
     // 動画を作るとき用: 日と再生位置 (秒) を指定して 1 コマ描く
     setAutoCamera(on) { if (S) S.autoCam = !!on; },
+    // 動画用 (2026-11-22): 混んだ日に名前を見せる人 (その日のナレーションに出る人)。namesIn(文) は、文の中に出る村の人の名前
+    setFeatured(day, names) { if (S) S.featured[day] = new Set(names); },
+    namesIn(text) {
+      if (!S) return [];
+      const t = String(text || "");
+      return S.D.people.map((p) => p.name).filter((n) => { const i = t.indexOf(n); return i >= 0 && !/[0-9０-９]/.test(t[i + n.length] || ""); });
+    },
     setSegments(day, secByKey) { if (S) { S.segOverride = S.segOverride || {}; S.segOverride[day] = secByKey; } },
     timeline(day) { if (!S) return null; const P = planDay(S.D, day); return { total: P.total, segs: P.segs.map((s) => ({ key: s.key, v0: s.v0, v1: s.v1 })), eve: P.eve.length }; },
     seek(day, v) {

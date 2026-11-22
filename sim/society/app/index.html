@@ -141,6 +141,9 @@ video { width: 100%; max-width: 640px; border-radius: 8px; display: block; }
 .r3-toast { z-index: 40; position: absolute; left: 12px; bottom: 10px; right: 12px; display: grid; gap: 4px; font-size: 12px; pointer-events: none; }
 .r3-toast div { background: var(--surface); color: var(--fg); padding: 3px 10px; border-radius: 6px; opacity: 0.9; width: fit-content; max-width: 100%; }
 .r3-label { position: absolute; left: 0; top: 0; pointer-events: none; display: grid; justify-items: center; gap: 4px; font-size: 12px; font-weight: 700; text-shadow: 0 0 3px var(--bg), 0 0 3px var(--bg); }
+.r3-label[hidden] { display: none; }  /* 見せない日の名前 (ほかの村・建てた物) を隠す (2026-11-22) */
+.r3-thing { z-index: 5; font-size: 13px !important; }
+.r3-thing span { background: rgba(255, 250, 235, 0.88); color: #3b2a14; border: 1px solid #a87b4f; border-radius: 6px; padding: 1px 8px; text-shadow: none; font-weight: 500; }
 .r3-label .b { position: relative; background: var(--surface); color: var(--fg); border: 2px solid var(--line); border-radius: 10px; padding: 4px 10px; font-weight: 400; font-size: 12px; max-width: 16em; text-shadow: none; line-height: 1.45; margin-bottom: 6px; }
 .r3-label .b::after { content: ""; position: absolute; left: 50%; bottom: -9px; width: 12px; height: 12px; background: var(--surface); border-right: 2px solid; border-bottom: 2px solid; border-color: inherit; transform: translateX(-50%) rotate(45deg); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -539,7 +542,9 @@ const fetchAny = (paths, opt) => paths.reduce((p, u) => p.catch(() => fetch(u, o
 Promise.all([
   fetchAny(["app_data.json", "../data/app_data.json"], { cache: "no-store" }).then((r) => { BASE = (r.url || "").replace(/app_data\.json([?#].*)?$/, ""); return r.json(); }),
   fetch("walk_cycle.json").then((r) => (r.ok ? r.json() : null)).catch(() => null),
-]).then(([d, w]) => { D = d; WALK = w; render(); start3d(); })
+  // 3D の建てた物 (水の輪・水の作業場・掘り場・知らせ板・石のかまど。tools/build_scene3d.py が作る。なくても 3D は動く)
+  fetch("scene3d.json", { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+]).then(([d, w, sc]) => { D = d; if (sc) D.scene3d = sc; WALK = w; render(); start3d(); })
   .catch(() => { $("people").innerHTML = `<p class="empty">データ (app_data.json) を読み込めませんでした。ページを開き直してください。</p>`; });
 </script>
 <script>

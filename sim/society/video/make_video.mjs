@@ -90,6 +90,8 @@ const lastDay = dayList[dayList.length - 1];
 await page.evaluate((ds) => Replay3D.need(ds), dayList);  // しまった年の日は、その年のファイルを先に読む (2026-10-10)
 const LABEL = {};  // 日ごとの「10年31日目」(アプリと同じ書き方。replay3d.js の dayLabel)
 for (const d of dayList) LABEL[d] = await page.evaluate((d) => Replay3D.dayLabel(d), d);
+// 人の多い日 (2026-11-22): 3D の名前は、その日のナレーションに出る人 (と話している人・知らせに出る人) だけにする
+for (const d of dayList) await page.evaluate((d, texts) => Replay3D.setFeatured(d, texts.flatMap((t) => Replay3D.namesIn(t))), d, lines.filter((l) => l.day === d).map((l) => l.text));
 
 // 日ごとに場面の長さを決め、ナレーションの時刻を並べる
 const plan = [], narration = [];
