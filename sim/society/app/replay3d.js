@@ -166,7 +166,7 @@
       el.add(cyl(BODY.fore * K * 0.9, 0.045 * K, mat));
       J[side + "_shoulder_y"] = sh; J[side + "_elbow"] = el;
     }
-    root.userData = { J, pelvis, head };
+    root.userData = { J, pelvis, head, mat };
     return root;
   }
 
@@ -482,7 +482,7 @@
     const over = (S && S.segOverride && S.segOverride[day]) || {};  // 動画用: 場面ごとの秒数を指定できる
     for (const s of segs) if (over[s.key]) s.sec = over[s.key];
     let acc = 0; for (const s of segs) { s.v0 = acc; acc += s.sec; s.v1 = acc; }
-    return { plan, maxDist, segs, total: acc, work, eve, crowded,
+    return { plan, maxDist, segs, total: acc, work, eve, crowded, oneHome,
       night: ev.filter((e) => NIGHT_EVENTS.includes(e.type)), fire: ev.some((e) => e.type === "火" && !/できなかった/.test(e.text)) || D.camp.fire > 0 };
   }
 
@@ -669,6 +669,20 @@
 
   function setDay(d) {
     S.dayNum = d; S.day = planDay(S.D, d); S.v = 0; S.playing = true; S.playBtn.textContent = "一時停止";
+    paint(S.day.oneHome);
+  }
+  // 人の色 (2026-11-22、1 日目の撮り直し D1): 村に家族が何十もあるデータで Society 1.0 の日 (その日にいるのが 1 つの家族だけ) を見ると、
+  // 5 人がみな同じ家族の色になって見分けにくい。その日だけ、前の Society 1.0 と同じ人ごとの色にする。
+  // 家族が 2 つ以上いる日は、今までどおり家族の色 (S3P34 などは変わらない)。データに家族が 1 つしかないときは、もともと人ごとの色
+  function paint(solo) {
+    if (S.solo === solo) return;
+    S.solo = solo;
+    for (const n in S.figs) {
+      const c = S.figs[n].userData.cols, col = solo ? c.solo : c.home, hex = "#" + col.getHexString();
+      S.figs[n].userData.mat.color.copy(col);
+      const L = S.labels[n].el;
+      L.querySelector("span").style.color = hex; L.querySelector(".b").style.borderColor = hex;
+    }
   }
 
   window.Replay3D = {
@@ -702,6 +716,7 @@
         const col = hs.length > 1 ? new THREE.Color(homeColor(hs.indexOf(h))).offsetHSL(0, 0, ((k % 3) - 1) * 0.09) : T.people[i % 5];
         const hex = "#" + col.getHexString();
         const f = makeFigure(col); W.scene.add(f); figs[p.name] = f;
+        f.userData.cols = { home: col, solo: T.people[i % 5] };  // 家族の色と、人ごとの色 (家族が 1 つの日に使う。setDay の paint)
         const el = document.createElement("div"); el.className = "r3-label";
         el.innerHTML = `<div class="b" hidden style="border-color:${hex}"></div><span style="color:${hex}">${esc(p.name)}</span>`;
         stage.appendChild(el); labels[p.name] = { el, pos: null, bubble: "" };

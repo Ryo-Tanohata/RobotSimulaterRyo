@@ -20,6 +20,35 @@ const durs = JSON.parse(fs.readFileSync(path.join(voiceDir, "durations.json"), "
 const YEAR_NOTE = "※ この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ) で、現実の 1 年とは違います。「10年31日目」は、10 年たった年の 31 日目 (最初の年は 0年)";
 const CREDIT = "ナレーション: VOICEVOX:ずんだもん<br>描画: three.js (MIT License)<br>効果音・BGM: プログラムで自作" + `<br><span style="font-size:20px">${YEAR_NOTE}</span>`;
 
+// SLIM=1 (2026-11-22、1 日目の撮り直し D1 から): 撮る日 (DAYS) に要る分だけの小さな app_data.json を、メモリの中で作って配る。
+// 全部のデータ (65 MB・3,855 人) だと、ページの用意に 3 分ほど、1 コマにも時間がかかるため。ファイルには書かない (data/ は読むだけ)。
+// 人は D.people の頭から、撮る日にいる人の最後までをそのまま残す (並びと色が全部のデータのときと同じになるように)。
+// 出来事・再生の行・グラフの数・家・しまった年の一覧は、撮る日まで (か、撮る日だけ) に切る。地図・草木・掟・ほかの村などはそのまま
+function slimData(days) {
+  const D = JSON.parse(fs.readFileSync(path.join(DATA, "app_data.json"), "utf8"));
+  const want = new Set(days), maxDay = Math.max(...days), minDay = Math.min(...days);
+  let last = 0;
+  D.people.forEach((p, i) => {
+    const here = days.some((d) => d >= (p.since || 0) && (p.born_day == null || p.born_day <= d) && !(p.left && p.left < d));
+    if (here) last = i;
+  });
+  const S = { ...D, people: D.people.slice(0, last + 1) };
+  const names = new Set(S.people.map((p) => p.name));
+  S.resumes = (D.resumes || []).filter((r) => names.has(r.name));
+  S.events = (D.events || []).filter((e) => want.has(e.day));
+  S.days = Object.fromEntries(Object.entries(D.days || {}).filter(([d]) => want.has(Number(d))));
+  S.stats = (D.stats || []).filter((x) => x.day <= maxDay);
+  S.houses = (D.houses || []).filter((v) => v.start <= maxDay);
+  if (D.archive) {
+    const ys = new Set(days.filter((d) => d < D.archive.since).map((d) => Math.floor(d / 120)));
+    S.archive = { ...D.archive, years: D.archive.years.filter((y) => ys.has(y.year)), keep: (D.archive.keep || []).filter((e) => e.day <= maxDay) };
+  }
+  const out = JSON.stringify(S);
+  console.log(`SLIM: app_data.json ${(fs.statSync(path.join(DATA, "app_data.json")).size / 1e6).toFixed(1)} MB → ${(out.length / 1e6).toFixed(1)} MB (人 ${S.people.length}・日 ${minDay}〜${maxDay})`);
+  return out;
+}
+const SLIM = process.env.SLIM && process.env.DAYS ? slimData(process.env.DAYS.split(",").map(Number)) : null;
+
 // アプリのファイルをこの PC の中だけで配る (file:// では JSON を読めないため)
 const server = http.createServer((req, res) => {
   const name = decodeURIComponent(req.url.split("?")[0]).replace(/^\//, "") || "index.html";
@@ -29,6 +58,7 @@ const server = http.createServer((req, res) => {
   if (!fs.existsSync(file) || name.endsWith(".mp4")) { res.writeHead(404); return res.end(); }
   const type = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".json": "application/json", ".jsonl": "application/x-ndjson", ".mp4": "video/mp4" }[path.extname(file)] || "application/octet-stream";
   res.writeHead(200, { "content-type": type });
+  if (SLIM && name === "app_data.json") return res.end(SLIM);
   if (name === "index.html") return res.end("<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'>" + fs.readFileSync(file, "utf8"));
   fs.createReadStream(file).pipe(res);
 }).listen(0);
