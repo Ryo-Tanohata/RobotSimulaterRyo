@@ -44,6 +44,8 @@ BLENDER_USER_RESOURCES=/dev/shm/sena/userres PYTHONPATH=/dev/shm/bpy \
 - `--style mid` / `--style real` : 作風 (下の節)
 - `--only face,sheet,poses` : 描く画像を選ぶ。`--only none` なら組み立てと .glb だけ
 - `--quick` : 試し描き (24 サンプル)
+- `--head-asset <file>` : 頭と顔を外の素材に差しかえる (下の「頭の差しかえ口」)
+- `--keep-hair` : 差しかえても、作った髪を残す
 - ログは必ずファイルへ。パイプ (`| grep`) につなぐと終了時に止まることがある
 - 出力: `sim/society/out/human/<name>_<style>_3view.png`, `..._face.png` (git には入らない)、
   `/dev/shm/sena/<name>_<style>.glb` (骨組みつき。公開しない)
@@ -84,7 +86,7 @@ BLENDER_USER_RESOURCES=/dev/shm/sena/userres PYTHONPATH=/dev/shm/bpy \
 4. **髪** (`build_hair()`、値は `people.py` の `hair` と `STYLES["mid"]["hair"]`):
    色 #0e0b0a。細い束 (太さ 6.8 mm) を多く: 前髪 4.5° おき、横の髪 6 本ずつ、後ろ 5.5° おき、結んだ束 5 本 (幅 4 cm、長さ 36 cm)。
    結ぶ位置はうなじ (頭の中心から下 52°)。
-   材質 `mat_hair()`: 縦にのばしたノイズで毛すじの色むら・凹凸・つやのむら、異方性 0.75 (毛の向きにのびるつや)。
+   材質 `mat_hair()`: 縦にのばしたノイズで毛すじの色むら・凹凸・つやのむら、異方性 0.5 (毛の向きにのびるつや)、つやの強さ 0.2、粗さ 0.42〜0.6 (つやを強くしすぎると灰色に見えるため控えめ)。
 5. **服**: `build_underwear()`。胴と脚の表面を輪切りに拾った筒 (`loft_rings()`) で、ふちがまっすぐな
    胸の帯 (胸の高さ −10.5〜−0.5 cm) と短パン、股の当て布。色 #141414。骨の重みは近い肌の頂点から写す (`copy_weights()`)。
 6. **材質**: 肌 #8a5636 (濃い日焼け)、表面下散乱 (SSS) 0.22、粗さ 0.48。唇 #7a4232 を 55% だけ混ぜる。傷 #b98c78。
@@ -92,7 +94,7 @@ BLENDER_USER_RESOURCES=/dev/shm/sena/userres PYTHONPATH=/dev/shm/bpy \
 8. **描画**: Cycles CPU、128 サンプル + ノイズ除去 (OpenImageDenoise)、色変換 Standard、輪郭線なし。
    3 面図は 560×1100 を 3 枚、顔は 900×900。
    かかった時間 (この機械、CPU 4 コア): 試し描き (24 サンプル) で 1 枚 9〜13 秒・顔 23 秒、
-   本番 (128 サンプル): 3 面図の 1 枚が 29〜46 秒、顔 90 秒、組み立て 5 秒、全部で約 3.5 分。
+   本番 (128 サンプル): 3 面図の 1 枚が 23〜36 秒、顔 80 秒、組み立て 5 秒、全部で約 3 分 (村の計算と同時に動かして 29〜46 秒・90 秒のこともあった)。
    Blender のメモリは約 0.7 GB。
 9. **書き出し**: `/dev/shm/sena/sena_mid.glb`。
 
@@ -114,6 +116,24 @@ EEVEE はクラウドに GPU がないため、そのままでは動かない (l
 Ubuntu の mesa (llvmpipe、ソフトウェアの OpenGL) を `apt-get download` して `/dev/shm/mesa` に展開し、
 `LD_LIBRARY_PATH` などを設定すると EEVEE も動くことを確かめた (256×256 の試験で 39 秒)。
 作るときは Shader to RGB + 色の段 (Color Ramp) と、裏返しの外殻による輪郭線を `mat_*` に足す。
+
+## 頭の差しかえ口 (`replace_head()`)
+
+いまの顔は MakeHuman の顔を数値で整えたもので、まだ「こわい」(不自然) という感想がある。
+よい頭・顔の 3D 素材が見つかったら、顔は作りなおさずに差しかえる。
+
+```bash
+... build_sena.py --style mid --head-asset /path/to/head.glb [--keep-hair]
+```
+
+- 対応する形式: .glb / .gltf / .obj / .fbx。向きは「前が -Y、上が +Z」(glTF ならそのまま)。
+- 体の首より上 (首の関節 + 2.5 cm より上) をマスク (`MASK` 変形) で隠す。
+- 素材のメッシュを 1 つにまとめ、隠した頭と同じ高さに拡大縮小し、真ん中と下端をそろえる。
+- head の骨につなぐので、姿勢を変えても付いてくる。
+- 元の目・まつ毛・眉は隠す。`--keep-hair` がなければ、作った髪も隠す。
+- 球を使った試験で、位置合わせと隠す処理が動くことを確かめた。首の切り口はぎざぎざなので、
+  素材は首を少し含むもの (首の付け根で体と重なるもの) がよい。肌の色は素材側で合わせる。
+- 素材を使うときは、ライセンス (CC0 / CC-BY など) と出典を下の表に足すこと。
 
 ## ほかの四人を同じように作るには
 

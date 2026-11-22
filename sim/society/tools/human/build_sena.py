@@ -201,8 +201,8 @@ def mat_hair(name, color, H):
     nt.links.new(nz.outputs["Fac"], ramp.inputs["Fac"])
     nt.links.new(ramp.outputs["Color"], bsdf.inputs["Base Color"])
     rr = nt.nodes.new("ShaderNodeMapRange")
-    rr.inputs["To Min"].default_value = 0.36
-    rr.inputs["To Max"].default_value = 0.52
+    rr.inputs["To Min"].default_value = 0.42
+    rr.inputs["To Max"].default_value = 0.6
     nt.links.new(nz.outputs["Fac"], rr.inputs["Value"])
     nt.links.new(rr.outputs["Result"], bsdf.inputs["Roughness"])
     bsdf.inputs["Anisotropic"].default_value = H.get("aniso", 0.7)
@@ -210,7 +210,7 @@ def mat_hair(name, color, H):
     tg.direction_type = 'RADIAL'
     tg.axis = 'X'  # 頭の横軸のまわり = たれた髪では、ほぼ毛の向き
     nt.links.new(tg.outputs["Tangent"], bsdf.inputs["Tangent"])
-    bsdf.inputs["Specular IOR Level"].default_value = 0.3
+    bsdf.inputs["Specular IOR Level"].default_value = 0.2
     bump = nt.nodes.new("ShaderNodeBump")
     bump.inputs["Strength"].default_value = 0.25
     nt.links.new(nz.outputs["Fac"], bump.inputs["Height"])
@@ -719,6 +719,66 @@ def build_scar(P, surf, arm_obj, mats):
     return curve_obj("scar", [(pts, radii)], 0.0018, mats["scar"], resolution=1)
 
 
+# ---------------------------------------------------------------- 外の頭 (差しかえ口)
+def replace_head(path, body, arm, joints, hide=(), cut_above=0.025):
+    """頭と顔を、外の 3D 素材 (.glb/.gltf/.obj/.fbx) に差しかえる。
+
+    いまの顔はまだ「こわい」と言われているので、よい頭の素材が見つかったら、
+    `--head-asset <file>` で差しこめるようにしておく口。
+    - 体の首より上 (首の関節 + cut_above より上) をマスクで隠す
+    - 素材を 1 つにまとめ、隠した頭と同じ高さ・位置に合わせて拡大縮小する
+    - head の骨につなぐ (姿勢を変えても頭が付いてくる)
+    hide: 一緒に隠す物 (元の目・まつ毛・眉など)
+    素材の向きは「前が -Y、上が +Z」を前提にする (glTF の読みこみはこの向きになる)。
+    """
+    before = set(bpy.data.objects)
+    ext = os.path.splitext(path)[1].lower()
+    if ext in (".glb", ".gltf"):
+        bpy.ops.import_scene.gltf(filepath=path)
+    elif ext == ".obj":
+        bpy.ops.wm.obj_import(filepath=path)
+    elif ext == ".fbx":
+        bpy.ops.import_scene.fbx(filepath=path)
+    else:
+        raise ValueError("head asset: unknown format " + ext)
+    new = [o for o in bpy.data.objects if o not in before]
+    for o in new:
+        if o.type != 'MESH':
+            bpy.data.objects.remove(o)
+    meshes = [o for o in bpy.data.objects if o not in before and o.type == 'MESH']
+    for o in meshes:  # 親を外して、見た目の位置のまま固定
+        mw = o.matrix_world.copy()
+        o.parent = None
+        o.matrix_world = mw
+        o.data.transform(o.matrix_world)
+        o.matrix_world = Matrix()
+    head = join(meshes, "head_asset") if len(meshes) > 1 else meshes[0]
+    head.name = "head_asset"
+    # 隠す頭の範囲
+    cut_z = joints["joint-neck"][2] + cut_above
+    gi = body.vertex_groups.new(name="_head_cut")
+    idx = [v.index for v in body.data.vertices if v.co.z > cut_z]
+    gi.add(idx, 1.0, 'REPLACE')
+    mk = body.modifiers.new("hide_head", 'MASK')
+    mk.vertex_group = "_head_cut"
+    mk.invert_vertex_group = True
+    co = np.array([body.data.vertices[i].co for i in idx])
+    lo, hi = co.min(0), co.max(0)
+    hc = np.array([v.co for v in head.data.vertices])
+    hlo, hhi = hc.min(0), hc.max(0)
+    k = (hi[2] - lo[2]) / max(1e-6, hhi[2] - hlo[2])
+    off = Vector(((lo[0] + hi[0]) / 2, (lo[1] + hi[1]) / 2, lo[2])) - \
+        Vector(((hlo[0] + hhi[0]) / 2, (hlo[1] + hhi[1]) / 2, hlo[2])) * k
+    head.data.transform(Matrix.Translation(off) @ Matrix.Scale(k, 4))
+    parent_to_bone(head, arm, "head")
+    for o in hide:
+        if o is not None:
+            o.hide_render = True
+            o.hide_viewport = True
+    print(f"head asset: {path} scale {k:.3f}", flush=True)
+    return head
+
+
 # ---------------------------------------------------------------- 姿勢
 def set_pose(arm, pose):
     for pb in arm.pose.bones:
@@ -848,6 +908,8 @@ def main():
     ap.add_argument("--person", default="sena")
     ap.add_argument("--quick", action="store_true")
     ap.add_argument("--style", default="mid", choices=sorted(STYLES))
+    ap.add_argument("--head-asset", default="", help="頭と顔を差しかえる外の素材 (.glb/.obj/.fbx)")
+    ap.add_argument("--keep-hair", action="store_true", help="頭を差しかえても、作った髪を残す")
     ap.add_argument("--only", default="", help="sheet,face,poses をカンマで")
     args = ap.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:])
     P = copy.deepcopy(PEOPLE[args.person])
@@ -970,6 +1032,11 @@ def main():
         if not any(m.type == 'ARMATURE' for m in lashes.modifiers):
             m = lashes.modifiers.new("arm", 'ARMATURE')
             m.object = arm
+    if args.head_asset:
+        hide = [eyes, lashes] + [o for o in bpy.data.objects if o.name.startswith("brow")]
+        if not args.keep_hair:
+            hide.append(hair)
+        replace_head(args.head_asset, body, arm, joints, hide=hide)
     for ob in (body, tunic, eyes):
         sd = ob.modifiers.new("subd", 'SUBSURF')
         sd.levels = 0

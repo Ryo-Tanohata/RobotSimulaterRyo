@@ -103,7 +103,7 @@ STYLES = {
         # 細い束を多く (カード状の髪の代わり)、異方性のつや
         "hair": {"clump": 0.0068, "bang_step": 4.5, "back_step": 5.5,
                  "side_az": [58, 63, 68, 73, 78, 83], "tail_clumps": 11,
-                 "strand_tex": True, "aniso": 0.75},
+                 "strand_tex": True, "aniso": 0.5},
         "skin": {"sss": 0.22, "rough": 0.48, "lip_mix": 0.55},
     },
 }
