@@ -92,6 +92,10 @@ select{font:inherit;font-size:14px;padding:2px 6px;border-radius:6px;border:1px 
 .dlab{font-size:11px;fill:var(--text-primary);font-weight:600}.dlab2{font-size:10px;fill:var(--text-secondary)}
 .dc1{font-size:17px;font-weight:650;fill:var(--text-primary)}.dc2{font-size:10.5px;fill:var(--text-secondary)}
 .sb .sel{fill:var(--text-primary)}
+.dn path.dr{cursor:pointer}
+.lnk{font:inherit;color:var(--series-1);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px;text-align:left}
+.crumb{font-size:12.5px;color:var(--text-secondary);margin:0 0 4px}.crumb b{color:var(--text-primary)}
+tr.fd td{background:var(--surface-1)}
 @media (max-width:640px){
  .grid{display:block}
  .grp{display:block;background:var(--card);border:1px solid var(--ring);border-radius:12px;margin:8px 0;padding:0 8px}
@@ -421,7 +425,7 @@ function arcPath(cx, cy, R, r, a0, a1) {
   if (a1 - a0 >= 2 * Math.PI - 1e-6) a1 = a0 + 2 * Math.PI - 1e-4;
   return `M${p(R, a0)}A${R},${R} 0 ${big} 1 ${p(R, a1)}L${p(r, a1)}A${r},${r} 0 ${big} 0 ${p(r, a0)}Z`;
 }
-function donutSvg(sp, rows, y) {
+function donutSvg(sp, rows, y, drill) {
   const col = cColors(sp), tot = rows.reduce((a, x) => a + x[1], 0);
   const W = 300, H = 200, cx = 150, cy = 100, R = 66, r = 42;
   const s = [`<svg viewBox="0 0 ${W} ${H}" class="dn" role="img" aria-label="${esc(`${y}年 ${sp.title}: ` + rows.filter(x => x[1] > 0).map(x => `${x[0]} ${nf(x[1] / tot * 100, 1)}%`).join("、"))}">`];
@@ -429,7 +433,7 @@ function donutSvg(sp, rows, y) {
   rows.forEach((x, i) => {
     if (!(x[1] > 0)) return;
     const da = x[1] / tot * 2 * Math.PI, sh = x[1] / tot;
-    s.push(`<path d="${arcPath(cx, cy, R, r, a, a + da)}" fill="${col[i]}" stroke="var(--card)" stroke-width="2" stroke-linejoin="round" tabindex="0" data-i="${i}"><title>${esc(x[0])}: ${esc(cAmt(sp, x[1]))} (${nf(sh * 100, 1)}%)</title></path>`);
+    s.push(`<path d="${arcPath(cx, cy, R, r, a, a + da)}" fill="${col[i]}" stroke="var(--card)" stroke-width="2" stroke-linejoin="round" tabindex="0" data-i="${i}"${drill && drill(i) ? ` class="dr" data-drill="${esc(drill(i))}"` : ""}><title>${esc(x[0])}: ${esc(cAmt(sp, x[1]))} (${nf(sh * 100, 1)}%)${drill && drill(i) ? " ・押すと中身" : ""}</title></path>`);
     if (sh >= 0.05) { const m = a + da / 2; labs.push({m, side: Math.sin(m) >= 0 ? 1 : -1, y: cy - (R + 14) * Math.cos(m), t1: nf(sh * 100, sh < 0.1 ? 1 : 0) + "%", t2: cAmt(sp, x[1])}); }
     a += da;
   });
@@ -448,13 +452,13 @@ function donutSvg(sp, rows, y) {
   s.push(`<text class="dc1" x="${cx}" y="${cy + 2}" text-anchor="middle">${esc(nf(tot, sp.unit === "大人 1 年分" ? 0 : 0))}</text><text class="dc2" x="${cx}" y="${cy + 16}" text-anchor="middle">合計 ${esc(sp.unit === "大人 1 年分" ? "人分" : sp.unit)}</text></svg>`);
   return s.join("");
 }
-function cLegend(sp, rows, tot) {
+function cLegend(sp, rows, tot, drill) {
   const col = cColors(sp);
   const ord = rows.map((x, i) => [x, i]);
   if (sp.kind !== "ordinal") ord.sort((p, q) => (q[0][1] - p[0][1]) || (p[1] - q[1]));  // この年の大きい順 (その他は大きくても最後)
   if (sp.kind !== "ordinal") { const k = ord.findIndex(o => /^(その他|そのほか)$/.test(o[0][0])); if (k >= 0) ord.push(ord.splice(k, 1)[0]); }
   return `<table class="cleg"><tr><th>種類</th><th style="text-align:right">割合</th><th style="text-align:right">量</th></tr>` + ord.map(([x, i]) =>
-    `<tr><td><i class="sw" style="background:${col[i]}"></i>${esc(x[0])}</td><td class="n">${tot ? nf(x[1] / tot * 100, 1) + "%" : "—"}</td><td class="n">${esc(cAmt(sp, x[1]))}</td></tr>`).join("") + "</table>";
+    `<tr><td><i class="sw" style="background:${col[i]}"></i>${drill && drill(i) ? `<button class="lnk" data-drill="${esc(drill(i))}">${esc(x[0])}</button>` : esc(x[0])}</td><td class="n">${tot ? nf(x[1] / tot * 100, 1) + "%" : "—"}</td><td class="n">${esc(cAmt(sp, x[1]))}</td></tr>`).join("") + "</table>";
 }
 function stackSvg(sp, y, ya, yb) {
   const col = cColors(sp), step = yb - ya + 1 > 40 ? 5 : 1;
@@ -497,22 +501,95 @@ function compoBlock(fk, y, ya, yb) {
     const has = YEARS.some(yy => yy >= ya && yy <= yb && ((R(yy) || {}).compo || {})[sp.key]);
     if (!has) return "";
     const col = cColors(sp);
-    let h = `<div class="compo"><h4>${esc(sp.title)} の割合</h4><div class="note">${esc(sp.note)}</div>`;
+    return `<div class="compo" data-key="${esc(sp.key)}" data-y="${y}" data-ya="${ya}" data-yb="${yb}">${compoView(sp, y, ya, yb, [])}</div>`;
+  }).join("");
+}
+const TREE = D.compo_tree || {};
+const FNAME = Object.fromEntries(FIELDS.map(f => [f.key, f.name]));
+function crumb(sp, path) {
+  const L = [[null, "全体"], [[], FNAME[sp.field] || sp.field]].concat(path.map((n, k) => [path.slice(0, k + 1), n]));
+  return `<nav class="crumb" aria-label="いまいる所">` + L.map(([pp, n], k) => k === L.length - 1 && path.length ? `<b>${esc(n)}</b>` :
+    `<button class="lnk" data-drill="${esc(pp === null ? "top" : JSON.stringify(pp))}">${esc(n)}</button>`).join(" &gt; ") + "</nav>";
+}
+function partSeries(sp, path, ya, yb) {  // [[年, 量, 割合]] (割合は 1 つ上の全体のうち)
+  const out = [];
+  for (let yy = ya; yy <= yb; yy++) {
+    const r = R(yy) || {}, v = (r.compo || {})[sp.key];
+    if (!v || v.some(x => x[1] < 0)) { out.push([yy, null, null]); continue; }
+    const pi = sp.parts.indexOf(path[0]), pv = pi >= 0 ? v[pi][1] : null, tot = v.reduce((a, x) => a + x[1], 0);
+    if (path.length === 1) { out.push([yy, pv, tot ? pv / tot : null]); continue; }
+    const t = (TREE[sp.key] || {})[path[0]], ck = ((r.ck || {})[sp.key] || {})[path[0]];
+    const ki = t ? t.kids.indexOf(path[1]) : -1;
+    const kv = ck && ki >= 0 ? ck[ki] : (pv != null ? 0 : null);
+    out.push([yy, kv, pv ? kv / pv : null]);
+  }
+  return out;
+}
+function compoView(sp, y, ya, yb, path) {
+  if (path.length) return drillView(sp, y, ya, yb, path);
+  const col = cColors(sp);
+  const v = ((R(y) || {}).compo || {})[sp.key];
+  const drill = i => JSON.stringify([sp.parts[i]]);
+  {
+    let h = crumb(sp, []) + `<h4>${esc(sp.title)} の割合</h4><div class="note">${esc(sp.note)}。円の切れか表の名前を押すと、その種類のうつりかわりと中身が出る。</div>`;
     if (!v) h += `<div class="note">${y}年は記録がない。</div>`;
     else {
       const tot = v.reduce((a, x) => a + x[1], 0), neg = v.some(x => x[1] < 0);
       if (sp.donut && !neg && tot > 0) {
         const id = CP.length; CP.push({sp, rows: v, tot});
-        h += `<div class="cwrap"><div class="chart" data-cp="${id}">${donutSvg(sp, v, y)}<div class="tip"></div></div>${cLegend(sp, v, tot)}</div>`;
+        h += `<div class="cwrap"><div class="chart" data-cp="${id}">${donutSvg(sp, v, y, drill)}<div class="tip"></div></div>${cLegend(sp, v, tot, drill)}</div>`;
       } else if (sp.donut && neg) {
-        h += `<div class="note">${y}年はマイナスの中身 (${v.filter(x => x[1] < 0).map(x => `${esc(x[0])} ${esc(cAmt(sp, x[1]))}`).join("・")}) があるので、円にしない (円は全部がプラスのときだけ)。帯の図には、マイナスの中身がある年を入れていない。</div>` + cLegend(sp, v, 0);
-      } else h += cLegend(sp, v, tot);
+        h += `<div class="note">${y}年はマイナスの中身 (${v.filter(x => x[1] < 0).map(x => `${esc(x[0])} ${esc(cAmt(sp, x[1]))}`).join("・")}) があるので、円にしない (円は全部がプラスのときだけ)。帯の図には、マイナスの中身がある年を入れていない。</div>` + cLegend(sp, v, 0, drill);
+      } else h += cLegend(sp, v, tot, drill);
     }
     h += `<div class="note" style="margin-top:4px">割合のうつりかわり (100% の帯・${ya}〜${yb}年${yb - ya + 1 > 40 ? "・5 年ずつまとめた" : ""}。▲ が選んだ年)</div>` +
       `<div class="legend">${sp.parts.map((n, i) => `<span><i style="background:${col[i]};height:10px;width:10px;vertical-align:-1px"></i>${esc(n)}</span>`).join("")}</div>` + stackSvg(sp, y, ya, yb);
-    return h + "</div>";
-  }).join("");
+    return h;
+  }
 }
+function drillView(sp, y, ya, yb, path) {
+  const name = path[path.length - 1], up = path.length === 1 ? sp.title.replace(/ \(.*\)$/, "") : path[0];
+  const ser = partSeries(sp, path, ya, yb), cur = ser.find(p => p[0] === y) || [y, null, null];
+  const unitAx = sp.unit === "大人 1 年分" ? "人分" : sp.unit;
+  let h = crumb(sp, path) + `<h4>${esc(name)} <span class="note">(${esc(sp.title)})</span></h4>` +
+    `<div class="note">${y}年: <b>${esc(cur[1] == null ? "—" : cAmt(sp, cur[1]))}</b>・${esc(up)} のうち <b>${cur[2] == null ? "—" : nf(cur[2] * 100, 1) + "%"}</b></div>`;
+  h += `<div class="note" style="margin-top:4px">量のうつりかわり (${ya}〜${yb}年・${esc(unitAx)})</div>` +
+    lineChart({series: [{name, pts: ser.map(p => [p[0], p[1]]), color: COL[0]}], x0: ya, x1: yb, xfmt: yr, yfmt: (v, ax) => nf(v, !ax && Math.abs(v) < 10 && v % 1 ? 1 : 0), lo0: true, breaks: BREAKS, label: name + " の量", h: 150});
+  h += `<div class="note" style="margin-top:4px">${esc(up)} のうちの割合のうつりかわり (%)</div>` +
+    lineChart({series: [{name, pts: ser.map(p => [p[0], p[2] == null ? null : p[2] * 100]), color: COL[0]}], x0: ya, x1: yb, xfmt: yr, yfmt: (v, ax) => nf(v, ax ? 0 : 1) + "%", lo0: true, breaks: BREAKS, label: name + " の割合", h: 150});
+  const t = (TREE[sp.key] || {})[path[0]];
+  if (path.length === 1 && t && t.kids.length) {
+    const ck = (((R(y) || {}).ck || {})[sp.key] || {})[path[0]];
+    if (!ck) return h + `<div class="note">${y}年は中身の記録がない。</div>`;
+    const all = t.kids.map((n, i) => [n, ck[i] || 0]), tot = all.reduce((a, x) => a + x[1], 0);
+    // 円は 6 切れまで: 名前のあるものは、235 年の大きい順の 5 つと「その他」。順のあるもの (年齢など) は 6 つまでそのまま
+    let shown = all, folded = [];
+    if (all.length > 6) { shown = all.slice(0, 5); folded = all.slice(5); shown = shown.concat([["その他", folded.reduce((a, x) => a + x[1], 0)]]); }
+    const ksp = {key: sp.key, title: `${name} の中身`, unit: sp.unit, kind: t.kind, parts: shown.map(x => x[0]), slots: shown.map((_, i) => i)};
+    const drill = i => folded.length && i === shown.length - 1 ? "open" : JSON.stringify([path[0], shown[i][0]]);
+    h += `<h4 style="margin-top:8px">${esc(name)} の中身 (${y}年)</h4>`;
+    if (tot > 0) {
+      const id = CP.length; CP.push({sp: ksp, rows: shown, tot});
+      h += `<div class="cwrap"><div class="chart" data-cp="${id}">${donutSvg(ksp, shown, y, drill)}<div class="tip"></div></div>${cLegend(ksp, shown, tot, drill)}</div>`;
+    } else h += `<div class="note">${y}年は 0。</div>`;
+    h += `<details class="more fold"${folded.length ? "" : " open"}><summary>${folded.length ? `「その他」にまとめた ${folded.length} の中身と、ぜんぶの表` : "ぜんぶの表"}</summary><div class="tw"><table><tr><th>中身</th><th style="text-align:right">割合</th><th style="text-align:right">量</th></tr>` +
+      all.map(([n, v]) => `<tr${folded.some(f => f[0] === n) ? ' class="fd"' : ""}><td><button class="lnk" data-drill="${esc(JSON.stringify([path[0], n]))}">${esc(n)}</button>${folded.some(f => f[0] === n) ? ' <span class="muted">(その他)</span>' : ""}</td><td class="n">${tot ? nf(v / tot * 100, 1) + "%" : "—"}</td><td class="n">${esc(cAmt(sp, v))}</td></tr>`).join("") + "</table></div></details>";
+  }
+  return h;
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-drill]"); if (!b) return;
+  const box = b.closest(".compo"); if (!box) return;
+  const d = b.dataset.drill;
+  if (d === "open") { const f = box.querySelector("details.fold"); if (f) { f.open = true; f.scrollIntoView({block: "nearest"}); } return; }
+  if (d === "top") { const pnl = box.closest(".panel"); if (pnl) pnl.scrollIntoView(); }
+  const sp = COMPO.find(c => c.key === box.dataset.key), path = d === "top" ? [] : JSON.parse(d);
+  box.innerHTML = compoView(sp, +box.dataset.y, +box.dataset.ya, +box.dataset.yb, path);
+  wireCharts(box);
+  if (d !== "top") { const r = box.getBoundingClientRect(); if (r.top < 0 || r.top > innerHeight) box.scrollIntoView(); }
+  const f = box.querySelector(".crumb button, .crumb b"); if (f && d !== "top") f.focus && f.tagName === "BUTTON" && f.focus({preventScroll: true});
+});
+document.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches("path[data-drill]")) { e.preventDefault(); e.target.dispatchEvent(new MouseEvent("click", {bubbles: true})); } });
 function wireCompo(root) {
   root.querySelectorAll(".chart[data-cp]").forEach(el => {
     if (el.dataset.w) return; el.dataset.w = 1;

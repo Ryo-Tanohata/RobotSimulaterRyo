@@ -149,6 +149,75 @@ def hunger_by_year(data, years):
     return out
 
 
+# ---------------------------------------------------------------- 構成比の中の中身 (2026-11-22 本人の言葉: 切れを押すと、その種類のうつりかわりと、その中身の円)
+# 円の 1 切れ (仕事の「物を作る」・食べ物の「そのほか」・死因の「病」など) の中身を、ここで前もって作る (ページでは計算しない)。
+# tree[key][part] = {"kind": nominal|ordinal, "kids": [中身の名前 (235 年を通して大きい順。順のあるものは順のまま)]}
+# 年ごとの量は years[y]["ck"][key][part] = [kids と同じ順の量]
+AGE_KIDS = {"0〜14 歳": [("0〜4 歳", 0, 1), ("5〜9 歳", 1, 2), ("10〜14 歳", 2, 3)],
+            "15〜54 歳": [("15〜24 歳", 3, 5), ("25〜34 歳", 5, 7), ("35〜44 歳", 7, 9), ("45〜54 歳", 9, 11)],
+            "55 歳〜": [("55〜64 歳", 11, 13), ("65〜74 歳", 13, 15), ("75 歳〜", 15, 17)]}
+HH_KIDS = {"3〜4 人": [("3 人", 3, 3), ("4 人", 4, 4)], "5〜9 人": [(f"{k} 人", k, k) for k in range(5, 10)],
+           "10 人〜": [("10〜14 人", 10, 14), ("15〜19 人", 15, 19), ("20〜29 人", 20, 29), ("30〜49 人", 30, 49), ("50 人〜", 50, 10 ** 6)]}
+DEATH_AGES = [("0〜4 歳", 0, 4), ("5〜14 歳", 5, 14), ("15〜29 歳", 15, 29), ("30〜44 歳", 30, 44), ("45 歳〜", 45, 10 ** 6)]  # 死んだときの歳 (村の年)
+
+
+def compo_kids(ctx, y, r):
+    """1 年の、切れの中身の量。{key: {part: {中身: 量}}} (順はあとで tree で決める)"""
+    out = collections.defaultdict(dict)
+    py = r.get("pyramid")
+    if py:
+        for part, L in AGE_KIDS.items():
+            out["age"][part] = {n: sum(c[i] for c in py.values() for i in range(a, b)) for n, a, b in L}
+    hs = {int(k): v for k, v in (r.get("hh_sizes") or {}).items()}
+    if hs:
+        for part, L in HH_KIDS.items():
+            out["hh"][part] = {n: sum(v for k, v in hs.items() if a <= k <= b) for n, a, b in L}
+    J = r.get("jobs") or {}
+    if J:
+        for k, v in J.items():
+            if k in SC.REST:
+                continue
+            part = SC.WORK_GROUP.get(k) or ("物を作る" if k in SC.MAKE_JOBS else "そのほか")
+            out["work"].setdefault(part, {})[k] = v
+    for k, v in (r.get("food_items") or {}).items():
+        out["food"].setdefault(SC.FOOD_GROUP.get(k, "そのほか"), {})[k] = v
+    deaths = [d for s in ctx.srows(y) for d in (s.get("deaths") or [])]
+    if deaths:
+        for d in deaths:
+            c = d.get("cause") or "その他"
+            if c in ("子", "病"):
+                p = ctx.people.get(d.get("id")) or {}
+                age = p.get("age_at_death")
+                if age is None and p.get("born_day") is not None and p.get("died_day") is not None:
+                    age = (p["died_day"] - p["born_day"]) // YEAR
+                n = next((n for n, a, b in DEATH_AGES if age is not None and a <= age <= b), "歳が分からない")
+                out["causes"].setdefault(c, collections.Counter())[n] += 1
+            else:
+                out["causes"].setdefault("年・そのほか", collections.Counter())[c] += 1
+    return out
+
+
+def compo_tree(kids_by_year):
+    """中身の順と種類 (ordinal は順のまま、nominal は 235 年の合計の大きい順)"""
+    order = {"age": {p: [n for n, _, _ in L] for p, L in AGE_KIDS.items()}, "hh": {p: [n for n, _, _ in L] for p, L in HH_KIDS.items()},
+             "causes": {"子": [n for n, _, _ in DEATH_AGES] + ["歳が分からない"], "病": [n for n, _, _ in DEATH_AGES] + ["歳が分からない"]}}
+    tot = collections.defaultdict(collections.Counter)
+    for ck in kids_by_year.values():
+        for key, parts in ck.items():
+            for part, d in parts.items():
+                for n, v in d.items():
+                    tot[(key, part)][n] += v
+    tree = collections.defaultdict(dict)
+    for (key, part), c in tot.items():
+        if key in order and part in order[key]:
+            kids = [n for n in order[key][part] if c.get(n)]
+            tree[key][part] = {"kind": "ordinal", "kids": kids}
+        else:
+            kids = [n for n, _ in sorted(c.items(), key=lambda t: (t[0] in ("その他", "そのほか"), -t[1], t[0])) if c[n]]
+            tree[key][part] = {"kind": "nominal", "kids": kids}
+    return tree
+
+
 def _r(v):
     if isinstance(v, float):
         return round(v, 4)
@@ -182,6 +251,11 @@ def build(data, scan=True):
         p = sum(r.get("pop") or 0 for r in win)
         rows[y]["cbr5"] = 1000 * b / p if p else None
         rows[y]["cdr5"] = 1000 * d / p if p else None
+    kids = {y: compo_kids(ctx, y, rows[y]) for y in years}  # 円の切れの中身 (押すと出る)
+    tree = compo_tree(kids)
+    for y in years:
+        rows[y]["ck"] = {key: {part: [d.get(n, 0) for n in tree[key][part]["kids"]] for part, d in parts.items() if part in tree[key]}
+                         for key, parts in kids[y].items()}
     s1 = SC.s1_rows(ctx)
     seasons = [[r["season_end_day"], r.get("population"), r.get("store_days"),
                 round(((r.get("accounts") or {}).get("identity") or {}).get("net_product", 0) / SC.UNIT, 2) if r.get("accounts") else None]
@@ -191,7 +265,7 @@ def build(data, scan=True):
     tech = tech_data(rows)
     reports = sorted(int(re.findall(r"\d+", p.name)[0]) for p in Path(SOC, "reports").glob("year*.html"))
     D = {"asof": {"day": now, "label": f"{now // YEAR}年{now % YEAR + 1}日目", "last_year": last, "built": time.strftime("%Y-%m-%d")},
-         "defs": SC.defs(), "compo": SC.COMPO, "years": {str(y): _r(r) for y, r in rows.items()}, "s1": _r(s1), "seasons": seasons, "era_log": era_log,
+         "defs": SC.defs(), "compo": SC.COMPO, "compo_tree": tree, "years": {str(y): _r(r) for y, r in rows.items()}, "s1": _r(s1), "seasons": seasons, "era_log": era_log,
          "tech": tech, "offers": {str(k): v for k, v in offers.items()}, "check": {"n": n, "bad": _r(bad), "ref_calc": _r(mine)}, "reports": reports}
     print(f"統計: {years[0]}〜{last}年 {len(years)} 年・Society 1.0 の季節 {len(s1)}・照らし合わせ {n} (ちがう {len(bad)})・{time.time() - t0:.0f} 秒・"
           f"記憶のいちばん多い所 {resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024} MB", file=sys.stderr)
