@@ -1179,6 +1179,282 @@ def t5_html(q, w):
         w('<p class="note">この年の町の頼み: なし</p>')
 
 
+# ---------------------------------------------------------------- ダッシュボード (2026-11-22 本人の言葉「ダッシュボードの様に視覚的に分かりやすくしてください」)
+# 年報のいちばん上に、数のタイル・小さなうつりかわりの図・いまのフェーズの物差しの棒を出す。下の節の文はそのまま。
+# 数は state の年ごとの行 (g7.i4/p4/t5 の rows) と季節の記録から読むだけ。ない年は点を打たない (作らない)。
+
+DASH_CSS = """
+.dash{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--s1:#2a78d6;--track:#ecebe5;
+ --good:#0ca30c;--good-t:#006300;--bad:#d03b3b;--ring:rgba(11,11,11,.10)}
+.dash h2{border:0;margin:0 0 6px;padding:0}
+.dash .dsub{font-size:12.5px;color:var(--ink2);margin:0 0 8px;line-height:1.5}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.kpi{background:var(--surface);border:1px solid var(--ring);border-radius:10px;padding:8px 10px;line-height:1.3}
+.kpi .k{font-size:12.5px;color:var(--ink2)}
+.kpi .v{font-size:25px;font-weight:600;color:var(--ink);margin:2px 0}
+.kpi .v small{font-size:13px;font-weight:500;color:var(--ink2);margin-left:2px}
+.kpi .d{font-size:12px;color:var(--muted)}
+.kpi .d.up{color:var(--good-t)} .kpi .d.down{color:var(--bad)}
+.kpi .x{font-size:11.5px;color:var(--muted);margin-top:3px}
+.trends{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;margin-top:10px}
+.tr{background:var(--surface);border:1px solid var(--ring);border-radius:10px;padding:8px 10px 4px}
+.tr b{font-size:13.5px;color:var(--ink)} .tr .x{font-size:11.5px;color:var(--muted);line-height:1.35}
+.tr svg{margin:2px 0 0;max-width:380px}
+.tr .empty{font-size:12.5px;color:var(--muted);padding:18px 0}
+.dash .gl{stroke:var(--grid);stroke-width:1} .dash .ax{stroke:var(--axis);stroke-width:1}
+.dash .ref{stroke:var(--muted);stroke-width:1}
+.dash .ln{fill:none;stroke:var(--s1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.dash .dot{fill:var(--s1);stroke:var(--surface);stroke-width:2}
+.dash .hit{fill:transparent;cursor:default} .dash .hit:hover{fill:var(--s1);fill-opacity:.15}
+.dash .tm{fill:var(--muted);font-size:10px} .dash .tv{fill:var(--ink);font-size:11px;font-weight:600}
+.ph{background:var(--surface);border:1px solid var(--ring);border-radius:10px;padding:8px 10px;margin-top:10px}
+.ph>b{font-size:14px;color:var(--ink)}
+.yd{margin:9px 0}
+.yd .t{display:flex;justify-content:space-between;gap:8px;font-size:13.5px;color:var(--ink);line-height:1.35}
+.yd .t span:last-child{white-space:nowrap}
+.yd .ok{color:var(--good-t);font-weight:700} .yd .ng{color:var(--ink2);font-weight:700}
+.yd .tk{height:10px;background:var(--track);border-radius:5px;margin:4px 0 2px;overflow:hidden}
+.yd .fl{height:100%;border-radius:5px;background:var(--s1)} .yd .fl.ok{background:var(--good)}
+.yd .x{font-size:12px;color:var(--ink2);line-height:1.4}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chips span{font-size:12.5px;color:var(--ink);border:1px solid var(--ring);border-radius:8px;padding:3px 8px;background:var(--surface);line-height:1.35}
+.chips span b{font-size:15px;margin-left:3px}
+@media (prefers-color-scheme:dark){
+ .dash{--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--grid:#2c2c2a;--axis:#383835;--s1:#3987e5;--track:#2c2c2a;--good-t:#0ca30c;--bad:#e66767;
+  --ring:rgba(255,255,255,.10)}
+ body{background:#0d0d0d;color:#f0efec}
+ .card{background:#1a1a19;border-color:#2c2c2a}
+ h2{border-color:#2c2c2a} .sub,.note,.legend,.bar .t span:last-child{color:#c3c2b7}
+ .track{background:#2c2c2a} td{border-color:#2c2c2a}
+ .decide{background:#2a1d16;border-color:#d95926} .decide h2{border-color:#5a3423}
+ .fs span{background:#1a1a19;border-color:#383835} .fs span.on{background:#12301f;color:#7fd99a;border-color:#0ca30c}
+ .ok-tag{color:#0ca30c}
+ svg line[stroke="#e1e0d9"]{stroke:#2c2c2a} svg text[fill="#52514e"]{fill:#c3c2b7} svg circle[stroke="#fff"]{stroke:#1a1a19}
+ a{color:#86b6ef}
+}
+"""
+
+
+def _rowsof(st, key):
+    return ((_g7(st).get(key) or {}).get("rows")) or {}
+
+
+def dash_series(D, y, n=12):
+    """y-n+1〜y 年の 1 年 1 行: 人 (年の終わり)・蓄えのいちばん少ない日・読める大人の割合・食べ物でない仕事の割合・ききん。
+    ない数は None (図では点を打たない)"""
+    st = D["state"]
+    rs = {k: _rowsof(st, k) for k in ("i4", "p4", "t5")}
+    out = []
+    for yy in range(y - n + 1, y + 1):
+        r = {}
+        for k in ("i4", "p4", "t5"):  # 新しいフェーズの行を上に重ねる (同じ年なら同じ数)
+            r.update(rs[k].get(str(yy)) or {})
+        sv = sorted(D["seasons"].get(yy, []), key=lambda s: s["season_end_day"])
+        sd = [s["store_days"] for s in sv if s.get("store_days") is not None]
+        rsh = r.get("r_share", r.get("i1_share"))
+        nf = r.get("t3_share", r.get("p3_share"))
+        fam = r.get("famine")
+        if fam is None and yy == y:
+            fam = sum(1 for x in D["events"] if x.get("type") == "蓄えが尽きる")
+        out.append({"year": yy, "pop": sv[-1]["population"] if sv else r.get("pop"),
+                    "store": r.get("store_min", min(sd) if sd else None), "readers": rsh,
+                    "rd": (r.get("readers"), r.get("adults")) if r.get("adults") else None,
+                    "nonfood": nf, "famine": fam})
+    return out
+
+
+def _prev_tokens(y):
+    p = Path(SOC) / "reports" / f"year{y - 1}.html"
+    try:
+        m = re.search(r"使ったトークン: [^<(]*\(([\d,]+)\)", p.read_text(encoding="utf-8"))
+        return int(m.group(1).replace(",", "")) if m else None
+    except OSError:
+        return None
+
+
+def _kpi(label, val, unit, cur, prev, kind="num", up_good=True, extra="", scale=1):
+    """数のタイル。kind: num (そのまま) / pct (割合。差はポイント)"""
+    if cur is None:
+        v, unit, d = "—", "", '<div class="d">記録なし</div>'
+    else:
+        v = val
+        if prev is None:
+            d = '<div class="d">去年の記録なし</div>'
+        else:
+            diff = (cur - prev) * (100 if kind == "pct" else 1) / scale
+            ps = f"{prev * 100:.1f}%" if kind == "pct" else f"{prev / scale:,.0f}{unit if scale > 1 else ''}"
+            if abs(diff) < (0.05 if kind == "pct" else 0.5):
+                d = f'<div class="d">― 去年と同じ ({ps})</div>'
+            else:
+                good = (diff > 0) == up_good
+                ds = f"{diff:+.1f} ポイント" if kind == "pct" else f"{diff:+,.0f}"
+                d = (f'<div class="d {"up" if good else "down"}">{"▲" if diff > 0 else "▼"} {ds} '
+                     f'<span style="color:var(--muted)">(去年 {ps})</span></div>')
+    return (f'<div class="kpi" title="{e(label)}: {e(v)}{e(unit)}"><div class="k">{e(label)}</div>'
+            f'<div class="v">{v}<small>{e(unit)}</small></div>{d}' + (f'<div class="x">{e(extra)}</div>' if extra else "") + "</div>")
+
+
+def svg_trend(pts, fmt, label, goal=None, goal_label="", lo0=True):
+    """小さな線の図 (1 本・目盛り 1 つ)。pts: [(年, 値 or None)]。値のない年は線を切る"""
+    have = [(yy, v) for yy, v in pts if v is not None]
+    if not have:
+        return '<div class="empty">この年までの記録がない</div>'
+    W, H, L, R, T, B = 300, 118, 34, 44, 10, 20
+    vals = [v for _, v in have] + ([goal] if goal is not None else [])
+    hi, lo = max(vals), (0 if lo0 else min(vals))
+    span = (hi - lo) or (abs(hi) * 0.1 or 1)
+    step = next(m * 10 ** k for k in range(-2, 7) for m in (1, 2, 2.5, 5) if span / (m * 10 ** k) <= 3)  # 目盛りはきりのよい数 (3 つか 4 つ)
+    vmin = 0 if lo0 else step * (lo // step)
+    vmax = step * -(-hi // step)
+    if vmax <= hi and not lo0:
+        vmax += step
+    ticks = [vmin + step * i for i in range(int(round((vmax - vmin) / step)) + 1)]
+    ys = [p[0] for p in pts]
+    x = lambda yy: L + (W - L - R) * ((yy - ys[0]) / max(1, ys[-1] - ys[0]))  # noqa: E731
+    yv = lambda v: T + (H - T - B) * (1 - (v - vmin) / (vmax - vmin))  # noqa: E731
+    s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="{e(label)}">']
+    for v in ticks:
+        s.append(f'<line class="{"ax" if v == vmin else "gl"}" x1="{L}" x2="{W - R}" y1="{yv(v):.1f}" y2="{yv(v):.1f}"/>'
+                 f'<text class="tm" x="{L - 4}" y="{yv(v) + 3.5:.1f}" text-anchor="end">{e(fmt(v, True))}</text>')
+    if goal is not None:
+        s.append(f'<line class="ref" x1="{L}" x2="{W - R}" y1="{yv(goal):.1f}" y2="{yv(goal):.1f}"/>'
+                 f'<text class="tm" x="{L + 3}" y="{yv(goal) - 3:.1f}">{e(goal_label)}</text>')
+    for yy in (ys[0], ys[-1]):
+        s.append(f'<text class="tm" x="{x(yy):.1f}" y="{H - 5}" text-anchor="{"start" if yy == ys[0] else "end"}">{yy}年</text>')
+    seg = []
+    for yy, v in pts + [(None, None)]:
+        if v is None:
+            if len(seg) > 1:
+                s.append(f'<polyline class="ln" points="{" ".join(seg)}"/>')
+            elif len(seg) == 1:
+                s.append(f'<circle class="dot" cx="{seg[0].split(",")[0]}" cy="{seg[0].split(",")[1]}" r="3"/>')
+            seg = []
+        else:
+            seg.append(f"{x(yy):.1f},{yv(v):.1f}")
+    ly, lv = have[-1]
+    s.append(f'<circle class="dot" cx="{x(ly):.1f}" cy="{yv(lv):.1f}" r="4"/>')
+    s.append(f'<text class="tv" x="{x(ly) + 7:.1f}" y="{yv(lv) + 4:.1f}">{e(fmt(lv, False))}</text>')
+    for yy, v in have:  # なぞると数が出る (的は線より大きく)
+        s.append(f'<circle class="hit" cx="{x(yy):.1f}" cy="{yv(v):.1f}" r="9"><title>{yy}年: {e(fmt(v, False))}</title></circle>')
+    s.append("</svg>")
+    return "".join(s)
+
+
+def _yard(code, name, ok, frac, now, goal, note=""):
+    tag = '<span class="ok">○ 届いた</span>' if ok else '<span class="ng">× まだ</span>'
+    pct = max(2, min(100, round(100 * frac))) if frac else 2
+    return (f'<div class="yd" title="{e(code)} {e(name)}: {e(now)} (めやす {e(goal)})"><div class="t"><span>{e(code)} {e(name)}</span><span>{tag}</span></div>'
+            f'<div class="tk"><div class="fl{" ok" if ok else ""}" style="width:{pct}%"></div></div>'
+            f'<div class="x">いま {e(now)} ・ めやす {e(goal)}' + (f"<br>{e(note)}" if note else "") + "</div></div>")
+
+
+def _safe(r, ok, store, popr, readers=None):
+    """「暮らしを守る」の 4 つ (3 つ) の決まりのうち、守れた数の割合と、その文"""
+    need = -(-popr * r.get("pop0", 0) // 1)
+    chk = [r.get("famine", 0) == 0, r.get("store_min", 0) >= store, r.get("pop", 0) >= popr * r.get("pop0", 0)]
+    txt = [f"ききん {r.get('famine', 0)} 回 (0 回)", f"蓄え {r.get('store_min')} 日分 ({store} 日分以上)", f"人 {r.get('pop')} ({need:.0f} 人以上)"]
+    if readers is not None:
+        chk.append(r.get("r_share", 0) >= readers)
+        txt.append(f"読める大人 {r.get('r_share', 0) * 100:.1f}% ({readers * 100:.0f}% 以上)")
+    return sum(chk) / len(chk), f"{sum(chk)} / {len(chk)} 守れた", "・".join(("○ " if c else "× ") + t for c, t in zip(chk, txt))
+
+
+def phase_panel(st, y):
+    """いまのフェーズ (T5 → P4 → I4 の順で、その年の行があるもの) の物差しの棒と数。なければ空"""
+    g7 = _g7(st)
+    for key in ("t5", "p4", "i4"):
+        r = ((g7.get(key) or {}).get("rows") or {}).get(str(y))
+        if r:
+            break
+    else:
+        return ""
+    pc = lambda v: f"{v * 100:.1f}%"  # noqa: E731
+    Y, chips = [], []
+    if key == "t5":
+        import t5 as M
+        title = "フェーズ 5 (川下の町と鉄の道具) の物差し"
+        Y.append(_yard("t1", "果たした町の頼み", r["t1_like"], min(r["done"] / M.T1_DONE, r["taker_n"] / M.T1_HOUSES),
+                       f"{r['done']} 件・受けた家 {r['taker_n']}", f"{M.T1_DONE} 件・受けた家 {M.T1_HOUSES}"))
+        Y.append(_yard("t2", "よそのために働いた家", r["t2_like"], r["t2_n"] / M.T2_HOUSES, f"{r['t2_n']} 家", f"{M.T2_HOUSES} 家",
+                       f"町かよその家の頼みで {M.T2_DAYS} 人日 (1 人 1 日の仕事 × 日数) 以上働いた家"))
+        Y.append(_yard("t3", "食べ物でない仕事", r["t3_ok"], r["t3_share"] / M.T3_SHARE, pc(r["t3_share"]), f"{M.T3_SHARE * 100:.0f}% 以上",
+                       "働いた日のうち、畑やヤギなど食べ物の仕事でない日の割合"))
+        f, now, note = _safe(r, r["t4_ok"], M.T4_STORE, M.T4_POP, M.T4_READERS)
+        Y.append(_yard("t4", "暮らしを守る", r["t4_ok"], f, now, "4 つ全部", note))
+        chips = [("町の頼み 出した", r["posted"], "枚"), ("果たした", r["done"], "件"), ("果たせなかった", r["failed"], "件"), ("消えた", r["gone"], "件"),
+                 ("鉄の鎌 いま", r["tools_now"], f"本 ({r['tool_houses']} 家)"), ("鎌で刈った日", r["reap_uses"], "日")]
+    elif key == "p4":
+        import p4 as M
+        title = "フェーズ 4 (頼み書きと町) の物差し"
+        Y.append(_yard("p1", "果たした頼み", r["p1_like"], min(r["done"] / M.P1_DONE, r["req_houses"] / M.P1_HOUSES, r["taker_houses"] / M.P1_HOUSES),
+                       f"{r['done']} 件・頼んだ家 {r['req_houses']}・受けた家 {r['taker_houses']}", f"{M.P1_DONE} 件・各 {M.P1_HOUSES} 家"))
+        Y.append(_yard("p2", "よその家のために働いた家", r["p2_like"], r["town_n"] / M.P2_HOUSES, f"{r['town_n']} 家", f"{M.P2_HOUSES} 家",
+                       f"よその家の頼みで {M.P2_DAYS} 人日 (1 人 1 日の仕事 × 日数) 以上働いた家"))
+        Y.append(_yard("p3", "食べ物でない仕事", r["p3_ok"], r["p3_share"] / M.P3_SHARE, pc(r["p3_share"]), f"{M.P3_SHARE * 100:.0f}% 以上",
+                       "働いた日のうち、畑やヤギなど食べ物の仕事でない日の割合"))
+        f, now, note = _safe(r, r["p4_ok"], M.P4_STORE, M.P4_POP, M.P4_READERS)
+        Y.append(_yard("p4", "暮らしを守る", r["p4_ok"], f, now, "4 つ全部", note))
+        chips = [("頼み書き 書いた", r["wrote"], "枚"), ("受けた", r["took"], "件"), ("果たした", r["done"], "件"), ("果たせなかった", r["failed"], "件"),
+                 ("消えた", r["gone"], "件"), ("頼みの仕事", r["pd"], "人日")]
+    else:
+        import i4 as M
+        title = "フェーズ 3 (読み書きと知らせ板) の物差し"
+        Y.append(_yard("i1", "読める大人", r["i1_like"], r["i1_share"] / M.I1_SHARE, f"{pc(r['i1_share'])} ({r['readers']}/{r['adults']} 人)",
+                       f"{M.I1_SHARE * 100:.0f}% 以上"))
+        Y.append(_yard("i2", "知らせ板", r["i2_like"], min(r["notes"] / M.I2_NOTES, r["note_houses"] / M.I2_HOUSES),
+                       f"{r['notes']} 枚・{r['note_houses']} 家", f"{M.I2_NOTES} 枚・{M.I2_HOUSES} 家"))
+        Y.append(_yard("i3", "字の仕事", r["i3_like"], r["i3_share"] / M.I3_SHARE, f"{r['i3_share'] * 100:.2f}%", f"{M.I3_SHARE * 100:.0f}% 以上",
+                       "働いた日のうち、字を教える・書く・帳をつける日の割合"))
+        f, now, note = _safe(r, r["i4_ok"], M.I4_STORE, M.I4_POP)
+        Y.append(_yard("i4", "暮らしを守る", r["i4_ok"], f, now, "3 つ全部", note))
+        chips = [("教えた", r["teach_days"], "人日"), ("教わった子", r["kids_taught"], "人"), ("新しく読める人", r["new_readers"], "人"),
+                 ("知らせを使った", r["used"], "回")]
+    met = sum(1 for x in Y if '"ok"' in x)
+    return (f'<div class="ph"><b>{e(title)}</b><div class="dsub" style="margin:0">({met} / {len(Y)} 届いた。棒は、めやすまでどこまで来たか)</div>' + "".join(Y)
+            + '<div class="chips">' + "".join(f'<span>{e(a)}<b>{b}</b> {e(c)}</span>' for a, b, c in chips) + "</div></div>")
+
+
+def dash_html(D, PP, y, tokens):
+    """年報のいちばん上のダッシュボード (数のタイル・うつりかわり・いまのフェーズ)"""
+    S = dash_series(D, y)
+    cur, prev = S[-1], (S[-2] if len(S) > 1 else {})
+    pv = lambda k: prev.get(k)  # noqa: E731
+    rd = cur.get("rd")
+    pt = _prev_tokens(y)
+    tiles = [
+        _kpi("人 (年の終わり)", f"{cur['pop']:,}" if cur["pop"] is not None else "—", "人", cur["pop"], pv("pop")),
+        _kpi("蓄え (いちばん少ない日)", f"{cur['store']}" if cur["store"] is not None else "—", "日分", cur["store"], pv("store"),
+             extra="いまの人数で何日食べられるか"),
+        _kpi("読める大人", f"{cur['readers'] * 100:.1f}" if cur["readers"] is not None else "—", "%", cur["readers"], pv("readers"), kind="pct",
+             extra=f"大人 {rd[1]} 人のうち {rd[0]} 人" if rd else ""),
+        _kpi("食べ物でない仕事", f"{cur['nonfood'] * 100:.1f}" if cur["nonfood"] is not None else "—", "%", cur["nonfood"], pv("nonfood"), kind="pct",
+             extra="働いた日のうち、畑・ヤギ以外の割合"),
+        _kpi("ききん", f"{cur['famine']}" if cur["famine"] is not None else "—", "回", cur["famine"], pv("famine"), up_good=False,
+             extra="村の蓄えが尽きた回数 (0 がよい)"),
+        _kpi("この年のトークン", f"{tokens / 10 ** 4:,.0f}" if tokens is not None else "—", "万", tokens, pt,
+             extra="AI の村人が考えるのに使った量", scale=10 ** 4) if tokens is not None else
+        _kpi("この年のトークン", "—", "", None, None),
+    ]
+    if tokens is not None and pt is not None:  # トークンは良い悪いの向きがないので、色をつけない
+        tiles[-1] = tiles[-1].replace('class="d up"', 'class="d"').replace('class="d down"', 'class="d"')
+    pts = lambda k, m=1: [(r["year"], None if r[k] is None else r[k] * m) for r in S]  # noqa: E731
+    num = lambda v, ax: f"{v:,.0f}"  # noqa: E731
+    pct = lambda v, ax: f"{v:.0f}%" if ax else f"{v:.1f}%"  # noqa: E731
+    charts = [
+        ("人", "年の終わりの人数", svg_trend(pts("pop"), num, "人のうつりかわり", lo0=False), ""),
+        ("蓄え (日分)", "1 年でいちばん少なかった日。めやす 120 日分", svg_trend(pts("store"), num, "蓄えのうつりかわり", goal=120, goal_label="めやす 120"), ""),
+        ("読める大人 (%)", "大人のうち、字が読める人。めやす 25%", svg_trend(pts("readers", 100), pct, "読める大人の割合のうつりかわり", goal=25, goal_label="めやす 25%"), ""),
+        ("食べ物でない仕事 (%)", "燃える石・板・字など。めやす 22%", svg_trend(pts("nonfood", 100), pct, "食べ物でない仕事の割合のうつりかわり", goal=22, goal_label="めやす 22%"), ""),
+    ]
+    H = [f'<section class="card dash"><h2>ひと目で見る {y}年</h2>'
+         '<p class="dsub">▲▼ は去年からの動き (緑はよい向き、赤はわるい向き)。図の点を指でさわると、その年の数が出る。</p>']
+    H.append('<div class="kpis">' + "".join(tiles) + "</div>")
+    H.append('<div class="trends">' + "".join(f'<div class="tr"><b>{e(a)}</b><div class="x">{e(b)}</div>{c}</div>' for a, b, c, _ in charts) + "</div>")
+    H.append(phase_panel(D["state"], y))
+    H.append("</section>")
+    return "".join(H)
+
+
 def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
     st = D["state"]
     phase = C["phase"]
@@ -1200,9 +1476,10 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
     w = H.append
     w('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
       '<meta name="viewport" content="width=device-width,initial-scale=1">'
-      f"<title>川辺の村 {y}年の年報</title><style>{CSS}</style></head><body><main>")
+      f"<title>川辺の村 {y}年の年報</title><style>{CSS}{DASH_CSS}</style></head><body><main>")
     # 見出し
     w(f"<h1>川辺の村 {y}年の年報</h1>")
+    w(dash_html(D, PP, y, tokens))  # 2026-11-22: いちばん上のダッシュボード
     # あなたが決めること
     w('<section class="card decide"><h2>あなたが決めること</h2>'
       + (f"<p>{e(decide)}</p>" if decide else "<p>なし (読むだけで大丈夫です)</p>") + "</section>")
