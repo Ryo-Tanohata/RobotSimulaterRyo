@@ -53,7 +53,7 @@ const VIDEO_CSS = `
 
 // GPU=1: 自分の PC の GPU (内蔵 GPU でもよい) で 3D を描く。なければ CPU で描く swiftshader (クラウド用。とても遅い)
 const GL_ARGS = process.env.GPU ? ["--ignore-gpu-blocklist", "--enable-gpu-rasterization"] : ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"];
-const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new", args: ["--no-sandbox", "--hide-scrollbars", ...GL_ARGS] });
+const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new", protocolTimeout: 600000, args: ["--no-sandbox", "--hide-scrollbars", ...GL_ARGS] });
 const page = await browser.newPage();
 await page.setViewport({ width: W, height: H, deviceScaleFactor: 1 });
 await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "light" }]);
@@ -71,10 +71,11 @@ if (process.env.LIBS) {
   });
 }
 // 読み込みの終わりを待つ (2026-10-08: 「通信が止まるまで」は、Society 2.0 のデータで終わらないことがあったため、load と 3D の画面を待つ)
-await page.goto(`http://localhost:${port}/index.html`, { waitUntil: "load", timeout: 120000 });
-await page.waitForFunction(() => window.Replay3D && window.THREE, { timeout: 60000 });
+// (2026-11-22: Society 3.0 のデータ 65 MB (700 人) で、本人の PC でも、データを読んだあと 3D がそろうまで 3 分ほどページが手をはなせない。待ちを 10 分に)
+await page.goto(`http://localhost:${port}/index.html`, { waitUntil: "load", timeout: 600000 });
+await page.waitForFunction(() => window.Replay3D && window.THREE, { timeout: 600000 });
 await page.addStyleTag({ content: VIDEO_CSS });
-await page.waitForFunction(() => document.querySelector(".r3-stage canvas"), { timeout: 60000 });
+await page.waitForFunction(() => document.querySelector(".r3-stage canvas"), { timeout: 600000 });
 await page.evaluate(() => {
   const st = document.querySelector(".r3-stage");
   for (const c of ["v-cap", "v-title", "v-credit", "v-note"]) { const d = document.createElement("div"); d.className = c; d.hidden = true; st.appendChild(d); }
