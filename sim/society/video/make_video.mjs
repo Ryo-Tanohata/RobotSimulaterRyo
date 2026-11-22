@@ -18,7 +18,11 @@ const lines = JSON.parse(fs.readFileSync(narrPath, "utf8"));
 const durs = JSON.parse(fs.readFileSync(path.join(voiceDir, "durations.json"), "utf8"));
 // 日付の注釈 (2026-10-09 本人の希望): 日付は「10年31日目」(年は過ぎた年の数。最初の年は 0年) と表すが、この世界の 1 年は現実より短い。最初の数秒と最後のクレジットに出す
 const YEAR_NOTE = "※ この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ) で、現実の 1 年とは違います。「10年31日目」は、10 年たった年の 31 日目 (最初の年は 0年)";
-const CREDIT = "ナレーション: VOICEVOX:ずんだもん<br>描画: three.js (MIT License)<br>効果音・BGM: プログラムで自作" + `<br><span style="font-size:20px">${YEAR_NOTE}</span>`;
+// PEOPLE=フォルダ (2026-11-23、D1P から): 棒の人の代わりに、そのフォルダの人のモデル (<名前>.glb と .json) を動かす (app/replay3d_people.js)
+const PEOPLE = process.env.PEOPLE || "";
+const CREDIT = "ナレーション: VOICEVOX:ずんだもん<br>描画: three.js (MIT License)<br>効果音・BGM: プログラムで自作"
+  + (PEOPLE ? "<br>人のモデル: VRoid Studio で作成<br>動き: CMU Graphics Lab Motion Capture Database (mocap.cs.cmu.edu)" : "")
+  + `<br><span style="font-size:20px">${YEAR_NOTE}</span>`;
 
 // SLIM=1 (2026-11-22、1 日目の撮り直し D1 から): 撮る日 (DAYS) に要る分だけの小さな app_data.json を、メモリの中で作って配る。
 // 全部のデータ (65 MB・3,855 人) だと、ページの用意に 3 分ほど、1 コマにも時間がかかるため。ファイルには書かない (data/ は読むだけ)。
@@ -53,10 +57,11 @@ const SLIM = process.env.SLIM && process.env.DAYS ? slimData(process.env.DAYS.sp
 const server = http.createServer((req, res) => {
   const name = decodeURIComponent(req.url.split("?")[0]).replace(/^\//, "") || "index.html";
   // しまった年の出来事と再生の行 (archive/、2026-10-10) も、app_data.json と同じデータの場所から配る
-  const file = name === "app_data.json" || name.startsWith("archive/") ? path.join(DATA, name) : path.join(APP, name);
+  const file = name === "app_data.json" || name.startsWith("archive/") ? path.join(DATA, name)
+    : PEOPLE && name.startsWith("people/") ? path.join(PEOPLE, path.basename(name)) : path.join(APP, name);
   // アプリに入れた動画は撮影に使わない (読み込みが終わらず、ページの読み込み待ちが切れるため)
   if (!fs.existsSync(file) || name.endsWith(".mp4")) { res.writeHead(404); return res.end(); }
-  const type = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".json": "application/json", ".jsonl": "application/x-ndjson", ".mp4": "video/mp4" }[path.extname(file)] || "application/octet-stream";
+  const type = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".json": "application/json", ".jsonl": "application/x-ndjson", ".mp4": "video/mp4", ".glb": "model/gltf-binary" }[path.extname(file)] || "application/octet-stream";
   res.writeHead(200, { "content-type": type });
   if (SLIM && name === "app_data.json") return res.end(SLIM);
   if (name === "index.html") return res.end("<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'>" + fs.readFileSync(file, "utf8"));
@@ -90,7 +95,7 @@ await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "light" 
 page.on("pageerror", (e) => console.error("page error:", e.message));
 // LIBS=フォルダ (npm で入れた three・marked の node_modules がある所): CDN に出られない環境では、CDN の代わりにそこから読む。フォントは使わない
 if (process.env.LIBS) {
-  const LOCAL = { "three.min.js": "three/build/three.min.js", "OrbitControls.js": "three/examples/js/controls/OrbitControls.js", "marked.min.js": "marked/marked.min.js" };
+  const LOCAL = { "three.min.js": "three/build/three.min.js", "OrbitControls.js": "three/examples/js/controls/OrbitControls.js", "GLTFLoader.js": "three/examples/js/loaders/GLTFLoader.js", "marked.min.js": "marked/marked.min.js" };
   await page.setRequestInterception(true);
   page.on("request", (req) => {
     const u = new URL(req.url());
@@ -112,6 +117,12 @@ await page.evaluate(() => {
   window.dispatchEvent(new Event("resize"));
   Replay3D.setAutoCamera(true);
 });
+if (PEOPLE) {  // 人のモデル: three の glb を読む道具と、モデルを動かす replay3d_people.js を足して、モデルを読む
+  await page.addScriptTag({ url: "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" });
+  await page.addScriptTag({ url: `http://localhost:${port}/replay3d_people.js` });
+  const got = await page.evaluate(async () => { const n = await Replay3DPeople.load("people/"); Replay3D.setPeople(Replay3DPeople); return n; });
+  console.log(`PEOPLE: ${got.join("・")} (${PEOPLE})`);
+}
 await new Promise((r) => setTimeout(r, 800));
 
 const from = Number(fromArg || 1), to = Number(toArg || Math.max(...lines.map((l) => l.day)));

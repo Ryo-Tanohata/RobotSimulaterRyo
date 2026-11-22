@@ -6,6 +6,7 @@
 # G8 の最後の 1 年 G8b (「G8 の続き 国の外へ」) も一覧にある (2026-10-28。撮る日は days_G8b.txt と同じ)。
 # Society 3.0 フェーズ 3・4 (読み書きと知らせ板・頼み書きと町) の S3P34 も一覧にある (2026-11-22。撮る日は days_S3P34.txt と同じ)。
 # 1 日目 (村のいちばん最初の日) を今の 3D で撮り直す D1 も一覧にある (2026-11-22。撮る日は days_D1.txt と同じ)。D1 は SLIM_ITEMS にあるので、撮る日に要る分だけの小さなデータで撮る (make_video.mjs の SLIM)
+# D1P (2026-11-23) は、D1 と同じナレーションと声で、棒の人の代わりに人のモデル (VRoid の五人と記録した動き) を動かす。モデルは PEOPLE_DIR (既定は human-model/people_glb。GitHub には入れない)
 # 本人の PC (Windows・Git Bash・GPU) 用:  bash sim/society/video/render_all.sh   (PY は既定で py)
 # 名前を渡すと、その動画だけ撮る:  bash sim/society/video/render_all.sh S1   (いくつでも並べられる。名前がなければ一覧の全部)
 # 続きから撮れる: できた動画は out/society_<名前>.final があれば飛ばす。撮り終えた 60 秒の区間も render_parts.sh が飛ばす
@@ -33,10 +34,13 @@ ITEMS=(G1:510,600,629,659,990,1019,1229 G1F1:509,510,600 G1F2:629,630,631 G1F3:6
        G8:8519,8639,10919,11159,12461,12479 G8F2:8639,8759,8789 G8F3:8999,9509,9629
        G8b:12479,12509,12599
        S3P34:27000,27059,27360,27839,27870,28079
-       D1:1)
+       D1:1 D1P:1)
 # 小さなデータで撮る動画 (2026-11-22): ページには、撮る日に要る分だけの app_data.json を配る (make_video.mjs の SLIM=1。data/ には書かない)。
 # 前からある動画は、前と同じく全部のデータで撮る
-SLIM_ITEMS=" D1 "
+SLIM_ITEMS=" D1 D1P "
+# 人のモデルで撮る動画と、ナレーションと声を借りる動画 (2026-11-23)
+PEOPLE_ITEMS=" D1P "
+src_of() { case "$1" in D1P) echo D1 ;; *) echo "$1" ;; esac; }
 # 名前が渡されたら、一覧からその動画だけを選ぶ (知らない名前なら何もせずに止まる)
 PART2=1
 if [ $# -gt 0 ]; then
@@ -56,8 +60,9 @@ render_one() {
   log "$name: render start (days $days)"
   local t0=$(date +%s)
   local slim=; case "$SLIM_ITEMS" in *" $name "*) slim=1 ;; esac
-  SLIM=$slim DAYS=$days bash render_parts.sh "narration_$name.json" "voice/$name" "$out" >> "out/render_$name.log" 2>&1 || { log "$name: RENDER FAILED"; return 1; }
-  $PY ../../../tools/audio/mix.py "$out.timeline.json" "voice/$name" "$out.wav" >> "out/render_$name.log" 2>&1 || { log "$name: MIX FAILED"; return 1; }
+  local src=$(src_of "$name") people=; case "$PEOPLE_ITEMS" in *" $name "*) people=${PEOPLE_DIR:-../../../../human-model/people_glb} ;; esac
+  SLIM=$slim PEOPLE=$people DAYS=$days bash render_parts.sh "narration_$src.json" "voice/$src" "$out" >> "out/render_$name.log" 2>&1 || { log "$name: RENDER FAILED"; return 1; }
+  $PY ../../../tools/audio/mix.py "$out.timeline.json" "voice/$src" "$out.wav" >> "out/render_$name.log" 2>&1 || { log "$name: MIX FAILED"; return 1; }
   ffmpeg -loglevel error -y -i "${out}_silent.mp4" -i "$out.wav" -c:v libx264 -crf 28 -preset medium -pix_fmt yuv420p \
     -c:a aac -b:a 128k -af loudnorm=I=-16:TP=-1.5:LRA=11 -movflags +faststart -shortest "../app/society_$name.mp4" >> "out/render_$name.log" 2>&1 \
     || { log "$name: ENCODE FAILED"; return 1; }

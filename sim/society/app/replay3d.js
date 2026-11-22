@@ -592,6 +592,7 @@
     S.toast.innerHTML = shown.slice(-4).map((e) => `<div>${esc(plain(e.text))}</div>`).join("");
     S.toastWho = new Set(shown.slice(-4).map((e) => e.who).filter(Boolean));
     for (const n in S.labels) S.labels[n].bubble = bubbles[n] || "";
+    if (S.people) S.people.frame(P, v);  // 人のモデル (setPeople。動画 D1P): 棒の人の代わりに動かし、名前の札の場所も合わせる
   }
 
   // 初期の記録 (1〜2 日目) にはカロリーの表記があるので、見せるときは言い換える
@@ -661,7 +662,8 @@
       const ds = ps.map((p) => p.distanceTo(c)).sort((a, b) => a - b);
       r = Math.min(r, ds[Math.floor(ds.length * 0.7)]);
     }
-    const dist = Math.min(90, Math.max(13, r * 2.3 + 9));
+    const near = (S.people && S.people.camera) || { min: 13, add: 9 };  // 人のモデルのとき (D1P) は、集まっている人に寄る
+    const dist = Math.min(90, Math.max(near.min, r * 2.3 + near.add));
     const dir = new THREE.Vector3(0.5, 0.62, 0.78).normalize();
     S.controls.target.lerp(c, 0.07);
     S.camera.position.lerp(S.controls.target.clone().add(dir.multiplyScalar(dist)), 0.07);
@@ -778,6 +780,12 @@
       if (!S) return [];
       const t = String(text || "");
       return S.D.people.map((p) => p.name).filter((n) => { const i = t.indexOf(n); return i >= 0 && !/[0-9０-９]/.test(t[i + n.length] || ""); });
+    },
+    // 動画用 (2026-11-23、D1P): 棒の人の代わりに人のモデルを動かす (replay3d_people.js の Replay3DPeople)。init を 1 回、frame(その日の見せ方, 秒) をコマごとに呼ぶ
+    setPeople(hooks) {
+      if (!S) return;
+      S.people = hooks;
+      hooks.init({ K, scene: S.W.scene, figs: S.figs, labels: S.labels, D: S.D, w2t: (x, y) => w2t(S.D, x, y) });
     },
     setSegments(day, secByKey) { if (S) { S.segOverride = S.segOverride || {}; S.segOverride[day] = secByKey; } },
     timeline(day) { if (!S) return null; const P = planDay(S.D, day); return { total: P.total, segs: P.segs.map((s) => ({ key: s.key, v0: s.v0, v1: s.v1 })), eve: P.eve.length }; },
