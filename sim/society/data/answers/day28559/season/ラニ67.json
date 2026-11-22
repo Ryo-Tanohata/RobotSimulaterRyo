@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑は実っている。落ちる前に、まず刈り入れを済ませよう。ヤギも減らしたいね。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるので、刈り入れを先にする"},"family":{"ラニ71":{"activity":"畑仕事","place":"camp","why":"刈り入れを急ぐ"},"ケナ75":{"activity":"畑仕事","place":"camp","why":"刈り入れを急ぐ"}},"pick":0,"plant":0,"harvest":60,"eat_goat":5},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"秋は畑の草取りで実りを増やす"},"family":{"ラニ71":{"activity":"水の道を掘る","place":"camp","why":"手のあく人は水の道を掘る"},"ケナ75":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":3,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"冬も畑の草取りを続ける"},"family":{"ラニ71":{"activity":"水の道を掘る","place":"camp","why":"冬のあいだに水の道を進める"},"ケナ75":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"春も草取りで実りを守る"},"family":{"ラニ71":{"activity":"水の道を掘る","place":"camp","why":"水の道の手入れを進める"},"ケナ75":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"セオ135":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T1219":false,"T1221":false,"T1222":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,"order":null,"take":null,
+"knowledge":[{"op":"add","text":"夏は実った畑の刈り入れを先にする。ヤギは草より多いので肉にして減らす。","because":[5798899],"confidence":0.6}],
+"proposal":null,
+"votes":[],
+"year_name":"畑がよく実った年",
+"feeling":"蓄えはたっぷりある。まず刈り入れをがんばろう。"}

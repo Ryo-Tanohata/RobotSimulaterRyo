@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏のうちに、実った畑をしっかり刈ろう。落ちてしまっては、もったいないからね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実が落ちるので、刈り入れを手伝う"}, "family": {"ロワ85": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ハソ87": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "シエ96": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ホタ100": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "セオ105": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがたくさん残っているので、畑のために掘る"}, "family": {"ロワ85": {"activity": "水の道を掘る", "place": "camp", "why": "畑に水を引くため"}, "ハソ87": {"activity": "水の道を掘る", "place": "camp", "why": "畑に水を引くため"}, "シエ96": {"activity": "水の道を掘る", "place": "camp", "why": "畑に水を引くため"}, "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "畑に水を引くため"}, "セオ105": {"activity": "水の道を掘る", "place": "camp", "why": "畑に水を引くため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "冬は木の実がないので、けものを狩って食べ物を足す"}, "family": {"ロワ85": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ハソ87": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "シエ96": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ホタ100": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "セオ105": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして夏の実りを増やす"}, "family": {"ロワ85": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ハソ87": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "シエ96": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ホタ100": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "セオ105": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "みのりを刈る年",
+ "feeling": "みんなで力を合わせて、畑をだいじに育てたい。"}

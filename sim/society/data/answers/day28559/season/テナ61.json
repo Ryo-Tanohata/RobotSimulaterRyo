@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈り、板をひく仕事もつづける。みんな、落ちる前に刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちないよう刈るため"}, "family": {"シエ76": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "セオ76": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひきつづける"}, "family": {"シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "セオ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひきつづける"}, "family": {"シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "セオ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひきつづける"}, "family": {"シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "セオ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1219": false, "T1221": false, "T1222": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "板と刈り入れの年",
+ "feeling": "体はまだ動く。畑も板も、ゆっくり続けたい。"}

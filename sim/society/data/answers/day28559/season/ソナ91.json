@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を毎日刈るよ。落としたらもったいないからね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから、毎日刈る"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "畑は人手が要る。いっしょに刈る"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも刈り入れの助けになる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 5},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑を育てる手伝いをする"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "畑の手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 300},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで来年の実りが増える"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春は子ヤギが生まれる。世話をして乳をとる"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "ケナ114": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話の手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "畑を落とさず刈れるように、家族でがんばりたい。"}

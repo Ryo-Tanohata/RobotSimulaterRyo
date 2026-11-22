@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "わたしは土をこねて器を作るのが好き。今年も静かに手を動かすよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意で、蓄えの草の種を虫から守れるから"}, "family": {"ナセ109": {"activity": "採集", "place": "camp", "why": "家の食べ物を集めるため"}, "ラニ110": {"activity": "採集", "place": "camp", "why": "家の食べ物を集めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器を作り続け、蓄えを守るため"}, "family": {"ナセ109": {"activity": "採集", "place": "camp", "why": "木の実の実る季節に集めるため"}, "ラニ110": {"activity": "採集", "place": "camp", "why": "木の実の実る季節に集めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬でも屋根の下でできる仕事だから"}, "family": {"ナセ109": {"activity": "狩り", "place": "北川12", "why": "冬は魚が頼りだから"}, "ラニ110": {"activity": "狩り", "place": "北川12", "why": "冬は魚が頼りだから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "得意な仕事を続けるため"}, "family": {"ナセ109": {"activity": "採集", "place": "camp", "why": "家の食べ物を集めるため"}, "ラニ110": {"activity": "採集", "place": "camp", "why": "家の食べ物を集めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"セオ135": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1219": false, "T1221": false, "T1222": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "土の器の年",
+ "feeling": "静かに土をこねて過ごしたい。"}
