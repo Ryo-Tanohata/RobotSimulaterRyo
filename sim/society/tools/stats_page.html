@@ -248,8 +248,8 @@ function cover(p) {
   const so = d => d < 489 ? "s1" : d < 24120 ? "s2" : "s3";
   const band = [["s1", 0, 489, "Society 1.0"], ["s2", 489, 24120, "Society 2.0"], ["s3", 24120, D.asof.day + 1, "Society 3.0"]];
   let h = `<div class="card"><h2 style="margin-top:0">0年 → ${LAST}年: 3 つの時代</h2>` +
-    `<div class="eraband">${band.map(([k, a, b, n], i) => `<button style="flex:${Math.max(b - a, 2600)};border-top-color:${COL[i]}" data-go="${k}" title="${esc(n)} (${Math.floor(a / Y)}〜${Math.floor((b - 1) / Y)}年)">${esc(n)}</button>`).join("")}</div>` +
-    `<div class="note">帯を押すと、その時代のダッシュボードへ (Society 1.0 は 4 年だけなので、帯は広げてある)。フェーズ: ${segs.map(s => `${esc(s.era)} ${Math.floor(s.from / Y)}年`).join("・")}。` +
+    `<div class="eraband">${band.map(([k, a, b, n], i) => `<button style="flex:${Math.max(b - a, 2600)};border-top-color:${COL[i]}" data-go="${k}" title="${esc(n)} (${Math.floor(a / Y)}〜${Math.floor((b - 1) / Y)}年)">${esc(n.replace("Society ", ""))}</button>`).join("")}</div>` +
+    `<div class="note">帯は左から Society 1.0・2.0・3.0。押すと、その時代のダッシュボードへ (Society 1.0 は 4 年だけなので、帯は広げてある)。フェーズ: ${segs.map(s => `${esc(s.era)} ${Math.floor(s.from / Y)}年`).join("・")}。` +
     ` Society 3.0 のフェーズ: s3 204年・s4 216年・i4 225年・p4 232年・t5 236年 (フェーズの行がある年)。</div>`;
   const reached = D.tech.techs.filter(t => t.first_day != null && (t.status === "届いた")).map(t => [t.first_day / Y, `◆ ${t.name} (${Math.floor(t.first_day / Y)}年に届いた)`])
     .concat(D.tech.techs.filter(t => t.status === "あとで届いた").map(t => [t.later_year, `◆ ${t.name} (あとで届いた ${t.later_year}年)`]))
