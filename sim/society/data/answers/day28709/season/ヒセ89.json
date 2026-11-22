@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋だ。ぼくは東の林のもっと奥まで行って、大きなけものを狙ってくる。肉がとれたらみんなで分けよう。"}],
+ "job": {"activity": "狩り", "place": "東林45", "with": [], "why": "狩りの腕には自信がある。まだ見ていない遠い林で、大きな獲物に挑みたい"}, "sow": 300, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 1, "accept": {"ケセ137": true, "シエ137": true}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをして来年の実りを増やすため"}, "ヌオ101": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多すぎるので、世話をして子どもたちの近くにいる"}, "リセ109": {"activity": "狩り", "place": "東林28", "why": "狩りが得意なので、近い林で肉をとってきてもらう"}}, "keep": false,
+ "judge": {"M569": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1231": false, "T1232": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の量より多くなっている。少しつぶして肉にしたほうがよい。", "because": [5898354], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は少し疲れているが、遠い林で大きな獲物に会えるかと思うと心が弾む。"}

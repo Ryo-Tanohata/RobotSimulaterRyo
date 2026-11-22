@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "南の村から来たケセ137さんとシエ137さん、いっしょに暮らそうよ。ナセ134も新しい人に会えるのを楽しみにしてるよ。"}, {"to": "ホミ113", "text": "秋の畑の草取り、いっしょにがんばろうね。夕方は木の実も少し取ってこよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ホミ113"], "why": "秋にまいた畑の草を取れば、次の夏の実りがうんと増えるから続ける"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ケセ137": true}, "family": {"ホミ113": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で手が早いから、いっしょに草取りをして畑を育てたい"}}, "keep": false,
+ "judge": {"M569": "ゆるす"}, "feast": false, "leader": "テナ61", "trade": {"T1231": "村", "T1232": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは 124 頭いて、草で養える約 110 頭をこえたので、5 頭がやせていなくなった", "because": [5898354], "confidence": 0.9}, {"op": "add", "text": "北の村12 とハソ12の村は、この年は畑が実らず苦しんでいる", "because": [5898372, 5898373], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L949", "against": "家ごとに 1 頭ずつだと、ヤギの少ない家にはきついかもしれない", "agree": true, "reason": "ヤギがやせていなくなるのはもったいないし、雨の夜にぬれる人をなくしたいから"}, {"id": "L954", "against": "今はヤギが 119 頭ほどで、40 頭つぶすと多すぎるかもしれない", "agree": true, "reason": "草で養える数をこえるとヤギがいなくなるので、肉にして蓄えたほうがいいから"}, {"id": "L943", "against": "秋と冬は住まいを建てる人も要る", "agree": true, "reason": "畑を刈りきって、水の道の手入れも進めたいから"}],
+ "feeling": "小さい子がたくさん亡くなって悲しいけど、新しい人も来てくれて、また前を向けそう"}

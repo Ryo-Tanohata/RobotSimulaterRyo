@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、秋は畑に種をまいて、のこ番の仕事をするよ。ヤギが多いから少し肉にしよう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "M26 ののこ番だから、板をひいて家と村の手入れを助けたい"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 5,
+ "accept": {"ケセ137": true, "シエ137": true},
+ "family": {"ムイ87": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として働く"}, "ワユ98": {"activity": "字を教える", "place": "camp", "why": "子どもたちが字を読めるようになるように"}},
+ "keep": false,
+ "judge": {"M569": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがあって安心。ヤギが増えすぎなのが少し気がかり。"}

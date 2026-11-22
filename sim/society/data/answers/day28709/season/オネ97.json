@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は種をまいて、草取りをていねいにしよう。ヤギは草より多いから、少しずつ肉にしようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋は草取りをしないと夏の実りが3割になると覚えているから、畑を世話する"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2, "accept": {"ケセ137": true, "シエ137": true},
+ "family": {"キオ101": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手がいるから"}, "キサ105": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手がいるから"}, "キオ107": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手がいるから"}, "リセ111": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手がいるから"}},
+ "keep": false,
+ "judge": {"M569": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1231": "村", "T1232": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで安心している。畑をていねいに世話して、夏の実りを楽しみにしたい。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだよ。畑がまだないから、蓄えの草の種をたっぷりまこう。冬と春に草取りをして、来年の夏にたくさん刈ろうね。"}, {"to": "ナセ99", "text": "ヤギが草より多いから、5頭だけ肉にして干そう。わたしたちは畑仕事をしようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだないので、種をまいたあとは草取りをして来年の夏の実りを増やしたいから"}, "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 5, "family": {"ナセ99": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをして、畑の実りを増やすため"}}, "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の養える数より多いので、秋のはじめに少し肉にして減らすのがよい。", "because": [5869766], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑がないのが少し心配だけれど、種をまいて来年の夏が楽しみ。"}

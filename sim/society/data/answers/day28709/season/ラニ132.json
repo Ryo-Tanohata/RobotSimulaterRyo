@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけど、冬の前に木の実を少し集めておくよ。畑の種まきも忘れずにね。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集が得意で、冬の前に食べ物を集めておきたいから"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 3, "accept": {"ケセ137": true}, "keep": false,
+ "judge": {"M569": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1231": "村", "T1232": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと、次の夏に実る。ヤギが多すぎるので肉にして減らすとよい。", "because": [5898354], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、キャンプにいる方が安全だと思うから"}],
+ "feeling": "蓄えがたっぷりあって安心。冬の前にのんびり木の実を集めたい。"}

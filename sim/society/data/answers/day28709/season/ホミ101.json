@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。この秋は、冬の前に水の道をみんなで掘り進めよう。南から来た二人も、いっしょにごはんを食べようね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、水の来る畑は悪い年でも実りが減りにくい。みんなのために手を貸したい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケセ137": true, "シエ137": true},
+ "family": {"ケナ104": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道の手入れを進めるため"}, "オネ109": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道の手入れを進めるため"}, "ネイ114": {"activity": "水の道を掘る", "place": "camp", "why": "まだ力は小さいが、みんなと一緒に働いて覚えるため"}},
+ "keep": false,
+ "judge": {"M569": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもあって心が落ち着いている。みんなと水の道を掘るのが楽しみ。"}

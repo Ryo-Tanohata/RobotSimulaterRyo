@@ -1,0 +1,31 @@
+{"say": [{"to": "みんな", "text": "秋は畑に種をまいて、草取りをしっかりしよう。小さい子が多く亡くなったから、冬の前に子を冷やさないように気をつけようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすれば、次の夏の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ケセ137": true},
+ "family": {
+  "オネ94": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番を続けて、板を作るため"},
+  "ハソ100": {"activity": "畑仕事", "place": "camp", "why": "採集も狩りも上手だが、今は畑の草取りが大事だから"},
+  "テナ102": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って、夏の実りを増やすため"},
+  "シエ103": {"activity": "字を教える", "place": "camp", "why": "家の大きい子たちに字を教えて、読める人を増やすため"},
+  "タユ108": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "トナ109": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "リセ116": {"activity": "畑仕事", "place": "camp", "why": "大人といっしょに草取りを覚えるため"},
+  "アコ116": {"activity": "畑仕事", "place": "camp", "why": "大人といっしょに草取りを覚えるため"}
+ },
+ "keep": false,
+ "judge": {"M569": "ゆるす"},
+ "feast": false,
+ "leader": "テナ61",
+ "trade": {"T1231": "村", "T1232": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "村のヤギは119頭で、草で養える約110頭を少しこえている。この前は5頭がやせていなくなった", "because": [5898354], "confidence": 0.9},
+  {"op": "add", "text": "この季節も小さい子や若い人が病で多く亡くなった", "because": [5898359, 5898360, 5898361, 5898362, 5898365, 5898367], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L954", "against": "つぶしすぎるとヤギが減りすぎるかもしれない", "agree": true, "reason": "ヤギが草で養える数をこえるとやせていなくなるから、オスを干し肉にするのはよい"},
+  {"id": "L951", "against": "畑ばかりで他の仕事が遅れるかもしれない", "agree": true, "reason": "畑を刈りきり、水の道の手入れもするのは村のためになるから"}
+ ],
+ "feeling": "子が亡くなって悲しいけれど、畑をしっかり世話して冬にそなえたい"}

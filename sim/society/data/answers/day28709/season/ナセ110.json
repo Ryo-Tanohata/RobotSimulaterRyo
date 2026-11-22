@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れが、この年まだだれも掘っていないよ。冬の前に、板を持って少しでも掘りに行こう。わたしも行く。"}, {"to": "ケセ137", "text": "南から来てくれたんだね。うちの村は蓄えがたっぷりあるから、安心して暮らしてね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがこの年まだ 0 日で、悪い年に畑を守ってくれた水が来なくなると困るから"},
+ "family": {"ユエ115": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをすると、次の夏の実りが増えるから"}},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3, "accept": {"ケセ137": true, "シエ137": true}, "keep": true,
+ "judge": {"M569": "ゆるす"}, "feast": false, "leader": "テナ61", "trade": {"T1231": {"side": "村", "利子": 0}, "T1232": {"side": "村", "利子": 0}}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "小さい子が病で多く亡くなる。わかして冷ました水と薄いかゆで、子の体を冷やさないようにしよう", "order": null, "take": {"頼み": 13, "人": ["ナセ110"]},
+ "knowledge": [{"op": "add", "text": "町の頼みを果たすと、子の薬と手当ての書きつけがもらえ、小さい子が病で亡くなりにくくなる", "because": [], "confidence": 0.7}, {"op": "add", "text": "まわりの村の多くは、この年畑が実らず苦しんでいて、草の種を借りに来る", "because": [5898372, 5898373], "confidence": 0.8}],
+ "proposal": {"text": "ヤギは119頭で草の約110頭をこえているから、この1年はよその村のヤギを受けず、家ごとに少しつぶして干し肉にしよう。秋と冬は手のあく大人が板を持って水の道の手入れに出よう。", "because": [5898354], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L0", "against": "夜も水の道の様子を見たいときがある", "agree": true, "reason": "ザガは今も夜に出るから、夜はキャンプにいるのが安全"}, {"id": "L954", "against": "今はヤギが119頭で、207頭のときとは数がちがう", "agree": true, "reason": "ヤギが草より多いのは今も同じで、つぶして干し肉にするのは正しいから"}],
+ "feeling": "子どもたちに薬を持って帰れそうで、少しほっとしている。"}

@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。北の村とハソ12の村が苦しいなら、種を貸してやろう。ヤギは草より多いから、少し肉にしよう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集と狩りが得意で、近い林なら木の実をたくさん集められるから"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"ケセ137": true},
+ "family": {"ネイ132": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、近い草原で草の種や実を集められるから"}, "ソワ132": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、キャンプにいる子たちに教えるため"}},
+ "keep": false,
+ "judge": {"M569": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1231": "村", "T1232": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "北の村12とハソ12の村は畑が実らず苦しく、草の種を貸してほしいと言ってきた", "because": [5898372, 5898373], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。苦しい村に分けられるのがうれしい。"}

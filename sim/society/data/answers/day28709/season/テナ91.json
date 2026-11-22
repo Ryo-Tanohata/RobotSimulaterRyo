@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のうちに水の道を掘って、来年の畑を守りましょう。わたしの家もやりますよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道が泥でうまっているので、秋のうちに手入れをしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "accept": {"ケセ137": true},
+ "family": {"ラニ91": {"activity": "水の道を掘る", "place": "camp", "why": "みんなで掘れば畑が守られる"}, "テナ103": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道の手入れを進める"}, "キサ106": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道の手入れをする"}},
+ "keep": false, "judge": {}, "feast": false, "leader": "", "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草より多いので、秋のはじめに少しつぶして干し肉にするとよい。", "because": [5898354], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりある。水の道を掘って、来年の実りに備えたい。"}

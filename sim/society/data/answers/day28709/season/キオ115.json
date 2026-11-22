@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどあるが、畑が今はない。秋のはじめに草の種をまいて、冬までみんなで草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだないので、種をまいて草取りをすれば、次の夏の実りが増えるから"}, "sow": 1000, "pick": 0, "plant": 5, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"テナ115": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをすれば、畑の実りが早く育つから"}, "ヒセ116": {"activity": "畑仕事", "place": "camp", "why": "草取りなら子でも手伝えるから"}}, "keep": false,
+ "judge": {"M569": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種をまいた畑は、秋と冬の草取りで実りが増え、次の夏に実る。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多いが畑がないのが気がかり。静かに畑で働いて、種が育つのを楽しみにしている。"}
