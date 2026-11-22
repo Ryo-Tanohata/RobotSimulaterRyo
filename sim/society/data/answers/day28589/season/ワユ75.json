@@ -1,0 +1,28 @@
+{"say": [{"to": "みんな", "text": "冬が来る前に、土器をたくさん焼いておくよ。草の種を入れる器が足りないと、虫やネズミにやられてしまうからね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器を焼くのがいちばん得意で、蓄えの草の種を傷ませないよう器を増やしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ヌオ136": true},
+ "family": {
+  "オネ94": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番なので、続けて板をひいてもらう"},
+  "ハソ100": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、夏の実りを増やすため"},
+  "テナ102": {"activity": "水の道を掘る", "place": "camp", "why": "水の道が泥でうまって畑がへったので、掘り直してほしい"},
+  "シエ103": {"activity": "字を教える", "place": "camp", "why": "家の 10〜13 歳の子たちに字を覚えさせたい"},
+  "タユ108": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"},
+  "トナ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑を守るため"}
+ },
+ "keep": true,
+ "judge": {"M566": "つぐなう", "M567": "つぐなう", "M568": "つぐなう"},
+ "feast": false, "leader": "テナ61",
+ "trade": {"T1224": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "冬の前に土器を見なおし、草の種を傷ませないようにしよう",
+ "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "人の家の畑で刈った草の種が、みなその家の倉に入ってしまい、もめごとが続いている", "because": [5829541, 5829542, 5829543], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L942", "against": "つぶすとヤギの乳が減る", "agree": true, "reason": "ヤギが草で養える数をこえているので、オスから少しつぶすのがよい"},
+  {"id": "L943", "against": "つぶさないとやせて減り続ける", "agree": true, "reason": "よそのヤギを受けず、水の道の手入れをするのはよい"},
+  {"id": "L944", "against": "家ごとに数がばらばらになる", "agree": true, "reason": "ヤギが多すぎるので少しつぶすのに賛成"}
+ ],
+ "feeling": "家族はみな満腹で安心だけど、冬にそなえて器を焼いておきたい"}

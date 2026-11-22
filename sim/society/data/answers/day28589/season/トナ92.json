@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "ヤギは99頭まで減って、草の約140頭よりずっと少ない。南の村21のヤギ3頭は受けて、群れを戻そう。水の道は手入れがまだ7000人日も残っているから、おれは板を持って掘りに行く。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "去年は手入れが足りずに水の道が泥でうまり、水の来る畑がへった。板があれば半分の手間ですむので、この秋は水の道を掘る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ヌオ136": true},
+ "family": {"ロワ100": {"activity": "字を教える", "place": "camp", "why": "字の読める人がふえれば、帳も知らせ板も回る。14歳の子たちに今のうちに教えたい"}, "ソワ101": {"activity": "水の作業場で働く", "place": "M26", "why": "板がたくさんあれば、水の道や輪の直しが倍はかどるから"}},
+ "keep": false,
+ "judge": {"M566": "つぐなう", "M567": "つぐなう", "M568": "つぐなう"},
+ "feast": false, "leader": null,
+ "trade": {"T1224": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "ヤギは99頭で草の約140頭より少ない。よその村のヤギは受け、手のあく人は板を持って水の道へ",
+ "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは夏に145頭いたが、いまは99頭まで減って、草で養える数より少なくなった", "because": [], "confidence": 0.7}],
+ "proposal": {"text": "ヤギは99頭で草の約140頭より少ないから、この1年はつぶさず、よその村のヤギは140頭をこえない分だけ受けよう。秋は大人一人1000つかみずつまき、手のあく大人は板を持って水の道の手入れに出よう。", "because": [5829546], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L943", "against": "ヤギは99頭まで減ったので、もう受けない理由がない", "agree": false, "reason": "いまは草より少ないので、よその村のヤギは受けたほうがよい"},
+  {"id": "L940", "against": "ヤギは減ったので、つぶすとさらに減る", "agree": false, "reason": "145頭のときの話で、いまの99頭には合わない"},
+  {"id": "L941", "against": "ヤギは減ったので、つぶすとさらに減る", "agree": false, "reason": "いまの数には合わない"},
+  {"id": "L942", "against": "ヤギは減ったので、つぶすとさらに減る", "agree": false, "reason": "いまの数には合わない"},
+  {"id": "L944", "against": "ヤギは減ったので、つぶすとさらに減る", "agree": false, "reason": "いまの数には合わない"},
+  {"id": "L937", "against": "とくにない", "agree": true, "reason": "ヤギを受けて数を戻し、水の道の手入れもできる"}
+ ],
+ "feeling": "ヤギがずいぶん減ったな。水の道をどこまで掘れるか、試してみたい"}

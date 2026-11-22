@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "村の蓄えはまだ十分だ。おれは林へ行って、けものを狩ってくる。肉が増えれば冬も楽だ。"}],
+ "job": {"activity": "狩り", "place": "東林28", "with": ["ナセ105"], "why": "狩りの腕が一番高いので、冬の前に肉を増やしたい"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ヌオ136": true},
+ "family": {"ナセ105": {"activity": "狩り", "place": "東林28", "why": "狩りが得意なので、いっしょに肉を取る"}, "ソワ113": {"activity": "採集", "place": "西草原12", "why": "まだ若いので、近くの草原で安全に採集する"}},
+ "keep": false,
+ "judge": {"M566": "ゆるす", "M567": "ゆるす", "M568": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のうちに狩りで肉を多く取っておけば、木の実や芋が実らない冬もしのげる。", "because": [5829541], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L940", "against": "", "agree": true, "reason": "ヤギが草より多いので、つぶして減らすのは分かる"}, {"id": "L941", "against": "", "agree": true, "reason": "ヤギが増えすぎるのは困る"}, {"id": "L942", "against": "", "agree": true, "reason": "ヤギを減らして肉にするのは役に立つ"}, {"id": "L943", "against": "", "agree": true, "reason": "よそのヤギを受けないのは賛成"}, {"id": "L944", "against": "", "agree": true, "reason": "ヤギを減らして干し肉を作るのはよい"}],
+ "feeling": "体は軽い。早く林に出て獲物を追いたい。"}

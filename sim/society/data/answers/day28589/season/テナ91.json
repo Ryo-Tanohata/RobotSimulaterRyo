@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに種をまこう。そのあと水の道を、みんなで少しずつ掘っていこうね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "畑がないので種をまき、水の道は泥でうまっているから、来年の実りを守るために掘る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ヌオ136": true},
+ "family": {"ラニ91": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ大きく残っているので手伝う"}, "テナ103": {"activity": "水の道を掘る", "place": "camp", "why": "来年の畑を守るために水の道を掘る"}, "キサ106": {"activity": "水の道を掘る", "place": "camp", "why": "みんなと一緒に水の道を掘って畑を守る"}},
+ "keep": false,
+ "judge": {"M566": "ゆるす", "M567": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "おだやかで、畑と水の道のことを考えている"}

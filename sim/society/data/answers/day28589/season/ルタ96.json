@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。わたしはまだ行ったことのない林の奥へ、新しい実や獣を探しに行ってくるよ。"}],
+ "job": {"activity": "探索", "place": "南林45", "with": [], "why": "蓄えは十分あるので、まだ知らない場所を歩いて、新しい食べ物や獣を見つけたいから。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ロワ136": true, "ヌオ136": true, "キオ136": true},
+ "family": {"リセ110": {"activity": "採集", "place": "北林12", "why": "近い林で木の実を集めて、家族の食べ物の足しにする。"}, "ホミ113": {"activity": "採集", "place": "東林12", "why": "近い林で木の実を集めて、家族の食べ物の足しにする。"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがあって安心。知らない場所を歩くのが楽しみ。"}

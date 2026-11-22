@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は畑に種をまいて、土器に入れて虫から守ろう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番高いので、蓄えの草の種を虫やネズミから守る器を作る。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ヌオ136": true},
+ "family": {"キサ78": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをする人が足りないので手伝う。"}, "ルタ79": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで実りを増やすため。"}},
+ "keep": false,
+ "judge": {"M566": "ゆるす", "M567": "ゆるす", "M568": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1223": "村", "T1224": false}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心だ。手に慣れた土器づくりで村の役に立ちたい。"}

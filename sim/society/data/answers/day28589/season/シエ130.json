@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "採集は何も見つからない日がつづいたから、この秋は畑の草取りをしてみるね。みんなの畑も冬のあいだ見てあげたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ナセ130"], "why": "蓄えは多いが、採集では何も見つからなかった。草取りをすれば夏の実りが増えるので、役に立つと考えた。"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"ナセ130": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをすれば畑の実りが増え、家の食べ物も安心だから。"}}, "keep": false,
+ "judge": {"M566": "ゆるす", "M567": "ゆるす", "M568": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "採集で何も見つからない日がつづいたので、畑の草取りのほうが実りを増やす助けになりそうだ。", "because": [5829541], "confidence": 0.5}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "ひさしぶりに畑でじっくり働けそうで、少しわくわくしている。"}

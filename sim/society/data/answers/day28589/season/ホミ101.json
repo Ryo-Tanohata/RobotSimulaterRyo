@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬の前に木の実をたくさん集めておくよ。困ったら声をかけてね。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "冬は木の実が実らないので、秋のうちに家族と村の食べ物を増やしたいから。"},
+ "sow": 0, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ヌオ136": true},
+ "family": {"ラニ103": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬にそなえるため。"}, "ケナ104": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬にそなえるため。"}, "オネ109": {"activity": "採集", "place": "camp", "why": "小さな子たちの食べ物を集めるため。"}},
+ "keep": false,
+ "judge": {"M566": "ゆるす", "M567": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1224": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "冬の前に落ち着いて、みんなで助け合いたい気持ち。"}

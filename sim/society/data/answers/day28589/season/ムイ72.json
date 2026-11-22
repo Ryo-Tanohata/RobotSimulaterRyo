@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "ヤギはもう草が養える数をこえている。南の村21のヤギは今度は断って、秋は畑にしっかりまこう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだたくさん残っている。蓄えは十分あるから、体の動くうちに村の道を直したい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ロワ136": true, "ヌオ136": true, "キオ136": true},
+ "family": {"ケセ74": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが残っているので、わたしといっしょに掘る"}, "ルタ93": {"activity": "水の作業場で働く", "place": "M6", "why": "若くて力があるので、板をひいて直しの仕事を楽にする"}, "ムイ99": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、次の夏の実りを増やす"}},
+ "keep": false,
+ "judge": {"M566": "つぐなう", "M567": "つぐなう", "M568": "つぐなう"},
+ "feast": false, "leader": "テナ61", "trade": {"T1224": false}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑で刈った草の種がその家の倉に入ると、刈った家が不満を言い出す", "because": [5829541, 5829542, 5829543], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L940", "against": "つぶす数が少ないかもしれない", "agree": true, "reason": "ヤギが多すぎるので、受けずに減らすのがよい"},
+  {"id": "L943", "against": "まく量の話がない", "agree": true, "reason": "水の道の手入れは大事だから"},
+  {"id": "L944", "against": "どれだけつぶすかがはっきりしない", "agree": true, "reason": "ヤギを減らし、畑にまくのに賛成"}
+ ],
+ "feeling": "蓄えは山ほどある。今は道と畑を手入れする時だ。"}

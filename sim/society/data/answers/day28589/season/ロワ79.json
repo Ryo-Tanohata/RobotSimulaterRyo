@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "冬の前だ。わたしは木の実をたっぷり集めておくよ。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集がいちばん得意だから。冬にそなえて食べ物を増やす。"},
+ "sow": 0, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ヌオ136": true},
+ "family": {"ムイ87": {"activity": "採集", "place": "camp", "why": "採集が得意で、冬にそなえて食べ物を集めたいから。"}, "ワユ98": {"activity": "採集", "place": "camp", "why": "採集が得意で、家族の食べ物を増やすため。"}},
+ "keep": false,
+ "judge": {"M566": "ゆるす", "M567": "ゆるす", "M568": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1224": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかはいっぱい。冬の前にもう少し蓄えたい。"}

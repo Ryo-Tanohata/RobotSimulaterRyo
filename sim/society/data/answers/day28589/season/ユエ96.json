@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがまだたくさん残っている。悪い年でも畑を守れるよう、手のあく者は板を持っていっしょに掘ろう。"}, {"to": "ロワ99", "text": "おまえは畑の草取りをたのむ。まいた種がよく実るように、毎日少しずつでいい。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがあと 7306 人日も残っていて、水の来る畑は悪い年でも実りが守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ヌオ136": true},
+ "family": {"ロワ99": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑は草取りをすると実りが増えるから"}},
+ "keep": false,
+ "judge": {"M566": "つぐなう", "M567": "つぐなう", "M568": "つぐなう"},
+ "feast": false, "leader": "テナ61",
+ "trade": {"T1224": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑で刈った草の種が一つの家の倉に入ると、続けてもめごとになる。刈る前に量を数えて残すほうがいい", "because": [5829541, 5829542, 5829543], "confidence": 0.8}],
+ "proposal": {"text": "ヤギは 99 頭で草の約 110 頭より少ないから、この 1 年はつぶさず、よその村のヤギは 110 頭をこえない分だけ受けよう。秋は大人一人 1000 つかみずつまき、手のあく大人は板を持って水の道の手入れに出よう。", "because": [5829546], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L933", "against": "", "agree": true, "reason": "ヤギは 99 頭で 110 頭より少ないので、こえない分だけ受けるのがちょうどいい"},
+  {"id": "L938", "against": "", "agree": true, "reason": "ヤギを減らさず、水の道の手入れにも人を出せるから"},
+  {"id": "L940", "against": "ヤギはもう 99 頭で草の約 110 頭より少なく、これ以上つぶすと減りすぎる", "agree": false, "reason": "いまの数に合わない"},
+  {"id": "L941", "against": "ヤギはもう 99 頭で、つぶす必要がない", "agree": false, "reason": "いまの数に合わない"},
+  {"id": "L942", "against": "ヤギはもう 99 頭で、つぶす必要がない", "agree": false, "reason": "いまの数に合わない"},
+  {"id": "L943", "against": "ヤギは 110 頭より少ないので、少しは受けてもいい", "agree": false, "reason": "受けない決まりは、いまの数には強すぎる"},
+  {"id": "L944", "against": "ヤギはもう 99 頭で、つぶす必要がない", "agree": false, "reason": "いまの数に合わない"}
+ ],
+ "feeling": "秋の畑と水の道、今年も体が動くうちにしっかり働こう"}

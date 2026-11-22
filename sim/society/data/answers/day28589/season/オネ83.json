@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いが、秋の畑には草の種をまこう。冬と春の草取りで夏の実りが増えるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えは多いが、まいた畑の草取りで夏の実りが増える。家の若い二人にも手本を見せたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヒセ136": true, "ロワ136": true, "ヌオ136": true, "キオ136": true},
+ "family": {"オネ101": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りをして実りを増やすため"}, "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "小さい子の世話をしながら近くの畑で働けるため"}},
+ "keep": false,
+ "judge": {"M566": "ゆるす", "M567": "ゆるす", "M568": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えが多い秋は、畑に1000つかみまき、冬と春は草取りをするのがよい。", "because": [5829538], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあって落ち着いている。草取りをして春を待とう。"}

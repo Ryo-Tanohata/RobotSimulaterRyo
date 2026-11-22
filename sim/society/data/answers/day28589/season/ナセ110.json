@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "ヤギは99頭でみなメス、草で養える数よりずっと少ない。南の村21のヤギ3頭は受けて、オスがいれば次に頼もう。"}, {"to": "みんな", "text": "うちの畑で刈ってくれた家の分は、ちゃんと返すよ。次からは刈る前に分け方を決めよう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "板があれば水の道の手入れが半分ですむから、のこで板をひく"},
+ "family": [{"name": "ユエ115", "activity": "畑仕事", "place": "camp", "why": "13歳でも草取りを手伝えば、来年の実りが増えるから"}],
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ヌオ136": true}, "keep": false,
+ "judge": {"M566": "つぐなう", "M567": "つぐなう", "M568": "つぐなう"},
+ "feast": false, "leader": null,
+ "trade": {"T1224": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "よその畑で刈る前に、刈った草の種の分け方を決めておこう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギがメスだけだと子が生まれず、数がもどらない。よその村からオスを受けるとよい", "because": [5829546], "confidence": 0.6}],
+ "proposal": {"text": "ヤギは99頭でみなメス、草の約140頭よりずっと少ないから、この1年はつぶさず、よその村のヤギはオスを先に140頭をこえない分だけ受けよう。よその畑で刈る前に分け方を決めよう。", "because": [5829541, 5829542, 5829546], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L940", "against": "ヤギは99頭で草の数より少ないのに、つぶすと言っている", "agree": false, "reason": "いまのヤギの数に合わないから"},
+  {"id": "L941", "against": "ヤギは草の数より少なくなったのに、よその村のヤギを受けないと言っている", "agree": false, "reason": "いまはヤギを増やしたいから"},
+  {"id": "L942", "against": "オスはもういないので、オスからつぶせない", "agree": false, "reason": "いまのヤギの数に合わないから"},
+  {"id": "L943", "against": "よその村のヤギを受けないと、メスだけで数がもどらない", "agree": false, "reason": "水の道の手入れはよいが、ヤギを受けないのは困るから"},
+  {"id": "L944", "against": "前に自分で出したが、もうヤギは草の数より少ない", "agree": false, "reason": "ようすが変わったので、新しい提案にしたいから"}
+ ],
+ "feeling": "ヤギが減ってメスばかり。早くオスを迎えたい"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をまいて、冬の前に水の道を少しでも掘り進めましょう。新しく来たふたりも、ようこそ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っているので、続けて掘る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ136": true, "ロワ136": true},
+ "family": {"オセ67": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場なので板をひく"}, "ホタ68": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場なので板をひく"}},
+ "keep": false,
+ "judge": {"M566": "ゆるす", "M567": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1224": false}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": []}

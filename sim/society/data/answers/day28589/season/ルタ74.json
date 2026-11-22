@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えは多い。この秋は畑に種をまいて、草取りもしっかりやろう。わしは北の丘で燃える石を掘る。"}],
+ "job": {"activity": "燃える石を掘る", "place": "北丘12", "with": [], "why": "村の燃える石の倉が減っているので、掘って冬のまき集めの手間を減らしたい。蓄えの食べ物は足りている。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {},
+ "family": {
+  "キオ75": {"activity": "畑仕事", "place": "camp", "why": "秋から春の草取りで、来年の夏の実りが増えるから。"},
+  "ユエ81": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を厚くして、畑の実りを守るため。"},
+  "ケナ98": {"activity": "畑仕事", "place": "camp", "why": "技能は低いが、草取りは手伝える。"},
+  "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手になる。"},
+  "ユエ112": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを守る。"},
+  "ラニ116": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら半分は働ける。"}
+ },
+ "keep": false,
+ "judge": {"M566": "つぐなう", "M567": "つぐなう", "M568": "つぐなう"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは約437日分あり十分。秋に畑をまき、秋から春は草取りをすることが大事。燃える石の倉は減っている。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、離れないほうが安全だから。"},
+           {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くとけがや病気のもとになるから。"}],
+ "feeling": "蓄えがたっぷりあって落ち着いている。体を動かして、みんなの役に立ちたい。"}
