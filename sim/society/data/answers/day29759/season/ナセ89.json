@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "のこ番はM26が止まっているから、これからはM6で板をひくよ。畑は夏のうちに刈って、秋にたくさんまこう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実った畑の種が落ちるので、刈り入れをする"}, "family": {"テナ125": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るのを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "M26は止まっているので、M6でのこ番の仕事をして板をひく"}, "family": {"テナ125": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると実りが増えるので、冬も畑を守る"}, "family": {"テナ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑を守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "板は住まいや水の道の手入れをはかどらせるので、のこ番を続ける"}, "family": {"テナ125": {"activity": "畑仕事", "place": "camp", "why": "春も草取りで畑を守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラキ148": true, "ケナ148": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [{"人": "ナセ89", "やめる": true}, {"人": "ナセ89", "持ち場": "のこ番", "輪": "M6"}], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "M26は止まっていて、のこ番の仕事はM6でするのがよい", "because": [6516641], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑の実り多き年",
+ "feeling": "蓄えは厚いので落ち着いている。M6で板をひくつもりだ。"}

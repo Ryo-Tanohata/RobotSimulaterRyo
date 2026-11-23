@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだたくさん残っている。刈り残しが落ちる前に、手のあく者はみな刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れる。"}, "family": {"キオ128": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う。"}, "ラニ128": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う。"}, "ケナ132": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う。"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 6},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話と草取りをする。"}, "family": {"キオ128": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}, "ラニ128": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}, "ケナ132": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬のあいだ草取りをして実りを守る。"}, "family": {"キオ128": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}, "ラニ128": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}, "ケナ132": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため、春も草取りを続ける。"}, "family": {"キオ128": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}, "ラニ128": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}, "ケナ132": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M587": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは多く、夏に畑を刈り、秋にまき、冬と春に草取りをすれば実りが続く。", "because": [6502642], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑の実りの年",
+ "feeling": "蓄えは十分。働ける間は畑に出て、静かに過ごしたい。"}

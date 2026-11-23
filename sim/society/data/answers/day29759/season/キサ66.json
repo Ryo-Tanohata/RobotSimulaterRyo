@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は大きく実っている。落ちる前に、みんなで刈ろう。秋は種をたっぷりまこう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちる前に刈り入れるため"}, "family": {"ケセ76": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため"}, "ケセ94": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多いので乳をとり世話をする"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 6},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで来年の実りを守るため"}, "family": {"ケセ76": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑を守る"}, "ケセ94": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑を守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて畑の実りを増やすため"}, "family": {"ケセ76": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ケセ94": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りをして夏の実りを守るため"}, "family": {"ケセ76": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ケセ94": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギが生まれ乳もとれるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ラキ148": true, "ケナ148": true}, "accept_rule": {"よその群れ": true, "ほかの村から": true},
+ "judge": {"M587": "ゆるす"}, "judge_rule": "ゆるす", "feast": ["秋"], "leader": "なし",
+ "trade": {"T1344": "村", "T1345": "村"}, "trade_rule": {"交換": "村", "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は大きく実っていて、蓄えも厚い。ヤギは草より多いので、肉にして減らすとよい。", "because": [6534856], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りと迎えの年",
+ "feeling": "蓄えは厚く、新しい仲間も来る。みんなで畑を守りたい。"}

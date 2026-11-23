@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏のうちに畑をしっかり刈って、秋にまた種をまこう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を落ちる前に刈り入れるため"}, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がいるから"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "子のそばで刈り入れを手伝うため"}, "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "若い力で刈り入れを進めるため"}, "ネイ125": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "秋の実りを集めて食べ物を増やすため"}, "family": {"ルタ88": {"activity": "採集", "place": "西草原12", "why": "実りを集めるため"}, "ユエ107": {"activity": "採集", "place": "camp", "why": "子のそばで近くの木の実を集めるため"}, "ロワ121": {"activity": "狩り", "place": "東林12", "why": "狩りが得意で肉を持ち帰れるため"}, "ネイ125": {"activity": "採集", "place": "camp", "why": "近くの木の実を集めるため"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "南林12", "with": [], "why": "冬も魚やけものはいるので肉を得るため"}, "family": {"ルタ88": {"activity": "狩り", "place": "南林12", "why": "狩りが得意だから"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りを増やすため"}, "ロワ121": {"activity": "狩り", "place": "南林12", "why": "狩りが得意だから"}, "ネイ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで夏の実りを増やすため"}, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝うため"}, "ロワ121": {"activity": "狩り", "place": "東林12", "why": "肉を持ち帰るため"}, "ネイ125": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ラキ148": true, "ケナ148": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M587": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1344": false, "T1345": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの多い年",
+ "feeling": "蓄えがたっぷりで安心。家族みんなで刈り入れをがんばりたい。"}

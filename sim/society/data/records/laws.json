@@ -1051,5 +1051,12 @@
 {"id":"L1049","text":"ヤギが草で養える数より少ないあいだは、家ごとに交代で大人一人がヤギの世話をし、よその村のヤギは受けて数をもどそう。","proposer_id":"P3040","proposed_day":29669,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L1050","text":"よその家の畑を刈るときは、刈る前に分け方を決め、刈った量を書いて、刈った家に半分を渡そう (罰: よその家の畑で刈った草の種が、みな畑の持ち主の家の倉に入ると、相手の家は、言い出した家に 草の種 50 つかみ を払う)","proposer_id":"P3050","proposed_day":29669,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":{"for":"刈る","pay":50},"label":"創発"},
 {"id":"L1051","text":"よその家の畑を刈ったら、刈った量を読める人に板へ書いてもらい、半分を刈った人の家に渡そう。書いた量があるもめごとは、それで決めよう。 (罰: よその家の畑で刈った草の種が、みな畑の持ち主の家の倉に入ると、相手の家は、言い出した家に 草の種 50 つかみ を払う)","proposer_id":"P3382","proposed_day":29669,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":{"for":"刈る","pay":50},"label":"創発"},
-{"id":"L1052","text":"この秋は大人みな蓄えの草の種を 1000 つかみずつまき、まいた量を読める人が板に書こう。冬まで手のあく大人で草取りをしよう。","proposer_id":"P3807","proposed_day":29669,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"}
+{"id":"L1052","text":"この秋は大人みな蓄えの草の種を 1000 つかみずつまき、まいた量を読める人が板に書こう。冬まで手のあく大人で草取りをしよう。","proposer_id":"P3807","proposed_day":29669,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1053","text":"ヤギが草で養える数をこえているあいだは、夏のはじめに多い分をつぶして干し肉にし、よその村のヤギは受けないでおこう。","proposer_id":"P1780","proposed_day":29759,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1054","text":"ヤギが草で養える数をこえているあいだは、秋のはじめに多い分をつぶして干し肉にし、村の蓄えに入れよう","proposer_id":"P2416","proposed_day":29759,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1055","text":"0 歳から 4 歳の子のいる家は、1 年に一度は燃える石を掘って町の頼みを受け、子の薬をもらおう。手のあく大人はそれを手伝おう。","proposer_id":"P2938","proposed_day":29759,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1056","text":"ヤギが草で養える数をこえているあいだは、よその村のヤギを受けず、春と夏は家ごとに交代でヤギの世話をしよう。","proposer_id":"P3040","proposed_day":29759,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1057","text":"ヤギが草で養える数（約140頭）をこえているあいだは、よその村のヤギを受けず、こえた分は秋のはじめに肉にして干し、蓄えに入れよう。","proposer_id":"P3050","proposed_day":29759,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1058","text":"ヤギが草で養える数をこえているあいだは、ヤギを出す申し出はことわり、多い分は季節のはじめにつぶして干し肉にし、村の蓄えに入れよう。","proposer_id":"P3382","proposed_day":29759,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1059","text":"この夏は手のあく大人みなで実った畑を残らず刈り、秋は大人みな蓄えの草の種を 1000 つかみずつまこう。ヤギが草をこえているあいだは、よその村のヤギを受けないでおこう。","proposer_id":"P3807","proposed_day":29759,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"}
 ]

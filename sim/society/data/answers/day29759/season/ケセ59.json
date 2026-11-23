@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑がたわわに実っている。落ちる前にみんなで刈ろう。秋にはまた種をまいて、冬も草取りを忘れずにね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから、みんなで刈り入れをする"}, "family": {"タユ67": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り入れるため"}, "テナ73": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り入れるため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 3},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで、来年の夏の実りを守る"}, "family": {"タユ67": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑を守るため"}, "テナ73": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑を守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 40},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて畑の実りを増やす"}, "family": {"タユ67": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りのため"}, "テナ73": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひき、水の道や輪の手入れを助ける"}, "family": {"タユ67": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として板をひくため"}, "テナ73": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として板をひくため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は180日分ほどあり、夏の畑も大きく実っている。秋にまいて冬も草取りをすれば、来年も安心だ。", "because": [6551479], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの夏の年",
+ "feeling": "畑がよく実って、ほっとしている。体はまだ動くので、みんなと一緒に働きたい。"}
