@@ -3503,7 +3503,8 @@ def _village(state):
     gl = f"{len(goats)} 頭 (メス {sum(1 for g in goats if g['sex'] == 'メス')}・オス {sum(1 for g in goats if g['sex'] == 'オス')})" if goats else "なし"
     wild = state["places"][[pl["id"] for pl in state["places"]].index(e2["wild_goats"]["place"])]["label"]
     days = store_days(state)
-    return (f"村の大人: {ads}\n村の子: {kids}\n村の蓄え: {food_words(world.holdings({'food': state['store']}))} (今の人数で 約 {days} 日分)\n"
+    info = _d1m().store_info(state) if "g7" in e2 and "info1" in (e2["g7"].get("d1") or {}) else ""  # 2026-11-23: 蓄えの知らせ 1 (印 g7.d1.info1 のあとだけ。A_check.md 10.)
+    return (f"村の大人: {ads}\n村の子: {kids}\n村の蓄え: {food_words(world.holdings({'food': state['store']}))} (今の人数で 約 {days} 日分)\n{info}"
             f"畑: {fl}\n飼っているヤギ: {gl}\n"
             + _pasture_text(state)
             + (f"村の土器: {e2.get('pots', 0)} 個 (草の種 {e2.get('pots', 0) * POT_HOLD} つかみ分)、村の石の鎌: {e2.get('sickles', 0)} 本\n" if era_at_least(state, "G3") else "")

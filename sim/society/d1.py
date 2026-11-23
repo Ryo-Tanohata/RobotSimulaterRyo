@@ -19,6 +19,9 @@
 - 相談の直し 1 (2026-11-23。A_check.md 9.): 印 g7.d1.fix1 (step.py resume --d1fix "<本人の言葉>" だけが書く。29399 日目 (244年の終わり) の D1 の相談から。1 回だけ) の
   あとだけ、「d1 か d4 が 2 年つづけて線の外」の相談を 5 年まとめがそろう年 (区切りの年 + 4 = 246年の終わり) から見る (それより前の年は、この相談では止めない)。
   線・世界の見込み・数え方・ほかの相談 (蓄え・ききん・人 95%・3 年ごと) は変えない。印がなければ前と 1 バイトも同じ
+- 蓄えの知らせ 1 (2026-11-23。A_check.md 10.): 印 g7.d1.info1 (step.py resume --d1info "<本人の言葉>" だけが書く。29879 日目 (248年の終わり) の D1 の相談から。1 回だけ) の
+  あとだけ、お題の「## 村のようす」の「村の蓄え」の次に 1 行 (store_info) を足す: 年の終わりの蓄えのうつりかわり (日分) と、夏の刈り入れ (前の秋にまいた種の何倍か)。
+  村の帳にある数だけ (知らせるだけ。すすめる言葉・作る側・印のことは書かない)。世界の決まり・乱数・相談は変えない。印がなければお題も前と 1 バイトも同じ
 """
 import math
 
@@ -47,6 +50,11 @@ LATER_YEARS = 3  # 3 年ごとの相談
 FIX1_FROM = 29399  # 本物の村が 244年を終えて D1 の相談 (d1・d4 が 2 年つづけて線の外) で止まった日。これより前には印を書けない
 FIX1_DATE = "2026-11-23"
 FIX1_NAME = "人口の決まりの相談の直し 1 (d1・d4 の「2 年つづけて線の外」は 5 年まとめがそろってから見る)"
+# 蓄えの知らせ 1 (印 g7.d1.info1 のあとだけ。A_check.md 10.)
+INFO1_FROM = 29879  # 本物の村が 248年を終えて D1 の相談 (蓄えが 200 日分を切った) で止まった日。これより前には印を書けない
+INFO1_DATE = "2026-11-23"
+INFO1_NAME = "蓄えの知らせ 1 (お題の村のようすに、蓄えのうつりかわりと刈り入れの倍を 1 行)"
+INFO_YEARS = 4  # 年の終わりの蓄え・夏の刈り入れを見せる年の数
 WIN = 5  # 5 年まとめ
 OLD_AGE = 55
 AGE_GROUPS = [(0, 1), (1, 5)] + [(a, a + 5) for a in range(5, 60, 5)] + [(60, None)]  # tools/stats_calc.py の AGE_GROUPS と同じ
@@ -170,6 +178,74 @@ def mark_fix1(state, words):
     g = _g(state)
     f = g["fix1"] = {"day": state["day"], "words": words, "why": fix1_why(words), "out_from": g["start_year"] + WIN - 1}
     return f
+
+
+# ---------------- 蓄えの知らせ 1 (step.py resume --d1info。A_check.md 10.) ----------------
+
+def informed(state):
+    """蓄えの知らせ 1 の印 g7.d1.info1 があるか"""
+    return on(state) and "info1" in _g(state)
+
+
+def info1_why(words):
+    return (f"作る側が変えた (本人の言葉 {INFO1_DATE} 「{words}」)。{INFO1_NAME}。蓄えは 3 か所に今の日分だけが出ていて、うつりかわりと刈り入れの倍は出ていなかった。"
+            "知らせるだけで、村の人の決めはそのまま。A_check.md 10.")
+
+
+def info1_refusal(state, words):
+    """resume --d1info ができないわけ (できるなら None)"""
+    if not (words or "").strip():
+        return "--d1info には本人の言葉が要る"
+    if not on(state):
+        return "人口の決まりの直し 1 の印 (g7.d1) がないので、蓄えの知らせ 1 はつけられない"
+    if "info1" in _g(state):
+        return "蓄えの知らせ 1 はもうつけてある"
+    if state["day"] < INFO1_FROM:
+        return f"蓄えの知らせ 1 は {INFO1_FROM} 日目 (248年の終わり) からだけ"
+    h = state["era2"]["g7"].get("hold") or {}
+    if not (h.get("why") == "consult" and str(h.get("what", "")).startswith("D1:")):
+        return "蓄えの知らせ 1 は、D1 の相談 (HOLD consult) で止まっているときだけつける"
+    if g15.push_on(state):
+        return "後押しが動いている"
+    return None
+
+
+def mark_info1(state, words):
+    """resume --d1info から: 印 g7.d1.info1 を書く (村の出来事には残さない。乱数は使わない。世界の決まりと相談は変えない)"""
+    words = words.strip()
+    f = _g(state)["info1"] = {"day": state["day"], "words": words, "why": info1_why(words)}
+    return f
+
+
+def _harvests(state):
+    """夏の刈り入れ {年: (前の秋にまいた種, 刈れる量)}。秋にまいた畑 (実った・刈った) を、実る夏の年ごとに足す (era2._field_season の実り。落ちた分もふくむ)"""
+    out = {}
+    for f in state["era2"]["fields"]:
+        if f["state"] in ("実った", "刈った") and era2.season(f["day"]) == "秋" and "yield" in f:
+            y = f["day"] // YEAR + 1
+            s, n = out.get(y, (0, 0))
+            out[y] = (s + f["seed"], n + f["yield"])
+    return out
+
+
+def store_info(state):
+    """お題の「## 村のようす」の「村の蓄え」の次の 1 行 (印 g7.d1.info1 のあとだけ。era2._village から)。村の帳にある数だけ"""
+    if not informed(state):
+        return ""
+    g = _g(state)
+    y_now = (state["day"] + 1) // YEAR  # これからの年 (年の終わりの日は、次の年)
+    ends = [(int(y), r["store_end"]) for y, r in g["rows"].items() if int(y) < y_now][-INFO_YEARS:]
+    ends.sort()
+    hv = _harvests(state)
+    ripe = {f["day"] // YEAR + 1 for f in state["era2"]["fields"] if f["state"] == "実った" and era2.season(f["day"]) == "秋"}
+    ys = sorted(y for y in hv if y <= y_now)[-INFO_YEARS:]
+    parts = []
+    if ends:
+        parts.append("年の終わりの村の蓄え " + "・".join(f"{y}年 {d} 日分" for y, d in ends) + " (1 年は 120 日)")
+    if ys:
+        parts.append("夏の刈り入れ " + "・".join(
+            f"{y}年 {'いま実っている 約 ' if y in ripe else ''}{n} つかみ (前の秋にまいた {s} つかみの {round(n / s, 1) if s else 0} 倍)" for y, (s, n) in ((y, hv[y]) for y in ys)))
+    return ("村の蓄えのうつりかわり: " + "。".join(parts) + "\n") if parts else ""
 
 
 # ---------------- 数える (g7.season_end から。t5 のあと) ----------------
@@ -415,6 +491,9 @@ def lines(state):
         f = g["fix1"]
         out.append(f"相談の直し 1: {f['why']} {_yd(f['day'])}から。「d1 か d4 が {OUT_YEARS} 年つづけて線の外」の相談は {f['out_from']}年の終わりから "
                    f"({f['out_from'] - 1}年と {f['out_from']}年の行で見る)。線・世界の見込み・ほかの相談は変えない")
+    if "info1" in g:
+        f = g["info1"]
+        out.append(f"蓄えの知らせ 1: {f['why']} {_yd(f['day'])}から。世界の決まり・線・相談は変えない")
     for y in sorted(g["rows"], key=int)[-3:]:
         out.append(row_text(g["rows"][y]))
     return out

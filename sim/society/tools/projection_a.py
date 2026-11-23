@@ -6,6 +6,7 @@
   PYTHONUTF8=1 python3.13 sim/society/tools/projection_a.py --data sim/society/data --calib      (S2 の生まれる見込みを探すだけ)
   PYTHONUTF8=1 python3.13 sim/society/tools/projection_a.py --data <29039 日目の写し> --short   (区切りから 1〜2 年の短いまとめの幅。A_check.md 8.)
   PYTHONUTF8=1 python3.13 sim/society/tools/projection_a.py --data sim/society/data --cond 3    (いまの村から 3 年。本物の数えと足したまとめの幅。A_check.md 8.)
+  PYTHONUTF8=1 python3.13 sim/society/tools/projection_a.py --data sim/society/data --cond 3 --seedw 587 --yields tri --hshare 0.12   (era2 の比の決まりで。A_check.md 10.)
 
 - data/ は読むだけ (state.json を 1 回・records/season_village.jsonl・records/people.json)。何も書かない。LLM は呼ばない。
 - やり方: 本物の村の 29039 日目 (241年の終わり) の生きている人 (性・生まれた日・前に子を産んだ日) から始めて、
@@ -134,6 +135,14 @@ def run(people0, cal, sc, seed, years):
     for y in range(y_first, y_first + years):
         sick_sea = yr.randrange(4) if yr.random() < SICK_YEAR_P else None
         ratio = yr.choice(cal["ratios"])
+        if cal.get("yields") in ("tri", "engine"):  # 2026-11-23 (A_check.md 10.): era2 の比の決まり (三角 3・15・8) と悪い年 (水の来ない分だけ半分)
+            if cal["yields"] == "engine":  # エンジンの乱数そのもの (era2._field_season の yr_rng と g7._weather の V0。種で決まっている)
+                ratio, bad = random.Random(cal["eseed"] * 991 + y).triangular(3, 15, 8), y in cal["ebad"]
+            else:
+                yr2 = random.Random(seed * 997 + y)
+                ratio, bad = yr2.triangular(3, 15, 8), yr2.random() < cal["pbad"]
+            if bad:
+                ratio *= cal["water"] + (1 - cal["water"]) * 0.5
         imm_n = 0
         lam, k, pr = IMMIG_PER_YEAR, 0, 1.0  # ポアソン (乱数は rng から)
         L = math.exp(-lam)
@@ -154,7 +163,7 @@ def run(people0, cal, sc, seed, years):
             # 食べ物 (季節のはじめの人で要る量)
             need_day = sum(child_eat((start - p["born"]) // YEAR) for p in alive)
             if si == 0:  # 夏: 秋にまいた畑が実る
-                got = cal["harvest0"] if y == y_first else seed_next * ratio
+                got = (cal["harvest0"] if y == y_first else seed_next * ratio) * (1 - cal.get("hshare", 0.0))  # hshare: 家の倉へ移る分 (A_check.md 10.)
                 store += got * (1 - cal["pest"]) * GRAIN
                 store = min(store, pots_hold * GRAIN + 0.0)  # つぼに入らない分は残らない (いまは入る量の 4 割ほど)
                 seed_next = 0
@@ -381,7 +390,18 @@ def short(data, seeds=400, scen="S2"):
     return res
 
 
-def cond(data, seeds=400, scen="S2", years=3, birth=None, old=None, seedw=None):
+def _engine_bad(seed, y):
+    """エンジンの y 年の村 (V0) が悪い年か (g7._weather: era2._rng(塩 53) を y 年の前の年の最後の日に引く。z → V0 の順なので、集落の数によらない)"""
+    sys.path.insert(0, str(HERE.parent))
+    import region
+    day = y * YEAR - 1
+    rng = random.Random(seed * 7349 + day * 31 + 53)
+    z = rng.random()
+    p = region.BAD_IN_BAD[region.land(region.VILLAGE)] if z < region.WEATHER_BAD else region.BAD_IN_GOOD
+    return rng.random() < p
+
+
+def cond(data, seeds=400, scen="S2", years=3, birth=None, old=None, seedw=None, yields="past", water=1.0, hshare=0.0):
     """2026-11-23 (A_check.md 8.): いまの本物の村 (data/state.json。印 g7.d1 のあと) から years 年先を回し、
     印のあとの本物の数え (g7.d1.demo) と足して、区切りからのまとめ (d1・d2・d4) の幅を出す (d1.py の life・tfr と同じ計算)。
     2026-11-23 (A_check.md 9.): 年の終わりの蓄え (日分) の幅と 200 日分を切る割合も出す。old は年寄りの死の倍率 (感度)・
@@ -395,8 +415,18 @@ def cond(data, seeds=400, scen="S2", years=3, birth=None, old=None, seedw=None):
     START_DAY = st["day"]
     y_obs = sorted(int(y) for y in g["demo"])
     base = {y: {k: g["demo"][str(y)][k] for k in ("E", "D", "Ef", "B")} for y in y_obs}
+    eseed = st["seed"]
+    wl = st["era2"]["g7"]["region"].get("weather_log") or []
     del st
     people, cal = load(data)
+    if yields != "past":  # 2026-11-23 (A_check.md 10.): 比を era2 の決まりで引く・水の来る畑の割合・家の倉へ移る分
+        y1 = (START_DAY + 1) // YEAR
+        cal = dict(cal, yields=yields, water=water, eseed=eseed, pbad=sum("V0" in w["bad"] for w in wl) / max(1, len(wl)),
+                   ebad={y for y in range(y1, y1 + years + 1) if _engine_bad(eseed, y)})
+        print(f"比: {yields} (三角 3・15・8)・水の来る畑 {water:.0%}・悪い年の見込み {cal['pbad']:.3f} (天気の帳 {len(wl)} 年)・"
+              f"エンジンの悪い年 {sorted(cal['ebad'])}", flush=True)
+    if hshare:
+        cal = dict(cal, hshare=hshare)
     sc = dict(SCEN[scen])
     if birth is not None:
         sc["birth"] = birth
@@ -591,6 +621,10 @@ def main():
     ap.add_argument("--birth", type=float, default=None, help="--cond の生まれる見込み (感度だけ)")
     ap.add_argument("--cold", type=float, default=None, help="--cond の年寄りの死の倍率 (筋の 0.35 のかわり。感度だけ)")
     ap.add_argument("--seedw", type=float, default=None, help="--cond の秋の種まき (働き手 1 人あたり。書かなければ 232〜241年の平均)")
+    ap.add_argument("--yields", default="past", choices=("past", "tri", "engine"),
+                    help="--cond の種と実りの比: past 230〜241年の本物から引く (前のまま)・tri era2 の決まり (三角 3・15・8) と悪い年・engine エンジンの乱数そのもの")
+    ap.add_argument("--water", type=float, default=1.0, help="--yields tri|engine の水の来る畑の割合 (悪い年に半分にならない分。いまは 1.0)")
+    ap.add_argument("--hshare", type=float, default=0.0, help="--cond の刈り入れのうち家の倉へ移る割合 (村の蓄えに入らない。247・248年は 0.10・0.15)")
     ap.add_argument("--html")
     ap.add_argument("--to")
     ap.add_argument("--lead", default="")
@@ -610,7 +644,7 @@ def main():
         short(a.data, a.seeds if a.seeds != 20 else 400)
         return
     if a.cond:
-        cond(a.data, a.seeds if a.seeds != 20 else 400, years=a.cond, birth=a.birth, old=a.cold, seedw=a.seedw)
+        cond(a.data, a.seeds if a.seeds != 20 else 400, years=a.cond, birth=a.birth, old=a.cold, seedw=a.seedw, yields=a.yields, water=a.water, hshare=a.hshare)
         return
     res = project(a.data, a.seeds, a.years, a.scen.split(","))
     if a.out:
