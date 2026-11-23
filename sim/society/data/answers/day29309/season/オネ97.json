@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のうちに冬の支度をして、ゆっくり行こう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。草の種を入れる器は多いほど虫に食われず安心だから。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ101": {"activity": "採集", "place": "camp", "why": "木の実がたくさんなっているので、冬に備えて集める。"},
+  "キサ105": {"activity": "採集", "place": "camp", "why": "木の実がたくさんなっているので、冬に備えて集める。"},
+  "キオ107": {"activity": "採集", "place": "camp", "why": "木の実を集めて蓄えを厚くする。"},
+  "リセ111": {"activity": "採集", "place": "camp", "why": "木の実を集めて蓄えを厚くする。"}
+ },
+ "keep": false,
+ "judge": {"M578": "ゆるす", "M579": "ゆるす", "M580": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも木の実も豊かで、おだやかな秋だと思う。"}

@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "冬の前に、木の実をたくさん集めておこう。わたしは林へ行ってくる。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集の腕がいちばん高いので、冬に備えて木の実を集める"},
+ "sow": 500, "pick": 20, "plant": 0, "harvest": 30, "eat_goat": 0,
+ "accept": {}, "family": {"シエ127": {"activity": "採集", "place": "東林12", "why": "腕のよい採集で、いっしょに冬の食べ物を集める"}},
+ "keep": false,
+ "judge": {"M578": "ゆるす", "M579": "ゆるす", "M580": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が近いので、少し気がひきしまる。やることをやるだけだ。"}

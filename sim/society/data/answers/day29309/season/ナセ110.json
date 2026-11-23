@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "畑がまだ空っぽだよ。秋のうちに種をまいて、手のあく人は草取りと水の道に出よう。わたしは水の道を掘りに行く。"}, {"to": "みんな", "text": "ホタ29の家の畑のことは、刈った家にも分けてあげて。次からは刈る前に分け方を決めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ七千人日以上残っている。水の来る畑は悪い年でも実るから、今のうちに掘っておきたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ143": true, "シエ143": true}, "keep": false,
+ "judge": {"M578": "つぐなう", "M579": "つぐなう", "M580": "つぐなう"},
+ "feast": false, "leader": "テナ61",
+ "trade": {"T1307": "村", "T1308": "村", "T1309": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋のうちに畑に種をまこう。よその畑を刈る前に分け方を決めよう",
+ "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "この秋は村の畑がなく、まかないと次の夏に刈る種がない", "because": [], "confidence": 0.7}, {"op": "add", "text": "ホタ29の家の畑を刈った家が三つも不満を言い出した。刈る前に分け方を決める決まりがまだ守られていない", "because": [6264539, 6264540, 6264541], "confidence": 0.8}],
+ "proposal": {"text": "秋のはじめに、家ごとに大人一人は畑に種をまき、冬まで草取りをしよう。よその家の畑を刈る前に分け方を決めよう。", "because": [6264539, 6264540, 6264541], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1001", "against": "水の道を掘る人がほかの仕事から減る", "agree": true, "reason": "刈る前に分け方を決めればもめごとが減り、水の道も進む"},
+  {"id": "L1007", "against": "書く人の手間がかかる", "agree": true, "reason": "刈った量を書けば、覚えちがいのもめごとがなくなる"},
+  {"id": "L1002", "against": "半分と決めつけると畑の家が損をすることもある", "agree": true, "reason": "先に分け方を決めて書くのは大事"},
+  {"id": "L996", "against": "掘る人を手伝う分、ほかの仕事が遅れる", "agree": true, "reason": "子の薬で小さい子が亡くなりにくくなる"},
+  {"id": "L1003", "against": "ヤギが増えすぎるかもしれない", "agree": true, "reason": "ヤギは草で養える数より少ないので、つぶさずに受けるのがよい"},
+  {"id": "L1008", "against": "毎夕刈ると疲れがたまる", "agree": true, "reason": "水の道と子の水はどちらも大事"}
+ ],
+ "feeling": "畑が空っぽなのが気がかり。早く種をまいて、水の道も掘り進めたい。"}

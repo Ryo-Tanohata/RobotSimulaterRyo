@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋だね。子どもたちもいるし、私は木の実を集めて、蓄えを少しでも増やすよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "採集が得意で、冬の前に食べ物を集めたいから"},
+ "sow": 0, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ143": true, "シエ143": true},
+ "family": {"ユエ121": {"activity": "採集", "place": "西草原12", "why": "腕がよいので一緒に食べ物を集める"}},
+ "keep": false,
+ "judge": {"M578": "ゆるす", "M579": "ゆるす", "M580": "ゆるす"},
+ "feast": false, "leader": "テナ61", "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が来る前に、子どもたちにたくさん食べさせたい。"}

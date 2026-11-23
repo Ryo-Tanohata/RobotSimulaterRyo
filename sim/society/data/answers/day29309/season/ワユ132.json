@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりだ。この秋は畑に種をまいて、冬にそなえよう。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "採集が得意で、草原はキャンプに近く、食べ物を集められるから"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ143": true, "シエ143": true},
+ "family": {"ネイ132": {"activity": "採集", "place": "西草原12", "why": "採集の腕が高く、父と一緒に食べ物を集める"}, "ソワ132": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、キャンプの子に字を教える"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心だ。みんなと話しながら働くのが楽しみだ。"}

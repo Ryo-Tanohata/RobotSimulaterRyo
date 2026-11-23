@@ -1007,5 +1007,10 @@
 {"id":"L1005","text":"家の倉に板や燃える石のある家は、1年に1つは町の頼みを受けて子の薬をもらい、小さい子のいる家から先に分けよう。","proposer_id":"P2175","proposed_day":29279,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L1006","text":"夏は実った畑が落ちる前に、手のあく大人みんなで刈り取ろう。小さい子のいる家は、燃える石で町の頼みを受けて子の薬をもらおう。","proposer_id":"P3040","proposed_day":29279,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L1007","text":"よその家の畑を刈る家は、刈る前に畑の家と分け方を決め、刈った量を読める人に書いてもらおう。もめごとが残らないように。","proposer_id":"P3050","proposed_day":29279,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
-{"id":"L1008","text":"畑の刈り入れが終わるまで手のあく大人はみな毎夕刈ろう。秋と冬は家ごとに大人一人が水の道を掘り、小さい子にはわかして冷ました水を飲ませよう。","proposer_id":"P3807","proposed_day":29279,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"}
+{"id":"L1008","text":"畑の刈り入れが終わるまで手のあく大人はみな毎夕刈ろう。秋と冬は家ごとに大人一人が水の道を掘り、小さい子にはわかして冷ました水を飲ませよう。","proposer_id":"P3807","proposed_day":29279,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1009","text":"秋にまいた畑は、手のあく大人で冬まで草取りをしよう。よその家の畑を刈ったら、刈った量を読める人に書いてもらい、半分を刈った人の家に分けよう。","proposer_id":"P1780","proposed_day":29309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1010","text":"秋と冬は、家ごとに大人一人が水の道を掘ろう。冬の前に蓄えの土器のふたを見なおして、傷む種を減らそう。","proposer_id":"P2175","proposed_day":29309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1011","text":"よその家の畑を刈ったら、刈った量を字で書いて両方の家で見せ合い、半分を刈った人の家に分けよう。秋にまいた畑は、冬まで手のあく大人で草取りをしよう。","proposer_id":"P3040","proposed_day":29309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1012","text":"秋のはじめに、家ごとに大人一人は畑に種をまき、冬まで草取りをしよう。よその家の畑を刈る前に分け方を決めよう。","proposer_id":"P3050","proposed_day":29309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1013","text":"よその家の畑を刈った分は、刈った量を読める人に書いてもらい、半分を刈った人の家に渡そう。渡さなかった家はつぐなおう。 (罰: よその家の畑で刈った草の種が、みな畑の持ち主の家の倉に入ると、相手の家は、言い出した家に 草の種 60 つかみ を払う)","proposer_id":"P3807","proposed_day":29309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":{"for":"刈る","pay":60},"label":"創発"}
 ]
