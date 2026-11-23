@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋だ。蓄えはたっぷりあるから、千つかみの種をまいて、冬と春は畑の草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。土器づくりの腕もあるが、蓄えは十分なので畑を守る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キサ78": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを増やすため"}, "ルタ79": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひき、水の道の手入れを進めるため"}, "シエ81": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}, "ルタ82": {"activity": "土器づくり", "place": "camp", "why": "草の種を虫やネズミから守る土器を増やすため"}, "ムイ96": {"activity": "水の作業場で働く", "place": "M26", "why": "板をひいて水の道の手入れをはかどらせるため"}},
+ "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1361": false, "T1362": false, "T1363": false, "T1364": false}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみの草の種をまき、冬と春に草取りをすれば、次の夏に畑が実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "ヤギは今 77 頭で草で養える数より少ないので、肉にする必要はまだない", "agree": false, "reason": "ヤギは足りているので、今は肉にしなくてよい"}],
+ "feeling": "蓄えが多くて安心している。秋の畑仕事をしっかりやろう。"}

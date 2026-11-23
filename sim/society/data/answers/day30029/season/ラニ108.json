@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "畑はいま空っぽだよ。蓄えは十分あるから、秋のうちに千つかみずつまいて、冬と春に草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑が空なので、まいたあとの草取りで次の夏の実りを増やしたいから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"リセ118": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをして、次の夏の実りを守るため"}}, "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1361": false, "T1362": false, "T1363": false, "T1364": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑が空の秋は、蓄えの草の種を一人1000つかみまき、冬と春に草取りをすると次の夏の実りが増える。", "because": [6761369], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1088", "against": "", "agree": true, "reason": "ヤギが多いあいだは受けず、夏に刈り、秋にまくのは筋が通っている"}, {"id": "L1089", "against": "", "agree": true, "reason": "草が足りないので、ふえた分は干し肉にするのがよい"}, {"id": "L1090", "against": "", "agree": true, "reason": "夏にみなで刈れば落ちる実りが減る"}],
+ "feeling": "畑に出て草を取るのは落ち着く。今年もよく実ってほしい。"}

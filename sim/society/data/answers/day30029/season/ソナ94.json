@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "畑がないから、秋は種をまいて、冬まで草取りをするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がないので、まいた種の草取りをして、来年の実りを増やしたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"セヤ118": {"activity": "畑仕事", "place": "camp", "why": "わたしと一緒に草取りをして、まいた畑を育てる"}}, "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1361": false, "T1362": false, "T1363": false, "T1364": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑のない秋は、蓄えの草の種を 1000 つかみまいて、冬まで草取りをすると、次の夏に実る。", "because": [6765845], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1080", "against": "", "agree": true, "reason": "畑がないので、種をまいて草取りをするのはよい"}, {"id": "L1083", "against": "", "agree": true, "reason": "ヤギが多いときは受けず、畑をまくのはよい"}, {"id": "L1087", "against": "", "agree": true, "reason": "ヤギを増やしすぎず、秋にまくのはよい"}],
+ "feeling": "畑が育つのを楽しみに、静かに草取りをするよ。"}

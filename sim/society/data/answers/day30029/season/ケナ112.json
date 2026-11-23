@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蔵の草の種はたっぷりある。今年も秋に千つかみずつまいて、冬まで毎日草取りをして、来年の夏の実りを守ろう。"}, {"to": "アコ118", "text": "あなたは字が読めるから、帳をつけて蔵の出し入れをきちんと残してね。私は畑で草取りをするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蔵の種は多いので、畑を守って来年の夏の刈り入れにそなえる"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ハソ112": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで草取りをして、まいた畑の実りを増やす"}, "アコ118": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、蔵の出し入れや働いた日を帳に残す"}, "ハソ122": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして、畑の実りを守る"}, "セオ134": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ケセ135": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ハソ136": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1361": "村", "T1362": "村", "T1363": "村", "T1364": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に千つかみまいた畑は、冬までの草取りで次の夏に多く実る。蔵の草の種はたっぷりあるので、困っている村に貸せる。", "because": [6765866], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蔵が満ちていてありがたい。畑で体を動かして、来年の夏の実りを楽しみに待つよ。"}

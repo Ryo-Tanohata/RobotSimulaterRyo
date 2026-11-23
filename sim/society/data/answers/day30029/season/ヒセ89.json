@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。おれは林の奥へ入って、大きな獲物を追ってくる。"}],
+ "job": {"activity": "狩り", "place": "北林28", "with": [], "why": "蓄えは十分なので、狩りの腕を生かして肉を持ち帰り、村の食べ物に幅を出したい"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ムイ97": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、近い林で木の実を集める"},
+  "ヌオ101": {"activity": "採集", "place": "西草原12", "why": "草原で草の種と実りを集める"},
+  "リセ109": {"activity": "狩り", "place": "北林12", "why": "狩りの腕があるので、近い林で獲物を探す"},
+  "オセ118": {"activity": "狩り", "place": "北林28", "why": "狩りが得意なので、おれと一緒に奥へ入る"},
+  "オネ125": {"activity": "採集", "place": "南林12", "why": "採集が得意なので、南の林で実を集める"}
+ },
+ "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1361": false, "T1362": false, "T1363": false, "T1364": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は少し疲れているが、気持ちは軽い。広い林へ向かうのが楽しみだ。"}

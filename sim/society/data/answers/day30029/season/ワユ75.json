@@ -1,0 +1,40 @@
+{"say": [{"to": "みんな", "text": "秋のうちに一人千つかみずつまいて、冬と春はゆっくりでも草取りを続けようね。来年の夏の蓄えになるから。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをすれば夏の実りが増える。年なので、遠くへ行かずキャンプのそばで働きたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "オネ94": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番なので、続けて板をひいてもらう"},
+  "ハソ100": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "テナ102": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "タユ108": {"activity": "字を教える", "place": "camp", "why": "家の子に字を教えて、読み書きできるようにしたい"},
+  "トナ109": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "リセ116": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "アコ116": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "ホタ117": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っている。悪い年でも刈り入れが減らないように"},
+  "ルタ118": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "ワユ119": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "トナ120": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "ヌオ129": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので、水の道の手入れをしてほしい"},
+  "ソナ130": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "ソナ131": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを増やす"},
+  "ロワ131": {"activity": "畑仕事", "place": "camp", "why": "14 歳なので、大人と一緒に草取りを覚えてほしい"}
+ },
+ "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"},
+ "feast": false, "leader": "テナ61",
+ "trade": {"T1361": "村", "T1362": "村", "T1363": "村", "T1364": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "この秋も、ほかの村の多くが畑が実らず苦しく、草の種を貸してほしいと来た", "because": [6765872, 6765873, 6765874, 6765875], "confidence": 0.9},
+  {"op": "add", "text": "世話をする人が少なく、飼っていたヤギが 15 頭いなくなった", "because": [6765845], "confidence": 0.9},
+  {"op": "add", "text": "この前の季節も小さい子が 4 人、若い人も病で亡くなった。子の薬が要る", "because": [6765859, 6765860, 6765861, 6765862, 6765864, 6765865], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L1086", "against": "決まりが多すぎて覚えにくい", "agree": true, "reason": "夏に刈りきって秋に千つかみまくのは、蓄えを守るのに大事だから"},
+  {"id": "L1087", "against": "冬まで草取りは年寄りにはきつい", "agree": true, "reason": "まいたあと草取りまですると、実りが増えるから"},
+  {"id": "L1088", "against": "前の掟とほとんど同じ", "agree": true, "reason": "刈りきって蓄えをもどすのに賛成だから"},
+  {"id": "L1089", "against": "ヤギが減りすぎると乳がとれなくなる", "agree": true, "reason": "こえた分をつぶせば、やせていなくなるより無駄がないから"},
+  {"id": "L1090", "against": "鎌づくりに人をとられる", "agree": true, "reason": "鎌があれば刈る量が倍になるから"}
+ ],
+ "feeling": "ヤギがいなくなり、子もまた亡くなってさびしいけれど、畑をしっかり手入れしたい"}

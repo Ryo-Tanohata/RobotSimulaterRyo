@@ -1,0 +1,33 @@
+{"say": [{"to": "みんな", "text": "秋のうちに畑へ種をまいておこう。蓄えはたっぷりあるから、困っている村には貸してあげたい。"}],
+ "job": {"activity": "種まき", "place": "camp", "with": [], "why": "秋にまいておけば、来年の夏に村みんなの食べ物になるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケセ94": {"activity": "種まき", "place": "camp", "why": "採集が得意で、畑をよく見られるから"},
+  "キオ100": {"activity": "字を教える", "place": "camp", "why": "家の子らに字を覚えさせたいから"},
+  "キオ104": {"activity": "水の輪を直す", "place": "camp", "why": "止まった輪の直しが残っているから"},
+  "ケナ106": {"activity": "種まき", "place": "camp", "why": "畑を広げて来年にそなえるため"},
+  "ホミ110": {"activity": "種まき", "place": "camp", "why": "秋のうちに種をまききるため"},
+  "ロワ112": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑は悪い年でも実るから"},
+  "キサ116": {"activity": "水の輪を直す", "place": "camp", "why": "輪の直しを早く終わらせたいから"},
+  "ルタ121": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"},
+  "ホミ122": {"activity": "種まき", "place": "camp", "why": "若い手で畑を手伝ってほしいから"},
+  "ラキ127": {"activity": "種まき", "place": "camp", "why": "小さい子のそばで、キャンプでできる仕事だから"},
+  "ネイ130": {"activity": "種まき", "place": "camp", "why": "畑の仕事を覚えてほしいから"},
+  "ソナ133": {"activity": "畑仕事", "place": "camp", "why": "草取りを少しずつ覚えてほしいから"},
+  "テナ135": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝ってもらうため"}
+ },
+ "keep": false,
+ "judge": {"M592": "つぐなう", "M593": "ゆるす", "M594": "ゆるす"},
+ "feast": false, "leader": "テナ61",
+ "trade": {"T1361": "村", "T1362": "村", "T1363": "村", "T1364": "村"},
+ "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋のうちに畑へ種をまこう。困っている村には蓄えを貸そう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "この年は近くの村の畑がどこも実らず、草の種を借りに来る。うちの蓄えはたっぷりあるので貸せる", "because": [6765872, 6765873, 6765874, 6765875], "confidence": 0.7},
+  {"op": "add", "text": "よその家の畑を刈ると、刈った分がその家の倉に入って、もめごとになる。量を字で書いておくと話がはやい", "because": [6765869, 6765871], "confidence": 0.6}],
+ "proposal": {"text": "畑が実らず困っている近くの村が来たら、村の蓄えが多いあいだは、頼まれた草の種を貸してあげよう。", "because": [6765872, 6765873, 6765874, 6765875], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1082", "against": "同じような掟がたくさんある", "agree": true, "reason": "秋に種をまいて草取りをすれば、来年も食べ物にこまらないから"},
+  {"id": "L1086", "against": "夏に刈る人が多くて疲れる", "agree": true, "reason": "実った畑を落とさずに刈れば蓄えがふえるから"},
+  {"id": "L1090", "against": "鎌を作る人の手がとられる", "agree": true, "reason": "鎌があれば刈り入れが倍になるから"},
+  {"id": "L1063", "against": "板に書く手間がかかる", "agree": true, "reason": "よその家の畑を刈ったときの量を書けば、もめごとがへるから"}
+ ],
+ "feeling": "疲れはあるけれど、蓄えが多くて安心している。困っている村を助けたい。"}

@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "のこ番として今季も板をひくよ。板が多いほど、水の道の手入れが早く片づく。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番の持ち場だから。板をひけば家にも村にも役に立つ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソナ77": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番だから"},
+  "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番だから"},
+  "ケセ102": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っている"},
+  "ムイ112": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っている"},
+  "オネ112": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、帳をつけて倉の量を残す"},
+  "ソナ114": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っている"},
+  "ケセ117": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、帳をつける"},
+  "ソナ118": {"activity": "ヤギの世話", "place": "camp", "why": "小さい子がいるのでキャンプのそばで働く"},
+  "セオ127": {"activity": "水の道を掘る", "place": "camp", "why": "若いので力仕事をまかせる"}
+ },
+ "keep": true,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1361": "村", "T1362": "村", "T1363": "村", "T1364": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "feeling": "疲れはあるが、満腹で落ち着いている。今季も板をひく。"}

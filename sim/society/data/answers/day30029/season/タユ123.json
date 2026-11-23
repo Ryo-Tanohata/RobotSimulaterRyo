@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "村に畑がひとつもない。この秋は大人みな千つかみまいて、冬まで草取りに出よう。来年の夏の種はそれで決まる。"}, {"to": "みんな", "text": "うちの倉の燃える石で、町の頼み67をすぐ果たす。ハソ145の薬にするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいたばかりの畑は草取りしだいで実りが三倍にもなる。来年の夏の種のために出る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"タユ128": {"activity": "水の道を掘る", "place": "camp", "why": "畑に水が来る道の手入れがまるで足りていないから"}, "オネ129": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って、実りを増やしてほしいから"}, "ラニ131": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも、草取りの手は多いほどよい"}, "ケセ131": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも、草取りの手は多いほどよい"}}, "keep": true,
+ "judge": {"M592": "つぐなう", "M593": "ゆるす", "M594": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1361": false, "T1362": false, "T1363": false, "T1364": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "畑がない。秋は大人みな千つかみまき、冬まで草取りをしよう", "order": null, "take": {"頼み": 67, "人": ["タユ123"]},
+ "knowledge": [{"op": "add", "text": "村に畑がない秋がまた来た。大人みなでまいて草取りをしないと、来年の夏に刈る種がない", "because": [6765866], "confidence": 0.9}, {"op": "add", "text": "家の倉の燃える石は 4013 kg。町の頼み 67 (2500 kg) をすぐ果たせば、ハソ145 に子の薬 4 包みがもらえる", "because": [6765862], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "夜に動けないと仕事が遅れる", "agree": true, "reason": "ザガはまだ怖い。夜はキャンプにいるほうがよい"}],
+ "feeling": "畑がからっぽなのが落ち着かない。今年はまいて、草を抜いて、ハソに薬を持ち帰る。"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋だね。畑に種をまいて、冬にそなえよう。おれは林で木の実をたくさん集めてくるよ。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "秋は木の実が多い。採集と狩りが得意なので、食べ物を集めて冬にそなえる"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ネイ132": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、草の種や木の実を集められる"}, "ソワ132": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをして、来年の夏の実りを増やす"}},
+ "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1361": "村", "T1362": false, "T1363": "村", "T1364": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、次の夏に実る。蓄えは今は多い。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くとけがをするから"}],
+ "feeling": "蓄えが多くて安心。今季は林で気持ちよく働きたい。"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えはたっぷりあるから、千つかみずつ種をまいて、わたしは水の道の泥を掘るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大量に残っていて、水の来る畑は悪い年でも実りが守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ115": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、次の夏の実りを増やすため"}, "ヌオ126": {"activity": "採集", "place": "camp", "why": "小さい子アコ150のそばで、キャンプの近くで食べ物を集めるため"}},
+ "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1361": "村", "T1362": "村", "T1363": "村", "T1364": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは厚く、苦しい村に草の種を貸しても余裕がある。秋に千つかみまき、水の道を掘ると次の夏が守れる。", "because": [6765866], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが厚くて安心。体を動かして水の道を掘るのが楽しみだ。"}

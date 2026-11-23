@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。秋は千つかみずつ種をまいて、冬の前に魚とけものも取っておこう。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": ["ラニ71"], "why": "狩りが得意で、冬は木の実も種もなくなるので、けものの肉を取っておきたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ラニ120": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので、いっしょに冬の肉を集める"}}, "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1361": false, "T1362": false, "T1363": false, "T1364": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種は約237日分あり、秋に千つかみまいても足りる", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、離れないほうが安全"}],
+ "feeling": "蓄えが厚くて心強い。冬の前にしっかり狩ろう"}

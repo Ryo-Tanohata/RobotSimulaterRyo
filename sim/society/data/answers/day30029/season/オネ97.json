@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋になったね。蓄えは多いけれど、冬のあとの夏の実りのために、千つかみずつ種をまいて、畑の草取りをつづけよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが3割になると覚えている。年寄りでも畑ならできるので手伝う。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ101": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを守るため。"}, "キサ105": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを守るため。"}, "キオ107": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを守るため。"}, "リセ111": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで夏の実りを守るため。"}},
+ "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を千つかみまいて、秋・冬・春に草取りをすると、夏によく実る。", "because": [6765866], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、この決まりは身を守るために大事だ。"}],
+ "feeling": "蓄えがたくさんあって安心している。夏の実りが楽しみだ。"}

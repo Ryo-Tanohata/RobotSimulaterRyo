@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。千つかみをまいて、冬のあいだ畑の草取りをみんなで続けよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、毎日camp で畑仕事を続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ109": {"activity": "畑仕事", "place": "camp", "why": "畑の草取り人手を増やして実りを守る"}, "ネイ114": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ロワ127": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝う"}, "ロワ129": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑を育てる"}, "キオ131": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りを手伝える"}},
+ "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1361": "村", "T1362": "村", "T1363": "村", "T1364": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に千つかみをまき、冬と春に草取りをすると夏に畑が実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "mood": "みんなと畑を育てるのがうれしい。"}

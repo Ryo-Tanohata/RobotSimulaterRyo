@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、秋は千つかみまいて、みんなで草取りをしよう。苦しい村には、草の種を貸してあげたいね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑を草取りすると、次の夏にたくさん刈れるから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ロワ124": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りをして、次の夏の実りを増やすため"}}, "keep": false,
+ "judge": {"M592": "ゆるす", "M593": "ゆるす", "M594": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1361": "村", "T1362": "村", "T1363": "村", "T1364": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種がとても多いので、苦しい村に貸しても足りなくなる心配は今のところない。", "because": [6765872], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。秋の畑仕事をがんばって、苦しい村も助けたい。"}
