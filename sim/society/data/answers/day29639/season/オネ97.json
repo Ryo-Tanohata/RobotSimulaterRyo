@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この1年は家族みんなで、手に覚えのある仕事をこつこつ続けましょう。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕がいちばん高く、蓄えの入れ物や交換の品が増えるから"}, "family": {"キオ101": {"activity": "採集", "place": "camp", "why": "採集が得意で、食べ物を絶やさないため"}, "キサ105": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が高く、肉や魚をとれるから"}, "キオ107": {"activity": "採集", "place": "camp", "why": "採集が得意だから"}, "リセ111": {"activity": "採集", "place": "camp", "why": "採集が得意だから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬に備えて入れ物を整えるため"}, "family": {"キオ101": {"activity": "採集", "place": "camp", "why": "実りの秋に食べ物を集めるため"}, "キサ105": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が高いから"}, "キオ107": {"activity": "採集", "place": "camp", "why": "実りの秋に食べ物を集めるため"}, "リセ111": {"activity": "採集", "place": "camp", "why": "実りの秋に食べ物を集めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "寒い冬は外に出ず、キャンプで手仕事をするため"}, "family": {"キオ101": {"activity": "採集", "place": "camp", "why": "冬も食べ物を絶やさないため"}, "キサ105": {"activity": "狩り", "place": "南川12", "why": "冬も魚がいて、狩りの腕が高いから"}, "キオ107": {"activity": "採集", "place": "camp", "why": "冬も食べ物を絶やさないため"}, "リセ111": {"activity": "採集", "place": "camp", "why": "冬も食べ物を絶やさないため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "腕を生かして続けるため"}, "family": {"キオ101": {"activity": "採集", "place": "camp", "why": "春の草の芽や実を集めるため"}, "キサ105": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が高いから"}, "キオ107": {"activity": "採集", "place": "camp", "why": "春の食べ物を集めるため"}, "リセ111": {"activity": "採集", "place": "camp", "why": "春の食べ物を集めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M584": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1337": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、キャンプから離れないのは大事だから"}],
+ "year_name": "たくさん亡くなった年",
+ "feeling": "蓄えは多いが、小さな子が亡くなる年が続いて心が重い。家族を守りたい。"}
