@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "冬の前に肉をたくさん取ってくる。わしは狩りが得意だから、北の林で追うよ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りの腕が一番高いので、冬に備えて肉を蓄えに入れたい"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ82": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"},
+  "ロワ83": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"},
+  "シエ84": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"},
+  "ハソ93": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"},
+  "ヒセ88": {"activity": "採集", "place": "東林12", "why": "木の実や草の種を集めて蓄えを増やす"},
+  "オネ91": {"activity": "採集", "place": "西草原12", "why": "草の種を集めて蓄えを増やす"}
+ },
+ "keep": false, "judge": {"M591": "ゆるす"}, "feast": false, "leader": null, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "feeling": "冬が近いので、肉をたくさん持ち帰りたい。"}

@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "この秋も、まく種は千つかみずつにしよう。わたしは字が書けるから、帳をつけて、まいた量を残しておくよ。"}],
+ "job": {"activity": "帳をつける", "place": "camp", "with": [], "why": "字が読み書きできる者として、村の帳をつける役をつづけたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"アコ149": true, "ネイ149": true}, "keep": false,
+ "judge": {"M591": "ゆるす"}, "feast": false, "leader": "テナ61", "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に大人みなが草の種をまき、冬まで草取りをすると、次の夏によく実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だけれど、冬の前に畑の種まきをしっかりしておきたい。"}

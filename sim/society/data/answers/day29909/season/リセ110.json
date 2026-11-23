@@ -1,0 +1,27 @@
+{"say": [{"to": "みんな", "text": "畑がない秋だから、大人みなで蓄えの種を千つかみずつまいて、冬まで草取りに通おうよ。来年の夏にたくさん刈れるように。"}, {"to": "ホミ113", "text": "ホミ、いっしょに畑の草取りをしよう。子らのことは夕方に交代で見ようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ホミ113"], "why": "まいた畑の草取りをすれば、夏の実りがずっと増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"アコ149": true, "ネイ149": true},
+ "family": {
+  "ホミ113": {"activity": "畑仕事", "place": "camp", "why": "わたしといっしょに草取りをして、夏の実りを増やすため"},
+  "ワユ120": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人が少ないとヤギがいなくなるから"},
+  "セオ122": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"},
+  "ヌオ124": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので、草取りを手伝ってほしいから"}
+ },
+ "keep": false,
+ "judge": {"M591": "ゆるす"}, "feast": false, "leader": "テナ61", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "北の村からアコ149たち、北東の村14からネイ149たちが来て、ここで暮らしたいと言った", "because": [6660829, 6660838], "confidence": 0.9}, {"op": "add", "text": "ヤギはいま78頭でみなメス。草で養える数よりずっと少ない", "because": [], "confidence": 0.8}],
+ "proposal": {"text": "畑のない秋は、大人みな蓄えの草の種を 1000 つかみずつまき、冬まで手のあく大人で交代で草取りをしよう。ヤギがみなメスのあいだは、オスのヤギを出す申し出を受けよう。", "because": [], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1071", "against": "ヤギが少ない今は、ことわる理由がうすい", "agree": true, "reason": "畑を刈りきって秋にまくのは大事だから"},
+  {"id": "L1052", "against": "", "agree": true, "reason": "まいた量を板に書けば、あとでもめないから"},
+  {"id": "L1062", "against": "", "agree": true, "reason": "畑がない秋にまいて草取りをするのは大事だから"},
+  {"id": "L1064", "against": "ヤギの申し出で種が減るかもしれない", "agree": true, "reason": "ヤギは 78 頭で草より少ないから"},
+  {"id": "L1060", "against": "", "agree": true, "reason": "ヤギがみなメスで、子が生まれないから"},
+  {"id": "L1066", "against": "", "agree": true, "reason": "ヤギを戻し、秋にまくのはよいことだから"},
+  {"id": "L1074", "against": "", "agree": true, "reason": "刈る・まく・直すがそろっていてよいから"},
+  {"id": "L1069", "against": "", "agree": true, "reason": "子が字を読めれば、知らせが届くから"},
+  {"id": "L1055", "against": "", "agree": true, "reason": "小さい子が病で亡くなるのを減らしたいから"},
+  {"id": "L1070", "against": "いまヤギは 140 頭より少ないので、今は当てはまらない", "agree": true, "reason": "秋にまいて草取りをするところはよいから"}
+ ],
+ "feeling": "畑に種をまく秋。みんなで草取りをして、来年の夏が楽しみ。"}

@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋だ。蔵の種はたっぷりある。みんな千つかみずつ畑にまいて、冬まで草取りをして、来年の夏にまた刈ろう。ヤギは草より多いから、少しは肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りがふえる。畑仕事をして次の夏の刈り入れにそなえる"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"アコ149": true, "オネ149": true, "ワユ149": true, "ネイ149": true, "ソワ149": true, "ユエ149": true}, "family": {},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蔵の種を畑にまき、冬まで草取りをすると、次の夏にたくさん実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蔵は満ちている。畑を育てて、また夏の実りを楽しみにしている。"}

@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "秋は蓄えの草の種を千つかみずつまこう。わたしは水の道を掘るよ。まだ六千人日ほど残っているからね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ六千人日以上残っている。蓄えは多いので、秋は道を掘るのがよい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"アコ149": true, "ネイ149": true},
+ "family": {
+  "ナセ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが残っているので、みんなで掘る。"},
+  "ラニ110": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが残っているので、みんなで掘る。"},
+  "ケナ122": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが残っているので、みんなで掘る。"},
+  "ホミ125": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが残っているので、みんなで掘る。"},
+  "ケセ134": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを手伝う。"}
+ },
+ "keep": false,
+ "judge": {"M591": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋は大人みな蓄えの草の種を千つかみずつまき、手のあく人は水の道を掘るのがよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1070", "against": "", "agree": true, "reason": "ヤギが多いうちは受けず、秋に千つかみずつまくのは畑を増やすので良い。"},
+  {"id": "L1069", "against": "", "agree": true, "reason": "字が読める子が増えると家が助かる。"},
+  {"id": "L1065", "against": "", "agree": true, "reason": "畑のない秋は種をまかないと次の夏に刈れない。"}
+ ],
+ "feeling": "蓄えは十分で落ち着いている。水の道を掘って村の役に立ちたい。"}

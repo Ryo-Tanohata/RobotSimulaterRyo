@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋は水の道がまだ六千人日あまり残っているから、わたしは毎日掘るよ。種も千つかみまいて、冬まで草取りをしよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えはたっぷりあるが、水の道の手入れが6351人日残っていて、掘る人が足りないから。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"アコ149": true, "ネイ149": true}, "keep": false,
+ "judge": {"M591": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめでも水の道の手入れは約6350人日残っている。蓄えは171日分あるので、掘る人手がいちばん足りない。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1070", "against": "", "agree": true, "reason": "秋に千つかみずつまくのは、次の夏の実りのためによい。"}, {"id": "L1071", "against": "", "agree": true, "reason": "ヤギが多いあいだ受けず、秋にまくのは筋が通っている。"}, {"id": "L1074", "against": "", "agree": true, "reason": "秋にまき、冬まで草取りをするのは大事だ。"}],
+ "feeling": "蓄えは多くて安心だけれど、水の道を掘る手が足りないのが気がかりだ。"}
