@@ -52,7 +52,7 @@ opts_of() { case "$1" in
 D1V_CAM='{"min":4.5,"add":2.5,"k":1.6,"max":40}'
 # D1V の見せ方 (2026-11-23 本人の絵コンテの直し): 赤い玉 (木の実・芋) を隠す・昼は組ごとに画面を分ける・火のまわりは引いて上から。
 # 出来事の帯は出さず、した人の頭の上に短い吹き出し (本人の選んだ案 C)
-D1V_VIEW='{"split":true,"noPlants":true,"bubbles":true}'
+D1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true}'
 D1V_CREDIT="VRoid の CC0 サンプル (pixiv) をもとに作成"
 STORY=
 [ "${1:-}" = "--storyboard" ] && { STORY=1; shift; }

@@ -170,6 +170,12 @@ for (const d of dayList) {
   offset += tl.total;
 }
 const total = offset;
+// 人のモデルで画面を分けるとき (D1V): カット (ナレーションの 1 文) の始まりを渡す。分け方はカットの途中では変えない
+if (PEOPLE) {
+  const cuts = {};
+  for (const n of narration) { const P = plan.filter((p) => p.start <= n.start + 1e-6).pop(); (cuts[P.day] = cuts[P.day] || []).push(n.start - P.start); }
+  await page.evaluate((c) => { if (window.Replay3DPeople) Replay3DPeople.opts.cuts = c; }, cuts);
+}
 fs.writeFileSync(`${outName}.timeline.json`, JSON.stringify({ fps: FPS, duration: total, narration, events: [], days: plan }, null, 1));
 console.log(`長さ ${total.toFixed(1)} 秒、${Math.round(total * FPS)} コマ`);
 

@@ -171,6 +171,93 @@
     return out;
   }
 
+  const COLS = ["#f2b134", "#4cb3f0", "#f0609a"];
+  // 人 n の、時刻 v の場所 (マス)。予定 (planFor) から決まるので、どの時刻からでも同じ答え
+  function posAt(P, n, v) {
+    const E = sched.get(P) && sched.get(P)[n]; if (!E) return null;
+    let j = 0; while (j + 1 < E.length && E[j + 1].t0 <= v) j++;
+    return E[j].at(v);
+  }
+  // カットごとの画面の分け方 (組・何枚・引きの絵)。opts.cuts[日] = カットの始まりの時刻 (その日の秒)
+  const layouts = new WeakMap();
+  function layoutAt(P, v, o) {
+    if (!layouts.has(P)) {
+      const cuts = [0, ...((o.cuts && o.cuts[P.day]) || []).filter((t) => t > 0)].sort((a, b) => a - b);
+      const alive = Object.keys(M.people).filter((n) => P.plan[n] && P.plan[n].alive);
+      const MERGE = o.merge || 5;  // 組どうしがこのマス数より近ければ、1 枚にまとめる
+      let firstSplit = -1;
+      const L = cuts.map((t0, i) => {
+        const t1 = i + 1 < cuts.length ? cuts[i + 1] : P.total, tm = (t0 + t1) / 2;
+        const sg = P.segs.find((s) => tm >= s.v0 && tm < s.v1) || P.segs[P.segs.length - 1];
+        if (!["go", "work", "back"].includes(sg.key)) return { t0, groups: [{ names: alive, title: "" }] };
+        let G = dayGroups(P, alive).map((g) => ({ ...g, ps: g.names.map((n) => posAt(P, n, tm)).filter(Boolean) }));
+        const cen = (g) => ({ x: g.ps.reduce((a, p) => a + p.x, 0) / g.ps.length, y: g.ps.reduce((a, p) => a + p.y, 0) / g.ps.length });
+        for (;;) {
+          let best = null;
+          for (let a = 0; a < G.length; a++) for (let b = a + 1; b < G.length; b++) {
+            const A = cen(G[a]), B = cen(G[b]), d = Math.hypot(A.x - B.x, A.y - B.y);
+            if (d < MERGE && (!best || d < best[0])) best = [d, a, b];
+          }
+          if (!best) break;
+          const [, a, b] = best, A = G[a], B = G[b];
+          G[a] = { names: [...A.names, ...B.names], ps: [...A.ps, ...B.ps], merged: true }; G.splice(b, 1);
+        }
+        G = G.map((g) => (g.merged ? { names: g.names, title: `${g.names.length >= 5 ? "五人" : g.names.join("・")} — ${sg.key === "go" ? "出かけるところ" : sg.key === "back" ? "キャンプへ帰るところ" : nearPlace(cen(g))}` } : { names: g.names, title: g.title }));
+        if (G.length > 1 && firstSplit < 0) firstSplit = i;
+        return { t0, groups: G };
+      });
+      layouts.set(P, { cuts, L, firstSplit, alive });
+    }
+    const X = layouts.get(P);
+    let i = 0; while (i + 1 < X.cuts.length && X.cuts[i + 1] <= v) i++;
+    const c = X.L[i];
+    if (i === X.firstSplit && v < c.t0 + 1.5) return { key: "wide" + i, wide: true, groups: [{ names: X.alive, title: "" }], all: c.groups };  // 分ける前の、全体の引きの絵
+    return { key: i + "|" + c.groups.map((g) => g.names.join("・")).join("/"), groups: c.groups };
+  }
+  function nearPlace(p) {
+    if (Math.hypot(M.D.camp.x + 0.5 - p.x, M.D.camp.y + 0.5 - p.y) < 4) return "キャンプのまわり";
+    let best = null;
+    for (const q of M.D.places || []) { const d = Math.hypot(q.x + 0.5 - p.x, q.y + 0.5 - p.y); if (!best || d < best[0]) best = [d, q]; }
+    const name = best ? String(best[1].label || best[1].id).replace(/\s*\(.*\)\s*$/, "") : "";
+    if (best && best[1].id === "camp") return "キャンプのまわり";
+    return best && best[0] > 3 ? name + "の近く" : name;
+  }
+  // 小さな地図: 川・林・草地・キャンプ、組の点、各画面の見えている範囲 (地面との交わり) の枠
+  let mapBase = null;
+  function drawMap(cv, ps, P, v) {
+    const D = M.D, MW = D.map.w, MH = D.map.h;
+    if (!mapBase) {
+      mapBase = document.createElement("canvas"); mapBase.width = MW; mapBase.height = MH;
+      const g = mapBase.getContext("2d"), C = { g: "#a9c97a", f: "#4f7a3a", r: "#4a9ad8", h: "#c9b48a" };
+      for (let y = 0; y < MH; y++) for (let x = 0; x < MW; x++) { g.fillStyle = C[D.map.terrain[y][x]] || "#a9c97a"; g.fillRect(x, y, 1, 1); }
+    }
+    const toT = (p) => ({ x: p.x + MW / 2, y: p.z + MH / 2 });
+    const quads = ps.map((pn) => {
+      const gy = pn.t.y - 0.8 * M.K;
+      return [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([x, y]) => {
+        const d = new THREE.Vector3(x, y, 0.5).unproject(pn.cam).sub(pn.cam.position).normalize();
+        const k = d.y < -0.05 ? (gy - pn.cam.position.y) / d.y : 30;
+        return toT(pn.cam.position.clone().add(d.multiplyScalar(Math.min(k, 30))));
+      });
+    });
+    const camp = { x: D.camp.x + 0.5, y: D.camp.y + 0.5 }, dots = [];
+    ps.forEach((pn) => pn.names.forEach((n) => { const p = posAt(P, n, v); if (p) dots.push({ p, col: pn.col || "#fff" }); }));
+    const all = [camp, ...dots.map((d) => d.p), ...quads.flat()];
+    let x0 = Math.min(...all.map((p) => p.x)) - 3, x1 = Math.max(...all.map((p) => p.x)) + 3, y0 = Math.min(...all.map((p) => p.y)) - 3, y1 = Math.max(...all.map((p) => p.y)) + 3;
+    const asp = cv.width / cv.height; let w = Math.max(16, x1 - x0), h = Math.max(12, y1 - y0);
+    if (w / h < asp) w = h * asp; else h = w / asp;
+    const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2; x0 = cx - w / 2; y0 = cy - h / 2;
+    const g = cv.getContext("2d"), sx = cv.width / w, sy = cv.height / h, X = (p) => (p.x - x0) * sx, Y = (p) => (p.y - y0) * sy;
+    g.imageSmoothingEnabled = false; g.clearRect(0, 0, cv.width, cv.height);
+    g.drawImage(mapBase, x0, y0, w, h, 0, 0, cv.width, cv.height);
+    g.fillStyle = "rgba(255,255,255,.12)"; g.fillRect(0, 0, cv.width, cv.height);
+    quads.forEach((q, i) => { g.strokeStyle = ps[i].col || "#fff"; g.lineWidth = 2.5; g.beginPath(); q.forEach((p, k) => (k ? g.lineTo(X(p), Y(p)) : g.moveTo(X(p), Y(p)))); g.closePath(); g.stroke(); });
+    g.fillStyle = "#7a5230"; g.beginPath(); g.arc(X(camp), Y(camp), 5, 0, 7); g.fill();
+    g.fillStyle = "#fff"; g.font = "bold 12px sans-serif"; g.fillText("キャンプ", X(camp) + 7, Y(camp) + 4);
+    for (const d of dots) { g.fillStyle = d.col; g.strokeStyle = "#222"; g.lineWidth = 1.5; g.beginPath(); g.arc(X(d.p), Y(d.p), 4.5, 0, 7); g.fill(); g.stroke(); }
+    g.strokeStyle = "rgba(0,0,0,.5)"; g.lineWidth = 2; g.strokeRect(1, 1, cv.width - 2, cv.height - 2);
+  }
+
   window.Replay3DPeople = {
     camera: { min: 6, add: 4.5 },
     // 動画 D1V (2026-11-23 本人の絵コンテの直し) のしかけ。make_video.mjs の PEOPLE_VIEW で入れる。ないときは D1P と同じ
@@ -211,29 +298,30 @@
         M.people[n] = { ...L, root, head: L.g.scene.getObjectByName("J_Bip_C_Head") };
       }
     },
-    // 画面を分けて描く (opts.split のとき。Replay3D.seek から。描いたら true)
+    // 画面を分けて描く (opts.split のとき。Replay3D.seek から。描いたら true)。
+    // 何枚に分けるかは、カット (ナレーションの 1 文。opts.cuts[日]) ごとに、カットのまん中の時刻の組どうしの近さで決める (カットの途中では変えない)。
+    // 初めて分けるカットの頭 1.5 秒は、全体を見せる引きの絵。分けたときは、右上に小さな地図 (組の点と、各画面の見えている範囲の枠) と、画面の色の縁
     render(v) {
       if (!this.opts.split || !M || !M.P) return false;
-      const P = M.P, R = M.renderer, el = R.domElement, W = el.clientWidth, H = el.clientHeight;
+      const P = M.P, R = M.renderer, el = R.domElement, W = el.clientWidth, H = el.clientHeight, o = this.opts;
       const seg = P.segs.find((s) => v >= s.v0 && v < s.v1) || P.segs[P.segs.length - 1];
       const day = ["go", "work", "back"].includes(seg.key);
-      const alive = Object.keys(M.people).filter((n) => M.people[n].root.visible);
-      const groups = day ? dayGroups(P, alive) : [{ names: alive, title: "" }];
-      const key = seg.key + "|" + groups.map((g) => g.names.join("・")).join("/");
-      if (!M.view || M.view.key !== key) M.view = { key, panels: groups.map((g, i) => ({ ...g, cam: new THREE.PerspectiveCamera(45, 1, 0.1, 500), fresh: true })) };
-      const ps = M.view.panels, n = ps.length, o = this.opts;
+      const lay = layoutAt(P, v, o);
+      const key = lay.key;
+      if (!M.view || M.view.key !== key) M.view = { key, panels: lay.groups.map((g, i) => ({ ...g, col: lay.groups.length > 1 || lay.wide ? COLS[i % COLS.length] : null, cam: new THREE.PerspectiveCamera(45, 1, 0.1, 500), fresh: true })) };
+      const ps = M.view.panels, n = ps.length;
       ps.forEach((pn, i) => {
         pn.x = Math.round((W * i) / n); pn.w = Math.round((W * (i + 1)) / n) - pn.x; pn.y = 0; pn.h = H;
         pn.cam.aspect = pn.w / pn.h; pn.cam.updateProjectionMatrix();
-        const pts = pn.names.map((m) => M.people[m].root.position);
+        const pts = pn.names.filter((m) => M.people[m]).map((m) => M.people[m].root.position);
         const c = pts.reduce((a, p) => a.add(p), new THREE.Vector3()).multiplyScalar(1 / Math.max(1, pts.length));
         const r = Math.max(0, ...pts.map((p) => p.distanceTo(c)));
-        const C = day ? (o.day || { min: 4.2, add: 2.2, k: 2.2 }) : (o.fire || { min: 7, add: 3.5, k: 2.4 });
+        const C = lay.wide ? { min: 8, add: 4, k: 2.4 } : day ? (o.day || { min: 4.2, add: 2.2, k: 2.2 }) : (o.fire || { min: 5.6, add: 2.6, k: 2.0 });
         const narrow = Math.min(1, pn.cam.aspect / (16 / 9));  // 細い画面は、そのぶん引く
-        const dist = Math.min(60, Math.max(C.min, r * C.k + C.add) / Math.max(0.55, narrow));
-        const dir = (day ? new THREE.Vector3(0.5, 0.62, 0.78) : new THREE.Vector3(0.35, 1.0, 0.6)).normalize();
+        const dist = Math.min(80, Math.max(C.min, r * C.k + C.add) / Math.max(0.55, narrow));
+        const dir = (day || lay.wide ? new THREE.Vector3(0.5, lay.wide ? 0.9 : 0.62, 0.78) : new THREE.Vector3(0.4, 0.78, 0.72)).normalize();
         const want = c.clone().add(new THREE.Vector3(0, 0.8 * M.K, 0));
-        if (!day) want.add(new THREE.Vector3(dir.x, 0, dir.z).multiplyScalar(r * (seg.key === "night" ? 0.9 : 0.35)));  // 火のまわり: 輪が字幕より上に来るよう、見る点を手前に
+        if (!day && !lay.wide) want.add(new THREE.Vector3(dir.x, 0, dir.z).multiplyScalar(r * (seg.key === "night" ? 0.8 : 0.3)));  // 火のまわり: 輪が字幕より上に来るよう、見る点を手前に
         const at = want.clone().add(dir.multiplyScalar(dist));
         if (pn.fresh) { pn.t = want; pn.cam.position.copy(at); pn.fresh = false; } else { pn.t.lerp(want, 0.12); pn.cam.position.lerp(at, 0.12); }
         pn.cam.lookAt(pn.t);
@@ -247,18 +335,24 @@
         const pn = ps.find((q) => q.names.includes(m)); if (!pn) { L.el.hidden = true; continue; }
         const q = L.pos.clone().project(pn.cam), x = pn.x + (q.x * 0.5 + 0.5) * pn.w, y = pn.y + (-q.y * 0.5 + 0.5) * pn.h;
         if (q.z > 1 || x < pn.x || x > pn.x + pn.w) { L.el.hidden = true; continue; }
+        const b = L.el.querySelector(".b");
+        if (b && o.bubbleFont) { b.style.fontSize = o.bubbleFont + "px"; b.style.maxWidth = "13em"; }
         const bw = L.el.offsetWidth || 0, xc = bw && bw < pn.w - 8 ? Math.min(pn.x + pn.w - bw / 2 - 4, Math.max(pn.x + bw / 2 + 4, x)) : x;  // 吹き出しは組の画面の中に
         L.el.style.transform = `translate(${xc}px, ${y}px) translate(-50%, -100%)`;
-        const b = L.el.querySelector(".b"); if (b) b.style.opacity = M.fade && M.fade[m] != null ? String(Math.max(0, M.fade[m])) : "";
+        if (b) b.style.opacity = M.fade && M.fade[m] != null ? String(Math.max(0, M.fade[m])) : "";
       }
-      // 組の名前と境目の線 (DOM)
+      // 組の名前・色の縁 (DOM)
       const st = el.parentElement;
       if (!M.deco) { M.deco = document.createElement("div"); M.deco.style.cssText = "position:absolute;inset:0;pointer-events:none;z-index:40"; st.appendChild(M.deco); }
       if (M.deco.dataset.key !== key + W) {
         M.deco.dataset.key = key + W;
-        M.deco.innerHTML = ps.map((pn, i) => (i ? `<div style="position:absolute;left:${pn.x - 2}px;top:0;width:4px;height:100%;background:#f4f1e8"></div>` : "")
-          + (pn.title ? `<div style="position:absolute;left:${pn.x + pn.w / 2}px;top:${n > 1 ? 56 : 12}px;transform:translateX(-50%);background:rgba(12,16,13,.72);color:#fff;font-size:18px;padding:3px 12px;border-radius:8px;white-space:nowrap">${pn.title}</div>` : "")).join("");
+        M.deco.innerHTML = ps.map((pn) => (pn.col && n > 1 ? `<div style="position:absolute;left:${pn.x}px;top:0;width:${pn.w}px;height:100%;box-sizing:border-box;border:4px solid ${pn.col}"></div>` : "")
+          + (pn.title ? `<div style="position:absolute;left:${pn.x + 12}px;top:56px;background:rgba(12,16,13,.76);color:#fff;font-size:18px;padding:3px 12px;border-radius:8px;white-space:nowrap;${pn.col ? `border-left:8px solid ${pn.col}` : ""}">${pn.title}</div>` : "")).join("")
+          + `<canvas class="pv-map" width="220" height="165" style="position:absolute !important;inset:auto !important;right:12px !important;top:12px !important;width:220px !important;height:165px !important;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.4)"></canvas>`;
       }
+      const mapEl = M.deco.querySelector(".pv-map");
+      mapEl.style.display = n > 1 || lay.wide ? "" : "none";
+      if (n > 1 || lay.wide) drawMap(mapEl, ps, P, v);
       return true;
     },
     // 絵コンテ用: 人 m の世界の点を、その人の組の画面の上の点 (px) に。画面を分けていないときは null
@@ -268,11 +362,16 @@
       const q = p.clone().project(pn.cam);
       return [pn.x + (q.x * 0.5 + 0.5) * pn.w, pn.y + (-q.y * 0.5 + 0.5) * pn.h, q.z, pn.x, pn.x + pn.w];
     },
-    panels() { return this.opts.split && M && M.view ? M.view.panels.map((p) => ({ names: p.names, title: p.title, x: p.x, w: p.w, dist: +p.cam.position.distanceTo(p.t).toFixed(1) })) : null; },
+    panels() { return this.opts.split && M && M.view ? M.view.panels.map((p) => ({ names: p.names, title: p.title, color: p.col, x: p.x, w: p.w, dist: +p.cam.position.distanceTo(p.t).toFixed(1) })) : null; },
     clips() { return M ? Object.fromEntries(Object.entries(M.people).filter(([, R]) => R.root.visible).map(([n, R]) => [n, R.clip])) : {}; },  // 絵コンテ用: 今の動きの名前
     frame(P, v) {  // コマごと (Replay3D の frame の終わり。名前の札とカメラの前)
       if (!M) return;
       M.P = P;
+      if (this.opts.nightLight && M.world) {  // 夜を少し明るく (月の光のような青白い光と、まわりの明るさ)
+        const Wd = M.world, dark = Math.max(0, 0.9 - Wd.sun.intensity) / 0.78;
+        if (!M.moon) { M.moon = new THREE.DirectionalLight(0xaec4ff, 0); M.moon.position.set(-20, 40, 10); M.scene.add(M.moon); }
+        M.moon.intensity = 0.3 * dark; Wd.amb.intensity += 0.08 * dark;
+      }
       if (this.opts.bubbles) {  // 出来事の短い吹き出し (アプリの吹き出しを置きかえる)
         M.fade = {};
         for (const n in M.labels) M.labels[n].bubble = "";

@@ -483,7 +483,7 @@
     const over = (S && S.segOverride && S.segOverride[day]) || {};  // 動画用: 場面ごとの秒数を指定できる
     for (const s of segs) if (over[s.key]) s.sec = over[s.key];
     let acc = 0; for (const s of segs) { s.v0 = acc; acc += s.sec; s.v1 = acc; }
-    return { plan, maxDist, segs, total: acc, work, eve, crowded, oneHome,
+    return { day, plan, maxDist, segs, total: acc, work, eve, crowded, oneHome,
       night: ev.filter((e) => NIGHT_EVENTS.includes(e.type)), fire: ev.some((e) => e.type === "火" && !/できなかった/.test(e.text)) || D.camp.fire > 0 };
   }
 
@@ -803,7 +803,7 @@
     setPeople(hooks) {
       if (!S) return;
       S.people = hooks;
-      hooks.init({ K, scene: S.W.scene, figs: S.figs, labels: S.labels, D: S.D, w2t: (x, y) => w2t(S.D, x, y), renderer: S.renderer, camera: S.camera, placeLabels });
+      hooks.init({ K, scene: S.W.scene, figs: S.figs, labels: S.labels, D: S.D, w2t: (x, y) => w2t(S.D, x, y), renderer: S.renderer, camera: S.camera, placeLabels, world: S.W });
     },
     setSegments(day, secByKey) { if (S) { S.segOverride = S.segOverride || {}; S.segOverride[day] = secByKey; } },
     timeline(day) { if (!S) return null; const P = planDay(S.D, day); return { total: P.total, segs: P.segs.map((s) => ({ key: s.key, v0: s.v0, v1: s.v1 })), eve: P.eve.length }; },
