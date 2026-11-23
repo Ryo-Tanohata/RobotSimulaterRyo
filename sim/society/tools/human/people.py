@@ -107,3 +107,34 @@ STYLES = {
         "skin": {"sss": 0.22, "rough": 0.48, "lip_mix": 0.55},
     },
 }
+
+# ---------------------------------------------------------------- VRoid の素体から作る道
+# build_sena_vroid.py が使う。顔と髪は「千駄ヶ谷 篠」、体と骨組みは「HairSample_Female」
+# (どちらも VRoid の CC0 サンプル)。数値はすべて「素体からどれだけ変えるか」。
+VROID = {
+    "sena": {
+        "name": "sena",
+        "label": "セナ (女・1日目 29歳・54.5kg)",
+        "face_src": "Sendagaya_Shino.vrm",   # 顔・髪
+        "body_src": "HairSample_Female.vrm",  # 体・骨組み (服の下の肌が全部ある)
+        # 肌: テクスチャの中央値をこの色 (sRGB) に合わせる掛け算。顔と体で別々に合わせる
+        "skin": {"tan": "#9a6448", "sss": 0.15, "rough": 0.5,
+                 "blush": "#c0584a", "blush_alpha": 0.32,
+                 "scar": "#c9907e", "scar_alpha": 0.75},
+        # 髪: 明るさだけを使い、この 2 色の間に置く (青みを消す)
+        "hair": {"dark": "#080606", "light": "#1e1815", "ramp_lo": 0.35, "rough": 0.5, "remove_clip": True,
+                 "tie": True, "tie_z": 1.30, "gather_from": 1.385, "tail_width": 0.028,
+                 "front_from": 1.37, "front_keep": 0.6, "tie_color": "#5a3b26"},
+        # 眉・目の線・まつ毛の色 (アニメの線のまま、光の影響なし)
+        "lines": {"brow": "#231814", "eyeline": "#2c1612", "lash": "#24120f"},
+        "iris": {"hue": 0.0, "sat": 0.85, "val": 1.0, "tint": "#9a6a4c", "highlight": 0.8},
+        # 体: がっしり (肩幅・腰・腕と脚の太さ・胴まわり)
+        "body": {"shoulder": 0.018, "hips": 0.07, "waist": 0.13,
+                 "limbs": {"UpperArm": 0.12, "LowerArm": 0.09, "UpperLeg": 0.07, "LowerLeg": 0.06}},
+        # 顔: 丸み (ほお・あごを横に)
+        "face": {"round": 0.06},
+        # ふだんの顔: おだやかな笑顔 (VRM の表情キーを少しずつ)
+        "smile": {"Fcl_MTH_Fun": 0.55, "Fcl_EYE_Joy": 0.22, "Fcl_BRW_Fun": 0.45},
+        "outfit": {"color": "#161514", "top": (1.115, 1.235), "shorts": (0.805, 0.975)},
+    },
+}

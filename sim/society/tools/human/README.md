@@ -8,6 +8,7 @@
 | `build_sena.py` | 人を組み立てて、描画し、.glb に書き出す本体 |
 | `people.py` | 人ごとの設定 (`PEOPLE`) と、作風ごとの設定 (`STYLES`) |
 | `run.py` | bpy を動かす小さな入口 (終わったら確実に止める) |
+| `build_sena_vroid.py` | VRoid の CC0 サンプルからセナを作る道 (作風 4) |
 
 ## 準備 (一度だけ。すべてメモリ上の /dev/shm に置く)
 
@@ -109,6 +110,40 @@ MakeHuman の顔をほぼそのまま使い、貫頭衣を着せた版。輪郭�
   `build_belt()` で腰に紐の帯と左前の結び目。素足。
 - 描画: Cycles CPU、96 サンプル、Freestyle の線 (太さ 1.2)、露出 −0.5。
 
+## 作風 4: VRoid の素体から作る道 `build_sena_vroid.py`
+
+MakeHuman の顔がこわく見える問題 (docs/society_phase/face_model_search.md) への答え。
+VRoid の CC0 サンプルを土台にして、プロフィールに合わせて変える。数値は `people.py` の `VROID["sena"]`。
+
+```bash
+BLENDER_USER_RESOURCES=/dev/shm/sena/userres PYTHONPATH=/dev/shm/bpy \
+  python3.11 -u <repo>/sim/society/tools/human/run.py <repo>/sim/society/tools/human/build_sena_vroid.py \
+  -- [--quick] [--samples 96] [--only sheet,face,expr] [--no-tie] > /dev/shm/sena/vroid/log.txt 2>&1
+```
+
+- 準備: サンプルを `git clone --filter=blob:none https://github.com/madjin/vrm-samples` で取り、
+  `vroid/beta/Sendagaya_Shino.vrm` と `vroid/beta/HairSample_Female.vrm` を `/dev/shm/heads/src/vrmsamples/vroid/beta/` に置く
+  (場所は環境変数 `VROID_DIR` で変えられる)。作業ファイルは `/dev/shm/sena/vroid/`。
+- 出力: `sim/society/out/human/sena_vroid_3view.png` (正面・横・後ろ)、`sena_vroid_face.png` (顔)、
+  `sena_vroid_expr.png` (ふつう / ふだんの笑顔)、`/dev/shm/sena/sena_vroid.glb` (骨組み・重み・表情キー 41 個つき)。
+  画像と模型は git に入れない。
+
+| 順 | 工程 | 関数 | 中身 |
+|---|---|---|---|
+| 1 | 組み合わせ | `assemble()` | 顔と髪は「千駄ヶ谷 篠」、体と骨組みは「HairSample_Female」。篠の体は制服の下の肌が切りとられているため。骨の名前は同じ (J_Bip_*)。頭の骨の差 (5 mm) だけ顔と髪をずらし、骨組みにない髪の骨の重みは頭の骨にまとめる (髪はゆれない)。髪どめ (青い×) と制服・靴は消す |
+| 2 | 体つき | `sturdy()` | がっしり: 肩幅を左右 1.8 cm ずつ (腕の骨もいっしょに)、腰 +7%、胴まわり +13%、腕と脚を骨の軸から外へ (上腕 12%・前腕 9%・太もも 7%・すね 6%) |
+| 3 | 丸顔 | `round_face()` | ほおからあごを横に 6% (表情キーにも同じ変形。首のつなぎ目と目のまわりは動かさない) |
+| 4 | 髪を結ぶ | `tie_hair()` | 後ろの髪をうなじ (高さ 1.30 m) で 1 本に寄せ、背中に沿わせる。顔の横の束は肩の高さまで短く。茶色の結び紐の輪を足す |
+| 5 | 肌の色 | `skin_textures()` | 顔と体のテクスチャを、それぞれ肌の中央値が #9a6448 (濃い日焼け) になるよう線形の色で掛け算。ほお・鼻先の赤み、左の前腕の外側に古い傷 (#c9907e の細い線) を、3D の点から UV を求めてテクスチャに描く |
+| 6 | 材質 | `materials()` | 読みこむと「光の影響なし」になる材質を、肌・髪・白目・虹彩・口の中だけ Principled BSDF に (肌は SSS 0.15)。髪は明るさだけを使って黒 (#080606〜#1e1815) に。虹彩は茶色にして、ぬれた上ぬり (coat) を薄く。目の線・まつ毛・眉・ハイライトは光の影響なしのまま (線はアニメ、面は写実) |
+| 7 | 服 | `outfit()` | 体の表面を高さで切りとった筒を少し外へ: 無地の胸の帯と短パン (#161514)。骨の重みは体から写す |
+| 8 | 表情 | `set_expr()` | ふだんの顔: `Fcl_MTH_Fun` 0.55 + `Fcl_EYE_Joy` 0.22 + `Fcl_BRW_Fun` 0.45 (口だけでなく目も少し笑う) |
+| 9 | 光と描画 | `setup_scene()` | 色の管理は Standard・露出 0 (テクスチャの色のまま。白く飛ばない光の量)。主光・補助光・後ろの縁取り光 2 つ。背景はカメラにだけ明るい灰色。Cycles CPU 96 サンプル + ノイズ除去 |
+
+かかった時間 (CPU 4 コア、村の計算と同時): 組み立て 3 秒、3 面図 1 枚 19〜28 秒、顔 118 秒、表情 2 枚 各 36 秒、全部で約 4.5 分。メモリは約 1 GB。
+
+残っている課題: 結んだ髪の先が胸の帯の後ろにかくれて短く見える。胸の帯にふくらみの形が少し出る。髪は頭の骨に固定 (ゆれない)。
+
 ## 作風 3: アニメ調 (トゥーン) — まだ作っていない
 
 本人の指示 (「まずは中間だけで」) で後回し。準備だけ済み:
@@ -155,6 +190,7 @@ Ubuntu の mesa (llvmpipe、ソフトウェアの OpenGL) を `apt-get download`
 | MPFB2 のプログラム (読みこみに使うだけ。リポジトリには入れない) | GPL-3.0-or-later | https://github.com/makehumancommunity/mpfb2 |
 | MakeHuman の目 (high-poly eyes、brown 瞳) | CC0 1.0 | https://github.com/makehumancommunity/makehuman (commit a8bc2d54ff0ac92e78ff71431b1023eda42bf482、`makehuman/data/eyes`) |
 | Blender (bpy 4.5.16、Python モジュール版) | GPL-2.0-or-later | https://pypi.org/project/bpy/ |
+| VRoid サンプル「千駄ヶ谷 篠 (Sendagaya Shino)」(顔・髪) と「HairSample_Female」(体・骨組み) | CC0 (ファイル内 `licenseName: CC0`。pixiv の説明「CC0 license models … Copyright is waived」) | https://github.com/madjin/vrm-samples (commit e16eb187100149a315ad92c3c9968f1d5baa6c7d、`vroid/beta/`)。条件の説明: https://vroid.pixiv.help/hc/en-us/articles/4402614652569 。作者 pixiv Inc. (VRoid) に感謝をこめて記す |
 | mesa (llvmpipe、EEVEE の試験だけ) | MIT ほか | Ubuntu 24.04 の `libegl-mesa0`, `mesa-libgallium` ほか |
 
 髪・服・眉・傷・帯は、このスクリプトが手続き的に作るもので、外の素材は使っていない。
