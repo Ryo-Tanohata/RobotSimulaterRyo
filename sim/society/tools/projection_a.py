@@ -381,9 +381,11 @@ def short(data, seeds=400, scen="S2"):
     return res
 
 
-def cond(data, seeds=400, scen="S2", years=3, birth=None):
+def cond(data, seeds=400, scen="S2", years=3, birth=None, old=None, seedw=None):
     """2026-11-23 (A_check.md 8.): いまの本物の村 (data/state.json。印 g7.d1 のあと) から years 年先を回し、
-    印のあとの本物の数え (g7.d1.demo) と足して、区切りからのまとめ (d1・d2・d4) の幅を出す (d1.py の life・tfr と同じ計算)"""
+    印のあとの本物の数え (g7.d1.demo) と足して、区切りからのまとめ (d1・d2・d4) の幅を出す (d1.py の life・tfr と同じ計算)。
+    2026-11-23 (A_check.md 9.): 年の終わりの蓄え (日分) の幅と 200 日分を切る割合も出す。old は年寄りの死の倍率 (感度)・
+    seedw は秋の種まき (働き手 1 人あたり。書かなければ 232〜241年の平均。本物の 242〜244年のまき方で見るときに書く)"""
     global START_DAY
     import importlib
     sys.path.insert(0, str(HERE.parent))
@@ -398,6 +400,12 @@ def cond(data, seeds=400, scen="S2", years=3, birth=None):
     sc = dict(SCEN[scen])
     if birth is not None:
         sc["birth"] = birth
+    if old is not None:
+        sc["old"] = old
+    if seedw is not None:
+        cal = dict(cal, seed_w=seedw)
+    print(f"はじめ: {START_DAY} 日目・人 {len(people)}・蓄え {round(cal['store'] / 1e4)} 万 kcal・次の夏の刈り入れ {round(cal['harvest0'])} つかみ (もう実っている)・"
+          f"秋の種 働き手 1 人あたり {round(cal['seed_w'])} つかみ・筋 {sc}", flush=True)
 
     def grp(dm, Y):
         s = {"E": [0.0] * len(d1.AGE_GROUPS), "D": [0] * len(d1.AGE_GROUPS), "Ef": [0.0] * len(d1.MOTHER), "B": [0] * len(d1.MOTHER)}
@@ -411,8 +419,13 @@ def cond(data, seeds=400, scen="S2", years=3, birth=None):
         return s
     y_first = (START_DAY + 1) // YEAR
     out = collections.defaultdict(list)
+    store = collections.defaultdict(list)
     for s in range(seeds):
-        _, dm = run(people, cal, sc, 5000 + s, years)
+        rows, dm = run(people, cal, sc, 5000 + s, years)
+        below = False
+        for r in rows:
+            below = below or r["below200"] or r["min_days"] < 200
+            store[r["year"]].append((r["store_days"], r["min_days"], r["below200"], below, r["famine"]))
         per = dict(base)
         for Y in range(y_first, y_first + years):
             per[Y] = grp(dm, Y)
@@ -424,6 +437,10 @@ def cond(data, seeds=400, scen="S2", years=3, birth=None):
         tf, e0, e15_ = ([x[i] for x in v] for i in range(3))
         print(f"{max(y_obs[0], Y - d1.WIN + 1)}〜{Y}年: d4 {q(tf)} (3.5 未満 {sum(x < 3.5 for x in tf) / len(tf):.2f})・d1 {q(e0)} (40 こえ {sum(x > 40 for x in e0) / len(e0):.2f})・"
               f"d2 {q(e15_)} (52 こえ {sum(x > 52 for x in e15_) / len(e15_):.2f})", flush=True)
+    for Y, v in store.items():
+        n = len(v)
+        print(f"{Y}年の終わりの蓄え (日分): {[round(pct([x[0] for x in v], p)) for p in (0.1, 0.5, 0.9)]}・いちばん少ない {[round(pct([x[1] for x in v], p)) for p in (0.1, 0.5, 0.9)]}・"
+              f"年の終わりに 200 日分未満 {sum(x[2] for x in v) / n:.2f}・それまでに 1 回でも 200 日分未満 {sum(x[3] for x in v) / n:.2f}・ききん {sum(x[4] for x in v) / n:.2f}", flush=True)
     return out
 
 
@@ -572,6 +589,8 @@ def main():
     ap.add_argument("--short", action="store_true", help="区切りから 1〜2 年の短いまとめの幅 (--data は 29039 日目の写し)")
     ap.add_argument("--cond", type=int, default=0, help="いまの本物の村から N 年先を回し、印のあとの本物の数えと足したまとめの幅")
     ap.add_argument("--birth", type=float, default=None, help="--cond の生まれる見込み (感度だけ)")
+    ap.add_argument("--cold", type=float, default=None, help="--cond の年寄りの死の倍率 (筋の 0.35 のかわり。感度だけ)")
+    ap.add_argument("--seedw", type=float, default=None, help="--cond の秋の種まき (働き手 1 人あたり。書かなければ 232〜241年の平均)")
     ap.add_argument("--html")
     ap.add_argument("--to")
     ap.add_argument("--lead", default="")
@@ -591,7 +610,7 @@ def main():
         short(a.data, a.seeds if a.seeds != 20 else 400)
         return
     if a.cond:
-        cond(a.data, a.seeds if a.seeds != 20 else 400, years=a.cond, birth=a.birth)
+        cond(a.data, a.seeds if a.seeds != 20 else 400, years=a.cond, birth=a.birth, old=a.cold, seedw=a.seedw)
         return
     res = project(a.data, a.seeds, a.years, a.scen.split(","))
     if a.out:

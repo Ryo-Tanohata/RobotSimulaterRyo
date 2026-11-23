@@ -16,6 +16,9 @@
   出来事「死」「生まれる」から亡くなった人と母の年齢ごとの出生を数える (tools/projection_a.py と同じ形。統計のページの数は records の日ごとの数)
 - 止めて相談 (A_design.md 7.): d5 を割った年・人が印のときの 95% を切った年・d1 か d4 が 2 年つづけて線の外・3 年ごと (区切りの年から数える)。
   読める大人が 1 人以下の止まり (i4) はそのまま
+- 相談の直し 1 (2026-11-23。A_check.md 9.): 印 g7.d1.fix1 (step.py resume --d1fix "<本人の言葉>" だけが書く。29399 日目 (244年の終わり) の D1 の相談から。1 回だけ) の
+  あとだけ、「d1 か d4 が 2 年つづけて線の外」の相談を 5 年まとめがそろう年 (区切りの年 + 4 = 246年の終わり) から見る (それより前の年は、この相談では止めない)。
+  線・世界の見込み・数え方・ほかの相談 (蓄え・ききん・人 95%・3 年ごと) は変えない。印がなければ前と 1 バイトも同じ
 """
 import math
 
@@ -40,6 +43,10 @@ D5_STORE = 200  # d5 年の終わりの蓄え (日分) 以上・ききん 0
 POP_KEEP = 0.95  # 人が印のときの 95% を切った年は止める
 OUT_YEARS = 2  # d1 か d4 が 2 年つづけて線の外
 LATER_YEARS = 3  # 3 年ごとの相談
+# 相談の直し 1 (印 g7.d1.fix1 のあとだけ。A_check.md 9.)
+FIX1_FROM = 29399  # 本物の村が 244年を終えて D1 の相談 (d1・d4 が 2 年つづけて線の外) で止まった日。これより前には印を書けない
+FIX1_DATE = "2026-11-23"
+FIX1_NAME = "人口の決まりの相談の直し 1 (d1・d4 の「2 年つづけて線の外」は 5 年まとめがそろってから見る)"
 WIN = 5  # 5 年まとめ
 OLD_AGE = 55
 AGE_GROUPS = [(0, 1), (1, 5)] + [(a, a + 5) for a in range(5, 60, 5)] + [(60, None)]  # tools/stats_calc.py の AGE_GROUPS と同じ
@@ -126,6 +133,43 @@ def mark(state, words, scen="S2"):
         "start_year": D // YEAR + 1, "rows": {}, "f": {},
         "pop0": len([p for p in state["people"] if p["alive"]]), "tally_day": D, "demo": {}, "store_min": {}, "sow": {}}
     return g
+
+
+# ---------------- 相談の直し 1 (step.py resume --d1fix。A_check.md 9.) ----------------
+
+def fixed(state):
+    """相談の直し 1 の印 g7.d1.fix1 があるか"""
+    return on(state) and "fix1" in _g(state)
+
+
+def fix1_why(words):
+    return f"作る側が変えた (本人の言葉 {FIX1_DATE} 「{words}」)。{FIX1_NAME}。1〜3 年のまとめはゆれが大きく、線は 5 年まとめの幅なので。A_check.md 9."
+
+
+def fix1_refusal(state, words):
+    """resume --d1fix ができないわけ (できるなら None)"""
+    if not (words or "").strip():
+        return "--d1fix には本人の言葉が要る"
+    if not on(state):
+        return "人口の決まりの直し 1 の印 (g7.d1) がないので、相談の直し 1 はつけられない"
+    if "fix1" in _g(state):
+        return "相談の直し 1 はもうつけてある"
+    if state["day"] < FIX1_FROM:
+        return f"相談の直し 1 は {FIX1_FROM} 日目 (244年の終わり) からだけ"
+    h = state["era2"]["g7"].get("hold") or {}
+    if not (h.get("why") == "consult" and str(h.get("what", "")).startswith("D1:")):
+        return "相談の直し 1 は、D1 の相談 (HOLD consult) で止まっているときだけつける"
+    if g15.push_on(state):
+        return "後押しが動いている"
+    return None
+
+
+def mark_fix1(state, words):
+    """resume --d1fix から: 印 g7.d1.fix1 を書く (村の出来事には残さない。乱数は使わない。世界の見込みは変えない)"""
+    words = words.strip()
+    g = _g(state)
+    f = g["fix1"] = {"day": state["day"], "words": words, "why": fix1_why(words), "out_from": g["start_year"] + WIN - 1}
+    return f
 
 
 # ---------------- 数える (g7.season_end から。t5 のあと) ----------------
@@ -325,7 +369,8 @@ def check(state, done):
     if r["pop"] < need and not did("d1_pop"):
         return {"why": "d1_pop", "year": y, "day": D, "text": f"D1: 人が {r['pop']} 人になり、直したときの {g['pop0']} 人の {round(POP_KEEP * 100)}% ({need} 人) を切った"}
     rs = [g["rows"].get(str(y - i)) for i in range(OUT_YEARS)]
-    if all(rs) and not did("d1_out"):
+    late = "fix1" in g and y < g["fix1"]["out_from"]  # 相談の直し 1: 5 年まとめがそろう年 (246) より前は、この相談では止めない
+    if all(rs) and not late and not did("d1_out"):
         out = [k for k in ("d1", "d4") if not any(x[f"{k}_ok"] for x in rs)]
         if out:
             s = SCEN[g["scen"]]
@@ -366,6 +411,10 @@ def lines(state):
            f"40〜54 歳 {BASE['b']} → {g['b']}・55 歳からの年寄りの死 × {g['old']}・生まれる見込み {BASE['birth']} → {g['birth']} (1 季節)。"
            f"T5 の入口と相談は {_yd(g['day'])}で閉じた)。人 {pop} (はじめ {g['pop0']})。"
            f"線: d1 {D1_E0[0]}〜{D1_E0[1]} 歳・d2 {D2_E15[0]}〜{D2_E15[1]} 年・d3 {s['d3'][0]}〜{s['d3'][1]}%/年・d4 {s['d4'][0]}〜{s['d4'][1]}・d5 {D5_STORE} 日分以上とききん 0"]
+    if "fix1" in g:
+        f = g["fix1"]
+        out.append(f"相談の直し 1: {f['why']} {_yd(f['day'])}から。「d1 か d4 が {OUT_YEARS} 年つづけて線の外」の相談は {f['out_from']}年の終わりから "
+                   f"({f['out_from'] - 1}年と {f['out_from']}年の行で見る)。線・世界の見込み・ほかの相談は変えない")
     for y in sorted(g["rows"], key=int)[-3:]:
         out.append(row_text(g["rows"][y]))
     return out
