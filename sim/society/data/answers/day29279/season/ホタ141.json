@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、雨の夜に外でぬれる人が多いのが気がかりです。住まいを少しずつ広げましょう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏は実った畑を刈らないと落ちてしまうので、刈り入れを手伝います"}, "family": {"ナセ141": {"activity": "畑仕事", "place": "camp", "why": "実った畑の刈り入れを一緒にします"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "来年の実りのため、草取りで畑を育てます"}, "family": {"ナセ141": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にします"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も畑の草取りをして実りを増やします"}, "family": {"ナセ141": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にします"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けます"}, "family": {"ナセ141": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にします"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M577": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1303": false, "T1304": false, "T1305": false, "T1306": false},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "水の道と畑の年",
+ "feeling": "蓄えがあって安心だけれど、雨の夜が心配です。"}
