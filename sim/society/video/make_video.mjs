@@ -112,6 +112,8 @@ if (process.env.LIBS) {
 await page.goto(`http://localhost:${port}/index.html`, { waitUntil: "load", timeout: 600000 });
 await page.waitForFunction(() => window.Replay3D && window.THREE, { timeout: 600000 });
 await page.addStyleTag({ content: VIDEO_CSS });
+// HIDE_TOASTS=1 (D1V から。本人の選んだ案 C): 上に重なる出来事の帯を出さない (代わりに PEOPLE_VIEW の bubbles で、した人の頭の上に短い吹き出し)
+if (process.env.HIDE_TOASTS) await page.addStyleTag({ content: ".r3-toast { visibility: hidden !important; }" });
 await page.waitForFunction(() => document.querySelector(".r3-stage canvas"), { timeout: 600000 });
 await page.evaluate(() => {
   const st = document.querySelector(".r3-stage");
@@ -123,6 +125,8 @@ if (PEOPLE) {  // 人のモデル: three の glb を読む道具と、モデル�
   await page.addScriptTag({ url: "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" });
   await page.addScriptTag({ url: `http://localhost:${port}/replay3d_people.js` });
   // PEOPLE_CAM={"min":3.5,...} (D1V から): 人に寄るカメラの近さ (replay3d.js の autoCamera が読む。min・add・k・max)。ないときは replay3d_people.js のまま
+  // PEOPLE_VIEW={"split":true,"noPlants":true,...} (D1V から): replay3d_people.js の opts (画面を分ける・赤い玉を隠す・カメラの近さ)
+  if (process.env.PEOPLE_VIEW) await page.evaluate((o) => Object.assign(Replay3DPeople.opts, o), JSON.parse(process.env.PEOPLE_VIEW));
   if (process.env.PEOPLE_CAM) await page.evaluate((c) => Object.assign(Replay3DPeople.camera, c), JSON.parse(process.env.PEOPLE_CAM));
   const got = await page.evaluate(async () => { const n = await Replay3DPeople.load("people/"); Replay3D.setPeople(Replay3DPeople); return n; });
   console.log(`PEOPLE: ${got.join("・")} (${PEOPLE})`);
@@ -204,7 +208,7 @@ if (process.env.STORYBOARD) {
       const st = document.querySelector(".r3-stage"), box = (e) => { if (!e || e.hidden) return null; const r = e.getBoundingClientRect(); return r.width ? [r.left, r.top, r.right, r.bottom] : null; };
       return { ...Replay3D.inspect(), clock: st.querySelector(".r3-clock").textContent,
         boxes: { caption: box(st.querySelector(".v-cap")), clock: box(st.querySelector(".r3-clock")), note: box(st.querySelector(".v-note")), title: box(st.querySelector(".v-title")),
-          toasts: [...st.querySelectorAll(".r3-toast > *")].map(box).filter(Boolean) } };
+          toasts: getComputedStyle(st.querySelector(".r3-toast")).visibility === "hidden" ? [] : [...st.querySelectorAll(".r3-toast > *")].map(box).filter(Boolean) } };
     });
     cuts.push({ cut: k + 1, id: n.id, start: +n.start.toFixed(2), end: +(n.start + n.duration).toFixed(2), at: +tm.toFixed(2), day: P.day, text: n.text, ...info, jpg: jpg.toString("base64") });
     console.log(`絵コンテ ${k + 1} / ${narration.length} (${tm.toFixed(1)} 秒)`);

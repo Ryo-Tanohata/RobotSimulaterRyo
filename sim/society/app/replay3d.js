@@ -221,6 +221,7 @@
     const ps = D.plants.filter((p) => p.amount >= 0.5);
     const pm = new THREE.InstancedMesh(new THREE.SphereGeometry(0.18, 6, 5), new THREE.MeshLambertMaterial(), ps.length);
     ps.forEach((p, i) => { const v = w2t(D, p.x + 0.5, p.y + 0.5, 0.25); m4.makeTranslation(v.x, v.y, v.z); pm.setMatrixAt(i, m4); pm.setColorAt(i, p.kind === "木の実" ? T.fruit : T.tuber); });
+    pm.name = "plants";  // 動画 D1V で隠せるように (replay3d_people.js の opts.noPlants)
     scene.add(pm);
 
     // ルクの群れ・ザガ
@@ -782,13 +783,14 @@
       const motion = (S.people && S.people.clips && S.people.clips()) || {};
       const people = Object.keys(S.figs).map((n) => {
         const f = S.figs[n], L = S.labels[n], plan = S.day && S.day.plan[n];
-        const head = L && L.pos ? px(L.pos) : px(f.position.clone().add(new THREE.Vector3(0, 1.7 * K, 0)));
-        const foot = px(f.position), el = L && L.el, lr = el && !el.hidden ? el.getBoundingClientRect() : null;
+        const pj = (v) => (S.people && S.people.project && S.people.project(n, v)) || px(v);  // 画面を分けているときは、その人の組の画面で
+        const head = pj(L && L.pos ? L.pos : f.position.clone().add(new THREE.Vector3(0, 1.7 * K, 0)));
+        const foot = pj(f.position), el = L && L.el, lr = el && !el.hidden ? el.getBoundingClientRect() : null;
         return { name: n, shown: !!(plan && plan.alive) && (f.visible || !!motion[n]), activity: plan ? plan.activity : null, motion: motion[n] || null,
-          head, foot, label: lr ? [lr.left, lr.top, lr.right, lr.bottom] : null, bubble: !!(L && L.bubble) };
+          head: head.slice(0, 3), foot: foot.slice(0, 3), panel: head.length > 3 ? head.slice(3) : null, label: lr ? [lr.left, lr.top, lr.right, lr.bottom] : null, bubble: !!(L && L.bubble) };
       });
       const cam = S.camera.position, tg = S.controls.target;
-      return { w: r.width, h: r.height, camera: { pos: cam.toArray(), target: tg.toArray(), dist: cam.distanceTo(tg) / K }, people,
+      return { w: r.width, h: r.height, camera: { pos: cam.toArray(), target: tg.toArray(), dist: cam.distanceTo(tg) / K }, panels: (S.people && S.people.panels && S.people.panels()) || null, people,
         featured: [...((S.featured && S.featured[S.dayNum]) || [])] };
     },
     setFeatured(day, names) { if (S) S.featured[day] = new Set(names); },
@@ -801,7 +803,7 @@
     setPeople(hooks) {
       if (!S) return;
       S.people = hooks;
-      hooks.init({ K, scene: S.W.scene, figs: S.figs, labels: S.labels, D: S.D, w2t: (x, y) => w2t(S.D, x, y) });
+      hooks.init({ K, scene: S.W.scene, figs: S.figs, labels: S.labels, D: S.D, w2t: (x, y) => w2t(S.D, x, y), renderer: S.renderer, camera: S.camera, placeLabels });
     },
     setSegments(day, secByKey) { if (S) { S.segOverride = S.segOverride || {}; S.segOverride[day] = secByKey; } },
     timeline(day) { if (!S) return null; const P = planDay(S.D, day); return { total: P.total, segs: P.segs.map((s) => ({ key: s.key, v0: s.v0, v1: s.v1 })), eve: P.eve.length }; },
@@ -811,7 +813,9 @@
         setDay(day); S.day.segOverrideKey = JSON.stringify((S.segOverride || {})[day] || {});
       }
       S.playing = false; S.v = v; S.last = 0;
-      frame(v); if (S.autoCam) autoCamera(); S.controls.update(); S.renderer.render(S.W.scene, S.camera); placeLabels();
+      frame(v);
+      if (S.people && S.people.render && S.people.render(v)) return;  // 人のモデルが、画面を分けて自分のカメラで描くとき (動画 D1V)。ほかは前と同じ
+      if (S.autoCam) autoCamera(); S.controls.update(); S.renderer.render(S.W.scene, S.camera); placeLabels();
     },
     stop() {
       if (!S) return;

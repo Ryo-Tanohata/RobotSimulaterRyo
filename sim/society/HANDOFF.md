@@ -1386,7 +1386,15 @@ done
 - 条件: CMU の言葉「This data is free for use in research and commercial projects worldwide.」(READMEFIRST.txt)。クレジット「動き: CMU Graphics Lab Motion Capture Database (mocap.cs.cmu.edu)」「人のモデル: VRoid の CC0 サンプル (pixiv) をもとに作成」(D1V のときだけ、`PEOPLE_CREDIT`)
 - 撮り方: `GPU= PY=python3 CHROME=/opt/pw-browsers/chromium-1243/chrome-linux64/chrome LIBS=/tmp/libs3 bash sim/society/video/render_all.sh D1V` → `app/society_D1V.mp4` (コミットしない)。絵コンテは `--storyboard D1V`
 - クラウドで速くするしかけ (make_video.mjs。D1V のときだけ。ほかの動画は前と同じ): `NO_RAF=1` (アプリの毎フレームの描画を止める。swiftshader では 1 コマに描画が 2 回になって、1 コマ 10 秒かかっていた → 1.6 秒)・`FPS=12` (撮ったあと、コマを重ねて 24 コマ/秒)・`PREROLL=3` (区間の前 3 秒を撮らずに進め、カメラの寄り方を前の区間とそろえる)・`PEOPLE_CAM` (五人に寄る: min 4.5・add 2.5・k 1.6・max 40。replay3d.js の autoCamera に k と max を足した。ないときは前と同じ)
-- 測った値 (CPU 4 コア、村は止めて): 1 コマ約 1.6 秒 (村の計算と同時だと 3 秒ほど)。メモリは chromium と node で約 1.5 GB (PSS)。12 コマ/秒で 198.6 秒は 2384 コマ、約 1 時間 10 分
+- 絵コンテの 1 回目 (2026-11-23) への本人の直し → 入れた (どれも D1V のときだけ。make_video.mjs の `PEOPLE_VIEW` と `HIDE_TOASTS`。replay3d_people.js の `opts`):
+  - 赤い玉 (木の実・芋の玉) を出さない (`noPlants`。replay3d.js の玉に `name = "plants"` を付けた)
+  - 夜明け・夕方・夜は 1 枚で、火のまわりの五人の輪が全部入るように引いて、上から見る (セナの背中が真ん中をふさがない)
+  - 昼 (出発・活動・帰り) は、行く場所と活動が同じ人を 1 組にして (3 組まで)、画面を横に分け、組ごとのカメラで追う (`split`)。組の名前「ルオ・イサ — 東の林で採集」を上に出す。字幕は画面全体の下のまま。
+    カットごとの分け方は絵コンテの JSON の `camera.panels`。replay3d.js の seek は、`S.people.render` があればそれで描く (ないときは前と同じ)
+  - 出来事の帯 (上に重なる字) は出さない。代わりに、した人の頭の上に 15 字ほどの短い吹き出しを 3.5 秒出して消す (本人の選んだ案 C、`bubbles`)。例「ルクの群れ 12 頭を見つけた」「セナに分ける」「食べ物を採る」。
+    元の長い字は出さない。夕方の話も同じ形 (最初の 1 文)。吹き出しは組の画面の中に収め、同じ画面では前の吹き出しが消えてから出す
+- 測った値 (CPU 4 コア、村は止めて): 赤い玉をなくしたので軽くなった。1 枚の画面で 1 コマ約 0.9 秒、3 つに分けると約 1.15 秒 (分けた数だけ描くが、1 つずつは小さい)。メモリは chromium と node で約 1.5 GB (PSS)。
+  12 コマ/秒で 198.6 秒は 2384 コマ、区間の前の進め (PREROLL) を入れて約 50〜60 分
 
 ## 4. シミュレーションを続ける
 

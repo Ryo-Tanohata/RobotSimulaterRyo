@@ -108,8 +108,75 @@
     return Math.max(0, dur - lt);  // rev
   }
 
+  // 昼の組: 行く場所と活動が同じ人を 1 組に。4 組以上なら、行く場所の近い組をまとめて 3 組まで。組の名前は「ルオ・イサ — 東の林で採集」
+  function dayGroups(P, alive) {
+    let G = [];
+    for (const n of alive) {
+      const p = P.plan[n], k = (p.place ? p.place.id : "") + "|" + p.activity;
+      let g = G.find((q) => q.k === k);
+      if (!g) G.push(g = { k, names: [], spot: p.spot, place: p.place, acts: new Set() });
+      g.names.push(n); g.acts.add(p.activity);
+    }
+    while (G.length > 3) {
+      let best = null;
+      for (let i = 0; i < G.length; i++) for (let j = i + 1; j < G.length; j++) {
+        const d = Math.hypot(G[i].spot.x - G[j].spot.x, G[i].spot.y - G[j].spot.y);
+        if (!best || d < best[0]) best = [d, i, j];
+      }
+      const [, i, j] = best; G[i].names.push(...G[j].names); G[j].acts.forEach((a) => G[i].acts.add(a)); G.splice(j, 1);
+    }
+    const short = (pl) => (pl ? String(pl.label || pl.id).replace(/\s*\(.*\)\s*$/, "") : "");
+    return G.map((g) => ({ names: g.names, title: `${g.names.join("・")} — ${short(g.place)}${g.place && g.place.id !== "camp" ? "で" + [...g.acts].join("・") : ""}` }));
+  }
+
+  // 出来事の短い吹き出し (opts.bubbles、D1V。本人の選んだ案 C): 上に重なる出来事の帯の代わりに、した人の頭の上に 15 字ほどで 3.5 秒出して消す。
+  // 長い元の字は出さない。夕方の話も同じ形 (最初の 1 文、長ければ 15 字で切る)。同じ組の画面の中で重ならないよう、前の吹き出しが消えてから出す
+  const BUBBLE = 3.5, FADEB = 0.6;
+  function shortText(e) {
+    const t = String(e.text || "");
+    if (e.type === "採集") return "食べ物を採る";
+    if (e.type === "探索") {
+      const h = t.match(/(ルクの群れ|[^\s:、]+の群れ) \((\d+) 頭\)/); if (h) return `${h[1]} ${h[2]} 頭を見つけた`;
+      const f = t.match(/には (\S+) が多い/); if (f) return `${f[1]}が多い`;
+      return "あたりをさがす";
+    }
+    if (e.type === "分ける") return `${(e.data && e.data.to) || ""}に分ける`;
+    if (e.type === "話す") {
+      const q = (t.match(/「(.*?)」?$/) || [, t])[1].replace(/」$/, ""), first = q.split(/[。！？!?]/)[0] || q;
+      return "「" + (first.length > 16 ? first.slice(0, 15) + "…" : first) + "」";
+    }
+    if (e.type === "蓄える") return "蓄えに入れる";
+    if (e.type === "蓄えから取る") return "蓄えから取る";
+    const s = t.replace(new RegExp("^" + (e.who || "") + "\\s*(が|は)?\\s*"), "").replace(/\s*\(.*?\)/g, "");
+    return s.length > 16 ? s.slice(0, 15) + "…" : s;
+  }
+  const bubbleSched = new WeakMap();
+  function bubblesFor(P) {
+    if (bubbleSched.has(P)) return bubbleSched.get(P);
+    const seg = {}; for (const s of P.segs) seg[s.key] = s;
+    const want = [];
+    P.work.forEach((e, k) => { if (e.who) want.push({ who: e.who, t: seg.work.v0 + seg.work.sec * (k + 0.5) / (P.work.length + 1), len: BUBBLE, text: shortText(e) }); });
+    const N = P.eve.length || 1, h = seg.eve.sec / N;
+    P.eve.forEach((e, k) => { if (e.who) want.push({ who: e.who, t: seg.eve.v0 + k * h, len: e.type === "話す" ? Math.max(BUBBLE, h * 0.95) : Math.min(BUBBLE, h * 0.95), text: shortText(e), eve: true }); });
+    (P.night || []).forEach((e, k) => { if (e.who) want.push({ who: e.who, t: seg.night.v0 + 0.5 + k * BUBBLE, len: BUBBLE, text: shortText(e) }); });
+    const alive = Object.keys(P.plan).filter((n) => P.plan[n].alive);
+    const grp = Object.fromEntries(dayGroups(P, alive).flatMap((g, i) => g.names.map((n) => [n, i])));
+    const end = {}, out = [];
+    for (const b of want.sort((a, c) => a.t - c.t)) {
+      const g = b.eve ? "eve" : grp[b.who] ?? b.who;  // 同じ画面の中では、前の吹き出しが消えてから
+      const t0 = b.eve ? b.t : Math.max(b.t, end[g] || -1);
+      out.push({ ...b, t0, t1: t0 + b.len }); end[g] = t0 + b.len;
+    }
+    bubbleSched.set(P, out);
+    return out;
+  }
+
   window.Replay3DPeople = {
-    camera: { min: 6, add: 4.5 },  // 人が近くに集まっているときは、カメラを寄せる (Replay3D の autoCamera が読む)
+    camera: { min: 6, add: 4.5 },
+    // 動画 D1V (2026-11-23 本人の絵コンテの直し) のしかけ。make_video.mjs の PEOPLE_VIEW で入れる。ないときは D1P と同じ
+    //   noPlants: 木の実・芋の玉 (赤い玉) を見せない。split: 昼 (出発・活動・帰り) は、場所と活動ごとの組 (3 つまで) に画面を分け、組ごとのカメラで追う。
+    //   夜明け・夕方・夜は 1 枚で、火のまわりの五人が全部入るように引いて、上から見る。fire・day: カメラの近さ
+    opts: {},  // 人が近くに集まっているときは、カメラを寄せる (Replay3D の autoCamera が読む)
     // 読む: base は glb と json のある場所 (例 "people/")。読めた人の名前を返す
     async load(base) {
       const got = {};
@@ -135,6 +202,7 @@
     },
     init(ctx) {  // Replay3D.setPeople から呼ばれる
       M = { ...ctx, people: {} };
+      if (this.opts.noPlants) { const pm = ctx.scene.getObjectByName("plants"); if (pm) pm.visible = false; }
       for (const n in this.loaded || {}) {
         if (!ctx.figs[n]) continue;
         const L = this.loaded[n], root = new THREE.Group();
@@ -143,9 +211,75 @@
         M.people[n] = { ...L, root, head: L.g.scene.getObjectByName("J_Bip_C_Head") };
       }
     },
+    // 画面を分けて描く (opts.split のとき。Replay3D.seek から。描いたら true)
+    render(v) {
+      if (!this.opts.split || !M || !M.P) return false;
+      const P = M.P, R = M.renderer, el = R.domElement, W = el.clientWidth, H = el.clientHeight;
+      const seg = P.segs.find((s) => v >= s.v0 && v < s.v1) || P.segs[P.segs.length - 1];
+      const day = ["go", "work", "back"].includes(seg.key);
+      const alive = Object.keys(M.people).filter((n) => M.people[n].root.visible);
+      const groups = day ? dayGroups(P, alive) : [{ names: alive, title: "" }];
+      const key = seg.key + "|" + groups.map((g) => g.names.join("・")).join("/");
+      if (!M.view || M.view.key !== key) M.view = { key, panels: groups.map((g, i) => ({ ...g, cam: new THREE.PerspectiveCamera(45, 1, 0.1, 500), fresh: true })) };
+      const ps = M.view.panels, n = ps.length, o = this.opts;
+      ps.forEach((pn, i) => {
+        pn.x = Math.round((W * i) / n); pn.w = Math.round((W * (i + 1)) / n) - pn.x; pn.y = 0; pn.h = H;
+        pn.cam.aspect = pn.w / pn.h; pn.cam.updateProjectionMatrix();
+        const pts = pn.names.map((m) => M.people[m].root.position);
+        const c = pts.reduce((a, p) => a.add(p), new THREE.Vector3()).multiplyScalar(1 / Math.max(1, pts.length));
+        const r = Math.max(0, ...pts.map((p) => p.distanceTo(c)));
+        const C = day ? (o.day || { min: 4.2, add: 2.2, k: 2.2 }) : (o.fire || { min: 7, add: 3.5, k: 2.4 });
+        const narrow = Math.min(1, pn.cam.aspect / (16 / 9));  // 細い画面は、そのぶん引く
+        const dist = Math.min(60, Math.max(C.min, r * C.k + C.add) / Math.max(0.55, narrow));
+        const dir = (day ? new THREE.Vector3(0.5, 0.62, 0.78) : new THREE.Vector3(0.35, 1.0, 0.6)).normalize();
+        const want = c.clone().add(new THREE.Vector3(0, 0.8 * M.K, 0));
+        if (!day) want.add(new THREE.Vector3(dir.x, 0, dir.z).multiplyScalar(r * (seg.key === "night" ? 0.9 : 0.35)));  // 火のまわり: 輪が字幕より上に来るよう、見る点を手前に
+        const at = want.clone().add(dir.multiplyScalar(dist));
+        if (pn.fresh) { pn.t = want; pn.cam.position.copy(at); pn.fresh = false; } else { pn.t.lerp(want, 0.12); pn.cam.position.lerp(at, 0.12); }
+        pn.cam.lookAt(pn.t);
+      });
+      R.setScissorTest(true);
+      for (const pn of ps) { R.setViewport(pn.x, H - pn.y - pn.h, pn.w, pn.h); R.setScissor(pn.x, H - pn.y - pn.h, pn.w, pn.h); R.render(M.scene, pn.cam); }
+      R.setScissorTest(false); R.setViewport(0, 0, W, H);
+      M.placeLabels();  // 吹き出しの字などはアプリのまま。場所だけ組の画面に合わせて置き直す
+      for (const m in M.labels) {
+        const L = M.labels[m]; if (L.el.hidden || !L.pos) continue;
+        const pn = ps.find((q) => q.names.includes(m)); if (!pn) { L.el.hidden = true; continue; }
+        const q = L.pos.clone().project(pn.cam), x = pn.x + (q.x * 0.5 + 0.5) * pn.w, y = pn.y + (-q.y * 0.5 + 0.5) * pn.h;
+        if (q.z > 1 || x < pn.x || x > pn.x + pn.w) { L.el.hidden = true; continue; }
+        const bw = L.el.offsetWidth || 0, xc = bw && bw < pn.w - 8 ? Math.min(pn.x + pn.w - bw / 2 - 4, Math.max(pn.x + bw / 2 + 4, x)) : x;  // 吹き出しは組の画面の中に
+        L.el.style.transform = `translate(${xc}px, ${y}px) translate(-50%, -100%)`;
+        const b = L.el.querySelector(".b"); if (b) b.style.opacity = M.fade && M.fade[m] != null ? String(Math.max(0, M.fade[m])) : "";
+      }
+      // 組の名前と境目の線 (DOM)
+      const st = el.parentElement;
+      if (!M.deco) { M.deco = document.createElement("div"); M.deco.style.cssText = "position:absolute;inset:0;pointer-events:none;z-index:40"; st.appendChild(M.deco); }
+      if (M.deco.dataset.key !== key + W) {
+        M.deco.dataset.key = key + W;
+        M.deco.innerHTML = ps.map((pn, i) => (i ? `<div style="position:absolute;left:${pn.x - 2}px;top:0;width:4px;height:100%;background:#f4f1e8"></div>` : "")
+          + (pn.title ? `<div style="position:absolute;left:${pn.x + pn.w / 2}px;top:${n > 1 ? 56 : 12}px;transform:translateX(-50%);background:rgba(12,16,13,.72);color:#fff;font-size:18px;padding:3px 12px;border-radius:8px;white-space:nowrap">${pn.title}</div>` : "")).join("");
+      }
+      return true;
+    },
+    // 絵コンテ用: 人 m の世界の点を、その人の組の画面の上の点 (px) に。画面を分けていないときは null
+    project(m, p) {
+      if (!this.opts.split || !M || !M.view) return null;
+      const pn = M.view.panels.find((q) => q.names.includes(m)); if (!pn) return null;
+      const q = p.clone().project(pn.cam);
+      return [pn.x + (q.x * 0.5 + 0.5) * pn.w, pn.y + (-q.y * 0.5 + 0.5) * pn.h, q.z, pn.x, pn.x + pn.w];
+    },
+    panels() { return this.opts.split && M && M.view ? M.view.panels.map((p) => ({ names: p.names, title: p.title, x: p.x, w: p.w, dist: +p.cam.position.distanceTo(p.t).toFixed(1) })) : null; },
     clips() { return M ? Object.fromEntries(Object.entries(M.people).filter(([, R]) => R.root.visible).map(([n, R]) => [n, R.clip])) : {}; },  // 絵コンテ用: 今の動きの名前
     frame(P, v) {  // コマごと (Replay3D の frame の終わり。名前の札とカメラの前)
       if (!M) return;
+      M.P = P;
+      if (this.opts.bubbles) {  // 出来事の短い吹き出し (アプリの吹き出しを置きかえる)
+        M.fade = {};
+        for (const n in M.labels) M.labels[n].bubble = "";
+        for (const b of bubblesFor(P)) if (v >= b.t0 && v < b.t1 && M.labels[b.who]) {
+          M.labels[b.who].bubble = b.text; M.fade[b.who] = Math.min(1, (v - b.t0) / 0.25, (b.t1 - v) / FADEB);
+        }
+      }
       if (!sched.has(P)) sched.set(P, Object.fromEntries(Object.keys(M.people).filter((n) => P.plan[n]).map((n) => [n, planFor(P, M.D, n)])));
       const all = sched.get(P);
       for (const n in M.people) {

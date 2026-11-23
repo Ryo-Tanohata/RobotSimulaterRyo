@@ -29,15 +29,16 @@ function check(c) {
   const W = c.w, H = c.h, notes = [], inView = [], sizes = [];
   const people = c.people.filter((p) => p.shown);
   for (const p of people) {
-    const hgt = p.foot[1] - p.head[1], wid = Math.max(12, hgt * 0.3);
-    p.box = [Math.min(p.head[0], p.foot[0]) - wid, p.head[1], Math.max(p.head[0], p.foot[0]) + wid, p.foot[1]];
+    const hgt = Math.hypot(p.foot[0] - p.head[0], p.foot[1] - p.head[1]), wid = Math.max(12, hgt * 0.3);  // 横になった人も、頭から足の長さで
+    p.box = [Math.min(p.head[0], p.foot[0]) - wid, Math.min(p.head[1], p.foot[1]), Math.max(p.head[0], p.foot[0]) + wid, Math.max(p.head[1], p.foot[1])];
     p.px = Math.round(hgt);
     const behind = p.head[2] > 1 || p.foot[2] > 1;
     const outside = behind || p.box[2] < 0 || p.box[0] > W || p.box[3] < 0 || p.box[1] > H;
-    p.inView = !outside;
-    if (outside) continue;
+    const X0 = p.panel ? p.panel[0] : 0, X1 = p.panel ? p.panel[1] : W;  // 画面を分けているときは、その人の組の画面の中で
+    p.inView = !outside && p.box[2] > X0 && p.box[0] < X1;
+    if (!p.inView) continue;
     inView.push(p.name); sizes.push(hgt);
-    if (p.box[0] < 0 || p.box[2] > W || p.box[1] < 0 || p.box[3] > H) notes.push(`${p.name} が画面からはみ出す`);
+    if (p.box[0] < X0 || p.box[2] > X1 || p.box[1] < 0 || p.box[3] > H) notes.push(`${p.name} が画面からはみ出す`);
     if (hgt < 0.12 * H) notes.push(`${p.name} が小さい (${p.px} px)`);
     if (inter(p.box, c.boxes.caption) > 0.3 * area(p.box)) notes.push(`字幕が ${p.name} にかかる`);
     for (const t of c.boxes.toasts) if (inter(p.box, t) > 0.3 * area(p.box)) { notes.push(`知らせの帯が ${p.name} にかかる`); break; }
@@ -58,7 +59,8 @@ const rows = SB.cuts.map((c) => {
   const k = check(c);
   const doing = c.people.filter((p) => p.shown).map((p) => ({ name: p.name, activity: p.activity, motion: p.motion, motion_ja: MOTION[p.motion] || null, px: p.inView ? p.px : 0, inView: p.inView }));
   return { cut: c.cut, id: c.id, start: c.start, end: c.end, at: c.at, clock: c.clock, text: c.text,
-    camera: { framing: k.framing, dist: +c.camera.dist.toFixed(1), person_px: k.med, in_view: k.inView },
+    camera: { framing: k.framing, dist: +c.camera.dist.toFixed(1), person_px: k.med, in_view: k.inView,
+      panels: c.panels ? c.panels.map((q) => ({ names: q.names, title: q.title, x: Math.round(q.x), w: Math.round(q.w), dist: q.dist })) : [{ names: k.inView, title: "", x: 0, w: c.w, dist: +c.camera.dist.toFixed(1) }] },
     featured: c.people.filter((p) => p.shown && (c.text.includes(p.name) || p.bubble || (c.featured || []).includes(p.name))).map((p) => p.name),
     doing, notes: k.notes, jpg: c.jpg };
 });
@@ -72,7 +74,7 @@ th{background:#e4e0d4;position:sticky;top:0}img{width:420px;display:block}.n{col
 見たら「よい」か、直したいところ (カットの番号と中身) を伝えてください。本番はそのあと撮ります。</p>
 <table><tr><th>#</th><th>秒</th><th>村の日と時刻</th><th>ナレーション</th><th>カメラ</th><th>人 (活動・動き)</th><th>絵</th><th>気になる点</th></tr>
 ${rows.map((r) => `<tr><td>${r.cut}</td><td class="s">${r.start.toFixed(1)}–${r.end.toFixed(1)}</td><td>${esc(r.clock)}</td><td>${esc(r.text)}</td>
-<td>${esc(r.camera.framing)}<br>距離 ${r.camera.dist}<br>人の高さ ${r.camera.person_px} px<br>映る: ${esc(r.camera.in_view.join("・") || "なし")}</td>
+<td>${r.camera.panels.length > 1 ? `画面を ${r.camera.panels.length} つに分ける<br>${r.camera.panels.map((q) => `・${esc(q.title)} (距離 ${q.dist})`).join("<br>")}<br>` : `1 枚 (距離 ${r.camera.panels[0].dist})<br>`}${esc(r.camera.framing)}<br>人の高さ ${r.camera.person_px} px<br>映る: ${esc(r.camera.in_view.join("・") || "なし")}</td>
 <td>${r.doing.map((d) => `${r.featured.includes(d.name) ? "<b>" : ""}${esc(d.name)}${r.featured.includes(d.name) ? "</b>" : ""}: ${esc(d.activity || "")}${d.motion ? ` / ${esc(d.motion_ja || d.motion)}` : ""}${d.inView ? "" : " (画面の外)"}`).join("<br>")}</td>
 <td><img src="data:image/jpeg;base64,${r.jpg}"></td><td>${r.notes.length ? r.notes.map((n) => `<div class="n">${esc(n)}</div>`).join("") : '<span class="ok">なし</span>'}</td></tr>`).join("\n")}
 </table>`;

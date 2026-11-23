@@ -13,14 +13,29 @@
    "text": "ずんだもんなのだ。今回は、川辺の五人の村の、いちばん最初の日を、今の3Dで撮り直したのだ。",
    "camera": {
     "framing": "中くらい",
-    "dist": 5.3,
-    "person_px": 323,
+    "dist": 13.9,
+    "person_px": 145,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 9.4
+     }
     ]
    },
    "featured": [
@@ -36,7 +51,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 333,
+     "px": 130,
      "inView": true
     },
     {
@@ -44,7 +59,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 373,
+     "px": 116,
      "inView": true
     },
     {
@@ -52,7 +67,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 323,
+     "px": 157,
      "inView": true
     },
     {
@@ -60,7 +75,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 242,
+     "px": 145,
      "inView": true
     },
     {
@@ -68,13 +83,11 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 259,
+     "px": 145,
      "inView": true
     }
    ],
-   "notes": [
-    "ウィロ が画面からはみ出す"
-   ]
+   "notes": []
   },
   {
    "cut": 2,
@@ -85,15 +98,30 @@
    "clock": "0年2日目 5:50  夜明け",
    "text": "画面の日付は「0年2日目」なのだ。0年1日目は、5人がこの世界に来た最初の夜なのだ。5人が初めて出かけて動いたのが、この日なのだ。",
    "camera": {
-    "framing": "寄り",
-    "dist": 4.7,
-    "person_px": 376,
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 143,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 9.4
+     }
     ]
    },
    "featured": [
@@ -109,7 +137,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 395,
+     "px": 132,
      "inView": true
     },
     {
@@ -117,7 +145,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 452,
+     "px": 114,
      "inView": true
     },
     {
@@ -125,7 +153,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 376,
+     "px": 155,
      "inView": true
     },
     {
@@ -133,7 +161,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 273,
+     "px": 146,
      "inView": true
     },
     {
@@ -141,15 +169,11 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 294,
+     "px": 143,
      "inView": true
     }
    ],
-   "notes": [
-    "タヒ が画面からはみ出す",
-    "ウィロ が画面からはみ出す",
-    "イサ が画面からはみ出す"
-   ]
+   "notes": []
   },
   {
    "cut": 3,
@@ -161,13 +185,45 @@
    "text": "世界は2キロ四方。川のそばのキャンプに、ルオ、セナ、タヒ、ウィロ、イサの5人がいるのだ。季節は夏なのだ。",
    "camera": {
     "framing": "中くらい",
-    "dist": 6.1,
-    "person_px": 238,
+    "dist": 13.9,
+    "person_px": 149,
     "in_view": [
+     "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "イサ"
+      ],
+      "title": "ルオ・イサ — 東の林で採集",
+      "x": 0,
+      "w": 427,
+      "dist": 14.8
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で探索",
+      "x": 427,
+      "w": 426,
+      "dist": 11.8
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の川で探索",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
     ]
    },
    "featured": [
@@ -183,15 +239,15 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 0,
-     "inView": false
+     "px": 111,
+     "inView": true
     },
     {
      "name": "セナ",
      "activity": "探索",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 267,
+     "px": 163,
      "inView": true
     },
     {
@@ -199,7 +255,7 @@
      "activity": "探索",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 238,
+     "px": 149,
      "inView": true
     },
     {
@@ -207,7 +263,7 @@
      "activity": "探索",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 234,
+     "px": 239,
      "inView": true
     },
     {
@@ -215,13 +271,12 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 226,
+     "px": 113,
      "inView": true
     }
    ],
    "notes": [
-    "画面の外: ルオ",
-    "話に出る ルオ が映っていない"
+    "セナ が画面からはみ出す"
    ]
   },
   {
@@ -234,14 +289,45 @@
    "text": "5人は、それぞれ別のAIが演じているのだ。自分で見たことと、人から聞いたことと、知っていることだけで、その日の動きを決めるのだ。",
    "camera": {
     "framing": "中くらい",
-    "dist": 8.6,
-    "person_px": 177,
+    "dist": 13.9,
+    "person_px": 244,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "イサ"
+      ],
+      "title": "ルオ・イサ — 東の林で採集",
+      "x": 0,
+      "w": 427,
+      "dist": 7.7
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で探索",
+      "x": 427,
+      "w": 426,
+      "dist": 7.7
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の川で探索",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
     ]
    },
    "featured": [
@@ -257,7 +343,7 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 182,
+     "px": 246,
      "inView": true
     },
     {
@@ -265,7 +351,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 163,
+     "px": 223,
      "inView": true
     },
     {
@@ -273,7 +359,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 182,
+     "px": 256,
      "inView": true
     },
     {
@@ -281,7 +367,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 147,
+     "px": 234,
      "inView": true
     },
     {
@@ -289,7 +375,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 177,
+     "px": 244,
      "inView": true
     }
    ],
@@ -305,14 +391,45 @@
    "text": "性格もちがうのだ。ルオとイサは、人に力を貸すのが好きで、思い切りもいいのだ。セナとウィロは、人と話すのが好きなのだ。ウィロはとても用心深く、タヒは思い切りがいいのだ。",
    "camera": {
     "framing": "中くらい",
-    "dist": 6.6,
-    "person_px": 151,
+    "dist": 13.9,
+    "person_px": 173,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "イサ"
+      ],
+      "title": "ルオ・イサ — 東の林で採集",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で探索",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の川で探索",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
     ]
    },
    "featured": [
@@ -328,7 +445,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 242,
+     "px": 239,
      "inView": true
     },
     {
@@ -336,7 +453,7 @@
      "activity": "探索",
      "motion": "look",
      "motion_ja": "地面をさがす",
-     "px": 151,
+     "px": 173,
      "inView": true
     },
     {
@@ -344,7 +461,7 @@
      "activity": "探索",
      "motion": "look",
      "motion_ja": "地面をさがす",
-     "px": 178,
+     "px": 196,
      "inView": true
     },
     {
@@ -352,7 +469,7 @@
      "activity": "探索",
      "motion": "look",
      "motion_ja": "地面をさがす",
-     "px": 111,
+     "px": 137,
      "inView": true
     },
     {
@@ -360,7 +477,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 114,
+     "px": 103,
      "inView": true
     }
    ],
@@ -376,14 +493,45 @@
    "text": "前の夜、イサが「ザガが出るから、夜は誰もキャンプから離れない」という掟を出していたのだ。ザガは、人もおそう猛獣なのだ。",
    "camera": {
     "framing": "中くらい",
-    "dist": 7.1,
-    "person_px": 165,
+    "dist": 13.9,
+    "person_px": 195,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "イサ"
+      ],
+      "title": "ルオ・イサ — 東の林で採集",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で探索",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の川で探索",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
     ]
    },
    "featured": [
@@ -399,7 +547,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 135,
+     "px": 162,
      "inView": true
     },
     {
@@ -407,7 +555,7 @@
      "activity": "探索",
      "motion": "look",
      "motion_ja": "地面をさがす",
-     "px": 174,
+     "px": 195,
      "inView": true
     },
     {
@@ -415,7 +563,7 @@
      "activity": "探索",
      "motion": "look",
      "motion_ja": "地面をさがす",
-     "px": 165,
+     "px": 200,
      "inView": true
     },
     {
@@ -423,7 +571,7 @@
      "activity": "探索",
      "motion": "look",
      "motion_ja": "地面をさがす",
-     "px": 115,
+     "px": 156,
      "inView": true
     },
     {
@@ -431,7 +579,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 187,
+     "px": 202,
      "inView": true
     }
    ],
@@ -446,15 +594,46 @@
    "clock": "0年2日目 8:22  活動",
    "text": "朝、5人は出かけたのだ。ルオとイサは、キャンプから約300 mの東の林で、食べ物を採ったのだ。",
    "camera": {
-    "framing": "引き",
-    "dist": 8.1,
-    "person_px": 134,
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 191,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "イサ"
+      ],
+      "title": "ルオ・イサ — 東の林で採集",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で探索",
+      "x": 427,
+      "w": 426,
+      "dist": 8.2
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の川で探索",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
     ]
    },
    "featured": [
@@ -470,7 +649,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 156,
+     "px": 191,
      "inView": true
     },
     {
@@ -478,7 +657,7 @@
      "activity": "探索",
      "motion": "search",
      "motion_ja": "歩きさがす",
-     "px": 134,
+     "px": 175,
      "inView": true
     },
     {
@@ -486,7 +665,7 @@
      "activity": "探索",
      "motion": "look",
      "motion_ja": "地面をさがす",
-     "px": 123,
+     "px": 164,
      "inView": true
     },
     {
@@ -494,7 +673,7 @@
      "activity": "探索",
      "motion": "search",
      "motion_ja": "歩きさがす",
-     "px": 130,
+     "px": 200,
      "inView": true
     },
     {
@@ -502,7 +681,7 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 207,
+     "px": 264,
      "inView": true
     }
    ],
@@ -518,14 +697,45 @@
    "text": "セナとタヒは東の林を、ウィロは約100 m の南の川を、探して回ったのだ。どちらにも、ルクの群れ12頭がいて、木の実が多いと分かったのだ。",
    "camera": {
     "framing": "中くらい",
-    "dist": 8.6,
-    "person_px": 167,
+    "dist": 13.9,
+    "person_px": 230,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "イサ"
+      ],
+      "title": "ルオ・イサ — 東の林で採集",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で探索",
+      "x": 427,
+      "w": 426,
+      "dist": 9.8
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の川で探索",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
     ]
    },
    "featured": [
@@ -541,7 +751,7 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 187,
+     "px": 250,
      "inView": true
     },
     {
@@ -549,7 +759,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 167,
+     "px": 183,
      "inView": true
     },
     {
@@ -557,7 +767,7 @@
      "activity": "探索",
      "motion": "search",
      "motion_ja": "歩きさがす",
-     "px": 149,
+     "px": 167,
      "inView": true
     },
     {
@@ -565,7 +775,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 145,
+     "px": 230,
      "inView": true
     },
     {
@@ -573,7 +783,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 186,
+     "px": 252,
      "inView": true
     }
    ],
@@ -589,14 +799,45 @@
    "text": "ルクは、この世界の大きな獲物なのだ。でもこの日は、まだだれも狩りをしていないのだ。",
    "camera": {
     "framing": "中くらい",
-    "dist": 6.5,
-    "person_px": 220,
+    "dist": 13.9,
+    "person_px": 158,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "イサ"
+      ],
+      "title": "ルオ・イサ — 東の林で採集",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で探索",
+      "x": 427,
+      "w": 426,
+      "dist": 12
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の川で探索",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
     ]
    },
    "featured": [
@@ -612,7 +853,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 244,
+     "px": 240,
      "inView": true
     },
     {
@@ -620,7 +861,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 235,
+     "px": 152,
      "inView": true
     },
     {
@@ -628,7 +869,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 220,
+     "px": 152,
      "inView": true
     },
     {
@@ -636,7 +877,7 @@
      "activity": "探索",
      "motion": "look",
      "motion_ja": "地面をさがす",
-     "px": 127,
+     "px": 158,
      "inView": true
     },
     {
@@ -644,13 +885,11 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 166,
+     "px": 181,
      "inView": true
     }
    ],
-   "notes": [
-    "知らせの帯が イサ にかかる"
-   ]
+   "notes": []
   },
   {
    "cut": 10,
@@ -662,14 +901,45 @@
    "text": "この日に5人が食べたのは、合わせて5050キロカロリーぶん。1人あたり約1000キロカロリーで、おなかいっぱいとは言えないのだ。",
    "camera": {
     "framing": "中くらい",
-    "dist": 6.8,
-    "person_px": 167,
+    "dist": 13.9,
+    "person_px": 192,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "イサ"
+      ],
+      "title": "ルオ・イサ — 東の林で採集",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で探索",
+      "x": 427,
+      "w": 426,
+      "dist": 7.7
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の川で探索",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
     ]
    },
    "featured": [
@@ -685,7 +955,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 220,
+     "px": 229,
      "inView": true
     },
     {
@@ -693,7 +963,7 @@
      "activity": "探索",
      "motion": "look",
      "motion_ja": "地面をさがす",
-     "px": 167,
+     "px": 192,
      "inView": true
     },
     {
@@ -701,7 +971,7 @@
      "activity": "探索",
      "motion": "look",
      "motion_ja": "地面をさがす",
-     "px": 167,
+     "px": 190,
      "inView": true
     },
     {
@@ -709,7 +979,7 @@
      "activity": "探索",
      "motion": "search",
      "motion_ja": "歩きさがす",
-     "px": 144,
+     "px": 176,
      "inView": true
     },
     {
@@ -717,13 +987,11 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 253,
+     "px": 268,
      "inView": true
     }
    ],
-   "notes": [
-    "知らせの帯が タヒ にかかる"
-   ]
+   "notes": []
   },
   {
    "cut": 11,
@@ -735,14 +1003,45 @@
    "text": "夕方、みんなキャンプにもどったのだ。この日は、まだ火をおこしていないのだ。",
    "camera": {
     "framing": "中くらい",
-    "dist": 6.7,
-    "person_px": 210,
+    "dist": 13.9,
+    "person_px": 228,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "イサ"
+      ],
+      "title": "ルオ・イサ — 東の林で採集",
+      "x": 0,
+      "w": 427,
+      "dist": 12.8
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で探索",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の川で探索",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
     ]
    },
    "featured": [
@@ -758,7 +1057,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 258,
+     "px": 155,
      "inView": true
     },
     {
@@ -766,7 +1065,7 @@
      "activity": "探索",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 208,
+     "px": 228,
      "inView": true
     },
     {
@@ -774,7 +1073,7 @@
      "activity": "探索",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 210,
+     "px": 232,
      "inView": true
     },
     {
@@ -782,7 +1081,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 214,
+     "px": 230,
      "inView": true
     },
     {
@@ -790,13 +1089,11 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 179,
+     "px": 126,
      "inView": true
     }
    ],
-   "notes": [
-    "知らせの帯が イサ にかかる"
-   ]
+   "notes": []
   },
   {
    "cut": 12,
@@ -808,14 +1105,29 @@
    "text": "キャンプでは、見てきたことを話し合ったのだ。ルオは「ザガが出るから気をつけよう」と言ったのだ。",
    "camera": {
     "framing": "中くらい",
-    "dist": 5.5,
-    "person_px": 281,
+    "dist": 13.9,
+    "person_px": 145,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 9.5
+     }
     ]
    },
    "featured": [
@@ -831,7 +1143,7 @@
      "activity": "採集",
      "motion": "talk",
      "motion_ja": "話す",
-     "px": 319,
+     "px": 126,
      "inView": true
     },
     {
@@ -839,7 +1151,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 342,
+     "px": 119,
      "inView": true
     },
     {
@@ -847,7 +1159,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 281,
+     "px": 154,
      "inView": true
     },
     {
@@ -855,7 +1167,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 219,
+     "px": 145,
      "inView": true
     },
     {
@@ -863,7 +1175,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 245,
+     "px": 147,
      "inView": true
     }
    ],
@@ -878,15 +1190,30 @@
    "clock": "0年2日目 19:39  夕方の焚き火",
    "text": "セナとタヒは東の林の、ウィロは南の川の、ルクの群れと木の実のことを知らせたのだ。タヒは「明日、俺たちで行ってみようぜ」と誘ったのだ。",
    "camera": {
-    "framing": "寄り",
-    "dist": 4.7,
-    "person_px": 365,
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 142,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 9.4
+     }
     ]
    },
    "featured": [
@@ -902,7 +1229,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 389,
+     "px": 129,
      "inView": true
     },
     {
@@ -910,7 +1237,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 442,
+     "px": 110,
      "inView": true
     },
     {
@@ -918,7 +1245,7 @@
      "activity": "探索",
      "motion": "talk",
      "motion_ja": "話す",
-     "px": 365,
+     "px": 156,
      "inView": true
     },
     {
@@ -926,7 +1253,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 267,
+     "px": 142,
      "inView": true
     },
     {
@@ -934,15 +1261,11 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 292,
+     "px": 144,
      "inView": true
     }
    ],
-   "notes": [
-    "タヒ が画面からはみ出す",
-    "ウィロ が画面からはみ出す",
-    "イサ が画面からはみ出す"
-   ]
+   "notes": []
   },
   {
    "cut": 14,
@@ -953,15 +1276,30 @@
    "clock": "0年2日目 20:03  夕方の焚き火",
    "text": "イサは「東の林で、たくさん集められた」と話したのだ。",
    "camera": {
-    "framing": "寄り",
-    "dist": 4.6,
-    "person_px": 379,
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 143,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 9.4
+     }
     ]
    },
    "featured": [
@@ -977,7 +1315,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 402,
+     "px": 136,
      "inView": true
     },
     {
@@ -985,7 +1323,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 459,
+     "px": 115,
      "inView": true
     },
     {
@@ -993,7 +1331,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 379,
+     "px": 158,
      "inView": true
     },
     {
@@ -1001,7 +1339,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 276,
+     "px": 149,
      "inView": true
     },
     {
@@ -1009,15 +1347,11 @@
      "activity": "採集",
      "motion": "talk",
      "motion_ja": "話す",
-     "px": 297,
+     "px": 143,
      "inView": true
     }
    ],
-   "notes": [
-    "タヒ が画面からはみ出す",
-    "ウィロ が画面からはみ出す",
-    "イサ が画面からはみ出す"
-   ]
+   "notes": []
   },
   {
    "cut": 15,
@@ -1028,15 +1362,30 @@
    "clock": "0年2日目 20:21  夕方の焚き火",
    "text": "そのあと、食べ物を分けたのだ。ルオはセナとタヒとウィロに、イサはルオとセナとタヒに分けたのだ。",
    "camera": {
-    "framing": "寄り",
-    "dist": 4.6,
-    "person_px": 380,
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 144,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 9.4
+     }
     ]
    },
    "featured": [
@@ -1052,7 +1401,7 @@
      "activity": "採集",
      "motion": "give",
      "motion_ja": "手渡す",
-     "px": 399,
+     "px": 131,
      "inView": true
     },
     {
@@ -1060,7 +1409,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 463,
+     "px": 118,
      "inView": true
     },
     {
@@ -1068,7 +1417,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 380,
+     "px": 155,
      "inView": true
     },
     {
@@ -1076,7 +1425,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 276,
+     "px": 146,
      "inView": true
     },
     {
@@ -1084,15 +1433,11 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 297,
+     "px": 144,
      "inView": true
     }
    ],
-   "notes": [
-    "タヒ が画面からはみ出す",
-    "ウィロ が画面からはみ出す",
-    "イサ が画面からはみ出す"
-   ]
+   "notes": []
   },
   {
    "cut": 16,
@@ -1103,15 +1448,30 @@
    "clock": "0年2日目 20:44  夕方の焚き火",
    "text": "分け合う掟ができるのは、まだ先なのだ。それより前の、最初の日から、採れた人がほかの人に分けていたのだ。",
    "camera": {
-    "framing": "寄り",
-    "dist": 4.6,
-    "person_px": 374,
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 146,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 9.4
+     }
     ]
    },
    "featured": [
@@ -1127,7 +1487,7 @@
      "activity": "採集",
      "motion": "give",
      "motion_ja": "手渡す",
-     "px": 401,
+     "px": 136,
      "inView": true
     },
     {
@@ -1135,7 +1495,7 @@
      "activity": "探索",
      "motion": "eat",
      "motion_ja": "食べる",
-     "px": 457,
+     "px": 117,
      "inView": true
     },
     {
@@ -1143,7 +1503,7 @@
      "activity": "探索",
      "motion": "eat",
      "motion_ja": "食べる",
-     "px": 374,
+     "px": 149,
      "inView": true
     },
     {
@@ -1151,7 +1511,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 276,
+     "px": 146,
      "inView": true
     },
     {
@@ -1159,15 +1519,11 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 299,
+     "px": 146,
      "inView": true
     }
    ],
-   "notes": [
-    "タヒ が画面からはみ出す",
-    "ウィロ が画面からはみ出す",
-    "イサ が画面からはみ出す"
-   ]
+   "notes": []
   },
   {
    "cut": 17,
@@ -1178,15 +1534,30 @@
    "clock": "0年2日目 21:12  夕方の焚き火",
    "text": "セナとタヒが同じ東の林を探したと聞いて、ウィロは、探索に行く前に、だれがどこへ行くかを皆に伝える、という掟を出したのだ。",
    "camera": {
-    "framing": "寄り",
-    "dist": 4.6,
-    "person_px": 374,
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 139,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 9.4
+     }
     ]
    },
    "featured": [
@@ -1202,7 +1573,7 @@
      "activity": "採集",
      "motion": "eat",
      "motion_ja": "食べる",
-     "px": 398,
+     "px": 134,
      "inView": true
     },
     {
@@ -1210,7 +1581,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 459,
+     "px": 116,
      "inView": true
     },
     {
@@ -1218,7 +1589,7 @@
      "activity": "探索",
      "motion": "eat",
      "motion_ja": "食べる",
-     "px": 374,
+     "px": 149,
      "inView": true
     },
     {
@@ -1226,7 +1597,7 @@
      "activity": "探索",
      "motion": "eat",
      "motion_ja": "食べる",
-     "px": 271,
+     "px": 139,
      "inView": true
     },
     {
@@ -1234,15 +1605,11 @@
      "activity": "採集",
      "motion": "give",
      "motion_ja": "手渡す",
-     "px": 297,
+     "px": 144,
      "inView": true
     }
    ],
-   "notes": [
-    "タヒ が画面からはみ出す",
-    "ウィロ が画面からはみ出す",
-    "イサ が画面からはみ出す"
-   ]
+   "notes": []
   },
   {
    "cut": 18,
@@ -1254,14 +1621,29 @@
    "text": "こうして、最初の1日が終わったのだ。ウィロとイサの掟は、0年8日目に、ほかの掟といっしょに決まるのだ。",
    "camera": {
     "framing": "引き",
-    "dist": 6.7,
-    "person_px": 138,
+    "dist": 13.9,
+    "person_px": 77,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14.2
+     }
     ]
    },
    "featured": [
@@ -1277,7 +1659,7 @@
      "activity": "採集",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 53,
+     "px": 54,
      "inView": true
     },
     {
@@ -1285,7 +1667,7 @@
      "activity": "探索",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 39,
+     "px": 14,
      "inView": true
     },
     {
@@ -1293,7 +1675,7 @@
      "activity": "探索",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 138,
+     "px": 77,
      "inView": true
     },
     {
@@ -1301,7 +1683,7 @@
      "activity": "探索",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 154,
+     "px": 99,
      "inView": true
     },
     {
@@ -1309,14 +1691,14 @@
      "activity": "採集",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 172,
+     "px": 102,
      "inView": true
     }
    ],
    "notes": [
-    "ルオ が小さい (53 px)",
-    "セナ が小さい (39 px)",
-    "字幕が セナ にかかる"
+    "ルオ が小さい (54 px)",
+    "セナ が小さい (14 px)",
+    "タヒ が小さい (77 px)"
    ]
   },
   {
@@ -1329,14 +1711,29 @@
    "text": "この5人の村は、このあと240年をこえて続いて、700人をこえる大きな村になったのだ。",
    "camera": {
     "framing": "引き",
-    "dist": 6.9,
-    "person_px": 52,
+    "dist": 13.9,
+    "person_px": 47,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14.2
+     }
     ]
    },
    "featured": [
@@ -1352,7 +1749,7 @@
      "activity": "採集",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 16,
+     "px": 47,
      "inView": true
     },
     {
@@ -1360,7 +1757,7 @@
      "activity": "探索",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": -20,
+     "px": 27,
      "inView": true
     },
     {
@@ -1368,7 +1765,7 @@
      "activity": "探索",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 52,
+     "px": 53,
      "inView": true
     },
     {
@@ -1376,7 +1773,7 @@
      "activity": "探索",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 59,
+     "px": 46,
      "inView": true
     },
     {
@@ -1384,18 +1781,16 @@
      "activity": "採集",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 54,
+     "px": 48,
      "inView": true
     }
    ],
    "notes": [
-    "ルオ が小さい (16 px)",
-    "セナ が小さい (-20 px)",
-    "字幕が セナ にかかる",
-    "知らせの帯が セナ にかかる",
-    "タヒ が小さい (52 px)",
-    "ウィロ が小さい (59 px)",
-    "イサ が小さい (54 px)"
+    "ルオ が小さい (47 px)",
+    "セナ が小さい (27 px)",
+    "タヒ が小さい (53 px)",
+    "ウィロ が小さい (46 px)",
+    "イサ が小さい (48 px)"
    ]
   },
   {
@@ -1408,14 +1803,29 @@
    "text": "最初の日に5人がしたのは、採る、探す、話す、分ける、だけ。ここから、村の歩みが始まったのだ。",
    "camera": {
     "framing": "引き",
-    "dist": 6.9,
-    "person_px": 52,
+    "dist": 13.9,
+    "person_px": 47,
     "in_view": [
      "ルオ",
      "セナ",
      "タヒ",
      "ウィロ",
      "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14.2
+     }
     ]
    },
    "featured": [
@@ -1431,7 +1841,7 @@
      "activity": "採集",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 16,
+     "px": 47,
      "inView": true
     },
     {
@@ -1439,7 +1849,7 @@
      "activity": "探索",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": -20,
+     "px": 27,
      "inView": true
     },
     {
@@ -1447,7 +1857,7 @@
      "activity": "探索",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 52,
+     "px": 53,
      "inView": true
     },
     {
@@ -1455,7 +1865,7 @@
      "activity": "探索",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 59,
+     "px": 46,
      "inView": true
     },
     {
@@ -1463,18 +1873,16 @@
      "activity": "採集",
      "motion": "lie",
      "motion_ja": "横になる",
-     "px": 54,
+     "px": 48,
      "inView": true
     }
    ],
    "notes": [
-    "ルオ が小さい (16 px)",
-    "セナ が小さい (-20 px)",
-    "字幕が セナ にかかる",
-    "知らせの帯が セナ にかかる",
-    "タヒ が小さい (52 px)",
-    "ウィロ が小さい (59 px)",
-    "イサ が小さい (54 px)"
+    "ルオ が小さい (47 px)",
+    "セナ が小さい (27 px)",
+    "タヒ が小さい (53 px)",
+    "ウィロ が小さい (46 px)",
+    "イサ が小さい (48 px)"
    ]
   }
  ]
