@@ -1,0 +1,13 @@
+{"say": [],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに実った畑を刈らないと落ちてしまうから"}, "family": {"テナ125": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを一緒にするため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひき、手入れの人日を浮かせるため"}, "family": {"テナ125": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番と一緒に板をひくため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "冬も板をひいて、板の蓄えを増やすため"}, "family": {"テナ125": {"activity": "水の作業場で働く", "place": "M6", "why": "冬も板づくりを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "続けている板ひきの仕事を続けるため"}, "family": {"テナ125": {"activity": "水の作業場で働く", "place": "M6", "why": "続けている板ひきの仕事を続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M590": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "year_name": "板ひきの年",
+ "feeling": "今年も板をひいて、村の水の道の手入れを進めたい。"}
