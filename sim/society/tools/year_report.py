@@ -524,7 +524,8 @@ def d1_part(D, y):
     st = D["state"]
     g = M._g(st)
     rows = [g["rows"][k] for k in sorted(g["rows"], key=int) if int(k) <= y]
-    return {"head": M.lines(st)[:2 if "fix1" in g else 1], "rows": rows,  # 2026-11-23: 相談の直し 1 (印 g7.d1.fix1) の行も "base": d1_base(_sc_ctx(D), g["start_year"]), "scen": g["scen"], "start": g["start_year"],
+    return {"head": M.lines(st)[:2 if "fix1" in g else 1], "rows": rows,  # head: 2026-11-23 相談の直し 1 (印 g7.d1.fix1) の行も
+            "base": d1_base(_sc_ctx(D), g["start_year"]), "scen": g["scen"], "start": g["start_year"],
             "bands": {"d1": M.D1_E0, "d2": M.D2_E15, "d3": M.SCEN[g["scen"]]["d3"], "d4": M.SCEN[g["scen"]]["d4"], "d5": M.D5_STORE},
             "consult": [c for c in (_g7(st).get("consulted") or []) if str(c.get("why", "")).startswith("d1_") and c.get("year") == y]}
 
