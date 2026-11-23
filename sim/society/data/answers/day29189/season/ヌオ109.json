@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋は畑の草取りが大事だと覚えている。おれは毎日畑に出る。みんなもできるだけ出てくれ。"}, {"to": "アコ112", "text": "おまえも一緒に畑で草を取ろう。木の実も拾って帰ろうぜ。"}],
+"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋の草取りで次の実りが守られる。蓄えは多いが、畑を育てるのが一番大事だと思うから。"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ムイ142": true}, "family": {"アコ112": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りを家族みんなでして、畑の実りを守る。"}}, "keep": false,
+"judge": {"M575": "ゆるす", "M576": "ゆるす", "M577": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1294": "受ける"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+"knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまくと、次の夏に畑が実る。", "because": [], "confidence": 0.6}],
+"proposal": null,
+"votes": [],
+"feeling": "蓄えはたっぷりだ。畑でしっかり働いて、冬に備えよう。"}

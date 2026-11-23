@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたっぷりある。秋の畑にしっかりまいて、水の道もみんなで掘っていこう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れがまだ大きく残っているから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ムイ142": true, "セオ142": true},
+ "family": {"ラニ74": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}, "ケセ76": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やすため"}},
+ "keep": false,
+ "judge": {"M575": "ゆるす", "M576": "ゆるす", "M577": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1294": "村"}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "feeling": "蓄えが多くて心強い。秋の仕事をみんなで楽しみたい。"}

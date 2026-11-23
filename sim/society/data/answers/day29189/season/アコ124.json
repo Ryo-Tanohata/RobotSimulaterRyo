@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は、泥でうまりかけた水の道を、みんなで掘ろう。おれも毎日掘りに出るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが8000人日以上のこっていて、掘らないと畑の水がへる。蓄えは十分なので、掘る人手がいちばん足りない。"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ムイ142": true, "セオ142": true}, "keep": false,
+ "judge": {"M575": "ゆるす", "M576": "ゆるす", "M577": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1293": "村", "T1294": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめでも水の道の手入れは8000人日以上のこっている。蓄えは多いので、掘る人がいちばん足りない。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "食べ物の心配はない。あとは水の道を掘るだけだ。体を動かすのが楽しみ。"}

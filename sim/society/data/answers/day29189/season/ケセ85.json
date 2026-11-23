@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがたまっている。この秋は私も掘るから、手の空いた人は力を貸して。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが何年も足りず、あと8450人日も残っているから"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ムイ142": true}, "family": {"ナセ109": {"activity": "水の輪を直す", "place": "camp", "why": "止まっている輪を動かすのにあと10人日だから"}, "ラニ110": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家族でいっしょに進めるため"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やすため"}}, "keep": false,
+ "judge": {"M575": "ゆるす", "M576": "ゆるす", "M577": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1294": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "水の道の手入れは秋と冬に人を増やして進めるのがよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "静かに、やるべき水の道の仕事に向かう気持ち"}

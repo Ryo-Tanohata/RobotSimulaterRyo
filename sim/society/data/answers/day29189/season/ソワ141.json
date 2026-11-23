@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、この秋はみんなで水の道を掘って、手入れの残りを減らそうよ。わたしも毎日出るね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分あり、水の道の手入れが8450人日も残っている。みんなのために手入れを進めたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"ネイ141": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで村の水の道の手入れを進めるため"}}, "keep": false,
+ "judge": {"M575": "ゆるす", "M576": "ゆるす", "M577": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1293": "村", "T1294": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは今たっぷりあるが、水の道の手入れはまだ大きく残っている。秋に畑へまいた種は次の夏に実る。", "because": [6192053], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くとけがをしやすいので、休むのは大事だと思う"}, {"id": "L25", "against": "", "agree": true, "reason": "必要な分だけ取れば蓄えが長持ちする"}],
+ "feeling": "みんなと力を合わせて働けるのがうれしい。"}

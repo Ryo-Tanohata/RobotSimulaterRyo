@@ -1,0 +1,6 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるよ。この秋はみんなで草の種をまいて、冬と春は草取りをして、来年の夏の刈り入れにそなえよう。"}], "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えは多いが、畑を守るのが次の夏のためになるから。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ムイ142": true, "セオ142": true}, "family": {"オネ109": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが守られるから。"}, "ネイ114": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが守られるから。"}}, "keep": false,
+ "judge": {"M575": "ゆるす", "M576": "ゆるす", "M577": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1294": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、秋・冬・春に草取りをすると、次の夏の実りが守られる。", "because": [6190472], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、夜に離れないのは大事だから。"}],
+ "feeling": "蓄えが多くて安心。みんなと畑を守って、来年の夏を楽しみにしている。"}

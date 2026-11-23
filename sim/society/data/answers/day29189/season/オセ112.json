@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。わたしは北の丘で燃える石を掘って、冬のまきの手間を減らすよ。"}],
+"job": {"activity": "燃える石を掘る", "place": "北丘12", "with": [], "why": "村の燃える石の倉はいずれ尽きる。体が元気なうちに掘って、冬のまき集めの手間を浮かせたい。"},
+"sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {},
+"family": {
+"キサ112": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が確かなので、肉を蓄えに足す。"},
+"テナ113": {"activity": "畑仕事", "place": "camp", "why": "小さい子が多い家なので、近くで畑の草取りをする。"},
+"セヤ119": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを見る人が要るので世話をする。"},
+"ソナ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているから。"}},
+"keep": false,
+"judge": {"M575": "ゆるす", "M576": "ゆるす", "M577": "ゆるす"},
+"feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+"knowledge": [],
+"proposal": null,
+"votes": [],
+"feeling": "体はまだ動く。冬にそなえて、北の丘で思いきり掘るぞ。"}

@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いが、肉は足りん。おれは一人で林に入って獲物を追う。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りは得意で、肉を蓄えに足せる。人と群れるのは好かないので一人で行く。"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ムイ142": true}, "family": {"ホタ108": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、キャンプに近い草原なら安全に食べ物を集められる。"}},
+ "keep": false,
+ "judge": {"M575": "ゆるす", "M576": "ゆるす", "M577": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめ、村の蓄えは草の種がたっぷりある。肉と木の実を足せば冬も安心できる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で気が楽だ。林で一人、獲物を追うのが楽しみだ。"}

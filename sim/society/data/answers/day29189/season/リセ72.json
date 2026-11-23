@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。この秋は畑に種をまいて、冬のあいだ草取りをみんなで分けてやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、冬と春の草取りで実りが増える。蓄えは多いが、来年の夏のために手をかける。"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ムイ142": true},
+ "family": {"ロワ85": {"activity": "狩り", "place": "北川12", "why": "狩りの腕がいちばんなので、魚とけものを取ってもらう。"}, "シエ96": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けて、実りを増やすため。"}, "ホタ100": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けて、実りを増やすため。"}, "セオ105": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを分けて、実りを増やすため。"}, "オセ115": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが減らないように世話をする。小さい子もいるので近くにいられる。"}, "セヤ120": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝う。"}},
+ "keep": false,
+ "judge": {"M575": "ゆるす", "M576": "ゆるす", "M577": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。みんなで畑をよく育てたい。"}

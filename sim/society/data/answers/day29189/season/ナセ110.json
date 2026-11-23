@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがまだ八千人日も残ってる。秋のうちに泥をかき出して、来年の畑に水を通そうよ。わたしも毎日掘りに出る。"}, {"to": "ムイ142", "text": "北東の村から来たんだね。ここは蓄えも住まいもある。いっしょに暮らそう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道が泥でうまると水の来る畑がへる。手入れがいちばん足りていないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ムイ142": true}, "keep": true,
+ "judge": {"M575": "つぐなう", "M576": "つぐなう", "M577": "つぐなう"},
+ "feast": false, "leader": "テナ61",
+ "trade": {"T1294": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋は水の道の泥かきを。手のあく大人は一日でも掘りに出よう",
+ "order": null,
+ "take": {"頼み": 32, "人": ["ナセ110"]},
+ "knowledge": [
+  {"op": "add", "text": "よその畑で刈った草の種が畑の家の倉にみな入ると、刈った家が不満を言う。分け方を先に決めておくべき", "because": [6192056, 6192057, 6192058], "confidence": 0.8},
+  {"op": "add", "text": "水の道の手入れは一年に八千人日ほど要るのに、この年はまだ少ししか掘れていない", "because": [6166367], "confidence": 0.7}
+ ],
+ "proposal": {"text": "よその家の畑で刈るときは、刈る前に分け方を決め、刈った家にも半分を渡そう。秋と冬は手のあく大人が水の道を掘ろう。", "because": [6192056, 6192057, 6192058, 6166367], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L0", "against": "夜に出られず不便なことがある", "agree": true, "reason": "ザガは夜に出るので、命を守るため"},
+  {"id": "L993", "against": "ヤギの世話に手がとられる", "agree": true, "reason": "ヤギはまだ草で養える数より少ないから"},
+  {"id": "L994", "against": "住まいを建てる手が水の道から減る", "agree": true, "reason": "小さい子を雨と病から守りたい"},
+  {"id": "L995", "against": "ヤギを受けると土器が出ていく", "agree": true, "reason": "ヤギは少なく、子の薬も大事だから"},
+  {"id": "L996", "against": "燃える石を掘る日がほかの仕事から減る", "agree": true, "reason": "わたしが出した案。子の薬は毎年要る"},
+  {"id": "L997", "against": "薬を分けると自分の家の分が減る", "agree": true, "reason": "わかした水と薬で子が亡くなりにくくなる"}
+ ],
+ "feeling": "子どもたちのためにも、水の道と薬の仕事をやりきりたい"}

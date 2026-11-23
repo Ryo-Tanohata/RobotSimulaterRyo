@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "止まっている水の輪M31は、あと10日直せばまた回る。道具の手なら任せてくれ。冬の前に回しておこう。"}, {"to": "ムイ142", "text": "北東の村14からよく来たな。住まいはせまいが、いっしょに冬をこそう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕をいかして、止まった輪M31と回っている輪の直しを先にすませたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ムイ142": true},
+ "family": {"オセ139": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ8450人日も残っていて、泥でうまると畑がへるから"}},
+ "keep": false,
+ "judge": {"M575": "つぐなう", "M576": "ゆるす", "M577": "つぐなう"},
+ "feast": false, "leader": "テナ61",
+ "trade": {"T1293": "村", "T1294": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑を刈った分が、刈った家に入らず、もめごとになっている", "because": [6192056, 6192058], "confidence": 0.8}, {"op": "add", "text": "この一年も、小さい子や若い人が病で亡くなった", "because": [6192049, 6192050, 6192052], "confidence": 0.9}],
+ "proposal": {"text": "よその家の畑を刈る前に分け方を決め、刈った量を読める人に書いてもらって、半分は刈った人の家に分けよう。", "because": [6192056, 6192057, 6192058], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L980", "against": "書く手間がかかる", "agree": true, "reason": "刈った量を書いて見せ合えば、もめごとがへる"},
+  {"id": "L981", "against": "夜に言うだけでは覚えちがいが出る", "agree": true, "reason": "半分を刈った人の家に分けるのは公平だ"},
+  {"id": "L993", "against": "燃える石のない家が取り残される", "agree": true, "reason": "ヤギは55頭でまだ少ないから、つぶさず育てたい"},
+  {"id": "L994", "against": "住まいを建てる手が水の道から取られる", "agree": true, "reason": "子を雨と悪い水から守りたい"},
+  {"id": "L995", "against": "よその村のヤギを受けすぎると草が足りなくなる", "agree": true, "reason": "ヤギは草で養える数よりまだ少ない"},
+  {"id": "L996", "against": "石掘りに手を取られる", "agree": true, "reason": "子の薬で小さい子の命が助かる"},
+  {"id": "L997", "against": "読める家の負担が大きい", "agree": true, "reason": "わかした水と薬で、亡くなる子をへらしたい"}
+ ],
+ "feeling": "輪を回して、冬も粉をひけるようにしたい。子が亡くなるのはつらい。"}
