@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "夏のうちに畑を刈って、秋にはまた種をまこう。冬は草取りをみんなで分けよう。"}],
+"year": {
+"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れをする"}, "family": {"ハソ112": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手を増やすため"}, "アコ118": {"activity": "畑仕事", "place": "camp", "why": "畑が落ちる前に刈るため"}, "ハソ122": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+"秋": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "秋は実りが多いので、近くで食べ物を集める"}, "family": {"ハソ112": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、食べ物を集める"}, "アコ118": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、食べ物を集める"}, "ハソ122": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので、肉を持ち帰る"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+"冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りで、夏の実りを増やす"}, "family": {"ハソ112": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "アコ118": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ハソ122": {"activity": "狩り", "place": "南林12", "why": "冬も魚やけものはいるので、肉を取る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+"春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため、草取りを続ける"}, "family": {"ハソ112": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "アコ118": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ハソ122": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ、乳がとれる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+"keep": false, "seal": false, "seal_store": [],
+"accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+"judge": {}, "judge_rule": null, "feast": [], "leader": null,
+"trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋にまいた畑は、冬まで草を取ろう", "order": null, "take": null,
+"knowledge": [], "proposal": null, "votes": [],
+"year_name": "たくさん刈った年",
+"feeling": "蓄えは多い。夏の刈り入れをがんばろう。"}

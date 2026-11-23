@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑をみんなで刈ろう。わたしは子どもたちのぶんも、しっかり働くよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと落ちてしまうので、刈り入れを手伝う"}, "family": {"セヤ118": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "採集が得意なので、食べ物を集めて蓄えを助ける"}, "family": {"セヤ118": {"activity": "採集", "place": "camp", "why": "採集が得意で、家族の食べ物になる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして来年の実りを増やす"}, "family": {"セヤ118": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りを続けて実りを増やす"}, "family": {"セヤ118": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの豊かな年",
+ "feeling": "蓄えは多くて安心。子どもたちと元気に働きたい。"}

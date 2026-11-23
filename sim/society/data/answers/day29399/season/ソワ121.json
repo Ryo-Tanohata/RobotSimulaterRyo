@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実っているよ。落ちてしまう前に、手のあいた人はみんなで刈ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実が落ちるので、刈り入れを手伝う"}, "family": {"ユエ121": {"activity": "畑仕事", "place": "camp", "why": "実った畑を一緒に刈るため"}, "ワユ126": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手伝い"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして、来年の実りを増やす"}, "family": {"ユエ121": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手がほしい"}, "ワユ126": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬は実りがないので、水の道の手入れをして畑を守る"}, "family": {"ユエ121": {"activity": "水の道を掘る", "place": "camp", "why": "一緒に水の道を手入れする"}, "ワユ126": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りを増やす"}, "family": {"ユエ121": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ワユ126": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ケセ144": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M580": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1316": false, "T1317": false, "T1318": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの豊かな年",
+ "feeling": "蓄えがたっぷりあって安心。みんなで畑と水の道を大事にしたい。"}

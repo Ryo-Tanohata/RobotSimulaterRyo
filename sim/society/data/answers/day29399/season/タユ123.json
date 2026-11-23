@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "のこ場はいつも人であふれて、わたしは何日も手ぶらで帰った。今年は自分で刈って、自分で掘る。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちる。のこ場はいっぱいで働けないから、刈り入れに出る"}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+          "秋": {"job": {"activity": "燃える石を掘る", "place": "北丘12", "with": [], "why": "うちはまだまきのかまど。燃える石を掘れば家の倉にも入り、冬のまき集めがへる"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+          "冬": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具をつくる腕はだれにも負けない。冬は実りがないから、鎌や道具をこしらえておく"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "字を習う", "place": "camp", "with": [], "why": "うちには字の読める大人がいない。知らせ板も頼み書きも読めないままでは損をする"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ケセ144": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M580": "ゆるす"}, "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1316": false, "T1317": false, "T1318": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [{"人": "タユ123", "やめる": true}], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [
+   {"op": "add", "text": "作業場 M6 は今もいっぱいで、のこ番でも働けない日が続いた。持ち場をやめて別の仕事をしたほうがよい", "because": [6306944, 6307448, 6308959], "confidence": 0.9},
+   {"op": "add", "text": "村のヤギは126頭で、草で養える約140頭に近い。よその村のヤギはもう受けなくてよい", "because": [], "confidence": 0.7},
+   {"op": "add", "text": "南の村から来た ケセ144 と シエ144 が、ここで暮らしたいと言っている", "because": [6309295, 6309299], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+   {"id": "L1007", "against": "刈る前に決めるのは手間がかかる", "agree": true, "reason": "同じもめごとが何度も起きている。先に決めて書いておけば、言い合いがへる"},
+   {"id": "L1013", "against": "罰の払いがあると、かえって家どうしがにらみ合う", "agree": false, "reason": "59つかみほどの小さなことに罰はいらない。蓄えは山ほどある"},
+   {"id": "L1010", "against": "家ごとに一人と決められると、自分の仕事が選べない", "agree": false, "reason": "何をするかは自分で決めたい"},
+   {"id": "L1006", "against": "うちは字が読めないので町の頼みを受けられない", "agree": true, "reason": "畑を落とすのはもったいない。刈り取りには賛成"}
+ ],
+ "year_name": "幼子の病みつづく年",
+ "feeling": "人に頼らず、自分の手で道具と石をそろえてやる。"}
