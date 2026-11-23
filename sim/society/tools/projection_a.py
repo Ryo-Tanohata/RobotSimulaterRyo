@@ -4,6 +4,8 @@
   PYTHONUTF8=1 python3.13 sim/society/tools/projection_a.py --data sim/society/data --seeds 20 --years 30 --out /tmp/pa/proj.json
   PYTHONUTF8=1 python3.13 sim/society/tools/projection_a.py --html /tmp/pa/proj.json --to sim/society/reports/A_projection.html
   PYTHONUTF8=1 python3.13 sim/society/tools/projection_a.py --data sim/society/data --calib      (S2 の生まれる見込みを探すだけ)
+  PYTHONUTF8=1 python3.13 sim/society/tools/projection_a.py --data <29039 日目の写し> --short   (区切りから 1〜2 年の短いまとめの幅。A_check.md 8.)
+  PYTHONUTF8=1 python3.13 sim/society/tools/projection_a.py --data sim/society/data --cond 3    (いまの村から 3 年。本物の数えと足したまとめの幅。A_check.md 8.)
 
 - data/ は読むだけ (state.json を 1 回・records/season_village.jsonl・records/people.json)。何も書かない。LLM は呼ばない。
 - やり方: 本物の村の 29039 日目 (241年の終わり) の生きている人 (性・生まれた日・前に子を産んだ日) から始めて、
@@ -359,6 +361,72 @@ def calib(data, seeds=10, years=30):
         print(b, "TFR", round(statistics.median(tf), 2), "natural %/yr", round(statistics.median(gr), 2))
 
 
+def short(data, seeds=400, scen="S2"):
+    """2026-11-23 (A_check.md 8.): 区切りから 1〜2 年の短いまとめの幅 (d1・d4 は 5 年まとめの線。短いまとめは もっと広くゆれる)。
+    data は 29039 日目の state.json があるフォルダ (本物は先に進んでいるので、git show fe776b67:sim/society/data/state.json の写し + records)"""
+    people, cal = load(data)
+    sc = SCEN[scen]
+    res = collections.defaultdict(list)
+    for s in range(seeds):
+        rows, dm = run(people, cal, sc, 1000 + s, 2)
+        for tag, (y0, y1) in (("1", (242, 242)), ("2", (242, 243))):
+            w = window_stats(dm, y0, y1)
+            for k in ("tfr", "e0", "e15"):
+                res[k + tag].append(w[k])
+        res["births2"].append(sum(r["births"] for r in rows))
+        res["deaths2"].append(sum(r["kid_deaths"] + r["adult_deaths"] for r in rows))
+        res["adult_deaths2"].append(sum(r["adult_deaths"] for r in rows))
+    for k, v in res.items():
+        print(k, "5・10・50・90・95%:", [round(pct(v, q), 2) for q in (0.05, 0.1, 0.5, 0.9, 0.95)], flush=True)
+    return res
+
+
+def cond(data, seeds=400, scen="S2", years=3, birth=None):
+    """2026-11-23 (A_check.md 8.): いまの本物の村 (data/state.json。印 g7.d1 のあと) から years 年先を回し、
+    印のあとの本物の数え (g7.d1.demo) と足して、区切りからのまとめ (d1・d2・d4) の幅を出す (d1.py の life・tfr と同じ計算)"""
+    global START_DAY
+    import importlib
+    sys.path.insert(0, str(HERE.parent))
+    d1 = importlib.import_module("d1")
+    st = json.loads((Path(data) / "state.json").read_text(encoding="utf-8"))
+    g = st["era2"]["g7"]["d1"]
+    START_DAY = st["day"]
+    y_obs = sorted(int(y) for y in g["demo"])
+    base = {y: {k: g["demo"][str(y)][k] for k in ("E", "D", "Ef", "B")} for y in y_obs}
+    del st
+    people, cal = load(data)
+    sc = dict(SCEN[scen])
+    if birth is not None:
+        sc["birth"] = birth
+
+    def grp(dm, Y):
+        s = {"E": [0.0] * len(d1.AGE_GROUPS), "D": [0] * len(d1.AGE_GROUPS), "Ef": [0.0] * len(d1.MOTHER), "B": [0] * len(d1.MOTHER)}
+        for k in ("E", "D"):
+            for a, v in dm[k].get(Y, {}).items():
+                s[k][d1._gi(a)] += v
+        for k in ("Ef", "B"):
+            for a, v in dm[k].get(Y, {}).items():
+                if 15 <= a < 50:
+                    s[k][(a - 15) // 5] += v
+        return s
+    y_first = (START_DAY + 1) // YEAR
+    out = collections.defaultdict(list)
+    for s in range(seeds):
+        _, dm = run(people, cal, sc, 5000 + s, years)
+        per = dict(base)
+        for Y in range(y_first, y_first + years):
+            per[Y] = grp(dm, Y)
+            win = [per[y] for y in range(max(y_obs[0], Y - d1.WIN + 1), Y + 1)]  # d1.row_of と同じ 5 年まとめ (区切りの年から)
+            acc = {k: [sum(x) for x in zip(*(w[k] for w in win))] for k in ("E", "D", "Ef", "B")}
+            out[Y].append((d1.tfr(acc), d1.life(acc), d1.life(acc, 15)))
+    for Y, v in out.items():
+        q = lambda xs: [round(pct(xs, p), 2) for p in (0.1, 0.5, 0.9)]  # noqa: E731
+        tf, e0, e15_ = ([x[i] for x in v] for i in range(3))
+        print(f"{max(y_obs[0], Y - d1.WIN + 1)}〜{Y}年: d4 {q(tf)} (3.5 未満 {sum(x < 3.5 for x in tf) / len(tf):.2f})・d1 {q(e0)} (40 こえ {sum(x > 40 for x in e0) / len(e0):.2f})・"
+              f"d2 {q(e15_)} (52 こえ {sum(x > 52 for x in e15_) / len(e15_):.2f})", flush=True)
+    return out
+
+
 # ---------------- スマホ用の HTML (1 ファイル。SVG の線グラフ) ----------------
 
 CSS_COL = {"S0": "var(--s1)", "S1": "var(--s2)", "S2": "var(--s3)"}  # 分類の色は決まった順 (1 青・2 だいだい・3 水色)
@@ -501,6 +569,9 @@ def main():
     ap.add_argument("--out")
     ap.add_argument("--calib", action="store_true")
     ap.add_argument("--old", type=float, default=1.0, help="年寄りの死の倍率 (感度だけ)")
+    ap.add_argument("--short", action="store_true", help="区切りから 1〜2 年の短いまとめの幅 (--data は 29039 日目の写し)")
+    ap.add_argument("--cond", type=int, default=0, help="いまの本物の村から N 年先を回し、印のあとの本物の数えと足したまとめの幅")
+    ap.add_argument("--birth", type=float, default=None, help="--cond の生まれる見込み (感度だけ)")
     ap.add_argument("--html")
     ap.add_argument("--to")
     ap.add_argument("--lead", default="")
@@ -515,6 +586,12 @@ def main():
         return
     if a.calib:
         calib(a.data)
+        return
+    if a.short:
+        short(a.data, a.seeds if a.seeds != 20 else 400)
+        return
+    if a.cond:
+        cond(a.data, a.seeds if a.seeds != 20 else 400, years=a.cond, birth=a.birth)
         return
     res = project(a.data, a.seeds, a.years, a.scen.split(","))
     if a.out:
