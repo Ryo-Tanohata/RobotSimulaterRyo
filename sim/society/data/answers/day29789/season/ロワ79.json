@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "わたしは慣れた林で木の実や種を集める。冬の前に蓄えを厚くしておきたい。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集がいちばん得意で、冬に向けて食べ物を増やせるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ロワ148": true},
+ "family": {
+  "ムイ87": {"activity": "採集", "place": "東林12", "why": "得意な採集で食べ物を集める"},
+  "ワユ98": {"activity": "採集", "place": "西草原12", "why": "草原で種を集める"},
+  "キオ117": {"activity": "採集", "place": "北林12", "why": "得意な採集を続ける"},
+  "ヌオ121": {"activity": "採集", "place": "南林12", "why": "林で木の実を集める"},
+  "ムイ125": {"activity": "採集", "place": "西草原12", "why": "若いので近くの草原で種を集める"}},
+ "keep": false,
+ "judge": {"M588": "ゆるす", "M589": "ゆるす", "M590": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1346": false, "T1347": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L1054", "against": "", "agree": true, "reason": "ヤギが多すぎるなら減らすのがよい"},
+  {"id": "L1056", "against": "世話の交代がめんどう", "agree": false, "reason": "家ごとの交代は縛りが多い"},
+  {"id": "L1057", "against": "", "agree": true, "reason": "草が足りないので、よそのヤギは受けないほうがよい"}],
+ "feeling": "体は軽い。冬に備えて、また林を歩くのが楽しみだ。"}

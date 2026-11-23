@@ -1,0 +1,28 @@
+{"say": [{"to": "みんな", "text": "畑がからっぽだよ。この秋はみんなで蓄えの種をたっぷりまいて、冬まで草取りをしよう。蓄えは半年ぶんほどしかないからね。"}, {"to": "ロワ148", "text": "南から遠くまでよく来たね。ここで一緒に畑を育てよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がなにもないので、まいた畑の草取りをして次の夏の実りを増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ロワ148": true}, "keep": false,
+ "judge": {"M588": "つぐなう", "M589": "つぐなう", "M590": "つぐなう"},
+ "feast": false, "leader": null,
+ "trade": {"T1346": "村", "T1347": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋は大人みな種をまき、冬まで草取りを。ヤギは草より少ないので、よそのヤギを受けよう",
+ "order": null,
+ "take": {"頼み": 56, "人": ["キサ106"]},
+ "knowledge": [
+  {"op": "add", "text": "ヤギは 74 頭で、草で養える数より少ない。よその村のヤギを受けて数をもどしたい", "because": [6578288, 6578289], "confidence": 0.7},
+  {"op": "add", "text": "蓄えは半年ぶんほど。秋に畑へたっぷりまかないと、次の年が苦しくなる", "because": [6578281], "confidence": 0.7}
+ ],
+ "proposal": {"text": "この秋は大人みな蓄えの草の種を 1000 つかみずつまき、冬まで手のあく大人で草取りをしよう。ヤギが草より少ないあいだは、よその村のヤギを受けよう。", "because": [6578281, 6578288, 6578289], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1052", "against": "", "agree": true, "reason": "畑がからっぽなので、みなでまくのが大事"},
+  {"id": "L1049", "against": "", "agree": true, "reason": "ヤギは 74 頭で草より少ないから、受けて数をもどしたい"},
+  {"id": "L1051", "against": "", "agree": true, "reason": "量を書いておけば、刈った畑のもめごとが減る"},
+  {"id": "L1047", "against": "", "agree": true, "reason": "薬を 0 歳の子のいる家に先に回せば、命が守れる"},
+  {"id": "L1048", "against": "", "agree": true, "reason": "雨の夜に小さい子が外で濡れないようにしたい"},
+  {"id": "L1055", "against": "", "agree": true, "reason": "町の薬で小さい子の命を守りたい"},
+  {"id": "L1053", "against": "ヤギは今、草で養える数より少ない", "agree": false, "reason": "今はヤギが少ないので、つぶしたりことわったりしなくていい"},
+  {"id": "L1058", "against": "ヤギは今、草で養える数より少ない", "agree": false, "reason": "ヤギの申し出をことわる時ではない"}
+ ],
+ "feeling": "畑がからっぽで少し心配。でも、みんなでまけばまた実る"}

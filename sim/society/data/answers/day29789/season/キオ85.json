@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は種をまいて、水の道を毎日掘って、次の夏の畑を守ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っていて、畑を守るのに大事だから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ148": true},
+ "family": {"キオ95": {"activity": "水の道を掘る", "place": "camp", "why": "水の道を一緒に掘って畑を守る"}, "セオ108": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "セオ120": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "キオ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ルタ127": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}},
+ "keep": false,
+ "judge": {"M588": "ゆるす", "M589": "ゆるす", "M590": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。水の道を掘って、畑を守りたい。"}

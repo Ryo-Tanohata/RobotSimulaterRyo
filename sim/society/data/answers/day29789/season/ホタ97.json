@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いが、畑がない。今年は秋のうちに草の種をたくさんまこう。おれは北の丘で燃える石を掘る。"}],
+ "job": {"activity": "燃える石を掘る", "place": "北丘12", "with": [], "why": "冬のまき集めの手間をへらし、村の燃える石の蓄えをふやすため"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ148": true},
+ "family": {"ホタ108": {"activity": "狩り", "place": "北林12", "why": "冬にそなえて肉をとるため"}, "セヤ124": {"activity": "燃える石を掘る", "place": "北丘12", "why": "父といっしょに燃える石を掘って、家と村の火を楽にするため"}},
+ "keep": false,
+ "judge": {"M588": "ゆるす", "M589": "ゆるす", "M590": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめ、畑はなく、蓄えは草の種が約205日分ある。秋のうちに草の種をまき、燃える石を掘って冬にそなえる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽く、力がありあまっている。丘で石を掘るのが楽しみだ。"}

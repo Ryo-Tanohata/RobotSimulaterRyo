@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "ヤギはいま74頭で、草で養える数のはんぶんくらいだよ。よその村のヤギは受けて、数をもどそう。わたしは秋のあいだ、泥のつまった水の道を掘る。"}, {"to": "ロワ148", "text": "南の村18から来たんだね。ここは蓄えがたっぷりあるから、いっしょに暮らそう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがたくさん残っていて、だれも掘っていない。水が来る畑は悪い年でも実りが守られるから"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ148": true}, "keep": true,
+ "judge": {"M588": "つぐなう", "M589": "つぐなう", "M590": "つぐなう"}, "feast": false, "leader": null, "trade": {"T1346": "村", "T1347": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "ヤギは草より少ない。よその村のヤギは受けて、秋は皆で種をまこう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村のヤギは74頭で、草で養える約140頭よりずっと少ない。よその村のヤギを受けてよいころ", "because": [6578288, 6578289], "confidence": 0.7}, {"op": "add", "text": "ネム3の家の畑を刈った三つの家が不満を言った。刈った量を字で書いておけば、もめごとを収めやすい", "because": [6578284, 6578285, 6578286], "confidence": 0.8}],
+ "proposal": {"text": "ヤギが草で養える数（約140頭）より少ないあいだは、よその村のヤギを出す申し出を受けて数をもどし、家ごとに交代で大人一人がヤギの世話をしよう。", "because": [6578288, 6578289], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1049", "against": "", "agree": true, "reason": "いまヤギは74頭で草より少ないから、受けて数をもどすのがよい"},
+  {"id": "L1050", "against": "", "agree": true, "reason": "刈る前に分け方を決めれば、ネム3の家のようなもめごとがへる"},
+  {"id": "L1051", "against": "", "agree": true, "reason": "量を板に書いておけば、もめごとを決めやすい"},
+  {"id": "L1052", "against": "", "agree": true, "reason": "畑がないので、秋にまかないと次の夏に刈る種がない"},
+  {"id": "L1053", "against": "いまはヤギが草より少ないので、よそのヤギを受けたい", "agree": false, "reason": "今の数では当てはまらないが、受けない決まりが残ると困る"},
+  {"id": "L1054", "against": "", "agree": true, "reason": "こえたときだけ多い分をつぶすのは、やせて消えるよりよい"},
+  {"id": "L1055", "against": "", "agree": true, "reason": "小さい子が毎年多く亡くなっている。子の薬はそろえたほうがいい"},
+  {"id": "L1057", "against": "", "agree": true, "reason": "こえたときだけの決まりなので、いまは困らない"},
+  {"id": "L1059", "against": "", "agree": true, "reason": "畑を刈り切って秋にまくのは大事"}
+ ],
+ "feeling": "ヤギが少ないいまこそ、よその村と替えて数をもどしたい。わたしは泥を掘ってがんばる。"}

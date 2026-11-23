@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。秋は一人 1000 つかみずつ種をまいて、あとは水の道の泥を掘っていこう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れが 7351 人日も残っているから、秋はそれを掘って進める"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ148": true, "ヌオ148": true}, "family": {"キオ75": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の泥掘りを家族みなで進めるため"}, "ユエ81": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の泥掘りを家族みなで進めるため"}}, "keep": false,
+ "judge": {"M588": "ゆるす", "M589": "ゆるす", "M590": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは約 205 日分あり十分。秋は種をまき、水の道の手入れ (あと 7351 人日) を進めることが大事。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1054", "against": "", "agree": true, "reason": "ヤギが草より多いので、つぶして干し肉にするのがよい"},
+  {"id": "L1055", "against": "", "agree": true, "reason": "小さい子の病を減らすために、町の頼みを受けるのはよい"},
+  {"id": "L1056", "against": "", "agree": true, "reason": "ヤギが多いあいだは受けないほうがよい"},
+  {"id": "L1057", "against": "", "agree": true, "reason": "ヤギが草をこえているので、肉にして蓄えに入れるのがよい"},
+  {"id": "L1058", "against": "", "agree": true, "reason": "ヤギが多すぎるので、申し出をことわるのがよい"},
+  {"id": "L1059", "against": "", "agree": true, "reason": "みなで種をまくのは、来年の実りのために大事"}],
+ "feeling": "蓄えがたっぷりあって安心。ひさしぶりに泥掘りで体を動かすのが楽しみだ。"}
