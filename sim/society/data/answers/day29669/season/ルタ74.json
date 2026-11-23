@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。秋は畑に種をまいて、水の道の泥を掘って手入れを進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、水の来る畑は悪い年でも実りが減らないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ75": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで、来年の夏の実りを増やすため"},
+  "ユエ81": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないと実りが減るので手伝う"},
+  "ケナ101": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "ユエ112": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "ラニ116": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "ネイ118": {"activity": "水の道を掘る", "place": "camp", "why": "力仕事なので水の道を掘る"},
+  "ネイ120": {"activity": "畑仕事", "place": "camp", "why": "小さい子のそばで草取りをする"},
+  "トナ121": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "ロワ123": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "ユエ126": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ムイ129": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "ハソ132": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは十分あり、秋に畑をまき、冬と春は草取りをして、水の道の手入れも進めることが大事", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "落ち着いている。冬に向けて、やるべき仕事を続けるだけだ。"}

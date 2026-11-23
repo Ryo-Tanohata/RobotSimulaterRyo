@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "畑は今は空っぽだね。蓄えの種をたっぷりまいて、冬と春は草取りに出よう。わたしも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた種は、草取りをすると次の夏の実りが増えるから、畑を守る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"リセ118": {"activity": "畑仕事", "place": "camp", "why": "ふたりで草取りをすると、まいた畑の実りが増えるから"}}, "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑が空の秋は、蓄えの種を一人1000つかみまき、冬と春に草取りをすると次の夏の実りが増える。", "because": [6501021], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりで落ち着いている。畑がうまく実るのが楽しみ。"}

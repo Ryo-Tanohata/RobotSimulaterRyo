@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の実りは多い。蓄えも厚いから、苦しい村には草の種を分けてやろう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集の腕が一番だから、冬の前に食べ物をたくさん集める"}, "sow": 300, "pick": 20, "plant": 0, "harvest": 30, "eat_goat": 0, "family": {"ネイ132": {"activity": "採集", "place": "南林12", "why": "腕がよいので木の実や芋を集める"}, "ソワ132": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、子に字を教える"}}, "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"}, "feast": false, "leader": "", "trade": {"T1338": "断る", "T1339": "断る"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋は木の実がよく実り、蓄えも多いので冬の備えは足りそうだ", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも多く、安心して秋の仕事にかかれる"}

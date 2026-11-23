@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のはじめに種をしっかりまいて、来年の夏の実りに備えよう。わたしは畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、草取りをすると実りが増える。蓄えは多いので、畑を守って来年の夏に備える"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ95": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを手分けして、実りを守るため"},
+  "セオ108": {"activity": "水の道を掘る", "place": "camp", "why": "畑を守る水の道の泥を、毎日少しずつ掘るため"},
+  "セオ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ大きく残っているため"},
+  "キオ125": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って、実りを守るため"}},
+ "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えがたっぷりある秋は、種をしっかり畑にまき、秋から春は草取りで実りを守るとよい", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。来年の実りが楽しみで、畑に出るのが待ち遠しい"}

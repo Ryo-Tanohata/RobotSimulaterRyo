@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "おれは今季も狩りに出る。肉をためて、冬の足しにするつもりだ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りの腕はおれがいちばん。秋のうちに肉をためれば冬が楽になる。近い林なら危なくない。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ105": {"activity": "狩り", "place": "東林12", "why": "腕がある。近い林で肉を取って、冬にそなえる。"}, "ソワ113": {"activity": "狩り", "place": "南林12", "why": "腕がある。近い林で肉を取って、冬にそなえる。"}},
+ "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1338": false, "T1339": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "近い林での狩りは、腕のある者が続ければ、秋のうちに冬の足しになる肉がたまる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは危ないので、キャンプから離れないほうがよい。"}],
+ "feeling": "腹は満ちている。体も軽い。早く林に入って獲物を追いたい。"}

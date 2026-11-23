@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋じゃ。畑がまだ空っぽだから、蓄えの草の種をたっぷりまこう。わしはのこ番として、また川の板ひきに行く。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": ["シエ76", "セオ76", "セヤ79", "ユエ79"], "why": "のこ番として続けて働き、板をひいて水の道の手入れの人手をうかせるため"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番だから、続けて板をひく"}, "セオ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番だから、続けて板をひく"}, "セヤ79": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番だから、続けて板をひく"}, "ユエ79": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番だから、続けて板をひく"}, "オセ80": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで、来年の夏の実りを増やすため"}}, "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"}, "feast": false, "leader": "なし", "trade": {"T1338": "村", "T1339": "村"}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種が五百七十万つかみ以上あり十分。畑はいま空なので、秋にたっぷりまく。ヤギは73頭で草の約110頭より少ないので、ヤギを出す申し出は受けてよい。", "because": [6502658, 6502659], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "年はとったが、まだ体は動く。板をひく音を聞くと落ち着く。"}

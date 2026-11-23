@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋だ。蓄えの草の種をたっぷり畑にまこう。わたしは土器を焼きつづけて、蓄えを虫から守るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕がいちばん高く、土器に入れると蓄えが傷みにくいから続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"アコ121": {"activity": "採集", "place": "東林12", "why": "採集の腕が高く、木の実を集めて家の食べ物を助けられる"},
+            "ヌオ127": {"activity": "ヤギの世話", "place": "camp", "why": "世話が少ないとヤギがいなくなるので手伝う"}},
+ "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと次の夏に実る。土器を焼きつづければ蓄えが守られる。", "because": [6502650], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりで安心。土器を焼いて、また一季節がんばろう。"}

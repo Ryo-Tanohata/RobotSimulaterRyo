@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはまだたっぷりある。秋のはじめに種をしっかりまいて、そのあと水の道の泥を掘って、来年の夏の実りを守ろうね。わたしは毎日掘りに出るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っていて、畑に水が届けば来年の夏の実りを守れるから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"オネ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れは村みんなの実りのためなので、家族で力を合わせて掘る。"}, "ネイ114": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で泥の掘り出しを進め、畑に水を通しやすくするため。"}},
+ "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1338": false, "T1339": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をたっぷりまき、そのあと水の道の泥を掘ると、次の夏の実りが守られる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "みんなで力を合わせれば来年も安心。まずは種まきと水の道に精を出そう。"}

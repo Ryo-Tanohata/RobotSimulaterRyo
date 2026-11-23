@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。わたしは秋のあいだ、泥でうまった水の道を掘りに行くよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "掟のとおり、秋は家の大人一人が水の道の泥を掘る。手入れがまだたくさん残っている"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ146": {"activity": "畑仕事", "place": "camp", "why": "来年の実りを守るため、草取りをする"}},
+ "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L1044", "against": "", "agree": true, "reason": "畑の持ち主と刈った人が板に書いて半分ずつ分ければ、もめごとが減る"}],
+ "feeling": "蓄えが多くて安心。静かに水の道を掘ろう。"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は種をまいて、おれは水の道の泥を掘りに行くよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは足りているので、手入れが山ほど残る水の道を掘って村の役に立つ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが多く残っているので、いっしょに掘る"}},
+ "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1338": false, "T1339": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。体を動かして水の道を掘るのが楽しみだ。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。蓄えはたっぷりある。わしは種を1000つかみまいて、冬まで毎日畑の草取りに出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えは多いが、来年の実りを守りたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1338": false, "T1339": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬まで草取りをすると実りが増える。", "because": [6502650], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1037", "against": "", "agree": true, "reason": "蓄えが多く、種をまいて草取りをすれば来年の実りが守れるから"}],
+ "feeling": "体は軽い。秋の畑仕事が楽しみだ。"}

@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。おれは今季も林で狩りをして、ルクの肉を持ち帰るぞ。"}],
+ "job": {"activity": "狩り", "place": "北林28", "with": [], "why": "狩りの腕が一番だから。大物をしとめて肉を蓄えに足したい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ムイ97": {"activity": "畑仕事", "place": "camp", "why": "草取りの人が少ない。来年の実りを守るため"},
+  "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、畑の草取りが足りないので手伝う"},
+  "リセ109": {"activity": "狩り", "place": "北林28", "why": "狩りの腕があるので、おれと一緒に獲物を追う"},
+  "オセ118": {"activity": "狩り", "place": "北林28", "why": "狩りが得意だから肉を取ってくる"},
+  "オネ125": {"activity": "採集", "place": "camp", "why": "若いので近くで木の実を集めて家を助ける"}},
+ "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"}, "feast": false, "leader": null,
+ "trade": {"T1338": false, "T1339": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種はとても多い。秋に畑へまき、冬と春に草取りをすれば来年も食べ物に困らない。", "because": [6502650], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は少し疲れているが、林で大物を追うのが楽しみだ。"}

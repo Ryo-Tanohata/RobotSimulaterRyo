@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "冬の前に、おれは林で獲物を追う。肉を蓄えに足しておく。"}],
+ "job": {"activity": "狩り", "place": "南林12", "with": [], "why": "狩りが得意で、冬の前に肉を蓄えたいから"}, "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホタ108": {"activity": "狩り", "place": "東林12", "why": "腕が立つので肉をとってもらう"}, "セヤ124": {"activity": "採集", "place": "西草原12", "why": "若いので近い草原で採集して慣れる"}}, "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1338": "村", "T1339": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめ、村の蓄えは草の種がたっぷりある。林で肉をとれば冬も安心できる。", "because": [6502650], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体が軽い。林に出るのが楽しみだ。"}

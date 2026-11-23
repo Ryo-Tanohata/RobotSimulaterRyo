@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりあるから、秋は畑にまいて、冬の前に水の道を掘れるだけ掘ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ 8601 人日も残っているし、蓄えは十分なので、手入れを進めるのがよい"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"セヤ118": {"activity": "畑仕事", "place": "camp", "why": "草取りをすると来年の畑の実りが増えるから"}},
+ "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1338": false, "T1339": false}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えの草の種はとても多い。秋は畑に種をまき、水の道を掘り、冬と春は草取りをするのがよい。", "because": [6502653], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。子どもたちとおだやかな秋を過ごしたい。"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬がくる前に、土器をたくさん作っておくよ。蓄えの入れ物はいくつあってもいい。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕がいちばん高いので、冬の前に蓄えの入れ物とよその村との交換の品を作る"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ101": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬の前に食べ物を集める"}, "キサ105": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので、冬もいる魚をとる"}, "キオ107": {"activity": "採集", "place": "camp", "why": "採集が得意なので、食べ物を集める"}, "リセ111": {"activity": "採集", "place": "camp", "why": "採集が得意なので、食べ物を集める"}},
+ "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1338": false, "T1339": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心。冬の前に、手になじんだ土器づくりをして過ごしたい。"}

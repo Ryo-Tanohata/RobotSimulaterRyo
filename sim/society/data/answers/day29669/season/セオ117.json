@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "この秋は蓄えの種を1000つかみまくよ。わたしは水の道の泥を掘りに行くね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道が泥でうまると畑に水が来ないので、手入れの残りが多い今、家の大人として掘りたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1338": false, "T1339": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの種を畑にまくと、冬と春の草取りで来年の実りが守られる", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1035", "agree": true, "reason": "刈った量を書いておけばもめごとが減る"},
+  {"id": "L1036", "agree": true, "reason": "分け方を先に決めれば争いが減る"},
+  {"id": "L1037", "agree": true, "reason": "みんなでまけば来年の実りが増える"},
+  {"id": "L1038", "agree": true, "reason": "水の道を掘る人が決まると助かる"},
+  {"id": "L1039", "agree": true, "reason": "小さい子の薬は大切"},
+  {"id": "L1040", "agree": true, "reason": "住まいのない家族を助けたい"},
+  {"id": "L1041", "agree": true, "reason": "畑を刈るのはみんなの仕事"},
+  {"id": "L1042", "agree": true, "reason": "子の水は大切"},
+  {"id": "L1043", "agree": true, "reason": "子の薬のために石を掘るのはよい"},
+  {"id": "L1044", "agree": true, "reason": "板に書いて半分渡せば公平"}
+ ],
+ "feeling": "蓄えがたっぷりで安心。みんなと働けるのがうれしい"}

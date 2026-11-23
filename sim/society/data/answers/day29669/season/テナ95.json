@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。種をたっぷりまいて、冬と春は草取りで畑を守ろう。わたしも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がまだなく、秋にまいた種を冬と春の草取りで守ると、次の夏にたくさん刈れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ99": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要るから"}, "ロワ124": {"activity": "畑仕事", "place": "camp", "why": "若いので草取りで畑を手伝ってもらう"}},
+ "keep": false,
+ "judge": {"M585": "ゆるす", "M586": "ゆるす", "M587": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、秋・冬・春に草取りをすると、次の夏にたくさん刈れる。", "because": [6502650], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりで安心。畑仕事をがんばろう。"}
