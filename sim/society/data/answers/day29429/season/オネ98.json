@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。おれは冬に向けて、林で肉を取ってくる。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りがいちばんの得意で、秋のうちに肉をためれば冬の足しになるから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {},
+ "family": {"ナセ105": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が確かで、肉をためて冬にそなえるため"}, "ソワ113": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が確かで、近い林なら安全に肉を取れるため"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "近い林で狩りを続ければ、秋のうちに冬の足しになる肉がたまる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体が軽い。早く林に入って獲物を追いたい。"}

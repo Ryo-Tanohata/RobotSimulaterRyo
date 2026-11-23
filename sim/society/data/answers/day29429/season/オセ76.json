@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。わたしは土器を焼いて、虫やネズミから種を守る器をふやすよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番だから。器に入れた種は虫にほとんど食べられず、冬に備えられる"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ144": true},
+ "family": {
+  "ソナ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場だから、板をひいて家と村の手入れを助ける"},
+  "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場だから、板をひいて家と村の手入れを助ける"},
+  "ケセ102": {"activity": "採集", "place": "camp", "why": "食べ物を集めて蓄えを守る"},
+  "ムイ112": {"activity": "採集", "place": "camp", "why": "食べ物を集めて蓄えを守る"},
+  "オネ112": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、村の帳を続ける"},
+  "ソナ114": {"activity": "字を教える", "place": "camp", "why": "字が読める人をふやすため"},
+  "ケセ117": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りをふやす"},
+  "ソナ118": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りをふやす"}
+ },
+ "keep": false,
+ "judge": {"M581": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1319": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがあって安心。手を動かして土器を作るのが楽しみ。"}

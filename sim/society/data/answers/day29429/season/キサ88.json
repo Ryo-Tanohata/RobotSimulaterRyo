@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、水の道の手入れがまだ山ほど残っている。わたしの家は大人みんなで少しずつ掘っていくよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れが 8625 人日も残っているから、手の空いた力を回す"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ144": true},
+ "family": {"ルタ88": {"activity": "水の道を掘る", "place": "camp", "why": "体が強いので、残っている水の道の手入れを一緒に進める"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、来年の実りを増やす"}, "ロワ121": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひいて、水の道や輪の直しを早く進める"}},
+ "keep": false,
+ "judge": {"M581": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1319": "断る。ヤギは草がもう足りなくなりそうなので、これ以上は増やさない方がよい"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L1019", "against": "特になし", "agree": true, "reason": "畑の分け方を先に決めるのは争いを防ぎ、水の道の手入れも進むから"}],
+ "feeling": "蓄えは多くて安心だ。みんなと水の道を少しずつ掘っていこうと思う。"}

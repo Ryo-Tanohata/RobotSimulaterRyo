@@ -1,0 +1,27 @@
+{"say": [{"to": "みんな", "text": "ヤギはもう127頭で、草で養える数に近い。北の大きな村のヤギは、今度は受けなくていいと思う。わたしはこの秋、鎌を作って刈り入れの手を増やすよ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕はだれにも負けない。作業場はいっぱいで休む日が多いから、鎌を作るほうが村の役に立つ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ワユ144": true}, "keep": false,
+ "judge": {"M581": "ゆるす"}, "feast": false, "leader": "テナ61",
+ "trade": {"T1319": false}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [],
+ "post": [{"人": "タユ123", "やめる": true}], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "村のヤギは127頭で、草で養える約140頭に近い。よその村のヤギはもう受けなくてよい", "because": [6339558], "confidence": 0.8},
+  {"op": "add", "text": "ソナ129の家のもめごとは草の種4つかみほどの小さなこと。蓄えは山のようにある", "because": [6339556], "confidence": 0.7},
+  {"op": "add", "text": "作業場 M6 はまたいっぱいで、わたしは休むことになった。持ち場をやめて道具を作るほうがよい", "because": [], "confidence": 0.9}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出る。けがをする人がまだいる"},
+  {"id": "L1003", "against": "ヤギはもう127頭いて、数が古い", "agree": false, "reason": "草で養える数に近いから、よその村のヤギを受ける話には乗れない"},
+  {"id": "L1004", "against": "ヤギの数がもう違う", "agree": false, "reason": "ヤギはもう十分いる"},
+  {"id": "L995", "against": "ヤギを受けるともう草が足りなくなる", "agree": false, "reason": "ヤギはもう多い"},
+  {"id": "L1010", "against": "", "agree": true, "reason": "土器のふたを見なおすのは、種を守るのにいい"},
+  {"id": "L1012", "against": "", "agree": true, "reason": "秋に種をまいて草取りすれば、夏にたくさん刈れる"},
+  {"id": "L1018", "against": "", "agree": true, "reason": "刈る前に分け方を決めれば、もめごとが減る"},
+  {"id": "L1013", "against": "罰があると、小さなことで言い合いがふえる", "agree": false, "reason": "書いて分ければ足りる。罰まではいらない"},
+  {"id": "L1006", "against": "", "agree": true, "reason": "実った畑を落とすのはもったいない"},
+  {"id": "L1016", "against": "", "agree": true, "reason": "子が多く亡くなっている。薬があるならもらいたい"}
+ ],
+ "feeling": "ヤギはもう多いし、蓄えもある。わたしは黙って、いい鎌を作るだけだ"}

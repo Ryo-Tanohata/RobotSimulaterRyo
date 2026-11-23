@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。おれは狩りで肉を村に入れるよ。ヤギも増えすぎだから、何頭かつぶして干し肉にしよう。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りが得意で、肉を蓄えに入れたい。ヤギを減らすぶん肉も足せる"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 10, "accept": {"ワユ144": true}, "family": {"ネイ132": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで、夏の実りを増やすため"}, "ソワ132": {"activity": "字を教える", "place": "camp", "why": "字を読める人を増やして、子どもたちの役に立つため"}}, "keep": false,
+ "judge": {"M581": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1319": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の量(約140頭)に近いので、肉にして減らしておくのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "身体は軽い。蓄えも十分で、のんびり狩りに出られるのがうれしい。"}
