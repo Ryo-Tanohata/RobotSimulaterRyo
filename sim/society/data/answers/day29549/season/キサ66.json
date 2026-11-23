@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "村の水の道の泥がまだ たくさん残っている。この秋は、手の空いた者で掘っていこう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、蓄えも十分あるので、村のために泥を掘る"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ146": true},
+ "family": {"ケセ76": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}, "ケセ94": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}},
+ "keep": false,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1331": false}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも木もたっぷりあって安心だ。みんなで仲よく秋を過ごしたい。"}

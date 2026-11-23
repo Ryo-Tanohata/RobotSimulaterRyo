@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "畑が空だから、蓄えの種をまいてから、水の道の泥を掘るよ。冬と春の草取りも忘れずにね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "畑は空で、水の道の手入れが9846人日も残っている。水が来る畑は悪い年でも実りが半分にならないから、掘る。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {},
+ "family": {"リセ118": {"activity": "水の道を掘る", "place": "camp", "why": "家の小さい子のために、実る畑を守る水の道を一緒に掘る。"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑が空の秋は、蓄えの種を一人1000つかみまき、水の道を掘って冬と春に草取りをすると、次の夏に実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑が空なのは気がかり。種をまいて、水の道を掘って、夏の実りを待ちたい。"}

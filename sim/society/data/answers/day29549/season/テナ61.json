@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "わしはこの秋も、M6 の水ののこで板をひくよ。蓄えは十分あるから、秋の畑にはたっぷり種をまいて、夏に刈りそこねないようにしよう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として、板をひくのが得意で、板は水の道の手入れや住まいを助けるから続ける"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヒセ146": true},
+ "keep": false,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1331": false}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種が五百九十万つかみ以上あり十分。秋に種をたっぷりまき、夏のうちに刈りきる。ヤギは草より多くなるので、ヤギを出す申し出は受けない。", "because": [6419558, 6419564], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1024", "against": "", "agree": true, "reason": "どの家の畑かでもめないよう、まいた量を残すのはよいこと"},
+  {"id": "L1025", "against": "", "agree": true, "reason": "蓄えは十分で、秋にたっぷりまいて草取りをすれば夏の実りが増える"},
+  {"id": "L1026", "against": "", "agree": true, "reason": "ヤギは草より多いので、もらわず肉にして減らすのがよい"},
+  {"id": "L1027", "against": "", "agree": true, "reason": "夏は畑が落ちる前に皆で刈るのがよい"},
+  {"id": "L1028", "against": "", "agree": true, "reason": "小さい子を守るのによい"},
+  {"id": "L1029", "against": "", "agree": true, "reason": "ヤギを増やさず肉にして蓄えに入れるのはよい"},
+  {"id": "L1030", "against": "", "agree": true, "reason": "ヤギを減らし、輪も直すのはよい"},
+  {"id": "L1031", "against": "", "agree": true, "reason": "小さい子の薬は大事"},
+  {"id": "L1032", "against": "", "agree": true, "reason": "畑を落とさず、子に冷ました水を飲ませるのはよい"}
+ ],
+ "feeling": "体はまだ動く。のこをひきながら、今年もよい秋になるよう願っている。"}

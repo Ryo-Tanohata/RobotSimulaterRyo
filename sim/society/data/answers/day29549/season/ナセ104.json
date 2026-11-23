@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋は実りの季節だ。わしは林で木の実をたっぷり集めて、冬にそなえるぞ。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "秋は木の実が多く、採集の腕に自信がある。冬の前に食べ物をためたい"},
+ "sow": 1000, "pick": 20, "plant": 1, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を多めにまくと、次の夏に刈れる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は元気で、秋の林が楽しみだ。"}

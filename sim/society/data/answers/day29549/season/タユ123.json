@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "この秋は石の鎌をうんと作るよ。刃が欠けた鎌は、わたしのところへ持っておいで。すぐ直してやる。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりならだれにも負けない。鎌が多ければ夏の刈り入れが倍はかどる"},
+ "family": [{"name": "タユ128", "activity": "畑仕事", "place": "camp", "why": "12 歳になったから、まいた畑の草取りを覚えさせたい"}],
+ "sow": 200, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヒセ146": true}, "keep": true,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1331": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村のヤギは 45 頭まで減った。草で養える数よりずっと少ないので、よその村のヤギを受けてふやしてよい", "because": [6419564], "confidence": 0.8},
+  {"op": "add", "text": "アコ83の家が、うちの畑で刈った種のことで不満を言った。草の種 15 つかみほどの小さなこと。蓄えは山のようにある", "because": [6419562], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1031", "against": "燃える石を町へ運ぶ手間がかかる", "agree": true, "reason": "わたしが言い出したこと。子の薬は小さい子の命を守る"},
+  {"id": "L1032", "against": "刈り入れは言われなくてもみんなやる", "agree": true, "reason": "わかした水で子が助かるならやる価値がある"},
+  {"id": "L1029", "against": "いまヤギは 45 頭しかおらず、つぶす分はない", "agree": false, "reason": "ヤギは減りすぎている。今はふやすときだ"}],
+ "feeling": "鎌の刃を研ぐ音を聞くと、気持ちが落ちつく。ハソ145 が冬をこせるといい"}

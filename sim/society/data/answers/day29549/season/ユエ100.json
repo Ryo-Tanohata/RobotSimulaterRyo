@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "この秋は畑がからっぽだから、みんなで草の種をまいて、冬は草取りに出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた種を冬の間も草取りして、夏の実りを守るため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヒセ146": true}, "keep": false,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1331": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に畑をまいたら、冬の間も草取りをすると夏の実りが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1023", "against": "", "agree": true, "reason": "冬の草取りは畑の実りを守るから"},
+  {"id": "L1025", "against": "", "agree": true, "reason": "みんなでまくと夏の蓄えが増えるから"},
+  {"id": "L1029", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないから"},
+  {"id": "L1030", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないから"},
+  {"id": "L1031", "against": "", "agree": true, "reason": "小さい子の薬は大切だから"},
+  {"id": "L1032", "against": "", "agree": true, "reason": "畑を落とさず刈るのは大切だから"}],
+ "feeling": "蓄えは十分で、落ち着いた気持ち。冬の畑仕事をがんばろう。"}

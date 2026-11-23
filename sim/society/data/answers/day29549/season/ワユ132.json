@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋だね。蓄えはたっぷりあるから、おれは畑の草取りをして来年の実りを増やすよ。みんなも手があいたら畑に出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えは十分にあるので、草取りで畑の実りを増やすのがいちばん役に立つから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヒセ146": true},
+ "family": {"ネイ132": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りをして実りを増やすため"}, "ソワ132": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプの近くの畑で働くのがよいから"}},
+ "keep": false,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。畑で体を動かすのが楽しみだ。"}

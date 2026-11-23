@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "秋だね。蓄えの草の種をまいて、あとは水の道の泥掘りをしよう。わたしは掘りに行くよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ たくさん残っていて、水が来る畑は悪い年でも実りが減らないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {},
+ "family": {
+  "トナ111": {"activity": "水の道を掘る", "place": "camp", "why": "みんなで掘れば手入れが早く進むから"},
+  "ケナ114": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを手伝うため"},
+  "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りが増えるから"},
+  "ルタ120": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプの近くで畑を見るため"},
+  "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑を育てたいから"}
+ },
+ "keep": false,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1331": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあって安心。静かに働きたい。"}

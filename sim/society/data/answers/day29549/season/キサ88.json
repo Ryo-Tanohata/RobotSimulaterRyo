@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いから、この秋は畑に種をまいて、冬のあいだ草取りをして、次の夏の刈り入れにそなえよう。ヤギは草より多いから、少しつぶして干し肉にしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが減る。蓄えは多いが、次の夏のために畑を育てたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "accept": {"ヒセ146": true, "ロワ146": true}, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手分けして進める"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手分けして進める"}, "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝う"}}, "keep": false,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りをしないと実りが減る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。畑を育てて、みんなと冬をこえたい"}

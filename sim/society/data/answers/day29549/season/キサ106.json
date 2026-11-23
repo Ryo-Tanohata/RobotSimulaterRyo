@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに蓄えの種をたっぷりまいて、冬まで手分けして草取りしようね。うちも畑に出るよ。"}, {"to": "ヒセ146", "text": "遠くからよく来たね。いっしょに畑をやろう。住まいのことは、わたしも手伝うよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしただけ実るから、冬まで毎日手を入れたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヒセ146": true}, "keep": false,
+ "judge": {"M582": "つぐなう", "M583": "つぐなう", "M584": "つぐなう"}, "feast": false, "leader": "テナ61", "trade": {"T1331": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋にまいた畑は冬まで草取りを。小さい子のいる家は町の頼みで薬を", "order": null, "take": {"頼み": 46, "人": ["キサ106"]},
+ "knowledge": [{"op": "add", "text": "よその家の畑で刈った種は、その家の倉に入ってしまい、もめごとになる", "because": [6419561, 6419562, 6419563], "confidence": 0.8}, {"op": "add", "text": "0 歳の子はよく亡くなる。わかした水と町の薬で守りたい", "because": [6419553, 6419554, 6419555], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1024", "against": "書く手間がかかる", "agree": true, "reason": "まいた量が書いてあれば、夏の刈り入れでもめない"},
+  {"id": "L1025", "against": "1000 つかみずつは蓄えが減りすぎるかもしれない", "agree": true, "reason": "蓄えは多いので、まいて草取りすれば次の夏にもっと増える"},
+  {"id": "L1026", "against": "ヤギは 45 頭しかいない", "agree": false, "reason": "いまはヤギが少なく、草をこえていないから"},
+  {"id": "L1027", "against": "夕方も刈ると疲れる", "agree": true, "reason": "畑を落とさず、子の薬ももらえる"},
+  {"id": "L1028", "against": "燃える石がない家もある", "agree": true, "reason": "土器のふたで種の傷みがへり、子の薬で子が助かる"},
+  {"id": "L1029", "against": "ヤギは 45 頭しかいない", "agree": false, "reason": "いまはヤギが少ないので、つぶす必要はない"},
+  {"id": "L1030", "against": "ヤギはもう多くない", "agree": false, "reason": "ヤギは少なく、直す輪も残っていない"},
+  {"id": "L1031", "against": "燃える石のない家は受けにくい", "agree": true, "reason": "0 歳の子から先に薬を使うのはよい"},
+  {"id": "L1032", "against": "とくにない", "agree": true, "reason": "畑を落とさず、子にわかした水を飲ませるのは大事"}
+ ],
+ "feeling": "テナ91がいなくなってさみしいけど、この子たちのためにしっかり畑を育てたい"}

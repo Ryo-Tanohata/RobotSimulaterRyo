@@ -1031,5 +1031,10 @@
 {"id":"L1029","text":"ヤギが草で養える数より多いあいだは、ほかの村からヤギを受けとらず、多い分を夏と秋のはじめにつぶして干し肉にし、村の蓄えに入れよう。","proposer_id":"P3040","proposed_day":29519,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L1030","text":"ヤギが草で養える数をこえている間は、よその村のヤギを受けず、家ごとに少しつぶして肉にしよう。春は手のあく大人が止まった水の輪を直そう。","proposer_id":"P3050","proposed_day":29519,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L1031","text":"家の倉に燃える石がある家は、1 年に 1 つ町の頼みを受けて子の薬をもらい、0 歳の子のいる家から先に使おう。","proposer_id":"P3382","proposed_day":29519,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
-{"id":"L1032","text":"夏は手のあく大人みんなで実った畑を刈り、落とさないようにしよう。小さい子のいる家は、子にわかして冷ました水を飲ませよう。","proposer_id":"P3807","proposed_day":29519,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"}
+{"id":"L1032","text":"夏は手のあく大人みんなで実った畑を刈り、落とさないようにしよう。小さい子のいる家は、子にわかして冷ました水を飲ませよう。","proposer_id":"P3807","proposed_day":29519,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1033","text":"秋のはじめに家ごとにまいた量を読める人が板に書き、冬まで手のあく大人で草取りをしよう。ヤギが草より少ないあいだは、よその村のヤギを受けよう。","proposer_id":"P1780","proposed_day":29549,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1034","text":"よその家の畑を刈った人には、刈った量の半分をその人の家に渡そう。量は読める人が板に書いておこう。","proposer_id":"P2416","proposed_day":29549,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1035","text":"よその家の畑を刈るときは、刈る前に分け方を決め、刈った量を読める人が書いておこう。秋にまいた畑は冬まで手のあく大人で草取りをしよう。","proposer_id":"P3040","proposed_day":29549,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1036","text":"よその家の畑を刈る前に、両方の家で分け方を決め、刈った量を読める人に板へ書いてもらおう。半分は刈った人の家に渡そう。 (罰: よその家の畑で刈った草の種が、みな畑の持ち主の家の倉に入ると、相手の家は、言い出した家に 草の種 20 つかみ を払う)","proposer_id":"P3050","proposed_day":29549,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":{"for":"刈る","pay":20},"label":"創発"},
+{"id":"L1037","text":"この秋は大人みな蓄えの草の種を 1000 つかみずつまき、冬まで手のあく大人で草取りをしよう。家ごとに大人一人は秋と冬に水の道の泥を掘ろう。","proposer_id":"P3807","proposed_day":29549,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"知識の再現の疑い"}
 ]

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "今年の秋は、蓄えの草の種をたくさんまいて、冬のあいだ畑の草取りをするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "キャンプでの採集は食べ物が見つからなかった。畑の草の種のほうが確かだから、まいて草取りをする。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヒセ146": true}, "keep": false,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまき、冬と春に草取りをすると、次の夏に実りが増える。", "because": [6417915], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "ことしも畑でこつこつ働けば、冬は安心できそう。"}

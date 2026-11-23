@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、水の道の泥がまだ山ほど残っている。手のあく人は、この秋いっしょに掘ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れが 9846 人日も残っているから。畑の水を守りたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヒセ146": true, "ロワ146": true}, "keep": false,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめでも水の道の手入れは約 9800 人日残っている。蓄えは多いので、掘る人手がいちばん足りない。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1032", "against": "", "agree": true, "reason": "夏の刈り入れと、小さい子に冷ました水を飲ませるのは大事だから"}, {"id": "L1030", "against": "", "agree": true, "reason": "ヤギが増えすぎて草が足りないので、少しつぶすのはよいと思う"}],
+ "feeling": "蓄えがあって安心。畑の水のために、こつこつ掘ろう。"}

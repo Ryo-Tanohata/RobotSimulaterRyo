@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えの草の種はたっぷりある。この秋も、みんなで種をまいて、手のあく人は冬まで畑の草取りをしよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集がいちばん得意で、60歳でも体が動く。キャンプのそばで食べ物を集めて村に役立てたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"ロワ85": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで、次の夏の実りを増やすため"}, "シエ96": {"activity": "畑仕事", "place": "camp", "why": "草取りをしないと実りが減るので、手を貸す"}, "ホタ100": {"activity": "採集", "place": "camp", "why": "採集が得意で、食べ物を集められるから"}, "オセ115": {"activity": "採集", "place": "camp", "why": "採集が得意で、家の食べ物を支えられるから"}, "セヤ120": {"activity": "採集", "place": "camp", "why": "若くて元気で、採集がよくできるから"}, "シエ120": {"activity": "採集", "place": "camp", "why": "採集が得意で、家の食べ物を集めるため"}}, "keep": true,
+ "judge": {"M582": "ゆるす", "M583": "ゆるす", "M584": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1331": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L1025", "against": "", "agree": true, "reason": "蓄えの種をまいて草取りをすれば、次の夏の実りが増えるから"}, {"id": "L1029", "against": "", "agree": true, "reason": "ヤギが多すぎると草が足りなくなるから"}, {"id": "L1032", "against": "", "agree": true, "reason": "小さい子を守るのはみんなのためになるから"}],
+ "feeling": "蓄えがたっぷりあって安心。今日も体を動かして、みんなの役に立ちたい。"}
