@@ -1,13 +1,16 @@
-"""セナを VRoid の CC0 サンプルから作る (中間の作風: 線はアニメ、面は写実の光)。
+"""川辺の五人を VRoid の CC0 サンプルから作る (中間の作風: 線はアニメ、面は写実の光)。
 
 使いかた (README.md の「VRoid の素体から作る道」):
     BLENDER_USER_RESOURCES=/dev/shm/sena/userres PYTHONPATH=/dev/shm/bpy \
-        python3.11 -u run.py build_sena_vroid.py -- [--quick] [--only sheet,face,expr] > log 2>&1
+        python3.11 -u run.py build_person_vroid.py -- --person ruo [--quick] [--only sheet,face,expr,lineup] > log 2>&1
 
-- 顔と髪: VRoid サンプル「千駄ヶ谷 篠」(CC0)。
-- 体と骨組み: VRoid サンプル「HairSample_Female」(CC0)。篠の体は制服の下の肌が
-  切りとられているため、服の下まで肌がある素体の体を使う。骨の名前は同じ (J_Bip_*)。
-- 出力: PNG を sim/society/out/human/、.glb を /dev/shm/sena/sena_vroid.glb に書く。
+- 人ごとの数値は people.py の VROID[<名前>]。どのサンプルの顔・髪・体を使うかもそこに書く。
+- 体と骨組み: VRoid サンプル「HairSample_Female」(女) / 「HairSample_Male」(男) (CC0)。
+  服の下まで肌がある素体の体を使う。骨の名前はどれも同じ (J_Bip_*)。
+- 顔・髪: 人ごとに別の CC0 サンプルから (千駄ヶ谷 篠、桜田 フミリヤ、Victoria Rubin など)。
+- 高さの数値は「女の素体 (HairSample_Female) の高さ」で書き、Frame.z() で
+  その人の体 (腰・首・頭の骨の高さ) に写す。セナはそのまま (写しても同じ)。
+- 出力: PNG を sim/society/out/human/、.glb を /dev/shm/sena/<名前>_vroid.glb に書く。
 """
 import argparse
 import json
@@ -40,6 +43,68 @@ def lin(h):
 def smooth(x, a, b):
     t = np.clip((x - a) / (b - a), 0.0, 1.0)
     return t * t * (3 - 2 * t)
+
+
+# 女の素体 (HairSample_Female) の骨の高さ。people.py の高さの数値はこの体の上で書いてある
+REF = {"hips": 0.944, "neck": 1.35, "head": 1.422, "arm": 0.108}
+
+
+class Frame:
+    """いまの骨組みの目じるし (腰・首・頭の高さ、肩の横の位置)。"""
+
+    def __init__(self, rig):
+        b = rig.data.bones
+        self.hips = b["J_Bip_C_Hips"].head_local.z
+        self.neck = b["J_Bip_C_Neck"].head_local.z
+        self.head = b["J_Bip_C_Head"].head_local.z
+        self.arm = abs(b["J_Bip_L_UpperArm"].head_local.x)
+        self.hb = np.array(b["J_Bip_C_Head"].head_local)
+        self.w = self.arm / REF["arm"]
+
+    def z(self, z):
+        """女の素体の高さ z を、この体の高さへ (腰・首・頭のあいだは直線、頭より上はずらすだけ)。"""
+        xs = [0.0, REF["hips"], REF["neck"], REF["head"], REF["head"] + 1.0]
+        ys = [0.0, self.hips, self.neck, self.head, self.head + 1.0]
+        return np.interp(z, xs, ys)
+
+
+def mesh_co(ob):
+    me = ob.data
+    co = np.empty(len(me.vertices) * 3, np.float32)
+    if me.shape_keys:
+        me.shape_keys.key_blocks[0].data.foreach_get("co", co)
+    else:
+        me.vertices.foreach_get("co", co)
+    return co.reshape(-1, 3).astype(np.float64)
+
+
+def map_mesh(ob, fn):
+    """メッシュの全頂点 (表情キーもすべて) を fn((N,3)) で動かす。"""
+    me = ob.data
+    n = len(me.vertices)
+    if n == 0:
+        return
+    blocks = me.shape_keys.key_blocks if me.shape_keys else [None]
+    for kb in blocks:
+        co = np.empty(n * 3, np.float32)
+        (kb.data if kb else me.vertices).foreach_get("co", co)
+        q = fn(co.reshape(-1, 3).astype(np.float64))
+        (kb.data if kb else me.vertices).foreach_set("co", q.astype(np.float32).ravel())
+    if blocks[0] is not None:
+        me.vertices.foreach_set("co", mesh_co(ob).astype(np.float32).ravel())
+    me.update()
+
+
+def map_bones(rig, fn, skip=()):
+    bpy.context.view_layer.objects.active = rig
+    bpy.ops.object.mode_set(mode='EDIT')
+    for eb in rig.data.edit_bones:
+        if any(k in eb.name for k in skip):
+            continue
+        for attr in ("head", "tail"):
+            v = np.array(getattr(eb, attr))[None]
+            setattr(eb, attr, Vector(fn(v)[0]))
+    bpy.ops.object.mode_set(mode='OBJECT')
 
 
 # ---------------------------------------------------------------- 読みこみ
@@ -117,56 +182,111 @@ def retarget(ob, rig, delta, rigid=False):
             ob.vertex_groups.remove(g)
 
 
+def drop_parts(ob, rule, hb):
+    """髪のばらばらの束 (つながった部分) のうち、rule に合うものを消す。
+    rule: {"x_lt": m, "x_gt": m, "z_gt": m} (頭の骨からの位置、束の重心で判定)。"""
+    bm = bmesh.new()
+    bm.from_mesh(ob.data)
+    bm.verts.ensure_lookup_table()
+    seen, dele = set(), []
+    for v in bm.verts:
+        if v.index in seen:
+            continue
+        st, comp = [v], []
+        seen.add(v.index)
+        while st:
+            u = st.pop()
+            comp.append(u)
+            for e in u.link_edges:
+                w = e.other_vert(u)
+                if w.index not in seen:
+                    seen.add(w.index)
+                    st.append(w)
+        c = np.mean([u.co[:] for u in comp], axis=0) - hb
+        hit = all([("x_lt" not in rule or c[0] < rule["x_lt"]), ("x_gt" not in rule or c[0] > rule["x_gt"]),
+                   ("z_gt" not in rule or c[2] > rule["z_gt"])])
+        if hit:
+            dele += comp
+    bmesh.ops.delete(bm, geom=dele, context='VERTS')
+    bm.to_mesh(ob.data)
+    bm.free()
+    print("drop_parts", ob.name, len(dele), "verts", "head", hb.round(3), flush=True)
+
+
 def assemble(P):
-    hs, _ = import_vrm(P["body_src"], "hs_")
-    sh, js = import_vrm(P["face_src"], "sh_")
-    rig = hs["Armature"]
-    rig.name = "sena_rig"
-    delta = np.array(rig.data.bones["J_Bip_C_Head"].head_local) - \
-        np.array(sh["Armature"].data.bones["J_Bip_C_Head"].head_local)
-    print("head delta", delta.round(4), flush=True)
+    """体と骨組み (body_src)、顔 (face_src)、髪の部品 (hair の parts) を、それぞれのサンプルから集める。"""
+    srcs = {}
 
-    body = hs["Body"]
-    body.name = "body"
-    delete_faces(body, lambda n: "SKIN" in n)          # 服と靴を消す
+    def get(fname):
+        if fname not in srcs:
+            srcs[fname] = import_vrm(fname, "s%d_" % len(srcs))
+        return srcs[fname]
 
-    face = sh["Face"]
-    face.name = "face"
+    bobjs, _ = get(P["body_src"])
+    rig = bobjs["Armature"]
+    rig.name = P["name"] + "_rig"
+    rhead = np.array(rig.data.bones["J_Bip_C_Head"].head_local)
+
+    def delta_of(objs):
+        return rhead - np.array(objs["Armature"].data.bones["J_Bip_C_Head"].head_local)
+
+    def dup(o, name):
+        c = o.copy()
+        c.data = o.data.copy()
+        bpy.context.scene.collection.objects.link(c)
+        c.name = name
+        return c
+
+    keep = {rig}
+    # 髪の部品: Hair001 (前・横・後ろの髪) と、体のメッシュにのっている HairBack (地肌に近い後ろ髪)
+    hairs = []
+    for k, part in enumerate(P["hair"]["parts"]):
+        objs, _ = get(part["src"])
+        d = delta_of(objs)
+        if part["part"] == "Hair001":
+            ob = dup(objs["Hair001"], "hair%d" % k)
+        else:
+            ob = dup(objs["Body"], "hair%d" % k)
+            delete_faces(ob, lambda n: "HairBack" in n)
+        if part.get("drop"):
+            delete_faces(ob, lambda n, dr=part["drop"]: not any(x in n for x in dr))
+        if len(ob.data.vertices) == 0:
+            bpy.data.objects.remove(ob)
+            continue
+        hb = np.array(objs["Armature"].data.bones["J_Bip_C_Head"].head_local)
+        for rule in part.get("drop_parts", []):
+            drop_parts(ob, rule, hb)
+        retarget(ob, rig, d, rigid=True)
+        print("hair part", part["src"], part["part"], len(ob.data.vertices), "verts, delta", d.round(4), flush=True)
+        hairs.append(ob)
+        keep.add(ob)
+
+    fobjs, js = get(P["face_src"])
+    face = dup(fobjs["Face"], "face")
     # 表情キーに VRoid の名前をつける (target_N -> Fcl_...)
-    names = js["meshes"][0]["extras"]["targetNames"] if "extras" in js["meshes"][0] else \
-        js["meshes"][0]["primitives"][0]["extras"]["targetNames"]
+    m0 = js["meshes"][[m["name"] for m in js["meshes"]].index("Face.baked")] \
+        if any(m["name"] == "Face.baked" for m in js["meshes"]) else js["meshes"][0]
+    names = m0["extras"]["targetNames"] if "extras" in m0 else m0["primitives"][0]["extras"]["targetNames"]
     for i, n in enumerate(names):
         kb = face.data.shape_keys.key_blocks.get("target_%d" % i)
         if kb:
             kb.name = n.split(".M_F00_000_00_")[-1].split(".M_")[-1]
-    retarget(face, rig, delta)
+    retarget(face, rig, delta_of(fobjs))
+    keep.add(face)
 
-    # 髪: 前と横の髪 (Hair001) と、体についている後ろ髪 (HairBack)
-    hair = sh["Hair001"]
-    hair.name = "hair"
-    if P["hair"].get("remove_clip"):
-        delete_faces(hair, lambda n: "HAIR_02" not in n)   # 髪どめ (青い×)
-    back = sh["Body"].copy()
-    back.data = sh["Body"].data.copy()
-    bpy.context.scene.collection.objects.link(back)
-    back.name = "hair_back"
-    delete_faces(back, lambda n: "HairBack" in n)
-    retarget(hair, rig, delta, rigid=True)
-    retarget(back, rig, delta, rigid=True)
+    body = dup(bobjs["Body"], "body")
+    delete_faces(body, lambda n: "SKIN" in n)          # 服と靴を消す
+    keep.add(body)
 
-    # いらないものを消す
-    for k in ("Armature", "Body", "Icosphere", "Hairs", "secondary"):
-        o = sh.get(k)
-        if o:
-            bpy.data.objects.remove(o)
-    for k in ("Face", "Hair001", "Icosphere", "Hairs", "secondary"):
-        o = hs.get(k)
-        if o:
-            bpy.data.objects.remove(o)
-    for ob in (body, face, hair, back):
+    # いらないものを消す (読みこんだもののうち使わないもの)
+    for objs, _ in srcs.values():
+        for o in objs.values():
+            if o not in keep and o.name in bpy.data.objects:
+                bpy.data.objects.remove(o)
+    for ob in [body, face] + hairs:
         for p in ob.data.polygons:
             p.use_smooth = True
-    return rig, body, face, hair, back
+    return rig, body, face, hairs
 
 
 # ---------------------------------------------------------------- 体つき
@@ -199,63 +319,74 @@ def limb_field(ob, rig, limbs):
     return disp
 
 
-def body_field(p, B):
-    """がっしりさせる変形 (休みの姿勢の座標で)。p: (N,3)。"""
+def body_field(p, B, F):
+    """体つきを変える変形 (休みの姿勢の座標で)。p: (N,3)。値が負なら細く。
+    高さは女の素体で書き、F.z() でこの体へ写す。"""
     x, y, z = p[:, 0], p[:, 1], p[:, 2]
     q = p.copy()
     ax = np.abs(x)
     sg = np.sign(x)
+    Z = F.z
     # 肩幅: 首から外の上半身と腕を横へずらす
-    band = smooth(z, 1.10, 1.25) * (1 - smooth(z, 1.355, 1.395))
-    q[:, 0] += sg * B["shoulder"] * smooth(ax, 0.035, 0.12) * band
+    band = smooth(z, Z(1.10), Z(1.25)) * (1 - smooth(z, Z(1.355), Z(1.395)))
+    q[:, 0] += sg * B["shoulder"] * smooth(ax, 0.035 * F.w, 0.12 * F.w) * band
     # 腰: 骨盤のあたりを横に広げる
-    hip = smooth(z, 0.80, 0.90) * (1 - smooth(z, 0.97, 1.07)) * (ax < 0.25)
+    hip = smooth(z, Z(0.80), Z(0.90)) * (1 - smooth(z, Z(0.97), Z(1.07))) * (ax < 0.25)
     q[:, 0] *= 1 + B["hips"] * hip
-    # 胴まわり: くびれを弱く
-    wst = np.exp(-((z - 1.04) / 0.07) ** 2) * (ax < 0.2)
+    # 胴まわり: くびれを弱く (負なら細く)
+    wst = np.exp(-((z - Z(1.04)) / (0.07 * (Z(1.35) - Z(0.944)) / 0.406)) ** 2) * (ax < 0.2)
     q[:, 0] *= 1 + B["waist"] * wst
     q[:, 1] = y + (y - 0.01) * 0.5 * B["waist"] * wst
+    # 胸まわり (男の胸板など)
+    if B.get("chest"):
+        ch = np.exp(-((z - Z(1.22)) / 0.08) ** 2) * (ax < 0.17)
+        q[:, 1] = q[:, 1] + (y - 0.01) * B["chest"] * ch
     return q
 
 
-def sturdy(rig, body, others, B):
+def sturdy(rig, body, others, B, F):
     me = body.data
-    co = np.empty(len(me.vertices) * 3, np.float32)
-    me.vertices.foreach_get("co", co)
-    co = co.reshape(-1, 3)
+    co = mesh_co(body)
     co = co + limb_field(body, rig, B["limbs"])
-    me.vertices.foreach_set("co", body_field(co, B).ravel())
+    me.vertices.foreach_set("co", body_field(co, B, F).astype(np.float32).ravel())
     me.update()
     # 髪など、体の近くのもの (顔より下だけ変わる)
     for ob in others:
-        me = ob.data
-        co = np.empty(len(me.vertices) * 3, np.float32)
-        me.vertices.foreach_get("co", co)
-        me.vertices.foreach_set("co", body_field(co.reshape(-1, 3), B).ravel())
-        me.update()
+        map_mesh(ob, lambda c: body_field(c, B, F))
     # 骨も同じだけ動かす (腕の骨が腕の中に残るように)
-    bpy.context.view_layer.objects.active = rig
-    bpy.ops.object.mode_set(mode='EDIT')
-    for eb in rig.data.edit_bones:
-        for attr in ("head", "tail"):
-            v = np.array(getattr(eb, attr))[None]
-            if "Leg" in eb.name or "Foot" in eb.name or "Toe" in eb.name:
-                continue
-            setattr(eb, attr, Vector(body_field(v, B)[0]))
-    bpy.ops.object.mode_set(mode='OBJECT')
+    map_bones(rig, lambda v: body_field(v, B, F), skip=("Leg", "Foot", "Toe"))
 
 
-def round_face(face, R):
-    """ほおとあごを少し横に広げて丸顔に。首とのつなぎ目と目のまわりは動かさない。"""
+def proportions(rig, objs, P, F):
+    """背の高さ (scale)、脚の長さ (legs)、腕の長さ (arms) を、すべてのメッシュと骨に同じ写像で。"""
+    s, kl, ka = P.get("scale", 1.0), P.get("legs", 1.0), P.get("arms", 1.0)
+    if s == 1.0 and kl == 1.0 and ka == 1.0:
+        return
+    hz, xs = F.hips, F.arm + 0.02
+
+    def fn(p):
+        q = p.copy()
+        z = q[:, 2]
+        q[:, 2] = np.where(z < hz, z * kl, z + hz * (kl - 1))
+        ax = np.abs(q[:, 0])
+        q[:, 0] = np.where(ax > xs, np.sign(q[:, 0]) * (xs + (ax - xs) * ka), q[:, 0])
+        return q * s
+    for ob in objs:
+        map_mesh(ob, fn)
+    map_bones(rig, fn)
+    print("proportions scale", s, "legs", kl, "arms", ka, flush=True)
+
+
+def round_face(face, R, F):
+    """ほおとあごを少し横に広げて丸顔に (負ならこけた頬)。首とのつなぎ目と目のまわりは動かさない。"""
+    if not R:
+        return
     me = face.data
-    n = len(me.vertices)
     bm = bmesh.new()
     bm.from_mesh(me)
     bnd = np.array([v.co[:] for v in bm.verts if v.is_boundary])
     bm.free()
-    base = np.empty(n * 3, np.float32)
-    me.shape_keys.key_blocks[0].data.foreach_get("co", base)
-    base = base.reshape(-1, 3)
+    base = mesh_co(face)
     # 境目 (首) からの距離
     from mathutils.kdtree import KDTree
     kd = KDTree(len(bnd))
@@ -264,33 +395,54 @@ def round_face(face, R):
     kd.balance()
     dist = np.array([kd.find(Vector(p))[2] for p in base])
     z = base[:, 2]
-    w = smooth(dist, 0.006, 0.025) * smooth(z, 1.385, 1.415) * (1 - smooth(z, 1.445, 1.462))
+    Z = F.z
+    w = smooth(dist, 0.006, 0.025) * smooth(z, Z(1.385), Z(1.415)) * (1 - smooth(z, Z(1.445), Z(1.462)))
     w *= smooth(np.abs(base[:, 0]), 0.0, 0.03)
-    for kb in me.shape_keys.key_blocks:
-        co = np.empty(n * 3, np.float32)
-        kb.data.foreach_get("co", co)
-        co = co.reshape(-1, 3)
+
+    def fn(co):
         co[:, 0] *= 1 + R * w
-        kb.data.foreach_set("co", co.ravel())
-    me.update()
+        return co
+    map_mesh(face, fn)
+
+
+def thick_brows(face, k):
+    """眉 (FaceBrow の面) を縦に k 倍 (太く)。左右それぞれの中心から。"""
+    if not k or k == 1.0:
+        return
+    me = face.data
+    mi = [i for i, m in enumerate(me.materials) if "FaceBrow" in m.name]
+    idx = sorted({v for p in me.polygons if p.material_index in mi for v in p.vertices})
+    if not idx:
+        return
+    idx = np.array(idx)
+    base = mesh_co(face)[idx]
+    cz = {s: base[np.sign(base[:, 0]) == s, 2].mean() for s in (-1, 1)}
+
+    def fn(co):
+        p = co[idx]
+        c = np.where(p[:, 0] < 0, cz[-1], cz[1])
+        p[:, 2] = c + (p[:, 2] - c) * k
+        co[idx] = p
+        return co
+    map_mesh(face, fn)
 
 
 # ---------------------------------------------------------------- 髪を低い位置で結ぶ
-def tie_hair(hair, back, body, rig, H):
+def tie_hair(hairs, body, rig, H, F):
     """後ろの髪を、うなじで 1 本にまとめて背中に沿わせる (形を寄せるだけ)。
     前で顔の横に下がる束は残し、肩の高さまで短くする。結び紐の輪も作る。"""
-    hb = np.array(rig.data.bones["J_Bip_C_Head"].head_local)
-    zt, zs, tw = H["tie_z"], H["gather_from"], H["tail_width"]
+    hb = F.hb
+    zt, zs, tw = F.z(H["tie_z"]), F.z(H["gather_from"]), H["tail_width"]
     # 背中の線 (体の真ん中付近で一番うしろの y、1 cm ごと)
     bc = np.array([v.co[:] for v in body.data.vertices])
     bc = bc[np.abs(bc[:, 0]) < 0.06]
-    zb = np.arange(0.9, 1.7, 0.01)
+    zb = np.arange(F.z(0.9), F.z(1.7), 0.01)
     back_y = np.array([bc[np.abs(bc[:, 2] - z) < 0.008, 1].min() if np.any(np.abs(bc[:, 2] - z) < 0.008)
                        else np.nan for z in zb])
     ok = ~np.isnan(back_y)
     back_of = lambda z: np.interp(z, zb[ok], back_y[ok])  # noqa: E731
     pts = []
-    for ob in (hair, back):
+    for ob in hairs:
         me = ob.data
         co = np.empty(len(me.vertices) * 3, np.float32)
         me.vertices.foreach_get("co", co)
@@ -304,7 +456,7 @@ def tie_hair(hair, back, body, rig, H):
     inner_of = lambda z: np.interp(z, zb[ok2], inner[ok2])  # noqa: E731
     xmax = np.abs(allp[behind_all & (allp[:, 2] < zt), 0]).max()
     ring = []
-    for ob, p in zip((hair, back), pts):
+    for ob, p in zip(hairs, pts):
         x, y, z = p[:, 0], p[:, 1], p[:, 2]
         behind = 1 - smooth(y, hb[1] - 0.005, hb[1] + 0.03)
         f = 1 - smooth(z, zt, zs)
@@ -317,7 +469,7 @@ def tie_hair(hair, back, body, rig, H):
         ny = y + (yt - y) * k
         ny = np.where((behind > 0.5) & (z < zs), np.minimum(ny, bk - 0.012 - 0.012 * smooth(zt - z, 0.0, 0.06)), ny)
         # 前の束: 肩の高さまで短く
-        zc = H["front_from"]
+        zc = F.z(H["front_from"])
         front = 1 - behind
         nz = np.where(z < zc, z + ((zc - (zc - z) * H["front_keep"]) - z) * front, z)
         q = np.stack([nx, ny, nz], 1)
@@ -363,6 +515,168 @@ def tie_hair(hair, back, body, rig, H):
     ob.parent = rig
     am = ob.modifiers.new("arm", 'ARMATURE')
     am.object = rig
+    return {"tie": ob, "c": c, "ax": ax, "ay": ay, "back_of": back_of}
+
+
+# ---------------------------------------------------------------- 髪を短く刈る・編む
+def crop_hair(hairs, face, body, F, C):
+    """髪を頭の表面へ寄せて短くする。表面からのはなれを k 倍、
+    z_front / z_back (頭の骨からの高さ) より下にたれる毛先は、そこからの長さを k_len 倍。
+    頭の表面 = 顔の肌 (前) + 体のメッシュの首より上 (後頭部は体のメッシュにある)。"""
+    verts, polys = [], []
+    for ob, key in ((face, "Face_00_SKIN"), (body, "Body_00_SKIN")):
+        me = ob.data
+        base = mesh_co(ob)
+        mi = [i for i, m in enumerate(me.materials) if key in m.name]
+        off = len(verts)
+        verts += [Vector(v) for v in base]
+        for p in me.polygons:
+            if p.material_index in mi and (ob is face or base[list(p.vertices), 2].min() > F.neck):
+                polys.append([off + i for i in p.vertices])
+    tree = BVHTree.FromPolygons(verts, polys)
+    hb = F.hb
+    for ob in hairs:
+        p = mesh_co(ob)
+        out = np.empty_like(p)
+        front = smooth(p[:, 1], hb[1] + 0.0, hb[1] + 0.05)
+        zc = hb[2] + C["z_back"] + (C["z_front"] - C["z_back"]) * front
+        for i, v in enumerate(p):
+            q = v.copy()
+            if q[2] < zc[i]:
+                q[2] = zc[i] - (zc[i] - q[2]) * C["k_len"]
+            loc, nrm, _, _ = tree.find_nearest(Vector(q))
+            loc = np.array(loc)
+            off = q - loc
+            q = loc + off * C["k"]
+            loc, nrm, _, _ = tree.find_nearest(Vector(q))
+            loc, nrm = np.array(loc), np.array(nrm)
+            d = (q - loc) @ nrm
+            if d < C["gap"]:
+                q = q + nrm * (C["gap"] - d)
+            out[i] = q
+        map_mesh(ob, lambda c, o=out: o)
+    print("crop_hair", C, flush=True)
+
+
+def tube(bm, pts, radii, nv=8, flat=1.0):
+    """点の列 pts にそって、半径 radii の管を bm に足す。"""
+    pts = [Vector(p) for p in pts]
+    rings = []
+    ref = Vector((0, 1, 0))
+    for i, p in enumerate(pts):
+        t = (pts[min(i + 1, len(pts) - 1)] - pts[max(i - 1, 0)]).normalized()
+        u = t.cross(ref).normalized()
+        w = t.cross(u).normalized()
+        ring = []
+        for j in range(nv):
+            a = 2 * math.pi * j / nv
+            ring.append(bm.verts.new(p + (u * math.cos(a) + w * math.sin(a) * flat) * radii[i]))
+        rings.append(ring)
+    for i in range(len(rings) - 1):
+        for j in range(nv):
+            a, b = rings[i][j], rings[i][(j + 1) % nv]
+            c, d = rings[i + 1][(j + 1) % nv], rings[i + 1][j]
+            bm.faces.new((a, b, c, d))
+    bm.faces.new(rings[-1][::-1])
+    return rings
+
+
+def braid(rig, tie, H, F):
+    """結んだところから下へ、三つ編みの束を作る (3 本の管が 8 の字にからむ)。"""
+    B = H["braid"]
+    c, back_of = tie["c"], tie["back_of"]
+    L, A, r0 = B["len"], B["width"] / 2, B["strand_r"]
+    period = B["period"]
+    n = int(L / 0.003)
+    bm = bmesh.new()
+    z0 = c[2] - 0.006
+    for k in range(3):
+        ph = 2 * math.pi * k / 3
+        pts, rad = [], []
+        for i in range(n + 1):
+            t = i / n
+            z = z0 - L * t
+            taper = 1 - B["taper"] * t
+            th = 2 * math.pi * (L * t) / period + ph
+            x = A * taper * math.sin(th)
+            yb = back_of(z) - r0 * 1.6 - 0.004
+            y = yb - 0.5 * A * taper * math.sin(2 * th)
+            pts.append((x, y, z))
+            rad.append(r0 * taper * (1 - 0.6 * smooth(np.array(t), 0.97, 1.0)))
+        tube(bm, pts, rad, nv=10, flat=0.8)
+    # 毛先の房 (細い円すい) と、下の結び紐
+    zb = z0 - L
+    yb = back_of(zb) - r0 * 1.6 - 0.004
+    for k in range(7):
+        a = 2 * math.pi * k / 7
+        dx, dy = math.cos(a) * A * 0.5 * (1 - B["taper"]), math.sin(a) * A * 0.3
+        tip = (dx * 2.2, yb + dy * 1.5, zb - B["tuft"])
+        pts = [(dx, yb + dy, zb + 0.01), (dx * 1.6, yb + dy * 1.3, zb - B["tuft"] * 0.5), tip]
+        tube(bm, pts, [r0 * 0.7, r0 * 0.45, 0.0005], nv=6)
+    me = bpy.data.meshes.new("braid")
+    bm.to_mesh(me)
+    bm.free()
+    ob = bpy.data.objects.new("braid", me)
+    bpy.context.scene.collection.objects.link(ob)
+    for pl in me.polygons:
+        pl.use_smooth = True
+    m = bpy.data.materials.new("braid_HAIR")
+    m.use_nodes = True
+    nt = m.node_tree
+    pb = nt.nodes["Principled BSDF"]
+    # 毛すじ: 縦にのばしたノイズで明るさのむら
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    mp = nt.nodes.new("ShaderNodeMapping")
+    mp.inputs["Scale"].default_value = (90, 90, 8)
+    nz = nt.nodes.new("ShaderNodeTexNoise")
+    nz.inputs["Scale"].default_value = 6
+    nz.inputs["Detail"].default_value = 4
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    ramp.color_ramp.elements[0].color = srgb(H["dark"])
+    ramp.color_ramp.elements[0].position = 0.3
+    ramp.color_ramp.elements[1].color = srgb(H["light"])
+    ramp.color_ramp.elements[1].position = 0.75
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    nt.links.new(mp.outputs[0], nz.inputs["Vector"])
+    nt.links.new(nz.outputs["Fac"], ramp.inputs[0])
+    nt.links.new(ramp.outputs[0], pb.inputs["Base Color"])
+    pb.inputs["Roughness"].default_value = H["rough"]
+    pb.inputs["Specular IOR Level"].default_value = 0.2
+    me.materials.append(m)
+    bone = "J_Bip_C_UpperChest" if "J_Bip_C_UpperChest" in rig.data.bones else "J_Bip_C_Chest"
+    g = ob.vertex_groups.new(name=bone)
+    g.add(list(range(len(me.vertices))), 1.0, 'REPLACE')
+    ob.parent = rig
+    am = ob.modifiers.new("arm", 'ARMATURE')
+    am.object = rig
+    # 下の結び紐
+    ring = bmesh.new()
+    nu, nv, rr = 24, 6, 0.003
+    vs = []
+    for i in range(nu):
+        t = 2 * math.pi * i / nu
+        cen = Vector((A * 0.75 * math.cos(t), yb + A * 0.55 * math.sin(t), zb + 0.004))
+        out = Vector((math.cos(t), math.sin(t), 0))
+        for j in range(nv):
+            u = 2 * math.pi * j / nv
+            vs.append(ring.verts.new(cen + out * (rr * math.cos(u)) + Vector((0, 0, rr * 1.4 * math.sin(u)))))
+    for i in range(nu):
+        for j in range(nv):
+            a = i * nv + j
+            b = ((i + 1) % nu) * nv + j
+            ring.faces.new((vs[a], vs[b], vs[b - j + (j + 1) % nv], vs[a - j + (j + 1) % nv]))
+    tme = bpy.data.meshes.new("braid_tie")
+    ring.to_mesh(tme)
+    ring.free()
+    tob = bpy.data.objects.new("braid_tie", tme)
+    bpy.context.scene.collection.objects.link(tob)
+    tme.materials.append(tie["tie"].data.materials[0])
+    g = tob.vertex_groups.new(name=bone)
+    g.add(list(range(len(tme.vertices))), 1.0, 'REPLACE')
+    tob.parent = rig
+    am = tob.modifiers.new("arm", 'ARMATURE')
+    am.object = rig
+    print("braid", len(me.vertices), "verts, len", L, flush=True)
     return ob
 
 
@@ -439,14 +753,19 @@ def tex_of(mat):
     return None
 
 
-def tan_image(img, target, skin_mask=None):
-    """テクスチャの肌の中央値が target (線形) になるように掛け算する。"""
+def tan_image(img, target, fill_dark=0.0):
+    """テクスチャの肌の中央値が target (線形) になるように掛け算する。
+    fill_dark > 0 なら、それより暗いところ (素体に描かれた下着や靴下) を肌の色でうめる。"""
     a = img_array(img)
     rgb = to_lin(a[..., :3])
     sel = (a[..., 3] > 0.5) & (rgb.sum(-1) > 0.3)
-    if skin_mask is not None:
-        sel &= skin_mask
     med = np.median(rgb[sel], axis=0)
+    if fill_dark:
+        # 肌の中央値に比べて暗いところ (明るさの比が fill_dark より下) をうめる
+        r = rgb.sum(-1) / med.sum()
+        k = (1 - smooth(r, fill_dark * 0.6, fill_dark))[..., None]
+        rgb = rgb * (1 - k) + med[None, None] * k
+        print("fill_dark", img.name, "pixels", int((k[..., 0] > 0.5).sum()), flush=True)
     ratio = np.array(target) / med
     print("tan", img.name, "median sRGB", to_srgb(med).round(3), "ratio", ratio.round(3), flush=True)
     a[..., :3] = to_srgb(rgb * ratio)
@@ -463,51 +782,77 @@ def save_image(img, a, name):
     return out
 
 
-def skin_textures(P, body, face, rig):
+def bone_line(rig, D):
+    """傷などの線: 骨 D["bone"] の上の s0..s1 の区間に沿って点を並べ、off だけずらす。"""
+    bn = rig.data.bones[D["bone"]]
+    h, t = np.array(bn.head_local), np.array(bn.tail_local)
+    n = D.get("n", 70)
+    pts, al = [], []
+    for k in range(n):
+        u = k / (n - 1)
+        s = D["s"][0] + (D["s"][1] - D["s"][0]) * u
+        c = h + (t - h) * s + np.array(D.get("slant", (0, 0, 0))) * (u - 0.5) + np.array(D["off"])
+        pts.append(c)
+        al.append(D["alpha"] * (1 - abs(u - 0.5) * 1.4))
+    return pts, al
+
+
+def bone_patch(rig, D, rng):
+    """煤などのしみ: 骨のまわり (s0..s1、半径 spread) に散らした点。"""
+    bn = rig.data.bones[D["bone"]]
+    h, t = np.array(bn.head_local), np.array(bn.tail_local)
+    pts, al = [], []
+    for _ in range(D.get("n", 120)):
+        s = rng.uniform(*D["s"])
+        c = h + (t - h) * s + rng.normal(0, D["spread"], 3) + np.array(D.get("off", (0, 0, 0)))
+        pts.append(c)
+        al.append(D["alpha"] * rng.uniform(0.4, 1.0))
+    return pts, al
+
+
+def skin_textures(P, body, face, rig, F):
     S = P["skin"]
     tan = lin(S["tan"])
     fm = next(m for m in face.data.materials if "Face_00_SKIN" in m.name)
     bmat = next(m for m in body.data.materials if "Body_00_SKIN" in m.name)
     fimg, bimg = tex_of(fm), tex_of(bmat)
-    fa = tan_image(fimg, tan)
-    ba = tan_image(bimg, tan)
+    fa = tan_image(fimg, lin(S.get("tan_face", S["tan"])))
+    ba = tan_image(bimg, tan, S.get("fill_dark", 0.0))
+    rng = np.random.default_rng(P.get("seed", 29))
     # ほお・鼻先の赤み (顔のテクスチャ)
-    pf = UVPainter(face, "Face_00_SKIN")
-    me = face.data
-    base = np.array([v.co[:] for v in me.vertices])
-    hb = np.array(rig.data.bones["J_Bip_C_Head"].head_local)
-    pts, al = [], []
-    rng = np.random.default_rng(29)
-    for sx in (-1, 1):
-        c = np.array([sx * 0.034, hb[1] + 0.085, 1.447])
-        for _ in range(260):
-            d = rng.normal(0, 0.009, 3)
-            d[1] = 0
-            q = c + d
-            pts.append(q + np.array([0, 0.03, 0]))
-            al.append(S["blush_alpha"] * math.exp(-(np.linalg.norm(d) / 0.012) ** 2))
-    # 鼻先
-    nose = base[np.argmax(base[:, 1] * (np.abs(base[:, 0]) < 0.004) * (base[:, 2] < 1.46) * (base[:, 2] > 1.43))]
-    for _ in range(40):
-        d = rng.normal(0, 0.003, 3)
-        pts.append(nose + d)
-        al.append(S["blush_alpha"] * 0.6 * math.exp(-(np.linalg.norm(d) / 0.004) ** 2))
-    # 最も近い表面点へ (前から当てる)
-    pf.paint(fa, pts, lin(S["blush"]), al, 7.0)
-    # 左の前腕の外側 (上を向いた面) に古い傷
+    if S.get("blush_alpha", 0) > 0:
+        pf = UVPainter(face, "Face_00_SKIN")
+        base = mesh_co(face)
+        hb = F.hb
+        pts, al = [], []
+        for sx in (-1, 1):
+            c = np.array([sx * 0.034, hb[1] + 0.085, F.z(1.447)])
+            for _ in range(260):
+                d = rng.normal(0, 0.009, 3)
+                d[1] = 0
+                q = c + d
+                pts.append(q + np.array([0, 0.03, 0]))
+                al.append(S["blush_alpha"] * math.exp(-(np.linalg.norm(d) / 0.012) ** 2))
+        # 鼻先
+        nose = base[np.argmax(base[:, 1] * (np.abs(base[:, 0]) < 0.004) *
+                              (base[:, 2] < F.z(1.46)) * (base[:, 2] > F.z(1.43)))]
+        for _ in range(40):
+            d = rng.normal(0, 0.003, 3)
+            pts.append(nose + d)
+            al.append(S["blush_alpha"] * 0.6 * math.exp(-(np.linalg.norm(d) / 0.004) ** 2))
+        # 最も近い表面点へ (前から当てる)
+        pf.paint(fa, pts, lin(S["blush"]), al, 7.0)
+    # 体: 古い傷 (線) と、煤など (しみ)
     pb = UVPainter(body, "Body_00_SKIN")
-    la = rig.data.bones["J_Bip_L_LowerArm"]
-    h, t = np.array(la.head_local), np.array(la.tail_local)
-    pts, al = [], []
-    for k in range(70):
-        s = 0.35 + 0.22 * k / 69
-        c = h + (t - h) * s
-        c = c + np.array([0, (k / 69 - 0.5) * 0.022, 0.06])   # 少し斜め、上から当てる
-        pts.append(c)
-        al.append(S["scar_alpha"] * (1 - abs(k / 69 - 0.5) * 1.4))
-    pb.paint(ba, pts, lin(S["scar"]), al, 2.2)
-    fimg2 = save_image(fimg, fa, "sena_face_skin")
-    bimg2 = save_image(bimg, ba, "sena_body_skin")
+    for D in S.get("scars", []):
+        pts, al = bone_line(rig, D)
+        pb.paint(ba, pts, lin(D["color"]), al, D.get("width", 2.2))
+    for D in S.get("patches", []):
+        pts, al = bone_patch(rig, D, rng)
+        pb.paint(ba, pts, lin(D["color"]), al, D.get("radius", 6.0))
+    nm = P["name"]
+    fimg2 = save_image(fimg, fa, nm + "_face_skin")
+    bimg2 = save_image(bimg, ba, nm + "_body_skin")
     return {fm.name: fimg2, bmat.name: bimg2}
 
 
@@ -564,14 +909,20 @@ def materials(P, objs, skin_imgs):
                     "Roughness": S["rough"], "Subsurface Weight": S["sss"],
                     "Subsurface Radius": (1.0, 0.38, 0.22), "Subsurface Scale": 0.012,
                     "Specular IOR Level": 0.38})
-            elif "HAIR" in nm:
-                def hair_col(nt, src, dst):
+            elif "HAIR" in nm and "braid" not in nm:
+                lo, hi = Hh.get("ramp_lo", 0.35), Hh.get("ramp_hi", 1.0)
+                for key, rr in Hh.get("ramp_mat", {}).items():
+                    if key in nm:
+                        lo, hi = rr
+
+                def hair_col(nt, src, dst, lo=lo, hi=hi):
                     tex = next(n for n in nt.nodes if n.type == 'TEX_IMAGE')
                     bw = nt.nodes.new("ShaderNodeRGBToBW")
                     nt.links.new(tex.outputs["Color"], bw.inputs[0])
                     ramp = nt.nodes.new("ShaderNodeValToRGB")
                     ramp.color_ramp.elements[0].color = srgb(Hh["dark"])
-                    ramp.color_ramp.elements[0].position = Hh.get("ramp_lo", 0.35)
+                    ramp.color_ramp.elements[0].position = lo
+                    ramp.color_ramp.elements[1].position = hi
                     ramp.color_ramp.elements[1].color = srgb(Hh["light"])
                     nt.links.new(bw.outputs[0], ramp.inputs[0])
                     nt.links.new(ramp.outputs[0], dst)
@@ -672,7 +1023,7 @@ def make_band(body, z0, z1, name, mat, push, bridge=False):
     return ob
 
 
-def outfit(P, body, rig):
+def outfit(P, body, rig, F):
     O = P["outfit"]
     m = bpy.data.materials.new("cloth")
     m.use_nodes = True
@@ -689,9 +1040,11 @@ def outfit(P, body, rig):
     bp.inputs["Strength"].default_value = 0.08
     nt.links.new(nz.outputs[0], bp.inputs["Height"])
     nt.links.new(bp.outputs[0], b.inputs["Normal"])
-    top = make_band(body, *O["top"], "top", m, 0.0035, bridge=True)
-    shorts = make_band(body, *O["shorts"], "shorts", m, 0.003)
-    for ob in (top, shorts):
+    parts = []
+    if O.get("top"):
+        parts.append(make_band(body, *F.z(np.array(O["top"])), "top", m, 0.0035, bridge=True))
+    parts.append(make_band(body, *F.z(np.array(O["shorts"])), "shorts", m, 0.003))
+    for ob in parts:
         # vertex group の重みを体から写す
         dt = ob.modifiers.new("w", 'DATA_TRANSFER')
         dt.object = body
@@ -704,13 +1057,22 @@ def outfit(P, body, rig):
         ob.parent = rig
         am = ob.modifiers.new("arm", 'ARMATURE')
         am.object = rig
-    return top, shorts
+    return parts
 
 
 # ---------------------------------------------------------------- 表情
 def set_expr(face, expr):
     for kb in face.data.shape_keys.key_blocks[1:]:
         kb.value = expr.get(kb.name, 0.0)
+
+
+def set_gaze(rig, down_deg):
+    """目の骨 (J_Adj_*_FaceEye) を下へ向ける (伏し目)。描くときだけ。"""
+    for side in ("L", "R"):
+        pb = rig.pose.bones.get("J_Adj_%s_FaceEye" % side)
+        if pb:
+            pb.rotation_mode = 'XYZ'
+            pb.rotation_euler = (-math.radians(down_deg), 0, 0)
 
 
 # ---------------------------------------------------------------- 光と撮影
@@ -774,21 +1136,31 @@ def main():
     ap.add_argument("--person", default="sena")
     ap.add_argument("--quick", action="store_true")
     ap.add_argument("--samples", type=int, default=96)
-    ap.add_argument("--only", default="", help="sheet,face,expr をカンマで (none なら書き出しだけ)")
+    ap.add_argument("--only", default="", help="sheet,face,expr,lineup をカンマで (none なら書き出しだけ)")
     ap.add_argument("--no-tie", action="store_true")
     args = ap.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:])
     P = VROID[args.person]
+    H = P["hair"]
     t0 = time.time()
     bpy.ops.wm.read_factory_settings(use_empty=True)
-    rig, body, face, hair, back = assemble(P)
-    sturdy(rig, body, [hair, back], P["body"])
-    round_face(face, P["face"]["round"])
-    if P["hair"].get("tie") and not args.no_tie:
-        tie_hair(hair, back, body, rig, P["hair"])
-    skin_imgs = skin_textures(P, body, face, rig)
-    materials(P, [body, face, hair, back], skin_imgs)
-    outfit(P, body, rig)
-    set_expr(face, P["smile"])
+    rig, body, face, hairs = assemble(P)
+    F = Frame(rig)
+    sturdy(rig, body, hairs, P["body"], F)
+    proportions(rig, [body, face] + hairs, P, F)
+    F = Frame(rig)
+    round_face(face, P["face"].get("round", 0.0), F)
+    thick_brows(face, P["face"].get("brow_thick", 1.0))
+    style = H.get("style", "keep")
+    if H.get("crop"):
+        crop_hair(hairs, face, body, F, H["crop"])
+    if style in ("tie", "braid") and not args.no_tie:
+        tie = tie_hair(hairs, body, rig, H, F)
+        if style == "braid":
+            braid(rig, tie, H, F)
+    skin_imgs = skin_textures(P, body, face, rig, F)
+    materials(P, [body, face] + hairs, skin_imgs)
+    outfit(P, body, rig, F)
+    set_expr(face, P["expr"])
     print(f"build: {time.time() - t0:.1f}s", flush=True)
 
     # 書き出し (.glb): 骨組み・重み・表情キーつき
@@ -799,12 +1171,16 @@ def main():
     bpy.ops.export_scene.gltf(filepath=glb, export_format='GLB', use_selection=True, export_apply=False,
                               export_yup=True, export_skins=True, export_morph=True)
     print("glb", glb, os.path.getsize(glb) // 1024, "KB", flush=True)
+    set_gaze(rig, P.get("gaze_down", 0.0))
 
-    only = set(args.only.split(",")) if args.only else {"sheet", "face", "expr"}
+    only = set(args.only.split(",")) if args.only else {"sheet", "face", "expr", "lineup"}
     os.makedirs(OUT_PNG, exist_ok=True)
-    setup_scene(args.quick, args.samples)
+    s = setup_scene(args.quick, args.samples)
     times = {}
-    hgt = 1.64
+    top = max(float(mesh_co(o)[:, 2].max()) for o in bpy.data.objects if o.type == 'MESH' and o.name != "floor"
+              and len(o.data.vertices))
+    hgt = max(1.64, top + 0.03)
+    print("top", round(top, 3), "frame", round(hgt, 3), flush=True)
     cz = hgt / 2
     name = P["name"] + "_vroid"
     if "sheet" in only:
@@ -815,21 +1191,33 @@ def main():
             times[f"sheet{k}"] = render(cam, p, 560, 1000)
             tmp.append(p)
         compose(tmp, os.path.join(OUT_PNG, f"{name}_3view.png"))
-    hb = rig.data.bones["J_Bip_C_Head"].head_local
-    fz = hb.z + 0.05
+    fz = F.hb[2] + 0.05
     if "face" in only:
         cam = camera("face", (-0.13, 0.95, fz + 0.03), (0, 0, fz), lens=100)
         times["face"] = render(cam, os.path.join(OUT_PNG, f"{name}_face.png"), 900, 900)
     if "expr" in only:
         tmp = []
-        for k, ex in enumerate([{}, P["smile"]]):
+        for k, ex in enumerate([{}, P["expr"]]):
             set_expr(face, ex)
             cam = camera("e%d" % k, (-0.13, 0.95, fz + 0.03), (0, 0, fz), lens=100)
             p = os.path.join(OUT_PNG, f"_vtmp_e{k}.png")
             times[f"expr{k}"] = render(cam, p, 560, 560)
             tmp.append(p)
         compose(tmp, os.path.join(OUT_PNG, f"{name}_expr.png"))
-        set_expr(face, P["smile"])
+        set_expr(face, P["expr"])
+    if "lineup" in only:
+        # 5 人を並べる絵の部品: 同じ縮尺の正面 (背景は透明) と、正面の顔
+        d = os.path.join(WORK, "lineup")
+        os.makedirs(d, exist_ok=True)
+        bpy.data.objects["floor"].hide_render = True
+        s.render.film_transparent = True
+        cam = camera("lu", (0, 10, 1.0), (0, 0, 1.0), ortho=2.0)
+        cam.data.sensor_fit = 'VERTICAL'
+        times["lineup"] = render(cam, os.path.join(d, P["name"] + "_body.png"), 1000, 1100)
+        s.render.film_transparent = False
+        bpy.data.objects["floor"].hide_render = False
+        cam = camera("luf", (0, 0.95, fz), (0, 0, fz), lens=100)
+        times["lineup_face"] = render(cam, os.path.join(d, P["name"] + "_face.png"), 600, 600)
     print("TIMES", {k: round(v, 1) for k, v in times.items()}, "total", round(time.time() - t0, 1), flush=True)
 
 

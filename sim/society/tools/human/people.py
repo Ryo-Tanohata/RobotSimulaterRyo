@@ -1,4 +1,4 @@
-"""川辺の五人の見た目の設定。いまはセナだけ。ほかの四人も同じ形で足せる。
+"""川辺の五人の見た目の設定。PEOPLE / STYLES は MakeHuman の道 (セナだけ)、VROID は VRoid の道 (五人)。
 
 macro は MakeHuman の大きなつまみ (0..1)。
 - gender: 0=女 1=男
@@ -109,32 +109,176 @@ STYLES = {
 }
 
 # ---------------------------------------------------------------- VRoid の素体から作る道
-# build_sena_vroid.py が使う。顔と髪は「千駄ヶ谷 篠」、体と骨組みは「HairSample_Female」
-# (どちらも VRoid の CC0 サンプル)。数値はすべて「素体からどれだけ変えるか」。
+# build_person_vroid.py が使う。どれも VRoid の CC0 サンプル (madjin/vrm-samples の vroid/beta/)。
+# 体と骨組み (body_src): 女は「HairSample_Female」、男は「HairSample_Male」(服の下の肌が全部ある)。
+# 顔 (face_src) と髪の部品 (hair.parts) は人ごとに選ぶ。数値はすべて「素体からどれだけ変えるか」。
+# 高さ (tie_z, outfit など) は女の素体の高さで書く。男の体へは骨の高さで写す (Frame.z)。
+#
+# 主なキー
+#   skin.tan       肌: テクスチャの中央値をこの色 (sRGB) に合わせる掛け算。顔と体で別々に合わせる
+#   skin.fill_dark 体のテクスチャに描かれた下着・靴下 (暗いところ) を肌の色でうめる (男の素体)
+#   skin.scars     古い傷の線 (骨の上の区間 s、ずらし off、斜め slant)。patches は煤などのしみ
+#   hair.parts     髪の部品: {"src": サンプル, "part": "Hair001"(前・横・後ろ) か "HairBack"(地肌に近い後ろ髪),
+#                  "drop": 消す材質, "drop_parts": 消す束 (頭の骨からの重心の位置)}
+#   hair.style     keep (そのまま) / tie (低く結ぶ) / braid (結んで三つ編み)。hair.crop で短く刈る
+#   hair.dark/light 髪は明るさだけを使い、この 2 色の間に置く
+#   body           肩幅 (m)・腰・胴まわり・胸板 (割合)、腕と脚の太さ (骨の軸から外へ。負なら細く)
+#   scale/legs/arms 背の高さ・脚の長さ・腕の長さ (倍)
+#   face.round     ほお・あごを横に (負ならこけた頬)。face.brow_thick 眉を縦に何倍
+#   expr           ふだんの顔 (VRM の表情キーを少しずつ)。gaze_down 目を下へ (度、描くときだけ)
+#   outfit         無地の胸の帯 (top、女だけ) と短パン (shorts)
+SHINO, HS_F, HS_M = "Sendagaya_Shino.vrm", "HairSample_Female.vrm", "HairSample_Male.vrm"
+FUMI, VICT = "Sakurada_Fumiriya.vrm", "Victoria_Rubin.vrm"
+LINES_DARK = {"brow": "#231814", "eyeline": "#2c1612", "lash": "#24120f"}
+SHORTS = {"color": "#161514", "top": None, "shorts": (0.805, 1.0)}
+
 VROID = {
     "sena": {
         "name": "sena",
         "label": "セナ (女・1日目 29歳・54.5kg)",
-        "face_src": "Sendagaya_Shino.vrm",   # 顔・髪
-        "body_src": "HairSample_Female.vrm",  # 体・骨組み (服の下の肌が全部ある)
-        # 肌: テクスチャの中央値をこの色 (sRGB) に合わせる掛け算。顔と体で別々に合わせる
+        "body_src": HS_F,   # 体・骨組み (服の下の肌が全部ある)
+        "face_src": SHINO,  # 顔: 千駄ヶ谷 篠
         "skin": {"tan": "#9a6448", "sss": 0.15, "rough": 0.5,
                  "blush": "#c0584a", "blush_alpha": 0.32,
-                 "scar": "#c9907e", "scar_alpha": 0.75},
-        # 髪: 明るさだけを使い、この 2 色の間に置く (青みを消す)
-        "hair": {"dark": "#080606", "light": "#1e1815", "ramp_lo": 0.35, "rough": 0.5, "remove_clip": True,
-                 "tie": True, "tie_z": 1.30, "gather_from": 1.385, "tail_width": 0.028,
+                 # 左の前腕の外側 (上を向いた面) に古い傷
+                 "scars": [{"bone": "J_Bip_L_LowerArm", "s": (0.35, 0.57), "slant": (0, 0.022, 0),
+                            "off": (0, 0, 0.06), "color": "#c9907e", "alpha": 0.75, "width": 2.2}]},
+        # 髪: 篠の髪 (髪どめ HAIR_02 を消す) を黒くして、うなじで低く結ぶ
+        "hair": {"parts": [{"src": SHINO, "part": "Hair001", "drop": ["HAIR_02"]},
+                           {"src": SHINO, "part": "HairBack"}],
+                 "style": "tie",
+                 "dark": "#080606", "light": "#1e1815", "ramp_lo": 0.35, "rough": 0.5,
+                 "tie_z": 1.30, "gather_from": 1.385, "tail_width": 0.028,
                  "front_from": 1.37, "front_keep": 0.6, "tie_color": "#5a3b26"},
         # 眉・目の線・まつ毛の色 (アニメの線のまま、光の影響なし)
-        "lines": {"brow": "#231814", "eyeline": "#2c1612", "lash": "#24120f"},
+        "lines": LINES_DARK,
         "iris": {"hue": 0.0, "sat": 0.85, "val": 1.0, "tint": "#9a6a4c", "highlight": 0.8},
         # 体: がっしり (肩幅・腰・腕と脚の太さ・胴まわり)
         "body": {"shoulder": 0.018, "hips": 0.07, "waist": 0.13,
                  "limbs": {"UpperArm": 0.12, "LowerArm": 0.09, "UpperLeg": 0.07, "LowerLeg": 0.06}},
         # 顔: 丸み (ほお・あごを横に)
         "face": {"round": 0.06},
-        # ふだんの顔: おだやかな笑顔 (VRM の表情キーを少しずつ)
-        "smile": {"Fcl_MTH_Fun": 0.55, "Fcl_EYE_Joy": 0.22, "Fcl_BRW_Fun": 0.45},
+        # ふだんの顔: おだやかな笑顔
+        "expr": {"Fcl_MTH_Fun": 0.55, "Fcl_EYE_Joy": 0.22, "Fcl_BRW_Fun": 0.45},
         "outfit": {"color": "#161514", "top": (1.115, 1.235), "shorts": (0.805, 0.975)},
     },
+    "ruo": {
+        "name": "ruo",
+        "label": "ルオ (男・1日目 39歳・52.2kg)",
+        "body_src": HS_M,
+        "face_src": HS_M,   # 切れ長で細い目の顔
+        # いちばん濃い日焼け。狩人なので腕に小さな古傷を 1 つ
+        "skin": {"tan": "#7a4a32", "sss": 0.12, "rough": 0.55, "fill_dark": 0.6,
+                 "blush": "#a8503e", "blush_alpha": 0.06,
+                 "scars": [{"bone": "J_Bip_R_LowerArm", "s": (0.45, 0.6), "slant": (0, -0.015, 0),
+                            "off": (0, 0, 0.06), "color": "#b07c66", "alpha": 0.55, "width": 2.0}]},
+        # 髪: 素体の短い髪を頭へ寄せて短く刈る。こげ茶
+        "hair": {"parts": [{"src": HS_M, "part": "Hair001"}, {"src": FUMI, "part": "HairBack"}],
+                 "style": "keep",
+                 "crop": {"k": 0.45, "z_front": 0.10, "z_back": 0.0, "k_len": 0.35, "gap": 0.003},
+                 "dark": "#120b07", "light": "#4e3220", "ramp_lo": 0.3, "rough": 0.55},
+        "lines": {"brow": "#1c120d", "eyeline": "#24120e", "lash": "#1e100c"},
+        "iris": {"hue": 0.0, "sat": 0.15, "val": 0.85, "tint": "#7a5a42", "highlight": 0.55},
+        # 引きしまった狩人の体: 肩と腕に筋肉、腰は細い
+        "body": {"shoulder": 0.02, "hips": -0.04, "waist": -0.08, "chest": 0.08,
+                 "limbs": {"UpperArm": 0.13, "LowerArm": 0.10, "UpperLeg": 0.03, "LowerLeg": 0.04}},
+        "scale": 0.97,
+        # 頬のこけた年長の顔、太くまっすぐな眉
+        "face": {"round": -0.06, "brow_thick": 1.45},
+        # 目を細めた鋭いまなざし
+        "expr": {"Fcl_EYE_Close": 0.22, "Fcl_BRW_Angry": 0.35, "Fcl_MTH_Close": 0.3},
+        "outfit": SHORTS,
+    },
+    "tahi": {
+        "name": "tahi",
+        "label": "タヒ (男・1日目 18歳・54.4kg)",
+        "body_src": HS_M,
+        "face_src": FUMI,   # 若い顔 (桜田 フミリヤ)
+        # 日焼け。ザガに 4 回けが: 左の前腕・右の上腕・左の太もも・右のすねに古い傷
+        "skin": {"tan": "#a06a4a", "sss": 0.15, "rough": 0.5, "fill_dark": 0.6,
+                 "blush": "#b85848", "blush_alpha": 0.12,
+                 "scars": [
+                     {"bone": "J_Bip_L_LowerArm", "s": (0.3, 0.55), "slant": (0, 0.02, 0),
+                      "off": (0, 0, 0.06), "color": "#c99a84", "alpha": 0.75, "width": 2.2},
+                     {"bone": "J_Bip_R_UpperArm", "s": (0.4, 0.62), "slant": (0, -0.025, 0),
+                      "off": (0, 0, 0.065), "color": "#c99a84", "alpha": 0.7, "width": 2.4},
+                     {"bone": "J_Bip_L_UpperLeg", "s": (0.35, 0.6), "slant": (0.03, 0, 0),
+                      "off": (0, 0.1, 0), "color": "#c99a84", "alpha": 0.7, "width": 2.6},
+                     {"bone": "J_Bip_R_LowerLeg", "s": (0.25, 0.42), "slant": (-0.02, 0, 0),
+                      "off": (0, 0.08, 0), "color": "#c99a84", "alpha": 0.65, "width": 2.2}]},
+        # 髪: 素体の乱れた短い髪 (はねた毛つき) をそのまま、赤茶に
+        "hair": {"parts": [{"src": HS_M, "part": "Hair001"}],
+                 "style": "keep",
+                 "dark": "#3a1206", "light": "#b8501f", "ramp_lo": 0.25, "rough": 0.5},
+        "lines": {"brow": "#3a1a10", "eyeline": "#2c1612", "lash": "#24120f"},
+        # 灰色の瞳
+        "iris": {"hue": 0.0, "sat": 0.0, "val": 1.0, "tint": "#a9b0b8", "highlight": 0.8},
+        # 細身で手足が長い
+        "body": {"shoulder": 0.0, "hips": -0.02, "waist": -0.05, "chest": 0.0,
+                 "limbs": {"UpperArm": -0.04, "LowerArm": -0.04, "UpperLeg": -0.05, "LowerLeg": -0.03}},
+        "scale": 0.96, "legs": 1.05, "arms": 1.04,
+        "face": {"round": -0.02},
+        # よく笑う顔、上がった眉
+        "expr": {"Fcl_MTH_Fun": 0.65, "Fcl_MTH_Joy": 0.12, "Fcl_EYE_Joy": 0.28, "Fcl_BRW_Surprised": 0.55},
+        "outfit": SHORTS,
+    },
+    "wiro": {
+        "name": "wiro",
+        "label": "ウィロ (女・1日目 21歳・54.3kg)",
+        "body_src": HS_F,
+        "face_src": HS_F,   # やわらかい目の顔 (HairSample_Female)
+        # 日焼けは浅め (家の近くの仕事)。両手に煤
+        "skin": {"tan": "#b58466", "sss": 0.15, "rough": 0.5,
+                 "blush": "#c86a5a", "blush_alpha": 0.26,
+                 "patches": [
+                     {"bone": "J_Bip_L_Hand", "s": (0.1, 1.7), "spread": 0.018, "n": 160,
+                      "color": "#2e2622", "alpha": 0.5, "radius": 5.0},
+                     {"bone": "J_Bip_R_Hand", "s": (0.1, 1.7), "spread": 0.018, "n": 160,
+                      "color": "#2e2622", "alpha": 0.5, "radius": 5.0}]},
+        # 髪: Victoria Rubin の長めの髪 (リボンと横の小さな房を消す) を赤茶にして、うなじで結んで三つ編みに
+        "hair": {"parts": [{"src": VICT, "part": "Hair001", "drop": ["HAIR_03"], "drop_parts": [{"x_lt": -0.11}, {"x_lt": -0.09, "z_gt": 0.085}]},
+                           {"src": VICT, "part": "HairBack"}],
+                 "style": "braid",
+                 "dark": "#260b04", "light": "#622a13", "ramp_lo": 0.6, "rough": 0.5,
+                 "tie_z": 1.31, "gather_from": 1.385, "tail_width": 0.024,
+                 "front_from": 1.37, "front_keep": 0.9, "tie_color": "#6a4a30",
+                 "braid": {"len": 0.34, "width": 0.032, "strand_r": 0.0085, "period": 0.07,
+                           "taper": 0.35, "tuft": 0.045}},
+        "lines": {"brow": "#3a1a10", "eyeline": "#2c1612", "lash": "#24120f"},
+        "iris": {"hue": 0.0, "sat": 0.35, "val": 0.95, "tint": "#8c6c5c", "highlight": 0.8},
+        # ふつう。やわらかい体つき
+        "body": {"shoulder": 0.0, "hips": 0.04, "waist": 0.05,
+                 "limbs": {"UpperArm": 0.05, "LowerArm": 0.03, "UpperLeg": 0.05, "LowerLeg": 0.03}},
+        "face": {"round": 0.03},
+        # おだやかな垂れ目、ゆるい眉、やわらかい笑み
+        "expr": {"Fcl_MTH_Fun": 0.35, "Fcl_EYE_Sorrow": 0.28, "Fcl_EYE_Joy": 0.12, "Fcl_BRW_Sorrow": 0.3},
+        "outfit": {"color": "#161514", "top": (1.115, 1.235), "shorts": (0.805, 0.975)},
+    },
+    "isa": {
+        "name": "isa",
+        "label": "イサ (男・1日目 20歳・47.2kg)",
+        "body_src": HS_M,
+        "face_src": FUMI,
+        "skin": {"tan": "#9a6648", "sss": 0.15, "rough": 0.5, "fill_dark": 0.6,
+                 "blush": "#b05a4a", "blush_alpha": 0.06},
+        # 髪: 桜田 フミリヤの短い髪 (後ろの刈り上げも) を、ひとつの栗色に
+        "hair": {"parts": [{"src": FUMI, "part": "Hair001"}, {"src": FUMI, "part": "HairBack"}],
+                 "style": "keep",
+                 "dark": "#28160b", "light": "#5c341d", "ramp_lo": 0.1, "rough": 0.55,
+                 "ramp_mat": {"HairBack": (0.0, 0.5), "HAIR_02": (0.0, 0.5)}},
+        "lines": {"brow": "#2a1810", "eyeline": "#2c1612", "lash": "#24120f"},
+        "iris": {"hue": 0.0, "sat": 0.15, "val": 0.8, "tint": "#6e4c38", "highlight": 0.5},
+        # いちばん細い。頬と腕がやせている
+        "body": {"shoulder": -0.012, "hips": -0.05, "waist": -0.12, "chest": -0.05,
+                 "limbs": {"UpperArm": -0.16, "LowerArm": -0.12, "UpperLeg": -0.1, "LowerLeg": -0.08}},
+        "scale": 0.96,
+        "face": {"round": -0.08},
+        # 伏し目がち、口を結んだ無口な顔
+        "expr": {"Fcl_EYE_Close": 0.28, "Fcl_BRW_Sorrow": 0.25, "Fcl_MTH_Close": 0.5},
+        "gaze_down": 8.0,
+        "outfit": SHORTS,
+    },
 }
+
+# 並べる順 (本人の絵と同じ、左から)
+LINEUP = ["ruo", "sena", "tahi", "wiro", "isa"]
