@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋は北の丘で燃える石を掘るよ。冬のまき集めが減って、家が楽になるからね。"}],
+ "job": {"activity": "燃える石を掘る", "place": "北丘12", "with": [], "why": "家の倉の石は 3000 kg あるが、掘れば冬のまき集めが減り、村の倉も長持ちする。わたしは道具も使えるので掘るのに向いている。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ117": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やせるから。"},
+  "ネイ122": {"activity": "畑仕事", "place": "camp", "why": "12 歳なので、畑の草取りを手伝う。"}},
+ "keep": false,
+ "judge": {"M574": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと、次の夏に実る。村の蓄えはとても多い。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは山ほどあって安心。北の丘で掘る仕事が楽しみだ。"}

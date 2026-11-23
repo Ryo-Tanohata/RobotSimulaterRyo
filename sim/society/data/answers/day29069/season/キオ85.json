@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。畑に種をしっかりまいて、水の道も手入れしよう。わたしは水の道を掘るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、水の来る畑は悪い年でも実りが守られるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ネイ141": true},
+ "family": {"キオ95": {"activity": "水の道を掘る", "place": "camp", "why": "畑を守る水の道の手入れを一緒に進めるため"}, "セオ108": {"activity": "字を教える", "place": "camp", "why": "字の読める人をふやし、家の子にも読み書きを覚えさせるため"}, "セオ120": {"activity": "ヤギの世話", "place": "camp", "why": "世話をする人が少なくヤギがいなくなったので、手伝ってもらうため"}},
+ "keep": false,
+ "judge": {"M574": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1281": "村", "T1283": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "水の道の手入れはまだ大きく残っている。畑を守るために毎日少しずつ掘るのがよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "mood": "落ち着いていて、やる気がある"}

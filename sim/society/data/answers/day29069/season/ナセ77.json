@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "秋の畑をまいたら、のこで板をひいて輪と水の道の直しを進めよう。北西から来た三人も、いっしょに暮らせばいい。"}, {"to": "オセ86", "text": "今年も M6 でいっしょに板をひこう。八人そろう日が多いほど、手入れがはかどる。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": ["オセ86", "ソワ102", "セヤ103"], "why": "M6 ののこ番として板をひき続け、輪と水の道の直しを軽くするため"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ141": true},
+ "family": {
+  "オセ86": {"activity": "水の作業場で働く", "place": "M6", "why": "のこで板をひく人をそろえるため"},
+  "ソワ102": {"activity": "水の作業場で働く", "place": "M6", "why": "同じ日に人数をそろえて板を多く得るため"},
+  "セヤ103": {"activity": "水の作業場で働く", "place": "M6", "why": "板があれば直しが倍はかどるから"},
+  "ケセ108": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをして実りを増やすため"},
+  "ワユ110": {"activity": "狩り", "place": "東川28", "why": "狩りが得意なので、冬の前に肉と魚を村に入れるため"},
+  "ホミ112": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを進めるため"},
+  "ユエ113": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"},
+  "ハソ114": {"activity": "字を教える", "place": "camp", "why": "家の子たちに字を教えて、読める人を増やすため"},
+  "ラキ120": {"activity": "畑仕事", "place": "camp", "why": "14 歳なので畑の手伝いを覚えるため"}
+ },
+ "keep": false,
+ "judge": {"M574": "ゆるす"}, "feast": false, "leader": "テナ61",
+ "trade": {"T1281": "村", "T1283": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "北西の村から人が来た。北西の村はいま苦しいのかもしれない", "because": [6122654, 6122659], "confidence": 0.5}, {"op": "add", "text": "世話をする人が少ないとヤギがいなくなる。ヤギの世話をする人を残したい", "because": [6122645], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "見張りがいれば少しは出られる", "agree": true, "reason": "ザガは今も人を襲うから"}, {"id": "L987", "against": "受けすぎると草が足りなくなる", "agree": true, "reason": "ヤギが少ないので、オスを受けて数をもどしたい"}, {"id": "L729", "against": "人手が畑から減る", "agree": true, "reason": "雨の夜に外で濡れる人をなくしたい"}],
+ "feeling": "板をひく音を聞くと落ち着く。冬までに直しを進めたい。"}

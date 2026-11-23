@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋は畑がない。草の種をまいてから、おれは水の道を掘るぞ。蓄えは多い、あわてずにやろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分あり、水の道の手入れがまだ多く残っているので、体を使って手伝う"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ141": true},
+ "family": {"ルタ73": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場で板をひく"}, "アコ75": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場で板をひく"}},
+ "keep": false,
+ "judge": {"M574": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって気持ちが軽い。体を動かして水の道を掘るのが楽しみだ。"}

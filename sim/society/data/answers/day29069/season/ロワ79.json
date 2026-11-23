@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋だ。実のなる木も畑もある。わたしは今季も木の実を集めて、蓄えをふやすよ。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集の腕がいちばん高く、秋の実りを蓄えに回せるから"},
+ "sow": 500, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ141": true},
+ "family": {"ムイ87": {"activity": "採集", "place": "camp", "why": "採集が得意で、家の食べ物をふやせるから"}, "ワユ98": {"activity": "採集", "place": "camp", "why": "小さい子の分も含め、食べ物を集めたいから"}, "キオ117": {"activity": "採集", "place": "camp", "why": "採集の腕が高く、冬にそなえて蓄えを作るため"}},
+ "keep": false,
+ "judge": {"M574": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1281": false, "T1283": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、冬も心配は少ない。落ち着いて木の実を集めたい。"}

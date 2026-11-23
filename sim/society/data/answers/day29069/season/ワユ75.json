@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "秋の畑には、ひとり 1000 つかみずつまいて、冬まで草取りをしよう。来年の夏にたくさん刈れるように。"}, {"to": "みんな", "text": "北西の村から来た三人は、小さい子もいる。寒くなる前に、村で迎えてあげよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増えるから、冬まで草を取る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ネイ141": true},
+ "family": {
+  "オネ94": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番だから、続けて板をひく"},
+  "ハソ100": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りに手がいるから"},
+  "テナ102": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りに手がいるから"},
+  "シエ103": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りに手がいるから"},
+  "タユ108": {"activity": "字を教える", "place": "camp", "why": "家の 14 歳の子たちに字を教えておきたいから"},
+  "トナ109": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りに手がいるから"},
+  "リセ116": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りに手がいるから"},
+  "アコ116": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りに手がいるから"},
+  "ホタ117": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りに手がいるから"},
+  "ルタ118": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りに手がいるから"}
+ },
+ "keep": false,
+ "judge": {"M574": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1281": "村", "T1283": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは世話をする人が少ないと、いなくなってしまう。この前は 5 頭いなくなった", "because": [6122645], "confidence": 0.8}, {"op": "add", "text": "この前の季節も、小さい子が 3 人亡くなった", "because": [6122651, 6122652, 6122653], "confidence": 0.9}],
+ "proposal": {"text": "ヤギは少ないから、この 1 年はつぶさず、よその村のヤギを受けて数をもどそう。秋と冬は、手のあく大人が交代でヤギの世話をしよう。", "because": [6122645], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L983", "against": "刈った量を夜に言うのを忘れる人がいるかもしれない", "agree": true, "reason": "ヤギを増やすのも、刈った分を分けるのも大事だから"},
+  {"id": "L984", "against": "ヤギの世話をする人が足りないかもしれない", "agree": true, "reason": "ヤギが少ないので、受けて数をもどしたい"},
+  {"id": "L985", "against": "燃える石を掘る手がとられる", "agree": true, "reason": "小さい子がよく亡くなるので、薬がほしい"},
+  {"id": "L986", "against": "燃える石を掘る手がとられる", "agree": true, "reason": "小さい子がよく亡くなるので、薬がほしい"},
+  {"id": "L987", "against": "冬は寒くて住まいを建てるのがつらい", "agree": true, "reason": "ヤギを増やし、雨の夜に濡れる人をなくしたい"}
+ ],
+ "feeling": "畑とヤギを大事にして、子どもたちが冬を元気にこせるといい"}
