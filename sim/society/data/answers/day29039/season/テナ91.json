@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "木の実がたくさんついているね。みんなで分け合って、冬にそなえましょう。"}],
+ "year": {
+  "夏": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "木の実がたくさん実っていて、採集がいちばん得意だから"}, "family": {"キサ106": {"activity": "採集", "place": "camp", "why": "木の実が多い季節なので一緒に集める"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "秋も実がなるので、蓄えのために集める"}, "family": {"キサ106": {"activity": "採集", "place": "camp", "why": "秋の実りを集める"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "字を教える", "place": "camp", "with": [], "why": "冬は実がないので、読み書きできる私が子に字を教える"}, "family": {"キサ106": {"activity": "採集", "place": "camp", "why": "冬も取れる物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "春は草の芽や木の実を集めるのが得意だから"}, "family": {"キサ106": {"activity": "採集", "place": "camp", "why": "春の食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りを分け合う年",
+ "feeling": "木の実が多くて安心している。みんなと分け合って暮らしたい。"}

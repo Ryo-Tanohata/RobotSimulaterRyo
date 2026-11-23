@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "木の実がたくさんなっているね。ぼくは今季も木の実をどんどん集めるよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "木の実が実っていて、採集がいちばん得意だから"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "秋も実がなるので、冬に備えて集める"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "冬は食べ物が少ないが、芋や残りの実を探す"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "春も採集で村の蓄えを支える"}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false,
+ "year_name": "木の実の年",
+ "feeling": "おなかもいっぱいで元気。みんなのために採集をがんばりたい。"}

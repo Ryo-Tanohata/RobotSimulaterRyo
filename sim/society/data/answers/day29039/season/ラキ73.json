@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "のこの仕事は手になじんだ。わたしは今年も水の作業場で板をひく。夏の畑は大きいから、手の空く人は刈ってほしい。"}],
+ "year": {
+  "夏": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひくのが得意で、続けたいから"}, "family": {"オセ81": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番だから"}, "ロワ81": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番だから"}, "ヌオ82": {"activity": "畑仕事", "place": "camp", "why": "夏の畑を刈る人手がいるから"}, "ロワ83": {"activity": "畑仕事", "place": "camp", "why": "夏の畑を刈る人手がいるから"}, "シエ84": {"activity": "畑仕事", "place": "camp", "why": "夏の畑を刈る人手がいるから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "板を作り続けるため"}, "family": {"オセ81": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番だから"}, "ロワ81": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番だから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "冬も魚やけものはいるが、板ひきは天気に関係なく働ける"}, "family": {"オセ81": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番だから"}, "ロワ81": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番だから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "続けて板をひくため"}, "family": {"オセ81": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番だから"}, "ロワ81": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番だから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ナセ141": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": "",
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "板ひきの年",
+ "feeling": "蓄えはたっぷりあって落ち着いている。のこを引く手を止めずに働こう。"}

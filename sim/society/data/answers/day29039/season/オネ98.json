@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。おれは狩りで肉を取って、冬の足しにする。"}],
+ "year": {
+  "夏": {"job": {"activity": "狩り", "place": "南林28", "with": [], "why": "狩りが得意なので肉を取って蓄えを厚くする"}, "family": {"ナセ105": {"activity": "狩り", "place": "南林28", "why": "狩りの腕があるので肉を取る"}, "ソワ113": {"activity": "狩り", "place": "東林28", "why": "狩りの腕があるので肉を取る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "南林28", "with": [], "why": "冬に備えて肉をためる"}, "family": {"ナセ105": {"activity": "狩り", "place": "南林28", "why": "冬に備えて肉をためる"}, "ソワ113": {"activity": "狩り", "place": "東林28", "why": "冬に備えて肉をためる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "南林28", "with": [], "why": "魚やけものは冬もいるので狩りを続ける"}, "family": {"ナセ105": {"activity": "狩り", "place": "南林28", "why": "冬も獲物はいる"}, "ソワ113": {"activity": "狩り", "place": "東林28", "why": "冬も獲物はいる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "南林28", "with": [], "why": "得意な狩りを続ける"}, "family": {"ナセ105": {"activity": "狩り", "place": "南林28", "why": "得意な狩りを続ける"}, "ソワ113": {"activity": "狩り", "place": "東林28", "why": "得意な狩りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "狩りの年",
+ "mood": "体は軽い。獲物を追うのが楽しみだ。"}

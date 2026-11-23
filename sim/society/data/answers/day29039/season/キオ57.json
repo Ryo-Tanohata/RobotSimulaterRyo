@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈って、秋は一人1000つかみまこう。そのあと冬と春は、草取りとのこ場の板ひきで水の道を進めよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから、まず刈り入れをする"}, "family": {"オセ67": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいるので、みんなで刈る"}, "ホタ68": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいるので、みんなで刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひくと、水の道の手入れが半分の日数ですむ"}, "family": {"オセ67": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場をつづける"}, "ホタ68": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場をつづける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、草取りをすると夏の実りが増える"}, "family": {"オセ67": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "ホタ68": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ場で板をひいて、水の道の手入れを進める"}, "family": {"オセ67": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場をつづける"}, "ホタ68": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場をつづける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ナセ141": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M573": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を刈り、秋は一人1000つかみまき、冬は草取り、春はのこ場で板をひく。蓄えは約368日分ある。", "because": [6094835], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たっぷり蓄えの年",
+ "feeling": "蓄えがたっぷりあって、安心している。のこ場の仕事をつづけたい。"}
