@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑は実っているから、落ちる前にみんなで刈ろう。わたしも毎日刈るよ。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちてしまうから"},"family":{"キオ101":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"キサ105":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"キオ107":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"},"リセ111":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手が要るから"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"秋にまく畑は草取りで実りが増えるから"},"family":{"キオ101":{"activity":"畑仕事","place":"camp","why":"草取りで来年の実りを増やす"},"キサ105":{"activity":"水の道を掘る","place":"camp","why":"水の道の手入れがたくさん残っているから"},"キオ107":{"activity":"畑仕事","place":"camp","why":"草取りで来年の実りを増やす"},"リセ111":{"activity":"水の道を掘る","place":"camp","why":"水の道の手入れがたくさん残っているから"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":0},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"冬のあいだも草取りを続けるため"},"family":{"キオ101":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"キサ105":{"activity":"狩り","place":"南林12","why":"冬も獲れる肉を村に入れるため"},"キオ107":{"activity":"畑仕事","place":"camp","why":"草取りを続ける"},"リセ111":{"activity":"水の道を掘る","place":"camp","why":"泥がたまる前に手入れする"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏の実りの前に最後の草取りをするため"},"family":{"キオ101":{"activity":"畑仕事","place":"camp","why":"最後の草取り"},"キサ105":{"activity":"畑仕事","place":"camp","why":"最後の草取り"},"キオ107":{"activity":"畑仕事","place":"camp","why":"最後の草取り"},"リセ111":{"activity":"水の道を掘る","place":"camp","why":"水の道の手入れが残っているから"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"ホミ145":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T1328":false,"T1329":false,"T1330":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,"order":null,"take":null,
+"knowledge":[{"op":"add","text":"ヤギは草で養える数より多いので、ほかの村のヤギの申し出は受けないでおく","because":[6386809],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"実りを刈った年",
+"feeling":"蓄えはたっぷりある。夏の畑を落とさず刈って、新しく来る人も迎えたい。"}

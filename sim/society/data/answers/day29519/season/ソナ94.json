@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は刈らないと落ちてしまう。まず刈り入れをして、秋は種をまこう。ヤギは草より多いから、これ以上は増やさないでおこうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、まず刈り入れをする"}, "family": {"セヤ118": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れは人手がいるので、いっしょに刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだたくさん残っているので、少しずつ掘る"}, "family": {"セヤ118": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで来年の実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬は木の実も種もないので、まいた畑の草取りをして実りを守る"}, "family": {"セヤ118": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を増やして夏の実りを多くする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の前にもう一度草取りをして、実りをしっかり増やす"}, "family": {"セヤ118": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ホミ145": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1328": false, "T1329": false, "T1330": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏の実った畑は刈らないと落ちる。夏は刈り入れを先にして、秋に種をまき、冬と春は草取りをする。", "because": [6386797], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、離れないほうが安全だから"}],
+ "year_name": "刈り入れの豊かな年",
+ "feeling": "蓄えがたっぷりで安心。畑の仕事をこつこつ続けたい。"}

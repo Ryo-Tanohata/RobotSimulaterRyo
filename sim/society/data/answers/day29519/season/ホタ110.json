@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑はまだたくさん実っている。落ちる前に、みんなで毎日刈ろう。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"夏のうちに刈らないと畑の実りが落ちるので、毎日刈る"},"family":{"ハソ117":{"activity":"畑仕事","place":"camp","why":"畑の刈り入れを手伝う"},"ネイ122":{"activity":"畑仕事","place":"camp","why":"採集が得意で力もあるので刈り入れに回る"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"種をまいた畑の草取りと刈り入れ"},"family":{"ハソ117":{"activity":"畑仕事","place":"camp","why":"畑の草取り"},"ネイ122":{"activity":"畑仕事","place":"camp","why":"畑の草取り"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りをして来年の実りを増やす"},"family":{"ハソ117":{"activity":"畑仕事","place":"camp","why":"草取り"},"ネイ122":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りを続けて実りを守る"},"family":{"ハソ117":{"activity":"畑仕事","place":"camp","why":"草取り"},"ネイ122":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"ホミ145":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T1328":false,"T1329":false,"T1330":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,"order":null,"take":null,
+"knowledge":[{"op":"add","text":"夏の畑は刈れる分が多く、夏のうちに毎日刈らないと落ちてしまう。","because":[],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"ザガと別れの年",
+"feeling":"畑は豊かだが、小さな子や仲間が多く亡くなったのが胸にある。"}

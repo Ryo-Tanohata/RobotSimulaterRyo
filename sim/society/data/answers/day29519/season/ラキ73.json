@@ -1,0 +1,17 @@
+{"say":[{"to":"みんな","text":"夏の畑は夏のうちに刈らないと落ちる。まず刈り入れを急ごう。ヤギは草より多いので、何頭かつぶして肉にしよう。"}],
+"year":{
+"夏":{"job":{"activity":"水の作業場で働く","place":"M6","with":[],"why":"のこ番として板をひく仕事を続ける。畑の刈り入れは家の人たちにたのむ"},"family":{"オセ81":{"activity":"畑仕事","place":"camp","why":"夏のうちに実った畑を刈らないと落ちるから"},"ロワ81":{"activity":"畑仕事","place":"camp","why":"刈り入れで実りを蓄えに入れるため"},"ヌオ82":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手がほしい"},"ロワ83":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手がほしい"},"シエ84":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手がほしい"},"ヒセ88":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手がほしい"},"オネ91":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手がほしい"},"ハソ93":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手がほしい"},"タユ93":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手がほしい"},"ケセ96":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手がほしい"},"ソナ97":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手がほしい"},"ホミ97":{"activity":"畑仕事","place":"camp","why":"刈り入れの人手がほしい"}},"pick":0,"plant":0,"harvest":60,"eat_goat":15},
+"秋":{"job":{"activity":"水の作業場で働く","place":"M6","with":[],"why":"のこ番として板をひく"},"family":{"オセ81":{"activity":"畑仕事","place":"camp","why":"秋にまいた畑の草取りで実りを増やす"},"ロワ81":{"activity":"畑仕事","place":"camp","why":"草取りで実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"水の作業場で働く","place":"M6","with":[],"why":"のこ番として板をひく"},"family":{"オセ81":{"activity":"畑仕事","place":"camp","why":"草取りで夏の実りを増やす"},"ロワ81":{"activity":"畑仕事","place":"camp","why":"草取りで夏の実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"水の作業場で働く","place":"M6","with":[],"why":"のこ番として板をひく"},"family":{"オセ81":{"activity":"畑仕事","place":"camp","why":"草取りで夏の実りを増やす"},"ロワ81":{"activity":"畑仕事","place":"camp","why":"草取りで夏の実りを増やす"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal_store":[],
+"accept":{"ホミ145":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T1328":false,"T1329":false,"T1330":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},
+"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,"order":null,"take":null,
+"knowledge":[{"op":"add","text":"ヤギは草で養える数より多いと、やせていなくなる。つぶして肉にすれば減らせる。","because":[6386809],"confidence":0.7}],
+"proposal":null,
+"votes":[],
+"year_name":"ヤギがやせた年",
+"feeling":"蓄えはたっぷりある。のこ番の仕事を続けながら、夏の刈り入れが無事に終わってほしい。"}

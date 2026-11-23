@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑が落ちる前に、毎日みんなで刈ろう。秋にまいたら、冬と春の草取りも忘れずにね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は刈らないと落ちるので、毎日刈り入れをする"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ルタ120": {"activity": "ヤギの世話", "place": "camp", "why": "小さい子がいるので、キャンプでヤギの乳をとる"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝って慣れる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 15},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで来年の実りを増やす"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ルタ120": {"activity": "ヤギの世話", "place": "camp", "why": "子のそばでヤギの世話をする"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "冬は木の実も種もないので、狩りの腕で肉をとる"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで実りを増やす"}, "ルタ120": {"activity": "ヤギの世話", "place": "camp", "why": "子のそばでヤギの世話をする"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りを十分に増やす"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ルタ120": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギが生まれるので世話をする"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の量より多いので、夏のうちに何頭か肉にして減らすとよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、みんなで守るのがよい"}, {"id": "L3", "against": "", "agree": true, "reason": "二人以上なら助け合える"}],
+ "year_name": "刈り入れの年",
+ "feeling": "蓄えはたっぷりあるけれど、小さい子を守りたい。落ち着いて畑を手入れしよう。"}
