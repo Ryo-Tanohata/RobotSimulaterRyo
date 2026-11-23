@@ -663,7 +663,7 @@
       r = Math.min(r, ds[Math.floor(ds.length * 0.7)]);
     }
     const near = (S.people && S.people.camera) || { min: 13, add: 9 };  // 人のモデルのとき (D1P) は、集まっている人に寄る
-    const dist = Math.min(90, Math.max(near.min, r * 2.3 + near.add));
+    const dist = Math.min(near.max || 90, Math.max(near.min, r * (near.k || 2.3) + near.add));  // k・max は D1V (もっと寄る) から。ないときは前と同じ
     const dir = new THREE.Vector3(0.5, 0.62, 0.78).normalize();
     S.controls.target.lerp(c, 0.07);
     S.camera.position.lerp(S.controls.target.clone().add(dir.multiplyScalar(dist)), 0.07);
@@ -775,6 +775,22 @@
     // 動画を作るとき用: 日と再生位置 (秒) を指定して 1 コマ描く
     setAutoCamera(on) { if (S) S.autoCam = !!on; },
     // 動画用 (2026-11-22): 混んだ日に名前を見せる人 (その日のナレーションに出る人)。namesIn(文) は、文の中に出る村の人の名前
+    // 絵コンテ (storyboard.mjs、2026-11-23) 用: 今の絵のカメラと、人ごとの画面の上の場所・名前の札の四角・活動。読むだけ (絵は変えない)
+    inspect() {
+      if (!S) return null;
+      const r = S.renderer.domElement.getBoundingClientRect(), px = (v) => { const p = v.clone().project(S.camera); return [(p.x * 0.5 + 0.5) * r.width, (-p.y * 0.5 + 0.5) * r.height, p.z]; };
+      const motion = (S.people && S.people.clips && S.people.clips()) || {};
+      const people = Object.keys(S.figs).map((n) => {
+        const f = S.figs[n], L = S.labels[n], plan = S.day && S.day.plan[n];
+        const head = L && L.pos ? px(L.pos) : px(f.position.clone().add(new THREE.Vector3(0, 1.7 * K, 0)));
+        const foot = px(f.position), el = L && L.el, lr = el && !el.hidden ? el.getBoundingClientRect() : null;
+        return { name: n, shown: !!(plan && plan.alive) && (f.visible || !!motion[n]), activity: plan ? plan.activity : null, motion: motion[n] || null,
+          head, foot, label: lr ? [lr.left, lr.top, lr.right, lr.bottom] : null, bubble: !!(L && L.bubble) };
+      });
+      const cam = S.camera.position, tg = S.controls.target;
+      return { w: r.width, h: r.height, camera: { pos: cam.toArray(), target: tg.toArray(), dist: cam.distanceTo(tg) / K }, people,
+        featured: [...((S.featured && S.featured[S.dayNum]) || [])] };
+    },
     setFeatured(day, names) { if (S) S.featured[day] = new Set(names); },
     namesIn(text) {
       if (!S) return [];

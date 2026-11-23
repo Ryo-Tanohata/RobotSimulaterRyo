@@ -12,16 +12,18 @@ import puppeteer from "puppeteer-core";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const APP = path.join(HERE, "..", "app"), DATA = process.env.DATA_DIR || path.join(HERE, "..", "data");  // DATA_DIR: 写しのデータで試し撮りするとき
 const [narrPath, voiceDir, outName, fromArg, toArg] = process.argv.slice(2);
-const FPS = 25, W = 1280, H = 720;
+// FPS=コマ数/秒 (2026-11-23、D1V から): クラウドの CPU で撮るときに、コマを減らす (render_all.sh があとでコマを重ねて 24 コマ/秒にする)。ないときは前と同じ 25
+const FPS = Number(process.env.FPS) || 25, W = 1280, H = 720;
 const CHROME = process.env.CHROME || "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const lines = JSON.parse(fs.readFileSync(narrPath, "utf8"));
 const durs = JSON.parse(fs.readFileSync(path.join(voiceDir, "durations.json"), "utf8"));
 // 日付の注釈 (2026-10-09 本人の希望): 日付は「10年31日目」(年は過ぎた年の数。最初の年は 0年) と表すが、この世界の 1 年は現実より短い。最初の数秒と最後のクレジットに出す
 const YEAR_NOTE = "※ この世界の 1 年は 120 日 (夏・秋・冬・春が 30 日ずつ) で、現実の 1 年とは違います。「10年31日目」は、10 年たった年の 31 日目 (最初の年は 0年)";
 // PEOPLE=フォルダ (2026-11-23、D1P から): 棒の人の代わりに、そのフォルダの人のモデル (<名前>.glb と .json) を動かす (app/replay3d_people.js)
+// PEOPLE_CREDIT (D1V から): クレジットの「人のモデル」の行 (ないときは D1P と同じ「VRoid Studio で作成」)
 const PEOPLE = process.env.PEOPLE || "";
 const CREDIT = "ナレーション: VOICEVOX:ずんだもん<br>描画: three.js (MIT License)<br>効果音・BGM: プログラムで自作"
-  + (PEOPLE ? "<br>人のモデル: VRoid Studio で作成<br>動き: CMU Graphics Lab Motion Capture Database (mocap.cs.cmu.edu)" : "")
+  + (PEOPLE ? `<br>人のモデル: ${process.env.PEOPLE_CREDIT || "VRoid Studio で作成"}<br>動き: CMU Graphics Lab Motion Capture Database (mocap.cs.cmu.edu)` : "")
   + `<br><span style="font-size:20px">${YEAR_NOTE}</span>`;
 
 // SLIM=1 (2026-11-22、1 日目の撮り直し D1 から): 撮る日 (DAYS) に要る分だけの小さな app_data.json を、メモリの中で作って配る。
@@ -120,10 +122,15 @@ await page.evaluate(() => {
 if (PEOPLE) {  // 人のモデル: three の glb を読む道具と、モデルを動かす replay3d_people.js を足して、モデルを読む
   await page.addScriptTag({ url: "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" });
   await page.addScriptTag({ url: `http://localhost:${port}/replay3d_people.js` });
+  // PEOPLE_CAM={"min":3.5,...} (D1V から): 人に寄るカメラの近さ (replay3d.js の autoCamera が読む。min・add・k・max)。ないときは replay3d_people.js のまま
+  if (process.env.PEOPLE_CAM) await page.evaluate((c) => Object.assign(Replay3DPeople.camera, c), JSON.parse(process.env.PEOPLE_CAM));
   const got = await page.evaluate(async () => { const n = await Replay3DPeople.load("people/"); Replay3D.setPeople(Replay3DPeople); return n; });
   console.log(`PEOPLE: ${got.join("・")} (${PEOPLE})`);
 }
 await new Promise((r) => setTimeout(r, 800));
+// NO_RAF=1 (D1V から): アプリの毎フレームの描画 (requestAnimationFrame) を止める。撮るコマは seek が描くので、絵は同じ。
+// CPU で描く (swiftshader) ときは、1 コマに描画が 2 回になって倍の時間がかかるため
+if (process.env.NO_RAF) await page.evaluate(() => { window.requestAnimationFrame = () => 0; });
 
 const from = Number(fromArg || 1), to = Number(toArg || Math.max(...lines.map((l) => l.day)));
 // DAYS=21,28,29 のように、飛び飛びの日をつなぐこともできる
@@ -163,15 +170,8 @@ fs.writeFileSync(`${outName}.timeline.json`, JSON.stringify({ fps: FPS, duration
 console.log(`長さ ${total.toFixed(1)} 秒、${Math.round(total * FPS)} コマ`);
 
 // FROM_SEC・TO_SEC・PART=出力ファイル: その区間だけ撮る (途中で止まっても、撮り終えた区間を残してつなげるため。2026-10-07)
-const OUT = process.env.PART || `${outName}_silent.mp4`;
-const ff = spawn("ffmpeg", ["-loglevel", "error", "-y", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-",
-  "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "22", "-preset", "medium", "-movflags", "+faststart", OUT], { stdio: ["pipe", "inherit", "inherit"] });
-const t0 = Date.now();
-const N = Math.round((process.env.LIMIT ? Math.min(total, Number(process.env.LIMIT)) : total) * FPS);  // LIMIT=秒 で試し撮り
-const F0 = Math.round(Number(process.env.FROM_SEC || 0) * FPS), F1 = process.env.TO_SEC ? Math.min(N, Math.round(Number(process.env.TO_SEC) * FPS)) : N;
-if (process.env.PLAN_ONLY) { ff.stdin.end(); await browser.close(); server.close(); process.exit(0); }
-for (let f = F0; f < F1; f++) {
-  const t = f / FPS;
+// 動画の t 秒の絵を出す (3D・字幕・日付の大きな字・クレジット・注釈)。撮るときと絵コンテ (STORYBOARD) で同じもの
+async function showAt(t) {
   const P = plan.filter((p) => p.start <= t).pop();
   const v = t - P.start;
   const cap = narration.find((n) => t >= n.start && t < n.start + n.duration + 0.3);
@@ -186,6 +186,48 @@ for (let f = F0; f < F1; f++) {
     const cr = st.querySelector(".v-credit"); cr.hidden = !credit; cr.innerHTML = CREDIT;
     const no = st.querySelector(".v-note"); no.hidden = !note; no.textContent = YEAR_NOTE;
   }, P.day, v, cap ? cap.text : "", title, credit, CREDIT, note, YEAR_NOTE);
+  return P;
+}
+
+// STORYBOARD=出力の名前 (2026-11-23、絵コンテ。storyboard.mjs から): ナレーションの 1 文ごとに、文のまん中の 1 枚を撮り、
+// カメラ・人の画面の上の場所・名前の札・字幕などの四角といっしょに <名前>.json に書く (画像は base64 の jpg)。動画は作らない。
+// カメラは少しずつ寄る動きなので、撮る前に PREROLL 秒 (なければ 2 秒) を、撮らずに進めておく
+if (process.env.STORYBOARD) {
+  const pre = Number(process.env.PREROLL || 2), cuts = [];
+  let last = -1;
+  for (const [k, n] of narration.entries()) {
+    const tm = n.start + n.duration / 2;
+    for (let t = Math.max(last + 1 / FPS, tm - pre); t < tm; t += 1 / FPS) await showAt(t);
+    const P = await showAt(tm); last = tm;
+    const jpg = await page.screenshot({ type: "jpeg", quality: 80 });
+    const info = await page.evaluate(() => {
+      const st = document.querySelector(".r3-stage"), box = (e) => { if (!e || e.hidden) return null; const r = e.getBoundingClientRect(); return r.width ? [r.left, r.top, r.right, r.bottom] : null; };
+      return { ...Replay3D.inspect(), clock: st.querySelector(".r3-clock").textContent,
+        boxes: { caption: box(st.querySelector(".v-cap")), clock: box(st.querySelector(".r3-clock")), note: box(st.querySelector(".v-note")), title: box(st.querySelector(".v-title")),
+          toasts: [...st.querySelectorAll(".r3-toast > *")].map(box).filter(Boolean) } };
+    });
+    cuts.push({ cut: k + 1, id: n.id, start: +n.start.toFixed(2), end: +(n.start + n.duration).toFixed(2), at: +tm.toFixed(2), day: P.day, text: n.text, ...info, jpg: jpg.toString("base64") });
+    console.log(`絵コンテ ${k + 1} / ${narration.length} (${tm.toFixed(1)} 秒)`);
+  }
+  fs.writeFileSync(`${process.env.STORYBOARD}.json`, JSON.stringify({ name: path.basename(outName), duration: total, fps: FPS, people: !!PEOPLE, cuts }));
+  await browser.close(); server.close(); process.exit(0);
+}
+
+const OUT = process.env.PART || `${outName}_silent.mp4`;
+const ff = spawn("ffmpeg", ["-loglevel", "error", "-y", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-",
+  "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "22", "-preset", "medium", "-movflags", "+faststart", OUT], { stdio: ["pipe", "inherit", "inherit"] });
+const t0 = Date.now();
+const N = Math.round((process.env.LIMIT ? Math.min(total, Number(process.env.LIMIT)) : total) * FPS);  // LIMIT=秒 で試し撮り
+const F0 = Math.round(Number(process.env.FROM_SEC || 0) * FPS), F1 = process.env.TO_SEC ? Math.min(N, Math.round(Number(process.env.TO_SEC) * FPS)) : N;
+if (process.env.PLAN_ONLY) { ff.stdin.end(); await browser.close(); server.close(); process.exit(0); }
+// PREROLL=秒 (D1V から): 区間の始まりの前を、撮らずに進めておく (カメラが少しずつ寄る動きを、前の区間の終わりとそろえるため)
+for (let f = Math.max(0, F0 - Math.round(Number(process.env.PREROLL || 0) * FPS)); f < F0; f++) {
+  const t = f / FPS, P = plan.filter((p) => p.start <= t).pop();
+  await page.evaluate((d, v) => Replay3D.seek(d, v), P.day, t - P.start);
+}
+for (let f = F0; f < F1; f++) {
+  const t = f / FPS;
+  await showAt(t);
   const buf = await page.screenshot({ type: "jpeg", quality: 90 });
   if (!ff.stdin.write(buf)) await new Promise((r) => ff.stdin.once("drain", r));
   if (f % (FPS * 10) === 0) console.log(`${(t).toFixed(0)} / ${total.toFixed(0)} 秒 (${((Date.now() - t0) / 1000).toFixed(0)} 秒経過)`);
@@ -194,4 +236,4 @@ ff.stdin.end();
 await new Promise((r) => ff.on("close", r));
 await browser.close();
 server.close();
-console.log(`→ ${OUT}`);
+console.log(`→ ${OUT} (${F1 - F0} コマ、1 コマ ${((Date.now() - t0) / 1000 / Math.max(1, F1 - F0)).toFixed(2)} 秒)`);

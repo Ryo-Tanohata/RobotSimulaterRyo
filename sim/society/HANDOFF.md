@@ -1073,6 +1073,14 @@
 
 ## 3. G1・G2 の動画を作る (GPU で)
 
+**動画の決まり (2026-11-23 本人「まず動画を作る時に絵コンテを作るようにしたいです」)**: 動画は **1. 絵コンテ → 本人が見る → 2. 本番**。本番を撮るのは、本人が絵コンテを見てからにする。
+- 絵コンテ: `bash sim/society/video/render_all.sh --storyboard <名前>` (クラウドでは `GPU= PY=python3 CHROME=<chromium> LIBS=/tmp/libs3` をつける)。
+  `video/storyboard.mjs` が `make_video.mjs` を STORYBOARD モードで動かし、ナレーションの 1 文ごとに、文のまん中の 1 枚 (字幕・日付つき、1280×720) を撮る (ページの用意・SLIM・PEOPLE・カメラは本番と同じ)
+- 出力: `video/out/storyboard_<名前>.html` (1 行 1 カット: 番号・秒・村の日と時刻・ナレーション・カメラ (寄り/中くらい/引き・距離・人の高さ・映る人)・人ごとの活動と動き・絵・気になる点。絵を中に入れるので git に入れない) と
+  `video/storyboards/storyboard_<名前>.json` (絵のない版。git に入れる)
+- 気になる点は自動で調べる: 人が小さい (画面の高さの 12% 未満)・画面の外・はみ出し・話に出る人が映っていない・名前の札の重なり・字幕や知らせの帯が人にかかる
+- 本人に HTML を送り、「よい」か直すところを聞く。直したら絵コンテを撮り直してから本番
+
 **撮影の速さ (2026-10-09、本人の PC の GPU RTX 5070)**: 1 本ずつなら 10 秒ぶんに約 25 秒。1 コマずつ順に撮るので CPU に余裕があり、2 本同時に撮ると全体でほぼ 2 倍の速さになる (13 本で約 1 時間 45 分の見込み)。`render_all.sh` がこれをする。前の G1 (2026-10-08 に別の PC の内蔵 GPU Intel Iris Xe で撮影) は日付が「N 日目」のままなので撮り直す。
 
 PC での注意 (2026-10-09 に分かったこと)
@@ -1364,6 +1372,21 @@ done
 - しかけ: `app/replay3d_people.js` (撮影のときだけ読む。アプリの画面では読まない)。`replay3d.js` には入り口を 2 つ足しただけ (`Replay3D.setPeople(hooks)` と、frame の終わりの `S.people.frame(P, v)`、autoCamera が `S.people.camera` を読む)。棒の人は見えなくして、場所だけ使う (名前の札とカメラ)。人の場所と動きは replay3d_people.js が決める: 夜明けは火のまわりで立つ → 出発は人の速さ (1.25 m/秒) で歩いて、着いたら採集 (かがんで拾う・調べる・身をのり出す・背のび) か探索 (用心して歩きさがす・地面をさがす・立つ) → 帰りの終わりに火のまわりに着く → 夕方は話す人が話し、ほかの人はその人を向く。分ける人は相手を向いて手渡し、もらった人は食べる → 夜は火から少しはなれて横になる。火のまわりの輪は、体の大きさに合わせて棒の人の 1.9 倍に広げた。人が集まっているときはカメラを寄せる (min 6・add 4.5)
 - `make_video.mjs`: `PEOPLE=フォルダ` のとき、`people/` をそのフォルダから配り、GLTFLoader (three r128) と replay3d_people.js を足して、モデルを読む。PEOPLE がないときは前と同じ
 - クラウドでモデルを使う方法 (本人「この人のモデルは cloud でも使いたい」): 本体のリポジトリは公開なので、モデルは入れていない。おすすめは、書き出したモデル (glb と json、5 人で約 28 MB) を非公開のアーティファクトのファイルに置き、クラウドのセッションがそこから読む方法 (本人の返事待ち。ほかの案: 非公開の GitHub リポジトリを作る・公開のリポジトリに入れる)。Blender の元ファイル (2.6 GB) は本人の PC に残し、服や動きの作り直しは本人の PC でする
+
+### D1V: 1 日目を人のモデルで、クラウドで (2026-11-23)
+
+本人「今回のモデルで1日目の動画を作って欲しいです」。D1P と同じしかけ (ナレーション・声・撮る日は D1 のもの) を、クラウドで作った VRoid の五人 (`tools/human/build_person_vroid.py`、短パンと胸の帯) と、クラウドで作り直した CMU の動き 12 個で、クラウドの CPU で撮る。
+
+- 動き: `tools/human/retarget_cmu.py` (numpy だけ。Blender は使わない。1 人 2 秒ほど、メモリ 0.3 GB)。BVH は https://github.com/una-dinosauria/cmu-mocap (B. Hahne の変換、commit 09a07f54) から 11 本だけ `git checkout` して `/dev/shm/cmu/una/data` に置く。
+  動きの番号は D1P と同じ (idle 18_08・walk 08_01・search 77_25・look 77_06・pick 69_73・probe 77_08・reach 15_07・stretch 13_10・talk 18_08・give 22_13・eat 79_12・lie 77_16)。区間 (秒) はスクリプトの `CLIPS` (`--analyze 18_08` で下見)。
+  BVH の 1 コマ目の T ポーズと VRoid の T ポーズの差から、骨ごとに世界での回り方を写す。腰の前後左右の移動は消し、足 (横になるときは腰・頭・肘も) で地面の高さをそろえる。30 コマ/秒。指は少し曲げる
+- 出力: `/dev/shm/people_glb/<ruo|sena|tahi|wiro|isa>.glb` (1 人 4.4〜5.5 MB。画像は 1024 まで) と `.json` (`{"clips": {名前: {"sec", "speed"}}}`。replay3d_people.js が読む)。
+  glb は元の形・重み・表情キーをそのまま使い、動きを足すだけ。いちばん上の節を 180° 回して +z を向かせる。材質: clearcoat・sheen・specular をはずしてふつうの材質に。Blender の中でだけ計算していた色 (髪の 2 色・虹彩の色・白目・線の色) は画像に焼きこむ (`people.py` の `VROID` を読む)。目の線などは光の影響なし (unlit) のまま
+  - 作り方: `python3 sim/society/tools/human/retarget_cmu.py --bvh /dev/shm/cmu/una/data --src /dev/shm/sena --out /dev/shm/people_glb`
+- 条件: CMU の言葉「This data is free for use in research and commercial projects worldwide.」(READMEFIRST.txt)。クレジット「動き: CMU Graphics Lab Motion Capture Database (mocap.cs.cmu.edu)」「人のモデル: VRoid の CC0 サンプル (pixiv) をもとに作成」(D1V のときだけ、`PEOPLE_CREDIT`)
+- 撮り方: `GPU= PY=python3 CHROME=/opt/pw-browsers/chromium-1243/chrome-linux64/chrome LIBS=/tmp/libs3 bash sim/society/video/render_all.sh D1V` → `app/society_D1V.mp4` (コミットしない)。絵コンテは `--storyboard D1V`
+- クラウドで速くするしかけ (make_video.mjs。D1V のときだけ。ほかの動画は前と同じ): `NO_RAF=1` (アプリの毎フレームの描画を止める。swiftshader では 1 コマに描画が 2 回になって、1 コマ 10 秒かかっていた → 1.6 秒)・`FPS=12` (撮ったあと、コマを重ねて 24 コマ/秒)・`PREROLL=3` (区間の前 3 秒を撮らずに進め、カメラの寄り方を前の区間とそろえる)・`PEOPLE_CAM` (五人に寄る: min 4.5・add 2.5・k 1.6・max 40。replay3d.js の autoCamera に k と max を足した。ないときは前と同じ)
+- 測った値 (CPU 4 コア、村は止めて): 1 コマ約 1.6 秒 (村の計算と同時だと 3 秒ほど)。メモリは chromium と node で約 1.5 GB (PSS)。12 コマ/秒で 198.6 秒は 2384 コマ、約 1 時間 10 分
 
 ## 4. シミュレーションを続ける
 

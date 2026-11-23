@@ -143,6 +143,7 @@
         M.people[n] = { ...L, root, head: L.g.scene.getObjectByName("J_Bip_C_Head") };
       }
     },
+    clips() { return M ? Object.fromEntries(Object.entries(M.people).filter(([, R]) => R.root.visible).map(([n, R]) => [n, R.clip])) : {}; },  // 絵コンテ用: 今の動きの名前
     frame(P, v) {  // コマごと (Replay3D の frame の終わり。名前の札とカメラの前)
       if (!M) return;
       if (!sched.has(P)) sched.set(P, Object.fromEntries(Object.keys(M.people).filter((n) => P.plan[n]).map((n) => [n, planFor(P, M.D, n)])));
@@ -152,6 +153,7 @@
         R.root.visible = !!(E && P.plan[n].alive);
         if (!R.root.visible) continue;
         let j = 0; while (j + 1 < E.length && E[j + 1].t0 <= v) j++;
+        R.clip = E[j].clip;  // 絵コンテ (clips) 用
         const cur = E[j], prev = j > 0 ? E[j - 1] : null, w = prev ? clamp((v - cur.t0) / FADE) : 1;
         for (const k in R.acts) R.acts[k].enabled = false;
         const use = (e, wt) => {
