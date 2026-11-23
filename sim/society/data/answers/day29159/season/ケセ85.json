@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋と冬は水の道の泥をみんなで少しずつ掘ろう。わたしも家の者と掘るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから、刈り入れを手伝う"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "ラニ110": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "大人について刈り入れを覚える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが足りないので、悪い年にそなえて掘る"}, "family": {"ナセ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の泥をさらう"}, "ラニ110": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の泥をさらう"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やす"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ラニ110": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのため、春も草取りを続ける"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ラニ110": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"シエ142": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1292": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [],
+ "knowledge": [{"op": "add", "text": "水の道の手入れが足りない年が続いている。秋と冬に掘る人を増やしたほうがよい。", "because": [6166258], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑の実りの年",
+ "feeling": "蓄えは多くて安心だ。水の道の泥が気がかりなので、家の者と掘りたい。"}

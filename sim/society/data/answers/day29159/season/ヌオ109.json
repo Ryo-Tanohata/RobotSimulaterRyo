@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏は畑の刈り入れをみんなでやって、秋は草取りを続けよう。おれも毎日畑に出るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実が落ちるので、刈り入れを手伝う"}, "family": {"アコ112": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るため"}}, "pick": 0, "plant": 1, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると次の実りが守られる"}, "family": {"アコ112": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "板をひいて、水の道や輪の手入れを助ける"}, "family": {"アコ112": {"activity": "水の作業場で働く", "place": "M6", "why": "板づくりを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "育っている畑の草取りを続ける"}, "family": {"アコ112": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"シエ142": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1292": "受ける"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は、夏のうちに刈らないと落ちてしまう。", "because": [6166258], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑がよく実った年",
+ "feeling": "蓄えが多くて安心だ。今年も畑でしっかり働きたい。"}

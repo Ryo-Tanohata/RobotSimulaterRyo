@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"畑はたっぷり実っている。おれは林で獲物を追って、冬に向けて肉をためるぞ。"}],
+"year":{
+"夏":{"job":{"activity":"狩り","place":"南林28","with":[],"why":"狩りが得意で、肉は冬の足しになる"},"family":{"ナセ105":{"activity":"狩り","place":"東林28","why":"狩りの腕が高いので肉を取る"},"ソワ113":{"activity":"狩り","place":"北林28","why":"狩りの腕が高いので肉を取る"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"秋":{"job":{"activity":"狩り","place":"南林28","with":[],"why":"秋のうちに肉をためて冬にそなえる"},"family":{"ナセ105":{"activity":"狩り","place":"東林28","why":"肉をためて冬にそなえる"},"ソワ113":{"activity":"狩り","place":"北林28","why":"肉をためて冬にそなえる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":0},
+"冬":{"job":{"activity":"狩り","place":"南林12","with":[],"why":"冬も獣はいるので狩りを続ける"},"family":{"ナセ105":{"activity":"狩り","place":"東林12","why":"冬も獣は取れる"},"ソワ113":{"activity":"狩り","place":"北林12","why":"冬も獣は取れる"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"狩り","place":"南林12","with":[],"why":"得意な狩りで村の蓄えを助ける"},"family":{"ナセ105":{"activity":"狩り","place":"東林12","why":"得意な狩りを続ける"},"ソワ113":{"activity":"狩り","place":"北林12","why":"得意な狩りを続ける"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"シエ142":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T1292":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,"order":null,"take":null,
+"knowledge":[{"op":"add","text":"狩りは腕のある者が続ければ肉が取れ、冬の足しになる。","because":[6165879],"confidence":0.6}],
+"proposal":null,
+"votes":[],
+"year_name":"肉をためた年",
+"feeling":"体が軽い。早く林に出て獲物を追いたい。"}
