@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "この秋も畑の草取りをする。種はまくだけまいて、実りを増やそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑が夏の実りになるので、草取りで実りを増やす"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ105": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを増やす"},
+  "キオ107": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを増やす"},
+  "リセ111": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを増やす"},
+  "ヒセ131": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを増やす"},
+  "ネイ133": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを増やす"}},
+ "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分。のんびり畑で働くのが性に合っている。"}

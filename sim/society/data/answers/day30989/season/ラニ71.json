@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。わしは今季も作業場の水ののこで板をひくよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として続けてきた仕事で、板は水の道の手入れに役立つから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケナ75": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "キサ81": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}},
+ "keep": true,
+ "judge": {"M613": "どちらの言い分も聞き、刈った分は話し合って分け直すのがよい", "M614": "刈った種は畑の持ち主に返し、働いた分のお礼を渡すのがよい", "M615": "いまは話し合えないので、次の集まりまで待つ"},
+ "feast": false, "leader": "", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多く、安心して板ひきの仕事を続けられる"}

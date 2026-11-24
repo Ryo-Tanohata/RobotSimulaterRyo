@@ -1,0 +1,29 @@
+{"say": [{"to": "みんな", "text": "秋だね。うちの家はみな蓄えの草の種を千つかみずつまいて、冬まで草取りをするよ。手のあく者は水の道の泥も掘っておく。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすれば実りが増える。年寄りの体でも畑ならできる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、来年の実りを増やすため"},
+  "ユエ112": {"activity": "畑仕事", "place": "camp", "why": "子のそばにいながら畑の草取りができるから"},
+  "ラニ116": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っている。水の来る畑は悪い年も強い"},
+  "ネイ118": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど畑がよく実る"},
+  "ネイ120": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプのそばの畑で働く"},
+  "トナ121": {"activity": "水の道を掘る", "place": "camp", "why": "家ごとに大人一人は水の道の泥を掘る決まりに合わせて"},
+  "ロワ123": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "ユエ126": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "ムイ129": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "ハソ132": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "シエ145": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを覚えて手伝う"}
+ },
+ "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋は千つかみまいて、冬まで家の大人で草取りをしよう",
+ "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑を刈ったもめごとは、量が書かれていないので、ゆるし合うほうが村がまとまる", "because": [7658509, 7658510, 7658511], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1250", "against": "少しの量でも不満が残る家があるかもしれない", "agree": true, "reason": "書いておけばもめごとが減り、少しの量はゆるし合えば仲よくやれる"},
+  {"id": "L1251", "against": "冬は寒く、外の仕事はつらい", "agree": true, "reason": "水の輪と水の道を守れば、畑が悪い年にも強くなる"}
+ ],
+ "feeling": "蓄えはたっぷりある。あとは畑をしっかり育てて、孫たちに渡したい"}

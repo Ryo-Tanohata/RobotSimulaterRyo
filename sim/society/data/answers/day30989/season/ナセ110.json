@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "秋だね。うちも一人千つかみまいて、冬まで草取りをするよ。よその畑を刈るときは、刈る前に量を字で書いておこう。書いてないと、あとで誰も確かめられないから。"}, {"to": "ラキ142", "text": "ラキ、この秋は水の道を掘ってきて。今年はまだだれも掘っていないから、次の夏の畑が心配なんだ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "千つかみまいた畑は、冬まで草取りをすれば次の夏によく実るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ142": {"activity": "水の道を掘る", "place": "camp", "why": "今年は水の道をだれも掘っておらず、畑に水が来なくなると困るから"}},
+ "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "よその家の畑を刈る前に、量と入れる倉を字で書いておこう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "この秋もよその家の畑を刈った家が不満を言ったが、量を字で書いていなかったので確かめられない", "because": [7658509, 7658510, 7658511], "confidence": 0.8}, {"op": "add", "text": "よその村の人がまた来たが、交換できる物がなく帰っていった", "because": [7658512, 7658513, 7658514, 7658515], "confidence": 0.7}],
+ "proposal": {"text": "よその家の畑を刈る前に、読める大人が量と入れる倉を字で書こう。書いていない刈り入れの不満は、ゆるし合おう。", "because": [7658509, 7658510, 7658511], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1250", "against": "少しの量をゆるすと、ずるをする家が出るかもしれない", "agree": true, "reason": "字で書けばもめごとが減り、秋に千つかみまくのも大事だから"},
+  {"id": "L1247", "against": "毎夕刈ると疲れて昼の仕事がへる", "agree": true, "reason": "刈る前に量を書けば、あとで確かめられるから"},
+  {"id": "L1246", "against": "燃える石の少ない家には難しい", "agree": true, "reason": "畑を落とさず刈りきり、子の薬も回せるから"},
+  {"id": "L1251", "against": "直す輪がなければ休む人が出る", "agree": true, "reason": "直す輪がない日は水の道を掘れば、手が無駄にならないから"},
+  {"id": "L1249", "against": "子のいない家ばかり掘ることになる", "agree": true, "reason": "小さい子が毎年たくさん亡くなるので、薬がほしいから"},
+  {"id": "L1248", "against": "住まいを建てる手と畑の手が取り合いになる", "agree": true, "reason": "雨の夜に外で濡れる人をなくしたいから"}
+ ],
+ "feeling": "畑と水の道、どちらも手をぬけない秋だ"}

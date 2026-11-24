@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は千つかみまいて、冬は交代で草取りをしよう。わしも畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、草取りをしないと実りが減る。年をとったが、畑の手伝いなら体にやさしい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケナ108": {"activity": "畑仕事", "place": "camp", "why": "来年の夏によく実るよう、畑の草取りを手伝う。"}, "ラキ125": {"activity": "帳をつける", "place": "camp", "why": "字が読み書きできるので、家の数と倉を帳に書いて村の役に立てる。"}},
+ "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは多く、秋に千つかみまけば来年もよく実る。冬は交代で草取りをするのがよい。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。畑に出て、みんなと話すのが楽しみだ。"}

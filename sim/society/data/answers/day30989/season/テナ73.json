@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋じゃな。わしらはまた M26 ののこ場で板をひくぞ。冬の前に、水の道の手入れも少しずつ進めよう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": ["ロワ77", "ケナ81", "セオ81", "ナセ82"], "why": "のこ番の務めをつづけ、板をひいて水の道の手入れをはかどらせるため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ロワ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の務めをつづける"},
+  "ケナ81": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の務めをつづける"},
+  "セオ81": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の務めをつづける"},
+  "ナセ82": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の務めをつづける"}
+ },
+ "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を千つかみまくと、次の夏に実る。冬と春の草取りも大事だ。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは危ないので、キャンプから離れないのがよい"},
+           {"id": "L16", "against": "", "agree": true, "reason": "疲れたら休むのは、長く働くために大切だ"}],
+ "feeling": "年をとっても、のこをひく仕事は楽しい。みんなと働けてありがたい。"}

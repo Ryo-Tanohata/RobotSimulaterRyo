@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "水の道がこの一年まったく手入れされていない。泥でうまる前に、秋は手のあく大人で掘りに出よう。倉の板を使えば半分の手ですむぞ。"}, {"to": "オセ139", "text": "この秋は二人で水の道を掘ろう。知らせ板には水の道のことを書いておくれ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の輪の直しはもう残っていない。水の道は手入れがまったく足りず、悪い年に畑を守るのに要るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 1,
+ "family": {"オセ139": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが一年分たまっているので、二人で掘れば早く進む"}},
+ "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋は手のあく大人で水の道を掘ろう。倉の板を使えば手は半分ですむ",
+ "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "水の輪の直しはこの年もう残っていない。水の道は手入れがほとんどされず、泥でうまりかけている", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "ヤギはまた草の約 140 頭をこえて、やせていなくなった。少しつぶして肉にしたほうがよい", "because": [7658492], "confidence": 0.8}],
+ "proposal": {"text": "秋と冬は、家ごとに手のあく大人一人が、村の倉の板を使って水の道を掘ろう。泥でうまる前に手入れをすませよう。", "because": [], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1251", "against": "冬に手のあく大人が少ないかもしれない", "agree": true, "reason": "板を使えば直しも掘るのも早く進むから"},
+  {"id": "L1250", "against": "千つかみまくと草取りの手がたりないかもしれない", "agree": true, "reason": "量を書いて少しはゆるし合えば、もめごとが減るから"},
+  {"id": "L1247", "against": "書く手間がかかる", "agree": true, "reason": "刈る前に量と倉を書けば、刈りのもめごとが減るから"},
+  {"id": "L1244", "against": "秋の畑の手がへる", "agree": true, "reason": "小さい子の薬は命を守るから"},
+  {"id": "L1240", "against": "とくにない", "agree": true, "reason": "薬は小さい子のいる家から回すのが筋だから"},
+  {"id": "L1239", "against": "とくにない", "agree": true, "reason": "水の道の手入れが足りていないから"}
+ ],
+ "feeling": "畑はよく実っているが、水の道が気がかりだ。手を動かして守りたい。"}

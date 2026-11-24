@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。蓄えはたっぷりある。千つかみまいて、冬まで草取りを欠かさずやろう。小さな量のもめごとは、ゆるし合おうじゃないか。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。冬まで毎日草取りをして、来年の夏の刈り入れにそなえる。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は千つかみまいて、冬まで草取りを。小さな量はゆるし合おう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えが多くても、秋は千つかみまき、冬まで草取りを続けると、来年の夏の実りが増える。", "because": [7656067], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1231", "against": "とくになし", "agree": true, "reason": "秋にまいて草取りをするのは実りのためによい"},
+  {"id": "L1233", "against": "とくになし", "agree": true, "reason": "まくことと住まいを建てることは、どちらも暮らしを守る"},
+  {"id": "L1237", "against": "とくになし", "agree": true, "reason": "少しの量のもめごとはゆるし合うのがよい"},
+  {"id": "L1250", "against": "とくになし", "agree": true, "reason": "刈る前に量を書いておけばもめごとが減る"}
+ ],
+ "feeling": "体はまだ動く。畑の草取りをして、来年の夏の実りを楽しみに待つよ。"}

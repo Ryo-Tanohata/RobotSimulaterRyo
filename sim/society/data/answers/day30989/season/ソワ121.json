@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えはたっぷりあるから、うちの家族みんなで種をまいて、そのあと畑の草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると来年の夏の実りが増えると覚えているから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ユエ121": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りを増やすため"},
+  "ワユ126": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りを増やすため"},
+  "セオ128": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りを増やすため"},
+  "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "小さい子の世話をしながらキャンプの畑で働けるから"},
+  "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "みんなと一緒に畑の草取りをするため"}
+ },
+ "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで安心している。家族みんなで畑を育てるのが楽しみだ。"}

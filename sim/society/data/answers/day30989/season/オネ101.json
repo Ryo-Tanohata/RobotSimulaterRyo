@@ -1,0 +1,28 @@
+{"say": [{"to": "みんな", "text": "秋だ。うちの家はみな千つかみまいて、冬まで草取りをする。水の道も少しずつ掘っておくよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "千つかみまいた畑の草取りをすれば、夏に七千つかみほど刈れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 1,
+ "family": {
+  "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りの手を増やして、夏の実りを多くしたいから"},
+  "ネイ127": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っていて、悪い年にも畑を守れるから"},
+  "ラキ136": {"activity": "畑仕事", "place": "camp", "why": "小さいセオ156がいるので、キャンプのそばの畑で働くのがいいから"},
+  "ラキ141": {"activity": "水の道を掘る", "place": "camp", "why": "若くて体が動くので、ネイ127と一緒に水の道を掘ってほしいから"}
+ },
+ "keep": true,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "ヤギが草で養える数をこえていると、季節ごとに一頭ずつやせていなくなる。少しつぶして肉にすれば数をそろえられる", "because": [7658492], "confidence": 0.8},
+  {"op": "add", "text": "小さい子はまだ病でよく亡くなる。子の薬を早くもらうことが大事", "because": [7658501, 7658502, 7658503], "confidence": 0.7}
+ ],
+ "proposal": {"text": "秋は大人みな千つかみまいて冬まで草取りをし、手のあく大人は水の道を掘って、悪い年にも畑を守ろう。", "because": [], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1242", "against": "畑と薬と水の道を一度にやると手が足りないかもしれない", "agree": true, "reason": "刈り入れを先にして、そのあと水の道を守るのは大事だから"},
+  {"id": "L1235", "against": "世話の番を決めるのが手間になる", "agree": true, "reason": "ヤギがいなくならないように、世話をする人を決めたいから"},
+  {"id": "L1240", "against": "薬の数が少なければ回らない家が出る", "agree": true, "reason": "小さい子がよく亡くなっているので、小さい子の家に先に回したいから"},
+  {"id": "L1250", "against": "字で書く手間がかかる", "agree": true, "reason": "少しの量はゆるし合えば、もめごとが減るから"},
+  {"id": "L1251", "against": "直す輪がない年は休む人が出る", "agree": true, "reason": "直す輪がない日は水の道を掘れば、手がむだにならないから"},
+  {"id": "L1238", "against": "よその村とのつきあいが減るかもしれない", "agree": true, "reason": "ヤギが草で養える数をこえているので、これ以上受けても減るだけだから"}
+ ],
+ "feeling": "蓄えはたっぷりだが、小さい子が亡くなるのはつらい。畑と水の道で村を守りたい。"}

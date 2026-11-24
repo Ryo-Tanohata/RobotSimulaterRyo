@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "冬がくる前に、木の実をたくさん集めておくよ。みんなも冬じたくをしてね。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "採集がいちばん得意で、冬の前に食べ物を増やしたいから"},
+ "sow": 300, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ132": {"activity": "採集", "place": "西草原12", "why": "採集の腕が高く、蓄えを増やせるから"},
+  "ヒセ137": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っているから"},
+  "ラニ140": {"activity": "水の道を掘る", "place": "camp", "why": "村の役に立つ仕事を手伝いたいから"}},
+ "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬の前で少しわくわくしている。たくさん採れるといいな。"}

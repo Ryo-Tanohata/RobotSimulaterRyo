@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "欠けた鎌や石の道具があれば、わたしのところへ持ってきて。この秋は道具を直すのに手を使う。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕はだれにも負けない。冬の前に鎌や石の道具をそろえておけば、次の夏の刈り入れが早くなる"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "つぐなう", "M615": "つぐなう"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑を刈った草の種が、その家の倉に入ってしまうともめごとになる。刈る前に量を字で書いておくとよい", "because": [7658509, 7658510, 7658511], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1247", "against": "書く手間がかかる", "agree": true, "reason": "量を字で書いておけば、あとでもめずにすむ"},
+  {"id": "L1250", "against": "少しの量でも損は損だ", "agree": true, "reason": "千つかみまいて草取りをすれば次の夏も蓄えが増える"},
+  {"id": "L1251", "against": "直す輪がもうない", "agree": true, "reason": "水の道の手入れがまだたくさん残っている"},
+  {"id": "L1237", "against": "ゆるしてばかりでは刈った家が損をする", "agree": false, "reason": "多い量は、きちんとつぐなってほしい"}
+ ],
+ "feeling": "人と話すのは苦手だけど、道具を作っているときは落ち着く。"}

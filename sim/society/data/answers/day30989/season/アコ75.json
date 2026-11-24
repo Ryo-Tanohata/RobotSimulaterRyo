@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋じゃ。蓄えは十分にあるが、水の道の手入れがまだ残っておる。冬の前に、手のあく者は少しずつ掘ろうではないか。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大量に残っているので、年寄りでも手伝えるこの仕事で村の役に立ちたい"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ソワ80": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひき、手入れを早めるため"}, "ホミ87": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場を守り、板を増やすため"}}, "keep": true,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を畑にまくと次の夏に実る。冬の前に水の道の手入れを進めておくとよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、キャンプから離れないのは大事な決まりだから"}],
+ "feeling": "蓄えがたっぷりあって安心じゃ。年は取ったが、まだまだ体は動く。"}

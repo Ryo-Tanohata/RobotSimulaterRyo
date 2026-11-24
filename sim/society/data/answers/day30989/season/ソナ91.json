@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋も千つかみずつ畑にまいて、冬と春に草取りをしよう。ヤギが少し多いから、2頭だけ肉にするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、草取りをすると次の夏の実りが増えるから、毎日畑で働く。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "family": {
+  "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため。"},
+  "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため。"},
+  "ルタ120": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため。"},
+  "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため。"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を千つかみまき、冬と春に畑仕事で草取りをすると、次の夏の実りが増える。今年も蓄えはたっぷりある。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは安心。いつもどおり畑をまいて、静かに働くよ。"}

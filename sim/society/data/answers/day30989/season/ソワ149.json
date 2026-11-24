@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋だから、うちは三人とも千つかみずつ種をまいて、冬までキャンプの畑の草取りをするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増える。子の世話をしながらキャンプでできる。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ネイ149": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が実りを増やすので、いっしょに畑で働く。"}, "ユエ149": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、キャンプの子に字を教えて村の役に立てる。"}}, "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を千つかみまくと、冬まで草取りをすれば夏に実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりで安心。家族みんなで畑を育てたい。"}

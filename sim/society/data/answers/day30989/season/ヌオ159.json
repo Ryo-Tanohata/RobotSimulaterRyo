@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "うちはまだ住まいがない。この秋はキオと二人で壁と屋根を組むよ。冬の雨の前に間に合わせたい。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["キオ159"], "why": "家の住まいがまだないので、冬の雨の夜に濡れないよう今のうちに建てる"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ159": {"activity": "住まいを建てる", "place": "camp", "why": "二人で働けば冬の前に住まいができる"}}, "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑を刈った草の種は、その家の倉に入る。少しの量のもめごとはゆるして収まることが多い", "because": [7604099, 7658509], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1248", "against": "夏の刈り入れまで決めると、ほかの仕事の手が足りなくなるかもしれない", "agree": true, "reason": "住まいのない家が冬に建てるのは、うちにも大事なことだから"},
+  {"id": "L1250", "against": "千つかみは多すぎて草取りが追いつかないかもしれない", "agree": true, "reason": "量を書いておけばもめごとが減るし、少しの量ならゆるせばいい"},
+  {"id": "L1237", "against": "ゆるしてばかりだと、多く取る家が出るかもしれない", "agree": true, "reason": "少しの量で集まりの時間を使うのはもったいない"},
+  {"id": "L1251", "against": "直す輪がいまはないので、決めなくてもよいかもしれない", "agree": true, "reason": "板を使えば早く直せるし、手のあく日は水の道を掘ればむだがない"}
+ ],
+ "feeling": "冬までに自分たちの屋根の下で眠りたい。"}

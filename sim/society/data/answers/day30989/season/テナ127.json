@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の種まきが済んだら、冬のあいだ畑の草取りを忘れずにやろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、草取りをすると次の夏の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ128": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど実りが増えるので"}, "タユ137": {"activity": "畑仕事", "place": "camp", "why": "子のムイのそばで、キャンプでできる畑仕事をするため"}},
+ "keep": false,
+ "judge": {"M613": "ゆるす", "M614": "ゆるす", "M615": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。今年も畑をていねいに世話したい。"}
