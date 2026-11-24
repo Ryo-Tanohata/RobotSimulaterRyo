@@ -93,8 +93,11 @@ def _head(xs, cut):
 
 
 def last_year(state):
-    """しまってよい最後の年 (今の年と、その前の KEEP_YEARS 年は残す)"""
-    return state["day"] // YEAR - KEEP_YEARS - 1
+    """しまってよい最後の年 (今の年と、その前の KEEP_YEARS 年は残す)。
+    2026-11-24: state.json が 256年の終わりに 106 MB になり、GitHub の 100 MB をこえた (人が 975 人になり、出来事が 1 年 約 14 MB)。
+    "archive" に "keep" (印。tools/archive_records.py --keep 1 が書く) があれば、前の年はその数だけ残す。ない state (前の世界) は前のまま 2 年。
+    世界は前の 1 年より前を読まない (上の「読む人を調べた」)"""
+    return state["day"] // YEAR - (state.get("archive") or {}).get("keep", KEEP_YEARS) - 1
 
 
 def move(state, data, start=False):

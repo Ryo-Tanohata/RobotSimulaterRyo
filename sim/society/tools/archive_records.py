@@ -38,6 +38,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default=os.environ.get("SOC_DATA") or str(HERE.parent / "data"))
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--keep", type=int, default=None, help="2026-11-24: 前の年を何年残すか (1 か 2)。印として state の archive.keep に書く (書いたあとは step.py もこの数でしまう)")
     a = ap.parse_args()
     data = Path(a.data)
     t0 = time.time()
@@ -52,6 +53,10 @@ def main():
         shutil.copytree(data / archive.DIR, stage / archive.DIR)
     try:
         new = json.loads(text)
+        if a.keep is not None:
+            if a.keep not in (1, 2) or "archive" not in new:
+                sys.exit("--keep は 1 か 2 で、もうしまってある state のときだけ")
+            new["archive"]["keep"] = a.keep
         ys = archive.move(new, stage, start=True)
         if not ys:
             print(f"しまう年はない ({st['day']} 日目。今の年と前の {archive.KEEP_YEARS} 年は残す)")
