@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を毎日刈ろう。秋に千つかみまいて、冬と春は草取りをするよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "畑を刈って蓄えを守る"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "畑を刈って蓄えを守る"}, "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "畑を刈って蓄えを守る"}, "ルタ120": {"activity": "畑仕事", "place": "camp", "why": "畑を刈って蓄えを守る"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "畑を刈って蓄えを守る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話と刈り入れの支度"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "ルタ120": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "畑の世話"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで次の夏の実りが増えるから"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ルタ120": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りを続けて実りを増やす"}, "family": {"トナ111": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ルタ120": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "畑を刈り尽くした年",
+ "feeling": "蓄えはたっぷりある。いつもどおり畑を守って、子どもたちが元気に育つのを願う。"}
