@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。おれは秋のあいだ近い林で獲物を追って、冬の肉をためる。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "腕に自信があるのは狩り。近い林で続けて、冬の足しになる肉をためる"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ホミ154": true}, "family": {"ナセ105": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が確かなので、近い林で肉をためてもらう"}, "ソワ113": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が確かなので、おれと近い林で獲物を追う"}}, "keep": false,
+ "judge": {"M598": "ゆるす", "M599": "ゆるす", "M600": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えが多い秋は、腕のある者が近い林で狩りを続けて肉をためるのがよい。", "because": [7063971], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体が軽い。早く林で獲物を追いたい。"}

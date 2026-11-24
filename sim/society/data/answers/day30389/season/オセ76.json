@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。今年も板をひいて、水の道の手入れを楽にしよう。南の村や北東の村が苦しいなら、種を貸してやればいい。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続けて板をひく。板があれば水の道の手入れが半分ですむ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホミ154": true},
+ "family": {
+  "ソナ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場を続ける"},
+  "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場を続ける"},
+  "ケセ102": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っている"},
+  "ムイ112": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っている"},
+  "オネ112": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っている"},
+  "ソナ114": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"},
+  "ケセ117": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"},
+  "ソナ118": {"activity": "畑仕事", "place": "camp", "why": "子の世話をしながら畑の草取りをする"},
+  "セオ127": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"},
+  "ムイ133": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}
+ },
+ "keep": false,
+ "judge": {"M598": "ゆるす", "M599": "ゆるす", "M600": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1395": "村", "T1396": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えが多いあいだは、畑が実らず苦しい近くの村に草の種を貸してよい。秋は千つかみまき、板をひいて水の道の手入れを進める。", "because": [7064218, 7064219], "confidence": 0.6}],
+ "proposal": null,
+ "votes": []
+}

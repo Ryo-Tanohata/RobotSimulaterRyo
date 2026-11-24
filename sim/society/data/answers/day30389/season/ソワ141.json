@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるよ。今季は水の道の手入れを少しでも進めよう。困っている村には種を貸してあげたいね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っていて、蓄えに余裕があるので、道具の腕を生かして手入れを進める"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ネイ141": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道の手入れを進めるため"}, "ユエ141": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので、水の道の手入れを手伝う"}},
+ "keep": false,
+ "judge": {"M598": "ゆるす", "M599": "ゆるす", "M600": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1395": "村", "T1396": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで安心している。みんなで水の道を進めたい。"}

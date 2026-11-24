@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋じゃ。木の実がたわわだ。冬の前にたくさん集めておこう。新しく来たホミ154も仲間に入れてやろう。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集の腕が一番だから、冬にそなえて木の実を集める"},
+ "sow": 300, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホミ154": true},
+ "family": {"ケナ108": {"activity": "採集", "place": "東林12", "why": "腕のよい採集で冬の蓄えをふやす"}, "ラキ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りをふやす"}},
+ "keep": false,
+ "judge": {"M598": "ゆるす", "M599": "ゆるす", "M600": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1395": false, "T1396": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "秋の実りがうれしい。冬にそなえて、体を動かそう。"}
