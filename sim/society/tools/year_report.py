@@ -1734,6 +1734,7 @@ def svg_stack(sp, series, y):
 def compo_html(D, y, n=12):
     """年報のダッシュボードの円 3 つ (年齢・仕事・食べ物)。統計のページの円と同じ計算・同じ色"""
     ctx = _sc_ctx(D)
+    xv = _xv(D)
     rows = {yy: (SC.year_row(ctx, yy).get("compo") or {}) for yy in range(max(SC.S2_FIRST, y - n + 1), y + 1)}
     out = []
     for sp in SC.COMPO:
@@ -1752,12 +1753,20 @@ def compo_html(D, y, n=12):
         leg = '<div class="x">' + "・".join(f'<i style="background:{col[i]}"></i>{e(nm)}' for i, nm in enumerate(sp["parts"])) + "</div>"
         series = [(yy, rows[yy].get(sp["key"])) for yy in sorted(rows)]
         out.append(f'<div class="cp"><b>{e(sp["title"])} の割合</b><div class="x">{e(sp["note"])}</div>{svg_donut(sp, cur, y)}{tbl}'
-                   f'<div class="x">割合のうつりかわり (100% の帯・{series[0][0]}〜{y}年。▲ がこの年)</div>{leg}{svg_stack(sp, series, y)}</div>')
+                   f'<div class="x">割合のうつりかわり (100% の帯・{series[0][0]}〜{y}年。▲ がこの年)</div>{leg}{svg_stack(sp, series, y)}{xv.under("c_" + sp["key"])}</div>')
     if not out:
         return ""
     return ('<div class="cps">' + "".join(out) + "</div>"
             '<p class="dsub" style="margin-top:6px">円は国の統計の円グラフの形 (内わけを 12 時から時計回り、「その他」は最後)。年ごとの変化は帯 (100% の棒) を並べて見る。'
             '色は種類ごとに決まっていて、年が変わっても同じ。ほかの分野の円 (家の人数・死因・村の生産の中身) は統計のページにある。</p>')
+
+
+def _xv(D):
+    """解説の係の部品 (tools/explain_view.py)。D["explain"] がなければ空の部品 (どれも "" を返す)"""
+    if "_xv" not in D:
+        import explain_view as XV
+        D["_xv"] = XV.View(D.get("explain"))
+    return D["_xv"]
 
 
 def dash_html(D, PP, y, tokens):
@@ -1810,15 +1819,31 @@ def dash_html(D, PP, y, tokens):
          '図の点を指でさわると、その年の数が出る。'
          + ("".join(f"<br>点線は区切り: {yy}年から{e(why)}。平均寿命・合計特殊出生率・乳児死亡率の 5 年まとめは、区切りの前の年と混ぜない。" for yy, why in brk) if brk else "")
          + '</p>']
+    xv = _xv(D)  # 2026-11-24: 解説の係 (reports/explain/year<年>.json があるときだけ。なければ何も足さない)
+    H.append(xv.top3())
     H.append('<div class="kpis">' + "".join(tiles) + "</div>")
-    H.append('<div class="trends">' + "".join(f'<div class="tr"><b>{e(a)}</b><div class="x">{e(b)}</div>{c}</div>' for a, b, c in charts) + "</div>")
+    kb = xv.bubbles("k_pop", "k_gdp", "k_store", "k_nonfood", "k_lit", "k_imr", "k_famine")
+    if kb:
+        H.append(f'<div class="xbs">{kb}</div>')
+    tid = ("t_pop", "t_gdp", "t_store", "t_lit", "t_nonfood")
+    H.append('<div class="trends">' + "".join(f'<div class="tr"><b>{e(a)}</b><div class="x">{e(b)}</div>{c}{xv.under(tid[i])}</div>' for i, (a, b, c) in enumerate(charts)) + "</div>")
     H.append(compo_html(D, y))  # 2026-11-22: 構成比の円 (年齢・仕事・食べ物)
+    ph_x = xv.under("phase")
+    H.append(xv.rest())
     H.append('<details class="fdet"><summary>分野ごとの数 (12 分野・国の統計の形)</summary>' + fields_html(full, defs)
              + '<p class="dsub" style="margin-top:6px">しま模様は「まだこの村にはない」数 (0 ではない)。指でさわると、何が起きたら点くかが出る。'
              '数の決まり (式・出どころ・国の数とのちがい・出典) と長いうつりかわりは、統計のページ <a href="../app/stats.html">app/stats.html</a> にある。</p></details>')
     H.append(phase_panel(D["state"], y))
+    H.append(ph_x)
     H.append("</section>")
     return "".join(H)
+
+
+def _xcss(D):
+    if not D.get("explain"):
+        return ""
+    import explain_view as XV
+    return XV.CSS
 
 
 def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
@@ -1842,7 +1867,7 @@ def render(y, D, PP, C, ev, ev_total, T, tokens, decide):
     w = H.append
     w('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
       '<meta name="viewport" content="width=device-width,initial-scale=1">'
-      f"<title>川辺の村 {y}年の年報</title><style>{CSS}{DASH_CSS}{COMPO_CSS}</style></head><body><main>")
+      f"<title>川辺の村 {y}年の年報</title><style>{CSS}{DASH_CSS}{COMPO_CSS}{_xcss(D)}</style></head><body><main>")
     # 見出し
     w(f"<h1>川辺の村 {y}年の年報</h1>")
     w(dash_html(D, PP, y, tokens))  # 2026-11-22: いちばん上のダッシュボード
@@ -1991,6 +2016,10 @@ def main(argv=None):
     ap.add_argument("--out", required=True)
     # 2026-11-17 (G15 の反実仮想。本人の言葉「複数のシナリオをサブエージェントで一斉に回し良い結果を進める」): 回した写し (枝) のくらべと、選んだわけ。1 行 1 項目の文字のファイル。なければ前と同じ
     ap.add_argument("--branches")
+    # 2026-11-24 解説の係: reports/explain/year<年>.json (tools/explainer_workflow.js が出す) があれば、ダッシュボードに図の見かた・案内役の吹き出し・
+    # その年の大事なこと 3 つを足す。読むのは本物の村の data のときだけ (--explain でファイルを渡せば、それを使う)。なければ前と同じ
+    ap.add_argument("--explain")
+    ap.add_argument("--no-explain", action="store_true")
     a = ap.parse_args(argv)
     out = os.path.realpath(a.out)
     if out == PROTECTED or out.startswith(PROTECTED + os.sep):
@@ -1999,6 +2028,12 @@ def main(argv=None):
     # テクノロジーの節を先に作る (埋めてある中身がないときの btt.build は大きいので、年報の state を読む前に済ませて手放す)
     T = None if a.no_tech else tech_part(a.data, y)
     D = load(a.data, y)
+    if not a.no_explain:
+        if a.explain:
+            D["explain"] = json.loads(Path(a.explain).read_text(encoding="utf-8"))
+        elif os.path.realpath(str(a.data)) == PROTECTED:
+            import explain_data as XD
+            D["explain"] = XD.load_explain(y)
     if y * YEAR > D["state"]["day"]:
         sys.exit(f"{y}年はまだ始まっていない (いまは {yd(D['state']['day'])})")
     PP = people_part(D, y)

@@ -270,6 +270,9 @@ def build(data, scan=True):
     D = {"asof": {"day": now, "label": f"{now // YEAR}年{now % YEAR + 1}日目", "last_year": last, "built": time.strftime("%Y-%m-%d")},
          "defs": defs, "compo": SC.COMPO, "compo_tree": tree, "years": {str(y): _r(r) for y, r in rows.items()}, "s1": _r(s1), "seasons": seasons, "era_log": era_log,
          "tech": tech, "offers": {str(k): v for k, v in offers.items()}, "check": {"n": n, "bad": _r(bad), "ref_calc": _r(mine)}, "reports": reports}
+    if os.path.realpath(str(data)) == PROTECTED:  # 2026-11-24 解説の係: reports/explain/year<年>.json の図の見かたと吹き出し (本物の村のときだけ。なければ null)
+        import explain_view as XV
+        D["explain"] = XV.stats_payload(last)
     print(f"統計: {years[0]}〜{last}年 {len(years)} 年・Society 1.0 の季節 {len(s1)}・照らし合わせ {n} (ちがう {len(bad)})・{time.time() - t0:.0f} 秒・"
           f"記憶のいちばん多い所 {resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024} MB", file=sys.stderr)
     return D

@@ -3,6 +3,32 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-24 解説の係 (年報のダッシュボードと統計のページを、本人にやさしく説明する係。本人が決めた案。data は読むだけ)
+
+- 係: 4 つの分野の係 (人口の係・くらし・食べ物の係・知恵・技術の係・よその村・町の係) がいっしょに書き → まとめ役がその年の大事なこと 3 つを選び → 事実の確かめの係が文の数をみな確かめて出す。
+  係は図ごとに出し方を選ぶ: (a) 図の見かた (図の下の短い文。図が変わらないかぎり毎年同じ。図の決まり sig が去年と同じなら去年の文をそのまま使う) /
+  (b) 今年のポイント (案内役 = いまの村の人の、顔の絵 + 吹き出し。顔は吹き出しごとに neutral・smile・concern・surprise) / (c) 大きな年だけ、ずんだもんの声の 1〜2 分の動画。
+- 道具:
+  - `tools/explain_data.py --year Y` → `/tmp/explain_data_Y.json` (係が読む数。stats_calc と年報と同じ計算。16 KB・記憶 0.5 GB)。
+    `--publish 下書き.json` は形と数を確かめ (文の数がみな集めた数にあるか)、そろったときだけ `reports/explain/yearY.json` を書く (ないと止まる)。
+  - `tools/explainer_workflow.js` (Workflow の台本。args `{"year": Y}`。係 6 人: 4 + まとめ役 + 確かめ。数を集める歩も入れると 7)。
+  - `tools/run_workflow.mjs` (台本をシェルから動かす。agent() は `claude -p`)。
+  - `tools/explain_view.py` (年報と統計のページに出す部品)。`tools/year_report.py` はダッシュボードの中だけに足す (いちばん上に 3 つの箱・タイルの下と図の下に吹き出し・図の見かた)。
+    `reports/explain/yearY.json` がない年は 1 バイトも変わらない (249年で確かめた)。`--explain ファイル`・`--no-explain` もある。
+    `tools/build_stats.py` と `stats_page.html`: 分野のカードに図の見かた (いつも) と、いちばん新しい年を選んだときだけ吹き出しといちばん上の 3 つ。
+  - 案内役の絵: `app/guide/guide_<名前>_<顔>.png` (ほかの係が作る)。名前は `app/guide/README.md` か `docs/society_phase/guide_character.md` の「名前:」、なければ絵のファイル名。
+    絵がない間は仮の名前「案内の村人 (仮)」と仮の顔 (SVG)。年報は 1 ファイルで送るので、絵は 96px にして中に入れる (base64)。絵ができたら、年報と統計のページを作り直すだけで入る。
+  - 大きな年: はじめて届いた技術・ききん・フェーズが変わった・人が 1 年で 10% 以上動いた・蓄えが 30 日分を切った (`explain_data.py` の big_event)。
+    その年だけ、まとめ役が動画の文 (video.lines) を書く。動画は `bash sim/society/video/yearly/make.sh Y /tmp/yvY [/tmp/vv]` (大きな年でなければ何もしない。`DRY=1` で絵だけ。VOICEVOX がなければ setup.sh で入れ直す)。声・絵・動画はリポジトリに入れない。
+- **年の終わりの手順 (年報のあと)**: 年報 → 解説の係 → その年の年報と統計のページを作り直す。`/tmp/yearend.sh` では、`/tmp/yrcheck.sh` (年報) のあと、`build_stats.py` の前に:
+  ```
+  python3.13 sim/society/tools/explain_data.py --year $Y && node sim/society/tools/run_workflow.mjs sim/society/tools/explainer_workflow.js "{\"year\":$Y,\"data_ready\":true}" --log /tmp/explain_wf_$Y.log >/dev/null && python3.13 sim/society/tools/year_report.py --data sim/society/data --year $Y --tokens $T $( [ -f docs/society_phase/g15_branches/$Y.txt ] && echo --branches docs/society_phase/g15_branches/$Y.txt ) --out sim/society/reports/year$Y.html | tail -1
+  ```
+  と、`git add` に `sim/society/reports/explain/year$Y.json` を足す。係が出せなかったとき (数が合わない) は年報は前のまま (解説なし) で進む。約 10 分・係 6 人。
+- 試し (250年): 係 6 人 (約 2 分・合わせて約 2.6 ドル)。図の見かた 21・吹き出し 8・3 つ (草の種が大豊作・1 歳前に亡くなる子がふえた・蓄えがめやすを超えた)・確かめた数 64 (直した 4・消した 1)。大きな年ではない (動画なし)。
+  見て直した 1 つ: t_lit の図の見かた「点線はめやす」→「横の線はめやす」(縦の点線は 242年の区切り)。図の決まり (spec) にも点線のことを足した。
+  `reports/year250.html` は、ダッシュボードの節と <style> だけを差しかえた (ほかの文はコミットしてあった年報と 1 バイトも同じ。作り直すと「作った日」などが変わるため)。
+
 ## 2026-11-23 248年の終わりの D1 の相談 (蓄え 114 日分。200 日分を切った) の見立てと、蓄えの知らせ 1 (作ったが本物の村にはつけていない。トークン 0。本物の村は 29879 日目の HOLD consult のまま)
 
 - 書きつけ: `docs/society_phase/A_check.md` 10.。
