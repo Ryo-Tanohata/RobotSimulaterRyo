@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はたっぷり実っているね。落ちる前に、みんなで刈り入れよう。秋は千つかみずつまいて、冬と春の草取りも手伝おう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに刈らないと落ちてしまうので、刈り入れを手伝う"}, "family": {"ケナ108": {"activity": "畑仕事", "place": "camp", "why": "実った畑の刈り入れが最優先"}, "ラキ125": {"activity": "字を教える", "place": "camp", "why": "子どもたちに字を教えて、読める人をふやす"}, "ラニ134": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手伝い"}, "ケナ136": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手伝い"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋に種をまいた畑を育てるため、草取りに出る"}, "family": {"ケナ108": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やす"}, "ラキ125": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手になる"}, "ラニ134": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ケナ136": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて実りを増やす"}, "family": {"ケナ108": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ラキ125": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ラニ134": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ケナ136": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りをして、夏の実りにそなえる"}, "family": {"ケナ108": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ラキ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ラニ134": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}, "ケナ136": {"activity": "畑仕事", "place": "camp", "why": "草取りの手伝い"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M594": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1376": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出て危ないので、この決まりは大事"}],
+ "year_name": "たわわに実った年",
+ "feeling": "畑がよく実って、蓄えも十分でうれしい。今年もみんなで元気に働きたい。"}
