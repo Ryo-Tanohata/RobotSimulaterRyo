@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "夏の畑はよく実っているね。落ちる前に毎夕しっかり刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れに出る"}, "family": {"シエ144": {"activity": "畑仕事", "place": "camp", "why": "採集の得意な人だが、夏は刈り入れを優先する"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで来年の実りを増やす"}, "family": {"シエ144": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをして実りを増やす"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて次の夏の実りにそなえる"}, "family": {"シエ144": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りを分け合う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りをして畑を育てる"}, "family": {"シエ144": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けて実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M612": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1445": false, "T1446": false, "T1447": false, "T1448": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は、毎夕刈らないと落ちるので、夏は刈り入れを第一にする", "because": [7603945], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1227", "against": "", "agree": true, "reason": "秋にまいて水の道を掘れば実りが増える"},
+  {"id": "L1231", "against": "", "agree": true, "reason": "秋にまいて冬に草取りをすると実りが増える"},
+  {"id": "L1233", "against": "", "agree": true, "reason": "住まいのない家が雨で濡れるのを防ぎたい"},
+  {"id": "L1225", "against": "", "agree": true, "reason": "小さい子の薬は大事"},
+  {"id": "L1229", "against": "ヤギが増えすぎない範囲で十分", "agree": false, "reason": "いまヤギは足りている"}],
+ "year_name": "大きな刈り入れの年",
+ "feeling": "畑がよく実って安心。小さい子たちと夏を楽しみたい。"}
