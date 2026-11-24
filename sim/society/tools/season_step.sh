@@ -15,7 +15,13 @@ K=$($PY -c "import json;g=(json.load(open('$DATA/state.json', encoding='utf-8'))
 # 2026-11-06: 回す役 (haiku) がこのスクリプトを 2 回動かし、次の年の集まりを答えなしで進めてしまった (18569 日目 → 18599 日目)。
 # EXPECT_DAY (ワークフローが渡す、この歩の日) とちがう日なら進めない
 if [ -n "$EXPECT_DAY" ] && [ "$D" != "$EXPECT_DAY" ]; then echo "season_step: いまは $D 日目で、この歩は $EXPECT_DAY 日目のはず。進めない (2 回目の呼び出し?)"; exit 4; fi
-$PY sim/society/step.py season; rc=$?; echo "season exit=$rc"
+# 2026-11-24: 人が 900 人をこえて、記録づくり (build_records、約 12 GB) が季節のプロセス (state を持ったまま) の下でメモリ不足で止まる (終わりのコード -9)。
+#   そのときだけ、季節のプロセスが終わってから記録づくりだけをもう 1 回動かす。できたら記録の失敗の行を消して、終わりのコードを 0 にする (世界は同じ。記録は state から作り直すだけ)
+SO=$(mktemp); $PY sim/society/step.py season >"$SO" 2>&1; rc=$?
+if [ "$rc" = 6 ] && grep -qx 'RECORDS failed build_-9' "$SO"; then
+  if $PY sim/society/tools/build_records.py --data "$DATA" --quiet; then grep -vx 'RECORDS failed build_-9' "$SO"; echo "記録: 季節のあとで、記録だけを作り直した (メモリ不足のやり直し)"; rc=0; else cat "$SO"; fi
+else cat "$SO"; fi
+rm -f "$SO"; echo "season exit=$rc"
 # テクノロジーツリー (2026-10-28。docs/tech_tree.md): 季節のあとに、記録を読むだけでページを作り直す (別のプロセスなので state.json は変わらない。
 #   写しで確かめた: 入れても入れなくても、季節のあとの data/ は 1 バイトも同じ)。本物の村のときだけ。作れなくても季節とコミットは止めない
 if [ "$DATA" = "sim/society/data" ]; then
