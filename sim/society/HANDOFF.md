@@ -9,13 +9,17 @@
 - 顔ぶれ (251年59日目の記録から。`docs/society_phase/guide_character.md` の 4.): 案内役・まとめ役 ソナ85 (女・74)・人口の係 キオ85 (女・50。子 10 人)・
   くらし・食べ物の係 ネイ75 (男・61。種まき 3 番め・水の道 1,020 日)・知恵・技術の係 ケセ98 (男・39。字を教えた日 954 日でいちばん)・よその村・町の係 ナセ110 (女・30。町の頼みで町へ 9 回でいちばん)。
   顔: `app/guide/<kio85|nei75|kese98|nase110>_<顔>.{webp,png}` (128px)。作り方は `people.py` の `VROID` と `build_person_vroid.py -- --person <名前> --only guide` (ソナ85 と同じ。係の 2 人は --samples 48)。
-- 声 (`video/yearly/voices.json`・README に規約): 東北イタコ (ソナ85)・九州そら (キオ85)・ちび式じい (ネイ75)・雀松朱司 (ケセ98)・春日部つむぎ (ナセ110)。クレジット「VOICEVOX:名前」を動画の終わりと説明文に。
-  音声モデル 2・10・12・21.vvm は setup.sh では入らない (README の手順で /tmp/vv/vvms に足す)。`tools/voicevox/synth.py` は 1 文ごとに style・vvm・speed・pitch・intonation を読む (なければ前と同じずんだもん)。
+- 声 (`video/yearly/voices.json`・README に規約): 東北イタコ (ソナ85)・九州そら (キオ85)・麒ヶ島宗麟 (ネイ75。はじめはちび式じいだったが、本人の直しで替えた)・雀松朱司 (ケセ98)・春日部つむぎ (ナセ110)。クレジット「VOICEVOX:名前」を動画の終わりと説明文に。
+  音声モデル 2・12・21.vvm は setup.sh では入らない (README の手順で /tmp/vv/vvms に足す)。`tools/voicevox/synth.py` は 1 文ごとに style・vvm・speed・pitch・intonation を読む (なければ前と同じずんだもん)。
 - 作り方: `bash sim/society/video/yearly/make.sh <年> /tmp/yv<年>` → 絵コンテ `video/out/storyboard_yearly_<年>.html`・`.jpg` (git に入れない)・`video/storyboards/storyboard_yearly_<年>.json` (git)。
   本人の go のあと `GO=1 bash ... make.sh <年> /tmp/yv<年>` → `/tmp/yv<年>/year<年>.mp4` (1280x720)。前の大きな年だけのずんだもんの動画はこれにまとめた (大きな年の video.lines は案内役が読む)。
 - 年の終わりの手順に足すなら: 年報と解説の係のあと `bash sim/society/video/yearly/make.sh $Y /tmp/yv$Y` (絵コンテまで。約 2 分) → 本人に送る → go で本番。
 - 年報の吹き出しの顔: `explain_data.guide_info()` は `app/guide/README.md` の「名前:」「絵:」で案内役の絵を選ぶ (前は `guide_<名前>_*.png` だけを探していて、ソナ85 の絵が入らず仮の顔だった)。
   `reports/year250.html` はダッシュボードの節と <style> だけを差しかえた (ソナ85 の顔が入った)。
+- 絵コンテの 1 回目 (2026-11-24) への本人の直し 4 つ → 入れた: (1) 同じ話の図を 2 度出さない (script.py の TOPIC・ALT。250年は人口の係が年齢の円、ナセ110 の手当ての文が新しい「子の手当て」の図 x_care)
+  (2) 中の呼び名 (d1・t5 など) と ○ × を話さない (plain)。物差しの吹き出しは d1_rows からふつうの言葉で作りなおす (phase_text。図の札からも呼び名を消した)
+  (3) 円の 3% より小さいかけらは「そのほか」にまとめる (4) ネイ75 (記録で男・61) の声を ちび式じい → 麒ヶ島宗麟 (渋い大人の男の声。雀松朱司と同じ 12.vvm)
+- できた (2026-11-24): `sim/society/app/society_yearly_250.mp4` (171.6 秒・1280x720・4.6 MB。コミットしない)。声 約 40 秒 (記憶 1.7 GB)・本番のつなぎ 48 秒 (CPU)。
 - 記憶: 村の歩 (記録づくり 約 10〜11 GB) と同じ時に Blender や声を動かすと、記録づくりが記憶の不足で止められる (2026-11-24 に 2 回あった)。
   人の絵と声は、使える記憶が 9 GB 以上で村の重い歩がないときに 1 つずつ動かす。
 

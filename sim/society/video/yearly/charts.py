@@ -64,6 +64,9 @@ CARD = {"f_pop": ("人口と世帯", [("総人口", "pop", 1, "人", 0), ("世�
         "f_edu": ("教育", [("字が読める大人", "readers", 1, "人", 0), ("読める割合", "literacy", 100, "%", 1), ("字を覚えた子", "kids_taught", 1, "人", 0)]),
         "f_env": ("環境とエネルギー", [("燃やした燃える石", "coal_burned", 1, "kg", 0), ("水の道を掘った人日", "canal_days", 1, "", 0)]),
         "f_ext": ("外とのつながり", [("よそから入った草の種", "trade_in", 1, "つかみ", 0), ("相手の村", "partners", 1, "", 0), ("果たした町の頼み", "town_done", 1, "", 0)])}
+# 子の手当て (よその村・町の係。町の払いの子の薬と手当ての書きつけ)。去年の数がないものは「去年」を書かない
+CARE = ("子の手当て", [("手当てが届いた子", "care_kids", "人"), ("子の薬を使った", "meds_used", "包み"), ("5 歳までに亡くなった子", "u5_dead", "人"),
+                      ("家にある子の薬", "meds_now", "包み")])
 COLOR = {"sona85": "#8a5a2b", "kio85": "#b84f72", "nei75": "#3f7d3a", "kese98": "#2a5fa8", "nase110": "#c0661a"}
 
 
@@ -125,16 +128,23 @@ def donut_chart(cid):
     f = fig()
     f.text(0.07, 0.9, f"{title}  ({Y}年)", fontsize=24, color=INK)
     c = D["compo"].get(k) or {}
-    rows = [(n, v) for n, v in c.get("this") or [] if v > 0]
     last = dict(c.get("last") or [])
-    if not rows:
+    rows0 = [(n, v) for n, v in c.get("this") or [] if v > 0]
+    if not rows0:
         return f
-    tot = sum(v for _, v in rows)
+    tot = sum(v for _, v in rows0)
     ltot = sum(v for v in last.values() if v > 0) or 1
+    # 3% より小さいかけらは「そのほか」にまとめる (円の上も表も重ならないように。本人の直し 2026-11-24)
+    big = [(n, v) for n, v in rows0 if v / tot >= 0.03 and n != "そのほか"]
+    small = [n for n, v in rows0 if (n, v) not in big]
+    rows = big + ([("そのほか", sum(v for n, v in rows0 if n in small))] if small else [])
+    last = {**{n: last.get(n, 0) for n, _ in big}, "そのほか": sum(v for n, v in last.items() if n in small or n not in dict(big))}
     ax = f.add_axes([0.05, 0.04, 0.42, 0.8])
     ax.pie([v for _, v in rows], colors=PAL[:len(rows)], startangle=90, counterclock=False,
            wedgeprops={"width": 0.38, "edgecolor": "#fcfcfb", "linewidth": 2})
     ax.text(0, 0, f"{Y}年", ha="center", va="center", fontsize=20, color=INK2)
+    if small:
+        f.text(0.53, 0.66 - len(rows) * 0.085 - 0.02, "そのほか: " + "・".join(small), fontsize=15, color=INK2)
     f.text(0.74, 0.76, f"{Y}年", fontsize=18, color=INK2, ha="right")
     f.text(0.9, 0.76, f"{Y - 1}年", fontsize=18, color=INK2, ha="right")
     for i, (n, v) in enumerate(rows):
@@ -150,14 +160,16 @@ def phase_chart():
     """いまのフェーズの物差し (D1 のときは d1〜d5 の表)"""
     f = fig()
     rows = D.get("d1_rows") or []
-    f.text(0.07, 0.88, f"人口の決まりの直しの物差し  ({Y}年)", fontsize=24, color=INK)
+    f.text(0.07, 0.88, f"村のようすの物差し  ({Y}年)", fontsize=24, color=INK)
+    f.text(0.93, 0.88, "○ 記録どおりの幅  × まだ", fontsize=16, color=INK2, ha="right")
     if D.get("phase_panel") != "d1" or not rows:
         f.text(0.07, 0.5, D.get("phase_name") or "", fontsize=28, color=INK2)
         return f
     r = rows[-1]
-    items = [("d1 平均寿命", f"{r['e0']:.1f} 歳", r["d1_ok"]), ("d2 15 歳の平均余命", f"{r['e15']:.1f} 年", r["d2_ok"]),
-             ("d3 自然増加", f"{r['nat']:.2f} %/年", r["d3_ok"]), ("d4 合計特殊出生率", f"{r['tfr']:.2f}", r["d4_ok"]),
-             ("d5 蓄え (守り)", f"年の終わり {r['store_end']} 日分", r["d5_ok"])]
+    # 中の呼び名 (d1 など) は出さない。○ は記録の幅に入っている、× はまだ
+    items = [("寿命 (平均寿命)", f"{r['e0']:.1f} 歳", r["d1_ok"]), ("15 歳からの寿命", f"{r['e15']:.1f} 年", r["d2_ok"]),
+             ("人のふえかた (1 年)", f"{r['nat']:.2f} %", r["d3_ok"]), ("生まれる子の数 (女の人 1 人)", f"{r['tfr']:.2f} 人", r["d4_ok"]),
+             ("蓄えの守り", f"年の終わり {r['store_end']} 日分", r["d5_ok"])]
     for i, (a, b, ok) in enumerate(items):
         y = 0.72 - i * 0.14
         f.text(0.1, y, a, fontsize=24, color=INK)
@@ -180,6 +192,25 @@ def card_chart(cid):
         f.text(x + 0.015, 0.36, f"{fmt(v * m if v is not None else None, nd)}", fontsize=46 if n > 3 else 54, color=BLUE)
         f.text(x + 0.015, 0.28, unit, fontsize=18, color=INK2)
         f.text(x + 0.015, 0.18, f"去年 {fmt(lv * m if lv is not None else None, nd)}{unit}", fontsize=17, color=INK2)
+    return f
+
+
+def care_chart():
+    title, items = CARE
+    cc = D.get("child_care") or {}
+    f = fig()
+    f.text(0.07, 0.88, f"{title}  ({Y}年)", fontsize=24, color=INK)
+    w = 0.86 / len(items)
+    for i, (lab, key, unit) in enumerate(items):
+        x = 0.07 + i * w
+        v = T.get(key) if key in T else cc.get(key)
+        lv = L.get(key) if key in L else None
+        f.patches.append(plt.Rectangle((x, 0.14), w - 0.02, 0.62, transform=f.transFigure, fc="#ffffff", ec="#d8d6cf", lw=1.5))
+        f.text(x + 0.015, 0.66, "\n".join(textwrap.wrap(lab.replace(" ", "\u00a0"), 9)), fontsize=18, color=INK2, va="top")
+        f.text(x + 0.015, 0.36, fmt(v), fontsize=46, color=BLUE)
+        f.text(x + 0.015, 0.28, unit, fontsize=18, color=INK2)
+        if lv is not None:
+            f.text(x + 0.015, 0.18, f"去年 {fmt(lv)}{unit}", fontsize=17, color=INK2)
     return f
 
 
@@ -206,6 +237,8 @@ def chart(cid):
         f = phase_chart()
     elif cid in CARD:
         f = card_chart(cid)
+    elif cid == "x_care":
+        f = care_chart()
     else:
         f = title_chart(cid == "title_end")
     f.savefig(p)

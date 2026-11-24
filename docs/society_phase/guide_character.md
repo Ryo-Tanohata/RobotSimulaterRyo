@@ -193,4 +193,4 @@ data/archive の events_*（町の頼み・字を教える・帳をつける・�
 
 ### 声（VOICEVOX）
 
-`sim/society/video/yearly/voices.json` と同じ場所の README。ソナ85 は東北イタコ、キオ85 は九州そら、ネイ75 はちび式じい、ケセ98 は雀松朱司、ナセ110 は春日部つむぎ。
+`sim/society/video/yearly/voices.json` と同じ場所の README。ソナ85 は東北イタコ、キオ85 は九州そら、ネイ75 は麒ヶ島宗麟、ケセ98 は雀松朱司、ナセ110 は春日部つむぎ。

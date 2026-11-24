@@ -9,11 +9,11 @@
 ## 作り方
 
 ```bash
-# 1) 絵コンテまで (声・図・1 文の絵・絵コンテ。約 2 分。記憶 2.2 GB ほど。村の重い歩と重ねない)
+# 1) 絵コンテまで (声・図・1 文の絵・絵コンテ。約 2 分。記憶 1.7 GB ほど。村の重い歩と重ねない)
 bash sim/society/video/yearly/make.sh 250 /tmp/yv250
 #   → sim/society/video/out/storyboard_yearly_250.html と .jpg (git に入れない)
 #     sim/society/video/storyboards/storyboard_yearly_250.json (絵のない小さな版。git に入れてよい)
-# 2) 本人の「go」のあとで本番 (同じ作業フォルダ。約 1〜2 分。記憶 0.2 GB)
+# 2) 本人の「go」のあとで本番 (同じ作業フォルダ。250年は 48 秒。記憶 0.2 GB)
 GO=1 bash sim/society/video/yearly/make.sh 250 /tmp/yv250
 #   → /tmp/yv250/year250.mp4 (1280x720・30 コマ/秒・音 -16 LUFS。git に入れない)
 ```
@@ -34,7 +34,7 @@ GO=1 bash sim/society/video/yearly/make.sh 250 /tmp/yv250
 |---|---|---|---|---|---|
 | ソナ85 (女・74) | 案内役・まとめ役 | 東北イタコ ノーマル (少しゆっくり・少し低め) | 109 | 21.vvm | VOICEVOX:東北イタコ |
 | キオ85 (女・50) | 人口の係 | 九州そら ノーマル | 16 | 2.vvm | VOICEVOX:九州そら |
-| ネイ75 (男・61) | くらし・食べ物の係 | ちび式じい ノーマル | 42 | 10.vvm | VOICEVOX:ちび式じい |
+| ネイ75 (男・61) | くらし・食べ物の係 | 麒ヶ島宗麟 ノーマル (渋い大人の男の声) | 53 | 12.vvm | VOICEVOX:麒ヶ島宗麟 |
 | ケセ98 (男・39) | 知恵・技術の係 | 雀松朱司 ノーマル | 52 | 12.vvm | VOICEVOX:雀松朱司 |
 | ナセ110 (女・30) | よその村・町の係 | 春日部つむぎ ノーマル | 8 | 0.vvm | VOICEVOX:春日部つむぎ |
 
@@ -42,11 +42,11 @@ GO=1 bash sim/society/video/yearly/make.sh 250 /tmp/yv250
 
 ### 音声モデルの用意
 
-`tools/voicevox/setup.sh` は 0.vvm (ずんだもん・春日部つむぎ など) だけを入れる。ほかは同じ配布元 (https://github.com/VOICEVOX/voicevox_vvm) から:
+`tools/voicevox/setup.sh` は 0.vvm (ずんだもん・春日部つむぎ など) だけを入れる。ほか (2・12・21.vvm) は同じ配布元 (https://github.com/VOICEVOX/voicevox_vvm) から:
 
 ```bash
 git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/VOICEVOX/voicevox_vvm /tmp/vvmrepo
-(cd /tmp/vvmrepo && git checkout -q HEAD -- vvms/2.vvm vvms/10.vvm vvms/12.vvm vvms/21.vvm)
+(cd /tmp/vvmrepo && git checkout -q HEAD -- vvms/2.vvm vvms/12.vvm vvms/21.vvm)
 cp /tmp/vvmrepo/vvms/*.vvm /tmp/vv/vvms/    # 1 つ 約 60 MB
 ```
 
@@ -58,6 +58,11 @@ cp /tmp/vvmrepo/vvms/*.vvm /tmp/vv/vvms/    # 1 つ 約 60 MB
 - 東北イタコ・九州そら (東北ずん子・ずんだもんプロジェクトの規約 https://zunko.jp/con_ongen_kiyaku.html、中身を読んだ): 商用・非商用とも可。
   クレジット「VOICEVOX:東北イタコ」のように。動画では説明文か動画の中の、見ればわかる場所に。
   してはいけないこと: 公序良俗に反する使い方・政治や宗教の活動・情報商材・わざと誤解させる内容・アダルト・反社会的勢力。この動画はどれにもあたらない。
-- ちび式じい・雀松朱司・春日部つむぎ: VOICEVOX 公式の規約の文 (上) は確かめた。くわしい規約のページ
-  (docs.google.com のちび式じいの規約・www.virvoxproject.com・tsumugi-official.studio.site) は、クラウドのネットワークで開けなかったため、中身は読めていない。
+- 麒ヶ島宗麟・雀松朱司・春日部つむぎ: VOICEVOX 公式の規約の文 (上) は確かめた。くわしい規約のページ
+  (www.virvoxproject.com・tsumugi-official.studio.site) は、クラウドのネットワークで開けなかったため、中身は読めていない。
   公開の前に、本人の PC で一度読む (公式の文では、どれも商用・非商用で可・クレジットが要る)。
+
+### 声の替え (2026-11-24、絵コンテの 1 回目への本人の直し)
+
+ネイ75 (記録では男・61 歳、畑と水の道で働く人) の声を、ちび式じい (小さなおじいさんの声) から麒ヶ島宗麟 (渋い大人の男の声) に替えた。
+雀松朱司と同じ 12.vvm なので、音声モデルは 4 つ (0・2・12・21) になり、声を作るときの記憶も少しへる。

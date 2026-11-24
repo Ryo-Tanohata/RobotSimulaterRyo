@@ -8,7 +8,7 @@
 # 先に要るもの: reports/explain/year<年>.json (解説の係のワークフロー)。/tmp/explain_data_<年>.json がなければ explain_data.py で作る (data は読むだけ)。
 # 中身: script.py (台本) → tools/voicevox/synth.py (声。話す人ごとに voices.json の声) → charts.py (図と 1 文の絵) → storyboard.py (絵コンテ)。
 # 声・絵・動画はリポジトリに入れない。声の音声モデルは voices.json の vvm (tools/voicevox/setup.sh のあと、voicevox_vvm の vvms/ から足す。README)。
-# 重い所は nice -n 19、ffmpeg のスレッドは FFMPEG_THREADS (既定 2)。記憶: 声 約 2.2 GB (音声モデル 5 つ)・絵 約 0.3 GB・ffmpeg 約 0.2 GB。村の重い歩 (記録づくり 約 10 GB) と重ねない。
+# 重い所は nice -n 19、ffmpeg のスレッドは FFMPEG_THREADS (既定 2)。記憶: 声 約 1.7 GB (音声モデル 4 つ)・絵 約 0.3 GB・ffmpeg 約 0.2 GB。村の重い歩 (記録づくり 約 10 GB) と重ねない。
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(cd "$HERE/../../../.." && pwd)"
