@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑は実っている。夏のうちに刈らないと落ちる。おれは毎日刈る。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"タユ80": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ワユ99": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを手伝う"}, "ムイ106": {"activity": "畑仕事", "place": "camp", "why": "採集が得意だが、まず刈り入れ"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひき、家の板も増やす"}, "family": {"タユ80": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取り"}, "ワユ99": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで冬の畑の実りを増やす"}, "family": {"タユ80": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ワユ99": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番の仕事を続ける"}, "family": {"タユ80": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ワユ99": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ロワ153": true, "キオ153": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1380": false, "T1381": false, "T1382": false, "T1383": false, "T1384": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせた年",
+ "feeling": "蓄えはたっぷりある。静かに畑と板の仕事をするだけだ。"}

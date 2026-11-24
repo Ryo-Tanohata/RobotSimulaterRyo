@@ -1,0 +1,17 @@
+{"say":[{"to":"みんな","text":"夏の畑は実っている。落ちる前に、みんなで刈り入れをしよう。わたしも刈るよ。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑は夏のうちに刈らないと落ちるから、刈り入れを手伝う"},"family":{"テナ125":{"activity":"畑仕事","place":"camp","why":"実った畑を刈るため"}},"pick":0,"plant":0,"harvest":60,"eat_goat":5},
+"秋":{"job":{"activity":"狩り","place":"北林12","with":[],"why":"狩りが得意なので、肉を取って蓄えに回す"},"family":{"テナ125":{"activity":"畑仕事","place":"camp","why":"畑の草取りをするため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"狩り","place":"北林12","with":[],"why":"冬も獣はいるので、肉を取る"},"family":{"テナ125":{"activity":"畑仕事","place":"camp","why":"畑の草取りをするため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"狩り","place":"北林12","with":[],"why":"狩りの腕を生かして肉を取る"},"family":{"テナ125":{"activity":"畑仕事","place":"camp","why":"草取りを続けるため"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept":{"ロワ153":true,"キオ153":true},"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T1380":false,"T1381":false,"T1382":false,"T1383":false,"T1384":false},
+"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},
+"demand":null,"share":null,"pay":null,"redeem":null,"market":{"give":{},"take":[],"pay":null},"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,"order":null,"take":null,
+"knowledge":[{"op":"add","text":"ヤギは草で養える数より多いので、夏に少しつぶして肉にするのがよい","because":[6916732],"confidence":0.6}],
+"proposal":null,
+"votes":[],
+"year_name":"ヤギがやせた年",
+"feeling":"畑は実っているし、蓄えもある。静かに狩りをしたい。"}

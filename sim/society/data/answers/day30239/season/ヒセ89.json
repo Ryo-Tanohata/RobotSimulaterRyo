@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の実った畑は、落ちる前にみんなで刈ろう。蓄えはまだ厚いが、冬の前に手を抜かないでおこう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを急ぐ"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り入れる"}, "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り入れる"}, "リセ109": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り入れる"}, "オセ118": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り入れる"}, "オネ125": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈り入れる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋は草取りで実りを増やす"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "リセ109": {"activity": "狩り", "place": "北川12", "why": "狩りが得意なので魚をとって蓄えを助ける"}, "オセ118": {"activity": "狩り", "place": "東川28", "why": "狩りが得意なので魚をとる"}, "オネ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 400000},
+  "冬": {"job": {"activity": "狩り", "place": "北川12", "with": [], "why": "冬も魚はいるので、狩りと道具の腕で蓄えを助ける"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "リセ109": {"activity": "狩り", "place": "東川28", "why": "魚をとる"}, "オセ118": {"activity": "狩り", "place": "北川12", "why": "魚をとる"}, "オネ125": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りをして次の夏の実りを守る"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "リセ109": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "オセ118": {"activity": "狩り", "place": "北川12", "why": "魚をとる"}, "オネ125": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ロワ153": true, "キオ153": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1380": false, "T1381": false, "T1382": false, "T1383": false, "T1384": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの多い年",
+ "feeling": "蓄えは厚いが、子が多く亡くなったのが気がかりだ。働いて備えたい。"}

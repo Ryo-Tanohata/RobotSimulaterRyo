@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈るのが先だ。刈り残して落とさないようにしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと落ちるので、刈り入れを続ける"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ラニ110": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ケセ134": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っているから"}, "family": {"ナセ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ラニ110": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ケセ134": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで畑の実りを守る"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ラニ110": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケセ134": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続ける"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ラニ110": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ケセ134": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ロワ153": true, "キオ153": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1380": false, "T1381": "村", "T1382": false, "T1383": false, "T1384": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "畑がよく実っている。落とさず刈れればよいと思う。"}
