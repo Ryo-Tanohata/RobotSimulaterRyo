@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑がまだたくさん残っているね。落ちないうちに、みんなで毎日刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈りきるため"}, "family": {"ナセ141": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れが大事だから"}, "ムイ141": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れが大事だから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りで、来年の実りを増やすため"}, "family": {"ナセ141": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ムイ141": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて夏によく実らせる"}, "family": {"ナセ141": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ムイ141": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りをして夏の実りに備える"}, "family": {"ナセ141": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ムイ141": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M603": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1416": "村", "T1417": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は毎日刈らないと落ちる。秋に千つかみまいて冬と春に草取りをすると、次の夏によく実る。", "because": [7247203], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出て危ないから、この決まりは守りたい"}],
+ "year_name": "水の道を掘った年",
+ "feeling": "蓄えもたっぷりで安心。今年も家族でしっかり畑を守りたい。"}

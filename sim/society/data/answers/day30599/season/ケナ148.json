@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑がたくさん実っています。夏のうちに、みんなで刈り入れを急ぎましょう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"トナ148": {"activity": "畑仕事", "place": "camp", "why": "二人で刈れば早く終わるから"}}, "pick": 10, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "板をひくと水の道や住まいの手入れがはかどるから"}, "family": {"トナ148": {"activity": "採集", "place": "西草原12", "why": "若くて力があり、食べ物を集められるから"}}, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕が高いので、鎌や道具を作って春に備えたい"}, "family": {"トナ148": {"activity": "狩り", "place": "南林12", "why": "冬も魚やけものはいるので肉を得たい"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "字を教える", "place": "camp", "with": [], "why": "字が読める人をもっと増やしたいから"}, "family": {"トナ148": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やしたい"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M603": "ゆるす"}, "judge_rule": "ゆるす", "feast": ["秋"], "leader": null,
+ "trade": {"T1416": "村", "T1417": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑がよく実った年は、夏のうちに刈り入れを急ぐのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので守るのがよい"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたら休むのが大切"}],
+ "year_name": "たくさん実った畑の年",
+ "feeling": "畑が実って安心している。みんなで元気に過ごしたい。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑がまだたくさん実っている。夏は落ちないうちに、みんなで刈ってしまおう。わたしは土器づくりの手でも、まず畑に出るよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちてしまうので、刈り入れを進める"}, "family": {"ソナ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひき、水の道の手入れを助ける"}, "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りと世話で、来年の実りを守る"}, "family": {"ソナ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}, "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで、夏の実りを増やす"}, "family": {"ソナ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}, "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて、夏に備える"}, "family": {"ソナ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}, "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M603": "ゆるす"}, "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1416": false, "T1417": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たっぷり実りの年",
+ "feeling": "蓄えは山のようにある。体も軽いし、畑を見ていると安心する。"}

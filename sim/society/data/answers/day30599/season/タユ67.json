@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はたっぷり実っているよ。落ちる前に、手のあく人はみんなで毎夕刈りきろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうので、毎夕刈る"}, "family": {"テナ73": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈りきるため、みんなで刈る"}, "ロワ77": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈りきるため、みんなで刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の世話をして、来年の夏によく実らせる"}, "family": {"テナ73": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ロワ77": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬のあいだの草取りが夏の実りを増やす"}, "family": {"テナ73": {"activity": "畑仕事", "place": "camp", "why": "草取りを交代でする"}, "ロワ77": {"activity": "畑仕事", "place": "camp", "why": "草取りを交代でする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "M26 ののこ番なので、板をひいて水の道や輪の手入れを助ける"}, "family": {"テナ73": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として働く"}, "ロワ77": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として働く"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M603": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1416": false, "T1417": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たっぷり実った年",
+ "feeling": "蓄えがたっぷりあって安心。畑を刈りきって、みんなで笑って過ごしたい。"}

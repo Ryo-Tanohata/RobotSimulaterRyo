@@ -1,0 +1,15 @@
+{"say":[{"to":"みんな","text":"夏の畑はまだたっぷり残っている。落ちる前にみんなで刈ろう。秋は種を千つかみまいて、冬は草取りだよ。"}],
+"year":{
+"夏":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"実った畑が落ちる前に刈る"},"family":{"ムイ87":{"activity":"畑仕事","place":"camp","why":"刈り入れを急ぐ"},"キオ117":{"activity":"畑仕事","place":"camp","why":"刈り入れを急ぐ"},"ヌオ121":{"activity":"畑仕事","place":"camp","why":"刈り入れを急ぐ"},"ムイ125":{"activity":"畑仕事","place":"camp","why":"刈り入れを急ぐ"},"ユエ135":{"activity":"畑仕事","place":"camp","why":"若いので刈り手になる"},"ソワ139":{"activity":"畑仕事","place":"camp","why":"手伝いで刈る"},"オネ141":{"activity":"畑仕事","place":"camp","why":"手伝いで刈る"}},"pick":0,"plant":0,"harvest":60,"eat_goat":0},
+"秋":{"job":{"activity":"採集","place":"camp","with":[],"why":"実のなる秋は木の実を集める"},"family":{"ムイ87":{"activity":"採集","place":"camp","why":"木の実を集める"},"キオ117":{"activity":"採集","place":"camp","why":"木の実を集める"},"ヌオ121":{"activity":"採集","place":"camp","why":"木の実を集める"},"ムイ125":{"activity":"採集","place":"camp","why":"木の実を集める"},"ユエ135":{"activity":"畑仕事","place":"camp","why":"畑の世話"},"ソワ139":{"activity":"畑仕事","place":"camp","why":"畑の世話"},"オネ141":{"activity":"畑仕事","place":"camp","why":"畑の世話"}},"pick":20,"plant":0,"harvest":0,"eat_goat":0,"sow":1000},
+"冬":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"まいた畑の草取りで夏の実りを増やす"},"family":{"ムイ87":{"activity":"畑仕事","place":"camp","why":"草取り"},"キオ117":{"activity":"畑仕事","place":"camp","why":"草取り"},"ヌオ121":{"activity":"畑仕事","place":"camp","why":"草取り"},"ムイ125":{"activity":"畑仕事","place":"camp","why":"草取り"},"ユエ135":{"activity":"畑仕事","place":"camp","why":"草取り"},"ソワ139":{"activity":"畑仕事","place":"camp","why":"草取り"},"オネ141":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0},
+"春":{"job":{"activity":"畑仕事","place":"camp","with":[],"why":"草取りを続けて畑を育てる"},"family":{"ムイ87":{"activity":"畑仕事","place":"camp","why":"草取り"},"キオ117":{"activity":"畑仕事","place":"camp","why":"草取り"},"ヌオ121":{"activity":"畑仕事","place":"camp","why":"草取り"},"ムイ125":{"activity":"畑仕事","place":"camp","why":"草取り"},"ユエ135":{"activity":"畑仕事","place":"camp","why":"草取り"},"ソワ139":{"activity":"畑仕事","place":"camp","why":"草取り"},"オネ141":{"activity":"畑仕事","place":"camp","why":"草取り"}},"pick":0,"plant":0,"harvest":0,"eat_goat":0}},
+"keep":false,"seal":false,"seal_store":[],
+"accept_rule":{"よその群れ":null,"ほかの村から":null},
+"judge":{"M603":"ゆるす"},"judge_rule":null,"feast":[],"leader":null,
+"trade":{"T1416":false,"T1417":false},"trade_rule":{"交換":null,"貸して":null,"max":null,"not":[],"利子":0},"demand":null,"share":null,"pay":null,"redeem":null,"market":null,"market_day":null,"coin_rate":null,"pact":[],"help":[],"note":[],"guild":null,"workshop":[],"post":[],"head":null,"sell":[],"notice":null,"order":null,"take":null,
+"knowledge":[{"op":"add","text":"夏に畑を刈りきり、秋に千つかみまき、冬と春に草取りをすれば来年も実る。","because":[7186744],"confidence":0.8}],
+"proposal":null,
+"votes":[],
+"year_name":"畑がたっぷり実った年",
+"feeling":"蓄えは十分だ。刈って、まいて、草を取る。いつも通りがいちばんだよ。"}

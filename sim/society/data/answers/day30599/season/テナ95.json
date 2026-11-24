@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はたくさん実っているね。落ちる前にみんなで刈ってしまおう。そのあと、秋にまた千つかみまこうよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから、刈り入れを一番にする。"}, "family": {"ロワ124": {"activity": "畑仕事", "place": "camp", "why": "夏は畑の刈り入れを優先するため、わたしと一緒に刈る。"}}, "pick": 40, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると次の夏にたくさん刈れるから。"}, "family": {"ロワ124": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りを増やすため。"}}, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けると、次の夏の実りが増える。"}, "family": {"ロワ124": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りを一緒にして畑を育てる。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで、夏の刈り入れの量が決まるから。"}, "family": {"ロワ124": {"activity": "畑仕事", "place": "camp", "why": "春も草取りをして実りを増やす。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M603": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1416": false, "T1417": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を刈り入れて、秋に千つかみまき、草取りをすると次の夏にたくさん刈れる。", "because": [7247203], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、キャンプから離れない決まりは大事だから。"}],
+ "year_name": "畑がたくさん実った年",
+ "feeling": "蓄えもたっぷりあって安心。みんなとおしゃべりしながら畑仕事をするのが楽しみ。"}
