@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑をみんなで刈りきろう。秋は千つかみずつまいて、冬は板をひいて水の道の手入れをしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを手伝う"}, "family": {"シエ76": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに畑を刈りきるため"}, "セヤ79": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに畑を刈りきるため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひき、手入れを半分ですませるため"}, "family": {"シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続けるため"}, "セヤ79": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "冬も板をひいて水の道や輪の手入れを進めるため"}, "family": {"シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続けるため"}, "セヤ79": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "ヤギの世話", "place": "camp", "with": [], "why": "春は乳がとれるので、年寄りでもできる世話をする"}, "family": {"シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続けるため"}, "セヤ79": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M597": "ゆるす"}, "judge_rule": null, "feast": [], "leader": "なし",
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ひき板と実りの年",
+ "feeling": "蓄えがたっぷりで安心している。年をとったが、もうひと働きしたい。"}

@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。夏は刈り入れ、秋は千つかみまいて、冬と春は草取りをして、来年の実りを守ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"トナ148": {"activity": "畑仕事", "place": "camp", "why": "いっしょに刈り入れをして畑を守るため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の世話を続けて、来年の実りをふやすため"}, "family": {"トナ148": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると畑の実りがしっかり増えるから"}, "family": {"トナ148": {"activity": "畑仕事", "place": "camp", "why": "草取りをして実りを守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れにそなえて草取りを続けるため"}, "family": {"トナ148": {"activity": "畑仕事", "place": "camp", "why": "草取りをして実りを守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たっぷり実りの年",
+ "feeling": "蓄えがたっぷりで安心。みんなで畑を守っていきたい。"
+}
