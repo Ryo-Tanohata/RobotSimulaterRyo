@@ -1,0 +1,30 @@
+{"say": [{"to": "みんな", "text": "この秋もわたしは鎌を打つ。欠けた鎌があれば遠慮なく持ってきな。冬の草取りと夏の刈り入れに、刃のそろった鎌がいるからね。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具はわたしがいちばん得意。秋と冬に鎌を作って直しておけば、夏の刈り入れが速くなる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヌオ159": true, "キオ159": true},
+ "family": {
+  "タユ128": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、来年の夏の実りを増やすため"},
+  "オネ129": {"activity": "畑仕事", "place": "camp", "why": "知らせ板を書いたあとは、畑の草取りを手伝うため"},
+  "ラニ131": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひけば水の道の手入れが半分ですむ"},
+  "ケセ131": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手がいるから。赤子のそばのキャンプで働ける"}
+ },
+ "keep": true,
+ "judge": {"M607": "つぐなう", "M608": "つぐなう", "M609": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1429": false, "T1430": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "欠けた鎌はタユ123の家へ。秋と冬のうちに打ち直して夏の刈り入れにそなえる",
+ "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "南の村18 から ヌオ159 と キオ159 が来て、ここで暮らしたいと言っている。若い働き手はよい", "because": [7415919], "confidence": 0.9},
+  {"op": "add", "text": "南の村7 と北の村13 がまた草の種を借りに来た。前に貸した分が返るまでは貸さない掟がある", "because": [7415916, 7415917], "confidence": 0.8}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L1196", "against": "鎌づくりの人の手がほかの仕事から取られる", "agree": true, "reason": "刈り手みなに鎌があれば夏の刈り入れが速い"},
+  {"id": "L1198", "against": "決まりが二つ混ざっている", "agree": true, "reason": "子の水と鎌の直しはどちらも大事"},
+  {"id": "L1184", "against": "畑を刈るたびに分け方を決めるのは手間がかかる", "agree": false, "reason": "刈った分のもめごとは集まりで収めればよい。手間が多すぎる"},
+  {"id": "L1189", "against": "冬は草取りの手もいる", "agree": true, "reason": "輪が回れば粉ひきの手が浮く"}
+ ],
+ "feeling": "鎌を打つ音が好きだ。この秋も手を動かしていたい"}

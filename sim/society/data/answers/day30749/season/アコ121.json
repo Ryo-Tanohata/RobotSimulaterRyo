@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "うちの家はまだ住まいがなくて、雨の夜はいつも外で濡れていた。この秋はヌオ127と二人で、自分の家の住まいを建てきるよ。"}, {"to": "ヌオ127", "text": "冬が来る前に屋根をかけよう。ムイ151を雨にあてたくないの。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["ヌオ127"], "why": "雨の夜に家族が外で濡れないよう、冬の前に家の住まいを建てきるため"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヌオ159": true}, "family": {"ヌオ127": {"activity": "住まいを建てる", "place": "camp", "why": "二人で建てれば、この秋のうちに住まいができあがるから"}}, "keep": false,
+ "judge": {"M607": "つぐなう", "M608": "つぐなう", "M609": "つぐなう"}, "feast": false, "leader": "テナ61", "trade": {"T1429": "村", "T1430": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "住まいのない家は、冬の前に家の大人で住まいを建てよう。雨の夜に濡れる人をなくそう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "雨の夜は村の住まいに入りきらず、この前の季節は 5 回も外で濡れた。家の住まいを早く建てたほうがいい", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1184", "against": "量を書く手間がかかる", "agree": true, "reason": "書いておけばもめごとが減るから"},
+  {"id": "L1185", "against": "ヤギを毎季節つぶすと減りすぎるかもしれない", "agree": true, "reason": "ヤギが多すぎるのは困るし、子の水も大事だから"},
+  {"id": "L1186", "against": "燃える石を掘る手がほかの仕事から減る", "agree": true, "reason": "小さい子の命を守れるから"},
+  {"id": "L1187", "against": "とくにない", "agree": true, "reason": "蓄えが傷むのを防ぎ、畑を落とさず刈れるから"},
+  {"id": "L1188", "against": "いくつものことをまとめすぎている", "agree": true, "reason": "どれも村のためになるから"},
+  {"id": "L1189", "against": "いまは直す輪が残っていない", "agree": true, "reason": "輪が止まったときに役に立つから"},
+  {"id": "L1190", "against": "とくにない", "agree": true, "reason": "畑の実りを増やせるから"},
+  {"id": "L1191", "against": "燃える石の多い家に重くなる", "agree": true, "reason": "子の薬を回せるから"},
+  {"id": "L1192", "against": "毎朝の手間がかかる", "agree": true, "reason": "小さい子が病で亡くなるのを減らせるから"},
+  {"id": "L1193", "against": "ヤギを毎季節つぶすと減りすぎるかもしれない", "agree": true, "reason": "草をこえたヤギはどのみちいなくなるから"},
+  {"id": "L1194", "against": "とくにない", "agree": true, "reason": "子を雨から守れるから"},
+  {"id": "L1195", "against": "冬に建てると草取りの手が減る", "agree": true, "reason": "わたしが出した掟。雨の夜に濡れる人をなくしたい"},
+  {"id": "L1196", "against": "とくにない", "agree": true, "reason": "鎌がそろうと刈り入れがはかどるから"},
+  {"id": "L1197", "against": "とくにない", "agree": true, "reason": "ヤギの数と子の水の両方に気をくばれるから"},
+  {"id": "L1198", "against": "とくにない", "agree": true, "reason": "子の水と鎌の直しはどちらも大事だから"}
+ ],
+ "feeling": "今度こそ自分たちの屋根の下で冬をこしたい。"}

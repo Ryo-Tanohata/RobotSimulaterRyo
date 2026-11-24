@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のはじめに千つかみ種をまいて、あとは水の道の手入れをみんなで進めましょう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ9201人日も残っていて、来年の実りを守るため"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {},
+ "family": {
+  "オネ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家族でいっしょに進める"},
+  "ネイ114": {"activity": "狩り", "place": "東林12", "why": "ルクの肉や魚を持ち帰り、家の食べ物を増やす"},
+  "ロワ127": {"activity": "狩り", "place": "南林12", "why": "狩りが得意なので、肉を持ち帰る"},
+  "ロワ129": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひいて、水の道の手入れを早めるため"},
+  "キオ131": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひいて、水の道の手入れを早めるため"},
+  "ホタ136": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道の手入れを進める"},
+  "ムイ136": {"activity": "水の道を掘る", "place": "camp", "why": "小さい子がいるので、キャンプの近くで働く"}
+ },
+ "keep": false,
+ "judge": {"M607": "ゆるす", "M608": "ゆるす", "M609": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1429": "村", "T1430": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみの種をまき、水の道を手入れすると、次の夏の実りが守られる。", "because": [7359127], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもあって安心。みんなで助け合って、苦しい村にも種を貸してあげたい。"}

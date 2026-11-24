@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがまだたくさん残っている。悪い年でも水の来る畑は実った。この秋は、おれは水の道を掘る。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の来る畑は悪い年でも実りが半分にならなかった。手入れが残っているから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ヌオ159": true},
+ "family": {"ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、来年の実りを増やすため"}, "ネイ127": {"activity": "燃える石を掘る", "place": "北丘12", "why": "町の頼みを受けて、小さい子の薬をもらうため"}, "ラキ136": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプの近くで働けるから"}, "ラキ141": {"activity": "畑仕事", "place": "camp", "why": "大人といっしょに草取りを覚えるため"}},
+ "keep": true,
+ "judge": {"M607": "つぐなう", "M608": "つぐなう", "M609": "つぐなう"},
+ "feast": false, "leader": "テナ61",
+ "trade": {"T1429": {"side": "村", "利子": 0}, "T1430": {"side": "村", "利子": 0}},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は水の道の手入れをみんなで少しずつ進めよう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "水の来る畑は、悪い年でも刈り入れが半分にならない", "because": [], "confidence": 0.8}, {"op": "add", "text": "近くの村々は今年畑が実らず、草の種を借りに来る", "because": [7415916, 7415917], "confidence": 0.8}],
+ "proposal": {"text": "秋と冬は、手のあく大人が交代で水の道の手入れをしよう。水の来る畑は悪い年でも実るから。", "because": [], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L0", "against": "見張りの火があれば少しは出られるかもしれない", "agree": true, "reason": "ザガは今も夜に出るから"},
+  {"id": "L1179", "against": "千つかみは多すぎる家もある", "agree": true, "reason": "刈った量を字で書けば、もめごとが減る"},
+  {"id": "L1184", "against": "鎌を作る人が足りないかもしれない", "agree": true, "reason": "刈る前に分け方を決めれば、もめごとが起きにくい"},
+  {"id": "L1186", "against": "石を掘ると畑の手が減る", "agree": true, "reason": "小さい子が多く亡くなっているから、薬がほしい"},
+  {"id": "L1189", "against": "直す輪がもうない年もある", "agree": true, "reason": "輪が回れば粉ひきの手が浮くから"},
+  {"id": "L1192", "against": "毎朝は手間がかかる", "agree": true, "reason": "小さい子の病を減らしたい"},
+  {"id": "L1195", "against": "冬は寒くて建てるのがつらい", "agree": true, "reason": "雨の夜に外で濡れる人をなくしたい"}
+ ],
+ "feeling": "子どもが亡くなるのはつらい。水と薬で、少しでも守りたい。"}

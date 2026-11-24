@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋になったね。わたしはのこ番だから、今季も水ののこ(M6)で板をひくよ。家の者も一緒に働こう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": ["ヌオ81", "トナ89"], "why": "M6ののこ番として、板をひいて水の道の手入れを助けるため"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ81": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として続ける"},
+  "トナ89": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として続ける"},
+  "アコ90": {"activity": "水の作業場で働く", "place": "M6", "why": "板が増えれば手入れが早く進む"},
+  "ケナ96": {"activity": "水の作業場で働く", "place": "M6", "why": "人がそろうと板がたくさんひける"},
+  "ワユ102": {"activity": "水の作業場で働く", "place": "M6", "why": "人がそろうと板がたくさんひける"}
+ },
+ "keep": true,
+ "judge": {"M607": "ゆるす", "M608": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null,
+ "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "のこの音を聞きながら働くのは落ち着く。冬の前に板をたくさん作りたい。"}

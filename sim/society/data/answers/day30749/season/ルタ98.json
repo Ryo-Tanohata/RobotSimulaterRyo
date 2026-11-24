@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋のあいだ、おれは土器を作りつづける。村の草の種は土器に入れておけば虫に食われない。みんなも種を守ろう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕は一番高く、村の草の種が虫やネズミに食われるのを土器で守れるから。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ヌオ159": true}, "keep": false,
+ "judge": {"M607": "どちらの家も言い分があるので、話し合って、刈り手の手間に合う分を倉からわけるのがよいと思う。", "M608": "同じように、話し合いで手間に見合う分をわけるのがよいと思う。", "M609": "いまは話し合えないので、次の集まりまで様子を見るのがよいと思う。"},
+ "feast": false, "leader": "", "trade": {"T1429": "村", "T1430": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "土器に入れた草の種は、虫やネズミにほとんど食べられない。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽い。土器をこねて、みんなの種を守るのが楽しみだ。"}

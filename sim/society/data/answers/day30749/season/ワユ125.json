@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。草の種をたくさんまいて、冬と春は交代で草取りをしよう。ヤギが多いから、うちは1頭干し肉にするよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると次の夏の実りが増えるので、毎日草取りをする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 1,
+ "accept": {"ヌオ159": true},
+ "family": {"ソワ127": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば畑の実りが増えるから"}},
+ "keep": false,
+ "judge": {"M607": "ゆるす", "M608": "ゆるす", "M609": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に千つかみの草の種をまき、冬と春に草取りをすると、次の夏に実りが多い", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "新しい仲間も来るし、畑をがんばって村の食べ物を増やしたい"}
