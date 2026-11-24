@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "今年の秋も畑がひとつもないよ。わたしは千つかみまいて、冬まで草取りに出る。いっしょにやろう。"}, {"to": "ラキ142", "text": "冬になったら字の続きを教えるから、それまで畑で手伝ってね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がないので、まいた種を草取りでよく実らせたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M601": "つぐなう", "M602": "つぐなう", "M603": "つぐなう"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は大人みな千つかみまいて、冬まで草取りをしよう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ムイ12の家の畑を刈った三つの家が不満を言った。量を字で書いておいたので、つぐなわせやすい", "because": [7186650, 7186651, 7186652], "confidence": 0.8}, {"op": "add", "text": "村のヤギは114頭で、草で養える約140頭より少ない。いまは少しならよその村のヤギを受けてもよい", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1155", "against": "半分を返すと、畑の家が損をすると思う人もいる", "agree": true, "reason": "刈る前に分け方を決めて字で書けば、もめごとがへる"}, {"id": "L1156", "against": "毎夕刈ると疲れがたまる", "agree": true, "reason": "畑を落とさず刈りきれるし、量を書くのはよい"}, {"id": "L1157", "against": "いまヤギは草より少ないので、ヤギの話は今は当てはまらない", "agree": true, "reason": "わかした水で子を守るのは大事"}, {"id": "L1159", "against": "鎌づくりに人を取られる", "agree": true, "reason": "鎌がそろえば刈り入れが早くなる"}],
+ "feeling": "畑がないのが心配。しっかりまいて、草取りでたくさん実らせたい"}

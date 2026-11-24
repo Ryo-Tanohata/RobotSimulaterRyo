@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "秋だから、うちの家もそれぞれ千つかみまいて、冬まで草取りをするよ。よその畑で刈った分は、ちゃんと分けてもらえるようにしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをすれば、来年の夏の実りが増えるから。疲れているので、キャンプのそばで働く"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ106": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"},
+  "ネイ127": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを手伝ってほしいから"},
+  "ラキ136": {"activity": "畑仕事", "place": "camp", "why": "若いうちに畑の世話を覚えてほしいから"},
+  "ラキ141": {"activity": "畑仕事", "place": "camp", "why": "12 歳になったので、少しずつ草取りを手伝ってほしいから"}
+ },
+ "keep": false,
+ "judge": {"M601": "つぐなう", "M602": "つぐなう", "M603": "つぐなう"},
+ "feast": false, "leader": "テナ61", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑で刈ると、刈った草の種はその家の倉に入り、刈った家がもめごとを言い出すことがある", "because": [7186650, 7186651, 7186652], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1146", "against": "書く手間がふえる", "agree": true, "reason": "刈った人の家にも分ければ、もめごとが減るから"},
+  {"id": "L1149", "against": "罰があると、よその畑を手伝う人が減るかもしれない", "agree": true, "reason": "書いた量をきちんと返せば、もめごとが収まりやすいから"},
+  {"id": "L1141", "against": "草取りの交代をまとめるのが大変", "agree": true, "reason": "畑の実りが増え、子も元気に育つから"},
+  {"id": "L1147", "against": "返してもらえないこともある", "agree": true, "reason": "蓄えはたくさんあるので、苦しい村を助けたいから"}
+ ],
+ "feeling": "少し疲れているけれど、家族みんなで秋の畑を育てたい"}

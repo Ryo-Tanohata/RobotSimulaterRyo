@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。おれは秋のあいだ、水の道を掘る。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分あるので、まだ残っている水の道の手入れを、からだの強いおれが進める"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソワ132": {"activity": "採集", "place": "camp", "why": "小さい子がいるので、キャンプのそばで木の実を集めて家を支える"}},
+ "keep": false,
+ "judge": {"M601": "ゆるす", "M602": "ゆるす", "M603": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは多く、秋に千つかみずつまけば冬も安心して暮らせる", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1141", "against": "", "agree": true, "reason": "秋にみなで種をまくのは、冬の食べ物のためになる"}],
+ "feeling": "おなかも満ちて、体も軽い。落ち着いて穴を掘れそうだ。"}

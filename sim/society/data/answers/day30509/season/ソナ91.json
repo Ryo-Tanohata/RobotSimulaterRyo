@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋は千つかみまくよ。冬までみんなで草取りをして、次の夏もたくさん実らせよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、毎日畑で働く"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "トナ111": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ケナ114": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ルタ120": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M601": "ゆるす", "M602": "ゆるす", "M603": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null,
+ "take": {"頼み": 82, "人": ["ソナ91"]},
+ "knowledge": [{"op": "add", "text": "町の頼みを果たすと、小さい子の薬がもらえる。うちには小さい子が4人いる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "小さい子たちが病にかからないよう、薬をもらえるのが心強い。畑も大事に育てたい。"}

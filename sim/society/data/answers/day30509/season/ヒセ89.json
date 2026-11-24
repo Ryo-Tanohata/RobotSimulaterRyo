@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "冬の前に、水の道を掘って畑も草取りもきっちりやろう。おれは手を動かす。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っている。体が丈夫なうちに大きな仕事を進めたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0,
+ "family": {
+  "ムイ97": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"},
+  "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "小さい子の世話のそばで草取りをする"},
+  "リセ109": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が良く、冬のための肉を集める"},
+  "オセ118": {"activity": "狩り", "place": "南林12", "why": "狩りの腕が良く、肉と魚を増やす"},
+  "オネ125": {"activity": "採集", "place": "西草原12", "why": "採集が得意で食べ物を集める"},
+  "トナ133": {"activity": "狩り", "place": "北林12", "why": "若く足が速く、狩りに向く"},
+  "ハソ134": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が良く、冬に備える"},
+  "シエ136": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを一緒に進める"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": "", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は疲れているが、冬の前に仕事を片づけたい気持ちだ。"}

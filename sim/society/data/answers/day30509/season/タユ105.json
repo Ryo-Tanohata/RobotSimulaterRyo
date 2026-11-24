@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は千つかみまいて、冬まで草取りを忘れずに。手の空いた日は水の道も掘ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れがまだ大量に残っているから、秋は水の道を掘って村の役に立てる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ115": {"activity": "水の道を掘る", "place": "camp", "why": "力があり、水の道の手入れが進むから。"},
+  "ヌオ126": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、来年の実りを増やすため。"},
+  "キサ133": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので、無理のない畑の草取りで力をつけてほしい。"}},
+ "keep": false,
+ "judge": {"M601": "ゆるす", "M602": "ゆるす", "M603": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。秋の種まきと水の道の仕事に気持ちよく取りかかれる。"}

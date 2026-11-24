@@ -1158,5 +1158,10 @@
 {"id":"L1156","text":"夏は手のあく大人みな毎夕畑を刈りきり、よその家の畑を刈った日は読める大人が量を字で書いて、刈った家に半分を返そう。","proposer_id":"P3040","proposed_day":30479,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L1157","text":"ヤギが草で養える数をこえているあいだは、よその村のヤギは受けず、小さい子にはわかして冷ました水を飲ませよう。夏は大人みな鎌で畑を刈りきろう。","proposer_id":"P3251","proposed_day":30479,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L1158","text":"夏は手のあく大人みな鎌を持って毎夕畑を刈りきろう。ヤギが草で養える数より多いあいだは、よその村のヤギを受けず、多い分はつぶして肉にしよう。","proposer_id":"P3382","proposed_day":30479,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
-{"id":"L1159","text":"畑がよく実った夏は、手のあく大人みな鎌を持って毎夕刈りきろう。冬は道具の得意な大人が鎌を作り、割れた鎌を集めて直そう。","proposer_id":"P3807","proposed_day":30479,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"}
+{"id":"L1159","text":"畑がよく実った夏は、手のあく大人みな鎌を持って毎夕刈りきろう。冬は道具の得意な大人が鎌を作り、割れた鎌を集めて直そう。","proposer_id":"P3807","proposed_day":30479,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1160","text":"秋は大人みな千つかみまいて冬まで草取りをし、手のあく大人は水の道を掘ろう。よその畑を刈った量は読める大人が字で書いて、半分を返そう。","proposer_id":"P2416","proposed_day":30509,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1161","text":"よその家の畑を刈るときは、刈る前に分け方を決め、読める大人が量を字で書いて、刈った家に半分を返そう。小さい子のいる家は、家の燃える石で町の頼みを受けて子の薬をもらおう。","proposer_id":"P2829","proposed_day":30509,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1162","text":"よその家の畑を刈った日は、読める大人が量を字で書き、畑の家は刈った家にその半分を返そう。秋は大人みな千つかみまき、冬まで草取りをしよう。","proposer_id":"P3040","proposed_day":30509,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1163","text":"秋と冬は、道具の得意な大人が鎌を作って直し、夏のはじめに刈り手みなに一本ずつ渡そう。ほかの大人は畑の草取りを続けよう。","proposer_id":"P3382","proposed_day":30509,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"知識の再現の疑い"},
+{"id":"L1164","text":"よその家の畑を刈るときは、刈る前に分け方を決め、読める大人が刈った量を字で書いて、刈った家に半分を返そう。冬は道具の得意な大人が鎌を作ろう。 (罰: よその家の畑で刈った草の種が、みな畑の持ち主の家の倉に入ると、相手の家は、言い出した家に 草の種 20 つかみ を払う)","proposer_id":"P3807","proposed_day":30509,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":{"for":"刈る","pay":20},"label":"創発"}
 ]

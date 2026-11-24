@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のはじめに千つかみまいて、そのあと水の道を掘って、来年の実りを守ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っていて、畑の実りを守るのに大事だから。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"キオ95": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家族みんなで進めるため。"}, "セオ108": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家族みんなで進めるため。"}},
+ "keep": false,
+ "judge": {"M601": "ゆるす", "M602": "ゆるす", "M603": "ゆるす"}, "feast": false, "leader": "テナ61", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えがたっぷりある秋は、千つかみ種をまき、水の道を掘って実りを守るとよい", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。秋の仕事を家族でがんばりたい。"}

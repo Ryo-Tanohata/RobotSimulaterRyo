@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。畑が空っぽだから、まず千つかみまいて、冬まで草取りをしよう。来年の夏の刈り入れが楽しみだ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がないので、まいたあとの草取りで次の夏の実りを守りたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"アコ112": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをして、畑をよく実らせるため"}},
+ "keep": false,
+ "judge": {"M601": "ゆるす", "M602": "ゆるす", "M603": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑がない秋は、はじめに千つかみまいて、秋と冬に草取りをすると次の夏に実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "畑をまいて、次の夏に実るのが待ち遠しい。"}

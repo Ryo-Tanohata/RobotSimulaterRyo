@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は千つかみまいて、冬まで草取りをつづけよう。わたしの家は畑と水の道に手を分けるよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると夏の実りが増えるので、年長のわたしが畑を見守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "シエ96": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているため"},
+  "オセ115": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに人手を回すため"},
+  "セヤ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに人手を回すため"},
+  "シエ120": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "ルタ125": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "キオ126": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに人手を回すため"},
+  "ホタ126": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに人手を回すため"},
+  "セヤ129": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "オセ131": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "ハソ133": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えが多い秋は、千つかみの種を畑にまき、冬まで草取りをして、残りの人手は水の道の手入れに回すとよい。", "because": [7180378], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心。家族みんなで畑と水の道をがんばりたい。"}

@@ -1,0 +1,31 @@
+{"say": [{"to": "みんな", "text": "水の来る畑はまだ広く空いている。この秋は大人みな千つかみまいて、冬まで草取りと水の道の手入れをしよう。"}, {"to": "ケセ108", "text": "町の板の頼みを受けるよ。家の板で子の薬をもらってくる。知らせ板にも書いておくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすれば実りが三倍ほどになる。秋から冬は畑を見るのがいちばん役に立つ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "セヤ103": {"activity": "畑仕事", "place": "camp", "why": "まいた千つかみの畑の草取りをする"},
+  "ケセ108": {"activity": "字を教える", "place": "camp", "why": "家の子テナ140やワユ142に字を教えたい"},
+  "ワユ110": {"activity": "燃える石を掘る", "place": "北丘12", "why": "家の燃える石を増やして、また町の頼みを受け子の薬をもらうため"},
+  "ホミ112": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やす"},
+  "ユエ113": {"activity": "水の道を掘る", "place": "camp", "why": "この年はだれも水の道を掘っていない。手入れが要る"},
+  "ハソ114": {"activity": "畑仕事", "place": "camp", "why": "小さい子のそばにいながら畑の草取りをする"},
+  "ラキ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑は悪い年でも実りが守られる"},
+  "ルタ123": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをみなで分ける"}
+ },
+ "keep": true,
+ "judge": {"M601": "つぐなう", "M602": "つぐなう", "M603": "つぐなう"},
+ "feast": false, "leader": "テナ61", "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋は大人みな千つかみまき、冬まで草取りと水の道の手入れを。小さい子には町の薬を",
+ "order": null,
+ "take": {"頼み": 86, "人": ["オセ86"]},
+ "knowledge": [{"op": "add", "text": "水の来る畑はまだ広いのに、去年の秋にまいた種は少なかった。もっとまいてよい", "because": [], "confidence": 0.7}, {"op": "add", "text": "家の板 8 束でも町の頼みを果たせば、子の薬を 4 包みもらえる", "because": [], "confidence": 0.7}],
+ "proposal": {"text": "秋は大人みな千つかみまいて冬まで草取りをし、手のあく大人は水の道を掘ろう。よその畑を刈った量は読める大人が字で書いて、半分を返そう。", "because": [7186650, 7186651, 7186652], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1145", "against": "書くのに手間がかかる", "agree": true, "reason": "刈った量を書けば、もめごとがへる"},
+  {"id": "L1149", "against": "つぐないが重いと人が刈りに行かなくなる", "agree": true, "reason": "書いた量を守れば、刈った家が損をしない"},
+  {"id": "L1154", "against": "燃える石が家から減る", "agree": true, "reason": "小さい子の薬はいちばん大事"},
+  {"id": "L1155", "against": "とくにない", "agree": true, "reason": "わかした水は子の病をへらす"},
+  {"id": "L1147", "against": "貸した種が戻らないこともある", "agree": true, "reason": "蓄えは多く、苦しい村を助けたい"},
+  {"id": "L1153", "against": "ヤギはまだ草より少ない", "agree": false, "reason": "いまヤギは 114 頭で、つぶさなくてよい"}
+ ],
+ "feeling": "子の薬をもらえて、畑もまけるなら、この冬も安心して越せそうだ"}

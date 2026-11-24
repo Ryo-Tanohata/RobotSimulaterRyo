@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋だね。蓄えの草の種を千つかみまいて、冬のあいだ草取りをしよう。わたしはまた土器を焼くよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は蓄えを虫やネズミから守る。わたしは土器づくりが得意なので続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"アコ121": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑は冬の草取りで実りが増える。採集が得意で働き手になる"}, "ヌオ127": {"activity": "畑仕事", "place": "camp", "why": "草取りをする人が多いほど次の夏の実りが増える"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまき、冬まで草取りをすると次の夏に多く実る。土器を焼きつづければ蓄えが守られる。", "because": [7181223], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "土器をこねていると落ち着く。冬に向けて畑もしっかり見守りたい。"}

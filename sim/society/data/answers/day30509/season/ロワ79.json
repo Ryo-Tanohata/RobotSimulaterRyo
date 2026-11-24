@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えの種を畑にまいて、来年の夏にそなえよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集が得意で、食べ物を家に持ち帰れるから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ムイ87": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで来年の実りを守るため"}, "キオ117": {"activity": "採集", "place": "camp", "why": "得意な採集で食べ物を集める"}, "ヌオ121": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やす"}, "ムイ125": {"activity": "採集", "place": "camp", "why": "得意な採集で食べ物を集める"}, "ユエ135": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝う"}},
+ "keep": false,
+ "judge": {"M601": "ゆるす", "M602": "ゆるす", "M603": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を千つかみまき、冬と春に草取りをすれば、来年の夏の畑が実る。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L1158", "against": "", "agree": true, "reason": "夏に畑を刈りきるのは大事だから"}, {"id": "L1159", "against": "", "agree": true, "reason": "よく実った夏に刈りきるのは良いことだから"}],
+ "feeling": "蓄えは十分で、落ち着いた気持ち。"}

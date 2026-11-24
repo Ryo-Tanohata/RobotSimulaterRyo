@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "わしは年をとって疲れが重い。今季は土器をこねて、蓄えの種を守る器を足すよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "疲れているので、キャンプで座ってできる土器づくりが合う。器が増えれば、冬の蓄えが傷みにくい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"リセ118": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで、次の夏の実りが増えるから"},
+            "アコ140": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って実りを増やす"}},
+ "keep": false,
+ "judge": {"M601": "ゆるす", "M602": "ゆるす", "M603": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑が空の秋は蓄えの種を一人千つかみまき、冬と春に草取りをすると次の夏の実りが増える。", "because": [7184566], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は重いが、畑も蓄えも足りていて、おだやかな気持ちだ。"}

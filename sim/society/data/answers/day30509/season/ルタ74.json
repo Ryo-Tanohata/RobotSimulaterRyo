@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。年寄りの手でも、水の道の泥さらいなら役に立てる。冬の前にやっておこう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは足りている。水の道の手入れがまだ多く残っているので、体は疲れているが、ゆっくり進める。"},
+ "sow": 100, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ユエ81": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが残っているので手伝う"}, "ケナ101": {"activity": "水の作業場で働く", "place": "M6", "why": "板があると手入れがはかどる"}},
+ "keep": false,
+ "judge": {"M601": "ゆるす", "M602": "ゆるす", "M603": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は重いが、村の蓄えが厚くて心は穏やかだ。"}

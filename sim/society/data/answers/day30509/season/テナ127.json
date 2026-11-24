@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えは多いけれど、来年の夏のために種はしっかりまいておこう。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "近くの草原で木の実と草の種を集めるのが得意で、体も満腹で元気だから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ128": {"activity": "採集", "place": "東林12", "why": "採集が得意なので、別の場所で食べ物を集めてもらう"}, "タユ137": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、近くの草原なら安全だから"}},
+ "keep": false,
+ "judge": {"M601": "ゆるす", "M602": "ゆるす", "M603": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を千つかみずつまくと、次の夏に大きく実る。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1130", "against": "", "agree": true, "reason": "秋に種をまくのは次の夏の実りのためになるから"}, {"id": "L1135", "against": "", "agree": true, "reason": "刈る前に分け方を決めておけば、もめごとが減るから"}],
+ "feeling": "おなかもいっぱいで穏やか。のんびり草原を歩きたい。"}
