@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "年をとったが、手はまだ動く。今年も土器と道具を作って、村を支えるよ。"}],
+"year": {
+"夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は草の種を虫から守る。手が覚えているので続ける"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "実った畑の刈り入れを急ぐ"}, "ラニ110": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに刈らないと落ちる"}, "ケナ122": {"activity": "採集", "place": "西草原12", "why": "近くで食べ物を集める"}, "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "ケセ134": {"activity": "採集", "place": "西草原12", "why": "近くで安全に採集する"}}, "pick": 0, "plant": 0, "harvest": 40, "eat_goat": 0},
+"秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "冬に備えて器を増やす"}, "family": {"ナセ109": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ラニ110": {"activity": "狩り", "place": "東林12", "why": "冬の肉をためる"}, "ケナ122": {"activity": "採集", "place": "西草原12", "why": "近くで採集する"}, "ホミ125": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ケセ134": {"activity": "採集", "place": "西草原12", "why": "近くで採集する"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+"冬": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "冬は家で鎌や石の道具を作る"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ラニ110": {"activity": "狩り", "place": "南林12", "why": "魚やけものは冬もいる"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}, "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ケセ134": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+"春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "夏の実りに備えて器を作る"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ラニ110": {"activity": "採集", "place": "東林12", "why": "春の食べ物を集める"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ケセ134": {"activity": "採集", "place": "西草原12", "why": "近くで採集する"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+"keep": false, "seal": false, "seal_store": [],
+"accept": {"ソナ159": true, "ハソ159": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+"judge_rule": null, "feast": [], "leader": null,
+"trade": {"T1427": "村", "T1428": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+"knowledge": [],
+"proposal": null,
+"votes": [],
+"year_name": "草の種が山ほど実った年",
+"feeling": "蓄えは多く、新しい人も来た。静かに手を動かして過ごしたい。"}

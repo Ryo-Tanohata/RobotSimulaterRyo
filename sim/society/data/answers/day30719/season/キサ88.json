@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑をみんなで刈ろう。落ちる前に刈り、秋に千つかみまいて、冬と春は草取りを続けよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを優先する"}, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを家族みんなで急ぐ"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを家族みんなで急ぐ"}, "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを家族みんなで急ぐ"}, "ネイ125": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを家族みんなで急ぐ"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで次の夏の実りを守る"}, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ネイ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けると実りが保てる"}, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ネイ125": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りをして夏の実りにそなえる"}, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ネイ125": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ソナ159": true, "ハソ159": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1427": false, "T1428": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を刈り、秋に千つかみまいて、冬と春に草取りをする流れを守ると、食べ物に困らない。", "because": [7318590], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "蓄えはたっぷりある。みんなで畑を守って、安心して暮らしたい。"}
