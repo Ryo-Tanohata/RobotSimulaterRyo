@@ -1,0 +1,29 @@
+{
+ "about": "年報の動画の顔ぶれと声 (VOICEVOX)。案内役 1 人 + 4 つの分野の係。顔は sim/society/app/guide/<img>_<顔>.webp、選んだわけは docs/society_phase/guide_character.md。規約は各声の音声ライブラリの規約 (2026-11-24 に確かめた。README.md)",
+ "engine": "VOICEVOX CORE 0.17.0 (tools/voicevox/setup.sh と synth.py)",
+ "people": {
+  "sona85": {"name": "ソナ85", "sex": "女", "age": 74, "role": "案内役・まとめ役", "team": null, "img": "sona85",
+             "voice": "東北イタコ", "style": "ノーマル", "style_id": 109, "vvm": "21.vvm", "speed": 0.98, "pitch": -0.02, "intonation": 0.95,
+             "credit": "VOICEVOX:東北イタコ", "terms": "https://zunko.jp/con_ongen_kiyaku.html",
+             "why": "落ちついた大人の女の人の声 (雅やかで余韻のある声)。74 歳の案内役を、少しゆっくり、少し低めにして使う"},
+  "kio85": {"name": "キオ85", "sex": "女", "age": 50, "role": "人口の係", "team": "pop", "img": "kio85",
+            "voice": "九州そら", "style": "ノーマル", "style_id": 16, "vvm": "2.vvm", "speed": 1.02, "pitch": 0.0, "intonation": 1.05,
+            "credit": "VOICEVOX:九州そら", "terms": "https://zunko.jp/con_ongen_kiyaku.html",
+            "why": "品のある大人の女の人の声。子を 10 人育てた 50 歳の母の、やわらかく話しかける声"},
+  "nei75": {"name": "ネイ75", "sex": "男", "age": 61, "role": "くらし・食べ物の係", "team": "life", "img": "nei75",
+            "voice": "ちび式じい", "style": "ノーマル", "style_id": 42, "vvm": "10.vvm", "speed": 1.0, "pitch": 0.0, "intonation": 1.0,
+            "credit": "VOICEVOX:ちび式じい", "terms": "https://docs.google.com/presentation/d/1AcD8zXkfzKFf2ertHwWRwJuQXjNnijMxhz7AJzEkaI4",
+            "why": "親しみのある、しゃがれた年配の男の人の声。61 歳で畑と水の道で働いてきた人に合う (VOICEVOX でただ 1 つの年配の男の声)"},
+  "kese98": {"name": "ケセ98", "sex": "男", "age": 39, "role": "知恵・技術の係", "team": "know", "img": "kese98",
+             "voice": "雀松朱司", "style": "ノーマル", "style_id": 52, "vvm": "12.vvm", "speed": 1.03, "pitch": 0.0, "intonation": 1.0,
+             "credit": "VOICEVOX:雀松朱司", "terms": "https://www.virvoxproject.com/voicevoxの利用規約",
+             "why": "落ちついた低めの大人の男の人の声。子らに字を教える 39 歳の先生役"},
+  "nase110": {"name": "ナセ110", "sex": "女", "age": 30, "role": "よその村・町の係", "team": "out", "img": "nase110",
+              "voice": "春日部つむぎ", "style": "ノーマル", "style_id": 8, "vvm": "0.vvm", "speed": 1.06, "pitch": 0.0, "intonation": 1.1,
+              "credit": "VOICEVOX:春日部つむぎ", "terms": "https://tsumugi-official.studio.site/rule",
+              "why": "明るく元気な若い女の人の声。川下の町まで荷を背負って歩く 30 歳の人"}
+ },
+ "teams": {"pop": "kio85", "life": "nei75", "know": "kese98", "out": "nase110"},
+ "guide": "sona85",
+ "portrait_credit": "人の絵: VRoid の CC0 サンプル (pixiv Inc.「HairSample_Female」「HairSample_Male」「Victoria Rubin」「千駄ヶ谷 篠」「桜田 フミリヤ」) をもとに作成"
+}

@@ -3,6 +3,22 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-24 年報の動画 (1 年 1 本・2〜3 分。係も村の人で、人ごとの声。本人の決め。data は読むだけ)
+
+- 本人の決め: 声は「まずはボイスボックス (VOICEVOX) でいいです」・係も村人にする・1 年 1 本 2〜3 分・**先に絵コンテ、本人の「go」のあとで本番** (§3 の決まり)。
+- 顔ぶれ (251年59日目の記録から。`docs/society_phase/guide_character.md` の 4.): 案内役・まとめ役 ソナ85 (女・74)・人口の係 キオ85 (女・50。子 10 人)・
+  くらし・食べ物の係 ネイ75 (男・61。種まき 3 番め・水の道 1,020 日)・知恵・技術の係 ケセ98 (男・39。字を教えた日 954 日でいちばん)・よその村・町の係 ナセ110 (女・30。町の頼みで町へ 9 回でいちばん)。
+  顔: `app/guide/<kio85|nei75|kese98|nase110>_<顔>.{webp,png}` (128px)。作り方は `people.py` の `VROID` と `build_person_vroid.py -- --person <名前> --only guide` (ソナ85 と同じ。係の 2 人は --samples 48)。
+- 声 (`video/yearly/voices.json`・README に規約): 東北イタコ (ソナ85)・九州そら (キオ85)・ちび式じい (ネイ75)・雀松朱司 (ケセ98)・春日部つむぎ (ナセ110)。クレジット「VOICEVOX:名前」を動画の終わりと説明文に。
+  音声モデル 2・10・12・21.vvm は setup.sh では入らない (README の手順で /tmp/vv/vvms に足す)。`tools/voicevox/synth.py` は 1 文ごとに style・vvm・speed・pitch・intonation を読む (なければ前と同じずんだもん)。
+- 作り方: `bash sim/society/video/yearly/make.sh <年> /tmp/yv<年>` → 絵コンテ `video/out/storyboard_yearly_<年>.html`・`.jpg` (git に入れない)・`video/storyboards/storyboard_yearly_<年>.json` (git)。
+  本人の go のあと `GO=1 bash ... make.sh <年> /tmp/yv<年>` → `/tmp/yv<年>/year<年>.mp4` (1280x720)。前の大きな年だけのずんだもんの動画はこれにまとめた (大きな年の video.lines は案内役が読む)。
+- 年の終わりの手順に足すなら: 年報と解説の係のあと `bash sim/society/video/yearly/make.sh $Y /tmp/yv$Y` (絵コンテまで。約 2 分) → 本人に送る → go で本番。
+- 年報の吹き出しの顔: `explain_data.guide_info()` は `app/guide/README.md` の「名前:」「絵:」で案内役の絵を選ぶ (前は `guide_<名前>_*.png` だけを探していて、ソナ85 の絵が入らず仮の顔だった)。
+  `reports/year250.html` はダッシュボードの節と <style> だけを差しかえた (ソナ85 の顔が入った)。
+- 記憶: 村の歩 (記録づくり 約 10〜11 GB) と同じ時に Blender や声を動かすと、記録づくりが記憶の不足で止められる (2026-11-24 に 2 回あった)。
+  人の絵と声は、使える記憶が 9 GB 以上で村の重い歩がないときに 1 つずつ動かす。
+
 ## 2026-11-24 解説の係 (年報のダッシュボードと統計のページを、本人にやさしく説明する係。本人が決めた案。data は読むだけ)
 
 - 係: 4 つの分野の係 (人口の係・くらし・食べ物の係・知恵・技術の係・よその村・町の係) がいっしょに書き → まとめ役がその年の大事なこと 3 つを選び → 事実の確かめの係が文の数をみな確かめて出す。

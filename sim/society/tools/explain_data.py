@@ -97,24 +97,30 @@ def chart_list(phase_key):
 
 
 def guide_info():
-    """案内役 (いまの村の人) の名前と絵。app/guide/guide_<名前>_<顔>.png があればそれ、なければ仮の名前と仮の絵"""
+    """案内役 (いまの村の人) の名前と絵。app/guide/README.md の「名前:」と「絵:」(ファイル名の頭) で決める。
+    絵は app/guide/<絵>_<顔>.png (または guide_<絵>_<顔>.png)。なければ仮の名前と仮の絵。
+    app/guide には分野の係の絵 (年報の動画の顔) もあるので、「絵:」がないときは guide_ のついた絵だけを案内役とみなす"""
     g = Path(GUIDE_DIR)
     imgs = {}
-    name = None
+    name = stem = None
     if g.is_dir():
-        for p in sorted(g.iterdir()):
-            m = re.match(r"guide_(.+)_(neutral|smile|concern|surprise)\.(png|webp|jpg|jpeg|svg)$", p.name)
-            if m:
-                name = name or m.group(1)
-                if m.group(1) == name:
-                    imgs[m.group(2)] = str(p)
         for doc in (g / "README.md", Path(SOC).parents[1] / "docs" / "society_phase" / "guide_character.md"):
             if doc.exists():
-                m = re.search(r"(?:名前|name)\s*[:：]\s*\**\s*([^\s*（(、。]+)", doc.read_text(encoding="utf-8"))
+                txt = doc.read_text(encoding="utf-8")
+                m = re.search(r"(?:名前|name)\s*[:：]\s*\**\s*([^\s*（(、。]+)", txt)
                 if m:
                     name = m.group(1)
+                    m2 = re.search(r"(?:^|\n)\s*-?\s*絵\s*[:：]\s*`?([A-Za-z0-9_-]+)", txt)
+                    stem = m2.group(1) if m2 else None
                     break
-    return {"name": name or PLACEHOLDER_NAME, "placeholder": not imgs, "imgs": imgs}
+        for p in sorted(g.iterdir()):
+            m = re.match(r"(guide_)?(.+)_(neutral|smile|concern|surprise)\.(png|webp|jpg|jpeg|svg)$", p.name)
+            if not m or (stem and m.group(2) != stem) or (not stem and not m.group(1)):
+                continue
+            stem = stem or m.group(2)
+            if m.group(2) == stem and (m.group(3) not in imgs or p.suffix == ".png"):
+                imgs[m.group(3)] = str(p)
+    return {"name": name or stem or PLACEHOLDER_NAME, "placeholder": not imgs, "imgs": imgs}
 
 
 # ---------------------------------------------------------------- 集める

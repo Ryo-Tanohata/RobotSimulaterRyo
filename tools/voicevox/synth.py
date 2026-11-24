@@ -1,9 +1,11 @@
 """ずんだもんの声で文章を読み上げて wav に保存する (VOICEVOX CORE)。
    python synth.py <セリフの一覧.json> <出力フォルダ> [保存先 (setup.sh と同じ)]
    セリフの一覧: [{"id": "s01", "text": "...", "say": "(読み上げだけ変えたいとき)"}, ...]
+   1 文ごとに声を変えるとき: "style" (スタイル ID) と "vvm" (その声の入った音声モデルのファイル名、例 "21.vvm")、
+   "speed"・"pitch"・"intonation" (なければ前と同じ。声はずんだもん)。音声モデルは setup.sh の保存先の vvms/ に置く
    → 出力フォルダ/s01.wav、durations.json (各セリフの秒数)、readings.md (読み仮名の一覧表。本人に確認してもらう)
    読みを直したい言葉は tools/voicevox/user_dict.json (ユーザー辞書) に登録する。
-生成した音声には「VOICEVOX:ずんだもん」のクレジット表記が必要。"""
+生成した音声には「VOICEVOX:ずんだもん」(ほかの声ならその名前) のクレジット表記が必要。"""
 import io
 import json
 import os
@@ -29,14 +31,20 @@ if dict_path.exists():  # この世界の言葉の読みとアクセント
                                  word_type=w.get("word_type", "COMMON_NOUN"), priority=w.get("priority", 8)))
     ojt.use_user_dict(ud)
 syn = Synthesizer(ort, ojt)
-with VoiceModelFile.open(str(base / "vvms" / "0.vvm")) as m:
-    syn.load_voice_model(m)
+for vvm in sorted({ln.get("vvm", "0.vvm") for ln in lines}):  # 使う音声モデルだけ読む
+    with VoiceModelFile.open(str(base / "vvms" / vvm)) as m:
+        syn.load_voice_model(m)
 durations, readings = {}, ["# 読み仮名の一覧 (確認用)", "", "| id | 字幕の文 | 読み (カタカナ、' はアクセント) |", "|---|---|---|"]
 for line in lines:
     say = line.get("say", line["text"])
-    q = syn.create_audio_query(say, ZUNDAMON_NORMAL)
+    sid = line.get("style", ZUNDAMON_NORMAL)
+    q = syn.create_audio_query(say, sid)
     q.speed_scale = line.get("speed", 1.1)
-    wav = syn.synthesis(q, ZUNDAMON_NORMAL)
+    if "pitch" in line:
+        q.pitch_scale = line["pitch"]
+    if "intonation" in line:
+        q.intonation_scale = line["intonation"]
+    wav = syn.synthesis(q, sid)
     (out / f"{line['id']}.wav").write_bytes(wav)
     with wave.open(io.BytesIO(wav)) as w:
         durations[line["id"]] = w.getnframes() / w.getframerate()

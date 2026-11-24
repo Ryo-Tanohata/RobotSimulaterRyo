@@ -61,7 +61,7 @@ def _embed(p, px=96):
         s = min(w, h)
         im = im.crop(((w - s) // 2, 0, (w - s) // 2 + s, s)).resize((px, px), Image.LANCZOS)  # 顔は上のほうにあるので、上から四角く切る
         buf = io.BytesIO()
-        im.save(buf, "PNG", optimize=True)
+        im.convert("RGB").quantize(128).save(buf, "PNG", optimize=True)  # 128 色 (年報が重くならないように。1 枚 約 5 KB)
         return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
     except Exception:  # noqa: BLE001  (絵が読めなければ仮の絵)
         return None

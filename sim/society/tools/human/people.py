@@ -328,3 +328,126 @@ VROID["sona85"] = {
 
 # 並べる順 (本人の絵と同じ、左から)
 LINEUP = ["ruo", "sena", "tahi", "wiro", "isa"]
+
+# ---------------------------------------------------------------- 解説の係 (年報の動画で、分野ごとに話す村の人)
+# 251年59日目 (30179 日目) に生きている村の人から、記録で選んだ (docs/society_phase/guide_character.md の「解説の係」)。
+# 服はソナ85 と同じヤギのなめし革の貫頭衣 (色と丈を人ごとに変える)。吹き出し・動画の顔は --only guide。
+GUIDE_EXPR = {"neutral": {"Fcl_MTH_Fun": 0.25, "Fcl_EYE_Joy": 0.08},
+              "smile": {"Fcl_MTH_Fun": 0.7, "Fcl_MTH_Joy": 0.15, "Fcl_EYE_Joy": 0.55, "Fcl_BRW_Fun": 0.5},
+              "concern": {"Fcl_BRW_Sorrow": 1.0, "Fcl_EYE_Sorrow": 0.6, "Fcl_MTH_Sorrow": 0.55},
+              "surprise": {"Fcl_BRW_Surprised": 1.0, "Fcl_EYE_Surprised": 0.85, "Fcl_MTH_O": 0.55}}
+
+
+def _guide(**kw):
+    g = {"bg": "#e6e1d8", "lens": 85, "dist": 1.05, "dz": 0.005, "arm_down": 68, "expr": GUIDE_EXPR}
+    g.update(kw)
+    return g
+
+
+# 人口の係 キオ85: 女・50 歳。村で生まれた。子 10 人 (いま 5 人が生きている。4 人を小さいうちに亡くした)。家の代表 58 季節
+VROID["kio85"] = {
+    "name": "kio85",
+    "label": "キオ85 (女・50歳・人口の係)",
+    "body_src": HS_F,
+    "face_src": HS_F,   # やわらかい目の顔 (子の多い母)
+    "skin": {"tan": "#9c6a4c", "sss": 0.15, "rough": 0.52, "blush": "#bf5e4e", "blush_alpha": 0.2},
+    # 髪: 篠の髪 (髪どめを消す) をこげ茶に、少し白いものがまじる。うなじで結ぶ
+    "hair": {"parts": [{"src": SHINO, "part": "Hair001", "drop": ["HAIR_02"]}, {"src": SHINO, "part": "HairBack"}],
+             "style": "tie",
+             "dark": "#140d09", "light": "#4a3628", "ramp_lo": 0.4, "rough": 0.55,
+             "tie_z": 1.30, "gather_from": 1.385, "tail_width": 0.026,
+             "front_from": 1.37, "front_keep": 0.6, "tie_color": "#5a3b26"},
+    "lines": {"brow": "#2e1e16", "eyeline": "#2c1612", "lash": "#24120f"},
+    "iris": {"hue": 0.0, "sat": 0.5, "val": 0.9, "tint": "#7e5a42", "highlight": 0.7},
+    "body": {"shoulder": 0.008, "hips": 0.06, "waist": 0.1,
+             "limbs": {"UpperArm": 0.07, "LowerArm": 0.05, "UpperLeg": 0.05, "LowerLeg": 0.04}},
+    "face": {"round": 0.05},
+    "expr": {"Fcl_MTH_Fun": 0.45, "Fcl_EYE_Joy": 0.18, "Fcl_BRW_Fun": 0.3},
+    "outfit": {"color": "#161514", "top": None, "shorts": (0.805, 0.975),
+               "dress": {"color": "#8a6242", "belt": "#4a3020", "waist": 1.00, "arm": 1.215,
+                         "neck": 1.335, "hem": 0.40, "flare": 0.2, "push": 0.008, "sleeve_x": 0.26}},
+    "guide": _guide(),
+}
+
+# くらし・食べ物の係 ネイ75: 男・61 歳。村で生まれた。草の種をまいた量が村で 3 番め (39,300 つかみ)、水の道を掘った 1,020 日
+VROID["nei75"] = {
+    "name": "nei75",
+    "label": "ネイ75 (男・61歳・くらし・食べ物の係)",
+    "body_src": HS_M,
+    "face_src": HS_M,
+    # 畑と水の道の仕事で、いちばん濃い日焼け
+    "skin": {"tan": "#7e4e34", "sss": 0.12, "rough": 0.58, "fill_dark": 0.6, "blush": "#a8503e", "blush_alpha": 0.06},
+    # 髪: 短く刈った白髪まじりの灰色
+    "hair": {"parts": [{"src": HS_M, "part": "Hair001"}, {"src": FUMI, "part": "HairBack"}],
+             "style": "keep",
+             "crop": {"k": 0.5, "z_front": 0.10, "z_back": 0.0, "k_len": 0.4, "gap": 0.003},
+             "dark": "#2a2622", "light": "#a49c92", "ramp_lo": 0.4, "rough": 0.6},
+    "lines": {"brow": "#4a423c", "eyeline": "#24120e", "lash": "#2a1c16"},
+    "iris": {"hue": 0.0, "sat": 0.2, "val": 0.85, "tint": "#6e5040", "highlight": 0.5},
+    # 畑で働く太い腕と、がっしりした肩
+    "body": {"shoulder": 0.016, "hips": 0.0, "waist": 0.02, "chest": 0.05,
+             "limbs": {"UpperArm": 0.12, "LowerArm": 0.10, "UpperLeg": 0.04, "LowerLeg": 0.04}},
+    "scale": 0.97,
+    "face": {"round": -0.03, "brow_thick": 1.25},
+    "expr": {"Fcl_MTH_Fun": 0.35, "Fcl_EYE_Joy": 0.15},
+    "outfit": {"color": "#161514", "top": None, "shorts": (0.805, 0.975),
+               "dress": {"color": "#6e4c32", "belt": "#3a281a", "waist": 1.00, "arm": 1.215,
+                         "neck": 1.335, "hem": 0.62, "flare": 0.12, "push": 0.008, "sleeve_x": 0.26}},
+    "guide": _guide(),
+}
+
+# 知恵・技術の係 ケセ98: 男・39 歳。村で生まれた。字を教えた日が村でいちばん多い (954 日)。知らせを書く 10 日・帳をつける 30 日
+VROID["kese98"] = {
+    "name": "kese98",
+    "label": "ケセ98 (男・39歳・知恵・技術の係)",
+    "body_src": HS_M,
+    "face_src": FUMI,
+    # 屋根の下で字を教える日が多いので、日焼けは浅め
+    "skin": {"tan": "#a87252", "sss": 0.15, "rough": 0.5, "fill_dark": 0.6, "blush": "#b05a4a", "blush_alpha": 0.08},
+    "hair": {"parts": [{"src": FUMI, "part": "Hair001"}, {"src": FUMI, "part": "HairBack"}],
+             "style": "keep",
+             "dark": "#120c08", "light": "#3e2a1c", "ramp_lo": 0.1, "rough": 0.55,
+             "ramp_mat": {"HairBack": (0.0, 0.5), "HAIR_02": (0.0, 0.5)}},
+    "lines": {"brow": "#1e140e", "eyeline": "#2c1612", "lash": "#24120f"},
+    "iris": {"hue": 0.0, "sat": 0.3, "val": 0.85, "tint": "#5e4434", "highlight": 0.7},
+    "body": {"shoulder": -0.004, "hips": -0.03, "waist": -0.05, "chest": -0.02,
+             "limbs": {"UpperArm": -0.05, "LowerArm": -0.04, "UpperLeg": -0.04, "LowerLeg": -0.03}},
+    "face": {"round": -0.01},
+    "expr": {"Fcl_MTH_Fun": 0.3, "Fcl_EYE_Joy": 0.1},
+    "outfit": {"color": "#161514", "top": None, "shorts": (0.805, 0.975),
+               "dress": {"color": "#94704c", "belt": "#4a3020", "waist": 1.00, "arm": 1.215,
+                         "neck": 1.335, "hem": 0.58, "flare": 0.12, "push": 0.008, "sleeve_x": 0.26}},
+    "guide": _guide(),
+}
+
+# よその村・町の係 ナセ110: 女・30 歳。村で生まれた。川下の町の頼みで燃える石を背負って町へ 9 回 (村でいちばん多い)。知らせを書く 32 日
+VROID["nase110"] = {
+    "name": "nase110",
+    "label": "ナセ110 (女・30歳・よその村・町の係)",
+    "body_src": HS_F,
+    "face_src": SHINO,
+    # 川を下る道で日に焼けた肌
+    "skin": {"tan": "#93603f", "sss": 0.15, "rough": 0.5, "blush": "#c0584a", "blush_alpha": 0.24},
+    # 髪: Victoria Rubin の長めの髪を黒にして、うなじで結んで短い三つ編み (歩くときにじゃまにならない)
+    "hair": {"parts": [{"src": VICT, "part": "Hair001", "drop": ["HAIR_03"], "drop_parts": [{"x_lt": -0.11}, {"x_lt": -0.09, "z_gt": 0.085}]},
+                       {"src": VICT, "part": "HairBack"}],
+             "style": "braid",
+             "dark": "#060404", "light": "#2a1e18", "ramp_lo": 0.5, "rough": 0.5,
+             "tie_z": 1.31, "gather_from": 1.385, "tail_width": 0.024,
+             "front_from": 1.37, "front_keep": 0.8, "tie_color": "#6a4a30",
+             "braid": {"len": 0.26, "width": 0.03, "strand_r": 0.008, "period": 0.07, "taper": 0.35, "tuft": 0.04}},
+    "lines": LINES_DARK,
+    "iris": {"hue": 0.0, "sat": 0.7, "val": 0.95, "tint": "#8a5e44", "highlight": 0.8},
+    # 背負って歩く人の、引きしまった脚と肩
+    "body": {"shoulder": 0.01, "hips": 0.02, "waist": 0.0,
+             "limbs": {"UpperArm": 0.06, "LowerArm": 0.04, "UpperLeg": 0.07, "LowerLeg": 0.06}},
+    "face": {"round": 0.0},
+    "expr": {"Fcl_MTH_Fun": 0.5, "Fcl_EYE_Joy": 0.2, "Fcl_BRW_Fun": 0.3},
+    "outfit": {"color": "#161514", "top": None, "shorts": (0.805, 0.975),
+               "dress": {"color": "#7e5a3e", "belt": "#3e2a1c", "waist": 1.00, "arm": 1.215,
+                         "neck": 1.335, "hem": 0.50, "flare": 0.16, "push": 0.008, "sleeve_x": 0.26}},
+    "guide": _guide(),
+}
+
+# 年報の動画の顔ぶれ (案内役 + 4 つの分野の係)。video/yearly/voices.json と同じ順
+CAST = ["sona85", "kio85", "nei75", "kese98", "nase110"]
