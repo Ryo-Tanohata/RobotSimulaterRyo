@@ -280,5 +280,51 @@ VROID = {
     },
 }
 
+# ---------------------------------------------------------------- 案内役 (年報と統計のページを説明する人)
+# ソナ85: 251年30日目 (30149 日目) に生きている村の人から選んだ (docs/society_phase/guide_character.md)。
+# 女・74 歳・51.0 kg・生きた日 8910 日。24 歳で南の村19 から来て 50 年。家の代表 200 季節、子らに字を教えた 180 日。
+# 布を織る技は村にない (技の木の「布を織る」は届かなかった) ので、服はヤギのなめし革の長い貫頭衣と革紐の帯。
+VROID["sona85"] = {
+    "name": "sona85",
+    "label": "ソナ85 (女・74歳・51.0kg・案内役)",
+    "body_src": HS_F,
+    "face_src": VICT,   # 顔: Victoria Rubin (五人のだれとも別の顔)
+    # 畑と原の仕事で日に焼けた肌。年寄りなので、目じりと口のわきにうすいしわ
+    "skin": {"tan": "#94664a", "sss": 0.15, "rough": 0.55,
+             "blush": "#b86656", "blush_alpha": 0.12,
+             "face_lines": [
+                 # ほうれい線 (小鼻のわきから口のわきへ)
+                 {"a": (0.015, 0.019), "b": (0.023, -0.001), "bow": 0.0, "color": "#6e4632", "alpha": 0.5, "width": 2.0},
+                 # 目じりのしわ (2 本ずつ)
+                 {"a": (0.049, 0.040), "b": (0.058, 0.043), "color": "#6e4632", "alpha": 0.32, "width": 1.2, "n": 16},
+                 {"a": (0.049, 0.036), "b": (0.058, 0.034), "color": "#6e4632", "alpha": 0.28, "width": 1.2, "n": 16},
+             ]},
+    # 髪: Victoria Rubin の長めの髪 (リボンと横の小さな房を消す) を白髪まじりの灰色にして、うなじで低く結ぶ
+    "hair": {"parts": [{"src": VICT, "part": "Hair001", "drop": ["HAIR_03"], "drop_parts": [{"x_lt": -0.11}, {"x_lt": -0.09, "z_gt": 0.085}]},
+                       {"src": VICT, "part": "HairBack"}],
+             "style": "tie",
+             "dark": "#3a3633", "light": "#9c968e", "ramp_lo": 0.5, "rough": 0.55,
+             "tie_z": 1.30, "gather_from": 1.385, "tail_width": 0.022,
+             "front_from": 1.37, "front_keep": 0.6, "tie_color": "#4a3322"},
+    "lines": {"brow": "#4a423c", "eyeline": "#2c1612", "lash": "#3a2a22"},
+    "iris": {"hue": 0.0, "sat": 0.5, "val": 0.85, "tint": "#7a5a44", "highlight": 0.6},
+    # 年をとって少しやせた体 (51 kg)。畑で働く腕はまだしっかり
+    "body": {"shoulder": -0.004, "hips": 0.02, "waist": 0.05, "chest": -0.03,
+             "limbs": {"UpperArm": -0.02, "LowerArm": 0.0, "UpperLeg": -0.04, "LowerLeg": -0.03}},
+    "scale": 0.96,
+    "face": {"round": -0.01},
+    # ふだんの顔: おだやかに細めた目と、小さな笑み
+    "expr": {"Fcl_MTH_Fun": 0.3, "Fcl_EYE_Joy": 0.12, "Fcl_BRW_Sorrow": 0.08},
+    "outfit": {"color": "#161514", "top": None, "shorts": (0.805, 0.975),
+               "dress": {"color": "#7a5638", "belt": "#3e2a1c", "waist": 1.00, "arm": 1.215,
+                         "neck": 1.335, "hem": 0.36, "flare": 0.22, "push": 0.008, "sleeve_x": 0.26}},
+    # 吹き出しの絵 (--only guide): 表情ごとの VRM の表情キー
+    "guide": {"bg": "#e6e1d8", "lens": 85, "dist": 1.05, "dz": 0.005, "arm_down": 68,
+              "expr": {"neutral": {"Fcl_MTH_Fun": 0.25, "Fcl_EYE_Joy": 0.08},
+                       "smile": {"Fcl_MTH_Fun": 0.7, "Fcl_MTH_Joy": 0.15, "Fcl_EYE_Joy": 0.55, "Fcl_BRW_Fun": 0.5},
+                       "concern": {"Fcl_BRW_Sorrow": 1.0, "Fcl_EYE_Sorrow": 0.6, "Fcl_MTH_Sorrow": 0.55},
+                       "surprise": {"Fcl_BRW_Surprised": 1.0, "Fcl_EYE_Surprised": 0.85, "Fcl_MTH_O": 0.55}}},
+}
+
 # 並べる順 (本人の絵と同じ、左から)
 LINEUP = ["ruo", "sena", "tahi", "wiro", "isa"]

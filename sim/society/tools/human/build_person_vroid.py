@@ -842,6 +842,25 @@ def skin_textures(P, body, face, rig, F):
             al.append(S["blush_alpha"] * 0.6 * math.exp(-(np.linalg.norm(d) / 0.004) ** 2))
         # 最も近い表面点へ (前から当てる)
         pf.paint(fa, pts, lin(S["blush"]), al, 7.0)
+    # 顔のしわ (年寄り): 頭の骨からの (x, z) の線を、前から光線を当てて顔の表面に描く
+    if S.get("face_lines"):
+        pf = UVPainter(face, "Face_00_SKIN")
+        hb = F.hb
+        for D in S["face_lines"]:
+            pts, al = [], []
+            for sx in ((-1, 1) if D.get("mirror", True) else (1,)):
+                (x0, z0), (x1, z1) = D["a"], D["b"]
+                n = D.get("n", 40)
+                for k in range(n):
+                    u = k / (n - 1)
+                    x = sx * (x0 + (x1 - x0) * u)
+                    z = hb[2] + z0 + (z1 - z0) * u + D.get("bow", 0.0) * math.sin(math.pi * u)
+                    hit = pf.tree.ray_cast(Vector((x, hb[1] + 0.4, z)), Vector((0, -1, 0)))
+                    if hit[0] is None:
+                        continue
+                    pts.append(np.array(hit[0]))
+                    al.append(D["alpha"] * (1 - abs(u - 0.5) * D.get("fade", 1.2)))
+            pf.paint(fa, pts, lin(D["color"]), al, D.get("width", 1.6))
     # 体: 古い傷 (線) と、煤など (しみ)
     pb = UVPainter(body, "Body_00_SKIN")
     for D in S.get("scars", []):
@@ -979,7 +998,7 @@ def materials(P, objs, skin_imgs):
 
 
 # ---------------------------------------------------------------- 服 (無地の胸の帯と短パン)
-def make_band(body, z0, z1, name, mat, push, bridge=False):
+def make_band(body, z0, z1, name, mat, push, bridge=False, xcut=0.165):
     bm = bmesh.new()
     bm.from_mesh(body.data)
     for z, keep_above in ((z0, True), (z1, False)):
@@ -988,7 +1007,7 @@ def make_band(body, z0, z1, name, mat, push, bridge=False):
         dele = [v for v in bm.verts if (v.co.z < z - 1e-5 if keep_above else v.co.z > z + 1e-5)]
         bmesh.ops.delete(bm, geom=dele, context='VERTS')
     # 腕を除く (胴の幅より外)
-    dele = [f for f in bm.faces if abs(f.calc_center_median().x) > 0.165]
+    dele = [f for f in bm.faces if abs(f.calc_center_median().x) > xcut]
     bmesh.ops.delete(bm, geom=dele, context='FACES')
     bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS')
     bm.normal_update()
@@ -1023,8 +1042,148 @@ def make_band(body, z0, z1, name, mat, push, bridge=False):
     return ob
 
 
+def leather_mat(name, color, rough=0.62, seed=0.0):
+    """なめした革 (ヤギの皮): 色むら・しわの凹凸・つやのむら。"""
+    m = bpy.data.materials.new(name)
+    m.use_nodes = True
+    nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]
+    b.inputs["Roughness"].default_value = rough
+    b.inputs["Specular IOR Level"].default_value = 0.3
+    nz = nt.nodes.new("ShaderNodeTexNoise")
+    nz.inputs["Scale"].default_value = 18
+    nz.inputs["Detail"].default_value = 6
+    nz.noise_dimensions = '4D'
+    nz.inputs["W"].default_value = seed
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    c = srgb(color)
+    ramp.color_ramp.elements[0].position = 0.35
+    ramp.color_ramp.elements[0].color = (c[0] * 0.72, c[1] * 0.72, c[2] * 0.72, 1)
+    ramp.color_ramp.elements[1].position = 0.7
+    ramp.color_ramp.elements[1].color = (min(1, c[0] * 1.18), min(1, c[1] * 1.18), min(1, c[2] * 1.18), 1)
+    nt.links.new(nz.outputs["Fac"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], b.inputs["Base Color"])
+    nz2 = nt.nodes.new("ShaderNodeTexNoise")
+    nz2.inputs["Scale"].default_value = 260
+    nz2.inputs["Detail"].default_value = 3
+    bp = nt.nodes.new("ShaderNodeBump")
+    bp.inputs["Strength"].default_value = 0.12
+    nt.links.new(nz2.outputs[0], bp.inputs["Height"])
+    nt.links.new(bp.outputs[0], b.inputs["Normal"])
+    return m
+
+
+def skirt_loft(body, z_top, z_hem, flare, push, name, mat, rig, n_ang=56, n_z=26, shrink=0.0, xlim=0.24,
+               bone="J_Bip_C_Hips"):
+    """革の筒 (すそ・胴)。体の輪切りの外側をなぞる。flare: 下へ行くほど広げる割合。
+    shrink: 下へ 1 m 行くあいだに細くなってよい量 (0 なら細くならない。胸から下へまっすぐ落ちる革)。"""
+    co = mesh_co(body)
+    ang = np.linspace(0, 2 * np.pi, n_ang, endpoint=False)
+    zs = np.linspace(z_top, z_hem, n_z)
+
+    def radius_at(z, cx, cy, tol=0.015):
+        sel = co[(np.abs(co[:, 2] - z) < tol) & (np.abs(co[:, 0]) < xlim)]
+        r = np.zeros(n_ang)
+        if len(sel) == 0:
+            return r
+        a = np.arctan2(sel[:, 1] - cy, sel[:, 0] - cx) % (2 * np.pi)
+        d = np.hypot(sel[:, 0] - cx, sel[:, 1] - cy)
+        idx = (a / (2 * np.pi) * n_ang).astype(int) % n_ang
+        np.maximum.at(r, idx, d)
+        return r
+    top = co[np.abs(co[:, 2] - z_top) < 0.01]
+    cx, cy = 0.0, float(np.median(top[:, 1]))
+    rings = []
+    prev = None
+    for k, z in enumerate(zs):
+        r = radius_at(z, cx, cy)
+        # 角の中で空いたところは、まわりでうめて、なめらかに
+        for _ in range(8):
+            r = np.maximum(r, 0.5 * (np.roll(r, 1) + np.roll(r, -1)) * 0.995)
+        r = np.maximum(r, np.convolve(np.concatenate([r[-3:], r, r[:3]]), np.ones(5) / 5, mode='same')[3:-3])
+        if prev is None:
+            base = r.copy()
+        t = k / (n_z - 1)
+        want = np.maximum(r + push, base * (1 + flare * t) + push)
+        if prev is not None:
+            want = np.maximum(want, prev - shrink * abs(zs[1] - zs[0]))  # 上から落ちる革 (急に細くならない)
+        prev = want
+        rings.append(np.stack([cx + want * np.cos(ang), cy + want * np.sin(ang), np.full(n_ang, z)], 1))
+    bm = bmesh.new()
+    vs = [[bm.verts.new(p) for p in ring] for ring in rings]
+    for k in range(n_z - 1):
+        for i in range(n_ang):
+            j = (i + 1) % n_ang
+            bm.faces.new((vs[k][i], vs[k][j], vs[k + 1][j], vs[k + 1][i]))
+    bm.normal_update()
+    me = bpy.data.meshes.new(name)
+    bm.to_mesh(me)
+    bm.free()
+    ob = bpy.data.objects.new(name, me)
+    bpy.context.scene.collection.objects.link(ob)
+    ob.data.materials.append(mat)
+    for p in ob.data.polygons:
+        p.use_smooth = True
+    sol = ob.modifiers.new("thick", 'SOLIDIFY')
+    sol.thickness = 0.003
+    sol.offset = 1.0
+    g = ob.vertex_groups.new(name=bone)
+    g.add(list(range(len(me.vertices))), 1.0, 'REPLACE')
+    ob.parent = rig
+    am = ob.modifiers.new("arm", 'ARMATURE')
+    am.object = rig
+    return ob
+
+
+def dress(P, body, rig, F):
+    """革の長い貫頭衣 (袖なしに近い短い袖) と、すそ、帯。D の高さは女の素体の高さ。"""
+    D = P["outfit"]["dress"]
+    m = leather_mat("leather", D["color"], seed=0.3)
+    mb = leather_mat("belt", D["belt"], rough=0.55, seed=1.7)
+    parts = []
+    # 肩と短い袖: 脇の少し下から首の付け根まで (腕も含める)
+    parts.append(make_band(body, *F.z(np.array([D["arm"] - 0.03, D["neck"]])), "tunic_sh", m, D.get("push", 0.006) + 0.002,
+                           xcut=D.get("sleeve_x", 0.26)))
+    for ob in parts:
+        dt = ob.modifiers.new("w", 'DATA_TRANSFER')
+        dt.object = body
+        dt.use_vert_data = True
+        dt.data_types_verts = {'VGROUP_WEIGHTS'}
+        dt.vert_mapping = 'NEAREST'
+        bpy.context.view_layer.objects.active = ob
+        bpy.ops.object.datalayout_transfer(modifier=dt.name)
+        bpy.ops.object.modifier_apply(modifier=dt.name)
+        ob.parent = rig
+        am = ob.modifiers.new("arm", 'ARMATURE')
+        am.object = rig
+    # 胴: 脇から腰まで。胸から下はまっすぐ落ちる (体のくぼみをなぞらない)
+    parts.append(skirt_loft(body, float(F.z(D["arm"])), float(F.z(D["waist"] - 0.01)), 0.0, D.get("push", 0.006),
+                            "tunic", m, rig, n_z=30, shrink=0.3, xlim=0.17, bone="J_Bip_C_Spine"))
+    # すそ: 腰からひざ下まで
+    parts.append(skirt_loft(body, float(F.z(D["waist"])), float(F.z(D["hem"])), D.get("flare", 0.25),
+                            D.get("push", 0.006) + 0.008, "skirt", m, rig))
+    # 帯: 腰に細い革紐
+    belt = make_band(body, *F.z(np.array([D["waist"] - 0.012, D["waist"] + 0.012])), "belt", mb, D.get("push", 0.006) + 0.012)
+    belt.modifiers["thick"].thickness = 0.004
+    dt = belt.modifiers.new("w", 'DATA_TRANSFER')
+    dt.object = body
+    dt.use_vert_data = True
+    dt.data_types_verts = {'VGROUP_WEIGHTS'}
+    dt.vert_mapping = 'NEAREST'
+    bpy.context.view_layer.objects.active = belt
+    bpy.ops.object.datalayout_transfer(modifier=dt.name)
+    bpy.ops.object.modifier_apply(modifier=dt.name)
+    belt.parent = rig
+    am = belt.modifiers.new("arm", 'ARMATURE')
+    am.object = rig
+    parts.append(belt)
+    return parts
+
+
 def outfit(P, body, rig, F):
     O = P["outfit"]
+    if O.get("dress"):
+        return dress(P, body, rig, F)
     m = bpy.data.materials.new("cloth")
     m.use_nodes = True
     nt = m.node_tree
@@ -1136,7 +1295,7 @@ def main():
     ap.add_argument("--person", default="sena")
     ap.add_argument("--quick", action="store_true")
     ap.add_argument("--samples", type=int, default=96)
-    ap.add_argument("--only", default="", help="sheet,face,expr,lineup をカンマで (none なら書き出しだけ)")
+    ap.add_argument("--only", default="", help="sheet,face,expr,lineup,guide をカンマで (none なら書き出しだけ)")
     ap.add_argument("--no-tie", action="store_true")
     args = ap.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:])
     P = VROID[args.person]
@@ -1205,6 +1364,32 @@ def main():
             tmp.append(p)
         compose(tmp, os.path.join(OUT_PNG, f"{name}_expr.png"))
         set_expr(face, P["expr"])
+    if "guide" in only and P.get("guide"):
+        # 案内役の吹き出し用の胸から上の絵 (正方形、無地の背景)。表情ごとに 1 枚
+        G = P["guide"]
+        bpy.data.objects["floor"].hide_render = True
+        nt = s.world.node_tree
+        for n in nt.nodes:
+            if n.type == 'BACKGROUND' and n.inputs[1].default_value == 1.0:
+                n.inputs[0].default_value = srgb(G.get("bg", "#e6e1d8"))
+        # 腕を下ろす (T の形のままだと胸から上の絵で腕が横にのびる)
+        from mathutils import Quaternion
+        for side, sg in (("L", -1), ("R", 1)):
+            pb = rig.pose.bones["J_Bip_%s_UpperArm" % side]
+            ax = rig.data.bones[pb.name].matrix_local.to_3x3().inverted() @ Vector((0, 1, 0))
+            pb.rotation_mode = 'QUATERNION'
+            pb.rotation_quaternion = Quaternion(ax, sg * math.radians(G.get("arm_down", 68)))
+        bpy.context.view_layer.update()
+        bz = F.hb[2] + G.get("dz", -0.02)
+        for ex_name, ex in G["expr"].items():
+            set_expr(face, ex)
+            cam = camera("g_" + ex_name, (-0.08, G.get("dist", 0.95), bz + 0.03), (0, 0, bz), lens=G.get("lens", 85))
+            times["guide_" + ex_name] = render(cam, os.path.join(OUT_PNG, f"guide_{P['name']}_{ex_name}.png"),
+                                               512, 512)
+        set_expr(face, P["expr"])
+        for side in ("L", "R"):
+            rig.pose.bones["J_Bip_%s_UpperArm" % side].rotation_quaternion = (1, 0, 0, 0)
+        bpy.data.objects["floor"].hide_render = False
     if "lineup" in only:
         # 5 人を並べる絵の部品: 同じ縮尺の正面 (背景は透明) と、正面の顔
         d = os.path.join(WORK, "lineup")

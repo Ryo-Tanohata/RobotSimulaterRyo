@@ -134,6 +134,22 @@ python3 <repo>/sim/society/tools/human/make_lineup.py
   ルオ・セナ・タヒ・ウィロ・イサ)、`/dev/shm/sena/<名前>_vroid.glb` (骨組み・重み・表情キーつき)。
   並べる絵の部品は `/dev/shm/sena/vroid/lineup/` (同じ縮尺の正面、背景は透明)。画像と模型は git に入れない。
 
+### 案内役 ソナ85 (`--person sona85`)
+
+年報と統計のページを説明する村の人 (選んだわけは `docs/society_phase/guide_character.md`)。
+体 HairSample_Female、顔 Victoria Rubin、髪 Victoria Rubin の髪を灰色にして結ぶ。設定は `people.py` の `VROID["sona85"]`。
+五人のために足したものではなく、次の 3 つをこの人のために足した (五人の絵は変わらない):
+
+- `outfit.dress`: ヤギのなめし革の長い貫頭衣 (技の木で「布を織る」は届かなかったので革)。胴とすそは体の輪切りの外側を
+  なぞる筒 (`skirt_loft()`。胸から下はまっすぐ落ち、すそは少し広がる)、肩と短い袖は `make_band(..., xcut=0.26)`、腰に革紐の帯。
+- `skin.face_lines`: 顔のしわ (頭の骨からの x・z の線を、前から光線を当てて顔のテクスチャに描く)。
+- `--only guide`: 吹き出し用の胸から上の絵 `guide_<名前>_<表情>.png` (512×512、背景 #e6e1d8、腕を下ろす)。
+  表情は `VROID[<名前>]["guide"]["expr"]`。128×128 に縮めたものを `sim/society/app/guide/` に置く (git に入れる)。
+
+```bash
+... build_person_vroid.py -- --person sona85 --only sheet,face,guide
+```
+
 ### 五人の土台 (どのサンプルの、どの部分を使うか)
 
 | 人 | 体・骨組み | 顔 | 髪 |
@@ -227,7 +243,7 @@ VRoid の道 (作風 4) で五人とも作った (上の節)。MakeHuman の道 
 | MPFB2 のプログラム (読みこみに使うだけ。リポジトリには入れない) | GPL-3.0-or-later | https://github.com/makehumancommunity/mpfb2 |
 | MakeHuman の目 (high-poly eyes、brown 瞳) | CC0 1.0 | https://github.com/makehumancommunity/makehuman (commit a8bc2d54ff0ac92e78ff71431b1023eda42bf482、`makehuman/data/eyes`) |
 | Blender (bpy 4.5.16、Python モジュール版) | GPL-2.0-or-later | https://pypi.org/project/bpy/ |
-| VRoid サンプル「千駄ヶ谷 篠 (Sendagaya Shino)」(セナの顔・髪)、「HairSample_Female」(女の体・骨組み、ウィロの顔)、「HairSample_Male」(男の体・骨組み、ルオの顔、ルオとタヒの髪)、「桜田 フミリヤ (Sakurada Fumiriya)」(タヒとイサの顔、イサの髪、ルオの後ろ髪)、「Victoria Rubin」(ウィロの髪) | CC0 (5 つともファイル内の VRM meta が `licenseName: CC0`、`commercialUssageName: Allow`、`allowedUserName: Everyone` であることを確かめた。pixiv の説明「CC0 license models … Copyright is waived」) | https://github.com/madjin/vrm-samples (commit e16eb187100149a315ad92c3c9968f1d5baa6c7d、`vroid/beta/`)。条件の説明: https://vroid.pixiv.help/hc/en-us/articles/4402614652569 。作者 pixiv Inc. (VRoid) に感謝をこめて記す。同じリポジトリの `vroid/stable/AvatarSample_*` と `vroid/masc_vroid.vrm` は `licenseName: Other` なので使っていない |
+| VRoid サンプル「千駄ヶ谷 篠 (Sendagaya Shino)」(セナの顔・髪)、「HairSample_Female」(女の体・骨組み、ウィロの顔)、「HairSample_Male」(男の体・骨組み、ルオの顔、ルオとタヒの髪)、「桜田 フミリヤ (Sakurada Fumiriya)」(タヒとイサの顔、イサの髪、ルオの後ろ髪)、「Victoria Rubin」(ウィロの髪、ソナ85の顔と髪) | CC0 (5 つともファイル内の VRM meta が `licenseName: CC0`、`commercialUssageName: Allow`、`allowedUserName: Everyone` であることを確かめた。pixiv の説明「CC0 license models … Copyright is waived」) | https://github.com/madjin/vrm-samples (commit e16eb187100149a315ad92c3c9968f1d5baa6c7d、`vroid/beta/`)。条件の説明: https://vroid.pixiv.help/hc/en-us/articles/4402614652569 。作者 pixiv Inc. (VRoid) に感謝をこめて記す。同じリポジトリの `vroid/stable/AvatarSample_*` と `vroid/masc_vroid.vrm` は `licenseName: Other` なので使っていない |
 | mesa (llvmpipe、EEVEE の試験だけ) | MIT ほか | Ubuntu 24.04 の `libegl-mesa0`, `mesa-libgallium` ほか |
 
 髪 (MakeHuman の道)・服・眉・傷・煤・帯・三つ編み・結び紐は、スクリプトが手続き的に作るもので、外の素材は使っていない。
