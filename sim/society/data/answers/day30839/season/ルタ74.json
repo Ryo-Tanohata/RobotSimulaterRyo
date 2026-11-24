@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈るのがいちばん大事だ。家の者みなで刈ろう。秋にまく千つかみを忘れずに。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈るのが夏の務めだから"}, "family": {"ユエ81": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}, "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "秋は木の実が実るので集めて蓄えに回す"}, "family": {"ユエ81": {"activity": "採集", "place": "camp", "why": "木の実を集める"}, "ケナ101": {"activity": "採集", "place": "camp", "why": "木の実を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると次の夏の実りが増えるから"}, "family": {"ユエ81": {"activity": "畑仕事", "place": "camp", "why": "草取りを交代で続ける"}, "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "草取りを交代で続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて実りを守るため"}, "family": {"ユエ81": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れと草取りの年",
+ "feeling": "体はまだ動く。夏は刈り、冬は草取りをして、みなが食べられるようにしたい。"}

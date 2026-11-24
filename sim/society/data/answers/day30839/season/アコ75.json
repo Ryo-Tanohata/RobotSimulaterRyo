@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑をみんなで刈ろう。秋は千つかみまいて、冬は交代で草取りをしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として板をひき、水の道の手入れを助けるため"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると来年の実りが増えるから"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りを続けて実りを守るため"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "みのりの年",
+ "mood": "蓄えがたっぷりあって、おだやかな気持ちだ。"}

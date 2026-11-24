@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を落とさず刈ろう。秋は千つかみまいて、冬と春は土器を足して蓄えを守ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを優先する"}, "ラニ110": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを優先する"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを優先する"}, "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを優先する"}, "ケセ134": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを優先する"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが足りない年が続いているから"}, "family": {"ナセ109": {"activity": "水の道を掘る", "place": "camp", "why": "手入れがまるごと残っている"}, "ラニ110": {"activity": "水の道を掘る", "place": "camp", "why": "手入れがまるごと残っている"}, "ケナ122": {"activity": "水の道を掘る", "place": "camp", "why": "手入れがまるごと残っている"}, "ホミ125": {"activity": "水の道を掘る", "place": "camp", "why": "手入れがまるごと残っている"}, "ケセ134": {"activity": "水の道を掘る", "place": "camp", "why": "手入れがまるごと残っている"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器を足すと蓄えの種が虫やネズミから守れるから"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りをふやす"}, "ラニ110": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りをふやす"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りをふやす"}, "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りをふやす"}, "ケセ134": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りをふやす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器づくりが得意で、蓄えを守る器が役に立つから"}, "family": {"ナセ109": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りをふやす"}, "ラニ110": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りをふやす"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りをふやす"}, "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りをふやす"}, "ケセ134": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りをふやす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M609": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "小さい子の多い年"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実りが多い。落ちる前に、みんなで毎日刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを優先する"}, "family": {"ヌオ81": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手を増やすため"}, "トナ89": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手を増やすため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑を育てる草取りを続ける"}, "family": {"ヌオ81": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "トナ89": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 300},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りをすると夏によく実る"}, "family": {"ヌオ81": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "トナ89": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて夏の実りにつなげる"}, "family": {"ヌオ81": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "トナ89": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M609": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は、夏のうちに毎日刈るのがよい。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実り多き刈り入れの年",
+ "feeling": "畑がよく実った。落とさず刈れるよう、みんなで働きたい。"}

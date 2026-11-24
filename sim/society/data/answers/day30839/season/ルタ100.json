@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を毎日刈る。秋は千つかみまいて、冬は草取り、春は水の道を掘るつもりだ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏は実った畑が山ほど残っていて、刈らないと落ちるから"}, "family": {"ホミ115": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝うため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りが増えるから"}, "family": {"ホミ115": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にするため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬のあいだも草取りをすると夏の実りが増えるから"}, "family": {"ホミ115": {"activity": "畑仕事", "place": "camp", "why": "草取りを一緒にするため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っているから"}, "family": {"ホミ115": {"activity": "水の道を掘る", "place": "camp", "why": "手入れをみんなで進めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を毎日刈るのが一番の仕事で、秋にまいた畑は冬も草取りをすると実りが増える。", "because": [7479896], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実り山ほどの年",
+ "feeling": "蓄えはたっぷりある。落ち着いて畑に出よう。"}
