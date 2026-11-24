@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。蓄えの草の種を千つかみずつまいて、水の道の泥をみんなで掘ろう。冬をこえて夏にまた実るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大量に残っていて、水の来る畑は悪い年でも刈り入れが半分にならないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ152": true, "ラニ152": true},
+ "family": {
+  "ヌオ115": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めて次の夏の実りを守るため"},
+  "ヌオ126": {"activity": "水の道を掘る", "place": "camp", "why": "小さい子がいても、水の道の手入れは大人みなで進めたいため"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽く、やる気がある。秋にまいて水の道を掘れば、次の夏も実ると思う。"}

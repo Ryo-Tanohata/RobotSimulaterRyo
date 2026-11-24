@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。今年も千つかみずつまいて、冬まで草取りに出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、冬まで続けて次の夏の蓄えを守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {},
+ "family": {"アコ112": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほど実りが守られるから"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑がない秋は、はじめに千つかみまいて冬まで草取りをすると、次の夏の蓄えが増える。", "because": [6819925], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1094", "against": "", "agree": true, "reason": "みんなでまいて草取りをすれば、次の夏の実りが守られる"}],
+ "feeling": "蓄えは多くて安心。畑をまいて、冬も働こうと思う。"}

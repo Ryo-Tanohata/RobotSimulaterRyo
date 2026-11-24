@@ -1,0 +1,25 @@
+{"say": [{"to": "みんな", "text": "今年は畑がないから、この秋はうちの家もみんな千つかみずつまいて、冬まで草取りに出るよ。南の村から来た二人も、いっしょに暮らそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がないので、まいた畑の草を冬まで取って、次の夏の実りを増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ152": true},
+ "family": {
+  "アコ114": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りに人手がいるから"},
+  "キサ123": {"activity": "畑仕事", "place": "camp", "why": "みんなでまいた畑をしっかり育てたいから"},
+  "ホタ124": {"activity": "畑仕事", "place": "camp", "why": "次の夏の実りを増やすため"},
+  "オネ127": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを手伝ってほしいから"},
+  "キオ135": {"activity": "畑仕事", "place": "camp", "why": "大人といっしょに草取りを覚えてほしいから"}
+ },
+ "keep": false,
+ "feast": false, "leader": "テナ61", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑のない年は、秋にみんなでたくさんまいて草取りをすると、次の夏によく実る", "because": [6858194], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1076", "against": "", "agree": true, "reason": "畑のない秋は、みんなでまいて草を取るのがいちばん大事だから"},
+  {"id": "L1080", "against": "", "agree": true, "reason": "みんなでまいて毎日草を取れば、次の夏に困らない"},
+  {"id": "L1082", "against": "", "agree": true, "reason": "この秋にまかないと、来年の蓄えが減ってしまう"},
+  {"id": "L1093", "against": "", "agree": true, "reason": "水の道の手入れが多く残っているので、交代で掘るのはよい"},
+  {"id": "L1098", "against": "", "agree": true, "reason": "蓄えが多いうちは、苦しい村を助けたい。書いておけば争いにならない"},
+  {"id": "L1103", "against": "", "agree": true, "reason": "蓄えに余裕があるあいだは貸して、返してもらえばよい"},
+  {"id": "L1069", "against": "", "agree": true, "reason": "子が字を読めれば、知らせ板の知らせが家に届く"}
+ ],
+ "feeling": "畑のない秋だけど、家族みんなでまいて育てれば、来年の夏はきっと大丈夫だと思う。"}

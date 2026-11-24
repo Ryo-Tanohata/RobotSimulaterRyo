@@ -1,0 +1,29 @@
+{"say": [{"to": "みんな", "text": "秋だ、畑にたっぷりまこう。まいたあとは草取りを怠らず、手のあく者は水の道を掘って、冬までに手入れを進めよう。"}, {"to": "テナ152", "text": "南の村18 からよく来たね。うちの村は畑も蓄えもある。いっしょに働こう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ソワ102", "ケセ108"], "why": "まいた畑の草取りをしっかりすれば、次の夏の実りが大きくなるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ152": true},
+ "family": {
+  "ソワ102": {"activity": "畑仕事", "place": "camp", "why": "家の畑の草取りを手伝ってもらう"},
+  "セヤ103": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"},
+  "ケセ108": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"},
+  "ワユ110": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑は悪い年でも守れるから"},
+  "ホミ112": {"activity": "水の道を掘る", "place": "camp", "why": "手入れを冬の終わりまでに済ませたいから"},
+  "ユエ113": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが遅れているから"},
+  "ハソ114": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"},
+  "ラキ120": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので土を掘ってもらう"},
+  "セオ123": {"activity": "字を教える", "place": "camp", "why": "テナ140 に字を教えてほしいから"},
+  "ルタ123": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるのでキャンプのそばで働く"}
+ },
+ "keep": false,
+ "feast": false, "leader": "テナ61", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": "引きかえる", "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は千つかみまいて、冬まで草取りと水の道の手入れをしよう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "南の村18 からも、ここで暮らしたいと人がやって来る", "because": [6860174], "confidence": 0.7}, {"op": "add", "text": "土器に入れた草の種も、ひと季節で 5 万つかみほど傷む", "because": [6860167], "confidence": 0.7}],
+ "proposal": {"text": "秋は大人みな千つかみまき、冬まで草取りをしよう。手のあく大人は水の道を掘り、手入れを冬の終わりまでに進めよう。", "because": [6860167], "penalty": {"for": "蓄え", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1093", "against": "ほかの仕事の手が減る", "agree": true, "reason": "水の道の手入れがたくさん残っているから"},
+  {"id": "L1094", "against": "燃える石を掘る手が畑から減る", "agree": true, "reason": "畑と子の薬の両方が大事だから"},
+  {"id": "L1098", "against": "返ってこないかもしれない", "agree": true, "reason": "蓄えが多いので、苦しい村を少し助けられる"},
+  {"id": "L1101", "against": "ヤギが減りすぎるかもしれない", "agree": true, "reason": "草で養える数をこえたときだけなので無理がない"},
+  {"id": "L1106", "against": "つぶす数が多くなるかもしれない", "agree": true, "reason": "ヤギがやせていなくなるより干し肉にした方がよい"},
+  {"id": "L1100", "against": "数をこえていない年もある", "agree": true, "reason": "こえた分だけなら無駄にならない"}
+ ],
+ "feeling": "蓄えもあって家族もみな満腹だ。この秋もしっかりまいて、冬に備えたい。"}

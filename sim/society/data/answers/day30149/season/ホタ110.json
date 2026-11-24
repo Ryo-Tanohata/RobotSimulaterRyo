@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "うちは家の倉に燃える石がたっぷりあるから、石のかまどに作りかえてみる。冬のまき集めが楽になるはずだ。"}],
+ "job": {"activity": "かまどを作りかえる", "place": "camp", "with": ["ネイ122"], "why": "家の倉に燃える石が 24000 kg あり、石のかまどにすればまき集めの手間が浮くから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"テナ152": true},
+ "family": {"ネイ122": {"activity": "かまどを作りかえる", "place": "camp", "why": "家のかまどを一緒に作りかえるため"}, "アコ126": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、家の人の数や倉の量を帳に書くため"}},
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "家のかまどを石のかまどにすると、秋と冬のまき集めの手間が減る。家の倉の燃える石を使える。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "新しいかまどができるのが楽しみだ。"}
