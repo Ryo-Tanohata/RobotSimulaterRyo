@@ -1,0 +1,34 @@
+{"say": [{"to": "みんな", "text": "畑がひとつもない秋だ。大人みな千つかみずつまいて、冬まで草を抜こう。ヤギは七十三頭しかいないから、よそのヤギは受けてふやそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいたばかりの畑は草取りの手がいちばん要る。来年の夏の実りを決めるのは今だ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"テナ152": true},
+ "family": {
+  "タユ128": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるから、畑の草取りを毎日してほしい"},
+  "オネ129": {"activity": "畑仕事", "place": "camp", "why": "畑が多いので草取りの手を増やしたい"},
+  "ラニ131": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っている。水が来る畑は悪い年でも実る"},
+  "ケセ131": {"activity": "畑仕事", "place": "camp", "why": "草取りが足りないと実りが3割に落ちるから"}
+ },
+ "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "畑のない秋だ。大人みな千つかみまき、冬まで草取りを。ヤギは少ない、よそのヤギを受けよう",
+ "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "この秋も村に畑がない。大人みな千つかみずつまき、冬まで草取りをしないと、来年の夏に刈る種がない", "because": [], "confidence": 0.9},
+  {"op": "add", "text": "村のヤギは 73 頭でみなメス。草で養える約 110 頭より少ないので、よその村のヤギを受けてふやしてよい", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "南の村18 から テナ152 と ラニ152 が来て、ここで暮らしたいと言っている。若い働き手が増えるのはよい", "because": [6860174], "confidence": 0.9},
+  {"op": "add", "text": "ハソ145 は 5 歳になり、子の薬がいる年はこえた。家には子の薬 8 包みが残っている", "because": [], "confidence": 0.8}
+ ],
+ "proposal": {"text": "畑のない秋は、大人みな蓄えの草の種を千つかみずつまき、冬まで手のあく大人で毎日草取りをしよう。ヤギが草で養える数より少ないあいだは、よその村のヤギを受けよう。", "because": [], "penalty": {"for": "蓄え", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1094", "against": "燃える石を掘る人が増えると草取りの手がへる", "agree": true, "reason": "千つかみまいて冬まで草取りをするのは今いちばん大事"},
+  {"id": "L1097", "against": "毎晩世話の人を決めるのは手間がかかる", "agree": true, "reason": "まいて草取りをするのに賛成。ヤギも減らしたくない"},
+  {"id": "L1095", "against": "家ごとに一人世話に出すと畑の手がへる", "agree": true, "reason": "ヤギがみなメスでは子が生まれない。オスを受けたい"},
+  {"id": "L1091", "against": "特になし", "agree": true, "reason": "ヤギが少なくメスだけだから、オスを受けて世話をするのはよい"},
+  {"id": "L1093", "against": "草取りの手がへるかもしれない", "agree": true, "reason": "水の道の手入れが六千人日以上も残っている"},
+  {"id": "L1096", "against": "特になし", "agree": true, "reason": "刈った量を字で書けばもめごとが減る"},
+  {"id": "L1098", "against": "返ってこないこともある", "agree": true, "reason": "蓄えは多い。3000 つかみまでなら村は困らない"},
+  {"id": "L1083", "against": "今はヤギが草より少ないので、よそのヤギをことわる理由がない", "agree": false, "reason": "ヤギは 73 頭で少ない。今はこの掟は合わない"},
+  {"id": "L1099", "against": "今はヤギが少ないのに、ヤギの申し出をことわることになる", "agree": false, "reason": "ヤギをふやしたいので反対"},
+  {"id": "L1108", "against": "ヤギをことわる部分が今に合わない", "agree": false, "reason": "ヤギは草より少ない。ことわる必要はない"}
+ ],
+ "feeling": "畑を一から作り直す秋だ。手を動かせば、来年の夏はまた実る。"}

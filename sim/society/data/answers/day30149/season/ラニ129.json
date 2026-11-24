@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋だ。蓄えは多いけれど年ごとに減っている。畑にたくさんまいて、草取りをしっかりやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えを守るために畑を手伝う。"},
+ "family": [{"name": "ホタ135", "activity": "畑仕事", "place": "camp", "why": "半分の働きでも草取りを手伝える。"}],
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"テナ152": true}, "keep": false,
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋にまく草の種が多いほど、夏の実りも多い。草取りをする人が少ないと実りが減る。", "because": [6858475], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは危ないので、みんなで守るのがよい。"}],
+ "feeling": "畑の世話をして、また冬を無事にこしたい。"}
