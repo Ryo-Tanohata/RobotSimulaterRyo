@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は千つかみをまいて、冬と春の草取りにそなえよう。わしはのこ番で板をひく。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として毎日板をひくと、水の道の手入れが早く進むから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"アコ153": true},
+ "family": {
+  "ケナ75": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番なので、同じ日にそろって板をひく"},
+  "キサ81": {"activity": "水の作業場で働く", "place": "M6", "why": "8人そろうと板がたくさんとれるから"},
+  "ケセ82": {"activity": "水の作業場で働く", "place": "M6", "why": "板で水の道の手入れが半分ですむから"},
+  "ソナ90": {"activity": "水の作業場で働く", "place": "M6", "why": "みんなといっしょに板をひく"},
+  "トナ97": {"activity": "水の作業場で働く", "place": "M6", "why": "板が増えると家も村も助かるから"}
+ },
+ "keep": false,
+ "judge": {"M595": "ゆるす", "M596": "ゆるす", "M597": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみをまき、冬と春に草取りをすれば夏の実りが続く。のこで板をひくと手入れが早く進む。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりで、のこ番の仕事も続けられて、おだやかな気持ちだ。"}

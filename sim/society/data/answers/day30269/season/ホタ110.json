@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。秋の種は千つかみずつまいて、冬と春は草取りに出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをすると実りが増える。冬も春も続けて畑を育てたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"アコ153": true, "オネ153": true},
+ "family": {"ネイ122": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手がいる。若い力で畑を育てる。"}, "アコ126": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手がいる。みんなで分けて働く。"}},
+ "keep": false,
+ "judge": {"M595": "ゆるす", "M596": "ゆるす", "M597": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。畑の草取りを楽しみにしている。"}

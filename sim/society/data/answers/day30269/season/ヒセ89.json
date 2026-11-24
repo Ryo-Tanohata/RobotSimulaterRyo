@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "秋は種をたっぷりまいて、あとの草取りもみんなでやろう。蓄えはまだ厚いが、油断はしない。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。腕に自信があるので、まず畑を育てる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {},
+ "family": {
+  "ムイ97": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"},
+  "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを増やすため"},
+  "リセ109": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が高いので、肉を蓄えに足す"},
+  "オセ118": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高いので、肉を蓄えに足す"},
+  "オネ125": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、近くの草原で食べ物を集める"}
+ },
+ "keep": false,
+ "judge": {"M595": "ゆるす", "M596": "ゆるす", "M597": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1385": false}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは厚い。秋の種まきと草取りに、腕を使うのが楽しみだ。"}

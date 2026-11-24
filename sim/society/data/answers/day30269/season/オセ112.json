@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は水の道の手入れに力を出そう。わしは先に掘りに行くよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っている。蓄えは十分で、体も元気なので掘りに出る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {},
+ "family": {
+  "キサ112": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "テナ113": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やすため"},
+  "セヤ119": {"activity": "畑仕事", "place": "camp", "why": "小さい子の世話をしながら畑の草取りをするため"},
+  "ソナ120": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道の手入れを進めるため"},
+  "テナ121": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"},
+  "セヤ134": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}
+ },
+ "keep": false,
+ "judge": {"M595": "ゆるす", "M596": "ゆるす", "M597": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1385": false}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多く、体も軽い。ゆっくり構えて、水の道を掘るのが楽しみだ。"}

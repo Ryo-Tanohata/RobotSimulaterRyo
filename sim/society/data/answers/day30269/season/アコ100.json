@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は千つかみずつまいて、おれは水の道の手入れをするぞ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っている。水が来る畑は悪い年でも実りが半分にならないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"アコ153": true}, "keep": false,
+ "judge": {"M595": "ゆるす", "M596": "ゆるす", "M597": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を千つかみまき、水の道の手入れを続けるのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るのは本当だから、キャンプから離れないほうが安全だ"}],
+ "feeling": "蓄えがたっぷりあって安心だ。畑と水の道に精を出そう。"}

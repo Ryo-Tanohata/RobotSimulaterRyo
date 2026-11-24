@@ -1,0 +1,33 @@
+{"say": [{"to": "みんな", "text": "蓄えは八か月分ほどある。この秋はみなで千つかみずつまいて、手のあく者は水の道を掘ろう。水の来る畑がふえれば、悪い年にも負けない。"}, {"to": "オセ139", "text": "おまえは畑の草取りを頼む。わしは水の道を掘って、来年の畑に水を引いてくる。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": ["テナ92", "ハソ133"], "why": "水の道の手入れがたくさん残っていて、水の来る畑は悪い年でも実りが守られるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"アコ153": true},
+ "family": {"オセ139": {"activity": "畑仕事", "place": "camp", "why": "千つかみまいた畑は草取りをするほど実りがふえるから"}},
+ "keep": false,
+ "judge": {"M595": "つぐなう", "M596": "つぐなう", "M597": "つぐなう"},
+ "feast": false,
+ "leader": "テナ61",
+ "trade": {"T1385": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋は大人みな千つかみまき、手のあく人は水の道を掘ろう。ヤギはみなメス、オスが来たら受けよう",
+ "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "村のヤギは 59 頭でみなメス。草で養える数よりずっと少ないので、よそのヤギは受けてよい", "because": [6959228], "confidence": 0.8},
+  {"op": "add", "text": "北の大きな村から アコ153 と オネ153 が暮らしたいと来た", "because": [6959232], "confidence": 1.0},
+  {"op": "add", "text": "水の道の手入れが 1 年に約 5528 人日いるのに、この年はまだ掘った人がいない", "because": [], "confidence": 0.8}
+ ],
+ "proposal": {"text": "畑のない秋は大人みな蓄えの草の種を千つかみずつまき、手のあく大人は冬の終わりまで水の道を掘ろう。ヤギが草で養える数より少ないあいだは、よそのヤギを受けよう。", "because": [6959228], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1109", "against": "オスが来なければ子ヤギはふえない", "agree": true, "reason": "秋にまいて草をとれば、夏の実りがふえるから"},
+  {"id": "L1110", "against": "受け入れた家の手間がふえる", "agree": true, "reason": "来た人がはやく村になじめるから"},
+  {"id": "L1111", "against": "草取りの手がへるかもしれない", "agree": true, "reason": "水の道の手入れが足りていないから"},
+  {"id": "L1114", "against": "家ごとに一人出すのは重い家もある", "agree": true, "reason": "水の道を家ごとに掘れば手入れが進むから"},
+  {"id": "L1116", "against": "ヤギがふえすぎたら困る", "agree": true, "reason": "いまはヤギが草より少ないから"},
+  {"id": "L1117", "against": "オスが来ないこともある", "agree": true, "reason": "わしが出した提案で、秋の種まきとヤギの両方に効くから"},
+  {"id": "L1118", "against": "いまヤギは草より少ないので、つぶすと減りすぎる", "agree": false, "reason": "ヤギが 59 頭まで減っているから"},
+  {"id": "L1121", "against": "村の住まいがせまい", "agree": true, "reason": "小さい子を病から守りたいから"},
+  {"id": "L1123", "against": "貸した種が返らないこともある", "agree": true, "reason": "子の薬は大事で、蓄えも多いから"},
+  {"id": "L1125", "against": "いまはヤギが草より少ない", "agree": false, "reason": "ヤギを減らす時ではないから"}
+ ],
+ "feeling": "水の道を掘って、来年もたくさん実らせたい"}

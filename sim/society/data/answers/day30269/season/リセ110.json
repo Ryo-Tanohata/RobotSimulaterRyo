@@ -1,0 +1,42 @@
+{"say": [{"to": "みんな", "text": "畑がからっぽの秋だね。今のうちに千つかみずつまいて、冬のあいだは交代で草をとろう。夏にまた刈れるように。"}, {"to": "ホミ113", "text": "ホミ、いっしょに畑の草取りをしよう。子たちには夕方に字を見てあげようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ホミ113"], "why": "まいたばかりの畑は草取りしないと三割しか実らないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"アコ153": true},
+ "family": {
+  "ホミ113": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で手がよく動くので、草取りを任せたい"},
+  "ワユ120": {"activity": "畑仕事", "place": "camp", "why": "畑が多いので草取りの手がいる"},
+  "セオ122": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っていて、家から一人出す決まりにしたいから"},
+  "ヌオ124": {"activity": "畑仕事", "place": "camp", "why": "冬までに草取りを進めたいから"}
+ },
+ "keep": false,
+ "judge": {"M595": "つぐなう", "M596": "つぐなう", "M597": "つぐなう"},
+ "feast": false, "leader": null,
+ "trade": {"T1385": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は千つかみまいて冬は交代で草取り。水の道も家から一人", "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "北の大きな村からアコ153とオネ153が来て、ここで暮らしたいと言った", "because": [6959232], "confidence": 0.9},
+  {"op": "add", "text": "よその家の畑を刈った種がまた量を書かないまま倉に入り、もめごとが三つ出た", "because": [6959224, 6959225, 6959226], "confidence": 0.9},
+  {"op": "add", "text": "この前の季節も小さい子が亡くなった。ラニ148とソワ148もそのひとり", "because": [6959217, 6959218], "confidence": 0.9}
+ ],
+ "proposal": {"text": "よその家の畑を刈るときは、刈る前に分け方を決め、刈った量を読める大人が字で書いて、刈った人の家にも分けよう。秋は大人みな千つかみまこう。", "because": [6959224, 6959225, 6959226], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1096", "against": "書く手間がふえる", "agree": true, "reason": "刈りのもめごとが毎年出るので、量を書いておきたい"},
+  {"id": "L1109", "against": "オスのヤギが来ないかもしれない", "agree": true, "reason": "畑がないので千つかみずつまくのがよい"},
+  {"id": "L1110", "against": "受け入れた家の負担が重い", "agree": true, "reason": "来た人が早くなじめる"},
+  {"id": "L1111", "against": "水の道に人をとられる", "agree": true, "reason": "まくことと水の道の手入れ、どちらも大事"},
+  {"id": "L1112", "against": "板を使いすぎるかもしれない", "agree": true, "reason": "子の薬がほしい"},
+  {"id": "L1113", "against": "燃える石を掘る手がとられる", "agree": true, "reason": "ヤギがみなメスなので子ヤギがふえない"},
+  {"id": "L1114", "against": "草取りの手がへる", "agree": true, "reason": "わたしの出した掟。水の道の手入れが五千人日以上残っている"},
+  {"id": "L1115", "against": "毎夜言うのは面倒", "agree": true, "reason": "水の来る畑は悪い年でもよく実る"},
+  {"id": "L1116", "against": "よそのヤギに病がうつるかもしれない", "agree": true, "reason": "ヤギは草で養える数より少ない"},
+  {"id": "L1117", "against": "特にない", "agree": true, "reason": "まくことも子ヤギをふやすこともよい"},
+  {"id": "L1118", "against": "いまヤギは養える数より少ないので、つぶすと減りすぎる", "agree": false, "reason": "今のヤギの数には合わない"},
+  {"id": "L1121", "against": "水をわかすまきがいる", "agree": true, "reason": "子が多く亡くなっているので、守りたい"},
+  {"id": "L1123", "against": "貸した種が返らないかもしれない", "agree": true, "reason": "子の薬がほしいし、量を決めて貸すのならよい"},
+  {"id": "L1125", "against": "ヤギが少ないときは使わない掟", "agree": true, "reason": "ヤギがふえすぎたときのための決まりとして持っておく"},
+  {"id": "L1126", "against": "特にない", "agree": true, "reason": "刈りとまきと草取りをみなでやるのがよい"},
+  {"id": "L1127", "against": "いま止まった輪はない", "agree": true, "reason": "輪が止まったときのために"},
+  {"id": "L1128", "against": "いまヤギは少ないので、つぶすのは早い", "agree": false, "reason": "ヤギをこれ以上減らしたくない"}
+ ],
+ "feeling": "からっぽの畑に種をまけば、また夏が楽しみになる"}
