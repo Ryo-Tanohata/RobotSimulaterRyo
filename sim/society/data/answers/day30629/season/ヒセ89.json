@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。秋にしっかり種をまいて、わたしは水の道の手入れを進めるよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っているので、大胆に取り組む"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3,
+ "family": {
+  "ムイ97": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で、畑の草取りに向いている"},
+  "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で、畑の草取りに向いている"},
+  "リセ109": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが増えすぎているので世話をする"},
+  "オセ118": {"activity": "狩り", "place": "東林12", "why": "狩りが得意で、冬に向けて肉を蓄える"},
+  "オネ125": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で、畑の草取りに向いている"},
+  "トナ133": {"activity": "狩り", "place": "東林12", "why": "狩りが得意で肉を取れる"},
+  "ハソ134": {"activity": "狩り", "place": "南林12", "why": "狩りが得意で肉を取れる"},
+  "シエ136": {"activity": "狩り", "place": "南林12", "why": "狩りが得意で肉を取れる"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。体も元気で、仕事がしたい。"}

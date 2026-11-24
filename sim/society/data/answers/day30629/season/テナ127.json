@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋だね。蓄えの草の種を千つかみまいて、冬にそなえよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集と狩りが得意だし、蓄えは多いけれど、冬の前に食べ物を少しでも足しておきたいから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヒセ128": {"activity": "採集", "place": "camp", "why": "採集が得意なので、家の食べ物を集めてもらう。"}, "タユ137": {"activity": "採集", "place": "camp", "why": "小さい子がいるので、キャンプのそばで採集してもらう。"}},
+ "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を千つかみまくと、次の夏に実る。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって安心。冬に向けて落ち着いて働きたい。"}

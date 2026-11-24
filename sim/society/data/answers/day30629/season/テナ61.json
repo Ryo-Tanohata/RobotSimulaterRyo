@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は千つかみずつまいて、冬までだれかが交代で草取りをしよう。わしは今季ものこ番で板をひく。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として毎季M6で板をひいてきた。板は輪や水の道の手入れを早めるので、続ける。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "シエ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番なので、いつもどおりM6で板をひく。"},
+  "セヤ79": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番なので、いつもどおりM6で板をひく。"},
+  "テナ80": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番なので、いつもどおりM6で板をひく。"},
+  "ムイ89": {"activity": "畑仕事", "place": "camp", "why": "秋にまく畑の草取りをして、来年の夏の実りを増やす。"},
+  "ネイ89": {"activity": "畑仕事", "place": "camp", "why": "秋にまく畑の草取りをして、来年の夏の実りを増やす。"},
+  "タユ91": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を足して、畑の実りを守る。"},
+  "ラニ93": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を足す。"},
+  "ワユ93": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を足す。"},
+  "リセ94": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を足す。"},
+  "アコ98": {"activity": "字を教える", "place": "camp", "why": "字の読める人が、子や字を習う人に字を教える。"}
+ },
+ "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1419": false}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて心が軽い。年はとったが、のこを引く手はまだ動く。"}

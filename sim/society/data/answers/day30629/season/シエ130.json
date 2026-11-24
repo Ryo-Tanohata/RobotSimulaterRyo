@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは草の種がたくさんあるから、秋は千つかみまいて、みんなで草取りをして次の夏に備えよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えが多く採集では何も見つからないので、秋の草取りで次の夏の実りを増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"テナ132": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りが村の役に立つから"}, "オネ132": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りが村の役に立つから"}, "ヒセ137": {"activity": "畑仕事", "place": "camp", "why": "みんなと一緒に草取りをして実りを増やすため"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "半分の働きでも草取りの手伝いになる"}},
+ "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす", "M606": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1419": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "今の秋も蓄えが多いので、千つかみまいて冬と春に草取りをすると次の夏に実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1175", "against": "", "agree": true, "reason": "ヤギが多いあいだは、よその村のヤギを受けないほうがよいと思うから"}, {"id": "L1160", "against": "", "agree": true, "reason": "秋にまいて草取りをすると次の夏に実るから"}],
+ "feeling": "畑が実るのが楽しみで、今年も草取りをがんばりたい。"}

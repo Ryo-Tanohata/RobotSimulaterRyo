@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、秋は畑にしっかり種をまこう。冬と春の草取りも、みんなで続けようね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだたくさん残っているので、手伝う"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ114": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを一緒に進める"},
+  "ナセ118": {"activity": "採集", "place": "camp", "why": "小さい子が多いので、食べ物を集める"},
+  "ルタ120": {"activity": "採集", "place": "camp", "why": "赤ちゃんがいるので、近くで食べ物を集める"},
+  "ネイ128": {"activity": "採集", "place": "camp", "why": "家の食べ物を増やす"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで安心。小さい子たちが元気に冬をこせるといい。"}

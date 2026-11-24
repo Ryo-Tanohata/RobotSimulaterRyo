@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、今年も秋に千つかみまくよ。冬は交代で草取りをして、来年の夏にそなえよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬の草取りで実りが増えるので、冬のあいだ続けて草取りをする"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"キオ153": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑の草取りをすれば、来年の夏の実りが増える"}, "ラニ153": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って、畑を育てる"}}, "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす", "M606": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は千つかみまいて、冬まで交代で草取りをしよう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた草の種は、冬の草取りをすると夏の実りが増える", "because": [7296485], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。冬の草取りを家族でがんばろうと思う。"}

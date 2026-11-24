@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋だね。わたしは林で木の実をたっぷり集めてくるよ。まだ行ってない奥の方も見てみたい。"}, {"to": "リセ136", "text": "いっしょに東の林へ行こう。子どもたちの分も木の実を持って帰ろうね。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": ["リセ136"], "why": "採集がいちばん得意で、木の実を集めれば家族みんなの食べ物が増えるから"}, "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"リセ136": {"activity": "採集", "place": "東林12", "why": "採集が得意だから、わたしといっしょに木の実を集める"}}, "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす", "M606": "ゆるす"}, "feast": true, "leader": "テナ61", "trade": {"T1419": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまくと、次の夏に実って刈れる", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "秋の林が楽しみで、わくわくしている。"}

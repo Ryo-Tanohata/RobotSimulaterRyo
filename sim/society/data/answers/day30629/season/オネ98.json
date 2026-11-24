@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。おれは林で獲物を追う。肉が増えれば、みんなの腹も楽になるだろう。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りの腕がいちばん高いので、林で肉をとって村の蓄えを助ける"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ105": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高いので、別の林で肉をとる"}, "ソワ113": {"activity": "狩り", "place": "南林12", "why": "狩りの腕が高いので、近い林で肉をとる"}},
+ "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす", "M606": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体が軽い。林で獲物を追うのが楽しみだ。"}

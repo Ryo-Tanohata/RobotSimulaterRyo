@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりだ。秋は千つかみまいて、冬は交代で草取りをしよう。わしは板をひく仕事を続けるよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として板をひき続け、水の輪や水の道の手入れを助けたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ロワ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"},
+  "ケナ81": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"},
+  "セオ81": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"},
+  "ナセ82": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}
+ },
+ "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす", "M606": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えも十分で、仲間と板をひく毎日が落ち着いて楽しい。"}

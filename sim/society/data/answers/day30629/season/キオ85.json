@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。冬の前に、水の道の手入れをみんなで進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れがまだ大きく残っている。協力して進めたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ95": {"activity": "水の道を掘る", "place": "camp", "why": "力があるので、私と一緒に水の道を進める"}, "セオ108": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひいて、手入れをはかどらせる"}},
+ "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす", "M606": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1419": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。冬に向けて、水の道を少しずつ進めたい。"}

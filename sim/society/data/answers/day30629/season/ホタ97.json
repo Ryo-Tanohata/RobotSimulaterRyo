@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。おれは林へ行って、ルクの肉をとってくる。冬の前に肉があれば安心だ。"}],
+ "job": {"activity": "狩り", "place": "南林12", "with": [], "why": "蓄えは十分だから、冬にそなえて林で肉をとる。ひとりで歩くのが性に合う。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホタ108": {"activity": "狩り", "place": "東林12", "why": "狩りの腕がある。肉をとって冬にそなえる。"}, "セヤ124": {"activity": "採集", "place": "西草原12", "why": "採集が得意。木の実や草の種を集める。"}},
+ "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす", "M606": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1418": "村", "T1419": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめ、蓄えは草の種がたっぷりある。林で肉をとり、千つかみまいて冬にそなえる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは安心だ。林を歩いて肉をとるのが楽しみだ。"}

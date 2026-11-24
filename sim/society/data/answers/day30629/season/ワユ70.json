@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "わしは土器をこしらえ続ける。蓄えの種は土器に入れておけば虫にやられん。秋の畑は千つかみまいて、冬まで草取りをたのむぞ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番高く、蓄えを虫やネズミから守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ76": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひくため"}, "ヒセ77": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひくため"}},
+ "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす", "M606": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1419": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るので、今の決まりを守るのがよいと思う"}],
+ "feeling": "年は取ったが手はまだ動く。土器をたくさん作って蓄えを守りたい。"}

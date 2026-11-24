@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋はわたしの土器づくりで、冬の蓄えのふたを丈夫にしておくよ。家ごとにふたの傷みを見ておいてね。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番なので、冬の前に蓄えを守る壺とふたを作る"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"テナ131": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やす"}, "ラキ134": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やす"}},
+ "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす", "M606": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1419": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L1175", "against": "", "agree": true, "reason": "ヤギが多すぎるので減らすのは理にかなう"}],
+ "feeling": "落ち着いている。冬にそなえて手を動かしたい。"}

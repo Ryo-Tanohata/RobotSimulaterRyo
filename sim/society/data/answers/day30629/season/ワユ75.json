@@ -1,0 +1,32 @@
+{"say": [{"to": "みんな", "text": "秋だよ。蓄えはたっぷりあるから、畑にまいて、冬まで草をよく取ろうね。"}, {"to": "アコ116", "text": "家の板で町の頼みを受けて、小さい子たちの薬をもらっておくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをして、来年の夏の実りを増やしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "オネ94": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番だから、続けて板をひく"},
+  "ハソ100": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "テナ102": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "タユ108": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "トナ109": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ソナ130": {"activity": "字を教える", "place": "camp", "why": "家の大きい子に字を覚えさせたいから"},
+  "ケセ139": {"activity": "畑仕事", "place": "camp", "why": "14 歳なので、畑の草取りを手伝ってもらう"},
+  "ホタ142": {"activity": "畑仕事", "place": "camp", "why": "12 歳なので、少しずつ畑仕事を覚えてもらう"}
+ },
+ "keep": false,
+ "judge": {"M604": "ゆるす", "M605": "ゆるす", "M606": "ゆるす"},
+ "feast": false, "leader": "テナ61",
+ "trade": {"T1419": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋は千つかみまいて冬まで草取りを。小さい子には町の薬を",
+ "order": null,
+ "take": {"頼み": 89, "人": ["アコ116"]},
+ "knowledge": [{"op": "add", "text": "この前の季節も、0歳と1歳の小さい子が5人亡くなった。家の板や燃える石で町の頼みを受けて、子の薬をもらうのが大事", "because": [7296495, 7296496, 7296497, 7296498, 7296499], "confidence": 0.9}, {"op": "add", "text": "ヤギが164頭で草が足りず、8頭がやせていなくなった。ヤギを受けとる交換はしないほうがいい", "because": [7296488], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1160", "against": "水の道を掘る人が多すぎると草取りが足りなくなるかもしれない", "agree": true, "reason": "千つかみまいて草取りをすれば、来年の夏もよく実るから"},
+  {"id": "L1161", "against": "", "agree": true, "reason": "分け方を先に決めればもめごとが減り、子の薬も大事だから"},
+  {"id": "L1167", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないから"},
+  {"id": "L1171", "against": "毎季節つぶすと減りすぎるかもしれない", "agree": true, "reason": "草で養える数をこえているから、少し減らしたほうがいい"},
+  {"id": "L1165", "against": "", "agree": true, "reason": "土器のふたを見なおせば、傷む種が減るから"}
+ ],
+ "feeling": "畑も蓄えも足りている。あとは小さい子たちが冬を元気にこえてくれればいい。"}
