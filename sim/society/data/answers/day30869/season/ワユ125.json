@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は千つかみまいて、冬まで交代で草取りをして、来年の夏も実らせよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると次の夏に多く実ると覚えているから、毎日草取りをする"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ネイ160": true, "ソワ160": true}, "family": {"ソワ127": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手がほしいので、いっしょに畑で働く"}}, "keep": false,
+ "judge": {"M610": "ゆるす", "M611": "ゆるす", "M612": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えが多い年も、秋に千つかみまいて毎日草取りをすると、次の夏の実りが増える。", "because": [7540245], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで安心。畑の草取りをがんばろう。"}

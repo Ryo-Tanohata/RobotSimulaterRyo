@@ -1,0 +1,29 @@
+{"say": [{"to": "みんな", "text": "秋はまく量をそろえて、手のあく日は水の道の土をかきだそう。わたしも毎日そっちへ出る。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "直す水の輪は少なく、水の道の手入れがたくさん残っているから。水の来る畑は悪い年にも強い"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ160": true},
+ "family": {
+  "ヌオ106": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、夏の実りを増やすため"},
+  "ネイ127": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、家の子や村の子に教えておきたい"},
+  "ラキ136": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプのそばで草取りをする"},
+  "ラキ141": {"activity": "水の作業場で働く", "place": "M6", "why": "若いうちにのこの仕事を覚えて、板をふやすため"}
+ },
+ "keep": true,
+ "judge": {"M610": "ゆるす", "M611": "ゆるす", "M612": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1440": "村", "T1441": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその村から来る人は、遠い南の村19 のような大きな村からも来る", "because": [7540251], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1213", "against": "畑の草取りの手が減るかもしれない", "agree": true, "reason": "わたしの出した決まりで、水の道の手入れはまだたくさん残っている"},
+  {"id": "L1205", "against": "書く手間がふえる", "agree": true, "reason": "よその畑を刈ったもめごとが続いているので、量を書いて半分返すのはよい"},
+  {"id": "L1206", "against": "書く手間がふえる", "agree": true, "reason": "千つかみまいて交代で草取りをすれば、夏の実りが増える"},
+  {"id": "L1218", "against": "水をわかすまきや石がいる", "agree": true, "reason": "小さい子が病で亡くなるのを減らしたい"},
+  {"id": "L1219", "against": "冬の働き手が住まいにとられる", "agree": true, "reason": "雨の夜に外で濡れる人がいるから"},
+  {"id": "L1220", "against": "道具の得意な人が少ない", "agree": true, "reason": "鎌があれば刈り入れが倍になる"},
+  {"id": "L1222", "against": "ヤギが増えすぎると世話が足りない", "agree": true, "reason": "ヤギは養える数よりずっと少ないので、もどしてよい"},
+  {"id": "L1216", "against": "薬が足りない家が出るかもしれない", "agree": true, "reason": "余った薬を分けるのは、子を守ることになる"}
+ ],
+ "feeling": "秋の実りは十分。冬の前に水の道をしっかり直しておきたい。"}

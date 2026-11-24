@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "新しく来たネイ160とソワ160を迎えよう。秋は千つかみ畑にまいて、水の道を掘りすすめよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っている。蓄えはたっぷりあるので、手のあく大人で掘りすすめる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ160": true, "ソワ160": true},
+ "family": {"キオ95": {"activity": "水の道を掘る", "place": "camp", "why": "力のある人は水の道を掘る。"}, "セオ108": {"activity": "水の道を掘る", "place": "camp", "why": "力のある人は水の道を掘る。"}, "セオ120": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで実りを増やす。"}, "キオ125": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで実りを増やす。"}, "ルタ127": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで実りを増やす。"}, "ホタ129": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで実りを増やす。"}, "ホタ131": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで実りを増やす。"}, "セヤ135": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道を掘る。"}, "ソナ138": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道を掘る。"}, "タユ140": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道を掘る。"}},
+ "keep": false,
+ "judge": {"M610": "ゆるす", "M611": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "feeling": "蓄えが多くて安心。新しい仲間が来てうれしい。"}

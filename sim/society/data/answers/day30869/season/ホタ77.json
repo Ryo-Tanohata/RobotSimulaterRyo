@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は千つかみずつまいて、あとは水の道を掘って畑を守ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っている。水の来る畑は悪い年でも実りが半分にならないから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ160": true},
+ "family": {
+  "キサ78": {"activity": "水の道を掘る", "place": "camp", "why": "ホタ77と同じく水の道を掘って畑を守る。"},
+  "ルタ79": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひき、手入れの人日を浮かせる。"},
+  "シエ81": {"activity": "水の作業場で働く", "place": "M6", "why": "板が多いと水の道の手入れが早く進む。"},
+  "ルタ82": {"activity": "水の道を掘る", "place": "camp", "why": "手入れの残りが多いので掘る。"},
+  "ムイ96": {"activity": "水の作業場で働く", "place": "M26", "why": "板をひいて村の手入れを助ける。"}
+ },
+ "keep": false,
+ "judge": {"M610": "ゆるす", "M611": "ゆるす", "M612": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて心やすい。年のせいで体は少し重いが、水の道を掘って皆の畑を支えたい。"}

@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋じゃな。蓄えはたっぷりある。畑に千つかみまいて、冬は交代で草取りをしよう。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。蓄えの土器を増やして、冬のそなえにしたい。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ160": true, "ソワ160": true},
+ "family": {"ケナ108": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、近くの草原で食べ物を集める。"}, "ラキ125": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで畑の実りを守るため。"}},
+ "keep": false,
+ "judge": {"M610": "ゆるす", "M611": "ゆるす", "M612": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1440": false, "T1441": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に千つかみまけば来年の夏もよく実る。冬は交代で草取りをするのがよい。", "because": [7540245], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心じゃ。ゆっくり土器を作ろう。"}

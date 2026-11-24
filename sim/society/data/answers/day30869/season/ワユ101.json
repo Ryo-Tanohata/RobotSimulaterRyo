@@ -1,0 +1,30 @@
+{"say": [{"to": "みんな", "text": "世話の手が足りなくて、ヤギが 11 頭もいなくなった。うちの家からも一人、毎日ヤギの番に出すよ。ほかの家も一人ずつ出してくれないか。"}, {"to": "ネイ160", "text": "南の村19 から遠くまでよく来たね。うちの家は受け入れに賛成だ。はじめは村の人と組んで働こう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。少し疲れているので、キャンプの近くで働く"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ネイ160": true},
+ "family": {
+  "アコ114": {"activity": "採集", "place": "camp", "why": "採集がいちばん上手なので、秋の木の実を集めて冬にそなえる"},
+  "キサ123": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っていて、水の来る畑は悪い年でも実る"},
+  "ホタ124": {"activity": "ヤギの世話", "place": "camp", "why": "世話の手が足りずヤギがいなくなったので、毎日番をする"},
+  "オネ127": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプのそばで草取りをする"},
+  "キオ135": {"activity": "燃える石を掘る", "place": "北丘12", "why": "掘りなれているし、燃える石があればまき集めの手が浮く"},
+  "ナセ136": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので、水の道の手入れを手伝う"},
+  "キサ138": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで次の夏の実りを増やす"},
+  "ラニ139": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの番を二人にして、いなくならないようにする"}
+ },
+ "keep": false,
+ "judge": {"M610": "ゆるす", "M611": "ゆるす", "M612": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1440": "村", "T1441": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "ヤギの番が足りない。家ごとに一人、交代でヤギの世話に出よう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギの世話をする人が少ないと、草が足りていてもヤギがいなくなる", "because": [7540227], "confidence": 0.8}, {"op": "add", "text": "よその家の畑で刈った小さい量のもめごとが、また続けて起きた。ゆるして収めるのがよい", "because": [7540248, 7540249, 7540250], "confidence": 0.7}],
+ "proposal": {"text": "ヤギが草で養える数より少ないあいだは、家ごとに一人ずつ交代でヤギの世話に出よう。世話の手が足りずにヤギがいなくなるのを防ぐため。", "because": [7540227], "penalty": {"for": "ヤギ", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1212", "against": "運ぶ手で家の仕事がへる", "agree": true, "reason": "小さい子を病から守るのが大事だから"},
+  {"id": "L1213", "against": "ほかの仕事の手がへる", "agree": true, "reason": "水の道の手入れがたくさん残っているから"},
+  {"id": "L1214", "against": "燃える石がへる", "agree": true, "reason": "わかした水と子の薬で子が病で死なないようにしたい"},
+  {"id": "L1215", "against": "板や石の多い家の負担が大きい", "agree": true, "reason": "薬のない家にも回るから"},
+  {"id": "L1216", "against": "余りが出ないこともある", "agree": true, "reason": "余った薬を分ければむだにならない"},
+  {"id": "L1217", "against": "夕方の刈り入れで疲れる", "agree": true, "reason": "刈らずに落ちる種が多かったから"},
+  {"id": "L1218", "against": "草取りの手がかかる", "agree": true, "reason": "千つかみまいて草取りすると夏によく実る"},
+  {"id": "L1219", "against": "ほかの仕事がへる", "agree": true, "reason": "雨の夜に外で濡れる人をなくしたい"},
+  {"id": "L1220", "against": "道具の得意な人が少ない", "agree": true, "reason": "鎌があれば刈り手が増える"},
+  {"id": "L1221", "against": "土器や鎌がへる", "agree": true, "reason": "ヤギはまだ草で養える数より少ない"},
+  {"id": "L1222", "against": "世話の手が足りないとまたいなくなる", "agree": true, "reason": "ヤギの数をもどしたい。世話の番も出す"}
+ ],
+ "feeling": "蓄えはたっぷりあるが、ヤギと子のことが気がかりだ"}

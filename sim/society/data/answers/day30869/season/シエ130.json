@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。わたしは木の実をたくさん集めて蓄えをふやすよ。畑には千つかみまいて、冬の草取りもしよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集の腕が一番高いので、木の実を集めて冬の蓄えを厚くしたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"テナ132": {"activity": "採集", "place": "camp", "why": "木の実が多い秋なので、採集で蓄えをふやす"}, "オネ132": {"activity": "採集", "place": "camp", "why": "採集の腕が高いので、木の実を集める"}, "ヒセ137": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで来年の実りを増やす"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝い、畑の実りを守る"}}, "keep": false,
+ "judge": {"M610": "ゆるす", "M611": "ゆるす", "M612": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1440": false, "T1441": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は千つかみまいて、冬まで交代で草取りを続けよう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に千つかみまくと、次の夏に畑が実る。冬まで草取りが要る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "秋の実りが楽しみで、わくわくしている"}

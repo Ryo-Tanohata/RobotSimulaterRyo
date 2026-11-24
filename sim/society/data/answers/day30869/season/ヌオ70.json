@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋は千つかみの種をまいて、冬まで交代で草取りをしよう。ばあさんも畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、手のあく大人として毎日畑に出る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ160": true},
+ "keep": false,
+ "judge": {"M610": "ゆるす", "M611": "ゆるす", "M612": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1440": false, "T1441": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心。年寄りでも畑でみんなの役に立てるのがうれしい。"}

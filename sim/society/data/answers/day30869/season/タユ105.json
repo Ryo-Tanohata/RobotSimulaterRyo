@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "蓄えは厚い。秋のはじめに千つかみをまいて、手のあく日は水の道を掘ろう。冬の前に木の実も集めておこう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "秋にまいた畑を守るには水の道が要る。手入れはまだ大量に残っているので、続けて掘る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {},
+ "family": {
+  "ヌオ115": {"activity": "水の道を掘る", "place": "camp", "why": "力のある若い人なので、水の道を一緒に掘る"},
+  "ヌオ126": {"activity": "水の道を掘る", "place": "camp", "why": "子のアコ150を育てながら、近くで水の道を掘る"},
+  "キサ133": {"activity": "水の道を掘る", "place": "camp", "why": "まだ慣れていないので、みんなと一緒に水の道を掘る"}},
+ "keep": false,
+ "judge": {"M610": "ゆるす", "M611": "ゆるす", "M612": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1440": false, "T1441": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは厚い。秋に千つかみをまき、水の道を掘ると次の夏の実りが守れる。ヤギは多いので、よその村のヤギの申し出は断る。", "because": [7540254, 7540255], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが厚くて心強い。秋の仕事を家族みんなで進めたい。"}

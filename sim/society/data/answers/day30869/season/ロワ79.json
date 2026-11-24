@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "秋だ。蓄えはたっぷりあるから、千つかみまいて、わたしはのこ場で板をひくよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として板をひくと、水の道の手入れが早く進む。畑はまだ育っていないので、いまはこちらが役に立つ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ネイ160": true},
+ "family": {"ムイ87": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番だから、板をひいて家に板をもどす"}, "キオ117": {"activity": "水の作業場で働く", "place": "M26", "why": "手が空いているので、板ひきを手伝う"}},
+ "keep": false,
+ "judge": {"M610": "ゆるす", "M611": "ゆるす", "M612": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1440": false, "T1441": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみまき、冬と春に草取りをすれば、来年の夏も畑が実る。", "because": [7540248], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1213", "against": "", "agree": true, "reason": "水の道の手入れはまだ大きく残っているから"}, {"id": "L1218", "against": "", "agree": true, "reason": "秋にまくことは来年の実りのもとだから"}],
+ "feeling": "蓄えは多くて安心。のこ場で体を動かして、秋を静かにすごしたい。"}
