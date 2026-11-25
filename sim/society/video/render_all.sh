@@ -43,17 +43,18 @@ ITEMS=(G1:510,600,629,659,990,1019,1229 G1F1:509,510,600 G1F2:629,630,631 G1F3:6
        S3P34:27000,27059,27360,27839,27870,28079
        D1:1 D1P:1 D1V:1
        S1V:8,32,84,153,285,489
-       G1F1V:509,510,600 G1F2V:629,630,631 G1F3V:659,660,779)
+       G1F1V:509,510,600 G1F2V:629,630,631 G1F3V:659,660,779
+       G1V:510,600,629,659,990,1019,1229)
 # 小さなデータで撮る動画 (2026-11-22): ページには、撮る日に要る分だけの app_data.json を配る (make_video.mjs の SLIM=1。data/ には書かない)。
 # 前からある動画は、前と同じく全部のデータで撮る
-SLIM_ITEMS=" D1 D1P D1V S1V G1F1V G1F2V G1F3V "
+SLIM_ITEMS=" D1 D1P D1V S1V G1F1V G1F2V G1F3V G1V "
 # 人のモデルで撮る動画と、ナレーションと声を借りる動画 (2026-11-23)
-PEOPLE_ITEMS=" D1P D1V S1V G1F1V G1F2V G1F3V "
-src_of() { case "$1" in D1P|D1V) echo D1 ;; S1V) echo S1 ;; G1F1V|G1F2V|G1F3V) echo "${1%V}" ;; *) echo "$1" ;; esac; }
+PEOPLE_ITEMS=" D1P D1V S1V G1F1V G1F2V G1F3V G1V "
+src_of() { case "$1" in D1P|D1V) echo D1 ;; S1V) echo S1 ;; G1F1V|G1F2V|G1F3V|G1V) echo "${1%V}" ;; *) echo "$1" ;; esac; }
 # 動画ごとの撮り方の違い (env で make_video.mjs に渡す)。D1V: クラウドの CPU 向け (12 コマ/秒・毎フレームの描画を止める・区間の前を進めておく・五人に寄る・モデルのクレジット)
 opts_of() { case "$1" in
   D1V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=${PEOPLE_DIR_D1V:-/dev/shm/people_glb} PEOPLE_VIEW=$D1V_VIEW HIDE_TOASTS=1" ;;
-  S1V|G1F1V|G1F2V|G1F3V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=${PEOPLE_DIR_D1V:-/dev/shm/people_glb} PEOPLE_VIEW=$G1V_VIEW HIDE_TOASTS=1" ;;
+  S1V|G1F1V|G1F2V|G1F3V|G1V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=$PEOPLE_DIR_HIDE PEOPLE_VIEW=$G1V_VIEW HIDE_TOASTS=1" ;;
   *) echo "" ;; esac; }
 D1V_CAM='{"min":4.5,"add":2.5,"k":1.6,"max":40}'
 # D1V の見せ方 (2026-11-23 本人の絵コンテの直し): 赤い玉 (木の実・芋) を隠す・昼は組ごとに画面を分ける・火のまわりは引いて上から。
@@ -61,7 +62,9 @@ D1V_CAM='{"min":4.5,"add":2.5,"k":1.6,"max":40}'
 D1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true}'
 # G1 の F と S1V (2026-11-25): D1V と同じ見せ方に、よそから来たナギ・ソルのモデル (opts.files)、本人の直し (v2: 住まいをよける・夜は住まいに入る・
 #   採集の植物・住まいを建てる・動物・植物が育つ。fireNightly: 焚き火を毎晩灯す) を足す
-G1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true,"fireMax":14,"v2":true,"fireNightly":true,"files":{"ナギ":"nagi","ソル":"sol"}}'
+G1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true,"fireMax":14,"v2":true,"fireNightly":true,"files":{"ナギ":"nagi","ソル":"sol","ミラ":"p008","ケト":"p009","ハユ":"p010","トワ":"p012","サエ":"p013","ユノ":"p014","カイ":"p015","フウ":"p018","モエ":"p019","シノ":"p020"}}'
+# 2026-11-25: 服を着た人のモデル (時代 hide = Society 1.0〜G1 の生皮。docs/society_phase/fashion.md)。G1 の人は tools/human/auto_people.py で記録から自動で作った (files)
+PEOPLE_DIR_HIDE=${PEOPLE_DIR_HIDE:-/dev/shm/people_glb_hide}
 D1V_CREDIT="VRoid の CC0 サンプル (pixiv) をもとに作成"
 STORY=
 [ "${1:-}" = "--storyboard" ] && { STORY=1; shift; }
@@ -85,8 +88,8 @@ render_one() {
   local t0=$(date +%s)
   local slim=; case "$SLIM_ITEMS" in *" $name "*) slim=1 ;; esac
   local src=$(src_of "$name") people=; case "$PEOPLE_ITEMS" in *" $name "*) people=${PEOPLE_DIR:-../../../../human-model/people_glb} ;; esac
-  local cam= credit= vf=; case "$name" in D1V|S1V|G1F1V|G1F2V|G1F3V) ;; *) false ;; esac && { cam=$D1V_CAM credit=$D1V_CREDIT vf="-vf fps=24"; }
-  case "$name" in S1V|G1F1V|G1F2V|G1F3V) credit="$D1V_CREDIT<br>毎晩の焚き火・動物と植物の形と動きは、記録にない所を描きそえた (いつ・どこで・だれがは記録のとおり)" ;; esac
+  local cam= credit= vf=; case "$name" in D1V|S1V|G1F1V|G1F2V|G1F3V|G1V) ;; *) false ;; esac && { cam=$D1V_CAM credit=$D1V_CREDIT vf="-vf fps=24"; }
+  case "$name" in S1V|G1F1V|G1F2V|G1F3V|G1V) credit="$D1V_CREDIT<br>毎晩の焚き火・動物と植物の形と動きは、記録にない所を描きそえた (いつ・どこで・だれがは記録のとおり)" ;; esac
   if [ -n "$STORY" ]; then  # 絵コンテだけ
     env SLIM=$slim PEOPLE=$people DAYS=$days PEOPLE_CAM="$cam" PEOPLE_CREDIT="$credit" $(opts_of "$name") node storyboard.mjs "narration_$src.json" "voice/$src" "out/storyboard_$name" >> "out/storyboard_$name.log" 2>&1 \
       && log "$name: storyboard -> out/storyboard_$name.html" || log "$name: STORYBOARD FAILED"
