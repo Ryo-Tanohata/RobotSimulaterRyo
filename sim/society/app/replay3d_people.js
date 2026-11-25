@@ -88,22 +88,27 @@
   function buildFire() {
     const W = M.world, g = new THREE.Group(); g.position.copy(W.camp);
     const logM = new THREE.MeshLambertMaterial({ color: 0x4a3220 }), charM = new THREE.MeshLambertMaterial({ color: 0x1c1410 });
-    for (let k = 0; k < 5; k++) {  // 円すいに組んだ薪
-      const lg = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.06, 0.75, 6), k % 2 ? logM : charM), a = k * 1.2566;
-      lg.position.set(Math.cos(a) * 0.17, 0.2, Math.sin(a) * 0.17); lg.rotation.set(Math.sin(a) * 0.75, 0, -Math.cos(a) * 0.75); g.add(lg);
+    for (let k = 0; k < 6; k++) {  // 円すいに組んだ薪 (下は石の輪の内側、先は真ん中で合わさる)
+      const a = k * 1.0472 + 0.3, geo = new THREE.CylinderGeometry(0.04, 0.055, 0.62, 6); geo.translate(0, 0.31, 0);
+      const lg = new THREE.Mesh(geo, k % 2 ? logM : charM);
+      lg.position.set(Math.cos(a) * 0.3, 0.02, Math.sin(a) * 0.3);
+      lg.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(-Math.cos(a) * 0.5, 0.86, -Math.sin(a) * 0.5).normalize());
+      g.add(lg);
     }
+    const emb = new THREE.Mesh(new THREE.CircleGeometry(0.28, 14), new THREE.MeshBasicMaterial({ color: 0xff5a14 })); emb.rotation.x = -Math.PI / 2; emb.position.y = 0.025; g.add(emb);  // 熾火
+    const mat = (col, op) => new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: op, depthWrite: false, side: THREE.DoubleSide });
     const add = (col, op) => new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: op, blending: THREE.AdditiveBlending, depthWrite: false });
     const flames = [];
-    [[0xff5a10, 0.85, 0.30, 0.95], [0xff8a20, 0.8, 0.22, 0.8], [0xffb030, 0.85, 0.16, 0.65], [0xffe080, 0.9, 0.09, 0.45]].forEach(([c, op, r, h], i) => {
+    [[0xd2400a, 0.8, 0.34, 1.25], [0xf06a12, 0.75, 0.27, 1.05], [0xffa020, 0.75, 0.19, 0.85], [0xffd870, 0.85, 0.1, 0.55]].forEach(([c, op, r, h], i) => {
       for (let k = 0; k < (i < 2 ? 3 : 2); k++) {
-        const f = new THREE.Mesh(new THREE.ConeGeometry(r, h, 7, 1, true), add(c, op)); f.geometry.translate(0, h / 2, 0);
-        f.userData = { h, ph: i * 1.7 + k * 2.3, dx: (k - 1) * r * 0.45 }; f.position.set(f.userData.dx, 0.08, (k % 2 ? 1 : -1) * r * 0.3); g.add(f); flames.push(f);
+        const f = new THREE.Mesh(new THREE.ConeGeometry(r, h, 7, 1, true), mat(c, op)); f.geometry.translate(0, h / 2, 0);
+        f.userData = { h, ph: i * 1.7 + k * 2.3 }; f.position.set((k - 1) * r * 0.4, 0.05, (k % 2 ? 1 : -1) * r * 0.25); g.add(f); flames.push(f);
       }
     });
     const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: fireGlowTex(), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
-    glow.scale.set(2.6, 2.6, 1); glow.position.y = 0.45; g.add(glow);
-    const sparks = [], sm = add(0xffc060, 1);
-    for (let k = 0; k < 26; k++) { const sp = new THREE.Mesh(new THREE.SphereGeometry(0.018, 4, 3), sm); sp.userData = { ph: rnd(k, 3), x: (rnd(k, 5) - 0.5) * 0.4, z: (rnd(k, 7) - 0.5) * 0.4, sp: 0.6 + rnd(k, 9) * 0.8 }; g.add(sp); sparks.push(sp); }
+    glow.scale.set(1.8, 1.8, 1); glow.position.y = 0.5; g.add(glow);
+    const sparks = [], sm = add(0xffb050, 1);
+    for (let k = 0; k < 26; k++) { const sp = new THREE.Mesh(new THREE.SphereGeometry(0.02, 4, 3), sm); sp.userData = { ph: rnd(k, 3), x: (rnd(k, 5) - 0.5) * 0.4, z: (rnd(k, 7) - 0.5) * 0.4, sp: 0.6 + rnd(k, 9) * 0.8 }; g.add(sp); sparks.push(sp); }
     const smokes = [], smM = new THREE.MeshLambertMaterial({ color: 0x8a8a8a, transparent: true, opacity: 0.25, depthWrite: false });
     for (let k = 0; k < 7; k++) { const sk = new THREE.Mesh(new THREE.SphereGeometry(0.22, 7, 5), smM.clone()); sk.userData = { ph: k / 7 }; g.add(sk); smokes.push(sk); }
     M.scene.add(g);
@@ -122,7 +127,7 @@
     if (!M.fire) M.fire = buildFire();
     const F = M.fire, a = fireAmount(P, v);
     W.flame.visible = false;  // replay3d.js の円すいの炎の代わり
-    W.fireLight.intensity = a * (1.7 + Math.sin(v * 13) * 0.25 + Math.sin(v * 7.3) * 0.15);
+    W.fireLight.intensity = a * (1.2 + Math.sin(v * 13) * 0.18 + Math.sin(v * 7.3) * 0.1);
     W.fireLight.color.setHex(0xff9a40);
     F.g.visible = a > 0.01;
     if (!F.g.visible) return;
@@ -132,7 +137,7 @@
       f.scale.set(s * (1 + Math.sin(v * 9 + u.ph) * 0.08), s * fl, s * (1 + Math.cos(v * 8 + u.ph) * 0.08));
       f.rotation.y = v * 0.8 + u.ph; f.rotation.z = Math.sin(v * 5 + u.ph) * 0.12;
     });
-    F.glow.material.opacity = 0.75 * a; F.glow.scale.setScalar(1.2 + 1.6 * a);
+    F.glow.material.opacity = 0.32 * a; F.glow.scale.setScalar(1.0 + 1.0 * a);
     F.sparks.forEach((sp) => {
       const u = sp.userData, q = (v * u.sp * 0.5 + u.ph) % 1;
       sp.visible = a > 0.3; sp.position.set(u.x * (1 + q) + Math.sin(v * 3 + u.ph * 9) * 0.05, 0.3 + q * 1.6 * a, u.z * (1 + q)); sp.scale.setScalar(1 - q);
