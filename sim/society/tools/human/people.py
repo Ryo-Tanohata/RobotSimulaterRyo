@@ -136,9 +136,20 @@ SHORTS = {"color": "#161514", "top": None, "shorts": (0.805, 1.0)}
 # ソナ85 と解説の係に着せた、ヤギのなめし革の貫頭衣と革紐の帯を、村の人みなに。女はすねまで、男と子はひざのあたりまで。色は人ごとに少し変える
 LEATHER = ["#7a5638", "#8a6242", "#6e4c32", "#94704c", "#7e5a3e", "#86603e", "#705034"]
 BELTS = ["#3e2a1c", "#4a3020", "#3a281a"]
+# 2026-11-25 本人「各時代や世代、フェーズに合わせてファッションも進化させてください」→ docs/society_phase/fashion.md
+# 時代 (ERA): hide = Society 1.0〜G1 (けものの生皮をそのまま。灰色がかった茶、丈は短め、すそはまっすぐ、細い紐)。
+#              leather = ヤギを飼ってから (ヤギのなめし革。明るい茶、女はすねまで、男はひざ、革紐の帯)。この先の時代は fashion.md の表
+HIDE = ["#5e4a38", "#6a5440", "#54402e", "#73604a", "#4e3e30", "#665040"]
+ERA = __import__("os").environ.get("PEOPLE_ERA", "leather")
 
 
-def tunic(sex, k, child=False):
+def tunic(sex, k, child=False, era=None):
+    era = era or ERA
+    if era == "hide":
+        long_ = sex == "女" and not child
+        return {"color": "#161514", "top": None, "shorts": (0.805, 0.975),
+                "dress": {"color": HIDE[k % len(HIDE)], "belt": "#2e2418", "waist": 1.00, "arm": 1.215,
+                          "neck": 1.335, "hem": 0.50 if long_ else 0.66, "flare": 0.06, "push": 0.008, "sleeve_x": 0.22}}
     long_ = sex == "女" and not child
     return {"color": "#161514", "top": None, "shorts": (0.805, 0.975),
             "dress": {"color": LEATHER[k % len(LEATHER)], "belt": BELTS[k % len(BELTS)], "waist": 1.00, "arm": 1.215,
