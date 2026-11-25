@@ -1,0 +1,3378 @@
+{
+ "item": "S1V",
+ "duration": 621.91,
+ "people": true,
+ "cuts": [
+  {
+   "cut": 1,
+   "id": "n01",
+   "start": 0.6,
+   "end": 8.77,
+   "at": 4.69,
+   "clock": "0年9日目 5:44  夜明け",
+   "text": "ずんだもんなのだ。川辺の五人の、ソサエティ1.0、狩猟採集の時代を、短くまとめて見ていくのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 215,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "種まき",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 217,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 215,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 238,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 201,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 2,
+   "id": "n02",
+   "start": 10.22,
+   "end": 23.31,
+   "at": 16.76,
+   "clock": "0年9日目 6:29  出発",
+   "text": "ルオ、セナ、タヒ、ウィロ、イサの5人は、それぞれ別のAIが演じているのだ。自分の経験と、人から聞いた話と、知っていることだけをもとに考えるのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 133,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "タヒ"
+      ],
+      "title": "ルオ・タヒ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 12.9
+     },
+     {
+      "names": [
+       "セナ",
+       "ウィロ"
+      ],
+      "title": "セナ・ウィロ — 南の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 15.5
+     },
+     {
+      "names": [
+       "イサ"
+      ],
+      "title": "イサ — 北の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "種まき",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 133,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 124,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 160,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 104,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 226,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "タヒ が画面からはみ出す"
+   ]
+  },
+  {
+   "cut": 3,
+   "id": "n03",
+   "start": 24.76,
+   "end": 38.15,
+   "at": 31.45,
+   "clock": "0年9日目 9:59  活動",
+   "text": "目ざすのは、狩猟採集から農耕の暮らしへ進む、通説の道のりなのだ。それを F1 から F6 の6つのフェーズに分けて、F6 に着けば、ソサエティ2.0なのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 134,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "タヒ"
+      ],
+      "title": "ルオ・タヒ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 21.7
+     },
+     {
+      "names": [
+       "セナ",
+       "ウィロ"
+      ],
+      "title": "セナ・ウィロ — 南の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "イサ"
+      ],
+      "title": "イサ — 北の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "種まき",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 78,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 183,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 52,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 134,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 247,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ルオ が小さい (78 px)",
+    "タヒ が小さい (52 px)"
+   ]
+  },
+  {
+   "cut": 4,
+   "id": "n04",
+   "start": 38.6,
+   "end": 50.18,
+   "at": 44.39,
+   "clock": "0年9日目 15:16  活動",
+   "text": "F1 は「移動する採集民」。0年9日目のこの日、ルオがキャンプに種を埋めたのだ。次に人が自分で種をまくのは、2年96日目なのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 150,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "タヒ"
+      ],
+      "title": "ルオ・タヒ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 21.7
+     },
+     {
+      "names": [
+       "セナ",
+       "ウィロ"
+      ],
+      "title": "セナ・ウィロ — 南の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "イサ"
+      ],
+      "title": "イサ — 北の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "種まき",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 78,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 217,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 76,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 150,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 239,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ルオ が小さい (78 px)",
+    "タヒ が画面からはみ出す",
+    "タヒ が小さい (76 px)"
+   ]
+  },
+  {
+   "cut": 5,
+   "id": "n05",
+   "start": 59.63,
+   "end": 67.33,
+   "at": 63.48,
+   "clock": "0年9日目 19:20  夕方の焚き火",
+   "text": "0年7日目から、とった食べ物をキャンプの蓄えに入れ、次の日から、そこから取って食べるようになったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 209,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "種まき",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 216,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 209,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "talk",
+     "motion_ja": "話す",
+     "px": 236,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 193,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 201,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 6,
+   "id": "n06",
+   "start": 67.78,
+   "end": 75.16,
+   "at": 71.47,
+   "clock": "0年9日目 19:56  夕方の焚き火",
+   "text": "通説より早いのは、このシミュレーションを作る側が、蓄える場所を最初から用意してしまったためなのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 214,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "種まき",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 217,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 214,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 238,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 201,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 7,
+   "id": "n07",
+   "start": 75.61,
+   "end": 84.59,
+   "at": 80.1,
+   "clock": "0年9日目 20:35  夕方の焚き火",
+   "text": "0年8日目には、食べ物を分け合う掟など11の掟が、ほとんどは4人以上の賛成で、一度に決まっていたのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 214,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "種まき",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 217,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 214,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 238,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 201,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 8,
+   "id": "n08",
+   "start": 92.83,
+   "end": 100.73,
+   "at": 96.78,
+   "clock": "0年9日目 21:59  夜",
+   "text": "草の種も食べていたので、0年13日目に、F2「食べ物の幅を広げる」に進んだのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 115,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 11.5
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "種まき",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 78,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 34,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 115,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 126,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ルオ が小さい (78 px)",
+    "セナ が小さい (34 px)"
+   ]
+  },
+  {
+   "cut": 9,
+   "id": "n09",
+   "start": 102.18,
+   "end": 111.22,
+   "at": 106.7,
+   "clock": "0年33日目 5:44  夜明け",
+   "text": "このF2は、やり直しの2回目なのだ。1回目は、キャンプの近くの食べ物を採り尽くして、5人とも飢えで亡くなったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 212,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "狩り",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 216,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 212,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 238,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 201,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 10,
+   "id": "n10",
+   "start": 112.67,
+   "end": 125.3,
+   "at": 118.98,
+   "clock": "0年33日目 6:21  出発",
+   "text": "キャンプを移す仕組みがなかった、作る側の不足なのだ。その仕組みを足し、採れる量を増やし、空腹の影響も弱めて、0年13日目に戻して、やり直したのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 217,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ"
+      ],
+      "title": "ルオ — 東の林で狩り",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — キャンプ",
+      "x": 427,
+      "w": 426,
+      "dist": 12.6
+     },
+     {
+      "names": [
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "ウィロ・イサ — 北の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "狩り",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 245,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 135,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 156,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 217,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 228,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "名前の札が重なる: ウィロ と イサ"
+   ]
+  },
+  {
+   "cut": 11,
+   "id": "n11",
+   "start": 125.75,
+   "end": 130.2,
+   "at": 127.97,
+   "clock": "0年33日目 6:50  出発",
+   "text": "でも、キャンプを移したことは、このあとも一度もなかったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 177,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ"
+      ],
+      "title": "ルオ — 東の林で狩り",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — キャンプ",
+      "x": 427,
+      "w": 426,
+      "dist": 12.9
+     },
+     {
+      "names": [
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "ウィロ・イサ — 北の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "狩り",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 243,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 132,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 135,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 177,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 251,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 12,
+   "id": "n12",
+   "start": 131.65,
+   "end": 143.08,
+   "at": 137.36,
+   "clock": "0年33日目 11:57  活動",
+   "text": "狩りにも出るようになったのだ。0年30日目、イサが初めて、大きな獲物のルクをしとめたのだ。0年33日目のこの日は、ルオがしとめたのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 169,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ"
+      ],
+      "title": "ルオ — 東の林で狩り",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — キャンプ",
+      "x": 427,
+      "w": 426,
+      "dist": 12.9
+     },
+     {
+      "names": [
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "ウィロ・イサ — 北の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "ウィロ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "狩り",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 242,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 132,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 163,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 238,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 169,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 13,
+   "id": "n13",
+   "start": 153.65,
+   "end": 160.48,
+   "at": 157.06,
+   "clock": "0年33日目 19:18  夕方の焚き火",
+   "text": "夕方、イサは「やっと狩りが成功した。これから毎日こうしないとダメだ」と話したのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 215,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "狩り",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 216,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "休む",
+     "motion": "talk",
+     "motion_ja": "話す",
+     "px": 215,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 233,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 194,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 202,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 14,
+   "id": "n14",
+   "start": 186.85,
+   "end": 195.71,
+   "at": 191.28,
+   "clock": "0年33日目 21:43  夜",
+   "text": "でもこの夜、イサが飢えで亡くなったのだ。キャンプの蓄えには食べ物がたくさんあったのに、取り出して食べる量が少なかったのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 100,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 11.5
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "狩り",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 68,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "休む",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 29,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 100,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 106,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 124,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ルオ が小さい (68 px)",
+    "セナ が小さい (29 px)"
+   ]
+  },
+  {
+   "cut": 15,
+   "id": "n15",
+   "start": 196.16,
+   "end": 207.1,
+   "at": 201.63,
+   "clock": "0年33日目 22:12  夜",
+   "text": "蓄えた分は取り出さないと食べられない、という世界の決まりを、AIに渡すお題に書いていなかった、作る側の不足なのだ。このあと書き足したのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 52,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "イサ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "イサ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 11.5
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "イサ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "狩り",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 60,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "休む",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 26,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 64,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 49,
+     "inView": true
+    },
+    {
+     "name": "イサ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 52,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ルオ が小さい (60 px)",
+    "セナ が小さい (26 px)",
+    "タヒ が小さい (64 px)",
+    "ウィロ が小さい (49 px)",
+    "イサ が小さい (52 px)"
+   ]
+  },
+  {
+   "cut": 16,
+   "id": "n16",
+   "start": 208.55,
+   "end": 222.48,
+   "at": 215.52,
+   "clock": "0年85日目 5:44  夜明け",
+   "text": "0年41日目、小さな獲物のピクを3日続けて食べて、F3「蓄える」に進んだのだ。ルクに逃げられた日の帰り道にピクがとれるのは、作る側があとから足した仕組みなのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 201,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 8.1
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 201,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 200,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 215,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "狩り",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 180,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 17,
+   "id": "n17",
+   "start": 223.93,
+   "end": 233.7,
+   "at": 228.82,
+   "clock": "0年85日目 6:15  出発",
+   "text": "このF3も2回目なのだ。1回目は、冬が来ることを知らないまま、採集を続け、最初の冬に4人とも飢えで亡くなったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 240,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ"
+      ],
+      "title": "ルオ・セナ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 13.6
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 東の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の林で狩り",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 144,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 115,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 254,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "狩り",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 240,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 18,
+   "id": "n18",
+   "start": 234.15,
+   "end": 243.23,
+   "at": 238.69,
+   "clock": "0年85日目 6:44  出発",
+   "text": "最後に残ったセナは、亡くなる前の日に、分け合う掟や狩りの掟など、28の掟のうち、15を廃止したのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 235,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ"
+      ],
+      "title": "ルオ・セナ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 28.9
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 東の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の林で狩り",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 68,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 56,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 253,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "狩り",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 235,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ルオ が小さい (68 px)",
+    "セナ が小さい (56 px)"
+   ]
+  },
+  {
+   "cut": 19,
+   "id": "n19",
+   "start": 244.68,
+   "end": 257.08,
+   "at": 250.88,
+   "clock": "0年85日目 10:07  活動",
+   "text": "季節のことをお題に書いていなかったことと、眠っても疲れがとれない仕組みの誤り。どちらも作る側の不足で、0年41日目に戻して直し、やり直したのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 235,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ"
+      ],
+      "title": "ルオ・セナ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 28.9
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 東の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の林で狩り",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 69,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 54,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 238,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "狩り",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 235,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ルオ が小さい (69 px)",
+    "セナ が小さい (54 px)"
+   ]
+  },
+  {
+   "cut": 20,
+   "id": "n20",
+   "start": 257.53,
+   "end": 267.15,
+   "at": 262.34,
+   "clock": "0年85日目 15:23  活動",
+   "text": "やり直した2回目では、冬にルオとウィロが、ルクの狩りによく成功したのだ。0年85日目のこの日も、ウィロがしとめたのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 235,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ"
+      ],
+      "title": "ルオ・セナ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 28.9
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 東の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の林で狩り",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 69,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 44,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 237,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "狩り",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 235,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ルオ が小さい (69 px)",
+    "セナ が小さい (44 px)"
+   ]
+  },
+  {
+   "cut": 21,
+   "id": "n21",
+   "start": 268.6,
+   "end": 274.42,
+   "at": 271.51,
+   "clock": "0年85日目 18:26  帰り",
+   "text": "この冬の4日分は、セナの答えが抜けていたので、作る側がやり直したのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 215,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ"
+      ],
+      "title": "ルオ・セナ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 21.5
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 東の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の林で狩り",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 92,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 74,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 235,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "狩り",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 215,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (74 px)"
+   ]
+  },
+  {
+   "cut": 22,
+   "id": "n22",
+   "start": 276.6,
+   "end": 287.28,
+   "at": 281.94,
+   "clock": "0年85日目 19:31  夕方の焚き火",
+   "text": "夕方の話題は、肉を乾かす実験と、燻す実験なのだ。でも記録には、肉を干したり燻したりした出来事は、このあとも一度もないのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 202,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 8.1
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 202,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 197,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "talk",
+     "motion_ja": "話す",
+     "px": 214,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "狩り",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 177,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 23,
+   "id": "n23",
+   "start": 304.6,
+   "end": 312.8,
+   "at": 308.7,
+   "clock": "0年85日目 21:59  夜",
+   "text": "でもこの夜、キャンプに来た猛獣のザガに、ルオが殺されたのだ。残った3人で、初めての冬を越えたのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 92,
+    "in_view": [
+     "ルオ",
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ルオ",
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 12.4
+     }
+    ]
+   },
+   "featured": [
+    "ルオ",
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "ルオ",
+     "activity": "休む",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 67,
+     "inView": true
+    },
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 27,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 92,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "狩り",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 106,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ルオ が小さい (67 px)",
+    "セナ が小さい (27 px)"
+   ]
+  },
+  {
+   "cut": 24,
+   "id": "n24",
+   "start": 314.25,
+   "end": 322.29,
+   "at": 318.27,
+   "clock": "1年34日目 5:37  夜明け",
+   "text": "F4に進むには、住まいを建てて、30日暮らす必要があったのだ。でも、建てる人は出なかったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 215,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 215,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 232,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 194,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 25,
+   "id": "n25",
+   "start": 322.74,
+   "end": 332.28,
+   "at": 327.51,
+   "clock": "1年34日目 5:51  夜明け",
+   "text": "1年16日目から作る側が、雨の夜に蓄えが傷む仕組みを足すと、「住まいを建てよう」という掟が、何度も決まったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 215,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 215,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 231,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 26,
+   "id": "n26",
+   "start": 333.73,
+   "end": 345.79,
+   "at": 339.76,
+   "clock": "1年34日目 6:14  出発",
+   "text": "でも、建てに行く人は少なかったのだ。F3の2回目では、作る側が出来事の文を誤って書いたため、3人は、建てかけの住まいを、できたと思い込んだのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 236,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ"
+      ],
+      "title": "セナ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 北の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 東の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 236,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 235,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 242,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 27,
+   "id": "n27",
+   "start": 346.24,
+   "end": 354.52,
+   "at": 350.38,
+   "clock": "1年34日目 6:36  出発",
+   "text": "3回目は、作る側が、ひどく空腹なら蓄えから自動で食べる仕組みを足したけれど、建てに行ったのは3日だけ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 235,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ"
+      ],
+      "title": "セナ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 北の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 東の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 235,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 236,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 124,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 28,
+   "id": "n28",
+   "start": 354.97,
+   "end": 360.44,
+   "at": 357.71,
+   "clock": "1年34日目 6:52  出発",
+   "text": "どちらも、冬が来るころに飢え死にが出て、1年15日目に戻したのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 244,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ"
+      ],
+      "title": "セナ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 北の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 東の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 234,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 255,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 244,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 29,
+   "id": "n29",
+   "start": 361.89,
+   "end": 375.92,
+   "at": 368.91,
+   "clock": "1年34日目 12:24  活動",
+   "text": "4回目は、作る側が世界を変えて、秋に実りが戻る速さを2倍に、住まいの手間を半分にしたのだ。すると1年34日目、ウィロが建て始めた住まいを、セナが仕上げたのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 233,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ"
+      ],
+      "title": "セナ — キャンプ",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 北の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 東の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 234,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 187,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 233,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 30,
+   "id": "n30",
+   "start": 385.37,
+   "end": 400.74,
+   "at": 393.05,
+   "clock": "1年34日目 19:37  夕方の焚き火",
+   "text": "セナは「やっとだ。雨が降っても、蓄えが傷まなくなる」と言ったのだ。3人とも生きて冬に入り、住まいで30日暮らして、1年64日目、F4「定住する」に進んだのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 213,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 213,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 232,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "talk",
+     "motion_ja": "話す",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 31,
+   "id": "n31",
+   "start": 423.57,
+   "end": 433.63,
+   "at": 428.6,
+   "clock": "2年46日目 5:44  夜明け",
+   "text": "F4の102日のあいだ、3人は一度も、自分から種をまかなかったのだ。種をまくと木が育つことを、お題に書いても同じだったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 211,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 211,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 231,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 32,
+   "id": "n32",
+   "start": 443.08,
+   "end": 454.38,
+   "at": 448.73,
+   "clock": "2年46日目 11:54  活動",
+   "text": "そこで作る側が、2年25日目から、ごみ捨て場から木が育つ仕組みを足し、2年45日目から、夕方にキャンプのそばの木から実を取れるようにしたのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 237,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ"
+      ],
+      "title": "セナ — 東の林で採集",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 北の林で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 南の林で採集",
+      "x": 853,
+      "w": 427,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "タヒ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 236,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 255,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 237,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 33,
+   "id": "n33",
+   "start": 465.08,
+   "end": 478.87,
+   "at": 471.97,
+   "clock": "2年46日目 19:33  夕方の焚き火",
+   "text": "すると2日続けて、そばの木から木の実を取ったのだ。0年9日目にルオが埋めた種から育った木なのだ。こうして2年46日目、F5「野生植物を育てる」に進んだのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 217,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 217,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 232,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 34,
+   "id": "n34",
+   "start": 503.28,
+   "end": 516.4,
+   "at": 509.84,
+   "clock": "4年10日目 5:44  夜明け",
+   "text": "F5では、2年67日目から作る側が、夕方に木の実をキャンプのそばに埋められるようにしたのだ。種まきは、2年96日目のセナから数えて、27回あったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 217,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 217,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 231,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 35,
+   "id": "n35",
+   "start": 517.85,
+   "end": 525.25,
+   "at": 521.55,
+   "clock": "4年10日目 6:15  出発",
+   "text": "はじめは作る側の誤りで、埋めると決めても埋まらないことがあり、2年107日目に直したのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 314,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "セナ・タヒ・ウィロ — 北の林で採集",
+      "x": 0,
+      "w": 1280,
+      "dist": 5.7
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 327,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 314,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 252,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 36,
+   "id": "n36",
+   "start": 525.7,
+   "end": 533.31,
+   "at": 529.5,
+   "clock": "4年10日目 6:43  出発",
+   "text": "でも、育った木に実がなっても、3人は、野生の採集がうまくいくうちは、ほとんど取らなかったのだ。",
+   "camera": {
+    "framing": "寄り",
+    "dist": 13.9,
+    "person_px": 366,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "セナ・タヒ・ウィロ — 北の林で採集",
+      "x": 0,
+      "w": 1280,
+      "dist": 4.5
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 279,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 488,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 366,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 37,
+   "id": "n37",
+   "start": 534.76,
+   "end": 543.11,
+   "at": 538.93,
+   "clock": "4年10日目 10:45  活動",
+   "text": "そこで3年27日目から作る側が、住まいのまわりの野生の植物が、だんだん育ちにくくなる仕組みを足したのだ。",
+   "camera": {
+    "framing": "寄り",
+    "dist": 13.9,
+    "person_px": 364,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "セナ・タヒ・ウィロ — 北の林で採集",
+      "x": 0,
+      "w": 1280,
+      "dist": 4.5
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 353,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 374,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 364,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 38,
+   "id": "n38",
+   "start": 548.76,
+   "end": 556.25,
+   "at": 552.51,
+   "clock": "4年10日目 18:29  帰り",
+   "text": "4年10日目のこの日も、北の林では、タヒとウィロは何も見つからず、セナが少し見つけただけなのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 199,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "セナ・タヒ・ウィロ — 北の林で採集",
+      "x": 0,
+      "w": 1280,
+      "dist": 9.3
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 225,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 199,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 174,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が画面からはみ出す",
+    "字幕が セナ にかかる"
+   ]
+  },
+  {
+   "cut": 39,
+   "id": "n39",
+   "start": 557.7,
+   "end": 570.1,
+   "at": 563.9,
+   "clock": "4年10日目 19:30  夕方の焚き火",
+   "text": "4年1日目に夏が来てから、3人は毎晩のように、キャンプのそばの、種から育った木から実を取るようになったのだ。この夕方も、タヒとウィロが20つかみずつ取ったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 213,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 213,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 232,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "talk",
+     "motion_ja": "話す",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 40,
+   "id": "n40",
+   "start": 570.55,
+   "end": 576.94,
+   "at": 573.74,
+   "clock": "4年10日目 20:15  夕方の焚き火",
+   "text": "種から育った木は59本。そのうち32本は、ごみ捨て場から育った木なのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 214,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 214,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 230,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 41,
+   "id": "n41",
+   "start": 590.9,
+   "end": 602.12,
+   "at": 596.51,
+   "clock": "4年10日目 21:41  夜",
+   "text": "この日までの7日間に食べた量の52パーセントが、種から育った木から。半分をこえて、4年10日目、F6「農耕に頼る」に着いたのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 67,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 11.3
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 9,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 67,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 70,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (9 px)",
+    "タヒ が小さい (67 px)",
+    "ウィロ が小さい (70 px)"
+   ]
+  },
+  {
+   "cut": 42,
+   "id": "n42",
+   "start": 602.57,
+   "end": 615.06,
+   "at": 608.81,
+   "clock": "4年10日目 22:05  夜",
+   "text": "ただ、3人が新しいことを始めたのは、ほとんどが、作る側が仕組みを足したあとだったのだ。ここから、ソサエティ2.0が始まるのだ。見てくれて、ありがとうなのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 49,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 11.3
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 11,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 60,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 49,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (11 px)",
+    "タヒ が小さい (60 px)",
+    "ウィロ が小さい (49 px)"
+   ]
+  }
+ ]
+}
