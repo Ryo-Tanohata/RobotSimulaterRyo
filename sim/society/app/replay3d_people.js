@@ -767,6 +767,10 @@
         const at = prev && w < 1 ? lerp(prev.at(v), cur.at(v), w) : cur.at(v);
         const hd = prev && w < 1 ? prev.head(v) + wrapA(cur.head(v) - prev.head(v)) * w : cur.head(v);
         R.root.position.copy(M.w2t(at.x, at.y)); R.root.rotation.y = hd + Math.PI / 2;  // モデルは +z を向いているので、棒の人の向き (+x) にそろえる
+        if (this.opts.v2 && R.head && M.kin[n] && M.kin[n].born != null) {  // v2: 子は頭を大きめに (体に対する頭の大きさを子どもらしく。15 歳で大人と同じ)
+          const age = (P.day - M.kin[n].born) / 120;
+          R.head.scale.setScalar(age < 15 ? 1 + 0.35 * (1 - Math.max(2, age) / 15) : 1);
+        }
         R.root.updateMatrixWorld(true);
         fig.position.copy(R.root.position); fig.rotation.y = hd;
         if (R.head && M.labels[n]) M.labels[n].pos = R.head.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 0.32 * M.K, 0));
