@@ -267,13 +267,13 @@
     const trunkM = new THREE.MeshLambertMaterial({ color: 0x6b4a2e }), leafM = new THREE.MeshLambertMaterial({ color: 0x4a8a3e }), fruitM = new THREE.MeshLambertMaterial({ color: 0xb8322a });
     const trees = (D.grow || []).filter((e) => e.day <= P.day && /木の実の木が育った/.test(e.text)).slice(-40);
     trees.forEach((e, k) => {  // 殻を捨てた所 (キャンプの東) と、種をまいた所 (キャンプの南) に、ひまわりの並びで
-      const dump = /殻を捨てた/.test(e.text), c = dump ? { x: fire.x + 4.5, y: fire.y - 1.5 } : { x: fire.x + 1.0, y: fire.y + 4.5 };
+      const dump = /殻を捨てた/.test(e.text), c = dump ? { x: fire.x + 2.5, y: fire.y - 7.5 } : { x: fire.x - 8.0, y: fire.y + 0.5 };  // カメラ (南東の上) から見て、キャンプの奥 (北と西) に
       const j = trees.filter((x, i) => i < k && /殻を捨てた/.test(x.text) === dump).length, a = j * 2.39996, r = 0.9 * Math.sqrt(j + 0.5);
-      const pt = { x: c.x + Math.cos(a) * r, y: c.y + Math.sin(a) * r }, sz = 0.25 + 0.75 * clamp((P.day - e.day + 1) / 30);
+      const pt = { x: c.x + Math.cos(a) * r, y: c.y + Math.sin(a) * r }, sz = 0.8 * (0.25 + 0.75 * clamp((P.day - e.day + 1) / 30));
       const o = new THREE.Group(); o.position.copy(M.w2t(pt.x, pt.y)); o.scale.setScalar(sz);
       const tr = new THREE.Mesh(new THREE.CylinderGeometry(0.05 * K, 0.08 * K, 1.1 * K, 6), trunkM); tr.position.y = 0.55 * K; o.add(tr);
       const lf = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5 * K, 0), leafM); lf.position.y = 1.35 * K; o.add(lf);
-      if (sz > 0.9) for (let q = 0; q < 6; q++) { const fr = new THREE.Mesh(new THREE.SphereGeometry(0.06 * K, 6, 5), fruitM); fr.position.set(Math.cos(q * 2.4 + k) * 0.48 * K, (1.15 + rnd(k, q) * 0.4) * K, Math.sin(q * 2.4 + k) * 0.48 * K); o.add(fr); }
+      if (sz > 0.72) for (let q = 0; q < 6; q++) { const fr = new THREE.Mesh(new THREE.SphereGeometry(0.06 * K, 6, 5), fruitM); fr.position.set(Math.cos(q * 2.4 + k) * 0.48 * K, (1.15 + rnd(k, q) * 0.4) * K, Math.sin(q * 2.4 + k) * 0.48 * K); o.add(fr); }
       g.add(o);
     });
     // 畑: replay3d.js の畑の板 (plots) と同じ日の数え方 (まいて 30 日は土、90 日までは芽から伸びる、そのあと 120 日までは実る)
