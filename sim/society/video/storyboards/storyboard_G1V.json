@@ -729,9 +729,9 @@
    "clock": "5年60日目 19:35  夕方の焚き火",
    "text": "5年60日目。セナに子が生まれたのだ。名前はミラ。2回目の Society 2.0 で、村で初めて生まれた子なのだ。ソルは「ミラが生まれたな。おめでとう」と言ったのだ。",
    "camera": {
-    "framing": "中くらい",
+    "framing": "引き",
     "dist": 13.9,
-    "person_px": 148,
+    "person_px": 111,
     "in_view": [
      "セナ",
      "タヒ",
@@ -753,7 +753,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 10.8
+      "dist": 14
      }
     ]
    },
@@ -769,7 +769,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 131,
+     "px": 99,
      "inView": true
     },
     {
@@ -777,7 +777,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 161,
+     "px": 118,
      "inView": true
     },
     {
@@ -785,7 +785,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 144,
+     "px": 106,
      "inView": true
     },
     {
@@ -793,7 +793,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 148,
+     "px": 111,
      "inView": true
     },
     {
@@ -801,7 +801,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 166,
+     "px": 122,
      "inView": true
     },
     {
@@ -809,12 +809,12 @@
      "activity": "休む",
      "motion": null,
      "motion_ja": null,
-     "px": 21,
+     "px": 15,
      "inView": true
     }
    ],
    "notes": [
-    "ミラ が小さい (21 px)"
+    "ミラ が小さい (15 px)"
    ]
   },
   {
@@ -826,9 +826,9 @@
    "clock": "5年60日目 21:59  夜",
    "text": "同じ日、飼っていたヤギが1頭いなくなったのだ。ウィロが北の丘で子ヤギを2頭捕まえていたけれど、ヤギの世話を主な仕事にする人はいなかったのだ。",
    "camera": {
-    "framing": "中くらい",
+    "framing": "引き",
     "dist": 13.9,
-    "person_px": 155,
+    "person_px": 95,
     "in_view": [
      "セナ",
      "タヒ",
@@ -850,7 +850,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 9.6
+      "dist": 14
      }
     ]
    },
@@ -866,7 +866,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 147,
+     "px": 91,
      "inView": true
     },
     {
@@ -874,7 +874,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 161,
+     "px": 99,
      "inView": true
     },
     {
@@ -882,7 +882,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 143,
+     "px": 89,
      "inView": true
     },
     {
@@ -890,7 +890,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 155,
+     "px": 95,
      "inView": true
     },
     {
@@ -898,7 +898,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 170,
+     "px": 102,
      "inView": true
     },
     {
@@ -906,13 +906,19 @@
      "activity": "休む",
      "motion": null,
      "motion_ja": null,
-     "px": 23,
+     "px": 14,
      "inView": true
     }
    ],
    "notes": [
-    "ミラ が小さい (23 px)",
-    "名前の札が重なる: セナ と タヒ"
+    "ウィロ が画面からはみ出す",
+    "ミラ が小さい (14 px)",
+    "名前の札が重なる: セナ と タヒ",
+    "名前の札が重なる: セナ と ウィロ",
+    "名前の札が重なる: セナ と ミラ",
+    "名前の札が重なる: タヒ と ウィロ",
+    "名前の札が重なる: タヒ と ミラ",
+    "名前の札が重なる: ウィロ と ミラ"
    ]
   },
   {

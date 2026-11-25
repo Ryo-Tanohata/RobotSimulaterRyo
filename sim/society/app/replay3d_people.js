@@ -623,11 +623,14 @@
       // opts.files (2026-11-25、G1F2V から): 五人のほかの人 {名前: ファイル名}。ないときは五人だけ (前と同じ)
       for (const [n, f] of Object.entries({ ...FILES, ...(this.opts.files || {}) })) {
         const [g, info] = await Promise.all([loadGlb(base + f + ".glb"), fetch(base + f + ".json").then((r) => r.json())]);
+        const seen = new Set();  // 2026-11-25: いくつかの部品で同じ材質を使うとき (服)、色の変換を 1 回だけにする (前は部品の数だけかかって白くなった)
         g.scene.traverse((o) => {
           if (!o.isMesh) return;
           o.frustumCulled = false;
           const ms = Array.isArray(o.material) ? o.material : [o.material];
           for (const m of ms) {
+            if (seen.has(m)) continue;
+            seen.add(m);
             // アプリの絵は色をそのまま出す (出力の色の変換をしない) ので、画像も色もそれに合わせる
             if (m.map) m.map.encoding = THREE.LinearEncoding; else m.color.convertLinearToSRGB();
             if (m.transparent) { m.transparent = false; m.alphaTest = 0.5; }  // 髪・まつげ・目: 半透明の重なりの順で欠けないように
