@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "この秋は石の鎌を打つ。刈る手に鎌がないと、夏にまた種を落とすから。欲しい家は言って。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕はだれにも負けない。冬から春に鎌をそろえておけば、次の夏の刈り入れで種を落とさずにすむ"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ164": true, "ソワ164": true, "ユエ164": true, "ホミ164": true},
+ "keep": false,
+ "judge": {"M619": "ゆるす", "M620": "ゆるす", "M621": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "鎌のない刈り手はケセ113の家へ。秋と冬に石の鎌を打っておく", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よそから来る人は、畑が実らず苦しい村から来ることが多い", "because": [7906390, 7906391], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1284", "against": "道具の得意な者ばかりに仕事が寄る", "agree": true, "reason": "鎌が足りないと刈りきれない。わたしが打てる"},
+  {"id": "L1297", "against": "鎌を回すだけでは刈る人が増えるとはかぎらない", "agree": true, "reason": "鎌を先にそろえておくのは理にかなう"},
+  {"id": "L1298", "against": "春だけでは打つ日が足りない", "agree": true, "reason": "打ち直した鎌を夏のはじめに渡すのはよい"},
+  {"id": "L1293", "against": "書く手間がかかる", "agree": true, "reason": "量を書いておけば、もめごとが減る"},
+  {"id": "L1296", "against": "つぶしすぎると世話の手もいらなくなるだけ", "agree": true, "reason": "ヤギは養える数をこえていて、よそのを受けても減るだけ"},
+  {"id": "L1299", "against": "うちの子はもう大きいので関わりは少ない", "agree": true, "reason": "小さい子が多く亡くなっている。薬は先に回したほうがいい"}
+ ],
+ "feeling": "人と話すのは苦手だけど、鎌を打っているときは落ち着く"}

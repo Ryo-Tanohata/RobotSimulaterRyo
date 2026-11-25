@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋の畑の草取りを、みんなでていねいにやろう。蓄えはたっぷりあるから、あわてなくていいよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた種は草取りをするほど次の夏によく実る。蓄えは多いが、畑を大事にしたいから。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ164": true, "ホミ164": true},
+ "family": {
+  "ヌオ136": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りが得意で、実りが増えるから。"},
+  "キオ139": {"activity": "畑仕事", "place": "camp", "why": "みんなで草取りをすると早く終わるから。"},
+  "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "家族といっしょに畑を手入れするため。"}
+ },
+ "keep": false,
+ "judge": {"M619": "ゆるす", "M620": "ゆるす", "M621": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで安心。秋の畑仕事をのんびり進めたい。"}

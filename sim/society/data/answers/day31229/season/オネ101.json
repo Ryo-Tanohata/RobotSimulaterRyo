@@ -1,0 +1,30 @@
+{"say": [{"to": "みんな", "text": "うちの家も千つかみずつまいて、冬まで草をとるよ。新しく来た人たちも、いっしょに畑に出よう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをするほど実るから、冬まで手を入れたい"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ164": true, "ホミ164": true},
+ "family": {
+  "ネイ127": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ラキ136": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"},
+  "ラキ141": {"activity": "畑仕事", "place": "camp", "why": "若いうちに畑の仕事を覚えてほしいから"}
+ },
+ "keep": false,
+ "judge": {"M619": "ゆるす", "M620": "ゆるす", "M621": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "よその家の畑で刈った少しの草の種のもめごとは、ゆるして収まることが多い", "because": [7850706], "confidence": 0.7},
+  {"op": "add", "text": "蓄えの草の種は、土器に入れていても一季節で十七万つかみほど傷むことがある", "because": [7906383], "confidence": 0.7}
+ ],
+ "proposal": {"text": "よそから来た人には、はじめの季節、近くの家の大人が一人ついて、畑の草取りと水の道の手入れを一緒にしながら教えよう。", "because": [7906390, 7906391], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1274", "against": "土器のふたを見なおす人の手が畑から減る", "agree": true, "reason": "蓄えの種がたくさん傷んでいるから、ふたを見なおすのは大事"},
+  {"id": "L1275", "against": "よそから来た人がほかの仕事をしたいかもしれない", "agree": true, "reason": "千つかみまいて草をとれば、夏に七千つかみほど刈れる"},
+  {"id": "L1276", "against": "土器づくりと草取りの人の分け方が決まっていない", "agree": true, "reason": "虫とネズミから蓄えを守れる"},
+  {"id": "L1277", "against": "燃える石のない家は薬をもらいにくい", "agree": true, "reason": "わたしが出した掟で、畑と小さい子を守れる"},
+  {"id": "L1280", "against": "教える家の手が少しへる", "agree": true, "reason": "新しい人が早く村に慣れられる"},
+  {"id": "L1283", "against": "草取りの手が少しへる", "agree": true, "reason": "水の道の泥をかき出せば、悪い年でも畑が実る"},
+  {"id": "L1291", "against": "ヤギを受けないと、よその村が困るかもしれない", "agree": true, "reason": "ヤギが多すぎるとやせていなくなるし、畑は刈りきりたい"},
+  {"id": "L1293", "against": "字を書けない人は書くのがむずかしい", "agree": true, "reason": "量を書いておけば、刈った種のもめごとが減る"},
+  {"id": "L1299", "against": "秋の草取りの手がへる", "agree": true, "reason": "小さい子が病で亡くなるのを減らしたい"}
+ ],
+ "feeling": "畑も子も、少しずつ守っていけたらいい。"}

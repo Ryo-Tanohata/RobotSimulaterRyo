@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蔵はまだ満ちているけれど、冬の前に水の道を少しずつ掘っておこう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、畑を守るために役に立つから"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ネイ164": true, "ホミ164": true},
+ "family": {
+  "ケナ114": {"activity": "水の道を掘る", "place": "camp", "why": "家のみんなで水の道を進めるため"},
+  "ナセ118": {"activity": "水の道を掘る", "place": "camp", "why": "家のみんなで水の道を進めるため"},
+  "ルタ120": {"activity": "ヤギの世話", "place": "camp", "why": "小さい子が多いので、家の近くで働ける仕事がよい"},
+  "ネイ128": {"activity": "水の道を掘る", "place": "camp", "why": "手入れの残りが多いので手伝う"}},
+ "keep": false,
+ "judge": {"M619": "ゆるす", "M620": "ゆるす", "M621": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蔵が満ちていて落ち着いている。冬に向けて静かに働こう。"}

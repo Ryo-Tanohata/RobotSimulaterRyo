@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋は千つかみずつ種をまいて、冬まで草取りだ。おれは畑に出る。蓄えは大きいが、畑を絶やさないのがいちばんだ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると次の夏の実りが増える。採集の腕もあるが、まず畑を育てたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ネイ164": true, "ホミ164": true}, "family": {"キサ105": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど実りが増えるから"}, "キオ107": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど実りが増えるから"}, "リセ111": {"activity": "休む", "place": "camp", "why": "小さい子ヌオ163のそばで世話をしたい"}, "ヒセ131": {"activity": "畑仕事", "place": "camp", "why": "若いので草取りをたくさんできる"}, "ネイ133": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど実りが増えるから"}}, "keep": false,
+ "judge": {"M619": "ゆるす", "M620": "ゆるす", "M621": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に千つかみまいて草取りをすると、次の夏の実りが増える。今年も蓄えは大きい。", "because": [7906383], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心だが、体を動かして畑を育てるのが性に合う。"}
