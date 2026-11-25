@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は実ったまま。落ちる前に、みんなで刈りきろう。秋は千つかみまいて、水の道も少しずつ掘ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうので、まず刈り入れをする"}, "family": {"シエ96": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "ホタ100": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "オセ115": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "セヤ120": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}, "シエ120": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは多いので、水の道の手入れに人手を回す"}, "family": {"シエ96": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが山ほど残っている"}, "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが山ほど残っている"}, "オセ115": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが山ほど残っている"}, "セヤ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが山ほど残っている"}, "シエ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが山ほど残っている"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑を草取りすると、次の夏の実りが増える"}, "family": {"シエ96": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "ホタ100": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "オセ115": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "セヤ120": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}, "シエ120": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りが増える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "草取りのあいまに、水の道の手入れを続ける"}, "family": {"シエ96": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを続ける"}, "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを続ける"}, "オセ115": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを続ける"}, "セヤ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを続ける"}, "シエ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ソナ166": true, "トナ166": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M621": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1466": false, "T1467": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈りきりの年",
+ "feeling": "蓄えがたっぷりあって安心。落とさず刈って、みんなで畑と水の道を守りたい。"}
