@@ -133,10 +133,7 @@ def config(name, day, R, A, memo):
     P["expr"] = {"Fcl_MTH_Fun": round(0.15 + 0.55 * soc, 2), "Fcl_EYE_Joy": round(0.25 * soc, 2), "Fcl_BRW_Surprised": round(0.45 * cur * bold, 2)}
     if soc < 0.3:
         P["expr"]["Fcl_MTH_Close"] = 0.35
-    if sex == "女" and age >= 12:
-        P["outfit"] = {"color": "#161514", "top": [1.115, 1.235], "shorts": [0.805, 0.975]}
-    else:
-        P["outfit"] = {"color": "#161514", "top": None, "shorts": [0.805, 1.0]}
+    P["outfit"] = copy.deepcopy(people.tunic(sex, fnv(name + "|cloth") >> 9, child=age < 15))  # なめし革の貫頭衣と革紐の帯 (本人 2026-11-25)
     return P, age
 
 

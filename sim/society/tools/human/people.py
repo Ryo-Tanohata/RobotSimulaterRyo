@@ -132,6 +132,19 @@ FUMI, VICT = "Sakurada_Fumiriya.vrm", "Victoria_Rubin.vrm"
 LINES_DARK = {"brow": "#231814", "eyeline": "#2c1612", "lash": "#24120f"}
 SHORTS = {"color": "#161514", "top": None, "shorts": (0.805, 1.0)}
 
+# ---------------------------------------------------------------- 服 (2026-11-25 本人「以前服を作ったのでそれを着せてください」)
+# ソナ85 と解説の係に着せた、ヤギのなめし革の貫頭衣と革紐の帯を、村の人みなに。女はすねまで、男と子はひざのあたりまで。色は人ごとに少し変える
+LEATHER = ["#7a5638", "#8a6242", "#6e4c32", "#94704c", "#7e5a3e", "#86603e", "#705034"]
+BELTS = ["#3e2a1c", "#4a3020", "#3a281a"]
+
+
+def tunic(sex, k, child=False):
+    long_ = sex == "女" and not child
+    return {"color": "#161514", "top": None, "shorts": (0.805, 0.975),
+            "dress": {"color": LEATHER[k % len(LEATHER)], "belt": BELTS[k % len(BELTS)], "waist": 1.00, "arm": 1.215,
+                      "neck": 1.335, "hem": 0.40 if long_ else 0.60, "flare": 0.2 if long_ else 0.12, "push": 0.008, "sleeve_x": 0.26}}
+
+
 VROID = {
     "sena": {
         "name": "sena",
@@ -374,6 +387,10 @@ VROID["sol"] = {
     "expr": {"Fcl_MTH_Fun": 0.45, "Fcl_EYE_Joy": 0.15, "Fcl_BRW_Fun": 0.3},
     "outfit": SHORTS,
 }
+
+# 七人に服を着せる (前の下着と短パンの姿は、D1V などで撮った動画のまま)
+for _k, (_n, _sx) in enumerate([("ruo", "男"), ("sena", "女"), ("tahi", "男"), ("wiro", "女"), ("isa", "男"), ("nagi", "女"), ("sol", "男")]):
+    VROID[_n]["outfit"] = tunic(_sx, _k)
 
 # 並べる順 (本人の絵と同じ、左から)
 LINEUP = ["ruo", "sena", "tahi", "wiro", "isa"]

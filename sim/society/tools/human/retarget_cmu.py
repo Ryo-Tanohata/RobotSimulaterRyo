@@ -441,6 +441,7 @@ def main():
     ap.add_argument("--only", default="")
     ap.add_argument("--tex", type=int, default=1024)
     ap.add_argument("--analyze", default="")
+    ap.add_argument("--config", default="", help="auto_people.py の出力 (記録から作った人の名前とファイル名)")
     args = ap.parse_args()
     if args.analyze:
         for cid in args.analyze.split(","): analyze(args.bvh, cid)
@@ -450,7 +451,11 @@ def main():
     for spec in clips.values():
         cid = spec["bvh"]
         if cid not in bvhs: bvhs[cid] = BVH(os.path.join(args.bvh, f"{int(cid.split('_')[0]):03d}", cid + ".bvh"))
-    for name, f in FILES.items():
+    files = dict(FILES)
+    if getattr(args, "config", ""):  # 2026-11-25: auto_people.py で記録から作った人も
+        import json
+        files.update(json.load(open(args.config, encoding="utf-8"))["files"])
+    for name, f in files.items():
         if args.only and f not in args.only.split(","): continue
         if not os.path.exists(os.path.join(args.src, f + "_vroid.glb")): continue  # まだ作っていない人は飛ばす
         print(f"{name} ({f})", flush=True)
