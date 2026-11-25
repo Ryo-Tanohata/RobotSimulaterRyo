@@ -1,0 +1,616 @@
+{
+ "item": "G1F1V",
+ "duration": 228.87,
+ "people": true,
+ "cuts": [
+  {
+   "cut": 1,
+   "id": "n01",
+   "start": 0.6,
+   "end": 15.41,
+   "at": 8,
+   "clock": "4年30日目 5:44  夜明け",
+   "text": "ずんだもんなのだ。今回は、G1 の F1「畑を始める」なのだ。F は、フェーズ G1「村ができる」の中の、小さな区切りなのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 214,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 214,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 232,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 2,
+   "id": "n02",
+   "start": 16.86,
+   "end": 29.08,
+   "at": 22.97,
+   "clock": "4年30日目 6:29  出発",
+   "text": "1回目は、だれも畑に種をまかず、5年95日目までに全員が亡くなったのだ。やり直した2回目は、畑にまく量を、主な仕事とは別に決められるのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 170,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で採集",
+      "x": 0,
+      "w": 640,
+      "dist": 11.1
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 西の草原で採集",
+      "x": 640,
+      "w": 640,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 170,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 163,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 223,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 3,
+   "id": "n03",
+   "start": 52.53,
+   "end": 65.04,
+   "at": 58.79,
+   "clock": "4年30日目 19:40  夕方の焚き火",
+   "text": "4年30日目、夏の終わりの集まりで、セナはウィロに「ウィロ、けががよくなるまでは森に行かないでね。畑の草取りなら、キャンプでできると思う。」と話したのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 217,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 217,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 230,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 4,
+   "id": "n04",
+   "start": 93.93,
+   "end": 105.88,
+   "at": 99.9,
+   "clock": "4年31日目 10:01  活動",
+   "text": "4年31日目、秋のはじめ。セナが蓄えの草の種を300つかみ、ウィロが200つかみ、キャンプのそばの畑にまいたのだ。村で初めての畑なのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 242,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で採集",
+      "x": 0,
+      "w": 640,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 西の草原で採集",
+      "x": 640,
+      "w": 640,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 242,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 259,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 214,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 5,
+   "id": "n05",
+   "start": 106.33,
+   "end": 116.43,
+   "at": 111.38,
+   "clock": "4年31日目 15:17  活動",
+   "text": "タヒは、畑にはまかなかったのだ。3人とも、木の実もキャンプのそばに埋めたのだ。季節の主な仕事は、3人とも採集のままなのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 239,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 東の林で採集",
+      "x": 0,
+      "w": 640,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "ウィロ"
+      ],
+      "title": "ウィロ — 西の草原で採集",
+      "x": 640,
+      "w": 640,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 239,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 246,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 235,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 6,
+   "id": "n06",
+   "start": 140.88,
+   "end": 156.38,
+   "at": 148.63,
+   "clock": "5年1日目 5:44  夜明け",
+   "text": "4年の冬、61日目から90日目まで、ウィロは毎日、畑で働いたのだ。4年120日目、畑が実って、まいた種の3.4倍、1720つかみが刈れるようになったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 215,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 215,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 232,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 7,
+   "id": "n07",
+   "start": 157.83,
+   "end": 166.91,
+   "at": 162.37,
+   "clock": "5年1日目 6:29  出発",
+   "text": "前の日の集まりで、タヒは「畑の草の種は毎夕60つかみずつ刈ろう。刈り遅れると落ちてしまうから。」と話したのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 219,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "ウィロ"
+      ],
+      "title": "セナ・ウィロ — 西の草原で採集",
+      "x": 0,
+      "w": 640,
+      "dist": 8.1
+     },
+     {
+      "names": [
+       "タヒ"
+      ],
+      "title": "タヒ — 東の林で採集",
+      "x": 640,
+      "w": 640,
+      "dist": 7.6
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 219,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 253,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 199,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 8,
+   "id": "n08",
+   "start": 190.36,
+   "end": 203.67,
+   "at": 197.01,
+   "clock": "5年1日目 20:01  夕方の焚き火",
+   "text": "5年1日目、夏のはじめの夕方。セナ、タヒ、ウィロが、それぞれ畑で草の種を60つかみ刈ったのだ。10日目までに、1720つかみを全部刈り終えたのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 213,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 7.4
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 213,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 231,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 195,
+     "inView": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "cut": 9,
+   "id": "n09",
+   "start": 207.96,
+   "end": 222.02,
+   "at": 214.99,
+   "clock": "5年1日目 21:51  夜",
+   "text": "F1 は、村の人が草の種を畑にまいて育て、夏に刈るようになったということなのだ。次の秋、5年31日目には、セナ、タヒ、ウィロの3人がまいたのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 50,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 11.3
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 11,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 60,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "lie",
+     "motion_ja": "横になる",
+     "px": 50,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (11 px)",
+    "タヒ が小さい (60 px)",
+    "ウィロ が小さい (50 px)"
+   ]
+  }
+ ]
+}

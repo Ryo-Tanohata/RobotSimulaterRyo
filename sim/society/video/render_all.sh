@@ -60,7 +60,7 @@ D1V_CAM='{"min":4.5,"add":2.5,"k":1.6,"max":40}'
 # 出来事の帯は出さず、した人の頭の上に短い吹き出し (本人の選んだ案 C)
 D1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true}'
 # G1 の F (2026-11-25): D1V と同じ見せ方に、よそから来たナギ・ソルのモデルを足す (replay3d_people.js の opts.files)
-G1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true,"files":{"ナギ":"nagi","ソル":"sol"}}'
+G1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true,"fireMax":14,"files":{"ナギ":"nagi","ソル":"sol"}}'
 D1V_CREDIT="VRoid の CC0 サンプル (pixiv) をもとに作成"
 STORY=
 [ "${1:-}" = "--storyboard" ] && { STORY=1; shift; }

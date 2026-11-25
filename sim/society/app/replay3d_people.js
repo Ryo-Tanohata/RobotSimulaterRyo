@@ -319,7 +319,9 @@
         const r = Math.max(0, ...pts.map((p) => p.distanceTo(c)));
         const C = lay.wide ? { min: 8, add: 4, k: 2.4 } : day ? (o.day || { min: 4.2, add: 2.2, k: 2.2 }) : (o.fire || { min: 5.6, add: 2.6, k: 2.0 });
         const narrow = Math.min(1, pn.cam.aspect / (16 / 9));  // 細い画面は、そのぶん引く
-        const dist = Math.min(80, Math.max(C.min, r * C.k + C.add) / Math.max(0.55, narrow));
+        // o.fireMax (2026-11-25、G1F2V から): 夜明け・夕方・夜のカメラをこれより引かない (家が 2 つになり、離れた家の人に合わせて引きすぎたため)。ないときは前と同じ
+        const far = !day && !lay.wide && o.fireMax ? o.fireMax : 80;
+        const dist = Math.min(far, Math.max(C.min, r * C.k + C.add) / Math.max(0.55, narrow));
         const dir = (day || lay.wide ? new THREE.Vector3(0.5, lay.wide ? 0.9 : 0.62, 0.78) : new THREE.Vector3(0.4, 0.78, 0.72)).normalize();
         const want = c.clone().add(new THREE.Vector3(0, 0.8 * M.K, 0));
         if (!day && !lay.wide) want.add(new THREE.Vector3(dir.x, 0, dir.z).multiplyScalar(r * (seg.key === "night" ? 0.8 : 0.3)));  // 火のまわり: 輪が字幕より上に来るよう、見る点を手前に
