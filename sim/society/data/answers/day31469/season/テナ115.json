@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。この秋は、わたしは水の道の泥をかき出すよ。みんなも手があいたら声をかけてね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだたくさん残っていて、畑の実りを守れるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラキ118": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ残っているので"},
+  "タユ119": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話ならわたしにもできるので"},
+  "キオ122": {"activity": "水の道を掘る", "place": "camp", "why": "みんなで掘るとはかどるので"},
+  "ネイ123": {"activity": "水の道を掘る", "place": "camp", "why": "みんなで掘るとはかどるので"},
+  "ケナ126": {"activity": "水の道を掘る", "place": "camp", "why": "みんなで掘るとはかどるので"},
+  "リセ128": {"activity": "水の道を掘る", "place": "camp", "why": "みんなで掘るとはかどるので"},
+  "タユ133": {"activity": "ヤギの世話", "place": "camp", "why": "小さい子のそばでできる仕事なので"},
+  "キオ138": {"activity": "狩り", "place": "東林12", "why": "狩りが得意で、肉を家に持ち帰れるので"},
+  "ロワ139": {"activity": "水の道を掘る", "place": "camp", "why": "みんなで掘るとはかどるので"},
+  "キサ143": {"activity": "水の道を掘る", "place": "camp", "why": "みんなで掘るとはかどるので"},
+  "シエ146": {"activity": "ヤギの世話", "place": "camp", "why": "赤ちゃんのそばでできる仕事なので"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで安心している。家族みんなで水の道を手入れしたい。"}

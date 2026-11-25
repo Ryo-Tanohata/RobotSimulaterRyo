@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "秋の種まきは千つかみずつ、わすれずにね。わたしは今季も水ののこで板をひくよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続けて板をひき、水の輪の直しと手入れを助けたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ムイ87": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場を続けるため"},
+  "キオ117": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで来年の実りを増やすため"},
+  "ヌオ121": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで来年の実りを増やすため"},
+  "ムイ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを守るため"},
+  "ユエ135": {"activity": "水の作業場で働く", "place": "M26", "why": "板をひいて手入れの人日を浮かせるため"},
+  "ソワ139": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の夏に備えるため"},
+  "オネ141": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の夏に備えるため"}
+ },
+ "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1475": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりある。いつもどおり板をひいて、来年の畑のために種をまこう。"}

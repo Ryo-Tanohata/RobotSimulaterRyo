@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "冬の前に、蓄えをもっと増やそう。わたしは草原で採集するよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "採集が得意で、冬の前に食べ物を集めたいから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ハソ112": {"activity": "採集", "place": "西草原12", "why": "採集が得意だから"},
+  "アコ118": {"activity": "採集", "place": "西草原12", "why": "採集が得意だから"},
+  "ハソ122": {"activity": "狩り", "place": "東林12", "why": "狩りが得意だから"},
+  "セオ134": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "ハソ136": {"activity": "採集", "place": "西草原12", "why": "採集が得意だから"},
+  "アコ138": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"},
+  "キオ147": {"activity": "畑仕事", "place": "camp", "why": "畑を手伝う"},
+  "ソワ147": {"activity": "畑仕事", "place": "camp", "why": "畑を手伝う"}
+ },
+ "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1475": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "冬が来る前に、できることをしっかりやろうと思う。"}

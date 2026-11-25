@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "わたしは今季ものこ場M26で板をひくよ。蓄えは山ほどあるから、千つかみをまいて、冬まで草取りを欠かさないでおこうね。"}, {"to": "ソナ77", "text": "ケナ79と三人でM26へ行こう。足がまだ動くうちは、のこ番の仕事を続けたいよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": ["ソナ77", "ケナ79"], "why": "M26ののこ番として、板をひいて水の道の手入れを早く進めたいから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソナ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として、わたしと一緒に板をひく。"},
+  "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として、わたしと一緒に板をひく。"},
+  "ケセ102": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、来年の実りを増やすため。"},
+  "ムイ112": {"activity": "畑仕事", "place": "camp", "why": "草取りで、来年の夏の実りを守るため。"},
+  "オネ112": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギが多いので、毎日世話をして減らさないため。"},
+  "ソナ114": {"activity": "土器づくり", "place": "camp", "why": "蓄えの種を虫やネズミから守るふたつきの土器を作るため。"},
+  "ケセ117": {"activity": "水の道を掘る", "place": "camp", "why": "泥でうまった水の道をさらって、来年の畑に水が来るようにするため。"},
+  "オセ146": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝いながら、畑の仕事をおぼえるため。"},
+  "ケナ150": {"activity": "畑仕事", "place": "camp", "why": "子でも草取りなら手伝えるから。"},
+  "ソナ151": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝うため。"}
+ },
+ "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": "なし", "trade": {"T1475": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える数に近い。よその村のヤギの申し出はまだ受けないほうがよい。", "because": [8154218], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりで心が軽い。年はとったが、まだ板をひく手は動くよ。"}

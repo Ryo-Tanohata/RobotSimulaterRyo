@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋はたくさんまいて、冬のあいだは畑の草取りを忘れずにやろう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として、続けて板をひく。板があれば水の輪や住まいの手入れが早く進む"},
+ "sow": 800, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ81": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"},
+  "ケセ82": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"},
+  "ソナ90": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番の持ち場を続ける"},
+  "ムイ124": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで、夏の実りを増やす"},
+  "キサ125": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで、夏の実りを増やす"},
+  "ラニ128": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで、夏の実りを増やす"},
+  "ケナ132": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで、夏の実りを増やす"},
+  "ムイ138": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで、夏の実りを増やす"},
+  "セオ147": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": "なし", "trade": {"T1475": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草の分(約140頭)に近い。よその村のヤギは受けないほうがよい。", "because": [8154218], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、今のままがよい"}],
+ "feeling": "蓄えがたっぷりあって安心。今年も板をひいて過ごしたい。"}

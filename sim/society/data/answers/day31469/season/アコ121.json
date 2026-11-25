@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "うちはヌオ127と二人で北の丘へ燃える石を掘りに行くよ。町の頼みを果たして、子の薬を小さい子のいる家にも回したい。"}, {"to": "ヌオ127", "text": "丘へは二人で一緒に行こう。ルタ164のためにも、薬をそろえておきたいね。"}],
+ "job": {"activity": "燃える石を掘る", "place": "北丘12", "with": ["ヌオ127"], "why": "町の頼み129を受けて子の薬をもらい、うちの小さい子とほかの赤ん坊の家を守りたいから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ヌオ127": {"activity": "燃える石を掘る", "place": "北丘12", "why": "丘へはひとりで行かず二人で行くため。町の頼みを早く果たしたい"}}, "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1475": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は燃える石を二人で掘って町の頼みを受け、子の薬を赤ん坊の家へ回そう", "order": null, "take": {"頼み": 129, "人": ["アコ121", "ヌオ127"]},
+ "knowledge": [{"op": "add", "text": "少しの量の刈るもめごとは、去年もゆるして収まった。ゆるし合うと家どうしが仲よくいられる", "because": [8093469], "confidence": 0.7}, {"op": "add", "text": "前の季節も小さい子が 3 人亡くなった。子の薬と手当ての書きつけはこれからも大事だ", "because": [8154206, 8154207, 8154208], "confidence": 0.7}],
+ "proposal": {"text": "秋と冬は、家ごとに手のあく大人が二人で北の丘へ燃える石を掘りに行き、町の頼みを果たして子の薬を赤ん坊の家から先に回そう。", "because": [8154206, 8154207, 8154208], "penalty": {"for": "蓄え", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1309", "against": "道具の得意な人の手が畑から離れる", "agree": true, "reason": "鎌がそろえば夏に畑を刈りきれる。わたしも道具が得意だ"},
+  {"id": "L1310", "against": "掘る人が畑の草取りから離れる", "agree": true, "reason": "子の薬は小さい子の命を守る"},
+  {"id": "L1311", "against": "ふた作りに手を取られる", "agree": true, "reason": "蓄えの種が傷むのを減らせる"},
+  {"id": "L1312", "against": "字を書ける人がいないと守りにくい", "agree": true, "reason": "書いておけばもめごとが残らない"},
+  {"id": "L1313", "against": "家によっては手があかない", "agree": true, "reason": "子の薬をそろえたい"},
+  {"id": "L1318", "against": "燃える石のない家は困る", "agree": true, "reason": "余った薬を回すのはよいこと"},
+  {"id": "L1320", "against": "ほかの仕事が減る", "agree": true, "reason": "わたしの出した掟。赤ん坊を守りたい"},
+  {"id": "L1322", "against": "人手が二倍かかる", "agree": true, "reason": "ザガから身を守るため"},
+  {"id": "L1324", "against": "大きな量のもめごとまでゆるすことになるかもしれない", "agree": true, "reason": "小さな量はゆるし合ったほうが村が仲よくいられる"},
+  {"id": "L1330", "against": "ほかの仕事の手が減る", "agree": true, "reason": "わたしの出した掟。水の道が泥でうまると畑に水が来なくなる"},
+  {"id": "L1338", "against": "書く手間がかかる", "agree": true, "reason": "もめごとを減らせる"},
+  {"id": "L1343", "against": "よその村との交換が減る", "agree": true, "reason": "ヤギが多すぎるとやせていなくなる"},
+  {"id": "L1349", "against": "屋根を広げる手間がかかる", "agree": true, "reason": "ヤギはもう多いし、雨の夜に濡れる人をなくしたい"}
+ ],
+ "feeling": "ルタ164を守れるように、丘でしっかり掘ってこよう"}

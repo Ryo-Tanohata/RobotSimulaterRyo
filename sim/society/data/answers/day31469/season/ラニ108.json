@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蔵にはたっぷり種がある。わしは年寄りだが、まだ知らない林のおくを見てくるよ。"}],
+ "job": {"activity": "探索", "place": "東林45", "with": [], "why": "蓄えは十分で、好奇心がうずく。まだ見ていない林の先に何があるか確かめたい"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "リセ118": {"activity": "採集", "place": "西草原12", "why": "子が小さいので、近くで食べ物を集めて家を支える"},
+  "アコ140": {"activity": "採集", "place": "camp", "why": "キャンプの近くで木の実を集め、子どもたちのそばにいる"},
+  "ケナ145": {"activity": "採集", "place": "camp", "why": "赤ん坊のそばで、近くの木の実を集める"}
+ },
+ "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1475": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは何百日分もあり、今の秋は食べ物に困らない", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体はまだ動く。静かな秋の林を歩くのが楽しみだ。"}

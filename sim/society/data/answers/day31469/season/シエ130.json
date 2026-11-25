@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋だね。蓄えの草の種を千つかみまいて、冬と春の草取りで次の夏に実らせよう。わたしも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで次の夏の実りが増える。蓄えは多いので畑仕事が役に立つ"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"テナ132": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをして次の夏の実りを増やすため"}, "ヒセ137": {"activity": "畑仕事", "place": "camp", "why": "みんなで草取りをすれば畑が早く育つため"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}}, "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1475": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を千つかみまき、秋から春まで草取りをすると次の夏に畑が実る。", "because": [8151798], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1349", "against": "", "agree": true, "reason": "ヤギは草より多いので、よその村のヤギを受けないほうがよい"}, {"id": "L1348", "against": "", "agree": true, "reason": "草で養えない分のヤギを減らすのは大事だから"}],
+ "feeling": "畑に種をまくのが楽しみ。次の夏の実りを思うと元気が出る。"}

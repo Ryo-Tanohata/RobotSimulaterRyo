@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ヤギは草よりずっと多いから、よその村のヤギはもう受けないでおこう。わたしは今季もM6の水ののこで木をひいて板をつくるよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "M6ののこ番だから、続けて板をひいて、水の輪や水の道の手入れを助けたい"},
+ "sow": 50, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ81": {"activity": "水の作業場で働く", "place": "M6", "why": "M6ののこ番だから続ける"}, "トナ89": {"activity": "水の作業場で働く", "place": "M6", "why": "M6ののこ番だから続ける"}},
+ "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1475": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草の分より多いので、よその村のヤギは受けないほうがよい。", "because": [8154218], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、みんなで守るのがよい"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたら休むのは大事"}, {"id": "L3", "against": "", "agree": true, "reason": "複数人で行けば助け合える"}],
+ "feeling": "今季も落ち着いて、のこ番の仕事をしたい"}

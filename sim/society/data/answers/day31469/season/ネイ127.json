@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがまだ山ほど残っているよ。輪の直しで休むくらいなら、わたしは泥をかき出しに行く。来年の畑に水が届くようにね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "輪の直しはもう残っていないので、手入れの残っている水の道を掘って畑に水を届けたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ136": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひけば水の道の手入れが倍はかどるから"}, "ラキ141": {"activity": "水の道を掘る", "place": "camp", "why": "わたしと一緒に水の道の泥をかき出して、畑に水を届けるため"}},
+ "keep": true,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1475": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は輪の直しがすんだ人も、水の道の泥をかき出そう。板があれば手入れが半分ですむ", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "水の輪の直しがその年に残っていないと、「水の輪を直す」にしても休むことになる。そのときは水の道を掘るほうが役に立つ", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1338", "against": "書くのに手間がかかる", "agree": true, "reason": "刈る前に量を書いておけば、もめごとが減るから"},
+  {"id": "L1339", "against": "書くのに手間がかかる", "agree": true, "reason": "少しの量はゆるし合うほうが村がまとまるから"},
+  {"id": "L1345", "against": "ヤギが減りすぎるかもしれない", "agree": true, "reason": "草で養えない分のヤギは、やせていなくなるから"},
+  {"id": "L1349", "against": "屋根を広げる手がほかの仕事から取られる", "agree": true, "reason": "ヤギは草の分に近く、雨の夜に外でぬれる人もいるから"}
+ ],
+ "feeling": "輪の直しで休んでばかりだったから、今度は泥にまみれて働きたい"}

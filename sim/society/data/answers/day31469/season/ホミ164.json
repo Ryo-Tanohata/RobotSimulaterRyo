@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "おれは前の季節、雨の夜に七回も外でぬれた。秋は水の道の泥をかき出すが、手のあく人がいたら住まいの屋根を広げるのも手伝ってほしい。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがたくさん残っていて、泥でうまると来年の畑に水が来なくなるから"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1475": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の住まいは人が多すぎて、雨の夜は何度も外でぬれる", "because": [], "confidence": 0.9},
+               {"op": "add", "text": "ヤギは今 136 頭で、草で養える数 (約 140 頭) にほぼいっぱいだ", "because": [], "confidence": 0.8}],
+ "proposal": {"text": "秋と冬は、水の道を掘る大人のうち手のあく者が交代で、村の住まいの屋根と壁を広げよう。雨の夜に外でぬれる人をなくすため。", "because": [], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1330", "against": "水の輪の仕事と分けにくい", "agree": true, "reason": "泥がたまると来年の畑に水が来ないから"},
+  {"id": "L1331", "against": "字が書けない家は困る", "agree": false, "reason": "おれの家は字を書けないので、この決まりは守りにくい"},
+  {"id": "L1333", "against": "土器づくりの手が足りないかもしれない", "agree": true, "reason": "ヤギは草いっぱいで、種も傷んでいるから"},
+  {"id": "L1335", "against": "つぶしすぎると乳が減る", "agree": true, "reason": "多いヤギはやせていなくなるだけだから"},
+  {"id": "L1336", "against": "とくにない", "agree": true, "reason": "刈りきって土器で守るのは大事だから"},
+  {"id": "L1338", "against": "字が書けない家は困る", "agree": true, "reason": "少しの量のもめごとはゆるし合うほうがいい"},
+  {"id": "L1339", "against": "字が書けない家は困る", "agree": true, "reason": "小さなもめごとで争うより、ゆるし合いたい"},
+  {"id": "L1343", "against": "とくにない", "agree": true, "reason": "草が足りないのに、よそのヤギを受けても減るだけだから"},
+  {"id": "L1344", "against": "とくにない", "agree": true, "reason": "鎌がそろえば刈り残しが減るから"},
+  {"id": "L1349", "against": "水の道の仕事が遅れる", "agree": true, "reason": "おれも雨の夜にずっと外でぬれていたから"}
+ ],
+ "feeling": "秋の仕事はきついが、屋根の下で眠れる日がほしい"}

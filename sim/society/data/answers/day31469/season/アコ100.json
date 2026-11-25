@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "おれは年だが手は動く。この秋は林で木の実と芋を集めて、冬にそなえるよ。"}],
+ "job": {"activity": "採集", "place": "南林12", "with": [], "why": "冬は木の実が実らないので、手慣れた採集で食べ物を集めておくため"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1475": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋は蓄えの草の種を千つかみまいて、冬にそなえて林で食べ物を集めるのがよい", "because": [8153343], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心だ。体が動くうちは林を歩きたい。"}

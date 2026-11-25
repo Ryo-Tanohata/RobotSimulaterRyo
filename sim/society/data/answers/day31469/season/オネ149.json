@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。わたしは畑に種をまいて、そのあとは水の道の泥をかき出すよ。手のあいた人は、いっしょにやろう。"}, {"to": "ワユ70", "text": "雨の夜の外ねむりがつらいね。冬の前に、住まいのことを相談しよう。"}],
+"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、来年の畑に水を通すために大事だから。"},
+"sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+"family": {"ワユ149": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、次の夏の実りを増やすため。"}},
+"keep": false,
+"judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+"feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+"knowledge": [{"op": "add", "text": "秋にまいた畑は草取りをすると実りが増える。水の道の手入れも畑のために大事。", "because": [8154213], "confidence": 0.6}],
+"proposal": null,
+"votes": [{"id": "L1330", "against": "", "agree": true, "reason": "水の道が泥でうまると来年の畑に水が来なくなるから。"}, {"id": "L1335", "against": "", "agree": true, "reason": "ヤギが草の分をこえているので、減らすのがよいと思う。"}],
+"feeling": "秋の畑と水の道のしごとを、みんなとにぎやかにやれるのが楽しみ。"}

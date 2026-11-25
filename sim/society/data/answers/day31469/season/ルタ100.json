@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は種をまいたら、手のあく日に水の道の泥をさらって、冬の前に少しでも進めておこう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えが十分あるので、残っている水の道の手入れを秋のうちに進めたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ115": {"activity": "水の道を掘る", "place": "camp", "why": "家族で一緒に水の道の手入れを進めるため"}},
+ "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えがたっぷりある秋は、草の種を千つかみまき、手のあく日に水の道の手入れを進めるのがよい。", "because": [8151519], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えに余裕があって落ち着いている。水の道を少しずつ進めたい。"}

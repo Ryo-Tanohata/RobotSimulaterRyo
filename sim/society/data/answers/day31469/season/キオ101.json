@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。おれは今季も、まだ見ぬ林の奥を歩いてくる。"}],
+ "job": {"activity": "探索", "place": "北林45", "with": [], "why": "蓄えは十分で、知らない場所や新しい物を見つけたい。好奇心がうずく。"},
+ "sow": 1000, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キサ105": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで、次の夏の実りを増やす。"},
+  "キオ107": {"activity": "畑仕事", "place": "camp", "why": "草取りをすると実りが増えると覚えている。"},
+  "リセ111": {"activity": "採集", "place": "camp", "why": "手近な食べ物を集めて家の足しにする。"},
+  "ヒセ131": {"activity": "畑仕事", "place": "camp", "why": "若い力で畑の草取りをしっかりやる。"},
+  "ネイ133": {"activity": "採集", "place": "camp", "why": "採集が得意なので、食べ物を集める。"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは満ちて心は軽い。知らない土地を踏みたくて、足がむずむずする。"}

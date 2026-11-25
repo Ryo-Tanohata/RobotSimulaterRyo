@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "秋の畑はまいてからが勝負だよ。わたしは冬まで草取りを続けるから、手があいたら一緒に来て。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑は草取りをしないと実りが3割しかない。秋のうちに手をかけておきたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ159": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ1万人日以上残っていて、泥でうまると来年の畑に水が来ないから"}},
+ "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1475": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋は家ごとに種をまき、冬まで草取りを。よその村のヤギは受けないでおこう",
+ "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑を刈ったもめごとは、量が少なく、ゆるして収まることが続いている", "because": [8093469, 8154213, 8154214], "confidence": 0.7}],
+ "proposal": {"text": "秋は家ごとに草の種をまいて、手のあく大人は冬まで草取りをしよう。草取りをしないと実りが少なくなるため。", "because": [8152042, 8152954], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1327", "against": "千つかみまくと草取りの手が足りなくなるかもしれない", "agree": true, "reason": "まいて草取りをし、量を字で残すのは実りを守るから"},
+  {"id": "L1330", "against": "畑の草取りの手がへる", "agree": true, "reason": "水の道がうまると畑に水が来なくなるから"},
+  {"id": "L1338", "against": "書くのに手間がかかる", "agree": true, "reason": "少しの量のもめごとはゆるし合うのがよいから"},
+  {"id": "L1343", "against": "干し肉ばかり増える", "agree": true, "reason": "ヤギが草の分をこえるとやせていなくなるから"},
+  {"id": "L1349", "against": "屋根を広げる手間がかかる", "agree": true, "reason": "雨の夜に外でぬれる人がまだいるから"},
+  {"id": "L1329", "against": "半分ずつだと畑の家が損をする", "agree": false, "reason": "畑の種はまいた家のものという決まりのほうがわかりやすい"}
+ ],
+ "feeling": "畑に種をまいた。冬までしっかり草を取ろう。"}

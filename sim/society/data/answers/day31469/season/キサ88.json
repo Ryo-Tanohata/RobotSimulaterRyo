@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。今日から千つかみずつ種をまいて、冬と春は草取りを欠かさずやろう。わたしも畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが減ると覚えている。来年の夏によく実らせたい。"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が多いほど、まいた畑がよく実る。"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを守る。"}, "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを進める。"}, "ネイ125": {"activity": "帳をつける", "place": "camp", "why": "字が書けるので、蓄えや刈った量を書きとめる。"}, "ルタ142": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝って畑仕事をおぼえる。"}}, "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1475": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみずつ種をまき、冬と春に草取りをすれば、次の夏によく実る。蓄えは約524日分ある。", "because": [8154210], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出て危ないので、キャンプから離れないほうがよい。"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くと、けがをしやすい。"}],
+ "feeling": "蓄えが多くて安心している。畑仕事をがんばろう。"}

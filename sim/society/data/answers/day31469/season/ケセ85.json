@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は種をまいて、手のあく者は水の道の泥をかき出そうよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っている。秋は掘る人を増やすのがよいと覚えている。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ナセ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家みんなで進める。"},
+  "ラニ110": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家みんなで進める。"},
+  "ケナ122": {"activity": "水の道を掘る", "place": "camp", "why": "小さい子がいるが、秋は水の道に人を回す。"},
+  "ホミ125": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家みんなで進める。"},
+  "ケセ134": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家みんなで進める。"},
+  "ムイ144": {"activity": "水の道を掘る", "place": "camp", "why": "まだ若いので、みんなと一緒に水の道を掘る。"}
+ },
+ "keep": false,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。静かに水の道を掘って秋を過ごしたい。"}

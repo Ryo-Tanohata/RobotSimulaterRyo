@@ -1,0 +1,29 @@
+{"say": [{"to": "みんな", "text": "秋と冬はわたしが鎌をこしらえる。欠けた鎌はうちへ持っておいで。夏までに刈り手みなの手にそろえてみせるよ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具はわたしのいちばんの腕。秋のうちに鎌を打って、夏の刈り入れに回すため"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "タユ128": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ山ほど残っているから"},
+  "オネ129": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草を取って、次の夏の実りを増やすため"},
+  "ラニ131": {"activity": "畑仕事", "place": "camp", "why": "草取りの手は多いほど実りが増えるから"},
+  "ケセ131": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひけば、輪や水の道の直しが倍はかどるから"},
+  "ハソ145": {"activity": "道具づくり", "place": "camp", "why": "わたしのそばで鎌の打ち方を覚えてほしいから"}
+ },
+ "keep": true,
+ "judge": {"M625": "ゆるす", "M626": "ゆるす", "M627": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1475": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "欠けた鎌はタユ123の家へ。秋と冬に打ち直し、夏の刈り手に渡す",
+ "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑を刈ったときの種のゆくえで、少しの量のもめごとがよく起きる", "because": [8154213, 8154214, 8154215], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1344", "against": "鎌を打ち直す手が足りなくなるかもしれない", "agree": true, "reason": "わたしが出した案。刈り手に鎌が回れば落ちる種が減る"},
+  {"id": "L1345", "against": "ヤギが減りすぎると冬の肉が心配", "agree": true, "reason": "草で養えないヤギは干し肉にしたほうが無駄がない"},
+  {"id": "L1346", "against": "ゆるしてばかりだと、ずるをする家が出るかもしれない", "agree": true, "reason": "少しの量でもめるより、ゆるし合って働いたほうがいい"},
+  {"id": "L1347", "against": "鎌づくりを道具の者だけに任せるのは重い", "agree": true, "reason": "わたしの腕が生きる。夏に鎌のない家をなくせる"},
+  {"id": "L1348", "against": "夏と秋のはじめにまとめてつぶすと手間がかかる", "agree": true, "reason": "草の分をこえたヤギは干し肉にして蓄えに入れるのがいい"},
+  {"id": "L1349", "against": "屋根を広げる手を畑や水の道からとられる", "agree": true, "reason": "ヤギを受けないのは賛成。雨にぬれる人がいるのもほうっておけない"}
+ ],
+ "feeling": "手が動くうちは、鎌を打ち続けたい。"}
