@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。今年の秋も千つかみずつまいて、冬と春の草取りに備えよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、家のみんなで畑仕事を続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"シエ142": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"}}, "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす", "M624": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えが多い秋でも、千つかみまいて、冬と春は草取りを続けるのがよい", "because": [8025744], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1317", "against": "量を字で書く手間が増える", "agree": true, "reason": "刈った量を書いておけばもめごとが減る"},
+  {"id": "L1318", "against": "", "agree": true, "reason": "小さい子の薬がそろうのはよいこと"},
+  {"id": "L1319", "against": "", "agree": true, "reason": "夏に刈りきるのは大事だから"},
+  {"id": "L1320", "against": "", "agree": true, "reason": "赤ん坊のいる家を先にするのはもっともだから"},
+  {"id": "L1321", "against": "", "agree": true, "reason": "鎌と水の輪を整えておくのはよいこと"},
+  {"id": "L1322", "against": "", "agree": true, "reason": "ザガから身を守るため"},
+  {"id": "L1323", "against": "", "agree": true, "reason": "畑も子の薬も大事だから"}
+ ],
+ "feeling": "蓄えがたっぷりあって、ほっとしている。"}

@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋は千つかみずつ種をまいて、冬まで草取りをしよう。あとの手は水の道を掘るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分にあるので、まだ残っている水の道の手入れに人手を回す。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"キオ166": true},
+ "family": {"シエ96": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っているから。"}, "ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っているから。"}},
+ "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす", "M624": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりあって、ほっとしている。新しい人たちも仲間になってほしい。"}

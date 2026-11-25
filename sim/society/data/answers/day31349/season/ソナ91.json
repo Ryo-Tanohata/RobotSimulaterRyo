@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋は蓄えの種を千つかみまいて、冬と春の草取りに備えよう。うちは畑仕事で働くよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬と春の草取りで実りが増えるので、畑の世話を続ける"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"キオ166": true}, "family": {"ケナ114": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"}, "ナセ118": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}, "ルタ120": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"}, "キサ146": {"activity": "畑仕事", "place": "camp", "why": "若い力で畑を手伝うため"}}, "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす", "M624": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を千つかみまき、冬と春に畑仕事で草取りをすると、次の夏の実りが増える。蓄えは今年もたっぷりある。", "because": [8023289], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多く、落ち着いた秋。いつもどおり畑を守りたい。"}

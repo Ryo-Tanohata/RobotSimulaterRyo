@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れがまだたくさん残ってる。この秋はわたしとキオで水の道を掘るよ。板があれば早く進むから、使わせてね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": ["キオ159"], "why": "水の道の手入れがたくさん残っていて、水が来る畑は悪い年でも実りが守られるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"キオ166": true},
+ "family": {"キオ159": {"activity": "水の道を掘る", "place": "camp", "why": "二人で掘れば手入れが早く進み、来年の畑に水が届くから"}},
+ "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす", "M624": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "水の輪の直しが終わった年は、水の道を掘る仕事のほうが村の役に立つ。手入れはまだ 1 万人日ほど残っている", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1323", "against": "燃える石を掘る人が多いと、ほかの仕事の手が減る", "agree": true, "reason": "畑を刈りきり、子の薬をそろえるのは村の子を守るから"},
+  {"id": "L1322", "against": "人を集めるのに手間がかかる", "agree": true, "reason": "ザガにやられないためには、ひとりで遠くへ行かないほうがよい"},
+  {"id": "L1317", "against": "分け方を決めるのに時間がかかる", "agree": true, "reason": "刈りのもめごとを減らせるから"}
+ ],
+ "feeling": "水の道を掘って、来年の畑をしっかり守りたい"}

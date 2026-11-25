@@ -1,0 +1,32 @@
+{"say": [{"to": "みんな", "text": "北東から来た三人を迎えよう。小さい子もいる。この秋はいっしょに畑の草を取りながら、村のやり方を見てもらえばいい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、冬まで草を取るほど夏の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"キオ166": true},
+ "family": {
+  "ネイ127": {"activity": "畑仕事", "place": "camp", "why": "生まれたばかりの子がいるので、キャンプのそばの畑で働けば子のそばにいられる"},
+  "ラキ136": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りの手を増やして、夏の実りを守るため"},
+  "ラキ141": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので、残っている水の道の手入れを進めて、悪い年にも畑に水が来るようにするため"}
+ },
+ "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす", "M624": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "北東の村から三人が来た。秋の草取りの時に声をかけて、畑と水の道を教えよう",
+ "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "よその家の畑で刈った十つかみほどの草の種のもめごとは、毎季節のように起きるが、ゆるして収めるのがよい", "because": [8025747, 8025748, 8025749], "confidence": 0.7},
+  {"op": "add", "text": "苦しい北東の村から、暮らしたいと人がやって来ることがある", "because": [8025754], "confidence": 0.6}
+ ],
+ "proposal": {"text": "よそから来た人には、はじめの季節、近くの家の大人が一人ついて、秋は畑の草取り、冬は水の道の手入れを一緒にしながら教えよう。", "because": [8025754], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1254", "against": "水の道に人をとられると草取りの手が減る", "agree": true, "reason": "まいた畑の草取りと水の道の手入れは、どちらも夏の実りを守るから"},
+  {"id": "L1304", "against": "教える家の手が少し減る", "agree": true, "reason": "来たばかりの人が早く村に慣れれば、みんなの力になる"},
+  {"id": "L1305", "against": "教える家の手が少し減る", "agree": true, "reason": "よそから来た三人に村の決まりを教えるのは大事だから"},
+  {"id": "L1302", "against": "まく種が多いと蓄えが減る", "agree": true, "reason": "千つかみまいて草取りすれば、夏に八千つかみほど刈れるから"},
+  {"id": "L1253", "against": "少しの量でも気にする家がある", "agree": true, "reason": "少しの量のもめごとはゆるし合ったほうが、村がまとまる"},
+  {"id": "L1300", "against": "半分を返すのは手間がかかり、またもめるかもしれない", "agree": false, "reason": "少しの量なら、返すより書いてゆるし合うほうがよい"},
+  {"id": "L1322", "against": "人が多く出ると、ほかの仕事の手が減る", "agree": true, "reason": "ザガでけがをする人が出たので、ひとりで遠くへ出ないほうがいい"},
+  {"id": "L1310", "against": "燃える石を使うと冬の火が減る", "agree": true, "reason": "小さい子がよく亡くなるので、薬を早く回したい"}
+ ],
+ "feeling": "家に新しい子が生まれてうれしい。この秋もしっかり畑の草を取ろう。"}

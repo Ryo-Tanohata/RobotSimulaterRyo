@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "北東の村14から来たキオ166たちを、あたたかく迎えよう。この秋は千つかみずつまいて、冬まで草取りを続けようね。"}, {"to": "キサ150", "text": "この秋は母さんが字を教えるよ。ワユといっしょに、毎日少しずつ覚えようね。"}],
+ "job": {"activity": "字を教える", "place": "camp", "with": [], "why": "家の子のワユ148とキサ150に字を覚えさせたい。蓄えは十分あるので、今は教える時間をとれる"},
+ "sow": 1000, "pick": 20, "plant": 5, "harvest": 0, "eat_goat": 0,
+ "accept": {"キオ166": true},
+ "family": {"キオ129": {"activity": "水の作業場で働く", "place": "M26", "why": "板がたくさんあると水の道の手入れが半分ですむから"}, "ムイ132": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをすると、夏の実りがずっと大きくなるから"}, "ワユ148": {"activity": "畑仕事", "place": "camp", "why": "12 歳になったので、少しずつ畑の草取りを覚えてほしい"}},
+ "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす", "M624": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "北東の村14から、若い人が暮らしたいと来ることがある", "because": [8025754], "confidence": 0.8}, {"op": "add", "text": "この季節も小さい子が 4 人亡くなった。子の薬と手当てがまだ足りない", "because": [8025737, 8025738, 8025739, 8025740], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L1318", "against": "薬が倉の石のある家にかたよるかもしれない", "agree": true, "reason": "小さい子がまだ亡くなるので、薬を回したい"}, {"id": "L1319", "against": "字を書けない人には手間がかかる", "agree": true, "reason": "刈った量を書いておけば、刈りのもめごとがへる"}, {"id": "L1320", "against": "赤ん坊のいない家の子が後回しになる", "agree": true, "reason": "いちばん弱い赤ん坊から薬をそろえたい"}, {"id": "L1321", "against": "水の輪の直しは今は残っていない", "agree": true, "reason": "鎌と輪の手入れは毎年いるから"}, {"id": "L1322", "against": "人手がとられる", "agree": true, "reason": "ザガにやられる人を出したくない"}, {"id": "L1323", "against": "ほかの掟と同じことをくり返している", "agree": true, "reason": "畑と子の薬の両方を大事にしたいから"}],
+ "feeling": "新しい人が来て、にぎやかになりそうでうれしい。子に字を教えるのが楽しみ。"}

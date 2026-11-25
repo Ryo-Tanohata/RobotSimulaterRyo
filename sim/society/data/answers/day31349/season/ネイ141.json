@@ -1,0 +1,32 @@
+{"say": [{"to": "みんな", "text": "この秋も鎌をこしらえておくよ。夏に刈る手が足りないと聞くから、柄も刃もしっかり作りためておく。"}, {"to": "キオ166", "text": "北東の村からよく来たね。住まいはせまいけど、手を貸しあえばなんとかなるよ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりは私のいちばん得意な仕事。夏の刈り入れに鎌がたくさん要るから、続けて作りためる"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"キオ166": true, "テナ166": true, "ラニ166": true},
+ "family": {
+  "ユエ141": {"activity": "燃える石を掘る", "place": "北丘12", "why": "力があって足も強い。家はまきのかまどだから、石を掘ればまき集めの手間が浮く"},
+  "ソワ142": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをすれば、夏の実りが増える"},
+  "キオ143": {"activity": "畑仕事", "place": "camp", "why": "赤ん坊のそばにいられるキャンプの仕事がよい"},
+  "リセ144": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど畑がよく実る"},
+  "ムイ145": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っている"},
+  "ホミ147": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝いながら覚えてほしい"},
+  "ヒセ149": {"activity": "畑仕事", "place": "camp", "why": "姉といっしょに草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす", "M624": "ゆるす"},
+ "feast": true, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "夏に刈る鎌は道具づくりの人に声をかけて。割れた鎌も持ってきて", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑を刈ると、刈った分がその家の倉に入り、少しの量でももめごとになる", "because": [8025747, 8025748, 8025749], "confidence": 0.7}, {"op": "add", "text": "村の鎌は 3000 本をこえ、私が作るたびに少しずつ増えている", "because": [8023948, 8025583], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1313", "against": "家ごとに一人を石掘りに出すと、畑の草取りの手が減る", "agree": true, "reason": "石を掘れば、まき集めも減り、子の薬もそろう"},
+  {"id": "L1314", "against": "字で書く手間がかかる", "agree": true, "reason": "量を書いて知らせれば、小さなもめごとが残らない"},
+  {"id": "L1315", "against": "直す輪はもう残っていない", "agree": true, "reason": "夏に畑を刈りきるのは大事"},
+  {"id": "L1316", "against": "刈る前に量は分からない", "agree": true, "reason": "知らせておけば、もめごとが減る"},
+  {"id": "L1317", "against": "畑の家が損をすると思うかもしれない", "agree": true, "reason": "半分ずつと決めておけば、言い争いにならない"},
+  {"id": "L1318", "against": "倉の石が減る", "agree": true, "reason": "小さい子が多く亡くなっている。薬は大事"},
+  {"id": "L1319", "against": "いろいろ入っていて長い", "agree": true, "reason": "刈り入れも、もめごとも、子の薬も、どれも大事"},
+  {"id": "L1320", "against": "ほかの家の手もいる", "agree": true, "reason": "赤ん坊の家を先にするのはよい"},
+  {"id": "L1321", "against": "とくにない", "agree": true, "reason": "道具の得意な私の仕事にも合っている"},
+  {"id": "L1322", "against": "人手が分かれる", "agree": true, "reason": "ザガは怖い。ひとりで遠くへ行かないのはよい"},
+  {"id": "L1323", "against": "前の掟と同じような中身", "agree": true, "reason": "畑と石と薬、どれも村のためになる"}
+ ],
+ "feeling": "鎌を作る手はまだ元気。小さい子が亡くなるのは悲しいけれど、できることをしよう"}

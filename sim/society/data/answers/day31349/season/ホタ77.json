@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬が近い。蓄えを大事にして、畑と木の実の世話を続けよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "年寄りだが採集は得意で、キャンプのそばで確実に食べ物を集められる"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"キオ166": true},
+ "family": {},
+ "keep": false,
+ "judge": {"M622": "草の種は少量で、同じ村の仲間どうし。次は量を数えて分けるようにして、今回は収めよう", "M623": "草の種は少量で、同じ村の仲間どうし。次は量を数えて分けるようにして、今回は収めよう", "M624": "古い話なので、これ以上は問わない"},
+ "feast": false, "leader": "", "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、みんなの命を守るために必要な掟だから"}]}

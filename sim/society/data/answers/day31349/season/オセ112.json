@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。この秋も草の種をしっかりまいて、冬にそなえよう。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": [], "why": "蓄えは多いが、食べ物の種類を増やし、体も動かしたいので近い草原で採集を続ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"キオ166": true},
+ "family": {
+  "キサ112": {"activity": "採集", "place": "西草原12", "why": "近場で食べ物を集める"},
+  "テナ113": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているので手伝う"},
+  "セヤ119": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているので手伝う"},
+  "ソナ120": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"},
+  "テナ121": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"},
+  "ハソ141": {"activity": "採集", "place": "西草原12", "why": "若いので近場で食べ物を集める"},
+  "ルタ144": {"activity": "採集", "place": "西草原12", "why": "若いので近場で食べ物を集める"}
+ },
+ "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす", "M624": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。まだまだ体は動くので、働きたい。"}

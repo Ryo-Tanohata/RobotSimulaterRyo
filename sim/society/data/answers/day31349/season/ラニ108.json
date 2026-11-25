@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "わたしはもう年じゃ。畑の草取りをして、冬にそなえよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えの草の種は十分あるが、畑の草取りをすると来年の実りが増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"リセ118": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "アコ140": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "ケナ145": {"activity": "採集", "place": "camp", "why": "まだ小さい子の世話のそばで、できる仕事をするため"}},
+ "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "とくになし", "agree": true, "reason": "夜は危ないので、今までどおりでよい"}],
+ "feeling": "おだやかな秋じゃ。冬までしずかにすごしたい。"}

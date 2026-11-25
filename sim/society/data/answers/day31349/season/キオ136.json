@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。秋のうちに種をまいて、冬をこす用意をしておこう。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕がいちばん高いので、鎌などを作って村の役に立てる"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"ヌオ136": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高いので、肉を蓄えにまわす"}, "キオ139": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで、次の夏の実りを増やす"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを守る"}}, "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす", "M624": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた草の種は、草取りをすれば次の夏によく実る。蓄えは多く、冬も困らない。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。のんびり道具を作りたい。"}

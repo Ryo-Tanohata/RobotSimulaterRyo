@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷりまいたら、草取りを欠かさずにやろう。冬に向けて、水の道の手入れも手分けして進めたいね。"}, {"to": "キオ166", "text": "遠くからよく来たね。ここは食べ物も住まいもあるから、いっしょに暮らそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすればするほど実りが増えるから"}, "sow": 1000, "pick": 20, "plant": 0, "harvest": 30, "eat_goat": 0, "accept": {"キオ166": true, "テナ166": true, "ラニ166": true}, "family": {"ルタ131": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っていて、来年の畑を守るため"}, "オセ135": {"activity": "水の道を掘る", "place": "camp", "why": "ルタといっしょに水の道を直せば、悪い年でも畑が守れるから"}, "ロワ141": {"activity": "畑仕事", "place": "camp", "why": "小さい子のそばにいながら、キャンプの畑で草取りができるから"}}, "keep": false,
+ "judge": {"M622": "つぐなう", "M623": "つぐなう", "M624": "つぐなう"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は草取りと水の道の手入れを手分けしよう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその村から暮らしたいと来る人がいる。蓄えは多いので受け入れられる", "because": [8025754], "confidence": 0.7}, {"op": "add", "text": "人の畑で刈った草の種が、その家の倉に入ってしまうと、もめごとになる", "because": [8025747, 8025748, 8025749], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "夜に用があっても動けない", "agree": true, "reason": "夜はザガが出て、この前もけが人が出たから"}, {"id": "L3", "against": "一人のほうが早いときもある", "agree": true, "reason": "仲間といれば助け合えるから"}],
+ "feeling": "蓄えはたっぷりあるけど、畑と水の道をしっかり守っていきたい"}

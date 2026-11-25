@@ -1,0 +1,27 @@
+{"say": [{"to": "みんな", "text": "うちのシエ161はまだ3つだ。家の倉の燃える石で町の頼み124を受けて、子の薬をもらうよ。余ったら小さい子の家へ回す。"}, {"to": "キオ166", "text": "北東から来たんだね。よく来た。はじめはうちの者と一緒に畑の草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ロワ136"], "why": "秋にまいた畑は草取りをすると夏の実りがずっと増えるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"キオ166": true},
+ "family": {
+  "ロワ136": {"activity": "畑仕事", "place": "camp", "why": "わたしと組んで草取りをすれば、夏にたくさん刈れる"},
+  "ムイ139": {"activity": "畑仕事", "place": "camp", "why": "子のそばにいながらキャンプで働けるから"},
+  "セオ139": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、子どもたちに字を教えてほしい"},
+  "ワユ141": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っていて、悪い年でも畑を守れるから"}
+ },
+ "keep": false,
+ "judge": {"M622": "ゆるす", "M623": "ゆるす", "M624": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "小さい子の家は町の頼みで子の薬をそろえよう。北の丘へは二人より多くで行こう",
+ "order": null,
+ "take": {"頼み": 124, "人": ["ヒセ136"]},
+ "knowledge": [{"op": "add", "text": "家の倉に燃える石があれば、町の頼みを受けてすぐ子の薬がもらえる。小さい子のいる家は先にそろえるとよい", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1322", "against": "人手が分かれて掘る量が少し減る", "agree": true, "reason": "ひとりで丘へ行くとザガにやられる。けがを減らしたい"},
+  {"id": "L1318", "against": "燃える石のない家は受けられない", "agree": true, "reason": "うちにも小さい子がいる。薬をそろえて回したい"},
+  {"id": "L1312", "against": "字を書く手間がかかる", "agree": true, "reason": "少しの量のもめごとでいがみ合うより、ゆるし合うほうがいい"},
+  {"id": "L1311", "against": "草取りの手が少し減る", "agree": true, "reason": "蓄えの種が虫やネズミに食べられるのを減らせる"}
+ ],
+ "feeling": "畑も子も、今年の秋はしっかり守りたい"}
