@@ -14,7 +14,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 214,
+    "person_px": 233,
     "in_view": [
      "セナ",
      "タヒ",
@@ -30,7 +30,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 7.4
+      "dist": 6.9
      }
     ]
    },
@@ -44,7 +44,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 214,
+     "px": 233,
      "inView": true
     },
     {
@@ -52,7 +52,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 232,
+     "px": 252,
      "inView": true
     },
     {
@@ -60,7 +60,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 195,
+     "px": 215,
      "inView": true
     }
    ],
@@ -77,7 +77,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 170,
+    "person_px": 162,
     "in_view": [
      "セナ",
      "タヒ",
@@ -92,7 +92,7 @@
       "title": "セナ・タヒ — 東の林で採集",
       "x": 0,
       "w": 640,
-      "dist": 11.1
+      "dist": 11.5
      },
      {
       "names": [
@@ -115,7 +115,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 170,
+     "px": 162,
      "inView": true
     },
     {
@@ -123,7 +123,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 163,
+     "px": 158,
      "inView": true
     },
     {
@@ -131,7 +131,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 223,
+     "px": 222,
      "inView": true
     }
    ],
@@ -148,7 +148,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 217,
+    "person_px": 236,
     "in_view": [
      "セナ",
      "タヒ",
@@ -164,7 +164,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 7.4
+      "dist": 6.9
      }
     ]
    },
@@ -178,7 +178,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 217,
+     "px": 236,
      "inView": true
     },
     {
@@ -186,7 +186,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 230,
+     "px": 252,
      "inView": true
     },
     {
@@ -194,7 +194,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 195,
+     "px": 214,
      "inView": true
     }
    ],
@@ -211,7 +211,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 242,
+    "person_px": 217,
     "in_view": [
      "セナ",
      "タヒ",
@@ -226,7 +226,7 @@
       "title": "セナ・タヒ — 東の林で採集",
       "x": 0,
       "w": 640,
-      "dist": 7.6
+      "dist": 8.7
      },
      {
       "names": [
@@ -248,17 +248,17 @@
     {
      "name": "セナ",
      "activity": "採集",
-     "motion": "stretch",
-     "motion_ja": "背のび",
-     "px": 242,
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 206,
      "inView": true
     },
     {
      "name": "タヒ",
      "activity": "採集",
-     "motion": "stretch",
-     "motion_ja": "背のび",
-     "px": 259,
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 217,
      "inView": true
     },
     {
@@ -266,7 +266,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 214,
+     "px": 223,
      "inView": true
     }
    ],
@@ -281,9 +281,9 @@
    "clock": "4年31日目 15:17  活動",
    "text": "タヒは、畑にはまかなかったのだ。3人とも、木の実もキャンプのそばに埋めたのだ。季節の主な仕事は、3人とも採集のままなのだ。",
    "camera": {
-    "framing": "中くらい",
+    "framing": "引き",
     "dist": 13.9,
-    "person_px": 239,
+    "person_px": 54,
     "in_view": [
      "セナ",
      "タヒ",
@@ -293,21 +293,13 @@
      {
       "names": [
        "セナ",
-       "タヒ"
-      ],
-      "title": "セナ・タヒ — 東の林で採集",
-      "x": 0,
-      "w": 640,
-      "dist": 7.6
-     },
-     {
-      "names": [
+       "タヒ",
        "ウィロ"
       ],
-      "title": "ウィロ — 西の草原で採集",
-      "x": 640,
-      "w": 640,
-      "dist": 7.6
+      "title": "セナ・タヒ・ウィロ — キャンプへ帰るところ",
+      "x": 0,
+      "w": 1280,
+      "dist": 35.1
      }
     ]
    },
@@ -322,7 +314,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 239,
+     "px": 54,
      "inView": true
     },
     {
@@ -330,19 +322,23 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 246,
+     "px": 56,
      "inView": true
     },
     {
      "name": "ウィロ",
      "activity": "採集",
-     "motion": "stretch",
-     "motion_ja": "背のび",
-     "px": 235,
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 35,
      "inView": true
     }
    ],
-   "notes": []
+   "notes": [
+    "セナ が小さい (54 px)",
+    "タヒ が小さい (56 px)",
+    "ウィロ が小さい (35 px)"
+   ]
   },
   {
    "cut": 6,
@@ -355,7 +351,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 215,
+    "person_px": 234,
     "in_view": [
      "セナ",
      "タヒ",
@@ -371,7 +367,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 7.4
+      "dist": 6.9
      }
     ]
    },
@@ -386,7 +382,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 215,
+     "px": 234,
      "inView": true
     },
     {
@@ -394,7 +390,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 232,
+     "px": 251,
      "inView": true
     },
     {
@@ -402,7 +398,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 195,
+     "px": 215,
      "inView": true
     }
    ],
@@ -419,7 +415,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 219,
+    "person_px": 225,
     "in_view": [
      "セナ",
      "タヒ",
@@ -434,7 +430,7 @@
       "title": "セナ・ウィロ — 西の草原で採集",
       "x": 0,
       "w": 640,
-      "dist": 8.1
+      "dist": 7.7
      },
      {
       "names": [
@@ -458,7 +454,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 219,
+     "px": 225,
      "inView": true
     },
     {
@@ -474,7 +470,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 199,
+     "px": 214,
      "inView": true
     }
    ],
@@ -491,7 +487,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 213,
+    "person_px": 231,
     "in_view": [
      "セナ",
      "タヒ",
@@ -507,7 +503,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 7.4
+      "dist": 6.9
      }
     ]
    },
@@ -522,7 +518,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 213,
+     "px": 231,
      "inView": true
     },
     {
@@ -530,7 +526,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 231,
+     "px": 251,
      "inView": true
     },
     {
@@ -538,7 +534,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 195,
+     "px": 216,
      "inView": true
     }
    ],
@@ -553,9 +549,9 @@
    "clock": "5年1日目 21:51  夜",
    "text": "F1 は、村の人が草の種を畑にまいて育て、夏に刈るようになったということなのだ。次の秋、5年31日目には、セナ、タヒ、ウィロの3人がまいたのだ。",
    "camera": {
-    "framing": "引き",
+    "framing": "寄り",
     "dist": 13.9,
-    "person_px": 50,
+    "person_px": 358,
     "in_view": [
      "セナ",
      "タヒ",
@@ -571,7 +567,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 11.3
+      "dist": 6.9
      }
     ]
    },
@@ -584,32 +580,35 @@
     {
      "name": "セナ",
      "activity": "採集",
-     "motion": "lie",
-     "motion_ja": "横になる",
-     "px": 11,
+     "motion": null,
+     "motion_ja": null,
+     "px": 449,
      "inView": true
     },
     {
      "name": "タヒ",
      "activity": "採集",
-     "motion": "lie",
-     "motion_ja": "横になる",
-     "px": 60,
+     "motion": null,
+     "motion_ja": null,
+     "px": 358,
      "inView": true
     },
     {
      "name": "ウィロ",
      "activity": "採集",
-     "motion": "lie",
-     "motion_ja": "横になる",
-     "px": 50,
+     "motion": null,
+     "motion_ja": null,
+     "px": 280,
      "inView": true
     }
    ],
    "notes": [
-    "セナ が小さい (11 px)",
-    "タヒ が小さい (60 px)",
-    "ウィロ が小さい (50 px)"
+    "セナ が画面からはみ出す",
+    "タヒ が画面からはみ出す",
+    "ウィロ が画面からはみ出す",
+    "名前の札が重なる: セナ と タヒ",
+    "名前の札が重なる: セナ と ウィロ",
+    "名前の札が重なる: タヒ と ウィロ"
    ]
   }
  ]
