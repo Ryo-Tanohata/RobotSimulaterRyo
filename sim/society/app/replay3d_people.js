@@ -22,6 +22,152 @@
     return new Promise((ok, ng) => new THREE.GLTFLoader().load(url, ok, undefined, ng));
   }
 
+  // v2 (2026-11-25 本人「人が家や木をすり抜けないように」): よける物 (住まい・林の木・育った木) の円 {x, y, r} (マス)。日ごとに 1 回
+  const obstCache = new WeakMap();
+  function groveList(P) {  // キャンプのそばに育った木 (growFrame と同じ並び)
+    const D = M.D, fire = { x: D.camp.x + 0.5, y: D.camp.y + 0.5 };
+    const trees = (D.grow || []).filter((e) => e.day <= P.day && /木の実の木が育った/.test(e.text)).slice(-40);
+    return trees.map((e, k) => {
+      const dump = /殻を捨てた/.test(e.text), c = dump ? { x: fire.x + 2.5, y: fire.y - 7.5 } : { x: fire.x - 8.0, y: fire.y + 0.5 };  // カメラ (南東の上) から見て、キャンプの奥 (北と西) に
+      const j = trees.filter((x, i) => i < k && /殻を捨てた/.test(x.text) === dump).length, a = j * 2.39996, r = 0.9 * Math.sqrt(j + 0.5);
+      return { pt: { x: c.x + Math.cos(a) * r, y: c.y + Math.sin(a) * r }, sz: 0.8 * (0.25 + 0.75 * clamp((P.day - e.day + 1) / 30)), k };
+    });
+  }
+  function obstacles(P) {
+    if (obstCache.has(P)) return obstCache.get(P);
+    const D = M.D, O = [], T = D.map.terrain, H = T.length, W = T[0].length;
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (T[y][x] === "f" && ((x * 73856093) ^ (y * 19349663)) % 7 === 0) O.push({ x: x + 0.5, y: y + 0.5, r: 0.85 });  // replay3d.js の林の木 (円すい、半径 0.55) と同じ所
+    if (M.world && M.world.hutDay !== null && P.day >= M.world.hutDay - 3) O.push({ x: D.camp.x + 0.5 - 3.2, y: D.camp.y + 0.5 - 2.2, r: 2.0 });  // 住まい (建てかけも)
+    for (const g of groveList(P)) O.push({ x: g.pt.x, y: g.pt.y, r: 0.3 + 0.35 * g.sz });
+    obstCache.set(P, O);
+    return O;
+  }
+  const pushOut = (P, pt) => {  // 円の中なら、外へ
+    let q = pt;
+    for (let it = 0; it < 4; it++) {
+      const o = obstacles(P).find((o) => Math.hypot(q.x - o.x, q.y - o.y) < o.r);
+      if (!o) break;
+      const d = Math.hypot(q.x - o.x, q.y - o.y), a = d > 1e-3 ? Math.atan2(q.y - o.y, q.x - o.x) : 0.7;
+      q = { x: o.x + Math.cos(a) * (o.r + 0.05), y: o.y + Math.sin(a) * (o.r + 0.05) };
+    }
+    return q;
+  };
+  function route(P, a, b, depth = 0) {  // a から b へ、円をよける道 (曲がり角の点の並び。b をふくむ)
+    if (depth > 6) return [b];
+    let hit = null, best = 1;
+    const dx = b.x - a.x, dy = b.y - a.y, L2 = dx * dx + dy * dy || 1e-9;
+    for (const o of obstacles(P)) {
+      const u = clamp(((o.x - a.x) * dx + (o.y - a.y) * dy) / L2), cx = a.x + dx * u, cy = a.y + dy * u;
+      if (Math.hypot(o.x - cx, o.y - cy) < o.r - 0.02 && u > 0.001 && u < 0.999 && u < best) { best = u; hit = { o, cx, cy }; }
+    }
+    if (!hit) return [b];
+    const { o, cx, cy } = hit, L = Math.sqrt(L2);
+    let nx = -dy / L, ny = dx / L;
+    if ((cx - o.x) * nx + (cy - o.y) * ny < 0) { nx = -nx; ny = -ny; }  // 近いほうの側をまわる
+    const w = pushOut(P, { x: o.x + nx * (o.r + 0.25), y: o.y + ny * (o.r + 0.25) });
+    return [...route(P, a, w, depth + 1), ...route(P, w, b, depth + 1)];
+  }
+
+  // v2: 火をおこす人 (その日の記録で火をおこした人。いなければ、いちばん年上の大人)
+  function lighterOf(P) {
+    if (!M.lighter.has(P)) {
+      const e = (P.work || []).find((e) => e.type === "火" && e.who && P.plan[e.who] && P.plan[e.who].alive);
+      const adults = Object.keys(P.plan).filter((n) => P.plan[n].alive && !P.plan[n].child && M.people[n]).sort((a, b) => P.plan[a].i - P.plan[b].i);
+      M.lighter.set(P, e && M.people[e.who] ? e.who : adults[0] || null);
+    }
+    return M.lighter.get(P);
+  }
+  // v2: 焚き火 (薪・何枚もの炎・火の粉・光・煙)。強さ 0〜1 は場面で決める (夕方に火をおこしてから大きくなり、夜は燃え、夜明けには小さくなる)
+  function fireGlowTex() {
+    const c = document.createElement("canvas"); c.width = c.height = 128;
+    const g = c.getContext("2d"), r = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+    r.addColorStop(0, "rgba(255,220,140,1)"); r.addColorStop(0.35, "rgba(255,150,50,0.55)"); r.addColorStop(1, "rgba(255,100,20,0)");
+    g.fillStyle = r; g.fillRect(0, 0, 128, 128);
+    return new THREE.CanvasTexture(c);
+  }
+  function buildFire() {
+    const W = M.world, g = new THREE.Group(); g.position.copy(W.camp);
+    const logM = new THREE.MeshLambertMaterial({ color: 0x4a3220 }), charM = new THREE.MeshLambertMaterial({ color: 0x1c1410 });
+    for (let k = 0; k < 5; k++) {  // 円すいに組んだ薪
+      const lg = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.06, 0.75, 6), k % 2 ? logM : charM), a = k * 1.2566;
+      lg.position.set(Math.cos(a) * 0.17, 0.2, Math.sin(a) * 0.17); lg.rotation.set(Math.sin(a) * 0.75, 0, -Math.cos(a) * 0.75); g.add(lg);
+    }
+    const add = (col, op) => new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: op, blending: THREE.AdditiveBlending, depthWrite: false });
+    const flames = [];
+    [[0xff5a10, 0.85, 0.30, 0.95], [0xff8a20, 0.8, 0.22, 0.8], [0xffb030, 0.85, 0.16, 0.65], [0xffe080, 0.9, 0.09, 0.45]].forEach(([c, op, r, h], i) => {
+      for (let k = 0; k < (i < 2 ? 3 : 2); k++) {
+        const f = new THREE.Mesh(new THREE.ConeGeometry(r, h, 7, 1, true), add(c, op)); f.geometry.translate(0, h / 2, 0);
+        f.userData = { h, ph: i * 1.7 + k * 2.3, dx: (k - 1) * r * 0.45 }; f.position.set(f.userData.dx, 0.08, (k % 2 ? 1 : -1) * r * 0.3); g.add(f); flames.push(f);
+      }
+    });
+    const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: fireGlowTex(), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
+    glow.scale.set(2.6, 2.6, 1); glow.position.y = 0.45; g.add(glow);
+    const sparks = [], sm = add(0xffc060, 1);
+    for (let k = 0; k < 26; k++) { const sp = new THREE.Mesh(new THREE.SphereGeometry(0.018, 4, 3), sm); sp.userData = { ph: rnd(k, 3), x: (rnd(k, 5) - 0.5) * 0.4, z: (rnd(k, 7) - 0.5) * 0.4, sp: 0.6 + rnd(k, 9) * 0.8 }; g.add(sp); sparks.push(sp); }
+    const smokes = [], smM = new THREE.MeshLambertMaterial({ color: 0x8a8a8a, transparent: true, opacity: 0.25, depthWrite: false });
+    for (let k = 0; k < 7; k++) { const sk = new THREE.Mesh(new THREE.SphereGeometry(0.22, 7, 5), smM.clone()); sk.userData = { ph: k / 7 }; g.add(sk); smokes.push(sk); }
+    M.scene.add(g);
+    return { g, flames, glow, sparks, smokes };
+  }
+  function fireAmount(P, v) {
+    const seg = P.segs.find((s) => v >= s.v0 && v < s.v1) || P.segs[P.segs.length - 1];
+    if (seg.key === "dawn") return 0.45 * (1 - clamp((v - seg.v0) / Math.max(1, seg.sec)));
+    if (seg.key === "night") return 1;
+    const at = M.fireAt.get(P);
+    if (at == null) return seg.key === "eve" ? clamp((v - seg.v0) / 3.5) : 0;
+    return clamp((v - at) / 3.5);
+  }
+  function fireFrame(P, v) {
+    const W = M.world;
+    if (!M.fire) M.fire = buildFire();
+    const F = M.fire, a = fireAmount(P, v);
+    W.flame.visible = false;  // replay3d.js の円すいの炎の代わり
+    W.fireLight.intensity = a * (1.7 + Math.sin(v * 13) * 0.25 + Math.sin(v * 7.3) * 0.15);
+    W.fireLight.color.setHex(0xff9a40);
+    F.g.visible = a > 0.01;
+    if (!F.g.visible) return;
+    const s = 0.15 + 0.85 * a;
+    F.flames.forEach((f) => {
+      const u = f.userData, fl = 1 + Math.sin(v * 11 + u.ph) * 0.18 + Math.sin(v * 17.3 + u.ph * 2) * 0.1;
+      f.scale.set(s * (1 + Math.sin(v * 9 + u.ph) * 0.08), s * fl, s * (1 + Math.cos(v * 8 + u.ph) * 0.08));
+      f.rotation.y = v * 0.8 + u.ph; f.rotation.z = Math.sin(v * 5 + u.ph) * 0.12;
+    });
+    F.glow.material.opacity = 0.75 * a; F.glow.scale.setScalar(1.2 + 1.6 * a);
+    F.sparks.forEach((sp) => {
+      const u = sp.userData, q = (v * u.sp * 0.5 + u.ph) % 1;
+      sp.visible = a > 0.3; sp.position.set(u.x * (1 + q) + Math.sin(v * 3 + u.ph * 9) * 0.05, 0.3 + q * 1.6 * a, u.z * (1 + q)); sp.scale.setScalar(1 - q);
+    });
+    F.smokes.forEach((sk) => {
+      const q = (v * 0.12 + sk.userData.ph) % 1;
+      sk.position.set(Math.sin(q * 5 + sk.userData.ph * 6) * 0.15 + q * 0.5, 0.9 + q * 2.6, Math.cos(q * 4) * 0.1); sk.scale.setScalar(0.6 + q * 2.2);
+      sk.material.opacity = 0.22 * a * (1 - q);
+    });
+  }
+
+  // v2 (2026-11-25 本人「新しい人の作り方はおすすめで」): 2 歳になるまでの子は、人のモデルでなく、母が胸に抱く布の包みで見せる
+  const isBaby = (P, n) => { const k = M.kin[n]; return !!(M.opts2.v2 && k && k.born != null && (P.day - k.born) / 120 < 2); };
+  function bundleMesh() {
+    const g = new THREE.Group(), K = M.K;
+    const cloth = new THREE.Mesh(new THREE.SphereGeometry(0.11 * K, 10, 8), new THREE.MeshLambertMaterial({ color: 0x9a7a52 })); cloth.scale.set(1.5, 0.8, 0.85); g.add(cloth);
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.055 * K, 10, 8), new THREE.MeshLambertMaterial({ color: 0xc08c6a })); head.position.set(0.15 * K, 0.03 * K, 0); g.add(head);
+    return g;
+  }
+  function babiesFrame(P) {
+    for (const n in M.figs) {
+      const baby = P.plan[n] && P.plan[n].alive && isBaby(P, n);
+      let B = M.bundles[n];
+      if (baby) M.figs[n].userData.pelvis.visible = false;
+      const mom = baby && M.people[M.kin[n].mother];
+      if (!baby || !mom || !mom.root.visible) { if (B) B.visible = false; if (baby && M.labels[n]) M.labels[n].pos = null; continue; }
+      if (!B) { B = M.bundles[n] = bundleMesh(); M.scene.add(B); }
+      const ch = mom.g.scene.getObjectByName("J_Bip_C_UpperChest") || mom.head;
+      const at = ch.getWorldPosition(new THREE.Vector3()), fw = new THREE.Vector3(Math.cos(mom.root.rotation.y - Math.PI / 2), 0, -Math.sin(mom.root.rotation.y - Math.PI / 2));
+      B.position.copy(at).add(fw.multiplyScalar(0.14 * M.K)).add(new THREE.Vector3(0, -0.06 * M.K, 0)); B.rotation.y = mom.root.rotation.y; B.visible = true;
+      M.figs[n].position.copy(B.position);
+      if (M.labels[n]) M.labels[n].pos = B.position.clone().add(new THREE.Vector3(0, 0.25 * M.K, 0));
+    }
+  }
+
   // 人ごとの予定: [{ t0, clip, mode, rate, off, at(v), head(v) }] を始まりの順に
   function planFor(P, D, n) {
     const p = P.plan[n], info = M.people[n].info, seg = {};
@@ -45,12 +191,12 @@
       return { x: hutC.x + Math.cos(a) * HUT_R, y: hutC.y + Math.sin(a) * HUT_R };
     };
     const ringOf0 = (m) => (P.plan[m] ? lerp(fire, P.plan[m].ring, RING) : fire);
-    const ring = V2 ? out_(ringOf0(n)) : ringOf0(n), ringOf = (m) => (V2 ? out_(ringOf0(m)) : ringOf0(m));  // 火のまわりの輪は、人の体の大きさに合わせて広げる
+    const ring = V2 ? pushOut(P, out_(ringOf0(n))) : ringOf0(n), ringOf = (m) => (V2 ? pushOut(P, out_(ringOf0(m))) : ringOf0(m));  // 火のまわりの輪は、人の体の大きさに合わせて広げる
     if (V2 && p.place && p.place.id !== "camp") {  // 同じ場所の人: 場所のまん中からのはなれを、体の大きさに合わせて広げる
       const c = { x: p.place.x + 0.5, y: p.place.y + 0.5 };
       p.spot = lerp(c, p.spot, RING);
     }
-    if (V2) p.spot = out_(p.spot);
+    if (V2) p.spot = pushOut(P, out_(p.spot));
     const builds = V2 ? (P.work || []).filter((e) => e.type === "住まい" && /建て/.test(e.text)) : [];
     const builder = builds.some((e) => e.who === n || (e.text || "").startsWith(n + " "));
     if (builder) {  // v2: 住まいを建てた人は、住まいのまわりで柱を立てる・組む (のり出す・背のび・手渡し)
@@ -58,11 +204,17 @@
       p.spot = { x: hutC.x + Math.cos(a) * 2.0, y: hutC.y + Math.sin(a) * 2.0 };
     }
     let here = ring;
-    const walkTo = (to, t0) => {
+    const walk1 = (to, t0) => {
       const from = here, d = Math.hypot(to.x - from.x, to.y - from.y), dur = d / SPD, h = face(from, to);
       if (d < 0.05) return t0;
       add({ t0, clip: "walk", mode: "loop", rate: WALK / info.walk.speed, at: (v) => lerp(from, to, clamp((v - t0) / dur)), head: () => h });
       here = to; return t0 + dur;
+    };
+    const walkTo = (to, t0) => {  // v2: 住まい・木をよけて歩く
+      if (!V2) return walk1(to, t0);
+      let t = t0;
+      for (const w of route(P, here, to)) t = walk1(w, t);
+      return t;
     };
     // 夜明け: 火のまわりで見回す
     add({ t0: -1, clip: "idle", mode: "pp", rate: 0.8, off: p.i * 1.3, ...still(ring, face(ring, fire)) });
@@ -98,7 +250,7 @@
       for (let k = 0; t < tLeave; k++) {
         if (k % 3 === 0) {
           const a = rnd(p.i, k) * Math.PI * 2, r = 0.6 + rnd(p.i, k + 50);
-          const to = { x: p.spot.x + Math.cos(a) * r, y: p.spot.y + Math.sin(a) * r };
+          const to = V2 ? pushOut(P, { x: p.spot.x + Math.cos(a) * r, y: p.spot.y + Math.sin(a) * r }) : { x: p.spot.x + Math.cos(a) * r, y: p.spot.y + Math.sin(a) * r };
           const from = here, d = Math.hypot(to.x - from.x, to.y - from.y), dur = Math.min(d / sp, Math.max(1, tLeave - t), 9), h = face(from, to);
           const end = lerp(from, to, clamp(dur * sp / Math.max(d, 1e-6))), t0 = t;
           add({ t0, clip: "search", mode: "loop", at: (v) => lerp(from, end, clamp((v - t0) / dur)), head: () => h });
@@ -116,6 +268,14 @@
     t = walkTo(ring, Math.max(t, tLeave));
     const atFire = face(ring, fire);
     add({ t0: t, clip: "idle", mode: "pp", ...still(ring, atFire) });
+    if (V2 && lighterOf(P) === n) {  // v2 (本人「火をつけるところから」): 火をおこす人は、帰ったら火のそばにしゃがんで火をおこし、輪にもどる
+      const side = lerp(fire, ring, 0.95 / Math.max(0.1, Math.hypot(ring.x - fire.x, ring.y - fire.y)));
+      const t1 = walkTo(side, Math.max(t + 0.3, seg.eve.v0 - 5));
+      add({ t0: t1, clip: "probe", mode: "pp", rate: 0.8, ...still(side, face(side, fire)) });
+      M.fireAt.set(P, t1 + 1.2);
+      t = walkTo(ring, t1 + 4.5);
+      add({ t0: t, clip: "idle", mode: "pp", ...still(ring, atFire) });
+    }
     // 夕方: 話す人は話し、ほかの人は話す人を向く。分ける人は相手を向いて手渡し、もらった人はそのあと食べる
     const eve = seg.eve, N = P.eve.length || 1, h = eve.sec / N;
     let eating = false, last = "";
@@ -265,11 +425,7 @@
     if (M.growG) M.scene.remove(M.growG);
     const g = M.growG = new THREE.Group(), K = M.K, D = M.D, fire = { x: D.camp.x + 0.5, y: D.camp.y + 0.5 };
     const trunkM = new THREE.MeshLambertMaterial({ color: 0x6b4a2e }), leafM = new THREE.MeshLambertMaterial({ color: 0x4a8a3e }), fruitM = new THREE.MeshLambertMaterial({ color: 0xb8322a });
-    const trees = (D.grow || []).filter((e) => e.day <= P.day && /木の実の木が育った/.test(e.text)).slice(-40);
-    trees.forEach((e, k) => {  // 殻を捨てた所 (キャンプの東) と、種をまいた所 (キャンプの南) に、ひまわりの並びで
-      const dump = /殻を捨てた/.test(e.text), c = dump ? { x: fire.x + 2.5, y: fire.y - 7.5 } : { x: fire.x - 8.0, y: fire.y + 0.5 };  // カメラ (南東の上) から見て、キャンプの奥 (北と西) に
-      const j = trees.filter((x, i) => i < k && /殻を捨てた/.test(x.text) === dump).length, a = j * 2.39996, r = 0.9 * Math.sqrt(j + 0.5);
-      const pt = { x: c.x + Math.cos(a) * r, y: c.y + Math.sin(a) * r }, sz = 0.8 * (0.25 + 0.75 * clamp((P.day - e.day + 1) / 30));
+    groveList(P).forEach(({ pt, sz, k }) => {  // 殻を捨てた所と、種をまいた所に、ひまわりの並びで (groveList)
       const o = new THREE.Group(); o.position.copy(M.w2t(pt.x, pt.y)); o.scale.setScalar(sz);
       const tr = new THREE.Mesh(new THREE.CylinderGeometry(0.05 * K, 0.08 * K, 1.1 * K, 6), trunkM); tr.position.y = 0.55 * K; o.add(tr);
       const lf = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5 * K, 0), leafM); lf.position.y = 1.35 * K; o.add(lf);
@@ -481,7 +637,8 @@
       return Object.keys(got);
     },
     init(ctx) {  // Replay3D.setPeople から呼ばれる
-      M = { ...ctx, people: {}, opts2: this.opts, plants: new Map(), plantG: null, plantP: null };
+      M = { ...ctx, people: {}, opts2: this.opts, plants: new Map(), plantG: null, plantP: null, lighter: new Map(), fireAt: new Map(), bundles: {},
+        kin: Object.fromEntries((ctx.D.people || []).map((q) => [q.name, { born: q.born_day, mother: q.mother }])) };
       if (this.opts.noPlants) { const pm = ctx.scene.getObjectByName("plants"); if (pm) pm.visible = false; }
       for (const n in this.loaded || {}) {
         if (!ctx.figs[n]) continue;
@@ -533,7 +690,9 @@
         const b = L.el.querySelector(".b");
         if (b && o.bubbleFont) { b.style.fontSize = o.bubbleFont + "px"; b.style.maxWidth = "13em"; }
         const bw = L.el.offsetWidth || 0, xc = bw && bw < pn.w - 8 ? Math.min(pn.x + pn.w - bw / 2 - 4, Math.max(pn.x + bw / 2 + 4, x)) : x;  // 吹き出しは組の画面の中に
-        L.el.style.transform = `translate(${xc}px, ${y}px) translate(-50%, -100%)`;
+        // v2 (2026-11-25 本人「吹き出しが見切れている」): 吹き出しの上が画面の上からはみ出すときは、はみ出さない所まで下げる
+        const bh = o.v2 ? L.el.offsetHeight || 0 : 0, yc = bh && y - bh < pn.y + 8 ? pn.y + 8 + bh : y;
+        L.el.style.transform = `translate(${xc}px, ${yc}px) translate(-50%, -100%)`;
         if (b) b.style.opacity = M.fade && M.fade[m] != null ? String(Math.max(0, M.fade[m])) : "";
       }
       // 組の名前・色の縁 (DOM)
@@ -577,7 +736,7 @@
       if (!sched.has(P)) sched.set(P, Object.fromEntries(Object.keys(M.people).filter((n) => P.plan[n]).map((n) => [n, planFor(P, M.D, n)])));
       const all = sched.get(P);
       if (this.opts.v2 && M.world && M.world.hut) hutGrowth(P, v);
-      if (this.opts.v2) { animalsFrame(P, v); growFrame(P); }
+      if (this.opts.v2) { animalsFrame(P, v); growFrame(P); if (this.opts.fireNightly) fireFrame(P, v); }
       if (M.plantP !== P) {  // v2: その日の採集の植物を置きかえる
         if (M.plantG) M.scene.remove(M.plantG);
         M.plantG = null; M.plantP = P;
@@ -586,7 +745,7 @@
       }
       for (const n in M.people) {
         const R = M.people[n], E = all[n], fig = M.figs[n];
-        R.root.visible = !!(E && P.plan[n].alive);
+        R.root.visible = !!(E && P.plan[n].alive) && !isBaby(P, n);
         if (!R.root.visible) continue;
         let j = 0; while (j + 1 < E.length && E[j + 1].t0 <= v) j++;
         if (E[j].hide) { R.root.visible = false; if (M.labels[n]) M.labels[n].pos = M.w2t(E[j].at(v).x, E[j].at(v).y).add(new THREE.Vector3(0, 1.9 * M.K, 0)); continue; }  // 住まいの中
@@ -607,6 +766,7 @@
         fig.position.copy(R.root.position); fig.rotation.y = hd;
         if (R.head && M.labels[n]) M.labels[n].pos = R.head.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 0.32 * M.K, 0));
       }
+      if (this.opts.v2) babiesFrame(P);
     },
   };
 })();

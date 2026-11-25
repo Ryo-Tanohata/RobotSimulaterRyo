@@ -1297,7 +1297,11 @@ def main():
     ap.add_argument("--samples", type=int, default=96)
     ap.add_argument("--only", default="", help="sheet,face,expr,lineup,guide をカンマで (none なら書き出しだけ)")
     ap.add_argument("--no-tie", action="store_true")
+    ap.add_argument("--config", default="", help="2026-11-25: 記録から自動で作った人の設定 (auto_people.py の出力 json)。VROID に足してから --person で選ぶ")
     args = ap.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:])
+    if args.config:
+        import json
+        VROID.update(json.load(open(args.config, encoding="utf-8"))["configs"])
     P = VROID[args.person]
     H = P["hair"]
     t0 = time.time()
