@@ -1,0 +1,39 @@
+{"say": [{"to": "みんな", "text": "秋の畑はまくだけでは育たないよ。うちの家は千つかみずつまいて、冬まで草取りに手を貸すからね。"}, {"to": "リセ163", "text": "遠くからよく来たね。冬の前に、住まいと畑のことを教えてあげよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど実りが増える。疲れているから、遠くへ出ずにキャンプで働く"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ163": true, "タユ163": true, "ヒセ163": true},
+ "family": {
+  "ケナ101": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをしっかりするため"},
+  "ユエ112": {"activity": "畑仕事", "place": "camp", "why": "子のそばにいながら草取りができる"},
+  "ラニ116": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っている。悪い年にも畑を守るため"},
+  "ネイ118": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りの手を増やすため"},
+  "ネイ120": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプのそばで働く"},
+  "トナ121": {"activity": "水の道を掘る", "place": "camp", "why": "泥でうまる前に水の道を手入れするため"},
+  "ロワ123": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひけば、水の道や輪の直しがはかどる"},
+  "ユエ126": {"activity": "畑仕事", "place": "camp", "why": "畑の実りを増やすため"},
+  "ムイ129": {"activity": "水の輪を直す", "place": "camp", "why": "止まった輪の直しが残っているから"},
+  "ハソ132": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので草取りを手伝う"},
+  "シエ145": {"activity": "畑仕事", "place": "camp", "why": "大人と一緒に草取りを覚えるため"}
+ },
+ "keep": false,
+ "judge": {"M616": "ゆるす", "M617": "ゆるす", "M618": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1454": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": null, "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "よそから来た人は、南の村から川にそって歩いて来ることがある", "because": [7786138], "confidence": 0.6},
+  {"op": "add", "text": "刈った量を字で書いておいても、刈り入れのもめごとは起きる。少しの量ならゆるし合うのがよい", "because": [7786135, 7786136], "confidence": 0.6}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L1254", "against": "水の道を掘る人が多いと草取りの手が減る", "agree": true, "reason": "千つかみまいて草取りをし、水の道も守れば悪い年に強い"},
+  {"id": "L1257", "against": "字を書く手間がかかる", "agree": true, "reason": "書いておけば、もめごとが小さくすむ"},
+  {"id": "L1261", "against": "板を使いすぎると倉の板が減る", "agree": true, "reason": "水の道の手入れがたくさん残っているから"},
+  {"id": "L1263", "against": "ヤギが減りすぎるかもしれない", "agree": true, "reason": "草で養える数をこえるとやせていなくなるから、干し肉にしたほうがよい"},
+  {"id": "L1267", "against": "燃える石が減る", "agree": true, "reason": "小さい子が病で亡くなるのを少しでも防ぎたい"},
+  {"id": "L1272", "against": "水をわかすのに手間がかかる", "agree": true, "reason": "わかした水と薬で子の病を防げる"},
+  {"id": "L1273", "against": "冬の手が畑から離れる", "agree": true, "reason": "止まった輪を直せば水の来る畑が増える"}
+ ],
+ "feeling": "疲れてはいるけれど、畑と子どもたちを守れるなら、まだ働ける。"}

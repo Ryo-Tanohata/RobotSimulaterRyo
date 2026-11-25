@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "うちの倉の燃える石で、町の頼み112を受けるよ。薬の包みが届いたら、小さい子のいる家で分け合おう。"}, {"to": "アコ114", "text": "季節のはじめに知らせ板へ、薬のことを書いておいてくれないか。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをして、次の夏の実りを守りたいから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"リセ163": true},
+ "family": {"アコ114": {"activity": "畑仕事", "place": "camp", "why": "知らせを書いたあと、草取りで畑を守る"}, "キサ123": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑は悪い年でも実るから、手入れを進める"}, "ホタ124": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りの手を増やす"}, "オネ127": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"}, "キオ135": {"activity": "かまどを作りかえる", "place": "camp", "why": "家の倉に燃える石が多いので、石のかまどにしてまき集めを減らす"}, "ナセ136": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "キサ138": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプの近くで働く"}, "ラニ139": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプの近くで働く"}}, "keep": true,
+ "judge": {"M616": "ゆるす", "M617": "ゆるす", "M618": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1454": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "キオ88の家は頼み112を倉の石で受ける。子の薬の余りは小さい子の家へ回すので声をかけて", "order": null, "take": {"頼み": 112, "人": ["ワユ101"]},
+ "knowledge": [{"op": "add", "text": "ヤギは今 107 頭で、草で養える数より少ない。メスばかりなので、よそのヤギを少し受けてもよい", "because": [7786143], "confidence": 0.7}, {"op": "add", "text": "この前の季節も、刈り手が足りず、畑の草の種がたくさん落ちた", "because": [7786108, 7786116], "confidence": 0.8}],
+ "proposal": {"text": "小さい子のいる家は、倉の燃える石で町の頼みを受けて子の薬をそろえ、秋はみな千つかみまいて冬まで草取りをしよう。", "because": [7786127], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1262", "against": "今はヤギが草で養える数より少ない", "agree": false, "reason": "ヤギは 107 頭で、つぶすよりふやしたいから"},
+  {"id": "L1263", "against": "今はこえていないので、当てはまらない", "agree": true, "reason": "こえたときに干し肉にするのはむだがない"},
+  {"id": "L1264", "against": "燃える石の少ない家には重い", "agree": true, "reason": "子の薬と畑の草取りはどちらも大事"},
+  {"id": "L1265", "against": "倉の石が減る", "agree": true, "reason": "小さい子を病から守りたい"},
+  {"id": "L1266", "against": "読める人の手間がかかる", "agree": true, "reason": "手当てのやり方が広まれば子が助かる"},
+  {"id": "L1267", "against": "石のない家は受けられない", "agree": true, "reason": "薬の余りを回すのはよいこと"},
+  {"id": "L1268", "against": "今はヤギが少ない", "agree": true, "reason": "夏のはじめに薬をそろえるのは早くてよい"},
+  {"id": "L1269", "against": "今はヤギが少ないのに毎季節つぶすことになる", "agree": true, "reason": "こえているあいだだけなので、かまわない"},
+  {"id": "L1270", "against": "とくにない", "agree": true, "reason": "140 頭をこえたときの決まりとしてわかりやすい"},
+  {"id": "L1271", "against": "とくにない", "agree": true, "reason": "薬と刈り入れの両方を守れる"},
+  {"id": "L1272", "against": "とくにない", "agree": true, "reason": "わかした水と薬で小さい子を守りたい"},
+  {"id": "L1273", "against": "板を使いすぎるかもしれない", "agree": true, "reason": "水の輪の直しと子の薬、どちらも大事"}
+ ],
+ "feeling": "去年うちの子をなくしたから、今年こそ薬を早くそろえたい。"}

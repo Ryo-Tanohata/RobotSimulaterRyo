@@ -1,0 +1,25 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。千つかみをまいて、手のあく人は畑の草取りと水の道の泥かきをしよう。わたしも道を掘りに行くよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "畑がまだないので、泥でうまりかけた水の道の手入れを手伝う。蓄えは十分ある"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ163": true},
+ "family": {
+  "オネ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているので手伝う"},
+  "ネイ114": {"activity": "水の道を掘る", "place": "camp", "why": "水の道を守って次の夏の実りを守る"},
+  "ロワ127": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で泥を掘る"},
+  "ロワ129": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で泥を掘る"},
+  "キオ131": {"activity": "水の作業場で働く", "place": "M6", "why": "板を作って手入れを早くはかどらせる"},
+  "ホタ136": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす"},
+  "ムイ136": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで実りを増やす (小さい子もいるので近くで働く)"},
+  "ラニ145": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M616": "ゆるす", "M617": "ゆるす", "M618": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1454": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみをまき、秋から春まで草取りをして、水の道の手入れをすると、次の夏の実りが守られる。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1254", "against": "", "agree": true, "reason": "千つかみをまいて草取りと水の道の手入れをするのは、畑を守るよい決まりだから"},
+  {"id": "L1250", "against": "", "agree": true, "reason": "少しの量のもめごとはゆるし合い、秋は千つかみまくのがよいから"},
+  {"id": "L1259", "against": "", "agree": true, "reason": "ヤギが多すぎるときは、よその村のヤギを受けないほうがよいから"}
+ ],
+ "feeling": "蓄えがたっぷりあって安心。みんなで畑と水の道を守りたい。"}

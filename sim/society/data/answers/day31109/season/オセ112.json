@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "わしは秋のあいだ狩りに出る。大きな獲物を持ち帰るから、楽しみにしておきな。"}],
+ "job": {"activity": "狩り", "place": "北草原28", "with": [], "why": "狩りの腕には自信がある。秋のうちに肉をとって家の食べ物を増やしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {},
+ "family": {
+  "キサ112": {"activity": "採集", "place": "西草原12", "why": "近くで木の実と草の種を集めて、家の食べ物の足しにする"},
+  "テナ113": {"activity": "採集", "place": "東林12", "why": "小さい子がいるので、近い林で食べ物を集める"},
+  "セヤ119": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく仕事は、村の手入れを助けて家の板にもなる"},
+  "ソナ120": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひく仕事に加わり、水の道や輪の直しを進める"},
+  "テナ121": {"activity": "狩り", "place": "北草原28", "why": "わしと組んで肉をとる"},
+  "ハソ141": {"activity": "採集", "place": "北林12", "why": "狩りはまだ未熟なので、近くの林で採集して腕をみがく"},
+  "ルタ144": {"activity": "畑仕事", "place": "camp", "why": "子でもできる草取りで家の役に立つ"}
+ },
+ "keep": false,
+ "judge": {"M616": "ゆるす", "M617": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまくと、次の夏に刈れる。畑の草取りは秋から春まで必要だ", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は少し疲れているが、狩りに出るのが楽しみだ。"}

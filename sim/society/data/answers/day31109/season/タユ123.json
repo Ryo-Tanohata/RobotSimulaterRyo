@@ -1,0 +1,41 @@
+{"say": [{"to": "みんな", "text": "去年は刈る手が足りず、たくさんの種が落ちた。秋は千つかみまいて草取りを欠かさず、手のあく者は水の道へ出よう。わたしは鎌をこしらえて、夏の刈り手をふやすよ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具はわたしの得意。去年は刈る手と鎌が足りず種が落ちたので、夏までに石の鎌をふやしておく"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ163": true},
+ "family": {
+  "タユ128": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っている。泥でうまる前に家から一人出す"},
+  "オネ129": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、来年の夏の実りをふやす"},
+  "ラニ131": {"activity": "畑仕事", "place": "camp", "why": "草取りの手がいるので畑を守る"},
+  "ケセ131": {"activity": "畑仕事", "place": "camp", "why": "採集より畑の草取りのほうが村のためになる"},
+  "ハソ145": {"activity": "畑仕事", "place": "camp", "why": "13 歳なので大人を手伝って草取りを覚える"}
+ },
+ "keep": true,
+ "judge": {"M616": "ゆるす", "M617": "ゆるす", "M618": "つぐなう"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "タユ123の家は倉の石で頼み112を受ける。子の薬の余りは小さい子の家へ回すので声を",
+ "order": null,
+ "take": {"頼み": 112, "人": ["タユ123"]},
+ "knowledge": [
+  {"op": "add", "text": "去年は刈る手が足りず約30万つかみの草の種が落ちた。夏までに鎌と刈り手をふやしたい", "because": [7786108, 7786118], "confidence": 0.8},
+  {"op": "add", "text": "南の村から リセ163・タユ163・ヒセ163 が来た。若い働き手が増えるのはよい", "because": [7786131], "confidence": 0.9},
+  {"op": "add", "text": "村のヤギは107頭で、草で養える約140頭より少ない。いまはつぶさなくてよい", "because": [], "confidence": 0.8}
+ ],
+ "proposal": {"text": "夏の刈り入れの前に、道具の得意な者は秋と冬に石の鎌をこしらえ、刈る手の足りない家へ回そう。種を落とさずに刈りきるため。", "because": [7786108, 7786109], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1260", "against": "", "agree": true, "reason": "わたしの出した案。まくことと薬を回すことは子と村を守る"},
+  {"id": "L1261", "against": "", "agree": true, "reason": "水の道の手入れが多く残っているので家ごとに一人出すのはよい"},
+  {"id": "L1262", "against": "いまヤギは107頭で草の数をこえていない", "agree": true, "reason": "こえた年だけの決まりなので困らない"},
+  {"id": "L1263", "against": "", "agree": true, "reason": "こえたときだけつぶすのは筋がとおる"},
+  {"id": "L1264", "against": "", "agree": true, "reason": "薬を小さい子の家へ先に回すのはよい"},
+  {"id": "L1265", "against": "", "agree": true, "reason": "小さい子のいる家が先に薬をもらうのはよい"},
+  {"id": "L1266", "against": "", "agree": true, "reason": "読めない家にも手当てのやり方が伝わる"},
+  {"id": "L1267", "against": "", "agree": true, "reason": "わたしの考えと同じ"},
+  {"id": "L1268", "against": "", "agree": true, "reason": "夏のはじめに薬をそろえるのは早くてよい"},
+  {"id": "L1269", "against": "ヤギが少ないのに毎季節つぶすと減りすぎるかもしれない", "agree": true, "reason": "こえているあいだだけなのでよい。刈りきるのが大事"},
+  {"id": "L1270", "against": "", "agree": true, "reason": "草の数をこえないようにするのはよい"},
+  {"id": "L1271", "against": "", "agree": true, "reason": "わたしの出した案。刈りきることが大事"},
+  {"id": "L1272", "against": "", "agree": true, "reason": "わかした水は小さい子を守る"},
+  {"id": "L1273", "against": "", "agree": true, "reason": "水の輪の直しも薬回しも村のため"}
+ ],
+ "feeling": "体は疲れているが、手はまだ動く。鎌をこしらえて夏に備えたい"}

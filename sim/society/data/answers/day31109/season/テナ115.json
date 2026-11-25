@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、秋のうちにしっかり種をまいて、来年の夏も安心して迎えようね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りを守れば、夏の実りが増えて村の蓄えが続くから。"},
+ "sow": 800, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラキ118": {"activity": "畑仕事", "place": "camp", "why": "採集が得意なので、畑の草取りで実りを守ってもらう。"},
+  "タユ119": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプで働ける畑仕事がよい。"},
+  "キオ122": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、家の子に字を教えてもらう。"},
+  "ネイ123": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やす。"},
+  "ケナ126": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝って実りを増やす。"},
+  "キオ138": {"activity": "狩り", "place": "北草原45", "why": "狩りの腕が少しあるので、肉を持ち帰ってもらう。"}
+ },
+ "keep": false,
+ "judge": {"M616": "ゆるす", "M617": "ゆるす", "M618": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまくと、次の夏に実る。冬と春の草取りで実りが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。秋の畑仕事をしっかりやろうと思う。"}

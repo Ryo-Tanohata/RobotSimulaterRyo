@@ -1,0 +1,43 @@
+{"say": [{"to": "みんな", "text": "秋だ、みんなで千つかみずつまいて、冬までしっかり草を取ろう。うちは家の燃える石で町の頼みを受けて、小さい子の薬をもらってくるよ。"}, {"to": "リセ163", "text": "遠い南の村からよく来たね。うちの村で一緒に暮らそう。困ったことがあったら、いつでも声をかけておくれ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "蓄えの草の種が虫やネズミにやられて傷んだから、ふたのできる土器をもっと作って守りたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"リセ163": true},
+ "family": {
+  "セヤ103": {"activity": "畑仕事", "place": "camp", "why": "千つかみまいた畑の草取りをして、次の夏の実りを増やす"},
+  "ケセ108": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをしながら、知らせ板と頼み書きを読んで家に伝える"},
+  "ワユ110": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "ホミ112": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "ユエ113": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているので、泥でうまる前に掘る"},
+  "ハソ114": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "ラキ120": {"activity": "燃える石を掘る", "place": "北丘12", "why": "町の頼みに家の燃える石を出すので、その分を掘って倉に足す"},
+  "セオ123": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 の帳面番を続けて、板をひく"},
+  "ルタ123": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"},
+  "テナ140": {"activity": "字を教える", "place": "camp", "why": "家の大きい子に字を教えて、読める人を増やす"},
+  "ワユ142": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"},
+  "ケセ145": {"activity": "畑仕事", "place": "camp", "why": "大人と一緒に草取りを覚える"}
+ },
+ "keep": false,
+ "judge": {"M616": "ゆるす", "M617": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1454": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋はみな千つかみまいて冬まで草取りを。土器にふたをして蓄えを虫とネズミから守ろう",
+ "order": null,
+ "take": {"頼み": 111, "人": ["オセ86"]},
+ "knowledge": [
+  {"op": "add", "text": "蓄えの草の種が虫やネズミで約27万つかみ傷んだ。土器に入れておくと傷みがずっと少ない", "because": [7786132], "confidence": 0.8},
+  {"op": "add", "text": "村のヤギはいま107頭でみなメス。草で養える140頭ほどより少ないので、よその村のヤギを少し受けてよい", "because": [7786143], "confidence": 0.8}
+ ],
+ "proposal": {"text": "蓄えの草の種は、ふたをした土器に入れて虫とネズミから守ろう。土器の得意な大人は秋と冬に土器を作り、手のあく大人は冬まで草取りをしよう。", "because": [7786132], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1264", "against": "", "agree": true, "reason": "わたしの出した掟で、子の薬と畑の両方を守れる"},
+  {"id": "L1265", "against": "", "agree": true, "reason": "小さい子の薬を先に回すのは大事"},
+  {"id": "L1266", "against": "", "agree": true, "reason": "手当てのやり方を読めない家にも伝えたい"},
+  {"id": "L1267", "against": "", "agree": true, "reason": "薬と草取りの両方を進められる"},
+  {"id": "L1261", "against": "", "agree": true, "reason": "水の道の手入れがたくさん残っている"},
+  {"id": "L1273", "against": "", "agree": true, "reason": "止まった輪の直しと子の薬の両方が大事"},
+  {"id": "L1257", "against": "", "agree": true, "reason": "小さなもめごとはゆるし合って仲よく暮らしたい"},
+  {"id": "L1270", "against": "今はヤギが107頭で140頭より少ない", "agree": true, "reason": "こえたときだけの決まりなので、今は困らない"}
+ ],
+ "feeling": "家族みんな元気で、秋の畑も楽しみだ。小さい子の薬をそろえて、冬を安心して迎えたい"}
