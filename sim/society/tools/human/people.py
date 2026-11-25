@@ -326,6 +326,55 @@ VROID["sona85"] = {
                        "surprise": {"Fcl_BRW_Surprised": 1.0, "Fcl_EYE_Surprised": 0.85, "Fcl_MTH_O": 0.55}}},
 }
 
+# ---------------------------------------------------------------- G1 からの村の人 (動画 G1F2V・G1F3V。2026-11-25 本人「あと 3 本」)
+# よそから来た二人 (629 日目、ナギの家)。記録: ナギ (女・来た日 32 歳)・ソル (男・来た日 22 歳)。五人とちがう顔・髪の組み合わせにする
+# (同じ動画に出る セナ・タヒ・ウィロ とは、顔のもと・髪の色・結い方で分ける)
+VROID["nagi"] = {
+    "name": "nagi",
+    "label": "ナギ (女・629日目に来た日 32歳)",
+    "body_src": HS_F,
+    "face_src": VICT,   # 顔: Victoria Rubin (セナ=篠・ウィロ=HairSample_Female とちがう顔)
+    "skin": {"tan": "#a8765a", "sss": 0.15, "rough": 0.5, "blush": "#c0605a", "blush_alpha": 0.2},
+    # 髪: Victoria Rubin の髪をこげ茶にして、うなじで低く結ぶ
+    "hair": {"parts": [{"src": VICT, "part": "Hair001", "drop": ["HAIR_03"], "drop_parts": [{"x_lt": -0.11}, {"x_lt": -0.09, "z_gt": 0.085}]},
+                       {"src": VICT, "part": "HairBack"}],
+             "style": "tie",
+             "dark": "#1a0f0a", "light": "#4a2e1e", "ramp_lo": 0.4, "rough": 0.5,
+             "tie_z": 1.30, "gather_from": 1.385, "tail_width": 0.026,
+             "front_from": 1.37, "front_keep": 0.6, "tie_color": "#5a3b26"},
+    "lines": {"brow": "#2a1810", "eyeline": "#2c1612", "lash": "#24120f"},
+    "iris": {"hue": 0.0, "sat": 0.6, "val": 0.9, "tint": "#7a5640", "highlight": 0.75},
+    "body": {"shoulder": 0.006, "hips": 0.03, "waist": 0.06,
+             "limbs": {"UpperArm": 0.05, "LowerArm": 0.04, "UpperLeg": 0.04, "LowerLeg": 0.03}},
+    "scale": 0.98,
+    "face": {"round": 0.0},
+    # 落ちついた顔 (来たばかりで少し用心深い)
+    "expr": {"Fcl_MTH_Fun": 0.25, "Fcl_EYE_Joy": 0.06, "Fcl_BRW_Sorrow": 0.12},
+    "outfit": {"color": "#161514", "top": (1.115, 1.235), "shorts": (0.805, 0.975)},
+}
+VROID["sol"] = {
+    "name": "sol",
+    "label": "ソル (男・629日目に来た日 22歳)",
+    "body_src": HS_M,
+    "face_src": HS_M,   # 切れ長の目の顔 (ルオと同じ顔のもと。ルオは 84 日目に亡くなり、同じ動画には出ない)
+    "skin": {"tan": "#93603f", "sss": 0.14, "rough": 0.52, "fill_dark": 0.6,
+             "blush": "#a8503e", "blush_alpha": 0.08},
+    # 髪: 桜田 フミリヤの短い髪を黒に
+    "hair": {"parts": [{"src": FUMI, "part": "Hair001"}, {"src": FUMI, "part": "HairBack"}],
+             "style": "keep",
+             "dark": "#070505", "light": "#241a14", "ramp_lo": 0.2, "rough": 0.5},
+    "lines": {"brow": "#1c120d", "eyeline": "#24120e", "lash": "#1e100c"},
+    "iris": {"hue": 0.0, "sat": 0.2, "val": 0.85, "tint": "#6a4a36", "highlight": 0.6},
+    # 若い働き手: 肩と腕に少し筋肉
+    "body": {"shoulder": 0.01, "hips": -0.02, "waist": -0.04, "chest": 0.04,
+             "limbs": {"UpperArm": 0.06, "LowerArm": 0.05, "UpperLeg": 0.02, "LowerLeg": 0.02}},
+    "scale": 0.99,
+    "face": {"round": -0.02, "brow_thick": 1.2},
+    # 明るく人なつこい顔
+    "expr": {"Fcl_MTH_Fun": 0.45, "Fcl_EYE_Joy": 0.15, "Fcl_BRW_Fun": 0.3},
+    "outfit": SHORTS,
+}
+
 # 並べる順 (本人の絵と同じ、左から)
 LINEUP = ["ruo", "sena", "tahi", "wiro", "isa"]
 

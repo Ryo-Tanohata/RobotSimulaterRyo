@@ -33,7 +33,8 @@ import struct
 
 import numpy as np
 
-FILES = {"ルオ": "ruo", "セナ": "sena", "タヒ": "tahi", "ウィロ": "wiro", "イサ": "isa"}
+FILES = {"ルオ": "ruo", "セナ": "sena", "タヒ": "tahi", "ウィロ": "wiro", "イサ": "isa",
+         "ナギ": "nagi", "ソル": "sol"}  # ナギ・ソル: 2026-11-25 (G1 からの村の人。動画 G1F2V・G1F3V)
 FPS_IN, STEP = 120, 4          # BVH は 120 コマ/秒。4 コマごとに取って 30 コマ/秒
 FPS = FPS_IN / STEP
 
@@ -451,6 +452,7 @@ def main():
         if cid not in bvhs: bvhs[cid] = BVH(os.path.join(args.bvh, f"{int(cid.split('_')[0]):03d}", cid + ".bvh"))
     for name, f in FILES.items():
         if args.only and f not in args.only.split(","): continue
+        if not os.path.exists(os.path.join(args.src, f + "_vroid.glb")): continue  # まだ作っていない人は飛ばす
         print(f"{name} ({f})", flush=True)
         build_person(f, args, clips, bvhs)
 

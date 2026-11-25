@@ -267,7 +267,8 @@
     // 読む: base は glb と json のある場所 (例 "people/")。読めた人の名前を返す
     async load(base) {
       const got = {};
-      for (const [n, f] of Object.entries(FILES)) {
+      // opts.files (2026-11-25、G1F2V から): 五人のほかの人 {名前: ファイル名}。ないときは五人だけ (前と同じ)
+      for (const [n, f] of Object.entries({ ...FILES, ...(this.opts.files || {}) })) {
         const [g, info] = await Promise.all([loadGlb(base + f + ".glb"), fetch(base + f + ".json").then((r) => r.json())]);
         g.scene.traverse((o) => {
           if (!o.isMesh) return;

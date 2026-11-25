@@ -11,6 +11,7 @@
 #   12 コマ/秒で撮って、コマを重ねて 24 コマ/秒にする。カメラは五人にもっと寄る。クラウドでは:  GPU= PY=python3 CHROME=<chromium> LIBS=/tmp/libs3 bash render_all.sh D1V
 # S1V (2026-11-25 本人「society1.0 からの棒人間を、写実の様式化をしたキャラクターに置き換えたい」「まずは 1 つ」): S1 と同じナレーションと声と撮る日で、
 #   D1V と同じしかけ (VRoid の CC0 サンプルの五人をクラウドの CPU で) で撮る。Society 1.0 (8〜489 日目) にいたのは五人だけ
+# G1F1V・G1F2V・G1F3V (2026-11-25 本人「あと 3 本」): G1 の F の 3 本を同じしかけで。よそから来たナギ・ソル (629 日目) は people.py の VROID で作る
 # 絵コンテ (2026-11-23 本人の決め「まず動画を作る時に絵コンテを作る」): 動画は 1. 絵コンテ → 本人が見る → 2. 本番。
 #   bash render_all.sh --storyboard D1V  → out/storyboard_D1V.html (絵つき。git に入れない) と storyboards/storyboard_D1V.json (git に入れる)
 # 本人の PC (Windows・Git Bash・GPU) 用:  bash sim/society/video/render_all.sh   (PY は既定で py)
@@ -41,21 +42,25 @@ ITEMS=(G1:510,600,629,659,990,1019,1229 G1F1:509,510,600 G1F2:629,630,631 G1F3:6
        G8b:12479,12509,12599
        S3P34:27000,27059,27360,27839,27870,28079
        D1:1 D1P:1 D1V:1
-       S1V:8,32,84,153,285,489)
+       S1V:8,32,84,153,285,489
+       G1F1V:509,510,600 G1F2V:629,630,631 G1F3V:659,660,779)
 # 小さなデータで撮る動画 (2026-11-22): ページには、撮る日に要る分だけの app_data.json を配る (make_video.mjs の SLIM=1。data/ には書かない)。
 # 前からある動画は、前と同じく全部のデータで撮る
-SLIM_ITEMS=" D1 D1P D1V S1V "
+SLIM_ITEMS=" D1 D1P D1V S1V G1F1V G1F2V G1F3V "
 # 人のモデルで撮る動画と、ナレーションと声を借りる動画 (2026-11-23)
-PEOPLE_ITEMS=" D1P D1V S1V "
-src_of() { case "$1" in D1P|D1V) echo D1 ;; S1V) echo S1 ;; *) echo "$1" ;; esac; }
+PEOPLE_ITEMS=" D1P D1V S1V G1F1V G1F2V G1F3V "
+src_of() { case "$1" in D1P|D1V) echo D1 ;; S1V) echo S1 ;; G1F1V|G1F2V|G1F3V) echo "${1%V}" ;; *) echo "$1" ;; esac; }
 # 動画ごとの撮り方の違い (env で make_video.mjs に渡す)。D1V: クラウドの CPU 向け (12 コマ/秒・毎フレームの描画を止める・区間の前を進めておく・五人に寄る・モデルのクレジット)
 opts_of() { case "$1" in
   D1V|S1V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=${PEOPLE_DIR_D1V:-/dev/shm/people_glb} PEOPLE_VIEW=$D1V_VIEW HIDE_TOASTS=1" ;;
+  G1F1V|G1F2V|G1F3V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=${PEOPLE_DIR_D1V:-/dev/shm/people_glb} PEOPLE_VIEW=$G1V_VIEW HIDE_TOASTS=1" ;;
   *) echo "" ;; esac; }
 D1V_CAM='{"min":4.5,"add":2.5,"k":1.6,"max":40}'
 # D1V の見せ方 (2026-11-23 本人の絵コンテの直し): 赤い玉 (木の実・芋) を隠す・昼は組ごとに画面を分ける・火のまわりは引いて上から。
 # 出来事の帯は出さず、した人の頭の上に短い吹き出し (本人の選んだ案 C)
 D1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true}'
+# G1 の F (2026-11-25): D1V と同じ見せ方に、よそから来たナギ・ソルのモデルを足す (replay3d_people.js の opts.files)
+G1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true,"files":{"ナギ":"nagi","ソル":"sol"}}'
 D1V_CREDIT="VRoid の CC0 サンプル (pixiv) をもとに作成"
 STORY=
 [ "${1:-}" = "--storyboard" ] && { STORY=1; shift; }
@@ -79,7 +84,7 @@ render_one() {
   local t0=$(date +%s)
   local slim=; case "$SLIM_ITEMS" in *" $name "*) slim=1 ;; esac
   local src=$(src_of "$name") people=; case "$PEOPLE_ITEMS" in *" $name "*) people=${PEOPLE_DIR:-../../../../human-model/people_glb} ;; esac
-  local cam= credit= vf=; case "$name" in D1V|S1V) ;; *) false ;; esac && { cam=$D1V_CAM credit=$D1V_CREDIT vf="-vf fps=24"; }
+  local cam= credit= vf=; case "$name" in D1V|S1V|G1F1V|G1F2V|G1F3V) ;; *) false ;; esac && { cam=$D1V_CAM credit=$D1V_CREDIT vf="-vf fps=24"; }
   if [ -n "$STORY" ]; then  # 絵コンテだけ
     env SLIM=$slim PEOPLE=$people DAYS=$days PEOPLE_CAM="$cam" PEOPLE_CREDIT="$credit" $(opts_of "$name") node storyboard.mjs "narration_$src.json" "voice/$src" "out/storyboard_$name" >> "out/storyboard_$name.log" 2>&1 \
       && log "$name: storyboard -> out/storyboard_$name.html" || log "$name: STORYBOARD FAILED"
