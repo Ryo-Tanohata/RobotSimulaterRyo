@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。夏は実った畑をみんなで刈り、秋は千つかみまいて、冬と春は草取りをしよう。ヤギは草が足りないから、肉にして減らそう。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を落とさないよう刈り入れる"}, "family": {"アコ153": {"activity": "畑仕事", "place": "camp", "why": "刈り手が足りないと畑が落ちるので、一緒に刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 80},
+          "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りと手入れをする"}, "family": {"アコ153": {"activity": "畑仕事", "place": "camp", "why": "草取りを手分けする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで次の夏の実りを増やす"}, "family": {"アコ153": {"activity": "畑仕事", "place": "camp", "why": "草取りを手分けする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れの前に草取りを続ける"}, "family": {"アコ153": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M624": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1472": false, "T1473": false, "T1474": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "year_name": "草の種が山ほど実った年",
+ "feeling": "蓄えが多くて安心。雨の夜に外で濡れる人が気がかりだ。"}

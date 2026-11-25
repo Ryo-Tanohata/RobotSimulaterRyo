@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈って、秋に千つかみまいて、冬と春は草取りをするよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"ホタ135": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "タユ149": {"activity": "畑仕事", "place": "camp", "why": "子も畑を手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やす"}, "family": {"ホタ135": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "タユ149": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りで来年の実りを守る"}, "family": {"ホタ135": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "タユ149": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続ける"}, "family": {"ホタ135": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "タユ149": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M624": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1472": false, "T1473": false, "T1474": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草が足りず多すぎるので、ほかの村からヤギをもらわないほうがよい", "because": [8093336], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギがやせた年",
+ "feeling": "蓄えは多い。変わらず畑を守って働くだけだ。"}
