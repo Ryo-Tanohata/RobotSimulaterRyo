@@ -351,6 +351,15 @@ def slim_materials(j, binary, tex, P=None):
     """拡張をはずし、色を画像に焼きこみ、画像を縮める。新しいバイナリと bufferViews を作り直す"""
     from PIL import Image
     jobs = bake_colors(j, P) if P else {}
+    # 2026-11-25: 服 (革の貫頭衣・帯) は Blender の模様の色を glb に書き出せず白くなるので、設定の色を入れる (sRGB → 線形)
+    D = ((P or {}).get("outfit") or {}).get("dress")
+    if D:
+        lin = lambda c: [((int(c[i:i + 2], 16) / 255 + 0.055) / 1.055) ** 2.4 if int(c[i:i + 2], 16) / 255 > 0.04045 else int(c[i:i + 2], 16) / 255 / 12.92 for i in (1, 3, 5)] + [1.0]
+        for m in j.get("materials", []):
+            nm = m.get("name", "")
+            if nm.startswith("leather") or nm.startswith("belt"):
+                m.setdefault("pbrMetallicRoughness", {})["baseColorFactor"] = lin(D["color"] if nm.startswith("leather") else D["belt"])
+                m["pbrMetallicRoughness"]["metallicFactor"] = 0.0; m["pbrMetallicRoughness"]["roughnessFactor"] = 0.85
     for m in j.get("materials", []):
         ex = m.get("extensions", {})
         for k in ("KHR_materials_clearcoat", "KHR_materials_sheen", "KHR_materials_specular"): ex.pop(k, None)
@@ -398,6 +407,9 @@ def build_person(fname, args, clips, bvhs):
     import sys
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from people import VROID  # 髪・目・線の色 (build_person_vroid.py と同じ設定)
+    if getattr(args, "config", ""):  # 記録から自動で作った人の設定も
+        import json as _j
+        VROID = {**VROID, **_j.load(open(args.config, encoding="utf-8"))["configs"]}
     out = slim_materials(j, binary, args.tex, VROID.get(fname))
     j["animations"] = []
     info = {}
