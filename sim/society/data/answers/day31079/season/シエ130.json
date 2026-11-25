@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "今年も畑の実りがたっぷりだね。夏は刈り入れ、秋からは草取りで、家族みんなで蓄えを守ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに実った畑を刈らないと落ちてしまうから"}, "family": {"テナ132": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "ヒセ137": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やすため"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "若い力で刈り入れを手伝う"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やすため"}, "family": {"テナ132": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヒセ137": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて実りを守るため"}, "family": {"テナ132": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ヒセ137": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れに向けて草取りを仕上げるため"}, "family": {"テナ132": {"activity": "畑仕事", "place": "camp", "why": "草取りの仕上げ"}, "ヒセ137": {"activity": "畑仕事", "place": "camp", "why": "草取りの仕上げ"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "草取りの仕上げ"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M615": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1453": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りゆたかな畑の年",
+ "feeling": "畑がよく実って心がおだやか。みんなで働いて来年も食べものに困らないようにしたい。"}

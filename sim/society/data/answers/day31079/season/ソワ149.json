@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈って、秋は千つかみまいて、冬まで草取りをしよう。うちの家はそうするよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実が落ちるので、実った畑を刈る"}, "family": {"ネイ149": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れを手伝う"}, "ユエ149": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをして実りを増やす"}, "family": {"ネイ149": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ユエ149": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて、夏の実りを増やす"}, "family": {"ネイ149": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ユエ149": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れまで草取りを続ける"}, "family": {"ネイ149": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ユエ149": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M615": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [],
+ "workshop": [], "post": [], "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を刈り、秋に千つかみまいて、冬と春は草取りをすると、次の夏にまた実る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "草取りの年",
+ "feeling": "家族みんなで畑を守れば食べ物は足りると思う。落ち着いた気持ち。"}
