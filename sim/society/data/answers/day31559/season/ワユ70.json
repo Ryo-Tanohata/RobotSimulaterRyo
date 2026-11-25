@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "わしは手が動くうちは鎌も土器も作る。夏は刈り入れ、秋はよくまいて、冬から春は道具だ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を刈るのが夏の大事な仕事だから"}, "family": {"ホミ76": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がほしい"}, "ヒセ77": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手がほしい"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋の畑まきと草取りのため"}, "family": {"ホミ76": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ヒセ77": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "冬は鎌を作りためて夏に備える"}, "family": {"ホミ76": {"activity": "畑仕事", "place": "camp", "why": "冬のあいだの草取り"}, "ヒセ77": {"activity": "畑仕事", "place": "camp", "why": "冬のあいだの草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は蓄えを守るので増やしたい"}, "family": {"ホミ76": {"activity": "畑仕事", "place": "camp", "why": "畑の世話をする"}, "ヒセ77": {"activity": "畑仕事", "place": "camp", "why": "畑の世話をする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ムイ168": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1480": "村", "T1481": false, "T1482": "村", "T1483": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "year_name": "鎌と土器の年",
+ "feeling": "蓄えは十分だ。手が動くうちは仕事をする。"}

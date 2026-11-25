@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はたくさん実っている。落ちる前に、みんなで刈ってしまおう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを続ける"}, "family": {"ヌオ115": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れに人手が要るので手伝う"}, "ヌオ126": {"activity": "畑仕事", "place": "camp", "why": "小さい子の近くで、キャンプの畑を刈る"}, "アコ150": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝って畑仕事をおぼえる"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の世話と、実の取り入れを続ける"}, "family": {"ヌオ115": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りをふやす"}, "ヌオ126": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りをふやす"}, "アコ150": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬は木の実がないので、草取りで畑の実りを守る"}, "family": {"ヌオ115": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ヌオ126": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "アコ150": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りに向けて草取りを続ける"}, "family": {"ヌオ115": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ヌオ126": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "アコ150": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ムイ168": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1480": "村", "T1481": false, "T1482": "村", "T1483": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑は夏のうちに刈らないと落ちる。刈り入れと草取りを毎年続けるのが大事。", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い刈り入れの年",
+ "feeling": "畑がよく実って心強い。みんなで無事に刈り入れたい。"}

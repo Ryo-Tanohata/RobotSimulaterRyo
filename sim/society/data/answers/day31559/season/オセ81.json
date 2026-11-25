@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。今年も板をひいて、のんびりやろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続ける。板は家にも村にも役に立つ"}, "family": {"ヌオ82": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}, "ロワ83": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続ける"}, "family": {"ヌオ82": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}, "ロワ83": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "冬も板をひく"}, "family": {"ヌオ82": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}, "ロワ83": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続ける"}, "family": {"ヌオ82": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}, "ロワ83": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"ムイ168": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1480": "村", "T1481": "村", "T1482": "村", "T1483": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たくさん刈った年",
+ "feeling": "蓄えが多くて安心だが、子どもが亡くなったのは悲しい。"}
