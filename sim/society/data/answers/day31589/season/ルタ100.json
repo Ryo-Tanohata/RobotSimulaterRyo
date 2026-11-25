@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ヤギが草より多いから、今年の秋はオスもメスも少しつぶして干し肉にしよう。わしは水の輪の直しにまわる。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "直しが あと 310 人日 残っているので、手を貸したい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "family": {"ホミ115": {"activity": "水の輪を直す", "place": "camp", "why": "夫と同じ仕事で、水の輪の直しを早く終わらせる"}, "ケナ151": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを減らす間も、残るヤギの世話を手伝う"}}, "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草で養える数 (約 140 頭) より多い 167 頭いるので、つぶして減らしたほうがよい", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くと、けがや病のもとになるから"}, {"id": "L18", "against": "", "agree": true, "reason": "空腹の人を見たら助けるのは大事だから"}],
+ "feeling": "蓄えは多くて安心だが、ヤギが増えすぎているのが気がかりだ"}

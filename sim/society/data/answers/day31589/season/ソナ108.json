@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "冬の前に、土器のふたを見なおして、草の種をしっかり守ろう。わしは土器をひとつずつ作るよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕がいちばん高く、蓄えの草の種を虫やネズミから守れるから"}, "sow": 700, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケナ108": {"activity": "畑仕事", "place": "camp", "why": "秋と冬の草取りで来年の実りが増えるから"}, "ラキ125": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手が足りないと実りが減るから"}}, "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまき、草取りをすると、次の夏に何倍にも実る。土器に入れた種は傷みにくい。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は離れないほうが安全だと思うから"}],
+ "feeling": "年をとったが、土器づくりで村の役に立てるのがうれしい"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋は千つかみまいて、冬まで草取りをしよう。おれは土器を焼く。ふたつきの土器が足りないと、蓄えの種がまた傷むからな。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕は満点で、村の土器が足りず蓄えの種が毎季節傷んでいるから、土器を焼いて種を守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ127": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑は草取りをすると次の夏の実りが増えるから"}, "ナセ146": {"activity": "畑仕事", "place": "camp", "why": "若い手で草取りを手伝い、実りを増やすため"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "土器をたくさん焼いておけば、蓄えの草の種が虫やネズミに傷まされにくくなる。", "because": [8275527], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L190", "against": "", "agree": true, "reason": "ヤギが草より多くて困っているから、肉にして蓄えに入れるのはよい"}, {"id": "L1358", "against": "", "agree": true, "reason": "秋にまいて草取りをすれば次の夏の実りが増えると覚えているから"}, {"id": "L1360", "against": "", "agree": true, "reason": "草が足りないヤギを減らすのは大事だから"}],
+ "feeling": "土器をひねるのがいちばん落ち着く。蓄えは多いが、傷ませたくない。"}

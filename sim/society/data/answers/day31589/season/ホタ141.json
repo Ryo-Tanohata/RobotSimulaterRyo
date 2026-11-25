@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋だね。畑に千つかみまいて、冬と春に草取りをして、来年の夏にたくさん刈ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると次の夏によく実るから、畑の世話をする。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ141": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため。"}, "ムイ141": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っていて、悪い年も実りが守られるから。"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に畑へ千つかみまき、冬と春に草取りをすると、次の夏によく実る。", "because": [8275530], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあって安心。畑と水の道をこつこつ続けたい。"}

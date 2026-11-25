@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "ヤギは草より多いままだ。よその村のヤギは受けんでおこう。わしは今季も水ののこ場で板をひくよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続けて働く。板が増えれば水の道の手入れが半分ですみ、家にも板がもどる"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソナ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番なので、ともに板をひく"}, "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番なので、ともに板をひく"}, "ケセ102": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、家の数を帳に残す"}, "ムイ112": {"activity": "採集", "place": "camp", "why": "採集が得意なので、冬の前に食べ物を集める"}, "オネ112": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ場の人手をふやす"}, "ソナ114": {"activity": "採集", "place": "camp", "why": "採集が得意なので食べ物を集める"}, "ケセ117": {"activity": "採集", "place": "camp", "why": "採集が得意なので食べ物を集める"}, "オセ146": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ場で働いて板をひく仕事をおぼえる"}}, "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を千つかみまき、冬と春に草取りをすれば、来年の夏に実る。ヤギは草より多いので、よその村のヤギは受けない。", "because": [8275511], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガはおそろしい。今も守るべき決まり"}],
+ "feeling": "体は軽い。のこをひいて板が積み上がるのを見ると落ち着く。"}

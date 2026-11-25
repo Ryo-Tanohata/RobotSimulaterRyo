@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分あるから、この秋もたっぷり種をまいて、冬のあいだ畑の草取りをしっかりやろうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、続けて世話をする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラキ118": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "タユ119": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "キオ122": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "ネイ123": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "ケナ126": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "リセ128": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "タユ133": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "キオ138": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "ロワ139": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "キサ143": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "シエ146": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"},
+  "ホタ148": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}
+ },
+ "keep": false, "judge": {}, "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "mood": "みんなで畑を世話できて、おだやかな気持ち"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋の種まきはわたしもやる。ヤギは草より多いから、よその村のヤギは断って少しつぶそう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると次の夏の実りが増える。蓄えは厚いが続けるのが大事だから"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 3,
+ "family": {"ヌオ115": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っていて、次の夏を守るため"}, "ヌオ126": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして畑の実りを守るため"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみをまき、草取りを続けると次の夏の実りが守れる。ヤギは草より多いので少しつぶす。", "because": [8275511], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1360", "against": "", "agree": true, "reason": "ヤギが多くて草が足りないので、つぶして蓄えに入れるのはよいこと"}, {"id": "L1361", "against": "", "agree": true, "reason": "草が足りないとやせて死ぬので、数をおさえるのはよい"}, {"id": "L1374", "against": "", "agree": true, "reason": "多い分をつぶして干し肉にすれば蓄えにもなる"}],
+ "feeling": "年をとったが体は動く。畑の草取りをして、次の夏の実りを守りたい。"}

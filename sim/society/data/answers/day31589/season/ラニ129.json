@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いけれど、秋は畑の種をまいて、わたしは林で木の実を集めてくるよ。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集の腕が一番だから、秋の木の実を集めて村の蓄えに入れる"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホタ135": {"activity": "畑仕事", "place": "camp", "why": "秋は草取りをすると次の夏の実りが増えるから"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に千つかみの種をまき、草取りをすると次の夏の実りが増える。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで落ち着いている。林を歩くのが楽しみだ。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蔵の種はたっぷりある。それでも秋にまかないと夏の実りが消える。みんな、今年もまいて、冬は草取りを続けよう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひく。板があると水の輪や水の道の手入れが半分ですむから続ける。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ81": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板づくりを続ける。"}, "トナ89": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板づくりを続ける。"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋にまく量をけずらず毎年まくと、夏の実りが続く。", "because": [8275530], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1367", "against": "", "agree": true, "reason": "夏に毎夕刈りきるのはよい。ヤギを増やしすぎない決まりも大事。"}, {"id": "L1374", "against": "", "agree": true, "reason": "ヤギが草より多いので、つぶして蓄えに入れるのは理にかなう。"}],
+ "feeling": "年をとっても板をひく仕事は楽しい。穏やかな秋になりそうだ。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ヤギが草の分より三十頭ほど多い。秋のうちに少しつぶして干し肉にしておけば、冬に草の取り合いでやせていくのを減らせるはずだ。"}, {"to": "みんな", "text": "おれは秋は畑に出て、まいた種のまわりの草を抜く。雨の夜にぬれるのはもうこりごりだから、冬は住まいを広げる手もほしい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすれば次の夏の実りが増える。採集より村のためになる"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 5, "keep": false,
+ "judge": {"M628": "つぐなう", "M629": "つぐなう", "M630": "つぐなう"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは今 167 頭で、草で養える数 (約 140 頭) をこえ、前の季節に 13 頭がやせていなくなった", "because": [8275511], "confidence": 0.9}, {"op": "add", "text": "よその家の畑を刈ると、刈った種がその家の倉に入り、もめごとが続いている", "because": [8275530, 8275531, 8275532], "confidence": 0.8}],
+ "proposal": {"text": "ヤギが草で養える数をこえるあいだは、秋のはじめに多い分を干し肉にして蓄えに入れ、冬は手のあく大人で村の住まいを広げよう。", "because": [8275511], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L1376", "against": "住まいを広げると冬の手がとられる", "agree": true, "reason": "雨の夜に外でぬれる人が多いから"}, {"id": "L1374", "against": "オスはもういない", "agree": true, "reason": "多いヤギを干し肉にすれば無駄にやせずにすむ"}, {"id": "L1375", "against": "ヤギの数を減らす話がない", "agree": true, "reason": "鎌があれば刈り入れが楽になる"}, {"id": "L0", "against": "なし", "agree": true, "reason": "ザガに襲われた人がまだいる"}],
+ "feeling": "ヤギが多すぎるのが気になるが、蓄えはたっぷりあるから落ち着いている"}

@@ -1,0 +1,17 @@
+{"say": [{"to": "みんな", "text": "秋だから畑に種をまいて、冬までしっかり草取りをするよ。生まれたソワ168のためにも、来年の夏の実りを増やしたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど実りが増えるから"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"キオ159": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば畑の実りがたくさん増えるから"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草で養える約140頭をこえて180頭いたら、13頭がやせていなくなった。よその村のヤギは受けないほうがよい", "because": [8275511], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1374", "against": "まだ乳のとれるヤギまでつぶしてしまうかもしれない", "agree": true, "reason": "草が足りずヤギがやせていなくなるので、多い分は肉にしたほうがよい"},
+  {"id": "L1375", "against": "鎌はもうたくさんあるかもしれない", "agree": true, "reason": "ヤギの申し出を断るのは草を守るために大事だから"},
+  {"id": "L1376", "against": "冬の手が住まいにとられて畑の草取りが減るかもしれない", "agree": true, "reason": "村の住まいに入れず雨にぬれる人がいるから"}
+ ],
+ "feeling": "子が生まれたばかりで、畑の実りがいっそう大事に思える"}

@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "わしは今季も水ののこで木をひいて板を作る。秋は草の種を畑にまいて、冬にそなえよう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続けている仕事で、板は水の輪や住まいの直しを助けるから"},
+ "sow": 1000, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ソワ80": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番で、続けて板をひくため"},
+  "ホミ87": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番で、続けて板をひくため"},
+  "ホミ91": {"activity": "畑仕事", "place": "camp", "why": "秋にまく畑の草取りで、実りを増やすため"},
+  "ラキ92": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝い、実りを増やすため"},
+  "アコ96": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、蓄えや出し入れを記録するため"},
+  "トナ102": {"activity": "採集", "place": "南川12", "why": "キャンプに近い川で魚や芋を取り、食べ物を足すため"},
+  "ハソ107": {"activity": "燃える石を掘る", "place": "北丘12", "why": "冬にそなえて燃える石を集めるため"},
+  "ケナ116": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、記録を手伝うため"},
+  "ケナ137": {"activity": "水の作業場で働く", "place": "M26", "why": "若い手で板づくりを手伝うため"}
+ },
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと、次の夏に実って刈れる。蓄えは今とても多い", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "ゆったりした秋。のこ番の仕事を続けながら、冬にそなえたい。"}

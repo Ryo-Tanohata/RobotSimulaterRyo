@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。わたしは道具づくりが得意だから、この秋は石の道具をこしらえるよ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕が一番だから、鎌や道具を作って村の役に立てる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ヌオ136": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が高いので、肉をとって蓄えに入れる"},
+  "キオ139": {"activity": "畑仕事", "place": "camp", "why": "まいた種の草取りをして、次の夏の実りを増やす"},
+  "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が足りないので手伝う"}},
+ "keep": false,
+ "judge": {},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に千つかみまいて草取りをすれば、次の夏によく実る。蓄えは多く、ヤギは草より多いので申し出は受けない。", "because": [8275511], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。今年も道具をつくって過ごしたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "ぼくは狩りが得意だから、冬に向けて北の林でけものをとって、肉を村に入れるよ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りの腕が一番高いので、冬に頼りになる肉をとる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"テナ145": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が高いので、肉をとって蓄えに足す"}, "ルタ146": {"activity": "休む", "place": "camp", "why": "けがをしているので、治るまで休む"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L1376", "against": "", "agree": true, "reason": "ヤギが多すぎて草が足りないので、よそのヤギを受けないのは正しい"}],
+ "feeling": "体がうずうずする。早く林で獲物を追いたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋も林で獲物を追うよ。肉がとれたら持ち帰って分ける。ひとりで離れないよう気をつけるね。"}],
+ "job": {"activity": "狩り", "place": "南林12", "with": ["タユ163"], "why": "狩りの腕が一番高いので、肉をとって家族と村の食べ物を増やす。"},
+ "sow": 0, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"タユ163": {"activity": "採集", "place": "南林12", "why": "採集の腕が高いので、木の実や食べ物を集める。私と近い場所で、ザガにひとりで襲われないようにする。"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "狩りがうまくいくと嬉しい。冬の前に肉をたくさん持ち帰りたい。"}

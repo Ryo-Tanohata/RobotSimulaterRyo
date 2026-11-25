@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えは多いけれど、ヤギが草より多いね。この秋も千つかみまいて、わたしは土器を焼くよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番だから、冬の蓄えの入れ物をふやしたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5, "family": {"ケナ114": {"activity": "畑仕事", "place": "camp", "why": "冬と春の草取りで、次の夏の実りをふやすため"}, "ルタ120": {"activity": "畑仕事", "place": "camp", "why": "小さな子がいるので、キャンプで畑の草取りをする"}, "ネイ128": {"activity": "採集", "place": "camp", "why": "家の食べ物を足すため"}, "キサ146": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝い、実りをふやす"}, "ホミ146": {"activity": "採集", "place": "camp", "why": "木の実や草の実を集めて家の食べ物にする"}}, "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を千つかみまき、冬と春に草取りをすると次の夏の実りが増える。ヤギは草より多いので肉にして減らす。", "because": [8275511], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで安心。土器を焼いて、冬にそなえたい。"}

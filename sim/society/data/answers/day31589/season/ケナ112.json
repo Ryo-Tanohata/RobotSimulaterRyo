@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蔵の草の種はたっぷりある。今年も一人千つかみまいて、冬まで草取りをしよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで次の夏に多く実るから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 2,
+ "family": {
+  "ハソ112": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やすため。"},
+  "アコ118": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やすため。"},
+  "ハソ122": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やすため。"},
+  "セオ134": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やすため。"},
+  "ハソ136": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やすため。"},
+  "アコ138": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やすため。"},
+  "キオ147": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やすため。"},
+  "ソワ147": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やすため。"},
+  "ヒセ150": {"activity": "畑仕事", "place": "camp", "why": "家の手伝いで草取りをする。"}
+ },
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蔵がゆたかで安心している。畑を大事にして冬をこえたい。"}

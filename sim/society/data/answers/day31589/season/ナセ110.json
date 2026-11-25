@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "ヤギが草より三十頭ほど多い。この秋のうちに少しつぶして干し肉にしておけば、冬の草も残るよ。わたしは水の道の泥をかき出しに行く。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだたくさん残っていて、畑の水が細ると次の夏の実りがへるから"},
+ "sow": 600, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"ラキ142": {"activity": "水の作業場で働く", "place": "M6", "why": "若くて力があるので、のこで板をひけば、水の道や住まいの直しが早く進むから"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは167頭で、草で養える約140頭より多い。多いままだと冬から春にやせていなくなる", "because": [], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1374", "against": "夏まで待つと、そのあいだに草がへる", "agree": true, "reason": "多いヤギを干し肉にすれば草も蓄えも守れるから"},
+  {"id": "L1376", "against": "住まいより先に水の道の手入れが要るかもしれない", "agree": true, "reason": "村の住まいで眠る人が多すぎて、雨の夜に困る人がいるから"},
+  {"id": "L1375", "against": "鎌はもう三千本以上ある", "agree": true, "reason": "よそのヤギを受けないのはよいし、冬の手のあいた時に鎌を作るのも悪くないから"}
+ ],
+ "feeling": "秋の風が冷たくなってきた。子どもたちが元気なうちに、冬の支度をすませたい。"}

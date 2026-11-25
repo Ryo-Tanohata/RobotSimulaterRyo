@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。畑に種をまいて、冬と春の草取りも忘れずにやろう。わしは今季も水ののこで板をひくよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続けてきた仕事で、板は住まいや輪の直しに役立つから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}, "ケナ81": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を千つかみまき、冬と春に草取りをすると、次の夏に実りが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体はまだ元気だ。仲間と働けるのがありがたい。"}

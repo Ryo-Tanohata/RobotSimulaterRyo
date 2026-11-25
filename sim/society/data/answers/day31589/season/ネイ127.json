@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "秋だね。わたしは畑に種をまいて、草取りをしっかりやるよ。水の道の泥もまだたくさん残っているから、手のあく人はいっしょに掘ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど次の夏によく実るから"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ141": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っていて、若い力がいちばん役に立つから"}},
+ "keep": false,
+ "judge": {"M628": "つぐなう", "M629": "つぐなう", "M630": "つぐなう"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑で刈ると、刈った草の種はその家の倉に入ってしまい、もめごとになる", "because": [8275530, 8275531, 8275532], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1374", "against": "つぶす数が多すぎると乳がへるかもしれない", "agree": true, "reason": "ヤギが草の分をこえて、やせていなくなったから"},
+  {"id": "L1376", "against": "屋根と壁を広げる手が畑から取られる", "agree": true, "reason": "雨の夜に外で濡れる人がまだいるから"},
+  {"id": "L1370", "against": "冬に泥をかき出すのは寒くてつらい", "agree": true, "reason": "水の道の手入れがたくさん残っているから"}
+ ],
+ "feeling": "畑も水の道も、みんなで手を合わせればきっと間に合う"}

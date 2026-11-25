@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "冬がくる前に、おれは林の奥へ入って大きなけものを追う。肉は干して村の蓄えに入れるぞ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りの腕がいちばん高いので、冬にそなえて秋のうちに肉を多くとっておく"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ105": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が高いので、一緒に肉をとって冬にそなえる"}, "ソワ113": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が高いので、一緒に肉をとって冬にそなえる"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす", "M630": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のうちに狩りで肉をとって蓄えると、実りのない冬の足しになる", "because": [8275230], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は満ちている。早く林の奥でけものを追いたい。"}

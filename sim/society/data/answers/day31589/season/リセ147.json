@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋の種まきが終わったら、わたしは畑の草取りをするよ。いっしょにやる人がいたら声をかけてね、話しながらだと手も進むから。"}, {"to": "みんな", "text": "アコの家の人たちが刈った分、字で書いてあるなら、ちゃんと返してあげようよ。気持ちよく次の夏をむかえたいもの。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "前の季節から畑で働いてきたし、まいた畑は草取りをするほど実りが増えるから続けたい"}, "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M628": "つぐなう", "M629": "つぐなう", "M630": "つぐなう"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ほかの家の畑で刈った草の種がその家の倉に入ると、もめごとになる。量を字で書いておくと話し合いやすい", "because": [8275530, 8275531, 8275532], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1374", "against": "夏のはじめまで待つと、そのあいだにまたヤギがやせていなくなるかもしれない", "agree": true, "reason": "ヤギが多すぎて草が足りず、前の季節も 13 頭いなくなったから、多い分を干し肉にするのがいい"}, {"id": "L1375", "against": "鎌づくりに人をとると、ほかの仕事の手が減る", "agree": true, "reason": "ヤギを増やさないのは大事だし、鎌があれば夏の刈り入れが楽になる"}, {"id": "L1376", "against": "住まいを広げる人の分、畑の手が減る", "agree": true, "reason": "村の住まいに入りきらず雨の夜にぬれる人がいるから、屋根と壁を広げたい"}],
+ "feeling": "大人の仲間になったばかりで少しどきどきするけど、みんなと畑で働けるのがうれしい"}

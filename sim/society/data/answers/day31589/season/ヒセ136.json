@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋のはじめに畑へ千つかみまいて、冬までしっかり草取りをしよう。ヤギは草で養える数よりまだ多いから、よその村のヤギはしばらく受けないでおこうね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすれば、次の夏の実りがふえるから"},
+ "sow": 1000, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ136": {"activity": "畑仕事", "place": "camp", "why": "わたしと同じく腕がいいので、畑の草取りをいっしょにしてほしい"}, "ムイ139": {"activity": "字を教える", "place": "camp", "why": "字が書けるので、キャンプの子たちに字を教えてほしい"}, "セオ139": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているから"}, "ワユ141": {"activity": "水の輪を直す", "place": "camp", "why": "止まった水の輪の直しが残っているから"}},
+ "keep": false,
+ "judge": {"M628": "ゆるす", "M629": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋の畑は冬までみんなで草取りをしよう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが 180 頭いたら、草が足りず 13 頭がやせていなくなった。よその村のヤギはまだ受けないほうがよい", "because": [8275511], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [{"id": "L1371", "against": "ヤギをつぶすと乳がへる", "agree": true, "reason": "ヤギが多すぎて草が足りず、やせていなくなっているから"}, {"id": "L1374", "against": "夏まで待つと、またヤギがやせる", "agree": true, "reason": "多い分を干し肉にすれば無駄にならないから"}, {"id": "L1376", "against": "冬は畑の草取りの手がへる", "agree": true, "reason": "雨の夜に外でぬれる人をへらしたいから"}],
+ "feeling": "蓄えはたっぷりあるけれど、亡くなった子たちを思うと胸が痛い。畑をしっかり守ろう。"}
