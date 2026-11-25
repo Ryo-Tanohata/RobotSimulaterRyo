@@ -52,15 +52,16 @@ PEOPLE_ITEMS=" D1P D1V S1V G1F1V G1F2V G1F3V "
 src_of() { case "$1" in D1P|D1V) echo D1 ;; S1V) echo S1 ;; G1F1V|G1F2V|G1F3V) echo "${1%V}" ;; *) echo "$1" ;; esac; }
 # 動画ごとの撮り方の違い (env で make_video.mjs に渡す)。D1V: クラウドの CPU 向け (12 コマ/秒・毎フレームの描画を止める・区間の前を進めておく・五人に寄る・モデルのクレジット)
 opts_of() { case "$1" in
-  D1V|S1V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=${PEOPLE_DIR_D1V:-/dev/shm/people_glb} PEOPLE_VIEW=$D1V_VIEW HIDE_TOASTS=1" ;;
-  G1F1V|G1F2V|G1F3V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=${PEOPLE_DIR_D1V:-/dev/shm/people_glb} PEOPLE_VIEW=$G1V_VIEW HIDE_TOASTS=1" ;;
+  D1V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=${PEOPLE_DIR_D1V:-/dev/shm/people_glb} PEOPLE_VIEW=$D1V_VIEW HIDE_TOASTS=1" ;;
+  S1V|G1F1V|G1F2V|G1F3V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=${PEOPLE_DIR_D1V:-/dev/shm/people_glb} PEOPLE_VIEW=$G1V_VIEW HIDE_TOASTS=1" ;;
   *) echo "" ;; esac; }
 D1V_CAM='{"min":4.5,"add":2.5,"k":1.6,"max":40}'
 # D1V の見せ方 (2026-11-23 本人の絵コンテの直し): 赤い玉 (木の実・芋) を隠す・昼は組ごとに画面を分ける・火のまわりは引いて上から。
 # 出来事の帯は出さず、した人の頭の上に短い吹き出し (本人の選んだ案 C)
 D1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true}'
-# G1 の F (2026-11-25): D1V と同じ見せ方に、よそから来たナギ・ソルのモデルを足す (replay3d_people.js の opts.files)
-G1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true,"fireMax":14,"files":{"ナギ":"nagi","ソル":"sol"}}'
+# G1 の F と S1V (2026-11-25): D1V と同じ見せ方に、よそから来たナギ・ソルのモデル (opts.files)、本人の直し (v2: 住まいをよける・夜は住まいに入る・
+#   採集の植物・住まいを建てる・動物・植物が育つ。fireNightly: 焚き火を毎晩灯す) を足す
+G1V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true,"fireMax":14,"v2":true,"fireNightly":true,"files":{"ナギ":"nagi","ソル":"sol"}}'
 D1V_CREDIT="VRoid の CC0 サンプル (pixiv) をもとに作成"
 STORY=
 [ "${1:-}" = "--storyboard" ] && { STORY=1; shift; }
@@ -85,6 +86,7 @@ render_one() {
   local slim=; case "$SLIM_ITEMS" in *" $name "*) slim=1 ;; esac
   local src=$(src_of "$name") people=; case "$PEOPLE_ITEMS" in *" $name "*) people=${PEOPLE_DIR:-../../../../human-model/people_glb} ;; esac
   local cam= credit= vf=; case "$name" in D1V|S1V|G1F1V|G1F2V|G1F3V) ;; *) false ;; esac && { cam=$D1V_CAM credit=$D1V_CREDIT vf="-vf fps=24"; }
+  case "$name" in S1V|G1F1V|G1F2V|G1F3V) credit="$D1V_CREDIT<br>毎晩の焚き火・動物と植物の形と動きは、記録にない所を描きそえた (いつ・どこで・だれがは記録のとおり)" ;; esac
   if [ -n "$STORY" ]; then  # 絵コンテだけ
     env SLIM=$slim PEOPLE=$people DAYS=$days PEOPLE_CAM="$cam" PEOPLE_CREDIT="$credit" $(opts_of "$name") node storyboard.mjs "narration_$src.json" "voice/$src" "out/storyboard_$name" >> "out/storyboard_$name.log" 2>&1 \
       && log "$name: storyboard -> out/storyboard_$name.html" || log "$name: STORYBOARD FAILED"

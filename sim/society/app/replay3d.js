@@ -530,7 +530,9 @@
     // 明るさ (夜は暗く、焚き火が灯る)
     const light = hour < 6 ? 0.35 + (hour - 5.5) * 1.2 : hour > 19 ? Math.max(0.12, 0.9 - (hour - 19) * 0.35) : 0.9;
     S.W.sun.intensity = light; S.W.amb.intensity = 0.25 + light * 0.35;
-    const lit = P.fire && (hour >= 18.5 || hour < 6);
+    // 動画 (2026-11-25 本人「火は見た目にちゃんと灯してください」): 人のモデルの opts.fireNightly のときは、記録に火の出来事がない夜も灯す
+    //   (毎晩の焚き火は記録していない。ふだんの暮らしとして描く)。ないときは前と同じ
+    const lit = (P.fire || !!(S.people && S.people.opts && S.people.opts.fireNightly)) && (hour >= 18.5 || hour < 6);
     S.W.hut.visible = S.W.hutDay !== null && S.dayNum >= S.W.hutDay;
     fieldsOn(S.dayNum);
     housesOn(S.dayNum);

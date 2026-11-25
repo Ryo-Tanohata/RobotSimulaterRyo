@@ -49,6 +49,14 @@ function slimData(days) {
     const ys = new Set(days.filter((d) => d < D.archive.since).map((d) => Math.floor(d / 120)));
     S.archive = { ...D.archive, years: D.archive.years.filter((y) => ys.has(y.year)), keep: (D.archive.keep || []).filter((e) => e.day <= maxDay) };
   }
+  // 育つ (2026-11-25、v2 の植物から): 撮る日までの「木の実の木が育った」の日と文 (しまった年は data/archive/events_YYYY.jsonl から)。前の動画は使わない
+  S.grow = [];
+  for (let y = 0; y <= Math.floor(maxDay / 120); y++) {
+    const f = path.join(DATA, "archive", `events_${String(y).padStart(4, "0")}.jsonl`);
+    if (!fs.existsSync(f)) continue;
+    for (const ln of fs.readFileSync(f, "utf8").split("\n")) if (ln.includes('"育つ"')) { const e = JSON.parse(ln); if (e.type === "育つ" && e.day <= maxDay) S.grow.push({ day: e.day, text: e.text }); }
+  }
+  for (const e of D.events || []) if (e.type === "育つ" && e.day <= maxDay && !S.grow.some((g) => g.day === e.day && g.text === e.text)) S.grow.push({ day: e.day, text: e.text });
   const out = JSON.stringify(S);
   console.log(`SLIM: app_data.json ${(fs.statSync(path.join(DATA, "app_data.json")).size / 1e6).toFixed(1)} MB → ${(out.length / 1e6).toFixed(1)} MB (人 ${S.people.length}・日 ${minDay}〜${maxDay})`);
   return out;
