@@ -239,11 +239,12 @@
     } else if (p.activity === "採集" && V2) {  // v2: 採る場所に植物を置き、そちらを向いて採る。林は実のなる木 (のり出す・背のびして取る)、ほかは草むら (かがんで拾う・しゃがんで調べる)
       const tree = /林|森/.test(String((p.place && (p.place.label || p.place.id)) || ""));
       const kinds = tree ? ["reach", "stretch", "pick"] : ["pick", "probe"];
-      const at = { x: here.x + Math.cos(out) * 0.95, y: here.y - Math.sin(out) * 0.95 };
+      // 植物は、カメラ (南東の上から見る) から見て人の向こう側に置く (手前に置くと、木が人をかくす。2026-11-26 見直し K10)
+      const at = { x: here.x - 0.55, y: here.y - 0.78 }, look = face(here, at);
       (M.plants.get(P) || M.plants.set(P, []).get(P)).push({ at, tree, seed: p.i });
       for (let k = 0; t < tLeave; k++) {
         const c = kinds[(k + p.i) % kinds.length];
-        add({ t0: t, clip: c, mode: "pp", ...still(here, out + (rnd(p.i, k) - 0.5) * 0.35) });
+        add({ t0: t, clip: c, mode: "pp", ...still(here, look + (rnd(p.i, k) - 0.5) * 0.35) });
         t += Math.min(info[c].sec * 1.6, 7);
       }
     } else if (p.activity === "採集") {
