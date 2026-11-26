@@ -81,6 +81,13 @@ function slimData(days) {
     m = /ヤギ (\d+) 頭(がいなくなった|をつぶした)/.exec(t); if (m) return -m[1];
     return 0;
   };
+  // 雨の夜に住まいに入りきらず外で寝た人 (2026-11-26 見直し K9: 家族の小屋は記録とぶつかるので、記録のとおりに外で寝る人を出す)
+  S.rainOut = [];
+  for (let y = 0; y <= Math.floor(maxDay / 120); y++) {
+    const f = path.join(DATA, "archive", `events_${String(y).padStart(4, "0")}.jsonl`);
+    if (!fs.existsSync(f)) continue;
+    for (const ln of fs.readFileSync(f, "utf8").split("\n")) if (ln.includes('"type":"雨"')) { const e = JSON.parse(ln); if (e.day <= maxDay) S.rainOut.push({ day: e.day, outside: (e.data && e.data.outside) || [] }); }
+  }
   S.goatDay = {};
   for (const d of days) {
     const sn = S.goats.find((g) => d >= g.from && d <= g.to);

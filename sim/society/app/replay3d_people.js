@@ -245,7 +245,7 @@
     };
     // opts.v2 (2026-11-25、S1V・G1 の F の撮り直しから。本人の直し): 住まいにめり込まない・夜は住まいに入る・同じ場所の人の間をあける。ないときは前と同じ
     const V2 = !!M.opts2.v2, hutOn = V2 && M.world && M.world.hutDay !== null && P.day >= M.world.hutDay;
-    if (V2) tentsFor(P);
+    if (V2 && M.opts2.tents) tentsFor(P);
     const hutC = { x: fire.x - 3.2, y: fire.y - 2.2 }, HUT_R = 2.3;  // replay3d.js の住まい (キャンプから -3.2, -2.2。壁の半径 1.4・屋根 1.8)
     const out_ = (pt) => {  // 住まいの円の中なら、外へ押し出す
       if (!hutOn) return pt;
@@ -369,7 +369,15 @@
     if (P.eve.length) add({ t0: eve.v1, clip: eating ? "eat" : "idle", mode: "pp", ...still(ring, atFire) });
     // 夜: 火から少しはなれて、横になる (起き上がる記録を逆に流す)
     here = ring;
-    const tent = V2 && tentsFor(P).find((q) => q.home === p.home);
+    const tent = V2 && M.opts2.tents && tentsFor(P).find((q) => q.home === p.home);  // 家族の小屋は opts.tents のときだけ (記録とぶつかるので、ふだんは出さない)
+    // 住まいに入りきらない人 (記録: 雨の夜に外で濡れた人。雨でない夜は、60 日以内の直前の雨の夜と同じ人): 火のそばで横になる
+    const ro = V2 ? (M.D.rainOut || []).filter((r) => r.day <= P.day && r.day > P.day - 60).pop() : null;
+    if (hutOn && ro && ro.outside.includes(n)) {
+      const bed = lerp(fire, ring, 1.8);
+      t = walkTo(bed, seg.night.v0 + 0.5 + 0.35 * p.i);
+      add({ t0: t + 0.3, clip: "lie", mode: "rev", rate: 0.9, ...still(bed, face(fire, bed)) });
+      return E;
+    }
     if (tent) {  // 家族の小屋がある夜: 戸口まで歩いて、中に入る
       t = walkTo(tent.door, seg.night.v0 + 0.5 + 0.35 * p.i);
       add({ t0: t + 0.1, clip: "idle", mode: "pp", hide: true, ...still(tent.door, face(tent.door, tent.pt)) });
@@ -551,6 +559,26 @@
       }
     });
     M.scene.add(g);
+  }
+
+  // v2 (2026-11-26): 記録に雨の夜 (出来事「雨」) がある日は、夜に雨を降らせる (キャンプのまわりに細い線)
+  function rainFrame(P, v) {
+    const wet = (P.night || []).some((e) => e.type === "雨"), seg = P.segs.find((s) => s.key === "night");
+    if (!M.rain) {
+      const D = M.D, c = M.w2t(D.camp.x + 0.5, D.camp.y + 0.5), n = 900, pos = new Float32Array(n * 6);
+      const geo = new THREE.BufferGeometry(); geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+      M.rain = new THREE.LineSegments(geo, new THREE.LineBasicMaterial({ color: 0xaac4dd, transparent: true, opacity: 0.55 }));
+      M.rain.userData = { c, n, seed: Array.from({ length: n }, (_, i) => [rnd(i, 1) * 26 - 13, rnd(i, 2) * 26 - 13, rnd(i, 3)]) };
+      M.scene.add(M.rain);
+    }
+    const R = M.rain; R.visible = wet && seg && v >= seg.v0;
+    if (!R.visible) return;
+    const p = R.geometry.attributes.position.array, { c, n, seed } = R.userData;
+    for (let i = 0; i < n; i++) {
+      const [x, z, ph] = seed[i], y = 9 - ((v * 7 + ph * 9) % 9);
+      p.set([c.x + x, c.y + y, c.z + z, c.x + x - 0.05, c.y + y - 0.45, c.z + z], i * 6);
+    }
+    R.geometry.attributes.position.needsUpdate = true;
   }
 
   function localTime(e, v, dur) {
@@ -845,8 +873,8 @@
       const all = sched.get(P);
       if (this.opts.v2 && M.world && M.world.hut) hutGrowth(P, v);
       if (this.opts.v2) {
-        animalsFrame(P, v); growFrame(P); if (this.opts.fireNightly) fireFrame(P, v);
-        if (M.tentP !== P) { if (M.tentG) M.scene.remove(M.tentG); M.tentP = P; M.tentG = tentGroup(P); M.scene.add(M.tentG); }
+        animalsFrame(P, v); growFrame(P); rainFrame(P, v); if (this.opts.fireNightly) fireFrame(P, v);
+        if (this.opts.tents && M.tentP !== P) { if (M.tentG) M.scene.remove(M.tentG); M.tentP = P; M.tentG = tentGroup(P); M.scene.add(M.tentG); }
       }
       if (M.plantP !== P) {  // v2: その日の採集の植物を置きかえる
         if (M.plantG) M.scene.remove(M.plantG);
