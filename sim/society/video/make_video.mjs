@@ -138,7 +138,7 @@ const VIDEO_CSS = `
 
 // GPU=1: 自分の PC の GPU (内蔵 GPU でもよい) で 3D を描く。なければ CPU で描く swiftshader (クラウド用。とても遅い)
 const GL_ARGS = process.env.GPU ? ["--ignore-gpu-blocklist", "--enable-gpu-rasterization"] : ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"];
-const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new", protocolTimeout: 600000, args: ["--no-sandbox", "--hide-scrollbars", ...GL_ARGS] });
+const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new", protocolTimeout: 1800000, args: ["--no-sandbox", "--hide-scrollbars", ...GL_ARGS] });
 const page = await browser.newPage();
 await page.setViewport({ width: W, height: H, deviceScaleFactor: 1 });
 await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "light" }]);
