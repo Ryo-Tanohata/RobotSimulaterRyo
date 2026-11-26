@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "ヤギが草の分より多い。夏のうちに少しつぶして干し肉にしよう。わしは夏は畑を刈り、秋からはのこ場で板をひくよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちる。刈り入れを手伝う"}, "family": {}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 10},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "続けているのこ場の仕事。板がたまり、輪や水の道の手入れが早くなる"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "冬は実りがないので、のこ場で板をひいて村を助ける"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春は畑の草取りをして、夏の実りを増やす"}, "family": {}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1490": false, "T1491": false, "T1492": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは約177頭いて、草で養える約140頭より多い。つぶして肉にすると草の取り合いが減る", "because": [8344291], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギ多すぎの年",
+ "mood": "蓄えはたっぷりあって安心だ。体が動くうちは、のこ場と畑で働こう。"}

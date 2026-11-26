@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分ある。おれは狩りに出て、肉を持ち帰る。"}],
+ "year": {
+  "夏": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りが一番得意で、肉を村にもたらせる"}, "family": {"ケナ166": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "得意な狩りで食べ物を増やす"}, "family": {"ケナ166": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "狩り", "place": "北川12", "with": [], "why": "冬も魚やけものはいるので狩る"}, "family": {"ケナ166": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "得意な狩りを続ける"}, "family": {"ケナ166": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1490": false, "T1491": false, "T1492": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ゆたかな蓄えの年",
+ "feeling": "蓄えもあるし、気楽に狩りに出たい。"}

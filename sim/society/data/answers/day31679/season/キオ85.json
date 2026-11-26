@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだ刈り残しが山ほどある。落ちる前に、みんなで刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れるため"}, "family": {"キオ95": {"activity": "畑仕事", "place": "camp", "why": "腕が確かなので刈り入れに回す"}, "セオ108": {"activity": "畑仕事", "place": "camp", "why": "腕が確かなので刈り入れに回す"}, "セオ120": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が多いほどよい"}, "キオ125": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が多いほどよい"}, "ルタ127": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手が多いほどよい"}, "セオ150": {"activity": "畑仕事", "place": "camp", "why": "子も手伝って刈る"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やすため"}, "family": {"キオ95": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "セオ108": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "セオ120": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "キオ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ルタ127": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 60},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けて実りを守る"}, "family": {"キオ95": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "セオ108": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "セオ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っている"}, "キオ125": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っている"}, "ルタ127": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っている"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りで実りを増やす"}, "family": {"キオ95": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "セオ108": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "セオ120": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "キオ125": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ルタ127": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "蓄えは豊かで心強い。みんなで畑を守っていきたい。"}

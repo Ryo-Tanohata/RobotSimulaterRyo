@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだたっぷり実っとる。落ちる前に、家のみんなで刈れるだけ刈ろうぞ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れるのがいちばん大事だから"}, "family": {"キオ117": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るため"}, "ムイ125": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るため"}, "ユエ135": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るため"}, "ソワ139": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るため"}, "オネ141": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るため"}, "ナセ151": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "トナ153": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "得意の採集で木の実や種を集めるため"}, "family": {"キオ117": {"activity": "採集", "place": "camp", "why": "得意の採集で食べ物を集める"}, "ムイ125": {"activity": "採集", "place": "camp", "why": "得意の採集で食べ物を集める"}, "ユエ135": {"activity": "採集", "place": "camp", "why": "得意の採集で食べ物を集める"}, "ソワ139": {"activity": "採集", "place": "camp", "why": "得意の採集で食べ物を集める"}, "オネ141": {"activity": "採集", "place": "camp", "why": "得意の採集で食べ物を集める"}, "ナセ151": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}, "トナ153": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "冬も得意の採集で食べ物を集めるため"}, "family": {"キオ117": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ムイ125": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ユエ135": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ソワ139": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "オネ141": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "春も採集で蓄えを支えるため"}, "family": {"キオ117": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ムイ125": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ユエ135": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "ソワ139": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}, "オネ141": {"activity": "採集", "place": "camp", "why": "食べ物を集める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1490": false, "T1491": false, "T1492": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たっぷり実りの年",
+ "feeling": "体はまだ動く。畑も蓄えも豊かで、安心しておる。"}

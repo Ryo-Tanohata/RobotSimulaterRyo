@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はたっぷり実っている。みんなで刈り入れをして、ヤギも少しつぶして草を楽にしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうので、刈り入れを手伝う"}, "family": {"ヌオ136": {"activity": "畑仕事", "place": "camp", "why": "力があるので刈り入れで一番役に立つ"}, "キオ139": {"activity": "畑仕事", "place": "camp", "why": "実った畑を落とさないよう刈り入れを手伝う"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいるので手伝う"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 3},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをすると次の夏によく実る"}, "family": {"ヌオ136": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りを増やす"}, "キオ139": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りを増やす"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "草取りで来年の実りを増やす"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕が一番なので、冬のあいだに道具をこしらえておく"}, "family": {"ヌオ136": {"activity": "畑仕事", "place": "camp", "why": "冬も畑の草取りを続けて実りを増やす"}, "キオ139": {"activity": "畑仕事", "place": "camp", "why": "冬も畑の草取りを続けて実りを増やす"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "冬も畑の草取りを続けて実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れの前に、道具をそろえておく"}, "family": {"ヌオ136": {"activity": "畑仕事", "place": "camp", "why": "春も草取りをして実りを増やす"}, "キオ139": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれるので世話をする"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "春も草取りをして実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1490": false, "T1491": false, "T1492": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは多く、畑もたっぷり実っている。ヤギは草より多いので、申し出は受けず、夏は刈り入れ、秋は千つかみまいて草取りをする。", "because": [8344310], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので離れないほうがよい"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたら休むのは大事"}],
+ "year_name": "たっぷり実った刈り入れの年",
+ "feeling": "畑がよく実っていて安心。のんびり道具をこしらえて過ごしたい。"}

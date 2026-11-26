@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を落とさず刈る。秋からは草取りと木の実集めで、冬の蓄えをきらさないようにしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちる。腕に自信があるので先に立って刈る。"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "採集の腕が高く、刈り入れで力になる。"}, "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐため。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを増やす。"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす。"}, "ヌオ101": {"activity": "採集", "place": "camp", "why": "木の実を集めて冬にそなえる。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りで畑の実りを守る。"}, "family": {"ムイ97": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る。"}, "ヌオ101": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいるので食べ物を足す。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "camp", "with": [], "why": "春は木の実や草を集めて食べ物を足す。"}, "family": {"ムイ97": {"activity": "採集", "place": "camp", "why": "食べ物を集める。"}, "ヌオ101": {"activity": "採集", "place": "camp", "why": "食べ物を集める。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "ヒセ89",
+ "trade": {"T1490": "断る。蓄えを減らしたくない。", "T1491": "断る。蓄えを減らしたくない。", "T1492": "断る。蓄えを減らしたくない。"},
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "大きな刈り入れの年",
+ "feeling": "蓄えは多いが、油断せず畑を守りたい。"}

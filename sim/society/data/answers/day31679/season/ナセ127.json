@@ -1,0 +1,22 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を毎夕しっかり刈ろう。ヤギが多いから、少しつぶして干し肉にするのもいいね。"}],
+ "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに刈らないと落ちるので、刈り入れを手伝う"}, "family": {"シエ141": {"activity": "畑仕事", "place": "camp", "why": "二人で刈れば、実りを落とさずに蓄えに入れられる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 1},
+          "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで、次の夏の実りを増やす"}, "family": {"シエ141": {"activity": "畑仕事", "place": "camp", "why": "草取りを分け合って畑をよく育てる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+          "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬まで草取りを続けると実りがふえる"}, "family": {"シエ141": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けて来年の実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+          "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れの前に、畑の草取りをやりきる"}, "family": {"シエ141": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを仕上げる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1490": false, "T1491": false, "T1492": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を毎夕刈ると、蓄えがふえる。ヤギが草より多いときは、少しつぶして肉にする。", "because": [8341698, 8342423], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1381", "against": "", "agree": true, "reason": "小さい子の病を減らすのはよいことだから"},
+  {"id": "L1382", "against": "", "agree": true, "reason": "草取りとヤギを減らすことは、実りと冬のためになる"},
+  {"id": "L1383", "against": "", "agree": true, "reason": "刈る前に量を書けばもめにくく、ヤギも減らせる"},
+  {"id": "L1384", "against": "", "agree": true, "reason": "二人以上で行けば、ザガが出ても安心だから"},
+  {"id": "L1385", "against": "", "agree": true, "reason": "小さい子の多い家が助かるから"},
+  {"id": "L1386", "against": "", "agree": true, "reason": "少しの量はゆるし合うほうが、村がおだやか"},
+  {"id": "L1387", "against": "", "agree": true, "reason": "ヤギを減らし、住まいを広げれば雨の夜も安心"}
+ ],
+ "year_name": "刈り入れの豊かな年",
+ "feeling": "蓄えは多くて安心。今年も畑をしっかり刈ろう。"}
