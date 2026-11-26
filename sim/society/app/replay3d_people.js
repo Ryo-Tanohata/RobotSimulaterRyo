@@ -261,7 +261,7 @@
       p.spot = lerp(c, p.spot, RING);
     }
     if (V2) p.spot = pushOut(P, out_(p.spot));
-    const builds = V2 ? (P.work || []).filter((e) => e.type === "住まい" && /建て/.test(e.text)) : [];
+    const builds = V2 ? (P.work || []).filter((e) => e.type === "住まい" && /建て|できた|手入れ/.test(e.text)) : [];  // 「セナ たちの手で…住まいができた」も
     const builder = builds.some((e) => e.who === n || (e.text || "").startsWith(n + " "));
     if (builder) {  // v2: 住まいを建てた人は、住まいのまわりで柱を立てる・組む (のり出す・背のび・手渡し)
       const a = Math.atan2(fire.y - hutC.y, fire.x - hutC.x) + 0.9 + p.i * 1.1;

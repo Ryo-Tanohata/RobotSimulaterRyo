@@ -100,7 +100,7 @@
    "camera": {
     "framing": "引き",
     "dist": 13.9,
-    "person_px": 133,
+    "person_px": 128,
     "in_view": [
      "ルオ",
      "セナ",
@@ -117,7 +117,7 @@
       "title": "ルオ・タヒ — キャンプ",
       "x": 0,
       "w": 427,
-      "dist": 12.9
+      "dist": 13.3
      },
      {
       "names": [
@@ -153,7 +153,7 @@
      "activity": "種まき",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 133,
+     "px": 128,
      "inView": true
     },
     {
@@ -169,7 +169,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 160,
+     "px": 154,
      "inView": true
     },
     {
@@ -204,7 +204,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 202,
+    "person_px": 194,
     "in_view": [
      "ルオ",
      "セナ",
@@ -221,7 +221,7 @@
       "title": "ルオ・タヒ — キャンプ",
       "x": 0,
       "w": 427,
-      "dist": 21.7
+      "dist": 23.1
      },
      {
       "names": [
@@ -257,7 +257,7 @@
      "activity": "種まき",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 78,
+     "px": 74,
      "inView": true
     },
     {
@@ -265,7 +265,7 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 202,
+     "px": 194,
      "inView": true
     },
     {
@@ -273,7 +273,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 94,
+     "px": 92,
      "inView": true
     },
     {
@@ -281,7 +281,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 209,
+     "px": 218,
      "inView": true
     },
     {
@@ -289,12 +289,12 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 247,
+     "px": 245,
      "inView": true
     }
    ],
    "notes": [
-    "ルオ が小さい (78 px)"
+    "ルオ が小さい (74 px)"
    ]
   },
   {
@@ -308,7 +308,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 176,
+    "person_px": 200,
     "in_view": [
      "ルオ",
      "セナ",
@@ -325,7 +325,7 @@
       "title": "ルオ・タヒ — キャンプ",
       "x": 0,
       "w": 427,
-      "dist": 21.7
+      "dist": 23.1
      },
      {
       "names": [
@@ -361,7 +361,7 @@
      "activity": "種まき",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 78,
+     "px": 74,
      "inView": true
     },
     {
@@ -369,7 +369,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 176,
+     "px": 200,
      "inView": true
     },
     {
@@ -377,7 +377,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 95,
+     "px": 92,
      "inView": true
     },
     {
@@ -385,7 +385,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 217,
+     "px": 222,
      "inView": true
     },
     {
@@ -393,12 +393,12 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 199,
+     "px": 203,
      "inView": true
     }
    ],
    "notes": [
-    "ルオ が小さい (78 px)"
+    "ルオ が小さい (74 px)"
    ]
   },
   {
@@ -412,7 +412,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 209,
+    "person_px": 204,
     "in_view": [
      "ルオ",
      "セナ",
@@ -432,7 +432,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 7.6
+      "dist": 7.7
      }
     ]
    },
@@ -447,9 +447,9 @@
     {
      "name": "ルオ",
      "activity": "種まき",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 216,
+     "motion": "talk",
+     "motion_ja": "話す",
+     "px": 218,
      "inView": true
     },
     {
@@ -457,7 +457,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 209,
+     "px": 204,
      "inView": true
     },
     {
@@ -465,7 +465,7 @@
      "activity": "採集",
      "motion": "talk",
      "motion_ja": "話す",
-     "px": 236,
+     "px": 232,
      "inView": true
     },
     {
@@ -473,7 +473,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 193,
+     "px": 190,
      "inView": true
     },
     {
@@ -481,7 +481,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 201,
+     "px": 199,
      "inView": true
     }
    ],
@@ -535,7 +535,7 @@
      "activity": "種まき",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 217,
+     "px": 215,
      "inView": true
     },
     {
@@ -621,7 +621,7 @@
      "activity": "種まき",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 217,
+     "px": 216,
      "inView": true
     },
     {
@@ -842,7 +842,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 218,
+    "person_px": 214,
     "in_view": [
      "ルオ",
      "セナ",
@@ -878,7 +878,7 @@
       "title": "ウィロ・イサ — 北の林で採集",
       "x": 853,
       "w": 427,
-      "dist": 7.6
+      "dist": 7.9
      }
     ]
    },
@@ -892,7 +892,7 @@
      "activity": "狩り",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 245,
+     "px": 246,
      "inView": true
     },
     {
@@ -908,7 +908,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 108,
+     "px": 158,
      "inView": true
     },
     {
@@ -916,7 +916,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 218,
+     "px": 214,
      "inView": true
     },
     {
@@ -924,11 +924,13 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 226,
+     "px": 216,
      "inView": true
     }
    ],
-   "notes": []
+   "notes": [
+    "ウィロ が画面からはみ出す"
+   ]
   },
   {
    "cut": 11,
@@ -941,7 +943,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 206,
+    "person_px": 226,
     "in_view": [
      "ルオ",
      "セナ",
@@ -977,7 +979,7 @@
       "title": "ウィロ・イサ — 北の林で採集",
       "x": 853,
       "w": 427,
-      "dist": 8.6
+      "dist": 8
      }
     ]
    },
@@ -1007,7 +1009,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 92,
+     "px": 136,
      "inView": true
     },
     {
@@ -1015,15 +1017,15 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 206,
+     "px": 226,
      "inView": true
     },
     {
      "name": "イサ",
      "activity": "採集",
-     "motion": "reach",
-     "motion_ja": "身をのり出す",
-     "px": 225,
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 237,
      "inView": true
     }
    ],
@@ -1040,7 +1042,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 187,
+    "person_px": 224,
     "in_view": [
      "ルオ",
      "セナ",
@@ -1076,7 +1078,7 @@
       "title": "ウィロ・イサ — 北の林で採集",
       "x": 853,
       "w": 427,
-      "dist": 8.6
+      "dist": 8
      }
     ]
    },
@@ -1107,7 +1109,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 76,
+     "px": 118,
      "inView": true
     },
     {
@@ -1115,21 +1117,19 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 205,
+     "px": 224,
      "inView": true
     },
     {
      "name": "イサ",
      "activity": "採集",
-     "motion": "reach",
-     "motion_ja": "身をのり出す",
-     "px": 187,
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 237,
      "inView": true
     }
    ],
-   "notes": [
-    "タヒ が小さい (76 px)"
-   ]
+   "notes": []
   },
   {
    "cut": 13,
@@ -1142,7 +1142,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 215,
+    "person_px": 195,
     "in_view": [
      "ルオ",
      "セナ",
@@ -1162,7 +1162,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 7.6
+      "dist": 7.8
      }
     ]
    },
@@ -1175,9 +1175,9 @@
     {
      "name": "ルオ",
      "activity": "狩り",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 216,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 161,
      "inView": true
     },
     {
@@ -1185,7 +1185,7 @@
      "activity": "休む",
      "motion": "talk",
      "motion_ja": "話す",
-     "px": 215,
+     "px": 206,
      "inView": true
     },
     {
@@ -1193,7 +1193,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 230,
+     "px": 222,
      "inView": true
     },
     {
@@ -1201,7 +1201,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 193,
+     "px": 187,
      "inView": true
     },
     {
@@ -1209,7 +1209,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 202,
+     "px": 195,
      "inView": true
     }
    ],
@@ -1622,7 +1622,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 56,
+     "px": 55,
      "inView": true
     },
     {
@@ -1630,7 +1630,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 253,
+     "px": 252,
      "inView": true
     },
     {
@@ -1644,7 +1644,7 @@
    ],
    "notes": [
     "ルオ が小さい (68 px)",
-    "セナ が小さい (56 px)"
+    "セナ が小さい (55 px)"
    ]
   },
   {
@@ -1715,7 +1715,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 55,
+     "px": 57,
      "inView": true
     },
     {
@@ -1723,7 +1723,7 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 265,
+     "px": 251,
      "inView": true
     },
     {
@@ -1737,7 +1737,7 @@
    ],
    "notes": [
     "ルオ が小さい (69 px)",
-    "セナ が小さい (55 px)"
+    "セナ が小さい (57 px)"
    ]
   },
   {
@@ -1816,7 +1816,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 239,
+     "px": 236,
      "inView": true
     },
     {
@@ -1909,7 +1909,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 236,
+     "px": 233,
      "inView": true
     },
     {
@@ -1936,7 +1936,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 202,
+    "person_px": 203,
     "in_view": [
      "ルオ",
      "セナ",
@@ -1954,7 +1954,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 8.1
+      "dist": 8
      }
     ]
    },
@@ -1970,7 +1970,7 @@
      "activity": "休む",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 202,
+     "px": 203,
      "inView": true
     },
     {
@@ -1978,7 +1978,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 197,
+     "px": 198,
      "inView": true
     },
     {
@@ -1986,7 +1986,7 @@
      "activity": "採集",
      "motion": "talk",
      "motion_ja": "話す",
-     "px": 214,
+     "px": 215,
      "inView": true
     },
     {
@@ -1994,7 +1994,7 @@
      "activity": "狩り",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 177,
+     "px": 178,
      "inView": true
     }
    ],
@@ -2214,7 +2214,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 236,
+    "person_px": 234,
     "in_view": [
      "セナ",
      "タヒ",
@@ -2258,9 +2258,9 @@
     {
      "name": "セナ",
      "activity": "住まいを建てる",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 236,
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 231,
      "inView": true
     },
     {
@@ -2268,7 +2268,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 235,
+     "px": 234,
      "inView": true
     },
     {
@@ -2276,7 +2276,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 239,
+     "px": 240,
      "inView": true
     }
    ],
@@ -2337,9 +2337,9 @@
     {
      "name": "セナ",
      "activity": "住まいを建てる",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 235,
+     "motion": "tie",
+     "motion_ja": null,
+     "px": 228,
      "inView": true
     },
     {
@@ -2347,15 +2347,15 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 255,
+     "px": 251,
      "inView": true
     },
     {
      "name": "ウィロ",
      "activity": "採集",
-     "motion": "pick",
-     "motion_ja": "拾う",
-     "px": 109,
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 235,
      "inView": true
     }
    ],
@@ -2372,7 +2372,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 243,
+    "person_px": 233,
     "in_view": [
      "セナ",
      "タヒ",
@@ -2416,9 +2416,9 @@
     {
      "name": "セナ",
      "activity": "住まいを建てる",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 234,
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 228,
      "inView": true
     },
     {
@@ -2434,7 +2434,7 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 243,
+     "px": 233,
      "inView": true
     }
    ],
@@ -2451,7 +2451,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 244,
+    "person_px": 233,
     "in_view": [
      "セナ",
      "タヒ",
@@ -2496,9 +2496,9 @@
     {
      "name": "セナ",
      "activity": "住まいを建てる",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 234,
+     "motion": "tie",
+     "motion_ja": null,
+     "px": 233,
      "inView": true
     },
     {
@@ -2506,7 +2506,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 253,
+     "px": 255,
      "inView": true
     },
     {
@@ -2514,7 +2514,7 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 244,
+     "px": 231,
      "inView": true
     }
    ],
@@ -2531,7 +2531,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 233,
+    "person_px": 263,
     "in_view": [
      "セナ",
      "タヒ",
@@ -2547,7 +2547,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 6.9
+      "dist": 5.7
      }
     ]
    },
@@ -2559,9 +2559,9 @@
     {
      "name": "セナ",
      "activity": "住まいを建てる",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 233,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 260,
      "inView": true
     },
     {
@@ -2569,7 +2569,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 253,
+     "px": 317,
      "inView": true
     },
     {
@@ -2577,7 +2577,7 @@
      "activity": "採集",
      "motion": "talk",
      "motion_ja": "話す",
-     "px": 215,
+     "px": 263,
      "inView": true
     }
    ],
@@ -2654,7 +2654,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 231,
+    "person_px": 239,
     "in_view": [
      "セナ",
      "タヒ",
@@ -2697,9 +2697,9 @@
     {
      "name": "セナ",
      "activity": "採集",
-     "motion": "reach",
-     "motion_ja": "身をのり出す",
-     "px": 145,
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 211,
      "inView": true
     },
     {
@@ -2715,7 +2715,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 231,
+     "px": 239,
      "inView": true
     }
    ],
@@ -2732,7 +2732,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 237,
+    "person_px": 235,
     "in_view": [
      "セナ",
      "タヒ",
@@ -2748,7 +2748,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 6.9
+      "dist": 6.8
      }
     ]
    },
@@ -2762,7 +2762,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 237,
+     "px": 235,
      "inView": true
     },
     {
@@ -2770,7 +2770,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 252,
+     "px": 253,
      "inView": true
     },
     {
@@ -2778,7 +2778,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 215,
+     "px": 216,
      "inView": true
     }
    ],
@@ -2859,7 +2859,7 @@
    "camera": {
     "framing": "寄り",
     "dist": 13.9,
-    "person_px": 327,
+    "person_px": 366,
     "in_view": [
      "セナ",
      "タヒ",
@@ -2875,7 +2875,7 @@
       "title": "セナ・タヒ・ウィロ — 北の林で採集",
       "x": 0,
       "w": 1280,
-      "dist": 5.3
+      "dist": 4.8
      }
     ]
    },
@@ -2890,7 +2890,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 346,
+     "px": 366,
      "inView": true
     },
     {
@@ -2898,7 +2898,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 327,
+     "px": 373,
      "inView": true
     },
     {
@@ -2906,7 +2906,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 276,
+     "px": 295,
      "inView": true
     }
    ],
@@ -2923,7 +2923,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 279,
+    "person_px": 262,
     "in_view": [
      "セナ",
      "タヒ",
@@ -2939,7 +2939,7 @@
       "title": "セナ・タヒ・ウィロ — 北の林で採集",
       "x": 0,
       "w": 1280,
-      "dist": 6.6
+      "dist": 7
      }
     ]
    },
@@ -2954,15 +2954,15 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 279,
+     "px": 262,
      "inView": true
     },
     {
      "name": "タヒ",
      "activity": "採集",
-     "motion": "reach",
-     "motion_ja": "身をのり出す",
-     "px": 336,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 289,
      "inView": true
     },
     {
@@ -2970,7 +2970,7 @@
      "activity": "採集",
      "motion": "reach",
      "motion_ja": "身をのり出す",
-     "px": 237,
+     "px": 228,
      "inView": true
     }
    ],
@@ -2987,7 +2987,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 271,
+    "person_px": 313,
     "in_view": [
      "セナ",
      "タヒ",
@@ -3003,7 +3003,7 @@
       "title": "セナ・タヒ・ウィロ — 北の林で採集",
       "x": 0,
       "w": 1280,
-      "dist": 6.6
+      "dist": 6
      }
     ]
    },
@@ -3018,23 +3018,23 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 271,
+     "px": 313,
      "inView": true
     },
     {
      "name": "タヒ",
      "activity": "採集",
-     "motion": "pick",
-     "motion_ja": "拾う",
-     "px": 315,
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 359,
      "inView": true
     },
     {
      "name": "ウィロ",
      "activity": "採集",
-     "motion": "reach",
-     "motion_ja": "身をのり出す",
-     "px": 241,
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 246,
      "inView": true
     }
    ],
@@ -3049,9 +3049,9 @@
    "clock": "4年10日目 18:29  帰り",
    "text": "4年10日目のこの日も、北の林では、タヒとウィロは何も見つからず、セナが少し見つけただけなのだ。",
    "camera": {
-    "framing": "寄り",
+    "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 329,
+    "person_px": 186,
     "in_view": [
      "セナ",
      "タヒ",
@@ -3067,7 +3067,7 @@
       "title": "セナ・タヒ・ウィロ — 北の林で採集",
       "x": 0,
       "w": 1280,
-      "dist": 5.9
+      "dist": 9.5
      }
     ]
    },
@@ -3082,7 +3082,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 357,
+     "px": 219,
      "inView": true
     },
     {
@@ -3090,7 +3090,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 329,
+     "px": 186,
      "inView": true
     },
     {
@@ -3098,12 +3098,13 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 291,
+     "px": 178,
      "inView": true
     }
    ],
    "notes": [
-    "セナ が画面からはみ出す"
+    "セナ が画面からはみ出す",
+    "字幕が セナ にかかる"
    ]
   },
   {
@@ -3117,7 +3118,7 @@
    "camera": {
     "framing": "中くらい",
     "dist": 13.9,
-    "person_px": 232,
+    "person_px": 245,
     "in_view": [
      "セナ",
      "タヒ",
@@ -3133,7 +3134,7 @@
       "title": "",
       "x": 0,
       "w": 1280,
-      "dist": 6.9
+      "dist": 6.5
      }
     ]
    },
@@ -3148,7 +3149,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 232,
+     "px": 245,
      "inView": true
     },
     {
@@ -3156,7 +3157,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 252,
+     "px": 268,
      "inView": true
     },
     {
@@ -3164,7 +3165,7 @@
      "activity": "採集",
      "motion": "talk",
      "motion_ja": "話す",
-     "px": 215,
+     "px": 227,
      "inView": true
     }
    ],
