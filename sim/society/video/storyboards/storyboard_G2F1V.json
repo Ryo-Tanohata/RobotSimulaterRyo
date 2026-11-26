@@ -77,7 +77,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 113,
+     "px": 112,
      "inView": true
     },
     {
@@ -85,7 +85,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 117,
+     "px": 116,
      "inView": true
     },
     {
@@ -93,7 +93,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 112,
+     "px": 111,
      "inView": true
     },
     {
@@ -109,7 +109,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 130,
+     "px": 129,
      "inView": true
     },
     {
@@ -141,7 +141,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 105,
+     "px": 103,
      "inView": true
     },
     {
@@ -189,7 +189,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 116,
+     "px": 121,
      "inView": true
     },
     {
@@ -270,7 +270,7 @@
       "title": "五人 — 出かけるところ",
       "x": 0,
       "w": 640,
-      "dist": 58.8
+      "dist": 59
      },
      {
       "names": [
@@ -332,7 +332,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 32,
+     "px": 31,
      "inView": true
     },
     {
@@ -435,7 +435,7 @@
    "notes": [
     "セナ が小さい (28 px)",
     "ナギ が小さい (28 px)",
-    "ソル が小さい (32 px)",
+    "ソル が小さい (31 px)",
     "ミラ が小さい (24 px)",
     "ハユ が小さい (31 px)",
     "トワ が小さい (30 px)",
@@ -449,8 +449,7 @@
     "シノ が小さい (21 px)",
     "名前の札が重なる: ナギ と モエ",
     "名前の札が重なる: トワ と サエ",
-    "名前の札が重なる: ユノ と ネム",
-    "名前の札が重なる: フウ と シノ"
+    "名前の札が重なる: ユノ と ネム"
    ]
   },
   {
@@ -464,7 +463,7 @@
    "camera": {
     "framing": "引き",
     "dist": 13.9,
-    "person_px": 28,
+    "person_px": 31,
     "in_view": [
      "セナ",
      "タヒ",
@@ -549,7 +548,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 154,
+     "px": 156,
      "inView": true
     },
     {
@@ -573,7 +572,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 28,
+     "px": 30,
      "inView": true
     },
     {
@@ -589,7 +588,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 135,
+     "px": 134,
      "inView": true
     },
     {
@@ -597,15 +596,15 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 21,
+     "px": 31,
      "inView": true
     },
     {
      "name": "トワ",
      "activity": "採集",
-     "motion": "probe",
-     "motion_ja": "両手で調べる",
-     "px": 18,
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 40,
      "inView": true
     },
     {
@@ -613,7 +612,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 19,
+     "px": 31,
      "inView": true
     },
     {
@@ -621,7 +620,7 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 244,
+     "px": 235,
      "inView": true
     },
     {
@@ -629,7 +628,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 34,
+     "px": 39,
      "inView": true
     },
     {
@@ -661,7 +660,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 33,
+     "px": 29,
      "inView": true
     },
     {
@@ -676,14 +675,14 @@
    "notes": [
     "セナ が小さい (33 px)",
     "ナギ が小さい (26 px)",
-    "ソル が小さい (28 px)",
+    "ソル が小さい (30 px)",
     "ミラ が小さい (28 px)",
-    "ハユ が小さい (21 px)",
-    "トワ が小さい (18 px)",
-    "サエ が小さい (19 px)",
-    "カイ が小さい (34 px)",
+    "ハユ が小さい (31 px)",
+    "トワ が小さい (40 px)",
+    "サエ が小さい (31 px)",
+    "カイ が小さい (39 px)",
     "フウ が小さい (26 px)",
-    "モエ が小さい (33 px)",
+    "モエ が小さい (29 px)",
     "シノ が小さい (24 px)",
     "画面の外: ネム・ラタ",
     "名前の札が重なる: セナ と ナギ",
@@ -704,7 +703,7 @@
    "camera": {
     "framing": "引き",
     "dist": 13.9,
-    "person_px": 105,
+    "person_px": 104,
     "in_view": [
      "セナ",
      "タヒ",
@@ -767,7 +766,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 84,
+     "px": 78,
      "inView": true
     },
     {
@@ -783,7 +782,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 112,
+     "px": 111,
      "inView": true
     },
     {
@@ -791,7 +790,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 113,
+     "px": 112,
      "inView": true
     },
     {
@@ -823,7 +822,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 123,
+     "px": 122,
      "inView": true
     },
     {
@@ -831,7 +830,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 105,
+     "px": 104,
      "inView": true
     },
     {
@@ -839,7 +838,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 103,
+     "px": 104,
      "inView": true
     },
     {
@@ -879,7 +878,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 116,
+     "px": 121,
      "inView": true
     },
     {
@@ -895,16 +894,16 @@
      "activity": "休む",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 70,
+     "px": 69,
      "inView": true
     }
    ],
    "notes": [
-    "セナ が小さい (84 px)",
+    "セナ が小さい (78 px)",
     "ミラ が小さい (84 px)",
     "ネム が小さい (15 px)",
     "ラタ が小さい (17 px)",
-    "シノ が小さい (70 px)",
+    "シノ が小さい (69 px)",
     "名前の札が重なる: ウィロ と ナギ",
     "名前の札が重なる: ウィロ と ラタ",
     "名前の札が重なる: ナギ と ソル",
@@ -995,7 +994,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 118,
+     "px": 117,
      "inView": true
     },
     {
@@ -1003,7 +1002,7 @@
      "activity": "探索",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 112,
+     "px": 111,
      "inView": true
     },
     {
@@ -1011,7 +1010,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 115,
+     "px": 114,
      "inView": true
     },
     {
@@ -1051,7 +1050,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 105,
+     "px": 103,
      "inView": true
     },
     {
@@ -1059,7 +1058,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 104,
+     "px": 103,
      "inView": true
     },
     {
@@ -1099,7 +1098,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 116,
+     "px": 121,
      "inView": true
     },
     {
@@ -1115,7 +1114,7 @@
      "activity": "休む",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 70,
+     "px": 69,
      "inView": true
     }
    ],
@@ -1123,7 +1122,7 @@
     "ミラ が小さい (84 px)",
     "ネム が小さい (15 px)",
     "ラタ が小さい (17 px)",
-    "シノ が小さい (70 px)",
+    "シノ が小さい (69 px)",
     "名前の札が重なる: ウィロ と ラタ",
     "名前の札が重なる: トワ と サエ",
     "名前の札が重なる: ユノ と カイ",
@@ -1204,7 +1203,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 95,
+     "px": 96,
      "inView": true
     },
     {
@@ -1212,7 +1211,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 102,
+     "px": 103,
      "inView": true
     },
     {
@@ -1220,7 +1219,7 @@
      "activity": "探索",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 95,
+     "px": 96,
      "inView": true
     },
     {
@@ -1228,7 +1227,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 99,
+     "px": 94,
      "inView": true
     },
     {
@@ -1236,7 +1235,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 107,
+     "px": 103,
      "inView": true
     },
     {
@@ -1244,7 +1243,7 @@
      "activity": "休む",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 77,
+     "px": 78,
      "inView": true
     },
     {
@@ -1252,46 +1251,46 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 109,
+     "px": 105,
      "inView": true
     },
     {
      "name": "ハユ",
      "activity": "採集",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 109,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 104,
      "inView": true
     },
     {
      "name": "トワ",
      "activity": "採集",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 95,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 93,
      "inView": true
     },
     {
      "name": "サエ",
      "activity": "採集",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 94,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 93,
      "inView": true
     },
     {
      "name": "ユノ",
      "activity": "採集",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 88,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 87,
      "inView": true
     },
     {
      "name": "カイ",
      "activity": "採集",
-     "motion": "idle",
-     "motion_ja": "立つ",
+     "motion": "walk",
+     "motion_ja": "歩く",
      "px": 95,
      "inView": true
     },
@@ -1308,7 +1307,7 @@
      "activity": "休む",
      "motion": null,
      "motion_ja": null,
-     "px": 14,
+     "px": 15,
      "inView": true
     },
     {
@@ -1316,7 +1315,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 107,
+     "px": 111,
      "inView": true
     },
     {
@@ -1337,18 +1336,19 @@
     }
    ],
    "notes": [
-    "ミラ が小さい (77 px)",
+    "ミラ が小さい (78 px)",
     "トワ が画面からはみ出す",
     "サエ が画面からはみ出す",
-    "ユノ が画面からはみ出す",
     "カイ が画面からはみ出す",
-    "ネム が画面からはみ出す",
     "ネム が小さい (13 px)",
-    "ラタ が小さい (14 px)",
+    "ラタ が小さい (15 px)",
     "シノ が小さい (65 px)",
-    "名前の札が重なる: セナ と タヒ",
-    "名前の札が重なる: セナ と カイ",
+    "名前の札が重なる: タヒ と ソル",
+    "名前の札が重なる: ウィロ と ソル",
+    "名前の札が重なる: ウィロ と ケト",
     "名前の札が重なる: ウィロ と ラタ",
+    "名前の札が重なる: ソル と ラタ",
+    "名前の札が重なる: ケト と ラタ",
     "名前の札が重なる: トワ と サエ",
     "名前の札が重なる: ユノ と ネム"
    ]
@@ -1465,7 +1465,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 23,
+     "px": 25,
      "inView": true
     },
     {
@@ -1489,7 +1489,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 152,
+     "px": 153,
      "inView": true
     },
     {
@@ -1497,15 +1497,15 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 227,
+     "px": 229,
      "inView": true
     },
     {
      "name": "トワ",
      "activity": "採集",
-     "motion": "pick",
-     "motion_ja": "拾う",
-     "px": 22,
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 28,
      "inView": true
     },
     {
@@ -1513,7 +1513,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 16,
+     "px": 26,
      "inView": true
     },
     {
@@ -1521,7 +1521,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 241,
+     "px": 240,
      "inView": true
     },
     {
@@ -1577,18 +1577,17 @@
     "セナ が小さい (26 px)",
     "タヒ が小さい (25 px)",
     "ウィロ が小さい (32 px)",
-    "ナギ が小さい (23 px)",
+    "ナギ が小さい (25 px)",
     "ソル が小さい (35 px)",
     "ミラ が小さい (26 px)",
-    "トワ が小さい (22 px)",
-    "サエ が小さい (16 px)",
+    "トワ が小さい (28 px)",
+    "サエ が小さい (26 px)",
     "カイ が画面からはみ出す",
     "ネム が小さい (5 px)",
     "ラタ が小さい (5 px)",
     "フウ が小さい (25 px)",
     "モエ が小さい (33 px)",
     "シノ が小さい (22 px)",
-    "名前の札が重なる: セナ と ナギ",
     "名前の札が重なる: セナ と ソル",
     "名前の札が重なる: タヒ と ソル",
     "名前の札が重なる: タヒ と モエ",
@@ -1602,8 +1601,7 @@
     "名前の札が重なる: ソル と ラタ",
     "名前の札が重なる: ソル と フウ",
     "名前の札が重なる: ソル と モエ",
-    "名前の札が重なる: ソル と シノ",
-    "名前の札が重なる: トワ と サエ"
+    "名前の札が重なる: ソル と シノ"
    ]
   },
   {
@@ -1617,7 +1615,7 @@
    "camera": {
     "framing": "引き",
     "dist": 13.9,
-    "person_px": 53,
+    "person_px": 52,
     "in_view": [
      "セナ",
      "タヒ",
@@ -1663,7 +1661,7 @@
       "title": "五人 — 出かけるところ",
       "x": 0,
       "w": 1280,
-      "dist": 32.7
+      "dist": 32.8
      }
     ]
    },
@@ -1690,7 +1688,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 54,
+     "px": 53,
      "inView": true
     },
     {
@@ -1706,7 +1704,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 53,
+     "px": 52,
      "inView": true
     },
     {
@@ -1730,7 +1728,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 59,
+     "px": 58,
      "inView": true
     },
     {
@@ -1738,7 +1736,7 @@
      "activity": "畑仕事",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 56,
+     "px": 55,
      "inView": true
     },
     {
@@ -1746,7 +1744,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 53,
+     "px": 52,
      "inView": true
     },
     {
@@ -1794,7 +1792,7 @@
      "activity": "採集",
      "motion": "idle",
      "motion_ja": "立つ",
-     "px": 57,
+     "px": 58,
      "inView": true
     },
     {
@@ -1824,25 +1822,27 @@
    ],
    "notes": [
     "セナ が小さい (50 px)",
-    "タヒ が小さい (54 px)",
+    "タヒ が小さい (53 px)",
     "ウィロ が小さい (52 px)",
-    "ナギ が小さい (53 px)",
+    "ナギ が小さい (52 px)",
     "ソル が小さい (57 px)",
     "ミラ が小さい (44 px)",
-    "ケト が小さい (59 px)",
-    "ハユ が小さい (56 px)",
-    "トワ が小さい (53 px)",
+    "ケト が小さい (58 px)",
+    "ハユ が小さい (55 px)",
+    "トワ が小さい (52 px)",
     "サエ が小さい (51 px)",
     "ユノ が小さい (50 px)",
     "カイ が小さい (54 px)",
     "ネム が小さい (7 px)",
     "ラタ が小さい (8 px)",
-    "フウ が小さい (57 px)",
+    "フウ が小さい (58 px)",
     "モエ が小さい (56 px)",
     "シノ が小さい (36 px)",
     "テオ が小さい (7 px)",
-    "名前の札が重なる: タヒ と シノ",
+    "名前の札が重なる: タヒ と ネム",
+    "名前の札が重なる: タヒ と テオ",
     "名前の札が重なる: ウィロ と ラタ",
+    "名前の札が重なる: トワ と サエ",
     "名前の札が重なる: ユノ と ネム",
     "名前の札が重なる: ユノ と テオ",
     "名前の札が重なる: ネム と テオ"
@@ -1910,7 +1910,7 @@
       "title": "ナギ・ソル・フウ・モエ — 西の草原で採集",
       "x": 427,
       "w": 426,
-      "dist": 14.2
+      "dist": 14.3
      },
      {
       "names": [
@@ -1940,7 +1940,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 33,
+     "px": 32,
      "inView": true
     },
     {
@@ -1948,7 +1948,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 31,
+     "px": 27,
      "inView": true
     },
     {
@@ -1972,7 +1972,7 @@
      "activity": "採集",
      "motion": "pick",
      "motion_ja": "拾う",
-     "px": 117,
+     "px": 113,
      "inView": true
     },
     {
@@ -1988,7 +1988,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 24,
+     "px": 33,
      "inView": true
     },
     {
@@ -2020,7 +2020,7 @@
      "activity": "採集",
      "motion": "stretch",
      "motion_ja": "背のび",
-     "px": 243,
+     "px": 233,
      "inView": true
     },
     {
@@ -2052,7 +2052,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 96,
+     "px": 118,
      "inView": true
     },
     {
@@ -2060,7 +2060,7 @@
      "activity": "採集",
      "motion": "probe",
      "motion_ja": "両手で調べる",
-     "px": 105,
+     "px": 114,
      "inView": true
     },
     {
@@ -2081,11 +2081,11 @@
     }
    ],
    "notes": [
-    "セナ が小さい (33 px)",
-    "タヒ が小さい (31 px)",
+    "セナ が小さい (32 px)",
+    "タヒ が小さい (27 px)",
     "ウィロ が小さい (33 px)",
     "ミラ が小さい (27 px)",
-    "ケト が小さい (24 px)",
+    "ケト が小さい (33 px)",
     "ハユ が小さい (35 px)",
     "トワ が小さい (33 px)",
     "サエ が小さい (33 px)",
@@ -2096,9 +2096,10 @@
     "名前の札が重なる: セナ と タヒ",
     "名前の札が重なる: タヒ と トワ",
     "名前の札が重なる: タヒ と サエ",
+    "名前の札が重なる: ウィロ と ハユ",
     "名前の札が重なる: ウィロ と ラタ",
-    "名前の札が重なる: ナギ と フウ",
-    "名前の札が重なる: ハユ と カイ"
+    "名前の札が重なる: ハユ と カイ",
+    "名前の札が重なる: カイ と シノ"
    ]
   },
   {
@@ -2112,7 +2113,7 @@
    "camera": {
     "framing": "引き",
     "dist": 13.9,
-    "person_px": 96,
+    "person_px": 99,
     "in_view": [
      "セナ",
      "タヒ",
@@ -2178,7 +2179,7 @@
      "activity": "採集",
      "motion": null,
      "motion_ja": null,
-     "px": 284,
+     "px": 288,
      "inView": true
     },
     {
@@ -2186,7 +2187,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 100,
+     "px": 102,
      "inView": true
     },
     {
@@ -2194,7 +2195,7 @@
      "activity": "畑仕事",
      "motion": null,
      "motion_ja": null,
-     "px": 220,
+     "px": 224,
      "inView": true
     },
     {
@@ -2202,7 +2203,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 94,
+     "px": 91,
      "inView": true
     },
     {
@@ -2210,7 +2211,7 @@
      "activity": "採集",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 102,
+     "px": 99,
      "inView": true
     },
     {
@@ -2218,7 +2219,7 @@
      "activity": "休む",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 78,
+     "px": 79,
      "inView": true
     },
     {
@@ -2234,39 +2235,39 @@
      "activity": "畑仕事",
      "motion": "walk",
      "motion_ja": "歩く",
-     "px": 104,
+     "px": 105,
      "inView": true
     },
     {
      "name": "トワ",
      "activity": "採集",
-     "motion": "walk",
-     "motion_ja": "歩く",
-     "px": 96,
+     "motion": null,
+     "motion_ja": null,
+     "px": 161,
      "inView": true
     },
     {
      "name": "サエ",
      "activity": "採集",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 96,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 95,
      "inView": true
     },
     {
      "name": "ユノ",
      "activity": "採集",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 89,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 92,
      "inView": true
     },
     {
      "name": "カイ",
      "activity": "畑仕事",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 96,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 98,
      "inView": true
     },
     {
@@ -2282,30 +2283,30 @@
      "activity": "休む",
      "motion": null,
      "motion_ja": null,
-     "px": 96,
+     "px": 97,
      "inView": true
     },
     {
      "name": "フウ",
      "activity": "採集",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 107,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 103,
      "inView": true
     },
     {
      "name": "モエ",
      "activity": "採集",
-     "motion": "idle",
-     "motion_ja": "立つ",
-     "px": 102,
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 101,
      "inView": true
     },
     {
      "name": "シノ",
      "activity": "休む",
-     "motion": "idle",
-     "motion_ja": "立つ",
+     "motion": "walk",
+     "motion_ja": "歩く",
      "px": 65,
      "inView": true
     },
@@ -2319,33 +2320,36 @@
     }
    ],
    "notes": [
-    "ミラ が小さい (78 px)",
+    "ミラ が小さい (79 px)",
     "トワ が画面からはみ出す",
     "サエ が画面からはみ出す",
-    "ユノ が画面からはみ出す",
-    "カイ が画面からはみ出す",
     "ネム が小さい (14 px)",
     "シノ が小さい (65 px)",
     "テオ が小さい (14 px)",
     "名前の札が重なる: セナ と タヒ",
     "名前の札が重なる: セナ と ウィロ",
-    "名前の札が重なる: セナ と ナギ",
     "名前の札が重なる: セナ と ソル",
+    "名前の札が重なる: セナ と ハユ",
     "名前の札が重なる: タヒ と ウィロ",
-    "名前の札が重なる: タヒ と ナギ",
     "名前の札が重なる: タヒ と ソル",
-    "名前の札が重なる: ウィロ と ナギ",
+    "名前の札が重なる: タヒ と ハユ",
     "名前の札が重なる: ウィロ と ソル",
+    "名前の札が重なる: ウィロ と ハユ",
+    "名前の札が重なる: ウィロ と トワ",
+    "名前の札が重なる: ウィロ と サエ",
     "名前の札が重なる: ナギ と ソル",
     "名前の札が重なる: ソル と ミラ",
     "名前の札が重なる: ソル と ケト",
     "名前の札が重なる: ソル と ハユ",
     "名前の札が重なる: ソル と トワ",
     "名前の札が重なる: ソル と サエ",
+    "名前の札が重なる: ソル と ユノ",
     "名前の札が重なる: ソル と カイ",
+    "名前の札が重なる: ソル と ネム",
+    "名前の札が重なる: ソル と モエ",
+    "名前の札が重なる: ソル と テオ",
     "名前の札が重なる: トワ と サエ",
-    "名前の札が重なる: ユノ と ネム",
-    "名前の札が重なる: ユノ と テオ",
+    "名前の札が重なる: ユノ と モエ",
     "名前の札が重なる: ネム と テオ"
    ]
   }

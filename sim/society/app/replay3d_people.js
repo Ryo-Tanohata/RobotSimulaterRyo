@@ -33,6 +33,42 @@
       return { pt: { x: c.x + Math.cos(a) * r, y: c.y + Math.sin(a) * r }, sz: 0.8 * (0.25 + 0.75 * clamp((P.day - e.day + 1) / 30)), k };
     });
   }
+  // v2 (2026-11-26 本人「家が１つしかないのも疑問です」): 家族ごとの皮張りの小屋 (記録にない、描きそえ)。家族の家 (houses) が建つまで。
+  // 1 つめの家族 (川辺の家) は Society 1.0 の住まい。ほかの家族は、キャンプの奥 (北側。カメラから見て向こう) に、家族の数だけ小屋を建てる
+  const tentCache = new WeakMap();
+  function tentsFor(P) {
+    if (tentCache.has(P)) return tentCache.get(P);
+    const D = M.D, fire = { x: D.camp.x + 0.5, y: D.camp.y + 0.5 }, first = (D.people[0] || {}).household;
+    const homes = [...new Set(Object.keys(P.plan).filter((n) => P.plan[n].alive).map((n) => P.plan[n].home))].filter((h) => h && h !== "-" && h !== first);
+    const built = new Set((D.houses || []).filter((v) => v.built != null && v.built <= P.day).map((v) => v.household));
+    const T = [];
+    tentCache.set(P, T);  // 下の pushOut が obstacles を呼ぶので、先に空で入れておく
+    homes.filter((h) => !built.has(h)).forEach((h, k) => {
+      const a = -Math.PI / 2 + (k % 2 ? 1 : -1) * (0.35 + 0.42 * Math.floor((k + 1) / 2)) * (k ? 1 : 0), r = 5.2 + 1.6 * Math.floor(k / 6);
+      let pt = { x: fire.x + Math.cos(a) * r, y: fire.y + Math.sin(a) * r };
+      for (let it = 0; it < 6; it++) {  // 小屋の大きさ (半径 1) のぶん、住まい・木・囲い・前の小屋から離す
+        const o = [...obstacles(P), ...T.map((q) => ({ x: q.pt.x, y: q.pt.y, r: 1.2 }))].find((o) => Math.hypot(pt.x - o.x, pt.y - o.y) < o.r + 1.0);
+        if (!o) break;
+        const d = Math.hypot(pt.x - o.x, pt.y - o.y), b = d > 1e-3 ? Math.atan2(pt.y - o.y, pt.x - o.x) : a;
+        pt = { x: o.x + Math.cos(b) * (o.r + 1.05), y: o.y + Math.sin(b) * (o.r + 1.05) };
+      }
+      T.push({ home: h, pt, door: lerp(pt, fire, 1.0 / Math.max(1, Math.hypot(fire.x - pt.x, fire.y - pt.y))) });
+    });
+    obstCache.delete(P);  // 小屋も、よける物に入れ直す
+    return T;
+  }
+  function tentGroup(P) {
+    const g = new THREE.Group(), hide = new THREE.MeshLambertMaterial({ color: 0x7a6248 }), pole = new THREE.MeshLambertMaterial({ color: 0x4a3420 }), dark = new THREE.MeshBasicMaterial({ color: 0x1c140e, side: THREE.DoubleSide });
+    for (const t of tentsFor(P)) {
+      const o = new THREE.Group(); o.position.copy(M.w2t(t.pt.x, t.pt.y));
+      const c = new THREE.Mesh(new THREE.ConeGeometry(1.0, 1.7, 9, 1, true), hide); c.position.y = 0.85; o.add(c);
+      for (let k = 0; k < 4; k++) { const pl = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.03, 0.55, 4), pole); pl.position.set(Math.cos(k * 1.57) * 0.06, 1.85, Math.sin(k * 1.57) * 0.06); pl.rotation.set(Math.sin(k * 1.57) * 0.4, 0, -Math.cos(k * 1.57) * 0.4); o.add(pl); }
+      const dr = new THREE.Mesh(new THREE.CircleGeometry(0.32, 3), dark), dir = Math.atan2(t.door.y - t.pt.y, t.door.x - t.pt.x);  // 戸口 (火のほう)
+      dr.position.set(Math.cos(dir) * 0.78, 0.38, Math.sin(dir) * 0.78); dr.rotation.set(0, -dir + Math.PI / 2, Math.PI / 2); o.add(dr);
+      g.add(o);
+    }
+    return g;
+  }
   function obstacles(P) {
     if (obstCache.has(P)) return obstCache.get(P);
     const D = M.D, O = [], T = D.map.terrain, H = T.length, W = T[0].length;
@@ -41,6 +77,7 @@
     for (const g of groveList(P)) O.push({ x: g.pt.x, y: g.pt.y, r: 0.3 + 0.35 * g.sz });
     const gs = (D.goats || []).find((g) => P.day >= g.from && P.day <= g.to), ng = Math.min(30, D.goatDay && D.goatDay[P.day] != null ? D.goatDay[P.day] : gs ? gs.n : 0);
     if (ng > 0) O.push({ x: D.camp.x + 0.5 + 4.5, y: D.camp.y + 0.5 + 4.0, r: 1.5 + 0.25 * Math.sqrt(ng) });  // ヤギの囲い
+    if (tentCache.has(P)) for (const t of tentCache.get(P)) O.push({ x: t.pt.x, y: t.pt.y, r: 1.25 });  // 家族の小屋
     obstCache.set(P, O);
     return O;
   }
@@ -175,6 +212,25 @@
     }
   }
 
+  // v2 (2026-11-26 本人「人同士もすり抜けます」): 見えている人どうしが体の幅より近いとき、横に押し離す (毎コマ。3 回くり返す)
+  function separate() {
+    const L = Object.entries(M.people).filter(([, R]) => R.root.visible).map(([n, R]) => ({ n, R }));
+    const D0 = 0.62 * M.K / 1.4;  // 体の幅 (約 0.44 m) をマスに
+    for (let it = 0; it < 3; it++) {
+      for (let i = 0; i < L.length; i++) for (let j = i + 1; j < L.length; j++) {
+        const a = L[i].R.root.position, b = L[j].R.root.position, dx = b.x - a.x, dz = b.z - a.z, d = Math.hypot(dx, dz);
+        if (d >= D0) continue;
+        const ux = d > 1e-4 ? dx / d : Math.cos(i + j), uz = d > 1e-4 ? dz / d : Math.sin(i + j), m = (D0 - d) / 2;
+        a.x -= ux * m; a.z -= uz * m; b.x += ux * m; b.z += uz * m;
+      }
+    }
+    for (const { n, R } of L) {
+      R.root.updateMatrixWorld(true);
+      if (M.figs[n]) M.figs[n].position.copy(R.root.position);
+      if (R.head && M.labels[n]) M.labels[n].pos = R.head.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 0.32 * M.K, 0));
+    }
+  }
+
   // 人ごとの予定: [{ t0, clip, mode, rate, off, at(v), head(v) }] を始まりの順に
   function planFor(P, D, n) {
     const p = P.plan[n], info = M.people[n].info, seg = {};
@@ -189,6 +245,7 @@
     };
     // opts.v2 (2026-11-25、S1V・G1 の F の撮り直しから。本人の直し): 住まいにめり込まない・夜は住まいに入る・同じ場所の人の間をあける。ないときは前と同じ
     const V2 = !!M.opts2.v2, hutOn = V2 && M.world && M.world.hutDay !== null && P.day >= M.world.hutDay;
+    if (V2) tentsFor(P);
     const hutC = { x: fire.x - 3.2, y: fire.y - 2.2 }, HUT_R = 2.3;  // replay3d.js の住まい (キャンプから -3.2, -2.2。壁の半径 1.4・屋根 1.8)
     const out_ = (pt) => {  // 住まいの円の中なら、外へ押し出す
       if (!hutOn) return pt;
@@ -230,11 +287,12 @@
     const tLeave = Math.max(t + 2, seg.back.v1 - 0.6 - (p.dist + 2) / SPD);
     const out = face(ring, p.spot);
     if (builder) {
-      const hd = face(p.spot, hutC), kinds = ["stretch", "reach", "give", "pick"];
+      // 2026-11-26 本人「家を建てるのもモーションが欲しい」: 持ち上げる → 杭を打つ → 結わえる (動きの記録にあれば。なければ前の 4 つ)
+      const hd = face(p.spot, hutC), kinds = info.hammer ? ["lift", "hammer", "tie", "hammer"] : ["stretch", "reach", "give", "pick"];
       for (let k = 0; t < tLeave; k++) {
         const c = kinds[(k + p.i) % kinds.length];
-        add({ t0: t, clip: c, mode: "pp", ...still(here, hd + (rnd(p.i, k) - 0.5) * 0.3) });
-        t += Math.min(info[c].sec * 1.4, 6);
+        add({ t0: t, clip: c, mode: c === "lift" ? "once" : "pp", ...still(here, hd + (rnd(p.i, k) - 0.5) * 0.3) });
+        t += Math.min(info[c].sec * (c === "lift" ? 1 : 1.4), 8);
       }
     } else if (p.activity === "採集" && V2) {  // v2: 採る場所に植物を置き、そちらを向いて採る。林は実のなる木 (のり出す・背のびして取る)、ほかは草むら (かがんで拾う・しゃがんで調べる)
       const tree = /林|森/.test(String((p.place && (p.place.label || p.place.id)) || ""));
@@ -269,6 +327,16 @@
           t += Math.min(info[c].sec, 5);
         }
       }
+    } else if (V2 && (p.activity === "畑仕事" || p.activity === "道具づくり" || p.activity === "土器づくり")) {
+      // v2 (2026-11-26): 畑仕事は、かがんで地面を見る・しゃがんで手入れ・草を拾う。道具や土器づくりは、しゃがんで石を打つ・調べる (そばに石を置く)
+      const farm = p.activity === "畑仕事", kinds = farm ? ["look", "probe", "pick"] : info.hammer ? ["probe", "hammer", "probe", "pick"] : ["probe", "pick"];
+      const at = { x: here.x - 0.45, y: here.y - 0.6 }, look = face(here, at);
+      if (!farm) (M.props.get(P) || M.props.set(P, []).get(P)).push({ at, kind: p.activity });
+      for (let k = 0; t < tLeave; k++) {
+        const c = kinds[(k + p.i) % kinds.length];
+        add({ t0: t, clip: c, mode: "pp", ...still(here, look + (rnd(p.i, k + 3) - 0.5) * 0.4) });
+        t += Math.min(info[c].sec * 1.5, 7);
+      }
     } else {
       add({ t0: t, clip: "idle", mode: "pp", ...still(here, face(here, fire)) });
     }
@@ -301,6 +369,12 @@
     if (P.eve.length) add({ t0: eve.v1, clip: eating ? "eat" : "idle", mode: "pp", ...still(ring, atFire) });
     // 夜: 火から少しはなれて、横になる (起き上がる記録を逆に流す)
     here = ring;
+    const tent = V2 && tentsFor(P).find((q) => q.home === p.home);
+    if (tent) {  // 家族の小屋がある夜: 戸口まで歩いて、中に入る
+      t = walkTo(tent.door, seg.night.v0 + 0.5 + 0.35 * p.i);
+      add({ t0: t + 0.1, clip: "idle", mode: "pp", hide: true, ...still(tent.door, face(tent.door, tent.pt)) });
+      return E;
+    }
     if (hutOn) {  // 住まいがある夜: 戸口まで歩いて、中に入る (見えなくなる)
       const a = Math.atan2(fire.y - hutC.y, fire.x - hutC.x), door = { x: hutC.x + Math.cos(a) * 1.5, y: hutC.y + Math.sin(a) * 1.5 };
       t = walkTo(door, seg.night.v0 + 0.5 + 0.6 * p.i);
@@ -671,7 +745,7 @@
       return Object.keys(got);
     },
     init(ctx) {  // Replay3D.setPeople から呼ばれる
-      M = { ...ctx, people: {}, opts2: this.opts, plants: new Map(), plantG: null, plantP: null, lighter: new Map(), fireAt: new Map(), bundles: {},
+      M = { ...ctx, people: {}, opts2: this.opts, plants: new Map(), plantG: null, plantP: null, lighter: new Map(), fireAt: new Map(), bundles: {}, props: new Map(),
         kin: Object.fromEntries((ctx.D.people || []).map((q) => [q.name, { born: q.born_day, mother: q.mother }])) };
       if (this.opts.noPlants) { const pm = ctx.scene.getObjectByName("plants"); if (pm) pm.visible = false; }
       for (const n in this.loaded || {}) {
@@ -770,12 +844,26 @@
       if (!sched.has(P)) sched.set(P, Object.fromEntries(Object.keys(M.people).filter((n) => P.plan[n]).map((n) => [n, planFor(P, M.D, n)])));
       const all = sched.get(P);
       if (this.opts.v2 && M.world && M.world.hut) hutGrowth(P, v);
-      if (this.opts.v2) { animalsFrame(P, v); growFrame(P); if (this.opts.fireNightly) fireFrame(P, v); }
+      if (this.opts.v2) {
+        animalsFrame(P, v); growFrame(P); if (this.opts.fireNightly) fireFrame(P, v);
+        if (M.tentP !== P) { if (M.tentG) M.scene.remove(M.tentG); M.tentP = P; M.tentG = tentGroup(P); M.scene.add(M.tentG); }
+      }
       if (M.plantP !== P) {  // v2: その日の採集の植物を置きかえる
         if (M.plantG) M.scene.remove(M.plantG);
         M.plantG = null; M.plantP = P;
         const list = M.plants.get(P);
         if (list && list.length) { M.plantG = plantGroup(list); M.scene.add(M.plantG); }
+        const pr = M.props.get(P);  // 道具づくりの石と、できた鎌
+        if (pr && pr.length) {
+          if (!M.plantG) { M.plantG = new THREE.Group(); M.scene.add(M.plantG); }
+          const st = new THREE.MeshLambertMaterial({ color: 0x8a8378 }), wd = new THREE.MeshLambertMaterial({ color: 0x6b4a2e }), K = M.K;
+          for (const q of pr) {
+            const o = new THREE.Group(); o.position.copy(M.w2t(q.at.x, q.at.y));
+            for (let k = 0; k < 5; k++) { const r = new THREE.Mesh(new THREE.DodecahedronGeometry((0.05 + 0.03 * rnd(k, 2)) * K), st); r.position.set((rnd(k, 5) - 0.5) * 0.3 * K, 0.04 * K, (rnd(k, 7) - 0.5) * 0.3 * K); o.add(r); }
+            const h = new THREE.Mesh(new THREE.CylinderGeometry(0.015 * K, 0.015 * K, 0.35 * K, 5), wd); h.rotation.z = Math.PI / 2; h.position.set(0.12 * K, 0.03 * K, 0.1 * K); o.add(h);  // 鎌の柄
+            M.plantG.add(o);
+          }
+        }
       }
       for (const n in M.people) {
         const R = M.people[n], E = all[n], fig = M.figs[n];
@@ -804,7 +892,7 @@
         fig.position.copy(R.root.position); fig.rotation.y = hd;
         if (R.head && M.labels[n]) M.labels[n].pos = R.head.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 0.32 * M.K, 0));
       }
-      if (this.opts.v2) babiesFrame(P);
+      if (this.opts.v2) { separate(); babiesFrame(P); }
     },
   };
 })();

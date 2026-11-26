@@ -94,7 +94,7 @@ render_one() {
   local slim=; case "$SLIM_ITEMS" in *" $name "*) slim=1 ;; esac
   local src=$(src_of "$name") people=; case "$PEOPLE_ITEMS" in *" $name "*) people=${PEOPLE_DIR:-../../../../human-model/people_glb} ;; esac
   local cam= credit= vf=; case "$name" in D1V|S1V|G1F1V|G1F2V|G1F3V|G1V|G2V|G2F1V|G2F2V|G2F3V) ;; *) false ;; esac && { cam=$D1V_CAM credit=$D1V_CREDIT vf="-vf fps=24"; }
-  case "$name" in S1V|G1F1V|G1F2V|G1F3V|G1V|G2V|G2F1V|G2F2V|G2F3V) credit="$D1V_CREDIT<br>毎晩の焚き火・動物と植物の形と動きは、記録にない所を描きそえた (いつ・どこで・だれがは記録のとおり)" ;; esac
+  case "$name" in S1V|G1F1V|G1F2V|G1F3V|G1V|G2V|G2F1V|G2F2V|G2F3V) credit="$D1V_CREDIT<br>毎晩の焚き火・家族の小屋・動物と植物の形と動きは、記録にない所を描きそえた (いつ・どこで・だれがは記録のとおり)" ;; esac
   if [ -n "$STORY" ]; then  # 絵コンテだけ
     env SLIM=$slim PEOPLE=$people DAYS=$days PEOPLE_CAM="$cam" PEOPLE_CREDIT="$credit" $(opts_of "$name") node storyboard.mjs "narration_$src.json" "voice/$src" "out/storyboard_$name" >> "out/storyboard_$name.log" 2>&1 \
       && log "$name: storyboard -> out/storyboard_$name.html" || log "$name: STORYBOARD FAILED"

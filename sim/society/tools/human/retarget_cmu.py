@@ -54,6 +54,10 @@ CLIPS = {
     "give":    dict(bvh="22_13", t=(0.2, 2.6), face="start"),             # 手渡す
     "eat":     dict(bvh="79_12", t=(1.0, 7.5), face="mean"),              # 立って食べる
     "lie":     dict(bvh="77_16", t=(0.5, 4.5), face="end"),               # 横になった姿勢から起き上がる (replay3d_people.js が逆に流す)
+    # 2026-11-26 本人「家を建てるのもモーションが欲しいです」: 住まいを建てる動き (CMU 62 は大工仕事)
+    "hammer":  dict(bvh="62_07", t=(3.0, 7.5), face="mean"),              # 石で杭を打つ (釘を打つ記録)
+    "tie":     dict(bvh="62_21", t=(2.5, 12.0), face="mean"),             # 柱をひもで結わえる (ひもを巻く記録)
+    "lift":    dict(bvh="26_10", t=(0.8, 4.6), face="mean"),              # かがんで柱や皮を持ち上げる
 }
 
 # 骨の対応: BVH (cgspeed の名前) → VRoid (J_Bip_*)
