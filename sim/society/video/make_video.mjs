@@ -65,6 +65,31 @@ function slimData(days) {
     const r = JSON.parse(ln);
     if (r.season_end_day <= maxDay + 120 && r.goats) S.goats.push({ from: r.season_start_day, to: r.season_end_day, n: r.goats.count || 0 });
   }
+  // その日のヤギの数 (2026-11-26 見直し K9: 季節の終わりの数でまとめると、季節のとちゅうで捕まえたヤギが先に写る):
+  // 前の季節の終わりの数 + その季節のはじめからその日までの出来事 (捕まえた +1・生まれた +N・いなくなった/つぶした −N)
+  const goatEv = [];
+  for (let y = 0; y <= Math.floor(maxDay / 120); y++) {
+    const f = path.join(DATA, "archive", `events_${String(y).padStart(4, "0")}.jsonl`);
+    if (!fs.existsSync(f)) continue;
+    for (const ln of fs.readFileSync(f, "utf8").split("\n")) if (ln.includes('"type":"ヤギ"')) { const e = JSON.parse(ln); if (e.day <= maxDay) goatEv.push(e); }
+  }
+  for (const e of D.events || []) if (e.type === "ヤギ" && e.day <= maxDay && !goatEv.some((g) => g.id === e.id)) goatEv.push(e);
+  const dGoat = (e) => {
+    const t = e.text || "";
+    if (/子ヤギ.*を捕まえて/.test(t)) return 1;
+    let m = /子ヤギが (\d+) 頭生まれた/.exec(t); if (m) return +m[1];
+    m = /ヤギ (\d+) 頭(がいなくなった|をつぶした)/.exec(t); if (m) return -m[1];
+    return 0;
+  };
+  S.goatDay = {};
+  for (const d of days) {
+    const sn = S.goats.find((g) => d >= g.from && d <= g.to);
+    if (!sn) continue;
+    const prev = S.goats.find((g) => g.to === sn.from - 1);
+    let n = prev ? prev.n : 0;
+    for (const e of goatEv) if (e.day >= sn.from && e.day <= d) n += dGoat(e);
+    S.goatDay[d] = Math.max(0, n);
+  }
   const out = JSON.stringify(S);
   console.log(`SLIM: app_data.json ${(fs.statSync(path.join(DATA, "app_data.json")).size / 1e6).toFixed(1)} MB → ${(out.length / 1e6).toFixed(1)} MB (人 ${S.people.length}・日 ${minDay}〜${maxDay})`);
   return out;

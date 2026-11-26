@@ -39,7 +39,7 @@
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (T[y][x] === "f" && ((x * 73856093) ^ (y * 19349663)) % 7 === 0) O.push({ x: x + 0.5, y: y + 0.5, r: 0.85 });  // replay3d.js の林の木 (円すい、半径 0.55) と同じ所
     if (M.world && M.world.hutDay !== null && P.day >= M.world.hutDay - 3) O.push({ x: D.camp.x + 0.5 - 3.2, y: D.camp.y + 0.5 - 2.2, r: 2.0 });  // 住まい (建てかけも)
     for (const g of groveList(P)) O.push({ x: g.pt.x, y: g.pt.y, r: 0.3 + 0.35 * g.sz });
-    const gs = (D.goats || []).find((g) => P.day >= g.from && P.day <= g.to), ng = Math.min(30, gs ? gs.n : 0);
+    const gs = (D.goats || []).find((g) => P.day >= g.from && P.day <= g.to), ng = Math.min(30, D.goatDay && D.goatDay[P.day] != null ? D.goatDay[P.day] : gs ? gs.n : 0);
     if (ng > 0) O.push({ x: D.camp.x + 0.5 + 4.5, y: D.camp.y + 0.5 + 4.0, r: 1.5 + 0.25 * Math.sqrt(ng) });  // ヤギの囲い
     obstCache.set(P, O);
     return O;
@@ -401,7 +401,7 @@
       }
     }
     // ヤギ (飼っている数。季節の記録): キャンプの南東の囲いの中で、草をはんで歩く。夜は囲いの中で止まる
-    const gs = (D.goats || []).find((g) => P.day >= g.from && P.day <= g.to), ng = Math.min(30, gs ? gs.n : 0);
+    const gs = (D.goats || []).find((g) => P.day >= g.from && P.day <= g.to), ng = Math.min(30, D.goatDay && D.goatDay[P.day] != null ? D.goatDay[P.day] : gs ? gs.n : 0);
     if (ng > 0) {
       const pen = { x: fire.x + 4.5, y: fire.y + 4.0 }, R0 = 1.2 + 0.25 * Math.sqrt(ng);
       M.pen = { pen, r: R0 };
