@@ -372,8 +372,9 @@
     const tent = V2 && M.opts2.tents && tentsFor(P).find((q) => q.home === p.home);  // 家族の小屋は opts.tents のときだけ (記録とぶつかるので、ふだんは出さない)
     // 住まいに入りきらない人 (記録: 雨の夜に外で濡れた人。雨でない夜は、60 日以内の直前の雨の夜と同じ人): 火のそばで横になる
     const ro = V2 ? (M.D.rainOut || []).filter((r) => r.day <= P.day && r.day > P.day - 60).pop() : null;
-    if (hutOn && ro && ro.outside.includes(n)) {
-      const bed = lerp(fire, ring, 1.8);
+    if (hutOn && ro && ro.outside.includes(n)) {  // 火のまわりに輪になって寝る (外の人の数で輪を分ける)
+      const outs = ro.outside.filter((m) => P.plan[m] && P.plan[m].alive), j = Math.max(0, outs.indexOf(n)), a = (j / Math.max(1, outs.length)) * Math.PI * 2 + 0.4;
+      const bed = pushOut(P, { x: fire.x + Math.cos(a) * 2.6, y: fire.y + Math.sin(a) * 2.6 });
       t = walkTo(bed, seg.night.v0 + 0.5 + 0.35 * p.i);
       add({ t0: t + 0.3, clip: "lie", mode: "rev", rate: 0.9, ...still(bed, face(fire, bed)) });
       return E;
