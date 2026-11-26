@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "ロワ169はまだ小さいから、わたしはキャンプのそばの畑で草取りをするね。手があいている人がいたら、いっしょにやろう。"}, {"to": "ロワ170", "text": "遠くからよく来てくれたね。ヌオ170といっしょに、ここで暮らしていいと思うよ。わからないことがあったら、わたしに聞いてね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["テナ166", "ヌオ159"], "why": "0歳の子がいるので、キャンプのそばで働けて、冬に向けて畑の実りを増やせるから"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ170": true, "ヌオ170": true}, "keep": false,
+ "judge": {"M631": "つぐなう", "M632": "つぐなう", "M633": "つぐなう"}, "feast": false, "leader": null, "trade": {"T1493": false, "T1494": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "0歳の子のいる家は、雨の夜に村の住まいへ先に入ろう。わかした水を冷まして飲ませよう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその村から来た人を受け入れるかは、季節の集まりでみんなで決める", "because": [8410863, 8410870], "confidence": 0.6}, {"op": "add", "text": "ほかの家の畑で刈った草の種のもめごとは、量を字で書いておいた家の言い分が通りやすい", "because": [8410867, 8410868, 8410869], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1404", "against": "薬が少ないと、ほかの子に回らないかもしれない", "agree": true, "reason": "わたしにも0歳の子がいて、小さい子を守りたいから"}, {"id": "L1394", "against": "板や燃える石の多い家の負担がふえる", "agree": true, "reason": "小さい子のいる家に薬が届くのはいいことだから"}, {"id": "L1396", "against": "燃える石の少ない家は手伝えない", "agree": true, "reason": "0歳の子から順に薬を回すのは、子を守るのに大事だから"}, {"id": "L1393", "against": "住まいがせまくなる", "agree": true, "reason": "雨の夜に小さい子がぬれないようにしたいから"}],
+ "feeling": "ロワ169を守りながら、みんなと畑をがんばりたい"}

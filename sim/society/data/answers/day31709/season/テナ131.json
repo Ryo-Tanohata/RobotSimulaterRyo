@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "欠けた鎌があるなら、わたしのところへ持ってきて。冬が来る前に、刃を打ち直しておくから。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "わたしは道具を作るのがいちばん得意。秋のうちに鎌をこしらえ、打ち直しておけば、夏の刈り入れで手のあく人がみな鎌を持てる"},
+ "family": {"ホミ152": {"activity": "畑仕事", "why": "12 歳になったから、秋にまいた畑の草取りを手伝って体で覚えてほしい"}},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ170": true}, "keep": false,
+ "judge": {"M631": "ゆるす", "M632": "ゆるす", "M633": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1493": false, "T1494": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "欠けた鎌はケセ113の家のテナ131へ。秋と冬に打ち直し、夏の刈り入れ前に返す", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑を刈った種のもめごとは、こんども草の種で二十から百つかみほどの少しの量だった。量を字で書いておいても、また起きる", "because": [8410867, 8410868, 8410869], "confidence": 0.7},
+  {"op": "add", "text": "この一年も赤ん坊や小さい子が病で何人も亡くなった。生まれる子も多いが、小さい子の病はまだこわい", "because": [8410855, 8410856, 8410857, 8410858], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1372", "against": "干し肉にする時期で人によって考えがちがう", "agree": true, "reason": "ヤギは草で養える数をこえていて、受けても減るだけ。鎌の打ち直しは道具の得意なわたしの仕事にも合う"},
+  {"id": "L1402", "against": "鎌を持ち込む家が多すぎると手がまわらない", "agree": true, "reason": "欠けた鎌を秋と冬に打ち直せば、夏に刈り残しがへる"},
+  {"id": "L1386", "against": "書く手間がかかる", "agree": true, "reason": "少しの量のもめごとは、ゆるし合うほうが手間がかからない"},
+  {"id": "L1404", "against": "薬の数が少ないと回らない家が出る", "agree": true, "reason": "小さい子の病を少しでも減らしたい"}],
+ "feeling": "秋は鎌を打つ音を聞きながら、静かに手を動かしていたい。"}

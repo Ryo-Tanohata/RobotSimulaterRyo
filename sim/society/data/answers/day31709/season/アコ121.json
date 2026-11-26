@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "この年、水の道はまだだれも掘っていないよ。泥でうまる前に、秋と冬は手のあく人でいっしょに掘ろう。"}, {"to": "みんな", "text": "ヤギはいま67頭で、草で養える数よりずっと少ない。北東と北の大きな村のヤギは受けていいと思う。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": ["ヌオ127"], "why": "水の道の手入れが一万人日も残っていて、この年はまだ0人日。掘らないと来年の畑に水が来なくなる"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ170": true}, "family": {"ヌオ127": {"activity": "水の道を掘る", "place": "camp", "why": "二人で掘れば早く進むし、畑に水が来れば実りが守れる"}, "ムイ151": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをすれば、次の夏の実りが増える"}}, "keep": true,
+ "judge": {"M631": "ゆるす", "M632": "ゆるす", "M633": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1493": "村", "T1494": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": "物", "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋と冬は手のあく大人で水の道を掘ろう。この年はまだだれも掘っていない", "order": null, "take": {"頼み": 138, "人": ["アコ121"]},
+ "knowledge": [{"op": "add", "text": "ヤギはいま67頭で、草で養える約140頭よりずっと少ない。いまはよその村のヤギを受けてもよい", "because": [8410871, 8410872], "confidence": 0.8}, {"op": "add", "text": "家の倉に燃える石が11200kgあるので、町の頼みの燃える石5000kgはすぐ渡せて、子の薬8包みがもらえる", "because": [], "confidence": 0.7}],
+ "proposal": {"text": "秋と冬は、手のあく大人で水の道を掘ろう。家ごとに一人は、季節に何日か水の道を掘りに出よう。", "because": [], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1394", "against": "家に小さい子がいる家は困るかもしれない", "agree": true, "reason": "薬は赤ん坊の家に回すのがいちばん命を救う"},
+  {"id": "L1395", "against": "いまヤギは少ないので干し肉にする分はない", "agree": true, "reason": "子の薬をそろえて0歳の子の家から回すのは大事"},
+  {"id": "L1396", "against": "特にない", "agree": true, "reason": "燃える石の多い家が先に受ければ、薬が早くそろう"},
+  {"id": "L1397", "against": "ヤギが少ない今は当てはまらない部分がある", "agree": true, "reason": "夏に畑を刈りきるのは大事で、刈らずに落ちた種が多かった"},
+  {"id": "L1398", "against": "ヤギは今は少ない", "agree": true, "reason": "ヤギが多いときの決まりとして残し、丘へ二人以上で行くのは今も大事"},
+  {"id": "L1399", "against": "特にない", "agree": true, "reason": "鎌を秋と冬に打ち直せば、夏の刈り手がこまらない"},
+  {"id": "L1400", "against": "ヤギが少ない今は干し肉にしなくてよい", "agree": true, "reason": "小さい子にわかした水を飲ませるのは大事"},
+  {"id": "L1401", "against": "特にない", "agree": true, "reason": "冬に鎌をこしらえるのはよい"},
+  {"id": "L1402", "against": "特にない", "agree": true, "reason": "鎌を直して夏の前に返すと刈り入れがはかどる"},
+  {"id": "L1403", "against": "特にない", "agree": true, "reason": "薬を小さい子の家に先に回すのに賛成"},
+  {"id": "L1404", "against": "特にない", "agree": true, "reason": "わかして冷ました水で小さい子の病がへる"},
+  {"id": "L1405", "against": "特にない", "agree": true, "reason": "冬の鎌づくりと夏の刈り入れはどちらも大事"}
+ ],
+ "feeling": "疲れはあるけど、水の道を掘って来年の畑を守りたい。"}

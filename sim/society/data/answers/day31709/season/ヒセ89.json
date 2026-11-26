@@ -1,0 +1,31 @@
+{"say": [{"to": "みんな", "text": "おれは秋もM6ののこ場で木をひく。板がたまれば、輪も水の道も早く直せる。手のあいたやつは水の道を掘ってくれ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": [], "why": "のこ番として板をひき続けるため。板があれば水の道や輪の手入れが倍はかどる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ロワ170": true},
+ "family": {
+  "ムイ97": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく足りない。泥でうまると畑の実りが減る"},
+  "ヌオ101": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが足りないので手伝う"},
+  "リセ109": {"activity": "水の道を掘る", "place": "camp", "why": "水の来る畑を守るため"},
+  "オセ118": {"activity": "水の作業場で働く", "place": "M6", "why": "板をひいて、住まいやかまどの仕事を助けるため"},
+  "オネ125": {"activity": "水の作業場で働く", "place": "M6", "why": "家の板を増やすため"},
+  "トナ133": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに回る"},
+  "ハソ134": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに回る"},
+  "シエ136": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに回る"},
+  "トナ141": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れに回る"},
+  "ホタ144": {"activity": "採集", "place": "camp", "why": "小さい子がいるので近くで食べ物を集める"},
+  "キオ148": {"activity": "採集", "place": "camp", "why": "赤ん坊がいるので近くで働く"}
+ },
+ "keep": false,
+ "judge": {"M631": "ゆるす", "M632": "ゆるす", "M633": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1493": false, "T1494": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "水の道の手入れが大きく足りない。板をひいて、手のあく人で水の道を掘れば、畑の実りが守れる。", "because": [8404840], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1392", "against": "", "agree": true, "reason": "ヤギが多すぎるのは本当で、干し肉にするのは良い"},
+  {"id": "L1397", "against": "", "agree": true, "reason": "夏は刈り手が足りず落ちるので、みなで刈るのは良い"},
+  {"id": "L1402", "against": "", "agree": true, "reason": "鎌を直して刈り手に回すのは役に立つ"},
+  {"id": "L1405", "against": "", "agree": true, "reason": "ヤギを増やさず、夏は刈りきるのは良い"}
+ ],
+ "feeling": "今年もおのれの腕で板をひく。体はまだ動く。"}

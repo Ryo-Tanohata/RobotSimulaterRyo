@@ -1,0 +1,10 @@
+{"say": [{"to": "みんな", "text": "字を読める人が増えると、知らせ板も帳も役に立つ。私はこの秋、子どもたちに字を教えるよ。"}],
+ "job": {"activity": "字を教える", "place": "camp", "with": [], "why": "字を読み書きできる大人が増えると村が助かるし、子に教えるのは私の好奇心にも合うから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ170": true, "ヌオ170": true},
+ "family": {"ケセ160": {"activity": "採集", "place": "西草原12", "why": "ケセは採集が得意で、近い草原なら家の食べ物を増やせるから"}},
+ "keep": false,
+ "judge": {"M631": "ゆるす", "M632": "ゆるす", "M633": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまくと、次の夏に数倍になって実る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "村は大きくなった。字を教えて、みんなの役に立てるのが楽しみ。"}

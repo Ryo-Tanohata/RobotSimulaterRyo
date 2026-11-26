@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋はたくさん種をまいて、冬まで草取りをして、来年の夏も豊かに実らせよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをするほど次の夏に実りがふえる。蓄えを守るためにやる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ロワ170": true, "ヌオ170": true},
+ "family": {"シエ141": {"activity": "畑仕事", "place": "camp", "why": "ふたりで草取りをすれば畑の実りがふえるから。"}},
+ "keep": false,
+ "judge": {"M631": "ゆるす", "M632": "ゆるす", "M633": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの種をたっぷりまき、冬まで畑の草取りを続けると、次の夏の実りが豊かになる。", "because": [8410864], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは豊かで心は落ち着いている。畑の草取りをがんばって、来年の実りを楽しみにしている。"}

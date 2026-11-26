@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋だ。ばあさんのわしも千つかみまくよ。冬まで草取りを忘れずにな。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬まで草取りをすると次の夏によく実るから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ロワ170": true},
+ "family": {"テナ113": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで次の夏の実りを守る。"}, "セヤ119": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を多くして実りを増やす。"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみずつ種をまき、冬まで草取りをすると次の夏によく実る。", "because": [8408692], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは多くて安心。今年も畑を大事にしたい。"}

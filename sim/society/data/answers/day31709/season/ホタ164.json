@@ -1,0 +1,31 @@
+{"say": [{"to": "みんな", "text": "ヤギはいま 67 頭で、草で養える数よりずっと少なくなった。北東の村14 は苦しいそうだから、ヤギ 1 頭くらいなら受けて、種を渡してやろう。おれはこの秋も鎌をこしらえる。欠けた鎌は持ってきてくれ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりはおれのいちばん得意な仕事だ。夏の刈り入れで種が落ちたのは手と鎌が足りなかったからなので、冬までに鎌をたくさんこしらえておく"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ロワ170": true},
+ "family": {"ムイ164": {"activity": "字を教える", "place": "camp", "why": "ムイ164 は字が読めるので、村の子に字を教えれば、あとで覚えちがいのもめごとが減る"}},
+ "keep": false,
+ "judge": {"M631": "ゆるす", "M632": "ゆるす", "M633": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1493": "村", "T1494": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "秋と冬に鎌を打ち直す。欠けた鎌はホタ164の家へ持ってきて",
+ "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "ヤギは今 67 頭で、草で養える約 140 頭よりずっと少ない。少しなら受けても草は足りる", "because": [8410871], "confidence": 0.7},
+  {"op": "add", "text": "夏に刈る手が足りず、草の種がたくさん落ちた。鎌と刈る人を増やすとよい", "because": [8404771], "confidence": 0.7}
+ ],
+ "proposal": {"text": "ヤギが草で養える数より少ないあいだは、苦しい村が出すヤギを少し受けて、かわりに草の種を渡そう。秋と冬は道具の得意な大人が鎌をこしらえ、夏の刈り手に回そう。", "because": [8410871], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1386", "against": "", "agree": true, "reason": "刈った量を書けば小さいもめごとは避けられる"},
+  {"id": "L1387", "against": "いまヤギは多すぎないので、干し肉にする分はほとんどない", "agree": true, "reason": "多いときだけの決まりなので害はなく、住まいを広げるのはよい"},
+  {"id": "L1393", "against": "", "agree": true, "reason": "小さい子を雨と病から守るのは大事"},
+  {"id": "L1394", "against": "", "agree": true, "reason": "薬は小さい子のいる家に回すのがよい"},
+  {"id": "L1396", "against": "", "agree": true, "reason": "0 歳の子から薬を回すのは筋が通る"},
+  {"id": "L1399", "against": "", "agree": true, "reason": "欠けた鎌の打ち直しはおれの得意な仕事だ"},
+  {"id": "L1401", "against": "", "agree": true, "reason": "冬に鎌をこしらえれば夏の刈り入れが助かる"},
+  {"id": "L1402", "against": "", "agree": true, "reason": "畑を刈りきれば種が落ちない"},
+  {"id": "L1404", "against": "", "agree": true, "reason": "わかした水は子の病を防ぐ"},
+  {"id": "L1405", "against": "", "agree": true, "reason": "自分で出した提案だから"}
+ ],
+ "feeling": "疲れはたまっているが、鎌をこしらえて村の刈り入れを支えたい"}
