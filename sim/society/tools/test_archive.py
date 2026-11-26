@@ -2,6 +2,9 @@
 
   python3.13 sim/society/tools/test_archive.py      本物のデータは読むだけ (写しを一時フォルダに作る)。1 分ほど
   SOC_REAL_DATA=フォルダ で、ほかのデータ (本物の写しなど) を読む
+  2026-11-26: 本物 (31679 日目) は全部の形に戻すと 12 GB をこえ、メモリが足りない。前の世界の写しで試す:
+    git archive f11af1c81 sim/society/data/state.json sim/society/data/archive | tar -x -C /dev/shm/old
+    SOC_REAL_DATA=/dev/shm/old/sim/society/data TMPDIR=/dev/shm/tmp python3.13 sim/society/tools/test_archive.py   (13 の試し、約 3 分)
 
 本物の state を全部の形に戻し (もうしまってあれば)、写しでしまって、しまう前と同じかを見る:
 - 戻すと 1 バイトもちがわない。年のファイルが足りない・多いと止まる。しまう年がなければ何もしない
@@ -77,6 +80,27 @@ class Archive(unittest.TestCase):
             ev0 = archive.Events(self.trimmed())
             old = [e["id"] for e in st["events"] if e["id"] < st["archive"]["event"]]
             self.assertEqual([(ev.type(i), ev.who(i)) for i in old], [(ev0.type(i), ev0.who(i)) for i in old])
+            for day in (None, (st["day"] // archive.YEAR + 1) * archive.YEAR - 1):  # お題が、出す前と同じ
+                a, b = json.loads(dump(st)), self.trimmed()
+                if day is not None:
+                    a["day"] = b["day"] = day
+                first = b["era2"].get("last_first", 0)
+                for n in era2.answerers(b):
+                    p, q = next(x for x in a["people"] if x["name"] == n), next(x for x in b["people"] if x["name"] == n)
+                    self.assertEqual(era2.season_prompt(a, p, first), era2.season_prompt(b, q, first), n)
+                for n in era2.feelers(b):
+                    p, q = next(x for x in a["people"] if x["name"] == n), next(x for x in b["people"] if x["name"] == n)
+                    self.assertEqual(era2.feeling_prompt(a, p, first), era2.feeling_prompt(b, q, first), n)
+                if day is not None:
+                    self.assertEqual(era2._year_digest(a), era2._year_digest(b))
+            a, b = json.loads(dump(st)), self.trimmed()  # 季節の答え (古い話をきっかけにした知識) の反映も同じ
+            talk = [e["id"] for e in b["events"] if e["type"] == "話す" and e["id"] < b["archive"]["event"]]
+            ans = {name: json.dumps({"say": [{"to": "みんな", "text": f"試し {i}"}], "feeling": "試し", "job": {"activity": "採集", "place": "camp"},
+                                     "knowledge": [{"op": "add", "text": "古い話だけ", "because": [talk[i % len(talk)]], "confidence": 0.6}]}, ensure_ascii=False)
+                   for i, name in enumerate(era2.answerers(b))}
+            era2.apply_answers(a, ans)
+            era2.apply_answers(b, ans)
+            self.assertEqual(dump(archive.full(a, d2)), dump(archive.full(b, self.d)))
         finally:
             shutil.rmtree(d2, ignore_errors=True)
 
