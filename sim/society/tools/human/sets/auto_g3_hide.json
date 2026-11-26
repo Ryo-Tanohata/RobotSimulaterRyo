@@ -1,0 +1,1520 @@
+{
+ "configs": {
+  "p008": {
+   "name": "p008",
+   "label": "ミラ (男・1589日目 7歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "Sakurada_Fumiriya.vrm",
+   "skin": {
+    "tan": "#a9765a",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "HairSample_Male.vrm",
+      "part": "Hair001"
+     },
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "keep",
+    "crop": {
+     "k": 0.45,
+     "z_front": 0.1,
+     "z_back": 0.0,
+     "k_len": 0.35,
+     "gap": 0.003
+    },
+    "dark": "#020000",
+    "light": "#140e0b",
+    "ramp_lo": 0.3,
+    "rough": 0.55
+   },
+   "lines": {
+    "brow": "#1c120d",
+    "eyeline": "#24120e",
+    "lash": "#1e100c"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#9a6a4c",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.0036,
+    "hips": -0.009,
+    "waist": -0.019,
+    "chest": 0.019,
+    "limbs": {
+     "UpperArm": 0.016,
+     "LowerArm": 0.013,
+     "UpperLeg": -0.012,
+     "LowerLeg": -0.009
+    }
+   },
+   "scale": 0.764,
+   "legs": 0.942,
+   "arms": 0.959,
+   "face": {
+    "round": 0.05
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.18,
+    "Fcl_EYE_Joy": 0.01,
+    "Fcl_BRW_Surprised": 0.11,
+    "Fcl_MTH_Close": 0.35
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#665040",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p009": {
+   "name": "p009",
+   "label": "ケト (男・1530日目 29歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "Sakurada_Fumiriya.vrm",
+   "skin": {
+    "tan": "#85553c",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "HairSample_Male.vrm",
+      "part": "Hair001"
+     },
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "keep",
+    "crop": {
+     "k": 0.45,
+     "z_front": 0.1,
+     "z_back": 0.0,
+     "k_len": 0.35,
+     "gap": 0.003
+    },
+    "dark": "#2a1a10",
+    "light": "#7a5a3a",
+    "ramp_lo": 0.3,
+    "rough": 0.55
+   },
+   "lines": {
+    "brow": "#1c120d",
+    "eyeline": "#24120e",
+    "lash": "#1e100c"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#8c6c5c",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.0011,
+    "hips": -0.024,
+    "waist": -0.047,
+    "chest": 0.014,
+    "limbs": {
+     "UpperArm": -0.012,
+     "LowerArm": -0.006,
+     "UpperLeg": -0.029,
+     "LowerLeg": -0.024
+    }
+   },
+   "face": {
+    "round": -0.024
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.5,
+    "Fcl_EYE_Joy": 0.16,
+    "Fcl_BRW_Surprised": 0.24
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#665040",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p010": {
+   "name": "p010",
+   "label": "ハユ (男・1530日目 39歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "HairSample_Male.vrm",
+   "skin": {
+    "tan": "#83533a",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "HairSample_Male.vrm",
+      "part": "Hair001"
+     }
+    ],
+    "style": "keep",
+    "dark": "#3a1206",
+    "light": "#b8501f",
+    "ramp_lo": 0.25,
+    "rough": 0.5
+   },
+   "lines": {
+    "brow": "#3a1a10",
+    "eyeline": "#2c1612",
+    "lash": "#24120f"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#7a5640",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.0011,
+    "hips": -0.032,
+    "waist": -0.064,
+    "chest": 0.018,
+    "limbs": {
+     "UpperArm": -0.019,
+     "LowerArm": -0.01,
+     "UpperLeg": -0.04,
+     "LowerLeg": -0.032
+    }
+   },
+   "face": {
+    "round": -0.032
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.55,
+    "Fcl_EYE_Joy": 0.18,
+    "Fcl_BRW_Surprised": 0.2
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#73604a",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p012": {
+   "name": "p012",
+   "label": "トワ (男・1530日目 26歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "Sakurada_Fumiriya.vrm",
+   "skin": {
+    "tan": "#84533a",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "HairSample_Male.vrm",
+      "part": "Hair001"
+     },
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "keep",
+    "crop": {
+     "k": 0.45,
+     "z_front": 0.1,
+     "z_back": 0.0,
+     "k_len": 0.35,
+     "gap": 0.003
+    },
+    "dark": "#070505",
+    "light": "#241a14",
+    "ramp_lo": 0.3,
+    "rough": 0.55
+   },
+   "lines": {
+    "brow": "#1c120d",
+    "eyeline": "#24120e",
+    "lash": "#1e100c"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#7a5640",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.0001,
+    "hips": -0.04,
+    "waist": -0.08,
+    "chest": 0.017,
+    "limbs": {
+     "UpperArm": -0.033,
+     "LowerArm": -0.02,
+     "UpperLeg": -0.05,
+     "LowerLeg": -0.04
+    }
+   },
+   "face": {
+    "round": -0.04
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.44,
+    "Fcl_EYE_Joy": 0.13,
+    "Fcl_BRW_Surprised": 0.07
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#665040",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p013": {
+   "name": "p013",
+   "label": "サエ (男・1530日目 28歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "Sakurada_Fumiriya.vrm",
+   "skin": {
+    "tan": "#825239",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "Hair001"
+     },
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "keep",
+    "dark": "#070505",
+    "light": "#241a14",
+    "ramp_lo": 0.2,
+    "rough": 0.5
+   },
+   "lines": {
+    "brow": "#1c120d",
+    "eyeline": "#24120e",
+    "lash": "#1e100c"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#8c6c5c",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.0007,
+    "hips": -0.04,
+    "waist": -0.08,
+    "chest": 0.02,
+    "limbs": {
+     "UpperArm": -0.029,
+     "LowerArm": -0.017,
+     "UpperLeg": -0.05,
+     "LowerLeg": -0.04
+    }
+   },
+   "face": {
+    "round": -0.04
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.36,
+    "Fcl_EYE_Joy": 0.1,
+    "Fcl_BRW_Surprised": 0.04
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#4e3e30",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p014": {
+   "name": "p014",
+   "label": "ユノ (女・1530日目 34歳・自動)",
+   "body_src": "HairSample_Female.vrm",
+   "face_src": "Sendagaya_Shino.vrm",
+   "skin": {
+    "tan": "#83533a",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.18
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "Victoria_Rubin.vrm",
+      "part": "Hair001",
+      "drop": [
+       "HAIR_03"
+      ],
+      "drop_parts": [
+       {
+        "x_lt": -0.11
+       },
+       {
+        "x_lt": -0.09,
+        "z_gt": 0.085
+       }
+      ]
+     },
+     {
+      "src": "Victoria_Rubin.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "braid",
+    "dark": "#1a0f0a",
+    "light": "#4a2e1e",
+    "ramp_lo": 0.6,
+    "rough": 0.5,
+    "tie_z": 1.31,
+    "gather_from": 1.385,
+    "tail_width": 0.024,
+    "front_from": 1.37,
+    "front_keep": 0.9,
+    "tie_color": "#6a4a30",
+    "braid": {
+     "len": 0.34,
+     "width": 0.032,
+     "strand_r": 0.0085,
+     "period": 0.07,
+     "taper": 0.35,
+     "tuft": 0.045
+    }
+   },
+   "lines": {
+    "brow": "#3a1a10",
+    "eyeline": "#2c1612",
+    "lash": "#24120f"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#7a5a42",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.0049,
+    "hips": 0.006,
+    "waist": 0.012,
+    "chest": 0.0,
+    "limbs": {
+     "UpperArm": 0.038,
+     "LowerArm": 0.028,
+     "UpperLeg": 0.008,
+     "LowerLeg": 0.006
+    }
+   },
+   "face": {
+    "round": 0.006
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.35,
+    "Fcl_EYE_Joy": 0.09,
+    "Fcl_BRW_Surprised": 0.28
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#73604a",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.5,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p015": {
+   "name": "p015",
+   "label": "カイ (男・1530日目 28歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "Sakurada_Fumiriya.vrm",
+   "skin": {
+    "tan": "#85553c",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "HairSample_Male.vrm",
+      "part": "Hair001"
+     }
+    ],
+    "style": "keep",
+    "dark": "#2a1a10",
+    "light": "#7a5a3a",
+    "ramp_lo": 0.25,
+    "rough": 0.5
+   },
+   "lines": {
+    "brow": "#3a1a10",
+    "eyeline": "#2c1612",
+    "lash": "#24120f"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#7a5640",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": -0.0004,
+    "hips": -0.04,
+    "waist": -0.08,
+    "chest": 0.015,
+    "limbs": {
+     "UpperArm": -0.036,
+     "LowerArm": -0.022,
+     "UpperLeg": -0.05,
+     "LowerLeg": -0.04
+    }
+   },
+   "face": {
+    "round": -0.04
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.5,
+    "Fcl_EYE_Joy": 0.16,
+    "Fcl_BRW_Surprised": 0.05
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#665040",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p016": {
+   "name": "p016",
+   "label": "ネム (女・1589日目 4歳・自動)",
+   "body_src": "HairSample_Female.vrm",
+   "face_src": "Sendagaya_Shino.vrm",
+   "skin": {
+    "tan": "#b48568",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.18
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "Victoria_Rubin.vrm",
+      "part": "Hair001",
+      "drop": [
+       "HAIR_03"
+      ],
+      "drop_parts": [
+       {
+        "x_lt": -0.11
+       },
+       {
+        "x_lt": -0.09,
+        "z_gt": 0.085
+       }
+      ]
+     },
+     {
+      "src": "Victoria_Rubin.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "braid",
+    "dark": "#1e130e",
+    "light": "#472b1b",
+    "ramp_lo": 0.6,
+    "rough": 0.5,
+    "tie_z": 1.31,
+    "gather_from": 1.385,
+    "tail_width": 0.024,
+    "front_from": 1.37,
+    "front_keep": 0.9,
+    "tie_color": "#6a4a30",
+    "braid": {
+     "len": 0.34,
+     "width": 0.032,
+     "strand_r": 0.0085,
+     "period": 0.07,
+     "taper": 0.35,
+     "tuft": 0.045
+    }
+   },
+   "lines": {
+    "brow": "#3a1a10",
+    "eyeline": "#2c1612",
+    "lash": "#24120f"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#7a5a42",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": -0.0007,
+    "hips": -0.021,
+    "waist": -0.043,
+    "chest": 0.0,
+    "limbs": {
+     "UpperArm": -0.023,
+     "LowerArm": -0.014,
+     "UpperLeg": -0.027,
+     "LowerLeg": -0.021
+    }
+   },
+   "scale": 0.636,
+   "legs": 0.912,
+   "arms": 0.94,
+   "face": {
+    "round": 0.05
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.18,
+    "Fcl_EYE_Joy": 0.01,
+    "Fcl_BRW_Surprised": 0.05,
+    "Fcl_MTH_Close": 0.35
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#6a5440",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p017": {
+   "name": "p017",
+   "label": "ラタ (男・1589日目 3歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "HairSample_Male.vrm",
+   "skin": {
+    "tan": "#ba8b6d",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "HairSample_Male.vrm",
+      "part": "Hair001"
+     },
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "keep",
+    "crop": {
+     "k": 0.45,
+     "z_front": 0.1,
+     "z_back": 0.0,
+     "k_len": 0.35,
+     "gap": 0.003
+    },
+    "dark": "#230801",
+    "light": "#683019",
+    "ramp_lo": 0.3,
+    "rough": 0.55
+   },
+   "lines": {
+    "brow": "#1c120d",
+    "eyeline": "#24120e",
+    "lash": "#1e100c"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#8c6c5c",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.0005,
+    "hips": -0.031,
+    "waist": -0.061,
+    "chest": 0.015,
+    "limbs": {
+     "UpperArm": -0.022,
+     "LowerArm": -0.013,
+     "UpperLeg": -0.038,
+     "LowerLeg": -0.031
+    }
+   },
+   "scale": 0.611,
+   "legs": 0.906,
+   "arms": 0.936,
+   "face": {
+    "round": 0.05
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.43,
+    "Fcl_EYE_Joy": 0.12,
+    "Fcl_BRW_Surprised": 0.01
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#665040",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p018": {
+   "name": "p018",
+   "label": "フウ (男・1530日目 19歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "HairSample_Male.vrm",
+   "skin": {
+    "tan": "#85553c",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "Hair001"
+     },
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "keep",
+    "dark": "#260b04",
+    "light": "#622a13",
+    "ramp_lo": 0.1,
+    "rough": 0.55,
+    "ramp_mat": {
+     "HairBack": [
+      0.0,
+      0.5
+     ],
+     "HAIR_02": [
+      0.0,
+      0.5
+     ]
+    }
+   },
+   "lines": {
+    "brow": "#2a1810",
+    "eyeline": "#2c1612",
+    "lash": "#24120f"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#8c6c5c",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.002,
+    "hips": -0.016,
+    "waist": -0.033,
+    "chest": 0.015,
+    "limbs": {
+     "UpperArm": -0.001,
+     "LowerArm": 0.002,
+     "UpperLeg": -0.021,
+     "LowerLeg": -0.016
+    }
+   },
+   "face": {
+    "round": -0.016
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.59,
+    "Fcl_EYE_Joy": 0.2,
+    "Fcl_BRW_Surprised": 0.02
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#4e3e30",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p019": {
+   "name": "p019",
+   "label": "モエ (男・1530日目 27歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "Sakurada_Fumiriya.vrm",
+   "skin": {
+    "tan": "#87563d",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "Hair001"
+     },
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "keep",
+    "dark": "#1a0f0a",
+    "light": "#4a2e1e",
+    "ramp_lo": 0.1,
+    "rough": 0.55,
+    "ramp_mat": {
+     "HairBack": [
+      0.0,
+      0.5
+     ],
+     "HAIR_02": [
+      0.0,
+      0.5
+     ]
+    }
+   },
+   "lines": {
+    "brow": "#2a1810",
+    "eyeline": "#2c1612",
+    "lash": "#24120f"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#6a4a36",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": -0.0009,
+    "hips": -0.04,
+    "waist": -0.08,
+    "chest": 0.013,
+    "limbs": {
+     "UpperArm": -0.039,
+     "LowerArm": -0.024,
+     "UpperLeg": -0.05,
+     "LowerLeg": -0.04
+    }
+   },
+   "face": {
+    "round": -0.04
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.36,
+    "Fcl_EYE_Joy": 0.1,
+    "Fcl_BRW_Surprised": 0.04
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#5e4a38",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p020": {
+   "name": "p020",
+   "label": "シノ (男・1589日目 5歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "HairSample_Male.vrm",
+   "skin": {
+    "tan": "#b28265",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "Hair001"
+     },
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "keep",
+    "dark": "#2c110a",
+    "light": "#642c15",
+    "ramp_lo": 0.1,
+    "rough": 0.55,
+    "ramp_mat": {
+     "HairBack": [
+      0.0,
+      0.5
+     ],
+     "HAIR_02": [
+      0.0,
+      0.5
+     ]
+    }
+   },
+   "lines": {
+    "brow": "#2a1810",
+    "eyeline": "#2c1612",
+    "lash": "#24120f"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#8c6c5c",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": -0.001,
+    "hips": -0.04,
+    "waist": -0.08,
+    "chest": 0.013,
+    "limbs": {
+     "UpperArm": -0.04,
+     "LowerArm": -0.025,
+     "UpperLeg": -0.05,
+     "LowerLeg": -0.04
+    }
+   },
+   "scale": 0.67,
+   "legs": 0.92,
+   "arms": 0.945,
+   "face": {
+    "round": 0.05
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.41,
+    "Fcl_EYE_Joy": 0.12,
+    "Fcl_BRW_Surprised": 0.07
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#5e4a38",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p021": {
+   "name": "p021",
+   "label": "テオ (女・1589日目 2歳・自動)",
+   "body_src": "HairSample_Female.vrm",
+   "face_src": "Sendagaya_Shino.vrm",
+   "skin": {
+    "tan": "#ad7e61",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.18
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "Victoria_Rubin.vrm",
+      "part": "Hair001",
+      "drop": [
+       "HAIR_03"
+      ],
+      "drop_parts": [
+       {
+        "x_lt": -0.11
+       },
+       {
+        "x_lt": -0.09,
+        "z_gt": 0.085
+       }
+      ]
+     },
+     {
+      "src": "Victoria_Rubin.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "braid",
+    "dark": "#180d08",
+    "light": "#492d1d",
+    "ramp_lo": 0.6,
+    "rough": 0.5,
+    "tie_z": 1.31,
+    "gather_from": 1.385,
+    "tail_width": 0.024,
+    "front_from": 1.37,
+    "front_keep": 0.9,
+    "tie_color": "#6a4a30",
+    "braid": {
+     "len": 0.34,
+     "width": 0.032,
+     "strand_r": 0.0085,
+     "period": 0.07,
+     "taper": 0.35,
+     "tuft": 0.045
+    }
+   },
+   "lines": {
+    "brow": "#3a1a10",
+    "eyeline": "#2c1612",
+    "lash": "#24120f"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#7a5a42",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": -0.0002,
+    "hips": -0.04,
+    "waist": -0.08,
+    "chest": 0.0,
+    "limbs": {
+     "UpperArm": -0.034,
+     "LowerArm": -0.021,
+     "UpperLeg": -0.05,
+     "LowerLeg": -0.04
+    }
+   },
+   "scale": 0.585,
+   "legs": 0.9,
+   "arms": 0.932,
+   "face": {
+    "round": 0.05
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.45,
+    "Fcl_EYE_Joy": 0.14,
+    "Fcl_BRW_Surprised": 0.03
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#5e4a38",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p022": {
+   "name": "p022",
+   "label": "アル (男・1530日目 23歳・自動)",
+   "body_src": "HairSample_Male.vrm",
+   "face_src": "HairSample_Male.vrm",
+   "skin": {
+    "tan": "#87573e",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.08,
+    "fill_dark": 0.6
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "HairSample_Male.vrm",
+      "part": "Hair001"
+     },
+     {
+      "src": "Sakurada_Fumiriya.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "keep",
+    "crop": {
+     "k": 0.45,
+     "z_front": 0.1,
+     "z_back": 0.0,
+     "k_len": 0.35,
+     "gap": 0.003
+    },
+    "dark": "#070505",
+    "light": "#241a14",
+    "ramp_lo": 0.3,
+    "rough": 0.55
+   },
+   "lines": {
+    "brow": "#1c120d",
+    "eyeline": "#24120e",
+    "lash": "#1e100c"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#a9b0b8",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.0013,
+    "hips": -0.016,
+    "waist": -0.032,
+    "chest": 0.012,
+    "limbs": {
+     "UpperArm": -0.005,
+     "LowerArm": -0.002,
+     "UpperLeg": -0.02,
+     "LowerLeg": -0.016
+    }
+   },
+   "face": {
+    "round": -0.016
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.34,
+    "Fcl_EYE_Joy": 0.09,
+    "Fcl_BRW_Surprised": 0.12
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#54402e",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.66,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p023": {
+   "name": "p023",
+   "label": "ヨナ (女・1530日目 29歳・自動)",
+   "body_src": "HairSample_Female.vrm",
+   "face_src": "HairSample_Female.vrm",
+   "skin": {
+    "tan": "#87573d",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.18
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "Victoria_Rubin.vrm",
+      "part": "Hair001",
+      "drop": [
+       "HAIR_03"
+      ],
+      "drop_parts": [
+       {
+        "x_lt": -0.11
+       },
+       {
+        "x_lt": -0.09,
+        "z_gt": 0.085
+       }
+      ]
+     },
+     {
+      "src": "Victoria_Rubin.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "braid",
+    "dark": "#1a0f0a",
+    "light": "#4a2e1e",
+    "ramp_lo": 0.6,
+    "rough": 0.5,
+    "tie_z": 1.31,
+    "gather_from": 1.385,
+    "tail_width": 0.024,
+    "front_from": 1.37,
+    "front_keep": 0.9,
+    "tie_color": "#6a4a30",
+    "braid": {
+     "len": 0.34,
+     "width": 0.032,
+     "strand_r": 0.0085,
+     "period": 0.07,
+     "taper": 0.35,
+     "tuft": 0.045
+    }
+   },
+   "lines": {
+    "brow": "#3a1a10",
+    "eyeline": "#2c1612",
+    "lash": "#24120f"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#7a5640",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.0016,
+    "hips": -0.014,
+    "waist": -0.028,
+    "chest": 0.0,
+    "limbs": {
+     "UpperArm": -0.001,
+     "LowerArm": 0.001,
+     "UpperLeg": -0.017,
+     "LowerLeg": -0.014
+    }
+   },
+   "face": {
+    "round": -0.014
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.56,
+    "Fcl_EYE_Joy": 0.18,
+    "Fcl_BRW_Surprised": 0.12
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#665040",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.5,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  },
+  "p024": {
+   "name": "p024",
+   "label": "クラ (女・1530日目 18歳・自動)",
+   "body_src": "HairSample_Female.vrm",
+   "face_src": "Sendagaya_Shino.vrm",
+   "skin": {
+    "tan": "#7a4a32",
+    "sss": 0.15,
+    "rough": 0.5,
+    "blush": "#c0605a",
+    "blush_alpha": 0.18
+   },
+   "hair": {
+    "parts": [
+     {
+      "src": "Sendagaya_Shino.vrm",
+      "part": "Hair001",
+      "drop": [
+       "HAIR_02"
+      ]
+     },
+     {
+      "src": "Sendagaya_Shino.vrm",
+      "part": "HairBack"
+     }
+    ],
+    "style": "tie",
+    "dark": "#3a1206",
+    "light": "#b8501f",
+    "ramp_lo": 0.35,
+    "rough": 0.5,
+    "tie_z": 1.3,
+    "gather_from": 1.385,
+    "tail_width": 0.028,
+    "front_from": 1.37,
+    "front_keep": 0.6,
+    "tie_color": "#5a3b26"
+   },
+   "lines": {
+    "brow": "#231814",
+    "eyeline": "#2c1612",
+    "lash": "#24120f"
+   },
+   "iris": {
+    "hue": 0.0,
+    "sat": 0.4,
+    "val": 0.9,
+    "tint": "#6e4c38",
+    "highlight": 0.7
+   },
+   "body": {
+    "shoulder": 0.0125,
+    "hips": 0.005,
+    "waist": 0.01,
+    "chest": 0.0,
+    "limbs": {
+     "UpperArm": 0.087,
+     "LowerArm": 0.065,
+     "UpperLeg": 0.006,
+     "LowerLeg": 0.005
+    }
+   },
+   "face": {
+    "round": 0.005
+   },
+   "expr": {
+    "Fcl_MTH_Fun": 0.58,
+    "Fcl_EYE_Joy": 0.2,
+    "Fcl_BRW_Surprised": 0.1
+   },
+   "outfit": {
+    "color": "#161514",
+    "top": null,
+    "shorts": [
+     0.805,
+     0.975
+    ],
+    "dress": {
+     "color": "#665040",
+     "belt": "#2e2418",
+     "waist": 1.0,
+     "arm": 1.215,
+     "neck": 1.335,
+     "hem": 0.5,
+     "flare": 0.06,
+     "push": 0.008,
+     "sleeve_x": 0.22
+    }
+   }
+  }
+ },
+ "files": {
+  "ミラ": "p008",
+  "ケト": "p009",
+  "ハユ": "p010",
+  "トワ": "p012",
+  "サエ": "p013",
+  "ユノ": "p014",
+  "カイ": "p015",
+  "ネム": "p016",
+  "ラタ": "p017",
+  "フウ": "p018",
+  "モエ": "p019",
+  "シノ": "p020",
+  "テオ": "p021",
+  "アル": "p022",
+  "ヨナ": "p023",
+  "クラ": "p024"
+ },
+ "babies": [
+  "ニイ",
+  "エマ"
+ ]
+}
