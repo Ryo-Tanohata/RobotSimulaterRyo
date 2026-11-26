@@ -273,7 +273,10 @@ if (process.env.STORYBOARD) {
 
 const OUT = process.env.PART || `${outName}_silent.mp4`;
 const ff = spawn("ffmpeg", ["-loglevel", "error", "-y", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-",
-  "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "22", "-preset", "medium", "-movflags", "+faststart", OUT], { stdio: ["pipe", "inherit", "inherit"] });
+  ...(process.env.ENC === "nvenc"  // ENC=nvenc: GPU (NVIDIA) で固める。ないときは前と同じ CPU の libx264
+    ? ["-c:v", "h264_nvenc", "-preset", "p5", "-rc", "vbr", "-cq", "22", "-b:v", "0"]
+    : ["-c:v", "libx264", "-crf", "22", "-preset", "medium"]),
+  "-pix_fmt", "yuv420p", "-movflags", "+faststart", OUT], { stdio: ["pipe", "inherit", "inherit"] });
 const t0 = Date.now();
 const N = Math.round((process.env.LIMIT ? Math.min(total, Number(process.env.LIMIT)) : total) * FPS);  // LIMIT=秒 で試し撮り
 const F0 = Math.round(Number(process.env.FROM_SEC || 0) * FPS), F1 = process.env.TO_SEC ? Math.min(N, Math.round(Number(process.env.TO_SEC) * FPS)) : N;

@@ -22,7 +22,15 @@ cd "$(dirname "$0")"
 mkdir -p out
 LOG=out/ordered.log
 log() { echo "$(date '+%m-%d %H:%M:%S') $*" | tee -a "$LOG"; }
-export GPU=${GPU-1} PY=${PY:-py}  # GPU= (空) にすると CPU (swiftshader) で描く (クラウド)
+# 環境に合わせて自動で選ぶ (GPU のある PC → GPU、クラウド → CPU)。手で決めるときは GPU=1 / GPU= (空)、ENC=nvenc / ENC=cpu
+#   GPU: 絵を描く。NVIDIA の GPU が見えれば GPU、なければ CPU (swiftshader)
+if [ -z "${GPU+x}" ]; then nvidia-smi -L >/dev/null 2>&1 && GPU=1 || GPU=; fi
+#   ENC: mp4 に固める。h264_nvenc で小さく試し書きできれば GPU、だめなら CPU (libx264)
+if [ -z "${ENC:-}" ]; then ffmpeg -v error -f lavfi -i color=s=256x256:d=0.2 -c:v h264_nvenc -f null - >/dev/null 2>&1 && ENC=nvenc || ENC=cpu; fi
+export GPU ENC PY=${PY:-py}
+# nvenc の cq は 31: cq 28 だと libx264 crf 28 の約 1.8 倍の大きさだった (G1F1V、2026-11-27)
+if [ "$ENC" = nvenc ]; then VENC="-c:v h264_nvenc -preset p5 -rc vbr -cq 31 -b:v 0"; else VENC="-c:v libx264 -crf 28 -preset medium"; fi
+log "env: draw=$([ -n "$GPU" ] && echo GPU || echo CPU) encode=$ENC"
 # 日付の書き方が変わったら、前に撮った区間と動画は使えない (時計の日付が全部のコマに入っている)。書き方の印を見て、古いものを消してから撮る
 # (2026-10-09: 「11 年目 31 日目」→「10年31日目」。本人の希望)
 DATE_FMT="10年31日目 (年は過ぎた年の数、2026-10-09)"
@@ -104,7 +112,7 @@ render_one() {
   fi
   env SLIM=$slim PEOPLE=$people DAYS=$days PEOPLE_CAM="$cam" PEOPLE_CREDIT="$credit" $(opts_of "$name") bash render_parts.sh "narration_$src.json" "voice/$src" "$out" >> "out/render_$name.log" 2>&1 || { log "$name: RENDER FAILED"; return 1; }
   $PY ../../../tools/audio/mix.py "$out.timeline.json" "voice/$src" "$out.wav" >> "out/render_$name.log" 2>&1 || { log "$name: MIX FAILED"; return 1; }
-  ffmpeg -loglevel error -y -i "${out}_silent.mp4" -i "$out.wav" $vf -c:v libx264 -crf 28 -preset medium -pix_fmt yuv420p \
+  ffmpeg -loglevel error -y -i "${out}_silent.mp4" -i "$out.wav" $vf $VENC -pix_fmt yuv420p \
     -c:a aac -b:a 128k -af loudnorm=I=-16:TP=-1.5:LRA=11 -movflags +faststart -shortest "../app/society_$name.mp4" >> "out/render_$name.log" 2>&1 \
     || { log "$name: ENCODE FAILED"; return 1; }
   touch "$out.final"
