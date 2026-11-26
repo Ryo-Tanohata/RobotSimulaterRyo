@@ -208,7 +208,58 @@ def full(state, data):
         if votes:
             raise ArchiveError(f"今の state にない掟の投票の記録がある ({', '.join(sorted(votes))})")
         st["laws"] = laws
+    _restore_heard(st, state, data)
     return st
+
+
+HEARD = "heard_gone"  # 亡くなった人・村を出た人の「聞いた話」 (archive/heard_gone.jsonl。1 行 = {"name", "heard"})
+
+
+def slim(state, data):
+    """2026-11-26: state.json が 96 MB (31679 日目) になり、100 MB に近づいた。世界が読まない写しを、もう少し state から出す (消さない)。
+    季節ごとに step.py が move のあとに呼ぶ (何度呼んでも同じ)。戻り値: 出した (聞いた話の人数, 話の中身を除いた写しの数)
+    - 亡くなった人・村を出た人 (alive が偽。もどる人はいない) の heard: 世界は生きている人の heard だけを読み書きする
+      (characters・era2・hints・g7 を調べた)。archive/heard_gone.jsonl に移して、state では [] にする。full が戻す
+    - しまった年の「話す」の写し (番号が archive の event より前): 世界は番号・日・種類・話した人だけを読む
+      (knowledge._label と apply_updates・hints._scan_knowledge・characters。hints は「話の中身は読まない」)。
+      中身 text は "" にする (年のファイルには全部ある。full は年のファイルから戻すので、写しは使わない)"""
+    a = state.get("archive")
+    if a is None:
+        return 0, 0
+    f = Path(data) / DIR / f"{HEARD}.jsonl"
+    gone = [p for p in state["people"] if not p.get("alive") and p.get("heard")]
+    if gone:
+        rows = _read(f)
+        have = {r["name"] for r in rows}
+        dup = [p["name"] for p in gone if p["name"] in have]
+        if dup:
+            raise ArchiveError(f"聞いた話を 2 度しまおうとした ({', '.join(dup[:3])})")
+        rows += [{"name": p["name"], "heard": p["heard"]} for p in gone]
+        _write(f, rows)
+        if _read(f) != rows:
+            raise ArchiveError(f"{f} を読みもどすと、書いたものと合わない")
+        for p in gone:
+            p["heard"] = []
+        a["heard"] = len(rows)
+    base, n = a["event"], 0
+    for e in state["events"]:
+        if e["id"] >= base:
+            break
+        if e["type"] == "話す" and e.get("text"):
+            e["text"] = ""
+            n += 1
+    return len(gone), n
+
+
+def _restore_heard(st, state, data):
+    a = state.get("archive") or {}
+    if not a.get("heard"):
+        return
+    rows = _read(Path(data) / DIR / f"{HEARD}.jsonl")
+    if len(rows) != a["heard"]:
+        raise ArchiveError(f"しまった聞いた話が {len(rows)} 人 ({a['heard']} 人のはず)")
+    m = {r["name"]: r["heard"] for r in rows}
+    st["people"] = [dict(p, heard=m[p["name"]]) if p["name"] in m and not p.get("heard") else p for p in state["people"]]
 
 
 def load_state(data, whole=True):

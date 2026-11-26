@@ -60,6 +60,26 @@ class Archive(unittest.TestCase):
         self.assertEqual(dump(st), self.small)  # full は state を変えない
         self.assertLess(len(self.small), len(self.text) // 2)
 
+    def test_slim(self):  # 2026-11-26: 亡くなった人の聞いた話と、しまった年の話の中身も出す。戻すと 1 バイトもちがわない
+        st = self.trimmed()
+        d2 = Path(tempfile.mkdtemp(prefix="arch_slim_"))
+        try:
+            (d2 / archive.DIR).mkdir()
+            for f in (self.d / archive.DIR).iterdir():
+                os.symlink(f, d2 / archive.DIR / f.name)
+            h, n = archive.slim(st, d2)
+            self.assertTrue(h and n)
+            self.assertEqual(archive.slim(st, d2), (0, 0))  # 2 度目は何もしない
+            self.assertTrue(all(not p["heard"] for p in st["people"] if not p["alive"]))
+            self.assertEqual(dump(archive.full(st, d2)), self.text)
+            self.assertLess(len(dump(st)), len(self.small))
+            ev = archive.Events(st)  # 世界が読むもの (番号・種類・話した人) は同じ
+            ev0 = archive.Events(self.trimmed())
+            old = [e["id"] for e in st["events"] if e["id"] < st["archive"]["event"]]
+            self.assertEqual([(ev.type(i), ev.who(i)) for i in old], [(ev0.type(i), ev0.who(i)) for i in old])
+        finally:
+            shutil.rmtree(d2, ignore_errors=True)
+
     def test_layout(self):
         st, w = self.trimmed(), self.whole()
         a = st["archive"]

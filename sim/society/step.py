@@ -181,6 +181,9 @@ def _archive(state):
         ys = archive.move(state, DATA)
         if ys:
             print(f"記録: {ys[0]}年" + (f"〜{ys[-1]}年" if len(ys) > 1 else "") + f"の記録を {DATA.name}/{archive.DIR}/ にしまった")
+        h, n = archive.slim(state, DATA)  # 2026-11-26: 亡くなった人の聞いた話と、しまった年の話の中身も出す (archive.slim)
+        if h or n:
+            print(f"記録: 亡くなった人・村を出た人 {h} 人の聞いた話と、しまった年の話 {n} 件の中身を {DATA.name}/{archive.DIR}/ に出した")
     except Exception as ex:  # しまえなくても、世界を止めない
         print(f"記録: 古い年をしまえなかった ({type(ex).__name__}: {ex})。state.json はしまう前のまま")
 
