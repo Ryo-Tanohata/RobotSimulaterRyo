@@ -39,6 +39,8 @@
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (T[y][x] === "f" && ((x * 73856093) ^ (y * 19349663)) % 7 === 0) O.push({ x: x + 0.5, y: y + 0.5, r: 0.85 });  // replay3d.js の林の木 (円すい、半径 0.55) と同じ所
     if (M.world && M.world.hutDay !== null && P.day >= M.world.hutDay - 3) O.push({ x: D.camp.x + 0.5 - 3.2, y: D.camp.y + 0.5 - 2.2, r: 2.0 });  // 住まい (建てかけも)
     for (const g of groveList(P)) O.push({ x: g.pt.x, y: g.pt.y, r: 0.3 + 0.35 * g.sz });
+    const gs = (D.goats || []).find((g) => P.day >= g.from && P.day <= g.to), ng = Math.min(30, gs ? gs.n : 0);
+    if (ng > 0) O.push({ x: D.camp.x + 0.5 + 4.5, y: D.camp.y + 0.5 + 4.0, r: 1.5 + 0.25 * Math.sqrt(ng) });  // ヤギの囲い
     obstCache.set(P, O);
     return O;
   }
@@ -364,7 +366,7 @@
   // v2: 動物 (記録の日だけ)。村の木や丘と同じ、簡単な形の四つ足。ルク (狩りの獲物、鹿に似た草食の獣) と ザガ (夜にキャンプへ来る、狼に似た獣)
   function beast(kind) {
     const K = M.K, g = new THREE.Group(), legs = [];
-    const C = kind === "zaga" ? { body: 0x3a3a3e, belly: 0x55555a, s: 1.0 } : { body: 0x8a5a32, belly: 0xc8a27a, s: 1.15 };
+    const C = kind === "zaga" ? { body: 0x3a3a3e, belly: 0x55555a, s: 1.0 } : kind === "goat" ? { body: 0xe8e2d4, belly: 0xb8ab94, s: 0.6 } : { body: 0x8a5a32, belly: 0xc8a27a, s: 1.15 };
     const m = new THREE.MeshLambertMaterial({ color: C.body }), mb = new THREE.MeshLambertMaterial({ color: C.belly }), s = C.s * K;
     const body = new THREE.Mesh(new THREE.SphereGeometry(0.32 * s, 10, 8), m); body.scale.set(1.7, 0.85, 0.8); body.position.y = 0.72 * s; g.add(body);
     const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.08 * s, 0.12 * s, 0.4 * s, 6), m); neck.position.set(0.5 * s, 0.95 * s, 0); neck.rotation.z = kind === "zaga" ? -0.9 : -0.5; g.add(neck);
@@ -372,6 +374,7 @@
     head.position.set(kind === "zaga" ? 0.78 * s : 0.7 * s, kind === "zaga" ? 1.0 * s : 1.15 * s, 0); g.add(head);
     for (const z of [-1, 1]) {  // 耳 (ルクは角も)
       const ear = new THREE.Mesh(new THREE.ConeGeometry(0.04 * s, 0.14 * s, 4), m); ear.position.set(head.position.x - 0.12 * s, head.position.y + 0.12 * s, z * 0.07 * s); g.add(ear);
+      if (kind === "goat") { const hn = new THREE.Mesh(new THREE.ConeGeometry(0.03 * s, 0.22 * s, 5), new THREE.MeshLambertMaterial({ color: 0x6a5a48 })); hn.position.set(head.position.x - 0.16 * s, head.position.y + 0.18 * s, z * 0.06 * s); hn.rotation.z = 0.5; g.add(hn); }
       if (kind === "ruku") { const ant = new THREE.Mesh(new THREE.CylinderGeometry(0.012 * s, 0.02 * s, 0.35 * s, 4), mb); ant.position.set(head.position.x - 0.14 * s, head.position.y + 0.3 * s, z * 0.1 * s); ant.rotation.x = z * 0.35; g.add(ant); }
     }
     if (kind === "zaga") { const tail = new THREE.Mesh(new THREE.ConeGeometry(0.06 * s, 0.45 * s, 5), m); tail.position.set(-0.62 * s, 0.75 * s, 0); tail.rotation.z = -2.2; g.add(tail); }
@@ -396,6 +399,18 @@
           down: got && k === 0 ? (v) => clamp((v - (seg.work.v0 + seg.work.sec * 0.7)) / 0.8) : null });
       }
     }
+    // ヤギ (飼っている数。季節の記録): キャンプの南東の囲いの中で、草をはんで歩く。夜は囲いの中で止まる
+    const gs = (D.goats || []).find((g) => P.day >= g.from && P.day <= g.to), ng = Math.min(30, gs ? gs.n : 0);
+    if (ng > 0) {
+      const pen = { x: fire.x + 4.5, y: fire.y + 4.0 }, R0 = 1.2 + 0.25 * Math.sqrt(ng);
+      M.pen = { pen, r: R0 };
+      for (let k = 0; k < ng; k++) {
+        const ph = k * 2.39996, rr = R0 * 0.75 * Math.sqrt((k + 0.5) / ng);
+        const c = { x: pen.x + Math.cos(ph) * rr, y: pen.y + Math.sin(ph) * rr };
+        const at = (v) => { const day = v < seg.eve.v0; return day ? { x: c.x + Math.sin(v * 0.07 + k) * 0.5, y: c.y + Math.cos(v * 0.06 + k * 1.7) * 0.5 } : c; };
+        list.push({ kind: "goat", at, head: (v) => k + v * 0.05, walk: (v) => v < seg.eve.v0 && Math.sin(v * 0.4 + k) > 0.3, from: -1, to: 1e9 });
+      }
+    } else M.pen = null;
     for (const e of (P.night || []).filter((e) => /ザガ/.test(e.text || ""))) {  // ザガ: 夜、遠くから火のほうへ来て、去る。火を嫌った夜は遠くで止まる
       const victim = Object.keys(P.plan).find((n) => (e.text || "").includes(n + " が") || (e.text || "").includes(" " + n + " "));
       const near = /近づかなかった/.test(e.text) || !victim ? null : lerp(fire, P.plan[victim].ring, RING * 1.6);
@@ -412,6 +427,16 @@
       if (M.animG) M.scene.remove(M.animG);
       M.animP = P; M.anims = animalsFor(P); M.animG = new THREE.Group(); M.scene.add(M.animG);
       for (const A of M.anims) { A.g = beast(A.kind); M.animG.add(A.g); }
+      if (M.pen) {  // ヤギの囲い (杭と横木)
+        const fm = new THREE.MeshLambertMaterial({ color: 0x6b4a2e }), n = Math.round(M.pen.r * 6);
+        for (let k = 0; k < n; k++) {
+          const a = (k / n) * Math.PI * 2, b = ((k + 1) / n) * Math.PI * 2;
+          const p1 = M.w2t(M.pen.pen.x + Math.cos(a) * M.pen.r, M.pen.pen.y + Math.sin(a) * M.pen.r), p2 = M.w2t(M.pen.pen.x + Math.cos(b) * M.pen.r, M.pen.pen.y + Math.sin(b) * M.pen.r);
+          const post = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 0.7, 5), fm); post.position.copy(p1).add(new THREE.Vector3(0, 0.35, 0)); M.animG.add(post);
+          const rail = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, p1.distanceTo(p2), 4), fm);
+          rail.position.copy(p1).lerp(p2, 0.5).add(new THREE.Vector3(0, 0.5, 0)); rail.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p2.clone().sub(p1).normalize()); M.animG.add(rail);
+        }
+      }
     }
     for (const A of M.anims) {
       A.g.visible = v >= A.from && v < A.to;

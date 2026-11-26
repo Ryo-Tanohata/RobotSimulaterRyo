@@ -57,6 +57,14 @@ function slimData(days) {
     for (const ln of fs.readFileSync(f, "utf8").split("\n")) if (ln.includes('"育つ"')) { const e = JSON.parse(ln); if (e.type === "育つ" && e.day <= maxDay) S.grow.push({ day: e.day, text: e.text }); }
   }
   for (const e of D.events || []) if (e.type === "育つ" && e.day <= maxDay && !S.grow.some((g) => g.day === e.day && g.text === e.text)) S.grow.push({ day: e.day, text: e.text });
+  // 飼っているヤギの数 (2026-11-25、v2 の動物から): 季節の終わりごとの頭数 (records/season_village.jsonl)。前の動画は使わない
+  S.goats = [];
+  const sv = path.join(DATA, "records", "season_village.jsonl");
+  if (fs.existsSync(sv)) for (const ln of fs.readFileSync(sv, "utf8").split("\n")) {
+    if (!ln) continue;
+    const r = JSON.parse(ln);
+    if (r.season_end_day <= maxDay + 120 && r.goats) S.goats.push({ from: r.season_start_day, to: r.season_end_day, n: r.goats.count || 0 });
+  }
   const out = JSON.stringify(S);
   console.log(`SLIM: app_data.json ${(fs.statSync(path.join(DATA, "app_data.json")).size / 1e6).toFixed(1)} MB → ${(out.length / 1e6).toFixed(1)} MB (人 ${S.people.length}・日 ${minDay}〜${maxDay})`);
   return out;
