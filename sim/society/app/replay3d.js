@@ -279,7 +279,7 @@
       stove.visible = false; g.add(stove);
       const at = houseXY(D, v);
       g.position.copy(w2t(D, at.x + 0.5, at.y + 0.5)); g.visible = false; scene.add(g);
-      return { v, g, wall, roof, stove, stoveDay: (SC.stoves || {})[v.household] ?? null };
+      return { v, g, wall, roof, stove, at, stoveDay: (SC.stoves || {})[v.household] ?? null };  // at: 人のモデルの家づくり (houseBuild) が使う
     });
 
     // ほかの村 (G6): 知っている村ごとに、地図の端の内がわに小さな家 3 つと、キャンプからのうすい道 (知った日から見せる。villagesOn で毎コマ決める)

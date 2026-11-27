@@ -54,18 +54,20 @@ ITEMS=(G1:510,600,629,659,990,1019,1229 G1F1:509,510,600 G1F2:629,630,631 G1F3:6
        G1F1V:509,510,600 G1F2V:629,630,631 G1F3V:659,660,779
        G1V:510,600,629,659,990,1019,1229
        G2V:1230,1259,1320,1415,1469,1529 G2F1V:1259,1260,1290 G2F2V:1409,1415,1435 G2F3V:1499,1529
-       G3V:1530,1559,1562,1573,1580,1589 G3F3V:1559,1562,1589)
+       G3V:1530,1559,1562,1573,1580,1589 G3F3V:1559,1562,1589
+       G4V:1591,1625,1675,1679,1680,1709 G4F1V:1680,1695,1709 G4F2V:1636,1679,1680)
 # 小さなデータで撮る動画 (2026-11-22): ページには、撮る日に要る分だけの app_data.json を配る (make_video.mjs の SLIM=1。data/ には書かない)。
 # 前からある動画は、前と同じく全部のデータで撮る
-SLIM_ITEMS=" D1 D1P D1V S1V G1F1V G1F2V G1F3V G1V G2V G2F1V G2F2V G2F3V G3V G3F3V "
+SLIM_ITEMS=" D1 D1P D1V S1V G1F1V G1F2V G1F3V G1V G2V G2F1V G2F2V G2F3V G3V G3F3V G4V G4F1V G4F2V "
 # 人のモデルで撮る動画と、ナレーションと声を借りる動画 (2026-11-23)
-PEOPLE_ITEMS=" D1P D1V S1V G1F1V G1F2V G1F3V G1V G2V G2F1V G2F2V G2F3V G3V G3F3V "
-src_of() { case "$1" in D1P|D1V) echo D1 ;; S1V) echo S1 ;; G1F1V|G1F2V|G1F3V|G1V|G2V|G2F1V|G2F2V|G2F3V|G3V|G3F3V) echo "${1%V}" ;; *) echo "$1" ;; esac; }
+PEOPLE_ITEMS=" D1P D1V S1V G1F1V G1F2V G1F3V G1V G2V G2F1V G2F2V G2F3V G3V G3F3V G4V G4F1V G4F2V "
+src_of() { case "$1" in D1P|D1V) echo D1 ;; S1V) echo S1 ;; G1F1V|G1F2V|G1F3V|G1V|G2V|G2F1V|G2F2V|G2F3V|G3V|G3F3V|G4V|G4F1V|G4F2V) echo "${1%V}" ;; *) echo "$1" ;; esac; }
 # 動画ごとの撮り方の違い (env で make_video.mjs に渡す)。D1V: クラウドの CPU 向け (12 コマ/秒・毎フレームの描画を止める・区間の前を進めておく・五人に寄る・モデルのクレジット)
 opts_of() { case "$1" in
   D1V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=${PEOPLE_DIR_D1V:-/dev/shm/people_glb} PEOPLE_VIEW=$D1V_VIEW HIDE_TOASTS=1" ;;
   S1V|G1F1V|G1F2V|G1F3V|G1V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=$PEOPLE_DIR_HIDE PEOPLE_VIEW=$G1V_VIEW HIDE_TOASTS=1" ;;
   G2V|G2F1V|G2F2V|G2F3V|G3V|G3F3V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=$PEOPLE_DIR_G2 PEOPLE_VIEW=$G2V_VIEW HIDE_TOASTS=1" ;;
+  G4V|G4F1V|G4F2V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=$PEOPLE_DIR_G4 PEOPLE_VIEW=$G4V_VIEW HIDE_TOASTS=1" ;;
   *) echo "" ;; esac; }
 D1V_CAM='{"min":4.5,"add":2.5,"k":1.6,"max":40}'
 # D1V の見せ方 (2026-11-23 本人の絵コンテの直し): 赤い玉 (木の実・芋) を隠す・昼は組ごとに画面を分ける・火のまわりは引いて上から。
@@ -80,6 +82,10 @@ PEOPLE_DIR_HIDE=${PEOPLE_DIR_HIDE:-/dev/shm/people_glb_hide}
 # G2 (2026-11-26): 服は生皮のまま (ヤギを飼いはじめたばかり)。ヤギの囲いと頭数は記録から。人は G2 の撮る日々で作り直した組 (子の背が G1 とちがう)
 G2V_VIEW='{"split":true,"noPlants":true,"bubbles":true,"bubbleFont":22,"nightLight":true,"fireMax":14,"v2":true,"fireNightly":true,"files":{"ナギ":"nagi","ソル":"sol","ミラ":"p008","ケト":"p009","ハユ":"p010","トワ":"p012","サエ":"p013","ユノ":"p014","カイ":"p015","ネム":"p016","ラタ":"p017","フウ":"p018","モエ":"p019","シノ":"p020","テオ":"p021","アル":"p022","ヨナ":"p023","クラ":"p024"}}'
 PEOPLE_DIR_G2=${PEOPLE_DIR_G2:-/dev/shm/people_glb_g2}
+# G4 (2026-11-27 本人「家を建てるモーションが入っている動画がなく…すぐ見たい」): 服は leather (ヤギのなめし革。fashion.md)。人は tools/human/sets/auto_g4_leather.json。
+#   houseBuild: 家族の家 (1590 日目から) を建てる・広げる人が、その家のまわりで持ち上げる・杭を打つ・結わえる。家は記録のでき具合まで、柱 → 壁 → 屋根と少しずつできる
+G4V_VIEW=${G2V_VIEW%\}}',"houseBuild":true}'
+PEOPLE_DIR_G4=${PEOPLE_DIR_G4:-/dev/shm/people_glb_g4}
 D1V_CREDIT="VRoid の CC0 サンプル (pixiv) をもとに作成"
 STORY=
 [ "${1:-}" = "--storyboard" ] && { STORY=1; shift; }
@@ -103,8 +109,9 @@ render_one() {
   local t0=$(date +%s)
   local slim=; case "$SLIM_ITEMS" in *" $name "*) slim=1 ;; esac
   local src=$(src_of "$name") people=; case "$PEOPLE_ITEMS" in *" $name "*) people=${PEOPLE_DIR:-../../../../human-model/people_glb} ;; esac
-  local cam= credit= vf=; case "$name" in D1V|S1V|G1F1V|G1F2V|G1F3V|G1V|G2V|G2F1V|G2F2V|G2F3V|G3V|G3F3V) ;; *) false ;; esac && { cam=$D1V_CAM credit=$D1V_CREDIT vf="-vf fps=24"; }
-  case "$name" in S1V|G1F1V|G1F2V|G1F3V|G1V|G2V|G2F1V|G2F2V|G2F3V|G3V|G3F3V) credit="$D1V_CREDIT<br>毎晩の焚き火・動物と植物の形と動きは、記録にない所を描きそえた (いつ・どこで・だれがは記録のとおり)" ;; esac
+  local cam= credit= vf=; case "$name" in D1V|S1V|G1F1V|G1F2V|G1F3V|G1V|G2V|G2F1V|G2F2V|G2F3V|G3V|G3F3V|G4V|G4F1V|G4F2V) ;; *) false ;; esac && { cam=$D1V_CAM credit=$D1V_CREDIT vf="-vf fps=24"; }
+  case "$name" in S1V|G1F1V|G1F2V|G1F3V|G1V|G2V|G2F1V|G2F2V|G2F3V|G3V|G3F3V|G4V|G4F1V|G4F2V) credit="$D1V_CREDIT<br>毎晩の焚き火・動物と植物の形と動きは、記録にない所を描きそえた (いつ・どこで・だれがは記録のとおり)" ;; esac
+  case "$name" in G4V|G4F1V|G4F2V) credit="$credit<br>家族の家が柱から壁・屋根とできていく様子も描きそえ (でき具合は記録のとおり)" ;; esac
   if [ -n "$STORY" ]; then  # 絵コンテだけ
     env SLIM=$slim PEOPLE=$people DAYS=$days PEOPLE_CAM="$cam" PEOPLE_CREDIT="$credit" $(opts_of "$name") node storyboard.mjs "narration_$src.json" "voice/$src" "out/storyboard_$name" >> "out/storyboard_$name.log" 2>&1 \
       && log "$name: storyboard -> out/storyboard_$name.html" || log "$name: STORYBOARD FAILED"

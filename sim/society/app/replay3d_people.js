@@ -261,11 +261,19 @@
       p.spot = lerp(c, p.spot, RING);
     }
     if (V2) p.spot = pushOut(P, out_(p.spot));
-    const builds = V2 ? (P.work || []).filter((e) => e.type === "住まい" && /建て|できた|手入れ/.test(e.text)) : [];  // 「セナ たちの手で…住まいができた」も
-    const builder = builds.some((e) => e.who === n || (e.text || "").startsWith(n + " "));
+    const HB = V2 && !!M.opts2.houseBuild;  // G4V から (2026-11-27 本人「家を建てるモーションが入っている動画がない」): 家族の家を建てる・広げる人は、その家のまわりで
+    const builds = V2 ? (P.work || []).filter((e) => e.type === "住まい" && (HB ? /建て|できた|手入れ|広げ/ : /建て|できた|手入れ/).test(e.text)) : [];  // 「セナ たちの手で…住まいができた」も
+    const mine = builds.filter((e) => e.who === n || (e.text || "").startsWith(n + " "));
+    const builder = mine.length > 0;
+    let bc = hutC, br = 2.0;  // 建てる物のまん中と、立つ所のはなれ
+    if (HB && builder) {
+      const hh = mine.map((e) => (/、(.+?)の住まい/.exec(e.text) || [])[1]).find(Boolean);
+      const H = hh && (M.world.houses || []).find((q) => q.v.household === hh);
+      if (H && H.at) { bc = { x: H.at.x + 0.5, y: H.at.y + 0.5 }; br = 1.5; }
+    }
     if (builder) {  // v2: 住まいを建てた人は、住まいのまわりで柱を立てる・組む (のり出す・背のび・手渡し)
-      const a = Math.atan2(fire.y - hutC.y, fire.x - hutC.x) + 0.9 + p.i * 1.1;
-      p.spot = { x: hutC.x + Math.cos(a) * 2.0, y: hutC.y + Math.sin(a) * 2.0 };
+      const a = Math.atan2(fire.y - bc.y, fire.x - bc.x) + 0.9 + p.i * 1.1;
+      p.spot = { x: bc.x + Math.cos(a) * br, y: bc.y + Math.sin(a) * br };
     }
     let here = ring;
     const walk1 = (to, t0) => {
@@ -288,7 +296,7 @@
     const out = face(ring, p.spot);
     if (builder) {
       // 2026-11-26 本人「家を建てるのもモーションが欲しい」: 持ち上げる → 杭を打つ → 結わえる (動きの記録にあれば。なければ前の 4 つ)
-      const hd = face(p.spot, hutC), kinds = info.hammer ? ["lift", "hammer", "tie", "hammer"] : ["stretch", "reach", "give", "pick"];
+      const hd = face(p.spot, bc), kinds = info.hammer ? ["lift", "hammer", "tie", "hammer"] : ["stretch", "reach", "give", "pick"];
       for (let k = 0; t < tLeave; k++) {
         const c = kinds[(k + p.i) % kinds.length];
         add({ t0: t, clip: c, mode: c === "lift" ? "once" : "pp", ...still(here, hd + (rnd(p.i, k) - 0.5) * 0.3) });
@@ -427,7 +435,7 @@
 
   // v2: 住まいを建てる日 (記録の「でき具合 約 N 割」と「住まいができた」) は、昼のあいだに柱 → 壁 → 屋根と少しずつできていく
   function hutGrowth(P, v) {
-    const H = M.world.hut, ev = (P.work || []).filter((e) => e.type === "住まい");
+    const H = M.world.hut, ev = (P.work || []).filter((e) => e.type === "住まい" && !(M.opts2.houseBuild && /の家の住まい/.test(e.text)));  // houseBuild: 家族の家は houseGrowth
     const steps = ev.map((e) => (/住まいができた/.test(e.text) ? 1 : (/でき具合 約 (\d+) 割/.exec(e.text) || [])[1] / 10)).filter((x) => x > 0);
     if (!H.userData.parts) {  // 柱 (8 本) を足して、壁と屋根をおぼえる
       const poleM = new THREE.MeshLambertMaterial({ color: 0x6b4a2e }), poles = new THREE.Group();
@@ -445,6 +453,35 @@
     const w = clamp((g - 0.3) / 0.4);  // 3 割までは柱だけ、7 割で壁、そのあと屋根
     wall.visible = w > 0; wall.scale.y = Math.max(0.01, w); wall.position.y = 0.55 * w;
     const r = clamp((g - 0.7) / 0.3); roof.visible = r > 0; roof.scale.setScalar(Math.max(0.01, r));
+  }
+
+  // houseBuild (G4V から): 家族の家を建てている日は、記録の「でき具合 約 N 割」まで、昼のあいだに柱 → 壁が少しずつ高くなる。できた日は屋根がのる
+  //   (replay3d.js の housesOn が決めた大きさを、毎コマ上書きする。広さは記録のまま)
+  function houseGrowth(P, v) {
+    const ev = (P.work || []).filter((e) => e.type === "住まい"), seg = P.segs.find((s) => s.key === "work") || P.segs[2];
+    const u = clamp((v - seg.v0) / Math.max(1, seg.v1 - seg.v0));
+    for (const H of M.world.houses || []) {
+      if (!H.g.visible) continue;
+      const mine = ev.filter((e) => (e.text || "").includes(`、${H.v.household}の住まい`) || (e.text || "").includes(` ${H.v.household}の住まい`));
+      const done = mine.some((e) => /住まいができた/.test(e.text));
+      const steps = mine.map((e) => (/でき具合 約 (\d+) 割/.exec(e.text) || [])[1] / 10).filter((x) => x > 0);
+      if (!done && !steps.length) { if (H.poles) H.poles.visible = false; continue; }
+      const end = done ? 1 : Math.max(...steps), start = done ? 0.9 : Math.max(0, end - 0.1), g = start + (end - start) * u;
+      const w = H.wall.scale.x, d = H.wall.scale.z;
+      if (!H.poles) {  // 四すみと、辺のまん中の柱 (8 本)
+        const m = new THREE.MeshLambertMaterial({ color: 0x6b4a2e }); H.poles = new THREE.Group();
+        for (const [x, z] of [[-1, -1], [1, -1], [1, 1], [-1, 1], [0, -1], [1, 0], [0, 1], [-1, 0]]) {
+          const pl = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.045, 1, 5), m); pl.userData.xz = [x, z]; H.poles.add(pl);
+        }
+        H.g.add(H.poles);
+      }
+      const ph = 0.95 * clamp(g / 0.3);  // 3 割までに柱が立つ
+      H.poles.visible = ph > 0.02;
+      for (const pl of H.poles.children) { pl.scale.y = Math.max(0.01, ph); pl.position.set(pl.userData.xz[0] * w / 2, ph / 2, pl.userData.xz[1] * d / 2); }
+      const h = 0.9 * clamp((g - 0.2) / 0.8);  // 2 割から壁が上がる
+      H.wall.visible = h > 0.01; H.wall.scale.y = Math.max(0.01, h); H.wall.position.y = h / 2;
+      H.roof.visible = done && g >= 0.98; H.roof.position.y = h + 0.06;
+    }
   }
 
   // v2: 動物 (記録の日だけ)。村の木や丘と同じ、簡単な形の四つ足。ルク (狩りの獲物、鹿に似た草食の獣) と ザガ (夜にキャンプへ来る、狼に似た獣)
@@ -873,6 +910,7 @@
       if (!sched.has(P)) sched.set(P, Object.fromEntries(Object.keys(M.people).filter((n) => P.plan[n]).map((n) => [n, planFor(P, M.D, n)])));
       const all = sched.get(P);
       if (this.opts.v2 && M.world && M.world.hut) hutGrowth(P, v);
+      if (this.opts.v2 && this.opts.houseBuild && M.world) houseGrowth(P, v);
       if (this.opts.v2) {
         animalsFrame(P, v); growFrame(P); rainFrame(P, v); if (this.opts.fireNightly) fireFrame(P, v);
         if (this.opts.tents && M.tentP !== P) { if (M.tentG) M.scene.remove(M.tentG); M.tentP = P; M.tentG = tentGroup(P); M.scene.add(M.tentG); }
