@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蔵は豊かだ。冬の前に、水の輪の直しを少しずつ進めておこう。"}],
+ "job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "水の輪の直しが残っているので、冬の前に進めたい"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケナ114": {"activity": "水の輪を直す", "place": "camp", "why": "直しの人手を増やすため"}, "ルタ120": {"activity": "採集", "place": "camp", "why": "家の食べ物の足しにするため"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "キサ146": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "ホミ146": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギを元気に保つため"}, "キサ151": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝うため"}},
+ "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蔵が豊かで落ち着いている。静かに冬へ備えたい。"}

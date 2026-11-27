@@ -1,0 +1,9 @@
+{"say": [{"to": "みんな", "text": "秋の畑に千つかみずつまいて、冬まで草をよく抜こう。草取りをしただけ、夏の実りがふえるよ。"}, {"to": "ラキ142", "text": "わたしは畑の草取りをする。あんたは狩りがうまいから、林で肉を取ってきておくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをしないと実りが三割しかないから、冬まで草を抜く"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ142": {"activity": "狩り", "place": "東林12", "why": "狩りが家でいちばん上手で、肉があれば子らの食べ物がかたよらない"}},
+ "keep": false,
+ "judge": {"M634": "つぐなう", "M635": "つぐなう", "M636": "つぐなう"}, "feast": false, "leader": "ヒセ89", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "この秋もよその家の畑を刈った家が三つ不満を言った。言い出した家は量を字で書いていたが、ちがう家の倉に入ったので、刈る前に決めておくほうがよい", "because": [8526184, 8526185, 8526186], "confidence": 0.8}, {"op": "add", "text": "村のヤギは133頭で、草で養える約140頭に近い。よその村のヤギは受けず、今の数を保つのがよい", "because": [], "confidence": 0.8}],
+ "proposal": {"text": "よその家の畑を刈るときは、刈る前に、どの家の倉に入れるかと分ける量を、字の読める人が板に書いておこう。", "because": [8526184, 8526185, 8526186], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [{"id": "L1412", "against": "書く手間がかかる", "agree": true, "reason": "刈る前に決めておけば、あとでもめない"}, {"id": "L1409", "against": "一割では少ないと言う人もいる", "agree": true, "reason": "刈った人にも分け前があれば、手伝う気になる"}, {"id": "L1407", "against": "ほかの仕事の手がへる", "agree": true, "reason": "草取りで畑の実りがふえ、子の薬も赤ん坊に回る"}, {"id": "L1426", "against": "ヤギが少ない村が困るかもしれない", "agree": true, "reason": "ヤギは133頭で草の限りに近いから、受けないほうがよい"}, {"id": "L1411", "against": "今はヤギが草の限りに近い", "agree": false, "reason": "今はヤギが多めなので、よその村のヤギを受けるのは早い"}, {"id": "L1404", "against": "特になし", "agree": true, "reason": "小さい子がまだ多く亡くなっているから"}],
+ "feeling": "蓄えはたっぷりある。あとは畑の草をよく抜いて、子らが元気に冬をこせるといい"}

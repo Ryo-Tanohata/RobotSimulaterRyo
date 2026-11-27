@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋は千つかみずつ種をまいて、手のあく人は水の道を掘ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れがまだたくさん残っている。掟にもあるので手伝う。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ラキ146": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので、近い林で肉を取って蓄えに足す。"}, "オセ150": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、キャンプの子に字を教える。"}},
+ "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L1434", "against": "", "agree": true, "reason": "新しく来た人が迷わないように、村の大人が教えるのはよいことだ。"}, {"id": "L1435", "against": "", "agree": true, "reason": "鎌を前もって直せば、夏に落ちる草の種が減る。"}, {"id": "L1413", "against": "", "agree": true, "reason": "水の道の手入れはまだ多く残っているので、みなで掘るのがよい。"}],
+ "feeling": "蓄えもあって落ち着いている。体を動かして村の役に立てるのがうれしい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどあるけれど、畑は毎年の命綱だ。秋のうちに千つかみまいて、冬は草取りを忘れないでね。わたしは鎌をこしらえるよ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕が一番高いので、刈り入れに使う石の鎌を作って、来年の夏に刈り残しが出ないようにする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"トナ148": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が高いので、林で肉を追って蓄えに入れる"}},
+ "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に畑へ草の種をまき、冬と春に草取りをすると、夏によく実る。夏の刈り入れには鎌が多いほどよい。", "because": [8526181], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかも満ちて、体も軽い。鎌づくりに精を出せそうで楽しみだ。"}

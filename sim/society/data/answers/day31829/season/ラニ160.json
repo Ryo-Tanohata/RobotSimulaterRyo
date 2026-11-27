@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋だね。蓄えの草の種をひとり千つかみずつまいて、冬と春は草取りをしよう。わたしは子どもたちに字を教えるよ。"}],
+ "job": {"activity": "字を教える", "place": "camp", "with": [], "why": "字を習っている子がまだいる。字が読める人がふえると、村の記録や約束が確かになるから教える。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケセ160": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りが少ないと実りが減る。夫は採集の腕もあるが、畑を育てて来年の夏の実りを守りたい。"}}, "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "字を教える仕事をすると、子どもが30日で読み書きできるようになる。村の約束や記録のために字を広めるのはよいことだ。", "because": [8523995], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "子どもたちが字を覚えていくのが楽しみ。畑もよく実ってほしい。"}

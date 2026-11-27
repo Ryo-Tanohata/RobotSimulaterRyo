@@ -1,0 +1,33 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。畑がまだないから、ひとりずつ千つかみまいて、冬と春は草取りを休まず続けよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えは多いので、来年の夏の実りを守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "オネ81": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"},
+  "ラニ87": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"},
+  "シエ95": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っている"},
+  "ロワ96": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っている"},
+  "セオ100": {"activity": "水の輪を直す", "place": "camp", "why": "水の輪の直しが残っている"},
+  "ルタ101": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っている"},
+  "ユエ110": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"},
+  "ラニ112": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに人手が要る"},
+  "ケナ152": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "オセ153": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"},
+  "アコ154": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L1427", "against": "", "agree": true, "reason": "傷みを減らすのは蓄えのためになる"},
+  {"id": "L1428", "against": "", "agree": true, "reason": "みなで刈り、水の道も皆で掘るのがよい"},
+  {"id": "L1429", "against": "", "agree": true, "reason": "小さい子を守れる"},
+  {"id": "L1430", "against": "", "agree": true, "reason": "草が足りなくなるのを防ぐ"},
+  {"id": "L1431", "against": "", "agree": true, "reason": "ヤギが少ないときは受けてよい"},
+  {"id": "L1432", "against": "", "agree": true, "reason": "子の薬が小さい子に回る"},
+  {"id": "L1433", "against": "", "agree": true, "reason": "草の限りを守りつつ交わる"},
+  {"id": "L1434", "against": "", "agree": true, "reason": "新しい人が困らない"},
+  {"id": "L1435", "against": "", "agree": true, "reason": "落ちる草の種が減る"}
+ ],
+ "feeling": "蓄えは山ほどある。静かな秋に、みなと畑を耕せるのがうれしい。"}

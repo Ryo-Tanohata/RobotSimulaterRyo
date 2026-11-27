@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "秋の畑はたっぷりまこう。わたしは子どもたちに字を教えるよ。"}],
+ "job": {"activity": "字を教える", "place": "camp", "with": [], "why": "字を読める大人として、子どもたちに字を伝えたい。教える人が増えれば村の助けになる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ132": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っているので手伝う。"},
+  "ヒセ137": {"activity": "畑仕事", "place": "camp", "why": "秋の畑の草取りで、来年の実りを増やす。"}
+ },
+ "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかもいっぱいで元気。子どもに字を教えるのが楽しみ。"}

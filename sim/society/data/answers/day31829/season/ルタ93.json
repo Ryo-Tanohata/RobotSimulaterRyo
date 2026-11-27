@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "作業場はいっぱいで休まされた。今季はひとりで林に行って、けものを追う。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "作業場 M26 がいっぱいで休みが続いた。狩りと採集が得意なので、ひとりで近い北の林でけものを追い、肉を持ち帰る。"}, "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"}, "feast": false, "leader": "なし", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "作業場 M26 は 20 人でいっぱいになると、休むことになる。", "because": [8525918], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1428", "against": "水の道を掘るのは人に言われてやることではない", "agree": false, "reason": "決まりで縛られるのはいやだ。自分の仕事は自分で決める。"}, {"id": "L1435", "against": "", "agree": true, "reason": "鎌が直れば刈る手が助かる。害はない。"}],
+ "feeling": "ひとりで林を歩くのが一番落ち着く。"}

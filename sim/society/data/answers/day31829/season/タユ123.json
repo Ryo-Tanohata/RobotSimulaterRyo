@@ -1,0 +1,25 @@
+{"say": [{"to": "みんな", "text": "この秋も鎌はわたしが打つ。夏に刃が欠けて刈り残すのはもったいない。欠けた鎌は冬のうちに持っておいで。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕は村でいちばん。冬のうちに鎌をためて、夏の刈り入れで種を落とさないため"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "タユ128": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをしないと、来年の夏の実りが少なくなるから"},
+  "オネ129": {"activity": "畑仕事", "place": "camp", "why": "千つかみまいた畑を冬まで草取りして、実りを増やすため"},
+  "ラニ131": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っていて、泥でうまると畑に水が来ないから"},
+  "ケセ131": {"activity": "畑仕事", "place": "camp", "why": "採集より草取りのほうが家と村の実りになるから"},
+  "ハソ145": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので、水の道の泥をかき出してもらう"}
+ },
+ "keep": true,
+ "judge": {"M634": "ゆるす", "M635": "つぐなう", "M636": "ゆるす"},
+ "feast": false, "leader": "ヒセ89", "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "アコ124の家とオネ97の家が、うちの畑で刈った草の種のことで不満を言っている。量は少ないので、刈る前に分け方を字で書いておけばもめない", "because": [8526184, 8526186], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1429", "against": "薬を手放す家が損をする", "agree": true, "reason": "わたしの出した掟。鎌を回せば夏に種を落とさずにすむ"},
+  {"id": "L1435", "against": "道具の家ばかり働くことになる", "agree": true, "reason": "鎌を打ち直して回すのは、わたしの得意なこと"},
+  {"id": "L1433", "against": "一、二頭でも草が足りなくなるかもしれない", "agree": true, "reason": "ヤギが多すぎるとやせていなくなるから、受けるのは少しでいい"},
+  {"id": "L1434", "against": "教える大人の手がとられる", "agree": false, "reason": "よそから来た人は自分で見て覚えればいい。手のあく大人は草取りに回したい"},
+  {"id": "L1331", "against": "畑の家の取り分がへる", "agree": true, "reason": "刈る前に字で書いておけば、うちへの不満のようなもめごとがなくなる"}
+ ],
+ "feeling": "鎌を打つ音がいちばん落ち着く。もめごとなんて小さいことだ"}

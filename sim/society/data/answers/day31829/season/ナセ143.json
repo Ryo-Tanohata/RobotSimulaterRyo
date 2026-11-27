@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "冬の前に、林で木の実と草の種をたくさん集めておこう。蓄えは多いけれど、冬は実らないからね。"}],
+ "job": {"activity": "採集", "place": "東林12", "with": [], "why": "秋は木の実がよく取れる。腕に自信があるので、冬に備えて近い林で集める"},
+ "sow": 300, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "シエ143": {"activity": "狩り", "place": "北林12", "why": "冬はけものの肉が頼りになる。狩りの腕が高いので肉を集める"},
+  "ワユ147": {"activity": "採集", "place": "西草原12", "why": "近い草原で草の種や実を集め、冬の蓄えを増やす"}},
+ "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋は木の実がよく取れるので、冬の前に集めておく。冬は狩りで肉をとる", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかはいっぱい。冬に向けて、体を動かして林へ行くのが楽しみだ。"}

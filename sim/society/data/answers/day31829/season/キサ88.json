@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のはじめに千つかみずつ種をまいて、冬まで草取りを続けよう。わたしも毎日畑に出るよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると次の夏によく実るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ルタ88": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ネイ125": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"},
+  "ルタ142": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心だ。みんなで畑を育てて、よい夏を迎えたい。"}

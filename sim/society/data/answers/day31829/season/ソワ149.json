@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のあいだ、わたしは水の道を掘りに出る。畑に水が行き渡れば、来年の夏の実りも増えるから。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っていて、畑の実りを守れるから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ネイ149": {"activity": "水の道を掘る", "place": "camp", "why": "家ごとに一人は水の道に出る決まりに合わせ、力のある人が掘る"}, "ユエ149": {"activity": "字を教える", "place": "camp", "why": "字が読める人なので、キャンプの子らに字を教えて村の役に立てる"}}, "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは十分にあり、水の道の手入れがまだ多く残っている。秋は畑に千つかみまき、手の空いた人は水の道を掘るのがよい。", "because": [8523963], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1434", "against": "", "agree": true, "reason": "新しく来た人に村のことを教えるのは、みんなの助けになるから"}, {"id": "L1435", "against": "", "agree": true, "reason": "鎌を打ち直せば、刈らずに落ちる草の種がへるから"}],
+ "feeling": "蓄えもたっぷりで落ち着いている。家族みんなで穏やかに秋を過ごしたい。"}

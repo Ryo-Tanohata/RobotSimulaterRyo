@@ -1,0 +1,18 @@
+{"say": [{"to": "みんな", "text": "今年の秋も千つかみまくぞ。わしは土器を焼いて、蓄えを虫とネズミから守る。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器は得意だ。土器が多ければ蓄えの草の種が傷みにくいと覚えている。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ127": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑は草取りで実りが増える。"}, "ナセ146": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を増やして次の夏の実りを守る。"}},
+ "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "土器を焼く仕事を続ければ、蓄えの草の種が傷まず、秋にまく種も守れる。", "because": [8526184], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1429", "against": "", "agree": true, "reason": "道具の得意な者が鎌をこしらえれば刈り手みなが助かる。"},
+  {"id": "L1430", "against": "", "agree": true, "reason": "ヤギが草の限りに近いうちは増やさないほうがよい。"},
+  {"id": "L1431", "against": "ヤギが増えすぎるおそれがある。", "agree": false, "reason": "草が足りなくなると困る。"},
+  {"id": "L1432", "against": "", "agree": true, "reason": "鎌の打ち直しは冬の仕事によい。"},
+  {"id": "L1433", "against": "", "agree": true, "reason": "ヤギは草で養える数を守るのがよい。"},
+  {"id": "L1434", "against": "", "agree": true, "reason": "新しい人には場所と掟を教えるのがよい。"},
+  {"id": "L1435", "against": "", "agree": true, "reason": "鎌が直れば落ちる種がへる。"}
+ ],
+ "feeling": "秋の畑と土器の仕事で、冬に備えられて落ち着いている。"}

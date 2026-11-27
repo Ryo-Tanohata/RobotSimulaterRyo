@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のうちに千つかみずつ種をまいて、わしらは板ひきを続けるよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続けてきた仕事で、板が増えれば輪や道の手入れも楽になるから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソワ80": {"activity": "水の作業場で働く", "place": "M6", "why": "M6 ののこ番として働き続ける"}, "ホミ87": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として続ける"}, "ホミ91": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として続ける"}, "ラキ92": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として続ける"}, "アコ96": {"activity": "採集", "place": "camp", "why": "家の食べ物を手元に確保する"}, "トナ102": {"activity": "採集", "place": "camp", "why": "家の食べ物を手元に確保する"}, "ハソ107": {"activity": "狩り", "place": "北林12", "why": "肉を蓄えに足すため"}, "ケナ116": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているから"}, "ケナ137": {"activity": "水の道を掘る", "place": "camp", "why": "若いので手入れを手伝う"}}, "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまくと次の夏に実る。蓄えは多いので、毎年千つかみずつまいて板ひきも続けるとよい。", "because": [8524023], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガ(捕食者)は怖いので、今も守るべき"}],
+ "feeling": "蓄えは山ほどあって安心だ。今年も板ひきで体を動かそう。"}

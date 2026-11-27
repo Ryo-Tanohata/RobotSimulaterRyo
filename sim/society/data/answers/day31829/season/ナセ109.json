@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は畑に種をまいて、冬の前に水の道の手入れを進めよう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分で、水の道の手入れがまだ大きく残っているので"},
+ "sow": 500, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {"ラニ110": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを皆で進めるため"}, "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の実りを増やすため"}},
+ "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは今の人数で約552日分あり、この秋は水の道の手入れに力を回せる。", "because": [8526184], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出て危ないので守りたい"}, {"id": "L171", "against": "", "agree": true, "reason": "草が足りなくなるので、よそのヤギは受けない方がよい"}, {"id": "L175", "against": "", "agree": true, "reason": "ヤギが草の限りを超えるあいだは増やさない方がよい"}],
+ "feeling": "蓄えが豊かで落ち着いている。秋の仕事が楽しみだ。"}

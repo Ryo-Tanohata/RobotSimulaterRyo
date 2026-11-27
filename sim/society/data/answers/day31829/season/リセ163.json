@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋のうちに林で肉をためて、冬にそなえよう。おれは狩りに行く。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りがいちばん得意なので、秋のうちに肉をとって冬の蓄えの足しにする"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"タユ163": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので、草の種や実を集めて家の食べ物を増やす"}, "ヒセ163": {"activity": "狩り", "place": "北林12", "why": "狩りが得意なので、いっしょに肉をとって冬にそなえる"}},
+ "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に狩りで肉をとると冬の食べ物の足しになる。続けて試して確かめたい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "狩りに出るのが楽しみ。冬が来る前にたくさん肉をためたい。"}

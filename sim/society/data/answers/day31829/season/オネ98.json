@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "この秋もおれは東の近い林で獣を追う。ナセ105とソワ113も連れていく。冬の肉をたっぷり持ち帰るぞ。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": ["ナセ105", "ソワ113"], "why": "狩りの腕は一番。近い東の林で三人で追えば安全で、冬の足しになる肉がたまる。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ105": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が1.0。おれと一緒に近い林で肉をためる。"}, "ソワ113": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が1.0。三人なら安全で獲物も多い。"}}, "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに近い東の林で三人で狩りを続ければ、冬の足しになる肉がたまる。", "because": [8525863], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1430", "against": "ヤギが多いので受けないのはよいが、細かい決まりが増える", "agree": true, "reason": "ヤギが草で養える数に近いので、よそのヤギは受けないほうがよい。"},
+  {"id": "L1431", "against": "ヤギが増える", "agree": false, "reason": "今は草が足りなくなりかけている。ヤギを増やしたくない。"},
+  {"id": "L1432", "against": "おれは石掘りはしない", "agree": false, "reason": "おれたちは狩りで忙しい。関わりが薄い決まりは増やしたくない。"},
+  {"id": "L1433", "against": "ヤギは少しでも増やしたくない", "agree": false, "reason": "草が足りないので、一年に一、二頭でも増やすのは気が進まない。"},
+  {"id": "L1434", "against": "手間がかかる", "agree": false, "reason": "おれは群れて教えるより狩りがしたい。"},
+  {"id": "L1435", "against": "鎌の打ち直しは手間", "agree": true, "reason": "刈らずに落ちる種が減るなら、村の蓄えのためによい。"}],
+ "feeling": "体が軽い。早く林に出て獲物を追いたい。"}

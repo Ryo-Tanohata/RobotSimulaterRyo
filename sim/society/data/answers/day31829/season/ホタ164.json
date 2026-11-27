@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "この秋と冬は、おれが欠けた鎌を打ち直しておく。夏に刈り手が鎌を持てないことがないようにしたい。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具がいちばん得意だから、夏の刈り入れまでに鎌をそろえておきたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ムイ164": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをすれば、夏の実りがずっと増えるから"}},
+ "keep": false,
+ "judge": {"M634": "つぐなう", "M635": "つぐなう", "M636": "つぐなう"},
+ "feast": false, "leader": "ヒセ89", "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "刈る前に、刈った種をどの家の倉に入れるか板に書いておこう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑を手伝って刈った種が、みな相手の家の倉に入って、もめごとが三つも出た。刈る前に分け方を決めておくのが大事だ", "because": [8526184, 8526185, 8526186], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1435", "against": "鎌を打ち直す手間で、ほかの仕事が少し減る", "agree": true, "reason": "鎌がそろえば、刈らずに落ちる草の種がへるから"},
+  {"id": "L1412", "against": "字の読める人の手間がかかる", "agree": true, "reason": "刈った種の分け方を先に書いておけば、もめごとが起きにくいから"},
+  {"id": "L1416", "against": "冬に道具の得意な人の手がとられる", "agree": true, "reason": "夏の刈り手みなに鎌が回れば、落ちる種がへるから"},
+  {"id": "L1429", "against": "薬を手放す家が不安になるかもしれない", "agree": true, "reason": "小さい子を病から守るのが先だから"},
+  {"id": "L1413", "against": "家の仕事が少し遅れる", "agree": true, "reason": "水の道の手入れがまだたくさん残っているから"},
+  {"id": "L1434", "against": "教える大人の手がとられる", "agree": true, "reason": "よそから来た人が早くなじめば、村の力になるから"},
+  {"id": "L1431", "against": "ヤギを受けすぎると草が足りなくなるおそれがある", "agree": false, "reason": "ヤギの数はすぐ増えすぎるので、受けるのは少しにしたいから"}
+ ],
+ "feeling": "鎌をいい形に打ち直せると思うと、少しわくわくする。"}

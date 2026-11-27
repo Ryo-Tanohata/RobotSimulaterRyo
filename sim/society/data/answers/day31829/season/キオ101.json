@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。おれは秋のあいだ、まだ行っていない林の奥を歩いて、新しい実のなる所を見つけてくる。"}],
+ "job": {"activity": "探索", "place": "東林45", "with": [], "why": "蓄えは十分で食べ物の心配はない。好奇心が強いので、遠い林の奥を見て、まだ知らない実りや獲物の場所を探したい。"}, "sow": 1000, "pick": 0, "plant": 3, "harvest": 0, "eat_goat": 0,
+ "family": {"キサ105": {"activity": "採集", "place": "camp", "why": "畑まわりと木の実で家の食べ物を確かめる。採集が得意だから。"}, "キオ107": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをして、次の夏の実りを増やす。"}, "リセ111": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やす。小さい子のそばで働ける。"}, "ヒセ131": {"activity": "水の道を掘る", "place": "camp", "why": "秋は手のあく大人で水の道を手入れする決まりに合わせる。"}, "ネイ133": {"activity": "畑仕事", "place": "camp", "why": "秋と冬の草取りで実りを増やす。"}, "セヤ149": {"activity": "採集", "place": "camp", "why": "若いので採集で体を動かし、家の食べ物を足す。"}}, "keep": false,
+ "judge": {"M634": "ゆるす", "M635": "ゆるす", "M636": "ゆるす"}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみの種をまき、冬と春に草取りをすると次の夏の実りが増える。蓄えは今とても多く、食べ物に困る心配は小さい。", "because": [8526156], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは満ちていて気がらくだ。まだ見ていない林の奥へ歩くのが楽しみだ。"}
