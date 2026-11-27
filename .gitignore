@@ -25,3 +25,6 @@ sim/society/video/voice_tmp/
 # 学習ライブラリ (orbax) が書く確認の記録。PC のフォルダの場所 (ユーザー名) が入るので入れない
 **/checkpoints/**/commit_success.txt
 _site/
+
+# 人のモデルを作るときの作業用の絵 (コミットしない)
+sim/society/out/
