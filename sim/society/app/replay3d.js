@@ -483,7 +483,7 @@
     const over = (S && S.segOverride && S.segOverride[day]) || {};  // 動画用: 場面ごとの秒数を指定できる
     for (const s of segs) if (over[s.key]) s.sec = over[s.key];
     let acc = 0; for (const s of segs) { s.v0 = acc; acc += s.sec; s.v1 = acc; }
-    return { day, plan, maxDist, segs, total: acc, work, eve, crowded, oneHome,
+    return { day, plan, maxDist, segs, total: acc, work, eve, crowded, oneHome, builds: ev.filter((e) => e.type === "住まい"),  // builds: 人のモデルの家づくり (混んだ日に work から落ちても使う)
       night: ev.filter((e) => NIGHT_EVENTS.includes(e.type)), fire: ev.some((e) => e.type === "火" && !/できなかった/.test(e.text)) || D.camp.fire > 0 };
   }
 

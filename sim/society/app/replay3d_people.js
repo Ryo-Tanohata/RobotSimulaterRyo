@@ -262,7 +262,7 @@
     }
     if (V2) p.spot = pushOut(P, out_(p.spot));
     const HB = V2 && !!M.opts2.houseBuild;  // G4V から (2026-11-27 本人「家を建てるモーションが入っている動画がない」): 家族の家を建てる・広げる人は、その家のまわりで
-    const builds = V2 ? (P.work || []).filter((e) => e.type === "住まい" && (HB ? /建て|できた|手入れ|広げ/ : /建て|できた|手入れ/).test(e.text)) : [];  // 「セナ たちの手で…住まいができた」も
+    const builds = V2 ? ((HB && P.builds) || P.work || []).filter((e) => e.type === "住まい" && (HB ? /建て|できた|手入れ|広げ/ : /建て|できた|手入れ/).test(e.text)) : [];  // 「セナ たちの手で…住まいができた」も
     const mine = builds.filter((e) => e.who === n || (e.text || "").startsWith(n + " "));
     const builder = mine.length > 0;
     let bc = hutC, br = 2.0;  // 建てる物のまん中と、立つ所のはなれ
@@ -458,7 +458,7 @@
   // houseBuild (G4V から): 家族の家を建てている日は、記録の「でき具合 約 N 割」まで、昼のあいだに柱 → 壁が少しずつ高くなる。できた日は屋根がのる
   //   (replay3d.js の housesOn が決めた大きさを、毎コマ上書きする。広さは記録のまま)
   function houseGrowth(P, v) {
-    const ev = (P.work || []).filter((e) => e.type === "住まい"), seg = P.segs.find((s) => s.key === "work") || P.segs[2];
+    const ev = (P.builds || P.work || []).filter((e) => e.type === "住まい"), seg = P.segs.find((s) => s.key === "work") || P.segs[2];
     const u = clamp((v - seg.v0) / Math.max(1, seg.v1 - seg.v0));
     for (const H of M.world.houses || []) {
       if (!H.g.visible) continue;
@@ -711,7 +711,7 @@
         if (!["go", "work", "back"].includes(sg.key)) return { t0, groups: [{ names: alive, title: "" }] };
         let G = dayGroups(P, alive).map((g) => ({ ...g, ps: g.names.map((n) => posAt(P, n, tm)).filter(Boolean) }));
         if (o.houseBuild) {  // G4V から: 家族の家を建てる人は、まとめずに自分たちの画面で寄って写す (2026-11-27 本人「家を建てるモーション」)
-          const bw = (P.work || []).filter((e) => e.type === "住まい" && /建て|できた|広げ/.test(e.text) && /、(.+?)の住まい/.test(e.text));
+          const bw = (P.builds || P.work || []).filter((e) => e.type === "住まい" && /建て|できた|広げ/.test(e.text) && /、(.+?)の住まい/.test(e.text));
           const hh = [...new Set(bw.map((e) => /、(.+?)の住まい/.exec(e.text)[1]))].join("・");
           const bs = alive.filter((n) => bw.some((e) => e.who === n || (e.text || "").startsWith(n + " ")));
           if (bs.length) {
