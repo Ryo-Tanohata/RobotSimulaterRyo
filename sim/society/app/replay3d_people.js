@@ -475,7 +475,7 @@
         }
         H.g.add(H.poles);
       }
-      const ph = 0.95 * clamp(g / 0.3);  // 3 割までに柱が立つ
+      const ph = 0.95 * clamp(0.35 + g / 0.25);  // 建てはじめの日から柱が見え、2〜3 割で立ちきる
       H.poles.visible = ph > 0.02;
       for (const pl of H.poles.children) { pl.scale.y = Math.max(0.01, ph); pl.position.set(pl.userData.xz[0] * w / 2, ph / 2, pl.userData.xz[1] * d / 2); }
       const h = 0.9 * clamp((g - 0.2) / 0.8);  // 2 割から壁が上がる
@@ -710,10 +710,22 @@
         const sg = P.segs.find((s) => tm >= s.v0 && tm < s.v1) || P.segs[P.segs.length - 1];
         if (!["go", "work", "back"].includes(sg.key)) return { t0, groups: [{ names: alive, title: "" }] };
         let G = dayGroups(P, alive).map((g) => ({ ...g, ps: g.names.map((n) => posAt(P, n, tm)).filter(Boolean) }));
+        if (o.houseBuild && sg.key === "work") {  // G4V から: 家族の家を建てる人は、まとめずに自分たちの画面で寄って写す (2026-11-27 本人「家を建てるモーション」)
+          const bw = (P.work || []).filter((e) => e.type === "住まい" && /建て|できた|広げ/.test(e.text) && /、(.+?)の住まい/.test(e.text));
+          const hh = (bw.map((e) => /、(.+?)の住まい/.exec(e.text)[1])[0]) || "";
+          const bs = alive.filter((n) => bw.some((e) => e.who === n || (e.text || "").startsWith(n + " ")));
+          if (bs.length) {
+            G = G.map((g) => ({ ...g, names: g.names.filter((n) => !bs.includes(n)) })).filter((g) => g.names.length)
+              .map((g) => ({ ...g, ps: g.names.map((n) => posAt(P, n, tm)).filter(Boolean) })).filter((g) => g.ps.length);
+            G.unshift({ names: bs, title: `${bs.join("・")} — ${hh}の住まいを建てる`, keep: true, ps: bs.map((n) => posAt(P, n, tm)).filter(Boolean) });
+            while (G.length > 3) { const b = G.pop(), a = G[G.length - 1]; G[G.length - 1] = { names: [...a.names, ...b.names], ps: [...a.ps, ...b.ps], merged: true }; }  // 画面は 3 つまで
+          }
+        }
         const cen = (g) => ({ x: g.ps.reduce((a, p) => a + p.x, 0) / g.ps.length, y: g.ps.reduce((a, p) => a + p.y, 0) / g.ps.length });
         for (;;) {
           let best = null;
           for (let a = 0; a < G.length; a++) for (let b = a + 1; b < G.length; b++) {
+            if (G[a].keep || G[b].keep) continue;
             const A = cen(G[a]), B = cen(G[b]), d = Math.hypot(A.x - B.x, A.y - B.y);
             if (d < MERGE && (!best || d < best[0])) best = [d, a, b];
           }
@@ -721,7 +733,7 @@
           const [, a, b] = best, A = G[a], B = G[b];
           G[a] = { names: [...A.names, ...B.names], ps: [...A.ps, ...B.ps], merged: true }; G.splice(b, 1);
         }
-        G = G.map((g) => (g.merged ? { names: g.names, title: `${g.names.length >= 5 ? "五人" : g.names.join("・")} — ${sg.key === "go" ? "出かけるところ" : sg.key === "back" ? "キャンプへ帰るところ" : nearPlace(cen(g))}` } : { names: g.names, title: g.title }));
+        G = G.map((g) => (g.keep ? { names: g.names, title: g.title } : g.merged ? { names: g.names, title: `${g.names.length >= 5 ? "五人" : g.names.join("・")} — ${sg.key === "go" ? "出かけるところ" : sg.key === "back" ? "キャンプへ帰るところ" : nearPlace(cen(g))}` } : { names: g.names, title: g.title }));
         if (G.length > 1 && firstSplit < 0) firstSplit = i;
         return { t0, groups: G };
       });
