@@ -66,7 +66,9 @@
     const nf = (M.world.plots || []).filter((m) => m.visible).length;  // 畑 (replay3d.js の並び: キャンプの南西。16 枚までは 4 列)
     const fx0 = fire.x - 2.5 - 1.8 * (nf > 16 ? 5 : 3) - 0.9, fx1 = fire.x - 2.5 + 0.9, fy0 = fire.y + 2.5 - 0.7, fy1 = fire.y + 2.5 + 1.4 * (nf > 28 ? 7 : nf > 16 ? 6 : 3) + 0.7;
     const inField = (q) => nf > 0 && q.x > fx0 - R && q.x < fx1 + R && q.y > fy0 - R && q.y < fy1 + R;
-    const free = (q) => hs.every((h) => Math.hypot(q.x - h.x, q.y - h.y) >= h.r + R + 0.3) && Math.hypot(q.x - fire.x, q.y - fire.y) >= R + 1.5 && !inField(q);
+    const T = D.map.terrain, wet = (q) => [[0, 0], ...Array.from({ length: 8 }, (_, k) => [Math.cos(k * 0.785) * (R + 0.4), Math.sin(k * 0.785) * (R + 0.4)])]
+      .some(([dx, dy]) => { const row = T[Math.floor(q.y + dy)]; return !row || row[Math.floor(q.x + dx)] === "r" || row[Math.floor(q.x + dx)] === undefined; });  // 川の上・地図の外には置かない
+    const free = (q) => !wet(q) && hs.every((h) => Math.hypot(q.x - h.x, q.y - h.y) >= h.r + R + 0.3) && Math.hypot(q.x - fire.x, q.y - fire.y) >= R + 1.5 && !inField(q);
     if (free(base)) return base;
     const a0 = Math.atan2(base.y - fire.y, base.x - fire.x), d0 = Math.hypot(base.x - fire.x, base.y - fire.y);
     for (const d of [d0, d0 + 1.5, d0 + 3, d0 + 4.5]) for (let k = 1; k <= 12; k++) for (const sg of [1, -1]) {
