@@ -710,14 +710,14 @@
         const sg = P.segs.find((s) => tm >= s.v0 && tm < s.v1) || P.segs[P.segs.length - 1];
         if (!["go", "work", "back"].includes(sg.key)) return { t0, groups: [{ names: alive, title: "" }] };
         let G = dayGroups(P, alive).map((g) => ({ ...g, ps: g.names.map((n) => posAt(P, n, tm)).filter(Boolean) }));
-        if (o.houseBuild && sg.key === "work") {  // G4V から: 家族の家を建てる人は、まとめずに自分たちの画面で寄って写す (2026-11-27 本人「家を建てるモーション」)
+        if (o.houseBuild) {  // G4V から: 家族の家を建てる人は、まとめずに自分たちの画面で寄って写す (2026-11-27 本人「家を建てるモーション」)
           const bw = (P.work || []).filter((e) => e.type === "住まい" && /建て|できた|広げ/.test(e.text) && /、(.+?)の住まい/.test(e.text));
-          const hh = (bw.map((e) => /、(.+?)の住まい/.exec(e.text)[1])[0]) || "";
+          const hh = [...new Set(bw.map((e) => /、(.+?)の住まい/.exec(e.text)[1]))].join("・");
           const bs = alive.filter((n) => bw.some((e) => e.who === n || (e.text || "").startsWith(n + " ")));
           if (bs.length) {
             G = G.map((g) => ({ ...g, names: g.names.filter((n) => !bs.includes(n)) })).filter((g) => g.names.length)
               .map((g) => ({ ...g, ps: g.names.map((n) => posAt(P, n, tm)).filter(Boolean) })).filter((g) => g.ps.length);
-            G.unshift({ names: bs, title: `${bs.join("・")} — ${hh}の住まいを建てる`, keep: true, ps: bs.map((n) => posAt(P, n, tm)).filter(Boolean) });
+            G.unshift({ names: bs, title: `${bs.join("・")} — ${hh}の住まいを建てる`.replace(/^(.{0,40}).*$/, "$1"), keep: true, ps: bs.map((n) => posAt(P, n, tm)).filter(Boolean) });
             while (G.length > 3) { const b = G.pop(), a = G[G.length - 1]; G[G.length - 1] = { names: [...a.names, ...b.names], ps: [...a.ps, ...b.ps], merged: true }; }  // 画面は 3 つまで
           }
         }
@@ -733,16 +733,16 @@
           const [, a, b] = best, A = G[a], B = G[b];
           G[a] = { names: [...A.names, ...B.names], ps: [...A.ps, ...B.ps], merged: true }; G.splice(b, 1);
         }
-        G = G.map((g) => (g.keep ? { names: g.names, title: g.title } : g.merged ? { names: g.names, title: `${g.names.length >= 5 ? "五人" : g.names.join("・")} — ${sg.key === "go" ? "出かけるところ" : sg.key === "back" ? "キャンプへ帰るところ" : nearPlace(cen(g))}` } : { names: g.names, title: g.title }));
+        G = G.map((g) => (g.keep ? { names: g.names, title: g.title, build: true } : g.merged ? { names: g.names, title: `${g.names.length >= 5 ? "五人" : g.names.join("・")} — ${sg.key === "go" ? "出かけるところ" : sg.key === "back" ? "キャンプへ帰るところ" : nearPlace(cen(g))}` } : { names: g.names, title: g.title }));
         if (G.length > 1 && firstSplit < 0) firstSplit = i;
-        return { t0, groups: G };
+        return { t0, groups: G, build: G.some((g) => g.build) };
       });
       layouts.set(P, { cuts, L, firstSplit, alive });
     }
     const X = layouts.get(P);
     let i = 0; while (i + 1 < X.cuts.length && X.cuts[i + 1] <= v) i++;
     const c = X.L[i];
-    if (i === X.firstSplit && v < c.t0 + 1.5) return { key: "wide" + i, wide: true, groups: [{ names: X.alive, title: "" }], all: c.groups };  // 分ける前の、全体の引きの絵
+    if (i === X.firstSplit && v < c.t0 + 1.5 && !c.build) return { key: "wide" + i, wide: true, groups: [{ names: X.alive, title: "" }], all: c.groups };  // 分ける前の、全体の引きの絵
     return { key: i + "|" + c.groups.map((g) => g.names.join("・")).join("/"), groups: c.groups };
   }
   function nearPlace(p) {
