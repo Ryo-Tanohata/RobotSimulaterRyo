@@ -57,6 +57,21 @@
     obstCache.delete(P);  // 小屋も、よける物に入れ直す
     return T;
   }
+  // ヤギの囲いのまん中 (描きそえ)。キャンプの南東。houseBuild (G4V から) のときは、家族の家にかからない所へずらす (2026-11-27 本人「家がヤギの囲いにかかっている」)
+  function penSpot(P, R) {
+    const D = M.D, fire = { x: D.camp.x + 0.5, y: D.camp.y + 0.5 }, base = { x: fire.x + 4.5, y: fire.y + 4.0 };
+    if (!M.opts2.houseBuild || !M.world) return base;
+    const hs = (M.world.houses || []).filter((H) => H.at && H.v.start <= P.day && !(H.v.left != null && H.v.left <= P.day)).map((H) => ({ x: H.at.x + 0.5, y: H.at.y + 0.5, r: 1.5 }));
+    if (M.world.hutDay !== null && P.day >= M.world.hutDay - 3) hs.push({ x: fire.x - 3.2, y: fire.y - 2.2, r: 2.0 });
+    const free = (q) => hs.every((h) => Math.hypot(q.x - h.x, q.y - h.y) >= h.r + R + 0.3) && Math.hypot(q.x - fire.x, q.y - fire.y) >= R + 1.5;
+    if (free(base)) return base;
+    const a0 = Math.atan2(base.y - fire.y, base.x - fire.x), d0 = Math.hypot(base.x - fire.x, base.y - fire.y);
+    for (const d of [d0, d0 + 1.5, d0 + 3, d0 + 4.5]) for (let k = 1; k <= 12; k++) for (const sg of [1, -1]) {
+      const a = a0 + sg * k * 0.26, q = { x: fire.x + Math.cos(a) * d, y: fire.y + Math.sin(a) * d };
+      if (free(q)) return q;
+    }
+    return base;
+  }
   function tentGroup(P) {
     const g = new THREE.Group(), hide = new THREE.MeshLambertMaterial({ color: 0x7a6248 }), pole = new THREE.MeshLambertMaterial({ color: 0x4a3420 }), dark = new THREE.MeshBasicMaterial({ color: 0x1c140e, side: THREE.DoubleSide });
     for (const t of tentsFor(P)) {
@@ -76,7 +91,7 @@
     if (M.world && M.world.hutDay !== null && P.day >= M.world.hutDay - 3) O.push({ x: D.camp.x + 0.5 - 3.2, y: D.camp.y + 0.5 - 2.2, r: 2.0 });  // 住まい (建てかけも)
     for (const g of groveList(P)) O.push({ x: g.pt.x, y: g.pt.y, r: 0.3 + 0.35 * g.sz });
     const gs = (D.goats || []).find((g) => P.day >= g.from && P.day <= g.to), ng = Math.min(30, D.goatDay && D.goatDay[P.day] != null ? D.goatDay[P.day] : gs ? gs.n : 0);
-    if (ng > 0) O.push({ x: D.camp.x + 0.5 + 4.5, y: D.camp.y + 0.5 + 4.0, r: 1.5 + 0.25 * Math.sqrt(ng) });  // ヤギの囲い
+    if (ng > 0) { const q = penSpot(P, 1.2 + 0.25 * Math.sqrt(ng)); O.push({ x: q.x, y: q.y, r: 1.5 + 0.25 * Math.sqrt(ng) }); }  // ヤギの囲い
     if (tentCache.has(P)) for (const t of tentCache.get(P)) O.push({ x: t.pt.x, y: t.pt.y, r: 1.25 });  // 家族の小屋
     obstCache.set(P, O);
     return O;
@@ -523,7 +538,7 @@
     // ヤギ (飼っている数。季節の記録): キャンプの南東の囲いの中で、草をはんで歩く。夜は囲いの中で止まる
     const gs = (D.goats || []).find((g) => P.day >= g.from && P.day <= g.to), ng = Math.min(30, D.goatDay && D.goatDay[P.day] != null ? D.goatDay[P.day] : gs ? gs.n : 0);
     if (ng > 0) {
-      const pen = { x: fire.x + 4.5, y: fire.y + 4.0 }, R0 = 1.2 + 0.25 * Math.sqrt(ng);
+      const R0 = 1.2 + 0.25 * Math.sqrt(ng), pen = penSpot(P, R0);
       M.pen = { pen, r: R0 };
       for (let k = 0; k < ng; k++) {
         const ph = k * 2.39996, rr = R0 * 0.75 * Math.sqrt((k + 0.5) / ng);
