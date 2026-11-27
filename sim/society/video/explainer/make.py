@@ -74,7 +74,8 @@ def diagram(name, size):
             x = 30 + k * 165; d.rounded_rectangle([x, 60, x + 150, 200], 14, fill=[G, Y, R, B][k], outline=SUB, width=2)
             d.text((x + 55, 85), s, font=f(40), fill=INK); d.text((x + 35, 150), "30 日", font=f(26), fill=INK)
         d.text((40, 250), "1 年 = 120 日", font=f(40), fill=INK)
-        d.text((40, 320), "年れい・子の間隔・寿命は", font=f(28), fill=SUB); d.text((40, 360), "縮めない", font=f(28), fill=SUB)
+        d.text((40, 320), "環境も人も同じ時計", font=f(28), fill=ACC); d.text((40, 362), "120 日で 1 歳 (15 歳で大人)", font=f(28), fill=SUB)
+        d.text((40, 404), "1 日 = 24 時間 (本物と同じ)", font=f(28), fill=SUB)
     elif name == "agents":
         d.rounded_rectangle([200, 20, 500, 100], 16, fill=Y, outline=SUB, width=2); d.text((225, 45), "まとめ役 (このセッション)", font=f(22), fill=INK)
         for k, (t, c) in enumerate([("進め役\n(haiku)", G), ("村人の係\n約 100", B), ("年報の係\n6 人", R), ("動画の係", G)]):
