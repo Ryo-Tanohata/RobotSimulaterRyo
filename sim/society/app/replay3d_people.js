@@ -68,12 +68,14 @@
     const inField = (q) => nf > 0 && q.x > fx0 - R && q.x < fx1 + R && q.y > fy0 - R && q.y < fy1 + R;
     const T = D.map.terrain, wet = (q) => [[0, 0], ...Array.from({ length: 8 }, (_, k) => [Math.cos(k * 0.785) * (R + 0.4), Math.sin(k * 0.785) * (R + 0.4)])]
       .some(([dx, dy]) => { const row = T[Math.floor(q.y + dy)]; return !row || row[Math.floor(q.x + dx)] === "r" || row[Math.floor(q.x + dx)] === undefined; });  // 川の上・地図の外には置かない
+    for (const g of groveList(P)) hs.push({ x: g.pt.x, y: g.pt.y, r: 0.3 + 0.35 * g.sz });  // 実のなる木もよける
     const free = (q) => !wet(q) && hs.every((h) => Math.hypot(q.x - h.x, q.y - h.y) >= h.r + R + 0.3) && Math.hypot(q.x - fire.x, q.y - fire.y) >= R + 1.5 && !inField(q);
-    if (free(base)) return base;
+    if (M.penAt && free(M.penAt)) return M.penAt;  // 前の日と同じ所が空いていれば、動かさない (日によって囲いが飛ばないように)
+    if (free(base)) return (M.penAt = base);
     const a0 = Math.atan2(base.y - fire.y, base.x - fire.x), d0 = Math.hypot(base.x - fire.x, base.y - fire.y);
     for (const d of [d0, d0 + 1.5, d0 + 3, d0 + 4.5]) for (let k = 1; k <= 12; k++) for (const sg of [1, -1]) {
       const a = a0 + sg * k * 0.26, q = { x: fire.x + Math.cos(a) * d, y: fire.y + Math.sin(a) * d };
-      if (free(q)) return q;
+      if (free(q)) return (M.penAt = q);
     }
     return base;
   }
