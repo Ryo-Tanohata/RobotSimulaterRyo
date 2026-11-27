@@ -1,0 +1,7315 @@
+{
+ "item": "G4V",
+ "duration": 540.9,
+ "people": true,
+ "cuts": [
+  {
+   "cut": 1,
+   "id": "n01",
+   "start": 0.6,
+   "end": 13.11,
+   "at": 6.86,
+   "clock": "13年32日目 5:38  夜明け",
+   "text": "ずんだもんなのだ。今回は、フェーズ G4「持ち物と差」なのだ。13年30日目から14年30日目まで、120日間の見どころなのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 107,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "テオ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "テオ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 121,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 118,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 110,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 103,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 120,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 92,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 127,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 132,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 122,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 122,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 104,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 115,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 71,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 83,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 107,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 106,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 72,
+     "inView": true
+    },
+    {
+     "name": "テオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 62,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 111,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 101,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 113,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 14,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 19,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "字幕が タヒ にかかる",
+    "字幕が ナギ にかかる",
+    "字幕が ソル にかかる",
+    "ネム が小さい (71 px)",
+    "ラタ が小さい (83 px)",
+    "シノ が小さい (72 px)",
+    "テオ が小さい (62 px)",
+    "ニイ が小さい (14 px)",
+    "エマ が小さい (19 px)"
+   ]
+  },
+  {
+   "cut": 2,
+   "id": "n02",
+   "start": 13.56,
+   "end": 24.37,
+   "at": 18.96,
+   "clock": "13年32日目 5:52  夜明け",
+   "text": "次に進む条件は、家ごとの持ち物があることと、受けつぎが1回以上あることなのだ。持ち物は、家の倉の食べ物か、家のヤギなのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 107,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "テオ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "テオ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 123,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 109,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 102,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 122,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 93,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 127,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 132,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 121,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 123,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 104,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 115,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 72,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 82,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 107,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 106,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 73,
+     "inView": true
+    },
+    {
+     "name": "テオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 62,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 112,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 100,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 113,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 14,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 18,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "字幕が タヒ にかかる",
+    "字幕が ナギ にかかる",
+    "字幕が ソル にかかる",
+    "ネム が小さい (72 px)",
+    "ラタ が小さい (82 px)",
+    "シノ が小さい (73 px)",
+    "テオ が小さい (62 px)",
+    "ニイ が小さい (14 px)",
+    "エマ が小さい (18 px)"
+   ]
+  },
+  {
+   "cut": 3,
+   "id": "n03",
+   "start": 25.82,
+   "end": 37.54,
+   "at": 31.68,
+   "clock": "13年32日目 6:15  出発",
+   "text": "G4 の中の小さな区切りの F は、F1「家の倉に食べ物をためる」と、F2「受けつぎ」の2つなのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 53,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "テオ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "フウ"
+      ],
+      "title": "フウ — フウの家の住まいを建てる",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "クラ"
+      ],
+      "title": "セナ・タヒ・ウィロ・ナギ・ソル・クラ — 北の川で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 24
+     },
+     {
+      "names": [
+       "ミラ",
+       "ネム",
+       "ラタ",
+       "シノ",
+       "テオ",
+       "トワ",
+       "サエ",
+       "モエ",
+       "アル",
+       "ヨナ",
+       "ケト",
+       "ハユ",
+       "ユノ",
+       "カイ"
+      ],
+      "title": "五人 — 出かけるところ",
+      "x": 853,
+      "w": 427,
+      "dist": 34.9
+     }
+    ]
+   },
+   "featured": [
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 68,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 76,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 67,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 72,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 80,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 45,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 56,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 56,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 53,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 55,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 49,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 54,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 34,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 38,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 248,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 51,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 36,
+     "inView": true
+    },
+    {
+     "name": "テオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 30,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 52,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 48,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 72,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 14,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 16,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (68 px)",
+    "タヒ が小さい (76 px)",
+    "ウィロ が小さい (67 px)",
+    "ナギ が小さい (72 px)",
+    "ソル が小さい (80 px)",
+    "ミラ が小さい (45 px)",
+    "ケト が小さい (56 px)",
+    "ハユ が小さい (56 px)",
+    "トワ が小さい (53 px)",
+    "サエ が小さい (55 px)",
+    "ユノ が小さい (49 px)",
+    "カイ が小さい (54 px)",
+    "ネム が小さい (34 px)",
+    "ラタ が小さい (38 px)",
+    "モエ が小さい (51 px)",
+    "シノ が小さい (36 px)",
+    "テオ が小さい (30 px)",
+    "アル が小さい (52 px)",
+    "ヨナ が小さい (48 px)",
+    "クラ が小さい (72 px)",
+    "ニイ が小さい (14 px)",
+    "エマ が小さい (16 px)"
+   ]
+  },
+  {
+   "cut": 4,
+   "id": "n04",
+   "start": 37.99,
+   "end": 50.03,
+   "at": 44.01,
+   "clock": "13年32日目 6:43  出発",
+   "text": "13年30日目の集まりで、アルの家の代表のヨナは、自分とアルの仕事を土器づくりにしたのだ。土器に入れれば、草の種を虫やネズミから守れると話したのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 21,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "テオ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "エマ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "フウ"
+      ],
+      "title": "フウ — フウの家の住まいを建てる",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "クラ"
+      ],
+      "title": "セナ・タヒ・ウィロ・ナギ・ソル・クラ — 北の川で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 14.6
+     },
+     {
+      "names": [
+       "ミラ",
+       "ネム",
+       "ラタ",
+       "シノ",
+       "テオ",
+       "トワ",
+       "サエ",
+       "モエ",
+       "アル",
+       "ヨナ",
+       "ケト",
+       "ハユ",
+       "ユノ",
+       "カイ"
+      ],
+      "title": "五人 — 出かけるところ",
+      "x": 853,
+      "w": 427,
+      "dist": 78.3
+     }
+    ]
+   },
+   "featured": [
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 108,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 140,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 87,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 129,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 107,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 21,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 20,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 20,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 25,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 21,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 24,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 15,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 16,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 220,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 21,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 17,
+     "inView": true
+    },
+    {
+     "name": "テオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 14,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 25,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 18,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 91,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 0,
+     "inView": false
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ミラ が小さい (19 px)",
+    "ケト が小さい (21 px)",
+    "ハユ が小さい (20 px)",
+    "トワ が小さい (20 px)",
+    "サエ が小さい (25 px)",
+    "ユノ が小さい (21 px)",
+    "カイ が小さい (24 px)",
+    "ネム が小さい (15 px)",
+    "ラタ が小さい (16 px)",
+    "モエ が小さい (21 px)",
+    "シノ が小さい (17 px)",
+    "テオ が小さい (14 px)",
+    "アル が小さい (25 px)",
+    "ヨナ が小さい (18 px)",
+    "エマ が小さい (13 px)",
+    "画面の外: ニイ",
+    "名前の札が重なる: タヒ と ソル",
+    "名前の札が重なる: ウィロ と クラ",
+    "名前の札が重なる: ミラ と トワ",
+    "名前の札が重なる: ミラ と ラタ",
+    "名前の札が重なる: ケト と ラタ",
+    "名前の札が重なる: トワ と アル",
+    "名前の札が重なる: サエ と ネム",
+    "名前の札が重なる: サエ と モエ",
+    "名前の札が重なる: サエ と テオ",
+    "名前の札が重なる: サエ と アル",
+    "名前の札が重なる: サエ と ヨナ",
+    "名前の札が重なる: ネム と テオ",
+    "名前の札が重なる: ネム と ヨナ",
+    "名前の札が重なる: モエ と シノ",
+    "名前の札が重なる: モエ と アル",
+    "名前の札が重なる: モエ と ヨナ",
+    "名前の札が重なる: テオ と ヨナ",
+    "名前の札が重なる: アル と ヨナ"
+   ]
+  },
+  {
+   "cut": 5,
+   "id": "n05",
+   "start": 51.48,
+   "end": 62.95,
+   "at": 57.22,
+   "clock": "13年32日目 10:25  活動",
+   "text": "13年32日目、秋。アルとヨナが、キャンプで土器を1個ずつ焼き上げたのだ。G3 ではだれも作らなかった土器が、村で初めてできたのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 22,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "テオ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "エマ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "フウ"
+      ],
+      "title": "フウ — フウの家の住まいを建てる",
+      "x": 0,
+      "w": 427,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "クラ"
+      ],
+      "title": "セナ・タヒ・ウィロ・ナギ・ソル・クラ — 北の川で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 14.6
+     },
+     {
+      "names": [
+       "ミラ",
+       "ネム",
+       "ラタ",
+       "シノ",
+       "テオ",
+       "トワ",
+       "サエ",
+       "モエ",
+       "アル",
+       "ヨナ",
+       "ケト",
+       "ハユ",
+       "ユノ",
+       "カイ"
+      ],
+      "title": "五人 — キャンプのまわり",
+      "x": 853,
+      "w": 427,
+      "dist": 80
+     }
+    ]
+   },
+   "featured": [
+    "タヒ",
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 99,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 136,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 90,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 125,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 103,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 22,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 24,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 21,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 24,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 15,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 16,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 221,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 16,
+     "inView": true
+    },
+    {
+     "name": "テオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 14,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 22,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 92,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 0,
+     "inView": false
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ミラ が小さい (19 px)",
+    "ケト が小さい (22 px)",
+    "ハユ が小さい (19 px)",
+    "トワ が小さい (19 px)",
+    "サエ が小さい (24 px)",
+    "ユノ が小さい (21 px)",
+    "カイ が小さい (24 px)",
+    "ネム が小さい (15 px)",
+    "ラタ が小さい (16 px)",
+    "モエ が小さい (19 px)",
+    "シノ が小さい (16 px)",
+    "テオ が小さい (14 px)",
+    "アル が小さい (19 px)",
+    "ヨナ が小さい (22 px)",
+    "エマ が小さい (13 px)",
+    "画面の外: ニイ",
+    "名前の札が重なる: タヒ と ソル",
+    "名前の札が重なる: ウィロ と クラ",
+    "名前の札が重なる: ミラ と トワ",
+    "名前の札が重なる: ミラ と ラタ",
+    "名前の札が重なる: ミラ と アル",
+    "名前の札が重なる: ケト と ラタ",
+    "名前の札が重なる: トワ と アル",
+    "名前の札が重なる: サエ と ネム",
+    "名前の札が重なる: サエ と モエ",
+    "名前の札が重なる: サエ と テオ",
+    "名前の札が重なる: サエ と アル",
+    "名前の札が重なる: サエ と ヨナ",
+    "名前の札が重なる: ユノ と カイ",
+    "名前の札が重なる: ネム と テオ",
+    "名前の札が重なる: ネム と ヨナ",
+    "名前の札が重なる: モエ と シノ",
+    "名前の札が重なる: モエ と ヨナ",
+    "名前の札が重なる: テオ と ヨナ"
+   ]
+  },
+  {
+   "cut": 6,
+   "id": "n06",
+   "start": 63.4,
+   "end": 70.38,
+   "at": 66.89,
+   "clock": "13年32日目 15:39  活動",
+   "text": "フウは前の日から、フウの家の住まいを建て始めたのだ。この日のでき具合は、約1割なのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 30,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "テオ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "エマ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "テオ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 52
+     }
+    ]
+   },
+   "featured": [
+    "ソル",
+    "トワ",
+    "カイ",
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 30,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 28,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 27,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 26,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 36,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 30,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 30,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 39,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 39,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 34,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 33,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 36,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 24,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 24,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 35,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 37,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 25,
+     "inView": true
+    },
+    {
+     "name": "テオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 21,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 29,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 33,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 28,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 0,
+     "inView": false
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 12,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (30 px)",
+    "タヒ が小さい (28 px)",
+    "ウィロ が小さい (27 px)",
+    "ナギ が小さい (26 px)",
+    "ソル が小さい (36 px)",
+    "ミラ が小さい (30 px)",
+    "ケト が小さい (30 px)",
+    "ハユ が小さい (39 px)",
+    "トワ が小さい (39 px)",
+    "サエ が小さい (34 px)",
+    "ユノ が小さい (33 px)",
+    "カイ が小さい (36 px)",
+    "ネム が小さい (24 px)",
+    "ラタ が小さい (24 px)",
+    "フウ が小さい (35 px)",
+    "モエ が小さい (37 px)",
+    "シノ が小さい (25 px)",
+    "テオ が小さい (21 px)",
+    "アル が小さい (29 px)",
+    "ヨナ が小さい (33 px)",
+    "クラ が小さい (28 px)",
+    "エマ が小さい (12 px)",
+    "画面の外: ニイ",
+    "名前の札が重なる: セナ と ウィロ",
+    "名前の札が重なる: セナ と ソル",
+    "名前の札が重なる: タヒ と ソル",
+    "名前の札が重なる: ウィロ と ソル",
+    "名前の札が重なる: ウィロ と クラ",
+    "名前の札が重なる: ナギ と ソル",
+    "名前の札が重なる: ソル と クラ",
+    "名前の札が重なる: ミラ と トワ",
+    "名前の札が重なる: トワ と サエ",
+    "名前の札が重なる: トワ と ネム",
+    "名前の札が重なる: トワ と ラタ",
+    "名前の札が重なる: トワ と フウ",
+    "名前の札が重なる: トワ と モエ",
+    "名前の札が重なる: トワ と シノ",
+    "名前の札が重なる: トワ と テオ",
+    "名前の札が重なる: トワ と アル",
+    "名前の札が重なる: トワ と ヨナ",
+    "名前の札が重なる: サエ と ネム",
+    "名前の札が重なる: サエ と ヨナ",
+    "名前の札が重なる: ユノ と カイ",
+    "名前の札が重なる: ネム と テオ",
+    "名前の札が重なる: ネム と ヨナ",
+    "名前の札が重なる: モエ と シノ"
+   ]
+  },
+  {
+   "cut": 7,
+   "id": "n07",
+   "start": 113.03,
+   "end": 121.42,
+   "at": 117.22,
+   "clock": "13年32日目 21:59  夜",
+   "text": "この夜、雨が降ったのだ。村の住まいに入りきらなかった大人11人が、外で濡れて、よく眠れなかったのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 104,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "テオ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "テオ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 105,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 114,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 104,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 108,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 119,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 92,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 117,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 119,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 112,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 117,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 100,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 112,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 69,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 81,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 104,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 103,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 70,
+     "inView": true
+    },
+    {
+     "name": "テオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 60,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 108,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 97,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 110,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 14,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 17,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ネム が小さい (69 px)",
+    "ラタ が小さい (81 px)",
+    "シノ が小さい (70 px)",
+    "テオ が小さい (60 px)",
+    "ニイ が小さい (14 px)",
+    "エマ が小さい (17 px)"
+   ]
+  },
+  {
+   "cut": 8,
+   "id": "n08",
+   "start": 133.87,
+   "end": 147.27,
+   "at": 140.57,
+   "clock": "13年66日目 10:11  活動",
+   "text": "13年66日目、冬。フウたちの手で、フウの家の住まいができたのだ。広さ約20平方メートルの、四角い家なのだ。家族の住まいは、村で初めてなのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 27,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "テオ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ナギ",
+       "ソル",
+       "フウ",
+       "アル"
+      ],
+      "title": "ナギ・ソル・フウ・アル — ナギの家・フウの家・アルの家の住まいを建てる",
+      "x": 0,
+      "w": 427,
+      "dist": 15.4
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 北の川で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 8.6
+     },
+     {
+      "names": [
+       "ウィロ",
+       "ミラ",
+       "ネム",
+       "ラタ",
+       "シノ",
+       "テオ",
+       "ヨナ",
+       "トワ",
+       "サエ",
+       "ケト",
+       "ハユ",
+       "モエ",
+       "クラ",
+       "ユノ",
+       "カイ"
+      ],
+      "title": "五人 — キャンプのまわり",
+      "x": 853,
+      "w": 427,
+      "dist": 63.7
+     }
+    ]
+   },
+   "featured": [
+    "タヒ",
+    "ナギ",
+    "ソル",
+    "ケト",
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 166,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 163,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 27,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "住まいを建てる",
+     "motion": "tie",
+     "motion_ja": null,
+     "px": 113,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 24,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 25,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 32,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 25,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 22,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 26,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 28,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 20,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 105,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 31,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 21,
+     "inView": true
+    },
+    {
+     "name": "テオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 17,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "住まいを建てる",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 117,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 27,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 28,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 17,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ウィロ が小さい (27 px)",
+    "ミラ が小さい (24 px)",
+    "ケト が小さい (25 px)",
+    "ハユ が小さい (32 px)",
+    "トワ が小さい (25 px)",
+    "サエ が小さい (22 px)",
+    "ユノ が小さい (26 px)",
+    "カイ が小さい (28 px)",
+    "ネム が小さい (19 px)",
+    "ラタ が小さい (20 px)",
+    "モエ が小さい (31 px)",
+    "シノ が小さい (21 px)",
+    "テオ が小さい (17 px)",
+    "ヨナ が小さい (27 px)",
+    "クラ が小さい (28 px)",
+    "ニイ が小さい (13 px)",
+    "エマ が小さい (17 px)",
+    "名前の札が重なる: ウィロ と ケト",
+    "名前の札が重なる: ウィロ と ヨナ",
+    "名前の札が重なる: ミラ と ケト",
+    "名前の札が重なる: ミラ と トワ",
+    "名前の札が重なる: ミラ と ラタ",
+    "名前の札が重なる: ミラ と モエ",
+    "名前の札が重なる: ケト と ハユ",
+    "名前の札が重なる: ケト と トワ",
+    "名前の札が重なる: ケト と サエ",
+    "名前の札が重なる: ケト と ラタ",
+    "名前の札が重なる: ケト と モエ",
+    "名前の札が重なる: ケト と シノ",
+    "名前の札が重なる: ケト と ヨナ",
+    "名前の札が重なる: ケト と クラ",
+    "名前の札が重なる: サエ と ネム",
+    "名前の札が重なる: サエ と ヨナ",
+    "名前の札が重なる: ネム と テオ",
+    "名前の札が重なる: ネム と ヨナ",
+    "名前の札が重なる: ラタ と モエ",
+    "名前の札が重なる: ラタ と シノ",
+    "名前の札が重なる: モエ と シノ"
+   ]
+  },
+  {
+   "cut": 9,
+   "id": "n09",
+   "start": 147.72,
+   "end": 157.55,
+   "at": 152.63,
+   "clock": "13年66日目 15:28  活動",
+   "text": "同じ日、ナギとソルはナギの家の、アルはアルの家の住まいを建てていたのだ。ヨナは土器を2個焼いて、村の土器は95個になったのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 23,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "テオ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "エマ"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ナギ",
+       "ソル",
+       "フウ",
+       "アル"
+      ],
+      "title": "ナギ・ソル・フウ・アル — ナギの家・フウの家・アルの家の住まいを建てる",
+      "x": 0,
+      "w": 427,
+      "dist": 19.6
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ"
+      ],
+      "title": "セナ・タヒ — 北の川で採集",
+      "x": 427,
+      "w": 426,
+      "dist": 8.6
+     },
+     {
+      "names": [
+       "ウィロ",
+       "ミラ",
+       "ネム",
+       "ラタ",
+       "シノ",
+       "テオ",
+       "ヨナ",
+       "トワ",
+       "サエ",
+       "ケト",
+       "ハユ",
+       "モエ",
+       "クラ",
+       "ユノ",
+       "カイ"
+      ],
+      "title": "五人 — キャンプへ帰るところ",
+      "x": 853,
+      "w": 427,
+      "dist": 80
+     }
+    ]
+   },
+   "featured": [
+    "ナギ",
+    "ソル",
+    "フウ",
+    "モエ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 201,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 171,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 21,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "住まいを建てる",
+     "motion": "lift",
+     "motion_ja": null,
+     "px": 38,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 87,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 25,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 24,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "採集",
+     "motion": "reach",
+     "motion_ja": "身をのり出す",
+     "px": 21,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "採集",
+     "motion": "stretch",
+     "motion_ja": "背のび",
+     "px": 23,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 15,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 16,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "住まいを建てる",
+     "motion": "tie",
+     "motion_ja": null,
+     "px": 89,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 24,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 17,
+     "inView": true
+    },
+    {
+     "name": "テオ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 14,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "住まいを建てる",
+     "motion": "tie",
+     "motion_ja": null,
+     "px": 93,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 23,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 23,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 0,
+     "inView": false
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 16,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ウィロ が小さい (21 px)",
+    "ナギ が小さい (38 px)",
+    "ミラ が小さい (19 px)",
+    "ケト が小さい (19 px)",
+    "ハユ が小さい (25 px)",
+    "トワ が小さい (24 px)",
+    "サエ が小さい (19 px)",
+    "ユノ が小さい (21 px)",
+    "カイ が画面からはみ出す",
+    "カイ が小さい (23 px)",
+    "ネム が小さい (15 px)",
+    "ラタ が小さい (16 px)",
+    "モエ が小さい (24 px)",
+    "シノ が小さい (17 px)",
+    "テオ が小さい (14 px)",
+    "ヨナ が小さい (23 px)",
+    "クラ が小さい (23 px)",
+    "エマ が小さい (16 px)",
+    "画面の外: ニイ",
+    "名前の札が重なる: ウィロ と トワ",
+    "名前の札が重なる: ウィロ と サエ",
+    "名前の札が重なる: ウィロ と ネム",
+    "名前の札が重なる: ウィロ と モエ",
+    "名前の札が重なる: ウィロ と ヨナ",
+    "名前の札が重なる: ミラ と トワ",
+    "名前の札が重なる: ミラ と ラタ",
+    "名前の札が重なる: ミラ と モエ",
+    "名前の札が重なる: ケト と ラタ",
+    "名前の札が重なる: ケト と モエ",
+    "名前の札が重なる: ケト と シノ",
+    "名前の札が重なる: ケト と クラ",
+    "名前の札が重なる: ハユ と モエ",
+    "名前の札が重なる: トワ と サエ",
+    "名前の札が重なる: トワ と モエ",
+    "名前の札が重なる: トワ と ヨナ",
+    "名前の札が重なる: サエ と ネム",
+    "名前の札が重なる: サエ と モエ",
+    "名前の札が重なる: サエ と ヨナ",
+    "名前の札が重なる: ユノ と カイ",
+    "名前の札が重なる: ネム と モエ",
+    "名前の札が重なる: ネム と テオ",
+    "名前の札が重なる: ネム と ヨナ",
+    "名前の札が重なる: ラタ と モエ",
+    "名前の札が重なる: ラタ と シノ",
+    "名前の札が重なる: モエ と シノ",
+    "名前の札が重なる: モエ と テオ",
+    "名前の札が重なる: モエ と ヨナ",
+    "名前の札が重なる: テオ と ヨナ"
+   ]
+  },
+  {
+   "cut": 10,
+   "id": "n10",
+   "start": 193,
+   "end": 203.22,
+   "at": 198.11,
+   "clock": "13年116日目 11:29  活動",
+   "text": "13年116日目、春。家族の住まいは、フウの家、ナギの家、アルの家、ユノの家の、4軒になっていたのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 35,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "ユノ",
+       "カイ",
+       "アル"
+      ],
+      "title": "ユノ・カイ・アル — ユノの家・アルの家の住まいを建てる",
+      "x": 0,
+      "w": 427,
+      "dist": 42.9
+     },
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "トワ",
+       "サエ",
+       "ミラ",
+       "ネム",
+       "ラタ",
+       "シノ",
+       "ウィロ",
+       "ケト",
+       "ヨナ"
+      ],
+      "title": "セナ・タヒ・トワ・サエ・ミラ・ネム・ラタ・シノ・ウィロ・ケト・ヨナ — キャンプ",
+      "x": 427,
+      "w": 426,
+      "dist": 36.4
+     },
+     {
+      "names": [
+       "ナギ",
+       "ソル",
+       "クラ",
+       "ハユ",
+       "フウ",
+       "モエ"
+      ],
+      "title": "五人 — キャンプへ帰るところ",
+      "x": 853,
+      "w": 427,
+      "dist": 57.7
+     }
+    ]
+   },
+   "featured": [
+    "タヒ",
+    "ナギ",
+    "ハユ",
+    "ユノ",
+    "フウ",
+    "アル"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 40,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 39,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "畑仕事",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 35,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 28,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 31,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 41,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "畑仕事",
+     "motion": "look",
+     "motion_ja": "地面をさがす",
+     "px": 44,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 23,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 54,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 41,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 37,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "住まいを建てる",
+     "motion": "tie",
+     "motion_ja": null,
+     "px": 40,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 31,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 34,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 33,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 34,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 38,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "住まいを建てる",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 47,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 50,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 29,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (40 px)",
+    "タヒ が小さい (39 px)",
+    "ウィロ が小さい (35 px)",
+    "ナギ が小さい (28 px)",
+    "ソル が小さい (31 px)",
+    "ミラ が小さい (41 px)",
+    "ケト が小さい (44 px)",
+    "ハユ が小さい (23 px)",
+    "トワ が小さい (54 px)",
+    "サエ が小さい (41 px)",
+    "ユノ が小さい (37 px)",
+    "カイ が小さい (40 px)",
+    "ネム が小さい (31 px)",
+    "ラタ が小さい (34 px)",
+    "フウ が小さい (33 px)",
+    "モエ が小さい (34 px)",
+    "シノ が小さい (38 px)",
+    "アル が小さい (47 px)",
+    "ヨナ が小さい (50 px)",
+    "クラ が小さい (29 px)",
+    "ニイ が小さい (13 px)",
+    "エマ が小さい (13 px)",
+    "オト が小さい (13 px)",
+    "名前の札が重なる: タヒ と ウィロ",
+    "名前の札が重なる: タヒ と ケト",
+    "名前の札が重なる: タヒ と トワ",
+    "名前の札が重なる: タヒ と サエ",
+    "名前の札が重なる: タヒ と ネム",
+    "名前の札が重なる: ウィロ と ケト",
+    "名前の札が重なる: ナギ と ソル",
+    "名前の札が重なる: ナギ と クラ",
+    "名前の札が重なる: ユノ と カイ"
+   ]
+  },
+  {
+   "cut": 11,
+   "id": "n11",
+   "start": 225,
+   "end": 235.95,
+   "at": 230.47,
+   "clock": "13年116日目 21:59  夜",
+   "text": "この夜も雨が降ったけれど、外で濡れた人は0人だったのだ。13年14日目からの雨の夜で、外で濡れる人がいなかったのは、初めてなのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 104,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "ナギ",
+    "ユノ",
+    "フウ",
+    "アル"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 95,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 104,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "畑仕事",
+     "motion": null,
+     "motion_ja": null,
+     "px": 222,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 106,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 118,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 83,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "畑仕事",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 110,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 114,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 107,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 105,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 88,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 96,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 59,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 74,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 113,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 85,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 132,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 127,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 99,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ミラ が小さい (83 px)",
+    "ユノ が画面からはみ出す",
+    "カイ が画面からはみ出す",
+    "ネム が画面からはみ出す",
+    "ネム が小さい (59 px)",
+    "ラタ が小さい (74 px)",
+    "シノ が小さい (85 px)",
+    "ニイ が小さい (13 px)",
+    "エマ が小さい (19 px)",
+    "オト が小さい (13 px)",
+    "名前の札が重なる: タヒ と ミラ"
+   ]
+  },
+  {
+   "cut": 12,
+   "id": "n12",
+   "start": 248.4,
+   "end": 257.75,
+   "at": 253.07,
+   "clock": "13年120日目 11:08  活動",
+   "text": "13年120日目、春の終わり。畑12枚の草の種が実ったのだ。刈れるのは、合わせて約8万つかみなのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 51,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 30
+     }
+    ]
+   },
+   "featured": [
+    "タヒ",
+    "ナギ",
+    "ソル",
+    "ハユ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 46,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 48,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "畑仕事",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 46,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 53,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 58,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 51,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "畑仕事",
+     "motion": "look",
+     "motion_ja": "地面をさがす",
+     "px": 60,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 41,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 63,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 52,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 51,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "住まいを建てる",
+     "motion": "tie",
+     "motion_ja": null,
+     "px": 56,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 38,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 41,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 65,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 68,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 46,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "住まいを建てる",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 70,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 63,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 57,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (46 px)",
+    "タヒ が小さい (48 px)",
+    "ウィロ が小さい (46 px)",
+    "ナギ が小さい (53 px)",
+    "ソル が小さい (58 px)",
+    "ミラ が小さい (51 px)",
+    "ケト が小さい (60 px)",
+    "ハユ が小さい (41 px)",
+    "トワ が小さい (63 px)",
+    "サエ が小さい (52 px)",
+    "ユノ が小さい (51 px)",
+    "カイ が小さい (56 px)",
+    "ネム が小さい (38 px)",
+    "ラタ が小さい (41 px)",
+    "フウ が小さい (65 px)",
+    "モエ が小さい (68 px)",
+    "シノ が小さい (46 px)",
+    "アル が小さい (70 px)",
+    "ヨナ が小さい (63 px)",
+    "クラ が小さい (57 px)",
+    "ニイ が小さい (13 px)",
+    "エマ が小さい (13 px)",
+    "オト が小さい (13 px)",
+    "名前の札が重なる: タヒ と ウィロ",
+    "名前の札が重なる: タヒ と ケト",
+    "名前の札が重なる: タヒ と トワ",
+    "名前の札が重なる: タヒ と サエ",
+    "名前の札が重なる: タヒ と ネム",
+    "名前の札が重なる: ウィロ と ケト",
+    "名前の札が重なる: ナギ と ソル",
+    "名前の札が重なる: ソル と ユノ",
+    "名前の札が重なる: ソル と カイ",
+    "名前の札が重なる: ラタ と フウ",
+    "名前の札が重なる: フウ と シノ"
+   ]
+  },
+  {
+   "cut": 13,
+   "id": "n13",
+   "start": 303.6,
+   "end": 314.4,
+   "at": 309,
+   "clock": "13年120日目 21:45  夜",
+   "text": "この日、ナギの家の代表のナギが、40歳で病で亡くなったのだ。G4 からは、若い大人も、病やけがで亡くなることがあるのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 103,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "ナギ",
+    "ソル"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 94,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 103,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "畑仕事",
+     "motion": null,
+     "motion_ja": null,
+     "px": 219,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 107,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 119,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 83,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "畑仕事",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 110,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 114,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 107,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 105,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 87,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 95,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 59,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 74,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 130,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 120,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 85,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 133,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 129,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 98,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 19,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ミラ が小さい (83 px)",
+    "ユノ が画面からはみ出す",
+    "カイ が画面からはみ出す",
+    "ネム が画面からはみ出す",
+    "ネム が小さい (59 px)",
+    "ラタ が小さい (74 px)",
+    "シノ が小さい (85 px)",
+    "ニイ が小さい (13 px)",
+    "エマ が小さい (19 px)",
+    "オト が小さい (13 px)",
+    "名前の札が重なる: タヒ と ミラ"
+   ]
+  },
+  {
+   "cut": 14,
+   "id": "n14",
+   "start": 314.85,
+   "end": 325.64,
+   "at": 320.24,
+   "clock": "13年120日目 22:14  夜",
+   "text": "ナギの家の畑2枚は、同じ家のソルが受けついだのだ。村で初めての受けつぎで、G4 の F2「受けつぎ」に入ったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 172,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ナギ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ナギ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "ナギ",
+    "ソル"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 330,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 310,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "畑仕事",
+     "motion": null,
+     "motion_ja": null,
+     "px": 254,
+     "inView": true
+    },
+    {
+     "name": "ナギ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 396,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 389,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 240,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "畑仕事",
+     "motion": null,
+     "motion_ja": null,
+     "px": 230,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 226,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 172,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 185,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "住まいを建てる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 194,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "住まいを建てる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 159,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 115,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 288,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 108,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 107,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 76,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "住まいを建てる",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 117,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 109,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 100,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 86,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 114,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 87,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "シノ が小さい (76 px)",
+    "ニイ が小さい (86 px)",
+    "名前の札が重なる: セナ と タヒ",
+    "名前の札が重なる: セナ と ウィロ",
+    "名前の札が重なる: セナ と ナギ",
+    "名前の札が重なる: セナ と ソル",
+    "名前の札が重なる: セナ と ミラ",
+    "名前の札が重なる: セナ と ケト",
+    "名前の札が重なる: セナ と ハユ",
+    "名前の札が重なる: セナ と トワ",
+    "名前の札が重なる: セナ と サエ",
+    "名前の札が重なる: セナ と ユノ",
+    "名前の札が重なる: セナ と カイ",
+    "名前の札が重なる: セナ と ネム",
+    "名前の札が重なる: セナ と ラタ",
+    "名前の札が重なる: タヒ と ウィロ",
+    "名前の札が重なる: タヒ と ナギ",
+    "名前の札が重なる: タヒ と ソル",
+    "名前の札が重なる: タヒ と ミラ",
+    "名前の札が重なる: タヒ と ケト",
+    "名前の札が重なる: タヒ と ハユ",
+    "名前の札が重なる: タヒ と トワ",
+    "名前の札が重なる: タヒ と サエ",
+    "名前の札が重なる: タヒ と ユノ",
+    "名前の札が重なる: タヒ と カイ",
+    "名前の札が重なる: タヒ と ネム",
+    "名前の札が重なる: タヒ と ラタ",
+    "名前の札が重なる: ウィロ と ナギ",
+    "名前の札が重なる: ウィロ と ソル",
+    "名前の札が重なる: ウィロ と ミラ",
+    "名前の札が重なる: ウィロ と ケト",
+    "名前の札が重なる: ウィロ と ハユ",
+    "名前の札が重なる: ウィロ と トワ",
+    "名前の札が重なる: ウィロ と サエ",
+    "名前の札が重なる: ウィロ と ユノ",
+    "名前の札が重なる: ウィロ と カイ",
+    "名前の札が重なる: ウィロ と ネム",
+    "名前の札が重なる: ウィロ と ラタ",
+    "名前の札が重なる: ナギ と ソル",
+    "名前の札が重なる: ナギ と ミラ",
+    "名前の札が重なる: ナギ と ケト",
+    "名前の札が重なる: ナギ と ハユ",
+    "名前の札が重なる: ナギ と トワ",
+    "名前の札が重なる: ナギ と サエ",
+    "名前の札が重なる: ナギ と ユノ",
+    "名前の札が重なる: ナギ と カイ",
+    "名前の札が重なる: ナギ と ネム",
+    "名前の札が重なる: ナギ と ラタ",
+    "名前の札が重なる: ソル と ミラ",
+    "名前の札が重なる: ソル と ケト",
+    "名前の札が重なる: ソル と ハユ",
+    "名前の札が重なる: ソル と トワ",
+    "名前の札が重なる: ソル と サエ",
+    "名前の札が重なる: ソル と ユノ",
+    "名前の札が重なる: ソル と カイ",
+    "名前の札が重なる: ソル と ネム",
+    "名前の札が重なる: ソル と ラタ",
+    "名前の札が重なる: ミラ と ケト",
+    "名前の札が重なる: ミラ と ハユ",
+    "名前の札が重なる: ミラ と トワ",
+    "名前の札が重なる: ミラ と サエ",
+    "名前の札が重なる: ミラ と ユノ",
+    "名前の札が重なる: ミラ と カイ",
+    "名前の札が重なる: ミラ と ネム",
+    "名前の札が重なる: ミラ と ラタ",
+    "名前の札が重なる: ケト と ハユ",
+    "名前の札が重なる: ケト と トワ",
+    "名前の札が重なる: ケト と サエ",
+    "名前の札が重なる: ケト と ユノ",
+    "名前の札が重なる: ケト と カイ",
+    "名前の札が重なる: ケト と ネム",
+    "名前の札が重なる: ケト と ラタ",
+    "名前の札が重なる: ハユ と トワ",
+    "名前の札が重なる: ハユ と サエ",
+    "名前の札が重なる: ハユ と ユノ",
+    "名前の札が重なる: ハユ と カイ",
+    "名前の札が重なる: ハユ と ネム",
+    "名前の札が重なる: ハユ と ラタ",
+    "名前の札が重なる: トワ と サエ",
+    "名前の札が重なる: トワ と ユノ",
+    "名前の札が重なる: トワ と カイ",
+    "名前の札が重なる: トワ と ネム",
+    "名前の札が重なる: トワ と ラタ",
+    "名前の札が重なる: サエ と ユノ",
+    "名前の札が重なる: サエ と カイ",
+    "名前の札が重なる: サエ と ネム",
+    "名前の札が重なる: サエ と ラタ",
+    "名前の札が重なる: ユノ と カイ",
+    "名前の札が重なる: ユノ と ネム",
+    "名前の札が重なる: ユノ と ラタ",
+    "名前の札が重なる: カイ と ネム",
+    "名前の札が重なる: カイ と ラタ",
+    "名前の札が重なる: ネム と ラタ",
+    "名前の札が重なる: フウ と クラ"
+   ]
+  },
+  {
+   "cut": 15,
+   "id": "n15",
+   "start": 327.09,
+   "end": 336.89,
+   "at": 331.99,
+   "clock": "14年1日目 5:37  夜明け",
+   "text": "前の日の集まりで、ソルは「ナギの家は倉を持つことにした。刈った草の種はうちの倉に入れて、冬の分にする。」と話したのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 112,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "ソル",
+    "クラ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "ヤギの世話",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 112,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 119,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 109,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 105,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 89,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 124,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 124,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 114,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 113,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "畑仕事",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 92,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "畑仕事",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 100,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 62,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 77,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 139,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 123,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 88,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 143,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 146,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 103,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ソル が画面からはみ出す",
+    "ネム が小さい (62 px)",
+    "ラタ が小さい (77 px)",
+    "字幕が アル にかかる",
+    "ヨナ が画面からはみ出す",
+    "ニイ が小さい (13 px)",
+    "オト が小さい (13 px)"
+   ]
+  },
+  {
+   "cut": 16,
+   "id": "n16",
+   "start": 337.34,
+   "end": 347.62,
+   "at": 342.48,
+   "clock": "14年1日目 5:51  夜明け",
+   "text": "川辺の家のセナは、タヒとウィロにヤギを捕まえる仕事を割り振って、「捕まえた群れは川辺の家のものになるから、数を増やしたい。」と話したのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 113,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "ソル",
+    "クラ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "ヤギの世話",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 113,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 117,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 108,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 106,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 88,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 124,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 124,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 114,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 114,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "畑仕事",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 92,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "畑仕事",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 99,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 62,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 77,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 138,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 124,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 89,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 144,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 147,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 104,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ソル が画面からはみ出す",
+    "ネム が小さい (62 px)",
+    "ラタ が小さい (77 px)",
+    "字幕が アル にかかる",
+    "ヨナ が画面からはみ出す",
+    "ニイ が小さい (13 px)",
+    "オト が小さい (13 px)"
+   ]
+  },
+  {
+   "cut": 17,
+   "id": "n17",
+   "start": 357.07,
+   "end": 367.4,
+   "at": 362.23,
+   "clock": "14年1日目 11:31  活動",
+   "text": "14年1日目、夏。セナはキャンプでヤギの世話をして、乳を6杯しぼったのだ。タヒとウィロは、北の丘でヤギを捕まえようとしたのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 41,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "トワ",
+       "サエ"
+      ],
+      "title": "トワ・サエ — トワの家の住まいを建てる",
+      "x": 0,
+      "w": 427,
+      "dist": 7.9
+     },
+     {
+      "names": [
+       "セナ",
+       "アル",
+       "ヨナ",
+       "ミラ",
+       "ネム",
+       "ラタ",
+       "シノ",
+       "タヒ",
+       "ウィロ",
+       "ユノ",
+       "カイ",
+       "クラ"
+      ],
+      "title": "セナ・アル・ヨナ・ミラ・ネム・ラタ・シノ・タヒ・ウィロ・ユノ・カイ・クラ・トワ・サエ — キャンプ",
+      "x": 427,
+      "w": 426,
+      "dist": 36.4
+     },
+     {
+      "names": [
+       "ソル",
+       "フウ",
+       "モエ",
+       "ケト",
+       "ハユ"
+      ],
+      "title": "五人 — キャンプのまわり",
+      "x": 853,
+      "w": 427,
+      "dist": 54.1
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "ソル",
+    "ケト",
+    "クラ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "ヤギの世話",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 49,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 51,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 46,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 34,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 41,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 34,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 25,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 223,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "住まいを建てる",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 239,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "畑仕事",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 36,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "畑仕事",
+     "motion": "look",
+     "motion_ja": "地面をさがす",
+     "px": 41,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 31,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 34,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 35,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 36,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 38,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 55,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 50,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 47,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 117,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (49 px)",
+    "タヒ が小さい (51 px)",
+    "ウィロ が小さい (46 px)",
+    "ソル が小さい (34 px)",
+    "ミラ が小さい (41 px)",
+    "ケト が小さい (34 px)",
+    "ハユ が小さい (25 px)",
+    "ユノ が小さい (36 px)",
+    "カイ が小さい (41 px)",
+    "ネム が小さい (31 px)",
+    "ラタ が小さい (34 px)",
+    "フウ が小さい (35 px)",
+    "モエ が小さい (36 px)",
+    "シノ が小さい (38 px)",
+    "アル が小さい (55 px)",
+    "ヨナ が小さい (50 px)",
+    "クラ が小さい (47 px)",
+    "ニイ が小さい (13 px)",
+    "オト が小さい (13 px)",
+    "名前の札が重なる: タヒ と ウィロ",
+    "名前の札が重なる: タヒ と ユノ",
+    "名前の札が重なる: タヒ と カイ",
+    "名前の札が重なる: タヒ と ネム",
+    "名前の札が重なる: タヒ と クラ",
+    "名前の札が重なる: ウィロ と ユノ",
+    "名前の札が重なる: ケト と ハユ",
+    "名前の札が重なる: フウ と モエ"
+   ]
+  },
+  {
+   "cut": 18,
+   "id": "n18",
+   "start": 379.07,
+   "end": 389.47,
+   "at": 384.27,
+   "clock": "14年1日目 19:26  夕方の焚き火",
+   "text": "夕方、9人が畑で草の種を刈ったのだ。自分の家の畑がないセナ、タヒ、ウィロ、クラは、まずナギの家の畑を刈ったのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 109,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "ソル",
+    "サエ",
+    "クラ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "ヤギの世話",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 81,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 119,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 109,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 106,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 88,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 125,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 125,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 114,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "住まいを建てる",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 111,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "畑仕事",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 92,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "畑仕事",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 100,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 62,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 76,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 138,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 123,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 88,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 147,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 149,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 103,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (81 px)",
+    "ソル が画面からはみ出す",
+    "ネム が小さい (62 px)",
+    "ラタ が小さい (76 px)",
+    "字幕が アル にかかる",
+    "ヨナ が画面からはみ出す",
+    "ニイ が小さい (13 px)",
+    "オト が小さい (13 px)",
+    "名前の札が重なる: セナ と ウィロ",
+    "名前の札が重なる: セナ と サエ",
+    "名前の札が重なる: ウィロ と ミラ"
+   ]
+  },
+  {
+   "cut": 19,
+   "id": "n19",
+   "start": 389.92,
+   "end": 399.74,
+   "at": 394.83,
+   "clock": "14年1日目 20:13  夕方の焚き火",
+   "text": "ナギの家の畑で刈った草の種は、だれが刈っても、ナギの家の倉に入ったのだ。家の倉は、家族の住まいのある家だけが持てるのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 112,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "セナ",
+    "タヒ",
+    "ウィロ",
+    "ソル",
+    "クラ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "ヤギの世話",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 112,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 119,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 109,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 105,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 89,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 124,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 125,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 114,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 113,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "畑仕事",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 92,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "畑仕事",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 100,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 62,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 76,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 139,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 123,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 88,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 144,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 146,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 103,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "ソル が画面からはみ出す",
+    "ネム が小さい (62 px)",
+    "ラタ が小さい (76 px)",
+    "字幕が アル にかかる",
+    "ヨナ が画面からはみ出す",
+    "ニイ が小さい (13 px)",
+    "オト が小さい (13 px)",
+    "名前の札が重なる: セナ と タヒ",
+    "名前の札が重なる: タヒ と モエ"
+   ]
+  },
+  {
+   "cut": 20,
+   "id": "n20",
+   "start": 428.27,
+   "end": 438.5,
+   "at": 433.39,
+   "clock": "14年30日目 9:45  活動",
+   "text": "14年30日目、夏の終わり。この夏、タヒとウィロは北の丘で子ヤギを3頭捕まえたのだ。3頭は、川辺の家のヤギなのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 31,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "トワ",
+       "サエ"
+      ],
+      "title": "トワ・サエ — トワの家の住まいを建てる",
+      "x": 0,
+      "w": 640,
+      "dist": 7.6
+     },
+     {
+      "names": [
+       "セナ",
+       "アル",
+       "ヨナ",
+       "ミラ",
+       "ネム",
+       "ラタ",
+       "シノ",
+       "タヒ",
+       "ウィロ",
+       "ユノ",
+       "カイ",
+       "クラ",
+       "ソル",
+       "フウ",
+       "モエ",
+       "ケト",
+       "ハユ"
+      ],
+      "title": "五人 — キャンプのまわり",
+      "x": 640,
+      "w": 640,
+      "dist": 57.3
+     }
+    ]
+   },
+   "featured": [
+    "タヒ",
+    "ウィロ",
+    "ソル",
+    "ケト",
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "ヤギの世話",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 31,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 33,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 30,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 31,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 26,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 31,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 23,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 216,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "住まいを建てる",
+     "motion": "lift",
+     "motion_ja": null,
+     "px": 257,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "畑仕事",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 28,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "畑仕事",
+     "motion": "look",
+     "motion_ja": "地面をさがす",
+     "px": 27,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 20,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 22,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 33,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 33,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 24,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 34,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 31,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 30,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 117,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (31 px)",
+    "タヒ が小さい (33 px)",
+    "ウィロ が小さい (30 px)",
+    "ソル が小さい (31 px)",
+    "ミラ が小さい (26 px)",
+    "ケト が小さい (31 px)",
+    "ハユ が小さい (23 px)",
+    "ユノ が小さい (28 px)",
+    "カイ が小さい (27 px)",
+    "ネム が小さい (20 px)",
+    "ラタ が小さい (22 px)",
+    "フウ が小さい (33 px)",
+    "モエ が小さい (33 px)",
+    "シノ が小さい (24 px)",
+    "アル が小さい (34 px)",
+    "ヨナ が小さい (31 px)",
+    "クラ が小さい (30 px)",
+    "ニイ が小さい (13 px)",
+    "オト が小さい (13 px)",
+    "名前の札が重なる: セナ と タヒ",
+    "名前の札が重なる: タヒ と ウィロ",
+    "名前の札が重なる: タヒ と ソル",
+    "名前の札が重なる: タヒ と ケト",
+    "名前の札が重なる: タヒ と ハユ",
+    "名前の札が重なる: タヒ と ユノ",
+    "名前の札が重なる: タヒ と カイ",
+    "名前の札が重なる: タヒ と ネム",
+    "名前の札が重なる: タヒ と フウ",
+    "名前の札が重なる: タヒ と モエ",
+    "名前の札が重なる: タヒ と クラ",
+    "名前の札が重なる: ウィロ と ユノ",
+    "名前の札が重なる: ウィロ と ネム",
+    "名前の札が重なる: ソル と フウ",
+    "名前の札が重なる: ミラ と ラタ",
+    "名前の札が重なる: ケト と ハユ",
+    "名前の札が重なる: ユノ と ネム",
+    "名前の札が重なる: カイ と ネム",
+    "名前の札が重なる: カイ と クラ",
+    "名前の札が重なる: ラタ と シノ",
+    "名前の札が重なる: フウ と モエ"
+   ]
+  },
+  {
+   "cut": 21,
+   "id": "n21",
+   "start": 438.95,
+   "end": 449.61,
+   "at": 444.28,
+   "clock": "14年30日目 15:01  活動",
+   "text": "アルとヨナは、この日も土器を焼いて、村の土器は350個になったのだ。アルの家とフウの家は、この夏、畑を刈る人を出さなかったのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 47,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 32.2
+     }
+    ]
+   },
+   "featured": [
+    "タヒ",
+    "ウィロ",
+    "カイ",
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "ヤギの世話",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 57,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 60,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "ヤギを捕まえる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 54,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 55,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 48,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 40,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 47,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "住まいを建てる",
+     "motion": "hammer",
+     "motion_ja": null,
+     "px": 56,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "住まいを建てる",
+     "motion": "tie",
+     "motion_ja": null,
+     "px": 61,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "畑仕事",
+     "motion": "look",
+     "motion_ja": "地面をさがす",
+     "px": 45,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "畑仕事",
+     "motion": "pick",
+     "motion_ja": "拾う",
+     "px": 59,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 36,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 40,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 45,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 46,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 44,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 49,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 47,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "probe",
+     "motion_ja": "両手で調べる",
+     "px": 47,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 115,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が小さい (57 px)",
+    "タヒ が小さい (60 px)",
+    "ウィロ が小さい (54 px)",
+    "ソル が小さい (55 px)",
+    "ミラ が小さい (48 px)",
+    "ケト が小さい (40 px)",
+    "ハユ が小さい (47 px)",
+    "トワ が小さい (56 px)",
+    "サエ が小さい (61 px)",
+    "ユノ が小さい (45 px)",
+    "カイ が小さい (59 px)",
+    "ネム が小さい (36 px)",
+    "ラタ が小さい (40 px)",
+    "フウ が小さい (45 px)",
+    "モエ が小さい (46 px)",
+    "シノ が小さい (44 px)",
+    "アル が小さい (49 px)",
+    "ヨナ が小さい (47 px)",
+    "クラ が小さい (47 px)",
+    "ニイ が小さい (13 px)",
+    "オト が小さい (13 px)",
+    "名前の札が重なる: セナ と アル",
+    "名前の札が重なる: タヒ と ヨナ",
+    "名前の札が重なる: ウィロ と カイ",
+    "名前の札が重なる: ウィロ と クラ",
+    "名前の札が重なる: ユノ と カイ",
+    "名前の札が重なる: ユノ と ネム",
+    "名前の札が重なる: カイ と ネム",
+    "名前の札が重なる: カイ と フウ",
+    "名前の札が重なる: カイ と モエ",
+    "名前の札が重なる: カイ と クラ"
+   ]
+  },
+  {
+   "cut": 22,
+   "id": "n22",
+   "start": 492.26,
+   "end": 505.16,
+   "at": 498.71,
+   "clock": "14年30日目 21:38  夜",
+   "text": "季節の終わり、土器に入れた草の種、約17万5000つかみは無事だったのだ。でも、その2つの家の畑4枚など、草の種約3万つかみが、刈られずに落ちたのだ。",
+   "camera": {
+    "framing": "引き",
+    "dist": 13.9,
+    "person_px": 105,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "タヒ",
+    "ウィロ",
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "ヤギの世話",
+     "motion": null,
+     "motion_ja": null,
+     "px": 267,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "ヤギを捕まえる",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 99,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "ヤギを捕まえる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 206,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 113,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 79,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 103,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": "walk",
+     "motion_ja": "歩く",
+     "px": 105,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 137,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "住まいを建てる",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 124,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "畑仕事",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 85,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "畑仕事",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 92,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 58,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 71,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 122,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 115,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 81,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 137,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 129,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": "idle",
+     "motion_ja": "立つ",
+     "px": 94,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 13,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が画面からはみ出す",
+    "ウィロ が画面からはみ出す",
+    "ミラ が小さい (79 px)",
+    "ユノ が画面からはみ出す",
+    "ユノ が小さい (85 px)",
+    "カイ が画面からはみ出す",
+    "ネム が画面からはみ出す",
+    "ネム が小さい (58 px)",
+    "ラタ が小さい (71 px)",
+    "シノ が小さい (81 px)",
+    "ニイ が小さい (13 px)",
+    "オト が小さい (13 px)",
+    "名前の札が重なる: セナ と ウィロ",
+    "名前の札が重なる: タヒ と ミラ"
+   ]
+  },
+  {
+   "cut": 23,
+   "id": "n23",
+   "start": 505.61,
+   "end": 520.35,
+   "at": 512.98,
+   "clock": "14年30日目 21:55  夜",
+   "text": "ナギの家の倉の草の種と、川辺の家のヤギで、家ごとの持ち物ができたのだ。家の倉に草の種がたまって、G4 の F1「家の倉に食べ物をためる」に入ったのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 249,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "タヒ",
+    "ウィロ",
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "ヤギの世話",
+     "motion": null,
+     "motion_ja": null,
+     "px": 278,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "ヤギを捕まえる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 258,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "ヤギを捕まえる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 215,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 314,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 208,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 197,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 198,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "住まいを建てる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 431,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "住まいを建てる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 366,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "畑仕事",
+     "motion": null,
+     "motion_ja": null,
+     "px": 186,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "畑仕事",
+     "motion": null,
+     "motion_ja": null,
+     "px": 152,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 115,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 249,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 346,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 304,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 293,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": null,
+     "motion_ja": null,
+     "px": 305,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": null,
+     "motion_ja": null,
+     "px": 307,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 237,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 86,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 87,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が画面からはみ出す",
+    "タヒ が画面からはみ出す",
+    "ウィロ が画面からはみ出す",
+    "ソル が画面からはみ出す",
+    "ミラ が画面からはみ出す",
+    "ケト が画面からはみ出す",
+    "ハユ が画面からはみ出す",
+    "トワ が画面からはみ出す",
+    "サエ が画面からはみ出す",
+    "ユノ が画面からはみ出す",
+    "カイ が画面からはみ出す",
+    "ネム が画面からはみ出す",
+    "ラタ が画面からはみ出す",
+    "フウ が画面からはみ出す",
+    "モエ が画面からはみ出す",
+    "シノ が画面からはみ出す",
+    "アル が画面からはみ出す",
+    "ヨナ が画面からはみ出す",
+    "クラ が画面からはみ出す",
+    "ニイ が小さい (86 px)",
+    "名前の札が重なる: セナ と タヒ",
+    "名前の札が重なる: セナ と ウィロ",
+    "名前の札が重なる: セナ と ソル",
+    "名前の札が重なる: セナ と ミラ",
+    "名前の札が重なる: セナ と ケト",
+    "名前の札が重なる: セナ と ハユ",
+    "名前の札が重なる: セナ と トワ",
+    "名前の札が重なる: セナ と サエ",
+    "名前の札が重なる: セナ と ユノ",
+    "名前の札が重なる: セナ と カイ",
+    "名前の札が重なる: セナ と ネム",
+    "名前の札が重なる: セナ と ラタ",
+    "名前の札が重なる: セナ と フウ",
+    "名前の札が重なる: セナ と モエ",
+    "名前の札が重なる: セナ と シノ",
+    "名前の札が重なる: セナ と アル",
+    "名前の札が重なる: セナ と ヨナ",
+    "名前の札が重なる: セナ と クラ",
+    "名前の札が重なる: タヒ と ウィロ",
+    "名前の札が重なる: タヒ と ソル",
+    "名前の札が重なる: タヒ と ミラ",
+    "名前の札が重なる: タヒ と ケト",
+    "名前の札が重なる: タヒ と ハユ",
+    "名前の札が重なる: タヒ と トワ",
+    "名前の札が重なる: タヒ と サエ",
+    "名前の札が重なる: タヒ と ユノ",
+    "名前の札が重なる: タヒ と カイ",
+    "名前の札が重なる: タヒ と ネム",
+    "名前の札が重なる: タヒ と ラタ",
+    "名前の札が重なる: タヒ と フウ",
+    "名前の札が重なる: タヒ と モエ",
+    "名前の札が重なる: タヒ と シノ",
+    "名前の札が重なる: タヒ と アル",
+    "名前の札が重なる: タヒ と ヨナ",
+    "名前の札が重なる: タヒ と クラ",
+    "名前の札が重なる: ウィロ と ソル",
+    "名前の札が重なる: ウィロ と ミラ",
+    "名前の札が重なる: ウィロ と ケト",
+    "名前の札が重なる: ウィロ と ハユ",
+    "名前の札が重なる: ウィロ と トワ",
+    "名前の札が重なる: ウィロ と サエ",
+    "名前の札が重なる: ウィロ と ユノ",
+    "名前の札が重なる: ウィロ と カイ",
+    "名前の札が重なる: ウィロ と ネム",
+    "名前の札が重なる: ウィロ と ラタ",
+    "名前の札が重なる: ウィロ と フウ",
+    "名前の札が重なる: ウィロ と モエ",
+    "名前の札が重なる: ウィロ と シノ",
+    "名前の札が重なる: ウィロ と アル",
+    "名前の札が重なる: ウィロ と ヨナ",
+    "名前の札が重なる: ウィロ と クラ",
+    "名前の札が重なる: ソル と ミラ",
+    "名前の札が重なる: ソル と ケト",
+    "名前の札が重なる: ソル と ハユ",
+    "名前の札が重なる: ソル と トワ",
+    "名前の札が重なる: ソル と サエ",
+    "名前の札が重なる: ソル と ユノ",
+    "名前の札が重なる: ソル と カイ",
+    "名前の札が重なる: ソル と ネム",
+    "名前の札が重なる: ソル と ラタ",
+    "名前の札が重なる: ソル と フウ",
+    "名前の札が重なる: ソル と モエ",
+    "名前の札が重なる: ソル と シノ",
+    "名前の札が重なる: ソル と アル",
+    "名前の札が重なる: ソル と ヨナ",
+    "名前の札が重なる: ソル と クラ",
+    "名前の札が重なる: ミラ と ケト",
+    "名前の札が重なる: ミラ と ハユ",
+    "名前の札が重なる: ミラ と トワ",
+    "名前の札が重なる: ミラ と サエ",
+    "名前の札が重なる: ミラ と ユノ",
+    "名前の札が重なる: ミラ と カイ",
+    "名前の札が重なる: ミラ と ネム",
+    "名前の札が重なる: ミラ と ラタ",
+    "名前の札が重なる: ミラ と フウ",
+    "名前の札が重なる: ミラ と モエ",
+    "名前の札が重なる: ミラ と シノ",
+    "名前の札が重なる: ミラ と アル",
+    "名前の札が重なる: ミラ と ヨナ",
+    "名前の札が重なる: ミラ と クラ",
+    "名前の札が重なる: ケト と ハユ",
+    "名前の札が重なる: ケト と トワ",
+    "名前の札が重なる: ケト と サエ",
+    "名前の札が重なる: ケト と ユノ",
+    "名前の札が重なる: ケト と カイ",
+    "名前の札が重なる: ケト と ネム",
+    "名前の札が重なる: ケト と ラタ",
+    "名前の札が重なる: ケト と フウ",
+    "名前の札が重なる: ケト と モエ",
+    "名前の札が重なる: ケト と シノ",
+    "名前の札が重なる: ケト と アル",
+    "名前の札が重なる: ケト と ヨナ",
+    "名前の札が重なる: ケト と クラ",
+    "名前の札が重なる: ハユ と トワ",
+    "名前の札が重なる: ハユ と サエ",
+    "名前の札が重なる: ハユ と ユノ",
+    "名前の札が重なる: ハユ と カイ",
+    "名前の札が重なる: ハユ と ネム",
+    "名前の札が重なる: ハユ と ラタ",
+    "名前の札が重なる: ハユ と フウ",
+    "名前の札が重なる: ハユ と モエ",
+    "名前の札が重なる: ハユ と シノ",
+    "名前の札が重なる: ハユ と アル",
+    "名前の札が重なる: ハユ と ヨナ",
+    "名前の札が重なる: ハユ と クラ",
+    "名前の札が重なる: トワ と サエ",
+    "名前の札が重なる: トワ と ユノ",
+    "名前の札が重なる: トワ と カイ",
+    "名前の札が重なる: トワ と ネム",
+    "名前の札が重なる: トワ と ラタ",
+    "名前の札が重なる: トワ と フウ",
+    "名前の札が重なる: トワ と モエ",
+    "名前の札が重なる: トワ と シノ",
+    "名前の札が重なる: トワ と アル",
+    "名前の札が重なる: トワ と ヨナ",
+    "名前の札が重なる: トワ と クラ",
+    "名前の札が重なる: サエ と ユノ",
+    "名前の札が重なる: サエ と カイ",
+    "名前の札が重なる: サエ と ネム",
+    "名前の札が重なる: サエ と ラタ",
+    "名前の札が重なる: サエ と フウ",
+    "名前の札が重なる: サエ と モエ",
+    "名前の札が重なる: サエ と シノ",
+    "名前の札が重なる: サエ と アル",
+    "名前の札が重なる: サエ と ヨナ",
+    "名前の札が重なる: サエ と クラ",
+    "名前の札が重なる: ユノ と カイ",
+    "名前の札が重なる: ユノ と ネム",
+    "名前の札が重なる: ユノ と ラタ",
+    "名前の札が重なる: ユノ と フウ",
+    "名前の札が重なる: ユノ と モエ",
+    "名前の札が重なる: ユノ と シノ",
+    "名前の札が重なる: ユノ と アル",
+    "名前の札が重なる: ユノ と ヨナ",
+    "名前の札が重なる: ユノ と クラ",
+    "名前の札が重なる: カイ と ネム",
+    "名前の札が重なる: カイ と ラタ",
+    "名前の札が重なる: カイ と フウ",
+    "名前の札が重なる: カイ と モエ",
+    "名前の札が重なる: カイ と シノ",
+    "名前の札が重なる: カイ と アル",
+    "名前の札が重なる: カイ と ヨナ",
+    "名前の札が重なる: カイ と クラ",
+    "名前の札が重なる: ネム と ラタ",
+    "名前の札が重なる: ネム と フウ",
+    "名前の札が重なる: ネム と モエ",
+    "名前の札が重なる: ネム と シノ",
+    "名前の札が重なる: ネム と アル",
+    "名前の札が重なる: ネム と ヨナ",
+    "名前の札が重なる: ネム と クラ",
+    "名前の札が重なる: ラタ と フウ",
+    "名前の札が重なる: ラタ と モエ",
+    "名前の札が重なる: ラタ と シノ",
+    "名前の札が重なる: ラタ と アル",
+    "名前の札が重なる: ラタ と ヨナ",
+    "名前の札が重なる: ラタ と クラ",
+    "名前の札が重なる: フウ と モエ",
+    "名前の札が重なる: フウ と シノ",
+    "名前の札が重なる: フウ と アル",
+    "名前の札が重なる: フウ と ヨナ",
+    "名前の札が重なる: フウ と クラ",
+    "名前の札が重なる: モエ と シノ",
+    "名前の札が重なる: モエ と アル",
+    "名前の札が重なる: モエ と ヨナ",
+    "名前の札が重なる: モエ と クラ",
+    "名前の札が重なる: シノ と アル",
+    "名前の札が重なる: シノ と ヨナ",
+    "名前の札が重なる: シノ と クラ",
+    "名前の札が重なる: アル と ヨナ",
+    "名前の札が重なる: アル と クラ",
+    "名前の札が重なる: ヨナ と クラ"
+   ]
+  },
+  {
+   "cut": 24,
+   "id": "n24",
+   "start": 520.8,
+   "end": 534.05,
+   "at": 527.43,
+   "clock": "14年30日目 22:13  夜",
+   "text": "条件がそろって、フェーズ G5「リーダーと決まり」に進んだのだ。G4 は、草の種とヤギの一部が、村のものではなく、家のものになったフェーズなのだ。",
+   "camera": {
+    "framing": "中くらい",
+    "dist": 13.9,
+    "person_px": 250,
+    "in_view": [
+     "セナ",
+     "タヒ",
+     "ウィロ",
+     "ソル",
+     "ミラ",
+     "ケト",
+     "ハユ",
+     "トワ",
+     "サエ",
+     "ユノ",
+     "カイ",
+     "ネム",
+     "ラタ",
+     "フウ",
+     "モエ",
+     "シノ",
+     "アル",
+     "ヨナ",
+     "クラ",
+     "ニイ",
+     "エマ",
+     "オト"
+    ],
+    "panels": [
+     {
+      "names": [
+       "セナ",
+       "タヒ",
+       "ウィロ",
+       "ソル",
+       "ミラ",
+       "ケト",
+       "ハユ",
+       "トワ",
+       "サエ",
+       "ユノ",
+       "カイ",
+       "ネム",
+       "ラタ",
+       "フウ",
+       "モエ",
+       "シノ",
+       "アル",
+       "ヨナ",
+       "クラ"
+      ],
+      "title": "",
+      "x": 0,
+      "w": 1280,
+      "dist": 14
+     }
+    ]
+   },
+   "featured": [
+    "タヒ",
+    "ウィロ",
+    "フウ",
+    "アル",
+    "ヨナ"
+   ],
+   "doing": [
+    {
+     "name": "セナ",
+     "activity": "ヤギの世話",
+     "motion": null,
+     "motion_ja": null,
+     "px": 279,
+     "inView": true
+    },
+    {
+     "name": "タヒ",
+     "activity": "ヤギを捕まえる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 258,
+     "inView": true
+    },
+    {
+     "name": "ウィロ",
+     "activity": "ヤギを捕まえる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 215,
+     "inView": true
+    },
+    {
+     "name": "ソル",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 315,
+     "inView": true
+    },
+    {
+     "name": "ミラ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 208,
+     "inView": true
+    },
+    {
+     "name": "ケト",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 198,
+     "inView": true
+    },
+    {
+     "name": "ハユ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 198,
+     "inView": true
+    },
+    {
+     "name": "トワ",
+     "activity": "住まいを建てる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 431,
+     "inView": true
+    },
+    {
+     "name": "サエ",
+     "activity": "住まいを建てる",
+     "motion": null,
+     "motion_ja": null,
+     "px": 367,
+     "inView": true
+    },
+    {
+     "name": "ユノ",
+     "activity": "畑仕事",
+     "motion": null,
+     "motion_ja": null,
+     "px": 186,
+     "inView": true
+    },
+    {
+     "name": "カイ",
+     "activity": "畑仕事",
+     "motion": null,
+     "motion_ja": null,
+     "px": 152,
+     "inView": true
+    },
+    {
+     "name": "ネム",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 115,
+     "inView": true
+    },
+    {
+     "name": "ラタ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 250,
+     "inView": true
+    },
+    {
+     "name": "フウ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 346,
+     "inView": true
+    },
+    {
+     "name": "モエ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 304,
+     "inView": true
+    },
+    {
+     "name": "シノ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 293,
+     "inView": true
+    },
+    {
+     "name": "アル",
+     "activity": "土器づくり",
+     "motion": null,
+     "motion_ja": null,
+     "px": 305,
+     "inView": true
+    },
+    {
+     "name": "ヨナ",
+     "activity": "土器づくり",
+     "motion": null,
+     "motion_ja": null,
+     "px": 307,
+     "inView": true
+    },
+    {
+     "name": "クラ",
+     "activity": "採集",
+     "motion": null,
+     "motion_ja": null,
+     "px": 237,
+     "inView": true
+    },
+    {
+     "name": "ニイ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 86,
+     "inView": true
+    },
+    {
+     "name": "エマ",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 116,
+     "inView": true
+    },
+    {
+     "name": "オト",
+     "activity": "休む",
+     "motion": null,
+     "motion_ja": null,
+     "px": 87,
+     "inView": true
+    }
+   ],
+   "notes": [
+    "セナ が画面からはみ出す",
+    "タヒ が画面からはみ出す",
+    "ウィロ が画面からはみ出す",
+    "ソル が画面からはみ出す",
+    "ミラ が画面からはみ出す",
+    "ケト が画面からはみ出す",
+    "ハユ が画面からはみ出す",
+    "トワ が画面からはみ出す",
+    "サエ が画面からはみ出す",
+    "ユノ が画面からはみ出す",
+    "カイ が画面からはみ出す",
+    "ネム が画面からはみ出す",
+    "ラタ が画面からはみ出す",
+    "フウ が画面からはみ出す",
+    "モエ が画面からはみ出す",
+    "シノ が画面からはみ出す",
+    "アル が画面からはみ出す",
+    "ヨナ が画面からはみ出す",
+    "クラ が画面からはみ出す",
+    "ニイ が小さい (86 px)",
+    "名前の札が重なる: セナ と タヒ",
+    "名前の札が重なる: セナ と ウィロ",
+    "名前の札が重なる: セナ と ソル",
+    "名前の札が重なる: セナ と ミラ",
+    "名前の札が重なる: セナ と ケト",
+    "名前の札が重なる: セナ と ハユ",
+    "名前の札が重なる: セナ と トワ",
+    "名前の札が重なる: セナ と サエ",
+    "名前の札が重なる: セナ と ユノ",
+    "名前の札が重なる: セナ と カイ",
+    "名前の札が重なる: セナ と ネム",
+    "名前の札が重なる: セナ と ラタ",
+    "名前の札が重なる: セナ と フウ",
+    "名前の札が重なる: セナ と モエ",
+    "名前の札が重なる: セナ と シノ",
+    "名前の札が重なる: セナ と アル",
+    "名前の札が重なる: セナ と ヨナ",
+    "名前の札が重なる: セナ と クラ",
+    "名前の札が重なる: タヒ と ウィロ",
+    "名前の札が重なる: タヒ と ソル",
+    "名前の札が重なる: タヒ と ミラ",
+    "名前の札が重なる: タヒ と ケト",
+    "名前の札が重なる: タヒ と ハユ",
+    "名前の札が重なる: タヒ と トワ",
+    "名前の札が重なる: タヒ と サエ",
+    "名前の札が重なる: タヒ と ユノ",
+    "名前の札が重なる: タヒ と カイ",
+    "名前の札が重なる: タヒ と ネム",
+    "名前の札が重なる: タヒ と ラタ",
+    "名前の札が重なる: タヒ と フウ",
+    "名前の札が重なる: タヒ と モエ",
+    "名前の札が重なる: タヒ と シノ",
+    "名前の札が重なる: タヒ と アル",
+    "名前の札が重なる: タヒ と ヨナ",
+    "名前の札が重なる: タヒ と クラ",
+    "名前の札が重なる: ウィロ と ソル",
+    "名前の札が重なる: ウィロ と ミラ",
+    "名前の札が重なる: ウィロ と ケト",
+    "名前の札が重なる: ウィロ と ハユ",
+    "名前の札が重なる: ウィロ と トワ",
+    "名前の札が重なる: ウィロ と サエ",
+    "名前の札が重なる: ウィロ と ユノ",
+    "名前の札が重なる: ウィロ と カイ",
+    "名前の札が重なる: ウィロ と ネム",
+    "名前の札が重なる: ウィロ と ラタ",
+    "名前の札が重なる: ウィロ と フウ",
+    "名前の札が重なる: ウィロ と モエ",
+    "名前の札が重なる: ウィロ と シノ",
+    "名前の札が重なる: ウィロ と アル",
+    "名前の札が重なる: ウィロ と ヨナ",
+    "名前の札が重なる: ウィロ と クラ",
+    "名前の札が重なる: ソル と ミラ",
+    "名前の札が重なる: ソル と ケト",
+    "名前の札が重なる: ソル と ハユ",
+    "名前の札が重なる: ソル と トワ",
+    "名前の札が重なる: ソル と サエ",
+    "名前の札が重なる: ソル と ユノ",
+    "名前の札が重なる: ソル と カイ",
+    "名前の札が重なる: ソル と ネム",
+    "名前の札が重なる: ソル と ラタ",
+    "名前の札が重なる: ソル と フウ",
+    "名前の札が重なる: ソル と モエ",
+    "名前の札が重なる: ソル と シノ",
+    "名前の札が重なる: ソル と アル",
+    "名前の札が重なる: ソル と ヨナ",
+    "名前の札が重なる: ソル と クラ",
+    "名前の札が重なる: ミラ と ケト",
+    "名前の札が重なる: ミラ と ハユ",
+    "名前の札が重なる: ミラ と トワ",
+    "名前の札が重なる: ミラ と サエ",
+    "名前の札が重なる: ミラ と ユノ",
+    "名前の札が重なる: ミラ と カイ",
+    "名前の札が重なる: ミラ と ネム",
+    "名前の札が重なる: ミラ と ラタ",
+    "名前の札が重なる: ミラ と フウ",
+    "名前の札が重なる: ミラ と モエ",
+    "名前の札が重なる: ミラ と シノ",
+    "名前の札が重なる: ミラ と アル",
+    "名前の札が重なる: ミラ と ヨナ",
+    "名前の札が重なる: ミラ と クラ",
+    "名前の札が重なる: ケト と ハユ",
+    "名前の札が重なる: ケト と トワ",
+    "名前の札が重なる: ケト と サエ",
+    "名前の札が重なる: ケト と ユノ",
+    "名前の札が重なる: ケト と カイ",
+    "名前の札が重なる: ケト と ネム",
+    "名前の札が重なる: ケト と ラタ",
+    "名前の札が重なる: ケト と フウ",
+    "名前の札が重なる: ケト と モエ",
+    "名前の札が重なる: ケト と シノ",
+    "名前の札が重なる: ケト と アル",
+    "名前の札が重なる: ケト と ヨナ",
+    "名前の札が重なる: ケト と クラ",
+    "名前の札が重なる: ハユ と トワ",
+    "名前の札が重なる: ハユ と サエ",
+    "名前の札が重なる: ハユ と ユノ",
+    "名前の札が重なる: ハユ と カイ",
+    "名前の札が重なる: ハユ と ネム",
+    "名前の札が重なる: ハユ と ラタ",
+    "名前の札が重なる: ハユ と フウ",
+    "名前の札が重なる: ハユ と モエ",
+    "名前の札が重なる: ハユ と シノ",
+    "名前の札が重なる: ハユ と アル",
+    "名前の札が重なる: ハユ と ヨナ",
+    "名前の札が重なる: ハユ と クラ",
+    "名前の札が重なる: トワ と サエ",
+    "名前の札が重なる: トワ と ユノ",
+    "名前の札が重なる: トワ と カイ",
+    "名前の札が重なる: トワ と ネム",
+    "名前の札が重なる: トワ と ラタ",
+    "名前の札が重なる: トワ と フウ",
+    "名前の札が重なる: トワ と モエ",
+    "名前の札が重なる: トワ と シノ",
+    "名前の札が重なる: トワ と アル",
+    "名前の札が重なる: トワ と ヨナ",
+    "名前の札が重なる: トワ と クラ",
+    "名前の札が重なる: サエ と ユノ",
+    "名前の札が重なる: サエ と カイ",
+    "名前の札が重なる: サエ と ネム",
+    "名前の札が重なる: サエ と ラタ",
+    "名前の札が重なる: サエ と フウ",
+    "名前の札が重なる: サエ と モエ",
+    "名前の札が重なる: サエ と シノ",
+    "名前の札が重なる: サエ と アル",
+    "名前の札が重なる: サエ と ヨナ",
+    "名前の札が重なる: サエ と クラ",
+    "名前の札が重なる: ユノ と カイ",
+    "名前の札が重なる: ユノ と ネム",
+    "名前の札が重なる: ユノ と ラタ",
+    "名前の札が重なる: ユノ と フウ",
+    "名前の札が重なる: ユノ と モエ",
+    "名前の札が重なる: ユノ と シノ",
+    "名前の札が重なる: ユノ と アル",
+    "名前の札が重なる: ユノ と ヨナ",
+    "名前の札が重なる: ユノ と クラ",
+    "名前の札が重なる: カイ と ネム",
+    "名前の札が重なる: カイ と ラタ",
+    "名前の札が重なる: カイ と フウ",
+    "名前の札が重なる: カイ と モエ",
+    "名前の札が重なる: カイ と シノ",
+    "名前の札が重なる: カイ と アル",
+    "名前の札が重なる: カイ と ヨナ",
+    "名前の札が重なる: カイ と クラ",
+    "名前の札が重なる: ネム と ラタ",
+    "名前の札が重なる: ネム と フウ",
+    "名前の札が重なる: ネム と モエ",
+    "名前の札が重なる: ネム と シノ",
+    "名前の札が重なる: ネム と アル",
+    "名前の札が重なる: ネム と ヨナ",
+    "名前の札が重なる: ネム と クラ",
+    "名前の札が重なる: ラタ と フウ",
+    "名前の札が重なる: ラタ と モエ",
+    "名前の札が重なる: ラタ と シノ",
+    "名前の札が重なる: ラタ と アル",
+    "名前の札が重なる: ラタ と ヨナ",
+    "名前の札が重なる: ラタ と クラ",
+    "名前の札が重なる: フウ と モエ",
+    "名前の札が重なる: フウ と シノ",
+    "名前の札が重なる: フウ と アル",
+    "名前の札が重なる: フウ と ヨナ",
+    "名前の札が重なる: フウ と クラ",
+    "名前の札が重なる: モエ と シノ",
+    "名前の札が重なる: モエ と アル",
+    "名前の札が重なる: モエ と ヨナ",
+    "名前の札が重なる: モエ と クラ",
+    "名前の札が重なる: シノ と アル",
+    "名前の札が重なる: シノ と ヨナ",
+    "名前の札が重なる: シノ と クラ",
+    "名前の札が重なる: アル と ヨナ",
+    "名前の札が重なる: アル と クラ",
+    "名前の札が重なる: ヨナ と クラ"
+   ]
+  }
+ ]
+}
