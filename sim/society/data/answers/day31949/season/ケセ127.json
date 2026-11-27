@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のうちに千つかみまいて、冬と春の草取りにそなえよう。おれは土器を焼く。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕が一番だから。土器があれば蓄えの草の種が傷みにくい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"シエ127": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っていて、畑の実りにつながるから"}, "ナセ146": {"activity": "水の道を掘る", "place": "camp", "why": "採集が苦手なので、手のあく日は水の道を掘って村の役に立つ"}}, "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1510": false, "T1511": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を千つかみまき、土器で蓄えを守れば、次の夏も蓄えが保てる。", "because": [8640336], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1465", "against": "とくになし", "agree": true, "reason": "刈る前に分け方を板に書いておけば、もめごとが減るから"}],
+ "feeling": "蓄えは多く、落ち着いている。いつもの土器づくりに精を出す。"}

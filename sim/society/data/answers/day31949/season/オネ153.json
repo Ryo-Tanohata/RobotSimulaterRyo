@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋は千つかみずつ種をまいて、手の空いた人は水の道を掘ろう。おれも掘りにいくよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分あるので、まだ8000人日も残っている水の道の手入れを進めたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"アコ153": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが大きく残っているので、家族みんなで手伝う"}},
+ "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1510": false, "T1511": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に千つかみまいて、冬と春に草取りをすると、次の夏の実りが増える。", "because": [8595294], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えもたっぷりあって落ち着いている。体を動かして水の道を掘るのが楽しみだ。"}

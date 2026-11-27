@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は種を多めにまいて、来年の夏の実りに備えよう。わたしは水の道の手入れを手伝うよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ 8000 人日以上残っているので、手の空いた人が進めるのがよい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケセ160": {"activity": "畑仕事", "place": "camp", "why": "採集の腕が高いので、畑の草取りで次の夏の実りを増やす"}},
+ "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L1463", "against": "ヤギをつぶす数が多すぎるかもしれない", "agree": true, "reason": "草が足りずヤギがやせるので、減らすのは理にかなう"},
+  {"id": "L1464", "against": "書く手間がかかる", "agree": true, "reason": "量を書いて確かめればもめごとが減る"},
+  {"id": "L1465", "against": "決める手間がかかる", "agree": true, "reason": "刈る前に分け方を決めれば争いが減り、鎌も直せる"}
+ ],
+ "feeling": "蓄えが多くて安心している。秋の仕事を楽しみにしている。"}

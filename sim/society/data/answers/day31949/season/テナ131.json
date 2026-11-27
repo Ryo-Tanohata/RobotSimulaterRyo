@@ -1,0 +1,24 @@
+{"say": [{"to": "みんな", "text": "この秋も鎌をこしらえておく。刃の欠けたのがあれば、冬のうちに持ってきて。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "わたしは道具がいちばん得意。夏の刈り入れに使う鎌を、今のうちにこしらえておきたい"},
+ "sow": 1000, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 4, "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1510": false, "T1511": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "ヤギが草で養える数を少しこえていて、世話をする人が少ないと、ヤギが二十頭以上いなくなることもある", "because": [8640319, 8640320], "confidence": 0.7},
+  {"op": "add", "text": "よその家の畑を刈った種のもめごとは、こんども草の種で十から二十つかみほどの少しの量だった", "because": [8640339, 8640340, 8640341], "confidence": 0.7}
+ ],
+ "proposal": null,
+ "votes": [
+  {"id": "L1451", "against": "つぶしすぎると春に生まれる子ヤギが減るかもしれない", "agree": true, "reason": "やせて消えるより、干し肉にしたほうが無駄がない"},
+  {"id": "L1453", "against": "毎夕刈るのは疲れる", "agree": true, "reason": "ヤギを受けても減るだけだし、刈らずに落ちる種はもったいない"},
+  {"id": "L1455", "against": "肉にする手間がかかる", "agree": true, "reason": "ヤギは草の分をこえている。受けずに肉にするのが筋が通る"},
+  {"id": "L1457", "against": "九十頭は多すぎる。いまは百四十四頭で、こえているのは少しだけ", "agree": false, "reason": "今のヤギの数に合っていない"},
+  {"id": "L1463", "against": "いまヤギは二百三十四頭ではない。数がちがう", "agree": false, "reason": "古い数のままの話だから"},
+  {"id": "L1465", "against": "人の家のことまで決めるのはわずらわしい", "agree": true, "reason": "鎌を直して刈り手に回すのは、わたしの得意な仕事だ"},
+  {"id": "L1462", "against": "板に書く手間がいる", "agree": true, "reason": "書いておけば、もめごとが減るし、鎌の打ち直しもわたしの仕事に合う"},
+  {"id": "L1461", "against": "よその村に蓄えを分けるのは気が進まない", "agree": true, "reason": "蓄えは傷むほどあるから、少し分けても困らない"}
+ ],
+ "feeling": "人と話すより、黙って刃を研いでいるほうが落ち着く。"}

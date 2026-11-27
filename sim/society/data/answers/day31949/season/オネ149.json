@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋だね。蓄えの草の種はたっぷりあるから、まけるだけまこう。冬の前に畑の草取りもみんなでやろうよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。次の夏の実りを守りたい"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ワユ149": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手が多いほどよい。家族で一緒に働く"}, "ユエ154": {"activity": "畑仕事", "place": "camp", "why": "13歳でも草取りなら手伝える"}}, "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1510": false, "T1511": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまき、冬と春に草取りをすれば、次の夏に畑が実る。蓄えは約510日分あって足りている。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、離れないほうが安全"}, {"id": "L16", "against": "", "agree": true, "reason": "疲れたら休むのは大事"}],
+ "feeling": "蓄えがたっぷりあって安心。今年も畑をしっかり育てたい。"}

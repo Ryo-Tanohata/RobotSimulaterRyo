@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "畑がからっぽだ。秋のはじめに千つかみまいて、草取りをして、来年の夏にまた実らせよう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りをすると、次の夏の実りが守られるから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3, "family": {"アコ112": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをして、畑をよく実らせるため"}}, "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"}, "feast": false, "leader": "ヒセ89", "trade": {"T1510": false, "T1511": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "畑がない秋は、はじめに千つかみまいて、秋の草取りを続けると次の夏に畑が実る。ヤギは草より多いので少しつぶす。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1451", "against": "", "agree": true, "reason": "ヤギが多すぎると草がなくなり、やせて消えるから"}, {"id": "L1449", "against": "", "agree": true, "reason": "刈った量を書けばもめごとが減るから"}, {"id": "L1452", "against": "", "agree": true, "reason": "小さい子を守るのは大事だから"}, {"id": "L1456", "against": "", "agree": true, "reason": "いちばん小さい子に薬を先に回すのはよい"}, {"id": "L1453", "against": "", "agree": true, "reason": "ヤギが多いあいだはよそのヤギを受けないほうがよい"}],
+ "feeling": "秋の草取りで来年の夏に備えよう。手を動かすのは楽しみだ。"}

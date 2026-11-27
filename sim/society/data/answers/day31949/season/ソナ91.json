@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋だよ。蓄えの草の種を千つかみずつまいて、冬と春に草取りをしよう。来年の夏もたくさん実るように。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増える。蓄えもたっぷりあるので、毎年のやり方を続ける。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ケナ114": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やす。"}, "ルタ120": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やす。"}, "ネイ128": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やす。"}, "キサ146": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やす。"}, "ホミ146": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで次の夏の実りを増やす。"}, "キサ151": {"activity": "畑仕事", "place": "camp", "why": "若くても草取りならできる。"}, "ハソ153": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}, "ルタ154": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う。"}}, "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種を千つかみまき、冬と春に草取りをすると、次の夏の実りが増える。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "今年も同じ秋が来た。蓄えはたっぷりで、静かな気持ち。"}

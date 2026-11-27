@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。秋は畑の草取りをして、夏の実りを守ろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は、草取りの量で夏の実りが決まるから"},
+ "sow": 500, "pick": 0, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {"ロワ148": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば畑の実りが増えるから"}, "タユ155": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝えるから"}},
+ "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。みんなで畑を大事にしたい。"}

@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "わしは歳だが、採るのは今も一番じゃ。秋のあいだ、ひたすら木の実を集めて蓄えに回すよ。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集の腕が一番たしかで、蓄えを増やせるから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ117": {"activity": "採集", "place": "camp", "why": "腕のたつ採集で家と村の食べ物を増やす"},
+  "ムイ125": {"activity": "採集", "place": "camp", "why": "採集が得意なので秋の実りを集める"},
+  "ユエ135": {"activity": "採集", "place": "camp", "why": "採集で冬への備えを増やす"},
+  "ソワ139": {"activity": "採集", "place": "camp", "why": "採集で冬への備えを増やす"},
+  "オネ141": {"activity": "採集", "place": "camp", "why": "小さな子がいるので近場で食べ物を集める"},
+  "ナセ151": {"activity": "採集", "place": "camp", "why": "若い力で実りを集める"}
+ },
+ "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"},
+ "feast": false, "leader": "なし", "trade": {"T1510": "断る", "T1511": "断る"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "歳をとっても体は軽い。今年の秋も実りを集めたい。"}

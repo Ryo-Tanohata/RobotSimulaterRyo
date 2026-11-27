@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "おれは秋のあいだ、西の草原へ狩りに出る。肉を持ち帰るぞ。"}],
+ "job": {"activity": "狩り", "place": "西草原28", "with": [], "why": "狩りの腕が一番だし、一人で動くのが性に合う。蓄えは多いが、冬の前に肉を足しておきたい。"},
+ "sow": 200, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソナ159": {"activity": "採集", "place": "西草原12", "why": "採集の腕が高く、近い場所で食べ物を集められるから。"}, "トナ159": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、子たちに教えて役に立てる。"}},
+ "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1510": false, "T1511": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種が多く、約510日分ある。冬の前は肉を足すとよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "体は軽い。久しぶりに思い切り狩りがしたい。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "ヤギはもう草の分をこえている。よその村のヤギはことわって、秋は畑の草取りに手を回そう。"}, {"to": "ラキ142", "text": "あんたは狩りがうまいから、川で魚をとって小さい子たちに食べさせておくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすれば、次の夏によく実るから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"ラキ142": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので、魚をとって子に食べさせたい"}}, "keep": false,
+ "judge": {"M637": "つぐなう", "M638": "つぐなう", "M639": "つぐなう"}, "feast": false, "leader": "ヒセ89", "trade": {"T1510": false, "T1511": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村のヤギは144頭で、草で養える約140頭をまたこえた。よその村のヤギの申し出はことわるほうがよい", "because": [8640343, 8640344], "confidence": 0.8}, {"op": "add", "text": "この秋もよその家の畑を刈った家が不満を言い、量を字で書いていたので、つぐなわせやすい", "because": [8640339, 8640340, 8640341], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [{"id": "L1461", "against": "苦しい村に分けすぎると、冬に村の蓄えがへるかもしれない", "agree": true, "reason": "ヤギは草の分をこえているし、蓄えはたっぷりあるから"}, {"id": "L1462", "against": "書く手間がかかる", "agree": true, "reason": "刈る前に板に書けば、あとのもめごとがへるから"}, {"id": "L1464", "against": "その日のうちに書くのは忙しい", "agree": true, "reason": "量を字で書けば、つぐないがはっきりするから"}, {"id": "L1465", "against": "決めるのに時間がかかる", "agree": true, "reason": "分け方を先に決めておけば、刈ったあとにもめないから"}],
+ "feeling": "畑はよく実るし蓄えもある。あとは子らが冬をこせればいい。"}

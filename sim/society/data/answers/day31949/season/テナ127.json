@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。秋のうちに種をまいて、ヤギも少し減らして草を休ませよう。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "蓄えは多いが、手を動かして木の実を集めておけば冬が楽になる。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3,
+ "family": {"ヒセ128": {"activity": "採集", "place": "camp", "why": "若くて腕があるので、木の実や芋を集めて家の足しにする。"}, "タユ137": {"activity": "採集", "place": "camp", "why": "小さい子の世話の合間にキャンプのそばで集める。"}}, "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1510": false, "T1511": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草原の草より多いと痩せるので、秋に何頭かつぶして肉にして減らすとよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心だが、ヤギが増えすぎているのが少し気がかりだ。"}

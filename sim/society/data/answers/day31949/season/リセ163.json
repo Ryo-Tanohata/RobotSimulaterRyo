@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋のうちに林で肉をとって、冬の足しにするよ。ヒセ163も一緒に行く。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りが得意で、秋に肉をとれば冬の食べ物の足しになるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"タユ163": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、近い草原で食べ物を集められるから"}, "ヒセ163": {"activity": "狩り", "place": "北林12", "why": "狩りが得意で、冬に向けて肉を蓄えたいから"}},
+ "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1510": false, "T1511": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に林で狩りをして肉をとり、冬の食べ物の足しにする。続けて確かめる。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので、離れないほうがよい"}],
+ "feeling": "秋の林で、しっかり肉をとって冬にそなえたい。"}

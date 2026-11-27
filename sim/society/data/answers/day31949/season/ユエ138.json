@@ -1,0 +1,14 @@
+{"say": [{"to": "みんな", "text": "冬が近いから、わたしは狩りで肉をとってくる。ヤギは草が足りないから、もう増やさないでおこう。"}],
+ "job": {"activity": "狩り", "place": "南林12", "with": [], "why": "狩りが得意 (1.00) で、冬は魚やけものの肉が頼りになるので、秋のうちに肉をとっておきたい。"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "テナ145": {"activity": "狩り", "place": "南川12", "why": "狩りの腕が 1.00 あるので、川の近くで魚をとって冬にそなえる。"},
+  "ルタ146": {"activity": "採集", "place": "西草原12", "why": "採集が 1.00 で得意だから、近い草原で食べ物を集めて、小さな子の食べ物にそなえる。"}
+ },
+ "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蓄えは草の種がたくさんあるが、冬は魚やけものの肉も大事なので、秋のうちに狩りの得意な人が肉をとるとよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おなかはいっぱいで元気。冬の前にたくさん獲物をとりたくて、わくわくしている。"}

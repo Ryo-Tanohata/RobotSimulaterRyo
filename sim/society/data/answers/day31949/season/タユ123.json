@@ -1,0 +1,26 @@
+{"say": [{"to": "みんな", "text": "畑がないままじゃ来年の夏に刈るものがない。今年は大人みな千つかみまいて、冬まで草を抜こう。鎌はわたしが打つ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕はわたしがいちばん。来年の刈り入れに鎌がたくさんいる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "タユ128": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草を取らないと実りが三割にへる"},
+  "オネ129": {"activity": "畑仕事", "place": "camp", "why": "赤子がいるので、キャンプの畑で草取りをする"},
+  "ラニ131": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りに手がいる"},
+  "ケセ131": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが残っていて、水が来ないと畑が守れない"},
+  "ハソ145": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるから、草取りをたくさんできる"}
+ },
+ "keep": false,
+ "judge": {"M637": "つぐなう", "M638": "つぐなう", "M639": "つぐなう"},
+ "feast": false, "leader": null,
+ "trade": {"T1510": false, "T1511": false},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "この秋も村に畑がない。大人みな千つかみまき、冬と春に草取りをしないと来年の夏に刈る種がない", "because": [], "confidence": 0.9}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1461", "against": "苦しい村に分けると、村の蓄えがへる", "agree": true, "reason": "ヤギは草の分をこえているから、もらうのはやめたほうがいい"},
+  {"id": "L1462", "against": "書くのに手間がかかる", "agree": true, "reason": "刈った種の行き先でもめるのを防げるし、鎌を直すのはわたしの得意なこと"},
+  {"id": "L1463", "against": "90頭は多すぎるかもしれない", "agree": true, "reason": "ヤギがやせて消えるよりは、干し肉にしたほうがいい"},
+  {"id": "L1464", "against": "毎日書くのはめんどう", "agree": true, "reason": "量を書いておけば、刈る話のもめごとがへる"},
+  {"id": "L1465", "against": "決める前に刈りはじめる人もいる", "agree": true, "reason": "先に分け方を決めて、冬に鎌を直すのは理にかなう"}
+ ],
+ "feeling": "鎌を打つ音がすると落ちつく。畑を早くよみがえらせたい"}

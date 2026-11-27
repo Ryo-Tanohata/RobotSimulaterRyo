@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋の畑に草の種をたっぷりまくよ。冬と春の草取りを、みんなでさぼらずやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増える。採集の腕を生かして、毎日こつこつ草を取る。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ149": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手がいる。一緒にやれば実りが減らない。"}},
+ "keep": false,
+ "judge": {"M637": "ゆるす", "M638": "ゆるす", "M639": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまくと、夏に数倍になって実る。草取りをする人が多いほど実りが増える。", "because": [8638169], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出て危ないので、みんなで守るのがよい。"},
+           {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くとけがをするので、休むのは大事。"},
+           {"id": "L18", "against": "", "agree": true, "reason": "困っている仲間を助け合うのは当たり前だと思う。"}],
+ "feeling": "雨の夜に外で濡れるのはつらいが、畑がよく実ればみんな安心できる。体を動かして働くのが好きだ。"}
