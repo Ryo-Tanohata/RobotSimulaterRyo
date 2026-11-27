@@ -91,6 +91,17 @@ def diagram(name, size):
         for k, t in enumerate(["村を回す", "年報・解説", "見せ方のコード", "絵コンテ"]): d.text((50, 110 + k * 50), "・" + t, font=f(24), fill=INK)
         for k, t in enumerate(["人のモデル作り", "本番の撮影", "撮影の報告"]): d.text((400, 110 + k * 50), "・" + t, font=f(24), fill=INK)
         d.text((150, 395), "同じブランチ: pull ⇄ push", font=f(28), fill=ACC)
+    elif name == "faces":  # 年報の係の顔 (同じ作り方で作った村の人の絵)
+        gd = ROOT / "sim/society/app/guide"
+        for k, (n, lab) in enumerate([("sona85", "ソナ85 女 74 歳"), ("kio85", "キオ85 女 50 歳"), ("nase110", "ナセ110 女 30 歳"), ("nei75", "ネイ75 男 61 歳"), ("kese98", "ケセ98 男 39 歳")]):
+            fp = gd / f"{n}_neutral.png"
+            x, y = 20 + (k % 3) * 228, 20 + (k // 3) * 225
+            if fp.exists():
+                fc = Image.open(fp).convert("RGB").resize((170, 170)); im.paste(fc, (x + 20, y))
+            d.text((x + 10, y + 178), lab, font=f(20), fill=INK)
+        d.text((480, 280), "顔の絵も", font=f(22), fill=SUB); d.text((480, 310), "同じ作り方", font=f(22), fill=SUB)
+    elif name == "build":
+        boxes(d, [("VRoid のサンプル (体・顔・髪の部品)", B), ("記録から決めた設定 (顔・肌・体つき・年れい)", Y), ("Blender で組み立てて、服を着せる", G), ("人のモデル (glb) 1 人 1 つ", R)], 15, h=82, x0=20, x1=680)
     elif name == "rules":
         boxes(d, [("村のデータは手で書きかえない", R), ("記録にない絵は「描きそえ」と書く", Y), ("動画・モデルは公開の場に入れない", B), ("大きな分かれ目は本人に聞く", G)], 15, h=82, x0=20, x1=680)
     im.thumbnail(size)
@@ -121,13 +132,13 @@ def slide(ln, path):
     pic = picture(ln["img"], (700, 470))
     x, py = 548 + (700 - pic.width) // 2, 100 + (470 - pic.height) // 2
     d.rectangle([x - 4, py - 4, x + pic.width + 3, py + pic.height + 3], fill=(200, 192, 180)); im.paste(pic, (x, py))
-    d.rectangle([0, 590, W, H], fill=(30, 28, 26))  # 字幕
-    rows = wrap(d, ln["text"], f(26), W - 80)
-    if len(rows) > 3:
-        rows = wrap(d, ln["text"], f(22), W - 80)
-    fs = 26 if len(rows) <= 3 else 22
-    for k, r in enumerate(rows[:4]):
-        d.text((40, 600 + k * (fs + 8)), r, font=f(fs), fill=(255, 255, 255))
+    d.rectangle([0, 586, W, H], fill=(30, 28, 26))  # 字幕 (入りきる大きさの字を選ぶ)
+    for fs in (26, 23, 20):
+        rows = wrap(d, ln["text"], f(fs), W - 70)
+        if len(rows) * (fs + 7) <= H - 596:
+            break
+    for k, r in enumerate(rows):
+        d.text((35, 594 + k * (fs + 7)), r, font=f(fs), fill=(255, 255, 255))
     im.save(path)
 
 
