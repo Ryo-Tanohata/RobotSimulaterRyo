@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "夏の畑は刈らないと落ちるよ。わたしらの家も毎日刈りに出るから、あんたたちも手をあけて刈っておくれ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏に刈らないと落ちてしまう。年寄りでも刈り入れならできる"}, "family": {"ヒセ128": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので、いちばん刈れる"}, "タユ137": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れを急ぐ。家のみんなで刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "北林12", "with": [], "why": "冬にそなえて近い林で木の実や芋を集める"}, "family": {"ヒセ128": {"activity": "狩り", "place": "北林12", "why": "狩りが上手なので、冬の肉をためる"}, "タユ137": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをする"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "採集", "place": "北川12", "with": [], "why": "冬は魚と芋が頼り。川の近くへ行く"}, "family": {"ヒセ128": {"activity": "狩り", "place": "北林12", "why": "冬も獲れる肉と魚を取ってくる"}, "タユ137": {"activity": "畑仕事", "place": "camp", "why": "草取りをすると次の夏の実りが増える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春の草取りで夏の実りが決まる"}, "family": {"ヒセ128": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を足す"}, "タユ137": {"activity": "畑仕事", "place": "camp", "why": "草取りの手を足す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M636": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1508": false, "T1509": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏に実った畑は刈らないと落ちる。秋に千つかみまき、草取りをすると次の夏に実る。", "because": [8526186], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1442", "against": "", "agree": true, "reason": "刈る前に決めておけば、もめごとが減る"},
+  {"id": "L1443", "against": "", "agree": true, "reason": "刈る前に分け方を書くのはよいこと"},
+  {"id": "L1444", "against": "", "agree": true, "reason": "分け方を決めて書くので、もめにくい"},
+  {"id": "L1445", "against": "水の道掘りを強いられるのは重い", "agree": false, "reason": "家ごとの人手を決められるのは困る"},
+  {"id": "L1446", "against": "", "agree": true, "reason": "小さい子の薬はたいせつ"},
+  {"id": "L1447", "against": "", "agree": true, "reason": "量を書けば両方の家で見られる"},
+  {"id": "L1448", "against": "", "agree": true, "reason": "鎌が直れば夏の刈り入れが助かる"},
+  {"id": "L1449", "against": "", "agree": true, "reason": "その日に量を書けば忘れない"}],
+ "year_name": "畑をたくさん刈った年",
+ "feeling": "蓄えは多いし、今年も体の動くうちは畑に出ようと思う。"}
