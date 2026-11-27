@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>��������������� (���������������������������) ������������</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">body{font-family:"Hiragino Sans","Noto Sans JP","IPAGothic",sans-serif;max-width:1100px;margin:24px auto;padding:0 16px;line-height:1.7;color:#2a2622;background:#faf7f0}
+h1{font-size:1.6em;border-bottom:3px solid #c4543c;padding-bottom:6px}h2{margin-top:2em;border-left:6px solid #c4543c;padding-left:10px}h3{color:#7a3a28}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}th,td{border:1px solid #d8d0c4;padding:6px 8px;vertical-align:top}th{background:#efe7da}
+code{background:#eee6d8;padding:1px 4px;border-radius:3px;font-size:.9em}a{color:#2b5f9e;word-break:break-all}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">��������������� (���������������������������)
+������������</h1>
+</header>
+<h1 id="村の並べ方-集落のつくり-の歴史と川辺の村の-3d-への当てはめ方">村の並べ方
+(集落のつくり) の歴史と、川辺の村の 3D への当てはめ方</h1>
+<p>2026-11-27。本人「こういう都市開発的な手法も各時代や場所などでまとめたものが欲しいです。もちろん出典もおねがいします。まとめたものでこのシミュレーションに合うようにしたいです」。</p>
+<p>このメモは <strong>調べたことのまとめ</strong> と
+<strong>見せ方の案</strong> だけ。村のシミュレーション (記録)
+は変えない。コードも、このメモではまだ変えていない。</p>
+<ul>
+<li>出典は、いちばん下の「5. 出典」に番号でならべた。本文の [1]
+などが出典の番号。</li>
+<li>確かめきれなかったことには【未確認】と書いた。</li>
+<li>出典の欄に、全文 (本文)
+を読んで確かめたものは「本文で確認」、検索で出てきたページの中身
+(抜き書き) だけで確かめたものは「抜き書きで確認」と書いた。2026-11-27
+の夕方に、つながるようになったサイトで本文を読み直し、まちがいを直した
+(5 章の終わりに一覧)。</li>
+<li>「集落 (しゅうらく)」= 人が集まって住んでいる所 (村や町)。「配置
+(はいち)」= 物をどこに置くか。</li>
+</ul>
+<hr />
+<h2 id="1-はじめに">1. はじめに</h2>
+<h3 id="11-なぜ調べたか">1.1 なぜ調べたか</h3>
+<p>動画で、家族の家がヤギの囲いに重なって見えた (2026-11-27
+本人「家がヤギの囲いにかかっている」)。</p>
+<p>いまの 3D の置き方は、その場その場で決めている。</p>
+<table>
+<thead>
+<tr class="header">
+<th>物</th>
+<th>いまの置き場所 (3D の 1 目盛 = 地図の 1 マス = 25 m)</th>
+<th>決めている所</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>焚き火 (キャンプ)</td>
+<td>村のまん中 (cx, cy)</td>
+<td>記録 (<code>D.camp</code>)</td>
+</tr>
+<tr class="even">
+<td>1 つめの住まい (村の住まい)</td>
+<td>焚き火から 西へ 3.2・北へ 2.2</td>
+<td>3D だけ (<code>replay3d.js</code> の <code>hut</code>)</td>
+</tr>
+<tr class="odd">
+<td>家族の家</td>
+<td>焚き火から 5・7・9 マスの輪の上 (G6 から 11・13・15
+マスも)。家どうし 2.2 マス以上。南西 (畑) と北西 (村の住まい)
+はさける</td>
+<td>記録 (<code>era2.py</code> の
+<code>_house_site</code>)。同じ点に重なった家だけ 3D で 2
+マスおきに並べ直す (<code>layout(D).house</code>)</td>
+</tr>
+<tr class="even">
+<td>ヤギの囲い</td>
+<td>焚き火から 東へ 4.5・南へ 4.0 (ここから 6
+マス)。家にかかるときだけずらす</td>
+<td>3D だけ (<code>replay3d_people.js</code> の
+<code>penSpot</code>)。描きそえ</td>
+</tr>
+<tr class="odd">
+<td>畑</td>
+<td>焚き火の南西 (西へ 1.5〜13・南へ 2〜12)</td>
+<td>3D の並べ方 (<code>L.fields</code>,
+<code>plots</code>)。何枚まいたかは記録</td>
+</tr>
+<tr class="even">
+<td>水の輪・作業場</td>
+<td>焚き火にいちばん近い川の岸</td>
+<td>3D (<code>layout</code>)。いつからあるかは記録
+(<code>scene3d.json</code>)</td>
+</tr>
+<tr class="odd">
+<td>知らせ板</td>
+<td>焚き火から 西へ 2.5・北へ 2.6 の近くの草地</td>
+<td>3D (<code>layout</code>)</td>
+</tr>
+<tr class="even">
+<td>家族の皮の小屋</td>
+<td>焚き火の北がわ 5.2 マスほどの弧</td>
+<td>3D だけ。描きそえ</td>
+</tr>
+</tbody>
+</table>
+<p>(地図の向き: x が大きいほど東、y が大きいほど南。<code>era2.py</code>
+の「南西は畑」の決まりから。)</p>
+<p>重なった理由: ヤギの囲いの場所 (焚き火から 6 マス) が、<strong>家の輪
+(5〜7 マス) のちょうど上</strong>
+にある。家がふえるほど、ぶつかりやすい。</p>
+<p>もうひとつ大事なこと: 3D の家は、<strong>ほんとうの大きさより 5〜8
+倍ほど大きく</strong> 描いている。家の幅は <code>0.9 + √(広さ)/5</code>
+目盛 (<code>housesOn</code>)。広さ 20〜60 m² の家なら幅 1.8〜2.4 目盛 =
+45〜60 m に見える。ほんとうの家は幅 5〜8 m ほど。だから 3D
+は「絵地図」(大きめに描いた地図) で、<strong>物と物の間を考えるときは、m
+ではなく「描いた家の幅」で考えるほうがよい</strong> (4 章で使う)。</p>
+<h3 id="12-このメモの中身">1.2 このメモの中身</h3>
+<ol type="1">
+<li>時代・場所ごとに、むかしの村や町がどう並んでいたか (2 章)</li>
+<li>どこでも見られる決まり (3 章)</li>
+<li>川辺の村の 3D に当てはめる案 (4 章)</li>
+</ol>
+<hr />
+<h2 id="2-時代場所ごとのまとめ">2. 時代・場所ごとのまとめ</h2>
+<p>村の時代 (テクノロジーツリーの列)
+に合わせて分けた。「大きさの目安」は、その遺跡で分かっている数字。</p>
+<h3 id="21-狩りと採集-村の-04-年ほんとうの年で-約-2300011000-年前">2.1
+狩りと採集 (村の 0〜4 年。ほんとうの年で 約 23,000〜11,000 年前)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>時代</th>
+<th>場所の例</th>
+<th>家の並べ方</th>
+<th>家畜・倉・畑・水</th>
+<th>道・広場・祭りの場</th>
+<th>大きさの目安</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>今の狩人のキャンプ (くらべるため)</td>
+<td>アフリカ南部 カラハリの !クン (クン) の人たち</td>
+<td>小屋を <strong>輪 (わ)</strong>
+に並べ、入口を輪の内がわに向けるのが「よいキャンプ」とされ、実際もほぼそのとおり。家族ごとに小屋の
+<strong>すぐ前に炉</strong> (ろ = 火をたく所)</td>
+<td>家畜なし。倉なし</td>
+<td>小屋と炉のまわりは家族の場所。<strong>輪のまん中と輪の外</strong>
+は、みんなでする仕事の場所</td>
+<td>家族の炉と炉の間は 平均 7.8 m (78
+の炉)。くらべると、オーストラリアの砂漠の人たちは 平均 37 m
+もはなれる</td>
+<td>[8]</td>
+</tr>
+<tr class="even">
+<td>ナトゥーフ文化 (定住のはじめ。約 15,000〜11,500 年前)</td>
+<td>アイン・マラッハ (エイナン)。イスラエル北部</td>
+<td>丸い半地下の一部屋の家 (床に平たい石、石の壁) が 約 50
+(ケニヨンの説明)。家の中に炉。家族を家の中にほうむり、その家はすてた</td>
+<td>狩りと採集。近くのフラ湖の魚。手で使う石の臼 (うす)
+と石の鎌で野生の麦を刈った</td>
+<td>はっきりした広場は【未確認】。泉の下の斜面に段々に並ぶ、という説明は【未確認】</td>
+<td>村の広さ 約 2,000 m²、50〜100 人という見つもり【未確認:
+原文が開けなかった】</td>
+<td>[1]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-村と畑-村の-412-年約-1200010000-年前">2.2 村と畑 (村の 4〜12
+年。約 12,000〜10,000 年前)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>時代</th>
+<th>場所の例</th>
+<th>家の並べ方</th>
+<th>家畜・倉・畑・水</th>
+<th>道・広場・祭りの場</th>
+<th>大きさの目安</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>土器のない新石器 A (PPNA)</td>
+<td>エリコ (ジェリコ)。パレスチナ</td>
+<td>丸い家がかたまる。村のまわりに石の壁と、大きな石の塔</td>
+<td>泉のそば。壁は戦いの跡が見つからず、洪水よけ・祭りのためという説もある</td>
+<td>塔 (高さ 8.5 m ほど)</td>
+<td>広さ 約 4 万 m² (4 ha)。人は 300〜3,000
+人と、見つもりに大きな幅</td>
+<td>[2][3]</td>
+</tr>
+<tr class="even">
+<td>同じころ</td>
+<td>ドラー (ヨルダン)</td>
+<td>家と家の <strong>あいだ</strong> に倉</td>
+<td>穀物の倉: 丸い土の壁、さしわたし 約 3
+m、<strong>床を浮かせる</strong>
+(石に溝を切り、木の梁をわたす)。ネズミと湿気よけ。まわりの家には、植物をすりつぶす道具</td>
+<td>—</td>
+<td>11,300 年ほど前</td>
+<td>[4]</td>
+</tr>
+<tr class="odd">
+<td>家畜を飼いはじめたころ</td>
+<td>アシュクル・ホユック (トルコ)</td>
+<td>家がぎっしり</td>
+<td>ヒツジ・ヤギを <strong>村の中の、建物と建物のあいだ</strong>
+に囲って飼っていた
+(ふんの層・尿の塩が残る)。はじめは数頭、のちに大きな群れ</td>
+<td>—</td>
+<td>人と家畜で 約 10 m² に 1 (一番こんだとき)</td>
+<td>[5][6]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-土器と家の倉-村の-1214-年紀元前-70006000-年ごろ">2.3
+土器と家の倉 (村の 12〜14 年。紀元前 7000〜6000 年ごろ)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>時代</th>
+<th>場所の例</th>
+<th>家の並べ方</th>
+<th>家畜・倉・畑・水</th>
+<th>道・広場・祭りの場</th>
+<th>大きさの目安</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>新石器</td>
+<td>チャタル・ホユック (トルコ)</td>
+<td><strong>道がない</strong>。家を壁と壁でくっつけて並べ
+(蜂の巣のよう)、屋根の穴からはしごで入る。<strong>屋根の上が道のかわり</strong>、晴れた日は屋根が広場にもなる</td>
+<td>家の中はきれいにし、ごみ (食べかす・汚水・木や葦や
+<strong>家畜のふん</strong> を燃やした灰) は
+<strong>家の群れの外の捨て場</strong> へ</td>
+<td>屋根の上。のちの時代は屋根の上に共同のかまど</td>
+<td>人口は 数千人 (見つもりに幅)</td>
+<td>[7]</td>
+</tr>
+<tr class="even">
+<td>縄文 前期〜中期 (くらべるため。約 5,900〜4,200 年前)</td>
+<td>三内丸山 (青森)</td>
+<td>広さ 25 ha に、竪穴 (たてあな) の家 (550 以上見つかった)・掘立柱
+(ほったてばしら) の建物・墓・盛土・貯蔵穴・道・大きな建物が
+<strong>計画的に配置</strong> されている</td>
+<td>盛土
+(土器や石器を土といっしょに捨てて積んだ所)。貯蔵穴。まわりにクリやクルミの林を育てた</td>
+<td><strong>道</strong> があり、大人の墓 (約 500)
+が道にそって並ぶ。子どもの墓 (土器に入れる) は別の所</td>
+<td>長く続いた大きな村。いちばん長い家は 32 m
+(集まりや共同の仕事の場という考え)</td>
+<td>[9]</td>
+</tr>
+<tr class="odd">
+<td>縄文の環状集落 (かんじょうしゅうらく = 輪の形の村)</td>
+<td>東日本の多くの遺跡</td>
+<td><strong>まん中の広場に墓</strong> → そのまわりに 掘立柱の建物
+(倉など) → さらに外に 竪穴の家、と <strong>同心円</strong>
+(中心が同じ輪) に並ぶ
+(重帯構造)。貯蔵穴や、祭りもした「捨て場」がつくことも</td>
+<td>倉は家の輪の内がわ</td>
+<td>まん中の広場と墓。輪が 2 つ (またはもっと) の群れに分かれる
+(分節構造)。西田遺跡 (岩手) では、広場の墓 192 基以上が 放射状に 8
+群に並ぶ</td>
+<td><strong>住む輪のさしわたし 約 70 m〜150 m
+以上</strong>。同じ範囲が数百年使われた例も。家が少ない時期は「つなぐと輪に見える」程度</td>
+<td>[10][11]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="24-まとめ役と祭り-村の-1429-年ウバイド期のような時代">2.4
+まとめ役と祭り (村の 14〜29 年。ウバイド期のような時代)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>時代</th>
+<th>場所の例</th>
+<th>家の並べ方</th>
+<th>家畜・倉・畑・水</th>
+<th>道・広場・祭りの場</th>
+<th>大きさの目安</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ウバイド期の村</td>
+<td>テル・アバダ (イラク)</td>
+<td>2 つめの層: 11 の建物が <strong>道と細い路地で分かれて</strong>
+並ぶ。どれも「三つに分かれた家」(T
+字の中庭のまわりに部屋)。<strong>まん中の大きな建物 A</strong>
+は壁に飾りの柱があり、特別な建物らしい (乳児の墓が多い)</td>
+<td>いちばん古い層: 2 軒の家が土器づくりの場
+(大きなかめ・赤い顔料・近くに窯 3 つ)。<strong>窯はひらけた場所</strong>
+にあった。倉・水の管の話は【未確認: 本文で見つけられなかった】</td>
+<td>まん中の建物 A</td>
+<td>3 つの時期の層。大人の墓は村のまわりで見つからない</td>
+<td>[12]</td>
+</tr>
+<tr class="even">
+<td>ウバイド期〜ウルク期</td>
+<td>ウルク (イラク)。エアンナ地区</td>
+<td><strong>2 つのウバイド期の村が育って 1 つの町</strong>
+になった。それぞれの村の <strong>まん中の神殿の区画</strong>
+が、のちのエアンナ地区とアヌ地区になった</td>
+<td>—</td>
+<td>神殿の区画は <strong>場所を変えずに</strong> 何度も建てかえる
+(三つに分かれた形・T 字の形の神殿)</td>
+<td>ウルク期のほかの町はたいてい 約 10 ha。エアンナの区画の広さ (7〜9
+ha) は【未確認】</td>
+<td>[13][14]</td>
+</tr>
+<tr class="odd">
+<td>弥生 (くらべるため)</td>
+<td>吉野ヶ里 (佐賀)</td>
+<td>大きな環壕 (かんごう = 村を囲むほり) の中に、もう一度ほりで囲んだ
+<strong>北内郭・南内郭</strong> (特別な区画)</td>
+<td>市 (いち) のまん中の建物の南に、小さな高床の倉が集まる
+(村で作った物をしまった倉と考えられている)。※公園の倉は復元</td>
+<td>北内郭はまとめ役 (首長)
+の住まいと祭りの建物、南内郭は祭りと政治の中心という考え</td>
+<td>約 40 ha (南北 1 km、東西 600 m)</td>
+<td>[15][16]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="25-町と文字-村の-2948-年紀元前-42003200-年">2.5 町と文字 (村の
+29〜48 年。紀元前 4200〜3200 年)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>時代</th>
+<th>場所の例</th>
+<th>家の並べ方</th>
+<th>家畜・倉・畑・水</th>
+<th>道・広場・祭りの場</th>
+<th>大きさの目安</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ウルク期の町</td>
+<td>ウルク</td>
+<td>神殿の区画のまわりに町</td>
+<td>神殿が穀物を集めて、配る
+(種もみ・働く人への支払い)。ふちの斜めな「配給の鉢」がたくさん出る</td>
+<td>神殿の区画が中心</td>
+<td>ウルク期に 約 100 ha。町の壁 (長さ 9 km) はもっとあと</td>
+<td>[13][17]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="26-王と青銅-村の-48118-年紀元前-32001200-年">2.6 王と青銅 (村の
+48〜118 年。紀元前 3200〜1200 年)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>時代</th>
+<th>場所の例</th>
+<th>家の並べ方</th>
+<th>家畜・倉・畑・水</th>
+<th>道・広場・祭りの場</th>
+<th>大きさの目安</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>インダス文明</td>
+<td>モヘンジョダロ (パキスタン)</td>
+<td><strong>碁盤の目</strong> (ごばんのめ = たて横まっすぐ)
+の大通りと、そこから入る細い路地。家は道にそって並び、2 階の家も</td>
+<td><strong>どの道にも排水路</strong>
+(れんがのふた付きも)。井戸がとても多い</td>
+<td>西の高い丘 (城塞) に大浴場と大きな建物
+(むかしは「穀物倉」とよばれたが、今は用途が分からない「大広間」とする考えが多い)。東に低い町</td>
+<td>人口 約 4 万人。広さは 85〜300 ha と幅がある</td>
+<td>[18][19][20]</td>
+</tr>
+<tr class="even">
+<td>インダス文明</td>
+<td>ハラッパー</td>
+<td>—</td>
+<td><strong>火を使う仕事 (金属・土器)
+の作業場は、ほかの仕事からはなれて</strong>
+いた。石や貝の細工は集まっていた</td>
+<td>門のそばに「職人の区画」</td>
+<td>—</td>
+<td>[21]</td>
+</tr>
+<tr class="odd">
+<td>エジプト中王国</td>
+<td>カフン (ラフーン)</td>
+<td><strong>壁で囲んだ四角い町に碁盤の目の道</strong>。北の大通りに大きな屋敷
+10 軒、西に小さな家 220 軒。壁で町の 3 分の 1
+を分け、そこは背中合わせの小さな家の列</td>
+<td>—</td>
+<td>一番高い所 (「アクロポリス」) に屋敷</td>
+<td>約 384 × 335 m</td>
+<td>[22][23]</td>
+</tr>
+<tr class="even">
+<td>エジプト新王国</td>
+<td>デイル・エル・メディーナ (王墓を作る職人の村)</td>
+<td>薄い壁で囲み、<strong>まん中の 1 本の細い道</strong>
+の両がわに、細長い家を道から壁までびっしり (となりと壁を共有)</td>
+<td>家は 4〜5 部屋
+(入口・広間・小部屋・台所と地下の物入れ・屋根への階段)</td>
+<td>北の門から大通り</td>
+<td>いちばん大きいとき 約 68 軒、広さ 約 5,600 m²。はじめ 20 軒・約 100
+人 → 120 軒・600 人という説明もある【未確認】。家の床は平均 70 m²</td>
+<td>[24][25]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="27-鉄とお金の帝国-村の-118172-年紀元前-1150-年紀元-500-年">2.7
+鉄とお金の帝国 (村の 118〜172 年。紀元前 1150 年〜紀元 500 年)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>時代</th>
+<th>場所の例</th>
+<th>家の並べ方</th>
+<th>家畜・倉・畑・水</th>
+<th>道・広場・祭りの場</th>
+<th>大きさの目安</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ギリシャ</td>
+<td>ミレトス・ピレウス (ヒッポダモスの町割り)</td>
+<td><strong>碁盤の目の町割り</strong> (紀元前 5
+世紀)。ただし碁盤の目はもっと前からある</td>
+<td>—</td>
+<td>広場 (アゴラ)</td>
+<td>—</td>
+<td>[26]</td>
+</tr>
+<tr class="even">
+<td>ローマ</td>
+<td>植民市 (コロニア)・軍の陣地 (カストラ)</td>
+<td>南北の大通り (カルド) と東西の大通り (デクマヌス) が
+<strong>まん中で十字に交わり</strong>、四角い区画 (インスラ)
+に分ける</td>
+<td>まわりの畑も同じ碁盤の目で分けて配った</td>
+<td><strong>十字の交わる所に広場 (フォルム)</strong></td>
+<td>—</td>
+<td>[27]</td>
+</tr>
+<tr class="odd">
+<td>ローマの農家 (ウィトルウィウスの建築書)</td>
+<td>イタリアの農家</td>
+<td>中庭を囲む</td>
+<td>台所は中庭のいちばん暖かい所、<strong>牛小屋はそのとなり</strong>
+(えさ箱を火と東へ向ける)。浴場・しぼり場も台所のそば。<strong>ヒツジ・ヤギ小屋は
+1 頭に 4.5〜6 (ローマの) 平方フィート</strong>。穀物倉は
+<strong>高くして北か東向き</strong>
+(熱をもたない・虫がわかない)。<strong>馬小屋は暖かい所に、ただし火の方を向けない</strong>。納屋・干し草・粉の部屋・粉ひきは
+<strong>屋敷の外でもよい。そのほうが火事に強い</strong></td>
+<td>—</td>
+<td>中庭の大きさは、牛の数で決める</td>
+<td>[28]</td>
+</tr>
+<tr class="even">
+<td>中国 周の都の決まり (『周礼』考工記)</td>
+<td>理想の都</td>
+<td>一辺 9 里の四角、各辺に門 3 つ、たて横 9 本ずつの道</td>
+<td>—</td>
+<td>宮殿の <strong>左に先祖の廟 (びょう)、右に土地と穀物の神の社
+(やしろ)、前に朝廷、うしろに市</strong></td>
+<td>※書かれた理想で、このとおりの都は見つかっていないという研究もある</td>
+<td>[29][30]</td>
+</tr>
+<tr class="odd">
+<td>唐の長安</td>
+<td>中国</td>
+<td>碁盤の目 (南北 11 本・東西 14 本の道)。住む区画 (坊)
+108。<strong>坊はそれぞれ壁で囲み、門は夜に閉める</strong></td>
+<td>—</td>
+<td><strong>東の市・西の市</strong> (どちらも壁と門で囲んだ区画)</td>
+<td>世界一大きな町</td>
+<td>[31][32]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="28-帝国のあとと町-村の-172193-年紀元-5001350-年">2.8
+帝国のあとと町 (村の 172〜193 年。紀元 500〜1350 年)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>時代</th>
+<th>場所の例</th>
+<th>家の並べ方</th>
+<th>家畜・倉・畑・水</th>
+<th>道・広場・祭りの場</th>
+<th>大きさの目安</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>平安京</td>
+<td>京都</td>
+<td>条坊 (じょうぼう = 碁盤の目の町割り)。1 町 (まち) を東西 4・南北 8
+に分け (四行八門)、その 1 つ (戸主 = へぬし) が <strong>1
+家族の家の地の基準</strong>。町のまわりは土塀・板塀・柵</td>
+<td>堀川などの川は南北の道にそわせ、物を運ぶ水路にした</td>
+<td>いちばん広い朱雀大路は 幅 28 丈 (約 84 m)。東市・西市 (はじめは
+それぞれ 2 町四方)</td>
+<td>都は 東西 約 4.5 km・南北 約 5.2 km。<strong>1 町は 40 丈 (約 120 m)
+四方</strong></td>
+<td>[33][34]</td>
+</tr>
+<tr class="even">
+<td>イスラムの町</td>
+<td>ダマスカスなど</td>
+<td><strong>中庭のある家</strong>。道は細く、<strong>行き止まりの路地</strong>
+で家の静かな所と、人の通る所を分ける</td>
+<td>家は道から客間、そこから中庭、台所へ</td>
+<td>金曜のモスク (礼拝所) のまわりに 市場
+(スーク)・学校・浴場。※この「型」には反対の研究もある</td>
+<td>—</td>
+<td>[35][36]</td>
+</tr>
+<tr class="odd">
+<td>中世ヨーロッパの村 (開放耕地制)</td>
+<td>イングランドなど</td>
+<td>家が 1 か所に <strong>かたまる村</strong>
+(集村)。そばに領主の館と教会</td>
+<td>畑は大きな区 (ファーロング) に分け、さらに細長い帯 (セリオン)
+に分ける。家ごとの帯は
+<strong>あちこちに散らばる</strong>。畑でない所はみんなの牧草地・林
+(ブタと材木)。家のそばに囲った小さな庭・果樹園</td>
+<td>教会</td>
+<td>850〜1150 年ごろに形ができ、15 世紀からの「囲いこみ」で終わる</td>
+<td>[37]</td>
+</tr>
+<tr class="even">
+<td>中世の長屋 (ロングハウス)</td>
+<td>イングランド西部の高地など</td>
+<td>人と牛が <strong>1
+つの屋根の下</strong>。まん中の通り抜けの土間で分ける</td>
+<td>牛のふんは妻側 (つまがわ = 建物の短い辺) の戸から出す。14
+世紀ごろからは、低地では
+<strong>母屋と牛小屋・納屋を別の建物にして庭を囲む</strong>
+形にかわる。母屋と <strong>直角に</strong> 牛小屋を建てることも</td>
+<td>—</td>
+<td>—</td>
+<td>[38][39]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="29-工業の入口-村の-193-年紀元-1350-年">2.9 工業の入口 (村の 193
+年〜。紀元 1350 年〜)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>時代</th>
+<th>場所の例</th>
+<th>家の並べ方</th>
+<th>家畜・倉・畑・水</th>
+<th>道・広場・祭りの場</th>
+<th>大きさの目安</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>日本の城下町 (江戸時代)</td>
+<td>金沢・松江など</td>
+<td>城のまわりに 武家地 → 町人地 → 寺社地。きれいな同心円にはなりにくい
+(街道や川に引っぱられる)。町人地は <strong>街道の両がわ</strong></td>
+<td>—</td>
+<td><strong>寺を町のふちに並べる、または 1 か所 (寺町)
+にまとめる</strong> (守りのため)</td>
+<td>—</td>
+<td>[40][41]</td>
+</tr>
+<tr class="even">
+<td>宿場町</td>
+<td>中山道の奈良井宿など</td>
+<td>街道の両がわに、<strong>間口 (まぐち = 道に面した幅)
+がせまく、奥に長い</strong> 家の地</td>
+<td>問屋場 (人と馬の手配所)・本陣 (大名の宿)</td>
+<td>街道そのものが広場</td>
+<td>—</td>
+<td>[42][43]</td>
+</tr>
+<tr class="odd">
+<td>江戸の火事のあと</td>
+<td>江戸 (明暦の大火 1657 年)</td>
+<td>大火のあと、道を広げ、<strong>火除地 (ひよけち =
+燃えひろがりを止める空き地)・広小路 (ひろこうじ = 広い道)</strong>
+を作り、寺や町を移した</td>
+<td>—</td>
+<td>橋のたもとの広小路</td>
+<td>死者 6 万 8 千〜10 万人あまり</td>
+<td>[44][45]</td>
+</tr>
+<tr class="even">
+<td>日本の農家</td>
+<td>東北の南部曲り家 (まがりや)・会津の中門造り</td>
+<td>母屋と <strong>馬屋を直角につなぐ L
+字</strong>。はじめは馬屋が別棟だったが、雪の中で世話をしやすいよう母屋につないだという</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>[46][47]</td>
+</tr>
+<tr class="odd">
+<td>日本の農家 (地方のちがい)</td>
+<td>西南日本と東北日本</td>
+<td>西南日本は小さな母屋のまわりに付属の建物 (納屋・蔵)
+が散らばる。東北日本は大きな母屋に仕事をまとめる</td>
+<td>屋敷のつくりは、地形・正面の向き・敷地の形・主屋と納屋と蔵の並びで見る</td>
+<td>—</td>
+<td>—</td>
+<td>[48]</td>
+</tr>
+<tr class="even">
+<td>散居村 (さんきょそん = 家が 1 軒ずつはなれた村)</td>
+<td>富山の砺波平野</td>
+<td>家を 1 軒ずつ散らし、<strong>家のまわりが自分の田</strong></td>
+<td><strong>屋敷林 (カイニョ)</strong>:
+冬の季節風・夏の日差し・洪水から家を守り、燃料と材木もとる。高い木
+(スギ・ケヤキ) と低い木 (ウメなど)</td>
+<td>—</td>
+<td>—</td>
+<td>[49][50]</td>
+</tr>
+<tr class="odd">
+<td>工場の村</td>
+<td>ニュー・ラナーク (スコットランド)</td>
+<td>川の滝の水の力で動く紡績工場。せまい谷なので、働く人の家は 3〜5
+階の集合住宅 (長屋の棟)</td>
+<td>川の上にせきを作り、トンネルと水路 (レード)
+で工場の水車に水を引く</td>
+<td>学校 (1817 年、イギリス初の幼児学校)・店・人づくりの学びや</td>
+<td>村の子ども 約 500 人</td>
+<td>[51]</td>
+</tr>
+<tr class="even">
+<td>工場の村</td>
+<td>ソルテア (イングランド)</td>
+<td>工場のそばに、働く人の家の通りを計画して並べる</td>
+<td>食堂・病院・救貧院 (年寄りの家)・浴場・公園・菜園</td>
+<td>教会 (最初の公の建物)・学校・学びの会館</td>
+<td>1871 年: 家 800 (ふつうの家 755・救貧院 45)、4,389 人</td>
+<td>[52]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-共通する決まり-どこでも見られる考え方">3. 共通する決まり
+(どこでも見られる考え方)</h2>
+<h3 id="31-畑は家から歩ける所に-近いほど-よく手を入れる">3.1
+畑は、家から歩ける所に (近いほど よく手を入れる)</h3>
+<ul>
+<li>家から畑までが遠いほど、行き来の手間が増え、そこから得られるもうけは早く減る
+(チザム『農村の集落と土地利用』、ファウンドの研究) [53][54]。</li>
+<li>フォン・チューネンの輪: 町 (市場) を中心に、近い順に「野菜と乳 → 林
+(たきぎ・材木) → 穀物 →
+放牧」。重い物・傷みやすい物ほど近く、自分で歩ける家畜はいちばん遠く
+[55]。</li>
+<li>遺跡のまわりの土地の調べ方 (サイト・キャッチメント分析): 農村は半径
+5 km、狩人は 10 km をいちばん外として考える。ただし実際はもっと小さい
+[56][57]。</li>
+<li>新石器の村 (ククテニ・トリピリア文化) の計算: チザム (1979, p.72)
+などにならい、<strong>畑は村から 5 km より内、できれば 1〜2 km</strong>
+とする。家畜は、毎日行き来するなら 5 km まで、仮の小屋に置くなら 10 km
+まで。計算では <strong>畑のいちばん遠い所は たいてい 0.5 km
+ほど</strong> になった。また <strong>50〜300 人の村 (2〜10 ha)</strong>
+なら、まわりの畑と家畜だけで暮らせる [58]。</li>
+</ul>
+<p>→ <strong>村の地図 (1 マス 25 m) では、畑は焚き火から 20〜40 マス
+(0.5〜1 km) まで、放牧はその外</strong> が目安。いまの畑 (南西 2〜13
+マス) は、近すぎるわけではない。</p>
+<h3 id="32-家畜は家のそばただし住む所水火から少しはなす">3.2
+家畜は「家のそば、ただし住む所・水・火から少しはなす」</h3>
+<ul>
+<li>家畜を飼いはじめたころは、<strong>村の中の、建物と建物のあいだ</strong>
+の囲いで飼っていた [5][6]。</li>
+<li>中世の長屋や東北の曲り家のように、<strong>1
+つの屋根の下、または母屋に直角につないだ小屋</strong>
+に入れる形も長く続いた [38][39][46]。</li>
+<li>ローマの農家の本は、牛小屋を台所のとなり (暖かい)
+に置く。<strong>馬小屋は暖かい所に、ただし火の方へ向けない</strong>。納屋や干し草は
+<strong>屋敷の外でもよい、そのほうが火事に強い</strong> と書く
+[28]。</li>
+<li>今の農家の手引きでは、においとほこりは風で運ばれるので、<strong>住む家は家畜小屋の風上</strong>
+に置き、風下側の距離を大きくとる [59][60]。</li>
+<li>井戸のまわり 15 m (くわしい点検では 30 m)
+には、便所・家畜のふん・ごみを置かない [61][62]。</li>
+</ul>
+<h3 id="33-倉は高く乾いた所に人の目のとどく所に">3.3
+倉は「高く・乾いた所に・人の目のとどく所に」</h3>
+<ul>
+<li>いちばん古い穀物倉は <strong>家と家のあいだ</strong>
+にあり、<strong>床を浮かせて</strong> ネズミと湿気をさけた [4]。</li>
+<li>ローマでも穀物倉は高くして北か東向き
+[28]。縄文の輪の村では、倉と考えられる掘立柱の建物は家の輪の内がわ
+[10]。</li>
+<li>まとめ役が力をもつと、<strong>神殿や首長の区画のそばに大きな倉</strong>
+が集まる (ウルク・吉野ヶ里) [16][17]。</li>
+</ul>
+<h3 id="34-火を使う仕事はまとめてはなす">3.4
+火を使う仕事は、まとめて、はなす</h3>
+<ul>
+<li>ウバイドの村では窯 (かま) はひらけた場所に
+[12]。ハラッパーでも金属と土器の作業場はほかからはなれていた [21]。</li>
+<li>燃えやすい納屋・干し草・粉ひきは屋敷の外に置けば火事に強い
+(ウィトルウィウス 6 書 6 章 5 節) [28]。</li>
+<li>江戸は大火のあと、火除地と広小路を作った [44][45]。</li>
+<li>今の難民キャンプの決まり: 建物と建物の間は 2 m 以上
+(できれば建物の高さの 2 倍)、<strong>建物の並ぶ所 300 m ごとに 30 m
+の防火帯</strong> (燃えるものを置かない帯) [63][64]。</li>
+</ul>
+<h3 id="35-祭りの場所はまん中にあり動かない">3.5
+祭りの場所は、まん中にあり、動かない</h3>
+<ul>
+<li>!クンのキャンプの広場 [8]、縄文の輪のまん中の広場と墓
+[10]、ウルクの神殿は同じ場所に何度も建てかさねる
+[13]、イスラムの町の金曜モスク [35]、ローマのフォルム [27]。</li>
+</ul>
+<h3 id="36-人がふえると-輪--かたまり--道と区画--碁盤の目">3.6
+人がふえると: 輪 → かたまり → 道と区画 → 碁盤の目</h3>
+<ul>
+<li>小さいうちは <strong>輪</strong> (キャンプ・縄文) [8][10]。</li>
+<li>家がふえると <strong>かたまり</strong>
+(チャタル・ホユック、ウバイド) [7][12]。</li>
+<li>まとめ役・王が出ると、<strong>囲った特別な区画</strong> と大きな倉
+(吉野ヶ里・カフン) [16][22]。</li>
+<li>新しく作る町や、はなれた土地に作る町は <strong>碁盤の目</strong>
+(カフン・モヘンジョダロ・ローマ・長安・平安京)
+[18][22][27][31][33]。古い中心はそのままで、外がわに新しい区画が足される。</li>
+</ul>
+<h3 id="37-水の流れにそって">3.7 水の流れにそって</h3>
+<ul>
+<li>最初の村は泉や川のそば [1][2]。モヘンジョダロは全部の道に排水路
+[19]。</li>
+<li>工場は水の力の取れる所 (滝・せき・水路) に建ち、その近くに働く人の家
+[51][52]。</li>
+</ul>
+<hr />
+<h2 id="4-このシミュレーションに合わせる案">4.
+このシミュレーションに合わせる案</h2>
+<h3 id="40-前提-この案の約束">4.0 前提 (この案の約束)</h3>
+<ul>
+<li><strong>見せ方だけ</strong> を変える案。村の記録 (state)
+は変えない。記録をかえる案には「(シミュレーションの変更・やらなくてもよい)」と書く。</li>
+<li>それぞれに <strong>【記録】</strong> (記録にある物の場所や数) か
+<strong>【描きそえ】</strong> (記録にない、見た目のための物)
+かを書く。</li>
+<li>単位は地図のマス (1 マス = 25 m = 3D の 1 目盛)。(cx, cy) =
+焚き火。x は東、y は南。</li>
+<li>3D の家は大きく描いている
+(1.1)。だから、<strong>物と物の間は「描いた家の幅
+(W)」で決める</strong>。W は いまの式で 1.8〜2.4 目盛。
+<ul>
+<li>家と家のすき間: <strong>0.5 W 以上</strong> (難民キャンプの「高さの
+2 倍」[63] に近い見た目)</li>
+<li>家とヤギの囲い・倉: <strong>0.3 W 以上</strong>
+(家の「となり」に見える近さ)</li>
+<li>家と窯・炭や火を使う作業場: <strong>2 W 以上</strong>
+[12][21][63]</li>
+</ul></li>
+<li>風: 村の地図には風の向きがない。【描きそえ】として
+<strong>冬の風は北西から吹く</strong> とする (日本の冬の季節風 [49]
+にならう)。すると「風下」は南東。</li>
+</ul>
+<h3 id="41-村全体の区分けゾーン-を先に決める">4.1
+村全体の「区分け」(ゾーン) を先に決める</h3>
+<p>いまは物ごとに場所を決めているので、ぶつかる。はじめに地図を
+<strong>区分け</strong> して、物ごとに入る区を決める。</p>
+<table>
+<thead>
+<tr class="header">
+<th>区</th>
+<th>場所 (焚き火から)</th>
+<th>入れる物</th>
+<th>根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A まん中の広場</td>
+<td>半径 0〜3 マス</td>
+<td>焚き火・祭り・知らせ板
+(広場のふち)。<strong>家は建てない</strong></td>
+<td>[8][10][27][35]</td>
+</tr>
+<tr class="even">
+<td>B 住む輪</td>
+<td>半径 4〜9 マス (G6 から 15 マスまで)</td>
+<td>家族の家と、その家の囲い・倉 (4.3)。南西の扇 (畑) はあける</td>
+<td><code>_house_site</code> (記録) と同じ</td>
+</tr>
+<tr class="odd">
+<td>C 畑</td>
+<td>南西の扇 (いまの <code>L.fields</code>)。人がふえたら西と南へ、半径
+20〜40 マスまで</td>
+<td>畑・水の道</td>
+<td>[53][55][58]</td>
+</tr>
+<tr class="even">
+<td>D 川べり</td>
+<td>川の岸</td>
+<td>水の輪・水の作業場・(工業の入口から) 工場</td>
+<td>[51]</td>
+</tr>
+<tr class="odd">
+<td>E 火の仕事</td>
+<td>住む輪の <strong>風下 (南東) の外がわ</strong>、半径 10〜13
+マス。家から 2 W 以上</td>
+<td>窯・燃える石の掘り場 (場所は記録にあるときはそれ)・鍛冶</td>
+<td>[12][21][28]</td>
+</tr>
+<tr class="even">
+<td>F 共同の家畜の場</td>
+<td>住む輪の東〜南東の外がわ (半径 10〜12 マス)、井戸・川の水くみ場から
+15 m 以上</td>
+<td>家ごとの囲いができる前の、村のヤギの囲い</td>
+<td>[5][59][61]</td>
+</tr>
+<tr class="odd">
+<td>G 放牧</td>
+<td>村の外 (半径 20 マスより外)</td>
+<td>昼のヤギの群れ</td>
+<td>[55]</td>
+</tr>
+</tbody>
+</table>
+<p>※区の線は見せない
+(見る人には分からなくてよい)。置き場所の計算だけに使う。</p>
+<h3 id="42-時代ごとの置き方">4.2 時代ごとの置き方</h3>
+<h4 id="1-狩りと採集-04-年-火を囲む輪-描きそえ">(1) 狩りと採集 (0〜4
+年): 火を囲む輪 【描きそえ】</h4>
+<ul>
+<li>家族の皮の小屋は、焚き火を囲む <strong>輪</strong>
+に、入口を内がわへ向けて並べる (いまは北の弧だけ)。半径 4〜5
+マス、小屋と小屋の間は 1.5 目盛ほど (!クンの炉と炉の間 7.8 m [8]
+を絵地図の大きさに直したもの)。小屋の
+<strong>すぐ前に家族の小さな炉</strong>
+を描くと、記録の「家族」が見える。</li>
+<li>南東 (カメラのある側)
+は見通しのため小屋を置かない。輪の「切れ目」は入口として自然に見える。</li>
+<li>捨て場 (貝殻・骨) は輪の外、北と西 (いまと同じ)。</li>
+</ul>
+<h4 id="2-村と畑-412-年-共同の囲いと家と家のあいだの倉">(2) 村と畑
+(4〜12 年): 共同の囲いと、家と家のあいだの倉</h4>
+<ul>
+<li><strong>ヤギの囲い (共同) 【描きそえ】</strong>: 区 F
+(焚き火から南東へ 10〜12 マス、住む輪の外) に 1 つ。いまの「焚き火から 6
+マス」は家の輪の上なので、ここへ移す。これで家と重ならない。アシュクル・ホユック
+[5] のように「村の中の、建物のあいだ」に見えるよう、いちばん外の家から
+0.3〜0.5 W の所。</li>
+<li><strong>村の倉
+【記録】(村の倉の中身は記録にある。建物の形は描きそえ)</strong>: 広場
+(区 A)
+のふち、家と家のあいだに、<strong>床を浮かせた小さな丸い倉</strong> を 1
+つ [4]。北がわ (日かげ) に [28]。</li>
+<li><strong>畑 【記録】</strong>: 南西の扇。いまのままでよい。</li>
+</ul>
+<h4 id="3-土器と家の倉-1214-年-から-家ごとの屋敷">(3) 土器と家の倉
+(12〜14 年) から: 家ごとの「屋敷」</h4>
+<p>記録では G4 から、家ごとにヤギ・畑・倉をもつ (<code>era2.py</code>
+の受けつぎ: ヤギの <code>owner</code>、畑の <code>owner</code>、家の
+<code>store</code>)。そこで <strong>家を 1 軒ではなく「屋敷 (やしき) =
+家 + 囲い + 倉 のひとまとまり」</strong> で描く。</p>
+<ul>
+<li><strong>屋敷の向き</strong>: 家の正面 (入口) を焚き火 (広場)
+に向ける (いまも焚き火を向いている)。</li>
+<li><strong>囲い 【数は記録・場所は描きそえ】</strong>: その家のヤギが 1
+頭以上いるときだけ、<strong>家のうしろ (広場と反対がわ)
+の、風下に寄った側</strong> に小さな囲い。家からのすき間 0.3 W、半径は
+<code>0.6 + 0.15·√頭数</code>
+目盛ほど。中世の長屋が母屋のとなりに牛小屋を建てたこと
+[38][39]・曲り家の L 字 [46] にならい、家の横に <strong>直角に</strong>
+つける形もよい。</li>
+<li><strong>倉 【中身は記録・形は描きそえ】</strong>:
+家の倉に物があるときだけ、家の <strong>北がわ</strong>
+に、床を浮かせた小さな倉 [4][28]。</li>
+<li><strong>ほかの家とのすき間</strong>: 屋敷どうし
+(囲いや倉もふくめた外がわ) で 0.5 W 以上。記録の家の間は 2.2
+マス。描いた家 (幅 2 目盛ほど)
+に囲いや倉をつけると足りないので、<strong>3D
+では家の絵を少し小さくする</strong> (幅の式の上限を 1.6 目盛ほどにする)
+のがいちばんかんたん。</li>
+<li><strong>土器の窯 【記録にあるときだけ】</strong>: 区 E
+(風下の外がわ、家から 2 W 以上) にまとめる [12][21]。</li>
+</ul>
+<h4 id="4-まとめ役と祭り-1429-年-広場と祭りの場">(4) まとめ役と祭り
+(14〜29 年): 広場と祭りの場</h4>
+<ul>
+<li><strong>祭りの場
+【描きそえ。記録の祭りの出来事があれば、そこで行う】</strong>: 広場 (区
+A) の北のふちに、少し高くした土の台か、まわりより大きな建物を 1
+つ。<strong>一度決めたら動かさない</strong>
+(ウルクで同じ場所に建てかさねたように [13])。</li>
+<li><strong>墓 【記録に死があるとき・場所は描きそえ】</strong>:
+縄文の村のように、広場から外へ出る道にそって並べる [9]、または輪の外の 1
+か所。(いまは墓を描いていない。描くかどうかは本人に聞いてもよい小さな話。)</li>
+<li><strong>家は輪のまま</strong>: 縄文の輪の村 [10] と同じく、広場
+(墓・祭り) → (倉) → 家 の順に外へ。縄文の住む輪のさしわたしは 約 70〜150
+m 以上 [10] = 地図で 3〜6 マス。いまの記録の家の輪 (半径 5〜9 マス)
+はその 2〜3 倍の大きさ。</li>
+</ul>
+<h4 id="5-町と文字-2948-年-道と来た所ごとの小さなまとまり">(5) 町と文字
+(29〜48 年): 道と、来た所ごとの小さなまとまり</h4>
+<ul>
+<li>記録 (G6) では、ほかの村から来た家は、その村の方角の 11〜15
+マスに建つ (<code>_house_site</code>)。これはそのまま使える:
+<strong>来た所ごとの小さなまとまり (町内)</strong>。</li>
+<li><strong>道 【描きそえ】</strong>:
+広場から、各まとまり・畑・川・ほかの村へ、<strong>放射状
+(まん中から外へ広がる線)</strong> に土の道を描く
+(いまのほかの村への点線をのばしたもの)。家は道に入口を向けてもよい。</li>
+<li><strong>知らせ板 【記録】</strong>:
+広場と、いちばん人の通る道の交わる所 (いまの北西の近くでよい)。</li>
+<li><strong>神殿の倉 【描きそえ】</strong>: 神殿 (祭りの場)
+のとなりに、村の倉を大きくしたものを [17]。</li>
+</ul>
+<h4 id="6-王と青銅-48118-年-囲った特別な区画">(6) 王と青銅 (48〜118 年):
+囲った特別な区画</h4>
+<ul>
+<li><strong>王・役の人の屋敷
+【王や役は記録にある。場所は描きそえ】</strong>: 広場のそば、少し高い所
+(地図の高さ <code>hgt</code> が高い所) に、<strong>低い壁 (または生け垣)
+で囲った区画</strong> を 1 つ。中に大きめの家と倉の群れ。吉野ヶ里の内郭
+[15][16]、カフンの高い所の屋敷 [22] にならう。</li>
+<li><strong>村を囲む壁やほり</strong>:
+記録に「壁を作った」「守る」の出来事があるときだけ描く。ないなら描かない
+(エリコの壁は戦いのためではなかった、という話もある [2][3])。</li>
+<li><strong>市 (いち) 【記録に交換・お金の出来事があるとき】</strong>:
+広場の南東がわ (川や道に近い所)
+に、屋根だけの小屋の並ぶ空き地。吉野ヶ里の市 [16]・長安の東市西市
+[31]。</li>
+</ul>
+<h4 id="7-鉄とお金の帝国-118172-年-新しい区画は碁盤の目で">(7)
+鉄とお金の帝国 (118〜172 年): 新しい区画は碁盤の目で</h4>
+<ul>
+<li><strong>新しく建つ家だけ</strong>、住む輪のさらに外 (半径 15
+マスより外、畑と反対の東・北) に、<strong>碁盤の目</strong>
+で並べる。たて横の道を 4 マスおき、1 区画に 2 × 2 軒 [22][27][31]。</li>
+<li>古い輪はそのまま残す
+(古い中心を壊さないで外に足すのが、どこでも見られる形 [33][37])。</li>
+<li>2 本の大通り (南北と東西)
+を広場で十字に交わらせ、交わる所を「町の広場」にする (ローマのフォルム
+[27])。</li>
+<li>これは見せ方の案。<strong>(シミュレーションの変更・やらなくてもよい)</strong>:
+<code>_house_site</code>
+が、この時代から碁盤の目の点を先に選ぶようにすれば、記録と 3D
+がそろう。</li>
+</ul>
+<h4 id="8-帝国のあとと町-172193-年-屋敷と屋敷林細長い畑">(8)
+帝国のあとと町 (172〜193 年): 屋敷と屋敷林、細長い畑</h4>
+<ul>
+<li><strong>屋敷林 【描きそえ】</strong>: 家の北西がわ (冬の風上)
+に、木を 2〜3 本 [49][50]。</li>
+<li><strong>畑の形 【数は記録・形は描きそえ】</strong>:
+畑がふえたら、いまの四角い板ではなく <strong>細長い帯</strong>
+にして、区 (ファーロング)
+ごとに向きをそろえて並べる。家ごとの帯は散らばってよい [37]。</li>
+<li><strong>家畜小屋を母屋に直角に</strong> (中世の後半の形
+[38][39]・曲り家 [46])。</li>
+</ul>
+<h4 id="9-工業の入口-193-年-川べりの作業場と防火の空き地">(9) 工業の入口
+(193 年〜): 川べりの作業場と、防火の空き地</h4>
+<ul>
+<li><strong>水の作業場・水の輪 【記録】</strong>: いまの「川岸」でよい
+[51]。</li>
+<li><strong>働く人の家 【描きそえ】</strong>:
+作業場から川岸ぞいに、<strong>長屋の列</strong>
+(ソルテア・ニュー・ラナーク [51][52])。ただし家の列と作業場のあいだに
+<strong>防火の空き地 (幅 1 W 以上)</strong> をあける [44][63]。</li>
+<li><strong>燃える石の掘り場 【記録】</strong>: 記録の場所
+(<code>L.pit</code>) のまま。まわり 3 マスには家を置かない (いまの
+<code>busy</code> の決まりと同じ)。</li>
+<li><strong>石のかまどの煙突 【記録】</strong>: いまのまま。</li>
+</ul>
+<h3 id="43-家囲い倉の置き方の手順-プログラムにするとき">4.3
+家・囲い・倉の置き方の手順 (プログラムにするとき)</h3>
+<ol type="1">
+<li>区分け (4.1) を作る。区 A・C・D・E・F
+の形を先に「使えない所」として登録する。</li>
+<li>家の点は記録 (<code>D.houses</code> の x, y)
+を使う。重なったものだけ、いまのように並べ直す
+(<code>layout(D).house</code>)。</li>
+<li>家ごとに「屋敷の外の円」(家 + 囲い + 倉)
+の半径を決める。囲いと倉はその日の記録 (ヤギの数・倉の中身)
+で出し入れする。</li>
+<li>屋敷の円どうしが 0.5 W
+より近いときは、<strong>囲いと倉のほうを家のまわりで回して</strong>
+空いている向きにおく (家は記録の場所から動かさない)。</li>
+<li>共同の囲い (区 F) は、家の屋敷の円と重ならない所を、区 F の中で探す
+(いまの <code>penSpot</code> のさがし方を、区 F の中だけでやる)。</li>
+<li>どの物も、置いた順に「使えない所」に足していく (いまの
+<code>obstacles</code> と同じ考え)。</li>
+</ol>
+<h3 id="44-人がふえるにつれての変わり方-目安">4.4
+人がふえるにつれての変わり方 (目安)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>村の人の数</th>
+<th>形</th>
+<th>3D でやること</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>〜50 人 (狩りのころ)</td>
+<td>火を囲む輪</td>
+<td>小屋の輪 (4.2-1)</td>
+</tr>
+<tr class="even">
+<td>50〜300 人</td>
+<td>輪の村 (縄文・ナトゥーフ)</td>
+<td>家の輪・共同の囲い・村の倉 (4.2-2, 3)</td>
+</tr>
+<tr class="odd">
+<td>300〜1,000 人</td>
+<td>かたまりと町内 (ウバイド・G6 の来た所ごと)</td>
+<td>道・祭りの場・町内 (4.2-4, 5)</td>
+</tr>
+<tr class="even">
+<td>1,000 人〜 (いまの村 約 1,080 人)</td>
+<td>特別な区画・市・碁盤の目の新しい区画</td>
+<td>4.2-6, 7</td>
+</tr>
+</tbody>
+</table>
+<p>※人数の線は、この村に合わせて決めた目安【描きそえ】。2 章の遺跡の数字
+(アイン・マラッハ 約 50 軒、ククテニ・トリピリアの計算で「50〜300
+人の村は 2〜10 ha」、デイル・エル・メディーナ 約 68 軒、エリコ
+300〜3,000 人) [1][3][24][58] から大まかにえらんだ。</p>
+<p>参考: 1,000
+人ほどの村の大きさ。チャタル・ホユックやエリコのように家をつめれば数 ha
+(半径 5〜7 マス) にも入る [3][7]。いまの記録の家の輪 (半径 5〜15
+マス、家の間 55 m 以上) は、それより
+<strong>ずっと広く、散居村に近い</strong> [49]。これはそのままでよい
+(見やすい)
+が、「村がゆったり広い」ことは動画の説明に書いておくとよい。</p>
+<h3 id="45-まず直すとよいもの-おすすめの順">4.5 まず直すとよいもの
+(おすすめの順)</h3>
+<ol type="1">
+<li><strong>共同のヤギの囲いを、住む輪の外 (南東 10〜12 マス)
+へ</strong> — 今回の重なりがなくなる。いちばん小さな変更。</li>
+<li><strong>家の絵の幅に上限 (1.6 目盛ほど)</strong> —
+家どうし・家と囲いがくっつきにくくなる。</li>
+<li><strong>家ごとの囲いと倉 (G4 から)</strong> — 記録
+(家ごとのヤギ・倉) が見える形になる。</li>
+<li><strong>火の仕事の区 (窯・掘り場) を風下の外へ</strong> —
+時代が進むほど効く。</li>
+<li><strong>広場の祭りの場・道</strong> —
+「まとめ役と祭り」より後の動画で。</li>
+</ol>
+<hr />
+<h2 id="5-出典">5. 出典</h2>
+<p>見た日: すべて 2026-11-27。 「本文で確認」=
+そのページや論文の本文を読んで確かめた
+(節やページを書いた)。「抜き書きで確認」=
+検索で出てきたページの中身だけで確かめた (全文は読んでいない)。</p>
+<ol type="1">
+<li>Valla, F. ほか (2017)「Eynan (Ain Mallaha)」. Quaternary of the
+Levant (HAL 公開版). <a href="https://halshs.archives-ouvertes.fr/halshs-01852519v1/file/VALLA%20et%20al%202017%20Quaternary%20of%20the%20Levant%20Eynan_Ain_Mallaha.pdf">https://halshs.archives-ouvertes.fr/halshs-01852519v1/file/VALLA%20et%20al%202017%20Quaternary%20of%20the%20Levant%20Eynan_Ain_Mallaha.pdf</a>
+(この場所から開けなかった。抜き書きのみ) ／ Wikipedia「ʿAin Mallaha」 <a href="https://en.wikipedia.org/wiki/%CA%BFAin_Mallaha">https://en.wikipedia.org/wiki/%CA%BFAin_Mallaha</a>
+(本文で確認: 「Mallaha」の節。約 50
+の丸い半地下の家・家の中の炉・家族を家にほうむる。もとは Kenyon 1985
+p.20、Mithen 2003 p.28)。広さ 2,000 m²・50〜100
+人と、泉の下の斜面の並びは【未確認】</li>
+<li>Encyclopaedia Britannica「Jericho」. <a href="https://www.britannica.com/place/Jericho-West-Bank">https://www.britannica.com/place/Jericho-West-Bank</a>
+(抜き書きで確認)</li>
+<li>World History Encyclopedia「Early Jericho」. <a href="https://www.worldhistory.org/article/951/early-jericho/">https://www.worldhistory.org/article/951/early-jericho/</a>
+(抜き書きで確認)</li>
+<li>Kuijt, I. &amp; Finlayson, B. (2009)「Evidence for food storage and
+predomestication granaries 11,000 years ago in the Jordan Valley」PNAS
+106. <a href="https://doi.org/10.1073/pnas.0812764106">https://doi.org/10.1073/pnas.0812764106</a>
+／ 紹介記事 ScienceDaily (2009-06-23) <a href="https://www.sciencedaily.com/releases/2009/06/090623150619.htm">https://www.sciencedaily.com/releases/2009/06/090623150619.htm</a>
+(紹介記事の抜き書きで確認)</li>
+<li>Stiner, M. C. ほか (2014)「A forager–herder trade-off, from
+broad-spectrum hunting to sheep management at Aşıklı Höyük,
+Turkey」PNAS. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4060719">https://pmc.ncbi.nlm.nih.gov/articles/PMC4060719</a>
+(抜き書きで確認)</li>
+<li>Abell, J. T. ほか (2019)「Urine salts elucidate Early Neolithic
+animal management at Aşıklı Höyük, Turkey」Science Advances. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6469938">https://pmc.ncbi.nlm.nih.gov/articles/PMC6469938</a>
+(抜き書きで確認)</li>
+<li>UNESCO World Heritage Centre「Neolithic Site of Çatalhöyük」. <a href="https://whc.unesco.org/en/list/1405">https://whc.unesco.org/en/list/1405</a>
+(この場所からは機械よけの画面で開けず、抜き書きのみ) ／
+Wikipedia「Çatalhöyük」 <a href="https://en.wikipedia.org/wiki/%C3%87atalh%C3%B6y%C3%BCk">https://en.wikipedia.org/wiki/%C3%87atalh%C3%B6y%C3%BCk</a>
+(本文で確認:
+「Architecture」の節。道がない・屋根から入る・屋根が道・外の捨て場とふんの灰。捨て場はもとは
+Shillito ほか 2011, Antiquity 85)</li>
+<li>Gould, R. A. &amp; Yellen, J. E. (1987)「Man the hunted:
+Determinants of household spacing in desert and tropical foraging
+societies」Journal of Anthropological Archaeology 6: 77–103. 本文
+(Zenodo): <a href="https://zenodo.org/records/1258451/files/article.pdf">https://zenodo.org/records/1258451/files/article.pdf</a>
+(本文で確認: p.82 炉と炉の間 !クン 7.77 m・オーストラリア砂漠 36.7
+m、p.89
+「入口を内に向けた小屋の輪」と、まん中と輪の外がみんなの仕事場。Yellen
+1977 の ring model の紹介は p.81)</li>
+<li>国土交通省 観光庁 多言語解説文データベース「Sannai Maruyama Site」.
+<a href="https://www.mlit.go.jp/tagengo-db/en/R2-00492.html">https://www.mlit.go.jp/tagengo-db/en/R2-00492.html</a>
+(中身を読んで確認) ／ 青森県教育委員会「特別史跡
+三内丸山遺跡」リーフレット (北海道・北東北の縄文遺跡群). <a href="https://jomon-japan.jp/en/wp-content/uploads/2021/02/F006a000001.pdf">https://jomon-japan.jp/en/wp-content/uploads/2021/02/F006a000001.pdf</a>
+(本文で確認: p.1「日本最大級の縄文集落」25 ha と計画的な配置、p.2 竪穴
+550 以上・32 m の家・大人の墓 約 500)</li>
+<li>Wikipedia (日本語)「環状集落」. <a href="https://ja.wikipedia.org/wiki/%E7%92%B0%E7%8A%B6%E9%9B%86%E8%90%BD">https://ja.wikipedia.org/wiki/%E7%92%B0%E7%8A%B6%E9%9B%86%E8%90%BD</a>
+(本文で確認: 「重帯構造」「分節構造」の節。もとは 谷口康浩
+2005『環状集落と縄文社会構造』学生社 pp.67, 97–98)。※谷口 2005
+の本そのものは読めていない。前に出典にした 奈良文化財研究所
+全国遺跡報告総覧 <a href="https://sitereports.nabunken.go.jp/ja/article/122313/pdf_page">https://sitereports.nabunken.go.jp/ja/article/122313/pdf_page</a>
+は、こみあっていて (429) 開けなかった</li>
+<li>谷口康浩 ほか『国立歴史民俗博物館研究報告』208 集 所収の論文. <a href="https://rekihaku.repo.nii.ac.jp/record/2381/files/kenkyuhokoku_208_05.pdf">https://rekihaku.repo.nii.ac.jp/record/2381/files/kenkyuhokoku_208_05.pdf</a>
+(抜き書きで確認。分節構造の話)</li>
+<li>Jasim, S. A. (2021)『Tell Abada: An Ubaid Village in Central
+Mesopotamia』(OIP 147). シカゴ大学 ISAC. <a href="https://isac.uchicago.edu/node/4638">https://isac.uchicago.edu/node/4638</a>
+(この場所からはページが見つからず (404)、読めていない) ／
+Wikipedia「Tell Abada」 <a href="https://en.wikipedia.org/wiki/Tell_Abada">https://en.wikipedia.org/wiki/Tell_Abada</a>
+(本文で確認: 「Occupation history」の節。窯は Hansen Streily 2000,
+Paléorient 26(2): 69–81 による)。前に書いた「建物 A
+が土器づくりの場」はまちがい (直した)</li>
+<li>Wikipedia「Uruk」. <a href="https://en.wikipedia.org/wiki/Uruk">https://en.wikipedia.org/wiki/Uruk</a>
+(本文で確認: 2
+つのウバイド期の村が育ってまざり、まん中の神殿の区画がエアンナとアヌになった・ほかの町は約
+10 ha・神殿の形。百科事典 (だれでも書ける)
+なので、ほかの出典と合わせて使った)</li>
+<li>CDLI Wiki「Uruk (mod. Warka)」. <a href="https://cdli.ox.ac.uk/wiki/uruk_mod._warka">https://cdli.ox.ac.uk/wiki/uruk_mod._warka</a>
+(抜き書きで確認)</li>
+<li>文化遺産オンライン (文化庁)「吉野ヶ里遺跡」. <a href="https://online.bunka.go.jp/db/heritages/detail/202936">https://online.bunka.go.jp/db/heritages/detail/202936</a>
+(中身を読んで確認)</li>
+<li>吉野ヶ里歴史公園「Yoshinogari Keitai-Guide」. <a href="https://www.yoshinogari.jp/g/en/index_55.html">https://www.yoshinogari.jp/g/en/index_55.html</a>
+／ <a href="https://www.yoshinogari.jp/g/en/index_56.html">https://www.yoshinogari.jp/g/en/index_56.html</a>
+(抜き書きで確認。北内郭・南内郭の役目は「考えられている」)</li>
+<li>Paulette, T.「Grain Storage and the Moral Economy in Mesopotamia
+(3000–2000 BC)」シカゴ大学 ISAC. <a href="https://isac.uchicago.edu/node/4117">https://isac.uchicago.edu/node/4117</a>
+／ ニューメキシコ大学 講義ページ「Development of Southern Mesopotamian
+Economic Structure」 <a href="https://www.unm.edu/~gbawden/328-econ/328-econ.htm">https://www.unm.edu/~gbawden/328-econ/328-econ.htm</a>
+(抜き書きで確認)</li>
+<li>Harappa.com「Streets, Mohenjo-daro」. <a href="https://www.harappa.com/blog/streets-mohenjo-daro">https://www.harappa.com/blog/streets-mohenjo-daro</a>
+(抜き書きで確認)</li>
+<li>Harappa.com「Mohenjo-daro Street Drains」. <a href="https://www.harappa.com/blog/mohenjo-daro-street-drains">https://www.harappa.com/blog/mohenjo-daro-street-drains</a>
+(抜き書きで確認)</li>
+<li>Encyclopaedia Britannica「Mohenjo-daro」. <a href="https://www.britannica.com/place/Mohenjo-daro">https://www.britannica.com/place/Mohenjo-daro</a>
+(抜き書きで確認。井戸の数 約 700
+は二次資料で【未確認】なので本文には使っていない)</li>
+<li>Miller, H. M.-L.「Associations and Ideologies in the Locations of
+Urban Craft Production at Harappa, Pakistan」Harappa.com. <a href="https://www.harappa.com/content/associations-and-ideologies-locations-urban-craft-production-harappa-pakistan-indus">https://www.harappa.com/content/associations-and-ideologies-locations-urban-craft-production-harappa-pakistan-indus</a>
+(抜き書きで確認)</li>
+<li>Encyclopedia.com「A Planned Town of the Middle Kingdom: Kahun」. <a href="https://encyclopedia.com/humanities/culture-magazines/planned-town-middle-kingdom-kahun">https://encyclopedia.com/humanities/culture-magazines/planned-town-middle-kingdom-kahun</a>
+／ Britannica「Kahun」 <a href="https://www.britannica.com/place/Kahun">https://www.britannica.com/place/Kahun</a>
+(抜き書きで確認)</li>
+<li>UCL ピートリ・エジプト考古学博物館「One Day in Lahun」. <a href="https://www.ucl.ac.uk/engage/museums-collections/petrie-museum-egyptian-and-sudanese-archaeology/top-objects-petrie-museum/one-day-lahun">https://www.ucl.ac.uk/engage/museums-collections/petrie-museum-egyptian-and-sudanese-archaeology/top-objects-petrie-museum/one-day-lahun</a>
+(検索結果に出た。中身の確認は一部)</li>
+<li>World History Encyclopedia「Deir el-Medina」. <a href="https://www.worldhistory.org/Deir_el-Medina/">https://www.worldhistory.org/Deir_el-Medina/</a>
+(この場所から開けず、抜き書きのみ) ／ Wikipedia「Deir el-Medina」 <a href="https://en.wikipedia.org/wiki/Deir_el-Medina">https://en.wikipedia.org/wiki/Deir_el-Medina</a>
+(本文で確認: 約 68 軒・5,600 m²・細い道 1 本。もとは McDowell p.9)</li>
+<li>メンフィス大学 エジプト美術考古学研究所「Thebes – Deir el-Medina」.
+<a href="https://memphis.edu/egypt/resources/colortour/westbank5.php">https://memphis.edu/egypt/resources/colortour/westbank5.php</a>
+(抜き書きで確認)</li>
+<li>Livius.org「Hippodamian Plan」. <a href="https://www.livius.org/articles/concept/hippodamian-plan/">https://www.livius.org/articles/concept/hippodamian-plan/</a>
+(抜き書きで確認)</li>
+<li>Roman-Britain.co.uk「The Development of Roman Towns」. <a href="https://www.roman-britain.co.uk/life-in-roman-britain/romano-british-settlements">https://www.roman-britain.co.uk/life-in-roman-britain/romano-british-settlements</a>
+(抜き書きで確認)</li>
+<li>ウィトルウィウス『建築十書』第 6 書 6 章 (Gwilt 訳). LacusCurtius
+(Bill Thayer) <a href="https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Vitruvius/6*.html">https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Vitruvius/6*.html</a>
+(本文で確認: 6.6.1 台所と牛小屋、6.6.2 浴場・しぼり場、6.6.4
+ヒツジ・ヤギ小屋の広さ・穀物倉・馬小屋、6.6.5
+納屋などは屋敷の外のほうが火事に強い) ／ Lexundria <a href="https://lexundria.com/vitr/6.6/gw">https://lexundria.com/vitr/6.6/gw</a></li>
+<li>China Culture「Kaogongji」(考工記の都の決まり). <a href="https://en.chinaculture.org/library/2008-01/16/content_38819.htm">https://en.chinaculture.org/library/2008-01/16/content_38819.htm</a>
+(抜き書きで確認)</li>
+<li>韓国の論文 (KoreaScience)「考工記の都の形は実在しない」とする研究.
+<a href="https://koreascience.kr/article/JAKO201825677810963.pdf">https://koreascience.kr/article/JAKO201825677810963.pdf</a>
+(抜き書きで確認。題名は確かめきれていない)</li>
+<li>Lin (2015)「From Closed Capital to Open Metropolis」. <a href="https://urbanauapp.org/wp-content/uploads/Lin_2015.pdf">https://urbanauapp.org/wp-content/uploads/Lin_2015.pdf</a>
+(抜き書きで確認)</li>
+<li>陝西省人民政府「Chang&#39;an City: Zenith of urban planning and
+civilizational exchange」. <a href="https://en.shaanxi.gov.cn/videos/cs/202504/t20250425_3504326.html">https://en.shaanxi.gov.cn/videos/cs/202504/t20250425_3504326.html</a>
+(抜き書きで確認)</li>
+<li>京都市「歴史的景観の資料 (平安京)」. <a href="https://keikan-gis.city.kyoto.lg.jp/Filing_keikan/d31_rekiplan/104.pdf">https://keikan-gis.city.kyoto.lg.jp/Filing_keikan/d31_rekiplan/104.pdf</a>
+(本文で確認: 町割の単位は 40 丈 (約 120 m) 四方・四行八門の戸主が 1
+家族の宅地の基準・都の東西 約 4.5 km 南北 約 5.2 km・堀川) ／ 朱雀大路
+28 丈 (約 84 m) は Wikipedia (日本語)「平安京」 <a href="https://ja.wikipedia.org/wiki/%E5%B9%B3%E5%AE%89%E4%BA%AC">https://ja.wikipedia.org/wiki/%E5%B9%B3%E5%AE%89%E4%BA%AC</a>
+(本文で確認)</li>
+<li>京都市埋蔵文化財研究所「リーフレット京都」. <a href="https://www.kyoto-arc.or.jp/news/leaflet/005.pdf">https://www.kyoto-arc.or.jp/news/leaflet/005.pdf</a>
+／ 奈良文化財研究所 全国遺跡報告総覧「リーフレット京都」 <a href="https://sitereports.nabunken.go.jp/files/attach/48/48635/129705_1_%E3%83%AA%E3%83%BC%E3%83%95%E3%83%AC%E3%83%83%E3%83%88%E4%BA%AC%E9%83%BD.pdf">https://sitereports.nabunken.go.jp/files/attach/48/48635/129705_1_%E3%83%AA%E3%83%BC%E3%83%95%E3%83%AC%E3%83%83%E3%83%88%E4%BA%AC%E9%83%BD.pdf</a>
+(抜き書きで確認。東西市・四行八門)</li>
+<li>Muslim Heritage「Introduction to the Islamic City」. <a href="https://muslimheritage.com/introduction-to-the-islamic-city/">https://muslimheritage.com/introduction-to-the-islamic-city/</a>
+(抜き書きで確認)</li>
+<li>メトロポリタン美術館「Courtyard Houses in Damascus」. <a href="https://www.metmuseum.org/learn/educators/curriculum-resources/art-of-the-islamic-world/unit-six/chapter-two/courtyard-houses-in-damascus">https://www.metmuseum.org/learn/educators/curriculum-resources/art-of-the-islamic-world/unit-six/chapter-two/courtyard-houses-in-damascus</a>
+(検索結果に出た。中身の確認は一部)</li>
+<li>Wikipedia「Open-field system」. <a href="https://en.wikipedia.org/wiki/Open-field_system">https://en.wikipedia.org/wiki/Open-field_system</a>
+(抜き書きで確認。百科事典)</li>
+<li>Herefordshire Through Time「How were village houses constructed?」.
+<a href="https://htt.herefordshire.gov.uk/herefordshires-past/the-medieval-period/villages/how-were-village-houses-constructed">https://htt.herefordshire.gov.uk/herefordshires-past/the-medieval-period/villages/how-were-village-houses-constructed</a>
+(抜き書きで確認)</li>
+<li>Internet Archaeology 47 号 (長屋と牛小屋の考察). <a href="https://intarch.ac.uk/journal/issue47/4/3-1.html">https://intarch.ac.uk/journal/issue47/4/3-1.html</a>
+(抜き書きで確認)</li>
+<li>立命館大学 学位論文 (城下町の寺社の配置). <a href="https://ritsumei.repo.nii.ac.jp/record/10632/files/k_961.pdf">https://ritsumei.repo.nii.ac.jp/record/10632/files/k_961.pdf</a>
+(抜き書きで確認)</li>
+<li>松江市 資料 (戦国期の城下町と街道). <a href="https://www.city.matsue.lg.jp/material/files/group/34/shiryo_matsuo1.pdf">https://www.city.matsue.lg.jp/material/files/group/34/shiryo_matsuo1.pdf</a>
+(抜き書きで確認)</li>
+<li>JAANUS (コロンビア大学 日本建築美術用語辞典)「shukubamachi 宿場町」.
+<a href="https://projects.mcah.columbia.edu/jaanus/node/1072">https://projects.mcah.columbia.edu/jaanus/node/1072</a>
+(検索結果に出た)</li>
+<li>nippon.com「宿場町」記事. <a href="https://www.nippon.com/ja/japan-topics/c08605/">https://www.nippon.com/ja/japan-topics/c08605/</a>
+(抜き書きで確認。問屋場・本陣) ／ 短冊形の敷地は、奈良文化財研究所
+全国遺跡報告総覧の報告 <a href="https://sitereports.nabunken.go.jp/en/article/121115/pdf_page">https://sitereports.nabunken.go.jp/en/article/121115/pdf_page</a>
+(抜き書き。宮城県村田の商家町の例)</li>
+<li>内閣府 防災情報「災害教訓の継承に関する専門調査会報告書 1657
+明暦の江戸大火」第 4 章. <a href="https://www.bousai.go.jp/kyoiku/kyokun/kyoukunnokeishou/rep/1657_meireki_edotaika/pdf/1657-meireki-edoTAIKA_06_chap4.pdf">https://www.bousai.go.jp/kyoiku/kyokun/kyoukunnokeishou/rep/1657_meireki_edotaika/pdf/1657-meireki-edoTAIKA_06_chap4.pdf</a>
+(抜き書きで確認)</li>
+<li>東京消防庁「消防雑学事典 Q&amp;A」. <a href="https://www.tfd.metro.tokyo.lg.jp/learning/elib/qa/qa_30.html">https://www.tfd.metro.tokyo.lg.jp/learning/elib/qa/qa_30.html</a>
+(抜き書きで確認)</li>
+<li>パナソニック「住まいの文化 (南部曲り家)」. <a href="https://www2.panasonic.biz/jp/tamarie/sumai_no_bunka/0027/">https://www2.panasonic.biz/jp/tamarie/sumai_no_bunka/0027/</a>
+／ 高橋宏一 (岩手大学) 論文 <a href="https://iwate-u.repo.nii.ac.jp/record/12985/files/hssrepo1992-p171-227.pdf">https://iwate-u.repo.nii.ac.jp/record/12985/files/hssrepo1992-p171-227.pdf</a>
+(抜き書きで確認。成り立ちの説明は研究でまだ整理されていない、とある)</li>
+<li>福島県「尾瀬・前沢集落のコラム (中門造り)」. <a href="https://www.pref.fukushima.lg.jp/w4/oze/column/column020.html">https://www.pref.fukushima.lg.jp/w4/oze/column/column020.html</a>
+(抜き書きで確認)</li>
+<li>高知工科大学 修士論文 (農家の屋敷構え。佐藤甚次郎 1962
+の地方差の整理をふくむ). <a href="https://kutarr.kochi-tech.ac.jp/record/1744/files/m_1215063.pdf">https://kutarr.kochi-tech.ac.jp/record/1744/files/m_1215063.pdf</a>
+(抜き書きで確認)</li>
+<li>環境省「重要里地里山 砺波平野の散居村」. <a href="https://www.env.go.jp/nature/satoyama/16_toyama/no16-4.html">https://www.env.go.jp/nature/satoyama/16_toyama/no16-4.html</a>
+／ 日本造園学会 論文 (カイニョ) <a href="https://www.jila-zouen.org/wpdata/wp-content/uploads/2018/04/23.pdf">https://www.jila-zouen.org/wpdata/wp-content/uploads/2018/04/23.pdf</a>
+(抜き書きで確認)</li>
+<li>農林水産省「農村の景観づくり事例 (砺波)」. <a href="https://www.maff.go.jp/j/nousin/keityo/kankyo/attach/pdf/keikan_jirei-6.pdf">https://www.maff.go.jp/j/nousin/keityo/kankyo/attach/pdf/keikan_jirei-6.pdf</a>
+(抜き書きで確認)</li>
+<li>Historic Environment Scotland「New Lanark」. <a href="https://www.historicenvironment.scot/protect-and-care/protected-historic-places/world-heritage-sites/new-lanark/">https://www.historicenvironment.scot/protect-and-care/protected-historic-places/world-heritage-sites/new-lanark/</a>
+(この場所から開けず、抜き書きのみ) ／ Wikipedia「New Lanark」 <a href="https://en.wikipedia.org/wiki/New_Lanark">https://en.wikipedia.org/wiki/New_Lanark</a>
+(本文で確認: トンネルと水路 (lade)・水車・1817 年の幼児学校・子ども約
+500 人・4〜5 階の長屋の棟)</li>
+<li>UNESCO World Heritage Centre「Saltaire」. <a href="https://whc.unesco.org/en/list/1028">https://whc.unesco.org/en/list/1028</a>
+(この場所から開けず) ／ Wikipedia「Saltaire」 <a href="https://en.wikipedia.org/wiki/Saltaire">https://en.wikipedia.org/wiki/Saltaire</a>
+(本文で確認: 1871 年の国勢調査で家 800 (755 + 救貧院 45)・4,389
+人。もとは Dewhirst 1960 p.141)。前に書いた「22 本の通り・4,000〜5,000
+人」は確かめられた数字に直した</li>
+<li>Chisholm, M.『Rural Settlement and Land Use: An Essay in
+Location』Hutchinson (初版 1962、改訂版 1968・1979). 書誌:
+ドイツ考古学研究所 Zenon <a href="https://zenon.dainst.org/Record/001324253">https://zenon.dainst.org/Record/001324253</a>
+(本そのものは読めていない。「畑はできれば 1〜2 km 以内」は、58 の論文が
+Chisholm 1979 p.72 を引いて書いているのを本文で確認。本の中のほかの数字
+(3〜4 km など) は【未確認】)</li>
+<li>Found, W. C. (農場からの距離と収入の研究). 紹介: <a href="https://scite.ai/authors/william-c-found-ygj6VG">https://scite.ai/authors/william-c-found-ygj6VG</a>
+(抜き書きで確認。「距離がのびると、手取りは売り上げより早く減る」)</li>
+<li>LibreTexts「3.04: Von Thünen&#39;s Model」(Introduction to Human
+Geography). <a href="https://socialsci.libretexts.org/Bookshelves/Geography_(Human)/Introduction_to_Human_Geography%3A_A_Disciplinary_Approach_3e_(Gaves)/03%3A_Agriculture_and_Foodways/3.04%3A_Von_Thunens_Model">https://socialsci.libretexts.org/Bookshelves/Geography_(Human)/Introduction_to_Human_Geography%3A_A_Disciplinary_Approach_3e_(Gaves)/03%3A_Agriculture_and_Foodways/3.04%3A_Von_Thunens_Model</a>
+(抜き書きで確認)</li>
+<li>Vita-Finzi, C. &amp; Higgs, E. S. (1970)「Prehistoric Economy in the
+Mount Carmel Area of Palestine: Site Catchment Analysis」Proceedings of
+the Prehistoric Society 36. <a href="https://www.cambridge.org/core/journals/proceedings-of-the-prehistoric-society/article/prehistoric-economy-in-the-mount-carmel-area-of-palestine-site-catchment-analysis/7AFF7937750FF5D3377D6600E3A86173">https://www.cambridge.org/core/journals/proceedings-of-the-prehistoric-society/article/prehistoric-economy-in-the-mount-carmel-area-of-palestine-site-catchment-analysis/7AFF7937750FF5D3377D6600E3A86173</a>
+(書誌を確認。5 km・10 km は下の 57 と紹介文の抜き書き)</li>
+<li>テュービンゲン大学 SFB 1070「Technical note 3」(歩いて 2 時間 =
+平地で 10 km). <a href="https://uni-tuebingen.de/en/91679">https://uni-tuebingen.de/en/91679</a>
+(抜き書きで確認)</li>
+<li>Shukurov, A., Videiko, M. Yu., Sarson, G. R., Davison, K., Shiel,
+R., Dolukhanov, P. M. &amp; Pashkevich, G. A. (2015)「Productivity of
+pre-modern agriculture in the Cucuteni-Trypillia area」arXiv:1505.05121.
+<a href="https://arxiv.org/abs/1505.05121">https://arxiv.org/abs/1505.05121</a>
+(本文で確認: 要旨 (50〜300 人・2〜10 ha)、6 章「Land use and the local
+carrying capacity」(畑は 5 km 以内・できれば 1〜2 km、家畜は 5 km / 10
+km)、図 6 の説明 (畑のいちばん遠い所 約 0.5 km))</li>
+<li>ネブラスカ大学 エクステンション「Siting Animal Facilities to Reduce
+Neighbor Nuisance」. <a href="https://water.unl.edu/article/animal-manure-management/siting-animal-facilities-reduce-neighbor-nuisance">https://water.unl.edu/article/animal-manure-management/siting-animal-facilities-reduce-neighbor-nuisance</a>
+(抜き書きで確認)</li>
+<li>アーカンソー大学 エクステンション FSA-3007. <a href="https://www.uaex.uada.edu/publications/PDF/FSA-3007.pdf">https://www.uaex.uada.edu/publications/PDF/FSA-3007.pdf</a>
+(抜き書きで確認。「におい・ほこりは風で運ばれるので、風下の距離を大きく」)</li>
+<li>The Open University (OpenLearn Create)「16.5 Sanitary survey of
+wells」(WHO 1997 の飲み水の手引きを引く). <a href="https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=203&amp;section=1.7">https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=203&amp;section=1.7</a>
+(抜き書きで確認。「ふつう 15 m より近くしない」)</li>
+<li>WEDC (ラフバラー大学)「P056 Safe location of a water point」. <a href="https://wedc-knowledge.lboro.ac.uk/resources/posters/P056_Safe_location_of_a_water_point.pdf">https://wedc-knowledge.lboro.ac.uk/resources/posters/P056_Safe_location_of_a_water_point.pdf</a>
+(検索結果に出た。30 m の点検半径は WHO 由来の点検表の抜き書き)</li>
+<li>UNHCR Emergency Handbook (キャンプの計画). <a href="https://emergency.unhcr.org/node/620">https://emergency.unhcr.org/node/620</a>
+(抜き書きで確認。Sphere の「300 m ごとに 30 m の防火帯」。50 m とする
+UNHCR の資料もあり、数字は資料でちがう)</li>
+<li>CCCM Cluster「Fire Safety Guidelines v2.2」. <a href="https://www.cccmcluster.org/sites/default/files/2020-11/CCCM%20Fire%20Safety%20Guidelines%20-%20v2.2%20250420.pdf">https://www.cccmcluster.org/sites/default/files/2020-11/CCCM%20Fire%20Safety%20Guidelines%20-%20v2.2%20250420.pdf</a>
+(検索結果に出た。建物の間 2 m 以上・高さの 2 倍は
+UNHCR/シェルター・クラスターの基準表の抜き書き)</li>
+</ol>
+<h3 id="確かめきれなかったこと-まとめ">確かめきれなかったこと
+(まとめ)</h3>
+<ul>
+<li>まだ確かめられないこと:
+アイン・マラッハの広さと人数・斜面の並び、チザムの本そのものの中の数字、テル・アバダの倉と水の管、ウルクのエアンナの広さ、デイル・エル・メディーナの「20
+軒 → 120 軒・600 人」、韓国の論文 [30]
+の題名、遺跡の層の「どの報告か」(縄文の輪は Wikipedia 経由で谷口 2005
+にたどれたが、本は読めていない)。</li>
+<li>2026-11-27 夕方の読み直しで、本文で確かめたもの: [1](Wikipedia 部分)
+[7](Wikipedia 部分) [8] [9] [10] [12](Wikipedia 部分) [13]
+[24](Wikipedia 部分) [28] [33] [51](Wikipedia 部分) [52](Wikipedia 部分)
+[58]。直したもの: テル・アバダの建物
+A、ローマの農家の牛小屋と火、ソルテアの家の数と人数、!クンのキャンプのさしわたし
+(出典が見つからず消した)、アイン・マラッハの家の説明。UNESCO・Britannica・PMC・World
+History Encyclopedia
+などは、この場所からは機械よけの画面や接続拒否で開けず、抜き書きのまま。</li>
+</ul>
+</body>
+</html>
