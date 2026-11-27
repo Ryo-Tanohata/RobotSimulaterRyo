@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "おれは狩りが得意だから、林でけものを追って肉を蓄えに入れる。みんなも無理せず働こう。"}],
+ "year": {
+  "夏": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りの腕が一番高く、肉で村の食べ物を増やせるから"}, "family": {"タユ163": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、夏は実りが多いから"}, "ヒセ163": {"activity": "狩り", "place": "東林12", "why": "狩りを兄と一緒に覚えるため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "南林12", "with": [], "why": "秋のうちに肉を蓄えて冬にそなえる"}, "family": {"タユ163": {"activity": "採集", "place": "西草原12", "why": "秋の実りを集めるため"}, "ヒセ163": {"activity": "狩り", "place": "南林12", "why": "肉を蓄えるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "冬も獣はいるので肉を取る"}, "family": {"タユ163": {"activity": "採集", "place": "西草原12", "why": "冬でも取れる物を探すため"}, "ヒセ163": {"activity": "狩り", "place": "東林12", "why": "冬の肉を増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "北林12", "with": [], "why": "続けて肉を取り蓄えを守る"}, "family": {"タユ163": {"activity": "採集", "place": "西草原12", "why": "春の草や実を集めるため"}, "ヒセ163": {"activity": "狩り", "place": "北林12", "why": "狩りの腕を上げるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"テナ171": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": "なし",
+ "trade": {"T1500": false, "T1501": false, "T1502": false, "T1503": false, "T1504": false, "T1505": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "狩りの年",
+ "feeling": "体はかるい。狩りで村の役に立ちたい。"}

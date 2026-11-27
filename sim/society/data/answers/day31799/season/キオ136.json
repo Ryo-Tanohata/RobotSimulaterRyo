@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "道具なら任せて。鎌も打ち直しも、手が動くうちはわたしがやるよ。みんなで顔を合わせて、のんびり働こうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕がいちばんの得意だから、刈り入れ前に鎌をそろえる"}, "family": {"ヌオ136": {"activity": "畑仕事", "place": "camp", "why": "夏は実った畑を刈る"}, "キオ139": {"activity": "畑仕事", "place": "camp", "why": "夏は実った畑を刈る"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "夏は実った畑を刈る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "得意の道具づくりを続ける"}, "family": {"ヌオ136": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "キオ139": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "寒い間は家のそばで道具を作る"}, "family": {"ヌオ136": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "キオ139": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "夏の刈り入れに向けて鎌を作る"}, "family": {"ヌオ136": {"activity": "畑仕事", "place": "camp", "why": "最後の草取り"}, "キオ139": {"activity": "畑仕事", "place": "camp", "why": "最後の草取り"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "最後の草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0},
+ "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "鎌を打つ年",
+ "feeling": "みんなが元気で、道具を作れる毎日がありがたい。"}

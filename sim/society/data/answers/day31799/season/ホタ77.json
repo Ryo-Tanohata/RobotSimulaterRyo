@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは十分だ。年寄りのおれは土器と採集で、できることをこつこつ続けるよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。蓄えを守る入れ物をそろえたい"}, "family": {"ルタ79": {"activity": "採集", "place": "camp", "why": "年なので、キャンプのそばで無理なく働く"}, "ルタ82": {"activity": "採集", "place": "camp", "why": "年なので、キャンプのそばで無理なく働く"}}, "pick": 0, "plant": 0, "harvest": 20, "eat_goat": 0},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "続けて土器を作り、冬に備える"}, "family": {"ルタ79": {"activity": "採集", "place": "camp", "why": "無理のない仕事を続ける"}, "ルタ82": {"activity": "採集", "place": "camp", "why": "無理のない仕事を続ける"}}, "pick": 0, "plant": 0, "harvest": 20, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "休む", "place": "camp", "with": [], "why": "寒い冬は年寄りの体を休める"}, "family": {"ルタ79": {"activity": "休む", "place": "camp", "why": "寒さで体をこわさないように"}, "ルタ82": {"activity": "休む", "place": "camp", "why": "寒さで体をこわさないように"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "あたたかくなったら土器づくりにもどる"}, "family": {"ルタ79": {"activity": "採集", "place": "camp", "why": "無理のない仕事を続ける"}, "ルタ82": {"activity": "採集", "place": "camp", "why": "無理のない仕事を続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "小さな子が多く亡くなった年",
+ "feeling": "蓄えは多いが、小さな子が亡くなったのがつらい。皆で支え合いたい。"}
