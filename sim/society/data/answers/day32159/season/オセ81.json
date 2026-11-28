@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "わしは歳をとったが、ののこ番の持ち場はまだ守る。みんな、冬の前に板と食べ物をたくわえておこう。"}],
+ "year": {
+  "夏": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "ののこ番だから、続けて板をひく"}, "family": {"ロワ83": {"activity": "水の作業場で働く", "place": "M26", "why": "ののこ番を続ける"}, "ヒセ88": {"activity": "狩り", "place": "東林12", "why": "狩りの腕が良く、肉をとれる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "ののこ番だから、続けて板をひく"}, "family": {"ロワ83": {"activity": "水の作業場で働く", "place": "M26", "why": "ののこ番を続ける"}, "ヒセ88": {"activity": "狩り", "place": "東林12", "why": "冬にそなえて肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "冬も板をひく"}, "family": {"ロワ83": {"activity": "水の作業場で働く", "place": "M26", "why": "ののこ番を続ける"}, "ヒセ88": {"activity": "狩り", "place": "南林12", "why": "冬も魚やけものはいる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "ののこ番を続ける"}, "family": {"ロワ83": {"activity": "水の作業場で働く", "place": "M26", "why": "ののこ番を続ける"}, "ヒセ88": {"activity": "狩り", "place": "東林12", "why": "狩りで肉をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"テナ175": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M642": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1528": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその群れのテナ175とラニ175が北西の村から来て、ここで暮らしたいと言った", "because": [8838446], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜にザガが出るので、キャンプから離れない決まりは身を守る"}],
+ "year_name": "ゆるしと板の年",
+ "feeling": "歳はとったが、まだ体は動く。みんなと穏やかに暮らしたい。"}

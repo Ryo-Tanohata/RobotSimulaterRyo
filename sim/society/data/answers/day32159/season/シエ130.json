@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蔵にはたっぷり種がある。今年は夏の刈り入れをしっかりして、冬は水の道の手入れを進めよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"テナ132": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手がいるから"}, "ヒセ137": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手がいるから"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手がいるから"}, "ケセ154": {"activity": "畑仕事", "place": "camp", "why": "刈り入れに人手がいるから"}, "オセ155": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "北林12", "with": [], "why": "秋は木の実がなる。採集は得意だから"}, "family": {"テナ132": {"activity": "採集", "place": "東林12", "why": "木の実を集めて蓄えを厚くする"}, "ヒセ137": {"activity": "採集", "place": "南林12", "why": "木の実を集めて蓄えを厚くする"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"}, "ケセ154": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"}, "オセ155": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "冬は実りがない。手入れが残る水の道を進める"}, "family": {"テナ132": {"activity": "水の道を掘る", "place": "camp", "why": "冬の間に水の道の手入れを進める"}, "ヒセ137": {"activity": "水の道を掘る", "place": "camp", "why": "冬の間に水の道の手入れを進める"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ケセ154": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "オセ155": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "止まっている輪を動かすため"}, "family": {"テナ132": {"activity": "水の輪を直す", "place": "camp", "why": "輪の直しを進める"}, "ヒセ137": {"activity": "水の輪を直す", "place": "camp", "why": "輪の直しを進める"}, "ラニ140": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "ケセ154": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "オセ155": {"activity": "ヤギの世話", "place": "camp", "why": "春は乳がとれるので世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M642": "ゆるす"}, "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蔵の草の種は十分あり、夏の刈り入れと冬の水の道の手入れが今年の大事な仕事だ。", "because": [8793351], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ゆたかな蔵の年",
+ "feeling": "蔵が満ちていて心強い。刈り入れと手入れをがんばりたい。"}

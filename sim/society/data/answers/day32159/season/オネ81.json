@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蔵にはたっぷり種がある。この1年も、夏の刈り入れをしっかりして、冬は無理せず草取りをしよう。子どもたちには字と畑を教えたいねえ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実が落ちるので、まず刈り入れをする"}, "family": {"ラニ87": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る人手がいる"}, "シエ95": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る人手がいる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして、畑の実りを増やす"}, "family": {"ラニ87": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "シエ95": {"activity": "採集", "place": "camp", "why": "秋の木の実を集めて蓄えを厚くする"}}, "pick": 10, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 200},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りをして、実りを守る"}, "family": {"ラニ87": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守る"}, "シエ95": {"activity": "狩り", "place": "camp", "why": "冬も魚やけものはいるので、食べ物を足す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りをして、夏の実りにそなえる"}, "family": {"ラニ87": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りにそなえる"}, "シエ95": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ、乳もとれる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": ["秋"], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たくさん刈った年",
+ "feeling": "蔵が満ちていて安心。子どもたちが元気に育ってほしい。"}

@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑をしっかり刈って、秋に種をまこう。草取りも忘れずにね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"ホタ135": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを一緒にするため"}, "タユ149": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを一緒にするため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで実りを保つため"}, "family": {"ホタ135": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"}, "タユ149": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けると実りが減らないから"}, "family": {"ホタ135": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}, "タユ149": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りに向けて草取りを続けるため"}, "family": {"ホタ135": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}, "タユ149": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏は実った畑を刈り、秋に千つかみまいて、秋から春は草取りをすると蓄えが保てる。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "いつも通り畑を守って、静かに過ごしたい。"}

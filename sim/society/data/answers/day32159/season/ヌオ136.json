@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は刈り入れの季節だ。みんなで畑を刈りきろう。わたしは道具の腕を生かして、止まっている水の輪を直すよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "道具の腕があるので、止まっている水の輪を直して粉ひきの手間を減らしたい"}, "family": {"キオ139": {"activity": "畑仕事", "place": "camp", "why": "夏は畑を刈らないと落ちてしまう"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "夏は畑を刈らないと落ちてしまう"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れが大きく残っていて、悪い年の備えになる"}, "family": {"キオ139": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので帳をつける"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを守る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の輪を直す", "place": "camp", "with": [], "why": "冬は畑も木の実もないので、道具の仕事に力を使う"}, "family": {"キオ139": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので帳をつける"}, "セヤ144": {"activity": "字を教える", "place": "camp", "why": "子に字を教えて読める人を増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れを少しずつ進める"}, "family": {"キオ139": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"テナ175": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M642": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1528": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "水の輪がよみがえる年",
+ "feeling": "村はにぎやかで、やることが多い。体はまだ元気なので、腕を生かして役に立ちたい。"}

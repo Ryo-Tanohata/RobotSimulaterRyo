@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。夏は刈れるだけ刈り、秋からは腕のある者は狩りに出よう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が残っている。夏のうちに刈らないと落ちてしまう"}, "family": {"ホミ76": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手が要る"}, "ヒセ77": {"activity": "畑仕事", "place": "camp", "why": "畑を刈る手が要る"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りの腕は満点。秋の林は獲物が多い"}, "family": {"ホミ76": {"activity": "狩り", "place": "東林12", "why": "狩りの腕がある"}, "ヒセ77": {"activity": "狩り", "place": "東林12", "why": "狩りの腕がある"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "南林12", "with": [], "why": "冬も魚やけものはいる。肉を蓄えに入れる"}, "family": {"ホミ76": {"activity": "狩り", "place": "南林12", "why": "冬の肉を取る"}, "ヒセ77": {"activity": "狩り", "place": "南林12", "why": "冬の肉を取る"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕は満点。鎌を作っておく"}, "family": {"ホミ76": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヒセ77": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "刈り入れの年",
+ "feeling": "蓄えは多く、体も動く。大胆に狩りに出たい。"}

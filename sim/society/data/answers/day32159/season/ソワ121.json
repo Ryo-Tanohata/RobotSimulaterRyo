@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだたっぷり実っているよ。落ちる前に、みんなで毎日刈ろう。小さな子が多く亡くなった年だから、赤ん坊のいる家をたいせつにしよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の畑は落ちる前に刈らないと無駄になる。刈り入れが蓄えを増やす"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "力のある人が畑を刈って蓄えを増やす"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで刈ると早く終わる"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝い、実りを落とさない"}, "シエ158": {"activity": "畑仕事", "place": "camp", "why": "12歳の子も刈り入れを手伝える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道は手入れしないと泥でうまる。来年の実りを守る"}, "family": {"ワユ126": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ大きく残っている"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで来年の実りが増える。赤ん坊のそばでできる"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "草取りで夏の実りを増やす。小さな子のそばで働ける"}, "シエ158": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は冬も草取りをすると実りが増える"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りで来年の実りを増やす"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "草取りは家ごとにするのが大事"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けて実りを守る"}, "シエ158": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けると夏の実りが10割に近づく"}, "family": {"ワユ126": {"activity": "水の輪を直す", "place": "camp", "why": "止まっている水の輪を回して粉ひきを助ける"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "春の草取りで実りを増やす"}, "シエ158": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"テナ175": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M642": "ゆるす"}, "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {"T1528": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null,
+ "pact": [], "help": [{"to": "N7", "草の種": 1300}, {"to": "N10", "草の種": 1100}, {"to": "N14", "草の種": 800}], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "夏は家族みんなで刈ろう。秋は水の道を掘り、まいた畑の草取りを忘れずに", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "苦しい村には、蓄えが多いときに草の種を分けると助け合いになる", "because": [8815522], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "小さな子を見送った年",
+ "feeling": "小さな子が多く亡くなってさみしい。でも畑は実っている。みんなで刈って、赤ん坊を守りたい。"}

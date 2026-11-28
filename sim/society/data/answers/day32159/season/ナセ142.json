@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "畑がたくさん実っているね。夏のうちに、みんなで刈ってしまいましょう。落ちる前にね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": ["シエ142"], "why": "実った畑が落ちる前に、刈り入れを手伝うため"}, "family": {"シエ142": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに畑を刈るため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": ["シエ142"], "why": "板をひいて、水の道や輪の手入れを助けるため"}, "family": {"シエ142": {"activity": "水の作業場で働く", "place": "M6", "why": "板づくりを手伝うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "水の作業場で働く", "place": "M6", "with": ["シエ142"], "why": "冬も板をひいて、手入れを進めるため"}, "family": {"シエ142": {"activity": "水の作業場で働く", "place": "M6", "why": "板づくりを手伝うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": ["シエ142"], "why": "草取りをして、畑の実りを増やすため"}, "family": {"シエ142": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}
+ },
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": "ゆるす", "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りを刈る年",
+ "feeling": "畑が豊かで安心。みんなで仲よく働きたい。"}

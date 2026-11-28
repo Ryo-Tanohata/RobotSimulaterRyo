@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "ヤギが草よりも多い。夏のはじめに十頭あまりをつぶして、干し肉にしよう。わしは先に畑へ出る。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ムイ97": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番として板をひく"}, "ヌオ101": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの手を増やす"}, "オセ118": {"activity": "字を教える", "place": "camp", "why": "子に字を教える"}}, "pick": 10, "plant": 0, "harvest": 60, "eat_goat": 12},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りと刈り入れ"}, "family": {"ムイ97": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "ヌオ101": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ残っている"}}, "pick": 10, "plant": 0, "harvest": 60, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで来年の実りを増やす"}, "family": {"ムイ97": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "ヌオ101": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続ける"}, "family": {"ムイ97": {"activity": "水の作業場で働く", "place": "M6", "why": "のこ番を続ける"}, "ヌオ101": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれ、乳がとれる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"テナ175": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M642": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草の分(約110頭)より多い167頭いる。つぶして肉にしないと、やせて減る。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "ヤギ多き年",
+ "feeling": "体はまだ動く。畑でもうひと働きしたい。"}

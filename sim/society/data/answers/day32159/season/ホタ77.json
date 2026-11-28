@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "夏の畑は、落ちる前に刈ってしまおう。ヤギは草より多いから、少しつぶして減らそうな。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちる。老いても手は動くので刈り入れを手伝う"}, "family": {"ルタ79": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを急ぐため"}, "ルタ82": {"activity": "畑仕事", "place": "camp", "why": "畑の刈り入れを急ぐため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 30},
+  "秋": {"job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。ふたの合う土器を焼いて蓄えを守る"}, "family": {"ルタ79": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の世話のため"}, "ルタ82": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の世話のため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをして来年の実りを増やす"}, "family": {"ルタ79": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ルタ82": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて、次の夏の畑を実らせる"}, "family": {"ルタ79": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "ルタ82": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal_store": [],
+ "accept": {"テナ175": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M642": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1528": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "夏の畑は多く実っていて、落ちる前に刈る。ヤギは草より多いので、つぶして減らし、よそのヤギは受けない。", "because": [8838423, 8838434], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1508", "against": "", "agree": true, "reason": "土器は蓄えを守るので良い決まり"},
+  {"id": "L1509", "against": "", "agree": true, "reason": "水の道の手入れはまだ多く残っている"},
+  {"id": "L1510", "against": "", "agree": true, "reason": "来年の畑に水が届くようにしたい"},
+  {"id": "L1511", "against": "", "agree": true, "reason": "草取りをすれば来年も実る"},
+  {"id": "L1512", "against": "", "agree": true, "reason": "水の道の手入れと貸し借りの記録は大事"},
+  {"id": "L1513", "against": "", "agree": true, "reason": "ヤギが草より多いので受けないほうがよい"},
+  {"id": "L1514", "against": "", "agree": true, "reason": "家のない家は助け合って建てるのがよい"},
+  {"id": "L1515", "against": "", "agree": true, "reason": "蓄えが十分あるあいだは苦しい村を助けたい"}],
+ "year_name": "畑の実りが多い年",
+ "feeling": "蓄えは十分で、ほっとしている。今年も体を動かして働こう。"}
