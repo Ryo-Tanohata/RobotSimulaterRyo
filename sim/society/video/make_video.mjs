@@ -57,6 +57,20 @@ function slimData(days) {
     for (const ln of fs.readFileSync(f, "utf8").split("\n")) if (ln.includes('"育つ"')) { const e = JSON.parse(ln); if (e.type === "育つ" && e.day <= maxDay) S.grow.push({ day: e.day, text: e.text }); }
   }
   for (const e of D.events || []) if (e.type === "育つ" && e.day <= maxDay && !S.grow.some((g) => g.day === e.day && g.text === e.text)) S.grow.push({ day: e.day, text: e.text });
+  // 家の倉 (2026-11-28、G4V の houseBuild から): 季節の終わりごとの家の蓄え (records/season_household.jsonl の store) を、家の名前ごとに [季節のはじめの日, 量] で。前の動画は使わない
+  S.stores = {};
+  {
+    const hf = path.join(DATA, "records", "households.json"), sf = path.join(DATA, "records", "season_household.jsonl");
+    if (fs.existsSync(hf) && fs.existsSync(sf)) {
+      const nm = Object.fromEntries(JSON.parse(fs.readFileSync(hf, "utf8")).map((h) => [h.id, h.name]));
+      for (const ln of fs.readFileSync(sf, "utf8").split("\n")) {
+        if (!ln) continue;
+        const m = /"season_end_day":(\d+)/.exec(ln); if (!m || +m[1] < minDay - 30 || +m[1] > maxDay + 30) continue;
+        const r = JSON.parse(ln), n = Object.values(r.store || {}).reduce((a, b) => a + b, 0), name = nm[r.household_id];
+        if (name && n > 0) (S.stores[name] = S.stores[name] || []).push([r.season_end_day - 29, Math.round(n)]);
+      }
+    }
+  }
   // 飼っているヤギの数 (2026-11-25、v2 の動物から): 季節の終わりごとの頭数 (records/season_village.jsonl)。前の動画は使わない
   S.goats = [];
   const sv = path.join(DATA, "records", "season_village.jsonl");

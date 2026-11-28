@@ -57,6 +57,20 @@
     obstCache.delete(P);  // 小屋も、よける物に入れ直す
     return T;
   }
+  // houseBuild (G4V から): その日にある家族の家 (記録の houses)。c = まん中 (マス)、w = 描く幅 (replay3d.js の housesOn と同じ)、built = できているか
+  function famHouses(P) {
+    if (!M.opts2.houseBuild || !M.world) return [];
+    return (M.world.houses || []).filter((H) => H.at && H.v.start <= P.day && !(H.v.left != null && H.v.left <= P.day)).map((H) => {
+      const done = H.v.built != null && H.v.built <= P.day, size = done ? ((H.v.sizes || []).filter((x) => x[0] <= P.day).pop() || [0, 20])[1] : 20;
+      return { home: H.v.household, c: { x: H.at.x + 0.5, y: H.at.y + 0.5 }, w: 0.9 + Math.sqrt(Math.max(size, 20)) / 5, built: done };
+    });
+  }
+  // 家の倉 (記録: 季節ごとの家の蓄え records/season_household の store。make_video の SLIM が D.stores に入れる)。その日に蓄えのある家だけ、家の北に高床の倉を描きそえる
+  function storeOn(P, home) {
+    const L = (M.D.stores || {})[home]; if (!L) return false;
+    const r = L.filter((x) => x[0] <= P.day).pop(); return !!(r && r[1] > 0);
+  }
+  const granaryAt = (h) => ({ x: h.c.x, y: h.c.y - (h.w * 0.375 + 0.75) });
   // ヤギの囲いのまん中 (描きそえ)。キャンプの南東。houseBuild (G4V から) のときは、家族の家にかからない所へずらす (2026-11-27 本人「家がヤギの囲いにかかっている」)
   function penSpot(P, R) {
     const D = M.D, fire = { x: D.camp.x + 0.5, y: D.camp.y + 0.5 }, base = { x: fire.x + 4.5, y: fire.y + 4.0 };
@@ -100,6 +114,10 @@
     const gs = (D.goats || []).find((g) => P.day >= g.from && P.day <= g.to), ng = Math.min(30, D.goatDay && D.goatDay[P.day] != null ? D.goatDay[P.day] : gs ? gs.n : 0);
     if (ng > 0) { const q = penSpot(P, 1.2 + 0.25 * Math.sqrt(ng)); O.push({ x: q.x, y: q.y, r: 1.5 + 0.25 * Math.sqrt(ng) }); }  // ヤギの囲い
     if (tentCache.has(P)) for (const t of tentCache.get(P)) O.push({ x: t.pt.x, y: t.pt.y, r: 1.25 });  // 家族の小屋
+    for (const h of famHouses(P)) {  // houseBuild: 家族の家 (と倉) に人がめり込まない (2026-11-28 本人「家と人間がかぶっている」)
+      O.push({ x: h.c.x, y: h.c.y, r: h.w * 0.6 + 0.25 });
+      if (h.built && storeOn(P, h.home)) { const g = granaryAt(h); O.push({ x: g.x, y: g.y, r: 0.6 }); }
+    }
     obstCache.set(P, O);
     return O;
   }
@@ -414,6 +432,13 @@
       add({ t0: t + 0.1, clip: "idle", mode: "pp", hide: true, ...still(tent.door, face(tent.door, tent.pt)) });
       return E;
     }
+    const own = famHouses(P).find((h) => h.built && h.home === p.home);
+    if (own) {  // houseBuild: 自分の家族の家ができていれば、その家の戸口 (焚き火のがわ) まで歩いて入る (2026-11-28 本人「家が増えているのに皆 1 つの家に行く」)
+      const a = Math.atan2(fire.y - own.c.y, fire.x - own.c.x), door = { x: own.c.x + Math.cos(a) * (own.w * 0.5 + 0.35), y: own.c.y + Math.sin(a) * (own.w * 0.5 + 0.35) };
+      t = walkTo(door, seg.night.v0 + 0.5 + 0.35 * p.i);
+      add({ t0: t + 0.1, clip: "idle", mode: "pp", hide: true, ...still(door, face(door, own.c)) });
+      return E;
+    }
     if (hutOn) {  // 住まいがある夜: 戸口まで歩いて、中に入る (見えなくなる)
       const a = Math.atan2(fire.y - hutC.y, fire.x - hutC.x), door = { x: hutC.x + Math.cos(a) * 1.5, y: hutC.y + Math.sin(a) * 1.5 };
       t = walkTo(door, seg.night.v0 + 0.5 + 0.6 * p.i);
@@ -479,7 +504,23 @@
 
   // houseBuild (G4V から): 家族の家を建てている日は、記録の「でき具合 約 N 割」まで、昼のあいだに柱 → 壁が少しずつ高くなる。できた日は屋根がのる
   //   (replay3d.js の housesOn が決めた大きさを、毎コマ上書きする。広さは記録のまま)
+  function granaries(P) {  // 家の倉 (描きそえ): 4 本の柱の上に丸い倉と、とんがり屋根
+    if (M.granP === P) return;
+    if (M.granG) M.scene.remove(M.granG);
+    M.granP = P; M.granG = new THREE.Group();
+    const wd = new THREE.MeshLambertMaterial({ color: 0x6b4a2e }), wall = new THREE.MeshLambertMaterial({ color: 0xa88a5c }), roof = new THREE.MeshLambertMaterial({ color: 0x8a6a3a });
+    for (const h of famHouses(P)) {
+      if (!h.built || !storeOn(P, h.home)) continue;
+      const g = new THREE.Group(), q = granaryAt(h); g.position.copy(M.w2t(q.x, q.y));
+      for (const [x, z] of [[-0.22, -0.22], [0.22, -0.22], [0.22, 0.22], [-0.22, 0.22]]) { const pl = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.04, 0.4, 5), wd); pl.position.set(x, 0.2, z); g.add(pl); }
+      const body = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.36, 0.5, 10), wall); body.position.y = 0.66; g.add(body);
+      const top = new THREE.Mesh(new THREE.ConeGeometry(0.48, 0.4, 10), roof); top.position.y = 1.11; g.add(top);
+      M.granG.add(g);
+    }
+    M.scene.add(M.granG);
+  }
   function houseGrowth(P, v) {
+    granaries(P);
     const ev = (P.builds || P.work || []).filter((e) => e.type === "住まい"), seg = P.segs.find((s) => s.key === "work") || P.segs[2];
     const u = clamp((v - seg.v0) / Math.max(1, seg.v1 - seg.v0));
     for (const H of M.world.houses || []) {
@@ -688,7 +729,7 @@
     }
     if (e.type === "蓄える") return "蓄えに入れる";
     if (e.type === "蓄えから取る") return "蓄えから取る";
-    const s = t.replace(new RegExp("^" + (e.who || "") + "\\s*(が|は)?\\s*"), "").replace(/\s*\(.*?\)/g, "");
+    const s = t.replace(new RegExp("^" + (e.who || "") + "\\s*(が|は)?\\s*"), "").replace(/^[、,]\s*/, "").replace(/\s*\(.*?\)/g, "");
     return s.length > 16 ? s.slice(0, 15) + "…" : s;
   }
   const bubbleSched = new WeakMap();
