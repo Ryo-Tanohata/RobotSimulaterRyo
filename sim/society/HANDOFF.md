@@ -3,6 +3,20 @@
 クラウドのセッションから、自分の PC の Claude Code (Desktop アプリ、または `claude remote-control`) に引き継ぐためのメモ。
 進め方の決まりは `daily_run.md` (Society 2.0 の手順・全員が亡くなったら戻してやり直す決まり・作者の決まり など) を見る。
 
+## 2026-11-28 クラウドに引き継いだ (本人は外出。本人の PC で G4V・G4F1V・G4F2V を撮ったあと)
+
+- 本人の PC でしたこと: G4V 540.9 秒・G4F1V 280.6 秒・G4F2V 250.6 秒を内蔵 GPU で撮った (壁の直し dbba6bad9 入り。mp4 は PC の `sim/society/app/` だけ。YouTube はまだ)。
+  G7・G8 の 3D 版 (3.3〜3.5) は PC で 300 秒まで撮って止めた (PC の `video/out/` に区間)。G8F2・G8F3・G8b はまだ。どれも PC でする。
+- クラウドのブランチは `claude/nice-clarke-vidyio` (クラウドの決まりで、ここにだけ push する)。本人の許しがあれば `claude/physics-engine-robot-simulator-xmyxdn` に入れる。
+- 本人の返事がなかったので、おすすめで進めた:
+  - **1 年回す台本 `sim/society/tools/run_year.sh`** (前の `/tmp/yearend.sh`・`/tmp/yrcheck.sh` は入れ物が替わって消えていたので、この HANDOFF の手順から作り直した)。
+    季節のワークフロー (`society2_seasons_workflow.js` を `run_workflow.mjs` で。`{"mode":"year","years":1,"py":"python3.13","fable":["オセ78"]}`・係は 8 人ずつ) → 年の終わりなら 年報 → 解説の係 → 年報を作り直す → 統計のページ → 年報の動画の絵コンテ → コミット (push はしない)。
+    `--yearend Y [T]` で年の終わりの手順だけ。動かし方: `CLAUDE_SESSION_URL=<この会話の URL> setsid nohup bash sim/society/tools/run_year.sh > /tmp/run_year_main.log 2>&1 &`
+  - `run_workflow.mjs` が係のトークン (入力・出力・キャッシュの読み書きの合わせ) を数える (`RUN_WF_TOKENS`)。年報の「この年のトークン」はこの数 (前は Workflow の数を丸めたもの)。
+  - 267年の年報の動画の絵コンテ (`storyboards/storyboard_yearly_267.json`・206 秒)。終わりの文の「「…」ことは」を「「…」のことは」に直した (`yearly/script.py`)。
+  - 新しい入れ物で要ったもの: `python3.13 -m pip install matplotlib pillow` (年報の動画の図)・VOICEVOX (`tools/voicevox/setup.sh /tmp/vv` と 2・12・21.vvm)。
+- 本人に決めてもらうことが残っているもの: G4 の 3 本を YouTube に上げるか (PC から) / 年報の動画 252〜267年の本番 (go) / クラウドの作業を xmyxdn に入れてよいか。
+
 ## 2026-11-24 年報の動画 (1 年 1 本・2〜3 分。係も村の人で、人ごとの声。本人の決め。data は読むだけ)
 
 - 本人の決め: 声は「まずはボイスボックス (VOICEVOX) でいいです」・係も村人にする・1 年 1 本 2〜3 分・**先に絵コンテ、本人の「go」のあとで本番** (§3 の決まり)。
