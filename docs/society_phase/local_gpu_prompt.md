@@ -57,6 +57,7 @@
 本人「家を建てるモーションが入っている動画がなく…そこの動画があればすぐ見たい」。クラウドで見せ方を直した (`houseBuild`)。
 1. `git pull`。G4 の人のモデルは作らなくてよい (2026-11-28 から、非公開の素材のリポジトリ `Ryo-Tanohata/kawabe-assets` に置いてある)。`render_all.sh` が札 `sim/society/assets.json` を読み、`sim/society/tools/fetch_assets.sh g4` で `.kawabe_work/assets/` に自動で取ってくる (本人の GitHub のログインで読める)。
 2. 絵コンテ: `bash sim/society/video/render_all.sh --storyboard G4V` → `video_review_loop.md` の見直し。とくに K6 (建てる様子)・K1/K16 (家にめり込む・すり抜け)・家が柱 → 壁 → 屋根とできていくか (1591 日目 フウの家 1 割、1625 日目 フウの家ができる、1636 日目 ナギの家ができる、1680 日目 トワの家を建てはじめ)。
-3. 本番: `bash sim/society/video/render_all.sh G4F1V G4F2V` (G4V は 2026-11-28 にクラウドで撮った)。
+3. 本番 (2026-11-28 の直しのあと。本人「撮影はローカルの GPU でしたい」): `bash sim/society/video/render_all.sh G4V G4F1V G4F2V`。
+   G4V は、家と人が重ならない・家ごとの倉・夜は家族ごとに自分の家へ、を直した版 (絵コンテ `storyboards/storyboard_G4V.json` はクラウドで確かめずみ)。前にクラウドで撮った G4V は古いので、撮り直す。
 
 --- ここまで ---
