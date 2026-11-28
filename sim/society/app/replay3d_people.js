@@ -70,7 +70,7 @@
     const L = (M.D.stores || {})[home]; if (!L) return false;
     const r = L.filter((x) => x[0] <= P.day).pop(); return !!(r && r[1] > 0);
   }
-  const granaryAt = (h) => ({ x: h.c.x, y: h.c.y - (h.w * 0.375 + 0.75) });
+  const granaryAt = (h) => ({ x: h.c.x, y: h.c.y - (h.w * 0.375 + 0.95) });
   // ヤギの囲いのまん中 (描きそえ)。キャンプの南東。houseBuild (G4V から) のときは、家族の家にかからない所へずらす (2026-11-27 本人「家がヤギの囲いにかかっている」)
   function penSpot(P, R) {
     const D = M.D, fire = { x: D.camp.x + 0.5, y: D.camp.y + 0.5 }, base = { x: fire.x + 4.5, y: fire.y + 4.0 };
@@ -314,6 +314,7 @@
     if (builder) {  // v2: 住まいを建てた人は、住まいのまわりで柱を立てる・組む (のり出す・背のび・手渡し)
       const a = Math.atan2(fire.y - bc.y, fire.x - bc.x) + 0.9 + p.i * 1.1;
       p.spot = { x: bc.x + Math.cos(a) * br, y: bc.y + Math.sin(a) * br };
+      if (HB) p.spot = pushOut(P, p.spot);  // となりの家や倉にめり込まない
     }
     let here = ring;
     const walk1 = (to, t0) => {
@@ -511,7 +512,7 @@
     const wd = new THREE.MeshLambertMaterial({ color: 0x6b4a2e }), wall = new THREE.MeshLambertMaterial({ color: 0xa88a5c }), roof = new THREE.MeshLambertMaterial({ color: 0x8a6a3a });
     for (const h of famHouses(P)) {
       if (!h.built || !storeOn(P, h.home)) continue;
-      const g = new THREE.Group(), q = granaryAt(h); g.position.copy(M.w2t(q.x, q.y));
+      const g = new THREE.Group(), q = granaryAt(h); g.position.copy(M.w2t(q.x, q.y)); g.scale.setScalar(1.4);
       for (const [x, z] of [[-0.22, -0.22], [0.22, -0.22], [0.22, 0.22], [-0.22, 0.22]]) { const pl = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.04, 0.4, 5), wd); pl.position.set(x, 0.2, z); g.add(pl); }
       const body = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.36, 0.5, 10), wall); body.position.y = 0.66; g.add(body);
       const top = new THREE.Mesh(new THREE.ConeGeometry(0.48, 0.4, 10), roof); top.position.y = 1.11; g.add(top);
