@@ -506,7 +506,7 @@
       H.g.visible = !!v;
       if (!v) continue;
       const w = 0.9 + Math.sqrt(Math.max(v.size, 20)) / 5, d = w * 0.75, h = v.built ? 0.9 : 0.35;
-      H.wall.scale.set(w, h, d); H.wall.position.y = h / 2;
+      H.wall.visible = true; H.wall.scale.set(w, h, d); H.wall.position.y = h / 2;  // 家づくりの見せ方 (houseGrowth) が前の日に消した壁を、毎コマもどす
       H.roof.visible = v.built; H.roof.scale.set(w + 0.2, 1, d + 0.2); H.roof.position.y = h + 0.06;
       H.stove.visible = v.built && H.stoveDay !== null && H.stoveDay <= day; H.stove.position.set(w * 0.3, h + 0.3, d * 0.25);
     }
