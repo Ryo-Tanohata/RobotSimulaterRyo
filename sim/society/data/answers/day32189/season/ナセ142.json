@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、水の道の手入れがまだ大きく残っているね。この秋は、種をまいて、水の道を掘りに出ましょう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ約一万人日も残っていて、蓄えに余裕のある今、手を貸すのがよいと思うから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"シエ142": {"activity": "水の道を掘る", "place": "camp", "why": "畑のない秋は種をまき、手入れの残る水の道を二人で進めたいから"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えが多い秋でも、千つかみまいて、水の道の手入れを続けるのがよい。", "because": [8899989], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1527", "against": "", "agree": true, "reason": "ヤギが草より多いあいだは、よそのヤギを受けないほうが草が足りなくならないから"},
+  {"id": "L1528", "against": "", "agree": true, "reason": "冬の鎌直しと草取りは、夏の刈り入れの助けになるから"},
+  {"id": "L1533", "against": "", "agree": true, "reason": "入れる倉を決めておけば、刈った種のもめごとがへるから"}
+ ],
+ "feeling": "秋の風がここちよい。みんなと働けるのがうれしい。"}

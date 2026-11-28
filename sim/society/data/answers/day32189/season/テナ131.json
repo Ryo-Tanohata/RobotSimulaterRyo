@@ -1,0 +1,20 @@
+{"say": [{"to": "みんな", "text": "この秋から冬は、わたしが石の鎌をこしらえる。刃の欠けた鎌も持ってきて。夏に刈り手が困らないようにしておく。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具づくりはわたしがいちばん得意。鎌が多ければ、夏の刈り入れが倍はかどる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ152": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑は草取りをすると実りが増える。若くて体がよく動くから"}},
+ "keep": false,
+ "judge": {"M643": "つぐなう", "M644": "つぐなう", "M645": "つぐなう"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "欠けた鎌はケセ113の家へ。冬のあいだに直して、夏の刈り手に回す",
+ "order": null,
+ "take": {"頼み": 159, "人": ["テナ131"]},
+ "knowledge": [{"op": "add", "text": "家の倉の燃える石で町の頼みを受ければ、すぐに子の薬がもらえる。うちの小さな娘のために使う", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1532", "against": "燃える石の少ない家はできない", "agree": true, "reason": "小さい子の病はこわい。薬が回れば助かる子が増える"},
+  {"id": "L1533", "against": "板に書く手間がかかる", "agree": true, "reason": "鎌を直して回すのはわたしの得意なことだし、入れる倉を先に決めればもめごとが減る"},
+  {"id": "L1530", "against": "とくにない", "agree": true, "reason": "うちも燃える石で薬をもらう。ヤギは草の分をこえているから受けないほうがいい"},
+  {"id": "L1529", "against": "とくにない", "agree": true, "reason": "ヤギを受けてもやせていなくなるだけ。鎌をこしらえるのは賛成"}
+ ],
+ "feeling": "娘の薬が手に入りそうで、少しほっとしている。あとは鎌をこしらえるだけ"}

@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "うちの畑で刈ってくれた家の分は、うちの倉からちゃんと返すよ。水の道はまだ一万人日も残っているから、秋は掘りに出よう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ一万人日ほど残っていて、秋と冬に掘る人が要るから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "keep": true,
+ "judge": {"M643": "つぐなう", "M644": "つぐなう", "M645": "つぐなう"},
+ "feast": false, "leader": "ヒセ89", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null,
+ "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [],
+ "notice": "よその家の畑で刈った分は、倉の家がつぐなおう。秋と冬は水の道を掘りに出よう",
+ "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "うちの畑で刈ってもらった分のもめごとが、また三つ起きた。量は少ないので、うちの倉からつぐなって早く収めたい", "because": [8899989, 8899990, 8899991], "confidence": 0.7},
+  {"op": "add", "text": "水の道の手入れは、まだ一万人日ほど残っている。水の輪の直しは残っていない", "because": [], "confidence": 0.8}
+ ],
+ "proposal": {"text": "よその家の畑で刈った草の種がその家の倉に入ったら、倉の家は刈った人の家に同じ量を返そう。秋と冬は家ごとに大人一人が水の道を掘りに出よう。", "because": [8899989, 8899990, 8899991], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1527", "against": "オスはもういないので、意味が薄いかもしれない", "agree": true, "reason": "自分で出した案で、ヤギが草の分をこえるのを防ぎたいから"},
+  {"id": "L1526", "against": "つぶしすぎると乳が減る", "agree": true, "reason": "やせて消えるのを待つより、肉にして蓄えに入れるほうがよいから"},
+  {"id": "L1529", "against": "鎌はもう足りているかもしれない", "agree": true, "reason": "よその村のヤギを受けないのは大事だから"},
+  {"id": "L1530", "against": "燃える石の少ない家はできない", "agree": true, "reason": "小さい子を薬で守りたいから"},
+  {"id": "L1531", "against": "止まった水の輪はもう残っていない", "agree": false, "reason": "輪の直しは残っておらず、水の道を掘るほうが役に立つから"},
+  {"id": "L1532", "against": "燃える石の少ない家は加われない", "agree": true, "reason": "小さい子がたくさん亡くなっているから、薬を回したい"},
+  {"id": "L1533", "against": "板に書く手間がかかる", "agree": true, "reason": "入れる倉を先に決めれば、刈る分のもめごとが減るから"}
+ ],
+ "feeling": "うちのせいでもめごとが続くのは申し訳ない。早く返して、水の道を掘りに行こう。"}

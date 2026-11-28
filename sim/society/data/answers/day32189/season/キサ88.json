@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蔵はたっぷりだ。秋の畑にしっかり種をまいて、冬も草取りを欠かさずやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまく畑は冬と春の草取りで実りが増える。経験を生かして畑を守る"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ルタ88": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りは人手があるほど実りが増える"},
+  "ユエ107": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているため"},
+  "ロワ121": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"},
+  "ネイ125": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りをすると実りが増える。蔵は十分にある。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜の安全のため大事な決まり"},
+           {"id": "L16", "against": "", "agree": true, "reason": "疲れたら休むのは大切"}],
+ "feeling": "蔵が満ちていて安心。年を重ねても畑仕事で村の役に立ちたい。"}

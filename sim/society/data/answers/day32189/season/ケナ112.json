@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "蔵の種はたっぷりある。今年も千つかみまいて、冬まで草取りをしよう。残りの日は水の道を掘って、畑を守ろう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ たくさん残っていて、水が来る畑は悪い年でも実りが半分にならないから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ハソ112": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑は草取りで次の夏に多く実る"},
+  "アコ118": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手を足すため"},
+  "ハソ122": {"activity": "狩り", "place": "北草原28", "why": "狩りが得意なので、冬の前に肉を足す"},
+  "セオ134": {"activity": "狩り", "place": "東林28", "why": "狩りが得意なので、冬の前に肉を足す"},
+  "ハソ136": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で、畑の草取りを手伝う"},
+  "アコ138": {"activity": "狩り", "place": "南林28", "why": "狩りが得意なので、冬の前に肉を足す"},
+  "キオ147": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道の手入れを進める"},
+  "ソワ147": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道の手入れを進める"},
+  "ヒセ150": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"},
+  "トナ158": {"activity": "畑仕事", "place": "camp", "why": "草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蔵が満ちていて安心だ。種をまいて、冬まで畑と水の道を守りたい。"}

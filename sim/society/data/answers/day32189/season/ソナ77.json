@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "秋の畑にたっぷり種をまこう。わしはのこ番として板をひくよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": ["ケナ79"], "why": "のこ番を続けて板をひき、水の道の手入れの助けにしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ケナ79": {"activity": "水の作業場で働く", "place": "M26", "why": "M26 ののこ番として続ける"},
+  "ムイ112": {"activity": "畑仕事", "place": "camp", "why": "秋にまく畑の草取りで実りを増やす"},
+  "オネ112": {"activity": "水の作業場で働く", "place": "M26", "why": "板をひいて水の道の手入れを助ける"},
+  "ソナ114": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"},
+  "ケセ117": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだたくさん残っている"},
+  "オセ146": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りをする"},
+  "ケナ150": {"activity": "水の作業場で働く", "place": "M26", "why": "板ひきを覚えて働き手になる"},
+  "ソナ151": {"activity": "水の作業場で働く", "place": "M26", "why": "板ひきを覚えて働き手になる"},
+  "テナ155": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝う"}
+ },
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりで安心。年は取ったが、のこ番の仕事を続けるのが楽しい。"}

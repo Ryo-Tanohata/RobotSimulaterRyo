@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋じゃ。畑に種をまいて、冬の前にのこの小屋で板をひいておこう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番として続けて板をひき、水の道の手入れと家の板を増やすため"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ホミ91": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場を続ける"}, "ラキ92": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番の持ち場を続ける"}, "アコ96": {"activity": "畑仕事", "place": "camp", "why": "秋にまく畑の草取りで実りを守るため"}, "トナ102": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やすため"}, "ハソ107": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ残っているため"}, "ケナ116": {"activity": "採集", "place": "camp", "why": "冬にそなえて食べ物を集める"}, "ケナ137": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道の手入れを進める"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは怖いので、今の決まりのままがよい"}],
+ "feeling": "ののこの音を聞きながら働けるのはありがたい。冬にそなえて気を引きしめたい。"}

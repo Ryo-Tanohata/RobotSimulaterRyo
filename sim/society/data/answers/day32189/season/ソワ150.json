@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "秋だね。冬の前に、みんなで木の実と草の種をしっかり集めておこうよ。"}],
+ "job": {"activity": "採集", "place": "西草原12", "with": ["ネイ95"], "why": "採集が得意で、キャンプに近い草原なら安全で、冬の前に食べ物をためられるから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ネイ150": {"activity": "採集", "place": "西草原12", "why": "得意な採集で、わたしと一緒に冬の食べ物を集めるため"},
+            "ラキ154": {"activity": "採集", "place": "西草原12", "why": "採集の腕が高く、近い草原なら安心して働けるため"},
+            "ソナ154": {"activity": "採集", "place": "西草原12", "why": "採集の腕が高く、家族みんなで同じ場所だと助け合えるため"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "村は食べ物がたっぷりあって安心。みんなと話しながら働くのが楽しみ。"}

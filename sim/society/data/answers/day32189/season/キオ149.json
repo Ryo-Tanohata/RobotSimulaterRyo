@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "村の蓄えはたっぷりある。この秋は畑に種をまいて、水の道の手入れにみんなで手を貸そう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ 10377 人日も残っているので、村の役に立ちたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ヌオ149": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れをみんなで進めるため"}, "ホミ153": {"activity": "字を教える", "place": "camp", "why": "字を読める自分が、キャンプの子に字を教えられるから"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に蓄えの草の種をまいておくと、次の夏にたくさん実る。蓄えが多い今は、まく量を多くしてよい。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "とくになし", "agree": true, "reason": "夜はザガが出るので、キャンプから離れない決まりは守りたい"}],
+ "feeling": "蓄えが多くて安心。体を動かして村の役に立てるのがうれしい。"}

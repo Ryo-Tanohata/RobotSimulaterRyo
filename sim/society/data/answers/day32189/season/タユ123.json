@@ -1,0 +1,23 @@
+{"say": [{"to": "みんな", "text": "刃の欠けた鎌は、わたしのところへ持っておいで。冬の前に、夏の刈り入れに使える鎌にして返すよ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具はわたしがいちばん得意。来年の夏に刈る鎌を今のうちにこしらえておく"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "タユ128": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りをすれば、来年の実りが増える"},
+  "オネ129": {"activity": "畑仕事", "place": "camp", "why": "小さい子のそばにいられるキャンプで草取りをする"},
+  "ラニ131": {"activity": "畑仕事", "place": "camp", "why": "小さい子がいるので、キャンプの畑で働く"},
+  "ケセ131": {"activity": "畑仕事", "place": "camp", "why": "草取りの手が多いほど、来年の夏の種が増える"},
+  "ハソ145": {"activity": "水の道を掘る", "place": "camp", "why": "若くて力があるので、残っている水の道の手入れをする"}
+ },
+ "keep": true,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "刃の欠けた鎌はタユ123の家へ。冬のうちに直して夏の刈り手に回す", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の鎌は4089本ある。わたしは前の季節に鎌を3本作った。冬の前に鎌をそろえておけば夏の刈り入れが楽になる", "because": [8899710], "confidence": 0.8}],
+ "proposal": null,
+ "votes": [
+  {"id": "L1528", "against": "鎌を回す家を選ぶのがもめそう", "agree": true, "reason": "道具の得意な者が鎌を直すのは、わたしにもできる、役に立つ決まりだ"},
+  {"id": "L1533", "against": "板に書く手間がかかる", "agree": true, "reason": "鎌をそろえ、入れる倉を先に決めれば、刈った種のもめごとが減る"},
+  {"id": "L1524", "against": "字の読める人が足りないかもしれない", "agree": true, "reason": "よその家の畑を刈ったときのもめごとが続いているから"},
+  {"id": "L1526", "against": "ヤギが減りすぎるおそれがある", "agree": true, "reason": "やせて消えるのを待つより、肉にして蓄えたほうがよい"}
+ ],
+ "feeling": "手を動かしていれば、それでいい。鎌が一本できるたびに気が晴れる"}

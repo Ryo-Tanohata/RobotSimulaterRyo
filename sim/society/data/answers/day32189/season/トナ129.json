@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。畑に種をまいて、冬にそなえて土器の数を足しておくよ。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕がいちばん高く、蓄えの草の種を虫やネズミから守る器が冬の前に役に立つから"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ハソ129": {"activity": "採集", "place": "東林12", "why": "採集の腕が高く、近い東の林で食べ物を足せるから"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは危ないので、みんなで守るのがよい"},
+           {"id": "L16", "against": "", "agree": true, "reason": "疲れたまま働くとけがをしやすいから"}],
+ "feeling": "おだやかな秋。仲間と畑と土器に向き合える日々がありがたい。"}

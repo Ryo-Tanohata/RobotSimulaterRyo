@@ -1,0 +1,16 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、この秋は水の道を掘って手入れを進めよう。わたしも掘るよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ大きく残っていて、蓄えに余裕のある秋は力を回せるから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "ラニ110": {"activity": "水の道を掘る", "place": "camp", "why": "力があるので水の道の手入れを一緒に進める"},
+  "ケナ122": {"activity": "畑仕事", "place": "camp", "why": "秋にまく畑の世話で来年の実りを増やす"},
+  "ホミ125": {"activity": "畑仕事", "place": "camp", "why": "草取りで畑の実りを守る"},
+  "ケセ134": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、10〜14歳の子に字を教える"},
+  "ムイ144": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道の手入れを進める"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋は蓄えに余裕があるので、水の道の手入れに力を回し、畑には千つかみをまく。", "because": [8899986], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。みんなと働くのが楽しみ。"}

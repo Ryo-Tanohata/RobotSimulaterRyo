@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。おれは土器を焼いて、種が傷まぬよう守るよ。みんな秋の種まきを忘れずにな。"}],
+ "job": {"activity": "土器づくり", "place": "camp", "with": [], "why": "土器の腕には自信がある。土器が増えれば蓄えの草の種が虫やネズミに傷まされにくくなる。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ146": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑は草取りをすると次の夏の実りが増えるので、家の分を手伝ってもらう。"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみまいて、土器をたくさん焼いて蓄えを守るのがよい。", "because": [8899986], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心している。のんびり土器を焼きたい。"}

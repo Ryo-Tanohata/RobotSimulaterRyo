@@ -1,0 +1,19 @@
+{"say": [{"to": "みんな", "text": "わたしは歳をとったが手はまだ動く。この秋も、のこ番の持ち場で板をひくよ。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "のこ番の持ち場だから、続けて板をひいて水の道の手入れを助ける"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "キオ117": {"activity": "畑仕事", "place": "camp", "why": "秋の草取りで来年の実りを増やすため"},
+  "ムイ125": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手伝うため"},
+  "ソワ139": {"activity": "水の作業場で働く", "place": "M26", "why": "板をひいて水の道の手入れを進めるため"},
+  "オネ141": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やすため"},
+  "ナセ151": {"activity": "水の作業場で働く", "place": "M26", "why": "のこの仕事を覚えて板を増やすため"},
+  "トナ153": {"activity": "畑仕事", "place": "camp", "why": "若い力で草取りを進めるため"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": "", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので守るのがよい"},
+  {"id": "L3", "against": "", "agree": true, "reason": "ひとりより助け合えるから"}],
+ "feeling": "体は軽い。秋の仕事をこつこつやりたい"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだ。おれは千つかみ種をまいて、冬までせっせと草取りに通うよ。にぎやかにやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "畑がない秋は千つかみまいて草取りを続けると、次の夏に実ると覚えているから。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"アコ112": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りを一緒にして、次の夏の実りを守るため。"}}, "keep": false,
+ "judge": {}, "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに千つかみまき、秋の草取りに通うと、次の夏に畑がよく実る。毎年くり返すのがよい。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1526", "against": "", "agree": true, "reason": "ヤギが草より多いと、やせて消えてしまうので、先に干し肉にして蓄えるのがよい。"}, {"id": "L1523", "against": "", "agree": true, "reason": "夏にみんなで刈りきり、秋にまいた畑の草取りを続けるのは大事だから。"}, {"id": "L1516", "against": "", "agree": true, "reason": "止まった水の輪はみんなで直したほうがよいから。"}],
+ "feeling": "蓄えはたっぷりで安心。体を動かして、みんなと畑で話すのが楽しみだ。"}

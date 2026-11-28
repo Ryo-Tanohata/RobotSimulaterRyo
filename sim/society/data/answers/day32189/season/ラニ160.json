@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は畑に種をまいて、字を知らない子らに読み書きを教えようと思う。"}],
+ "job": {"activity": "字を教える", "place": "camp", "with": [], "why": "字を読める自分が子に教えれば、村の約束や記録が長く残る。蓄えも十分なので落ち着いて教えられる"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ケセ160": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ大量に残っていて、水が来る畑が実りを守るから"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋は畑に種をまき、冬と春は草取りを。子らには字を教えます", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えが十分な秋は、畑にまいて草取りを続け、子に字を教えるのがよい。", "because": [8899986], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは危ないので、この決まりは大事だと思う"}],
+ "feeling": "たくさんの蓄えに安心して、子らに字を教えるのが楽しみ"}

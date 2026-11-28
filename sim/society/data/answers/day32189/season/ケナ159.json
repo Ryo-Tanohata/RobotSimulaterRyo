@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "おれは北の林で獲物を追う。蓄えはあるが、冬の前に肉があれば安心だ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りが得意で、冬の前に肉を足せるから"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ソナ159": {"activity": "狩り", "place": "北林12", "why": "狩りの腕が確かで、肉を持ち帰れるから"}, "トナ159": {"activity": "帳をつける", "place": "camp", "why": "字が読めるので、家の帳を任せる"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋の林で狩りをして、冬の前に肉を足すのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1533", "against": "", "agree": true, "reason": "鎌を直すのは夏の刈り入れに役立つから"}],
+ "feeling": "体は軽い。久しぶりに林で思いきり狩りをしたい。"}

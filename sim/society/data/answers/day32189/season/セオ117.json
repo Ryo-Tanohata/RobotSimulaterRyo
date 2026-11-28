@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。秋のうちに畑に種をまいて、冬の前に草取りもしっかりやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "採集が得意だけれど、蓄えは十分。秋の草取りで来年の実りを増やしたい"},
+ "sow": 100, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ナセ153": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをして畑の実りを守る"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に畑へ種をまき、草取りをすると、次の夏の実りが増える", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが豊かで落ち着いている。子と働けるのがうれしい"}

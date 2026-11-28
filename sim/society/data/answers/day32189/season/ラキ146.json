@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "水の輪はみんな回るようになった。こんどは水の道だ。畑に水が届く所が広がれば、悪い年でも実りが守れる。秋はおれと一緒に土を掘ろう、にぎやかにやれば早いぞ。"}, {"to": "オセ150", "text": "字の読めるおまえは、子らに字を教えてやってくれ。読める者が増えれば、知らせ板も頼み書きも、みんなの力になる。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の輪の直しは終わったが、水の道の手入れがまだたくさん残っているから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "family": {"オセ150": {"activity": "字を教える", "place": "camp", "why": "読み書きできるので、子らに字を教えて村の読める人を増やすため"}}, "keep": false,
+ "judge": {"M643": "つぐなう", "M644": "つぐなう", "M645": "つぐなう"}, "feast": false, "leader": "ヒセ89", "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋と冬は水の道を掘ろう。水の来る畑は悪い年でも実りが半分にならない", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "水の来る畑は、悪い年でも刈り入れが半分にならずにすむ", "because": [], "confidence": 0.8}, {"op": "add", "text": "直す水の輪がない年に「水の輪を直す」にすると、休むことになる", "because": [], "confidence": 0.8}],
+ "proposal": {"text": "秋と冬は、手のあく大人が家ごとに一人、水の道を掘りに出よう。よその家の畑を刈ったら、刈った分を板に書いて、その家に返そう。", "because": [8899989, 8899990, 8899991], "penalty": {"for": "刈る", "pay": 0}, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1521", "against": "薬がもらえる家だけが得をするかもしれない", "agree": true, "reason": "小さい子が多く亡くなっているので、薬を回すのはよいこと"},
+  {"id": "L1522", "against": "二つのことをまとめすぎている", "agree": true, "reason": "子の薬とヤギの数のどちらも大事だから"},
+  {"id": "L1523", "against": "家ごとに一人出すのは、小さい家にはきつい", "agree": true, "reason": "刈りきって草取りすれば実りが増えるから"},
+  {"id": "L1524", "against": "読める大人のいない家は困る", "agree": true, "reason": "入れる倉を書けば、刈ったことでのもめごとが減るから"},
+  {"id": "L1525", "against": "土器はもう村にたくさんある", "agree": true, "reason": "ふたの合う土器は傷みを減らし、子の薬も助かるから"},
+  {"id": "L1526", "against": "ヤギはいま草の分をこえていない", "agree": true, "reason": "こえたときに肉にしておけば、やせて消えずにすむから"},
+  {"id": "L1527", "against": "村のヤギはみなメスでオスはいない", "agree": true, "reason": "よそのヤギを受けないのは、ヤギを守るのによいから"},
+  {"id": "L1528", "against": "鎌はもう村にたくさんある", "agree": true, "reason": "欠けた鎌を直して回せば、刈り手が助かるから"},
+  {"id": "L1529", "against": "前の掟とほとんど同じだ", "agree": true, "reason": "よそのヤギを受けず、鎌を回すのはよいから"},
+  {"id": "L1530", "against": "前の掟とほとんど同じだ", "agree": true, "reason": "子の薬をもらうのは大事だから"},
+  {"id": "L1531", "against": "水の輪の直しはもう終わった", "agree": true, "reason": "自分の出した掟で、畑を刈りきるのは大事だから"},
+  {"id": "L1532", "against": "前の掟とほとんど同じだ", "agree": true, "reason": "小さい子の命を守るため"},
+  {"id": "L1533", "against": "前の掟とほとんど同じだ", "agree": true, "reason": "入れる倉を先に決めれば、もめごとが減るから"}
+ ],
+ "feeling": "輪は回った。次は水の道だ、腕が鳴るぞ。"}

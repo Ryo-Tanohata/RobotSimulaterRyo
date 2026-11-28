@@ -1,0 +1,21 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。畑に千つかみまいて、冬と春は草取りに出ましょう。わたしは今年ものこ場で木をひいて板をつくるよ。"}, {"to": "セヤ79", "text": "ふたりでM6ののこ場へ行きましょう。年をとっても、ならんで働くのは楽しいものね。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M6", "with": ["セヤ79"], "why": "M6ののこ番として続けて働く。板があると手入れが早く進むから。"},
+ "sow": 1000, "pick": 20, "plant": 1, "harvest": 0, "eat_goat": 0,
+ "family": {
+  "セヤ79": {"activity": "水の作業場で働く", "place": "M6", "why": "M6ののこ番なので、わたしと一緒に板をひく。"},
+  "ラニ93": {"activity": "水の作業場で働く", "place": "M6", "why": "M6ののこ番として板をひく。"},
+  "リセ94": {"activity": "水の作業場で働く", "place": "M6", "why": "M6ののこ番として板をひく。"},
+  "アコ98": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた畑の草取りで、来年の実りをふやす。"},
+  "ロワ101": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りをふやす。"},
+  "タユ107": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りをふやす。"},
+  "ネイ107": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りをふやす。"},
+  "ロワ108": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りをふやす。"},
+  "ハソ109": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りをふやす。"}
+ },
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋にまいた畑は、冬と春に草取りをすると次の夏の実りがふえる。のこ場で人がそろうと板がたくさんひける。", "because": [8899649], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは危ないので、この決まりは守りたい。"}, {"id": "L16", "against": "", "agree": true, "reason": "年をとると疲れやすい。無理をしないのは大事。"}],
+ "feeling": "年はとったけれど、木をひく手はまだ動く。畑の実りが楽しみ。"}

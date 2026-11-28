@@ -1,0 +1,32 @@
+{"say": [{"to": "みんな", "text": "水の道の手入れが、この年はまだだれも手をつけていない。泥でうまる前に、家ごとに一人ずつ掘りに出てくれるとありがたい。おれは鎌をこしらえて、夏の刈り手に回す。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具の腕はおれのいちばんの取りえだ。すり減った鎌が多いので、冬までに鎌をこしらえて夏の刈り入れで種を落とさないようにしたい"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ムイ164": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っている。水が来る畑は悪い年でも実りが守られるから"}},
+ "keep": false,
+ "judge": {"M643": "つぐなう", "M644": "つぐなう", "M645": "つぐなう"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false,
+ "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "よその畑を刈る前に、入れる倉を決めて板に書こう", "order": null, "take": null,
+ "knowledge": [
+  {"op": "add", "text": "アコ83の家の畑を手伝って刈った種が、またみなアコ83の家の倉に入り、もめごとが三つ出た。刈った量を字で書いても、入れる倉を先に決めないと収まらない", "because": [8899989, 8899990, 8899991], "confidence": 0.8},
+  {"op": "add", "text": "ヤギは今116頭で、草で養える約140頭より少ない", "because": [], "confidence": 0.8},
+  {"op": "add", "text": "水の道の手入れは1年に約一万人日いるのに、この年はまだだれも掘っていない", "because": [], "confidence": 0.7}
+ ],
+ "proposal": {"text": "秋と冬は、家ごとに大人一人が水の道を掘り、道具の得意な大人は鎌をこしらえて夏の刈り手へ回そう。よその畑を刈る前に、入れる倉を決めて板に書こう。", "because": [8899989, 8899990, 8899991], "penalty": null, "tax": null, "rate": null, "market_day": null},
+ "votes": [
+  {"id": "L1507", "against": "板に書く手間がかかる", "agree": true, "reason": "刈った量と入れた倉を両方の家で確かめれば、もめごとが減る"},
+  {"id": "L1509", "against": "ほかの仕事の手がへる", "agree": true, "reason": "水の道の手入れがたくさん残っている"},
+  {"id": "L1510", "against": "ほかの仕事の手がへる", "agree": true, "reason": "来年の畑に水を届けたい"},
+  {"id": "L1511", "against": "特にない", "agree": true, "reason": "草取りで実りが増え、鎌も直せる"},
+  {"id": "L1512", "against": "特にない", "agree": true, "reason": "水の道を守り、貸した量も忘れずにすむ"},
+  {"id": "L1513", "against": "ヤギは今草の分より少ない", "agree": true, "reason": "こえているあいだだけの決まりだし、鎌を回すのは大事だ"},
+  {"id": "L1515", "against": "返ってこないこともある", "agree": true, "reason": "蓄えは十分あり、苦しい村を助けたい。板に書けば忘れない"},
+  {"id": "L1516", "against": "いま直す輪は残っていない", "agree": false, "reason": "輪はみな回っているので、今は水の道を掘るほうが大事だ"},
+  {"id": "L1517", "against": "もめごとをゆるすと同じことがくり返す", "agree": true, "reason": "ふたの合う土器で蓄えの傷みを減らせる"},
+  {"id": "L1523", "against": "特にない", "agree": true, "reason": "刈りきって草取りをすれば実りが増える"},
+  {"id": "L1524", "against": "特にない", "agree": true, "reason": "刈る前に入れる倉を書くのは、おれの考えと同じだ"},
+  {"id": "L1526", "against": "今はこえていない", "agree": true, "reason": "やせて消えるのを待つより干し肉にしたほうがよい"},
+  {"id": "L1528", "against": "特にない", "agree": true, "reason": "鎌を直して刈る手の足りない家へ回すのは大事だ"},
+  {"id": "L1529", "against": "特にない", "agree": true, "reason": "鎌をこしらえて刈り手に回したい"},
+  {"id": "L1533", "against": "特にない", "agree": true, "reason": "おれが出した提案だ。鎌と、入れる倉を先に決めることで、種もなかもよく守れる"}
+ ],
+ "feeling": "鎌をこしらえる手を動かしていると落ち着く。もめごとが早く収まるといい"}

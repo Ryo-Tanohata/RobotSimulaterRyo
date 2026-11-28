@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。秋のはじめに草の種を千つかみまいて、冬と春はみんなで草取りに出よう。おしゃべりしながらなら、きっと楽しいよ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、みんなと話しながら畑仕事をする"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"ワユ149": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを家族で分けて、次の夏の実りを増やすため"}, "ユエ154": {"activity": "畑仕事", "place": "camp", "why": "まだ採集や狩りが得意でないので、camp で草取りを手伝う"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまき、冬と春に草取りをすれば、次の夏にまた畑が実る。蓄えはたっぷりある。", "because": [8899986], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で安心。みんなと畑でおしゃべりしながら働くのが楽しみ。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるから、秋のうちに千つかみ、ぱっとまいてしまおう。冬の草取りは、にぎやかに集まってやろうよ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分あるので、まだ 1 万人日以上のこっている水の道の手入れを進めたい。体を動かすのは好きだ。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "family": {"リセ136": {"activity": "水の道を掘る", "place": "camp", "why": "家族みんなで水の道を進めると、手入れが早く片づくから。"}, "ケセ153": {"activity": "水の道を掘る", "place": "camp", "why": "若い力で水の道の手入れを手伝ってほしいから。"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは今の人数で約581日分あり、秋に千つかみまけば次の夏もよく実る", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが山のようにあって気持ちが軽い。体を動かして、みんなとおしゃべりしながら働きたい。"}

@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蔵はたっぷりある。わしは今季もM26ののこ場で板をひく。年寄りも若いのも、無理せず食べて休もう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": ["ロワ83", "ハソ93", "タユ93"], "why": "M26ののこ番だから、続けて板をひく。板があれば水の道の手入れが半分ですむ。"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 5,
+ "family": {"ロワ83": {"activity": "水の作業場で働く", "place": "M26", "why": "M26ののこ番だから"}, "ハソ93": {"activity": "水の作業場で働く", "place": "M26", "why": "M26ののこ番だから"}, "タユ93": {"activity": "水の作業場で働く", "place": "M26", "why": "M26ののこ番だから"}, "ヒセ88": {"activity": "水の作業場で働く", "place": "M26", "why": "手が早いので板ひきを助ける"}},
+ "keep": false,
+ "judge": {"M643": "ゆるす", "M644": "ゆるす", "M645": "ゆるす"},
+ "feast": false, "leader": null, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "村の蔵の草の種は十分あり、のこ場の板もたくさんある。水の道の手入れはまだ多く残っている。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L16", "against": "", "agree": true, "reason": "疲れたら休むのは年寄りにも大事だから"}, {"id": "L25", "against": "", "agree": true, "reason": "蓄えは無駄なく使うのがよいから"}],
+ "feeling": "蔵が満ちていて、のこ場の仕事も続けられ、おだやかな気持ちだ。"}
