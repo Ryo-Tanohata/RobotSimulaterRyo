@@ -1,0 +1,7 @@
+{
+ "about": "使う素材の札 (2026-11-28)。素材の本体は非公開のリポジトリ (repo) にあり、ここには「どの組の、どの版 (コミット番号) を使うか」だけを書く。取りに行くのは tools/fetch_assets.sh。素材の目録は repo の catalog.json",
+ "repo": "Ryo-Tanohata/kawabe-assets",
+ "sets": {
+  "g4": {"version": "g4-v1", "commit": "c892bbc069b1ec63e833664b6946b27c3122fa27", "path": "people_glb/g4", "for": "G4V・G4F1V・G4F2V の人のモデル (服 leather)"}
+ }
+}
