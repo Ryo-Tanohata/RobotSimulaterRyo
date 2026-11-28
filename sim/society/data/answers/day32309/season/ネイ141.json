@@ -1,0 +1,30 @@
+{"say": [{"to": "みんな", "text": "欠けた鎌はうちの前に置いといて。冬が来る前に刃を立て直しておくよ。"}, {"to": "ホミ176", "text": "北の村13から来たんだね。向こうの川の魚はどんなふうにとるのか、あとで聞かせておくれ。"}],
+ "job": {"activity": "道具づくり", "place": "camp", "with": [], "why": "道具はわたしのいちばんの腕。冬と春の畑仕事と次の夏の刈り入れに、よく切れる鎌をそろえておきたい"},
+ "sow": 500, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"ホミ176": true},
+ "family": {
+  "ユエ141": {"activity": "狩り", "place": "東林28", "why": "狩りも採集もいちばん上手。冬の前に肉を足してほしい"},
+  "ソワ142": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、次の夏の実りを増やすため"},
+  "キオ143": {"activity": "畑仕事", "place": "camp", "why": "草取りが足りないと実りが減るから"},
+  "リセ144": {"activity": "畑仕事", "place": "camp", "why": "小さい子が三人いるので、キャンプのそばの畑で働けば子を見ながらできる"},
+  "ムイ145": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがたくさん残っている。家から一人は出したい"},
+  "ホミ147": {"activity": "採集", "place": "東林12", "why": "採集が上手。秋の木の実を集めてもらう"},
+  "ヒセ149": {"activity": "狩り", "place": "北林12", "why": "狩りが上手。ユエ141と別の林で獲物を探す"}
+ },
+ "keep": true,
+ "judge": {"M646": "ゆるす", "M647": "ゆるす", "M648": "ゆるす"},
+ "feast": false, "leader": null,
+ "trade": {"T1544": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその家の畑で刈った草の種がその家の倉に入ると、あとでもめごとになる。量はわずかでも言い出す家がある", "because": [9014083, 9014084, 9014085], "confidence": 0.7}, {"op": "add", "text": "ヤギは今 134 頭で、草で養える 140 頭に近い。少し受けるくらいならまだ大丈夫", "because": [9014088], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [
+  {"id": "L0", "against": "見張りがいれば少しは離れてもいいかもしれない", "agree": true, "reason": "夜のザガはこわい。昔からの決まりは守りたい"},
+  {"id": "L1554", "against": "刈るたびに板に書くのは手間がかかる", "agree": true, "reason": "書いておけばもめごとが減る"},
+  {"id": "L1557", "against": "家ごとに二人は、子の多い家にはきつい", "agree": false, "reason": "うちは一人出すので、二人は多すぎる"},
+  {"id": "L1561", "against": "量が少ないときまで返すのはめんどう", "agree": true, "reason": "返せばもめごとが起きにくい"},
+  {"id": "L1564", "against": "燃える石の少ない家にはできない", "agree": true, "reason": "わたしが出した案。子の薬は大事"},
+  {"id": "L1565", "against": "家ごとに一頭ずつだと、ヤギのない家は困る", "agree": false, "reason": "ヤギはまだ草の分をこえていないし、うちはヤギがいない"},
+  {"id": "L1567", "against": "多い分をつぶすのは今は早い", "agree": true, "reason": "鎌を直して刈り手に回すのは、わたしの得意なこと"}
+ ],
+ "feeling": "鎌を作る手はまだ衰えていない。秋の仕事にとりかかろう"}

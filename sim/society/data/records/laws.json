@@ -1566,5 +1566,20 @@
 {"id":"L1564","text":"小さい子のいる家は、倉の燃える石で町の頼みを受けて子の薬をそろえよう。ヤギが草の分をこえているあいだは、よその村のヤギは受けずにおこう。","proposer_id":"P3885","proposed_day":32279,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L1565","text":"ヤギが草で養える数をこえているあいだは、よその村のヤギは受けず、夏のはじめに家ごとに乳の出ないオスを一頭ずつ干し肉にして村の蓄えに入れよう。","proposer_id":"P3988","proposed_day":32279,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
 {"id":"L1566","text":"小さい子のいる家で倉に燃える石が足りない家には、手のあく大人が北の丘で掘って分け、町の頼みを受けて子の薬をそろえよう。","proposer_id":"P4026","proposed_day":32279,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
-{"id":"L1567","text":"ヤギが草の分をこえているあいだは、夏のはじめに多い分を村でつぶして干し肉にし、冬と春は道具の得意な大人が鎌を直して刈り手に回そう。","proposer_id":"P4506","proposed_day":32279,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"}
+{"id":"L1567","text":"ヤギが草の分をこえているあいだは、夏のはじめに多い分を村でつぶして干し肉にし、冬と春は道具の得意な大人が鎌を直して刈り手に回そう。","proposer_id":"P4506","proposed_day":32279,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1568","text":"秋と冬は土器の得意な大人がふたの合う土器を焼き、傷みかけた壺の種から移そう。割れた壺は集めて焼き直そう。","proposer_id":"P2253","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1569","text":"よその家の畑を刈る前に、読める大人が刈る人と入れる倉を板に書こう。書いてあった分は、季節の終わりに倉の家が刈った家へ同じ量を返そう。","proposer_id":"P2301","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1570","text":"よその家の畑で刈ったら、その日に読める大人が刈った人と量と倉を板に書き、倉の家は季節の終わりに刈った家へ同じ分を返そう。","proposer_id":"P2829","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1571","text":"よその家の畑を刈る前に、読める大人が刈る人と入れる倉を板に書き、倉に入った家は季節の終わりに同じ量を刈った家へ返そう。","proposer_id":"P3040","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1572","text":"秋と冬は、家ごとに大人一人が水の道の泥をかき出しに出よう。板のある家は土どめに使い、掘った日は夜にみんなに言おう。","proposer_id":"P3050","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"知識の再現の疑い"},
+{"id":"L1573","text":"秋と冬は家ごとに大人二人が水の道を掘り、作業場で板をひく人と同じ日に組んで、土どめに板を使おう。","proposer_id":"P3126","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1574","text":"よその家の畑を刈る前に、読める大人が刈る人と量と入れる倉を板に書き、倉の家は季節の終わりに刈った家へ同じ分を返そう。 (罰: よその家の畑で刈った草の種が、みな畑の持ち主の家の倉に入ると、相手の家は、言い出した家に 草の種 100 つかみ を払う)","proposer_id":"P3251","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":{"for":"刈る","pay":100},"label":"創発"},
+{"id":"L1575","text":"小さい子のいる家で倉の燃える石が足りない家は、手のあく大人が北の丘で掘り足して町の頼みを受け、子の薬をそろえよう。","proposer_id":"P3252","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1576","text":"秋と冬は、家ごとに大人一人が水の道を掘りに出よう。掘った日数は読める大人が板に書き、水の作業場の板で土どめをして、はかどらせよう。","proposer_id":"P3343","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"知識の再現の疑い"},
+{"id":"L1577","text":"よその家の畑で刈った草の種がその家の倉に入ったら、倉の家は季節の終わりまでに刈った家へ同じ量を返し、読める大人が板に書こう。秋と冬は家ごとに大人一人が水の道を掘ろう。","proposer_id":"P3503","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1578","text":"秋は家ごとに一人が水の道を掘り、ほかの手のあく大人はまいた畑の草取りに出よう。草取りが足りないと夏の実りが三割に減るから。","proposer_id":"P3730","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"知識の再現の疑い"},
+{"id":"L1579","text":"秋は家ごとに大人一人が水の道を掘り、冬は道具の得意な大人が欠けた鎌を直して、夏の前に刈り手の足りない家へ回そう。","proposer_id":"P3807","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1580","text":"小さい子のいる家が町の頼みを受けたら、手のあく大人が北の丘で燃える石を掘るのを手伝おう。早く子の薬をそろえるために。","proposer_id":"P4026","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1581","text":"よその家の畑を刈る前に、読める大人が刈る人と入れる倉を板に書こう。書いていなければ、刈った人の家の倉に入れる。","proposer_id":"P4506","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"創発"},
+{"id":"L1582","text":"雨の夜に外で濡れる人が出ているから、冬の前に手のあく大人が板を使って住まいを一つ足そう。","proposer_id":"P4816","proposed_day":32309,"status":"提案","adopted_day":null,"abolished_day":null,"penalty":null,"label":"知識の再現の疑い"}
 ]

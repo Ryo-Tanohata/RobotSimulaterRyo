@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどある。秋に千つかみまいて、冬のあいだ草取りをしておけば来年も安心だ。おれはそうする。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りをすると実りが増える。蓄えは多く、毎年の決まりどおり畑を育てるのがいちばん確かだから。"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ホミ176": true},
+ "family": {"キサ144": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手分けして実りを増やすため。"}, "ホタ155": {"activity": "畑仕事", "place": "camp", "why": "若いうちに畑仕事を覚え、実りを増やす手伝いをするため。"}},
+ "keep": false,
+ "judge": {"M646": "ゆるす", "M647": "ゆるす", "M648": "ゆるす"},
+ "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えは約528日分あり、秋に千つかみまいて草取りを続ければ安心して暮らせる", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分で落ち着いている。いつもどおり畑に精を出す。"}

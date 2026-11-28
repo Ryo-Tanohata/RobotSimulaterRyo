@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "蓄えは山ほどあるが、水の道の手入れはまだ9000人日も残っておる。この秋は家ごとに一人、掘りに出よう。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "蓄えは十分あるので、いちばん人手の足りない水の道の手入れに回る"},
+ "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ホミ176": true, "ラキ177": true}, "keep": false,
+ "judge": {"M646": "ゆるす", "M647": "ゆるす", "M648": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1544": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋と冬は家ごとに一人、水の道を掘りに出よう。蓄えは十分ある", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草の分より多いので、よその村のヤギは受けないほうがよい。", "because": [9014088], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは安心だが、水の道の手入れの多さが気がかりだ。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "おれは林で獲物を追う。冬の前に肉を足しておく。畑には種をまいておくぞ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "蓄えは多いが、冬は木の実も種もない。肉を足しておけば安心だし、狩りは得意だから"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ホミ176": true}, "family": {"アコ126": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、近い草原なら小さい子のいる家に早く帰れるから"}}, "keep": false,
+ "judge": {"M646": "ゆるす", "M647": "ゆるす", "M648": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1544": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に草の種をたくさんまくと、次の夏に蓄えが保てる。冬の前に肉を足すと安心。", "because": [9014080], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えは十分。体を動かして獲物を追うのが楽しみだ。"}

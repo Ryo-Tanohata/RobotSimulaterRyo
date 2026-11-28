@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えはたっぷりあるから、うちは水の道の泥を掘りに出るよ。道が通れば、来年の夏の畑も守れるからね。"}, {"to": "ケナ142", "text": "字の読める子たちを、また教えてあげてね。小さい子たちは、わたしも見ているからね。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ 9154 人日も残っている。蓄えは十分なので、来年の夏の実りを守る仕事に出る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ホミ176": true, "ラキ177": true}, "family": {"ワユ126": {"activity": "水の道を掘る", "place": "camp", "why": "家ごとに水の道を掘る決まりごとなので、力のある彼が出る"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "秋にまいた種の草取りで、来年の夏の実りが増える"}, "ケナ142": {"activity": "字を教える", "place": "camp", "why": "字の読める人を増やし、小さい子の面倒も見られる"}}, "keep": false,
+ "judge": {"M646": "ゆるす", "M647": "ゆるす", "M648": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1544": "土器と鎌と種が要るなら、蓄えは多いので応じてよい。ヤギは増やしすぎないよう 2 頭までにしよう"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "水の道は手入れが大きく残っているので、蓄えが多い秋は水の道を掘る人を出すのがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えがたっぷりで心強い。体が動くうちに、水の道を掘って村の役に立ちたい。"}

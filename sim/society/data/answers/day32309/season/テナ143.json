@@ -1,0 +1,12 @@
+{"say": [{"to": "みんな", "text": "冬の前に、木の実をたくさん集めておこうね。みんなで分けあえば安心だよ。"}],
+ "job": {"activity": "採集", "place": "camp", "with": [], "why": "採集がいちばん得意だから、冬に備えて食べ物を集めたい"},
+ "sow": 0, "pick": 40, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {},
+ "family": {"ケセ143": {"activity": "採集", "place": "camp", "why": "採集が得意で、家族と村の食べ物を増やせる"}},
+ "keep": false,
+ "judge": {"M646": "ゆるす", "M647": "ゆるす", "M648": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1544": "村", "T1545": "村", "T1546": "村"},
+ "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜は危ないので、みんなで離れないほうが安心だから"}],
+ "feeling": "冬が近いので、少し気がひきしまる。でも、みんなと働けるのはうれしい。"}

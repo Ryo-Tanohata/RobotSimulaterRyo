@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "この秋はおれが水の道を掘りに出る。去年は泥でうまって畑の水がへった。手のあいてるやつ、いっしょに来いよ、しゃべりながら掘ればすぐだ。"}, {"to": "ホミ176", "text": "北の村13からよく来たな。おれは賛成だ。わからないことがあったら、おれかオセ150に聞いてくれ。"}],
+ "job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "去年は手入れが足りず水の来る畑がへった。悪い年でも刈り入れを守るために、家から一人出る"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ホミ176": true}, "family": {"オセ150": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、村の子に教えれば知らせ板を読める人が増える"}}, "keep": false,
+ "judge": {"M646": "ゆるす", "M647": "ゆるす", "M648": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1544": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "秋と冬は家ごとに一人、水の道を掘ろう。手のあく人はキャンプで声をかけて", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "よその村から来た人は、集まりで賛成が多いと村の仲間になれる", "because": [9014091], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1557", "against": "家によっては大人が少なく二人出せない", "agree": true, "reason": "水の道が泥でうまると畑の水がへるから"}, {"id": "L1560", "against": "量を板に書く手間がかかる", "agree": true, "reason": "刈った分のもめごとが続いているので、書いて返せば収まる"}, {"id": "L1565", "against": "いまヤギは草の分より少し少ない", "agree": true, "reason": "ヤギが増えすぎてやせていなくなるのを防げる"}, {"id": "L1563", "against": "オスがいない年は意味がない", "agree": true, "reason": "よその村のヤギを受けないのは草を守るのに大事だから"}],
+ "feeling": "秋の風が気持ちいい。水の道を掘って、みんなとたくさん話したい"}

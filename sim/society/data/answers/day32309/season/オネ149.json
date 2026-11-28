@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えはたっぷりあるから、畑にまいて、冬は草取りをしよう。わたしは林で獲物を追って、冬の肉を足すよ。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": [], "why": "蓄えは足りているので、冬に向けて肉を増やしたい。狩りの腕に自信がある"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"ワユ149": {"activity": "狩り", "place": "東林12", "why": "腕のあるワユ149も肉を取って冬に備える"}, "ユエ154": {"activity": "畑仕事", "place": "camp", "why": "まだ若いので、畑の草取りで村を助ける"}}, "keep": false,
+ "judge": {"M646": "ゆるす", "M647": "ゆるす", "M648": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1544": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種をまき、冬に草取りをすれば次の夏に畑が実る。蓄えはたっぷりある。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて安心。林で肉を取るのが楽しみ。"}

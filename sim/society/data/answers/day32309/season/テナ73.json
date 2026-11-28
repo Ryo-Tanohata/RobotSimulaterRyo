@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "わしは歳をとったが、まだ手は動く。ヤギはもう十分いるから、南の村のヤギは今回も受けずに、秋は畑と板づくりに力をそそごう。"}],
+ "job": {"activity": "水の作業場で働く", "place": "M26", "with": [], "why": "M26 ののこ番として板をひき、水の輪や水の道の手入れを助けるため"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"ホミ176": true},
+ "family": {"ロワ77": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}, "セオ81": {"activity": "水の作業場で働く", "place": "M26", "why": "のこ番として板をひく"}},
+ "keep": true,
+ "judge": {"M646": "ゆるす", "M647": "ゆるす", "M648": "ゆるす"},
+ "feast": false, "leader": null, "trade": {"T1544": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに草の種を畑にまき、冬と春に草取りをすると次の夏に実りが増える。ヤギは多すぎるので、よその村のヤギは受けない。", "because": [9014088], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えはたっぷりあるので、おだやかな気持ちだ。新しく来た人たちとも仲よく暮らしたい。"}

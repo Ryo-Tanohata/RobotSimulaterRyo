@@ -1,0 +1,8 @@
+{"say": [{"to": "みんな", "text": "秋のはじめだね。蓄えの草の種を畑にまいて、私は子どもたちに字を教えるよ。字が広がれば、約束も記録も残しやすくなる。"}],
+ "job": {"activity": "字を教える", "place": "camp", "with": [], "why": "蓄えが十分な秋は、子に字を教えるのがよいと覚えているから"},
+ "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"ケセ160": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りをして、次の夏の実りを増やすため"}}, "keep": false,
+ "judge": {"M646": "ゆるす", "M647": "ゆるす", "M648": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1544": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめは、畑に種をまき、草取りと字の教えを続けるのがよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "おだやかで、子どもたちに会うのがたのしみ。"}
