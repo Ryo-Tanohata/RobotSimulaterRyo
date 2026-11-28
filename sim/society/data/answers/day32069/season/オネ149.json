@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるけれど、秋のうちに畑に種をまいておこう。冬と春は草取りをして、来年の夏も豊かに実らせたいね。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は草取りで実りが増えるので、冬と春も続けて世話をする"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {}, "family": {"ワユ149": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば、畑の実りが早く十分に増える"}}, "keep": false,
+ "judge": {"M640": "ゆるす", "M641": "ゆるす", "M642": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1518": false, "T1519": "村", "T1520": "村", "T1521": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋のはじめに蓄えの草の種を畑にまき、冬と春に草取りをすると、次の夏の実りが増える", "because": [8766618], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1495", "against": "", "agree": true, "reason": "刈る前に倉と分け方を板に書けば、家どうしのもめごとが減る"}, {"id": "L1496", "against": "よその村のヤギを断ると、交換の相手が減るかもしれない", "agree": true, "reason": "ヤギが草の分をこえているので、増やさないほうがよい"}, {"id": "L1497", "against": "", "agree": true, "reason": "住まいのない家を助けるのはよいこと"}, {"id": "L1498", "against": "", "agree": true, "reason": "小さい子の薬を公平に回すのは大事"}, {"id": "L1499", "against": "", "agree": true, "reason": "夏の刈り手の鎌が足りるようになる"}],
+ "feeling": "蓄えが多くて安心している。みんなと話しながら畑仕事をするのが楽しみ。"}

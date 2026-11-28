@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "おれは秋も林で獲物を追う。肉は冬の前に役に立つ。"}],
+ "job": {"activity": "狩り", "place": "東林12", "with": [], "why": "狩りの腕には自信がある。冬の前に肉を蓄えに足したい。"}, "sow": 0, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"キオ174": true, "テナ174": false}, "family": {"ソナ159": {"activity": "狩り", "place": "北林12", "why": "腕がいいので獲物を多く持ち帰れる。"}, "トナ159": {"activity": "採集", "place": "西草原12", "why": "まだ若いので近場で木の実や草の種を集める。"}}, "keep": false,
+ "judge": {"M640": "ゆるす", "M641": "ゆるす", "M642": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1518": false, "T1519": false, "T1520": false, "T1521": false}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋の林では狩りで肉が取れる。蓄えは多いが、冬の前に肉を足すと安心だ。", "because": [8768584], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは怖い。キャンプを離れないのは当然だ。"}],
+ "feeling": "体は軽い。林へ出て獲物を追うのが楽しみだ。"}

@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。この秋は畑の草取りをしっかりして、来年の実りを太らせよう。"}, {"to": "キオ95", "text": "いっしょに畑を見に行こう。草が伸びる前に手を入れておきたい。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "蓄えは多いが、まいた畑の実りは草取りで増えるので、畑を育てるのがいちばん役に立つ"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"キオ174": true}, "family": {"キオ95": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りを手分けして早く終わらせる"}, "セオ108": {"activity": "狩り", "place": "東林12", "why": "狩りの腕があるので、肉を村にもたらす"}}, "keep": false,
+ "judge": {"M640": "ゆるす", "M641": "ゆるす", "M642": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1518": "村", "T1519": "村", "T1520": "村", "T1521": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "feeling": "蓄えが多くて心は落ち着いている。困っている村にも分けてやれるのがうれしい。"}

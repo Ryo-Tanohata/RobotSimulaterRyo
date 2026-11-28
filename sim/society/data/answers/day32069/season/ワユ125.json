@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "秋だ。蓄えは山ほどあるが、まいた畑は夏の実りのもとになる。今年も千つかみまいて、冬と春の草取りを家ごとに出そう。"}, {"to": "ソワ127", "text": "うちは二人で畑仕事に出よう。字の読める人が少ない家の板書きも、手があいたら見てやろう。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑は、草取りをすると次の夏の実りが増えると覚えているから。"}, "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 3, "accept": {}, "family": {"ソワ127": {"activity": "畑仕事", "place": "camp", "why": "二人で草取りをすれば、まいた畑の実りが増えるから。"}}, "keep": false,
+ "judge": {"M640": "ゆるす", "M641": "ゆるす", "M642": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1518": false, "T1519": "村", "T1520": "村", "T1521": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギが草の分より多い秋は、何頭か肉にして減らし、秋にまいた畑は冬と春に草取りをするのがよい。", "because": [], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [{"id": "L1488", "against": "", "agree": true, "reason": "秋にまいた畑の草取りは、次の夏の実りを増やすから。"}, {"id": "L1489", "against": "", "agree": true, "reason": "ヤギが多すぎるあいだは、草を守るために受けないほうがよいから。"}],
+ "feeling": "蓄えは多くて安心だが、畑とヤギの草のことは気をゆるめずにいたい。"}

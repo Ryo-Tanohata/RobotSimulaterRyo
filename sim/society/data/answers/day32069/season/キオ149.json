@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "雨の夜にぬれるのはもういやだ。この秋はうちの住まいを建てるぞ。手の空いた者は手伝ってくれ。"}, {"to": "ヌオ149", "text": "一緒に住まいを建てよう。屋根ができれば冬も楽になる。"}],
+ "job": {"activity": "住まいを建てる", "place": "camp", "with": ["ヌオ149"], "why": "うちの家はまだ住まいがなく、雨の夜に外でぬれたから。冬の前に建てたい。"}, "sow": 300, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"キオ174": true}, "family": {"ヌオ149": {"activity": "住まいを建てる", "place": "camp", "why": "二人で建てれば早く屋根ができるから。"}}, "keep": false,
+ "judge": {"M640": "ゆるす", "M641": "ゆるす", "M642": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1518": false, "T1519": "村", "T1520": "村", "T1521": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "雨の夜にぬれないためには、家ごとの住まいを建てるのがよい。", "because": [8768911], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜のザガは危ないので、キャンプを離れないのは大事だから。"}],
+ "feeling": "雨にぬれずに眠れる家を早く建てたい。やる気は十分だ。"}

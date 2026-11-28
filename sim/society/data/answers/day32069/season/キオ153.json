@@ -1,0 +1,7 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりあるね。秋のうちに畑をまいて、冬と春は草取りに出よう。おしゃべりしながらやれば楽しいよ。"}, {"to": "ラニ153", "text": "今季はいっしょに畑仕事をしよう。知らせ板も読んでおくれ。"}],
+ "job": {"activity": "畑仕事", "place": "camp", "with": ["ラニ153"], "why": "蓄えは多いので、まいた畑の草取りで来年の実りを守りたい。採集の腕も生かして手早く働ける。"}, "sow": 700, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "accept": {"キオ174": true, "テナ174": true}, "family": {"ラニ153": {"activity": "畑仕事", "place": "camp", "why": "いっしょに草取りをして、来年の夏の実りを増やすため。"}}, "keep": false,
+ "judge": {"M640": "ゆるす", "M641": "ゆるす", "M642": "ゆるす"}, "feast": false, "leader": null, "trade": {"T1518": false, "T1519": "村", "T1520": "村", "T1521": "村"}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えはたくさんあるが、ヤギは草の分より多いので、よその村のヤギは受けないほうがよい。", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [{"id": "L1480", "against": "", "agree": true, "reason": "ヤギが多すぎるとやせて減るので、つぶして干し肉にするのはよいと思う。"}, {"id": "L1488", "against": "", "agree": true, "reason": "草取りをすれば来年の実りが増えるから。"}, {"id": "L1498", "against": "", "agree": true, "reason": "小さい子のいる家が助かるから。"}],
+ "feeling": "蓄えがたっぷりで安心。みんなと話しながら畑で働くのが楽しみ。"}

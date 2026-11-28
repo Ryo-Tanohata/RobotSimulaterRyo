@@ -1,0 +1,11 @@
+{"say": [{"to": "みんな", "text": "秋はおれは北の林で狩りを続ける。冬に肉が足しになるはずだ。"}],
+ "job": {"activity": "狩り", "place": "北林12", "with": [], "why": "狩りが得意で、秋のうちに肉をとって冬の足しにしたいから"},
+ "sow": 1000, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0,
+ "accept": {"キオ174": true, "テナ174": true},
+ "family": {"タユ163": {"activity": "採集", "place": "西草原12", "why": "採集が得意で、食べ物を集めて家を支えるため"}, "ヒセ163": {"activity": "狩り", "place": "東林12", "why": "狩りが得意で、肉を増やして冬にそなえるため"}},
+ "keep": false,
+ "judge": {}, "feast": false, "leader": null, "trade": {}, "seal": false, "seal_store": false, "demand": null, "share": null, "pay": null, "redeem": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "秋に続けて狩りをすると、肉がたまり冬の食べ物の足しになりそうだ。", "because": [8768588], "confidence": 0.65}],
+ "proposal": null,
+ "votes": [],
+ "feeling": "今年も林で獲物を追えるのがありがたい。冬にそなえて肉をためたい。"}
