@@ -86,7 +86,7 @@ PEOPLE_DIR_G2=${PEOPLE_DIR_G2:-/dev/shm/people_glb_g2}
 #   houseBuild: 家族の家 (1590 日目から) を建てる・広げる人が、その家のまわりで持ち上げる・杭を打つ・結わえる。家は記録のでき具合まで、柱 → 壁 → 屋根と少しずつできる
 G4V_VIEW=${G2V_VIEW%\}}',"houseBuild":true}'
 # 2026-11-28: G4 の人のモデルは、非公開の素材のリポジトリ (sim/society/assets.json の札) から取ってくる。PEOPLE_DIR_G4 を渡せばそちらを使う
-g4dir() { [ -n "${PEOPLE_DIR_G4:-}" ] && { echo "$PEOPLE_DIR_G4"; return; }; bash "$(dirname "$0")/../tools/fetch_assets.sh" g4; }
+g4dir() { [ -n "${PEOPLE_DIR_G4:-}" ] && { echo "$PEOPLE_DIR_G4"; return; }; bash ../tools/fetch_assets.sh g4; }
 D1V_CREDIT="VRoid の CC0 サンプル (pixiv) をもとに作成"
 STORY=
 [ "${1:-}" = "--storyboard" ] && { STORY=1; shift; }
