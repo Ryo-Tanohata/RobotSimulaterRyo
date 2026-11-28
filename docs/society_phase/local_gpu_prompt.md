@@ -59,5 +59,7 @@
 2. 絵コンテ: `bash sim/society/video/render_all.sh --storyboard G4V` → `video_review_loop.md` の見直し。とくに K6 (建てる様子)・K1/K16 (家にめり込む・すり抜け)・家が柱 → 壁 → 屋根とできていくか (1591 日目 フウの家 1 割、1625 日目 フウの家ができる、1636 日目 ナギの家ができる、1680 日目 トワの家を建てはじめ)。
 3. 本番 (2026-11-28 の直しのあと。本人「撮影はローカルの GPU でしたい」): `bash sim/society/video/render_all.sh G4V G4F1V G4F2V`。
    G4V は、家と人が重ならない・家ごとの倉・夜は家族ごとに自分の家へ、を直した版 (絵コンテ `storyboards/storyboard_G4V.json` はクラウドで確かめずみ)。前にクラウドで撮った G4V は古いので、撮り直す。
+   - **撮った (2026-11-28、本人の PC の内蔵 GPU Intel Iris Xe。3 本を 2 本ずつで 24 分)**: G4V 540.9 秒 (9 分 1 秒)・G4F1V 280.6 秒 (4 分 41 秒)・G4F2V 250.6 秒 (4 分 11 秒)。どれも音あり、長さは計画 (timeline.json) と合う。最初の 60 秒を見て、日付・字幕・leather の服・フウの家とトワの家の柱が立ちはじめる所を確かめた
+   - この PC での注意: NVIDIA の GPU がないので `GPU=1` を手で渡す (渡さないと台本は CPU で描く)。`py` がないので `PY=python`。gh の今のアカウントが Ry0xxx だと素材のリポジトリが読めないので、`GH_TOKEN=$(gh auth token --user Ryo-Tanohata)` をつける。node は `/c/...` を読めないので `PEOPLE_DIR_G4="C:/.../.kawabe_work/assets/g4-g4-v1"` の形で渡した。`fetch_assets.sh` の Windows の `\r` の直しはコミットした
 
 --- ここまで ---
