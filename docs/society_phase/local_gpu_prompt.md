@@ -1,13 +1,7 @@
 # ローカル (自分の PC・GPU) で動画を撮るための指示 (Claude Code に渡す)
 
 2026-11-26。本人「GPU の作業はローカルでしたいです。その為のプロンプトを考えて下さい」。
-下の「--- ここから ---」から「## 5. 追加 (2026-11-27): G4 の 3 本 (家を建てる動き)
-本人「家を建てるモーションが入っている動画がなく…そこの動画があればすぐ見たい」。クラウドで見せ方を直した (`houseBuild`)。
-1. `git pull` → `bash sim/society/tools/human/local/build_set_local.sh leather sim/society/tools/human/sets/auto_g4_leather.json g4` (服は leather。手で決めた七人も leather で作り直す)。
-2. 絵コンテ: `PEOPLE_DIR_G4=.kawabe_work/people_glb_g4 bash sim/society/video/render_all.sh --storyboard G4V` → `video_review_loop.md` の見直し。とくに K6 (建てる様子)・K1/K16 (家にめり込む・すり抜け)・家が柱 → 壁 → 屋根とできていくか (1591 日目 フウの家 1 割、1625 日目 フウの家ができる、1636 日目 ナギの家ができる、1680 日目 トワの家を建てはじめ)。
-3. 本番: `PEOPLE_DIR_G4=.kawabe_work/people_glb_g4 bash sim/society/video/render_all.sh G4V G4F1V G4F2V`。G4V を先に本人へ。
-
---- ここまで ---」までを、自分の PC で開いた Claude Code に、そのまま貼って渡す。
+下の「--- ここから ---」から「--- ここまで ---」までを、自分の PC で開いた Claude Code に、そのまま貼って渡す。
 
 役わけ: **クラウド** = 村を回す・見せ方のコードを直す・絵コンテ。**ローカル** = GPU を使う作業 (人のモデルを作る・本番の動画を撮る)。
 同じブランチを使うので、どちらも作業の前に `git pull` する。
@@ -61,8 +55,8 @@
 
 ## 5. 追加 (2026-11-27): G4 の 3 本 (家を建てる動き)
 本人「家を建てるモーションが入っている動画がなく…そこの動画があればすぐ見たい」。クラウドで見せ方を直した (`houseBuild`)。
-1. `git pull` → `bash sim/society/tools/human/local/build_set_local.sh leather sim/society/tools/human/sets/auto_g4_leather.json g4` (服は leather。手で決めた七人も leather で作り直す)。
-2. 絵コンテ: `PEOPLE_DIR_G4=.kawabe_work/people_glb_g4 bash sim/society/video/render_all.sh --storyboard G4V` → `video_review_loop.md` の見直し。とくに K6 (建てる様子)・K1/K16 (家にめり込む・すり抜け)・家が柱 → 壁 → 屋根とできていくか (1591 日目 フウの家 1 割、1625 日目 フウの家ができる、1636 日目 ナギの家ができる、1680 日目 トワの家を建てはじめ)。
-3. 本番: `PEOPLE_DIR_G4=.kawabe_work/people_glb_g4 bash sim/society/video/render_all.sh G4V G4F1V G4F2V`。G4V を先に本人へ。
+1. `git pull`。G4 の人のモデルは作らなくてよい (2026-11-28 から、非公開の素材のリポジトリ `Ryo-Tanohata/kawabe-assets` に置いてある)。`render_all.sh` が札 `sim/society/assets.json` を読み、`sim/society/tools/fetch_assets.sh g4` で `.kawabe_work/assets/` に自動で取ってくる (本人の GitHub のログインで読める)。
+2. 絵コンテ: `bash sim/society/video/render_all.sh --storyboard G4V` → `video_review_loop.md` の見直し。とくに K6 (建てる様子)・K1/K16 (家にめり込む・すり抜け)・家が柱 → 壁 → 屋根とできていくか (1591 日目 フウの家 1 割、1625 日目 フウの家ができる、1636 日目 ナギの家ができる、1680 日目 トワの家を建てはじめ)。
+3. 本番: `bash sim/society/video/render_all.sh G4F1V G4F2V` (G4V は 2026-11-28 にクラウドで撮った)。
 
 --- ここまで ---
