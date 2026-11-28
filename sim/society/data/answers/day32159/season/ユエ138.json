@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は畑の実りを刈り、秋と冬は私とテナで肉をとってくる。大きな獲物を追うのは私の仕事だ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が落ちる前に刈り入れる"}, "family": {"テナ145": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに刈らないと実りが落ちるため"}, "ルタ146": {"activity": "畑仕事", "place": "camp", "why": "採集の腕を生かして刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "冬に備えて肉をとっておく。狩りは私の得意"}, "family": {"テナ145": {"activity": "狩り", "place": "東林12", "why": "狩りの腕があり、冬の肉をためられる"}, "ルタ146": {"activity": "採集", "place": "camp", "why": "木の実の採集が得意なため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "冬は魚やけものの肉が頼りになる"}, "family": {"テナ145": {"activity": "狩り", "place": "東林12", "why": "冬の肉をとるため"}, "ルタ146": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "狩り", "place": "東林12", "with": [], "why": "肉をとって蓄えを助ける"}, "family": {"テナ145": {"activity": "狩り", "place": "東林12", "why": "肉をとるため"}, "ルタ146": {"activity": "採集", "place": "camp", "why": "採集が得意なため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": "",
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "肉をたくわえた年",
+ "feeling": "体が軽い。早く森で獲物を追いたい。"}

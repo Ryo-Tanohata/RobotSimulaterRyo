@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "今年は実りが多い。夏のうちにしっかり刈って、秋にまた種をまこう。ヤギが多すぎるから、少しつぶして肉にしたい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"キサ144": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいるので一緒に刈る"}, "ホタ155": {"activity": "畑仕事", "place": "camp", "why": "子も刈り入れを手伝う"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 15},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "まいた畑の草取りで来年の実りを増やすため"}, "family": {"キサ144": {"activity": "畑仕事", "place": "camp", "why": "草取りを分けてする"}, "ホタ155": {"activity": "ヤギの世話", "place": "camp", "why": "子はヤギの世話ならできる"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りをすると実りが増える"}, "family": {"キサ144": {"activity": "畑仕事", "place": "camp", "why": "冬の草取りを続ける"}, "ホタ155": {"activity": "畑仕事", "place": "camp", "why": "子も草取りを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れの前に草取りを仕上げる"}, "family": {"キサ144": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれて乳がとれる"}, "ホタ155": {"activity": "ヤギの世話", "place": "camp", "why": "子はヤギの世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": "",
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い刈り入れの年",
+ "feeling": "蓄えが多くて安心だ。体が動くうちは畑で働きたい。"}

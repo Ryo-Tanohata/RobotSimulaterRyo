@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。夏は刈り入れ、そのあとは畑の草取りと水の道をこつこつ進めよう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちないよう、刈り入れを急ぐ"}, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいる"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいる"}, "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいる"}, "ネイ125": {"activity": "畑仕事", "place": "camp", "why": "刈り入れは人手がいる"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の来る畑は悪い年でも実りが半分にならず、手入れがまだ多く残っている"}, "family": {"ルタ88": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ユエ107": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}, "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで来年の実りを増やす"}, "ネイ125": {"activity": "畑仕事", "place": "camp", "why": "まいた畑の草取りで来年の実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 100},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると来年の夏の実りが増える"}, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ロワ121": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが残っているので手を貸す"}, "ネイ125": {"activity": "水の道を掘る", "place": "camp", "why": "手入れが残っているので手を貸す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れの前に草取りをしておく"}, "family": {"ルタ88": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ユエ107": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ロワ121": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ネイ125": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進める"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"テナ175": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M642": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1528": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "蓄えゆたかな年",
+ "feeling": "蓄えが多くて安心だ。若い者といっしょに畑と水の道に精を出そう。"}

@@ -1,0 +1,13 @@
+{"say": [], "year": {"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまう。体は丈夫だから刈り入れをする"}, "family": {"ホタ108": {"activity": "畑仕事", "place": "camp", "why": "夏は刈り入れが先。畑の実りを落とさない"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+ "秋": {"job": {"activity": "狩り", "place": "北川12", "with": [], "why": "狩りの腕がいちばんなので、川で魚をとって蓄えを助ける"}, "family": {"ホタ108": {"activity": "狩り", "place": "南川12", "why": "狩りが得意なので魚をとる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+ "冬": {"job": {"activity": "狩り", "place": "東川28", "with": [], "why": "冬も魚とけものはいる。腕を生かして食べ物を取る"}, "family": {"ホタ108": {"activity": "狩り", "place": "北川12", "why": "冬も魚をとれる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+ "春": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "春は草や実を集めるのが得意なので、近場で採集する"}, "family": {"ホタ108": {"activity": "採集", "place": "西草原12", "why": "採集が得意なので手を貸す"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"テナ175": false}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M642": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1528": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い年",
+ "feeling": "畑は豊かに実っている。人の集まりは苦手だが、体を動かして働くのは悪くない。"}

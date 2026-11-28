@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだたっぷり実っているよ。落ちる前に、みんなで毎日刈ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちてしまうから。"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "家族みんなで畑を刈って蓄えを増やす。"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "赤ちゃんがいても、camp で刈り入れを手伝える。"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "夏の刈り入れは人手がいるから。"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りで、来年の実りを守る。"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす。"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす。"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 40},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続けると来年の夏の実りが増えるから。"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける。"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける。"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りの前に、最後の草取りをする。"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "最後の草取りをする。"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "最後の草取りをする。"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "最後の草取りをする。"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"テナ175": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M642": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1528": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "小さな子が多く旅立った年",
+ "feeling": "蓄えはたっぷりあるけれど、小さな子が亡くなったのが悲しい。新しく来た子たちを迎えたい。"}
