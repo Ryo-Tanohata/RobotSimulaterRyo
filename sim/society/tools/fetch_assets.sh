@@ -7,7 +7,8 @@ set -euo pipefail
 SET=${1:?組の名前 (例 g4)}
 HERE="$(cd "$(dirname "$0")" && pwd)"; ROOT="$(cd "$HERE/../../.." && pwd)"
 PY=${PY:-python3}; command -v "$PY" >/dev/null 2>&1 || PY=py
-read -r REPO VER COMMIT SUB < <("$PY" -c "import json,sys;a=json.load(open(sys.argv[1],encoding='utf-8'));s=a['sets'][sys.argv[2]];print(a['repo'],s['version'],s['commit'],s['path'])" "$ROOT/sim/society/assets.json" "$SET")
+# tr -d '\r': Windows の Python は行の終わりに \r をつけるので、最後の値 (SUB) に \r が残らないように落とす (2026-11-28、本人の PC)
+read -r REPO VER COMMIT SUB < <("$PY" -c "import json,sys;a=json.load(open(sys.argv[1],encoding='utf-8'));s=a['sets'][sys.argv[2]];print(a['repo'],s['version'],s['commit'],s['path'])" "$ROOT/sim/society/assets.json" "$SET" | tr -d '\r')
 CACHE=${KAWABE_ASSETS:-$ROOT/.kawabe_work/assets}
 DEST="$CACHE/$SET-$VER"
 if [ -f "$DEST/.done" ]; then echo "$DEST"; exit 0; fi
