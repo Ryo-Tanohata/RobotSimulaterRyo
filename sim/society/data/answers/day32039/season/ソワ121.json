@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は落ちる前に、毎日みんなで刈ろう。秋には種をまいて、冬の食べ物を守ろうね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の畑は落ちる前に刈ると蓄えが増えるから"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "力があるので畑を刈ってもらう"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "採集が得意で畑も任せられる"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "小さな子がいるのでキャンプの近くで働く"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた種を草取りすると来年の実りが増えるから"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "種まきと草取りをする"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "種まきと草取りをする"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "子のそばで草取りをする"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りをすると実りが増えるから"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りをして夏の実りに備えるから"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M639": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1515": "断る", "T1516": "断る", "T1517": "断る"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "小さな子が多く亡くなった年",
+ "feeling": "畑を守って、小さな子たちが元気に育つように願っている。"}

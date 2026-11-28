@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑は刈るものがたくさん残っている。落ちる前に、みんなで刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"キオ139": {"activity": "畑仕事", "place": "camp", "why": "若い力で刈り入れを手伝ってほしい"}, "セヤ144": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈るため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだ多く残っているから"}, "family": {"キオ139": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}, "セヤ144": {"activity": "採集", "place": "camp", "why": "家の食べ物を足すため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 500},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りで実りを守るため"}, "family": {"キオ139": {"activity": "畑仕事", "place": "camp", "why": "草取りをして実りを増やすため"}, "セヤ144": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを進めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の実りのために草取りを続ける"}, "family": {"キオ139": {"activity": "畑仕事", "place": "camp", "why": "草取りのため"}, "セヤ144": {"activity": "採集", "place": "camp", "why": "春の食べ物を集めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M639": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1515": false, "T1516": false, "T1517": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [{"id": "L1471", "against": "", "agree": true, "reason": "冬と春の草取りで実りが守られるから"}, {"id": "L1479", "against": "", "agree": true, "reason": "水の道の手入れが進むから"}],
+ "year_name": "たくさん亡くなった年",
+ "feeling": "刈る畑がたくさんあって安心だが、小さい子が亡くなったのがつらい。"}
