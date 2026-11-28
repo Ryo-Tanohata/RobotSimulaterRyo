@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "蓄えはたっぷりある。わしは夏の刈り入れを手伝って、そのあとも畑の草取りをこつこつ続けるよ。"}],
+"year": {
+"夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が残っているので、落ちる前に刈り入れる"}, "family": {"ホタ100": {"activity": "畑仕事", "place": "camp", "why": "夏のうちに刈らないと落ちてしまうから"}, "オセ115": {"activity": "畑仕事", "place": "camp", "why": "刈り入れの人手を増やすため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+"秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋の畑の草取りで実りを増やす"}, "family": {"ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れがまだ多く残っているから"}, "オセ115": {"activity": "畑仕事", "place": "camp", "why": "草取りを分け合うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 100},
+"冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬の草取りで来年の実りを守る"}, "family": {"ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "冬のうちに水の道を直しておく"}, "オセ115": {"activity": "畑仕事", "place": "camp", "why": "草取りを分け合うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+"春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りを続けて夏の刈り入れにそなえる"}, "family": {"ホタ100": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを少しずつ進める"}, "オセ115": {"activity": "畑仕事", "place": "camp", "why": "草取りを分け合うため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+"keep": false, "seal": false, "seal_store": [],
+"accept": {"ナセ176": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+"judge": {"M645": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+"trade": {"T1541": false, "T1542": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+"knowledge": [{"op": "add", "text": "村の蓄えは今の人数で約481日分あり、ヤギは草が足りず増えすぎている", "because": [8971516], "confidence": 0.7}],
+"proposal": null,
+"votes": [{"id": "L0", "against": "", "agree": true, "reason": "夜はザガが出るので、みんなで守るのがよいから"}],
+"year_name": "草のヤギ減る年",
+"feeling": "蓄えがあって安心だ。静かに畑を見守りたい。"}

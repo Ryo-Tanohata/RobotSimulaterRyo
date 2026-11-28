@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を先に刈ろう。刈りおわったら、秋と冬は水の道の手入れにも手を貸すよ。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを先にする"}, "family": {"シエ142": {"activity": "畑仕事", "place": "camp", "why": "夫婦で刈り入れをして、落ちる前に刈りきるため"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 6},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがまだたくさん残っていて、水の来る畑は悪い年でも実りが減りにくいため"}, "family": {"シエ142": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れを家ごとに分けて進めるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "秋にまいた畑の草取りをすると、次の夏の実りが増えるため"}, "family": {"シエ142": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やすため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りを春も続けて、夏の刈り入れにそなえるため"}, "family": {"シエ142": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けて夏の実りを守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ナセ176": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "蓄えがたっぷりでも、夏は刈り入れを先にして、秋に千つかみまき、冬と春は草取りと水の道の手入れを続けるのがよい。ヤギは草より多いので少しつぶす。", "because": [8971516], "confidence": 0.7}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "水の道と実りの年",
+ "feeling": "蓄えは多くて安心。畑と水の道の仕事をこつこつ続けたい。"}

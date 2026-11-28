@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は畑の実りを落とさないように、毎日刈ろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるから"}, "family": {"ヌオ145": {"activity": "畑仕事", "place": "camp", "why": "二人で畑を刈れば蓄えが増えるから"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "採集が得意で、近くで食べ物を集められるから"}, "family": {"ヌオ145": {"activity": "採集", "place": "西草原12", "why": "採集が得意だから"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 200},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして来年の実りを増やすため"}, "family": {"ヌオ145": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを守るため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りを続けて夏の実りを守るため"}, "family": {"ヌオ145": {"activity": "畑仕事", "place": "camp", "why": "草取りを続けるため"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "たくさん亡くなった年",
+ "feeling": "畑を刈って、みんなが食べていけるようにしたい。"}

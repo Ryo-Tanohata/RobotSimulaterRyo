@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "もう歳だけど、夏は畑の刈り入れを手伝うよ。蓄えは大事にしようね。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑を夏のうちに刈らないと落ちてしまうから"}, "family": {"ヒセ128": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}, "タユ137": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "近場で木の実や草の種を集めて蓄えを足す"}, "family": {"ヒセ128": {"activity": "採集", "place": "西草原12", "why": "蓄えを足す"}, "タユ137": {"activity": "採集", "place": "西草原12", "why": "蓄えを足す"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1500000},
+  "冬": {"job": {"activity": "狩り", "place": "南林12", "with": [], "why": "冬も魚やけものはいるので、肉を取って蓄えを助ける"}, "family": {"ヒセ128": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "タユ137": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをして実りを増やす"}, "family": {"ヒセ128": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "タユ137": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "子らが多く亡くなった年",
+ "feeling": "歳をとったが、まだ体は動く。みんなが無事に冬を越せますように。"}

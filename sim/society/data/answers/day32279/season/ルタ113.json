@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "畑はたっぷり実っている。今年も思いきって刈って、蓄えをもっとふやそう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏のうちに刈らないと実が落ちるので、まず刈り入れをする"}, "family": {"リセ136": {"activity": "畑仕事", "place": "camp", "why": "実った畑を刈る人手がいるから"}, "ケセ153": {"activity": "畑仕事", "place": "camp", "why": "若くて力があるので刈り入れを手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "採集が得意なので、近い草原で食べ物を集める"}, "family": {"リセ136": {"activity": "採集", "place": "西草原12", "why": "近くで安全に集められるから"}, "ケセ153": {"activity": "採集", "place": "西草原12", "why": "採集の腕があるので"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬は木の実がないので、畑の草取りで実りをふやす"}, "family": {"リセ136": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の実りが増えるから"}, "ケセ153": {"activity": "畑仕事", "place": "camp", "why": "草取りの人手がいるから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "採集", "place": "西草原12", "with": [], "why": "春は草や芽が出るので、採集の腕をいかす"}, "family": {"リセ136": {"activity": "採集", "place": "西草原12", "why": "近くで集められるから"}, "ケセ153": {"activity": "採集", "place": "西草原12", "why": "採集が得意だから"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ナセ176": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M645": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1541": "村", "T1542": "村"}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "実りの多い大胆の年",
+ "feeling": "蓄えは多いし体も元気。今年も思いきり動いてみたい。"}

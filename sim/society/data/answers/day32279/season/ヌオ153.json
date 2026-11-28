@@ -1,0 +1,13 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈って蓄えにする。秋からは水の道と草取りを分けてやろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れをする"}, "family": {"ロワ153": {"activity": "畑仕事", "place": "camp", "why": "採集の腕が高いので、刈り入れで蓄えを増やす"}, "ヒセ155": {"activity": "字を教える", "place": "camp", "why": "字が読めるので、村の子に字を教える"}}, "pick": 0, "plant": 0, "harvest": 60, "eat_goat": 0},
+  "秋": {"job": {"activity": "水の道を掘る", "place": "camp", "with": [], "why": "水の道の手入れがたくさん残っているので手伝う"}, "family": {"ロワ153": {"activity": "水の道を掘る", "place": "camp", "why": "手入れの残りが多いので、いっしょに掘る"}, "ヒセ155": {"activity": "字を教える", "place": "camp", "why": "子に字を教え続ける"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 100},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると畑の実りが増える"}, "family": {"ロワ153": {"activity": "畑仕事", "place": "camp", "why": "草取りで実りを増やす"}, "ヒセ155": {"activity": "字を教える", "place": "camp", "why": "子に字を教える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "春も草取りで畑の実りを守る"}, "family": {"ロワ153": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ヒセ155": {"activity": "字を教える", "place": "camp", "why": "子に字を教える"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M645": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [], "proposal": null, "votes": [],
+ "year_name": "たっぷり刈った年",
+ "feeling": "蓄えは多く、家族もそろっている。落ち着いた気持ちだ。"}

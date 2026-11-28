@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏の畑はまだたっぷり実っている。落ちる前に、みんなで夕方まで刈りきろう。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑は夏のうちに刈らないと落ちるので、刈り入れを手伝う"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "力があるので刈り入れで蓄えを増やす"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "小さい子が近くにいるので、キャンプで刈り入れをする"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "夏の畑を落とさないよう刈り入れをする"}, "シエ158": {"activity": "畑仕事", "place": "camp", "why": "大人の半分でも刈り入れの助けになる"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "秋": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やす"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "草取りで次の夏の実りを増やす"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "子の世話をしながら草取りをする"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "シエ158": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 0},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "冬も草取りを続ける"}, "family": {"ワユ126": {"activity": "狩り", "place": "南川12", "why": "冬は魚やけものがいるので、狩りで食べ物を足す"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "ケナ142": {"activity": "畑仕事", "place": "camp", "why": "草取りを続ける"}, "シエ158": {"activity": "ヤギの世話", "place": "camp", "why": "ヤギの世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りで実りを増やす"}, "family": {"ワユ126": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ヒセ133": {"activity": "畑仕事", "place": "camp", "why": "草取りをする"}, "ケナ142": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギが生まれるのでヤギの世話をする"}, "シエ158": {"activity": "ヤギの世話", "place": "camp", "why": "子ヤギの世話を手伝う"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {"ナセ176": true}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M645": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1541": false, "T1542": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": {"give": {}, "take": [], "pay": null}, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": null, "order": null, "take": null,
+ "knowledge": [],
+ "proposal": null,
+ "votes": [],
+ "year_name": "子らを失った年",
+ "feeling": "小さい子が多く亡くなって胸が痛いが、畑は豊かなので、みなで力を合わせたい。"}

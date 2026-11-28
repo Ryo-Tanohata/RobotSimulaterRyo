@@ -1,0 +1,15 @@
+{"say": [{"to": "みんな", "text": "夏は実った畑を刈りきろう。秋は多めに種をまいて、冬と春は草取りに出よう。ヤギは草が足りないから、これ以上は増やさないほうがいい。"}],
+ "year": {
+  "夏": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "実った畑が夏のうちに落ちる前に、できるだけ刈りきりたい"}, "family": {"キサ105": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "キオ107": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "リセ111": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ヒセ131": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "ネイ133": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}, "セヤ149": {"activity": "畑仕事", "place": "camp", "why": "刈り入れを急ぐ"}}, "pick": 20, "plant": 0, "harvest": 60, "eat_goat": 20},
+  "秋": {"job": {"activity": "採集", "place": "東林12", "with": [], "why": "採集が得意なので、秋の実りを集めて蓄えを厚くする"}, "family": {"キサ105": {"activity": "採集", "place": "南林12", "why": "木の実を集める"}, "キオ107": {"activity": "採集", "place": "西草原12", "why": "草の種と実を集める"}, "リセ111": {"activity": "採集", "place": "北林12", "why": "木の実を集める"}, "ヒセ131": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "ネイ133": {"activity": "畑仕事", "place": "camp", "why": "畑の草取りで実りを増やす"}, "セヤ149": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れが残っている"}}, "pick": 20, "plant": 0, "harvest": 0, "eat_goat": 0, "sow": 1000},
+  "冬": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "草取りをすると畑の実りが増える"}, "family": {"キサ105": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "キオ107": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "リセ111": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヒセ131": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れ"}, "ネイ133": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "セヤ149": {"activity": "水の道を掘る", "place": "camp", "why": "水の道の手入れ"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0},
+  "春": {"job": {"activity": "畑仕事", "place": "camp", "with": [], "why": "夏の刈り入れに向けて草取りを続ける"}, "family": {"キサ105": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "キオ107": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "リセ111": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ヒセ131": {"activity": "畑仕事", "place": "camp", "why": "草取り"}, "ネイ133": {"activity": "ヤギの世話", "place": "camp", "why": "春は子ヤギが生まれる"}, "セヤ149": {"activity": "畑仕事", "place": "camp", "why": "草取り"}}, "pick": 0, "plant": 0, "harvest": 0, "eat_goat": 0}},
+ "keep": false, "seal": false, "seal_store": [],
+ "accept": {}, "accept_rule": {"よその群れ": null, "ほかの村から": null},
+ "judge": {"M645": "ゆるす"}, "judge_rule": null, "feast": [], "leader": null,
+ "trade": {"T1541": false, "T1542": false}, "trade_rule": {"交換": null, "貸して": null, "max": null, "not": [], "利子": 0}, "demand": null, "share": null, "pay": null, "redeem": null, "market": null, "market_day": null, "coin_rate": null, "pact": [], "help": [], "note": [], "guild": null, "workshop": [], "post": [], "head": null, "sell": [], "notice": "夏は刈りきり、秋は多めに種をまき、冬と春は草取りに出よう", "order": null, "take": null,
+ "knowledge": [{"op": "add", "text": "ヤギは草のわりに多すぎるので、これ以上は増やさないほうがよい", "because": [], "confidence": 0.6}],
+ "proposal": null,
+ "votes": [],
+ "year_name": "子らが多く亡くなった年",
+ "feeling": "畑は豊かだが子が亡くなるのは悲しい。じっとせず、また新しいことを試したい。"}
