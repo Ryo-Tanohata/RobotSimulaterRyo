@@ -1,12 +1,14 @@
 #!/usr/bin/env node
-// ワークフローの台本 (Workflow 用の .js) を、シェルから動かす小さな道具 (年の終わりの手順 /tmp/yearend.sh などから使う)。
+// ワークフローの台本 (Workflow 用の .js) を、シェルから動かす小さな道具 (1 年回す sim/society/tools/run_year.sh などから使う。前は /tmp/yearend.sh)。
 //   node sim/society/tools/run_workflow.mjs <台本.js> '<args の JSON>' [--log <ログのファイル>]
 // agent() は `claude -p` (ヘッドレス) を 1 回ずつ呼ぶ。schema があれば --json-schema で形をそろえた答えを返す。
 // parallel()・pipeline()・phase()・log()・args・budget を台本に渡す (Workflow と同じ名前。budget は数えない)。
 // 同時に動かす係は 4 人まで (RUN_WF_CONC で変えられる)。係はリポジトリの場所で動き、Read・Write・Edit・Bash・Grep・Glob を使える。
 // 台本の返した値を、最後に JSON で標準出力に出す。
+// 2026-11-28: 係が使ったトークン (入力・出力・キャッシュの読み書きを足したもの) と費用を数え、最後にログへ 1 行出す。
+//   RUN_WF_TOKENS=<ファイル> を渡すと、そのファイルにトークンの合わせの数だけを書く (年報の --tokens に使う)。
 import { spawn } from 'node:child_process'
-import { readFileSync, appendFileSync } from 'node:fs'
+import { readFileSync, appendFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 
 const [scriptPath, argJson, ...rest] = process.argv.slice(2)
@@ -18,6 +20,14 @@ const CONC = Number(process.env.RUN_WF_CONC || 4)
 const CLAUDE = process.env.CLAUDE_BIN || 'claude'
 
 let phaseNow = ''
+const total = { calls: 0, tokens: 0, usd: 0 }
+const addUsage = (j) => {
+  if (!j) return
+  const u = j.usage || {}
+  total.calls++
+  total.tokens += (u.input_tokens || 0) + (u.output_tokens || 0) + (u.cache_creation_input_tokens || 0) + (u.cache_read_input_tokens || 0)
+  total.usd += j.total_cost_usd || 0
+}
 const say = (s) => { const line = `[${new Date().toISOString().slice(11, 19)}] ${s}`; console.error(line); if (logFile) appendFileSync(logFile, line + '\n') }
 let running = 0
 const queue = []
@@ -45,6 +55,7 @@ async function agent(prompt, opts = {}) {
       })
       let j = null
       try { j = JSON.parse(out.so) } catch { /* 下で扱う */ }
+      addUsage(j)
       if (j && !j.is_error) {
         const v = opts.schema ? j.structured_output : j.result
         if (v !== undefined && v !== null) {
@@ -76,4 +87,6 @@ const src = readFileSync(scriptPath, 'utf8').replace(/^export const meta\s*=/m, 
 const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor
 const fn = new AsyncFunction('agent', 'parallel', 'pipeline', 'phase', 'log', 'args', 'budget', src)
 const result = await fn(agent, parallel, pipeline, phase, log, args, budget)
+say(`合わせて: 係 ${total.calls} 回・トークン ${total.tokens}・$${total.usd.toFixed(2)}`)
+if (process.env.RUN_WF_TOKENS) writeFileSync(process.env.RUN_WF_TOKENS, `${total.tokens}\n`)
 console.log(JSON.stringify(result, null, 1))

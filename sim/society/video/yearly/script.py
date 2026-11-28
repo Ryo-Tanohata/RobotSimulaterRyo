@@ -167,7 +167,7 @@ for team in ORDER:
 
 # 4. 閉じ
 worry = [h["title"] for h in top3 if h.get("expr") == "concern"]
-close = f"{Y}年のまとめは、ここまでです。" + (f"「{worry[0]}」ことは、来年も見ていきますね。" if worry else "来年も、村のようすをお伝えしますね。")
+close = f"{Y}年のまとめは、ここまでです。" + (f"「{worry[0]}」のことは、来年も見ていきますね。" if worry else "来年も、村のようすをお伝えしますね。")
 add(G, "smile" if not worry else "neutral", close, "title_end", "close")
 
 vo = []
