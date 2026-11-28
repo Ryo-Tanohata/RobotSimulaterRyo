@@ -67,7 +67,7 @@ opts_of() { case "$1" in
   D1V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=${PEOPLE_DIR_D1V:-/dev/shm/people_glb} PEOPLE_VIEW=$D1V_VIEW HIDE_TOASTS=1" ;;
   S1V|G1F1V|G1F2V|G1F3V|G1V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=$PEOPLE_DIR_HIDE PEOPLE_VIEW=$G1V_VIEW HIDE_TOASTS=1" ;;
   G2V|G2F1V|G2F2V|G2F3V|G3V|G3F3V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=$PEOPLE_DIR_G2 PEOPLE_VIEW=$G2V_VIEW HIDE_TOASTS=1" ;;
-  G4V|G4F1V|G4F2V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=$PEOPLE_DIR_G4 PEOPLE_VIEW=$G4V_VIEW HIDE_TOASTS=1" ;;
+  G4V|G4F1V|G4F2V) echo "FPS=12 NO_RAF=1 PREROLL=3 PEOPLE=$(g4dir) PEOPLE_VIEW=$G4V_VIEW HIDE_TOASTS=1" ;;
   *) echo "" ;; esac; }
 D1V_CAM='{"min":4.5,"add":2.5,"k":1.6,"max":40}'
 # D1V の見せ方 (2026-11-23 本人の絵コンテの直し): 赤い玉 (木の実・芋) を隠す・昼は組ごとに画面を分ける・火のまわりは引いて上から。
@@ -85,7 +85,8 @@ PEOPLE_DIR_G2=${PEOPLE_DIR_G2:-/dev/shm/people_glb_g2}
 # G4 (2026-11-27 本人「家を建てるモーションが入っている動画がなく…すぐ見たい」): 服は leather (ヤギのなめし革。fashion.md)。人は tools/human/sets/auto_g4_leather.json。
 #   houseBuild: 家族の家 (1590 日目から) を建てる・広げる人が、その家のまわりで持ち上げる・杭を打つ・結わえる。家は記録のでき具合まで、柱 → 壁 → 屋根と少しずつできる
 G4V_VIEW=${G2V_VIEW%\}}',"houseBuild":true}'
-PEOPLE_DIR_G4=${PEOPLE_DIR_G4:-/dev/shm/people_glb_g4}
+# 2026-11-28: G4 の人のモデルは、非公開の素材のリポジトリ (sim/society/assets.json の札) から取ってくる。PEOPLE_DIR_G4 を渡せばそちらを使う
+g4dir() { [ -n "${PEOPLE_DIR_G4:-}" ] && { echo "$PEOPLE_DIR_G4"; return; }; bash "$(dirname "$0")/../tools/fetch_assets.sh" g4; }
 D1V_CREDIT="VRoid の CC0 サンプル (pixiv) をもとに作成"
 STORY=
 [ "${1:-}" = "--storyboard" ] && { STORY=1; shift; }
